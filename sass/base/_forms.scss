@@ -1,0 +1,69 @@
+/**
+ * Forms
+ *
+ * This is an example file
+ *
+ * @author magnify
+ */
+
+
+
+/* Basic styling
+   ================================================================================================================== */
+
+input,
+textarea {
+  font: $font;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  border: 1px solid $gray-lighter;
+  display: block;
+  min-height: 1.25em;
+  width: 100%;
+  padding: .75em;
+
+  color: $gray-darker;
+  background-color: $white;
+
+  &:focus {
+    border: 1px solid $gray-dark;
+
+    color: $gray-darkest;
+  }
+
+  &[disabled] {
+    @include box-shadow(0 0 0);
+
+    border: 1px solid $gray-light;
+
+    background-color: lighten($gray-light, 5%);
+  }
+
+  @include border-radius($border-radius);
+  @include box-sizing(border-box);
+}
+
+
+/* Labels
+   ================================================================================================================== */
+
+label {
+  display: block;
+  margin-bottom: .25em;
+
+  /* Move labels so they align better with fields when using rounded corners */
+  margin-left: .3em;
+
+  color: $gray-darker;
+}

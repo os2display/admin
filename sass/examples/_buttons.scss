@@ -1,0 +1,40 @@
+/**
+ * Buttons
+ *
+ * This is an example file
+ *
+ * @author magnify
+ */
+
+
+%button {
+  display: inline-block;
+  font-size: 125%;
+  padding: .5em 1.5em;
+  position: relative;
+
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+
+  &:focus,
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  @include border-radius($border-radius);
+  @include text-shadow(.025em .025em .1em lighten($gray-darker, 5%));
+}
+
+.button {
+  @extend %button;
+
+  background-color: $gray-darker;
+  border: 0;
+  color: $white;
+
+  &:hover {
+    background-color: $gray-darkest;
+  }
+}
