@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body>
 
@@ -13,51 +15,78 @@
     <a href="/" class="header--logo"><img src="images/logo.png"></a>
   </div>
 </header>
+
 <div class="layout-wrapper">
+
+  <!-- Slider -->
+  <p>
+    <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+  </p>
+  <div id="slider"></div>
+
+  <!-- Preview -->
   <div class="slide-preview">
     <h1 class="slide-preview--header">Palm</h1>
     <div class="slide-preview--wrapper">
-      <div class="slide-preview--palm">
-        <div class="slide-preview--text">This is the slide text</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-preview">
-    <h1 class="slide-preview--header">1/1 (100%)</h1>
-    <div class="slide-preview--wrapper">
-      <div class="slide-preview--one-whole">
-        <div class="slide-preview--text">This is the slide text</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-preview">
-    <h1 class="slide-preview--header">1/2 (50%)</h1>
-    <div class="slide-preview--wrapper">
-      <div class="slide-preview--one-half">
-        <div class="slide-preview--text">This is the slide text</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-preview">
-    <h1 class="slide-preview--header">1/4 (25%)</h1>
-    <div class="slide-preview--wrapper">
-      <div class="slide-preview--one-quarter">
-        <div class="slide-preview--text">This is the slide text</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-preview">
-    <h1 class="slide-preview--header">1/8 (12,5%)</h1>
-    <div class="slide-preview--wrapper">
-      <div class="slide-preview--one-eighth">
+      <div id="js-slide-preview" class="slide-preview--palm">
         <div class="slide-preview--text">This is the slide text</div>
       </div>
     </div>
   </div>
 </div>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+  var app = {
+    changePreviewSize: function(size) {
+      var preview = document.getElementById("js-slide-preview");
+      preview.className = "";
+      preview.classList.add("slide-preview--" + size);
+    }
+  }
+
+  $(function() {
+    $("#slider").slider({
+      value:2,
+      min: 1,
+      max: 7,
+      step: 1,
+      slide: function(event, ui) {
+        var value = ui.value;
+        var amount = $("#amount");
+
+        if (value == 1) {
+          amount.val("1/8 (12,5%)");
+          app.changePreviewSize("one-eighth");
+        }
+        else if (value == 2) {
+          amount.val("1/6 (16,6%)");
+          app.changePreviewSize("one-sixth");
+        }
+        else if (value == 3) {
+          amount.val("1/5 (20%)");
+          app.changePreviewSize("one-fifth");
+        }
+        else if (value == 4) {
+          amount.val("1/4 (25%)");
+          app.changePreviewSize("one-quarter");
+        }
+        else if (value == 5) {
+          amount.val("1/2 (50%)");
+          app.changePreviewSize("one-half");
+        }
+        else if (value == 6) {
+          amount.val("3/4 (75%)");
+          app.changePreviewSize("three-quarters");
+        }
+        else if (value == 7) {
+          amount.val("1/1 (100%)");
+          app.changePreviewSize("one-whole");
+        }
+      }
+    });
+    $("#amount").val("1/6 (16,6%)");
+  });
+</script>
 </body>
 </html>
