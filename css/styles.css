@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.header--inner {
+.header--inner, .slide-wrapper, .slide-preview {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -160,14 +160,6 @@
   /* [2] */
   margin-left: -2em;
   /* [3] */
-  letter-spacing: -0.31em;
-}
-
-/* Opera hack */
-/* line 225, ../sass/base/_grid.scss */
-.opera:-o-prefocus,
-.header--inner {
-  word-spacing: -0.43em;
 }
 
 /**
@@ -178,7 +170,7 @@
  * 5. Required to combine fluid widths and fixed gutters.
  */
 /* line 239, ../sass/base/_grid.scss */
-.header--logo {
+.header--logo, .slide, .slide-preview--one-whole, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-eighth, .slide-preview--palm, .slide-preview--wrapper {
   display: inline-block;
   /* [1] */
   padding-left: 2em;
@@ -193,8 +185,6 @@
   /* [5] */
   box-sizing: border-box;
   /* [5] */
-  letter-spacing: normal;
-  word-spacing: normal;
 }
 
 /**
@@ -206,11 +196,11 @@
  * Extends `.grid`.
  */
 /* line 275, ../sass/base/_grid.scss */
-.header--inner {
+.header--inner, .slide-wrapper, .slide-preview, .slide-preview--wrapper {
   margin-left: 0;
 }
 /* line 278, ../sass/base/_grid.scss */
-.header--inner > .header--logo {
+.header--inner > .header--logo, .slide-wrapper > .header--logo, .slide-preview > .header--logo, .slide-preview--wrapper > .header--logo, .header--inner > .slide, .slide-wrapper > .slide, .slide-preview > .slide, .slide-preview--wrapper > .slide, .header--inner > .slide-preview--one-whole, .slide-wrapper > .slide-preview--one-whole, .slide-preview > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--one-whole, .header--inner > .slide-preview--one-half, .slide-wrapper > .slide-preview--one-half, .slide-preview > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-half, .header--inner > .slide-preview--one-quarter, .slide-wrapper > .slide-preview--one-quarter, .slide-preview > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--one-quarter, .header--inner > .slide-preview--one-fifth, .slide-wrapper > .slide-preview--one-fifth, .slide-preview > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-fifth, .header--inner > .slide-preview--one-eighth, .slide-wrapper > .slide-preview--one-eighth, .slide-preview > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--one-eighth, .header--inner > .slide-preview--palm, .slide-wrapper > .slide-preview--palm, .slide-preview > .slide-preview--palm, .slide-preview--wrapper > .slide-preview--palm, .header--inner > .slide-preview--wrapper, .slide-wrapper > .slide-preview--wrapper, .slide-preview > .slide-preview--wrapper, .slide-preview--wrapper > .slide-preview--wrapper {
   padding-left: 0;
 }
 
@@ -221,6 +211,15 @@
  * Centered grids align grid items centrally without needing to use push or pull
  * classes. Extends `.grid`.
  */
+/* line 300, ../sass/base/_grid.scss */
+.slide-preview--wrapper {
+  text-align: center;
+}
+/* line 303, ../sass/base/_grid.scss */
+.slide-preview--wrapper > .header--logo, .slide-preview--wrapper > .slide, .slide-preview--wrapper > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--palm, .slide-preview--wrapper > .slide-preview--wrapper {
+  text-align: left;
+}
+
 /**
  * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
  * `.grid`.
@@ -243,6 +242,11 @@
 /**
  * Whole
  */
+/* line 367, ../sass/base/_grid.scss */
+.slide, .slide-preview--one-whole, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-eighth, .slide-preview--palm {
+  width: 100%;
+}
+
 /**
  * Halves
  */
@@ -311,17 +315,17 @@
   /**
    * Halves
    */
-  /* line 373, ../sass/base/_grid.scss */
-  .header--logo {
-    width: 50%;
-  }
-
   /**
    * Thirds
    */
   /**
    * Quarters
    */
+  /* line 386, ../sass/base/_grid.scss */
+  .header--logo {
+    width: 25%;
+  }
+
   /**
    * Fifths
    */
@@ -345,11 +349,6 @@
   /**
    * Halves
    */
-  /* line 373, ../sass/base/_grid.scss */
-  .header--logo {
-    width: 50%;
-  }
-
   /**
    * Thirds
    */
@@ -789,13 +788,19 @@ table {
  *
  */
 /* line 10, ../sass/base/_base.scss */
+html {
+  height: 100%;
+}
+
+/* line 14, ../sass/base/_base.scss */
 body {
+  height: 100%;
   background-color: white;
   color: #222;
   font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 17, ../sass/base/_base.scss */
+/* line 23, ../sass/base/_base.scss */
 h1,
 h2,
 h3,
@@ -812,51 +817,51 @@ h6 {
   text-rendering: optimizeLegibility;
 }
 
-/* line 37, ../sass/base/_base.scss */
+/* line 43, ../sass/base/_base.scss */
 strong {
   font-weight: bold;
 }
 
-/* line 42, ../sass/base/_base.scss */
+/* line 48, ../sass/base/_base.scss */
 em {
   font-style: italic;
 }
-/* line 45, ../sass/base/_base.scss */
+/* line 51, ../sass/base/_base.scss */
 em strong {
   font-weight: bold;
 }
 
 /* Links
    ================================================================================================================== */
-/* line 56, ../sass/base/_base.scss */
+/* line 62, ../sass/base/_base.scss */
 a:link {
   color: #2c79d3;
   text-decoration: underline;
 }
-/* line 61, ../sass/base/_base.scss */
+/* line 67, ../sass/base/_base.scss */
 a:visited {
   color: #286dbe;
 }
-/* line 65, ../sass/base/_base.scss */
+/* line 71, ../sass/base/_base.scss */
 a:hover {
   color: #2361a9;
   text-decoration: none;
 }
-/* line 70, ../sass/base/_base.scss */
+/* line 76, ../sass/base/_base.scss */
 a:focus {
   color: #2361a9;
 }
 
 /* Paragraph
    ================================================================================================================== */
-/* line 79, ../sass/base/_base.scss */
+/* line 85, ../sass/base/_base.scss */
 p {
   margin-top: 0;
 }
 
 /* Image
    ================================================================================================================== */
-/* line 87, ../sass/base/_base.scss */
+/* line 93, ../sass/base/_base.scss */
 img {
   display: inline;
   height: auto;
@@ -1015,18 +1020,110 @@ label {
 
 /* Layout */
 /* Slide */
-/* line 55, ../sass/layout/_layout.scss */
-.slide--header {
-  font-weight: bold;
-  text-align: center;
-}
-/* line 60, ../sass/layout/_layout.scss */
-.slide--preview {
+/* line 53, ../sass/layout/_layout.scss */
+.slide, .slide-preview--one-whole, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-eighth, .slide-preview--palm {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #ddd;
-  border: 1px solid #222;
   height: 100%;
-  width: 100%;
+  background-color: #ddd;
+}
+
+/* line 64, ../sass/layout/_layout.scss */
+.slide--text, .slide-preview--one-whole .slide-preview--text, .slide-preview--one-half .slide-preview--text, .slide-preview--one-quarter .slide-preview--text, .slide-preview--one-fifth .slide-preview--text, .slide-preview--one-eighth .slide-preview--text, .slide-preview--palm .slide-preview--text {
+  margin: 2em;
+  padding: 2em;
+  background-color: rgba(0, 0, 0, 0.15);
+  -moz-border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
+  border-radius: 0.6em;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 75, ../sass/layout/_layout.scss */
+.slide-wrapper {
+  height: 100%;
+}
+
+/* line 89, ../sass/layout/_layout.scss */
+.slide {
+  min-height: 100%;
+  font-size: 2em;
+}
+
+/* line 102, ../sass/layout/_layout.scss */
+.slide-preview {
+  margin-bottom: 2em;
+}
+/* line 108, ../sass/layout/_layout.scss */
+.slide-preview--header {
+  font-weight: bold;
+  text-align: center;
+}
+/* line 113, ../sass/layout/_layout.scss */
+.slide-preview--wrapper {
+  overflow: auto;
+  max-height: 250px;
+}
+@media only screen and (min-width: 1024px) {
+  /* line 113, ../sass/layout/_layout.scss */
+  .slide-preview--wrapper {
+    max-height: 1000px;
+  }
+}
+/* line 127, ../sass/layout/_layout.scss */
+.slide-preview--one-whole {
+  height: 1080px;
+  width: 1920px;
+}
+/* line 133, ../sass/layout/_layout.scss */
+.slide-preview--one-whole .slide-preview--text {
+  font-size: 2em;
+}
+/* line 140, ../sass/layout/_layout.scss */
+.slide-preview--one-half {
+  height: 540px;
+  width: 960px;
+}
+/* line 146, ../sass/layout/_layout.scss */
+.slide-preview--one-half .slide-preview--text {
+  font-size: 1em;
+}
+/* line 153, ../sass/layout/_layout.scss */
+.slide-preview--one-quarter {
+  height: 270px;
+  width: 480px;
+}
+/* line 159, ../sass/layout/_layout.scss */
+.slide-preview--one-quarter .slide-preview--text {
+  font-size: 0.5em;
+}
+/* line 166, ../sass/layout/_layout.scss */
+.slide-preview--one-fifth {
+  height: 216px;
+  width: 384px;
+}
+/* line 172, ../sass/layout/_layout.scss */
+.slide-preview--one-fifth .slide-preview--text {
+  font-size: 0.25em;
+}
+/* line 179, ../sass/layout/_layout.scss */
+.slide-preview--one-eighth {
+  height: 135px;
+  width: 240px;
+}
+/* line 185, ../sass/layout/_layout.scss */
+.slide-preview--one-eighth .slide-preview--text {
+  font-size: 0.25em;
+}
+/* line 192, ../sass/layout/_layout.scss */
+.slide-preview--palm {
+  height: 180px;
+  width: 320px;
+}
+/* line 198, ../sass/layout/_layout.scss */
+.slide-preview--palm .slide-preview--text {
+  font-size: 0.25em;
 }
