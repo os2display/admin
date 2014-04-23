@@ -1,15 +1,17 @@
+@charset "UTF-8";
 /**
  * Stylesheet import
  *
  * @author magnify
  */
 /* Compass */
-/* Zen Grids - http://zengrids.com */
 /**
+ *
  * Variables
  *
- * @author magnify
  */
+/* Breakpoints
+   ================================================================================================================== */
 /* Layout
    ================================================================================================================== */
 /* Colors
@@ -20,28 +22,447 @@
    ================================================================================================================== */
 /* Spacing
    ================================================================================================================== */
+/*------------------------------------*\
+    $CSSWIZARDRY-GRIDS
+\*------------------------------------*/
 /**
- * Theme variables
- *
- * This is an example file
- *
- * @author magnify
+ * CONTENTS
+ * INTRODUCTION.........How the grid system works.
+ * VARIABLES............Your settings.
+ * MIXINS...............Library mixins.
+ * GRID SETUP...........Build the grid structure.
+ * WIDTHS...............Build our responsive widths around our breakpoints.
+ * PUSH.................Push classes.
+ * PULL.................Pull classes.
  */
-/* Colors
-   ================================================================================================================== */
-/* Typograhy
-   ================================================================================================================== */
-/* Link colors
-   ================================================================================================================== */
+/*------------------------------------*\
+    $INTRODUCTION
+\*------------------------------------*/
 /**
+ * csswizardry grids provides you with widths to suit a number of breakpoints
+ * designed around devices of a size you specify. Out of the box, csswizardry
+ * grids caters to the following types of device:
+ *
+ * palm     --  palm-based devices, like phones and small tablets
+ * lap      --  lap-based devices, like iPads or laptops
+ * portable --  all of the above
+ * desk     --  stationary devices, like desktop computers
+ * regular  --  any/all types of device
+ *
+ * These namespaces are then used in the library to give you the ability to
+ * manipulate your layouts based around them, for example:
+ *
+   <div class="grid__item  one-whole  lap--one-half  desk--one-third">
+ *
+ * This would give you a grid item which is 100% width unless it is on a lap
+ * device, at which point it become 50% wide, or it is on a desktop device, at
+ * which point it becomes 33.333% width.
+ *
+ * csswizardry grids also has push and pull classes which allow you to nudge
+ * grid items left and right by a defined amount. These follow the same naming
+ * convention as above, but are prepended by either `push--` or `pull--`, for
+ * example:
+ *
+   `class="grid__item  one-half  push--one-half"`
+ *
+ * This would give you a grid item which is 50% width and pushed over to the
+ * right by 50%.
+ *
+ * All classes in csswizardry grids follow this patten, so you should fairly
+ * quickly be able to piece together any combinations you can imagine, for
+ * example:
+ *
+   `class="grid__item  one-whole  lap--one-half  desk--one-third  push--desk--one-third"`
+ *
+   `class="grid__item  one-quarter  palm--one-half  push--palm--one-half"`
+ *
+   `class="grid__item  palm--one-third  desk--five-twelfths"`
+ */
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+/**
+ * If you are building a non-responsive site but would still like to use
+ * csswizardry-grids, set this to ‘false’:
+ */
+/**
+ * Is this build mobile first? Setting to ‘true’ means that all grids will be
+ * 100% width if you do not apply a more specific class to them.
+ */
+/**
+ * Set the spacing between your grid items.
+ */
+/**
+ * Would you like Sass’ silent classes, or regular CSS classes?
+ */
+/**
+ * Would you like push and pull classes enabled?
+ */
+/**
+ * Using `inline-block` means that the grid items need their whitespace removing
+ * in order for them to work correctly. Set the following to true if you are
+ * going to achieve this by manually removing/commenting out any whitespace in
+ * your HTML yourself.
+ *
+ * Setting this to false invokes a hack which cannot always be guaranteed,
+ * please see the following for more detail:
+ *
+ * github.com/csswizardry/csswizardry-grids/commit/744d4b23c9d2b77d605b5991e54a397df72e0688
+ * github.com/csswizardry/inuit.css/issues/170#issuecomment-14859371
+ */
+/**
+ * Define your breakpoints. The first value is the prefix that shall be used for
+ * your classes (e.g. `.palm--one-half`), the second value is the media query
+ * that the breakpoint fires at.
+ */
+/**
+ * Define which namespaced breakpoints you would like to generate for each of
+ * widths, push and pull. This is handy if you only need pull on, say, desk, or
+ * you only need a new width breakpoint at mobile sizes. It allows you to only
+ * compile as much CSS as you need. All are turned on by default, but you can
+ * add and remove breakpoints at will.
+ *
+ * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
+ * have been set to ‘true’.
+ */
+/**
+ * You do not need to edit anything from this line onward; csswizardry-grids is
+ * good to go. Happy griddin’!
+ */
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+/**
+ * These mixins are for the library to use only, you should not need to modify
+ * them at all.
+ *
+ * Enclose a block of code with a media query as named in `$breakpoints`.
+ */
+/**
+ * Drop relative positioning into silent classes which can’t take advantage of
+ * the `[class*="push--"]` and `[class*="pull--"]` selectors.
+ */
+/*------------------------------------*\
+    $GRID SETUP
+\*------------------------------------*/
+/**
+ * 1. Allow the grid system to be used on lists.
+ * 2. Remove any margins and paddings that might affect the grid system.
+ * 3. Apply a negative `margin-left` to negate the columns’ gutters.
+ */
+/* line 213, ../sass/base/_grid.scss */
+.header--inner {
+  list-style: none;
+  /* [1] */
+  margin: 0;
+  /* [2] */
+  padding: 0;
+  /* [2] */
+  margin-left: -2em;
+  /* [3] */
+  letter-spacing: -0.31em;
+}
+
+/* Opera hack */
+/* line 225, ../sass/base/_grid.scss */
+.opera:-o-prefocus,
+.header--inner {
+  word-spacing: -0.43em;
+}
+
+/**
+ * 1. Cause columns to stack side-by-side.
+ * 2. Space columns apart.
+ * 3. Align columns to the tops of each other.
+ * 4. Full-width unless told to behave otherwise.
+ * 5. Required to combine fluid widths and fixed gutters.
+ */
+/* line 239, ../sass/base/_grid.scss */
+.header--logo {
+  display: inline-block;
+  /* [1] */
+  padding-left: 2em;
+  /* [2] */
+  vertical-align: top;
+  /* [3] */
+  width: 100%;
+  /* [4] */
+  -webkit-box-sizing: border-box;
+  /* [5] */
+  -moz-box-sizing: border-box;
+  /* [5] */
+  box-sizing: border-box;
+  /* [5] */
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/**
+ * Reversed grids allow you to structure your source in the opposite order to
+ * how your rendered layout will appear. Extends `.grid`.
+ */
+/**
+ * Gutterless grids have all the properties of regular grids, minus any spacing.
+ * Extends `.grid`.
+ */
+/* line 275, ../sass/base/_grid.scss */
+.header--inner {
+  margin-left: 0;
+}
+/* line 278, ../sass/base/_grid.scss */
+.header--inner > .header--logo {
+  padding-left: 0;
+}
+
+/**
+ * Align the entire grid to the right. Extends `.grid`.
+ */
+/**
+ * Centered grids align grid items centrally without needing to use push or pull
+ * classes. Extends `.grid`.
+ */
+/**
+ * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
+ * `.grid`.
+ */
+/**
+ * Create grids with narrower gutters. Extends `.grid`.
+ */
+/**
+ * Create grids with wider gutters. Extends `.grid`.
+ */
+/*------------------------------------*\
+    $WIDTHS
+\*------------------------------------*/
+/**
+ * Create our width classes, prefixed by the specified namespace.
+ */
+/**
+ * Our regular, non-responsive width classes.
+ */
+/**
+ * Whole
+ */
+/**
+ * Halves
+ */
+/**
+ * Thirds
+ */
+/**
+ * Quarters
+ */
+/**
+ * Fifths
+ */
+/**
+ * Sixths
+ */
+/**
+ * Eighths
+ */
+/**
+ * Tenths
+ */
+/**
+ * Twelfths
+ */
+/**
+ * Our responsive classes, if we have enabled them.
+ */
+@media only screen and (max-width: 480px) {
+  /**
+   * Whole
+   */
+  /**
+   * Halves
+   */
+  /* line 373, ../sass/base/_grid.scss */
+  .header--logo {
+    width: 50%;
+  }
+
+  /**
+   * Thirds
+   */
+  /**
+   * Quarters
+   */
+  /**
+   * Fifths
+   */
+  /**
+   * Sixths
+   */
+  /**
+   * Eighths
+   */
+  /**
+   * Tenths
+   */
+  /**
+   * Twelfths
+   */
+}
+@media only screen and (min-width: 481px) and (max-width: 1023px) {
+  /**
+   * Whole
+   */
+  /**
+   * Halves
+   */
+  /* line 373, ../sass/base/_grid.scss */
+  .header--logo {
+    width: 50%;
+  }
+
+  /**
+   * Thirds
+   */
+  /**
+   * Quarters
+   */
+  /**
+   * Fifths
+   */
+  /**
+   * Sixths
+   */
+  /**
+   * Eighths
+   */
+  /**
+   * Tenths
+   */
+  /**
+   * Twelfths
+   */
+}
+@media only screen and (max-width: 1023px) {
+  /**
+   * Whole
+   */
+  /**
+   * Halves
+   */
+  /* line 373, ../sass/base/_grid.scss */
+  .header--logo {
+    width: 50%;
+  }
+
+  /**
+   * Thirds
+   */
+  /**
+   * Quarters
+   */
+  /**
+   * Fifths
+   */
+  /**
+   * Sixths
+   */
+  /**
+   * Eighths
+   */
+  /**
+   * Tenths
+   */
+  /**
+   * Twelfths
+   */
+}
+@media only screen and (min-width: 1024px) {
+  /**
+   * Whole
+   */
+  /**
+   * Halves
+   */
+  /**
+   * Thirds
+   */
+  /**
+   * Quarters
+   */
+  /**
+   * Fifths
+   */
+  /**
+   * Sixths
+   */
+  /* line 403, ../sass/base/_grid.scss */
+  .header--logo {
+    width: 16.666%;
+  }
+
+  /**
+   * Eighths
+   */
+  /**
+   * Tenths
+   */
+  /**
+   * Twelfths
+   */
+}
+@media only screen and (min-width: 1700px) {
+  /**
+   * Whole
+   */
+  /**
+   * Halves
+   */
+  /**
+   * Thirds
+   */
+  /**
+   * Quarters
+   */
+  /**
+   * Fifths
+   */
+  /**
+   * Sixths
+   */
+  /**
+   * Eighths
+   */
+  /**
+   * Tenths
+   */
+  /**
+   * Twelfths
+   */
+}
+/*------------------------------------*\
+    $PUSH
+\*------------------------------------*/
+/**
+ * Push classes, to move grid items over to the right by certain amounts.
+ */
+/*------------------------------------*\
+    $PULL
+\*------------------------------------*/
+/**
+ * Pull classes, to move grid items back to the left by certain amounts.
+ */
+/**
+ *
+ * Mixins
+ *
+ */
+/**
+ *
  * Normalize
  *
  * Normalize.css v2.1.2 | MIT License | git.io/normalize
+ *
  */
 /* HTML5 display definitions
    ================================================================================================================== */
 /* Correct `block` display not defined in IE 8/9. */
-/* line 25, ../sass/base/_normalize.scss */
+/* line 16, ../sass/base/_normalize.scss */
 article,
 aside,
 details,
@@ -67,14 +488,14 @@ video {
 
 /* Prevent modern browsers from displaying `audio` without controls. */
 /* Remove excess height in iOS 5 devices. */
-/* line 42, ../sass/base/_normalize.scss */
+/* line 44, ../sass/base/_normalize.scss */
 audio:not([controls]) {
   display: none;
   height: 0;
 }
 
 /* Address styling not present in IE 8/9. */
-/* line 49, ../sass/base/_normalize.scss */
+/* line 51, ../sass/base/_normalize.scss */
 [hidden] {
   display: none;
 }
@@ -83,7 +504,7 @@ audio:not([controls]) {
    ================================================================================================================== */
 /* 1. Set default fontello family to sans-serif. */
 /* 2. Prevent iOS text size adjust after orientation change, without disabling user zoom. */
-/* line 60, ../sass/base/_normalize.scss */
+/* line 62, ../sass/base/_normalize.scss */
 html {
   font-family: sans-serif;
   /* 1 */
@@ -94,7 +515,7 @@ html {
 }
 
 /* Remove default margin. */
-/* line 69, ../sass/base/_normalize.scss */
+/* line 71, ../sass/base/_normalize.scss */
 body {
   margin: 0;
 }
@@ -102,13 +523,13 @@ body {
 /* Links
    ================================================================================================================== */
 /* Address `outline` inconsistency between Chrome and other browsers. */
-/* line 79, ../sass/base/_normalize.scss */
+/* line 81, ../sass/base/_normalize.scss */
 a:focus {
   outline: thin dotted;
 }
 
 /* Improve readability when focused and also mouse hovered in all browsers. */
-/* line 86, ../sass/base/_normalize.scss */
+/* line 87, ../sass/base/_normalize.scss */
 a:active,
 a:hover {
   outline: 0;
@@ -118,33 +539,33 @@ a:hover {
    ================================================================================================================== */
 /* Address variable `h1` fontello-size and margin within `section` and `article` */
 /* contexts in Firefox 4+, Safari 5, and Chrome. */
-/* line 96, ../sass/base/_normalize.scss */
+/* line 98, ../sass/base/_normalize.scss */
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
 
 /* Address styling not present in IE 8/9, Safari 5, and Chrome. */
-/* line 103, ../sass/base/_normalize.scss */
+/* line 105, ../sass/base/_normalize.scss */
 abbr[title] {
   border-bottom: 1px dotted;
 }
 
 /* Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome. */
-/* line 110, ../sass/base/_normalize.scss */
+/* line 111, ../sass/base/_normalize.scss */
 b,
 strong {
   font-weight: bold;
 }
 
 /* Address styling not present in Safari 5 and Chrome. */
-/* line 116, ../sass/base/_normalize.scss */
+/* line 118, ../sass/base/_normalize.scss */
 dfn {
   font-style: italic;
 }
 
 /* Address differences between Firefox and other browsers. */
-/* line 122, ../sass/base/_normalize.scss */
+/* line 124, ../sass/base/_normalize.scss */
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -152,14 +573,14 @@ hr {
 }
 
 /* Address styling not present in IE 8/9. */
-/* line 130, ../sass/base/_normalize.scss */
+/* line 132, ../sass/base/_normalize.scss */
 mark {
   background: #ff0;
   color: #000;
 }
 
 /* Correct fontello family set oddly in Safari 5 and Chrome. */
-/* line 140, ../sass/base/_normalize.scss */
+/* line 139, ../sass/base/_normalize.scss */
 code,
 kbd,
 pre,
@@ -169,25 +590,25 @@ samp {
 }
 
 /* Improve readability of pre-formatted text in all browsers. */
-/* line 147, ../sass/base/_normalize.scss */
+/* line 149, ../sass/base/_normalize.scss */
 pre {
   white-space: pre-wrap;
 }
 
 /* Set consistent quote types. */
-/* line 153, ../sass/base/_normalize.scss */
+/* line 155, ../sass/base/_normalize.scss */
 q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
 
 /* Address inconsistent and variable fontello size in all browsers. */
-/* line 159, ../sass/base/_normalize.scss */
+/* line 161, ../sass/base/_normalize.scss */
 small {
   font-size: 80%;
 }
 
 /* Prevent `sub` and `sup` affecting `line-height` in all browsers. */
-/* line 166, ../sass/base/_normalize.scss */
+/* line 167, ../sass/base/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -196,12 +617,12 @@ sup {
   vertical-align: baseline;
 }
 
-/* line 173, ../sass/base/_normalize.scss */
+/* line 175, ../sass/base/_normalize.scss */
 sup {
   top: -0.5em;
 }
 
-/* line 177, ../sass/base/_normalize.scss */
+/* line 179, ../sass/base/_normalize.scss */
 sub {
   bottom: -0.25em;
 }
@@ -209,13 +630,13 @@ sub {
 /* Embedded content
    ================================================================================================================== */
 /* Remove border when inside `a` element in IE 8/9. */
-/* line 187, ../sass/base/_normalize.scss */
+/* line 189, ../sass/base/_normalize.scss */
 img {
   border: 0;
 }
 
 /* Correct overflow displayed oddly in IE 9. */
-/* line 193, ../sass/base/_normalize.scss */
+/* line 195, ../sass/base/_normalize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
@@ -223,7 +644,7 @@ svg:not(:root) {
 /* Figures
    ================================================================================================================== */
 /* Address margin not present in IE 8/9 and Safari 5. */
-/* line 203, ../sass/base/_normalize.scss */
+/* line 205, ../sass/base/_normalize.scss */
 figure {
   margin: 0;
 }
@@ -231,7 +652,7 @@ figure {
 /* Forms
    ================================================================================================================== */
 /* Define consistent border, margin, and padding. */
-/* line 213, ../sass/base/_normalize.scss */
+/* line 215, ../sass/base/_normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
@@ -240,7 +661,7 @@ fieldset {
 
 /* 1. Correct `color` not being inherited in IE 8/9. */
 /* 2. Remove padding so people aren't caught out if they zero out fieldsets. */
-/* line 222, ../sass/base/_normalize.scss */
+/* line 224, ../sass/base/_normalize.scss */
 legend {
   border: 0;
   /* 1 */
@@ -251,7 +672,7 @@ legend {
 /* 1. Correct fontello family not being inherited in all browsers. */
 /* 2. Correct fontello size not being inherited in all browsers. */
 /* 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome. */
-/* line 234, ../sass/base/_normalize.scss */
+/* line 233, ../sass/base/_normalize.scss */
 button,
 input,
 select,
@@ -266,7 +687,7 @@ textarea {
 
 /* Address Firefox 4+ setting `line-height` on `input` using `!important` in */
 /* the UA stylesheet. */
-/* line 244, ../sass/base/_normalize.scss */
+/* line 245, ../sass/base/_normalize.scss */
 button,
 input {
   line-height: normal;
@@ -276,7 +697,7 @@ input {
 /* All other form control elements do not inherit `text-transform` values. */
 /* Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+. */
 /* Correct `select` style inheritance in Firefox 4+ and Opera. */
-/* line 254, ../sass/base/_normalize.scss */
+/* line 255, ../sass/base/_normalize.scss */
 button,
 select {
   text-transform: none;
@@ -285,7 +706,7 @@ select {
 /* 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls. */
 /* 2. Correct inability to style clickable `input` types in iOS. */
 /* 3. Improve usability and consistency of cursor style between image-type `input` and others. */
-/* line 265, ../sass/base/_normalize.scss */
+/* line 264, ../sass/base/_normalize.scss */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -297,7 +718,7 @@ input[type="submit"] {
 }
 
 /* Re-set default cursor for disabled elements. */
-/* line 273, ../sass/base/_normalize.scss */
+/* line 274, ../sass/base/_normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -305,7 +726,7 @@ html input[disabled] {
 
 /* 1. Address box sizing set to `content-box` in IE 8/9. */
 /* 2. Remove excess padding in IE 8/9. */
-/* line 281, ../sass/base/_normalize.scss */
+/* line 282, ../sass/base/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -316,7 +737,7 @@ input[type="radio"] {
 
 /* 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome. */
 /* 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome (include `-moz` to future-proof). */
-/* line 289, ../sass/base/_normalize.scss */
+/* line 291, ../sass/base/_normalize.scss */
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -327,14 +748,14 @@ input[type="search"] {
 }
 
 /* Remove inner padding and search cancel button in Safari 5 and Chrome on OS X. */
-/* line 299, ../sass/base/_normalize.scss */
+/* line 300, ../sass/base/_normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
 /* Remove inner padding and border in Firefox 4+. */
-/* line 306, ../sass/base/_normalize.scss */
+/* line 307, ../sass/base/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -343,7 +764,7 @@ input::-moz-focus-inner {
 
 /* 1. Remove default vertical scrollbar in IE 8/9. */
 /* 2. Improve readability and alignment in all browsers. */
-/* line 314, ../sass/base/_normalize.scss */
+/* line 316, ../sass/base/_normalize.scss */
 textarea {
   overflow: auto;
   /* 1 */
@@ -354,27 +775,27 @@ textarea {
 /* Tables
    ================================================================================================================== */
 /* Remove most spacing between table cells. */
-/* line 325, ../sass/base/_normalize.scss */
+/* line 327, ../sass/base/_normalize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 /**
+ *
  * Base
  *
  * Contains styling and reset of basic elements
  *
- * @author magnify
  */
 /* line 10, ../sass/base/_base.scss */
 body {
   background-color: white;
-  color: #4d4d4d;
-  font: 1em/1.5 Arial, sans-serif;
+  color: #222;
+  font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 22, ../sass/base/_base.scss */
+/* line 17, ../sass/base/_base.scss */
 h1,
 h2,
 h3,
@@ -409,21 +830,21 @@ em strong {
    ================================================================================================================== */
 /* line 56, ../sass/base/_base.scss */
 a:link {
-  color: lightblue;
+  color: #2c79d3;
   text-decoration: underline;
 }
 /* line 61, ../sass/base/_base.scss */
 a:visited {
-  color: #99cfe0;
+  color: #286dbe;
 }
 /* line 65, ../sass/base/_base.scss */
 a:hover {
-  color: #86c5da;
+  color: #2361a9;
   text-decoration: none;
 }
 /* line 70, ../sass/base/_base.scss */
 a:focus {
-  color: #86c5da;
+  color: #2361a9;
 }
 
 /* Paragraph
@@ -444,21 +865,21 @@ img {
 }
 
 /**
+ *
  * Forms
  *
  * This is an example file
  *
- * @author magnify
  */
 /* Basic styling
    ================================================================================================================== */
-/* line 15, ../sass/base/_forms.scss */
+/* line 14, ../sass/base/_forms.scss */
 input,
 textarea {
-  font: 1em/1.5 Arial, sans-serif;
+  font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 29, ../sass/base/_forms.scss */
+/* line 19, ../sass/base/_forms.scss */
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -470,20 +891,18 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 textarea {
-  border: 1px solid #cccccc;
+  border: 1px solid #ddd;
   display: block;
   min-height: 1.25em;
   width: 100%;
   padding: .75em;
-  color: #666666;
+  color: #222;
   background-color: white;
-  -webkit-border-radius: 0.6em;
   -moz-border-radius: 0.6em;
-  -ms-border-radius: 0.6em;
-  -o-border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
   border-radius: 0.6em;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 /* line 39, ../sass/base/_forms.scss */
@@ -498,8 +917,8 @@ input[type="tel"]:focus,
 input[type="time"]:focus,
 input[type="url"]:focus,
 textarea:focus {
-  border: 1px solid gray;
-  color: #4d4d4d;
+  border: 1px solid #333;
+  color: #111;
 }
 /* line 45, ../sass/base/_forms.scss */
 input[type="text"][disabled],
@@ -513,11 +932,11 @@ input[type="tel"][disabled],
 input[type="time"][disabled],
 input[type="url"][disabled],
 textarea[disabled] {
-  -webkit-box-shadow: 0 0 0;
   -moz-box-shadow: 0 0 0;
+  -webkit-box-shadow: 0 0 0;
   box-shadow: 0 0 0;
-  border: 1px solid #b3b3b3;
-  background-color: #bfbfbf;
+  border: 1px solid #ccc;
+  background-color: #d9d9d9;
 }
 
 /* Labels
@@ -528,36 +947,17 @@ label {
   margin-bottom: .25em;
   /* Move labels so they align better with fields when using rounded corners */
   margin-left: .3em;
-  color: #666666;
+  color: #222;
 }
 
 /**
- * Breakpoints
  *
- * Should contain breakpoint variables and breakpoints related mixins
- *
- * @author magnify
- */
-/* Breakpoints
-   *
-   * These are only examples, change/add/remove so they match your needs
-   *
-   ================================================================================================================== */
-/* Mixins
-   *
-   * Use this mixin to change styling for your rulesets depending on a breakpoint (width)
-   *
-   * Usage example: @include breakpoint($breakpoint-x)
-   *
-   ================================================================================================================== */
-/**
  * Buttons
  *
  * This is an example file
  *
- * @author magnify
  */
-/* line 10, ../sass/examples/_buttons.scss */
+/* line 10, ../sass/layout/_buttons.scss */
 .button {
   display: inline-block;
   font-size: 125%;
@@ -566,135 +966,67 @@ label {
   cursor: pointer;
   text-align: center;
   vertical-align: middle;
-  -webkit-border-radius: 0.6em;
   -moz-border-radius: 0.6em;
-  -ms-border-radius: 0.6em;
-  -o-border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
   border-radius: 0.6em;
-  text-shadow: 0.025em 0.025em 0.1em #737373;
+  text-shadow: 0.025em 0.025em 0.1em #2f2f2f;
 }
-/* line 22, ../sass/examples/_buttons.scss */
+/* line 20, ../sass/layout/_buttons.scss */
 .button:focus, .button:hover, .button:active {
   text-decoration: none;
 }
 
-/* line 30, ../sass/examples/_buttons.scss */
+/* line 30, ../sass/layout/_buttons.scss */
 .button {
-  background-color: #666666;
+  background-color: #222;
   border: 0;
   color: white;
 }
-/* line 37, ../sass/examples/_buttons.scss */
+/* line 37, ../sass/layout/_buttons.scss */
 .button:hover {
-  background-color: #4d4d4d;
+  background-color: #111;
 }
 
 /**
+ *
  * Layouts
  *
- * This is an example file
- *
- * @author magnify
  */
-/* line 10, ../sass/examples/_layout.scss */
-.example-header--inner, .example-layout {
+/* line 8, ../sass/layout/_layout.scss */
+.header--inner, .layout-wrapper {
   margin-right: auto;
   margin-left: auto;
   max-width: 75em;
 }
 
-/* Example logo */
-/* line 19, ../sass/examples/_layout.scss */
-.example-logo {
-  font-size: 200%;
-}
-
-/* Example header */
-/* line 25, ../sass/examples/_layout.scss */
-.example-header {
+/* Header */
+/* line 17, ../sass/layout/_layout.scss */
+.header {
   margin-bottom: 1.5em;
-  padding-top: 2em;
-  padding-bottom: 2em;
-  background-color: #cccccc;
+  padding: 1em;
+  background-color: #111;
+}
+@media only screen and (min-width: 1024px) {
+  /* line 17, ../sass/layout/_layout.scss */
+  .header {
+    padding: 1em 0;
+  }
 }
 
-/* Example layout */
-/* Example section */
-/* line 47, ../sass/examples/_layout.scss */
-.example-section {
-  margin-bottom: 1.5em;
-  padding: 2em;
-  background-color: #e6e6e6;
-}
-
-/* Example form */
-/* line 58, ../sass/examples/_layout.scss */
-.example-form .example-form--input {
-  margin-bottom: 1.5em;
-}
-
-/**
- * Debugging
- *
- * Contains debugging stuff, should only be used in development
- *
- * @author magnify
- */
-/* Add padding bottom to body because of the fixed debug container */
-/* line 11, ../sass/misc/_debug.scss */
-body {
-  padding-bottom: 14em;
-}
-
-/* line 16, ../sass/misc/_debug.scss */
-.debug {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 99;
-  background-color: yellowgreen;
-}
-
-/* line 27, ../sass/misc/_debug.scss */
-.debug--header {
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-/* Breakpoints
-   ================================================================================================================== */
-/* line 37, ../sass/misc/_debug.scss */
-.breakpoint-1, .breakpoint-2, .breakpoint-3 {
-  display: none;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  background-color: black;
-  color: white;
+/* Layout */
+/* Slide */
+/* line 55, ../sass/layout/_layout.scss */
+.slide--header {
+  font-weight: bold;
   text-align: center;
 }
-
-@media only screen and (min-width: 18.75em) {
-  /* line 48, ../sass/misc/_debug.scss */
-  .breakpoint-1 {
-    display: block;
-    width: 18.75em;
-  }
-}
-
-@media only screen and (min-width: 22.5em) {
-  /* line 57, ../sass/misc/_debug.scss */
-  .breakpoint-2 {
-    display: block;
-    width: 22.5em;
-  }
-}
-
-@media only screen and (min-width: 28em) {
-  /* line 66, ../sass/misc/_debug.scss */
-  .breakpoint-3 {
-    display: block;
-    width: 28em;
-  }
+/* line 60, ../sass/layout/_layout.scss */
+.slide--preview {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #ddd;
+  border: 1px solid #222;
+  height: 100%;
+  width: 100%;
 }

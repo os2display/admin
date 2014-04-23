@@ -11,21 +11,14 @@
 
 
 
-/* Zen Grids - http://zengrids.com */
-$zen-column-count: 12;
-$zen-gutter-width: 30px;
-
-@import "zen";
-
-
-
 // Include base vars
 @import "base/_vars";
+@import "base/_grid";
 
 
 
 // Include mixins
-@import "base/_mixins";
+@import "mixins/_mixins";
 
 
 
@@ -37,5 +30,5 @@ $zen-gutter-width: 30px;
 
 
 // Examples
-@import "examples/_buttons";
-@import "examples/_layout";
+@import "layout/_buttons";
+@import "layout/_layout";

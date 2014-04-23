@@ -27,27 +27,27 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 textarea {
-  border: 1px solid $gray-lighter;
+  border: 1px solid #ddd;
   display: block;
   min-height: 1.25em;
   width: 100%;
   padding: .75em;
 
-  color: $gray-darker;
+  color: #222;
   background-color: $white;
 
   &:focus {
-    border: 1px solid $gray-dark;
+    border: 1px solid #333;
 
-    color: $gray-darkest;
+    color: #111;
   }
 
   &[disabled] {
     @include box-shadow(0 0 0);
 
-    border: 1px solid $gray-light;
+    border: 1px solid #ccc;
 
-    background-color: lighten($gray-light, 5%);
+    background-color: lighten(#ccc, 5%);
   }
 
   @include border-radius($border-radius);
@@ -65,5 +65,5 @@ label {
   /* Move labels so they align better with fields when using rounded corners */
   margin-left: .3em;
 
-  color: $gray-darker;
+  color: #222;
 }

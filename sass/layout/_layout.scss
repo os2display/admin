@@ -1,0 +1,69 @@
+/**
+ *
+ * Layouts
+ *
+ */
+
+
+%layout-container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 75em;
+}
+
+
+/* Header */
+
+.header {
+  margin-bottom: $margin-bottom;
+  padding: 1em;
+
+  background-color: #111;
+
+  @include breakpoint($breakpoint-desk) {
+    padding: 1em 0;
+  }
+
+  &--inner {
+    @extend %grid;
+    @extend %grid--full;
+    @extend %layout-container;
+  }
+
+  &--logo {
+    @extend %grid__item;
+    @extend %palm--one-half;
+    @extend %lap--one-half;
+    @extend %portable--one-half;
+    @extend %desk--one-sixth;
+  }
+}
+
+
+
+/* Layout */
+
+.layout-wrapper {
+  @extend %layout-container;
+}
+
+
+
+/* Slide */
+
+.slide {
+  &--header {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &--preview {
+    @include box-sizing(border-box);
+
+    background-color: #ddd;
+    border: 1px solid #222;
+    height: 100%;
+    width: 100%;
+  }
+}
+
