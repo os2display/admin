@@ -79,9 +79,11 @@
   height: 100%;
 }
 
-$template-1-font-size: 2em;
+$template-1-font-size: 32px;
 
 @mixin template-font-size($font-size, $scale) {
+  -webkit-text-size-adjust: none;
+
   font-size: $font-size * $scale;
 }
 
@@ -137,6 +139,20 @@ $template-1-font-size: 2em;
     }
   }
 
+  &--three-quarters {
+    @extend %slide-base;
+
+    height: 810px;
+    width: 1440px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, .75);
+    }
+  }
+
+
   &--one-half {
     @extend %slide-base;
 
@@ -163,19 +179,6 @@ $template-1-font-size: 2em;
     }
   }
 
-  &--three-quarters {
-    @extend %slide-base;
-
-    height: 810px;
-    width: 1440px;
-
-    .slide-preview--text {
-      @extend %slide--text;
-
-      @include template-font-size($template-1-font-size, .75);
-    }
-  }
-
   &--one-fifth {
     @extend %slide-base;
 
@@ -185,7 +188,7 @@ $template-1-font-size: 2em;
     .slide-preview--text {
       @extend %slide--text;
 
-      @include template-font-size($template-1-font-size, .125);
+      @include template-font-size($template-1-font-size, .20);
     }
   }
 
@@ -198,7 +201,7 @@ $template-1-font-size: 2em;
     .slide-preview--text {
       @extend %slide--text;
 
-      @include template-font-size($template-1-font-size, .125);
+      @include template-font-size($template-1-font-size, .166);
     }
   }
 

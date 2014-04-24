@@ -170,7 +170,7 @@
  * 5. Required to combine fluid widths and fixed gutters.
  */
 /* line 239, ../sass/base/_grid.scss */
-.header--logo, .slide, .slide-preview--one-whole, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--three-quarters, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth, .slide-preview--wrapper {
+.header--logo, .slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth, .slide-preview--wrapper {
   display: inline-block;
   /* [1] */
   padding-left: 2em;
@@ -200,7 +200,7 @@
   margin-left: 0;
 }
 /* line 278, ../sass/base/_grid.scss */
-.header--inner > .header--logo, .slide-wrapper > .header--logo, .slide-preview > .header--logo, .slide-preview--wrapper > .header--logo, .header--inner > .slide, .slide-wrapper > .slide, .slide-preview > .slide, .slide-preview--wrapper > .slide, .header--inner > .slide-preview--one-whole, .slide-wrapper > .slide-preview--one-whole, .slide-preview > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--one-whole, .header--inner > .slide-preview--one-half, .slide-wrapper > .slide-preview--one-half, .slide-preview > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-half, .header--inner > .slide-preview--one-quarter, .slide-wrapper > .slide-preview--one-quarter, .slide-preview > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--one-quarter, .header--inner > .slide-preview--three-quarters, .slide-wrapper > .slide-preview--three-quarters, .slide-preview > .slide-preview--three-quarters, .slide-preview--wrapper > .slide-preview--three-quarters, .header--inner > .slide-preview--one-fifth, .slide-wrapper > .slide-preview--one-fifth, .slide-preview > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-fifth, .header--inner > .slide-preview--one-sixth, .slide-wrapper > .slide-preview--one-sixth, .slide-preview > .slide-preview--one-sixth, .slide-preview--wrapper > .slide-preview--one-sixth, .header--inner > .slide-preview--one-eighth, .slide-wrapper > .slide-preview--one-eighth, .slide-preview > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--one-eighth, .header--inner > .slide-preview--wrapper, .slide-wrapper > .slide-preview--wrapper, .slide-preview > .slide-preview--wrapper, .slide-preview--wrapper > .slide-preview--wrapper {
+.header--inner > .header--logo, .slide-wrapper > .header--logo, .slide-preview > .header--logo, .slide-preview--wrapper > .header--logo, .header--inner > .slide, .slide-wrapper > .slide, .slide-preview > .slide, .slide-preview--wrapper > .slide, .header--inner > .slide-preview--one-whole, .slide-wrapper > .slide-preview--one-whole, .slide-preview > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--one-whole, .header--inner > .slide-preview--three-quarters, .slide-wrapper > .slide-preview--three-quarters, .slide-preview > .slide-preview--three-quarters, .slide-preview--wrapper > .slide-preview--three-quarters, .header--inner > .slide-preview--one-half, .slide-wrapper > .slide-preview--one-half, .slide-preview > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-half, .header--inner > .slide-preview--one-quarter, .slide-wrapper > .slide-preview--one-quarter, .slide-preview > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--one-quarter, .header--inner > .slide-preview--one-fifth, .slide-wrapper > .slide-preview--one-fifth, .slide-preview > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-fifth, .header--inner > .slide-preview--one-sixth, .slide-wrapper > .slide-preview--one-sixth, .slide-preview > .slide-preview--one-sixth, .slide-preview--wrapper > .slide-preview--one-sixth, .header--inner > .slide-preview--one-eighth, .slide-wrapper > .slide-preview--one-eighth, .slide-preview > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--one-eighth, .header--inner > .slide-preview--wrapper, .slide-wrapper > .slide-preview--wrapper, .slide-preview > .slide-preview--wrapper, .slide-preview--wrapper > .slide-preview--wrapper {
   padding-left: 0;
 }
 
@@ -216,7 +216,7 @@
   text-align: center;
 }
 /* line 303, ../sass/base/_grid.scss */
-.slide-preview--wrapper > .header--logo, .slide-preview--wrapper > .slide, .slide-preview--wrapper > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--three-quarters, .slide-preview--wrapper > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-sixth, .slide-preview--wrapper > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--wrapper {
+.slide-preview--wrapper > .header--logo, .slide-preview--wrapper > .slide, .slide-preview--wrapper > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--three-quarters, .slide-preview--wrapper > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-sixth, .slide-preview--wrapper > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--wrapper {
   text-align: left;
 }
 
@@ -243,7 +243,7 @@
  * Whole
  */
 /* line 367, ../sass/base/_grid.scss */
-.slide, .slide-preview--one-whole, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--three-quarters, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth {
+.slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth {
   width: 100%;
 }
 
@@ -1021,7 +1021,7 @@ label {
 /* Layout */
 /* Slide */
 /* line 53, ../sass/layout/_layout.scss */
-.slide, .slide-preview--one-whole, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--three-quarters, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth {
+.slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -1030,7 +1030,7 @@ label {
 }
 
 /* line 64, ../sass/layout/_layout.scss */
-.slide--text, .slide-preview--one-whole .slide-preview--text, .slide-preview--one-half .slide-preview--text, .slide-preview--one-quarter .slide-preview--text, .slide-preview--three-quarters .slide-preview--text, .slide-preview--one-fifth .slide-preview--text, .slide-preview--one-sixth .slide-preview--text, .slide-preview--one-eighth .slide-preview--text {
+.slide--text, .slide-preview--one-whole .slide-preview--text, .slide-preview--three-quarters .slide-preview--text, .slide-preview--one-half .slide-preview--text, .slide-preview--one-quarter .slide-preview--text, .slide-preview--one-fifth .slide-preview--text, .slide-preview--one-sixth .slide-preview--text, .slide-preview--one-eighth .slide-preview--text {
   margin: 2em;
   padding: 2em;
   background-color: rgba(0, 0, 0, 0.15);
@@ -1047,108 +1047,124 @@ label {
   height: 100%;
 }
 
-/* line 89, ../sass/layout/_layout.scss */
+/* line 91, ../sass/layout/_layout.scss */
 .slide {
   min-height: 100%;
-  font-size: 2em;
+  -webkit-text-size-adjust: none;
+  font-size: 32px;
 }
 
-/* line 102, ../sass/layout/_layout.scss */
+/* line 104, ../sass/layout/_layout.scss */
 .slide-preview {
   margin-bottom: 2em;
 }
-/* line 108, ../sass/layout/_layout.scss */
+/* line 110, ../sass/layout/_layout.scss */
 .slide-preview--header {
   font-weight: bold;
   text-align: center;
 }
-/* line 113, ../sass/layout/_layout.scss */
+/* line 115, ../sass/layout/_layout.scss */
 .slide-preview--wrapper {
   overflow: auto;
   max-height: 250px;
 }
 @media only screen and (min-width: 1024px) {
-  /* line 113, ../sass/layout/_layout.scss */
+  /* line 115, ../sass/layout/_layout.scss */
   .slide-preview--wrapper {
     max-height: 1000px;
   }
 }
-/* line 127, ../sass/layout/_layout.scss */
+/* line 129, ../sass/layout/_layout.scss */
 .slide-preview--one-whole {
   height: 1080px;
   width: 1920px;
 }
-/* line 133, ../sass/layout/_layout.scss */
+/* line 135, ../sass/layout/_layout.scss */
 .slide-preview--one-whole .slide-preview--text {
-  font-size: 2em;
+  -webkit-text-size-adjust: none;
+  font-size: 32px;
 }
-/* line 140, ../sass/layout/_layout.scss */
-.slide-preview--one-half {
-  height: 540px;
-  width: 960px;
-}
-/* line 146, ../sass/layout/_layout.scss */
-.slide-preview--one-half .slide-preview--text {
-  font-size: 1em;
-}
-/* line 153, ../sass/layout/_layout.scss */
-.slide-preview--one-quarter {
-  height: 270px;
-  width: 480px;
-}
-/* line 159, ../sass/layout/_layout.scss */
-.slide-preview--one-quarter .slide-preview--text {
-  font-size: 0.5em;
-}
-/* line 166, ../sass/layout/_layout.scss */
+/* line 142, ../sass/layout/_layout.scss */
 .slide-preview--three-quarters {
   height: 810px;
   width: 1440px;
 }
-/* line 172, ../sass/layout/_layout.scss */
+/* line 148, ../sass/layout/_layout.scss */
 .slide-preview--three-quarters .slide-preview--text {
-  font-size: 1.5em;
+  -webkit-text-size-adjust: none;
+  font-size: 24px;
 }
-/* line 179, ../sass/layout/_layout.scss */
+/* line 156, ../sass/layout/_layout.scss */
+.slide-preview--one-half {
+  height: 540px;
+  width: 960px;
+}
+/* line 162, ../sass/layout/_layout.scss */
+.slide-preview--one-half .slide-preview--text {
+  -webkit-text-size-adjust: none;
+  font-size: 16px;
+}
+/* line 169, ../sass/layout/_layout.scss */
+.slide-preview--one-quarter {
+  height: 270px;
+  width: 480px;
+}
+/* line 175, ../sass/layout/_layout.scss */
+.slide-preview--one-quarter .slide-preview--text {
+  -webkit-text-size-adjust: none;
+  font-size: 8px;
+}
+/* line 182, ../sass/layout/_layout.scss */
 .slide-preview--one-fifth {
   height: 216px;
   width: 384px;
 }
-/* line 185, ../sass/layout/_layout.scss */
+/* line 188, ../sass/layout/_layout.scss */
 .slide-preview--one-fifth .slide-preview--text {
-  font-size: 0.25em;
+  -webkit-text-size-adjust: none;
+  font-size: 6.4px;
 }
-/* line 192, ../sass/layout/_layout.scss */
+/* line 195, ../sass/layout/_layout.scss */
 .slide-preview--one-sixth {
   height: 180px;
   width: 320px;
 }
-/* line 198, ../sass/layout/_layout.scss */
+/* line 201, ../sass/layout/_layout.scss */
 .slide-preview--one-sixth .slide-preview--text {
-  font-size: 0.25em;
+  -webkit-text-size-adjust: none;
+  font-size: 5.312px;
 }
-/* line 205, ../sass/layout/_layout.scss */
+/* line 208, ../sass/layout/_layout.scss */
 .slide-preview--one-eighth {
   height: 135px;
   width: 240px;
 }
-/* line 211, ../sass/layout/_layout.scss */
+/* line 214, ../sass/layout/_layout.scss */
 .slide-preview--one-eighth .slide-preview--text {
-  font-size: 0.25em;
+  -webkit-text-size-adjust: none;
+  font-size: 4px;
 }
 
 /* line 1, ../sass/ik/_ik.scss */
 .slider-container {
-  max-width: 300px;
+  max-width: 200px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2em;
 }
 
 /* line 8, ../sass/ik/_ik.scss */
-.slider-amount {
-  margin-bottom: 2em;
-  text-align: center;
+.preview-size-dropdown {
   width: 100%;
-  font-weight: bold;
+}
+
+/* line 12, ../sass/ik/_ik.scss */
+.slide-edit-overlay {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  background-color: #000;
+  display: none;
 }

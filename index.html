@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body>
 
@@ -18,73 +17,79 @@
 
 <div class="layout-wrapper">
 
-  <!-- Slider -->
+  <!-- Size dropdown -->
   <div class="slider-container">
-    <div class="slider-amount" type="text" id="amount"></div>
-    <div class="slider-slider" id="slider"></div>
+    <select id="js-preview-size-dropdown" class="preview-size-dropdown" onChange="app.previewSizeDropdownOnChange()">
+      <option value="1">Skaleret 1/8 (12,5%)</option>
+      <option value="2">Skaleret 1/6 (16,6%)</option>
+      <option value="3">Skaleret 1/5 (20%)</option>
+      <option value="4">Skaleret 1/4 (25%)</option>
+      <option value="5">Skaleret 1/2 (50%)</option>
+      <option value="6">Skaleret 1/1 (100%)</option>
+    </select>
   </div>
 
   <!-- Preview -->
   <div class="slide-preview">
     <div class="slide-preview--wrapper">
       <div id="js-slide-preview" class="slide-preview--one-sixth">
-        <div class="slide-preview--text">This is the slide text</div>
+        <div id="js-slide-edit-text" class="slide-preview--text" onclick="app.displayEditTextOverlay()">This is the slide text</div>
       </div>
     </div>
   </div>
+
+  <!-- Edit text overlay -->
+  <div id="js-slide-edit-text-overlay" class="slide-edit-overlay">
+
+  </div>
+
 </div>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
   var app = {
+    previewSizeDropdownOnChange: function() {
+      var dropdown = document.getElementById("js-preview-size-dropdown");
+      var value = dropdown.value;
+
+      if (value == 1) {
+        app.changePreviewSize("one-eighth");
+      }
+      else if (value == 2) {
+        app.changePreviewSize("one-sixth");
+      }
+      else if (value == 3) {
+        app.changePreviewSize("one-fifth");
+      }
+      else if (value == 4) {
+        app.changePreviewSize("one-quarter");
+      }
+      else if (value == 5) {
+        app.changePreviewSize("one-half");
+      }
+      else if (value == 6) {
+        app.changePreviewSize("three-quarters");
+      }
+      else if (value == 7) {
+        app.changePreviewSize("one-whole");
+      }
+    },
+
     changePreviewSize: function(size) {
       var preview = document.getElementById("js-slide-preview");
       preview.className = "";
       preview.classList.add("slide-preview--" + size);
+    },
+
+    displayEditTextOverlay: function() {
+      var overlay = document.getElementById("js-slide-edit-text-overlay");
+      overlay.style.display = "block";
     }
   }
 
-  $(function() {
-    $("#slider").slider({
-      value:2,
-      min: 1,
-      max: 7,
-      step: 1,
-      slide: function(event, ui) {
-        var value = ui.value;
-        var amount = $("#amount");
-
-        if (value == 1) {
-          amount.html("Skaleret 1/8 (12,5%)");
-          app.changePreviewSize("one-eighth");
-        }
-        else if (value == 2) {
-          amount.html("Skaleret 1/6 (16,6%)");
-          app.changePreviewSize("one-sixth");
-        }
-        else if (value == 3) {
-          amount.html("Skaleret 1/5 (20%)");
-          app.changePreviewSize("one-fifth");
-        }
-        else if (value == 4) {
-          amount.html("Skaleret 1/4 (25%)");
-          app.changePreviewSize("one-quarter");
-        }
-        else if (value == 5) {
-          amount.html("Skaleret 1/2 (50%)");
-          app.changePreviewSize("one-half");
-        }
-        else if (value == 6) {
-          amount.html("Skaleret 3/4 (75%)");
-          app.changePreviewSize("three-quarters");
-        }
-        else if (value == 7) {
-          amount.html("Skaleret 1/1 (100%)");
-          app.changePreviewSize("one-whole");
-        }
-      }
-    });
-    $("#amount").html("Skaleret 1/6 (16,6%)");
+  document.addEventListener('DOMContentLoaded', function() {
+    var dropdown = document.getElementById("js-preview-size-dropdown");
+    dropdown.value = 2;
+    app.previewSizeDropdownOnChange();
   });
 </script>
 </body>
