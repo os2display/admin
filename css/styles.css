@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.header--inner, .slide-wrapper, .slide-preview {
+.header--inner, .slide-wrapper, .slide-editor, .slide-preview {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -170,7 +170,8 @@
  * 5. Required to combine fluid widths and fixed gutters.
  */
 /* line 239, ../sass/base/_grid.scss */
-.header--logo, .slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth, .slide-preview--wrapper {
+.header--logo, .slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth, .slide-editor--wrapper,
+.slide-preview--wrapper {
   display: inline-block;
   /* [1] */
   padding-left: 2em;
@@ -196,11 +197,28 @@
  * Extends `.grid`.
  */
 /* line 275, ../sass/base/_grid.scss */
-.header--inner, .slide-wrapper, .slide-preview, .slide-preview--wrapper {
+.header--inner, .slide-wrapper, .slide-editor, .slide-preview, .slide-editor--wrapper,
+.slide-preview--wrapper {
   margin-left: 0;
 }
 /* line 278, ../sass/base/_grid.scss */
-.header--inner > .header--logo, .slide-wrapper > .header--logo, .slide-preview > .header--logo, .slide-preview--wrapper > .header--logo, .header--inner > .slide, .slide-wrapper > .slide, .slide-preview > .slide, .slide-preview--wrapper > .slide, .header--inner > .slide-preview--one-whole, .slide-wrapper > .slide-preview--one-whole, .slide-preview > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--one-whole, .header--inner > .slide-preview--three-quarters, .slide-wrapper > .slide-preview--three-quarters, .slide-preview > .slide-preview--three-quarters, .slide-preview--wrapper > .slide-preview--three-quarters, .header--inner > .slide-preview--one-half, .slide-wrapper > .slide-preview--one-half, .slide-preview > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-half, .header--inner > .slide-preview--one-quarter, .slide-wrapper > .slide-preview--one-quarter, .slide-preview > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--one-quarter, .header--inner > .slide-preview--one-fifth, .slide-wrapper > .slide-preview--one-fifth, .slide-preview > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-fifth, .header--inner > .slide-preview--one-sixth, .slide-wrapper > .slide-preview--one-sixth, .slide-preview > .slide-preview--one-sixth, .slide-preview--wrapper > .slide-preview--one-sixth, .header--inner > .slide-preview--one-eighth, .slide-wrapper > .slide-preview--one-eighth, .slide-preview > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--one-eighth, .header--inner > .slide-preview--wrapper, .slide-wrapper > .slide-preview--wrapper, .slide-preview > .slide-preview--wrapper, .slide-preview--wrapper > .slide-preview--wrapper {
+.header--inner > .header--logo, .slide-wrapper > .header--logo, .slide-editor > .header--logo, .slide-preview > .header--logo, .slide-editor--wrapper > .header--logo,
+.slide-preview--wrapper > .header--logo, .header--inner > .slide, .slide-wrapper > .slide, .slide-editor > .slide, .slide-preview > .slide, .slide-editor--wrapper > .slide,
+.slide-preview--wrapper > .slide, .header--inner > .slide-preview--one-whole, .slide-wrapper > .slide-preview--one-whole, .slide-editor > .slide-preview--one-whole, .slide-preview > .slide-preview--one-whole, .slide-editor--wrapper > .slide-preview--one-whole,
+.slide-preview--wrapper > .slide-preview--one-whole, .header--inner > .slide-preview--three-quarters, .slide-wrapper > .slide-preview--three-quarters, .slide-editor > .slide-preview--three-quarters, .slide-preview > .slide-preview--three-quarters, .slide-editor--wrapper > .slide-preview--three-quarters,
+.slide-preview--wrapper > .slide-preview--three-quarters, .header--inner > .slide-preview--one-half, .slide-wrapper > .slide-preview--one-half, .slide-editor > .slide-preview--one-half, .slide-preview > .slide-preview--one-half, .slide-editor--wrapper > .slide-preview--one-half,
+.slide-preview--wrapper > .slide-preview--one-half, .header--inner > .slide-preview--one-quarter, .slide-wrapper > .slide-preview--one-quarter, .slide-editor > .slide-preview--one-quarter, .slide-preview > .slide-preview--one-quarter, .slide-editor--wrapper > .slide-preview--one-quarter,
+.slide-preview--wrapper > .slide-preview--one-quarter, .header--inner > .slide-preview--one-fifth, .slide-wrapper > .slide-preview--one-fifth, .slide-editor > .slide-preview--one-fifth, .slide-preview > .slide-preview--one-fifth, .slide-editor--wrapper > .slide-preview--one-fifth,
+.slide-preview--wrapper > .slide-preview--one-fifth, .header--inner > .slide-preview--one-sixth, .slide-wrapper > .slide-preview--one-sixth, .slide-editor > .slide-preview--one-sixth, .slide-preview > .slide-preview--one-sixth, .slide-editor--wrapper > .slide-preview--one-sixth,
+.slide-preview--wrapper > .slide-preview--one-sixth, .header--inner > .slide-preview--one-eighth, .slide-wrapper > .slide-preview--one-eighth, .slide-editor > .slide-preview--one-eighth, .slide-preview > .slide-preview--one-eighth, .slide-editor--wrapper > .slide-preview--one-eighth,
+.slide-preview--wrapper > .slide-preview--one-eighth, .header--inner > .slide-editor--wrapper, .slide-wrapper > .slide-editor--wrapper, .slide-editor > .slide-editor--wrapper, .slide-preview > .slide-editor--wrapper, .slide-editor--wrapper > .slide-editor--wrapper,
+.slide-preview--wrapper > .slide-editor--wrapper,
+.header--inner > .slide-preview--wrapper,
+.slide-wrapper > .slide-preview--wrapper,
+.slide-editor > .slide-preview--wrapper,
+.slide-preview > .slide-preview--wrapper,
+.slide-editor--wrapper > .slide-preview--wrapper,
+.slide-preview--wrapper > .slide-preview--wrapper {
   padding-left: 0;
 }
 
@@ -212,11 +230,24 @@
  * classes. Extends `.grid`.
  */
 /* line 300, ../sass/base/_grid.scss */
+.slide-editor--wrapper,
 .slide-preview--wrapper {
   text-align: center;
 }
 /* line 303, ../sass/base/_grid.scss */
-.slide-preview--wrapper > .header--logo, .slide-preview--wrapper > .slide, .slide-preview--wrapper > .slide-preview--one-whole, .slide-preview--wrapper > .slide-preview--three-quarters, .slide-preview--wrapper > .slide-preview--one-half, .slide-preview--wrapper > .slide-preview--one-quarter, .slide-preview--wrapper > .slide-preview--one-fifth, .slide-preview--wrapper > .slide-preview--one-sixth, .slide-preview--wrapper > .slide-preview--one-eighth, .slide-preview--wrapper > .slide-preview--wrapper {
+.slide-editor--wrapper > .header--logo,
+.slide-preview--wrapper > .header--logo, .slide-editor--wrapper > .slide,
+.slide-preview--wrapper > .slide, .slide-editor--wrapper > .slide-preview--one-whole,
+.slide-preview--wrapper > .slide-preview--one-whole, .slide-editor--wrapper > .slide-preview--three-quarters,
+.slide-preview--wrapper > .slide-preview--three-quarters, .slide-editor--wrapper > .slide-preview--one-half,
+.slide-preview--wrapper > .slide-preview--one-half, .slide-editor--wrapper > .slide-preview--one-quarter,
+.slide-preview--wrapper > .slide-preview--one-quarter, .slide-editor--wrapper > .slide-preview--one-fifth,
+.slide-preview--wrapper > .slide-preview--one-fifth, .slide-editor--wrapper > .slide-preview--one-sixth,
+.slide-preview--wrapper > .slide-preview--one-sixth, .slide-editor--wrapper > .slide-preview--one-eighth,
+.slide-preview--wrapper > .slide-preview--one-eighth, .slide-editor--wrapper > .slide-editor--wrapper,
+.slide-preview--wrapper > .slide-editor--wrapper,
+.slide-editor--wrapper > .slide-preview--wrapper,
+.slide-preview--wrapper > .slide-preview--wrapper {
   text-align: left;
 }
 
@@ -983,13 +1014,15 @@ label {
 
 /* line 30, ../sass/layout/_buttons.scss */
 .button {
-  background-color: #222;
+  background-color: #357FD1;
   border: 0;
   color: white;
 }
 /* line 37, ../sass/layout/_buttons.scss */
-.button:hover {
-  background-color: #111;
+.button:link, .button:visited, .button:hover {
+  background-color: #2361a9;
+  color: white;
+  text-decoration: none;
 }
 
 /**
@@ -1033,7 +1066,8 @@ label {
 .slide--text, .slide-preview--one-whole .slide-preview--text, .slide-preview--three-quarters .slide-preview--text, .slide-preview--one-half .slide-preview--text, .slide-preview--one-quarter .slide-preview--text, .slide-preview--one-fifth .slide-preview--text, .slide-preview--one-sixth .slide-preview--text, .slide-preview--one-eighth .slide-preview--text {
   margin: 2em;
   padding: 2em;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: black;
+  color: white;
   -moz-border-radius: 0.6em;
   -webkit-border-radius: 0.6em;
   border-radius: 0.6em;
@@ -1043,103 +1077,160 @@ label {
 }
 
 /* line 75, ../sass/layout/_layout.scss */
+.slide-editor--text {
+  display: block;
+  margin: 1em;
+  padding: .75em;
+  background-color: white;
+  color: black;
+  text-align: center;
+  -moz-border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
+  border-radius: 0.6em;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 89, ../sass/layout/_layout.scss */
 .slide-wrapper {
   height: 100%;
 }
 
-/* line 91, ../sass/layout/_layout.scss */
+/* line 105, ../sass/layout/_layout.scss */
 .slide {
   min-height: 100%;
   -webkit-text-size-adjust: none;
   font-size: 32px;
 }
 
-/* line 104, ../sass/layout/_layout.scss */
-.slide-preview {
+/* line 117, ../sass/layout/_layout.scss */
+.slide-editor, .slide-preview {
   margin-bottom: 2em;
 }
-/* line 110, ../sass/layout/_layout.scss */
+
+/* line 126, ../sass/layout/_layout.scss */
+.slide-editor--header,
 .slide-preview--header {
   font-weight: bold;
   text-align: center;
 }
-/* line 115, ../sass/layout/_layout.scss */
+/* line 131, ../sass/layout/_layout.scss */
+.slide-editor--wrapper,
 .slide-preview--wrapper {
   overflow: auto;
   max-height: 250px;
 }
 @media only screen and (min-width: 1024px) {
-  /* line 115, ../sass/layout/_layout.scss */
+  /* line 131, ../sass/layout/_layout.scss */
+  .slide-editor--wrapper,
   .slide-preview--wrapper {
     max-height: 1000px;
   }
 }
-/* line 129, ../sass/layout/_layout.scss */
+/* line 145, ../sass/layout/_layout.scss */
+.slide-editor--icon,
+.slide-preview--icon {
+  max-width: 25px;
+  margin-right: 8px;
+}
+/* line 150, ../sass/layout/_layout.scss */
+.slide-editor .slide-preview--text,
+.slide-preview .slide-preview--text {
+  position: relative;
+}
+
+/* line 160, ../sass/layout/_layout.scss */
+.slide-editor a:link, .slide-editor a:visited {
+  text-decoration: none;
+}
+/* line 165, ../sass/layout/_layout.scss */
+.slide-editor a:hover, .slide-editor a:focus {
+  text-decoration: none;
+}
+
+/* line 180, ../sass/layout/_layout.scss */
+.slide-preview a:link, .slide-preview a:visited {
+  color: white;
+  text-decoration: none;
+}
+/* line 186, ../sass/layout/_layout.scss */
+.slide-preview a:hover, .slide-preview a:focus {
+  color: #e6e6e6;
+  text-decoration: none;
+}
+/* line 193, ../sass/layout/_layout.scss */
+.slide-preview--icon {
+  position: absolute;
+  right: 10px;
+  bottom: -10px;
+}
+/* line 199, ../sass/layout/_layout.scss */
 .slide-preview--one-whole {
   height: 1080px;
   width: 1920px;
 }
-/* line 135, ../sass/layout/_layout.scss */
+/* line 205, ../sass/layout/_layout.scss */
 .slide-preview--one-whole .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 32px;
 }
-/* line 142, ../sass/layout/_layout.scss */
+/* line 212, ../sass/layout/_layout.scss */
 .slide-preview--three-quarters {
   height: 810px;
   width: 1440px;
 }
-/* line 148, ../sass/layout/_layout.scss */
+/* line 218, ../sass/layout/_layout.scss */
 .slide-preview--three-quarters .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 24px;
 }
-/* line 156, ../sass/layout/_layout.scss */
+/* line 226, ../sass/layout/_layout.scss */
 .slide-preview--one-half {
   height: 540px;
   width: 960px;
 }
-/* line 162, ../sass/layout/_layout.scss */
+/* line 232, ../sass/layout/_layout.scss */
 .slide-preview--one-half .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 16px;
 }
-/* line 169, ../sass/layout/_layout.scss */
+/* line 239, ../sass/layout/_layout.scss */
 .slide-preview--one-quarter {
   height: 270px;
   width: 480px;
 }
-/* line 175, ../sass/layout/_layout.scss */
+/* line 245, ../sass/layout/_layout.scss */
 .slide-preview--one-quarter .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 8px;
 }
-/* line 182, ../sass/layout/_layout.scss */
+/* line 252, ../sass/layout/_layout.scss */
 .slide-preview--one-fifth {
   height: 216px;
   width: 384px;
 }
-/* line 188, ../sass/layout/_layout.scss */
+/* line 258, ../sass/layout/_layout.scss */
 .slide-preview--one-fifth .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 6.4px;
 }
-/* line 195, ../sass/layout/_layout.scss */
+/* line 265, ../sass/layout/_layout.scss */
 .slide-preview--one-sixth {
   height: 180px;
   width: 320px;
 }
-/* line 201, ../sass/layout/_layout.scss */
+/* line 271, ../sass/layout/_layout.scss */
 .slide-preview--one-sixth .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 5.312px;
 }
-/* line 208, ../sass/layout/_layout.scss */
+/* line 278, ../sass/layout/_layout.scss */
 .slide-preview--one-eighth {
   height: 135px;
   width: 240px;
 }
-/* line 214, ../sass/layout/_layout.scss */
+/* line 284, ../sass/layout/_layout.scss */
 .slide-preview--one-eighth .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 4px;
@@ -1160,11 +1251,61 @@ label {
 
 /* line 12, ../sass/ik/_ik.scss */
 .slide-edit-overlay {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   bottom: 0;
+  display: none;
+  padding-top: 2em;
   width: 300px;
   background-color: #000;
+  color: #fff;
+  -moz-box-shadow: -8px 8px 20px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -8px 8px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: -8px 8px 20px rgba(0, 0, 0, 0.25);
+}
+/* line 26, ../sass/ik/_ik.scss */
+.slide-edit-overlay.is-visible {
+  display: block;
+}
+/* line 30, ../sass/ik/_ik.scss */
+.slide-edit-overlay label {
+  color: white;
+}
+
+/* line 37, ../sass/ik/_ik.scss */
+.ik-form {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+/* line 41, ../sass/ik/_ik.scss */
+.ik-form input,
+.ik-form textarea {
+  margin-bottom: 1em;
+}
+
+/* line 47, ../sass/ik/_ik.scss */
+.button-wrapper {
+  text-align: center;
+}
+/* line 50, ../sass/ik/_ik.scss */
+.button-wrapper button {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* line 56, ../sass/ik/_ik.scss */
+.page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .3;
   display: none;
+}
+/* line 66, ../sass/ik/_ik.scss */
+.page-overlay.is-visible {
+  display: block;
 }

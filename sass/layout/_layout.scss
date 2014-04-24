@@ -65,7 +65,21 @@
   margin: 2em;
   padding: 2em;
 
-  background-color: transparentize($black, .85);
+  background-color: $black;
+  color: $white;
+
+  @include border-radius($border-radius);
+  @include box-sizing(border-box);
+}
+
+%slide--text-modified {
+  display: block;
+  margin: 1em;
+  padding: .75em;
+
+  background-color: $white;
+  color: $black;
+  text-align: center;
 
   @include border-radius($border-radius);
   @include box-sizing(border-box);
@@ -100,13 +114,15 @@ $template-1-font-size: 32px;
   @extend %slide--text;
 }
 
-
-.slide-preview {
+%slide-preview-editor {
   @extend %grid;
   @extend %grid--full;
 
   margin-bottom: 2em;
+}
 
+.slide-editor,
+.slide-preview {
   &--header {
     font-weight: bold;
     text-align: center;
@@ -124,6 +140,60 @@ $template-1-font-size: 32px;
     @include breakpoint($breakpoint-desk) {
       max-height: 1000px;
     }
+  }
+
+  &--icon {
+    max-width: 25px;
+    margin-right: 8px;
+  }
+
+  .slide-preview--text {
+    position: relative;
+  }
+}
+
+
+.slide-editor {
+  @extend %slide-preview-editor;
+
+  a {
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &--text {
+    @extend %slide--text-modified;
+  }
+}
+
+.slide-preview {
+  @extend %slide-preview-editor;
+
+  a {
+    &:link,
+    &:visited {
+      color: $white;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      color: darken($white, 10%);
+      text-decoration: none;
+    }
+  }
+
+  &--icon {
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
   }
 
   &--one-whole {

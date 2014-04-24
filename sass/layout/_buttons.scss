@@ -30,11 +30,15 @@
 .button {
   @extend %button;
 
-  background-color: #222;
+  background-color: #357FD1; // #222;
   border: 0;
   color: $white;
 
+  &:link,
+  &:visited,
   &:hover {
-    background-color: #111;
+    background-color: #2361a9; //#111;
+    color: $white;
+    text-decoration: none;
   }
 }

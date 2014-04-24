@@ -29,14 +29,17 @@
     </select>
   </div>
 
-  <!-- Editor -->
-  <div class="slide-editor">
-    <div class="slide-editor--wrapper">
-      <div id="js-scale-slide" class="slide-preview--one-sixth js-scale-slide">
-        <div id="js-slide-edit-text" onclick="app.displayEditTextOverlay()">
-          <a href="#edit-content" class="slide-editor--text">
-            <img src="icons/gear.png" class="slide-editor--icon">Redigér indhold
-          </a>
+  <!-- Preview -->
+  <div class="slide-preview">
+    <div class="slide-preview--wrapper">
+      <div class="slide-preview--one-sixth js-scale-slide">
+        <div id="js-slide-edit-text" class="slide-preview--text" onclick="app.displayEditTextOverlay()">
+          <div class="js-slide-preview-text">
+            Integer legentibus erat a ante historiarum dapibus.
+            Excepteur sint obcaecat cupiditat non proident culpa.
+            Contra legem facit qui id facit quod lex prohibet.
+          </div>
+          <a href="#edit-content"><img src="icons/gear.png" class="slide-preview--icon"></a>
         </div>
       </div>
     </div>
@@ -48,12 +51,12 @@
   <div id="js-slide-edit-text-overlay" class="slide-edit-overlay">
     <form class="ik-form">
       <label>Tekstfarve</label>
-      <input class="ik-form-element" type="text" placeholder="e.g. #ffffff" value="#ffffff">
+      <input class="ik-form-element form-slide-color" type="text" placeholder="e.g. #ffffff" value="#ffffff">
       <label>Baggrundsfarve</label>
-      <input class="ik-form-element" type="text" placeholder="e.g. #000000" value="#000000">
+      <input class="ik-form-element form-slide-background-color" type="text" placeholder="e.g. #000000" value="#000000">
       <label>Indhold</label>
-      <textarea class="ik-form-element" rows="10">Integer legentibus erat a ante historiarum dapibus. Excepteur sint obcaecat cupiditat non proident culpa. Contra legem facit qui id facit quod lex prohibet.</textarea>
-      <div class="button-wrapper"><a href="slide-updated.html" class="button">Opdatér tekst</a></div>
+      <textarea class="ik-form-element form-slide-textarea" rows="10">Integer legentibus erat a ante historiarum dapibus. Excepteur sint obcaecat cupiditat non proident culpa. Contra legem facit qui id facit quod lex prohibet.</textarea>
+      <div class="button-wrapper"><input type="submit" class="button js-update-text" value="Opdatér tekst"></div>
     </form>
   </div>
 
@@ -102,6 +105,10 @@
   }
 
   $(".js-update-text").on("click", function() {
+    $(".slide-preview--text").css("color", $(".form-slide-color").val());
+    $(".slide-preview--text").css("background-color", $(".form-slide-background-color").val());
+    $(".js-slide-preview-text").html($(".form-slide-textarea").val());
+
     $(".slide-edit-overlay").removeClass("is-visible");
     $(".page-overlay").removeClass("is-visible");
   });

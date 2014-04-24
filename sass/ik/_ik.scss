@@ -10,14 +10,61 @@
 }
 
 .slide-edit-overlay {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   bottom: 0;
 
+  display: none;
+  padding-top: 2em;
   width: 300px;
 
   background-color: #000;
+  color: #fff;
 
-  display: none;
+
+  &.is-visible {
+    display: block;
+  }
+
+  label {
+    color: white;
+  }
+
+  @include box-shadow(-8px 8px 20px transparentize($black, .75));
 }
+
+.ik-form {
+  padding-left: 1em;
+  padding-right: 1em;
+
+  input,
+  textarea {
+    margin-bottom: 1em;
+  }
+}
+
+.button-wrapper {
+  text-align: center;
+
+  button {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .3;
+  display: none;
+
+  &.is-visible {
+    display: block;
+  }
+}
+
