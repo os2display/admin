@@ -19,14 +19,13 @@
 <div class="layout-wrapper">
 
   <!-- Slider -->
-  <p>
-    <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
-  </p>
-  <div id="slider"></div>
+  <div class="slider-container">
+    <div class="slider-amount" type="text" id="amount"></div>
+    <div class="slider-slider" id="slider"></div>
+  </div>
 
   <!-- Preview -->
   <div class="slide-preview">
-    <h1 class="slide-preview--header">Palm</h1>
     <div class="slide-preview--wrapper">
       <div id="js-slide-preview" class="slide-preview--one-sixth">
         <div class="slide-preview--text">This is the slide text</div>
@@ -56,36 +55,36 @@
         var amount = $("#amount");
 
         if (value == 1) {
-          amount.val("1/8 (12,5%)");
+          amount.html("Skaleret 1/8 (12,5%)");
           app.changePreviewSize("one-eighth");
         }
         else if (value == 2) {
-          amount.val("1/6 (16,6%)");
+          amount.html("Skaleret 1/6 (16,6%)");
           app.changePreviewSize("one-sixth");
         }
         else if (value == 3) {
-          amount.val("1/5 (20%)");
+          amount.html("Skaleret 1/5 (20%)");
           app.changePreviewSize("one-fifth");
         }
         else if (value == 4) {
-          amount.val("1/4 (25%)");
+          amount.html("Skaleret 1/4 (25%)");
           app.changePreviewSize("one-quarter");
         }
         else if (value == 5) {
-          amount.val("1/2 (50%)");
+          amount.html("Skaleret 1/2 (50%)");
           app.changePreviewSize("one-half");
         }
         else if (value == 6) {
-          amount.val("3/4 (75%)");
+          amount.html("Skaleret 3/4 (75%)");
           app.changePreviewSize("three-quarters");
         }
         else if (value == 7) {
-          amount.val("1/1 (100%)");
+          amount.html("Skaleret 1/1 (100%)");
           app.changePreviewSize("one-whole");
         }
       }
     });
-    $("#amount").val("1/6 (16,6%)");
+    $("#amount").html("Skaleret 1/6 (16,6%)");
   });
 </script>
 </body>

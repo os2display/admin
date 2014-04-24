@@ -1136,3 +1136,19 @@ label {
 .slide-preview--one-eighth .slide-preview--text {
   font-size: 0.25em;
 }
+
+/* line 1, ../sass/ik/_ik.scss */
+.slider-container {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+/* line 8, ../sass/ik/_ik.scss */
+.slider-amount {
+  margin-bottom: 2em;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
