@@ -20,6 +20,28 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/icons\/gear.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4502,
+		"inputAbbreviatedPath": "\/icons\/gear.png",
+		"outputAbbreviatedPath": "\/icons\/gear.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/hill.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 5.01683e+06,
+		"inputAbbreviatedPath": "\/images\/hill.jpg",
+		"outputAbbreviatedPath": "\/images\/hill.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/images\/logo.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -27,6 +49,17 @@
 		"initialSize": 15151,
 		"inputAbbreviatedPath": "\/images\/logo.png",
 		"outputAbbreviatedPath": "\/images\/logo.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/ocean.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 846493,
+		"inputAbbreviatedPath": "\/images\/ocean.jpg",
+		"outputAbbreviatedPath": "\/images\/ocean.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -200,6 +233,15 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/slide-updated.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/slide-updated.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/slide.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -212,7 +254,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "Troels Ugilt Jensen",
+"lastSavedByUser": "Brian Jensen",
 "manualImportLinks": {
 	},
 "projectAttributes": {
