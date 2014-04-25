@@ -147,6 +147,11 @@ $template-1-font-size: 32px;
     margin-right: 8px;
   }
 
+  &--icon-background {
+    max-width: 25px;
+    margin-right: 8px;
+  }
+
   .slide-preview--text {
     position: relative;
   }
@@ -194,6 +199,12 @@ $template-1-font-size: 32px;
     position: absolute;
     right: 10px;
     bottom: -10px;
+  }
+
+  &--icon-background {
+    position: absolute;
+    left: 10px;
+    top: 360%;
   }
 
   &--one-whole {

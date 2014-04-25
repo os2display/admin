@@ -33,13 +33,14 @@
   <div class="slide-preview">
     <div class="slide-preview--wrapper">
       <div class="slide-preview--one-sixth js-scale-slide">
-        <div id="js-slide-edit-text" class="slide-preview--text" onclick="app.displayEditTextOverlay()">
+        <div id="js-slide-edit-text" class="slide-preview--text">
           <div class="js-slide-preview-text">
             Integer legentibus erat a ante historiarum dapibus.
             Excepteur sint obcaecat cupiditat non proident culpa.
             Contra legem facit qui id facit quod lex prohibet.
           </div>
-          <a href="#edit-content"><img src="icons/gear.png" class="slide-preview--icon"></a>
+          <a href="#edit-content" onclick="app.displayEditTextOverlay()"><img src="icons/gear.png" class="slide-preview--icon"></a>
+          <a href="#edit-content" onclick="app.displayEditBackgroundOverlay()"><img src="icons/gear.png" class="slide-preview--icon-background"></a>
         </div>
       </div>
     </div>
@@ -48,7 +49,7 @@
   <!-- Edit text overlay -->
   <div class="page-overlay"></div>
 
-  <div id="js-slide-edit-text-overlay" class="slide-edit-overlay">
+  <div class="slide-edit-overlay slide-edit-text-overlay">
     <form class="ik-form">
       <label>Tekstfarve</label>
       <input class="ik-form-element form-slide-color" type="text" placeholder="e.g. #ffffff" value="#ffffff">
@@ -59,6 +60,26 @@
       <div class="button-wrapper"><a class="button js-update-text">Opdatér tekst</a></div>
     </form>
   </div>
+
+  <div class="slide-edit-overlay slide-edit-background-overlay">
+    <form class="ik-form">
+      <label>Vælg billede</label>
+      <div class="slider-container">
+        <select id="js-background-dropdown" class="preview-size-dropdown">
+          <option value="0">-- Ikke valgt --</option>
+          <option value="ocean.jpg">ocean.jpg</option>
+          <option value="hill.jpg">hill.jpg</option>
+        </select>
+      </div>
+
+      <p>-- eller --</p>
+
+      <label>Baggrundsfarve</label>
+      <input class="ik-form-element form-slide-background-background-color" type="text" placeholder="e.g. #000000" value="#000000">
+      <div class="button-wrapper"><a class="button js-update-background">Opdatér tekst</a></div>
+    </form>
+  </div>
+
 
 </div>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -99,10 +120,31 @@
     },
 
     displayEditTextOverlay: function() {
-      $(".slide-edit-overlay").addClass("is-visible");
+      $(".slide-edit-text-overlay").addClass("is-visible");
+      $(".page-overlay").addClass("is-visible");
+    },
+
+    displayEditBackgroundOverlay: function() {
+      $(".slide-edit-background-overlay").addClass("is-visible");
       $(".page-overlay").addClass("is-visible");
     }
   }
+
+  $(".js-update-background").on("click", function() {
+    var dropdown = document.getElementById("js-background-dropdown");
+    var value = dropdown.value;
+
+    if (value != 0) {
+      $(".js-scale-slide").css("background-image", "url(\"images/" + value + "\")");
+      $(".js-scale-slide").css("background-size", "cover");
+    } else {
+      $(".js-scale-slide").css("background-image", "");
+      $(".js-scale-slide").css("background-color", $(".form-slide-background-background-color").val());
+    }
+
+    $(".slide-edit-overlay").removeClass("is-visible");
+    $(".page-overlay").removeClass("is-visible");
+  });
 
   $(".js-update-text").on("click", function() {
     $(".slide-preview--text").css("color", $(".form-slide-color").val());

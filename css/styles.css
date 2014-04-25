@@ -1135,102 +1135,114 @@ label {
   margin-right: 8px;
 }
 /* line 150, ../sass/layout/_layout.scss */
+.slide-editor--icon-background,
+.slide-preview--icon-background {
+  max-width: 25px;
+  margin-right: 8px;
+}
+/* line 155, ../sass/layout/_layout.scss */
 .slide-editor .slide-preview--text,
 .slide-preview .slide-preview--text {
   position: relative;
 }
 
-/* line 160, ../sass/layout/_layout.scss */
+/* line 165, ../sass/layout/_layout.scss */
 .slide-editor a:link, .slide-editor a:visited {
   text-decoration: none;
 }
-/* line 165, ../sass/layout/_layout.scss */
+/* line 170, ../sass/layout/_layout.scss */
 .slide-editor a:hover, .slide-editor a:focus {
   text-decoration: none;
 }
 
-/* line 180, ../sass/layout/_layout.scss */
+/* line 185, ../sass/layout/_layout.scss */
 .slide-preview a:link, .slide-preview a:visited {
   color: white;
   text-decoration: none;
 }
-/* line 186, ../sass/layout/_layout.scss */
+/* line 191, ../sass/layout/_layout.scss */
 .slide-preview a:hover, .slide-preview a:focus {
   color: #e6e6e6;
   text-decoration: none;
 }
-/* line 193, ../sass/layout/_layout.scss */
+/* line 198, ../sass/layout/_layout.scss */
 .slide-preview--icon {
   position: absolute;
   right: 10px;
   bottom: -10px;
 }
-/* line 199, ../sass/layout/_layout.scss */
+/* line 204, ../sass/layout/_layout.scss */
+.slide-preview--icon-background {
+  position: absolute;
+  left: 10px;
+  top: 360%;
+}
+/* line 210, ../sass/layout/_layout.scss */
 .slide-preview--one-whole {
   height: 1080px;
   width: 1920px;
 }
-/* line 205, ../sass/layout/_layout.scss */
+/* line 216, ../sass/layout/_layout.scss */
 .slide-preview--one-whole .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 32px;
 }
-/* line 212, ../sass/layout/_layout.scss */
+/* line 223, ../sass/layout/_layout.scss */
 .slide-preview--three-quarters {
   height: 810px;
   width: 1440px;
 }
-/* line 218, ../sass/layout/_layout.scss */
+/* line 229, ../sass/layout/_layout.scss */
 .slide-preview--three-quarters .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 24px;
 }
-/* line 226, ../sass/layout/_layout.scss */
+/* line 237, ../sass/layout/_layout.scss */
 .slide-preview--one-half {
   height: 540px;
   width: 960px;
 }
-/* line 232, ../sass/layout/_layout.scss */
+/* line 243, ../sass/layout/_layout.scss */
 .slide-preview--one-half .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 16px;
 }
-/* line 239, ../sass/layout/_layout.scss */
+/* line 250, ../sass/layout/_layout.scss */
 .slide-preview--one-quarter {
   height: 270px;
   width: 480px;
 }
-/* line 245, ../sass/layout/_layout.scss */
+/* line 256, ../sass/layout/_layout.scss */
 .slide-preview--one-quarter .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 8px;
 }
-/* line 252, ../sass/layout/_layout.scss */
+/* line 263, ../sass/layout/_layout.scss */
 .slide-preview--one-fifth {
   height: 216px;
   width: 384px;
 }
-/* line 258, ../sass/layout/_layout.scss */
+/* line 269, ../sass/layout/_layout.scss */
 .slide-preview--one-fifth .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 6.4px;
 }
-/* line 265, ../sass/layout/_layout.scss */
+/* line 276, ../sass/layout/_layout.scss */
 .slide-preview--one-sixth {
   height: 180px;
   width: 320px;
 }
-/* line 271, ../sass/layout/_layout.scss */
+/* line 282, ../sass/layout/_layout.scss */
 .slide-preview--one-sixth .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 5.312px;
 }
-/* line 278, ../sass/layout/_layout.scss */
+/* line 289, ../sass/layout/_layout.scss */
 .slide-preview--one-eighth {
   height: 135px;
   width: 240px;
 }
-/* line 284, ../sass/layout/_layout.scss */
+/* line 295, ../sass/layout/_layout.scss */
 .slide-preview--one-eighth .slide-preview--text {
   -webkit-text-size-adjust: none;
   font-size: 4px;
