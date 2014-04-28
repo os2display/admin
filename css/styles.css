@@ -1175,7 +1175,7 @@ label {
 .slide-preview--icon-background {
   position: absolute;
   left: 10px;
-  top: 360%;
+  bottom: -50px;
 }
 /* line 210, ../sass/layout/_layout.scss */
 .slide-preview--one-whole {

@@ -20,17 +20,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/icons\/gear.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4502,
-		"inputAbbreviatedPath": "\/icons\/gear.png",
-		"outputAbbreviatedPath": "\/icons\/gear.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/images\/hill.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -38,6 +27,17 @@
 		"initialSize": 5.01683e+06,
 		"inputAbbreviatedPath": "\/images\/hill.jpg",
 		"outputAbbreviatedPath": "\/images\/hill.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/icons\/gear.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4502,
+		"inputAbbreviatedPath": "\/images\/icons\/gear.png",
+		"outputAbbreviatedPath": "\/images\/icons\/gear.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -72,6 +72,37 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/indexang.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/indexang.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/js\/min\/slide-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/min\/slide-ck.js",
+		"outputAbbreviatedPath": "\/js\/min\/min\/slide-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/js\/slide.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/slide.js",
+		"outputAbbreviatedPath": "\/js\/min\/slide-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/sass\/base\/_base.scss": {
 		"createSourceMap": 0,
@@ -254,7 +285,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "Brian Jensen",
+"lastSavedByUser": "Troels Ugilt Jensen",
 "manualImportLinks": {
 	},
 "projectAttributes": {
