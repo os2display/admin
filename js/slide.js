@@ -15,23 +15,13 @@ function SlideCtrl($scope) {
     {title: "ocean", src: "images/ocean.jpg"}
   ];
   $scope.editor = {
-    text: '',
-    background: '',
-    showTextEditor: function() {
-      $scope.editor.text = 'is-visible';
+    showTextEditor: false,
+    showBackgroundEditor: false,
+    toggleShowTextEditor: function() {
+      $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
     },
-    hideTextEditor: function() {
-      $scope.editor.text = '';
-    },
-    showBackgroundEditor: function() {
-      $scope.editor.background = 'is-visible';
-    },
-    hideBackgroundEditor: function() {
-      $scope.editor.background = '';
-    },
-    removeAll: function() {
-      $scope.editor.text = '';
-      $scope.editor.background = '';
+    toggleShowBackgroundEditor: function() {
+      $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
     }
   }
 }

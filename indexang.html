@@ -37,18 +37,15 @@
         <div class="slide-preview--{{preview.size}}" style="background-color: {{slide.backgroundColor}}; background-image: url('{{slide.backgroundImage}}'); background-size: cover;">
           <div class="slide-preview--text" style="color: {{slide.textColor}}; background-color: {{slide.textBackgroundColor}};">
             {{slide.text}}
-            <a href="#edit-content" ng-click="editor.showTextEditor()"><img src="images/icons/gear.png" class="slide-preview--icon"></a>
-            <a href="#edit-content" ng-click="editor.showBackgroundEditor()"><img src="images/icons/gear.png" class="slide-preview--icon-background"></a>
+            <a href="#edit-content" ng-click="editor.toggleShowTextEditor()"><img src="images/icons/gear.png" class="slide-preview--icon"></a>
+            <a href="#edit-content" ng-click="editor.toggleShowBackgroundEditor()"><img src="images/icons/gear.png" class="slide-preview--icon-background"></a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Overlay -->
-    <!--<div class="page-overlay {{editor.text}} {{editor.background}}" ng-click="editor.removeAll()"></div>-->
-
     <!-- Editor overlays -->
-    <div class="slide-edit-overlay slide-edit-text-overlay {{editor.text}}">
+    <div class="slide-edit-overlay slide-edit-text-overlay" ng-show="editor.showTextEditor">
       <form class="ik-form">
         <label>Tekstfarve</label>
         <input class="ik-form-element form-slide-color" type="text" placeholder="e.g. #fff" ng-model="slide.textColor">
@@ -56,10 +53,10 @@
         <input class="ik-form-element form-slide-background-color" type="text" placeholder="e.g. #000" ng-model="slide.textBackgroundColor">
         <label>Indhold</label>
         <textarea class="ik-form-element form-slide-textarea" rows="10" ng-model="slide.text"></textarea>
-        <div class="button-wrapper"><a class="button" ng-click="editor.hideTextEditor()">Vis ændringer</a></div>
+        <div class="button-wrapper"><a class="button" ng-click="editor.toggleShowTextEditor()">Vis ændringer</a></div>
       </form>
     </div>
-    <div class="slide-edit-overlay slide-edit-background-overlay {{editor.background}}">
+    <div class="slide-edit-overlay slide-edit-background-overlay" ng-show="editor.showBackgroundEditor">
       <form class="ik-form">
         <label>Vælg billede</label>
         <div class="slider-container">
@@ -70,7 +67,7 @@
         <p>-- eller --</p>
         <label>Baggrundsfarve</label>
         <input class="ik-form-element form-slide-background-background-color" type="text" placeholder="e.g. #000" ng-model="slide.backgroundColor">
-        <div class="button-wrapper"><a class="button" ng-click="editor.hideBackgroundEditor()">Vis ændringer</a></div>
+        <div class="button-wrapper"><a class="button" ng-click="editor.toggleShowBackgroundEditor()">Vis ændringer</a></div>
       </form>
     </div>
 

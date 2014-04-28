@@ -1267,7 +1267,7 @@ label {
   right: 0;
   top: 0;
   bottom: 0;
-  display: none;
+  /*display: none;*/
   padding-top: 2em;
   width: 300px;
   background-color: #000;
