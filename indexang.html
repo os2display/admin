@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="/css/styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="js/slide.js"></script>
 </head>
 <body>
@@ -19,6 +20,8 @@
 
   <!-- Main content -->
   <div class="layout-wrapper" ng-controller="SlideCtrl">
+    <input class="ik-form-element slide-title-input" type="text" placeholder="Slide titel" ng-model="slide.title">
+
     <!-- Size dropdown -->
     <div class="slider-container">
       <select class="preview-size-dropdown" ng-model="preview.size">
@@ -71,6 +74,8 @@
       </form>
     </div>
 
+    <!-- Save slide button -->
+    <div class="button-wrapper"><a class="button" ng-click="editor.saveSlide()">Gem slide</a></div>
   </div>
 </body>
 </html>

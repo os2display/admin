@@ -1,5 +1,6 @@
 function SlideCtrl($scope) {
   $scope.slide = {
+    title: '',
     textColor: '#fff',
     textBackgroundColor: '#000',
     backgroundColor: '#ddd',
@@ -22,6 +23,22 @@ function SlideCtrl($scope) {
     },
     toggleShowBackgroundEditor: function() {
       $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
+    },
+    saveSlide: function() {
+      $.post("backend.php?req=save", {
+        title: $scope.slide.title,
+        text: $scope.slide.text,
+        textcolor: $scope.slide.textColor,
+        textbgcolor: $scope.slide.textBackgroundColor,
+        bgcolor: $scope.slide.backgroundColor,
+        bgimage: $scope.slide.backgroundImage
+      })
+      .done(function( data ) {
+        alert("Slide gemt.");
+      });
     }
+  };
+  $scope.saveSlide = function() {
+    alert("fisk");
   }
 }
