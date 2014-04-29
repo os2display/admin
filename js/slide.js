@@ -45,9 +45,11 @@ function SlideCtrl($scope) {
     showBackgroundEditor: false,
     toggleShowTextEditor: function() {
       $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
+      $scope.editor.showBackgroundEditor = false;
     },
     toggleShowBackgroundEditor: function() {
       $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
+      $scope.editor.showTextEditor = false;
     },
     saveSlide: function() {
       $.post("backend.php?req=save", {
