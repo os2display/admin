@@ -25,7 +25,7 @@ function SlideCtrl($scope) {
     }
   };
   $scope.slide = {
-    title: '',
+    title: 'UdenTitel1',
     textColor: '#fff',
     textBackgroundColor: '#000',
     backgroundColor: '#ddd',
@@ -59,7 +59,7 @@ function SlideCtrl($scope) {
         backgroundImage: $scope.slide.backgroundImage
       })
         .done(function(data) {
-          alert("Slide gemt.");
+          window.location.href = "index.html";
         });
     }
   };
