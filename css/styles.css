@@ -1323,9 +1323,12 @@ label {
 }
 
 /* line 71, ../sass/ik/_ik.scss */
-.slide-title-input {
+.slide-title-input[type="text"],
+.slide-title-input[type="text"]:focus {
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
   border: 0;
+  font-size: 2em;
+  text-align: center;
 }
