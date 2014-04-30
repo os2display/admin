@@ -68,15 +68,15 @@
   }
 }
 
-input.slide-title-input {
+.slide-title-input[type="text"],
+.slide-title-input[type="text"]:focus {
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
-  border: 0;
 
-  &:focus {
-    border:0;
-    outline: none;
-  }
+  border: 0;
+  outline: none;
+
+  font-size: 2em;
+  text-align: center;
 }
