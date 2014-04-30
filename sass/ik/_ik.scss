@@ -68,9 +68,15 @@
   }
 }
 
-.slide-title-input {
+input.slide-title-input {
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
   border: 0;
+
+  &:focus {
+    border:0;
+    outline: none;
+  }
 }

@@ -1,5 +1,4 @@
-function getParameterByName( name ) //courtesy Artem
-{
+function getParameterByName(name) {
   name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
   var regexS = "[\\?&]"+name+"=([^&#]*)";
   var regex = new RegExp( regexS );
