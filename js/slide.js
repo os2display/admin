@@ -11,10 +11,10 @@ function getParameterByName(name) {
 
 function SlideCtrl($scope) {
   $scope.init = function() {
-    var title = getParameterByName('title');
+    var id = getParameterByName('id');
 
-    if (title !== "") {
-      $.get("backend.php", {title: title, req: "load"})
+    if (id !== "") {
+      $.get("backend.php", {id: id, req: "loadslide"})
         .done(function(data) {
           console.log(data);
           $scope.$apply(function() {
@@ -24,12 +24,13 @@ function SlideCtrl($scope) {
     }
   };
   $scope.slide = {
-    title: 'UdenTitel1',
+    title: '',
     textColor: '#fff',
     textBackgroundColor: '#000',
     backgroundColor: '#ddd',
     backgroundImage: '',
-    text: 'Integer legentibus erat a ante historiarum dapibus. Excepteur sint obcaecat cupiditat non proident culpa. Contra legem facit qui id facit quod lex prohibet.'
+    text: '',
+    id: ''
   };
   $scope.preview = {
     size: "one-quarter"
@@ -51,13 +52,14 @@ function SlideCtrl($scope) {
       $scope.editor.showTextEditor = false;
     },
     saveSlide: function() {
-      $.post("backend.php?req=save", {
+      $.post("backend.php?req=saveslide", {
         title: $scope.slide.title,
         text: $scope.slide.text,
         textColor: $scope.slide.textColor,
         textBackgroundColor: $scope.slide.textBackgroundColor,
         backgroundColor: $scope.slide.backgroundColor,
-        backgroundImage: $scope.slide.backgroundImage
+        backgroundImage: $scope.slide.backgroundImage,
+        id: $scope.slide.id
       })
         .done(function(data) {
           window.location.href = "index.html";

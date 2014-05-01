@@ -37,7 +37,9 @@
     <!-- Preview -->
     <div class="slide-preview">
       <div class="slide-preview--wrapper">
-        <div class="slide-preview--{{preview.size}}" style="background-color: {{slide.backgroundColor}}; background-image: url('{{slide.backgroundImage}}'); background-size: cover;">
+        <div class="slide-preview-container slide-preview--{{preview.size}}" style="background-color: {{slide.backgroundColor}};
+                                                            background-image: url('{{slide.backgroundImage}}');
+                                                            background-size: cover;">
           <div class="slide-preview--text" style="color: {{slide.textColor}}; background-color: {{slide.textBackgroundColor}};">
             {{slide.text}}
             <a href="#edit-content" ng-click="editor.toggleShowTextEditor()"><img src="images/icons/gear.png" class="slide-preview--icon"></a>

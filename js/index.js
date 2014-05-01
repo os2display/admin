@@ -4,7 +4,7 @@ function IndexCtrl($scope) {
     window.location.href = "slide.html";
   };
   $scope.init = function() {
-    $.get("backend.php", {req: "loadall"})
+    $.get("backend.php", {req: "loadallslides"})
     .done(function(data) {
       $scope.$apply(function() {
         $scope.slides = JSON.parse(data);
