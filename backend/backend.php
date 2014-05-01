@@ -3,7 +3,6 @@
  * Mockup implementation of a backend for indholdskanalen.
  */
 
-
 $req = $_GET['req'];
 
 if ($req == 'saveslide') {
@@ -21,7 +20,7 @@ if ($req == 'saveslide') {
   } else {
     // Create new
     $nextID = 1 + (int)file_get_contents("slidecounter.txt");
-    $file = 'slides/' . $nextID . '.txt';
+    $file = $backend_dir . 'slides/' . $nextID . '.txt';
     file_put_contents($file, $title . "|" . $text . "|" . $text_color . "|" . $text_background_color . "|" . $background_color . "|" . $background_image, LOCK_EX);
     file_put_contents("slidecounter.txt", $nextID, LOCK_EX);
   }
@@ -75,4 +74,7 @@ elseif ($req == 'loadallslides') {
   }
 
   echo json_encode($arr);
+}
+elseif ($req == 'savechannel') {
+
 }

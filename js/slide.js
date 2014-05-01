@@ -14,7 +14,7 @@ function SlideCtrl($scope) {
     var id = getParameterByName('id');
 
     if (id !== "") {
-      $.get("backend.php", {id: id, req: "loadslide"})
+      $.get("backend/backend.php", {id: id, req: "loadslide"})
         .done(function(data) {
           console.log(data);
           $scope.$apply(function() {
@@ -52,7 +52,7 @@ function SlideCtrl($scope) {
       $scope.editor.showTextEditor = false;
     },
     saveSlide: function() {
-      $.post("backend.php?req=saveslide", {
+      $.post("backend/backend.php?req=saveslide", {
         title: $scope.slide.title,
         text: $scope.slide.text,
         textColor: $scope.slide.textColor,
