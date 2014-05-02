@@ -4,6 +4,7 @@
  */
 
 $req = $_GET['req'];
+$separator = '|';
 
 if ($req == 'saveslide') {
   $title = $_POST['title'];
@@ -16,12 +17,13 @@ if ($req == 'saveslide') {
 
   if (!is_null($id) && is_numeric($id)) {
     $file = 'slides/' . $id . '.txt';
-    file_put_contents($file, $title . "|" . $text . "|" . $text_color . "|" . $text_background_color . "|" . $background_color . "|" . $background_image, LOCK_EX);
-  } else {
+    file_put_contents($file, $title . $separator . $text . $separator . $text_color . $separator . $text_background_color . $separator . $background_color . $separator . $background_image, LOCK_EX);
+  }
+  else {
     // Create new
     $nextID = 1 + (int)file_get_contents("slidecounter.txt");
     $file = $backend_dir . 'slides/' . $nextID . '.txt';
-    file_put_contents($file, $title . "|" . $text . "|" . $text_color . "|" . $text_background_color . "|" . $background_color . "|" . $background_image, LOCK_EX);
+    file_put_contents($file, $title . $separator . $text . $separator . $text_color . $separator . $text_background_color . $separator . $background_color . $separator . $background_image, LOCK_EX);
     file_put_contents("slidecounter.txt", $nextID, LOCK_EX);
   }
 }
@@ -30,7 +32,7 @@ elseif ($req == 'loadslide') {
   $path = "slides/";
 
   $file = file_get_contents($path . $id . ".txt");
-  $lines = explode("|", $file);
+  $lines = explode($separator, $file);
 
   $entry = array(
     "title" => $lines[0],
@@ -56,7 +58,7 @@ elseif ($req == 'loadallslides') {
       $id = explode(".txt", $file);
       $id = $id[0];
       $file = file_get_contents($path . $file);
-      $lines = explode("|", $file);
+      $lines = explode($separator, $file);
 
       $entry = array(
         "title" => $lines[0],
@@ -76,5 +78,20 @@ elseif ($req == 'loadallslides') {
   echo json_encode($arr);
 }
 elseif ($req == 'savechannel') {
+  $title = $_POST['title'];
+  $orientation = $_POST['orientation'];
+  $slides = $_POST['slides'];
+  $id = $_POST['id'];
 
+  if (!is_null($id) && is_numeric($id)) {
+    $file = 'channels/' . $id . '.txt';
+    file_put_contents($file, $title . $separator . orientation . $separator . $slides, LOCK_EX);
+  }
+  else {
+    // Create new
+    $nextID = 1 + (int)file_get_contents("channelcounter.txt");
+    $file = $backend_dir . 'channels/' . $nextID . '.txt';
+    file_put_contents($file, $title . $separator . orientation . $separator . $slides, LOCK_EX);
+    file_put_contents("channelcounter.txt", $nextID, LOCK_EX);
+  }
 }
