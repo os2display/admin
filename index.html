@@ -8,33 +8,90 @@
   <link rel="stylesheet" href="/css/styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.min.js"></script>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
-  <!-- Header -->
   <header class="header" role="banner">
     <div class="header--inner">
-      <a href="/" class="header--logo"><img src="images/logo.png"></a>
+      <div class="header--main">
+        <div class="header--logo">
+          <img src="/images/logo.png"/>
+        </div>
+        <nav class="header--main-menu">
+          <ul class="header--main-menu-items">
+            <li class="header--main-menu-item">
+              <a class="header--main-menu-item-link" href="#">
+                <span class="header--main-menu-item-image-channels"></span>
+                <span class="header--main-menu-item-text">Kanaler</span>
+              </a>
+            </li>
+            <li class="header--main-menu-item">
+              <a class="header--main-menu-item-link" href="#">
+                <span class="header--main-menu-item-image-slides"></span>
+                <span class="header--main-menu-item-text">Slides</span>
+              </a>
+            </li>
+            <li class="header--main-menu-item">
+              <a class="header--main-menu-item-link" href="#">
+                <span class="header--main-menu-item-image-screens"></span>
+                <span class="header--main-menu-item-text">Skærme</span>
+              </a>
+            </li>
+            <li class="header--main-menu-item">
+              <a class="header--main-menu-item-link" href="#">
+                <span class="header--main-menu-item-image-templates"></span>
+                <span class="header--main-menu-item-text">Templates</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header--secondary-menus">
+          <div class="header--secondary-menus-inner">
+            <div class="header--user-menu">
+              <div class="header--user-menu-label">
+                <a class="header--user-menu-dropdown-link" href="#">
+                  <img class="header--user-menu-image" src="/images/user-default.png"/>
+                  <span class="header--user-menu-name">Profil</span>
+                </a>
+              </div>
+              <nav class="header--user-menu-links">
+              </nav>
+            </div>
+            <div class="header--nav-menu">
+              <div class="header--nav-menu-label">
+                <a class="header--nav-menu-dropdown-link" href="#">
+                  <span class="header--nav-menu-label-image"></span>
+                  <span class="header--nav-menu-label-text">Menu</span>
+                </a>
+              </div>
+              <nav class="header--nav-menu-links">
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="header--sub">
+      <div class="header--sub-inner">
+        <nav class="header--sub-menu">
+          <ul class="header--sub-menu-items">
+            <li class="header--sub-menu-item">
+              <a class="header--sub-menu-item-link" href="#">
+                <span class="header--sub-menu-item-image-overview"></span>
+                <span class="header--sub-menu-item-text">Oversigt</span>
+              </a>
+            </li>
+            <li class="header--sub-menu-item">
+              <a class="is-active header--sub-menu-item-link" href="#">
+                <span class="header--sub-menu-item-image-create-channel"></span>
+                <span class="header--sub-menu-item-text">Opret kanal</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div ng-view></div>
   </header>
-
-  <!-- Main content -->
-  <div class="layout-wrapper" ng-controller="IndexCtrl" ng-init="init()">
-    <h3>Menu</h3>
-    <ul>
-      <li><a href="" ng-click="createSlide()">Opret slide</a></li>
-    </ul>
-
-    <h3>Slides</h3>
-    <ul>
-      <li ng-repeat="slide in slides"><a href="slide.html?id={{slide.id}}" >{{slide.id}} - {{slide.title}}</a></li>
-    </ul>
-
-    <h3>Mockups</h3>
-    <ul>
-      <li><a href="mockups/dashboard">Dashboard</a></li>
-      <li><a href="mockups/create-channel">Create channel</a></li>
-    </ul>
-  </div>
 </body>
 </html>
