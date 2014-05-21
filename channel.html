@@ -27,7 +27,9 @@
         <input type="text" value="{{channel.title}}" placeholder='Skriv navn, f.eks. "Skærme i forhallen"'>
       </div>
       <div class="">
-        Vælg orientering.
+        <div><img src="">Vælg type</div>
+        <div type="radio" class="channel--orientation-select-wrapper"><div class="channel--orientation-select-horizontal {{editor.orientationHorizontalSelected}}" ng-click="changeOrientationHorizontal()"></div>Bredformat</div>
+        <div type="radio" class="channel--orientation-select-wrapper"><div class="channel--orientation-select-vertical {{editor.orientationVerticalSelected}}" ng-click="changeOrientationVertical()"></div>Højformat</div>
       </div>
     </div>
   </div>

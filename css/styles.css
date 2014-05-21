@@ -1333,3 +1333,31 @@ label {
   font-size: 2em;
   text-align: center;
 }
+
+/* line 84, ../sass/ik/_ik.scss */
+.channel--orientation-select-horizontal {
+  width: 240px;
+  height: 135px;
+  background-color: #aaa;
+  border: 5px solid transparent;
+}
+
+/* line 91, ../sass/ik/_ik.scss */
+.channel--orientation-select-vertical {
+  width: 135px;
+  height: 240px;
+  background-color: #aaa;
+  border: 5px solid transparent;
+}
+
+/* line 98, ../sass/ik/_ik.scss */
+.selected {
+  border: 5px solid #666;
+}
+
+/* line 102, ../sass/ik/_ik.scss */
+.channel--orientation-select-wrapper {
+  float: left;
+  margin: 10px;
+  text-align: center;
+}

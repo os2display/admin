@@ -80,3 +80,27 @@
   font-size: 2em;
   text-align: center;
 }
+
+.channel--orientation-select-horizontal {
+  width: 240px;
+  height: 135px;
+  background-color: #aaa;
+  border: 5px solid transparent;
+}
+
+.channel--orientation-select-vertical {
+  width: 135px;
+  height: 240px;
+  background-color: #aaa;
+  border: 5px solid transparent;
+}
+
+.selected {
+  border: 5px solid #666;
+}
+
+.channel--orientation-select-wrapper {
+  float: left;
+  margin: 10px;
+  text-align: center;
+}
