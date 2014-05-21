@@ -16,10 +16,12 @@
 @import "base/_grid";
 
 
+// Theme
+@import "theme/_theme-vars";
+
 
 // Include mixins
 @import "mixins/_mixins";
-
 
 
 // Include base
@@ -28,10 +30,15 @@
 @import "base/_forms";
 
 
-
-// Examples
+// Layout
 @import "layout/_buttons";
 @import "layout/_layout";
+
+
+// Modules
+@import "modules/_header";
+@import "modules/_create_slide";
+
 
 
 

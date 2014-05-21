@@ -1,0 +1,47 @@
+/* Layout
+   ================================================================================================================== */
+
+$layout-max-width:    75em;
+$border-radius:       .4em;
+
+// We need to handle the inline-block spacing
+%grid-markup-fix {
+  margin-right: -4px;
+}
+
+
+/* Colors
+   ================================================================================================================== */
+
+$beige:                #F0F0E1;
+
+$gray-lightest:       lighten($black, 95%);
+$gray-lighter:        lighten($black, 90%);
+$gray-light:          lighten($black, 80%);
+$gray:                lighten($black, 70%);
+$gray-dark:           lighten($black, 45%);
+$gray-darker:         lighten($black, 35%);
+$gray-darkest:        lighten($black, 25%);
+
+$gray-background:     #f2f2f2;
+$gray-color:          #999;
+
+
+/* Link colors
+   ================================================================================================================== */
+
+$link-color:       #2c79d3;
+$link-color-hover:    darken($link-color, 10%);
+
+
+/* Spacing
+   ================================================================================================================== */
+
+$margin-bottom:       1.5em;
+$padding-bottom:      1.5em;
+
+
+/* Misc
+   ================================================================================================================== */
+
+$border-color:        $gray-lighter;

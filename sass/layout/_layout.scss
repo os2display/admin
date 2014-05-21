@@ -12,40 +12,13 @@
 }
 
 
-/* Header */
-
-.header {
-  margin-bottom: $margin-bottom;
-  padding: 1em;
-
-  background-color: #111;
-
-  @include breakpoint($breakpoint-desk) {
-    padding: 1em 0;
-  }
-
-  &--inner {
-    @extend %grid;
-    @extend %grid--full;
-    @extend %layout-container;
-  }
-
-  &--logo {
-    @extend %grid__item;
-    @extend %palm--one-half;
-    @extend %lap--one-quarter;
-    @extend %desk--one-sixth;
-  }
-}
-
-
-
 /* Layout */
 
 .layout-wrapper {
   @extend %layout-container;
-}
 
+  height: 100%;
+}
 
 
 /* Slide */

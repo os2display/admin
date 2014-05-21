@@ -1,0 +1,259 @@
+.header {
+  background-color: $beige;
+  color: #333;
+  margin-bottom: 6em;
+  min-height: 3em;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  &--main {
+    padding: 2em 1em 1em;
+    overflow: hidden;
+
+    @extend %grid;
+  }
+
+
+  //-------- Logo section --------//
+
+  &--logo {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-quarter;
+    @extend %desk--one-quarter;
+  }
+
+
+  //-------- Main menu section --------//
+
+  &--main-menu {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-half;
+    @extend %desk--one-half;
+  }
+
+
+  &--main-menu-items {
+    @include strip-list-styles;
+  }
+
+
+  &--main-menu-item {
+    display: inline-block;
+  }
+
+
+  &--main-menu-item-link {
+    @include strip-link-styles;
+
+    padding: 3em 1em 4em;
+
+    &:hover {
+      background: #E4E4D5;
+    }
+  }
+
+
+  &--main-menu-item-text {
+    display: none;
+
+    @include breakpoint(1200px) {
+      display: inline-block;
+    }
+  }
+
+
+  // Selector for main menu items to avoid dublication
+  %main-menu-item-selector {
+    display: inline-block;
+    margin: 0 1em 0 1em;
+    vertical-align: middle;
+
+    @include breakpoint(1200px) {
+      margin: 0 .5em 0 0;
+    }
+  }
+
+
+  // Each link
+  &--main-menu-item-image-channels{
+    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
+
+    @extend %main-menu-item-selector;
+  }
+
+
+  &--main-menu-item-image-slides{
+    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
+
+    @extend %main-menu-item-selector;
+  }
+
+
+  &--main-menu-item-image-screens{
+    @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
+
+    @extend %main-menu-item-selector;
+  }
+
+
+  &--main-menu-item-image-templates{
+    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
+
+    @extend %main-menu-item-selector;
+  }
+
+
+  //-------- Secondary menus section  (User menu and navigation menu)--------//
+
+  &--secondary-menus {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-quarter;
+    @extend %desk--one-quarter;
+  }
+
+
+  &--secondary-menus-inner {
+    @extend %grid;
+  }
+
+
+
+  //-------- User menu section --------//
+
+  &--user-menu {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-half;
+    @extend %desk--one-half;
+  }
+
+
+  &--user-menu-dropdown-link {
+    @include strip-link-styles;
+
+    &:after {
+      content:'\00a0\25be';
+      vertical-align: top;
+    }
+  }
+
+
+  &--user-menu-name {
+    display: none;
+    vertical-align: top;
+
+    @include breakpoint(1200px) {
+      display: inline-block;
+    }
+  }
+
+
+  &--user-menu-image {
+    height: 2em;
+    margin-right: .5em;
+  }
+
+
+  //-------- Navigation menu section --------//
+
+  &--nav-menu {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-half;
+    @extend %desk--one-half;
+  }
+
+
+  &--nav-menu-dropdown-link {
+    @include strip-link-styles;
+  }
+
+
+  &--nav-menu-label-image {
+    @include generate-sprite-image($dashboard-sprites, 'menu-icon', 25);
+
+    display: inline-block;
+    margin: 0 .5em 0 0;
+    vertical-align: middle;
+  }
+
+
+  &--nav-menu-label-text {
+    display: none;
+
+    @include breakpoint(1200px) {
+      display: inline-block;
+    }
+  }
+
+
+  //-------- Header sub menu section (Sub links telated to the main menu) --------//
+
+  &--sub {
+    background: #E4E4D5;
+    min-height: 3em;
+    padding: 0 1em;
+
+    @extend %grid;
+    @extend %grid--center;
+  }
+
+  &--sub-inner {
+    @extend %layout-container;
+  }
+
+  &--sub-menu {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--two-thirds;
+    @extend %desk--two-thirds;
+  }
+
+  &--sub-menu-items {
+    @include strip-list-styles();
+  }
+
+  &--sub-menu-item {
+    display: inline-block;
+    padding: 0 1em;
+  }
+
+  &--sub-menu-item-link {
+    @include strip-link-styles();
+
+    display: block;
+    height: 3em;
+    line-height: 3em;
+
+    &.is-active {
+      border-bottom: 2px solid black;
+    }
+  }
+
+  .header--sub-menu-item-image-overview {
+    @include generate-sprite-image($dashboard-sprites, 'overview-small-icon');
+
+    display: inline-block;
+    margin: 0 .5em 0 0;
+    vertical-align: middle;
+  }
+
+  .header--sub-menu-item-image-create-channel {
+    @include generate-sprite-image($dashboard-sprites, 'add-small-icon');
+
+    display: inline-block;
+    margin: 0 .5em 0 0;
+    vertical-align: middle;
+  }
+}

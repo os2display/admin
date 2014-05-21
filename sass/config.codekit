@@ -2,284 +2,14 @@
 "CodeKitInfo": "This is a CodeKit 2.x project configuration file. It is designed to sync project settings across multiple machines. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. If you do so, you will likely cause CodeKit to crash. This file is not useful unless accompanied by the project that created it in CodeKit 2. This file is not backwards-compatible with CodeKit 1.x. For more information, see: http:\/\/incident57.com\/codekit",
 "creatorBuild": "16921",
 "files": {
-	"\/backend\/backend.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/backend\/backend.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/channel.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/channel.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/config.rb": {
-		"fileType": 131072,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/config.rb",
-		"outputAbbreviatedPath": "\/config.rb",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/css\/styles.css": {
-		"fileType": 16,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/css\/styles.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/display_slide.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/display_slide.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/images\/hill.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 5.01683e+06,
-		"inputAbbreviatedPath": "\/images\/hill.jpg",
-		"outputAbbreviatedPath": "\/images\/hill.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons-s8a0b0fb37c.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 0,
-		"inputAbbreviatedPath": "\/images\/icons-s8a0b0fb37c.png",
-		"outputAbbreviatedPath": "\/images\/icons-s8a0b0fb37c.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/add-small-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 47998,
-		"inputAbbreviatedPath": "\/images\/icons\/add-small-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/add-small-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/channels-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 51265,
-		"inputAbbreviatedPath": "\/images\/icons\/channels-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/channels-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/check-circle-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 63783,
-		"inputAbbreviatedPath": "\/images\/icons\/check-circle-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/check-circle-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/check-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 51705,
-		"inputAbbreviatedPath": "\/images\/icons\/check-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/check-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/display-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 50594,
-		"inputAbbreviatedPath": "\/images\/icons\/display-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/display-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/gear-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4502,
-		"inputAbbreviatedPath": "\/images\/icons\/gear-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/gear-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/menu-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 87251,
-		"inputAbbreviatedPath": "\/images\/icons\/menu-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/menu-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/overview-small-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 49157,
-		"inputAbbreviatedPath": "\/images\/icons\/overview-small-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/overview-small-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/slides-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 62677,
-		"inputAbbreviatedPath": "\/images\/icons\/slides-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/slides-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/icons\/templates-icon.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 49391,
-		"inputAbbreviatedPath": "\/images\/icons\/templates-icon.png",
-		"outputAbbreviatedPath": "\/images\/icons\/templates-icon.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/landscape-outline.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 65590,
-		"inputAbbreviatedPath": "\/images\/landscape-outline.png",
-		"outputAbbreviatedPath": "\/images\/landscape-outline.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/logo.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 114427,
-		"inputAbbreviatedPath": "\/images\/logo.png",
-		"outputAbbreviatedPath": "\/images\/logo.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/logo_old.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 15151,
-		"inputAbbreviatedPath": "\/images\/logo_old.png",
-		"outputAbbreviatedPath": "\/images\/logo_old.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/ocean.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 846493,
-		"inputAbbreviatedPath": "\/images\/ocean.jpg",
-		"outputAbbreviatedPath": "\/images\/ocean.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/portrait-outline.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 71330,
-		"inputAbbreviatedPath": "\/images\/portrait-outline.png",
-		"outputAbbreviatedPath": "\/images\/portrait-outline.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/images\/user-default.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 79507,
-		"inputAbbreviatedPath": "\/images\/user-default.png",
-		"outputAbbreviatedPath": "\/images\/user-default.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/index.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/mockups\/create-channel.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/mockups\/create-channel.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/mockups\/dashboard.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/mockups\/dashboard.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/sass\/base\/_base.scss": {
+	"\/base\/_base.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/base\/_base.scss",
+		"inputAbbreviatedPath": "\/base\/_base.scss",
 		"outputAbbreviatedPath": "\/css\/_base.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -288,14 +18,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/base\/_forms.scss": {
+	"\/base\/_forms.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/base\/_forms.scss",
+		"inputAbbreviatedPath": "\/base\/_forms.scss",
 		"outputAbbreviatedPath": "\/css\/_forms.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -304,14 +34,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/base\/_grid.scss": {
+	"\/base\/_grid.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/base\/_grid.scss",
+		"inputAbbreviatedPath": "\/base\/_grid.scss",
 		"outputAbbreviatedPath": "\/css\/_grid.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -320,14 +50,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/base\/_normalize.scss": {
+	"\/base\/_normalize.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/base\/_normalize.scss",
+		"inputAbbreviatedPath": "\/base\/_normalize.scss",
 		"outputAbbreviatedPath": "\/css\/_normalize.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -336,14 +66,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/base\/_vars.scss": {
+	"\/base\/_vars.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/base\/_vars.scss",
+		"inputAbbreviatedPath": "\/base\/_vars.scss",
 		"outputAbbreviatedPath": "\/css\/_vars.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -352,14 +82,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/ik\/_ik.scss": {
+	"\/ik\/_ik.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/ik\/_ik.scss",
+		"inputAbbreviatedPath": "\/ik\/_ik.scss",
 		"outputAbbreviatedPath": "\/css\/_ik.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -368,14 +98,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/layout\/_buttons.scss": {
+	"\/layout\/_buttons.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/layout\/_buttons.scss",
+		"inputAbbreviatedPath": "\/layout\/_buttons.scss",
 		"outputAbbreviatedPath": "\/css\/_buttons.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -384,14 +114,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/layout\/_layout.scss": {
+	"\/layout\/_layout.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/layout\/_layout.scss",
+		"inputAbbreviatedPath": "\/layout\/_layout.scss",
 		"outputAbbreviatedPath": "\/css\/_layout.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -400,14 +130,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/mixins\/_mixins.scss": {
+	"\/mixins\/_mixins.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/mixins\/_mixins.scss",
+		"inputAbbreviatedPath": "\/mixins\/_mixins.scss",
 		"outputAbbreviatedPath": "\/css\/_mixins.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -416,30 +146,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/modules\/_create_slide.scss": {
+	"\/modules\/_header.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/modules\/_create_slide.scss",
-		"outputAbbreviatedPath": "\/css\/_create_slide.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"useLibsass": 0
-		},
-	"\/sass\/modules\/_header.scss": {
-		"createSourceMap": 0,
-		"debugStyle": 0,
-		"decimalPrecision": 5,
-		"fileType": 4,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/modules\/_header.scss",
+		"inputAbbreviatedPath": "\/modules\/_header.scss",
 		"outputAbbreviatedPath": "\/css\/_header.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -448,14 +162,14 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/sass\/styles.scss": {
+	"\/styles.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/styles.scss",
+		"inputAbbreviatedPath": "\/styles.scss",
 		"outputAbbreviatedPath": "\/css\/styles.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
@@ -463,31 +177,6 @@
 		"shouldRunAutoprefixer": 0,
 		"shouldRunBless": 0,
 		"useLibsass": 0
-		},
-	"\/sass\/theme\/_theme-vars.scss": {
-		"createSourceMap": 0,
-		"debugStyle": 0,
-		"decimalPrecision": 5,
-		"fileType": 4,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/theme\/_theme-vars.scss",
-		"outputAbbreviatedPath": "\/css\/_theme-vars.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"useLibsass": 0
-		},
-	"\/slide.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/slide.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
 		}
 	},
 "hooks": [
@@ -497,9 +186,9 @@
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",
-	"displayValue": "Indholdskanalen",
-	"displayValueWasSetByUser": 1,
-	"iconImageName": "brackets_darkGray"
+	"displayValue": "sass",
+	"displayValueWasSetByUser": 0,
+	"iconImageName": "pencil_blue"
 	},
 "projectSettings": {
 	"alwaysUseExternalServer": 0,
@@ -1067,7 +756,7 @@
 	"sassUseLibsass": 0,
 	"shouldRunAutoprefixer": 0,
 	"shouldRunBless": 0,
-	"skippedItemsString": "_cache, logs, _logs, cache, \/js, .git, log, .svn, .hg",
+	"skippedItemsString": ".svn, .git, .hg, log, _logs, _cache, cache, logs",
 	"slimAutoOutputPathRelativePath": "",
 	"slimAutoOutputPathReplace1": "",
 	"slimAutoOutputPathReplace2": "",
