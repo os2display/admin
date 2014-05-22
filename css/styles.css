@@ -1314,26 +1314,25 @@ label {
   margin-bottom: 6em;
   min-height: 3em;
   overflow: hidden;
-  position: fixed;
   width: 100%;
   z-index: 1;
 }
-/* line 11, ../sass/modules/_header.scss */
+/* line 10, ../sass/modules/_header.scss */
 .header--main {
   padding: 2em 1em 1em;
   overflow: hidden;
 }
-/* line 41, ../sass/modules/_header.scss */
+/* line 40, ../sass/modules/_header.scss */
 .header--main-menu-items {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-/* line 46, ../sass/modules/_header.scss */
+/* line 45, ../sass/modules/_header.scss */
 .header--main-menu-item {
   display: inline-block;
 }
-/* line 51, ../sass/modules/_header.scss */
+/* line 50, ../sass/modules/_header.scss */
 .header--main-menu-item-link {
   padding: 3em 1em 4em;
 }
@@ -1357,33 +1356,33 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 56, ../sass/modules/_header.scss */
+/* line 55, ../sass/modules/_header.scss */
 .header--main-menu-item-link:hover {
   background: #E4E4D5;
 }
-/* line 62, ../sass/modules/_header.scss */
+/* line 61, ../sass/modules/_header.scss */
 .header--main-menu-item-text {
   display: none;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 62, ../sass/modules/_header.scss */
+  /* line 61, ../sass/modules/_header.scss */
   .header--main-menu-item-text {
     display: inline-block;
   }
 }
-/* line 72, ../sass/modules/_header.scss */
+/* line 71, ../sass/modules/_header.scss */
 .header .header--main-menu-item-image-channels, .header .header--main-menu-item-image-slides, .header .header--main-menu-item-image-screens, .header .header--main-menu-item-image-templates {
   display: inline-block;
   margin: 0 1em 0 1em;
   vertical-align: middle;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 72, ../sass/modules/_header.scss */
+  /* line 71, ../sass/modules/_header.scss */
   .header .header--main-menu-item-image-channels, .header .header--main-menu-item-image-slides, .header .header--main-menu-item-image-screens, .header .header--main-menu-item-image-templates {
     margin: 0 .5em 0 0;
   }
 }
-/* line 84, ../sass/modules/_header.scss */
+/* line 83, ../sass/modules/_header.scss */
 .header--main-menu-item-image-channels {
   background: url('../images/icons-s7fa848ff1e.png');
   -moz-background-size: 32px 224px;
@@ -1394,7 +1393,7 @@ label {
   height: 25px;
   background-position: 0 -9px;
 }
-/* line 91, ../sass/modules/_header.scss */
+/* line 90, ../sass/modules/_header.scss */
 .header--main-menu-item-image-slides {
   background: url('../images/icons-s7fa848ff1e.png');
   -moz-background-size: 32px 224px;
@@ -1405,7 +1404,7 @@ label {
   height: 19px;
   background-position: 0 -181px;
 }
-/* line 98, ../sass/modules/_header.scss */
+/* line 97, ../sass/modules/_header.scss */
 .header--main-menu-item-image-screens {
   background: url('../images/icons-s7fa848ff1e.png');
   -moz-background-size: 32px 224px;
@@ -1416,7 +1415,7 @@ label {
   height: 20px;
   background-position: 0 -93px;
 }
-/* line 105, ../sass/modules/_header.scss */
+/* line 104, ../sass/modules/_header.scss */
 .header--main-menu-item-image-templates {
   background: url('../images/icons-s7fa848ff1e.png');
   -moz-background-size: 32px 224px;
@@ -1447,23 +1446,23 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 143, ../sass/modules/_header.scss */
+/* line 142, ../sass/modules/_header.scss */
 .header--user-menu-dropdown-link:after {
   content: '\00a0\25be';
   vertical-align: top;
 }
-/* line 150, ../sass/modules/_header.scss */
+/* line 149, ../sass/modules/_header.scss */
 .header--user-menu-name {
   display: none;
   vertical-align: top;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 150, ../sass/modules/_header.scss */
+  /* line 149, ../sass/modules/_header.scss */
   .header--user-menu-name {
     display: inline-block;
   }
 }
-/* line 160, ../sass/modules/_header.scss */
+/* line 159, ../sass/modules/_header.scss */
 .header--user-menu-image {
   height: 2em;
   margin-right: .5em;
@@ -1488,7 +1487,7 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 182, ../sass/modules/_header.scss */
+/* line 181, ../sass/modules/_header.scss */
 .header--nav-menu-label-image {
   background: url('../images/icons-s7fa848ff1e.png');
   -moz-background-size: 32px 224px;
@@ -1502,34 +1501,34 @@ label {
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 191, ../sass/modules/_header.scss */
+/* line 190, ../sass/modules/_header.scss */
 .header--nav-menu-label-text {
   display: none;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 191, ../sass/modules/_header.scss */
+  /* line 190, ../sass/modules/_header.scss */
   .header--nav-menu-label-text {
     display: inline-block;
   }
 }
-/* line 202, ../sass/modules/_header.scss */
+/* line 201, ../sass/modules/_header.scss */
 .header--sub {
   background: #E4E4D5;
   min-height: 3em;
   padding: 0 1em;
 }
-/* line 223, ../sass/modules/_header.scss */
+/* line 222, ../sass/modules/_header.scss */
 .header--sub-menu-items {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-/* line 227, ../sass/modules/_header.scss */
+/* line 226, ../sass/modules/_header.scss */
 .header--sub-menu-item {
   display: inline-block;
   padding: 0 1em;
 }
-/* line 232, ../sass/modules/_header.scss */
+/* line 231, ../sass/modules/_header.scss */
 .header--sub-menu-item-link {
   display: block;
   height: 3em;
@@ -1555,11 +1554,11 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 239, ../sass/modules/_header.scss */
+/* line 238, ../sass/modules/_header.scss */
 .header--sub-menu-item-link.is-active {
   border-bottom: 2px solid black;
 }
-/* line 244, ../sass/modules/_header.scss */
+/* line 243, ../sass/modules/_header.scss */
 .header .header--sub-menu-item-image-overview {
   background: url('../images/icons-s7fa848ff1e.png');
   -moz-background-size: 128px 896px;
@@ -1573,7 +1572,7 @@ label {
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 252, ../sass/modules/_header.scss */
+/* line 251, ../sass/modules/_header.scss */
 .header .header--sub-menu-item-image-create-channel {
   background: url('../images/icons-s7fa848ff1e.png');
   -moz-background-size: 128px 896px;
