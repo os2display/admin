@@ -30,7 +30,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     if ($routeParams.slideId) {
       $scope.slide = slideFactory.getSlide($routeParams.slideId);
 
-      // Make sure we are not placed at a step larger than is filled out in the data.
+      // Make sure we are not placed at step later than what is set in the data.
       var s = 1;
       if ($scope.slide.title !== '') {
         s = s + 1;
@@ -45,6 +45,8 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       if ($scope.step > s) {
         $location.path('slide/' + $scope.slide.id + '/' + s);
       }
+    } else {
+      $location.path('slide/2/1');
     }
   }
   init();

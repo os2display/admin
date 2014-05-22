@@ -7,11 +7,17 @@ ikApp.factory('slideFactory', function() {
         id: '1',
         title: 'fisk',
         orientation: 'w',
-        template: '',
+        template: '1',
         options: []
       };
     } else {
-      return {title: ''};
+      return {
+        id: '',
+        title: '',
+        orientation: '',
+        template: '',
+        options: []
+      };
     }
   }
 
