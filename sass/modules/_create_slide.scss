@@ -1,11 +1,28 @@
+// ----- Selecters related to this document ----- //
+
+// Selector for displaying checkbox on selected image
+%create-slide--image-check-icon--selector {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  visibility: hidden;
+  top: 10em;
+  z-index: 1;
+
+  @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
+}
+
+
+// ----- Styles ----- //
 .create-slide {
+
+  // General styles for all create slide pages
   &--section {
     background-size: cover;
     color: #535353;
     height: 100%;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -webkit-background-size: cover;
+
+    @include background-size();
   }
 
 
@@ -26,6 +43,17 @@
     width: 100%;
   }
 
+
+  &--content--slide-three {
+    @extend %grid;
+
+    margin: 0 auto;
+    padding-top: 12em;
+    text-align: center;
+    width: 100%;
+  }
+
+
   &--header {
     border-bottom: 1px solid $gray-lighter;
     display: inline-block;
@@ -44,6 +72,15 @@
   }
 
 
+  &--button {
+    @extend .button;
+
+    display: block;
+    margin: 0 auto;
+  }
+
+
+  // ----- Create slide title/name -----/
   &--text[type="text"] {
     background-color: #fbfbfb;
     height: 4.5em;
@@ -60,14 +97,7 @@
   }
 
 
-  &--button {
-    @extend .button;
-
-    display: block;
-    margin: 0 auto;
-  }
-
-
+  // ----- Create slide screen selection -----/
   &--screens {
     margin-bottom: 3em;
   }
@@ -106,13 +136,27 @@
 
 
   &--screen-link-check {
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    visibility: hidden;
-    top: 10em;
-    z-index: 1;
-
-    @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
+    @extend %create-slide--image-check-icon--selector;
   }
+
+
+  // ----- Create slide template selection -----/
+  &--template-link {
+    &.is-selected {
+      cursor: default;
+
+      @include opacity(.5);
+
+
+      .create-slide--template-link-check {
+        visibility: visible;
+      }
+    }
+  }
+
+
+  &--template-link-check {
+    @extend %create-slide--image-check-icon--selector;
+  }
+
 }

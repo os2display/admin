@@ -20,17 +20,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/images\/icons-s7fa848ff1e.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 20644,
-		"inputAbbreviatedPath": "\/images\/icons-s7fa848ff1e.png",
-		"outputAbbreviatedPath": "\/images\/icons-s7fa848ff1e.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/images\/icons\/add-small-icon.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -141,22 +130,11 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/images\/landscape-outline.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 65590,
-		"inputAbbreviatedPath": "\/images\/landscape-outline.png",
-		"outputAbbreviatedPath": "\/images\/landscape-outline.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/images\/logo.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 15151,
+		"initialSize": 114427,
 		"inputAbbreviatedPath": "\/images\/logo.png",
 		"outputAbbreviatedPath": "\/images\/logo.png",
 		"outputPathIsOutsideProject": 0,
@@ -174,13 +152,79 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/images\/portrait-outline.png": {
+	"\/images\/outlines\/landscape-outline.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 65590,
+		"inputAbbreviatedPath": "\/images\/outlines\/landscape-outline.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/landscape-outline.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/outlines\/portrait-outline.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"initialSize": 71330,
-		"inputAbbreviatedPath": "\/images\/portrait-outline.png",
-		"outputAbbreviatedPath": "\/images\/portrait-outline.png",
+		"inputAbbreviatedPath": "\/images\/outlines\/portrait-outline.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/portrait-outline.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/outlines\/template-example-1.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 74441,
+		"inputAbbreviatedPath": "\/images\/outlines\/template-example-1.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/template-example-1.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/outlines\/template-example-2.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 79639,
+		"inputAbbreviatedPath": "\/images\/outlines\/template-example-2.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/template-example-2.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/outlines\/template-example-3.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 87150,
+		"inputAbbreviatedPath": "\/images\/outlines\/template-example-3.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/template-example-3.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/outlines\/template-example-4.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 99859,
+		"inputAbbreviatedPath": "\/images\/outlines\/template-example-4.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/template-example-4.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/outlines\/template-example-5.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 110323,
+		"inputAbbreviatedPath": "\/images\/outlines\/template-example-5.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/template-example-5.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -205,11 +249,11 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/mockups\/create-channel.php": {
+	"\/mockups\/create-slide.php": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/mockups\/create-channel.php",
+		"inputAbbreviatedPath": "\/mockups\/create-slide.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -540,7 +584,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "Troels Ugilt Jensen",
+"lastSavedByUser": "Martin Yde Granath",
 "manualImportLinks": {
 	},
 "projectAttributes": {

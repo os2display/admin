@@ -1,3 +1,19 @@
+// ----- Selecters related to this document ----- //
+
+// Selector for main menu items
+%header--main-menu-item--selector {
+  display: inline-block;
+  margin: 0 1em 0 1em;
+  vertical-align: middle;
+
+  @include breakpoint(1200px) {
+    margin: 0 .5em 0 0;
+  }
+}
+
+
+
+// ----- Styles ----- //
 .header {
   background-color: $beige;
   color: #333;
@@ -67,44 +83,32 @@
   }
 
 
-  // Selector for main menu items to avoid dublication
-  %main-menu-item-selector {
-    display: inline-block;
-    margin: 0 1em 0 1em;
-    vertical-align: middle;
-
-    @include breakpoint(1200px) {
-      margin: 0 .5em 0 0;
-    }
-  }
-
-
   // Each link
   &--main-menu-item-image-channels{
     @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
 
-    @extend %main-menu-item-selector;
+    @extend %header--main-menu-item--selector;
   }
 
 
   &--main-menu-item-image-slides{
     @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
 
-    @extend %main-menu-item-selector;
+    @extend %header--main-menu-item--selector;
   }
 
 
   &--main-menu-item-image-screens{
     @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
 
-    @extend %main-menu-item-selector;
+    @extend %header--main-menu-item--selector;
   }
 
 
   &--main-menu-item-image-templates{
     @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
 
-    @extend %main-menu-item-selector;
+    @extend %header--main-menu-item--selector;
   }
 
 
