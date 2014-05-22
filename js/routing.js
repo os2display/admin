@@ -25,7 +25,7 @@ ikApp.config(['$routeProvider',
         controller: 'SlideController',
         templateUrl: 'partials/slide1.html'
       })
-      .when('/slide/:step', {
+      .when('/slide/:id/:step', {
         controller: 'SlideController',
         templateUrl: function(params){ return 'partials/slide' + params.step + '.html'; }
       })

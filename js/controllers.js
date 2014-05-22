@@ -18,6 +18,16 @@ ikApp.controller('TemplatesController', function($scope) {
 
 });
 
-ikApp.controller('SlideController', function($scope) {
+ikApp.controller('SlideController', function($scope, $routeParams) {
+  function init() {
+    if ($routeParams.step) {
+      $scope.step = $routeParams.step;
+    }
+    else {
+      $scope.step = 1;
+    }
+  }
+  init();
 
+  $scope.steps = 4;
 });
