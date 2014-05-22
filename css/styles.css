@@ -1678,6 +1678,104 @@ label {
   background-position: 0 -122px;
 }
 
+/* line 1, ../sass/animations/_animation.scss */
+.view-container {
+  position: relative;
+}
+
+/* line 5, ../sass/animations/_animation.scss */
+.view-frame.ng-enter, .view-frame.ng-leave {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* line 13, ../sass/animations/_animation.scss */
+.view-frame.ng-enter {
+  -webkit-animation: 0.5s fade-in;
+  -moz-animation: 0.5s fade-in;
+  -o-animation: 0.5s fade-in;
+  animation: 0.5s fade-in;
+  z-index: 100;
+}
+
+/* line 21, ../sass/animations/_animation.scss */
+.view-frame.ng-leave {
+  -webkit-animation: 0.5s fade-out;
+  -moz-animation: 0.5s fade-out;
+  -o-animation: 0.5s fade-out;
+  animation: 0.5s fade-out;
+  z-index: 99;
+}
+
+@keyframes fade-in {
+  /* line 30, ../sass/animations/_animation.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 31, ../sass/animations/_animation.scss */
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  /* line 34, ../sass/animations/_animation.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 35, ../sass/animations/_animation.scss */
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  /* line 38, ../sass/animations/_animation.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 39, ../sass/animations/_animation.scss */
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  /* line 43, ../sass/animations/_animation.scss */
+  from {
+    opacity: 1;
+  }
+
+  /* line 44, ../sass/animations/_animation.scss */
+  to {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fade-out {
+  /* line 47, ../sass/animations/_animation.scss */
+  from {
+    opacity: 1;
+  }
+
+  /* line 48, ../sass/animations/_animation.scss */
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fade-out {
+  /* line 51, ../sass/animations/_animation.scss */
+  from {
+    opacity: 1;
+  }
+
+  /* line 52, ../sass/animations/_animation.scss */
+  to {
+    opacity: 0;
+  }
+}
 /* line 1, ../sass/ik/_ik.scss */
 .slider-container {
   max-width: 200px;

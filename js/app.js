@@ -1,2 +1,2 @@
-var ikApp = angular.module('ikApp', ['ngRoute']);
+var ikApp = angular.module('ikApp', ['ngRoute', 'ngAnimate']);
 
