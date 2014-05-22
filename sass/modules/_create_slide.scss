@@ -21,14 +21,13 @@
     background-size: cover;
     color: #535353;
     height: 100%;
-
+ 
     @include background-size();
   }
 
 
   &--content--slide-one {
     margin: 0 auto;
-    padding-top: 12em;
     text-align: center;
     width: 50%;
   }
@@ -38,7 +37,6 @@
     @extend %grid;
 
     margin: 0 auto;
-    padding-top: 12em;
     text-align: center;
     width: 100%;
   }
