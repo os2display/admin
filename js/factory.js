@@ -4,9 +4,10 @@ ikApp.factory('slideFactory', function() {
   factory.getSlide = function(id) {
     if (id === "1") {
       return {
+        id: '1',
         title: 'fisk',
-        orientation: 'wide',
-        template: '1',
+        orientation: 'w',
+        template: '',
         options: []
       };
     } else {
