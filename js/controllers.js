@@ -23,6 +23,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       $scope.slide = slideFactory.emptySlide();
       $scope.step = 1;
     } else {
+      // Get the step.
       if ($routeParams.step) {
         if ($routeParams.step < 1 || $routeParams.step > $scope.steps) {
           $location.path('/slide/' + $routeParams.slideId + '/1');
