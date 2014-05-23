@@ -22,6 +22,8 @@
 
 // Selector for creating overlay on selected image (We nest to have the "is-selected" class on only only one html tag))
 %create-slide--image-overlay-selector {
+  cursor: pointer;
+  
   &.is-selected {
     cursor: default;
 
