@@ -1074,7 +1074,7 @@ label {
   animation: fade-in 1s;
 }
 
-/* line 24, ../sass/layout/_layout.scss */
+/* line 23, ../sass/layout/_layout.scss */
 .ng-leave {
   -moz-animation: fade-out 1s;
   -webkit-animation: fade-out 1s;
@@ -1882,75 +1882,82 @@ $template-1-font-size: 32px;
   width: 100%;
 }
 
-/**
- *
- * Animations
- *
- */
 @-moz-keyframes fade-out {
-  /* line 10, ../sass/animations/_animation.scss */
+  /* line 3, ../sass/animations/_animation.scss */
   0% {
     opacity: 1;
+    top: 0px;
   }
 
-  /* line 14, ../sass/animations/_animation.scss */
+  /* line 8, ../sass/animations/_animation.scss */
   100% {
     opacity: 0;
+    top: 200px;
   }
 }
 @-webkit-keyframes fade-out {
-  /* line 10, ../sass/animations/_animation.scss */
+  /* line 3, ../sass/animations/_animation.scss */
   0% {
     opacity: 1;
+    top: 0px;
   }
 
-  /* line 14, ../sass/animations/_animation.scss */
+  /* line 8, ../sass/animations/_animation.scss */
   100% {
     opacity: 0;
+    top: 200px;
   }
 }
 @keyframes fade-out {
-  /* line 10, ../sass/animations/_animation.scss */
+  /* line 3, ../sass/animations/_animation.scss */
   0% {
     opacity: 1;
+    top: 0px;
   }
 
-  /* line 14, ../sass/animations/_animation.scss */
+  /* line 8, ../sass/animations/_animation.scss */
   100% {
     opacity: 0;
+    top: 200px;
   }
 }
 @-moz-keyframes fade-in {
-  /* line 22, ../sass/animations/_animation.scss */
+  /* line 17, ../sass/animations/_animation.scss */
   0% {
     opacity: 0;
+    top: -200px;
   }
 
-  /* line 26, ../sass/animations/_animation.scss */
+  /* line 22, ../sass/animations/_animation.scss */
   100% {
     opacity: 1;
+    top: 0px;
   }
 }
 @-webkit-keyframes fade-in {
-  /* line 22, ../sass/animations/_animation.scss */
+  /* line 17, ../sass/animations/_animation.scss */
   0% {
     opacity: 0;
+    top: -200px;
   }
 
-  /* line 26, ../sass/animations/_animation.scss */
+  /* line 22, ../sass/animations/_animation.scss */
   100% {
     opacity: 1;
+    top: 0px;
   }
 }
 @keyframes fade-in {
-  /* line 22, ../sass/animations/_animation.scss */
+  /* line 17, ../sass/animations/_animation.scss */
   0% {
     opacity: 0;
+    top: -200px;
   }
 
-  /* line 26, ../sass/animations/_animation.scss */
+  /* line 22, ../sass/animations/_animation.scss */
   100% {
     opacity: 1;
+    top: 0px;
   }
 }
 /* line 1, ../sass/ik/_ik.scss */

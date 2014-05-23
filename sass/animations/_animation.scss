@@ -1,18 +1,13 @@
-/**
- *
- * Animations
- *
- */
-
-
 // Fade out animation used for display switching with angular
 @include keyframes(fade-out) {
   0% {
     opacity: 1;
+    top: 0px;
   }
 
   100% {
     opacity: 0;
+    top: 200px;
   }
 }
 
@@ -20,10 +15,12 @@
 // Fade in animation used for display switching with angular
 @include keyframes(fade-in) {
   0% {
-     opacity: 0;
+    opacity: 0;
+    top: -200px;
   }
 
   100% {
     opacity: 1;
+    top: 0px;
   }
 }
