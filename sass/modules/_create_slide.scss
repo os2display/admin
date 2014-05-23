@@ -41,7 +41,8 @@
   &--section {
     background-size: cover;
     color: #535353;
-    height: 100%;
+    display: block;
+    height: auto;
 
     @include background-size();
   }
@@ -80,9 +81,16 @@
 
   // ----- Create slide title/name -----/
   &--content--slide-one {
+    display: block;
     margin: 0 auto;
     text-align: center;
-    width: 50%;
+
+
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-whole;
+    @extend %desk--one-half;
   }
 
 
@@ -156,7 +164,6 @@
     @extend %grid;
 
     margin: 0 auto;
-    padding-top: 12em;
     text-align: center;
     width: 100%;
   }
@@ -193,25 +200,30 @@
     @extend %grid;
 
     margin: 0 auto;
-    padding-top: 12em;
     text-align: center;
     width: 100%;
   }
 
 
   &--config {
-    margin-bottom: 3em;
+    margin: 0 auto 3em;
     position: relative;
   }
 
   &--config-text-wrapper {
+    position: absolute;
+
+    @include border-radius(1em);
+  }
+
+  &--config-text {
     background: rgba(0,0,0,0.7);
     color: #fff;
-    min-height: 6em;
+    margin: 1em auto;
     padding: 2em;
     text-align: left;
-    position: absolute;
-    width: 90%;
+    position:relative;
+    width: 80%;
 
     @include border-radius(1em);
   }
@@ -232,10 +244,17 @@
 
   &--edit-box-settings {
     position: absolute;
-    right: -1em;
-    top: -1em;
+    right: -0.5em;
+    top: -0.5em;
 
-    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 25);
+
+    @include breakpoint($breakpoint-lap) {
+      right: -1em;
+      top: -1em;
+
+      @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+    }
   }
 
   &--edit-image-settings {
@@ -243,6 +262,23 @@
     position: absolute;
     right: 15%;
 
-    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+    @include generate-sprite-image($dashboard-sprites, 'landscape-icon', 50);
+
+    @include breakpoint($breakpoint-lap) {
+
+      @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+    }
   }
+
+  &--image {
+    max-height: 100%;
+    width: 100%;
+  }
+}
+
+.slide--header {
+  font-size: 90%;
+}
+.slide--description {
+  font-size: 70%;
 }
