@@ -20,13 +20,13 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/images\/icons-s8a0b0fb37c.png": {
+	"\/images\/icons-saad01776ef.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"initialSize": 0,
-		"inputAbbreviatedPath": "\/images\/icons-s8a0b0fb37c.png",
-		"outputAbbreviatedPath": "\/images\/icons-s8a0b0fb37c.png",
+		"inputAbbreviatedPath": "\/images\/icons-saad01776ef.png",
+		"outputAbbreviatedPath": "\/images\/icons-saad01776ef.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -86,6 +86,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/images\/icons\/edit-icon.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 56295,
+		"inputAbbreviatedPath": "\/images\/icons\/edit-icon.png",
+		"outputAbbreviatedPath": "\/images\/icons\/edit-icon.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/images\/icons\/gear-icon.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -93,6 +104,17 @@
 		"initialSize": 4502,
 		"inputAbbreviatedPath": "\/images\/icons\/gear-icon.png",
 		"outputAbbreviatedPath": "\/images\/icons\/gear-icon.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/icons\/landscape-icon.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 54722,
+		"inputAbbreviatedPath": "\/images\/icons\/landscape-icon.png",
+		"outputAbbreviatedPath": "\/images\/icons\/landscape-icon.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -181,6 +203,17 @@
 		"initialSize": 71330,
 		"inputAbbreviatedPath": "\/images\/outlines\/portrait-outline.png",
 		"outputAbbreviatedPath": "\/images\/outlines\/portrait-outline.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/outlines\/slide-config-default.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2.33506e+06,
+		"inputAbbreviatedPath": "\/images\/outlines\/slide-config-default.png",
+		"outputAbbreviatedPath": "\/images\/outlines\/slide-config-default.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0

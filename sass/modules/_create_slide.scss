@@ -4,51 +4,46 @@
 %create-slide--image-check-icon--selector {
   display: block;
   margin: 0 auto;
-  position: relative;
+  position: absolute;
   visibility: hidden;
-  top: 10em;
+  top: 25%;
   z-index: 1;
 
   @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
 }
 
 
+// Selector for creating overlay on selected image (We nest to have the "is-selected" class on only only one html tag))
+%create-slide--image-overlay-selector {
+  &.is-selected {
+    cursor: default;
+
+    .create-slide--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible;
+    }
+
+    .create-slide--overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.5);
+      position: absolute;
+    }
+  }
+}
+
+
 // ----- Styles ----- //
 .create-slide {
 
-  // General styles for all create slide pages
+  // -- General styles for all create slide pages -- //
   &--section {
     background-size: cover;
     color: #535353;
     height: 100%;
- 
+
     @include background-size();
-  }
-
-
-  &--content--slide-one {
-    margin: 0 auto;
-    text-align: center;
-    width: 50%;
-  }
-
-
-  &--content--slide-two {
-    @extend %grid;
-
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-  }
-
-
-  &--content--slide-three {
-    @extend %grid;
-
-    margin: 0 auto;
-    padding-top: 12em;
-    text-align: center;
-    width: 100%;
   }
 
 
@@ -69,6 +64,11 @@
     text-align: center;
   }
 
+  // Default check circled icon
+  &--link-check {
+    @extend %create-slide--image-check-icon--selector;
+  }
+
 
   &--button {
     @extend .button;
@@ -79,6 +79,13 @@
 
 
   // ----- Create slide title/name -----/
+  &--content--slide-one {
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+  }
+
+
   &--text[type="text"] {
     background-color: #fbfbfb;
     height: 4.5em;
@@ -96,8 +103,18 @@
 
 
   // ----- Create slide screen selection -----/
+  &--content--slide-two {
+    @extend %grid;
+
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+
+
   &--screens {
-    margin-bottom: 3em;
+    max-width: 65em;
+    margin: 0 auto 3em;
   }
 
 
@@ -107,6 +124,8 @@
     @extend %palm--one-whole;
     @extend %lap--one-half;
     @extend %desk--one-half;
+
+    margin-bottom: 2em;
   }
 
 
@@ -120,16 +139,10 @@
 
 
   &--screen-link {
-    &.is-selected {
-      cursor: default;
+    @extend %create-slide--image-overlay-selector;
 
-      @include opacity(.5);
-
-
-      .create-slide--screen-link-check {
-        visibility: visible;
-      }
-    }
+    position: relative;
+    display: block;
   }
 
 
@@ -139,22 +152,97 @@
 
 
   // ----- Create slide template selection -----/
+  &--content--slide-three {
+    @extend %grid;
+
+    margin: 0 auto;
+    padding-top: 12em;
+    text-align: center;
+    width: 100%;
+  }
+
+
+  &--template {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-half;
+    @extend %desk--one-third;
+    @extend %bigscreen--one-quarter;
+
+    margin-bottom: 2em;
+    position: relative;
+  }
+
+
+  &--templates {
+    margin-bottom: 3em;
+  }
+
+
   &--template-link {
-    &.is-selected {
-      cursor: default;
+    @extend %create-slide--image-overlay-selector;
 
-      @include opacity(.5);
-
-
-      .create-slide--template-link-check {
-        visibility: visible;
-      }
-    }
+    display: block;
+    position: relative;
   }
 
 
-  &--template-link-check {
-    @extend %create-slide--image-check-icon--selector;
+  // ----- Create slide content setup -----/
+  &--content--slide-four {
+    @extend %grid;
+
+    margin: 0 auto;
+    padding-top: 12em;
+    text-align: center;
+    width: 100%;
   }
 
+
+  &--config {
+    margin-bottom: 3em;
+    position: relative;
+  }
+
+  &--config-text-wrapper {
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    min-height: 6em;
+    padding: 2em;
+    text-align: left;
+    position: absolute;
+    width: 90%;
+
+    @include border-radius(1em);
+  }
+
+  &--edit-description {
+    display: inline-block;
+    margin-left: .5em;
+
+    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
+  }
+
+  &--edit-title {
+    display: inline-block;
+    margin-left: .5em;
+
+    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
+  }
+
+  &--edit-box-settings {
+    position: absolute;
+    right: -1em;
+    top: -1em;
+
+    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+  }
+
+  &--edit-image-settings {
+    bottom: 15%;
+    position: absolute;
+    right: 15%;
+
+    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+  }
 }
