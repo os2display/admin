@@ -1,3 +1,10 @@
+/**
+ *
+ * Header
+ *
+ */
+
+
 // ----- Selecters related to this document ----- //
 
 // Selector for main menu items
@@ -211,9 +218,6 @@
     @extend %grid--center;
   }
 
-  &--sub-inner {
-    @extend %layout-container;
-  }
 
   &--sub-menu {
     @extend %grid__item;
@@ -223,14 +227,17 @@
     @extend %desk--two-thirds;
   }
 
+
   &--sub-menu-items {
     @include strip-list-styles();
   }
+
 
   &--sub-menu-item {
     display: inline-block;
     padding: 0 1em;
   }
+
 
   &--sub-menu-item-link {
     @include strip-link-styles();
@@ -244,6 +251,7 @@
     }
   }
 
+
   .header--sub-menu-item-image-overview {
     @include generate-sprite-image($dashboard-sprites, 'overview-small-icon');
 
@@ -251,6 +259,7 @@
     margin: 0 .5em 0 0;
     vertical-align: middle;
   }
+
 
   .header--sub-menu-item-image-create-channel {
     @include generate-sprite-image($dashboard-sprites, 'add-small-icon');

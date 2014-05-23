@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.slide-wrapper, .slide-editor, .slide-preview, .header--main, .header--secondary-menus-inner, .header--sub, .create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four {
+.header--main, .header--secondary-menus-inner, .header--sub, .create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -170,8 +170,7 @@
  * 5. Required to combine fluid widths and fixed gutters.
  */
 /* line 239, ../sass/base/_grid.scss */
-.slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth, .slide-editor--wrapper,
-.slide-preview--wrapper, .header--logo, .header--main-menu, .header--secondary-menus, .header--user-menu, .header--nav-menu, .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template {
+.header--logo, .header--main-menu, .header--secondary-menus, .header--user-menu, .header--nav-menu, .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template {
   display: inline-block;
   /* [1] */
   padding-left: 2em;
@@ -196,40 +195,6 @@
  * Gutterless grids have all the properties of regular grids, minus any spacing.
  * Extends `.grid`.
  */
-/* line 275, ../sass/base/_grid.scss */
-.slide-wrapper, .slide-editor, .slide-preview, .slide-editor--wrapper,
-.slide-preview--wrapper {
-  margin-left: 0;
-}
-/* line 278, ../sass/base/_grid.scss */
-.slide-wrapper > .slide, .slide-editor > .slide, .slide-preview > .slide, .slide-editor--wrapper > .slide,
-.slide-preview--wrapper > .slide, .slide-wrapper > .slide-preview--one-whole, .slide-editor > .slide-preview--one-whole, .slide-preview > .slide-preview--one-whole, .slide-editor--wrapper > .slide-preview--one-whole,
-.slide-preview--wrapper > .slide-preview--one-whole, .slide-wrapper > .slide-preview--three-quarters, .slide-editor > .slide-preview--three-quarters, .slide-preview > .slide-preview--three-quarters, .slide-editor--wrapper > .slide-preview--three-quarters,
-.slide-preview--wrapper > .slide-preview--three-quarters, .slide-wrapper > .slide-preview--one-half, .slide-editor > .slide-preview--one-half, .slide-preview > .slide-preview--one-half, .slide-editor--wrapper > .slide-preview--one-half,
-.slide-preview--wrapper > .slide-preview--one-half, .slide-wrapper > .slide-preview--one-quarter, .slide-editor > .slide-preview--one-quarter, .slide-preview > .slide-preview--one-quarter, .slide-editor--wrapper > .slide-preview--one-quarter,
-.slide-preview--wrapper > .slide-preview--one-quarter, .slide-wrapper > .slide-preview--one-fifth, .slide-editor > .slide-preview--one-fifth, .slide-preview > .slide-preview--one-fifth, .slide-editor--wrapper > .slide-preview--one-fifth,
-.slide-preview--wrapper > .slide-preview--one-fifth, .slide-wrapper > .slide-preview--one-sixth, .slide-editor > .slide-preview--one-sixth, .slide-preview > .slide-preview--one-sixth, .slide-editor--wrapper > .slide-preview--one-sixth,
-.slide-preview--wrapper > .slide-preview--one-sixth, .slide-wrapper > .slide-preview--one-eighth, .slide-editor > .slide-preview--one-eighth, .slide-preview > .slide-preview--one-eighth, .slide-editor--wrapper > .slide-preview--one-eighth,
-.slide-preview--wrapper > .slide-preview--one-eighth, .slide-wrapper > .slide-editor--wrapper, .slide-editor > .slide-editor--wrapper, .slide-preview > .slide-editor--wrapper, .slide-editor--wrapper > .slide-editor--wrapper,
-.slide-preview--wrapper > .slide-editor--wrapper,
-.slide-wrapper > .slide-preview--wrapper,
-.slide-editor > .slide-preview--wrapper,
-.slide-preview > .slide-preview--wrapper,
-.slide-editor--wrapper > .slide-preview--wrapper,
-.slide-preview--wrapper > .slide-preview--wrapper, .slide-wrapper > .header--logo, .slide-editor > .header--logo, .slide-preview > .header--logo, .slide-editor--wrapper > .header--logo,
-.slide-preview--wrapper > .header--logo, .slide-wrapper > .header--main-menu, .slide-editor > .header--main-menu, .slide-preview > .header--main-menu, .slide-editor--wrapper > .header--main-menu,
-.slide-preview--wrapper > .header--main-menu, .slide-wrapper > .header--secondary-menus, .slide-editor > .header--secondary-menus, .slide-preview > .header--secondary-menus, .slide-editor--wrapper > .header--secondary-menus,
-.slide-preview--wrapper > .header--secondary-menus, .slide-wrapper > .header--user-menu, .slide-editor > .header--user-menu, .slide-preview > .header--user-menu, .slide-editor--wrapper > .header--user-menu,
-.slide-preview--wrapper > .header--user-menu, .slide-wrapper > .header--nav-menu, .slide-editor > .header--nav-menu, .slide-preview > .header--nav-menu, .slide-editor--wrapper > .header--nav-menu,
-.slide-preview--wrapper > .header--nav-menu, .slide-wrapper > .header--sub-menu, .slide-editor > .header--sub-menu, .slide-preview > .header--sub-menu, .slide-editor--wrapper > .header--sub-menu,
-.slide-preview--wrapper > .header--sub-menu, .slide-wrapper > .create-slide--content--slide-one, .slide-editor > .create-slide--content--slide-one, .slide-preview > .create-slide--content--slide-one, .slide-editor--wrapper > .create-slide--content--slide-one,
-.slide-preview--wrapper > .create-slide--content--slide-one, .slide-wrapper > .create-slide--screen-landscape, .slide-editor > .create-slide--screen-landscape, .slide-preview > .create-slide--screen-landscape, .slide-editor--wrapper > .create-slide--screen-landscape,
-.slide-preview--wrapper > .create-slide--screen-landscape, .slide-wrapper > .create-slide--screen-portrait, .slide-editor > .create-slide--screen-portrait, .slide-preview > .create-slide--screen-portrait, .slide-editor--wrapper > .create-slide--screen-portrait,
-.slide-preview--wrapper > .create-slide--screen-portrait, .slide-wrapper > .create-slide--template, .slide-editor > .create-slide--template, .slide-preview > .create-slide--template, .slide-editor--wrapper > .create-slide--template,
-.slide-preview--wrapper > .create-slide--template {
-  padding-left: 0;
-}
-
 /**
  * Align the entire grid to the right. Extends `.grid`.
  */
@@ -238,34 +203,11 @@
  * classes. Extends `.grid`.
  */
 /* line 300, ../sass/base/_grid.scss */
-.slide-editor--wrapper,
-.slide-preview--wrapper, .header--sub {
+.header--sub {
   text-align: center;
 }
 /* line 303, ../sass/base/_grid.scss */
-.slide-editor--wrapper > .slide,
-.slide-preview--wrapper > .slide, .header--sub > .slide, .slide-editor--wrapper > .slide-preview--one-whole,
-.slide-preview--wrapper > .slide-preview--one-whole, .header--sub > .slide-preview--one-whole, .slide-editor--wrapper > .slide-preview--three-quarters,
-.slide-preview--wrapper > .slide-preview--three-quarters, .header--sub > .slide-preview--three-quarters, .slide-editor--wrapper > .slide-preview--one-half,
-.slide-preview--wrapper > .slide-preview--one-half, .header--sub > .slide-preview--one-half, .slide-editor--wrapper > .slide-preview--one-quarter,
-.slide-preview--wrapper > .slide-preview--one-quarter, .header--sub > .slide-preview--one-quarter, .slide-editor--wrapper > .slide-preview--one-fifth,
-.slide-preview--wrapper > .slide-preview--one-fifth, .header--sub > .slide-preview--one-fifth, .slide-editor--wrapper > .slide-preview--one-sixth,
-.slide-preview--wrapper > .slide-preview--one-sixth, .header--sub > .slide-preview--one-sixth, .slide-editor--wrapper > .slide-preview--one-eighth,
-.slide-preview--wrapper > .slide-preview--one-eighth, .header--sub > .slide-preview--one-eighth, .slide-editor--wrapper > .slide-editor--wrapper,
-.slide-preview--wrapper > .slide-editor--wrapper, .header--sub > .slide-editor--wrapper,
-.slide-editor--wrapper > .slide-preview--wrapper,
-.slide-preview--wrapper > .slide-preview--wrapper,
-.header--sub > .slide-preview--wrapper, .slide-editor--wrapper > .header--logo,
-.slide-preview--wrapper > .header--logo, .header--sub > .header--logo, .slide-editor--wrapper > .header--main-menu,
-.slide-preview--wrapper > .header--main-menu, .header--sub > .header--main-menu, .slide-editor--wrapper > .header--secondary-menus,
-.slide-preview--wrapper > .header--secondary-menus, .header--sub > .header--secondary-menus, .slide-editor--wrapper > .header--user-menu,
-.slide-preview--wrapper > .header--user-menu, .header--sub > .header--user-menu, .slide-editor--wrapper > .header--nav-menu,
-.slide-preview--wrapper > .header--nav-menu, .header--sub > .header--nav-menu, .slide-editor--wrapper > .header--sub-menu,
-.slide-preview--wrapper > .header--sub-menu, .header--sub > .header--sub-menu, .slide-editor--wrapper > .create-slide--content--slide-one,
-.slide-preview--wrapper > .create-slide--content--slide-one, .header--sub > .create-slide--content--slide-one, .slide-editor--wrapper > .create-slide--screen-landscape,
-.slide-preview--wrapper > .create-slide--screen-landscape, .header--sub > .create-slide--screen-landscape, .slide-editor--wrapper > .create-slide--screen-portrait,
-.slide-preview--wrapper > .create-slide--screen-portrait, .header--sub > .create-slide--screen-portrait, .slide-editor--wrapper > .create-slide--template,
-.slide-preview--wrapper > .create-slide--template, .header--sub > .create-slide--template {
+.header--sub > .header--logo, .header--sub > .header--main-menu, .header--sub > .header--secondary-menus, .header--sub > .header--user-menu, .header--sub > .header--nav-menu, .header--sub > .header--sub-menu, .header--sub > .create-slide--content--slide-one, .header--sub > .create-slide--screen-landscape, .header--sub > .create-slide--screen-portrait, .header--sub > .create-slide--template {
   text-align: left;
 }
 
@@ -291,11 +233,6 @@
 /**
  * Whole
  */
-/* line 367, ../sass/base/_grid.scss */
-.slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth {
-  width: 100%;
-}
-
 /**
  * Halves
  */
@@ -1117,228 +1054,306 @@ label {
  * Layouts
  *
  */
-/* line 8, ../sass/layout/_layout.scss */
-.layout-wrapper, .header--sub-inner {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/* Layout */
-/* line 16, ../sass/layout/_layout.scss */
-.layout-wrapper {
-  height: 100%;
-}
-
-/* Slide */
-/* line 25, ../sass/layout/_layout.scss */
-.slide, .slide-preview--one-whole, .slide-preview--three-quarters, .slide-preview--one-half, .slide-preview--one-quarter, .slide-preview--one-fifth, .slide-preview--one-sixth, .slide-preview--one-eighth {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  height: 100%;
-  background-color: #ddd;
-}
-
-/* line 36, ../sass/layout/_layout.scss */
-.slide--text, .slide-preview--one-whole .slide-preview--text, .slide-preview--three-quarters .slide-preview--text, .slide-preview--one-half .slide-preview--text, .slide-preview--one-quarter .slide-preview--text, .slide-preview--one-fifth .slide-preview--text, .slide-preview--one-sixth .slide-preview--text, .slide-preview--one-eighth .slide-preview--text {
-  margin: 2em;
-  padding: 2em;
-  background-color: black;
-  color: white;
-  -moz-border-radius: 0.4em;
-  -webkit-border-radius: 0.4em;
-  border-radius: 0.4em;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 47, ../sass/layout/_layout.scss */
-.slide-editor--text {
-  display: block;
-  margin: 1em;
-  padding: .75em;
-  background-color: white;
-  color: black;
-  text-align: center;
-  -moz-border-radius: 0.4em;
-  -webkit-border-radius: 0.4em;
-  border-radius: 0.4em;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 61, ../sass/layout/_layout.scss */
-.slide-wrapper {
-  height: 100%;
-}
-
-/* line 77, ../sass/layout/_layout.scss */
-.slide {
-  min-height: 100%;
-  -webkit-text-size-adjust: none;
-  font-size: 32px;
-}
-
-/* line 89, ../sass/layout/_layout.scss */
-.slide-editor, .slide-preview {
-  margin-bottom: 2em;
-}
-
-/* line 98, ../sass/layout/_layout.scss */
-.slide-editor--header,
-.slide-preview--header {
-  font-weight: bold;
-  text-align: center;
-}
-/* line 103, ../sass/layout/_layout.scss */
-.slide-editor--wrapper,
-.slide-preview--wrapper {
-  overflow: auto;
-  max-height: 250px;
-}
-@media only screen and (min-width: 1024px) {
-  /* line 103, ../sass/layout/_layout.scss */
-  .slide-editor--wrapper,
-  .slide-preview--wrapper {
-    max-height: 1000px;
-  }
-}
-/* line 117, ../sass/layout/_layout.scss */
-.slide-editor--icon,
-.slide-preview--icon {
-  max-width: 25px;
-  margin-right: 8px;
-}
-/* line 122, ../sass/layout/_layout.scss */
-.slide-editor--icon-background,
-.slide-preview--icon-background {
-  max-width: 25px;
-  margin-right: 8px;
-}
-/* line 127, ../sass/layout/_layout.scss */
-.slide-editor .slide-preview--text,
-.slide-preview .slide-preview--text {
+/* Switch page animations */
+/* line 9, ../sass/layout/_layout.scss */
+.view-container {
   position: relative;
 }
 
-/* line 137, ../sass/layout/_layout.scss */
-.slide-editor a:link, .slide-editor a:visited {
-  text-decoration: none;
-}
-/* line 142, ../sass/layout/_layout.scss */
-.slide-editor a:hover, .slide-editor a:focus {
-  text-decoration: none;
+/* line 13, ../sass/layout/_layout.scss */
+.view-frame.ng-enter, .view-frame.ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
-/* line 157, ../sass/layout/_layout.scss */
-.slide-preview a:link, .slide-preview a:visited {
-  color: white;
-  text-decoration: none;
-}
-/* line 163, ../sass/layout/_layout.scss */
-.slide-preview a:hover, .slide-preview a:focus {
-  color: #e6e6e6;
-  text-decoration: none;
-}
-/* line 170, ../sass/layout/_layout.scss */
-.slide-preview--icon {
-  position: absolute;
-  right: 10px;
-  bottom: -10px;
-}
-/* line 176, ../sass/layout/_layout.scss */
-.slide-preview--icon-background {
-  position: absolute;
-  left: 10px;
-  bottom: -80px;
-}
-/* line 182, ../sass/layout/_layout.scss */
-.slide-preview--one-whole {
-  height: 1080px;
-  width: 1920px;
-}
-/* line 188, ../sass/layout/_layout.scss */
-.slide-preview--one-whole .slide-preview--text {
-  -webkit-text-size-adjust: none;
-  font-size: 32px;
-}
-/* line 195, ../sass/layout/_layout.scss */
-.slide-preview--three-quarters {
-  height: 810px;
-  width: 1440px;
-}
-/* line 201, ../sass/layout/_layout.scss */
-.slide-preview--three-quarters .slide-preview--text {
-  -webkit-text-size-adjust: none;
-  font-size: 24px;
-}
-/* line 209, ../sass/layout/_layout.scss */
-.slide-preview--one-half {
-  height: 540px;
-  width: 960px;
-}
-/* line 215, ../sass/layout/_layout.scss */
-.slide-preview--one-half .slide-preview--text {
-  -webkit-text-size-adjust: none;
-  font-size: 16px;
-}
-/* line 222, ../sass/layout/_layout.scss */
-.slide-preview--one-quarter {
-  height: 270px;
-  width: 480px;
-}
-/* line 228, ../sass/layout/_layout.scss */
-.slide-preview--one-quarter .slide-preview--text {
-  -webkit-text-size-adjust: none;
-  font-size: 8px;
-}
-/* line 235, ../sass/layout/_layout.scss */
-.slide-preview--one-fifth {
-  height: 216px;
-  width: 384px;
-}
-/* line 241, ../sass/layout/_layout.scss */
-.slide-preview--one-fifth .slide-preview--text {
-  -webkit-text-size-adjust: none;
-  font-size: 6.4px;
-}
-/* line 248, ../sass/layout/_layout.scss */
-.slide-preview--one-sixth {
-  height: 180px;
-  width: 320px;
-}
-/* line 254, ../sass/layout/_layout.scss */
-.slide-preview--one-sixth .slide-preview--text {
-  -webkit-text-size-adjust: none;
-  font-size: 5.312px;
-}
-/* line 261, ../sass/layout/_layout.scss */
-.slide-preview--one-eighth {
-  height: 135px;
-  width: 240px;
-}
-/* line 267, ../sass/layout/_layout.scss */
-.slide-preview--one-eighth .slide-preview--text {
-  -webkit-text-size-adjust: none;
-  font-size: 4px;
+/* line 19, ../sass/layout/_layout.scss */
+.ng-enter {
+  -moz-animation: fade-in 1s;
+  -webkit-animation: fade-in 1s;
+  animation: fade-in 1s;
 }
 
-/* line 4, ../sass/modules/_header.scss */
+/* line 24, ../sass/layout/_layout.scss */
+.ng-leave {
+  -moz-animation: fade-out 1s;
+  -webkit-animation: fade-out 1s;
+  animation: fade-out 1s;
+}
+
+/* Slide */
+/*
+%slide-base {
+  @extend %grid__item;
+  @extend %one-whole;
+
+  @include box-sizing(border-box);
+
+  height: 100%;
+
+  background-color: #ddd;
+}
+
+%slide--text {
+  margin: 2em;
+  padding: 2em;
+
+  background-color: $black;
+  color: $white;
+
+  @include border-radius($border-radius);
+  @include box-sizing(border-box);
+}
+
+%slide--text-modified {
+  display: block;
+  margin: 1em;
+  padding: .75em;
+
+  background-color: $white;
+  color: $black;
+  text-align: center;
+
+  @include border-radius($border-radius);
+  @include box-sizing(border-box);
+}
+
+
+.slide-wrapper {
+  @extend %grid;
+  @extend %grid--full;
+
+  height: 100%;
+}
+
+$template-1-font-size: 32px;
+
+@mixin template-font-size($font-size, $scale) {
+  -webkit-text-size-adjust: none;
+
+  font-size: $font-size * $scale;
+}
+
+
+.slide {
+  @extend %slide-base;
+
+  min-height: 100%;
+
+  @include template-font-size($template-1-font-size, 1);
+}
+
+.slide--text {
+  @extend %slide--text;
+}
+
+%slide-preview-editor {
+  @extend %grid;
+  @extend %grid--full;
+
+  margin-bottom: 2em;
+}
+
+
+
+.slide-editor,
+.slide-preview {
+  &--header {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &--wrapper {
+    @extend %grid--full;
+    @extend %grid--center;
+    @extend %grid__item;
+
+    overflow: auto;
+
+    max-height: 250px;
+
+    @include breakpoint($breakpoint-desk) {
+      max-height: 1000px;
+    }
+  }
+
+  &--icon {
+    max-width: 25px;
+    margin-right: 8px;
+  }
+
+  &--icon-background {
+    max-width: 25px;
+    margin-right: 8px;
+  }
+
+  .slide-preview--text {
+    position: relative;
+  }
+}
+
+
+.slide-editor {
+  @extend %slide-preview-editor;
+
+  a {
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &--text {
+    @extend %slide--text-modified;
+  }
+}
+
+.slide-preview {
+  @extend %slide-preview-editor;
+
+  a {
+    &:link,
+    &:visited {
+      color: $white;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      color: darken($white, 10%);
+      text-decoration: none;
+    }
+  }
+
+  &--icon {
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+  }
+
+  &--icon-background {
+    position: absolute;
+    left: 10px;
+    bottom: -80px;
+  }
+
+  &--one-whole {
+    @extend %slide-base;
+
+    height: 1080px;
+    width: 1920px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, 1);
+    }
+  }
+
+  &--three-quarters {
+    @extend %slide-base;
+
+    height: 810px;
+    width: 1440px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, .75);
+    }
+  }
+
+
+  &--one-half {
+    @extend %slide-base;
+
+    height: 540px;
+    width: 960px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, .5);
+    }
+  }
+
+  &--one-quarter {
+    @extend %slide-base;
+
+    height: 270px;
+    width: 480px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, .25);
+    }
+  }
+
+  &--one-fifth {
+    @extend %slide-base;
+
+    height: 216px;
+    width: 384px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, .20);
+    }
+  }
+
+  &--one-sixth {
+    @extend %slide-base;
+
+    height: 180px;
+    width: 320px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, .166);
+    }
+  }
+
+  &--one-eighth {
+    @extend %slide-base;
+
+    height: 135px;
+    width: 240px;
+
+    .slide-preview--text {
+      @extend %slide--text;
+
+      @include template-font-size($template-1-font-size, .125);
+    }
+  }
+}
+*/
+/**
+ *
+ * Header
+ *
+ */
+/* line 11, ../sass/modules/_header.scss */
 .header--main-menu-item-image-channels, .header--main-menu-item-image-slides, .header--main-menu-item-image-screens, .header--main-menu-item-image-templates {
   display: inline-block;
   margin: 0 1em 0 1em;
   vertical-align: middle;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 4, ../sass/modules/_header.scss */
+  /* line 11, ../sass/modules/_header.scss */
   .header--main-menu-item-image-channels, .header--main-menu-item-image-slides, .header--main-menu-item-image-screens, .header--main-menu-item-image-templates {
     margin: 0 .5em 0 0;
   }
 }
 
-/* line 17, ../sass/modules/_header.scss */
+/* line 24, ../sass/modules/_header.scss */
 .header {
   background-color: #f0f0e1;
   color: #333;
@@ -1348,22 +1363,22 @@ label {
   width: 100%;
   z-index: 1;
 }
-/* line 26, ../sass/modules/_header.scss */
+/* line 33, ../sass/modules/_header.scss */
 .header--main {
   padding: 2em 1em 1em;
   overflow: hidden;
 }
-/* line 56, ../sass/modules/_header.scss */
+/* line 63, ../sass/modules/_header.scss */
 .header--main-menu-items {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-/* line 61, ../sass/modules/_header.scss */
+/* line 68, ../sass/modules/_header.scss */
 .header--main-menu-item {
   display: inline-block;
 }
-/* line 66, ../sass/modules/_header.scss */
+/* line 73, ../sass/modules/_header.scss */
 .header--main-menu-item-link {
   padding: 3em 1em 4em;
 }
@@ -1387,21 +1402,21 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 71, ../sass/modules/_header.scss */
+/* line 78, ../sass/modules/_header.scss */
 .header--main-menu-item-link:hover {
   background: #E4E4D5;
 }
-/* line 77, ../sass/modules/_header.scss */
+/* line 84, ../sass/modules/_header.scss */
 .header--main-menu-item-text {
   display: none;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 77, ../sass/modules/_header.scss */
+  /* line 84, ../sass/modules/_header.scss */
   .header--main-menu-item-text {
     display: inline-block;
   }
 }
-/* line 87, ../sass/modules/_header.scss */
+/* line 94, ../sass/modules/_header.scss */
 .header--main-menu-item-image-channels {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 32px 253px;
@@ -1412,7 +1427,7 @@ label {
   height: 25px;
   background-position: 0 -9px;
 }
-/* line 94, ../sass/modules/_header.scss */
+/* line 101, ../sass/modules/_header.scss */
 .header--main-menu-item-image-slides {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 32px 253px;
@@ -1423,7 +1438,7 @@ label {
   height: 19px;
   background-position: 0 -210px;
 }
-/* line 101, ../sass/modules/_header.scss */
+/* line 108, ../sass/modules/_header.scss */
 .header--main-menu-item-image-screens {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 32px 253px;
@@ -1434,7 +1449,7 @@ label {
   height: 20px;
   background-position: 0 -93px;
 }
-/* line 108, ../sass/modules/_header.scss */
+/* line 115, ../sass/modules/_header.scss */
 .header--main-menu-item-image-templates {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 32px 253px;
@@ -1465,23 +1480,23 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 146, ../sass/modules/_header.scss */
+/* line 153, ../sass/modules/_header.scss */
 .header--user-menu-dropdown-link:after {
   content: '\00a0\25be';
   vertical-align: top;
 }
-/* line 153, ../sass/modules/_header.scss */
+/* line 160, ../sass/modules/_header.scss */
 .header--user-menu-name {
   display: none;
   vertical-align: top;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 153, ../sass/modules/_header.scss */
+  /* line 160, ../sass/modules/_header.scss */
   .header--user-menu-name {
     display: inline-block;
   }
 }
-/* line 163, ../sass/modules/_header.scss */
+/* line 170, ../sass/modules/_header.scss */
 .header--user-menu-image {
   height: 2em;
   margin-right: .5em;
@@ -1506,7 +1521,7 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 185, ../sass/modules/_header.scss */
+/* line 192, ../sass/modules/_header.scss */
 .header--nav-menu-label-image {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 32px 253px;
@@ -1520,34 +1535,34 @@ label {
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 194, ../sass/modules/_header.scss */
+/* line 201, ../sass/modules/_header.scss */
 .header--nav-menu-label-text {
   display: none;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 194, ../sass/modules/_header.scss */
+  /* line 201, ../sass/modules/_header.scss */
   .header--nav-menu-label-text {
     display: inline-block;
   }
 }
-/* line 205, ../sass/modules/_header.scss */
+/* line 212, ../sass/modules/_header.scss */
 .header--sub {
   background: #E4E4D5;
   min-height: 3em;
   padding: 0 1em;
 }
-/* line 226, ../sass/modules/_header.scss */
+/* line 231, ../sass/modules/_header.scss */
 .header--sub-menu-items {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-/* line 230, ../sass/modules/_header.scss */
+/* line 236, ../sass/modules/_header.scss */
 .header--sub-menu-item {
   display: inline-block;
   padding: 0 1em;
 }
-/* line 235, ../sass/modules/_header.scss */
+/* line 242, ../sass/modules/_header.scss */
 .header--sub-menu-item-link {
   display: block;
   height: 3em;
@@ -1573,11 +1588,11 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 242, ../sass/modules/_header.scss */
+/* line 249, ../sass/modules/_header.scss */
 .header--sub-menu-item-link.is-active {
   border-bottom: 2px solid black;
 }
-/* line 247, ../sass/modules/_header.scss */
+/* line 255, ../sass/modules/_header.scss */
 .header .header--sub-menu-item-image-overview {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 128px 1012px;
@@ -1591,7 +1606,7 @@ label {
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 255, ../sass/modules/_header.scss */
+/* line 264, ../sass/modules/_header.scss */
 .header .header--sub-menu-item-image-create-channel {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 128px 1012px;
@@ -1606,7 +1621,12 @@ label {
   vertical-align: middle;
 }
 
-/* line 4, ../sass/modules/_create_slide.scss */
+/**
+ *
+ * Create slides
+ *
+ */
+/* line 11, ../sass/modules/_create_slide.scss */
 .create-slide--link-check, .create-slide--screen-link-check {
   display: block;
   margin: 0 auto;
@@ -1624,17 +1644,17 @@ label {
   background-position: 0 -122px;
 }
 
-/* line 18, ../sass/modules/_create_slide.scss */
+/* line 25, ../sass/modules/_create_slide.scss */
 .is-selected.create-slide--screen-link, .is-selected.create-slide--template-link {
   cursor: default;
 }
-/* line 21, ../sass/modules/_create_slide.scss */
+/* line 28, ../sass/modules/_create_slide.scss */
 .is-selected.create-slide--screen-link .create-slide--link-check, .is-selected.create-slide--template-link .create-slide--link-check {
   left: 0;
   right: 0;
   visibility: visible;
 }
-/* line 27, ../sass/modules/_create_slide.scss */
+/* line 34, ../sass/modules/_create_slide.scss */
 .is-selected.create-slide--screen-link .create-slide--overlay, .is-selected.create-slide--template-link .create-slide--overlay {
   width: 100%;
   height: 100%;
@@ -1642,7 +1662,7 @@ label {
   position: absolute;
 }
 
-/* line 41, ../sass/modules/_create_slide.scss */
+/* line 48, ../sass/modules/_create_slide.scss */
 .create-slide--section {
   background-size: cover;
   color: #535353;
@@ -1653,7 +1673,7 @@ label {
   -webkit-background-size: 100% auto;
   background-size: 100% auto;
 }
-/* line 51, ../sass/modules/_create_slide.scss */
+/* line 58, ../sass/modules/_create_slide.scss */
 .create-slide--header {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
@@ -1662,32 +1682,32 @@ label {
   padding-bottom: 1em;
   text-align: center;
 }
-/* line 61, ../sass/modules/_create_slide.scss */
+/* line 68, ../sass/modules/_create_slide.scss */
 .create-slide--header-description {
   color: #646464;
   font-weight: lighter;
   margin-bottom: 4em;
   text-align: center;
 }
-/* line 74, ../sass/modules/_create_slide.scss */
+/* line 82, ../sass/modules/_create_slide.scss */
 .create-slide--button {
   display: block;
   margin: 0 auto;
 }
-/* line 83, ../sass/modules/_create_slide.scss */
+/* line 91, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-one {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
-/* line 97, ../sass/modules/_create_slide.scss */
+/* line 105, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"] {
   background-color: #fbfbfb;
   height: 4.5em;
   margin-bottom: 2em;
   padding: 1.5em;
 }
-/* line 103, ../sass/modules/_create_slide.scss */
+/* line 111, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"].is-valid {
   background: url("../images/icons/check-circle-icon.png") #fbfbfb;
   background-size: 2em 2em;
@@ -1695,65 +1715,73 @@ label {
   background-position: right 1.25em top 1.25em;
   border: 0;
 }
-/* line 114, ../sass/modules/_create_slide.scss */
+/* line 122, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-two {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 123, ../sass/modules/_create_slide.scss */
+/* line 131, ../sass/modules/_create_slide.scss */
 .create-slide--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 129, ../sass/modules/_create_slide.scss */
+/* line 137, ../sass/modules/_create_slide.scss */
 .create-slide--screen-landscape {
   margin-bottom: 2em;
 }
-/* line 149, ../sass/modules/_create_slide.scss */
+/* line 157, ../sass/modules/_create_slide.scss */
 .create-slide--screen-link {
   position: relative;
   display: block;
 }
-/* line 163, ../sass/modules/_create_slide.scss */
+/* line 171, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-three {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 172, ../sass/modules/_create_slide.scss */
+/* line 180, ../sass/modules/_create_slide.scss */
 .create-slide--template {
   margin-bottom: 2em;
   position: relative;
 }
-/* line 185, ../sass/modules/_create_slide.scss */
+/* line 193, ../sass/modules/_create_slide.scss */
 .create-slide--templates {
   margin-bottom: 3em;
 }
-/* line 190, ../sass/modules/_create_slide.scss */
+/* line 198, ../sass/modules/_create_slide.scss */
 .create-slide--template-link {
   display: block;
   position: relative;
 }
-/* line 199, ../sass/modules/_create_slide.scss */
+/* line 207, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-four {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 208, ../sass/modules/_create_slide.scss */
+/* line 216, ../sass/modules/_create_slide.scss */
 .create-slide--config {
   margin: 0 auto 3em;
   position: relative;
 }
-/* line 213, ../sass/modules/_create_slide.scss */
+/* line 222, ../sass/modules/_create_slide.scss */
+.create-slide--config-header {
+  font-size: 90%;
+}
+/* line 227, ../sass/modules/_create_slide.scss */
+.create-slide--config-description {
+  font-size: 70%;
+}
+/* line 232, ../sass/modules/_create_slide.scss */
 .create-slide--config-text-wrapper {
   position: absolute;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 219, ../sass/modules/_create_slide.scss */
+/* line 239, ../sass/modules/_create_slide.scss */
 .create-slide--config-text {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -1766,7 +1794,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 231, ../sass/modules/_create_slide.scss */
+/* line 252, ../sass/modules/_create_slide.scss */
 .create-slide--edit-description {
   display: inline-block;
   margin-left: .5em;
@@ -1779,7 +1807,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 238, ../sass/modules/_create_slide.scss */
+/* line 260, ../sass/modules/_create_slide.scss */
 .create-slide--edit-title {
   display: inline-block;
   margin-left: .5em;
@@ -1792,7 +1820,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 245, ../sass/modules/_create_slide.scss */
+/* line 268, ../sass/modules/_create_slide.scss */
 .create-slide--edit-box-settings {
   position: absolute;
   right: -0.5em;
@@ -1807,7 +1835,7 @@ label {
   background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 245, ../sass/modules/_create_slide.scss */
+  /* line 268, ../sass/modules/_create_slide.scss */
   .create-slide--edit-box-settings {
     right: -1em;
     top: -1em;
@@ -1821,7 +1849,7 @@ label {
     background-position: 0 -256px;
   }
 }
-/* line 260, ../sass/modules/_create_slide.scss */
+/* line 284, ../sass/modules/_create_slide.scss */
 .create-slide--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -1836,7 +1864,7 @@ label {
   background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 260, ../sass/modules/_create_slide.scss */
+  /* line 284, ../sass/modules/_create_slide.scss */
   .create-slide--edit-image-settings {
     background: url('../images/icons-s5741e2949d.png');
     -moz-background-size: 128px 1012px;
@@ -1848,118 +1876,81 @@ label {
     background-position: 0 -632px;
   }
 }
-/* line 273, ../sass/modules/_create_slide.scss */
+/* line 298, ../sass/modules/_create_slide.scss */
 .create-slide--image {
   max-height: 100%;
   width: 100%;
 }
 
-/* line 279, ../sass/modules/_create_slide.scss */
-.slide--header {
-  font-size: 90%;
-}
-
-/* line 282, ../sass/modules/_create_slide.scss */
-.slide--description {
-  font-size: 70%;
-}
-
-/* line 1, ../sass/animations/_animation.scss */
-.view-container {
-  position: relative;
-}
-
-/* line 5, ../sass/animations/_animation.scss */
-.view-frame.ng-enter, .view-frame.ng-leave {
-  background: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-/* line 13, ../sass/animations/_animation.scss */
-.view-frame.ng-enter {
-  -webkit-animation: 0.5s fade-in;
-  -moz-animation: 0.5s fade-in;
-  -o-animation: 0.5s fade-in;
-  animation: 0.5s fade-in;
-  z-index: 100;
-}
-
-/* line 21, ../sass/animations/_animation.scss */
-.view-frame.ng-leave {
-  -webkit-animation: 0.5s fade-out;
-  -moz-animation: 0.5s fade-out;
-  -o-animation: 0.5s fade-out;
-  animation: 0.5s fade-out;
-  z-index: 99;
-}
-
-@keyframes fade-in {
-  /* line 30, ../sass/animations/_animation.scss */
-  from {
-    opacity: 0;
-  }
-
-  /* line 31, ../sass/animations/_animation.scss */
-  to {
-    opacity: 1;
-  }
-}
-@-moz-keyframes fade-in {
-  /* line 34, ../sass/animations/_animation.scss */
-  from {
-    opacity: 0;
-  }
-
-  /* line 35, ../sass/animations/_animation.scss */
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fade-in {
-  /* line 38, ../sass/animations/_animation.scss */
-  from {
-    opacity: 0;
-  }
-
-  /* line 39, ../sass/animations/_animation.scss */
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fade-out {
-  /* line 43, ../sass/animations/_animation.scss */
-  from {
-    opacity: 1;
-  }
-
-  /* line 44, ../sass/animations/_animation.scss */
-  to {
-    opacity: 0;
-  }
-}
+/**
+ *
+ * Animations
+ *
+ */
 @-moz-keyframes fade-out {
-  /* line 47, ../sass/animations/_animation.scss */
-  from {
+  /* line 10, ../sass/animations/_animation.scss */
+  0% {
     opacity: 1;
   }
 
-  /* line 48, ../sass/animations/_animation.scss */
-  to {
+  /* line 14, ../sass/animations/_animation.scss */
+  100% {
     opacity: 0;
   }
 }
 @-webkit-keyframes fade-out {
-  /* line 51, ../sass/animations/_animation.scss */
-  from {
+  /* line 10, ../sass/animations/_animation.scss */
+  0% {
     opacity: 1;
   }
 
-  /* line 52, ../sass/animations/_animation.scss */
-  to {
+  /* line 14, ../sass/animations/_animation.scss */
+  100% {
     opacity: 0;
+  }
+}
+@keyframes fade-out {
+  /* line 10, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 14, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fade-in {
+  /* line 22, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 26, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  /* line 22, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 26, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  /* line 22, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 26, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 1;
   }
 }
 /* line 1, ../sass/ik/_ik.scss */

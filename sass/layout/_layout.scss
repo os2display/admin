@@ -5,23 +5,29 @@
  */
 
 
-%layout-container {
-  margin-right: auto;
-  margin-left: auto;
+/* Switch page animations */
+.view-container {
+  position: relative;
 }
 
+.view-frame.ng-enter, .view-frame.ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
 
-/* Layout */
+.ng-enter {
+  @include animation(fade-in 1s);
 
-.layout-wrapper {
-  @extend %layout-container;
+}
 
-  height: 100%;
+.ng-leave {
+  @include animation(fade-out 1s);
 }
 
 
 /* Slide */
-
+/*
 %slide-base {
   @extend %grid__item;
   @extend %one-whole;
@@ -92,6 +98,8 @@ $template-1-font-size: 32px;
 
   margin-bottom: 2em;
 }
+
+
 
 .slide-editor,
 .slide-preview {
@@ -271,3 +279,4 @@ $template-1-font-size: 32px;
     }
   }
 }
+*/

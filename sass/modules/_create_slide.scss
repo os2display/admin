@@ -1,3 +1,10 @@
+/**
+ *
+ * Create slides
+ *
+ */
+
+
 // ----- Selecters related to this document ----- //
 
 // Selector for displaying checkbox on selected image
@@ -64,6 +71,7 @@
     margin-bottom: 4em;
     text-align: center;
   }
+
 
   // Default check circled icon
   &--link-check {
@@ -210,11 +218,23 @@
     position: relative;
   }
 
+
+  &--config-header {
+    font-size: 90%;
+  }
+
+
+  &--config-description {
+    font-size: 70%;
+  }
+
+
   &--config-text-wrapper {
     position: absolute;
 
     @include border-radius(1em);
   }
+
 
   &--config-text {
     background: rgba(0,0,0,0.7);
@@ -228,6 +248,7 @@
     @include border-radius(1em);
   }
 
+
   &--edit-description {
     display: inline-block;
     margin-left: .5em;
@@ -235,12 +256,14 @@
     @include generate-sprite-image($dashboard-sprites, 'edit-icon');
   }
 
+
   &--edit-title {
     display: inline-block;
     margin-left: .5em;
 
     @include generate-sprite-image($dashboard-sprites, 'edit-icon');
   }
+
 
   &--edit-box-settings {
     position: absolute;
@@ -257,6 +280,7 @@
     }
   }
 
+
   &--edit-image-settings {
     bottom: 15%;
     position: absolute;
@@ -270,15 +294,9 @@
     }
   }
 
+
   &--image {
     max-height: 100%;
     width: 100%;
   }
-}
-
-.slide--header {
-  font-size: 90%;
-}
-.slide--description {
-  font-size: 70%;
 }

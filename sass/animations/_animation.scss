@@ -1,53 +1,29 @@
-.view-container {
-  position: relative;
+/**
+ *
+ * Animations
+ *
+ */
+
+
+// Fade out animation used for display switching with angular
+@include keyframes(fade-out) {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
-.view-frame.ng-enter, .view-frame.ng-leave {
-  background: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
 
-.view-frame.ng-enter {
-  -webkit-animation: 0.5s fade-in;
-  -moz-animation: 0.5s fade-in;
-  -o-animation: 0.5s fade-in;
-  animation: 0.5s fade-in;
-  z-index: 100;
-}
+// Fade in animation used for display switching with angular
+@include keyframes(fade-in) {
+  0% {
+     opacity: 0;
+  }
 
-.view-frame.ng-leave {
-  -webkit-animation: 0.5s fade-out;
-  -moz-animation: 0.5s fade-out;
-  -o-animation: 0.5s fade-out;
-  animation: 0.5s fade-out;
-  z-index:99;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@-moz-keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@-webkit-keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-@-moz-keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-@-webkit-keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  100% {
+    opacity: 1;
+  }
 }
