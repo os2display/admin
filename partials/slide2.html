@@ -4,16 +4,20 @@
     <p class="create-slide--header-description">Vælg hvilken type skærm du har - er den bred eller høj?</p>
     <div class="create-slide--screens">
       <div class="create-slide--screen-landscape">
-        <a href="#" class="create-slide--screen-link is-selected">
-          <span class="create-slide--screen-link-check"></span>
+        <div class="create-slide--screen-link is-selected">
+          <span class="create-slide--overlay">
+            <span class="create-slide--link-check"></span>
+          </span>
           <img src="/images/outlines/landscape-outline.png"/>
-        </a>
+        </div>
       </div>
       <div class="create-slide--screen-portrait">
-        <a href="#" class="create-slide--screen-link">
-          <span class="create-slide--screen-link-check"></span>
+        <div class="create-slide--screen-link">
+          <span class="create-slide--overlay">
+            <span class="create-slide--link-check"></span>
+          </span>
           <img src="/images/outlines/portrait-outline.png" />
-        </a>
+        </div>
       </div>
     </div>
     <input type="submit" class="create-slide--button" value="Gem og fortsæt" ng-click="submitStep()">
