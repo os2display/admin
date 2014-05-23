@@ -4,7 +4,7 @@
     <p class="create-slide--header-description">Vælg hvilken type skærm du har - er den bred eller høj?</p>
     <div class="create-slide--screens">
       <div class="create-slide--screen-landscape" ng-click="setOrientation('landscape')">
-        <div class="create-slide--screen-link" ng-class="{'is-selected': slide.orientation=='landscape'}">
+        <div class="create-slide--screen-link" ng-class="{'is-selected': slide!==null && slide.orientation=='landscape'}">
           <span class="create-slide--overlay">
             <span class="create-slide--link-check"></span>
           </span>
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="create-slide--screen-portrait" ng-click="setOrientation('portrait')">
-        <div class="create-slide--screen-link" ng-class="{'is-selected': slide.orientation=='portrait'}">
+        <div class="create-slide--screen-link" ng-class="{'is-selected': slide!==null && slide.orientation=='portrait'}">
           <span class="create-slide--overlay">
             <span class="create-slide--link-check"></span>
           </span>
