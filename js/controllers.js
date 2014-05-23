@@ -92,7 +92,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     if (!$scope.slide) {
       return false;
     }
-    return field !== '';
+    return $scope.slide[field] !== '';
   }
 
   /**
@@ -101,10 +101,10 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
    */
   $scope.validation = {
     titleSet: function() {
-      return validateNotEmpty($scope.slide.title);
+      return validateNotEmpty('title');
     },
     orientationSet: function() {
-      return validateNotEmpty($scope.slide.orientation);
+      return validateNotEmpty('orientation');
     }
   };
 });
