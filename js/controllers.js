@@ -27,6 +27,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       if ($routeParams.step) {
         if ($routeParams.step < 1 || $routeParams.step > $scope.steps) {
           $location.path('/slide/' + $routeParams.slideId + '/1');
+          return;
         }
         else {
           $scope.step = $routeParams.step;
@@ -57,8 +58,8 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       }
       if ($scope.step > s) {
         $location.path('/slide/' + $scope.slide.id + '/' + s);
+        return;
       }
-
     }
   }
   init();
@@ -77,15 +78,33 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   }
 
   /**
+   * Set the orientation of the slide.
+   * @param orientation
+   */
+  $scope.setOrientation = function(orientation) {
+    $scope.slide.orientation = orientation;
+  }
+
+  /**
+   *
+   */
+  function validateNotEmpty(field) {
+    if (!$scope.slide) {
+      return false;
+    }
+    return field !== '';
+  }
+
+  /**
    * Handles the validation of the data in the slide.
    * @type {{title: title}}
    */
   $scope.validation = {
     titleSet: function() {
-      if (!$scope.slide) {
-        return false;
-      }
-      return $scope.slide.title !== '';
+      return validateNotEmpty($scope.slide.title);
+    },
+    orientationSet: function() {
+      return validateNotEmpty($scope.slide.orientation);
     }
   };
 });
