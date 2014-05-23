@@ -51,7 +51,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   }
   init();
 
-  $scope.alert = function() {
+  $scope.submitStep = function() {
     if ($scope.step < $scope.steps) {
       $location.path('slide/' + $scope.slide.id + '/' + (parseInt($scope.step) + 1));
     } else {

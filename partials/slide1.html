@@ -2,7 +2,9 @@
   <div class="create-slide--content--slide-one">
     <h1 class="create-slide--header">Opret slide ({{step}}/{{steps}})</h1>
     <p class="create-slide--header-description">Giv dit slide et godt navn så du kan finde det igen senere.</p>
-    <input type="text" class="create-slide--text" placeholder="Skriv f.eks. Frokost uge 10, Billeder fra DHL eller lignende" data-ng-class="{'is-valid': validation.title()}" data-ng-model="slide.title">
-    <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.title()}" ng-disabled="!validation.title()" ng-click="alert()" value="Gem og fortsæt">
+    <form>
+      <input type="text" class="create-slide--text" placeholder="Skriv f.eks. Frokost uge 10, Billeder fra DHL eller lignende" data-ng-class="{'is-valid': validation.title()}" data-ng-model="slide.title">
+      <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.title()}" ng-disabled="!validation.title()" ng-click="submitStep()" value="Gem og fortsæt">
+    </form>
   </div>
 </section>
