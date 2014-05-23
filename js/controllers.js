@@ -1,34 +1,47 @@
-ikApp.controller('IndexController', function($scope) {
+ikApp.controller('IndexController', function($scope) {});
+ikApp.controller('ChannelsController', function($scope) {});
+ikApp.controller('SlidesController', function($scope) {});
+ikApp.controller('ScreensController', function($scope) {});
+ikApp.controller('TemplatesController', function($scope) {});
 
-});
-
-ikApp.controller('ChannelsController', function($scope) {
-
-});
-
-ikApp.controller('SlidesController', function($scope) {
-
-});
-
-ikApp.controller('ScreensController', function($scope) {
-
-});
-
-ikApp.controller('TemplatesController', function($scope) {
-
-});
-
+/**
+ * Slide controller. Controls the slide creation process.
+ */
 ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory) {
-  function init() {
-    if ($routeParams.step) {
-      $scope.step = $routeParams.step;
-    }
-    else {
-      $scope.step = 1;
-    }
+  /**
+   * Scope setup
+   */
+  $scope.steps = 4;
 
-    if ($routeParams.slideId) {
+  /**
+   * Constructor.
+   * Handles different settings of route parameters.
+   */
+  function init() {
+    if (!$routeParams.slideId) {
+      // If the ID is not set, get an empty slide.
+      $scope.slide = slideFactory.emptySlide();
+      $scope.step = 1;
+    } else {
+      if ($routeParams.step) {
+        if ($routeParams.step < 1 || $routeParams.step > $scope.steps) {
+          $location.path('/slide/' + $routeParams.slideId + '/1');
+        }
+        else {
+          $scope.step = $routeParams.step;
+        }
+      }
+      else {
+        $scope.step = 1;
+      }
+
+      // Get slide.
       $scope.slide = slideFactory.getSlide($routeParams.slideId);
+
+      if ($scope.slide === null) {
+        $location.path('/slide');
+        return;
+      }
 
       // Make sure we are not placed at step later than what is set in the data.
       var s = 1;
@@ -41,28 +54,37 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
           }
         }
       }
-
       if ($scope.step > s) {
-        $location.path('slide/' + $scope.slide.id + '/' + s);
+        $location.path('/slide/' + $scope.slide.id + '/' + s);
       }
-    } else {
-      $location.path('slide/2/1');
+
     }
   }
   init();
 
+  /**
+   * Submit a step in the installation process.
+   */
   $scope.submitStep = function() {
+    $scope.slide = slideFactory.saveSlide($scope.slide);
+
     if ($scope.step < $scope.steps) {
-      $location.path('slide/' + $scope.slide.id + '/' + (parseInt($scope.step) + 1));
+      $location.path('/slide/' + $scope.slide.id + '/' + (parseInt($scope.step) + 1));
     } else {
-      alert("DONE!");
+      $location.path('/slides');
     }
   }
 
+  /**
+   * Handles the validation of the data in the slide.
+   * @type {{title: title}}
+   */
   $scope.validation = {
-    title: function() {
+    titleSet: function() {
+      if (!$scope.slide) {
+        return false;
+      }
       return $scope.slide.title !== '';
     }
   };
-  $scope.steps = 4;
 });
