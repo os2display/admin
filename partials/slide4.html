@@ -1,4 +1,18 @@
 <section id="create-slide-four" class="create-slide--section">
-  <h1 class="create-slide--header">Opret slide ({{step}}/{{steps}})</h1>
-  <p class="create-slide--header-description">Tilføj indhold - husk at se dit indhold på alle dine skærme.</p>
+  <div class="create-slide--content--slide-four">
+    <h1 class="create-slide--header">Opret slide ({{step}}/{{steps}})</h1>
+    <p class="create-slide--header-description">Tilføj indhold - husk at se dit indhold på alle dine skærme.</p>
+    <div class="create-slide--config" data-ng-style="{'background-color': slide.options.bgcolor, 'width': style.width, 'height': style.height, 'font-size': style.fontsize}">
+      <div class="create-slide--config-text-wrapper">
+        <div class="create-slide--config-text">
+          <div class="create-slide--edit-box-settings"></div>
+          <h1 class="create-slide--config-header" contenteditable="true" data-ng-model="slide.options.headline" spellcheck="false"></h1>
+          <div class="create-slide--config-description" contenteditable="true" data-ng-model="slide.options.text" spellcheck="false"></div>
+        </div>
+      </div>
+      <div class="create-slide--edit-image-settings"></div>
+      <img src="{{slide.options.image}}" class="create-slide--image"/>
+    </div>
+    <input type="submit" class="create-slide--button" value="Gem og opret" data-ng-click="submitStep()">
+  </div>
 </section>

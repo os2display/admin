@@ -1069,16 +1069,16 @@ label {
 
 /* line 19, ../sass/layout/_layout.scss */
 .ng-enter {
-  -moz-animation: fade-in 1.2s;
-  -webkit-animation: fade-in 1.2s;
-  animation: fade-in 1.2s;
+  -moz-animation: fade-in 0.5s;
+  -webkit-animation: fade-in 0.5s;
+  animation: fade-in 0.5s;
 }
 
 /* line 23, ../sass/layout/_layout.scss */
 .ng-leave {
-  -moz-animation: fade-out 1.2s;
-  -webkit-animation: fade-out 1.2s;
-  animation: fade-out 1.2s;
+  -moz-animation: fade-out 0.5s;
+  -webkit-animation: fade-out 0.5s;
+  animation: fade-out 0.5s;
 }
 
 /**

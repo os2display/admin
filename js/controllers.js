@@ -12,6 +12,14 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
    * Scope setup
    */
   $scope.steps = 4;
+  $scope.slide = [];
+  $scope.templates = templateFactory.getTemplates();
+
+  $scope.style = {
+    'height': '540px',
+    'width': '940px',
+    'fontsize': '18px'
+  }
 
   /**
    * Constructor.
@@ -36,9 +44,6 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       else {
         $scope.step = 1;
       }
-
-      // Get templates
-      $scope.templates = templateFactory.getTemplates();
 
       // Get slide.
       $scope.slide = slideFactory.getSlide($routeParams.slideId);
