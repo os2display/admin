@@ -94,7 +94,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   }
 
   /**
-   *
+   * Validates that @field is not empty on slide.
    */
   function validateNotEmpty(field) {
     if (!$scope.slide) {

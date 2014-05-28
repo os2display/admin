@@ -51,8 +51,8 @@ ikApp.factory('slideFactory', function() {
         'bgcolor': '#ccc',
         'color': '#fff',
         'image': '/images/outlines/slide-config-default.png',
-        'headline': 'Overskrift',
-        'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis felis vitae euismod imperdiet. Fusce molestie risus ut vulputate euismod. Quisque pretium massa mi, a tincidunt magna auctor quis. Nulla commodo dolor in lobortis fermentum. Proin iaculis dapibus metus vel cursus. Ut nibh mauris, luctus in sodales vel, pharetra malesuada enim. Suspendisse potenti. Nulla commodo adipiscing nisl ut volutpat.'
+        'headline': '',
+        'text': ''
       }
     };
   }

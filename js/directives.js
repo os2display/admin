@@ -6,7 +6,7 @@ ikApp.directive('contenteditable', function() {
       element.bind('blur', function() {
         scope.$apply(function() {
           ctrl.$setViewValue(element.html());
-        });
+         });
       });
 
       // model -> view
@@ -19,3 +19,4 @@ ikApp.directive('contenteditable', function() {
     }
   };
 });
+
