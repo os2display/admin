@@ -49,7 +49,8 @@ ikApp.factory('slideFactory', function() {
       template: '',
       options: {
         'bgcolor': '#ccc',
-        'color': '#fff',
+        'textcolor': '#fff',
+        'textbgcolor': '#000',
         'image': '/images/outlines/slide-config-default.png',
         'headline': '',
         'text': ''

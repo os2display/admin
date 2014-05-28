@@ -103,6 +103,10 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     return $scope.slide[field] !== '';
   }
 
+  $scope.openToolbar = function(toolbar) {
+    alert(toolbar);
+  }
+
   /**
    * Handles the validation of the data in the slide.
    * @type {{title: title}}
@@ -118,6 +122,17 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       return validateNotEmpty('template');
     }
   };
+
+  $scope.editor = {
+    showTextEditor: false,
+    toggleTextEditor: function() {
+      $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
+    },
+    showBackgroundEditor: false,
+    toggleBackgroundEditor: function() {
+      $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
+    }
+  }
 
   $scope.selectTemplate = function(id) {
     $scope.slide.template = id;
