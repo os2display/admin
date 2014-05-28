@@ -1069,16 +1069,16 @@ label {
 
 /* line 19, ../sass/layout/_layout.scss */
 .ng-enter {
-  -moz-animation: fade-in 1s;
-  -webkit-animation: fade-in 1s;
-  animation: fade-in 1s;
+  -moz-animation: fade-in 1.2s;
+  -webkit-animation: fade-in 1.2s;
+  animation: fade-in 1.2s;
 }
 
 /* line 23, ../sass/layout/_layout.scss */
 .ng-leave {
-  -moz-animation: fade-out 1s;
-  -webkit-animation: fade-out 1s;
-  animation: fade-out 1s;
+  -moz-animation: fade-out 1.2s;
+  -webkit-animation: fade-out 1.2s;
+  animation: fade-out 1.2s;
 }
 
 /**
@@ -1390,25 +1390,30 @@ label {
   background-position: 0 -122px;
 }
 
-/* line 25, ../sass/modules/_create_slide.scss */
+/* line 24, ../sass/modules/_create_slide.scss */
+.create-slide--screen-link, .create-slide--template-link {
+  cursor: pointer;
+}
+/* line 27, ../sass/modules/_create_slide.scss */
 .is-selected.create-slide--screen-link, .is-selected.create-slide--template-link {
   cursor: default;
 }
-/* line 28, ../sass/modules/_create_slide.scss */
+/* line 30, ../sass/modules/_create_slide.scss */
 .is-selected.create-slide--screen-link .create-slide--link-check, .is-selected.create-slide--template-link .create-slide--link-check {
   left: 0;
   right: 0;
   visibility: visible;
 }
-/* line 34, ../sass/modules/_create_slide.scss */
+/* line 36, ../sass/modules/_create_slide.scss */
 .is-selected.create-slide--screen-link .create-slide--overlay, .is-selected.create-slide--template-link .create-slide--overlay {
+  display: block;
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
 
-/* line 48, ../sass/modules/_create_slide.scss */
+/* line 51, ../sass/modules/_create_slide.scss */
 .create-slide--section {
   background-size: cover;
   color: #535353;
@@ -1419,7 +1424,7 @@ label {
   -webkit-background-size: 100% auto;
   background-size: 100% auto;
 }
-/* line 58, ../sass/modules/_create_slide.scss */
+/* line 61, ../sass/modules/_create_slide.scss */
 .create-slide--header {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
@@ -1428,32 +1433,32 @@ label {
   padding-bottom: 1em;
   text-align: center;
 }
-/* line 68, ../sass/modules/_create_slide.scss */
+/* line 71, ../sass/modules/_create_slide.scss */
 .create-slide--header-description {
   color: #646464;
   font-weight: lighter;
   margin-bottom: 4em;
   text-align: center;
 }
-/* line 82, ../sass/modules/_create_slide.scss */
+/* line 85, ../sass/modules/_create_slide.scss */
 .create-slide--button {
   display: block;
   margin: 0 auto;
 }
-/* line 91, ../sass/modules/_create_slide.scss */
+/* line 94, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-one {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
-/* line 105, ../sass/modules/_create_slide.scss */
+/* line 108, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"] {
   background-color: #fbfbfb;
   height: 4.5em;
   margin-bottom: 2em;
   padding: 1.5em;
 }
-/* line 111, ../sass/modules/_create_slide.scss */
+/* line 114, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"].is-valid {
   background: url("../images/icons/check-circle-icon.png") #fbfbfb;
   background-size: 2em 2em;
@@ -1461,73 +1466,73 @@ label {
   background-position: right 1.25em top 1.25em;
   border: 0;
 }
-/* line 122, ../sass/modules/_create_slide.scss */
+/* line 125, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-two {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 131, ../sass/modules/_create_slide.scss */
+/* line 134, ../sass/modules/_create_slide.scss */
 .create-slide--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 137, ../sass/modules/_create_slide.scss */
+/* line 140, ../sass/modules/_create_slide.scss */
 .create-slide--screen-landscape {
   margin-bottom: 2em;
 }
-/* line 157, ../sass/modules/_create_slide.scss */
+/* line 160, ../sass/modules/_create_slide.scss */
 .create-slide--screen-link {
   position: relative;
   display: block;
 }
-/* line 171, ../sass/modules/_create_slide.scss */
+/* line 174, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-three {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 180, ../sass/modules/_create_slide.scss */
+/* line 183, ../sass/modules/_create_slide.scss */
 .create-slide--template {
   margin-bottom: 2em;
   position: relative;
 }
-/* line 193, ../sass/modules/_create_slide.scss */
+/* line 196, ../sass/modules/_create_slide.scss */
 .create-slide--templates {
   margin-bottom: 3em;
 }
-/* line 198, ../sass/modules/_create_slide.scss */
+/* line 201, ../sass/modules/_create_slide.scss */
 .create-slide--template-link {
   display: block;
   position: relative;
 }
-/* line 207, ../sass/modules/_create_slide.scss */
+/* line 210, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-four {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 216, ../sass/modules/_create_slide.scss */
+/* line 219, ../sass/modules/_create_slide.scss */
 .create-slide--config {
   margin: 0 auto 3em;
   position: relative;
 }
-/* line 222, ../sass/modules/_create_slide.scss */
+/* line 225, ../sass/modules/_create_slide.scss */
 .create-slide--config-header {
   font-size: 90%;
 }
-/* line 227, ../sass/modules/_create_slide.scss */
+/* line 230, ../sass/modules/_create_slide.scss */
 .create-slide--config-description {
   font-size: 70%;
 }
-/* line 232, ../sass/modules/_create_slide.scss */
+/* line 235, ../sass/modules/_create_slide.scss */
 .create-slide--config-text-wrapper {
   position: absolute;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 239, ../sass/modules/_create_slide.scss */
+/* line 242, ../sass/modules/_create_slide.scss */
 .create-slide--config-text {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -1540,7 +1545,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 252, ../sass/modules/_create_slide.scss */
+/* line 255, ../sass/modules/_create_slide.scss */
 .create-slide--edit-description {
   display: inline-block;
   margin-left: .5em;
@@ -1553,7 +1558,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 260, ../sass/modules/_create_slide.scss */
+/* line 263, ../sass/modules/_create_slide.scss */
 .create-slide--edit-title {
   display: inline-block;
   margin-left: .5em;
@@ -1566,7 +1571,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 268, ../sass/modules/_create_slide.scss */
+/* line 271, ../sass/modules/_create_slide.scss */
 .create-slide--edit-box-settings {
   position: absolute;
   right: -0.5em;
@@ -1581,7 +1586,7 @@ label {
   background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 268, ../sass/modules/_create_slide.scss */
+  /* line 271, ../sass/modules/_create_slide.scss */
   .create-slide--edit-box-settings {
     right: -1em;
     top: -1em;
@@ -1595,7 +1600,7 @@ label {
     background-position: 0 -256px;
   }
 }
-/* line 284, ../sass/modules/_create_slide.scss */
+/* line 287, ../sass/modules/_create_slide.scss */
 .create-slide--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -1610,7 +1615,7 @@ label {
   background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 284, ../sass/modules/_create_slide.scss */
+  /* line 287, ../sass/modules/_create_slide.scss */
   .create-slide--edit-image-settings {
     background: url('../images/icons-s5741e2949d.png');
     -moz-background-size: 128px 1012px;
@@ -1622,7 +1627,7 @@ label {
     background-position: 0 -632px;
   }
 }
-/* line 298, ../sass/modules/_create_slide.scss */
+/* line 301, ../sass/modules/_create_slide.scss */
 .create-slide--image {
   max-height: 100%;
   width: 100%;
