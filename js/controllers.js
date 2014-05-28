@@ -7,7 +7,7 @@ ikApp.controller('TemplatesController', function($scope) {});
 /**
  * Slide controller. Controls the slide creation process.
  */
-ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory) {
+ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory, templateFactory) {
   /**
    * Scope setup
    */
@@ -37,6 +37,9 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
         $scope.step = 1;
       }
 
+      // Get templates
+      $scope.templates = templateFactory.getTemplates();
+
       // Get slide.
       $scope.slide = slideFactory.getSlide($routeParams.slideId);
 
@@ -45,7 +48,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
         return;
       }
 
-      // Make sure we are not placed at step later than what is set in the data.
+      // Make sure we are not placed at steps later than what is set in the data.
       var s = 1;
       if ($scope.slide.title !== '') {
         s = s + 1;
@@ -105,6 +108,13 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     },
     orientationSet: function() {
       return validateNotEmpty('orientation');
+    },
+    templateSet: function() {
+      return validateNotEmpty('template');
     }
   };
+
+  $scope.selectTemplate = function(id) {
+    $scope.slide.template = id;
+  }
 });
