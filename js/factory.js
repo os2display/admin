@@ -18,6 +18,14 @@ ikApp.factory('slideFactory', function() {
   }
 
   /**
+   * Get all slides.
+   * @returns {Array}
+   */
+  factory.getSlides = function() {
+    return slides;
+  }
+
+  /**
    * Find the slide with @id
    * @param id
    * @returns slide or null
@@ -50,7 +58,7 @@ ikApp.factory('slideFactory', function() {
       options: {
         'bgcolor': '#ccc',
         'textcolor': '#fff',
-        'textbgcolor': '#000',
+        'textbgcolor': 'rgba(0, 0, 0, 0.7)',
         'image': '',
         'headline': '',
         'text': ''

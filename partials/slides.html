@@ -1,1 +1,6 @@
-SLIDES
+Slides:
+<ul>
+  <li data-ng-repeat="slide in slides">
+    {{slide.id}}. <a data-ng-href="/#/slide/{{slide.id}}/4">{{slide.title}}</a>
+  </li>
+</ul>
