@@ -7,7 +7,7 @@ ikApp.controller('TemplatesController', function($scope) {});
 /**
  * Slide controller. Controls the slide creation process.
  */
-ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory, templateFactory) {
+ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory, templateFactory, imageFactory) {
   /**
    * Scope setup
    */
@@ -133,6 +133,8 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
     }
   }
+
+  $scope.backgroundImages = imageFactory.getImages();
 
   $scope.selectTemplate = function(id) {
     $scope.slide.template = id;

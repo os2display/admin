@@ -51,7 +51,7 @@ ikApp.factory('slideFactory', function() {
         'bgcolor': '#ccc',
         'textcolor': '#fff',
         'textbgcolor': '#000',
-        'image': '/images/outlines/slide-config-default.png',
+        'image': '',
         'headline': '',
         'text': ''
       }
@@ -111,6 +111,22 @@ ikApp.factory('templateFactory', function() {
 
   factory.getTemplates = function() {
     return templates;
+  }
+
+  return factory;
+});
+
+ikApp.factory('imageFactory', function() {
+  var factory = {};
+  var images = [
+    {
+      title: 'road',
+      url: '/images/outlines/slide-config-default.png'
+    }
+  ];
+
+  factory.getImages = function() {
+    return images;
   }
 
   return factory;
