@@ -1,17 +1,29 @@
 ikApp.controller('IndexController', function($scope) {});
 ikApp.controller('ChannelsController', function($scope) {});
-ikApp.controller('SlidesController', function($scope) {});
 ikApp.controller('ScreensController', function($scope) {});
 ikApp.controller('TemplatesController', function($scope) {});
+
+
+ikApp.controller('SlidesController', function($scope, slideFactory) {
+  $scope.slides = slideFactory.getSlides();
+});
 
 /**
  * Slide controller. Controls the slide creation process.
  */
-ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory) {
+ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory, templateFactory, imageFactory) {
   /**
    * Scope setup
    */
   $scope.steps = 4;
+  $scope.slide = [];
+  $scope.templates = templateFactory.getTemplates();
+
+  $scope.style = {
+    'height': '540px',
+    'width': '940px',
+    'fontsize': '18px'
+  }
 
   /**
    * Constructor.
@@ -45,7 +57,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
         return;
       }
 
-      // Make sure we are not placed at step later than what is set in the data.
+      // Make sure we are not placed at steps later than what is set in the data.
       var s = 1;
       if ($scope.slide.title !== '') {
         s = s + 1;
@@ -86,13 +98,17 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   }
 
   /**
-   *
+   * Validates that @field is not empty on slide.
    */
   function validateNotEmpty(field) {
     if (!$scope.slide) {
       return false;
     }
     return $scope.slide[field] !== '';
+  }
+
+  $scope.openToolbar = function(toolbar) {
+    alert(toolbar);
   }
 
   /**
@@ -105,6 +121,26 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     },
     orientationSet: function() {
       return validateNotEmpty('orientation');
+    },
+    templateSet: function() {
+      return validateNotEmpty('template');
     }
   };
+
+  $scope.editor = {
+    showTextEditor: false,
+    toggleTextEditor: function() {
+      $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
+    },
+    showBackgroundEditor: false,
+    toggleBackgroundEditor: function() {
+      $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
+    }
+  }
+
+  $scope.backgroundImages = imageFactory.getImages();
+
+  $scope.selectTemplate = function(id) {
+    $scope.slide.template = id;
+  }
 });

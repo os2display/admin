@@ -1069,16 +1069,16 @@ label {
 
 /* line 19, ../sass/layout/_layout.scss */
 .ng-enter {
-  -moz-animation: fade-in 1.2s;
-  -webkit-animation: fade-in 1.2s;
-  animation: fade-in 1.2s;
+  -moz-animation: fade-in 0.5s;
+  -webkit-animation: fade-in 0.5s;
+  animation: fade-in 0.5s;
 }
 
 /* line 23, ../sass/layout/_layout.scss */
 .ng-leave {
-  -moz-animation: fade-out 1.2s;
-  -webkit-animation: fade-out 1.2s;
-  animation: fade-out 1.2s;
+  -moz-animation: fade-out 0.5s;
+  -webkit-animation: fade-out 0.5s;
+  animation: fade-out 0.5s;
 }
 
 /**
@@ -1413,7 +1413,13 @@ label {
   position: absolute;
 }
 
-/* line 51, ../sass/modules/_create_slide.scss */
+/* line 49, ../sass/modules/_create_slide.scss */
+.has-placeholder[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #ccc;
+}
+
+/* line 59, ../sass/modules/_create_slide.scss */
 .create-slide--section {
   background-size: cover;
   color: #535353;
@@ -1424,7 +1430,7 @@ label {
   -webkit-background-size: 100% auto;
   background-size: 100% auto;
 }
-/* line 61, ../sass/modules/_create_slide.scss */
+/* line 69, ../sass/modules/_create_slide.scss */
 .create-slide--header {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
@@ -1433,32 +1439,32 @@ label {
   padding-bottom: 1em;
   text-align: center;
 }
-/* line 71, ../sass/modules/_create_slide.scss */
+/* line 79, ../sass/modules/_create_slide.scss */
 .create-slide--header-description {
   color: #646464;
   font-weight: lighter;
   margin-bottom: 4em;
   text-align: center;
 }
-/* line 85, ../sass/modules/_create_slide.scss */
+/* line 93, ../sass/modules/_create_slide.scss */
 .create-slide--button {
   display: block;
   margin: 0 auto;
 }
-/* line 94, ../sass/modules/_create_slide.scss */
+/* line 102, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-one {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
-/* line 108, ../sass/modules/_create_slide.scss */
+/* line 116, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"] {
   background-color: #fbfbfb;
   height: 4.5em;
   margin-bottom: 2em;
   padding: 1.5em;
 }
-/* line 114, ../sass/modules/_create_slide.scss */
+/* line 122, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"].is-valid {
   background: url("../images/icons/check-circle-icon.png") #fbfbfb;
   background-size: 2em 2em;
@@ -1466,73 +1472,74 @@ label {
   background-position: right 1.25em top 1.25em;
   border: 0;
 }
-/* line 125, ../sass/modules/_create_slide.scss */
+/* line 133, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-two {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 134, ../sass/modules/_create_slide.scss */
+/* line 142, ../sass/modules/_create_slide.scss */
 .create-slide--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 140, ../sass/modules/_create_slide.scss */
+/* line 148, ../sass/modules/_create_slide.scss */
 .create-slide--screen-landscape {
   margin-bottom: 2em;
 }
-/* line 160, ../sass/modules/_create_slide.scss */
+/* line 168, ../sass/modules/_create_slide.scss */
 .create-slide--screen-link {
   position: relative;
   display: block;
 }
-/* line 174, ../sass/modules/_create_slide.scss */
+/* line 182, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-three {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 183, ../sass/modules/_create_slide.scss */
+/* line 191, ../sass/modules/_create_slide.scss */
 .create-slide--template {
   margin-bottom: 2em;
   position: relative;
 }
-/* line 196, ../sass/modules/_create_slide.scss */
+/* line 204, ../sass/modules/_create_slide.scss */
 .create-slide--templates {
   margin-bottom: 3em;
 }
-/* line 201, ../sass/modules/_create_slide.scss */
+/* line 209, ../sass/modules/_create_slide.scss */
 .create-slide--template-link {
   display: block;
   position: relative;
 }
-/* line 210, ../sass/modules/_create_slide.scss */
+/* line 218, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-four {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 219, ../sass/modules/_create_slide.scss */
+/* line 227, ../sass/modules/_create_slide.scss */
 .create-slide--config {
   margin: 0 auto 3em;
   position: relative;
 }
-/* line 225, ../sass/modules/_create_slide.scss */
+/* line 233, ../sass/modules/_create_slide.scss */
 .create-slide--config-header {
   font-size: 90%;
 }
-/* line 230, ../sass/modules/_create_slide.scss */
+/* line 238, ../sass/modules/_create_slide.scss */
 .create-slide--config-description {
   font-size: 70%;
 }
-/* line 235, ../sass/modules/_create_slide.scss */
+/* line 243, ../sass/modules/_create_slide.scss */
 .create-slide--config-text-wrapper {
   position: absolute;
+  width: 100%;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 242, ../sass/modules/_create_slide.scss */
+/* line 251, ../sass/modules/_create_slide.scss */
 .create-slide--config-text {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -1545,7 +1552,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 255, ../sass/modules/_create_slide.scss */
+/* line 264, ../sass/modules/_create_slide.scss */
 .create-slide--edit-description {
   display: inline-block;
   margin-left: .5em;
@@ -1558,7 +1565,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 263, ../sass/modules/_create_slide.scss */
+/* line 272, ../sass/modules/_create_slide.scss */
 .create-slide--edit-title {
   display: inline-block;
   margin-left: .5em;
@@ -1571,7 +1578,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 271, ../sass/modules/_create_slide.scss */
+/* line 280, ../sass/modules/_create_slide.scss */
 .create-slide--edit-box-settings {
   position: absolute;
   right: -0.5em;
@@ -1586,7 +1593,7 @@ label {
   background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 271, ../sass/modules/_create_slide.scss */
+  /* line 280, ../sass/modules/_create_slide.scss */
   .create-slide--edit-box-settings {
     right: -1em;
     top: -1em;
@@ -1600,7 +1607,7 @@ label {
     background-position: 0 -256px;
   }
 }
-/* line 287, ../sass/modules/_create_slide.scss */
+/* line 296, ../sass/modules/_create_slide.scss */
 .create-slide--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -1615,7 +1622,7 @@ label {
   background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 287, ../sass/modules/_create_slide.scss */
+  /* line 296, ../sass/modules/_create_slide.scss */
   .create-slide--edit-image-settings {
     background: url('../images/icons-s5741e2949d.png');
     -moz-background-size: 128px 1012px;
@@ -1627,7 +1634,7 @@ label {
     background-position: 0 -632px;
   }
 }
-/* line 301, ../sass/modules/_create_slide.scss */
+/* line 310, ../sass/modules/_create_slide.scss */
 .create-slide--image {
   max-height: 100%;
   width: 100%;

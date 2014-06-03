@@ -167,7 +167,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 114427,
+		"initialSize": 15151,
 		"inputAbbreviatedPath": "\/images\/logo.png",
 		"outputAbbreviatedPath": "\/images\/logo.png",
 		"outputPathIsOutsideProject": 0,
@@ -648,7 +648,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "Martin Yde Granath",
+"lastSavedByUser": "Troels Ugilt Jensen",
 "manualImportLinks": {
 	},
 "projectAttributes": {

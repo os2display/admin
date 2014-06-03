@@ -17,9 +17,9 @@
 }
 
 .ng-enter {
-  @include animation(fade-in 1.2s);
+  @include animation(fade-in 0.5s);
 }
 
 .ng-leave {
-  @include animation(fade-out 1.2s);
+  @include animation(fade-out 0.5s);
 }

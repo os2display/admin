@@ -45,6 +45,14 @@
 
 
 // ----- Styles ----- //
+
+.has-placeholder[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #ccc;
+}
+
+
+
 .create-slide {
 
   // -- General styles for all create slide pages -- //
@@ -234,6 +242,7 @@
 
   &--config-text-wrapper {
     position: absolute;
+    width: 100%;
 
     @include border-radius(1em);
   }
