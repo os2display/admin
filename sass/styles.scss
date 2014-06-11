@@ -16,12 +16,14 @@
 @import "base/_grid";
 
 
-// Theme
-@import "theme/_theme-vars";
-
 
 // Include mixins
 @import "mixins/_mixins";
+
+
+// Theme
+@import "theme/_theme-vars";
+@import "theme/_global-silent-classes";
 
 
 // Include base

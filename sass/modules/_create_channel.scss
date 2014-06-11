@@ -95,7 +95,7 @@
 
   // Default check circled icon.
   &--link-check {
-    @extend %create-channel--image-check-icon--selector;
+    @extend %image-check-icon--placeholder;
   }
 
 
@@ -175,15 +175,15 @@
 
 
   &--screen-link {
-    @extend %create-channel--image-overlay-selector;
-
     position: relative;
     display: block;
+
+    @include add-overlay;
   }
 
 
   &--screen-link-check {
-    @extend %create-channel--image-check-icon--selector;
+    @extend %image-check-icon--placeholder;
   }
 
 
@@ -216,10 +216,10 @@
 
 
   &--slide-link {
-    @extend %create-channel--image-overlay-selector;
-
     display: block;
     position: relative;
+
+    @include add-overlay();
   }
 
 
@@ -230,6 +230,9 @@
     margin: 0 auto;
     text-align: center;
     width: 100%;
+
+    // We hide some arrows between the slides that extends the div.
+    overflow: hidden;
   }
 
 
@@ -255,32 +258,45 @@
     display: inline-block;
     position: relative;
     width: 90%;
+
+    @include strip-link-styles(#646464);
+  }
+
+  &--slide-order-label {
+    display: inline-block;
+    font-size: .9em;
+
+    @include strip-link-styles(#646464);
   }
 
   &--slide-order-number {
-    font-size: 1.3em;
-    position:absolute;
+    height: 2.1em;
     left:0;
-    right:0;
     margin-left:auto;
     margin-right:auto;
-    border-radius: 100%;
+    position:absolute;
+    right:0;
     top: -1.1em;
-    line-height: 2.1em;
-    height: 2.1em;
     width: 2.1em;
 
     background: #fff;
+    border-radius: 100%;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 2.1em;
 
     @include border-radius(100%);
   }
 
   &--slide-order-arrow {
     display: none;
+    font-size: 1.6em;
     position: absolute;
-    right: -1em;
-    top: 50%;
+    right: -.9em;
+    top: 40%;
+    z-index: 1;
 
+    @include strip-link-styles(#d4d4d4);
     @include translateY(-50%);
     @include breakpoint($breakpoint-lap) {
       display: block;
