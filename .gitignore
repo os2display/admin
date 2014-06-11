@@ -1,2 +1,10 @@
-.idea
+/web/bundles/
+/app/bootstrap*
+/app/cache/*
+/app/logs/*
+/vendor/
+/app/config/parameters.yml
+/.idea/
+.DS_Store
+composer.lock
 .sass-cache/
