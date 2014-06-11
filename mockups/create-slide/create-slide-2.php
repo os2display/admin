@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <?php include 'inc/head.inc'; ?>
+  <?php include '../inc/head.inc'; ?>
   <header class="header" role="banner">
     <div class="header--inner">
-      <?php include 'inc/header-main.inc'; ?>
+      <?php include '../inc/header-main.inc'; ?>
     </div>
-    <?php include 'inc/header-sub.inc'; ?>
+    <?php include '../inc/header-sub.inc'; ?>
   </header>
   <div class="layout-wrapper">
     <section id="create-slide-two" class="create-slide--section">

@@ -1,6 +1,6 @@
 /**
  *
- * Create slides
+ * Create channel
  *
  */
 
@@ -9,7 +9,7 @@
    ========================================================================== */
 
 // Class for displaying checkbox on selected image.
-%create-slide--image-check-icon--selector {
+%create-channel--image-check-icon--selector {
   display: block;
   margin: 0 auto;
   visibility: hidden;
@@ -23,26 +23,26 @@
   @include breakpoint($breakpoint-lap) {
     @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 50);
   }
-  @include breakpoint(600px) {
+  @include breakpoint(800px) {
     @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
   }
 }
 
 
-// Class for creating overlay on selected image (We nest to have the "is-selected" class on only only one html tag)).
-%create-slide--image-overlay-selector {
+// Class for creating overlay on selected image (We nest to have the "is-selected" class on only only one html tag))
+%create-channel--image-overlay-selector {
   cursor: pointer;
   
   &.is-selected {
     cursor: default;
 
-    .create-slide--link-check {
+    .create-channel--link-check {
       left: 0;
       right: 0;
       visibility: visible;
     }
 
-    .create-slide--overlay {
+    .create-channel--overlay {
       display: block;
       width: 100%;
       height: 100%;
@@ -62,10 +62,9 @@
 }
 
 
+.create-channel {
 
-.create-slide {
-
-  // General styles for all create slide pages.
+  // General styles for all create channel pages.
   &--section {
     background-size: cover;
     color: #535353;
@@ -96,7 +95,7 @@
 
   // Default check circled icon.
   &--link-check {
-    @extend %create-slide--image-check-icon--selector;
+    @extend %create-channel--image-check-icon--selector;
   }
 
 
@@ -108,8 +107,8 @@
   }
 
 
-  // Create slide title/name.
-  &--content--slide-one {
+  // Create channel.
+  &--content--channel-one {
     display: block;
     margin: 0 auto;
     text-align: center;
@@ -139,8 +138,8 @@
   }
 
 
-  // Create slide screen selection.
-  &--content--slide-two {
+  // Create channel screen selection.
+  &--content--channel-two {
     @extend %grid;
 
     margin: 0 auto;
@@ -176,7 +175,7 @@
 
 
   &--screen-link {
-    @extend %create-slide--image-overlay-selector;
+    @extend %create-channel--image-overlay-selector;
 
     position: relative;
     display: block;
@@ -184,12 +183,12 @@
 
 
   &--screen-link-check {
-    @extend %create-slide--image-check-icon--selector;
+    @extend %create-channel--image-check-icon--selector;
   }
 
 
-  // Create slide template selection.
-  &--content--slide-three {
+  // Create channel slide selection.
+  &--content--channel-three {
     @extend %grid;
 
     margin: 0 auto;
@@ -198,34 +197,34 @@
   }
 
 
-  &--template {
+  &--slide {
     @extend %grid__item;
     @extend %grid-markup-fix;
     @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-third;
-    @extend %bigscreen--one-quarter;
+    @extend %lap--one-third;
+    @extend %desk--one-quarter;
+    @extend %bigscreen--one-sixth;
 
     margin-bottom: 2em;
     position: relative;
   }
 
 
-  &--templates {
+  &--slides {
     margin-bottom: 3em;
   }
 
 
-  &--template-link {
-    @extend %create-slide--image-overlay-selector;
+  &--slide-link {
+    @extend %create-channel--image-overlay-selector;
 
     display: block;
     position: relative;
   }
 
 
-  // Create slide content setup.
-  &--content--slide-four {
+  // Create channel slide order.
+  &--content--channel-four {
     @extend %grid;
 
     margin: 0 auto;
@@ -234,91 +233,57 @@
   }
 
 
-  &--config {
-    margin: 0 auto 3em;
+  &--slide-order-element {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-third;
+    @extend %desk--one-quarter;
+    @extend %bigscreen--one-sixth;
+
+    margin-bottom: 2em;
     position: relative;
   }
 
 
-  &--config-header {
-    font-size: 90%;
+  &--slides {
+    margin-bottom: 3em;
   }
 
 
-  &--config-description {
-    font-size: 70%;
-  }
-
-
-  &--config-text-wrapper {
-    position: absolute;
-    width: 100%;
-
-    @include border-radius(1em);
-  }
-
-
-  &--config-text {
-    background: rgba(0,0,0,0.7);
-    color: #fff;
-    margin: 1em auto;
-    padding: 2em;
-    text-align: left;
-    position:relative;
-    width: 80%;
-
-    @include border-radius(1em);
-  }
-
-
-  &--edit-description {
+  &--slide-order-link {
     display: inline-block;
-    margin-left: .5em;
-
-    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
+    position: relative;
+    width: 90%;
   }
 
+  &--slide-order-number {
+    font-size: 1.3em;
+    position:absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 100%;
+    top: -1.1em;
+    line-height: 2.1em;
+    height: 2.1em;
+    width: 2.1em;
 
-  &--edit-title {
-    display: inline-block;
-    margin-left: .5em;
+    background: #fff;
 
-    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
+    @include border-radius(100%);
   }
 
-
-  &--edit-box-settings {
+  &--slide-order-arrow {
+    display: none;
     position: absolute;
-    right: -0.5em;
-    top: -0.5em;
+    right: -1em;
+    top: 50%;
 
-    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 25);
-
+    @include translateY(-50%);
     @include breakpoint($breakpoint-lap) {
-      right: -1em;
-      top: -1em;
-
-      @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+      display: block;
     }
-  }
-
-
-  &--edit-image-settings {
-    bottom: 15%;
-    position: absolute;
-    right: 15%;
-
-    @include generate-sprite-image($dashboard-sprites, 'landscape-icon', 50);
-
-    @include breakpoint($breakpoint-lap) {
-
-      @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
-    }
-  }
-
-
-  &--image {
-    max-height: 100%;
-    width: 100%;
   }
 }
