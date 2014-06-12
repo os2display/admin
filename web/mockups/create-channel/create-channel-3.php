@@ -18,7 +18,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -26,7 +26,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-2.png"/>
+              <img src="../../images/outlines/slide-example-2.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -34,7 +34,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-3.png"/>
+              <img src="../../images/outlines/slide-example-3.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -42,7 +42,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-2.png"/>
+              <img src="../../images/outlines/slide-example-2.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -50,7 +50,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-3.png"/>
+              <img src="../../images/outlines/slide-example-3.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -58,7 +58,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -66,7 +66,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-2.png"/>
+              <img src="../../images/outlines/slide-example-2.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -74,7 +74,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-3.png"/>
+              <img src="../../images/outlines/slide-example-3.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -82,7 +82,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-2.png"/>
+              <img src="../../images/outlines/slide-example-2.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -90,7 +90,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-3.png"/>
+              <img src="../../images/outlines/slide-example-3.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -98,7 +98,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
             </a>
           </div>
           <div class="create-channel--slide">
@@ -106,7 +106,7 @@
               <span class="create-channel--overlay">
                 <span class="create-channel--link-check"></span>
               </span>
-              <img src="/images/outlines/slide-example-2.png"/>
+              <img src="../../images/outlines/slide-example-2.png"/>
             </a>
           </div>
         </div>

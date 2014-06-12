@@ -32,7 +32,7 @@
 // Class for creating overlay on selected image (We nest to have the "is-selected" class on only only one html tag))
 %create-channel--image-overlay-selector {
   cursor: pointer;
-  
+
   &.is-selected {
     cursor: default;
 
@@ -95,7 +95,7 @@
 
   // Default check circled icon.
   &--link-check {
-    @extend %image-check-icon--placeholder;
+    @extend %create-channel--image-check-icon--selector;
   }
 
 
@@ -177,13 +177,11 @@
   &--screen-link {
     position: relative;
     display: block;
-
-    @include add-overlay;
   }
 
 
   &--screen-link-check {
-    @extend %image-check-icon--placeholder;
+    @extend %create-channel--image-check-icon--selector;
   }
 
 
@@ -218,8 +216,6 @@
   &--slide-link {
     display: block;
     position: relative;
-
-    @include add-overlay();
   }
 
 

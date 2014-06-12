@@ -16,7 +16,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">1</span>
-              <img src="/images/outlines/slide-example-2.png"/>
+              <img src="../../images/outlines/slide-example-2.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -24,7 +24,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">2</span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -32,7 +32,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">3</span>
-              <img src="/images/outlines/slide-example-3.png"/>
+              <img src="../../images/outlines/slide-example-3.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -40,7 +40,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">4</span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -48,7 +48,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">5</span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -56,7 +56,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">6</span>
-              <img src="/images/outlines/slide-example-3.png"/>
+              <img src="../../images/outlines/slide-example-3.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -64,7 +64,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">7</span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -72,7 +72,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">8</span>
-              <img src="/images/outlines/slide-example-3.png"/>
+              <img src="../../images/outlines/slide-example-3.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -80,7 +80,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">9</span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
             <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
@@ -88,7 +88,7 @@
           <div class="create-channel--slide-order-element">
             <a href="#" class="create-channel--slide-order-link">
               <span class="create-channel--slide-order-number">10</span>
-              <img src="/images/outlines/slide-example-1.png"/>
+              <img src="../../images/outlines/slide-example-1.png"/>
               <span class="create-channel--slide-order-label">Lorem ipsum titel text lorem</span>
             </a>
           </div>
