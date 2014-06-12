@@ -1447,7 +1447,7 @@ label {
   color: #ccc;
 }
 
-/* line 22, ../sass/modules/_create_slide.scss */
+/* line 21, ../sass/modules/_create_slide.scss */
 .create-slide {
   /* Global settings
    ========================================================================== */
@@ -1460,7 +1460,7 @@ label {
   /* Create slide - setup content (Page 4)
    ========================================================================== */
 }
-/* line 26, ../sass/modules/_create_slide.scss */
+/* line 25, ../sass/modules/_create_slide.scss */
 .create-slide--section {
   background-size: cover;
   color: #535353;
@@ -1471,7 +1471,7 @@ label {
   -webkit-background-size: 100% auto;
   background-size: 100% auto;
 }
-/* line 36, ../sass/modules/_create_slide.scss */
+/* line 35, ../sass/modules/_create_slide.scss */
 .create-slide--header {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
@@ -1480,32 +1480,32 @@ label {
   padding-bottom: 1em;
   text-align: center;
 }
-/* line 46, ../sass/modules/_create_slide.scss */
+/* line 45, ../sass/modules/_create_slide.scss */
 .create-slide--header-description {
   color: #646464;
   font-weight: lighter;
   margin-bottom: 4em;
   text-align: center;
 }
-/* line 60, ../sass/modules/_create_slide.scss */
+/* line 59, ../sass/modules/_create_slide.scss */
 .create-slide--button {
   display: block;
   margin: 0 auto;
 }
-/* line 70, ../sass/modules/_create_slide.scss */
+/* line 69, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-one {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
-/* line 84, ../sass/modules/_create_slide.scss */
+/* line 83, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"] {
   background-color: #fbfbfb;
   height: 4.5em;
   margin-bottom: 2em;
   padding: 1.5em;
 }
-/* line 90, ../sass/modules/_create_slide.scss */
+/* line 89, ../sass/modules/_create_slide.scss */
 .create-slide--text[type="text"].is-valid {
   background: url("../images/icons/check-circle-icon.png") #fbfbfb;
   background-size: 2em 2em;
@@ -1513,22 +1513,22 @@ label {
   background-position: right 1.25em top 1.25em;
   border: 0;
 }
-/* line 102, ../sass/modules/_create_slide.scss */
+/* line 101, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-two {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 111, ../sass/modules/_create_slide.scss */
+/* line 110, ../sass/modules/_create_slide.scss */
 .create-slide--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 117, ../sass/modules/_create_slide.scss */
+/* line 116, ../sass/modules/_create_slide.scss */
 .create-slide--screen-landscape {
   margin-bottom: 2em;
 }
-/* line 137, ../sass/modules/_create_slide.scss */
+/* line 136, ../sass/modules/_create_slide.scss */
 .create-slide--screen-link {
   position: relative;
   display: block;
@@ -1552,22 +1552,22 @@ label {
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
-/* line 147, ../sass/modules/_create_slide.scss */
+/* line 146, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-three {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 156, ../sass/modules/_create_slide.scss */
+/* line 155, ../sass/modules/_create_slide.scss */
 .create-slide--template {
   margin-bottom: 2em;
   position: relative;
 }
-/* line 169, ../sass/modules/_create_slide.scss */
+/* line 168, ../sass/modules/_create_slide.scss */
 .create-slide--templates {
   margin-bottom: 3em;
 }
-/* line 174, ../sass/modules/_create_slide.scss */
+/* line 173, ../sass/modules/_create_slide.scss */
 .create-slide--template-link {
   display: block;
   position: relative;
@@ -1591,26 +1591,26 @@ label {
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
-/* line 185, ../sass/modules/_create_slide.scss */
+/* line 184, ../sass/modules/_create_slide.scss */
 .create-slide--content--slide-four {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 194, ../sass/modules/_create_slide.scss */
+/* line 193, ../sass/modules/_create_slide.scss */
 .create-slide--config {
   margin: 0 auto 3em;
   position: relative;
 }
-/* line 200, ../sass/modules/_create_slide.scss */
+/* line 199, ../sass/modules/_create_slide.scss */
 .create-slide--config-header {
   font-size: 90%;
 }
-/* line 205, ../sass/modules/_create_slide.scss */
+/* line 204, ../sass/modules/_create_slide.scss */
 .create-slide--config-description {
   font-size: 70%;
 }
-/* line 210, ../sass/modules/_create_slide.scss */
+/* line 209, ../sass/modules/_create_slide.scss */
 .create-slide--config-text-wrapper {
   position: absolute;
   width: 100%;
@@ -1618,7 +1618,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 218, ../sass/modules/_create_slide.scss */
+/* line 217, ../sass/modules/_create_slide.scss */
 .create-slide--config-text {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -1631,7 +1631,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 231, ../sass/modules/_create_slide.scss */
+/* line 230, ../sass/modules/_create_slide.scss */
 .create-slide--edit-description {
   display: inline-block;
   margin-left: .5em;
@@ -1644,7 +1644,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 239, ../sass/modules/_create_slide.scss */
+/* line 238, ../sass/modules/_create_slide.scss */
 .create-slide--edit-title {
   display: inline-block;
   margin-left: .5em;
@@ -1657,7 +1657,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 247, ../sass/modules/_create_slide.scss */
+/* line 246, ../sass/modules/_create_slide.scss */
 .create-slide--edit-box-settings {
   position: absolute;
   right: -0.5em;
@@ -1672,7 +1672,7 @@ label {
   background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 247, ../sass/modules/_create_slide.scss */
+  /* line 246, ../sass/modules/_create_slide.scss */
   .create-slide--edit-box-settings {
     right: -1em;
     top: -1em;
@@ -1686,7 +1686,7 @@ label {
     background-position: 0 -256px;
   }
 }
-/* line 263, ../sass/modules/_create_slide.scss */
+/* line 262, ../sass/modules/_create_slide.scss */
 .create-slide--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -1701,7 +1701,7 @@ label {
   background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 263, ../sass/modules/_create_slide.scss */
+  /* line 262, ../sass/modules/_create_slide.scss */
   .create-slide--edit-image-settings {
     background: url('../images/icons-s5741e2949d.png');
     -moz-background-size: 128px 1012px;
@@ -1713,7 +1713,7 @@ label {
     background-position: 0 -632px;
   }
 }
-/* line 277, ../sass/modules/_create_slide.scss */
+/* line 276, ../sass/modules/_create_slide.scss */
 .create-slide--image {
   max-height: 100%;
   width: 100%;
@@ -2004,82 +2004,284 @@ label {
   }
 }
 
-@-moz-keyframes fade-out {
-  /* line 3, ../sass/animations/_animation.scss */
+/**
+ *
+ * Menu
+ *
+ */
+/* line 8, ../sass/modules/_nav.scss */
+.nav {
+  height: 100%;
+  font-size: .6em;
+  position: absolute;
+  right: -100%;
+  z-index: 99;
+  padding-top: 3.75em;
+  padding-right: 3em;
+  padding-left: 3em;
+  width: 40em;
+  background: white;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  /* States */
+  /* Elements */
+}
+/* line 28, ../sass/modules/_nav.scss */
+.nav.is-visible {
+  -moz-animation: toggle-nav-open 0.15s ease 1 forwards;
+  -webkit-animation: toggle-nav-open 0.15s ease 1 forwards;
+  animation: toggle-nav-open 0.15s ease 1 forwards;
+}
+/* line 32, ../sass/modules/_nav.scss */
+.nav.is-hidden {
+  -moz-animation: toggle-nav-close 0.15s ease 1 forwards;
+  -webkit-animation: toggle-nav-close 0.15s ease 1 forwards;
+  animation: toggle-nav-close 0.15s ease 1 forwards;
+}
+/* line 39, ../sass/modules/_nav.scss */
+.nav--header {
+  border-bottom: 1px solid #e6e6e6;
+  margin-right: 3em;
+  margin-bottom: .35em;
+  padding-bottom: .25em;
+  color: #cccccc;
+  font-size: 3em;
+  line-height: 1em;
+}
+/* line 50, ../sass/modules/_nav.scss */
+.nav--item-wrapper {
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+/* line 56, ../sass/modules/_nav.scss */
+.nav--item, .nav--sub-item {
+  display: block;
+}
+/* line 47, ../sass/mixins/_mixins.scss */
+.nav--item:link, .nav--sub-item:link {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 52, ../sass/mixins/_mixins.scss */
+.nav--item:visited, .nav--sub-item:visited {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 57, ../sass/mixins/_mixins.scss */
+.nav--item:hover, .nav--sub-item:hover {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 62, ../sass/mixins/_mixins.scss */
+.nav--item:focus, .nav--sub-item:focus {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 63, ../sass/modules/_nav.scss */
+.nav--item {
+  font-size: 2em;
+}
+/* line 67, ../sass/modules/_nav.scss */
+.nav--sub-item {
+  padding-left: 1.5em;
+  font-size: 1.5em;
+}
+
+/* Invisible close element that allows the user to close the menu by clicking outside it */
+/* line 77, ../sass/modules/_nav.scss */
+.nav-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 98;
+  width: 0;
+  cursor: pointer;
+}
+/* line 88, ../sass/modules/_nav.scss */
+.nav-overlay.is-visible {
+  width: 100%;
+  -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
+  -webkit-animation: toggle-nav-overlay 0.15s linear 1 forwards;
+  animation: toggle-nav-overlay 0.15s linear 1 forwards;
+}
+
+/* Toggle icon use for opening and closing the menu */
+/* line 98, ../sass/modules/_nav.scss */
+.nav-toggle-icon {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  display: block;
+  font-size: 2em;
+  max-width: 4em;
+  cursor: pointer;
+}
+/* line 47, ../sass/mixins/_mixins.scss */
+.nav-toggle-icon:link {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 52, ../sass/mixins/_mixins.scss */
+.nav-toggle-icon:visited {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 57, ../sass/mixins/_mixins.scss */
+.nav-toggle-icon:hover {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 62, ../sass/mixins/_mixins.scss */
+.nav-toggle-icon:focus {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Animations
+ *
+ * ========================================================================== */
+@-moz-keyframes spinner {
+  /* line 7, ../sass/animations/_animation.scss */
   0% {
-    opacity: 1;
-    right: 0em;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
-  /* line 8, ../sass/animations/_animation.scss */
+  /* line 12, ../sass/animations/_animation.scss */
   100% {
-    opacity: 0;
-    right: -40em;
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
-@-webkit-keyframes fade-out {
-  /* line 3, ../sass/animations/_animation.scss */
+@-webkit-keyframes spinner {
+  /* line 7, ../sass/animations/_animation.scss */
   0% {
-    opacity: 1;
-    right: 0em;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
-  /* line 8, ../sass/animations/_animation.scss */
+  /* line 12, ../sass/animations/_animation.scss */
   100% {
-    opacity: 0;
-    right: -40em;
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
-@keyframes fade-out {
-  /* line 3, ../sass/animations/_animation.scss */
+@keyframes spinner {
+  /* line 7, ../sass/animations/_animation.scss */
   0% {
-    opacity: 1;
-    right: 0em;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
-  /* line 8, ../sass/animations/_animation.scss */
+  /* line 12, ../sass/animations/_animation.scss */
   100% {
-    opacity: 0;
-    right: -40em;
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
-@-moz-keyframes fade-in {
-  /* line 17, ../sass/animations/_animation.scss */
+@-moz-keyframes toggle-nav-open {
+  /* line 21, ../sass/animations/_animation.scss */
   0% {
-    opacity: 0;
-    left: -40em;
+    right: -100%;
   }
 
-  /* line 22, ../sass/animations/_animation.scss */
+  /* line 25, ../sass/animations/_animation.scss */
   100% {
-    opacity: 1;
-    left: 0em;
+    right: 0;
   }
 }
-@-webkit-keyframes fade-in {
-  /* line 17, ../sass/animations/_animation.scss */
+@-webkit-keyframes toggle-nav-open {
+  /* line 21, ../sass/animations/_animation.scss */
   0% {
-    opacity: 0;
-    left: -40em;
+    right: -100%;
   }
 
-  /* line 22, ../sass/animations/_animation.scss */
+  /* line 25, ../sass/animations/_animation.scss */
   100% {
-    opacity: 1;
-    left: 0em;
+    right: 0;
   }
 }
-@keyframes fade-in {
-  /* line 17, ../sass/animations/_animation.scss */
+@keyframes toggle-nav-open {
+  /* line 21, ../sass/animations/_animation.scss */
   0% {
-    opacity: 0;
-    left: -40em;
+    right: -100%;
   }
 
-  /* line 22, ../sass/animations/_animation.scss */
+  /* line 25, ../sass/animations/_animation.scss */
   100% {
-    opacity: 1;
-    left: 0em;
+    right: 0;
+  }
+}
+@-moz-keyframes toggle-nav-close {
+  /* line 33, ../sass/animations/_animation.scss */
+  0% {
+    right: 0;
+  }
+
+  /* line 37, ../sass/animations/_animation.scss */
+  100% {
+    right: -100%;
+  }
+}
+@-webkit-keyframes toggle-nav-close {
+  /* line 33, ../sass/animations/_animation.scss */
+  0% {
+    right: 0;
+  }
+
+  /* line 37, ../sass/animations/_animation.scss */
+  100% {
+    right: -100%;
+  }
+}
+@keyframes toggle-nav-close {
+  /* line 33, ../sass/animations/_animation.scss */
+  0% {
+    right: 0;
+  }
+
+  /* line 37, ../sass/animations/_animation.scss */
+  100% {
+    right: -100%;
+  }
+}
+@-moz-keyframes toggle-nav-overlay {
+  /* line 45, ../sass/animations/_animation.scss */
+  0% {
+    background-color: transparent;
+  }
+
+  /* line 49, ../sass/animations/_animation.scss */
+  100% {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+}
+@-webkit-keyframes toggle-nav-overlay {
+  /* line 45, ../sass/animations/_animation.scss */
+  0% {
+    background-color: transparent;
+  }
+
+  /* line 49, ../sass/animations/_animation.scss */
+  100% {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+}
+@keyframes toggle-nav-overlay {
+  /* line 45, ../sass/animations/_animation.scss */
+  0% {
+    background-color: transparent;
+  }
+
+  /* line 49, ../sass/animations/_animation.scss */
+  100% {
+    background-color: rgba(0, 0, 0, 0.65);
   }
 }
 /* line 1, ../sass/ik/_ik.scss */

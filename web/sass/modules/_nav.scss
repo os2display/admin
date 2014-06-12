@@ -1,0 +1,110 @@
+/**
+ *
+ * Menu
+ *
+ */
+
+
+.nav {
+  height: 100%;
+  font-size: .6em;
+  position: absolute;
+  right: -100%;
+  z-index: 99;
+
+  padding-top: 3.75em;
+  padding-right: 3em;
+  padding-left: 3em;
+  width: 40em;
+
+  background: $white;
+
+  @include box-sizing(border-box);
+  @include box-shadow(-5px 0px 10px transparentize($black, .75));
+
+
+  /* States */
+
+  &.is-visible {
+    @include animation(toggle-nav-open .15s ease 1 forwards);
+  }
+
+  &.is-hidden {
+    @include animation(toggle-nav-close .15s ease 1 forwards);
+  }
+
+
+  /* Elements */
+
+  &--header {
+    border-bottom: 1px solid $gray-lighter;
+    margin-right: 3em;
+    margin-bottom: .35em;
+    padding-bottom: .25em;
+
+    color: $gray-light;
+    font-size: 3em;
+    line-height: 1em;
+  }
+
+  &--item-wrapper {
+    border-bottom: 1px solid $gray-lighter;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+  }
+
+  &--item,
+  &--sub-item {
+    display: block;
+
+    @include strip-link-styles();
+  }
+
+  &--item {
+    font-size: 2em;
+  }
+
+  &--sub-item {
+    padding-left: 1.5em;
+
+    font-size: 1.5em;
+  }
+}
+
+
+/* Invisible close element that allows the user to close the menu by clicking outside it */
+
+.nav-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 98;
+
+  width: 0;
+
+  cursor: pointer;
+
+  &.is-visible {
+    width: 100%;
+
+    @include animation(toggle-nav-overlay .15s linear 1 forwards);
+  }
+}
+
+
+/* Toggle icon use for opening and closing the menu */
+
+.nav-toggle-icon {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+
+  display: block;
+  font-size: 2em;
+  max-width: 4em;
+
+  cursor: pointer;
+
+  @include strip-link-styles();
+}

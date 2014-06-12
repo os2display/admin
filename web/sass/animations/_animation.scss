@@ -1,26 +1,52 @@
-// Fade out animation used for display switching with angular
-@include keyframes(fade-out) {
+/* Animations
+ *
+ * ========================================================================== */
+
+// Default spinner - rotate a div.
+@include keyframes(spinner) {
   0% {
-    opacity: 1;
-    right: 0em;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    opacity: 0;
-    right: -40em;
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
 
 
-// Fade in animation used for display switching with angular
-@include keyframes(fade-in) {
+// Move a div from outside screen to right side of screen.
+@include keyframes(toggle-nav-open) {
   0% {
-    opacity: 0;
-    left: -40em;
+    right: -100%;
   }
 
   100% {
-    opacity: 1;
-    left: 0em;
+    right: 0;
+  }
+}
+
+
+// Move div from right side of screen to outside of screen
+@include keyframes(toggle-nav-close) {
+  0% {
+    right: 0;
+  }
+
+  100% {
+    right: -100%;
+  }
+}
+
+
+// Create a black overlay.
+@include keyframes(toggle-nav-overlay) {
+  0% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: transparentize($black, .35);
   }
 }
