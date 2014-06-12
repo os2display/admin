@@ -8,3 +8,4 @@
 .DS_Store
 composer.lock
 .sass-cache/
+codekit.config
