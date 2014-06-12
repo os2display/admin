@@ -1,6 +1,6 @@
 <section id="create-slide-four" class="create-slide--section">
   <div class="create-slide--content--slide-four">
-    <h1 class="create-slide--header">Opret slide ({{step}}/{{steps}})</h1>
+    <h1 class="create-slide--header">Opret slide (<[step]>/<[steps]>)</h1>
     <p class="create-slide--header-description">Tilføj indhold - husk at se dit indhold på alle dine skærme.</p>
     <div class="create-slide--config" data-ng-style="{'background-color': slide.options.bgcolor, 'width': style.width, 'height': style.height, 'font-size': style.fontsize, 'background-image': 'url(' + slide.options.image + ')'}">
       <div class="create-slide--config-text-wrapper">
@@ -32,7 +32,7 @@
     <div class="slider-container">
       <select class="preview-size-dropdown" ng-model="slide.options.image">
         <option value="">-- None --</option>
-        <option value="{{img.url}}" ng-repeat="img in backgroundImages">{{img.title}}</option>
+        <option value="<[img.url]>" ng-repeat="img in backgroundImages"><[img.title]></option>
       </select>
     </div>
     <p>-- eller --</p>
