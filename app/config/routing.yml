@@ -1,0 +1,4 @@
+indholdskanalen_main:
+    resource: "@IndholdskanalenMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
