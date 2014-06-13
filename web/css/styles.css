@@ -1878,23 +1878,27 @@ label {
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
-/* line 182, ../sass/modules/_create_channel.scss */
+/* line 178, ../sass/modules/_create_channel.scss */
+.create-channel--slide-link.is-selected {
+  cursor: pointer;
+}
+/* line 186, ../sass/modules/_create_channel.scss */
 .create-channel--content--channel-four {
   margin: 0 auto;
   text-align: center;
   width: 100%;
   overflow: hidden;
 }
-/* line 194, ../sass/modules/_create_channel.scss */
+/* line 198, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-element {
   margin-bottom: 2em;
   position: relative;
 }
-/* line 207, ../sass/modules/_create_channel.scss */
+/* line 211, ../sass/modules/_create_channel.scss */
 .create-channel--slides {
   margin-bottom: 3em;
 }
-/* line 212, ../sass/modules/_create_channel.scss */
+/* line 216, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-link {
   display: inline-block;
   position: relative;
@@ -1920,7 +1924,7 @@ label {
   color: #646464;
   text-decoration: none;
 }
-/* line 221, ../sass/modules/_create_channel.scss */
+/* line 225, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-label {
   display: inline-block;
   font-size: .9em;
@@ -1945,7 +1949,7 @@ label {
   color: #646464;
   text-decoration: none;
 }
-/* line 229, ../sass/modules/_create_channel.scss */
+/* line 233, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-number {
   height: 2.1em;
   left: 0;
@@ -1964,7 +1968,7 @@ label {
   -webkit-border-radius: 100%;
   border-radius: 100%;
 }
-/* line 249, ../sass/modules/_create_channel.scss */
+/* line 253, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-arrow {
   display: none;
   font-size: 1.6em;
@@ -1998,7 +2002,7 @@ label {
   text-decoration: none;
 }
 @media only screen and (min-width: 481px) {
-  /* line 249, ../sass/modules/_create_channel.scss */
+  /* line 253, ../sass/modules/_create_channel.scss */
   .create-channel--slide-order-arrow {
     display: block;
   }
@@ -2146,140 +2150,218 @@ label {
 /* Animations
  *
  * ========================================================================== */
-@-moz-keyframes spinner {
+@-moz-keyframes fade-out {
   /* line 7, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 1;
+    right: 0em;
+  }
+
+  /* line 12, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 0;
+    right: -40em;
+  }
+}
+@-webkit-keyframes fade-out {
+  /* line 7, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 1;
+    right: 0em;
+  }
+
+  /* line 12, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 0;
+    right: -40em;
+  }
+}
+@keyframes fade-out {
+  /* line 7, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 1;
+    right: 0em;
+  }
+
+  /* line 12, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 0;
+    right: -40em;
+  }
+}
+@-moz-keyframes fade-in {
+  /* line 21, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 0;
+    left: -40em;
+  }
+
+  /* line 26, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 1;
+    left: 0em;
+  }
+}
+@-webkit-keyframes fade-in {
+  /* line 21, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 0;
+    left: -40em;
+  }
+
+  /* line 26, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 1;
+    left: 0em;
+  }
+}
+@keyframes fade-in {
+  /* line 21, ../sass/animations/_animation.scss */
+  0% {
+    opacity: 0;
+    left: -40em;
+  }
+
+  /* line 26, ../sass/animations/_animation.scss */
+  100% {
+    opacity: 1;
+    left: 0em;
+  }
+}
+@-moz-keyframes spinner {
+  /* line 35, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 12, ../sass/animations/_animation.scss */
+  /* line 40, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 @-webkit-keyframes spinner {
-  /* line 7, ../sass/animations/_animation.scss */
+  /* line 35, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 12, ../sass/animations/_animation.scss */
+  /* line 40, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 @keyframes spinner {
-  /* line 7, ../sass/animations/_animation.scss */
+  /* line 35, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 12, ../sass/animations/_animation.scss */
+  /* line 40, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 @-moz-keyframes toggle-nav-open {
-  /* line 21, ../sass/animations/_animation.scss */
+  /* line 49, ../sass/animations/_animation.scss */
   0% {
     right: -100%;
   }
 
-  /* line 25, ../sass/animations/_animation.scss */
+  /* line 53, ../sass/animations/_animation.scss */
   100% {
     right: 0;
   }
 }
 @-webkit-keyframes toggle-nav-open {
-  /* line 21, ../sass/animations/_animation.scss */
+  /* line 49, ../sass/animations/_animation.scss */
   0% {
     right: -100%;
   }
 
-  /* line 25, ../sass/animations/_animation.scss */
+  /* line 53, ../sass/animations/_animation.scss */
   100% {
     right: 0;
   }
 }
 @keyframes toggle-nav-open {
-  /* line 21, ../sass/animations/_animation.scss */
+  /* line 49, ../sass/animations/_animation.scss */
   0% {
     right: -100%;
   }
 
-  /* line 25, ../sass/animations/_animation.scss */
+  /* line 53, ../sass/animations/_animation.scss */
   100% {
     right: 0;
   }
 }
 @-moz-keyframes toggle-nav-close {
-  /* line 33, ../sass/animations/_animation.scss */
+  /* line 61, ../sass/animations/_animation.scss */
   0% {
     right: 0;
   }
 
-  /* line 37, ../sass/animations/_animation.scss */
+  /* line 65, ../sass/animations/_animation.scss */
   100% {
     right: -100%;
   }
 }
 @-webkit-keyframes toggle-nav-close {
-  /* line 33, ../sass/animations/_animation.scss */
+  /* line 61, ../sass/animations/_animation.scss */
   0% {
     right: 0;
   }
 
-  /* line 37, ../sass/animations/_animation.scss */
+  /* line 65, ../sass/animations/_animation.scss */
   100% {
     right: -100%;
   }
 }
 @keyframes toggle-nav-close {
-  /* line 33, ../sass/animations/_animation.scss */
+  /* line 61, ../sass/animations/_animation.scss */
   0% {
     right: 0;
   }
 
-  /* line 37, ../sass/animations/_animation.scss */
+  /* line 65, ../sass/animations/_animation.scss */
   100% {
     right: -100%;
   }
 }
 @-moz-keyframes toggle-nav-overlay {
-  /* line 45, ../sass/animations/_animation.scss */
+  /* line 73, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent;
   }
 
-  /* line 49, ../sass/animations/_animation.scss */
+  /* line 77, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65);
   }
 }
 @-webkit-keyframes toggle-nav-overlay {
-  /* line 45, ../sass/animations/_animation.scss */
+  /* line 73, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent;
   }
 
-  /* line 49, ../sass/animations/_animation.scss */
+  /* line 77, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65);
   }
 }
 @keyframes toggle-nav-overlay {
-  /* line 45, ../sass/animations/_animation.scss */
+  /* line 73, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent;
   }
 
-  /* line 49, ../sass/animations/_animation.scss */
+  /* line 77, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65);
   }

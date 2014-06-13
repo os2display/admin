@@ -2,6 +2,34 @@
  *
  * ========================================================================== */
 
+// Fade out animation used for display switching with angular
+@include keyframes(fade-out) {
+  0% {
+    opacity: 1;
+    right: 0em;
+  }
+
+  100% {
+    opacity: 0;
+    right: -40em;
+  }
+}
+
+
+// Fade in animation used for display switching with angular
+@include keyframes(fade-in) {
+  0% {
+    opacity: 0;
+    left: -40em;
+  }
+
+  100% {
+    opacity: 1;
+    left: 0em;
+  }
+}
+
+
 // Default spinner - rotate a div.
 @include keyframes(spinner) {
   0% {

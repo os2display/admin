@@ -3,8 +3,35 @@
  */
 ikApp.factory('slideFactory', function() {
   var factory = {};
-  var slides = [];
+  var slides = [
+    {
+      id: 1,
+      src: '/images/outlines/slide-example-1.png',
+      title: 'Lorem ipsum'
+    },
+    {
+      id: 2,
+      src: '/images/outlines/slide-example-2.png',
+      title: 'Billede af en vej'
+    },
+    {
+      id: 3,
+      src: '/images/outlines/slide-example-3.png',
+      title: 'Lorem ipsum'
+    },
+    {
+      id: 4,
+      src: '/images/outlines/slide-example-1.png',
+      title: 'En tur i byen'
+    },
+    {
+      id: 5,
+      src: '/images/outlines/slide-example-3.png',
+      title: 'Lorem ipsum'
+    }
+  ];
   var next_id = 0;
+
 
   /**
    * Internal function to get next id.
@@ -17,6 +44,7 @@ ikApp.factory('slideFactory', function() {
     return i;
   }
 
+
   /**
    * Get all slides.
    * @returns {Array}
@@ -24,6 +52,7 @@ ikApp.factory('slideFactory', function() {
   factory.getSlides = function() {
     return slides;
   }
+
 
   /**
    * Find the slide with @id
@@ -44,6 +73,7 @@ ikApp.factory('slideFactory', function() {
       return arr[0];
     }
   }
+
 
   /**
    * Returns an empty slide.
@@ -66,6 +96,7 @@ ikApp.factory('slideFactory', function() {
     };
   }
 
+
   /**
    * Saves slide to slides. Assigns an id, if it is not set.
    * @param slide
@@ -86,6 +117,92 @@ ikApp.factory('slideFactory', function() {
       }
     }
     return slide;
+  }
+
+  return factory;
+});
+
+
+
+ikApp.factory('channelFactory', function() {
+  var factory = {};
+  var channels = [];
+  var next_id = 0;
+
+  /**
+   * Internal function to get next id.
+   * @returns id
+   */
+  function getNextID() {
+    var i  = next_id;
+    next_id = i + 1;
+
+    return i;
+  }
+
+  /**
+   * Get channels.
+   * @returns {Array}
+   */
+  factory.getChannels = function() {
+    return channels;
+  }
+
+
+  /**
+   * Find the channel with @id
+   * @param id
+   * @returns channel or null
+   */
+  factory.getChannel = function(id) {
+    var arr = [];
+    angular.forEach(channels, function(value, key) {
+      if (value['id'] == id) {
+        arr.push(value);
+      }
+    })
+
+    if (arr.length === 0) {
+      return null;
+    } else {
+      return arr[0];
+    }
+  }
+
+
+  /**
+   * Returns an empty channel.
+   * @returns channel (empty)
+   */
+  factory.emptyChannel = function() {
+    return {
+      id: null,
+      title: '',
+      orientation: ''
+    };
+  }
+
+
+  /**
+   * Saves channel to channels. Assigns an id, if it is not set.
+   * @param channel
+   * @returns channel
+   */
+  factory.saveChannel = function(channel) {
+    if (channel.id === null) {
+      channel.id = getNextID();
+      channels.push(channel);
+    } else {
+      var s = factory.getChannel(channel.id);
+
+      if (s === null) {
+        channel.id = getNextID();
+        channel.push(channel);
+      } else {
+        s = channel;
+      }
+    }
+    return channel;
   }
 
   return factory;

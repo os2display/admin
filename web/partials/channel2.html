@@ -1,0 +1,25 @@
+<section id="create-channel-two" class="create-channel--section">
+  <div class="create-channel--content--channel-two">
+    <h1 class="create-channel--header">Opret kanal - vælg skærmtype (<[step]>/<[steps]>)</h1>
+    <p class="create-channel--header-description">Vælg hvilken type skærme du du vil vise kanalen på - er de brede eller høje?</p>
+    <div class="create-channel--screens">
+      <div class="create-channel--screen-landscape" ng-click="setOrientation('landscape')">
+        <div class="create-channel--screen-link" ng-class="{'is-selected': channel!==null && channel.orientation=='landscape'}">
+          <span class="create-channel--overlay">
+            <span class="create-channel--link-check"></span>
+          </span>
+          <img src="/images/outlines/landscape-outline.png"/>
+        </div>
+      </div>
+      <div class="create-channel--screen-portrait" ng-click="setOrientation('portrait')">
+        <div class="create-channel--screen-link" ng-class="{'is-selected': channel!==null && channel.orientation=='portrait'}">
+          <span class="create-channel--overlay">
+            <span class="create-channel--link-check"></span>
+          </span>
+          <img src="/images/outlines/portrait-outline.png" />
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="create-channel--button" value="Gem og fortsæt" data-ng-disabled="!validation.orientationSet()" data-ng-class="{'is-inactive': !validation.orientationSet()}" data-ng-click="submitStep()">
+  </div>
+</section>

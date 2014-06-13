@@ -1,0 +1,17 @@
+<section id="create-channel-four" class="create-channel--section">
+  <div class="create-channel--content--channel-four">
+    <h1 class="create-channel--header">Opret kanal - slides rækkefølge (<[step]>/<[steps]>)</h1>
+      <p class="create-channel--header-description">Træk eller brug pilene for at vælge i hvilken rækkefølge dine slides skal vises.</p>
+      <div class="create-channel--slides">
+        <div class="create-channel--slide-order-element" data-ng-repeat="slide in slides">
+          <a href="#" class="create-channel--slide-order-link">
+            <span class="create-channel--slide-order-number"><[$index + 1]></span>
+            <img data-ng-src="<[slide.src]>"/>
+            <span class="create-channel--slide-order-label"><[slide.title]></span>
+          </a>
+          <a href="#" class="create-channel--slide-order-arrow"> &#10095; </a>
+        </div>
+      </div>
+    <input type="submit" class="create-channel--button" value="Gem og opret" data-ng-click="submitStep()">
+  </div>
+</section>

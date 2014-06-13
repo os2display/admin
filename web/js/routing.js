@@ -27,5 +27,13 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'SlideController',
     templateUrl: function(params){ return 'partials/slide' + ((params.step < 1) ? 1 : params.step) + '.html'; }
   })
+  .when('/channel', {
+    controller: 'ChannelController',
+    templateUrl: 'partials/channel1.html'
+  })
+  .when('/channel/:channelId/:step', {
+    controller: 'ChannelController',
+    templateUrl: function(params){ return 'partials/channel' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+  })
   .otherwise({redirectTo: '/'});
 });

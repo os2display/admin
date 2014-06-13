@@ -1,1 +1,6 @@
-CHANNELS
+Channels:
+<ul>
+  <li data-ng-repeat="channel in channels">
+    <[channel.id]>. <a data-ng-href="/#/channel/<[channel.id]>/4"><[channel.title]></a>
+  </li>
+</ul>

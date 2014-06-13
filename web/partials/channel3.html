@@ -1,0 +1,17 @@
+<section id="create-channel-three" class="create-channel--section">
+  <div class="create-channel--content--channel-three">
+    <h1 class="create-channel--header">Opret kanal - vælg slides (<[step]>/<[steps]>)</h1>
+    <p class="create-channel--header-description">Vælg slides der skal vises i din kanal.</p>
+    <div class="create-channel--slides">
+      <div class="create-channel--slide" data-ng-repeat="slide in slides" ng-click="toggleSlide(slide.id)">
+        <div href="#" class="create-channel--slide-link" data-ng-class="{'is-selected': (selected_slides_temp.indexOf(slide.id) > -1)}">
+          <span class="create-channel--overlay">
+            <span class="create-channel--link-check"></span>
+          </span>
+          <img data-ng-src="<[slide.src]>"/>
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="create-channel--button" data-ng-class="{'is-inactive': !validation.slideSet()}" data-ng-disabled="!validation.slideSet()" value="Gem og fortsæt" data-ng-click="submitStep()">
+  </div>
+</section>
