@@ -6,10 +6,8 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
      * Scope setup
      */
     $scope.steps = 4; // Number of steps in the creation process.
-    $scope.channel = []; // Channel created in the process.
-    $scope.selected_slides_temp = [] // Holds information about which slides have been selected.
+    $scope.channel = null; // Channel created in the process.
     $scope.slides = slideFactory.getSlides(); // All available slides.
-
 
     /**
      * Constructor.
@@ -122,12 +120,12 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
      * @param id
      */
     $scope.toggleSlide = function(id) {
-
-      if($scope.selected_slides_temp.indexOf(id)==-1) {
-        $scope.selected_slides_temp[id] = id;
+      if($scope.channel.slides.indexOf(id)==-1) {
+        $scope.channel.slides[id] = id;
       }
       else {
-        delete $scope.selected_slides_temp[id];
+        delete $scope.channel.slides[id];
       }
+      console.log($scope.channel);
     }
 });
