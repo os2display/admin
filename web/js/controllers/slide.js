@@ -9,12 +9,6 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   $scope.slide = [];
   $scope.templates = templateFactory.getTemplates();
 
-  $scope.style = {
-    'height': '540px',
-    'width': '940px',
-    'fontsize': '18px'
-  }
-
   /**
    * Constructor.
    * Handles different settings of route parameters.
@@ -85,14 +79,6 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   }
 
   /**
-   * Set the orientation of the slide.
-   * @param orientation
-   */
-  $scope.setOrientation = function(orientation) {
-    $scope.slide.orientation = orientation;
-  }
-
-  /**
    * Validates that @field is not empty on slide.
    */
   function validateNotEmpty(field) {
@@ -100,10 +86,6 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
       return false;
     }
     return $scope.slide[field] !== '';
-  }
-
-  $scope.openToolbar = function(toolbar) {
-    alert(toolbar);
   }
 
   /**
@@ -122,29 +104,18 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   };
 
   /**
-   * Handles the state of the editor.
-   */
-  $scope.editor = {
-    showTextEditor: false,
-    toggleTextEditor: function() {
-      $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
-    },
-    showBackgroundEditor: false,
-    toggleBackgroundEditor: function() {
-      $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
-    }
-  }
-
-  /**
-   * Sets the images from the factory.
-   */
-  $scope.backgroundImages = imageFactory.getImages();
-
-  /**
    * Set the template id of a slide.
    * @param id
    */
   $scope.selectTemplate = function(id) {
     $scope.slide.template = id;
+  }
+
+  /**
+   * Set the orientation of the slide.
+   * @param orientation
+   */
+  $scope.selectOrientation = function(orientation) {
+    $scope.slide.orientation = orientation;
   }
 });
