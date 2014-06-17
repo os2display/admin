@@ -6,7 +6,7 @@ ikApp.directive('contenteditable', function() {
       element.bind('blur', function() {
         scope.$apply(function() {
           ctrl.$setViewValue(element.html());
-         });
+        });
       });
 
       // model -> view
@@ -21,20 +21,16 @@ ikApp.directive('contenteditable', function() {
 });
 
 ikApp.directive('ikSlide', ['slideFactory', function(slideFactory) {
-    return {
-        templateUrl: 'partials/slide.html',
-        restrict: 'E',
-        link: function(scope, iElement, iAttrs) {
-            iAttrs.$observe('ikId', function(value) {
-                scope.ikSlide = slideFactory.getSlide(value);
-            });
-            iAttrs.$observe('ikWidth', function(value) {
-                scope.theStyle = {
-                    width: "" + value + "px",
-                    height: "" + parseFloat(1080 * parseFloat(value / 1920.0)) + "px",
-                    fontsize: "" + parseFloat(32 * parseFloat(value / 1920.0)) + "px"
-                }
-            });
-        }
+  return {
+    templateUrl: 'partials/slide.html',
+    restrict: 'E',
+    link: function(scope, iElement, iAttrs) {
+      scope.ikSlide = slideFactory.getSlide(iAttrs.ikId);
+      scope.theStyle = {
+        width: "" + iAttrs.ikWidth + "px",
+        height: "" + parseFloat(scope.ikSlide.options.idealdimensions.height * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px",
+        fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
+      }
     }
+  }
 }]);

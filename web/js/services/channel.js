@@ -3,6 +3,7 @@ ikApp.factory('channelFactory', function() {
     var channels = [];
     var next_id = 0;
 
+
     /**
      * Internal function to get next id.
      * @returns id
@@ -13,6 +14,7 @@ ikApp.factory('channelFactory', function() {
 
         return i;
     }
+
 
     /**
      * Get channels.
