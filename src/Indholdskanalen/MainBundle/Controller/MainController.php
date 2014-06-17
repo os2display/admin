@@ -3,11 +3,17 @@
 namespace Indholdskanalen\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
-class MainController extends Controller
-{
-    public function indexAction()
-    {
-        return $this->render('IndholdskanalenMainBundle:Main:index.html.twig');
-    }
+/**
+ * @Route("/")
+ */
+class MainController extends Controller {
+  /**
+   * @Route("/")
+   */
+  public function indexAction() {
+    return $this->render('IndholdskanalenMainBundle:Main:index.html.twig');
+  }
 }
