@@ -6,7 +6,6 @@ ikApp.factory('slideFactory', function() {
     var slides = [
         {
             id: 1,
-            src: '/images/outlines/slide-example-1.png',
             title: 'Lorem ipsum',
             orientation: '',
             template: '',
@@ -21,7 +20,6 @@ ikApp.factory('slideFactory', function() {
         },
         {
             id: 2,
-            src: '/images/outlines/slide-example-2.png',
             title: 'Billede af en vej',
             orientation: '',
             template: '',
@@ -29,14 +27,13 @@ ikApp.factory('slideFactory', function() {
                 'bgcolor': '#ccc',
                 'textcolor': '#fff',
                 'textbgcolor': 'rgba(0, 0, 0, 0.7)',
-                'image': '',
-                'headline': '',
-                'text': ''
+                'image': 'images/outlines/slide-config-default.png',
+                'headline': 'Dette er en overskrift',
+                'text': 'sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf'
             }
         },
         {
             id: 3,
-            src: '/images/outlines/slide-example-3.png',
             title: 'Lorem ipsum',
             orientation: '',
             template: '',
@@ -51,7 +48,6 @@ ikApp.factory('slideFactory', function() {
         },
         {
             id: 4,
-            src: '/images/outlines/slide-example-1.png',
             title: 'En tur i byen',
             orientation: '',
             template: '',
@@ -66,7 +62,6 @@ ikApp.factory('slideFactory', function() {
         },
         {
             id: 5,
-            src: '/images/outlines/slide-example-3.png',
             title: 'Lorem ipsum',
             orientation: '',
             template: '',

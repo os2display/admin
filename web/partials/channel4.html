@@ -3,7 +3,7 @@
     <h1 class="create-channel--header">Opret kanal - slides rækkefølge (<[step]>/<[steps]>)</h1>
       <p class="create-channel--header-description">Træk eller brug pilene for at vælge i hvilken rækkefølge dine slides skal vises.</p>
       <div class="create-channel--slides">
-        <div class="create-channel--slide-order-element" data-ng-repeat="slide in slides">
+        <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
           <a href="#" class="create-channel--slide-order-link">
             <span class="create-channel--slide-order-number"><[$index + 1]></span>
             <img data-ng-src="<[slide.src]>"/>
