@@ -158,7 +158,7 @@
   /* [2] */
   padding: 0;
   /* [2] */
-  margin-left: -2em;
+  margin-left: -36px;
   /* [3] */
 }
 
@@ -173,7 +173,7 @@
 .header--logo, .header--main-menu, .header--secondary-menus, .header--user-menu, .header--nav-menu, .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
   display: inline-block;
   /* [1] */
-  padding-left: 2em;
+  padding-left: 36px;
   /* [2] */
   vertical-align: top;
   /* [3] */
@@ -1136,6 +1136,11 @@ label {
   animation: fade-out 0.5s;
 }
 
+/* line 27, ../sass/layout/_layout.scss */
+.layout-wrapper {
+  padding: 0 2em;
+}
+
 /**
  *
  * Header
@@ -1769,7 +1774,7 @@ label {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin: 0 36px 18px 36px;
   padding-bottom: 1em;
   text-align: center;
 }
@@ -1777,7 +1782,7 @@ label {
 .create-channel--header-description {
   color: #646464;
   font-weight: lighter;
-  margin-bottom: 4em;
+  margin: 0 36px 72px 36px;
   text-align: center;
 }
 /* line 72, ../sass/modules/_create_channel.scss */
@@ -1979,6 +1984,7 @@ label {
 }
 /* line 256, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
+  border: 1px solid #b3b3b3;
   cursor: pointer;
   font-size: 1em;
   position: absolute;

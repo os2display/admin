@@ -23,3 +23,14 @@
 .ng-leave {
   @include animation(fade-out 0.5s);
 }
+
+.layout-wrapper {
+  padding: 0 2em;
+}
+
+.layout-inner {
+
+  @include breakpoint($breakpoint-lap) {
+
+  }
+}
