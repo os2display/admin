@@ -57,5 +57,8 @@ security:
     - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
     - { path: ^/, role: ROLE_USER }
 
+    #Testing
+    - { path: ^/twig/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
   acl:
     connection: default
