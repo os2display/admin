@@ -55,6 +55,11 @@ php -d apc.enable_cli=Off composer.phar install
 If you use composer install this step should be covered.
 
 <pre>
+app/console sonata:easy-extends:generate --dest=src SonataUserBundle
+app/console sonata:easy-extends:generate --dest=src SonataMediaBundle
+</pre>
+
+<pre>
 $ cp app/config/parameters.yml.dist app/config/parameters.yml
 </pre>
 
