@@ -9,3 +9,4 @@
 composer.lock
 .sass-cache/
 codekit.config
+src/Application
