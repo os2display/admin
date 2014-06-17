@@ -83,10 +83,28 @@ $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing betwee
 
     .#{$selector-namespace}--overlay {
       display: block;
+      z-index: 1;
       width: 100%;
       height: 100%;
       background: rgba(255,255,255,0.5);
       position: absolute;
     }
   }
+}
+
+
+// Set the preview styles.
+@mixin preview-list-display($alignment:horizontal) {
+  @if $alignment == "horizontal" {
+    // We use static sizes of the preview.
+    display: inline-block;
+    margin: 1em;
+    width: 300px;
+  }
+  @else {
+    display: inline-block;
+    margin: 1em;
+    // Add width for vertical images.
+  }
+
 }
