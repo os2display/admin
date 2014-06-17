@@ -121,11 +121,52 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
      */
     $scope.toggleSlide = function(id) {
       if($scope.channel.slides.indexOf(id)==-1) {
-        $scope.channel.slides[id] = id;
+        $scope.channel.slides.push(id);
       }
       else {
-        delete $scope.channel.slides[id];
+        $scope.channel.slides.splice($scope.channel.slides.indexOf(id), 1);
       }
-      console.log($scope.channel);
     }
+
+
+    /**
+     * Fetch the slides related to the channel.
+     */
+    $scope.getChosenSlides = function() {
+      var slidesArray = [];
+      angular.forEach($scope.channel.slides, function(id, index){
+        slidesArray.push(slideFactory.getSlide(id));
+      });
+      return slidesArray;
+    }
+
+
+    /**
+    * Change the positioning of two array elements.
+    * */
+    function reorderIndex(arr, old_index, new_index) {
+      // If it's not the last element.
+      if (new_index < arr.length) {
+        // Change index order.
+        arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+      }
+    }
+
+
+    /**
+     * Push a channel slide right.
+     * @param index the position of the arrow.
+     */
+    $scope.pushRight = function($arrow_position) {
+      reorderIndex($scope.channel.slides, $arrow_position, $arrow_position + 1);
+    };
+
+
+    /**
+     * Push a channel slide right.
+     * @param index the position of the arrow.
+     */
+    $scope.pushLeft = function($arrow_position) {
+      reorderIndex($scope.channel.slides, $arrow_position, $arrow_position - 1);
+    };
 });
