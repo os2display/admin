@@ -31,7 +31,7 @@ security:
       anonymous: true
 
     main:
-      pattern: .*
+      pattern: ^/
       context: user
       form_login:
         provider: fos_userbundle
@@ -54,10 +54,11 @@ security:
     - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     # Secured part of the site
-    # This config requires being logged for the whole site and having the admin role for the admin part.
-    # Change these rules to adapt them to your needs
     - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
-    - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/, role: ROLE_USER }
+
+    #Testing
+    - { path: ^/twig/, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
   acl:
     connection: default

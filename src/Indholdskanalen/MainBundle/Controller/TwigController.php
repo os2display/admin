@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/")
+ * @Route("/twig")
  */
-class MainController extends Controller {
+class TwigController extends Controller {
   /**
-   * @Route("/")
+   * @Route("/{name}")
+   * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function indexAction() {
-    return $this->render('IndholdskanalenMainBundle:Main:index.html.twig');
+  public function indexAction($name) {
+    return $this->render('IndholdskanalenMainBundle:Main:' . $name);
   }
 }

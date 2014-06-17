@@ -16,6 +16,7 @@
   height: 2.1em;
   line-height: 2.1em;
   width: 2.1em;
+  z-index: 1;
 
   @include border-radius(100%);
 }
@@ -48,7 +49,7 @@
     border-bottom: 1px solid $gray-lighter;
     display: inline-block;
     font-weight: bold;
-    margin-bottom: 1em;
+    margin: 0 36px 18px 36px;
     padding-bottom: 1em;
     text-align: center;
   }
@@ -57,7 +58,7 @@
   &--header-description {
     color: #646464;
     font-weight: lighter;
-    margin-bottom: 4em;
+    margin: 0 36px 72px 36px;
     text-align: center;
   }
 
@@ -79,15 +80,20 @@
   /* Create channel - set name (Page 1)
    ========================================================================== */
   &--content--channel-one {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-
     @extend %grid__item;
     @extend %grid-markup-fix;
     @extend %palm--one-whole;
     @extend %lap--one-whole;
     @extend %desk--one-half;
+
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
   }
 
 
@@ -132,6 +138,11 @@
     @extend %desk--one-half;
 
     margin-bottom: 2em;
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
   }
 
 
@@ -141,6 +152,12 @@
     @extend %palm--one-whole;
     @extend %lap--one-half;
     @extend %desk--one-half;
+
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
   }
 
 
@@ -155,8 +172,6 @@
   /* Create channel - slide selection (Page 3)
    ========================================================================== */
   &--content--channel-three {
-    @extend %grid;
-
     margin: 0 auto;
     text-align: center;
     width: 100%;
@@ -164,15 +179,9 @@
 
 
   &--slide {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-third;
-    @extend %desk--one-quarter;
-    @extend %bigscreen--one-sixth;
-
-    margin-bottom: 2em;
     position: relative;
+
+    @include preview-list-display(horizontal);
   }
 
 
@@ -208,15 +217,9 @@
 
 
   &--slide-order-element {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-third;
-    @extend %desk--one-quarter;
-    @extend %bigscreen--one-sixth;
-
-    margin-bottom: 2em;
     position: relative;
+
+    @include preview-list-display(horizontal);
 
     // We nest to hide the arrow tag of the last element.
     &:first-child {
@@ -241,7 +244,6 @@
   &--slide-order-link {
     display: inline-block;
     position: relative;
-    width: 95%;
 
     @include strip-link-styles(#646464);
   }
@@ -270,32 +272,41 @@
   &--slide-order-arrow-left,
   &--slide-order-arrow-right {
     @extend %create-channel--order-circle;
-
+    border: 1px solid $gray;
     cursor: pointer;
-    //display: none;
     font-size: 1em;
     position: absolute;
     right: .5em;
-    top: auto;
     z-index: 1;
 
-    @include translateY(-50%);
+
     @include transform(rotate(90deg));
 
-    @include breakpoint($breakpoint-lap) {
-      bottom: .5em;
-      top: 43%;
+    @include breakpoint(663px) {
+      top: 35%;
 
-      @include transform(rotate(0));
+      @include translateY(-50%);
+      @include transform(rotate(0deg));
     }
   }
 
 
   &--slide-order-arrow-left {
     left: .5em;
+    top: .5em;
 
-    @include breakpoint($breakpoint-lap) {
-      top: 43%;
+    @include breakpoint(663px) {
+      top: 35%;
+    }
+  }
+
+
+  &--slide-order-arrow-right {
+    top: 8em;
+    right: .5em;
+
+    @include breakpoint(663px) {
+      top: 35%;
     }
   }
 
