@@ -36,7 +36,7 @@
     border-bottom: 1px solid $gray-lighter;
     display: inline-block;
     font-weight: bold;
-    margin-bottom: 1em;
+    margin: 0 36px 18px 36px;
     padding-bottom: 1em;
     text-align: center;
   }
@@ -45,7 +45,7 @@
   &--header-description {
     color: #646464;
     font-weight: lighter;
-    margin-bottom: 4em;
+    margin: 0 36px 72px 36px;
     text-align: center;
   }
 
@@ -67,16 +67,20 @@
   /* Create slide - set name (Page 1)
    ========================================================================== */
   &--content--slide-one {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-
-
     @extend %grid__item;
     @extend %grid-markup-fix;
     @extend %palm--one-whole;
     @extend %lap--one-whole;
     @extend %desk--one-half;
+
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
   }
 
 
@@ -121,6 +125,11 @@
     @extend %desk--one-half;
 
     margin-bottom: 2em;
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
   }
 
 
@@ -130,6 +139,12 @@
     @extend %palm--one-whole;
     @extend %lap--one-half;
     @extend %desk--one-half;
+
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
   }
 
 

@@ -25,12 +25,15 @@
 }
 
 .layout-wrapper {
-  padding: 0 2em;
+  @include breakpoint($breakpoint-lap) {
+    padding: 0 2em;
+  }
 }
 
 .layout-inner {
+  margin: 0 $gutter / 2;
 
   @include breakpoint($breakpoint-lap) {
-
+    margin-left: -$gutter;
   }
 }
