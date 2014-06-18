@@ -151,11 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-<<<<<<< Updated upstream
-.header--sub, .create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-channel--content--channel-two, .create-channel--content--channel-four {
-=======
-.header--main, .header--secondary-menus-inner, .header--sub, .create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four {
->>>>>>> Stashed changes
+.header--sub, .create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -174,11 +170,7 @@
  * 5. Required to combine fluid widths and fixed gutters.
  */
 /* line 239, ../sass/base/_grid.scss */
-<<<<<<< Updated upstream
-.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
-=======
-.header--logo, .header--main-menu, .header--secondary-menus, .header--user-menu, .header--nav-menu, .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
->>>>>>> Stashed changes
+.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
   display: inline-block;
   /* [1] */
   padding-left: 36px;
@@ -215,11 +207,7 @@
   text-align: center;
 }
 /* line 303, ../sass/base/_grid.scss */
-<<<<<<< Updated upstream
-.header--sub > .header--sub-menu, .header--sub > .create-slide--content--slide-one, .header--sub > .create-slide--screen-landscape, .header--sub > .create-slide--screen-portrait, .header--sub > .create-slide--template, .header--sub > .create-channel--content--channel-one, .header--sub > .create-channel--screen-landscape, .header--sub > .create-channel--screen-portrait {
-=======
-.header--sub > .header--logo, .header--sub > .header--main-menu, .header--sub > .header--secondary-menus, .header--sub > .header--user-menu, .header--sub > .header--nav-menu, .header--sub > .header--sub-menu, .header--sub > .create-slide--content--slide-one, .header--sub > .create-slide--screen-landscape, .header--sub > .create-slide--screen-portrait, .header--sub > .create-slide--template, .header--sub > .create-screen--content--screen-one, .header--sub > .create-screen--screen-landscape, .header--sub > .create-screen--screen-portrait, .header--sub > .create-channel--content--channel-one, .header--sub > .create-channel--screen-landscape, .header--sub > .create-channel--screen-portrait {
->>>>>>> Stashed changes
+.header--sub > .header--sub-menu, .header--sub > .create-slide--content--slide-one, .header--sub > .create-slide--screen-landscape, .header--sub > .create-slide--screen-portrait, .header--sub > .create-slide--template, .header--sub > .create-screen--content--screen-one, .header--sub > .create-screen--screen-landscape, .header--sub > .create-screen--screen-portrait, .header--sub > .create-channel--content--channel-one, .header--sub > .create-channel--screen-landscape, .header--sub > .create-channel--screen-portrait {
   text-align: left;
 }
 
@@ -277,11 +265,7 @@
    * Whole
    */
   /* line 367, ../sass/base/_grid.scss */
-<<<<<<< Updated upstream
-  .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
-=======
-  .header--logo, .header--main-menu, .header--secondary-menus, .header--user-menu, .header--nav-menu, .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
->>>>>>> Stashed changes
+  .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
     width: 100%;
   }
 
@@ -323,11 +307,7 @@
    * Halves
    */
   /* line 373, ../sass/base/_grid.scss */
-<<<<<<< Updated upstream
-  .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-channel--screen-landscape, .create-channel--screen-portrait {
-=======
-  .header--main-menu, .header--user-menu, .header--nav-menu, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--screen-landscape, .create-channel--screen-portrait {
->>>>>>> Stashed changes
+  .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--screen-landscape, .create-channel--screen-portrait {
     width: 50%;
   }
 
@@ -395,11 +375,7 @@
    * Halves
    */
   /* line 373, ../sass/base/_grid.scss */
-<<<<<<< Updated upstream
-  .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
-=======
-  .header--main-menu, .header--user-menu, .header--nav-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
->>>>>>> Stashed changes
+  .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
     width: 50%;
   }
 
@@ -495,11 +471,7 @@
 /* Layout
    ================================================================================================================== */
 /* line 8, ../sass/theme/_theme-vars.scss */
-<<<<<<< Updated upstream
-.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
-=======
-.header--logo, .header--main-menu, .header--secondary-menus, .header--user-menu, .header--nav-menu, .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
->>>>>>> Stashed changes
+.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
   margin-right: -4px;
 }
 
@@ -1876,13 +1848,13 @@ label {
    ========================================================================== */
 /* Styles
    ========================================================================== */
-/* line 15, ../sass/modules/_create_screen.scss */
+/* line 16, ../sass/modules/_create_screen.scss */
 .has-placeholder[placeholder]:empty:before {
   content: attr(placeholder);
   color: #ccc;
 }
 
-/* line 21, ../sass/modules/_create_screen.scss */
+/* line 22, ../sass/modules/_create_screen.scss */
 .create-screen {
   /* Global settings
    ========================================================================== */
@@ -1891,7 +1863,7 @@ label {
   /* Create screen - select screen (Page 2)
    ========================================================================== */
 }
-/* line 25, ../sass/modules/_create_screen.scss */
+/* line 26, ../sass/modules/_create_screen.scss */
 .create-screen--section {
   background-size: cover;
   color: #535353;
@@ -1902,7 +1874,7 @@ label {
   -webkit-background-size: 100% auto;
   background-size: 100% auto;
 }
-/* line 35, ../sass/modules/_create_screen.scss */
+/* line 36, ../sass/modules/_create_screen.scss */
 .create-screen--header {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
@@ -1911,19 +1883,19 @@ label {
   padding-bottom: 1em;
   text-align: center;
 }
-/* line 45, ../sass/modules/_create_screen.scss */
+/* line 46, ../sass/modules/_create_screen.scss */
 .create-screen--header-description {
   color: #646464;
   font-weight: lighter;
   margin: 0 36px 72px 36px;
   text-align: center;
 }
-/* line 59, ../sass/modules/_create_screen.scss */
+/* line 60, ../sass/modules/_create_screen.scss */
 .create-screen--button {
   display: block;
   margin: 0 auto;
 }
-/* line 69, ../sass/modules/_create_screen.scss */
+/* line 70, ../sass/modules/_create_screen.scss */
 .create-screen--content--screen-one {
   display: block;
   margin: 0 auto;
@@ -1931,19 +1903,19 @@ label {
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 69, ../sass/modules/_create_screen.scss */
+  /* line 70, ../sass/modules/_create_screen.scss */
   .create-screen--content--screen-one {
     padding-left: 36px;
   }
 }
-/* line 87, ../sass/modules/_create_screen.scss */
+/* line 88, ../sass/modules/_create_screen.scss */
 .create-screen--text[type="text"] {
   background-color: #fbfbfb;
   height: 4.5em;
   margin-bottom: 2em;
   padding: 1.5em;
 }
-/* line 93, ../sass/modules/_create_screen.scss */
+/* line 94, ../sass/modules/_create_screen.scss */
 .create-screen--text[type="text"].is-valid {
   background: url("../images/icons/check-circle-icon.png") #fbfbfb;
   background-size: 2em 2em;
@@ -1951,55 +1923,55 @@ label {
   background-position: right 1.25em top 1.25em;
   border: 0;
 }
-/* line 105, ../sass/modules/_create_screen.scss */
+/* line 106, ../sass/modules/_create_screen.scss */
 .create-screen--content--screen-two {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
-/* line 114, ../sass/modules/_create_screen.scss */
+/* line 115, ../sass/modules/_create_screen.scss */
 .create-screen--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 120, ../sass/modules/_create_screen.scss */
+/* line 121, ../sass/modules/_create_screen.scss */
 .create-screen--screen-landscape {
   margin-bottom: 2em;
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 120, ../sass/modules/_create_screen.scss */
+  /* line 121, ../sass/modules/_create_screen.scss */
   .create-screen--screen-landscape {
     padding-left: 36px;
   }
 }
-/* line 136, ../sass/modules/_create_screen.scss */
+/* line 137, ../sass/modules/_create_screen.scss */
 .create-screen--screen-portrait {
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 136, ../sass/modules/_create_screen.scss */
+  /* line 137, ../sass/modules/_create_screen.scss */
   .create-screen--screen-portrait {
     padding-left: 36px;
   }
 }
-/* line 151, ../sass/modules/_create_screen.scss */
+/* line 152, ../sass/modules/_create_screen.scss */
 .create-screen--screen-link {
   position: relative;
   display: block;
   cursor: pointer;
 }
-/* line 75, ../sass/mixins/_mixins.scss */
+/* line 77, ../sass/mixins/_mixins.scss */
 .create-screen--screen-link.is-selected {
   cursor: default;
 }
-/* line 78, ../sass/mixins/_mixins.scss */
+/* line 80, ../sass/mixins/_mixins.scss */
 .create-screen--screen-link.is-selected .create-screen--link-check {
   left: 0;
   right: 0;
   visibility: visible;
 }
-/* line 84, ../sass/mixins/_mixins.scss */
+/* line 86, ../sass/mixins/_mixins.scss */
 .create-screen--screen-link.is-selected .create-screen--overlay {
   display: block;
   z-index: 1;
