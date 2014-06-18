@@ -1,9 +1,8 @@
-<div class="create-slide--config" data-ng-style="{'background-color': slide.options.bgcolor, 'width': style.width, 'height': style.height, 'font-size': style.fontsize, 'background-image': 'url(' + slide.options.image + ')'}">
-  <div class="create-slide--config-text-wrapper">
-    <div class="create-slide--config-text" data-ng-style="{'background-color': slide.options.textbgcolor, 'color': slide.options.textcolor}">
-      <div class="create-slide--edit-box-settings" ng-click="editor.toggleTextEditor()"></div>
-      <h1 class="create-slide--config-header"><div class="has-placeholder ng-pristine ng-valid" placeholder="Enter a title" contenteditable="true" data-ng-model="slide.options.headline" spellcheck="false"></div></h1>
-      <div class="create-slide--config-description has-placeholder ng-pristine ng-valid" placeholder="This is the content of the slide, edit this text. The bounding box will expand accoding to how much text you add. Note that the maximum height of this textbox is 50% of the total height of the slide." contenteditable="true" data-ng-model="slide.options.text" spellcheck="false"></div>
+<div class="text-bottom" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': theStyle.width, 'height': theStyle.height, 'font-size': theStyle.fontsize, 'background-image': 'url(' + ikSlide.options.image + ')'}">
+  <div class="text-bottom--text-wrapper">
+    <div class="text-bottom--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}">
+      <h1 class="text-bottom--header"><[ikSlide.options.headline]></h1>
+      <div class="text-bottom--description"><[ikSlide.options.text]></div>
     </div>
   </div>
 </div>
