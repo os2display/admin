@@ -2,42 +2,8 @@
   <div class="create-slide--content--slide-four">
     <h1 class="create-slide--header">Opret slide (<[step]>/<[steps]>)</h1>
     <p class="create-slide--header-description">Tilføj indhold - husk at se dit indhold på alle dine skærme.</p>
-    <div class="create-slide--config" data-ng-style="{'background-color': slide.options.bgcolor, 'width': style.width, 'height': style.height, 'font-size': style.fontsize, 'background-image': 'url(' + slide.options.image + ')'}">
-      <div class="create-slide--config-text-wrapper">
-        <div class="create-slide--config-text" data-ng-style="{'background-color': slide.options.textbgcolor, 'color': slide.options.textcolor}">
-          <div class="create-slide--edit-box-settings" ng-click="editor.toggleTextEditor()"></div>
-          <h1 class="create-slide--config-header"><div class="has-placeholder" placeholder="Enter a title" contenteditable="true" data-ng-model="slide.options.headline" spellcheck="false"></div></h1>
-          <div class="create-slide--config-description has-placeholder" placeholder="This is the content of the slide, edit this text. The bounding box will expand accoding to how much text you add. Note that the maximum height of this textbox is 50% of the total height of the slide."  contenteditable="true" data-ng-model="slide.options.text" spellcheck="false"></div>
-        </div>
-      </div>
-      <div class="create-slide--edit-image-settings" ng-click="editor.toggleBackgroundEditor()"></div>
-    </div>
+    <ik-slide-editable ik-id="<[slide.id]>" ik-width="960"></ik-slide-editable>
     <input type="submit" class="create-slide--button" value="Gem og opret" data-ng-click="submitStep()">
   </div>
 </section>
 
-<div class="slide-edit-overlay slide-edit-text-overlay" ng-show="editor.showTextEditor">
-  <form class="ik-form">
-    <label>Tekstfarve</label>
-    <input class="ik-form-element" type="text" placeholder="e.g. #fff" data-ng-model="slide.options.textcolor">
-    <label>Baggrundsfarve</label>
-    <input class="ik-form-element" type="text" placeholder="e.g. #000" data-ng-model="slide.options.textbgcolor">
-    <div class="button-wrapper"><a class="button" ng-click="editor.toggleTextEditor()">Luk</a></div>
-  </form>
-</div>
-
-<div class="slide-edit-overlay slide-edit-background-overlay" ng-show="editor.showBackgroundEditor">
-  <form class="ik-form">
-    <label>Vælg billede</label>
-    <div class="slider-container">
-      <select class="preview-size-dropdown" ng-model="slide.options.image">
-        <option value="">-- None --</option>
-        <option value="<[img.url]>" ng-repeat="img in backgroundImages"><[img.title]></option>
-      </select>
-    </div>
-    <p>-- eller --</p>
-    <label>Baggrundsfarve</label>
-    <input class="ik-form-element form-slide-background-background-color" type="text" placeholder="e.g. #000" ng-model="slide.options.bgcolor">
-    <div class="button-wrapper"><a class="button" ng-click="editor.toggleBackgroundEditor()">Luk</a></div>
-  </form>
-</div>
