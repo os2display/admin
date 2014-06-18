@@ -83,7 +83,12 @@
         </div>
     </header>
 
-    {% block content %}{% endblock %}
+    {% block content %}
+      <div class="layout-wrapper view-container">
+        <div data-ng-view="" class="view-frame">
+        </div>
+      </div>
+    {% endblock %}
 
 {% endblock %}
 
