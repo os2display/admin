@@ -1105,21 +1105,21 @@ label {
   position: relative;
 }
 
-/* line 13, ../sass/layout/_layout.scss */
+/* line 14, ../sass/layout/_layout.scss */
 .view-frame.ng-enter, .view-frame.ng-leave {
   position: absolute;
   left: 0;
   right: 0;
 }
 
-/* line 19, ../sass/layout/_layout.scss */
+/* line 21, ../sass/layout/_layout.scss */
 .ng-enter {
   -moz-animation: fade-in 0.5s;
   -webkit-animation: fade-in 0.5s;
   animation: fade-in 0.5s;
 }
 
-/* line 23, ../sass/layout/_layout.scss */
+/* line 26, ../sass/layout/_layout.scss */
 .ng-leave {
   -moz-animation: fade-out 0.5s;
   -webkit-animation: fade-out 0.5s;
@@ -1127,18 +1127,18 @@ label {
 }
 
 @media only screen and (min-width: 481px) {
-  /* line 27, ../sass/layout/_layout.scss */
+  /* line 31, ../sass/layout/_layout.scss */
   .layout-wrapper {
     padding: 0 2em;
   }
 }
 
-/* line 33, ../sass/layout/_layout.scss */
+/* line 37, ../sass/layout/_layout.scss */
 .layout-inner {
   margin: 0 18px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 33, ../sass/layout/_layout.scss */
+  /* line 37, ../sass/layout/_layout.scss */
   .layout-inner {
     margin-left: -36px;
   }
@@ -1235,22 +1235,22 @@ label {
   display: block;
   padding: 1em 0;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .header--main-menu-item-link:link {
   color: inherit;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .header--main-menu-item-link:visited {
   color: inherit;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .header--main-menu-item-link:hover {
   color: inherit;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .header--main-menu-item-link:focus {
   color: inherit;
   text-decoration: none;
@@ -1355,22 +1355,22 @@ label {
   margin-right: -4px;
   width: 50%;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .header--user-menu-dropdown-link:link {
   color: inherit;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .header--user-menu-dropdown-link:visited {
   color: inherit;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .header--user-menu-dropdown-link:hover {
   color: inherit;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .header--user-menu-dropdown-link:focus {
   color: inherit;
   text-decoration: none;
@@ -1405,22 +1405,22 @@ label {
   vertical-align: top;
   width: 50%;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .header--nav-menu-dropdown-link:link {
   color: inherit;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .header--nav-menu-dropdown-link:visited {
   color: inherit;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .header--nav-menu-dropdown-link:hover {
   color: inherit;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .header--nav-menu-dropdown-link:focus {
   color: inherit;
   text-decoration: none;
@@ -1472,22 +1472,22 @@ label {
   height: 3em;
   line-height: 3em;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .header--sub-menu-item-link:link {
   color: inherit;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .header--sub-menu-item-link:visited {
   color: inherit;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .header--sub-menu-item-link:hover {
   color: inherit;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .header--sub-menu-item-link:focus {
   color: inherit;
   text-decoration: none;
@@ -1651,17 +1651,17 @@ label {
   display: block;
   cursor: pointer;
 }
-/* line 75, ../sass/mixins/_mixins.scss */
+/* line 77, ../sass/mixins/_mixins.scss */
 .create-slide--screen-link.is-selected {
   cursor: default;
 }
-/* line 78, ../sass/mixins/_mixins.scss */
+/* line 80, ../sass/mixins/_mixins.scss */
 .create-slide--screen-link.is-selected .create-slide--link-check {
   left: 0;
   right: 0;
   visibility: visible;
 }
-/* line 84, ../sass/mixins/_mixins.scss */
+/* line 86, ../sass/mixins/_mixins.scss */
 .create-slide--screen-link.is-selected .create-slide--overlay {
   display: block;
   z-index: 1;
@@ -1691,17 +1691,17 @@ label {
   position: relative;
   cursor: pointer;
 }
-/* line 75, ../sass/mixins/_mixins.scss */
+/* line 77, ../sass/mixins/_mixins.scss */
 .create-slide--template-link.is-selected {
   cursor: default;
 }
-/* line 78, ../sass/mixins/_mixins.scss */
+/* line 80, ../sass/mixins/_mixins.scss */
 .create-slide--template-link.is-selected .create-slide--link-check {
   left: 0;
   right: 0;
   visibility: visible;
 }
-/* line 84, ../sass/mixins/_mixins.scss */
+/* line 86, ../sass/mixins/_mixins.scss */
 .create-slide--template-link.is-selected .create-slide--overlay {
   display: block;
   z-index: 1;
@@ -1979,17 +1979,17 @@ label {
   display: block;
   cursor: pointer;
 }
-/* line 75, ../sass/mixins/_mixins.scss */
+/* line 77, ../sass/mixins/_mixins.scss */
 .create-channel--screen-link.is-selected {
   cursor: default;
 }
-/* line 78, ../sass/mixins/_mixins.scss */
+/* line 80, ../sass/mixins/_mixins.scss */
 .create-channel--screen-link.is-selected .create-channel--link-check {
   left: 0;
   right: 0;
   visibility: visible;
 }
-/* line 84, ../sass/mixins/_mixins.scss */
+/* line 86, ../sass/mixins/_mixins.scss */
 .create-channel--screen-link.is-selected .create-channel--overlay {
   display: block;
   z-index: 1;
@@ -2008,7 +2008,7 @@ label {
 .create-channel--slide {
   position: relative;
   display: inline-block;
-  margin: 1em;
+  margin: 0 36px 36px 0;
   width: 300px;
 }
 /* line 188, ../sass/modules/_create_channel.scss */
@@ -2021,17 +2021,17 @@ label {
   position: relative;
   cursor: pointer;
 }
-/* line 75, ../sass/mixins/_mixins.scss */
+/* line 77, ../sass/mixins/_mixins.scss */
 .create-channel--slide-link.is-selected {
   cursor: default;
 }
-/* line 78, ../sass/mixins/_mixins.scss */
+/* line 80, ../sass/mixins/_mixins.scss */
 .create-channel--slide-link.is-selected .create-channel--link-check {
   left: 0;
   right: 0;
   visibility: visible;
 }
-/* line 84, ../sass/mixins/_mixins.scss */
+/* line 86, ../sass/mixins/_mixins.scss */
 .create-channel--slide-link.is-selected .create-channel--overlay {
   display: block;
   z-index: 1;
@@ -2055,7 +2055,7 @@ label {
 .create-channel--slide-order-element {
   position: relative;
   display: inline-block;
-  margin: 1em;
+  margin: 0 36px 36px 0;
   width: 300px;
 }
 /* line 226, ../sass/modules/_create_channel.scss */
@@ -2075,22 +2075,22 @@ label {
   display: inline-block;
   position: relative;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-link:link {
   color: #646464;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-link:visited {
   color: #646464;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-link:hover {
   color: #646464;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-link:focus {
   color: #646464;
   text-decoration: none;
@@ -2100,22 +2100,22 @@ label {
   display: inline-block;
   font-size: .9em;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-label:link {
   color: #646464;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-label:visited {
   color: #646464;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-label:hover {
   color: #646464;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .create-channel--slide-order-label:focus {
   color: #646464;
   text-decoration: none;
@@ -2245,22 +2245,22 @@ label {
 .nav--item, .nav--sub-item {
   display: block;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .nav--item:link, .nav--sub-item:link {
   color: inherit;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .nav--item:visited, .nav--sub-item:visited {
   color: inherit;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .nav--item:hover, .nav--sub-item:hover {
   color: inherit;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .nav--item:focus, .nav--sub-item:focus {
   color: inherit;
   text-decoration: none;
@@ -2305,31 +2305,191 @@ label {
   max-width: 4em;
   cursor: pointer;
 }
-/* line 47, ../sass/mixins/_mixins.scss */
+/* line 49, ../sass/mixins/_mixins.scss */
 .nav-toggle-icon:link {
   color: inherit;
   text-decoration: none;
 }
-/* line 52, ../sass/mixins/_mixins.scss */
+/* line 54, ../sass/mixins/_mixins.scss */
 .nav-toggle-icon:visited {
   color: inherit;
   text-decoration: none;
 }
-/* line 57, ../sass/mixins/_mixins.scss */
+/* line 59, ../sass/mixins/_mixins.scss */
 .nav-toggle-icon:hover {
   color: inherit;
   text-decoration: none;
 }
-/* line 62, ../sass/mixins/_mixins.scss */
+/* line 64, ../sass/mixins/_mixins.scss */
 .nav-toggle-icon:focus {
   color: inherit;
   text-decoration: none;
 }
 
-/* line 3, ../sass/modules/_overview.scss */
-.slides--overview-slide {
+/**
+ *
+ * Overview
+ *
+ */
+/* Silent classes related to this document
+   ========================================================================== */
+/* Styles
+   ========================================================================== */
+/* line 17, ../sass/modules/_overview.scss */
+.overview {
+  /* Global settings
+   ========================================================================== */
+}
+@media only screen and (min-width: 481px) {
+  /* line 22, ../sass/modules/_overview.scss */
+  .overview--section {
+    margin-left: 36px;
+  }
+}
+/* line 28, ../sass/modules/_overview.scss */
+.overview--description {
+  color: #646464;
+  font-weight: lighter;
+  margin: 0 36px 72px 36px;
+  text-align: center;
+}
+/* line 36, ../sass/modules/_overview.scss */
+.overview--slides {
+  text-align: center;
+}
+/* line 41, ../sass/modules/_overview.scss */
+.overview--slide {
   display: inline-block;
-  margin-left: 20px;
+  margin: 0 0 36px 0;
+  position: relative;
+}
+/* line 49, ../sass/mixins/_mixins.scss */
+.overview--slide:link {
+  color: #535353;
+  text-decoration: none;
+}
+/* line 54, ../sass/mixins/_mixins.scss */
+.overview--slide:visited {
+  color: #535353;
+  text-decoration: none;
+}
+/* line 59, ../sass/mixins/_mixins.scss */
+.overview--slide:hover {
+  color: #535353;
+  text-decoration: none;
+}
+/* line 64, ../sass/mixins/_mixins.scss */
+.overview--slide:focus {
+  color: #535353;
+  text-decoration: none;
+}
+@media only screen and (min-width: 481px) {
+  /* line 41, ../sass/modules/_overview.scss */
+  .overview--slide {
+    display: inline-block;
+    margin: 0 36px 36px 0;
+    width: 300px;
+  }
+}
+/* line 54, ../sass/modules/_overview.scss */
+.overview--slide-label {
+  display: inline-block;
+  font-size: .9em;
+}
+/* line 60, ../sass/modules/_overview.scss */
+.overview--filter {
+  border-bottom: 0;
+  max-width: 1024px;
+  margin: 0 auto;
+  position: relative;
+}
+/* line 68, ../sass/modules/_overview.scss */
+.overview--filter-direction {
+  margin-bottom: 36px;
+  position: relative;
+  width: 100%;
+}
+@media only screen and (min-width: 481px) {
+  /* line 68, ../sass/modules/_overview.scss */
+  .overview--filter-direction {
+    margin: 0 36px 36px 36px;
+  }
+}
+/* line 79, ../sass/modules/_overview.scss */
+.overview--form {
+  margin: 0 0 36px 0;
+  width: 100%;
+}
+@media only screen and (min-width: 1024px) {
+  /* line 79, ../sass/modules/_overview.scss */
+  .overview--form {
+    max-width: 1024px;
+    margin: 0 auto 36px;
+  }
+}
+/* line 90, ../sass/modules/_overview.scss */
+.overview--sorting {
+  margin: 0 0 36px 0;
+  width: 100%;
+}
+@media only screen and (min-width: 1024px) {
+  /* line 90, ../sass/modules/_overview.scss */
+  .overview--sorting {
+    max-width: 1024px;
+    margin: 0 auto 36px;
+  }
+}
+/* line 101, ../sass/modules/_overview.scss */
+.overview--sort-label {
+  font-weight: bold;
+}
+/* line 105, ../sass/modules/_overview.scss */
+.overview--sort-links {
+  text-align: center;
+}
+/* line 109, ../sass/modules/_overview.scss */
+.overview--newest, .overview--oldest, .overview--alphabetical {
+  background: #fbfbfb;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  border-right: 0;
+  display: inline-block;
+  margin-left: -4px;
+  padding: 0.5em 0;
+  text-align: center;
+  width: 33%;
+}
+/* line 122, ../sass/modules/_overview.scss */
+.overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
+  border-right: 1px solid #ddd;
+}
+/* line 126, ../sass/modules/_overview.scss */
+.overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
+  border-radius: 0.5em 0 0 0.5em;
+}
+/* line 130, ../sass/modules/_overview.scss */
+.overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
+  border-radius: 0 0.5em 0.5em 0;
+}
+/* line 49, ../sass/mixins/_mixins.scss */
+.overview--newest:link, .overview--oldest:link, .overview--alphabetical:link {
+  color: #646464;
+  text-decoration: none;
+}
+/* line 54, ../sass/mixins/_mixins.scss */
+.overview--newest:visited, .overview--oldest:visited, .overview--alphabetical:visited {
+  color: #646464;
+  text-decoration: none;
+}
+/* line 59, ../sass/mixins/_mixins.scss */
+.overview--newest:hover, .overview--oldest:hover, .overview--alphabetical:hover {
+  color: #646464;
+  text-decoration: none;
+}
+/* line 64, ../sass/mixins/_mixins.scss */
+.overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
+  color: #646464;
+  text-decoration: none;
 }
 
 /* Animations
@@ -2663,4 +2823,42 @@ label {
   float: left;
   margin: 10px;
   text-align: center;
+}
+
+/* line 1, ../ik-templates/text-bottom/_text-bottom.scss */
+.text-bottom {
+  background-size: cover;
+}
+
+/* line 6, ../ik-templates/text-bottom/_text-bottom.scss */
+.text-bottom--text-wrapper {
+  position: absolute;
+  width: 100%;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+}
+
+/* line 14, ../ik-templates/text-bottom/_text-bottom.scss */
+.text-bottom--text-inner {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  margin: 1em auto;
+  padding: 2em;
+  text-align: left;
+  position: relative;
+  width: 80%;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+}
+
+/* line 27, ../ik-templates/text-bottom/_text-bottom.scss */
+.text-bottom--header {
+  font-size: 90%;
+}
+
+/* line 32, ../ik-templates/text-bottom/_text-bottom.scss */
+.text-bottom--description {
+  font-size: 70%;
 }

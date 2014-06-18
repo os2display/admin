@@ -1,8 +1,136 @@
-.slides {
-  &--overview {
-    &-slide {
-      display: inline-block;
-      margin-left: 20px
+/**
+ *
+ * Overview
+ *
+ */
+
+
+/* Silent classes related to this document
+   ========================================================================== */
+
+
+
+
+/* Styles
+   ========================================================================== */
+
+.overview {
+
+  /* Global settings
+   ========================================================================== */
+
+  &--section {
+    @include breakpoint($breakpoint-lap) {
+      margin-left: $gutter;
     }
+  }
+
+  &--description {
+    color: #646464;
+    font-weight: lighter;
+    margin: 0 36px 72px 36px;
+    text-align: center;
+  }
+
+
+  &--slides {
+    text-align: center;
+  }
+
+
+  &--slide {
+    display: inline-block;
+    margin: 0 0 36px 0;
+    position: relative;
+
+    @include strip-link-styles(#535353);
+
+    @include breakpoint($breakpoint-lap) {
+      @include preview-list-display(horizontal);
+    }
+  }
+
+
+  &--slide-label {
+    display: inline-block;
+    font-size: .9em;
+  }
+
+
+  &--filter {
+    border-bottom: 0;
+    max-width: $breakpoint-desk;
+    margin: 0 auto;
+    position: relative;
+  }
+
+
+  &--filter-direction {
+    margin-bottom: 36px;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint($breakpoint-lap) {
+      margin: 0 36px 36px 36px;
+    }
+  }
+
+
+  &--form {
+    margin: 0 0 36px 0;
+    width: 100%;
+
+    @include breakpoint($breakpoint-desk) {
+      max-width: $breakpoint-desk;
+      margin: 0 auto 36px;
+    }
+  }
+
+
+  &--sorting {
+    margin: 0 0 36px 0;
+    width: 100%;
+
+    @include breakpoint($breakpoint-desk) {
+      max-width: $breakpoint-desk;
+      margin: 0 auto 36px;
+    }
+  }
+
+
+  &--sort-label {
+    font-weight: bold;
+  }
+
+  &--sort-links {
+    text-align: center;
+  }
+
+  &--newest,
+  &--oldest,
+  &--alphabetical {
+    background: #fbfbfb;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    border-right: 0;
+    display: inline-block;
+    margin-left: -4px;
+    padding: 0.5em 0;
+    text-align: center;
+    width: 33%;
+
+    &:last-child {
+      border-right: 1px solid #ddd;
+    }
+
+    &:first-child {
+      border-radius: (.5em 0 0 .5em);
+    }
+
+    &:last-child {
+      border-radius: (0 .5em .5em 0);
+    }
+
+    @include strip-link-styles(#646464);
   }
 }
