@@ -10,19 +10,23 @@
   position: relative;
 }
 
+
 .view-frame.ng-enter, .view-frame.ng-leave {
   position: absolute;
   left: 0;
   right: 0;
 }
 
+
 .ng-enter {
   @include animation(fade-in 0.5s);
 }
 
+
 .ng-leave {
   @include animation(fade-out 0.5s);
 }
+
 
 .layout-wrapper {
   @include breakpoint($breakpoint-lap) {

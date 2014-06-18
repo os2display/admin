@@ -1,9 +1,9 @@
-.text-bottom {
+.text-right {
   background-size: cover;
 }
 
 
-.text-bottom--text-wrapper {
+.text-right--text-wrapper {
   position: absolute;
   width: 100%;
 
@@ -11,7 +11,7 @@
 }
 
 
-.text-bottom--text-inner {
+.text-right--text-inner {
   background: rgba(0,0,0,0.7);
   color: #fff;
   margin: 1em auto;
@@ -24,11 +24,11 @@
 }
 
 
-.text-bottom--header {
+.text-right--header {
   font-size: 90%;
 }
 
 
-.text-bottom--description {
+.text-right--description {
   font-size: 70%;
 }
