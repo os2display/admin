@@ -6,9 +6,10 @@ ikApp.factory('slideFactory', function() {
   var slides = [
     {
       id: 1,
-      title: 'Lorem ipsum',
+      title: 'Et slide her',
       orientation: '',
       template: '',
+      created: '1403030600',
       options: {
         'fontsize': '32',
         'bgcolor': '#ccc',
@@ -28,6 +29,7 @@ ikApp.factory('slideFactory', function() {
       title: 'Billede af en vej',
       orientation: '',
       template: '',
+      created: '1405044600',
       options: {
         'fontsize': '32',
         'bgcolor': '#ccc',
@@ -44,9 +46,10 @@ ikApp.factory('slideFactory', function() {
     },
     {
       id: 3,
-      title: 'Lorem ipsum',
+      title: 'Halli hallo',
       orientation: '',
       template: '',
+      created: '1401049600',
       options: {
         'fontsize': '32',
         'bgcolor': '#ccc',
@@ -54,7 +57,7 @@ ikApp.factory('slideFactory', function() {
         'textbgcolor': 'rgba(0, 0, 0, 0.7)',
         'image': '',
         'headline': '',
-        'text': '',
+        'text': 'dflksd fjdsfjsdjipf sdflksdfjd dflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdf dflksdfjd sfjsdjipf sdflksdfjdsfjsdjipf sdfsfjsdjipf sdf',
         idealdimensions: {
           width: '1920',
           height: '1080'
@@ -66,6 +69,7 @@ ikApp.factory('slideFactory', function() {
       title: 'En tur i byen',
       orientation: '',
       template: '',
+      created: '1405000600',
       options: {
         'fontsize': '32',
         'bgcolor': '#ccc',
@@ -82,16 +86,17 @@ ikApp.factory('slideFactory', function() {
     },
     {
       id: 5,
-      title: 'Lorem ipsum',
+      title: 'En tur på stranden',
       orientation: '',
       template: '',
+      created: '1402011600',
       options: {
         'fontsize': '32',
         'bgcolor': '#ccc',
         'textcolor': '#fff',
         'textbgcolor': 'rgba(0, 0, 0, 0.7)',
         'image': '',
-        'headline': '',
+        'headline': 'Another more text',
         'text': '',
         idealdimensions: {
           width: '1920',
