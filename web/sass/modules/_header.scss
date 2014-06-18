@@ -31,32 +31,47 @@
   z-index: 1;
 
   &--main {
-    padding: 2em 1em 1em;
+    padding: 1em 0 0;
     overflow: hidden;
 
-    @extend %grid;
+    @include breakpoint(1170px) {
+      padding: 0 1em;
+    }
   }
 
 
   //-------- Logo section --------//
 
   &--logo {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-quarter;
-    @extend %desk--one-quarter;
+    width: 50%;
+    margin-bottom: 2em;
+    margin-left: 1em;
+
+    @include breakpoint(1170px) {
+      display: inline-block;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: -4px;
+      position: relative;
+      top: 0;
+      width: 25%;
+    }
   }
 
 
   //-------- Main menu section --------//
 
   &--main-menu {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
+    width: 100%;
+
+    @include breakpoint(1170px) {
+      display: inline-block;
+      margin-right: -4px;
+      position: relative;
+      text-align: center;
+      top: 0;
+      width: 50%;
+    }
   }
 
 
@@ -67,13 +82,22 @@
 
   &--main-menu-item {
     display: inline-block;
+    margin-bottom: -2px;
+    margin-right: -4px;
+    text-align: center;
+    width: 25%;
   }
 
 
   &--main-menu-item-link {
     @include strip-link-styles;
 
-    padding: 3em 1em 4em;
+    display: block;
+    padding: 1em 0;
+
+    @include breakpoint(1170px) {
+      padding: 2em 1em 2em;
+    }
 
     &:hover {
       background: #E4E4D5;
@@ -82,7 +106,16 @@
 
 
   &--main-menu-item-text {
-    display: none;
+    width: 100%;
+
+
+    @include breakpoint(45em) {
+      display: inline-block;
+    }
+
+    @include breakpoint(1170px) {
+      display: inline-block;
+    }
 
     @include breakpoint(1200px) {
       display: inline-block;
@@ -122,37 +155,39 @@
   //-------- Secondary menus section  (User menu and navigation menu)--------//
 
   &--secondary-menus {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-quarter;
-    @extend %desk--one-quarter;
+    margin-right: 1em;
+    position: absolute;
+    right: 0;
+    top: 1em;
+    width: 25%;
+
+    @include breakpoint(1170px) {
+      display: inline-block;
+      margin-right: -4px;
+      position: relative;
+      text-align: right;
+      top: 0;
+    }
   }
-
-
-  &--secondary-menus-inner {
-    @extend %grid;
-  }
-
 
 
   //-------- User menu section --------//
 
   &--user-menu {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
+    display: inline-block;
+    margin-right: -4px;
+    width: 50%;
   }
 
 
   &--user-menu-dropdown-link {
     @include strip-link-styles;
 
-    &:after {
-      content:'\00a0\25be';
-      vertical-align: top;
+    @include breakpoint(1170px) {
+      &:after {
+        content:'\00a0\25be';
+        vertical-align: top;
+      }
     }
   }
 
@@ -176,11 +211,10 @@
   //-------- Navigation menu section --------//
 
   &--nav-menu {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
+    display: inline-block;
+    margin-right: -4px;
+    vertical-align: top;
+    width: 50%;
   }
 
 
@@ -207,7 +241,7 @@
   }
 
 
-  //-------- Header sub menu section (Sub links telated to the main menu) --------//
+  //-------- Header sub menu section (Sub links related to the main menu) --------//
 
   &--sub {
     background: #E4E4D5;
