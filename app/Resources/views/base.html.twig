@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html data-ng-app="ikApp">
+{# Put your html attributes here. #}
+<html {% block html %}{% endblock %}>
 <head>
-    <title>Indholdskanalen</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/styles.css">
+  {# Set the title. #}
+  <title>{% block title %}{% endblock %}</title>
+
+  {# Apply meta tags. #}
+  {% block meta %}{% endblock %}
+
+  {# Stylesheets goes here. #}
+  {% block stylesheets %}{% endblock %}
 </head>
-<body>
- {% block body %}{% endblock %}
+
+{# Add body attributes here. #}
+<body {% block body_attr %}{% endblock %}>
+ {# Body content goes here. #}
+ {% block body %}
+
+   {# The real content goes here. #}
+   {% block content %}{% endblock %}
+ {% endblock %}
+
+ {# Javascript and other goes here. #}
  {% block scripts %}{% endblock %}
 </body>
 </html>

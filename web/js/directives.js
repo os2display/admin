@@ -44,14 +44,10 @@ ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
       slideWidth: '=ikWidth'
     },
     controller: function($scope, imageFactory) {
-      /**
-       * Sets the images from the factory.
-       */
+      // Sets the images from the factory.
       $scope.backgroundImages = imageFactory.getImages();
 
-      /**
-       * Handles the state of the editor.
-       */
+      // Editor states and functions to toggle menues.
       $scope.editor = {
         showTextEditor: false,
         toggleTextEditor: function() {
@@ -64,15 +60,11 @@ ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
           $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
         }
       }
-
-      $('.js-ik-slide-editor-fontsize-input').on('keyup', function() {
-        $scope.theStyle.fontsize =  "" + parseFloat($scope.ikSlide.options.fontsize * parseFloat($scope.slideWidth / $scope.ikSlide.options.idealdimensions.width)) + "px";
-        $scope.$apply();
-      });
     },
     link: function(scope, iElement, iAttrs) {
       scope.ikSlide = slideFactory.getSlide(iAttrs.ikId);
 
+      // Setup initial style for preview.
       if (scope.ikSlide) {
         scope.theStyle = {
           width: "" + iAttrs.ikWidth + "px",
@@ -80,6 +72,17 @@ ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
           fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
         }
       }
+
+      // Add keyup event listener for fontsize, to make sure the preview updates font size.
+      iElement.find('.js-ik-slide-editor-fontsize-input').on('keyup', function() {
+        scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.slideWidth / scope.ikSlide.options.idealdimensions.width)) + "px";
+        scope.$apply();
+      });
+
+      // Cleanup.
+      iElement.on('$destroy', function() {
+        $(this).find('.js-ik-slide-editor-fontsize-input').off('keyup');
+      });
     }
   }
 }]);
