@@ -20,6 +20,17 @@ ikApp.directive('contenteditable', function() {
   };
 });
 
+ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
+    return {
+        templateUrl: 'partials/screen.html',
+        restrict: 'E',
+        scope: {},
+        link: function(scope, iElement, iAttrs) {
+            scope.ikScreen = screenFactory.getScreen(iAttrs.ikId);
+        }
+    }
+}]);
+
 ikApp.directive('ikSlide', ['slideFactory', function(slideFactory) {
   return {
     templateUrl: 'partials/slide.html',
