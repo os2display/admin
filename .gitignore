@@ -9,3 +9,6 @@
 composer.lock
 .sass-cache/
 config.codekit
+/node_modules/
+/web/bower_components/
+composer.phar
