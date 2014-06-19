@@ -13,6 +13,7 @@ This readme will outline how to run the tests. The project contains:
 * e2e: https://docs.angularjs.org/guide/e2e-testing
 * jasmine functions: https://gist.github.com/JamieMason/5926391
 * video: https://egghead.io/lessons/angularjs-getting-started-with-protractor
+* http://www.tuesdaydeveloper.com/2013/06/angularjs-testing-with-karma-and-jasmine/
 
 # Test setup
 
