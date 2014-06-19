@@ -8,7 +8,7 @@ ikApp.config(function($routeProvider) {$routeProvider
     templateUrl: 'partials/channels.html'
   })
   .when('/slides', {
-    controller: 'SlidesController',
+    controller: 'OverviewController',
     templateUrl: 'partials/slides.html'
   })
   .when('/screens', {

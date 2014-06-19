@@ -58,6 +58,11 @@
     font-size: .9em;
   }
 
+  &--slide-date {
+    color: $gray;
+    font-size: .9em;
+  }
+
 
   &--filter {
     border-bottom: 0;
@@ -67,7 +72,7 @@
   }
 
 
-  &--filter-direction {
+  &--filter-orientation {
     margin-bottom: 18px;
     position: relative;
     width: 100%;
@@ -132,6 +137,8 @@
     text-align: center;
     width: 33%;
 
+    @include strip-link-styles(#646464);
+
     &:last-child {
       border-right: 1px solid #ddd;
     }
@@ -144,7 +151,9 @@
       border-radius: (0 .5em .5em 0);
     }
 
-    @include strip-link-styles(#646464);
+    &.is-active {
+      background: $beige;
+    }
   }
 
   &--horisontal,
