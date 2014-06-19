@@ -20,8 +20,10 @@
    ========================================================================== */
 
   &--section {
+    margin: 0 $gutter 0;
+
     @include breakpoint($breakpoint-lap) {
-      margin-left: $gutter;
+      margin: 0;
     }
   }
 
@@ -66,12 +68,15 @@
 
 
   &--filter-direction {
-    margin-bottom: 36px;
+    margin-bottom: 18px;
     position: relative;
     width: 100%;
 
-    @include breakpoint($breakpoint-lap) {
-      margin: 0 36px 36px 36px;
+    @include breakpoint($breakpoint-desk) {
+      margin-bottom: 18px;
+      width: 25%;
+      display: inline-block;
+      float: right;
     }
   }
 
@@ -81,8 +86,10 @@
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
-      max-width: $breakpoint-desk;
-      margin: 0 auto 36px;
+      margin: 0 0 36px -4px;
+      width: 70%;
+      display: inline-block;
+      float: left;
     }
   }
 
@@ -98,14 +105,19 @@
   }
 
 
+  &--filter-label,
   &--sort-label {
     font-weight: bold;
+    overflow: hidden;
+    width: 100%;
   }
 
   &--sort-links {
     text-align: center;
   }
 
+  &--horisontal,
+  &--vertical,
   &--newest,
   &--oldest,
   &--alphabetical {
@@ -113,6 +125,7 @@
     border: 1px solid #ddd;
     box-sizing: border-box;
     border-right: 0;
+    cursor: pointer;
     display: inline-block;
     margin-left: -4px;
     padding: 0.5em 0;
@@ -132,5 +145,10 @@
     }
 
     @include strip-link-styles(#646464);
+  }
+
+  &--horisontal,
+  &--vertical {
+    width: 50%;
   }
 }

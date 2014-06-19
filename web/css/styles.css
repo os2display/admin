@@ -2482,24 +2482,28 @@ label {
   /* Global settings
    ========================================================================== */
 }
+/* line 22, ../sass/modules/_overview.scss */
+.overview--section {
+  margin: 0 36px 0;
+}
 @media only screen and (min-width: 481px) {
   /* line 22, ../sass/modules/_overview.scss */
   .overview--section {
-    margin-left: 36px;
+    margin: 0;
   }
 }
-/* line 28, ../sass/modules/_overview.scss */
+/* line 30, ../sass/modules/_overview.scss */
 .overview--description {
   color: #646464;
   font-weight: lighter;
   margin: 0 36px 72px 36px;
   text-align: center;
 }
-/* line 36, ../sass/modules/_overview.scss */
+/* line 38, ../sass/modules/_overview.scss */
 .overview--slides {
   text-align: center;
 }
-/* line 41, ../sass/modules/_overview.scss */
+/* line 43, ../sass/modules/_overview.scss */
 .overview--slide {
   display: inline-block;
   margin: 0 0 36px 0;
@@ -2526,112 +2530,124 @@ label {
   text-decoration: none;
 }
 @media only screen and (min-width: 481px) {
-  /* line 41, ../sass/modules/_overview.scss */
+  /* line 43, ../sass/modules/_overview.scss */
   .overview--slide {
     display: inline-block;
     margin: 0 36px 36px 0;
     width: 300px;
   }
 }
-/* line 54, ../sass/modules/_overview.scss */
+/* line 56, ../sass/modules/_overview.scss */
 .overview--slide-label {
   display: inline-block;
   font-size: .9em;
 }
-/* line 60, ../sass/modules/_overview.scss */
+/* line 62, ../sass/modules/_overview.scss */
 .overview--filter {
   border-bottom: 0;
   max-width: 1024px;
   margin: 0 auto;
   position: relative;
 }
-/* line 68, ../sass/modules/_overview.scss */
+/* line 70, ../sass/modules/_overview.scss */
 .overview--filter-direction {
-  margin-bottom: 36px;
+  margin-bottom: 18px;
   position: relative;
   width: 100%;
 }
-@media only screen and (min-width: 481px) {
-  /* line 68, ../sass/modules/_overview.scss */
+@media only screen and (min-width: 1024px) {
+  /* line 70, ../sass/modules/_overview.scss */
   .overview--filter-direction {
-    margin: 0 36px 36px 36px;
+    margin-bottom: 18px;
+    width: 25%;
+    display: inline-block;
+    float: right;
   }
 }
-/* line 79, ../sass/modules/_overview.scss */
+/* line 84, ../sass/modules/_overview.scss */
 .overview--form {
   margin: 0 0 36px 0;
   width: 100%;
 }
 @media only screen and (min-width: 1024px) {
-  /* line 79, ../sass/modules/_overview.scss */
+  /* line 84, ../sass/modules/_overview.scss */
   .overview--form {
-    max-width: 1024px;
-    margin: 0 auto 36px;
+    margin: 0 0 36px -4px;
+    width: 70%;
+    display: inline-block;
+    float: left;
   }
 }
-/* line 90, ../sass/modules/_overview.scss */
+/* line 97, ../sass/modules/_overview.scss */
 .overview--sorting {
   margin: 0 0 36px 0;
   width: 100%;
 }
 @media only screen and (min-width: 1024px) {
-  /* line 90, ../sass/modules/_overview.scss */
+  /* line 97, ../sass/modules/_overview.scss */
   .overview--sorting {
     max-width: 1024px;
     margin: 0 auto 36px;
   }
 }
-/* line 101, ../sass/modules/_overview.scss */
-.overview--sort-label {
+/* line 108, ../sass/modules/_overview.scss */
+.overview--filter-label, .overview--sort-label {
   font-weight: bold;
+  overflow: hidden;
+  width: 100%;
 }
-/* line 105, ../sass/modules/_overview.scss */
+/* line 115, ../sass/modules/_overview.scss */
 .overview--sort-links {
   text-align: center;
 }
-/* line 109, ../sass/modules/_overview.scss */
-.overview--newest, .overview--oldest, .overview--alphabetical {
+/* line 119, ../sass/modules/_overview.scss */
+.overview--horisontal, .overview--vertical, .overview--newest, .overview--oldest, .overview--alphabetical {
   background: #fbfbfb;
   border: 1px solid #ddd;
   box-sizing: border-box;
   border-right: 0;
+  cursor: pointer;
   display: inline-block;
   margin-left: -4px;
   padding: 0.5em 0;
   text-align: center;
   width: 33%;
 }
-/* line 122, ../sass/modules/_overview.scss */
-.overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
+/* line 135, ../sass/modules/_overview.scss */
+.overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
   border-right: 1px solid #ddd;
 }
-/* line 126, ../sass/modules/_overview.scss */
-.overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
+/* line 139, ../sass/modules/_overview.scss */
+.overview--horisontal:first-child, .overview--vertical:first-child, .overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
   border-radius: 0.5em 0 0 0.5em;
 }
-/* line 130, ../sass/modules/_overview.scss */
-.overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
+/* line 143, ../sass/modules/_overview.scss */
+.overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
   border-radius: 0 0.5em 0.5em 0;
 }
 /* line 49, ../sass/mixins/_mixins.scss */
-.overview--newest:link, .overview--oldest:link, .overview--alphabetical:link {
+.overview--horisontal:link, .overview--vertical:link, .overview--newest:link, .overview--oldest:link, .overview--alphabetical:link {
   color: #646464;
   text-decoration: none;
 }
 /* line 54, ../sass/mixins/_mixins.scss */
-.overview--newest:visited, .overview--oldest:visited, .overview--alphabetical:visited {
+.overview--horisontal:visited, .overview--vertical:visited, .overview--newest:visited, .overview--oldest:visited, .overview--alphabetical:visited {
   color: #646464;
   text-decoration: none;
 }
 /* line 59, ../sass/mixins/_mixins.scss */
-.overview--newest:hover, .overview--oldest:hover, .overview--alphabetical:hover {
+.overview--horisontal:hover, .overview--vertical:hover, .overview--newest:hover, .overview--oldest:hover, .overview--alphabetical:hover {
   color: #646464;
   text-decoration: none;
 }
 /* line 64, ../sass/mixins/_mixins.scss */
-.overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
+.overview--horisontal:focus, .overview--vertical:focus, .overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
   color: #646464;
   text-decoration: none;
+}
+/* line 150, ../sass/modules/_overview.scss */
+.overview--horisontal, .overview--vertical {
+  width: 50%;
 }
 
 /* Animations
