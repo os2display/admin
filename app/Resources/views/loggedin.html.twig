@@ -1,4 +1,4 @@
-{% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
+{%  extends '::base.html.twig' %}
 
 {% block body %}
     <header class="header" role="banner">
@@ -83,12 +83,7 @@
         </div>
     </header>
 
-    {% block content %}
-      <div class="layout-wrapper view-container">
-        <div data-ng-view="" class="view-frame">
-        </div>
-      </div>
-    {% endblock %}
+    {% block content %}{% endblock %}
 
 {% endblock %}
 
@@ -100,14 +95,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
 
     <!-- Angular scripts -->
-    <script src="/js/app.js"></script>
-    <script src="/js/directives.js"></script>
-    <script src="/js/routing.js"></script>
-    <script src="/js/services/factory.js"></script>
-    <script src="/js/services/slide.js"></script>
-    <script src="/js/services/channel.js"></script>
-    <script src="/js/controllers/controllers.js"></script>
-    <script src="/js/controllers/slide.js"></script>
-    <script src="/js/controllers/channel.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/routing.js"></script>
+    <script src="js/services/factory.js"></script>
+    <script src="js/services/slide.js"></script>
+    <script src="js/services/screen.js"></script>
+    <script src="js/services/channel.js"></script>
+    <script src="js/controllers/controllers.js"></script>
+    <script src="js/controllers/slide.js"></script>
+    <script src="js/controllers/screen.js"></script>
+    <script src="js/controllers/channel.js"></script>
 {% endblock %}
 
