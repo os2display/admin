@@ -20931,17 +20931,6 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/ik-templates\/text-left\/template-example-3.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 87150,
-		"inputAbbreviatedPath": "\/ik-templates\/text-left\/template-example-3.png",
-		"outputAbbreviatedPath": "\/ik-templates\/text-left\/template-example-3.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/ik-templates\/text-left\/text-left.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -20950,6 +20939,17 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/ik-templates\/text-left\/text-left.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 87150,
+		"inputAbbreviatedPath": "\/ik-templates\/text-left\/text-left.png",
+		"outputAbbreviatedPath": "\/ik-templates\/text-left\/text-left.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
 		},
 	"\/ik-templates\/text-right\/_text-right.scss": {
 		"createSourceMap": 0,
@@ -20967,17 +20967,6 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/ik-templates\/text-right\/template-example-4.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 99859,
-		"inputAbbreviatedPath": "\/ik-templates\/text-right\/template-example-4.png",
-		"outputAbbreviatedPath": "\/ik-templates\/text-right\/template-example-4.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/ik-templates\/text-right\/text-right.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -20986,6 +20975,17 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/ik-templates\/text-right\/text-right.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 99859,
+		"inputAbbreviatedPath": "\/ik-templates\/text-right\/text-right.png",
+		"outputAbbreviatedPath": "\/ik-templates\/text-right\/text-right.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
 		},
 	"\/ik-templates\/text-top\/_text-top.scss": {
 		"createSourceMap": 0,
@@ -21003,17 +21003,6 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
-	"\/ik-templates\/text-top\/template-example-1.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 74441,
-		"inputAbbreviatedPath": "\/ik-templates\/text-top\/template-example-1.png",
-		"outputAbbreviatedPath": "\/ik-templates\/text-top\/template-example-1.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/ik-templates\/text-top\/text-top.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -21022,6 +21011,17 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/ik-templates\/text-top\/text-top.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 74441,
+		"inputAbbreviatedPath": "\/ik-templates\/text-top\/text-top.png",
+		"outputAbbreviatedPath": "\/ik-templates\/text-top\/text-top.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
 		},
 	"\/images\/icons-s5741e2949d.png": {
 		"fileType": 32768,
@@ -21364,6 +21364,17 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
+	"\/js\/controllers\/screen.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/controllers\/screen.js",
+		"outputAbbreviatedPath": "\/js\/controllers\/min\/screen-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/js\/controllers\/slide.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -21418,6 +21429,28 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
+		},
+	"\/js\/services\/min\/screen-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/services\/min\/screen-ck.js",
+		"outputAbbreviatedPath": "\/js\/services\/min\/min\/screen-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 0
+		},
+	"\/js\/services\/screen.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/services\/screen.js",
+		"outputAbbreviatedPath": "\/js\/services\/min\/screen-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/js\/services\/slide.js": {
 		"fileType": 64,
@@ -21588,6 +21621,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/partials\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/partials\/screen.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/partials\/screen.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -21849,6 +21891,22 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/sass\/modules\/_create_screen.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 5,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/sass\/modules\/_create_screen.scss",
+		"outputAbbreviatedPath": "\/css\/_create_screen.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
 	"\/sass\/modules\/_create_slide.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
@@ -21964,7 +22022,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "Martin Yde Granath",
+"lastSavedByUser": "Ture Gjørup",
 "manualImportLinks": {
 	},
 "projectAttributes": {
@@ -22539,7 +22597,7 @@
 	"sassUseLibsass": 0,
 	"shouldRunAutoprefixer": 0,
 	"shouldRunBless": 0,
-	"skippedItemsString": ".svn, .git, .hg, log, _logs, _cache, cache, logs",
+	"skippedItemsString": "_cache, logs, _logs, cache, \/js, .git, log, .svn, .hg",
 	"slimAutoOutputPathRelativePath": "",
 	"slimAutoOutputPathReplace1": "",
 	"slimAutoOutputPathReplace2": "",

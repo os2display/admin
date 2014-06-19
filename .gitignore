@@ -9,3 +9,4 @@
 composer.lock
 .sass-cache/
 config.codekit
+*/config.codekit

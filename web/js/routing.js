@@ -19,6 +19,14 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'TemplatesController',
     templateUrl: 'partials/templates.html'
   })
+  .when('/screen', {
+    controller: 'ScreenController',
+    templateUrl: 'partials/screen1.html'
+  })
+  .when('/screen/:screenId/:step', {
+    controller: 'ScreenController',
+    templateUrl: function(params){ return 'partials/screen' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+  })
   .when('/slide', {
     controller: 'SlideController',
     templateUrl: 'partials/slide1.html'

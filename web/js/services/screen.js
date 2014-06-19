@@ -8,15 +8,15 @@ ikApp.factory('screenFactory', function() {
             id: 1,
             title: 'Forhal',
             orientation: 'tall',
-            width: "1920px",
-            height: "1080px"
+            width: '1920px',
+            height: '1080px'
         },
         {
             id: 2,
             title: 'Kælder',
             orientation: 'wide',
-            width: "1080px",
-            height: "1920px"
+            width: '1080px',
+            height: '1920px'
         }
     ];
     var next_id = 3;
@@ -67,7 +67,7 @@ ikApp.factory('screenFactory', function() {
      * Returns an empty screen.
      * @returns screen (empty)
      */
-    factory.emptySlide = function() {
+    factory.emptyScreen = function() {
         return {
             id: null,
             title: '',
