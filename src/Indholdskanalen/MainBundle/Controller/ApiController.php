@@ -18,7 +18,7 @@ class ApiController extends Controller {
    *
    * @Route("/slides")
    *
-   * @Return
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function SlidesGetAction(Request $request) {
     // Slide entities
@@ -50,7 +50,7 @@ class ApiController extends Controller {
    *
    * @Route("/slide/save")
    *
-   * @Return
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function SlideSaveAction(Request $request) {
     // Get posted slide information from the request.
