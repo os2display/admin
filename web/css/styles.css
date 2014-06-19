@@ -1718,7 +1718,7 @@ label {
 }
 /* line 208, ../sass/modules/_create_slide.scss */
 .create-slide--config {
-  margin: 0 auto 3em;
+  margin: 0 auto 1em;
   position: relative;
   background-size: cover;
 }
