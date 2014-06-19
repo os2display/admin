@@ -36,17 +36,6 @@ ikApp.directive('ikSlide', ['slideFactory', function(slideFactory) {
   }
 }]);
 
-ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
-    return {
-        templateUrl: 'partials/screen.html',
-        restrict: 'E',
-        scope: {},
-        link: function(scope, iElement, iAttrs) {
-            scope.ikScreen= screenFactory.getScreen(iAttrs.ikId);
-        }
-    }
-}]);
-
 ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
   return {
     templateUrl: 'partials/slide-edit.html',

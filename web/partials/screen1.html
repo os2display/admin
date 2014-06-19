@@ -1,9 +1,9 @@
 <section id="create-slide-one" class="create-slide--section">
   <div class="create-slide--content--slide-one">
-    <h1 class="create-slide--header">Opret skærm (<[step]>/<[steps]>)</h1>
-    <p class="create-slide--header-description">Giv skærmen et godt navn så du kan finde den igen senere.</p>
+    <h1 class="create-slide--header">Opret slide (<[step]>/<[steps]>)</h1>
+    <p class="create-slide--header-description">Giv dit slide et godt navn så du kan finde det igen senere.</p>
     <form ng-submit="submitStep()">
-      <input type="text" class="create-slide--text" placeholder="Skriv f.eks. Hovedbiblioteket over indgang" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="screen.title">
+      <input type="text" class="create-slide--text" placeholder="Skriv f.eks. Frokost uge 10, Billeder fra DHL eller lignende" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="slide.title">
       <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.titleSet()}" ng-disabled="!validation.titleSet()" value="Gem og fortsæt">
     </form>
   </div>

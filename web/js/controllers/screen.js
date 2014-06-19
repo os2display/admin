@@ -98,8 +98,8 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
         titleSet: function() {
             return validateNotEmpty('title');
         },
-        dimensionSet: function() {
-            return (validateNotEmpty('width') && validateNotEmpty('height'));
+        orientationSet: function() {
+            return validateNotEmpty('orientation');
         }
     };
 

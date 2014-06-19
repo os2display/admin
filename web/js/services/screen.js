@@ -7,16 +7,16 @@ ikApp.factory('screenFactory', function() {
         {
             id: 1,
             title: 'Forhal',
-            orientation: 'wide',
-            width: '1920',
-            height: '1080'
+            orientation: 'tall',
+            width: '1920px',
+            height: '1080px'
         },
         {
             id: 2,
             title: 'Kælder',
-            orientation: 'tall',
-            width: '1080',
-            height: '1920'
+            orientation: 'wide',
+            width: '1080px',
+            height: '1920px'
         }
     ];
     var next_id = 3;
@@ -88,7 +88,7 @@ ikApp.factory('screenFactory', function() {
             screen.id = getNextID();
             screen.push(screen);
         } else {
-            var s = factory.getScreen(screen.id);
+            var s = factory.getSlide(screen.id);
 
             if (s === null) {
                 screen.id = getNextID();
