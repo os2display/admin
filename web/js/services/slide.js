@@ -8,7 +8,7 @@ ikApp.factory('slideFactory', function() {
       id: 1,
       title: 'Et slide her',
       orientation: 'landscape',
-      template: '1',
+      template: 'text-top',
       created: '1403030600',
       options: {
         'fontsize': '32',
@@ -28,7 +28,7 @@ ikApp.factory('slideFactory', function() {
       id: 2,
       title: 'Billede af en vej',
       orientation: 'landscape',
-      template: '2',
+      template: 'text-left',
       created: '1405044600',
       options: {
         'fontsize': '32',
@@ -48,7 +48,7 @@ ikApp.factory('slideFactory', function() {
       id: 3,
       title: 'Halli hallo',
       orientation: 'landscape',
-      template: '4',
+      template: 'text-right',
       created: '1401049600',
       options: {
         'fontsize': '32',
@@ -68,7 +68,7 @@ ikApp.factory('slideFactory', function() {
       id: 4,
       title: 'En tur i byen',
       orientation: 'portrait',
-      template: '2',
+      template: 'text-bottom',
       created: '1405000600',
       options: {
         'fontsize': '32',
@@ -88,7 +88,7 @@ ikApp.factory('slideFactory', function() {
       id: 5,
       title: 'En tur på stranden',
       orientation: 'portrait',
-      template: '2',
+      template: 'text-top',
       created: '1402011600',
       options: {
         'fontsize': '32',

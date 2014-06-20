@@ -31,19 +31,23 @@ ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
   }
 }]);
 
-ikApp.directive('ikSlide', ['slideFactory', function(slideFactory) {
+ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFactory, templateFactory) {
   return {
-    templateUrl: 'partials/slide.html',
     restrict: 'E',
     scope: {},
     link: function(scope, iElement, iAttrs) {
       scope.ikSlide = slideFactory.getSlide(iAttrs.ikId);
+
+      scope.templateURL = (templateFactory.getTemplate(scope.ikSlide.template)).html;
+      scope.ikID = iAttrs.ikId;
+      scope.ikWidth = iAttrs.ikWidth;
       scope.theStyle = {
         width: "" + iAttrs.ikWidth + "px",
         height: "" + parseFloat(scope.ikSlide.options.idealdimensions.height * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px",
         fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
       }
-    }
+    },
+    template: '<div data-ng-include="" src="templateURL"></div>'
   }
 }]);
 
