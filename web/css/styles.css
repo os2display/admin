@@ -1735,6 +1735,12 @@ label {
   font-size: 70%;
 }
 /* line 225, ../sass/modules/_create_slide.scss */
+.create-slide--content-inner {
+  width: 960px;
+  margin: 0 auto 2em;
+  position: relative;
+}
+/* line 231, ../sass/modules/_create_slide.scss */
 .create-slide--config-text-wrapper {
   position: absolute;
   width: 100%;
@@ -1742,7 +1748,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 233, ../sass/modules/_create_slide.scss */
+/* line 239, ../sass/modules/_create_slide.scss */
 .create-slide--config-text {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -1755,7 +1761,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 246, ../sass/modules/_create_slide.scss */
+/* line 252, ../sass/modules/_create_slide.scss */
 .create-slide--edit-description {
   display: inline-block;
   margin-left: .5em;
@@ -1768,7 +1774,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 254, ../sass/modules/_create_slide.scss */
+/* line 260, ../sass/modules/_create_slide.scss */
 .create-slide--edit-title {
   display: inline-block;
   margin-left: .5em;
@@ -1781,7 +1787,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 262, ../sass/modules/_create_slide.scss */
+/* line 268, ../sass/modules/_create_slide.scss */
 .create-slide--edit-box-settings {
   position: absolute;
   right: -0.5em;
@@ -1796,7 +1802,7 @@ label {
   background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 262, ../sass/modules/_create_slide.scss */
+  /* line 268, ../sass/modules/_create_slide.scss */
   .create-slide--edit-box-settings {
     right: -1em;
     top: -1em;
@@ -1810,7 +1816,7 @@ label {
     background-position: 0 -256px;
   }
 }
-/* line 278, ../sass/modules/_create_slide.scss */
+/* line 284, ../sass/modules/_create_slide.scss */
 .create-slide--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -1825,7 +1831,7 @@ label {
   background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 278, ../sass/modules/_create_slide.scss */
+  /* line 284, ../sass/modules/_create_slide.scss */
   .create-slide--edit-image-settings {
     background: url('../images/icons-s5741e2949d.png');
     -moz-background-size: 128px 1012px;
@@ -1837,7 +1843,7 @@ label {
     background-position: 0 -632px;
   }
 }
-/* line 292, ../sass/modules/_create_slide.scss */
+/* line 298, ../sass/modules/_create_slide.scss */
 .create-slide--image {
   max-height: 100%;
   width: 100%;

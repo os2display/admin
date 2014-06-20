@@ -25,8 +25,8 @@ ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
     templateUrl: 'partials/screen.html',
     restrict: 'E',
     scope: {},
-    link: function(scope, iElement, iAttrs) {
-      scope.ikScreen = screenFactory.getScreen(iAttrs.ikId);
+    link: function(scope, element, attrs) {
+      scope.ikScreen = screenFactory.getScreen(attrs.ikId);
     }
   }
 }]);
@@ -35,14 +35,19 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
   return {
     restrict: 'E',
     scope: {},
-    link: function(scope, iElement, iAttrs) {
-      scope.ikSlide = slideFactory.getSlide(iAttrs.ikId);
+    controller: function($scope) {
+      this.getSlide = function() {
+        return $scope.ikSlide;
+      }
+    },
+    link: function(scope, element, attrs, controller) {
+      scope.ikSlide = slideFactory.getSlide(attrs.ikId);
 
       scope.templateURL = (templateFactory.getTemplate(scope.ikSlide.template)).html;
       scope.theStyle = {
-        width: "" + iAttrs.ikWidth + "px",
-        height: "" + parseFloat(scope.ikSlide.options.idealdimensions.height * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px",
-        fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
+        width: "" + attrs.ikWidth + "px",
+        height: "" + parseFloat(scope.ikSlide.options.idealdimensions.height * parseFloat(attrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px",
+        fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(attrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
       }
     },
     template: '<div data-ng-include="" src="templateURL"></div>'
@@ -51,10 +56,11 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
 
 ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
   return {
-    templateUrl: 'partials/slide-edit.html',
     restrict: 'E',
+/*    require: 'ikSlide',
     scope: {
-      slideWidth: '=ikWidth'
+      sid: '=ikId',
+      swidth: '=ikWidth'
     },
     controller: function($scope, imageFactory) {
       // Sets the images from the factory.
@@ -74,18 +80,7 @@ ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
         }
       }
     },
-    link: function(scope, iElement, iAttrs) {
-      scope.ikSlide = slideFactory.getSlide(iAttrs.ikId);
-
-      // Setup initial style for preview.
-      if (scope.ikSlide) {
-        scope.theStyle = {
-          width: "" + iAttrs.ikWidth + "px",
-          height: "" + parseFloat(scope.ikSlide.options.idealdimensions.height * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px",
-          fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
-        }
-      }
-
+    link: function(scope, element, attrs) {
       // Add keyup event listener for fontsize, to make sure the preview updates font size.
       iElement.find('.js-ik-slide-editor-fontsize-input').on('keyup', function() {
         scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.slideWidth / scope.ikSlide.options.idealdimensions.width)) + "px";
@@ -96,6 +91,7 @@ ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
       iElement.on('$destroy', function() {
         $(this).find('.js-ik-slide-editor-fontsize-input').off('keyup');
       });
-    }
+    },*/
+    templateUrl: '/partials/slide-edit.html'
   }
 }]);
