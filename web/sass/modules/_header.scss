@@ -25,7 +25,7 @@
   background-color: $beige;
   color: #333;
   margin-bottom: 6em;
-  min-height: 3em;
+  min-height: 6em;
   overflow: hidden;
   width: 100%;
   z-index: 1;
@@ -53,6 +53,7 @@
       margin-left: 0;
       margin-right: -4px;
       position: relative;
+      padding: 1em 0;
       top: 0;
       width: 25%;
     }

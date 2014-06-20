@@ -1,0 +1,88 @@
+.login {
+
+  &--section {
+    margin: 0 $gutter 0;
+    max-width: $breakpoint-desk;
+
+    @include breakpoint($breakpoint-lap) {
+      margin: 0 auto;
+    }
+  }
+
+
+  &--header-wrapper {
+    text-align: center;
+  }
+
+
+  &--header {
+    border-bottom: 1px solid $gray-lighter;
+    display: inline-block;
+    font-weight: bold;
+    margin: 0 36px 18px 36px;
+    padding-bottom: 1em;
+  }
+
+
+
+  &--header-description {
+    color: #646464;
+    font-weight: lighter;
+    margin: 0 36px 72px 36px;
+    text-align: center;
+  }
+
+
+  &--form {
+    display: inline-block;
+    width: 100%;
+  }
+
+
+  &--alert {
+    color: red;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
+
+  &--pass,
+  &--name {
+    margin-bottom: 1em;
+  }
+
+  &--remember-me,
+  &--forgot-password {
+    display: inline-block;
+    margin-left: -4px;
+    width: 50%;
+
+    @include breakpoint($breakpoint-lap) {
+      width: 100%;
+      margin: 0
+    }
+  }
+
+
+  &--forgot-password {
+    margin-bottom: 1em;
+    text-align: right;
+
+    @include breakpoint($breakpoint-lap) {
+      text-align: left;
+    }
+  }
+
+
+  &--submit {
+    @extend .button;
+
+    float: right;
+    padding: .5em 2em;
+    width: 100%;
+
+    @include breakpoint($breakpoint-lap) {
+      width: auto;
+    }
+  }
+}
