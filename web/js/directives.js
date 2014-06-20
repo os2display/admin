@@ -39,8 +39,6 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
       scope.ikSlide = slideFactory.getSlide(iAttrs.ikId);
 
       scope.templateURL = (templateFactory.getTemplate(scope.ikSlide.template)).html;
-      scope.ikID = iAttrs.ikId;
-      scope.ikWidth = iAttrs.ikWidth;
       scope.theStyle = {
         width: "" + iAttrs.ikWidth + "px",
         height: "" + parseFloat(scope.ikSlide.options.idealdimensions.height * parseFloat(iAttrs.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px",
