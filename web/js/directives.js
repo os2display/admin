@@ -54,9 +54,12 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
   }
 }]);
 
-ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
+ikApp.directive('ikSlideEditable', function() {
   return {
     restrict: 'E',
+    scope: {
+      slideWidth: 960
+    },
 /*    require: 'ikSlide',
     scope: {
       sid: '=ikId',
@@ -94,4 +97,4 @@ ikApp.directive('ikSlideEditable', ['slideFactory', function(slideFactory) {
     },*/
     templateUrl: '/partials/slide-edit.html'
   }
-}]);
+});
