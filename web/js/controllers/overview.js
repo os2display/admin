@@ -1,21 +1,16 @@
 ikApp.controller('OverviewController', function($scope, slideFactory) {
   $scope.slides = slideFactory.getSlides();
-  $scope.orientation = 'horisontal';
+  $scope.sort = '-created';
+  $scope.search = {
+    title: '',
+    orientation: 'landscape'
+  }
 
-  $scope.setFilter = function($filter) {
-    if ($scope.orientation != $filter) {
-      $('.overview--filter-orientation .is-active').removeClass('is-active');
-      $(event.target).addClass('is-active');
-
-    }
-    $scope.orientation = $filter;
+  $scope.setOrientation = function(orientation) {
+    $scope.search.orientation = orientation;
   };
 
-  $scope.setSort = function($sort) {
-    if ($scope.sort != $sort) {
-      $('.overview--sort-links .is-active').removeClass('is-active');
-      $(event.target).addClass('is-active');
-    }
-    $scope.sort = $sort;
+  $scope.setSort = function(sort) {
+    $scope.sort = sort;
   };
 });
