@@ -69,42 +69,31 @@
 
     font-size: 1.5em;
   }
-}
 
 
-/* Invisible close element that allows the user to close the menu by clicking outside it */
-
-.nav-overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 98;
-
-  width: 0;
-
-  cursor: pointer;
-
-  &.is-visible {
-    width: 100%;
-
-    @include animation(toggle-nav-overlay .15s linear 1 forwards);
+  &--toggle-icon {
+    cursor: pointer;
+    float: right;
+    font-size: 2em;
   }
-}
 
+  /* Invisible close element that allows the user to close the menu by clicking outside it */
 
-/* Toggle icon use for opening and closing the menu */
+  &--overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 98;
 
-.nav-toggle-icon {
-  position: absolute;
-  top: 1em;
-  right: 1em;
+    width: 0;
 
-  display: block;
-  font-size: 2em;
-  max-width: 4em;
+    cursor: pointer;
 
-  cursor: pointer;
+    &.is-visible {
+      width: 100%;
 
-  @include strip-link-styles();
+      @include animation(toggle-nav-overlay .15s linear 1 forwards);
+    }
+  }
 }

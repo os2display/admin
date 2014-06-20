@@ -1405,27 +1405,31 @@ label {
   vertical-align: top;
   width: 50%;
 }
+/* line 221, ../sass/modules/_header.scss */
+.header--nav-menu-link {
+  cursor: pointer;
+}
 /* line 49, ../sass/mixins/_mixins.scss */
-.header--nav-menu-dropdown-link:link {
+.header--nav-menu-link:link {
   color: inherit;
   text-decoration: none;
 }
 /* line 54, ../sass/mixins/_mixins.scss */
-.header--nav-menu-dropdown-link:visited {
+.header--nav-menu-link:visited {
   color: inherit;
   text-decoration: none;
 }
 /* line 59, ../sass/mixins/_mixins.scss */
-.header--nav-menu-dropdown-link:hover {
+.header--nav-menu-link:hover {
   color: inherit;
   text-decoration: none;
 }
 /* line 64, ../sass/mixins/_mixins.scss */
-.header--nav-menu-dropdown-link:focus {
+.header--nav-menu-link:focus {
   color: inherit;
   text-decoration: none;
 }
-/* line 226, ../sass/modules/_header.scss */
+/* line 228, ../sass/modules/_header.scss */
 .header--nav-menu-label-image {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 32px 253px;
@@ -1439,34 +1443,34 @@ label {
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 235, ../sass/modules/_header.scss */
+/* line 237, ../sass/modules/_header.scss */
 .header--nav-menu-label-text {
   display: none;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 235, ../sass/modules/_header.scss */
+  /* line 237, ../sass/modules/_header.scss */
   .header--nav-menu-label-text {
     display: inline-block;
   }
 }
-/* line 246, ../sass/modules/_header.scss */
+/* line 248, ../sass/modules/_header.scss */
 .header--sub {
   background: #E4E4D5;
   min-height: 3em;
   padding: 0 1em;
 }
-/* line 265, ../sass/modules/_header.scss */
+/* line 267, ../sass/modules/_header.scss */
 .header--sub-menu-items {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-/* line 270, ../sass/modules/_header.scss */
+/* line 272, ../sass/modules/_header.scss */
 .header--sub-menu-item {
   display: inline-block;
   padding: 0 1em;
 }
-/* line 276, ../sass/modules/_header.scss */
+/* line 278, ../sass/modules/_header.scss */
 .header--sub-menu-item-link {
   display: block;
   height: 3em;
@@ -1492,11 +1496,11 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 283, ../sass/modules/_header.scss */
+/* line 285, ../sass/modules/_header.scss */
 .header--sub-menu-item-link.is-active {
   border-bottom: 2px solid black;
 }
-/* line 289, ../sass/modules/_header.scss */
+/* line 291, ../sass/modules/_header.scss */
 .header .header--sub-menu-item-image-overview {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 128px 1012px;
@@ -1510,7 +1514,7 @@ label {
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 298, ../sass/modules/_header.scss */
+/* line 300, ../sass/modules/_header.scss */
 .header .header--sub-menu-item-image-create-channel {
   background: url('../images/icons-s5741e2949d.png');
   -moz-background-size: 128px 1012px;
@@ -2354,6 +2358,7 @@ label {
   box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
   /* States */
   /* Elements */
+  /* Invisible close element that allows the user to close the menu by clicking outside it */
 }
 /* line 28, ../sass/modules/_nav.scss */
 .nav.is-visible {
@@ -2416,10 +2421,14 @@ label {
   padding-left: 1.5em;
   font-size: 1.5em;
 }
-
-/* Invisible close element that allows the user to close the menu by clicking outside it */
-/* line 77, ../sass/modules/_nav.scss */
-.nav-overlay {
+/* line 74, ../sass/modules/_nav.scss */
+.nav--toggle-icon {
+  cursor: pointer;
+  float: right;
+  font-size: 2em;
+}
+/* line 82, ../sass/modules/_nav.scss */
+.nav--overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -2428,44 +2437,12 @@ label {
   width: 0;
   cursor: pointer;
 }
-/* line 88, ../sass/modules/_nav.scss */
-.nav-overlay.is-visible {
+/* line 93, ../sass/modules/_nav.scss */
+.nav--overlay.is-visible {
   width: 100%;
   -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
   -webkit-animation: toggle-nav-overlay 0.15s linear 1 forwards;
   animation: toggle-nav-overlay 0.15s linear 1 forwards;
-}
-
-/* Toggle icon use for opening and closing the menu */
-/* line 98, ../sass/modules/_nav.scss */
-.nav-toggle-icon {
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  display: block;
-  font-size: 2em;
-  max-width: 4em;
-  cursor: pointer;
-}
-/* line 49, ../sass/mixins/_mixins.scss */
-.nav-toggle-icon:link {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 54, ../sass/mixins/_mixins.scss */
-.nav-toggle-icon:visited {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 59, ../sass/mixins/_mixins.scss */
-.nav-toggle-icon:hover {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 64, ../sass/mixins/_mixins.scss */
-.nav-toggle-icon:focus {
-  color: inherit;
-  text-decoration: none;
 }
 
 /**

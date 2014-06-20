@@ -1,4 +1,19 @@
 <header class="header" role="banner" ng-controller="MenuController">
+  <a class="nav--overlay" data-ng-class="{'is-visible': menuOpen !== null && menuOpen}" data-ng-click="toggleMenu()"></a>
+  <nav class="nav" data-ng-class="{'is-visible': menuOpen !== null && menuOpen, 'is-hidden': menuOpen !== null && !menuOpen}">
+   <div class="nav--toggle-icon" data-ng-click="toggleMenu()">X</div>
+    <h2 class="nav--header">Navigation</h2>
+    <div class="nav--item-wrapper">
+      <a href="/#/channels" class="nav--item" data-ng-click="toggleMenu()">Kanaler</a>
+      <a href="/#/slides" class="nav--item" data-ng-click="toggleMenu()">Slides</a>
+      <a href="/#/screens" class="nav--item" data-ng-click="toggleMenu()">Screens</a>
+      <a href="/#/templates" class="nav--item" data-ng-click="toggleMenu()">Templates</a>
+    </div>
+    <div class="nav--item-wrapper">
+      <a href="/#" class="nav--item">Test</a>
+      <a href="/#" class="nav--item">Test</a>
+    </div>
+  </nav>
   <div class="header--inner">
     <div class="header--main">
       <div class="header--logo">
@@ -28,10 +43,11 @@
           </div>
           <div class="header--nav-menu">
             <div class="header--nav-menu-label">
-              <a class="header--nav-menu-dropdown-link" href="#">
+
+              <span class="header--nav-menu-link" data-ng-click="toggleMenu()">
                 <span class="header--nav-menu-label-image"></span>
                 <span class="header--nav-menu-label-text">Menu</span>
-              </a>
+              </span>
             </div>
             <nav class="header--nav-menu-links">
             </nav>
