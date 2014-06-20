@@ -218,7 +218,9 @@
   }
 
 
-  &--nav-menu-dropdown-link {
+  &--nav-menu-link {
+    cursor: pointer;
+
     @include strip-link-styles;
   }
 
