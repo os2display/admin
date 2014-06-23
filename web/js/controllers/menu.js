@@ -76,6 +76,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
 
   $rootScope.$on('$locationChangeSuccess', function(){
     $scope.url = $location.url();
+    $scope.navMenuOpen = false;
     updateSubMenu();
   });
 });
