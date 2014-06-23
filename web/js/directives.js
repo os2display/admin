@@ -1,3 +1,6 @@
+/**
+ * Overrides the contenteditable html5 tag to make the field reflect an ngModel.
+ */
 ikApp.directive('contenteditable', function() {
   return {
     require: 'ngModel',
@@ -16,10 +19,40 @@ ikApp.directive('contenteditable', function() {
 
       // load init value.
       ctrl.$render();
+
+      if (element[0].tagName == 'PRE') {
+        // Replace enter, to avoid insertion of html tags in the data field.
+        element.on('keydown', function(event) {
+          if (event.keyCode == 13) {
+            event.preventDefault();
+            document.execCommand('InsertHTML', false, '\r\n');
+          }
+        });
+      } else {
+        element.on('keydown', function(event) {
+          event.preventDefault();
+        });
+      }
     }
   };
 });
 
+/**
+ * HTML attribute to replace the ng-include div.
+ */
+ikApp.directive('includeReplace', function () {
+  return {
+    require: 'ngInclude',
+    restrict: 'A',
+    link: function (scope, el, attrs) {
+      el.replaceWith(el.children());
+    }
+  };
+});
+
+/**
+ * Directive to insert a screen.
+ */
 ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
   return {
     templateUrl: 'partials/screen.html',
@@ -31,6 +64,11 @@ ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
   }
 }]);
 
+/**
+ * Directive to insert html for a slide.
+ * @param ik-id: the id of the slide.
+ * @param ik-width: the width of the slide.
+ */
 ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFactory, templateFactory) {
   return {
     restrict: 'E',
@@ -48,10 +86,15 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
         fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
       }
     },
-    template: '<div data-ng-include="" src="templateURL"></div>'
+    template: '<div data-ng-include="" src="templateURL" include-replace></div>'
   }
 }]);
 
+/**
+ * Directive to insert html for a slide, that is editable.
+ * @param ik-id: the id of the slide.
+ * @param ik-width: the width of the slide.
+ */
 ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', function(slideFactory, imageFactory) {
   return {
     restrict: 'E',

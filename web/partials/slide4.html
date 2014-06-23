@@ -2,8 +2,8 @@
   <div class="create-slide--content--slide-four">
     <h1 class="create-slide--header">Opret slide ({{step}}/{{steps}})</h1>
     <p class="create-slide--header-description">Tilføj indhold - husk at se dit indhold på alle dine skærme.</p>
-    <div class="create-slide--content-inner">
-      <ik-slide-editable ik-id="{{slide.id}}" ik-width="960"></ik-slide-editable>
+    <div class="create-slide--content-inner" data-ng-style="{'width': '{{slide.orientation == 'portrait' ? 540 : 960}}px'}">
+      <ik-slide-editable ik-id="{{slide.id}}" ik-width="{{slide.orientation == 'portrait' ? 540 : 960}}"></ik-slide-editable>
     </div>
     <input type="submit" class="create-slide--button" value="Gem og opret" data-ng-click="submitStep()">
   </div>

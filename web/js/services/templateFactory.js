@@ -20,6 +20,11 @@ ikApp.factory('templateFactory', function() {
       id: 'text-right',
       image: '/ik-templates/text-right/text-right.png',
       orientation: 'landscape'
+    },
+    {
+      id: 'portrait-text-top',
+      image: '/ik-templates/portrait-text-top/portrait-text-top.png',
+      orientation: 'portrait'
     }
   ];
 

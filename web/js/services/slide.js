@@ -37,7 +37,7 @@ ikApp.factory('slideFactory', function() {
         'textbgcolor': 'rgba(0, 0, 0, 0.7)',
         'image': 'images/outlines/slide-config-default.png',
         'headline': 'Dette er en overskrift',
-        'text': 'sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf',
+        'text': 'sdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf',
         idealdimensions: {
           width: '1920',
           height: '1080'
@@ -68,7 +68,7 @@ ikApp.factory('slideFactory', function() {
       id: 4,
       title: 'En tur i byen',
       orientation: 'portrait',
-      template: 'text-right',
+      template: 'portrait-text-top',
       created: '1405000600',
       options: {
         'fontsize': '32',
@@ -79,15 +79,15 @@ ikApp.factory('slideFactory', function() {
         'headline': '',
         'text': '',
         idealdimensions: {
-          width: '1920',
-          height: '1080'
+          width: '1080',
+          height: '1920'
         }
       }
     },
     {
       id: 5,
       title: 'En tur på stranden',
-      orientation: 'portrait',
+      orientation: 'landscape',
       template: 'text-top',
       created: '1402011600',
       options: {
