@@ -3022,12 +3022,13 @@ label {
 .text-bottom--text-wrapper {
   position: absolute;
   width: 100%;
+  bottom: 0;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
 
-/* line 14, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 15, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--text-inner {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -3041,12 +3042,12 @@ label {
   border-radius: 1em;
 }
 
-/* line 27, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 28, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--header {
   font-size: 90%;
 }
 
-/* line 32, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 33, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%;
 }
@@ -3059,13 +3060,15 @@ label {
 /* line 6, ../ik-templates/text-left/_text-left.scss */
 .text-left--text-wrapper {
   position: absolute;
-  width: 100%;
+  width: 50%;
+  height: 100%;
+  left: 0;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
 
-/* line 14, ../ik-templates/text-left/_text-left.scss */
+/* line 16, ../ik-templates/text-left/_text-left.scss */
 .text-left--text-inner {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -3074,17 +3077,18 @@ label {
   text-align: left;
   position: relative;
   width: 80%;
+  height: 80%;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
 
-/* line 27, ../ik-templates/text-left/_text-left.scss */
+/* line 30, ../ik-templates/text-left/_text-left.scss */
 .text-left--header {
   font-size: 90%;
 }
 
-/* line 32, ../ik-templates/text-left/_text-left.scss */
+/* line 35, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%;
 }
@@ -3097,13 +3101,15 @@ label {
 /* line 6, ../ik-templates/text-right/_text-right.scss */
 .text-right--text-wrapper {
   position: absolute;
-  width: 100%;
+  width: 50%;
+  height: 100%;
+  right: 0;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
 
-/* line 14, ../ik-templates/text-right/_text-right.scss */
+/* line 16, ../ik-templates/text-right/_text-right.scss */
 .text-right--text-inner {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -3112,17 +3118,18 @@ label {
   text-align: left;
   position: relative;
   width: 80%;
+  height: 80%;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
 
-/* line 27, ../ik-templates/text-right/_text-right.scss */
+/* line 30, ../ik-templates/text-right/_text-right.scss */
 .text-right--header {
   font-size: 90%;
 }
 
-/* line 32, ../ik-templates/text-right/_text-right.scss */
+/* line 35, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%;
 }

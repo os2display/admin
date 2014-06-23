@@ -28,7 +28,7 @@ ikApp.factory('slideFactory', function() {
       id: 2,
       title: 'Billede af en vej',
       orientation: 'landscape',
-      template: 'text-left',
+      template: 'text-bottom',
       created: '1405044600',
       options: {
         'fontsize': '32',
@@ -48,7 +48,7 @@ ikApp.factory('slideFactory', function() {
       id: 3,
       title: 'Halli hallo',
       orientation: 'landscape',
-      template: 'text-right',
+      template: 'text-left',
       created: '1401049600',
       options: {
         'fontsize': '32',
@@ -68,7 +68,7 @@ ikApp.factory('slideFactory', function() {
       id: 4,
       title: 'En tur i byen',
       orientation: 'portrait',
-      template: 'text-bottom',
+      template: 'text-right',
       created: '1405000600',
       options: {
         'fontsize': '32',

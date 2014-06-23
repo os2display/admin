@@ -6,6 +6,7 @@
 .text-bottom--text-wrapper {
   position: absolute;
   width: 100%;
+  bottom: 0;
 
   @include border-radius(1em);
 }
