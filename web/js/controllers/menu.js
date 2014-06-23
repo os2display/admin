@@ -54,7 +54,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
           classSuffix: 'overview'
         },
         {
-          title: 'Opret template',
+          title: 'Opret skabelon',
           path: '/#/template',
           classSuffix: 'create-channel'
         }
