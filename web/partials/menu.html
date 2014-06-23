@@ -1,17 +1,17 @@
 <header class="header" role="banner" ng-controller="MenuController">
-  <a class="nav--overlay" data-ng-class="{'is-visible': menuOpen !== null && menuOpen}" data-ng-click="toggleMenu()"></a>
-  <nav class="nav" data-ng-class="{'is-visible': menuOpen !== null && menuOpen, 'is-hidden': menuOpen !== null && !menuOpen}">
-   <div class="nav--toggle-icon" data-ng-click="toggleMenu()">X</div>
+  <a class="nav--overlay" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen}" data-ng-click="toggleNavMenu()"></a>
+  <nav class="nav" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+   <div class="nav--toggle-icon" data-ng-click="toggleNavMenu()">X</div>
     <h2 class="nav--header">Navigation</h2>
     <div class="nav--item-wrapper">
-      <a href="/#/channels" class="nav--item" data-ng-click="toggleMenu()">Kanaler</a>
-      <a href="/#/slides" class="nav--item" data-ng-click="toggleMenu()">Slides</a>
-      <a href="/#/screens" class="nav--item" data-ng-click="toggleMenu()">Screens</a>
-      <a href="/#/templates" class="nav--item" data-ng-click="toggleMenu()">Templates</a>
+      <a href="/#/channels" class="nav--item" data-ng-click="toggleNavMenu()">Kanaler</a>
+      <a href="/#/slides" class="nav--item" data-ng-click="toggleNavMenu()">Slides</a>
+      <a href="/#/screens" class="nav--item" data-ng-click="toggleNavMenu()">Screens</a>
+      <a href="/#/templates" class="nav--item" data-ng-click="toggleNavMenu()">Templates</a>
     </div>
     <div class="nav--item-wrapper">
-      <a href="/#" class="nav--item">Test</a>
-      <a href="/#" class="nav--item">Test</a>
+      <a href="/#" class="nav--item" data-ng-click="toggleNavMenu()">Test</a>
+      <a href="/#" class="nav--item" data-ng-click="toggleNavMenu()">Test</a>
     </div>
   </nav>
   <div class="header--inner">
@@ -21,10 +21,28 @@
       </div>
       <nav class="header--main-menu" >
         <ul class="header--main-menu-items">
-          <li class="header--main-menu-item" ng-repeat="item in menu">
-            <a class="header--main-menu-item-link" ng-class="{'is-active': item.active}" ng-href="/#/{{ item.link }}">
-              <span class="header--main-menu-item-image-{{ item.name }}"></span>
-              <span class="header--main-menu-item-text">{{ item.title }}</span>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/channels'}" href="/#/channels">
+              <span class="header--main-menu-item-image-channels"></span>
+              <span class="header--main-menu-item-text">Channels</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/slides'}" href="/#/slides">
+              <span class="header--main-menu-item-image-slides"></span>
+              <span class="header--main-menu-item-text">Slides</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/screens'}" href="/#/screens">
+              <span class="header--main-menu-item-image-screens"></span>
+              <span class="header--main-menu-item-text">Screens</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/templates'}" href="/#/templates">
+              <span class="header--main-menu-item-image-templates"></span>
+              <span class="header--main-menu-item-text">Templates</span>
             </a>
           </li>
         </ul>
@@ -44,7 +62,7 @@
           <div class="header--nav-menu">
             <div class="header--nav-menu-label">
 
-              <span class="header--nav-menu-link" data-ng-click="toggleMenu()">
+              <span class="header--nav-menu-link" data-ng-click="toggleNavMenu()">
                 <span class="header--nav-menu-label-image"></span>
                 <span class="header--nav-menu-label-text">Menu</span>
               </span>

@@ -1,15 +1,16 @@
-ikApp.controller('MenuController', function($scope, $location, menuFactory) {
-  menuFactory.setLocation($location);
-  $scope.menu = menuFactory.getMenuItems();
-  $scope.menuOpen = null;
-
+ikApp.controller('MenuController', function($scope, $rootScope, $location) {
+  $scope.selectedMenuItem = '';
+  $scope.navMenuOpen = null;
 
   // Navigation menu open / close
-  $scope.toggleMenu = function(){
-    if ($scope.menuOpen === null) {
-      $scope.menuOpen = false;
+  $scope.toggleNavMenu = function(){
+    if ($scope.navMenuOpen === null) {
+      $scope.navMenuOpen = false;
     }
-    $scope.menuOpen = !$scope.menuOpen;
-    console.log('123');
+    $scope.navMenuOpen = !$scope.navMenuOpen;
   };
+
+  $rootScope.$on('$locationChangeSuccess', function(){
+    $scope.url = $location.url();
+  });
 });
