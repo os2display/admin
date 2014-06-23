@@ -27,6 +27,8 @@ ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
     scope: {},
     link: function(scope, element, attrs) {
       scope.ikScreen = screenFactory.getScreen(attrs.ikId);
+      scope.ikScreenGroups = screenFactory.getScreenGroups(attrs.ikId);
+      scope.ikGroups = screenFactory.getGroups();
     }
   }
 }]);
