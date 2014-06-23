@@ -160,6 +160,7 @@ ikApp.factory('slideFactory', function() {
       title: '',
       orientation: '',
       template: '',
+      created: (new Date().getTime()) / 1000,
       options: {
         fontsize: '32',
         bgcolor: '#ccc',

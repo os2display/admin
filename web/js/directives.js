@@ -30,7 +30,9 @@ ikApp.directive('contenteditable', function() {
         });
       } else {
         element.on('keydown', function(event) {
-          event.preventDefault();
+          if (event.keyCode == 13) {
+            event.preventDefault();
+          }
         });
       }
     }
