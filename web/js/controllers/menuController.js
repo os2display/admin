@@ -8,12 +8,12 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: '/#/channels',
+          path: 'channels',
           classSuffix: 'overview'
         },
         {
           title: 'Opret kanal',
-          path: '/#/channel',
+          path: 'channel',
           classSuffix: 'create-channel'
         }
       ];
@@ -22,12 +22,12 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: '/#/slides',
+          path: 'slides',
           classSuffix: 'overview'
         },
         {
           title: 'Opret slide',
-          path: '/#/slide',
+          path: 'slide',
           classSuffix: 'create-channel'
         }
       ];
@@ -36,12 +36,12 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: '/#/screens',
+          path: 'screens',
           classSuffix: 'overview'
         },
         {
           title: 'Opret skærm',
-          path: '/#/screen',
+          path: 'screen',
           classSuffix: 'create-channel'
         }
       ];
@@ -50,12 +50,12 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: '/#/templates',
+          path: 'templates',
           classSuffix: 'overview'
         },
         {
           title: 'Opret skabelon',
-          path: '/#/template',
+          path: 'template',
           classSuffix: 'create-channel'
         }
       ];
@@ -65,6 +65,25 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
     }
   }
   updateSubMenu();
+
+  /**
+   * Function to see if the first part of a path matches the pattern.
+   * @param str
+   * @param pattern
+   * @returns {boolean}
+   */
+  $scope.pathStartsWith = function(str, pattern) {
+    var split = str.split('/');
+
+    if (split.length >= 2) {
+      str = split[1];
+    }
+
+    if (str == pattern) {
+      return true;
+    }
+    return false;
+  }
 
   // Navigation menu open / close
   $scope.toggleNavMenu = function(){

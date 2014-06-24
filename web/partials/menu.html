@@ -79,7 +79,7 @@
       <nav class="header--sub-menu">
         <ul class="header--sub-menu-items">
           <li class="header--sub-menu-item" ng-repeat="item in subMenuItems">
-            <a class="header--sub-menu-item-link" href="{{item.path}}">
+            <a class="header--sub-menu-item-link" href="/#/{{item.path}}" ng-class="{'is-active': startsWith(url, '{{item.path}}')}">
               <span class="header--sub-menu-item-image-{{item.classSuffix}}"></span>
               <span class="header--sub-menu-item-text">{{item.title}}</span>
             </a>
