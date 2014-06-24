@@ -16257,11 +16257,11 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
-	"\/bundles\/sonataadmin\/vendor\/jqueryui\/ui\/jquery.ui.effect-slide.js": {
+	"\/bundles\/sonataadmin\/vendor\/jqueryui\/ui\/jquery.ui.effect-slideFactory.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bundles\/sonataadmin\/vendor\/jqueryui\/ui\/jquery.ui.effect-slide.js",
+		"inputAbbreviatedPath": "\/bundles\/sonataadmin\/vendor\/jqueryui\/ui\/jquery.ui.effect-slideFactory.js",
 		"outputAbbreviatedPath": "\/bundles\/sonataadmin\/vendor\/jqueryui\/ui\/min\/jquery.ui.effect-slide-ck.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
