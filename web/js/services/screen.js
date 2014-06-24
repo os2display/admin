@@ -3,6 +3,18 @@
  */
 ikApp.factory('screenFactory', function() {
     var factory = {};
+    var groups = [
+        {
+            id: 1,
+            title: 'Aula',
+            screens: [2,3]
+        },
+        {
+            id: 2,
+            title: 'Voksenafdelingen',
+            screens: [1,2]
+        }
+    ];
     var screens = [
         {
             id: 1,
@@ -17,9 +29,17 @@ ikApp.factory('screenFactory', function() {
             orientation: 'wide',
             width: '1080',
             height: '1920'
+        },
+        {
+            id: 3,
+            title: 'Børneafdelingen',
+            orientation: 'wide',
+            width: '1080',
+            height: '1920'
         }
     ];
-    var next_id = 3;
+    var next_id = 4;
+    var next_group_id = 3;
 
     /**
      * Internal function to get next id.
@@ -32,6 +52,17 @@ ikApp.factory('screenFactory', function() {
         return i;
     }
 
+    /**
+     * Internal function to get next group id.
+     * @returns id
+     */
+    function getNextGroupID() {
+        var i  = next_group_id;
+        next_group_id = i + 1;
+
+        return i;
+    }
+
 
     /**
      * Get all screens.
@@ -39,6 +70,15 @@ ikApp.factory('screenFactory', function() {
      */
     factory.getScreens = function() {
         return screens;
+    }
+
+
+    /**
+     * Get all groups.
+     * @returns {Array}
+     */
+    factory.getGroups = function() {
+        return groups;
     }
 
 
@@ -62,6 +102,48 @@ ikApp.factory('screenFactory', function() {
         }
     }
 
+    /**
+     * Find the group with @id
+     * @param id
+     * @returns group or null
+     */
+    factory.getGroup = function(id) {
+        var arr = [];
+        angular.forEach(groups, function(value, key) {
+            if (value['id'] == id) {
+                arr.push(value);
+            }
+        })
+
+        if (arr.length === 0) {
+            return null;
+        } else {
+            return arr[0];
+        }
+    }
+
+    /**
+     * Find the groups screen with @id is part of
+     * @param id
+     * @returns group or null
+     */
+    factory.getScreenGroups = function(id) {
+        id = parseInt(id);
+        var arr = [];
+        angular.forEach(groups, function(value, key) {
+            console.log(id + ': ' + value.screens.indexOf(id) + ', ' + value.screens);
+            if (value.screens.indexOf(id) != -1) {
+                arr.push(value);
+            }
+        })
+
+        if (arr.length === 0) {
+            return null;
+        } else {
+            return arr;
+        }
+    }
+
 
     /**
      * Returns an empty screen.
@@ -74,6 +156,18 @@ ikApp.factory('screenFactory', function() {
             orientation: '',
             width: '',
             height: ''
+        };
+    }
+
+
+    /**
+     * Returns an empty group.
+     * @returns group (empty)
+     */
+    factory.emptyGroup = function() {
+        return {
+            id: null,
+            title: ''
         };
     }
 
@@ -98,6 +192,38 @@ ikApp.factory('screenFactory', function() {
             }
         }
         return screen;
+    }
+
+    /**
+     * Saves the groups a screen i spart of
+     * @param group
+     * @returns groups
+     */
+
+    //factory.saveScreenToGroups( {
+
+    //}
+
+    /**
+     * Saves group to groups. Assigns an id, if it is not set.
+     * @param group
+     * @returns group
+     */
+    factory.saveGroup = function(group) {
+        if (group.id === null) {
+            group.id = getNextID();
+            group.push(group);
+        } else {
+            var g = factory.getScreen(group.id);
+
+            if (s === null) {
+                group.id = getNextID();
+                groups.push(group);
+            } else {
+                g = group;
+            }
+        }
+        return group;
     }
 
     return factory;
