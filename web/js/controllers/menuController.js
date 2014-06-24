@@ -3,6 +3,9 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
   $scope.navMenuOpen = null;
   $scope.subMenuItems = [];
 
+  /**
+   * Set the submenu items according to what the url starts with.
+   */
   var updateSubMenu = function() {
     if ($scope.url.indexOf('/channel') == 0) {
       $scope.subMenuItems = [
@@ -85,7 +88,9 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
     return false;
   }
 
-  // Navigation menu open / close
+  /**
+   * Open/Close navigation menu.
+   */
   $scope.toggleNavMenu = function(){
     if ($scope.navMenuOpen === null) {
       $scope.navMenuOpen = false;
@@ -93,6 +98,9 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
     $scope.navMenuOpen = !$scope.navMenuOpen;
   };
 
+  /**
+   * Setup listener for when the url changes.
+   */
   $rootScope.$on('$locationChangeSuccess', function(){
     $scope.url = $location.url();
     $scope.navMenuOpen = false;
