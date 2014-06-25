@@ -19,12 +19,12 @@
 
 
 .ng-enter {
-  @include animation(fade-in 0.5s);
+  @include animation(fade-in 1s);
 }
 
 
 .ng-leave {
-  @include animation(fade-out 0.5s);
+  @include animation(fade-out 1s);
 }
 
 

@@ -882,12 +882,13 @@ html {
 /* line 14, ../sass/base/_base.scss */
 body {
   height: 100%;
+  overflow: hidden;
   background-color: white;
   color: #222;
   font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 23, ../sass/base/_base.scss */
+/* line 24, ../sass/base/_base.scss */
 h1,
 h2,
 h3,
@@ -904,51 +905,51 @@ h6 {
   text-rendering: optimizeLegibility;
 }
 
-/* line 43, ../sass/base/_base.scss */
+/* line 44, ../sass/base/_base.scss */
 strong {
   font-weight: bold;
 }
 
-/* line 48, ../sass/base/_base.scss */
+/* line 49, ../sass/base/_base.scss */
 em {
   font-style: italic;
 }
-/* line 51, ../sass/base/_base.scss */
+/* line 52, ../sass/base/_base.scss */
 em strong {
   font-weight: bold;
 }
 
 /* Links
    ================================================================================================================== */
-/* line 62, ../sass/base/_base.scss */
+/* line 63, ../sass/base/_base.scss */
 a:link {
   color: #2c79d3;
   text-decoration: underline;
 }
-/* line 67, ../sass/base/_base.scss */
+/* line 68, ../sass/base/_base.scss */
 a:visited {
   color: #286dbe;
 }
-/* line 71, ../sass/base/_base.scss */
+/* line 72, ../sass/base/_base.scss */
 a:hover {
   color: #2361a9;
   text-decoration: none;
 }
-/* line 76, ../sass/base/_base.scss */
+/* line 77, ../sass/base/_base.scss */
 a:focus {
   color: #2361a9;
 }
 
 /* Paragraph
    ================================================================================================================== */
-/* line 85, ../sass/base/_base.scss */
+/* line 86, ../sass/base/_base.scss */
 p {
   margin-top: 0;
 }
 
 /* Image
    ================================================================================================================== */
-/* line 93, ../sass/base/_base.scss */
+/* line 94, ../sass/base/_base.scss */
 img {
   display: inline;
   height: auto;
@@ -1114,16 +1115,16 @@ label {
 
 /* line 21, ../sass/layout/_layout.scss */
 .ng-enter {
-  -moz-animation: fade-in 0.5s;
-  -webkit-animation: fade-in 0.5s;
-  animation: fade-in 0.5s;
+  -moz-animation: fade-in 1s;
+  -webkit-animation: fade-in 1s;
+  animation: fade-in 1s;
 }
 
 /* line 26, ../sass/layout/_layout.scss */
 .ng-leave {
-  -moz-animation: fade-out 0.5s;
-  -webkit-animation: fade-out 0.5s;
-  animation: fade-out 0.5s;
+  -moz-animation: fade-out 1s;
+  -webkit-animation: fade-out 1s;
+  animation: fade-out 1s;
 }
 
 @media only screen and (min-width: 481px) {
@@ -2653,214 +2654,202 @@ label {
   /* line 7, ../sass/animations/_animation.scss */
   0% {
     opacity: 1;
-    right: 0em;
   }
 
-  /* line 12, ../sass/animations/_animation.scss */
+  /* line 11, ../sass/animations/_animation.scss */
   100% {
     opacity: 0;
-    right: -40em;
   }
 }
 @-webkit-keyframes fade-out {
   /* line 7, ../sass/animations/_animation.scss */
   0% {
     opacity: 1;
-    right: 0em;
   }
 
-  /* line 12, ../sass/animations/_animation.scss */
+  /* line 11, ../sass/animations/_animation.scss */
   100% {
     opacity: 0;
-    right: -40em;
   }
 }
 @keyframes fade-out {
   /* line 7, ../sass/animations/_animation.scss */
   0% {
     opacity: 1;
-    right: 0em;
   }
 
-  /* line 12, ../sass/animations/_animation.scss */
+  /* line 11, ../sass/animations/_animation.scss */
   100% {
     opacity: 0;
-    right: -40em;
   }
 }
 @-moz-keyframes fade-in {
-  /* line 21, ../sass/animations/_animation.scss */
+  /* line 19, ../sass/animations/_animation.scss */
   0% {
     opacity: 0;
-    left: -40em;
   }
 
-  /* line 26, ../sass/animations/_animation.scss */
+  /* line 23, ../sass/animations/_animation.scss */
   100% {
     opacity: 1;
-    left: 0em;
   }
 }
 @-webkit-keyframes fade-in {
-  /* line 21, ../sass/animations/_animation.scss */
+  /* line 19, ../sass/animations/_animation.scss */
   0% {
     opacity: 0;
-    left: -40em;
   }
 
-  /* line 26, ../sass/animations/_animation.scss */
+  /* line 23, ../sass/animations/_animation.scss */
   100% {
     opacity: 1;
-    left: 0em;
   }
 }
 @keyframes fade-in {
-  /* line 21, ../sass/animations/_animation.scss */
+  /* line 19, ../sass/animations/_animation.scss */
   0% {
     opacity: 0;
-    left: -40em;
   }
 
-  /* line 26, ../sass/animations/_animation.scss */
+  /* line 23, ../sass/animations/_animation.scss */
   100% {
     opacity: 1;
-    left: 0em;
   }
 }
 @-moz-keyframes spinner {
-  /* line 35, ../sass/animations/_animation.scss */
+  /* line 31, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 40, ../sass/animations/_animation.scss */
+  /* line 36, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 @-webkit-keyframes spinner {
-  /* line 35, ../sass/animations/_animation.scss */
+  /* line 31, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 40, ../sass/animations/_animation.scss */
+  /* line 36, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 @keyframes spinner {
-  /* line 35, ../sass/animations/_animation.scss */
+  /* line 31, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 40, ../sass/animations/_animation.scss */
+  /* line 36, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 @-moz-keyframes toggle-nav-open {
-  /* line 49, ../sass/animations/_animation.scss */
+  /* line 45, ../sass/animations/_animation.scss */
   0% {
     right: -100%;
   }
 
-  /* line 53, ../sass/animations/_animation.scss */
+  /* line 49, ../sass/animations/_animation.scss */
   100% {
     right: 0;
   }
 }
 @-webkit-keyframes toggle-nav-open {
-  /* line 49, ../sass/animations/_animation.scss */
+  /* line 45, ../sass/animations/_animation.scss */
   0% {
     right: -100%;
   }
 
-  /* line 53, ../sass/animations/_animation.scss */
+  /* line 49, ../sass/animations/_animation.scss */
   100% {
     right: 0;
   }
 }
 @keyframes toggle-nav-open {
-  /* line 49, ../sass/animations/_animation.scss */
+  /* line 45, ../sass/animations/_animation.scss */
   0% {
     right: -100%;
   }
 
-  /* line 53, ../sass/animations/_animation.scss */
+  /* line 49, ../sass/animations/_animation.scss */
   100% {
     right: 0;
   }
 }
 @-moz-keyframes toggle-nav-close {
-  /* line 61, ../sass/animations/_animation.scss */
+  /* line 57, ../sass/animations/_animation.scss */
   0% {
     right: 0;
   }
 
-  /* line 65, ../sass/animations/_animation.scss */
+  /* line 61, ../sass/animations/_animation.scss */
   100% {
     right: -100%;
   }
 }
 @-webkit-keyframes toggle-nav-close {
-  /* line 61, ../sass/animations/_animation.scss */
+  /* line 57, ../sass/animations/_animation.scss */
   0% {
     right: 0;
   }
 
-  /* line 65, ../sass/animations/_animation.scss */
+  /* line 61, ../sass/animations/_animation.scss */
   100% {
     right: -100%;
   }
 }
 @keyframes toggle-nav-close {
-  /* line 61, ../sass/animations/_animation.scss */
+  /* line 57, ../sass/animations/_animation.scss */
   0% {
     right: 0;
   }
 
-  /* line 65, ../sass/animations/_animation.scss */
+  /* line 61, ../sass/animations/_animation.scss */
   100% {
     right: -100%;
   }
 }
 @-moz-keyframes toggle-nav-overlay {
-  /* line 73, ../sass/animations/_animation.scss */
+  /* line 69, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent;
   }
 
-  /* line 77, ../sass/animations/_animation.scss */
+  /* line 73, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65);
   }
 }
 @-webkit-keyframes toggle-nav-overlay {
-  /* line 73, ../sass/animations/_animation.scss */
+  /* line 69, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent;
   }
 
-  /* line 77, ../sass/animations/_animation.scss */
+  /* line 73, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65);
   }
 }
 @keyframes toggle-nav-overlay {
-  /* line 73, ../sass/animations/_animation.scss */
+  /* line 69, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent;
   }
 
-  /* line 77, ../sass/animations/_animation.scss */
+  /* line 73, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65);
   }

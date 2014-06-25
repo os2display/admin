@@ -26,13 +26,18 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
     return defer.promise;
   }
 
+  /**
+   * Find slide to edit. If id is not set return current slide, else load from backend.
+   * @param id
+   * @returns {webdriver.promise.|document.promise|promise|Promise.promise|Q.promise|webdriver.promise|*}
+   */
   factory.getEditSlide = function(id) {
     var defer = $q.defer();
 
     if (id === null || id === undefined || id === '') {
       defer.resolve(factory.currentSlide);
     } else {
-      $http.get('/api/slide/' + id)
+      $http.get('/api/slide/get/' + id)
         .success(function(data) {
           factory.currentSlide = data;
           defer.resolve(factory.currentSlide);
@@ -70,17 +75,13 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   factory.saveSlide = function() {
     var defer = $q.defer();
 
-    console.log(factory.currentSlide);
-
     $http.post('/api/slide/save', factory.currentSlide)
       .success(function(data) {
-        console.log(data);
         defer.resolve("success");
         factory.currentSlide = null;
       })
       .error(function() {
-        console.log("error");
-        defer.reject("failure");
+        defer.reject("error");
       });
 
     return defer.promise;

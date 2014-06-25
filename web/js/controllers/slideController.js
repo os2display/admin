@@ -34,31 +34,10 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
           if ($scope.slide === {}) {
             $location.path('/slide');
           }
-
-          // Make sure we are not placed at steps later than what is set in the data.
-          var s = 1;
-          if ($scope.slide.title !== '') {
-            s = s + 1;
-            if ($scope.slide.orientation !== '') {
-              s = s + 1;
-              if ($scope.slide.template !== '') {
-                s = s + 1;
-              }
-            }
-          }
-          if ($scope.step > s) {
-            loadStep(s);
-          }
         });
       }
 
-      // Get the step.
-      if ($routeParams.step) {
-        loadStep(parseInt($routeParams.step));
-      }
-      else {
-        loadStep(1);
-      }
+      loadStep($scope.steps);
     }
   }
   init();
