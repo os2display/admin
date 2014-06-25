@@ -882,7 +882,7 @@ html {
 /* line 14, ../sass/base/_base.scss */
 body {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: white;
   color: #222;
   font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;

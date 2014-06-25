@@ -37,11 +37,11 @@ ikApp.config(function($routeProvider) {$routeProvider
   })
   .when('/channel', {
     controller: 'ChannelController',
-    templateUrl: 'partials/channel1.html'
+    templateUrl: 'partials/channel.html'
   })
-  .when('/channel/:channelId/:step', {
+  .when('/channel/:channelId', {
     controller: 'ChannelController',
-    templateUrl: function(params){ return 'partials/channel' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+    templateUrl: 'partials/channel.html'
   })
   .when('/media', {
     controller: 'MediaController',
