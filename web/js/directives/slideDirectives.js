@@ -40,10 +40,6 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', function(sli
     },
     link: function(scope, element, attrs) {
       attrs.$observe('ikId', function(val) {
-        if (val == '') {
-          return;
-        }
-
         slideFactory.getEditSlide(scope.ikId).then(function(data) {
           scope.ikSlide = data;
 

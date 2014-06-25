@@ -34,10 +34,10 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
           if ($scope.slide === {}) {
             $location.path('/slide');
           }
+
+          loadStep($scope.steps);
         });
       }
-
-      loadStep($scope.steps);
     }
   }
   init();
