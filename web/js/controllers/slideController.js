@@ -1,13 +1,18 @@
 /**
  * Slide controller. Controls the slide creation process.
  */
-ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory, templateFactory, imageFactory) {
+ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory, templateFactory) {
   /**
    * Scope setup
    */
   $scope.steps = 4;
-  $scope.slide = [];
+  $scope.slide = {};
   $scope.templates = templateFactory.getTemplates();
+
+  function loadStep(step) {
+    $scope.step = step;
+    $scope.templatePath = '/partials/slide' + $scope.step + '.html';
+  }
 
   /**
    * Constructor.
@@ -17,44 +22,42 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     if (!$routeParams.slideId) {
       // If the ID is not set, get an empty slide.
       $scope.slide = slideFactory.emptySlide();
-      $scope.step = 1;
+      loadStep(1);
     } else {
+      if ($routeParams.slideId == null || $routeParams.slideId == undefined || $routeParams.slideId == '') {
+        $location.path('/slide');
+      } else {
+        // Get the slide from the backend.
+        slideFactory.getEditSlide($routeParams.slideId).then(function(data) {
+          $scope.slide = data;
+
+          if ($scope.slide === {}) {
+            $location.path('/slide');
+          }
+
+          // Make sure we are not placed at steps later than what is set in the data.
+          var s = 1;
+          if ($scope.slide.title !== '') {
+            s = s + 1;
+            if ($scope.slide.orientation !== '') {
+              s = s + 1;
+              if ($scope.slide.template !== '') {
+                s = s + 1;
+              }
+            }
+          }
+          if ($scope.step > s) {
+            loadStep(s);
+          }
+        });
+      }
+
       // Get the step.
       if ($routeParams.step) {
-        if ($routeParams.step < 1 || $routeParams.step > $scope.steps) {
-          $location.path('/slide/' + $routeParams.slideId + '/1');
-          return;
-        }
-        else {
-          $scope.step = $routeParams.step;
-        }
+        loadStep(parseInt($routeParams.step));
       }
       else {
-        $scope.step = 1;
-      }
-
-      // Get slide.
-      $scope.slide = slideFactory.getSlide($routeParams.slideId);
-
-      if ($scope.slide === null) {
-        $location.path('/slide');
-        return;
-      }
-
-      // Make sure we are not placed at steps later than what is set in the data.
-      var s = 1;
-      if ($scope.slide.title !== '') {
-        s = s + 1;
-        if ($scope.slide.orientation !== '') {
-          s = s + 1;
-          if ($scope.slide.template !== '') {
-            s = s + 1;
-          }
-        }
-      }
-      if ($scope.step > s) {
-        $location.path('/slide/' + $scope.slide.id + '/' + s);
-        return;
+        loadStep(1);
       }
     }
   }
@@ -64,17 +67,12 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
    * Submit a step in the installation process.
    */
   $scope.submitStep = function() {
-    $scope.slide = slideFactory.saveSlide($scope.slide);
-
-    // Modify history to make sure the back button does not redirect to #/slide/, so a new slide will be created.
-    if ($scope.step == 1) {
-      window.history.replaceState({}, "", "#/slide/" + $scope.slide.id + "/1");
-    }
-
-    if ($scope.step < $scope.steps) {
-      $location.path('/slide/' + $scope.slide.id + '/' + (parseInt($scope.step) + 1));
+    if ($scope.step == $scope.steps) {
+      slideFactory.saveSlide($scope.slide).then(function() {
+        $location.path('/slides');
+      });
     } else {
-      $location.path('/slides');
+      loadStep($scope.step + 1);
     }
   }
 

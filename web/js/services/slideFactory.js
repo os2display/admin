@@ -1,133 +1,49 @@
 /**
  * Slide service.
  */
-ikApp.factory('slideFactory', function() {
+ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   var factory = {};
-  var slides = [
-    {
-      id: 1,
-      title: 'Et slide her',
-      orientation: 'landscape',
-      template: 'text-top',
-      created: '1403030600',
-      options: {
-        'fontsize': '32',
-        'bgcolor': '#ccc',
-        'textcolor': '#fff',
-        'textbgcolor': 'rgba(0, 0, 0, 0.7)',
-        'image': '',
-        'headline': '',
-        'text': '',
-        idealdimensions: {
-          width: '1920',
-          height: '1080'
-        }
-      }
-    },
-    {
-      id: 2,
-      title: 'Billede af en vej',
-      orientation: 'landscape',
-      template: 'text-bottom',
-      created: '1405044600',
-      options: {
-        'fontsize': '32',
-        'bgcolor': '#ccc',
-        'textcolor': '#fff',
-        'textbgcolor': 'rgba(0, 0, 0, 0.7)',
-        'image': 'images/outlines/slide-config-default.png',
-        'headline': 'Dette er en overskrift',
-        'text': 'sdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf\r\nsdflksdfjdsfjsdjipf',
-        idealdimensions: {
-          width: '1920',
-          height: '1080'
-        }
-      }
-    },
-    {
-      id: 3,
-      title: 'Halli hallo',
-      orientation: 'landscape',
-      template: 'text-left',
-      created: '1401049600',
-      options: {
-        'fontsize': '32',
-        'bgcolor': '#ccc',
-        'textcolor': '#fff',
-        'textbgcolor': 'rgba(0, 0, 0, 0.7)',
-        'image': '',
-        'headline': '',
-        'text': 'dflksd fjdsfjsdjipf sdflksdfjd dflksdfjdsfjsdjipf sdflksdfjdsfjsdjipf sdf dflksdfjd sfjsdjipf sdflksdfjdsfjsdjipf sdfsfjsdjipf sdf',
-        idealdimensions: {
-          width: '1920',
-          height: '1080'
-        }
-      }
-    },
-    {
-      id: 4,
-      title: 'En tur i byen',
-      orientation: 'portrait',
-      template: 'portrait-text-top',
-      created: '1405000600',
-      options: {
-        'fontsize': '32',
-        'bgcolor': '#ccc',
-        'textcolor': '#fff',
-        'textbgcolor': 'rgba(0, 0, 0, 0.7)',
-        'image': '',
-        'headline': '',
-        'text': '',
-        idealdimensions: {
-          width: '1080',
-          height: '1920'
-        }
-      }
-    },
-    {
-      id: 5,
-      title: 'En tur på stranden',
-      orientation: 'landscape',
-      template: 'text-top',
-      created: '1402011600',
-      options: {
-        'fontsize': '32',
-        'bgcolor': '#ccc',
-        'textcolor': '#fff',
-        'textbgcolor': 'rgba(0, 0, 0, 0.7)',
-        'image': '',
-        'headline': 'Another more text',
-        'text': '',
-        idealdimensions: {
-          width: '1920',
-          height: '1080'
-        }
-      }
-    }
-  ];
-  var next_id = 6;
 
-
-  /**
-   * Internal function to get next id.
-   * @returns id
-   */
-  function getNextID() {
-    var i  = next_id;
-    next_id = i + 1;
-
-    return i;
-  }
-
+  // Current open slide.
+  // This is the slide we are editing.
+  factory.currentSlide = null;
 
   /**
    * Get all slides.
    * @returns {Array}
    */
   factory.getSlides = function() {
-    return slides;
+    var defer = $q.defer();
+
+    $http.get('/api/slides')
+      .success(function(data) {
+        defer.resolve(data);
+      })
+      .error(function() {
+        defer.reject();
+      });
+
+    return defer.promise;
   }
 
+  factory.getEditSlide = function(id) {
+    var defer = $q.defer();
+
+    if (id === null || id === undefined || id === '') {
+      defer.resolve(factory.currentSlide);
+    } else {
+      $http.get('/api/slide/' + id)
+        .success(function(data) {
+          factory.currentSlide = data;
+          defer.resolve(factory.currentSlide);
+        })
+        .error(function() {
+          defer.reject();
+        });
+    }
+
+    return defer.promise;
+  }
 
   /**
    * Find the slide with @id
@@ -135,32 +51,52 @@ ikApp.factory('slideFactory', function() {
    * @returns slide or null
    */
   factory.getSlide = function(id) {
-    var arr = [];
-    angular.forEach(slides, function(value, key) {
-      if (value['id'] == id) {
-        arr.push(value);
-      }
-    })
+    var defer = $q.defer();
 
-    if (arr.length === 0) {
-      return null;
-    } else {
-      return arr[0];
-    }
+    $http.get('/api/slide/get/' + id)
+      .success(function(data) {
+        defer.resolve(data);
+      })
+      .error(function() {
+        defer.reject();
+      });
+
+    return defer.promise;
   }
 
+  /**
+   * Saves slide to slides. Assigns an id, if it is not set.
+   */
+  factory.saveSlide = function() {
+    var defer = $q.defer();
+
+    console.log(factory.currentSlide);
+
+    $http.post('/api/slide/save', factory.currentSlide)
+      .success(function(data) {
+        console.log(data);
+        defer.resolve("success");
+        factory.currentSlide = null;
+      })
+      .error(function() {
+        console.log("error");
+        defer.reject("failure");
+      });
+
+    return defer.promise;
+  }
 
   /**
    * Returns an empty slide.
    * @returns slide (empty)
    */
   factory.emptySlide = function() {
-    return {
+    factory.currentSlide = {
       id: null,
       title: '',
       orientation: '',
       template: '',
-      created: (new Date().getTime()) / 1000,
+      created: parseInt((new Date().getTime()) / 1000),
       options: {
         fontsize: '32',
         bgcolor: '#ccc',
@@ -175,31 +111,10 @@ ikApp.factory('slideFactory', function() {
         }
       }
     };
-  }
 
-
-  /**
-   * Saves slide to slides. Assigns an id, if it is not set.
-   * @param slide
-   * @returns slide
-   */
-  factory.saveSlide = function(slide) {
-    if (slide.id === null) {
-      slide.id = getNextID();
-      slides.push(slide);
-    } else {
-      var s = factory.getSlide(slide.id);
-
-      if (s === null) {
-        slide.id = getNextID();
-        slides.push(slide);
-      } else {
-        s = slide;
-      }
-    }
-    return slide;
+    return factory.currentSlide;
   }
 
   return factory;
-});
+}]);
 
