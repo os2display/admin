@@ -8,7 +8,7 @@ ikApp.config(function($routeProvider) {$routeProvider
     templateUrl: 'partials/channels.html'
   })
   .when('/slides', {
-    controller: 'OverviewController',
+    controller: 'SlidesController',
     templateUrl: 'partials/slides.html'
   })
   .when('/screens', {
@@ -29,11 +29,11 @@ ikApp.config(function($routeProvider) {$routeProvider
   })
   .when('/slide', {
     controller: 'SlideController',
-    templateUrl: 'partials/slide1.html'
+    templateUrl: 'partials/slide.html'
   })
   .when('/slide/:slideId/:step', {
     controller: 'SlideController',
-    templateUrl: function(params){ return 'partials/slide' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+    templateUrl: 'partials/slide.html'
   })
   .when('/channel', {
     controller: 'ChannelController',
