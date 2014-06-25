@@ -69,7 +69,7 @@
     text-align: right;
 
     @include breakpoint($breakpoint-lap) {
-      text-align: left;
+      text-align: left; 
     }
   }
 

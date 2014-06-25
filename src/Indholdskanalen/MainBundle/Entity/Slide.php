@@ -23,29 +23,26 @@ class Slide {
   private $id;
 
   /**
-   * @var integer
-   *
    * @ORM\Column(name="title", type="text", nullable=false)
    */
   private $title;
 
   /**
-   * @var integer
-   *
-   * @ORM\Column(name="orientation", type="integer", nullable=false)
+   * @ORM\Column(name="orientation", type="string", nullable=true)
    */
   private $orientation;
 
   /**
-   * @var integer
-   *
+   * @ORM\Column(name="template", type="string", nullable=true)
+   */
+  private $template;
+
+  /**
    * @ORM\Column(name="created", type="integer", nullable=false)
    */
   private $created;
 
   /**
-   * @var string
-   *
    * @ORM\Column(name="options", type="text", nullable=true)
    */
   private $options;
@@ -63,13 +60,9 @@ class Slide {
    * Set title
    *
    * @param string $title
-   *
-   * @return Slide
    */
   public function setTitle($title) {
     $this->title = $title;
-
-    return $this;
   }
 
   /**
@@ -85,35 +78,45 @@ class Slide {
    * Set orientation
    *
    * @param \int $orientation
-   *
-   * @return Slide
    */
   public function setOrientation($orientation) {
     $this->orientation = $orientation;
-
-    return $this;
   }
 
   /**
    * Get orientation
    *
-   * @return \int
+   * @return \string
    */
   public function getOrientation() {
     return $this->orientation;
   }
 
   /**
+   * Set template
+   *
+   * @param \string $template
+   */
+  public function setTemplate($template) {
+    $this->template = $template;
+  }
+
+  /**
+   * Get template
+   *
+   * @return \string
+   */
+  public function getTemplate() {
+    return $this->template;
+  }
+
+  /**
    * Set created
    *
    * @param \int $created
-   *
-   * @return Slide
    */
   public function setCreated($created) {
     $this->created = $created;
-
-    return $this;
   }
 
   /**
@@ -129,13 +132,9 @@ class Slide {
    * Set options
    *
    * @param string $options
-   *
-   * @return Slide
    */
   public function setOptions($options) {
     $this->options = $options;
-
-    return $this;
   }
 
   /**

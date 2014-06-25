@@ -1,13 +1,13 @@
 <header class="header" role="banner" ng-controller="MenuController">
-  <a class="nav--overlay" data-ng-class="{'is-visible': menuOpen !== null && menuOpen}" data-ng-click="toggleMenu()"></a>
-  <nav class="nav" data-ng-class="{'is-visible': menuOpen !== null && menuOpen, 'is-hidden': menuOpen !== null && !menuOpen}">
-   <div class="nav--toggle-icon" data-ng-click="toggleMenu()">X</div>
+  <a class="nav--overlay" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen}" data-ng-click="toggleNavMenu()"></a>
+  <nav class="nav" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+   <div class="nav--toggle-icon" data-ng-click="toggleNavMenu()">X</div>
     <h2 class="nav--header">Navigation</h2>
     <div class="nav--item-wrapper">
-      <a href="/#/channels" class="nav--item" data-ng-click="toggleMenu()">Kanaler</a>
-      <a href="/#/slides" class="nav--item" data-ng-click="toggleMenu()">Slides</a>
-      <a href="/#/screens" class="nav--item" data-ng-click="toggleMenu()">Screens</a>
-      <a href="/#/templates" class="nav--item" data-ng-click="toggleMenu()">Templates</a>
+      <a href="/#/channels" class="nav--item">Kanaler</a>
+      <a href="/#/slides" class="nav--item">Slides</a>
+      <a href="/#/screens" class="nav--item">Screens</a>
+      <a href="/#/templates" class="nav--item">Templates</a>
     </div>
     <div class="nav--item-wrapper">
       <a href="/logout" class="nav--item">Log ud</a>
@@ -20,10 +20,28 @@
       </div>
       <nav class="header--main-menu" >
         <ul class="header--main-menu-items">
-          <li class="header--main-menu-item" ng-repeat="item in menu">
-            <a class="header--main-menu-item-link" ng-class="{'is-active': item.active}" ng-href="/#/{{ item.link }}">
-              <span class="header--main-menu-item-image-{{ item.name }}"></span>
-              <span class="header--main-menu-item-text">{{ item.title }}</span>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/channels'}" href="/#/channels">
+              <span class="header--main-menu-item-image-channels"></span>
+              <span class="header--main-menu-item-text">Kanaler</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/slides'}" href="/#/slides">
+              <span class="header--main-menu-item-image-slides"></span>
+              <span class="header--main-menu-item-text">Slides</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/screens'}" href="/#/screens">
+              <span class="header--main-menu-item-image-screens"></span>
+              <span class="header--main-menu-item-text">Skærme</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/templates'}" href="/#/templates">
+              <span class="header--main-menu-item-image-templates"></span>
+              <span class="header--main-menu-item-text">Skabeloner</span>
             </a>
           </li>
         </ul>
@@ -42,8 +60,7 @@
           </div>
           <div class="header--nav-menu">
             <div class="header--nav-menu-label">
-
-              <span class="header--nav-menu-link" data-ng-click="toggleMenu()">
+              <span class="header--nav-menu-link" data-ng-click="toggleNavMenu()">
                 <span class="header--nav-menu-label-image"></span>
                 <span class="header--nav-menu-label-text">Menu</span>
               </span>
@@ -59,16 +76,10 @@
     <div class="header--sub-inner">
       <nav class="header--sub-menu">
         <ul class="header--sub-menu-items">
-          <li class="header--sub-menu-item" ng-repeat="item in submenuitems">
-            <a class="header--sub-menu-item-link" href="#">
-              <span class="header--sub-menu-item-image-overview"></span>
-              <span class="header--sub-menu-item-text">Oversigt</span>
-            </a>
-          </li>
-          <li class="header--sub-menu-item">
-            <a class="is-active header--sub-menu-item-link" href="#">
-              <span class="header--sub-menu-item-image-create-channel"></span>
-              <span class="header--sub-menu-item-text">Opret kanal</span>
+          <li class="header--sub-menu-item" ng-repeat="item in subMenuItems">
+            <a class="header--sub-menu-item-link" href="/#/{{item.path}}" ng-class="{'is-active': pathStartsWith(url, '{{item.path}}')}">
+              <span class="header--sub-menu-item-image-{{item.classSuffix}}"></span>
+              <span class="header--sub-menu-item-text">{{item.title}}</span>
             </a>
           </li>
         </ul>

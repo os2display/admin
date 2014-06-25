@@ -7,7 +7,11 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    */
   $scope.steps = 4; // Number of steps in the creation process.
   $scope.channel = null; // Channel created in the process.
-  $scope.slides = slideFactory.getSlides(); // All available slides.
+  $scope.slides = [];
+
+  slideFactory.getSlides().then(function(data) {
+    $scope.slides = data;
+  });
 
   /**
    * Constructor.
@@ -97,10 +101,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
       return false;
     }
     return $scope.channel[field] !== '';
-  }
-
-  $scope.openToolbar = function(toolbar) {
-    alert(toolbar);
   }
 
 

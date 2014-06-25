@@ -5,14 +5,16 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
     /**
      * Scope setup
      */
-    $scope.steps = 2;
+    $scope.steps = 3;
     $scope.screen = [];
+    $scope.groups = [];
 
     /**
      * Constructor.
      * Handles different settings of route parameters.
      */
     function init() {
+        $scope.groups = screenFactory.getGroups();
         if (!$routeParams.screenId) {
             // If the ID is not set, get an empty screen.
             $scope.screen = screenFactory.emptyScreen();
@@ -85,6 +87,36 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
             return false;
         }
         return $scope.screen[field] !== '';
+    }
+
+    /**
+     * Find the groups screen with @id is part of
+     * @param Screen id
+     * @param Group id
+     * @returns boolean
+     */
+    $scope.isScreenInGroup = function(screen_id, group_id) {
+        var screen_id = parseInt(screen_id);
+        var group = screenFactory.getGroup(group_id);
+        if (group.screens.indexOf(screen_id) != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Toogle if screen is part group
+     * @param screen_id
+     * @param group_id
+     */
+
+    $scope.toggleGroup = function(screen_id, group_id) {
+        if($scope.isScreenInGroup(screen_id, group_id)) {
+            screenFactory.removeScreenFromGroup(screen_id, group_id);
+        } else {
+            screenFactory.addScreenToGroup(screen_id, group_id);
+        }
     }
 
     $scope.openToolbar = function(toolbar) {

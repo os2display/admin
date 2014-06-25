@@ -1,0 +1,10 @@
+<div class="text-right" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': theStyle.width, 'height': theStyle.height, 'font-size': theStyle.fontsize, 'background-image': 'url(' + ikSlide.options.image + ')'}">
+  <div class="text-right--text-wrapper">
+    <div class="text-right--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}">
+      <div class="create-slide--edit-box-settings" ng-click="editor.toggleTextEditor()"></div>
+      <h1 class="text-right--header"><div class="has-placeholder" placeholder="Enter a title" contenteditable="true" data-ng-model="ikSlide.options.headline" spellcheck="false"></div></h1>
+      <pre class="text-right--description has-placeholder" placeholder="This is the content of the slide, edit this text. The bounding box will expand accoding to how much text you add."  contenteditable="true" data-ng-model="ikSlide.options.text" spellcheck="false"></pre>
+    </div>
+  </div>
+  <div class="create-slide--edit-image-settings" ng-click="editor.toggleBackgroundEditor()"></div>
+</div>

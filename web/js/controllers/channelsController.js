@@ -1,5 +1,10 @@
-ikApp.controller('OverviewController', function($scope, slideFactory) {
-  $scope.slides = slideFactory.getSlides();
+ikApp.controller('ChannelsController', function($scope, channelFactory) {
+  $scope.channels = [];
+
+  channelFactory.getChannels().then(function(data) {
+    $scope.channels = data;
+  });
+
   $scope.sort = '-created';
   $scope.search = {
     title: '',

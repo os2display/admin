@@ -1,7 +1,14 @@
-ikApp.factory('channelFactory', function() {
+ikApp.factory('channelFactory', '$http', '$q', function($http, $q) {
     var factory = {};
-    var channels = [];
-    var next_id = 0;
+    var channels = [
+      {
+        id: 1,
+        title: 'My channel',
+        orientation: 'landscape',
+        slides: [1,2,3]
+      }
+    ];
+    var next_id = 2;
 
 
     /**
@@ -21,7 +28,11 @@ ikApp.factory('channelFactory', function() {
      * @returns {Array}
      */
     factory.getChannels = function() {
-        return channels;
+      var defer = $q.defer();
+
+      defer.resolve(channels);
+
+      return defer.promise;
     }
 
 

@@ -20,9 +20,9 @@ class ApiController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlidesGetAction(Request $request) {
+  public function SlidesGetAction() {
     // Slide entities
-    $slide_entities = $this->getDoctrine()->getRepository('MainBundle:Slide')
+    $slide_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findAll();
 
     // Build our slide array.
@@ -46,9 +46,43 @@ class ApiController extends Controller {
   }
 
   /**
+   * Get a list of all slide.
+   *
+   * @Route("/slide/get/{id}")
+   *
+   * @param $id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function SlideGetAction($id) {
+    $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
+      ->findOneById($id);
+
+    $responseData = array();
+
+    if ($slide) {
+      $responseData = array(
+        "id" => $slide->getId(),
+        "title" => $slide->getTitle(),
+        "orientation" => $slide->getOrientation(),
+        "template" => $slide->getTemplate(),
+        "created" => $slide->getCreated(),
+        "options" => unserialize($slide->getOptions()),
+      );
+    }
+
+    $response = new Response(json_encode($responseData));
+    $response->headers->set('Content-Type', 'application/json');
+
+    return $response;
+  }
+
+  /**
    * Save a (new) slide.
    *
    * @Route("/slide/save")
+   *
+   * @param $request
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
@@ -58,7 +92,7 @@ class ApiController extends Controller {
 
     if ($post->id) {
       // Load current slide.
-      $slide = $this->getDoctrine()->getRepository('MainBundle:Slide')
+      $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
         ->findOneById($post->id);
     }
     else {
@@ -69,6 +103,7 @@ class ApiController extends Controller {
     // Update fields.
     $slide->setTitle($post->title);
     $slide->setOrientation($post->orientation);
+    $slide->setTemplate($post->template);
     $slide->setCreated($post->created);
     $slide->setOptions(serialize($post->options));
 
@@ -77,11 +112,19 @@ class ApiController extends Controller {
     $em->persist($slide);
     $em->flush();
 
-    // Send response back to client.
-    $response = new Response(json_encode(array('status' => TRUE)));
-    // JSON header.
-    $response->headers->set('Content-Type', 'application/json');
+    // Create the response data.
+    $responseData = array(
+      "id" => $slide->getId(),
+      "title" => $slide->getTitle(),
+      "orientation" => $slide->getOrientation(),
+      "template" => $slide->getTemplate(),
+      "created" => $slide->getCreated(),
+      "options" => unserialize($slide->getOptions()),
+    );
 
+    // Send the json response back to client.
+    $response = new Response(json_encode($responseData));
+    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 }

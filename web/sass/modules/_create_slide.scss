@@ -222,6 +222,12 @@
   }
 
 
+  &--content-inner {
+    width: 960px;
+    margin: 0 auto 2em;
+    position: relative;
+  }
+
   &--config-text-wrapper {
     position: absolute;
     width: 100%;

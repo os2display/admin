@@ -8,7 +8,7 @@ ikApp.config(function($routeProvider) {$routeProvider
     templateUrl: 'partials/channels.html'
   })
   .when('/slides', {
-    controller: 'OverviewController',
+    controller: 'SlidesController',
     templateUrl: 'partials/slides.html'
   })
   .when('/screens', {
@@ -29,19 +29,23 @@ ikApp.config(function($routeProvider) {$routeProvider
   })
   .when('/slide', {
     controller: 'SlideController',
-    templateUrl: 'partials/slide1.html'
+    templateUrl: 'partials/slide.html'
   })
-  .when('/slide/:slideId/:step', {
+  .when('/slide/:slideId', {
     controller: 'SlideController',
-    templateUrl: function(params){ return 'partials/slide' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+    templateUrl: 'partials/slide.html'
   })
   .when('/channel', {
     controller: 'ChannelController',
-    templateUrl: 'partials/channel1.html'
+    templateUrl: 'partials/channel.html'
   })
-  .when('/channel/:channelId/:step', {
+  .when('/channel/:channelId', {
     controller: 'ChannelController',
-    templateUrl: function(params){ return 'partials/channel' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+    templateUrl: 'partials/channel.html'
+  })
+  .when('/media', {
+    controller: 'MediaController',
+    templateUrl: 'partials/media.html'
   })
   .otherwise({redirectTo: '/'});
 });
