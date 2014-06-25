@@ -128,10 +128,9 @@ ikApp.factory('screenFactory', function() {
      * @returns group or null
      */
     factory.getScreenGroups = function(id) {
-        id = parseInt(id);
+        var id = parseInt(id);
         var arr = [];
         angular.forEach(groups, function(value, key) {
-            console.log(id + ': ' + value.screens.indexOf(id) + ', ' + value.screens);
             if (value.screens.indexOf(id) != -1) {
                 arr.push(value);
             }
@@ -141,6 +140,38 @@ ikApp.factory('screenFactory', function() {
             return null;
         } else {
             return arr;
+        }
+    }
+
+
+    /**
+     * Remove screen from group
+     * @param screen_id
+     * @param group_id
+     */
+    factory.removeScreenFromGroup = function(screen_id, group_id) {
+        var group = factory.getGroup(group_id);
+        var screen_id = parseInt(screen_id);
+        var idx = group.screens.indexOf(screen_id);
+
+        if (idx > -1) {
+            group.screens.splice(idx, 1);
+        }
+    }
+
+    /**
+     * Add screen to group
+     * @param screen_id
+     * @param group_id
+     */
+    factory.addScreenToGroup = function(screen_id, group_id) {
+        var group = factory.getGroup(group_id);
+        var screen_id = parseInt(screen_id);
+        var idx = group.screens.indexOf(screen_id);
+
+        if (idx == -1) {
+            group.screens.push(screen_id);
+
         }
     }
 

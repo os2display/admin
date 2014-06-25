@@ -5,12 +5,13 @@
     <form ng-submit="submitStep()">
         <label data-ng-repeat="group in groups">
             <input
-                    type="checkbox"
-                    name="selectedGroupss[]"
-                    value="{{group.title}}"
-                    ng-checked="selection.indexOf(group.title) > -1"
-                    ng-click="toggleSelection(group.title)"
-                    > {{group.title}}
+                type="checkbox"
+                name="selectedGroupss[]"
+                value="{{group.title}}"
+                ng-checked="isScreenInGroup(screen.id, group.id)"
+                ng-click="toggleGroup(screen.id, group.id)"
+            >
+            {{group.title}}
         </label>
       <input type="submit" class="create-screen--button" data-ng-class="{'is-inactive': !validation.titleSet()}" ng-disabled="!validation.dimensionSet()" value="Gem og fortsæt">
     </form>
