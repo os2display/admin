@@ -1,61 +1,67 @@
+/**
+ * Channel factory.
+ */
 ikApp.factory('channelFactory', ['$http', '$q', function($http, $q) {
   var factory = {};
-  var channels = [
-    {
-      id: 1,
-      title: 'My channel',
-      created: parseInt((new Date().getTime()) / 1000),
-      orientation: 'landscape',
-      slides: [1,2,3]
-    }
-  ];
-  var next_id = 2;
 
+  // Current open channel.
+  // This is the channel we are editing.
+  var currentChannel = {};
 
   /**
-   * Internal function to get next id.
-   * @returns id
-   */
-  function getNextID() {
-    var i  = next_id;
-    next_id = i + 1;
-
-    return i;
-  }
-
-
-  /**
-   * Get channels.
+   * Get all channels.
    */
   factory.getChannels = function() {
     var defer = $q.defer();
 
-    defer.resolve(channels);
+    $http.get('/api/channels')
+      .success(function(data) {
+        defer.resolve(data);
+      })
+      .error(function() {
+        defer.reject();
+      });
 
     return defer.promise;
   }
 
+  /**
+   * Find slide to edit. If id is not set return current slide, else load from backend.
+   * @param id
+   */
+  factory.getEditChannel = function(id) {
+    var defer = $q.defer();
+
+    if (id === null || id === undefined || id === '') {
+      defer.resolve(currentChannel);
+    } else {
+      $http.get('/api/slide/get/' + id)
+        .success(function(data) {
+          currentChannel = data;
+          defer.resolve(currentChannel);
+        })
+        .error(function() {
+          defer.reject();
+        });
+    }
+
+    return defer.promise;
+  }
 
   /**
    * Find the channel with @id
    * @param id
-   * @returns channel or null
    */
   factory.getChannel = function(id) {
     var defer = $q.defer();
 
-    var arr = [];
-    angular.forEach(channels, function(value, key) {
-      if (value.id == id) {
-        arr.push(value);
-      }
-    })
-
-    if (arr.length === 0) {
-      defer.reject();
-    } else {
-      defer.resolve(arr[0]);
-    }
+    $http.get('/api/channel/get/' + id)
+      .success(function(data) {
+        defer.resolve(data);
+      })
+      .error(function() {
+        defer.reject();
+      });
 
     return defer.promise;
   }
@@ -63,39 +69,36 @@ ikApp.factory('channelFactory', ['$http', '$q', function($http, $q) {
 
   /**
    * Returns an empty channel.
-   * @returns channel (empty)
    */
   factory.emptyChannel = function() {
-    return {
+    currentChannel = {
       id: null,
       title: '',
       orientation: '',
       created: parseInt((new Date().getTime()) / 1000),
       slides: []
     };
+
+    return currentChannel;
   }
 
 
   /**
    * Saves channel to channels. Assigns an id, if it is not set.
-   * @param channel
-   * @returns channel
    */
-  factory.saveChannel = function(channel) {
-    if (channel.id === null) {
-      channel.id = getNextID();
-      channels.push(channel);
-    } else {
-      var s = factory.getChannel(channel.id);
+  factory.saveChannel = function() {
+    var defer = $q.defer();
 
-      if (s === null) {
-        channel.id = getNextID();
-        channel.push(channel);
-      } else {
-        s = channel;
-      }
-    }
-    return channel;
+    $http.post('/api/channel/save', currentChannel)
+      .success(function(data) {
+        defer.resolve("success");
+        currentChannel = null;
+      })
+      .error(function() {
+        defer.reject("error");
+      });
+
+    return defer.promise;
   }
 
   return factory;

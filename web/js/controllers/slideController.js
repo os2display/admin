@@ -19,16 +19,16 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
    * Handles different settings of route parameters.
    */
   function init() {
-    if (!$routeParams.slideId) {
+    if (!$routeParams.id) {
       // If the ID is not set, get an empty slide.
       $scope.slide = slideFactory.emptySlide();
       loadStep(1);
     } else {
-      if ($routeParams.slideId == null || $routeParams.slideId == undefined || $routeParams.slideId == '') {
+      if ($routeParams.id == null || $routeParams.id == undefined || $routeParams.id == '') {
         $location.path('/slide');
       } else {
         // Get the slide from the backend.
-        slideFactory.getEditSlide($routeParams.slideId).then(function(data) {
+        slideFactory.getEditSlide($routeParams.id).then(function(data) {
           $scope.slide = data;
 
           if ($scope.slide === {}) {
@@ -47,7 +47,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
    */
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
-      slideFactory.saveSlide($scope.slide).then(function() {
+      slideFactory.saveSlide().then(function() {
         $location.path('/slides');
       });
     } else {
