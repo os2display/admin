@@ -3,7 +3,7 @@
     <h1 class="create-channel--header">Opret kanal - vælg slides ({{step}}/{{steps}})</h1>
     <p class="create-channel--header-description">Vælg slides der skal vises i din kanal.</p>
     <div class="create-channel--slides">
-      <div class="create-channel--slide" data-ng-repeat="slide in slides" ng-click="toggleSlide(slide.id)">
+      <div class="create-channel--slide" data-ng-repeat="slide in slides | filter:{ orientation: channel.orientation}" ng-click="toggleSlide(slide.id)">
         <div href="#" class="create-channel--slide-link" data-ng-class="{'is-selected': (channel.slides.indexOf(slide.id) > -1)}">
           <span class="create-channel--overlay">
               <span class="create-channel--link-check"></span>
