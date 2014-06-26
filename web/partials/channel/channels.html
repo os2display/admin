@@ -18,11 +18,11 @@
     </div>
   </div>
 
-  <div class="overview--slides">
-    <div class="overview--slide" data-ng-repeat="channel in channels | filter:search | orderBy: sort">
-      <ik-channel ik-id="{{channel.id}}" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
-      <a href="/#/channel/{{channel.id}}"><div class="overview--slide-label">{{channel.title}}</div></a>
-      <span class="overview--slide-date">- {{channel.created * 1000 | date:'dd.MM.yyyy'}}</span>
+  <div class="overview--channels">
+    <div class="overview--channel" data-ng-repeat="channel in channels | filter:search | orderBy: sort">
+      <ik-channel class="overview--channel-container" ik-id="{{channel.id}}" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
+      <a href="/#/channel/{{channel.id}}"><div class="overview--channel-label">{{channel.title}}</div></a>
+      <span class="overview--channel-date">- {{channel.created * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>
   </div>
 </section>
