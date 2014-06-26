@@ -5,15 +5,15 @@ ikApp.config(function($routeProvider) {$routeProvider
   })
   .when('/channels', {
     controller: 'ChannelsController',
-    templateUrl: 'partials/channels.html'
+    templateUrl: 'partials/channel/channels.html'
   })
   .when('/slides', {
     controller: 'SlidesController',
-    templateUrl: 'partials/slides.html'
+    templateUrl: 'partials/slide/slides.html'
   })
   .when('/screens', {
     controller: 'ScreensController',
-    templateUrl: 'partials/screens.html'
+    templateUrl: 'partials/screen/screens.html'
   })
   .when('/templates', {
     controller: 'TemplatesController',
@@ -21,27 +21,27 @@ ikApp.config(function($routeProvider) {$routeProvider
   })
   .when('/screen', {
     controller: 'ScreenController',
-    templateUrl: 'partials/screen1.html'
+    templateUrl: 'partials/screen/screen1.html'
   })
   .when('/screen/:screenId/:step', {
     controller: 'ScreenController',
-    templateUrl: function(params){ return 'partials/screen' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+    templateUrl: function(params){ return 'partials/screen/screen' + ((params.step < 1) ? 1 : params.step) + '.html'; }
   })
   .when('/slide', {
     controller: 'SlideController',
-    templateUrl: 'partials/slide.html'
+    templateUrl: 'partials/slide/slide.html'
   })
   .when('/slide/:id', {
     controller: 'SlideController',
-    templateUrl: 'partials/slide.html'
+    templateUrl: 'partials/slide/slide.html'
   })
   .when('/channel', {
     controller: 'ChannelController',
-    templateUrl: 'partials/channel.html'
+    templateUrl: 'partials/channel/channel.html'
   })
   .when('/channel/:id', {
     controller: 'ChannelController',
-    templateUrl: 'partials/channel.html'
+    templateUrl: 'partials/channel/channel.html'
   })
   .when('/media', {
     controller: 'MediaController',

@@ -11,7 +11,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
 
   function loadStep(step) {
     $scope.step = step;
-    $scope.templatePath = '/partials/slide' + $scope.step + '.html';
+    $scope.templatePath = '/partials/slide/slide' + $scope.step + '.html';
   }
 
   /**
