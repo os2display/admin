@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.header--sub, .create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four {
+.header--sub, .create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -170,7 +170,7 @@
  * 5. Required to combine fluid widths and fixed gutters.
  */
 /* line 239, ../sass/base/_grid.scss */
-.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
+.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
   display: inline-block;
   /* [1] */
   padding-left: 36px;
@@ -207,7 +207,7 @@
   text-align: center;
 }
 /* line 303, ../sass/base/_grid.scss */
-.header--sub > .header--sub-menu, .header--sub > .create-slide--content--slide-one, .header--sub > .create-slide--screen-landscape, .header--sub > .create-slide--screen-portrait, .header--sub > .create-slide--template, .header--sub > .create-screen--content--screen-one, .header--sub > .create-screen--screen-landscape, .header--sub > .create-screen--screen-portrait, .header--sub > .create-channel--content--channel-one, .header--sub > .create-channel--screen-landscape, .header--sub > .create-channel--screen-portrait {
+.header--sub > .header--sub-menu, .header--sub > .create-slide--content--slide-one, .header--sub > .create-slide--screen-landscape, .header--sub > .create-slide--screen-portrait, .header--sub > .create-slide--template, .header--sub > .create-screen--content--screen-one, .header--sub > .create-screen--screen-landscape, .header--sub > .create-screen--screen-portrait, .header--sub > .create-channel--content--channel-one, .header--sub > .create-channel--screen-landscape, .header--sub > .create-channel--screen-portrait, .header--sub > .frontpage--layout-alfa, .header--sub > .frontpage--layout-beta, .header--sub > .frontpage--layout-gamma, .header--sub > .frontpage--layout-delta {
   text-align: left;
 }
 
@@ -265,7 +265,7 @@
    * Whole
    */
   /* line 367, ../sass/base/_grid.scss */
-  .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
+  .header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
     width: 100%;
   }
 
@@ -299,7 +299,7 @@
    * Whole
    */
   /* line 367, ../sass/base/_grid.scss */
-  .create-slide--content--slide-one, .create-screen--content--screen-one, .create-channel--content--channel-one {
+  .create-slide--content--slide-one, .create-screen--content--screen-one, .create-channel--content--channel-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
     width: 100%;
   }
 
@@ -371,11 +371,16 @@
   /**
    * Whole
    */
+  /* line 367, ../sass/base/_grid.scss */
+  .frontpage--layout-alfa, .frontpage--layout-delta {
+    width: 100%;
+  }
+
   /**
    * Halves
    */
   /* line 373, ../sass/base/_grid.scss */
-  .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
+  .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-beta, .frontpage--layout-gamma {
     width: 50%;
   }
 
@@ -471,7 +476,7 @@
 /* Layout
    ================================================================================================================== */
 /* line 8, ../sass/theme/_theme-vars.scss */
-.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait {
+.header--sub-menu, .create-slide--content--slide-one, .create-slide--screen-landscape, .create-slide--screen-portrait, .create-slide--template, .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
   margin-right: -4px;
 }
 
@@ -536,6 +541,75 @@
     height: 60px;
     background-position: 0 -122px;
   }
+}
+
+/* Create element - Default create element styles (A grouping of styles shared by the various creation flows)
+   ================================================================================================================== */
+/* line 34, ../sass/theme/_global-silent-classes.scss */
+.create-slide--section, .create-screen--section, .create-channel--section {
+  background-size: cover;
+  color: #535353;
+  display: block;
+  height: auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  -webkit-background-size: 100% auto;
+  background-size: 100% auto;
+}
+
+/* line 44, ../sass/theme/_global-silent-classes.scss */
+.create-slide--header, .create-screen--header, .create-channel--header {
+  border-bottom: 1px solid #e6e6e6;
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 36px 18px 36px;
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+/* line 54, ../sass/theme/_global-silent-classes.scss */
+.create-slide--header-description, .create-screen--header-description, .create-channel--header-description {
+  color: #646464;
+  font-weight: lighter;
+  margin: 0 36px 72px 36px;
+  text-align: center;
+}
+
+/* line 62, ../sass/theme/_global-silent-classes.scss */
+.create-slide--content--slide-one, .create-screen--content--screen-one, .create-channel--content--channel-one {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  padding-left: 0;
+}
+@media only screen and (min-width: 481px) {
+  /* line 62, ../sass/theme/_global-silent-classes.scss */
+  .create-slide--content--slide-one, .create-screen--content--screen-one, .create-channel--content--channel-one {
+    padding-left: 36px;
+  }
+}
+
+/* line 74, ../sass/theme/_global-silent-classes.scss */
+.create-slide--text[type="text"], .create-screen--text[type="text"], .create-channel--text[type="text"] {
+  background-color: #fbfbfb;
+  height: 4.5em;
+  margin-bottom: 2em;
+  padding: 1.5em;
+}
+/* line 80, ../sass/theme/_global-silent-classes.scss */
+.is-valid.create-slide--text[type="text"], .is-valid.create-screen--text[type="text"], .is-valid.create-channel--text[type="text"] {
+  background: url("../images/icons/check-circle-icon.png") #fbfbfb;
+  background-size: 2em 2em;
+  background-repeat: no-repeat;
+  background-position: right 1.25em top 1.25em;
+  border: 0;
+}
+
+/* line 90, ../sass/theme/_global-silent-classes.scss */
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
 /**
@@ -1563,99 +1637,38 @@ label {
   /* Create slide - setup content (Page 4)
    ========================================================================== */
 }
-/* line 25, ../sass/modules/_create_slide.scss */
-.create-slide--section {
-  background-size: cover;
-  color: #535353;
-  display: block;
-  height: auto;
-  -moz-background-size: 100% auto;
-  -o-background-size: 100% auto;
-  -webkit-background-size: 100% auto;
-  background-size: 100% auto;
-}
-/* line 35, ../sass/modules/_create_slide.scss */
-.create-slide--header {
-  border-bottom: 1px solid #e6e6e6;
-  display: inline-block;
-  font-weight: bold;
-  margin: 0 36px 18px 36px;
-  padding-bottom: 1em;
-  text-align: center;
-}
-/* line 45, ../sass/modules/_create_slide.scss */
-.create-slide--header-description {
-  color: #646464;
-  font-weight: lighter;
-  margin: 0 36px 72px 36px;
-  text-align: center;
-}
-/* line 59, ../sass/modules/_create_slide.scss */
+/* line 46, ../sass/modules/_create_slide.scss */
 .create-slide--button {
   display: block;
   margin: 0 auto;
 }
-/* line 69, ../sass/modules/_create_slide.scss */
-.create-slide--content--slide-one {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  padding-left: 0;
-}
-@media only screen and (min-width: 481px) {
-  /* line 69, ../sass/modules/_create_slide.scss */
-  .create-slide--content--slide-one {
-    padding-left: 36px;
-  }
-}
-/* line 87, ../sass/modules/_create_slide.scss */
-.create-slide--text[type="text"] {
-  background-color: #fbfbfb;
-  height: 4.5em;
-  margin-bottom: 2em;
-  padding: 1.5em;
-}
-/* line 93, ../sass/modules/_create_slide.scss */
-.create-slide--text[type="text"].is-valid {
-  background: url("../images/icons/check-circle-icon.png") #fbfbfb;
-  background-size: 2em 2em;
-  background-repeat: no-repeat;
-  background-position: right 1.25em top 1.25em;
-  border: 0;
-}
-/* line 105, ../sass/modules/_create_slide.scss */
-.create-slide--content--slide-two {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-}
-/* line 114, ../sass/modules/_create_slide.scss */
+/* line 81, ../sass/modules/_create_slide.scss */
 .create-slide--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 120, ../sass/modules/_create_slide.scss */
+/* line 87, ../sass/modules/_create_slide.scss */
 .create-slide--screen-landscape {
   margin-bottom: 2em;
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 120, ../sass/modules/_create_slide.scss */
+  /* line 87, ../sass/modules/_create_slide.scss */
   .create-slide--screen-landscape {
     padding-left: 36px;
   }
 }
-/* line 136, ../sass/modules/_create_slide.scss */
+/* line 103, ../sass/modules/_create_slide.scss */
 .create-slide--screen-portrait {
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 136, ../sass/modules/_create_slide.scss */
+  /* line 103, ../sass/modules/_create_slide.scss */
   .create-slide--screen-portrait {
     padding-left: 36px;
   }
 }
-/* line 151, ../sass/modules/_create_slide.scss */
+/* line 118, ../sass/modules/_create_slide.scss */
 .create-slide--screen-link {
   position: relative;
   display: block;
@@ -1680,22 +1693,16 @@ label {
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
-/* line 161, ../sass/modules/_create_slide.scss */
-.create-slide--content--slide-three {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-}
-/* line 170, ../sass/modules/_create_slide.scss */
+/* line 135, ../sass/modules/_create_slide.scss */
 .create-slide--template {
   margin-bottom: 2em;
   position: relative;
 }
-/* line 183, ../sass/modules/_create_slide.scss */
+/* line 148, ../sass/modules/_create_slide.scss */
 .create-slide--templates {
   margin-bottom: 3em;
 }
-/* line 188, ../sass/modules/_create_slide.scss */
+/* line 153, ../sass/modules/_create_slide.scss */
 .create-slide--template-link {
   display: block;
   position: relative;
@@ -1720,33 +1727,27 @@ label {
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
-/* line 199, ../sass/modules/_create_slide.scss */
-.create-slide--content--slide-four {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-}
-/* line 208, ../sass/modules/_create_slide.scss */
+/* line 171, ../sass/modules/_create_slide.scss */
 .create-slide--config {
   margin: 0 auto 1em;
   position: relative;
   background-size: cover;
 }
-/* line 215, ../sass/modules/_create_slide.scss */
+/* line 178, ../sass/modules/_create_slide.scss */
 .create-slide--config-header {
   font-size: 90%;
 }
-/* line 220, ../sass/modules/_create_slide.scss */
+/* line 183, ../sass/modules/_create_slide.scss */
 .create-slide--config-description {
   font-size: 70%;
 }
-/* line 225, ../sass/modules/_create_slide.scss */
+/* line 188, ../sass/modules/_create_slide.scss */
 .create-slide--content-inner {
   width: 960px;
   margin: 0 auto 2em;
   position: relative;
 }
-/* line 231, ../sass/modules/_create_slide.scss */
+/* line 194, ../sass/modules/_create_slide.scss */
 .create-slide--config-text-wrapper {
   position: absolute;
   width: 100%;
@@ -1754,7 +1755,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 239, ../sass/modules/_create_slide.scss */
+/* line 202, ../sass/modules/_create_slide.scss */
 .create-slide--config-text {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -1767,7 +1768,7 @@ label {
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }
-/* line 252, ../sass/modules/_create_slide.scss */
+/* line 215, ../sass/modules/_create_slide.scss */
 .create-slide--edit-description {
   display: inline-block;
   margin-left: .5em;
@@ -1780,7 +1781,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 260, ../sass/modules/_create_slide.scss */
+/* line 223, ../sass/modules/_create_slide.scss */
 .create-slide--edit-title {
   display: inline-block;
   margin-left: .5em;
@@ -1793,7 +1794,7 @@ label {
   height: 25px;
   background-position: 0 -467px;
 }
-/* line 268, ../sass/modules/_create_slide.scss */
+/* line 231, ../sass/modules/_create_slide.scss */
 .create-slide--edit-box-settings {
   position: absolute;
   right: -0.5em;
@@ -1808,7 +1809,7 @@ label {
   background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 268, ../sass/modules/_create_slide.scss */
+  /* line 231, ../sass/modules/_create_slide.scss */
   .create-slide--edit-box-settings {
     right: -1em;
     top: -1em;
@@ -1822,7 +1823,7 @@ label {
     background-position: 0 -256px;
   }
 }
-/* line 284, ../sass/modules/_create_slide.scss */
+/* line 247, ../sass/modules/_create_slide.scss */
 .create-slide--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -1837,7 +1838,7 @@ label {
   background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
-  /* line 284, ../sass/modules/_create_slide.scss */
+  /* line 247, ../sass/modules/_create_slide.scss */
   .create-slide--edit-image-settings {
     background: url('../images/icons-s5741e2949d.png');
     -moz-background-size: 128px 1012px;
@@ -1849,7 +1850,7 @@ label {
     background-position: 0 -632px;
   }
 }
-/* line 298, ../sass/modules/_create_slide.scss */
+/* line 261, ../sass/modules/_create_slide.scss */
 .create-slide--image {
   max-height: 100%;
   width: 100%;
@@ -1879,99 +1880,42 @@ label {
   /* Create screen - select screen (Page 2)
    ========================================================================== */
 }
-/* line 26, ../sass/modules/_create_screen.scss */
-.create-screen--section {
-  background-size: cover;
-  color: #535353;
-  display: block;
-  height: auto;
-  -moz-background-size: 100% auto;
-  -o-background-size: 100% auto;
-  -webkit-background-size: 100% auto;
-  background-size: 100% auto;
-}
-/* line 36, ../sass/modules/_create_screen.scss */
-.create-screen--header {
-  border-bottom: 1px solid #e6e6e6;
-  display: inline-block;
-  font-weight: bold;
-  margin: 0 36px 18px 36px;
-  padding-bottom: 1em;
-  text-align: center;
-}
-/* line 46, ../sass/modules/_create_screen.scss */
-.create-screen--header-description {
-  color: #646464;
-  font-weight: lighter;
-  margin: 0 36px 72px 36px;
-  text-align: center;
-}
-/* line 60, ../sass/modules/_create_screen.scss */
+/* line 47, ../sass/modules/_create_screen.scss */
 .create-screen--button {
   display: block;
   margin: 0 auto;
 }
-/* line 70, ../sass/modules/_create_screen.scss */
-.create-screen--content--screen-one {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  padding-left: 0;
-}
-@media only screen and (min-width: 481px) {
-  /* line 70, ../sass/modules/_create_screen.scss */
-  .create-screen--content--screen-one {
-    padding-left: 36px;
-  }
-}
-/* line 88, ../sass/modules/_create_screen.scss */
-.create-screen--text[type="text"] {
-  background-color: #fbfbfb;
-  height: 4.5em;
-  margin-bottom: 2em;
-  padding: 1.5em;
-}
-/* line 94, ../sass/modules/_create_screen.scss */
-.create-screen--text[type="text"].is-valid {
-  background: url("../images/icons/check-circle-icon.png") #fbfbfb;
-  background-size: 2em 2em;
-  background-repeat: no-repeat;
-  background-position: right 1.25em top 1.25em;
-  border: 0;
-}
-/* line 106, ../sass/modules/_create_screen.scss */
+/* line 75, ../sass/modules/_create_screen.scss */
 .create-screen--content--screen-two {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
+  width: 50%;
 }
-/* line 115, ../sass/modules/_create_screen.scss */
+/* line 83, ../sass/modules/_create_screen.scss */
 .create-screen--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 121, ../sass/modules/_create_screen.scss */
+/* line 89, ../sass/modules/_create_screen.scss */
 .create-screen--screen-landscape {
   margin-bottom: 2em;
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 121, ../sass/modules/_create_screen.scss */
+  /* line 89, ../sass/modules/_create_screen.scss */
   .create-screen--screen-landscape {
     padding-left: 36px;
   }
 }
-/* line 137, ../sass/modules/_create_screen.scss */
+/* line 105, ../sass/modules/_create_screen.scss */
 .create-screen--screen-portrait {
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 137, ../sass/modules/_create_screen.scss */
+  /* line 105, ../sass/modules/_create_screen.scss */
   .create-screen--screen-portrait {
     padding-left: 36px;
   }
 }
-/* line 152, ../sass/modules/_create_screen.scss */
+/* line 120, ../sass/modules/_create_screen.scss */
 .create-screen--screen-link {
   position: relative;
   display: block;
@@ -2039,99 +1983,38 @@ label {
   /* Create channel - slide order (Page 4)
    ========================================================================== */
 }
-/* line 38, ../sass/modules/_create_channel.scss */
-.create-channel--section {
-  background-size: cover;
-  color: #535353;
-  display: block;
-  height: auto;
-  -moz-background-size: 100% auto;
-  -o-background-size: 100% auto;
-  -webkit-background-size: 100% auto;
-  background-size: 100% auto;
-}
-/* line 48, ../sass/modules/_create_channel.scss */
-.create-channel--header {
-  border-bottom: 1px solid #e6e6e6;
-  display: inline-block;
-  font-weight: bold;
-  margin: 0 36px 18px 36px;
-  padding-bottom: 1em;
-  text-align: center;
-}
-/* line 58, ../sass/modules/_create_channel.scss */
-.create-channel--header-description {
-  color: #646464;
-  font-weight: lighter;
-  margin: 0 36px 72px 36px;
-  text-align: center;
-}
-/* line 72, ../sass/modules/_create_channel.scss */
+/* line 59, ../sass/modules/_create_channel.scss */
 .create-channel--button {
   display: block;
   margin: 0 auto;
 }
-/* line 82, ../sass/modules/_create_channel.scss */
-.create-channel--content--channel-one {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  padding-left: 0;
-}
-@media only screen and (min-width: 481px) {
-  /* line 82, ../sass/modules/_create_channel.scss */
-  .create-channel--content--channel-one {
-    padding-left: 36px;
-  }
-}
-/* line 100, ../sass/modules/_create_channel.scss */
-.create-channel--text[type="text"] {
-  background-color: #fbfbfb;
-  height: 4.5em;
-  margin-bottom: 2em;
-  padding: 1.5em;
-}
-/* line 106, ../sass/modules/_create_channel.scss */
-.create-channel--text[type="text"].is-valid {
-  background: url("../images/icons/check-circle-icon.png") #fbfbfb;
-  background-size: 2em 2em;
-  background-repeat: no-repeat;
-  background-position: right 1.25em top 1.25em;
-  border: 0;
-}
-/* line 118, ../sass/modules/_create_channel.scss */
-.create-channel--content--channel-two {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-}
-/* line 127, ../sass/modules/_create_channel.scss */
+/* line 94, ../sass/modules/_create_channel.scss */
 .create-channel--screens {
   max-width: 65em;
   margin: 0 auto 3em;
 }
-/* line 133, ../sass/modules/_create_channel.scss */
+/* line 100, ../sass/modules/_create_channel.scss */
 .create-channel--screen-landscape {
   margin-bottom: 2em;
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 133, ../sass/modules/_create_channel.scss */
+  /* line 100, ../sass/modules/_create_channel.scss */
   .create-channel--screen-landscape {
     padding-left: 36px;
   }
 }
-/* line 149, ../sass/modules/_create_channel.scss */
+/* line 116, ../sass/modules/_create_channel.scss */
 .create-channel--screen-portrait {
   padding-left: 0;
 }
 @media only screen and (min-width: 481px) {
-  /* line 149, ../sass/modules/_create_channel.scss */
+  /* line 116, ../sass/modules/_create_channel.scss */
   .create-channel--screen-portrait {
     padding-left: 36px;
   }
 }
-/* line 164, ../sass/modules/_create_channel.scss */
+/* line 131, ../sass/modules/_create_channel.scss */
 .create-channel--screen-link {
   position: relative;
   display: block;
@@ -2156,24 +2039,18 @@ label {
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
-/* line 174, ../sass/modules/_create_channel.scss */
-.create-channel--content--channel-three {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-}
-/* line 181, ../sass/modules/_create_channel.scss */
+/* line 146, ../sass/modules/_create_channel.scss */
 .create-channel--slide {
   position: relative;
   display: inline-block;
   margin: 0 36px 36px 0;
   width: 300px;
 }
-/* line 188, ../sass/modules/_create_channel.scss */
+/* line 153, ../sass/modules/_create_channel.scss */
 .create-channel--slides {
   margin-bottom: 3em;
 }
-/* line 193, ../sass/modules/_create_channel.scss */
+/* line 158, ../sass/modules/_create_channel.scss */
 .create-channel--slide-link {
   display: block;
   position: relative;
@@ -2198,37 +2075,34 @@ label {
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
-/* line 199, ../sass/modules/_create_channel.scss */
+/* line 164, ../sass/modules/_create_channel.scss */
 .create-channel--slide-link.is-selected {
   cursor: pointer;
 }
-/* line 207, ../sass/modules/_create_channel.scss */
+/* line 172, ../sass/modules/_create_channel.scss */
 .create-channel--content--channel-four {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
   overflow: hidden;
 }
-/* line 219, ../sass/modules/_create_channel.scss */
+/* line 182, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-element {
   position: relative;
   display: inline-block;
   margin: 0 36px 36px 0;
   width: 300px;
 }
-/* line 226, ../sass/modules/_create_channel.scss */
+/* line 189, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-element:first-child .create-channel--slide-order-arrow-left {
   display: none;
 }
-/* line 232, ../sass/modules/_create_channel.scss */
+/* line 195, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-element:last-child .create-channel--slide-order-arrow-right {
   display: none;
 }
-/* line 239, ../sass/modules/_create_channel.scss */
+/* line 202, ../sass/modules/_create_channel.scss */
 .create-channel--slides {
   margin-bottom: 3em;
 }
-/* line 244, ../sass/modules/_create_channel.scss */
+/* line 207, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-link {
   display: inline-block;
   position: relative;
@@ -2253,7 +2127,7 @@ label {
   color: #646464;
   text-decoration: none;
 }
-/* line 252, ../sass/modules/_create_channel.scss */
+/* line 215, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-label {
   display: inline-block;
   font-size: .9em;
@@ -2278,7 +2152,7 @@ label {
   color: #646464;
   text-decoration: none;
 }
-/* line 260, ../sass/modules/_create_channel.scss */
+/* line 223, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-number {
   left: 0;
   margin-left: auto;
@@ -2287,7 +2161,7 @@ label {
   right: 0;
   top: -1.2em;
 }
-/* line 272, ../sass/modules/_create_channel.scss */
+/* line 235, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
   border: 1px solid #b3b3b3;
   cursor: pointer;
@@ -2301,7 +2175,7 @@ label {
   transform: rotate(90deg);
 }
 @media only screen and (min-width: 663px) {
-  /* line 272, ../sass/modules/_create_channel.scss */
+  /* line 235, ../sass/modules/_create_channel.scss */
   .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
     top: 35%;
     -moz-transform: translateY(-50%);
@@ -2314,33 +2188,33 @@ label {
     transform: rotate(0deg);
   }
 }
-/* line 294, ../sass/modules/_create_channel.scss */
+/* line 257, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-arrow-left {
   left: .5em;
   top: .5em;
 }
 @media only screen and (min-width: 663px) {
-  /* line 294, ../sass/modules/_create_channel.scss */
+  /* line 257, ../sass/modules/_create_channel.scss */
   .create-channel--slide-order-arrow-left {
     top: 35%;
   }
 }
-/* line 304, ../sass/modules/_create_channel.scss */
+/* line 267, ../sass/modules/_create_channel.scss */
 .create-channel--slide-order-arrow-right {
   top: 8em;
   right: .5em;
 }
 @media only screen and (min-width: 663px) {
-  /* line 304, ../sass/modules/_create_channel.scss */
+  /* line 267, ../sass/modules/_create_channel.scss */
   .create-channel--slide-order-arrow-right {
     top: 35%;
   }
 }
-/* line 314, ../sass/modules/_create_channel.scss */
+/* line 277, ../sass/modules/_create_channel.scss */
 .create-channel--arrow-left-inner {
   margin-right: 2px;
 }
-/* line 319, ../sass/modules/_create_channel.scss */
+/* line 282, ../sass/modules/_create_channel.scss */
 .create-channel--arrow-right-inner {
   margin-left: 2px;
 }
@@ -2728,6 +2602,26 @@ label {
 /* line 159, ../sass/modules/_overview.scss */
 .overview--horisontal, .overview--vertical {
   width: 50%;
+}
+
+/**
+ *
+ * Frontpage
+ *
+ */
+/* Styles
+   ========================================================================== */
+/* line 10, ../sass/modules/_frontpage.scss */
+.frontpage--section {
+  margin-left: -36px;
+  text-align: center;
+}
+
+/* line 51, ../sass/modules/_frontpage.scss */
+.layout--inner {
+  background: #f0f0e1;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 
 /* Animations

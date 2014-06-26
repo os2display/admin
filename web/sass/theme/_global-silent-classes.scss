@@ -7,7 +7,7 @@
  */
 
 
-// Class for displaying checkbox on selected image.
+// Styles for displaying checkbox on selected image.
 %image-check-icon--placeholder {
   display: block;
   margin: 0 auto;
@@ -25,4 +25,70 @@
   @include breakpoint(600px) {
     @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
   }
+}
+
+
+/* Create element - Default create element styles (A grouping of styles shared by the various creation flows)
+   ================================================================================================================== */
+
+%create-element--section-default {
+  background-size: cover;
+  color: #535353;
+  display: block;
+  height: auto;
+
+  @include background-size();
+}
+
+
+%create-element--header-default {
+  border-bottom: 1px solid $gray-lighter;
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 36px 18px 36px;
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+
+%create-element--header-description-default {
+  color: #646464;
+  font-weight: lighter;
+  margin: 0 36px 72px 36px;
+  text-align: center;
+}
+
+
+%create-element--page-name-default {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  padding-left: 0;
+
+  @include breakpoint($breakpoint-lap) {
+    padding-left: $gutter;
+  }
+}
+
+
+%create-element--page-name-input-default {
+  background-color: #fbfbfb;
+  height: 4.5em;
+  margin-bottom: 2em;
+  padding: 1.5em;
+
+  &.is-valid {
+    background: url('../images/icons/check-circle-icon.png') #fbfbfb;
+    background-size:2em 2em;
+    background-repeat:no-repeat;
+    background-position: right 1.25em top 1.25em;
+    border: 0;
+  }
+}
+
+
+%create-element--layout-default {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
