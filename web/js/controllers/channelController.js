@@ -16,7 +16,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    */
   function loadStep(step) {
     $scope.step = step;
-    $scope.templatePath = '/partials/channel' + $scope.step + '.html';
+    $scope.templatePath = '/partials/channel/channel' + $scope.step + '.html';
     if ($scope.step == 4) {
       $scope.getChosenSlides();
     }

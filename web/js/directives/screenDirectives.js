@@ -3,7 +3,7 @@
  */
 ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
   return {
-    templateUrl: 'partials/screen.html',
+    templateUrl: 'partials/screen/screen.html',
     restrict: 'E',
     scope: {},
     link: function(scope, element, attrs) {

@@ -46,10 +46,6 @@
     position: relative;
 
     @include strip-link-styles(#535353);
-
-    @include breakpoint($breakpoint-lap) {
-      @include preview-list-display(horizontal);
-    }
   }
 
 

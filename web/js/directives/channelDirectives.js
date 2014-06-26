@@ -50,7 +50,7 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
             scope.setTemplate();
 
             scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
-          }, 5000);
+          }, 3000);
           scope.playText = 'Stop';
         }
       }
