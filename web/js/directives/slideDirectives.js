@@ -44,7 +44,9 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', function(sli
           scope.ikSlide = data;
 
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '-edit.html';
-          scope.backgroundImages = imageFactory.getImages();
+          imageFactory.getImages().then(function (data) {
+            scope.backgroundImages = data;
+          });
           scope.editor = {
             showTextEditor: false,
             toggleTextEditor: function() {
