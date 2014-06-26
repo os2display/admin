@@ -6,7 +6,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    * Scope setup
    */
   $scope.steps = 4; // Number of steps in the creation process.
-  $scope.channel = null; // Channel created in the process.
   $scope.slides = [];
 
   slideFactory.getSlides().then(function(data) {
