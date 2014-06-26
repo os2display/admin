@@ -77,6 +77,6 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', function(sli
         });
       });
     },
-    templateUrl: '/partials/slide-edit.html'
+    templateUrl: '/partials/slide/slide-edit.html'
   }
 }]);
