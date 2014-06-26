@@ -1,6 +1,4 @@
 <section class="overview--section">
-  <!--<p class="overview--description">Herunder findes alle kanaler i systemet.</p>-->
-
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
     <div class="overview--filter-orientation">
@@ -20,12 +18,12 @@
     </div>
   </div>
 
-  <div class="overview--channels">
+  <div class="overview--slides">
     <div class="overview--slide" data-ng-repeat="channel in channels | filter:search | orderBy: sort">
-      <a href="/#/channel/{{channel.id}}">
+<!--      <a href="/#/channel/{{channel.id}}">-->
         <ik-channel ik-id="{{channel.id}}" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
-      </a>
-      <!--<span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created * 1000 | date:'dd.MM.yyyy'}}</span>-->
+<!--      </a>-->
+      <span class="overview--slide-label">{{channel.title}}</span> <span class="overview--slide-date">- {{channel.created * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>
   </div>
 </section>

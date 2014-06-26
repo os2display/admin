@@ -38,7 +38,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
       }
 
       // Get channel.
-      $scope.channel = channelFactory.getChannel($routeParams.channelId);
+      //$scope.channel = channelFactory.getChannel($routeParams.channelId);
 
       if ($scope.channel === null) {
         $location.path('/channel');
