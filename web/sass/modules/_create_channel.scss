@@ -36,30 +36,17 @@
   /* Global settings
    ========================================================================== */
   &--section {
-    background-size: cover;
-    color: #535353;
-    display: block;
-    height: auto;
-
-    @include background-size();
+    @extend %create-element--section-default;
   }
 
 
   &--header {
-    border-bottom: 1px solid $gray-lighter;
-    display: inline-block;
-    font-weight: bold;
-    margin: 0 36px 18px 36px;
-    padding-bottom: 1em;
-    text-align: center;
+    @extend %create-element--header-default;
   }
 
 
   &--header-description {
-    color: #646464;
-    font-weight: lighter;
-    margin: 0 36px 72px 36px;
-    text-align: center;
+    @extend %create-element--header-description-default;
   }
 
 
@@ -86,30 +73,12 @@
     @extend %lap--one-whole;
     @extend %desk--one-half;
 
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    padding-left: 0;
-
-    @include breakpoint($breakpoint-lap) {
-      padding-left: $gutter;
-    }
+    @extend %create-element--page-name-default;
   }
 
 
   &--text[type="text"] {
-    background-color: #fbfbfb;
-    height: 4.5em;
-    margin-bottom: 2em;
-    padding: 1.5em;
-
-    &.is-valid {
-      background: url('../images/icons/check-circle-icon.png') #fbfbfb;
-      background-size:2em 2em;
-      background-repeat:no-repeat;
-      background-position: right 1.25em top 1.25em;
-      border: 0;
-    }
+    @extend %create-element--page-name-input-default;
   }
 
 
@@ -118,9 +87,7 @@
   &--content--channel-two {
     @extend %grid;
 
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
+    @extend %create-element--layout-default;
   }
 
 
@@ -172,9 +139,7 @@
   /* Create channel - slide selection (Page 3)
    ========================================================================== */
   &--content--channel-three {
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
+    @extend %create-element--layout-default;
   }
 
 
@@ -207,9 +172,7 @@
   &--content--channel-four {
     @extend %grid;
 
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
+    @extend %create-element--layout-default;
 
     // We hide some arrows between the slides that extends the div.
     overflow: hidden;

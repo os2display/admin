@@ -1,0 +1,55 @@
+/**
+ *
+ * Frontpage
+ *
+ */
+
+
+/* Styles
+   ========================================================================== */
+.frontpage--section {
+  @extend %grid;
+
+  margin-left: -$gutter;
+  text-align: center;
+}
+
+.frontpage--layout-alfa {
+  @extend %grid__item;
+  @extend %grid-markup-fix;
+  @extend %palm--one-whole;
+  @extend %lap--one-whole;
+  @extend %desk--one-whole;
+}
+
+.frontpage--layout-beta {
+  @extend %grid__item;
+  @extend %grid-markup-fix;
+  @extend %palm--one-whole;
+  @extend %lap--one-whole;
+  @extend %desk--one-half;
+}
+
+.frontpage--layout-gamma {
+  @extend %grid__item;
+  @extend %grid-markup-fix;
+  @extend %palm--one-whole;
+  @extend %lap--one-whole;
+  @extend %desk--one-half;
+}
+
+.frontpage--layout-delta {
+  @extend %grid__item;
+  @extend %grid-markup-fix;
+  @extend %palm--one-whole;
+  @extend %lap--one-whole;
+  @extend %desk--one-whole;
+
+}
+
+
+.layout--inner {
+  background: #f0f0e1;
+  margin-bottom: 20px;
+  padding: 10px;
+}
