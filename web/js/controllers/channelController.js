@@ -93,9 +93,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     },
     orientationSet: function() {
       return validateNotEmpty('orientation');
-    },
-    slideSet: function() {
-      return validateNotEmpty('slide');
     }
   };
 

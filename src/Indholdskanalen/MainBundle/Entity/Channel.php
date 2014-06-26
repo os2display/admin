@@ -111,7 +111,7 @@ class Channel {
    * @param array $slides
    */
   public function setSlides($slides) {
-    $this->slide = $slides;
+    $this->slides = $slides;
   }
 
   /**

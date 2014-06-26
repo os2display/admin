@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Slide;
-
+use Indholdskanalen\MainBundle\Entity\Channel;
 
 /**
  * @Route("/api")
@@ -147,7 +147,6 @@ class ApiController extends Controller {
         'id' => $channel->getId(),
         'title' => $channel->getTitle(),
         'orientation' => $channel->getOrientation(),
-        'template' => $channel->getTemplate(),
         'created' => $channel->getCreated(),
         'slides' => $channel->getSlides(),
       );
