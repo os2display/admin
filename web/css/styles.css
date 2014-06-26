@@ -612,6 +612,74 @@
   width: 100%;
 }
 
+/* Slide configuration elements - Used for displaying edit links on templates in create slide process.
+   ================================================================================================================== */
+/* line 100, ../sass/theme/_global-silent-classes.scss */
+.text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background: url('../images/icons-s5741e2949d.png');
+  -moz-background-size: 32px 253px;
+  -o-background-size: 32px 253px;
+  -webkit-background-size: 32px 253px;
+  background-size: 32px 253px;
+  width: 25px;
+  height: 25px;
+  background-position: 0 -128px;
+}
+@media only screen and (min-width: 481px) {
+  /* line 100, ../sass/theme/_global-silent-classes.scss */
+  .text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings {
+    right: -20px;
+    top: -20px;
+    background: url('../images/icons-s5741e2949d.png');
+    -moz-background-size: 64px 506px;
+    -o-background-size: 64px 506px;
+    -webkit-background-size: 64px 506px;
+    background-size: 64px 506px;
+    width: 50px;
+    height: 50px;
+    background-position: 0 -256px;
+  }
+}
+/* line 114, ../sass/theme/_global-silent-classes.scss */
+.text-top--edit-box-settings:hover, .text-bottom--edit-box-settings:hover, .text-left--edit-box-settings:hover, .text-right--edit-box-settings:hover, .portrait-text-top--edit-box-settings:hover {
+  cursor: pointer;
+}
+
+/* line 121, ../sass/theme/_global-silent-classes.scss */
+.only-image--edit-image-settings, .text-top--edit-image-settings, .text-bottom--edit-image-settings, .text-left--edit-image-settings, .text-right--edit-image-settings, .portrait-text-top--edit-image-settings {
+  bottom: 15%;
+  position: absolute;
+  right: 15%;
+  background: url('../images/icons-s5741e2949d.png');
+  -moz-background-size: 64px 506px;
+  -o-background-size: 64px 506px;
+  -webkit-background-size: 64px 506px;
+  background-size: 64px 506px;
+  width: 26px;
+  height: 26px;
+  background-position: 0 -316px;
+}
+@media only screen and (min-width: 481px) {
+  /* line 121, ../sass/theme/_global-silent-classes.scss */
+  .only-image--edit-image-settings, .text-top--edit-image-settings, .text-bottom--edit-image-settings, .text-left--edit-image-settings, .text-right--edit-image-settings, .portrait-text-top--edit-image-settings {
+    background: url('../images/icons-s5741e2949d.png');
+    -moz-background-size: 128px 1012px;
+    -o-background-size: 128px 1012px;
+    -webkit-background-size: 128px 1012px;
+    background-size: 128px 1012px;
+    width: 51px;
+    height: 51px;
+    background-position: 0 -632px;
+  }
+}
+/* line 133, ../sass/theme/_global-silent-classes.scss */
+.only-image--edit-image-settings:hover, .text-top--edit-image-settings:hover, .text-bottom--edit-image-settings:hover, .text-left--edit-image-settings:hover, .text-right--edit-image-settings:hover, .portrait-text-top--edit-image-settings:hover {
+  cursor: pointer;
+}
+
 /**
  *
  * Normalize
@@ -993,37 +1061,42 @@ em strong {
   font-weight: bold;
 }
 
+/* line 58, ../sass/base/_base.scss */
+pre {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 /* Links
    ================================================================================================================== */
-/* line 63, ../sass/base/_base.scss */
+/* line 66, ../sass/base/_base.scss */
 a:link {
   color: #2c79d3;
   text-decoration: underline;
 }
-/* line 68, ../sass/base/_base.scss */
+/* line 71, ../sass/base/_base.scss */
 a:visited {
   color: #286dbe;
 }
-/* line 72, ../sass/base/_base.scss */
+/* line 75, ../sass/base/_base.scss */
 a:hover {
   color: #2361a9;
   text-decoration: none;
 }
-/* line 77, ../sass/base/_base.scss */
+/* line 80, ../sass/base/_base.scss */
 a:focus {
   color: #2361a9;
 }
 
 /* Paragraph
    ================================================================================================================== */
-/* line 86, ../sass/base/_base.scss */
+/* line 89, ../sass/base/_base.scss */
 p {
   margin-top: 0;
 }
 
 /* Image
    ================================================================================================================== */
-/* line 94, ../sass/base/_base.scss */
+/* line 97, ../sass/base/_base.scss */
 img {
   display: inline;
   height: auto;
@@ -1640,7 +1713,7 @@ label {
 /* line 46, ../sass/modules/_create_slide.scss */
 .create-slide--button {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 /* line 81, ../sass/modules/_create_slide.scss */
 .create-slide--screens {
@@ -1883,7 +1956,7 @@ label {
 /* line 47, ../sass/modules/_create_screen.scss */
 .create-screen--button {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 /* line 75, ../sass/modules/_create_screen.scss */
 .create-screen--content--screen-two {
@@ -1986,7 +2059,7 @@ label {
 /* line 59, ../sass/modules/_create_channel.scss */
 .create-channel--button {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 /* line 94, ../sass/modules/_create_channel.scss */
 .create-channel--screens {
@@ -2963,11 +3036,11 @@ label {
 .text-top--text-inner {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
-  margin: 1em auto;
-  padding: 2em;
+  margin: 3% auto;
+  padding: 4%;
   text-align: left;
   position: relative;
-  width: 80%;
+  width: 87%;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
@@ -2975,7 +3048,7 @@ label {
 
 /* line 27, ../ik-templates/text-top/_text-top.scss */
 .text-top--header {
-  font-size: 90%;
+  font-size: 100%;
 }
 
 /* line 32, ../ik-templates/text-top/_text-top.scss */
@@ -3002,11 +3075,11 @@ label {
 .text-bottom--text-inner {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
-  margin: 1em auto;
-  padding: 2em;
+  margin: 3% auto;
+  padding: 4%;
   text-align: left;
   position: relative;
-  width: 80%;
+  width: 87%;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
@@ -3014,12 +3087,18 @@ label {
 
 /* line 28, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--header {
-  font-size: 90%;
+  font-size: 100%;
 }
 
 /* line 33, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%;
+}
+
+/* line 43, ../ik-templates/text-bottom/_text-bottom.scss */
+.text-bottom--edit-image-settings {
+  bottom: auto;
+  top: 15%;
 }
 
 /* line 1, ../ik-templates/text-left/_text-left.scss */
@@ -3055,7 +3134,7 @@ label {
 
 /* line 30, ../ik-templates/text-left/_text-left.scss */
 .text-left--header {
-  font-size: 90%;
+  font-size: 100%;
 }
 
 /* line 35, ../ik-templates/text-left/_text-left.scss */
@@ -3083,8 +3162,8 @@ label {
 .text-right--text-inner {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
-  margin: 1em auto;
-  padding: 2em;
+  margin: 5% auto;
+  padding: 6%;
   text-align: left;
   position: relative;
   width: 80%;
@@ -3096,12 +3175,18 @@ label {
 
 /* line 30, ../ik-templates/text-right/_text-right.scss */
 .text-right--header {
-  font-size: 90%;
+  font-size: 100%;
 }
 
 /* line 35, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%;
+}
+
+/* line 45, ../ik-templates/text-right/_text-right.scss */
+.text-right--edit-image-settings {
+  right: auto;
+  left: 15%;
 }
 
 /* line 1, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
@@ -3122,11 +3207,11 @@ label {
 .portrait-text-top--text-inner {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
-  margin: 1em auto;
-  padding: 2em;
+  margin: 3% auto;
+  padding: 4%;
   text-align: left;
   position: relative;
-  width: 80%;
+  width: 87%;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
@@ -3134,7 +3219,7 @@ label {
 
 /* line 27, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--header {
-  font-size: 90%;
+  font-size: 100%;
 }
 
 /* line 32, ../ik-templates/portrait-text-top/_portrait-text-top.scss */

@@ -92,3 +92,45 @@
   text-align: center;
   width: 100%;
 }
+
+
+/* Slide configuration elements - Used for displaying edit links on templates in create slide process.
+   ================================================================================================================== */
+
+%slide--edit-box-settings {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+
+  @include generate-sprite-image($dashboard-sprites, 'gear-icon', 25);
+
+  @include breakpoint($breakpoint-lap) {
+    right: -20px;
+    top: -20px;
+
+    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+
+%slide--edit-image-settings {
+  bottom: 15%;
+  position: absolute;
+  right: 15%;
+
+  @include generate-sprite-image($dashboard-sprites, 'landscape-icon', 50);
+
+  @include breakpoint($breakpoint-lap) {
+
+    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
