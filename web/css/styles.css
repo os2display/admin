@@ -2697,6 +2697,21 @@ label {
   padding: 10px;
 }
 
+/**
+ *
+ * Preview
+ *
+ */
+/* Silent classes related to this document
+   ========================================================================== */
+/* line 12, ../sass/modules/_preview.scss */
+.preview--channel-display,
+.preview--slide-display {
+  position: absolute;
+}
+
+/* Styles
+   ========================================================================== */
 /* Animations
  *
  * ========================================================================== */

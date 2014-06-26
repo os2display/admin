@@ -55,6 +55,6 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
         }
       }
     },
-    template: '<div data-ng-include="" src="templateURL"></div><div class="play" ng-click="play()">{{playText}}</div>'
+    template: '<div class="preview--channel"><div data-ng-include="" src="templateURL" class="preview--channel-display"></div></div><div class="preview--channel-play" ng-click="play()">{{playText}}</div>'
   }
 }]);
