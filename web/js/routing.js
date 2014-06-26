@@ -31,7 +31,7 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'SlideController',
     templateUrl: 'partials/slide.html'
   })
-  .when('/slide/:slideId', {
+  .when('/slide/:id', {
     controller: 'SlideController',
     templateUrl: 'partials/slide.html'
   })
@@ -39,7 +39,7 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'ChannelController',
     templateUrl: 'partials/channel.html'
   })
-  .when('/channel/:channelId', {
+  .when('/channel/:id', {
     controller: 'ChannelController',
     templateUrl: 'partials/channel.html'
   })

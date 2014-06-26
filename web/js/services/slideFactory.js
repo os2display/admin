@@ -1,16 +1,15 @@
 /**
- * Slide service.
+ * Slide factory.
  */
 ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   var factory = {};
 
   // Current open slide.
   // This is the slide we are editing.
-  factory.currentSlide = null;
+  var currentSlide = null;
 
   /**
    * Get all slides.
-   * @returns {Array}
    */
   factory.getSlides = function() {
     var defer = $q.defer();
@@ -29,18 +28,17 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   /**
    * Find slide to edit. If id is not set return current slide, else load from backend.
    * @param id
-   * @returns {webdriver.promise.|document.promise|promise|Promise.promise|Q.promise|webdriver.promise|*}
    */
   factory.getEditSlide = function(id) {
     var defer = $q.defer();
 
     if (id === null || id === undefined || id === '') {
-      defer.resolve(factory.currentSlide);
+      defer.resolve(currentSlide);
     } else {
       $http.get('/api/slide/get/' + id)
         .success(function(data) {
-          factory.currentSlide = data;
-          defer.resolve(factory.currentSlide);
+          currentSlide = data;
+          defer.resolve(currentSlide);
         })
         .error(function() {
           defer.reject();
@@ -53,7 +51,6 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   /**
    * Find the slide with @id
    * @param id
-   * @returns slide or null
    */
   factory.getSlide = function(id) {
     var defer = $q.defer();
@@ -75,10 +72,10 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   factory.saveSlide = function() {
     var defer = $q.defer();
 
-    $http.post('/api/slide/save', factory.currentSlide)
+    $http.post('/api/slide/save', currentSlide)
       .success(function(data) {
         defer.resolve("success");
-        factory.currentSlide = null;
+        currentSlide = null;
       })
       .error(function() {
         defer.reject("error");
@@ -92,7 +89,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
    * @returns slide (empty)
    */
   factory.emptySlide = function() {
-    factory.currentSlide = {
+    currentSlide = {
       id: null,
       title: '',
       orientation: '',
@@ -113,7 +110,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
       }
     };
 
-    return factory.currentSlide;
+    return currentSlide;
   }
 
   return factory;

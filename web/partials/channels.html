@@ -20,10 +20,9 @@
 
   <div class="overview--slides">
     <div class="overview--slide" data-ng-repeat="channel in channels | filter:search | orderBy: sort">
-      <a href="/#/channel/{{channel.id}}">
-        <ik-channel ik-id="{{channel.id}}" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
-      </a>
-      <span class="overview--slide-label">{{channel.title}}</span> <span class="overview--slide-date">- {{channel.created * 1000 | date:'dd.MM.yyyy'}}</span>
+      <ik-channel ik-id="{{channel.id}}" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
+      <a href="/#/channel/{{channel.id}}"><div class="overview--slide-label">{{channel.title}}</div></a>
+      <span class="overview--slide-date">- {{channel.created * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>
   </div>
 </section>

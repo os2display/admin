@@ -2,83 +2,64 @@
  * Channel controller. Controls the channel creation process.
  */
 ikApp.controller('ChannelController', function($scope, $location, $routeParams, channelFactory, slideFactory) {
-  /**
-   * Scope setup
-   */
   $scope.steps = 4; // Number of steps in the creation process.
   $scope.slides = [];
+  $scope.channel = {};
+  var slidesArray = [];
 
   slideFactory.getSlides().then(function(data) {
     $scope.slides = data;
   });
 
   /**
+   * Loads a given step
+   */
+  function loadStep(step) {
+    $scope.step = step;
+    $scope.templatePath = '/partials/channel' + $scope.step + '.html';
+    if ($scope.step == 4) {
+      $scope.getChosenSlides();
+    }
+  }
+
+  /**
    * Constructor.
    * Handles different settings of route parameters.
    */
   function init() {
-    if (!$routeParams.channelId) {
+    if (!$routeParams.id) {
       // If the ID is not set, get an empty channel.
       $scope.channel = channelFactory.emptyChannel();
-      $scope.step = 1;
+      loadStep(1);
     } else {
-      // Get the step.
-      if ($routeParams.step) {
-        if ($routeParams.step < 1 || $routeParams.step > $scope.steps) {
-          $location.path('/channel/' + $routeParams.channelId + '/1');
-          return;
-        }
-        else {
-          $scope.step = $routeParams.step;
-        }
+      if ($routeParams.id == null || $routeParams.id == undefined || $routeParams.id == '') {
+        $location.path('/channel');
       }
       else {
-        $scope.step = 1;
-      }
+        channelFactory.getEditChannel($routeParams.id).then(function(data) {
+          $scope.channel = data;
 
-      // Get channel.
-      //$scope.channel = channelFactory.getChannel($routeParams.channelId);
-
-      if ($scope.channel === null) {
-        $location.path('/channel');
-        return;
-      }
-
-      // Make sure we are not placed at steps later than what is set in the data.
-      var s = 1;
-      if ($scope.channel.title !== '') {
-        s = s + 1;
-        if ($scope.channel.orientation !== '') {
-          s = s + 1;
-          if ($scope.channel.slide !== '') {
-            s = s + 1;
+          if ($scope.channel === {}) {
+            $location.path('/channel');
           }
-        }
-      }
-      if ($scope.step > s) {
-        $location.path('/channel/' + $scope.channel.id + '/' + s);
-        return;
+
+          loadStep($scope.steps);
+        });
       }
     }
   }
   init();
 
-
   /**
    * Submit a step in the installation process.
    */
   $scope.submitStep = function() {
-    $scope.channel = channelFactory.saveChannel($scope.channel);
-
-    // Modify history to make sure the back button does not redirect to #/channel/, so a new channel will be created.
-    if ($scope.step == 1) {
-      window.history.replaceState({}, "", "#/channel/" + $scope.channel.id + "/1");
-    }
-
-    if ($scope.step < $scope.steps) {
-      $location.path('/channel/' + $scope.channel.id + '/' + (parseInt($scope.step) + 1));
+    if ($scope.step == $scope.steps) {
+      channelFactory.saveChannel().then(function() {
+        $location.path('/channels');
+      });
     } else {
-      $location.path('/channels');
+      loadStep($scope.step + 1);
     }
   }
 
@@ -137,16 +118,12 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    * Fetch the slides related to the channel.
    */
   $scope.getChosenSlides = function() {
-    var slidesArray = [];
-
-    if (!$scope.channel) {
-      return slidesArray;
-    }
-
+    $scope.slidesArray = [];
     angular.forEach($scope.channel.slides, function(id, index){
-      slidesArray.push(slideFactory.getSlide(id));
+      slideFactory.getSlide(id).then(function(data) {
+        $scope.slidesArray.push(data);
+      })
     });
-    return slidesArray;
   }
 
 
@@ -168,6 +145,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    */
   $scope.pushRight = function($arrow_position) {
     reorderIndex($scope.channel.slides, $arrow_position, $arrow_position + 1);
+    reorderIndex($scope.slidesArray, $arrow_position, $arrow_position + 1);
   };
 
 
@@ -177,5 +155,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    */
   $scope.pushLeft = function($arrow_position) {
     reorderIndex($scope.channel.slides, $arrow_position, $arrow_position - 1);
+    reorderIndex($scope.slidesArray, $arrow_position, $arrow_position - 1);
   };
 });
