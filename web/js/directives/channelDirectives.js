@@ -46,15 +46,18 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
           scope.interval = undefined;
           scope.playText = 'Play';
         } else {
+          scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
+          scope.setTemplate();
+
           scope.interval = $interval(function() {
             scope.setTemplate();
 
             scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
-          }, 3000);
+          }, 2000);
           scope.playText = 'Stop';
         }
       }
     },
-    template: '<div data-ng-include="" src="templateURL"></div><div class="play" ng-click="play()">{{playText}}</div>'
+    template: '<div class="preview--channel"><div data-ng-include="" src="templateURL" class="preview--channel-display"></div></div><div class="preview--channel-play" ng-click="play()">{{playText}}</div>'
   }
 }]);

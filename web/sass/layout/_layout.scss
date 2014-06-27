@@ -11,20 +11,21 @@
 }
 
 
-.view-frame.ng-enter, .view-frame.ng-leave {
+.view-frame.ng-enter {
   position: absolute;
   left: 0;
   right: 0;
+
+  //@include animation(fade-in 1s infinite);
 }
 
 
-.ng-enter {
-  @include animation(fade-in 1s);
-}
+.view-frame.ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
 
-
-.ng-leave {
-  @include animation(fade-out 1s);
+  //@include animation(fade-out 1s infinite);
 }
 
 
@@ -33,6 +34,7 @@
     padding: 0 2em;
   }
 }
+
 
 .layout-inner {
   margin: 0 $gutter / 2;
