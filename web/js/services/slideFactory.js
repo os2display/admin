@@ -35,7 +35,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
     if (id === null || id === undefined || id === '') {
       defer.resolve(currentSlide);
     } else {
-      $http.get('/api/slide/get/' + id)
+      $http.get('/api/slide/' + id)
         .success(function(data) {
           currentSlide = data;
           defer.resolve(currentSlide);
@@ -55,7 +55,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   factory.getSlide = function(id) {
     var defer = $q.defer();
 
-    $http.get('/api/slide/get/' + id)
+    $http.get('/api/slide/' + id)
       .success(function(data) {
         defer.resolve(data);
       })
@@ -72,7 +72,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   factory.saveSlide = function() {
     var defer = $q.defer();
 
-    $http.post('/api/slide/save', currentSlide)
+    $http.post('/api/slide', currentSlide)
       .success(function(data) {
         defer.resolve("success");
         currentSlide = null;

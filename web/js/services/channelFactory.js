@@ -35,7 +35,7 @@ ikApp.factory('channelFactory', ['$http', '$q', function($http, $q) {
     if (id === null || id === undefined || id === '') {
       defer.resolve(currentChannel);
     } else {
-      $http.get('/api/channel/get/' + id)
+      $http.get('/api/channel/' + id)
         .success(function(data) {
           currentChannel = data;
           defer.resolve(currentChannel);
@@ -55,7 +55,7 @@ ikApp.factory('channelFactory', ['$http', '$q', function($http, $q) {
   factory.getChannel = function(id) {
     var defer = $q.defer();
 
-    $http.get('/api/channel/get/' + id)
+    $http.get('/api/channel/' + id)
       .success(function(data) {
         defer.resolve(data);
       })
@@ -89,7 +89,7 @@ ikApp.factory('channelFactory', ['$http', '$q', function($http, $q) {
   factory.saveChannel = function() {
     var defer = $q.defer();
 
-    $http.post('/api/channel/save', currentChannel)
+    $http.post('/api/channel', currentChannel)
       .success(function(data) {
         defer.resolve("success");
         currentChannel = null;
