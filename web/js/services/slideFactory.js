@@ -41,7 +41,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
           defer.resolve(currentSlide);
         })
         .error(function() {
-          defer.reject();
+          defer.reject('error');
         });
     }
 

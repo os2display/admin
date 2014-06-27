@@ -76,6 +76,10 @@ describe('SlideFactory', function(){
         }
       );
 
+      $httpBackend.whenGET('/api/slide/200').respond(function(method, url, data, headers) {
+        return [404, {}, {}];
+      });
+
       $httpBackend.whenPOST('/api/slide').respond(function(method, url, data, headers) {
         if (data == null) {
           return [404, null, {}];
@@ -128,4 +132,19 @@ describe('SlideFactory', function(){
     });
     $httpBackend.flush();
   }));
+
+  it("should return null for getEditSlide with no id set", inject(function() {
+    slideFactory.getEditSlide().then(function(data) {
+      expect(data).toBeNull();
+    });
+  }));
+
+/*  NOT DONE!!
+  it("should return 404 for getting a slide that does not exist", inject(function() {
+    slideFactory.getSlide(200).then(function(data) {
+    }, function(reason) {
+      expect().toEqual('error');
+    });
+    $httpBackend.flush();
+  }));*/
 });
