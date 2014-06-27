@@ -1,29 +1,37 @@
 <div data-ng-include="" src="templateURL"></div>
 
-<div class="slide-edit-overlay slide-edit-text-overlay" ng-show="editor.showTextEditor">
-  <form class="ik-form">
-    <label>Tekstfarve</label>
-    <input class="ik-form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.textcolor">
-    <label>Baggrundsfarve</label>
-    <input class="ik-form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor">
-    <label>Skriftstørrelse</label>
-    <input class="ik-form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
-    <div class="button-wrapper"><a class="button" ng-click="editor.toggleTextEditor()">Luk</a></div>
-  </form>
-</div>
+<header class="header slide-edit-overlay slide-edit-text-overlay" role="banner" ng-show="editor.showTextEditor">
+  <a class="nav--overlay" data-ng-class="{'is-visible': editor.showTextEditor}" data-ng-click="editor.toggleTextEditor()"></a>
+  <nav class="nav" data-ng-class="{'is-visible': editor.showTextEditor, 'is-hidden': !editor.showTextEditor}">
+    <div class="nav--toggle-icon" data-ng-click="editor.toggleTextEditor()">X</div>
+    <form class="ik-form">
+      <label>Tekstfarve</label>
+      <input class="ik-form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.textcolor">
+      <label>Baggrundsfarve</label>
+      <input class="ik-form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor">
+      <label>Skriftstørrelse</label>
+      <input class="ik-form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
+      <div class="button-wrapper"><a class="button" ng-click="editor.toggleTextEditor()">Luk</a></div>
+    </form>
+  </nav>
+</header>
 
-<div class="slide-edit-overlay slide-edit-background-overlay" ng-show="editor.showBackgroundEditor">
-  <form class="ik-form">
-    <label>Vælg billede</label>
-    <div class="slider-container">
-      <select class="preview-size-dropdown" data-ng-model="ikSlide.options.image">
-        <option value="">-- None --</option>
-        <option value="{{img.url[ikSlide.orientation]}}" data-ng-repeat="img in backgroundImages">{{img.name}}</option>
-      </select>
-    </div>
-    <p>-- eller --</p>
-    <label>Baggrundsfarve</label>
-    <input class="ik-form-element form-slide-background-background-color" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor">
-    <div class="button-wrapper"><a class="button" ng-click="editor.toggleBackgroundEditor()">Luk</a></div>
-  </form>
-</div>
+<header class="header slide-edit-overlay slide-edit-background-overlay" role="banner" ng-show="editor.showBackgroundEditor">
+  <a class="nav--overlay" data-ng-class="{'is-visible': editor.showBackgroundEditor}" data-ng-click="editor.toggleBackgroundEditor()"></a>
+  <nav class="nav" data-ng-class="{'is-visible': editor.showBackgroundEditor, 'is-hidden': !editor.showBackgroundEditor}">
+    <div class="nav--toggle-icon" data-ng-click="editor.toggleBackgroundEditor()">X</div>
+    <form class="ik-form">
+      <label>Vælg billede</label>
+      <div class="slider-container">
+        <select class="preview-size-dropdown" data-ng-model="ikSlide.options.image">
+          <option value="">-- None --</option>
+          <option value="{{img.url[ikSlide.orientation]}}" data-ng-repeat="img in backgroundImages">{{img.name}}</option>
+        </select>
+      </div>
+      <p>-- eller --</p>
+      <label>Baggrundsfarve</label>
+      <input class="ik-form-element form-slide-background-background-color" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor">
+      <div class="button-wrapper"><a class="button" ng-click="editor.toggleBackgroundEditor()">Luk</a></div>
+    </form>
+  </nav>
+</header>

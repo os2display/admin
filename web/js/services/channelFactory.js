@@ -35,7 +35,7 @@ ikApp.factory('channelFactory', ['$http', '$q', function($http, $q) {
     if (id === null || id === undefined || id === '') {
       defer.resolve(currentChannel);
     } else {
-      $http.get('/api/slide/' + id)
+      $http.get('/api/channel/' + id)
         .success(function(data) {
           currentChannel = data;
           defer.resolve(currentChannel);
