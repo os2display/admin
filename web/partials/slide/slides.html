@@ -19,8 +19,8 @@
   </div>
 
   <div class="overview--slides">
-    <div class="overview--slide" data-ng-repeat="slide in slides | filter:search | orderBy: sort | limitTo:4">
-      <a class="overview--slides-container" href="/#/slide/{{slide.id}}">
+    <div class="overview--slide" data-ng-repeat="slide in slides | filter:search | orderBy: sort">
+      <a href="/#/slide/{{slide.id}}">
         <ik-slide ik-id="{{slide.id}}" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
       </a>
       <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created * 1000 | date:'dd.MM.yyyy'}}</span>
