@@ -1,15 +1,18 @@
-ikApp.factory('imageFactory', function() {
+ikApp.factory('imageFactory', ['$http', '$q', function($http, $q) {
     var factory = {};
-    var images = [
-        {
-            title: 'road',
-            url: '/images/outlines/slide-config-default.png'
-        }
-    ];
-
     factory.getImages = function() {
-        return images;
+      var defer = $q.defer();
+
+      $http.get('/media/list')
+        .success(function(data) {
+          defer.resolve(data);
+        })
+        .error(function() {
+          defer.reject();
+        });
+
+      return defer.promise;
     }
 
     return factory;
-});
+}]);
