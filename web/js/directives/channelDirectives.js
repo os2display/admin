@@ -9,7 +9,7 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
       scope.slideIndex = 0;
       scope.channel = {};
       scope.slides = [];
-      scope.templateURL = '';
+      scope.templateURL = '/partials/slide/slide-loading.html';
       scope.playText = '';
 
       scope.setTemplate = function() {

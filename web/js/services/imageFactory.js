@@ -3,7 +3,7 @@ ikApp.factory('imageFactory', ['$http', '$q', function($http, $q) {
     factory.getImages = function() {
       var defer = $q.defer();
 
-      $http.get('/media/list')
+      $http.get('/api/media')
         .success(function(data) {
           defer.resolve(data);
         })
