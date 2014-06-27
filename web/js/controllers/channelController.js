@@ -110,6 +110,19 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     }
   }
 
+  $scope.goToStep = function(step) {
+    var s = 1;
+    if ($scope.validation.titleSet()) {
+      s++;
+      if ($scope.validation.orientationSet()) {
+        s = s + 2;
+      }
+    }
+    if (step <= s) {
+      loadStep(step);
+    }
+  };
+
 
   /**
    * Fetch the slides related to the channel.

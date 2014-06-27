@@ -80,6 +80,22 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     }
   };
 
+  $scope.goToStep = function(step) {
+    var s = 1;
+    if ($scope.validation.titleSet()) {
+      s++;
+      if ($scope.validation.orientationSet()) {
+        s++;
+        if ($scope.validation.templateSet()) {
+          s++;
+        }
+      }
+    }
+    if (step <= s) {
+      loadStep(step);
+    }
+  };
+
   /**
    * Set the template id of a slide.
    * @param id
