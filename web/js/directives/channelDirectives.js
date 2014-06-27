@@ -32,7 +32,7 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
                 scope.slides.push(data);
                 if (key === 0) {
                   scope.setTemplate();
-                  scope.playText = 'Play';
+                  scope.buttonState = 'play';
                 }
               }
             });
@@ -44,7 +44,7 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
         if (angular.isDefined(scope.interval)) {
           $interval.cancel(scope.interval);
           scope.interval = undefined;
-          scope.playText = 'Play';
+          scope.buttonState = 'play';
         } else {
           scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
           scope.setTemplate();
@@ -54,10 +54,10 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
 
             scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
           }, 2000);
-          scope.playText = 'Stop';
+          scope.buttonState = 'pause';
         }
       }
     },
-    template: '<div class="preview--channel"><div data-ng-include="" src="templateURL" class="preview--channel-display"></div></div><div class="preview--channel-play" ng-click="play()">{{playText}}</div>'
+    template: '<div class="preview--channel"><div data-ng-include="" src="templateURL" class="preview--channel-display"></div><div class="preview--channel-{{buttonState}}" ng-click="play()"></div></div>'
   }
 }]);
