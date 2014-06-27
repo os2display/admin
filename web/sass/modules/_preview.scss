@@ -1,0 +1,31 @@
+/**
+ *
+ * Preview
+ *
+ */
+
+
+/* Silent classes related to this document
+   ========================================================================== */
+
+
+/* Styles
+   ========================================================================== */
+
+.preview--slide,
+.preview--channel {
+  position: relative;
+
+  @include preview-list-display();
+
+  display: block;
+  margin: 0;
+}
+
+
+.preview--channel-play {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  right: 50%;
+}

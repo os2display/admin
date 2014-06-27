@@ -22,7 +22,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
         }
       });
     },
-    template: '<div data-ng-include="" src="templateURL" include-replace></div>'
+    template: '<div class="preview--slide" data-ng-include="" src="templateURL" include-replace></div>'
   }
 }]);
 

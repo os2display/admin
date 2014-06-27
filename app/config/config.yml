@@ -114,9 +114,10 @@ sonata_media:
         - sonata.media.provider.file
 
       formats:
-        slide: { width: 200, height: 200 }
         landscape: { width: 960 }
         portrait: { width: 540 }
+        landscape_small: { width: 300 }
+        portrait_small: { width: 150 }
 
   cdn:
     server:

@@ -100,8 +100,9 @@ $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing betwee
   @if $alignment == "horizontal" {
     // We use static sizes of the preview.
     display: inline-block;
+    //height: 169px;
     margin: 0 36px 36px 0;
-    width: 300px;
+    //width: 300px;
   }
   @else {
     display: inline-block;
