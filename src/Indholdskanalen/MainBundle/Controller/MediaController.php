@@ -4,18 +4,23 @@ namespace Indholdskanalen\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Application\Sonata\MediaBundle\Entity\Media;
 
 /**
- * @Route("/media")
+ * @Route("/api/media")
  */
 class MediaController extends Controller {
   /**
    * Mange file upload.
    *
-   * @Route("/upload")
+   * @Route("")
+   * @Method("POST")
+   *
+   * @param $request
+   *   The Request object.
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
@@ -41,13 +46,14 @@ class MediaController extends Controller {
   }
 
   /**
-   * Sends all uploaded media
+   * Sends all uploaded media.
    *
-   * @Route("/list")
+   * @Route("")
+   * @Method("GET")
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function MediaListAction(Request $request) {
+  public function MediaListAction() {
     $results = $this->getDoctrine()->getManager()->createQuery('SELECT m FROM ApplicationSonataMediaBundle:Media m')
       ->getResult();
 
