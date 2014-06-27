@@ -8,6 +8,16 @@
 /* Silent classes related to this document
    ========================================================================== */
 
+%preview--play-pause-positioning {
+  cursor: pointer;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 50%;
+
+  @include translateY(-50%);
+}
 
 /* Styles
    ========================================================================== */
@@ -24,8 +34,15 @@
 
 
 .preview--channel-play {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  right: 50%;
+  @extend %preview--play-pause-positioning;
+  
+  @include generate-sprite-image($dashboard-sprites, 'play-icon', 65);
+}
+
+
+
+.preview--channel-pause {
+  @extend %preview--play-pause-positioning;
+
+  @include generate-sprite-image($dashboard-sprites, 'pause-icon', 65);
 }
