@@ -74,7 +74,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
 
     $http.post('/api/slide', currentSlide)
       .success(function(data) {
-        defer.resolve("success");
+        defer.resolve(data);
         currentSlide = null;
       })
       .error(function() {
