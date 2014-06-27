@@ -18,7 +18,7 @@
     <div class="slider-container">
       <select class="preview-size-dropdown" data-ng-model="ikSlide.options.image">
         <option value="">-- None --</option>
-        <option value="{{img.url}}" data-ng-repeat="img in backgroundImages">{{img.title}}</option>
+        <option value="{{img.url[ikSlide.orientation]}}" data-ng-repeat="img in backgroundImages">{{img.name}}</option>
       </select>
     </div>
     <p>-- eller --</p>

@@ -1,1 +1,9 @@
+<section class="pager">
+  <div class="pager-inner">
+    <div data-ng-class="{'is-active': step == 1, 'is-valid': validation.titleSet()}" data-ng-click="goToStep(1)">1</div>
+    <div data-ng-class="{'is-active': step == 2, 'is-valid': validation.orientationSet()}" data-ng-click="goToStep(2)">2</div>
+    <div data-ng-class="{'is-active': step == 3, 'is-valid': validation.templateSet()}" data-ng-click="goToStep(3)">3</div>
+    <div data-ng-class="{'is-active': step == 4, 'is-valid': validation.templateSet()}" data-ng-click="goToStep(4)">4</div>
+  </div>
+</section>
 <div data-ng-include="" src="templatePath"></div>

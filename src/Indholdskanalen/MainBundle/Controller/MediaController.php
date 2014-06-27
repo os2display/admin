@@ -48,10 +48,24 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function MediaListAction(Request $request) {
-    $results = $this->getDoctrine()->getManager()->createQuery('SELECT m.id, m.name, m.providerReference FROM ApplicationSonataMediaBundle:Media m')
-      ->getArrayResult();
+    $results = $this->getDoctrine()->getManager()->createQuery('SELECT m FROM ApplicationSonataMediaBundle:Media m')
+      ->getResult();
 
-    $response = new Response(json_encode($results));
+    $items = array();
+    foreach ($results as $media) {
+      $provider = $this->container->get($media->getProviderName());
+
+      $items[] = array(
+        'id' => $media->getId(),
+        'name' => $media->getName(),
+        'url' => array(
+          'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
+          'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
+        )
+      );
+    }
+
+    $response = new Response(json_encode($items));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
 
