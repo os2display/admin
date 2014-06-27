@@ -74,3 +74,14 @@
     background-color: transparentize($black, .35);
   }
 }
+
+
+.spinner {
+  margin: 50px;
+
+  @include generate-sprite-image($dashboard-sprites, 'spinner-icon', 60);
+  @include animation(spinner 1.5s infinite);
+
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+}
