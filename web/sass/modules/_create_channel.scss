@@ -144,6 +144,7 @@
 
 
   &--slide {
+    background: $beige;
     position: relative;
 
     @include preview-list-display(horizontal);
@@ -235,6 +236,7 @@
   &--slide-order-arrow-left,
   &--slide-order-arrow-right {
     @extend %create-channel--order-circle;
+
     border: 1px solid $gray;
     cursor: pointer;
     font-size: 1em;

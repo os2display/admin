@@ -8,11 +8,6 @@
 /* Silent classes related to this document
    ========================================================================== */
 
-// positioning for previews to ensure fading.
-%preview--positioning {
-  position: absolute;
-}
-
 
 /* Styles
    ========================================================================== */
@@ -25,11 +20,6 @@
 
   display: block;
   margin: 0;
-}
-
-.preview--channel-display,
-.preview--slide-display {
-  @extend %preview--positioning;
 }
 
 
