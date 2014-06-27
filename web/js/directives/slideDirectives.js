@@ -11,6 +11,8 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
       ikId: '@'
     },
     link: function(scope, element, attrs) {
+      scope.templateURL = '/partials/slide/slide-loading.html';
+
       slideFactory.getSlide(scope.ikId).then(function(data) {
         scope.ikSlide = data;
         scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
@@ -22,7 +24,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
         }
       });
     },
-    template: '<div class="preview--slide" data-ng-include="" src="templateURL" include-replace></div>'
+    template: '<div class="preview--slide" data-ng-include="" src="templateURL"></div>'
   }
 }]);
 
@@ -39,6 +41,8 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', function(sli
       ikId: '@'
     },
     link: function(scope, element, attrs) {
+      scope.templateURL = '/partials/slide/slide-loading.html';
+
       attrs.$observe('ikId', function(val) {
         slideFactory.getEditSlide(scope.ikId).then(function(data) {
           scope.ikSlide = data;
