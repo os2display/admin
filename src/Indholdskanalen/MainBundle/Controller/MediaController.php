@@ -58,8 +58,10 @@ class MediaController extends Controller {
       $items[] = array(
         'id' => $media->getId(),
         'name' => $media->getName(),
-        'url_landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
-        'url_portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
+        'url' => array(
+          'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
+          'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
+        )
       );
     }
 
