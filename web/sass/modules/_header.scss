@@ -4,8 +4,8 @@
  *
  */
 
-
-// ----- Selecters related to this document ----- //
+/* Selectors related to this document.
+ ========================================================================== */
 
 // Selector for main menu items
 %header--main-menu-item--selector {
@@ -19,12 +19,14 @@
 }
 
 
+/* Styles.
+ ========================================================================== */
 
-// ----- Styles ----- //
+
 .header {
   background-color: $beige;
   color: #333;
-  margin-bottom: 6em;
+  margin-bottom: 2em;
   min-height: 6em;
   overflow: hidden;
   width: 100%;
@@ -40,7 +42,8 @@
   }
 
 
-  //-------- Logo section --------//
+  /* Logo section.
+ ========================================================================== */
 
   &--logo {
     width: 50%;
@@ -60,7 +63,8 @@
   }
 
 
-  //-------- Main menu section --------//
+  /* Main menu section.
+ ========================================================================== */
 
   &--main-menu {
     width: 100%;
@@ -128,7 +132,8 @@
   }
 
 
-  // Each link
+  /* Each link.
+ ========================================================================== */
   &--main-menu-item-image-channels{
     @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
 
@@ -157,7 +162,8 @@
   }
 
 
-  //-------- Secondary menus section  (User menu and navigation menu)--------//
+  /* Secondary menus section (User and nav link).
+ ========================================================================== */
 
   &--secondary-menus {
     margin-right: 1em;
@@ -176,7 +182,8 @@
   }
 
 
-  //-------- User menu section --------//
+  /* User menu section.
+ ========================================================================== */
 
   &--user-menu {
     display: inline-block;
@@ -213,7 +220,8 @@
   }
 
 
-  //-------- Navigation menu section --------//
+  /* Navigation menu section.
+ ========================================================================== */
 
   &--nav-menu {
     display: inline-block;
@@ -248,7 +256,8 @@
   }
 
 
-  //-------- Header sub menu section (Sub links related to the main menu) --------//
+  /* Header submenu setion
+ ========================================================================== */
 
   &--sub {
     background: #E4E4D5;
