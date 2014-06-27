@@ -32,12 +32,8 @@
    ================================================================================================================== */
 
 %create-element--section-default {
-  background-size: cover;
   color: #535353;
   display: block;
-  height: auto;
-
-  @include background-size();
 }
 
 

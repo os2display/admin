@@ -35,7 +35,7 @@
 
 .preview--channel-play {
   @extend %preview--play-pause-positioning;
-  
+
   @include generate-sprite-image($dashboard-sprites, 'play-icon', 65);
 }
 
