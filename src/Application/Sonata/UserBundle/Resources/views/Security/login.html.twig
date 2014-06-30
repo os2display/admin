@@ -14,42 +14,42 @@
       {% block sonata_user_login %}
         <div class="layout-wrapper">
           <section class="login--section">
-            <div class="login--header-wrapper">
-              <h2 class="login--header">{{ 'Indholdskanalen v. 3.0'|trans({}, 'SonataUserBundle') }}</h2>
-              <p class="login--header-description">
-                <span>Test username: admin</span></br>
-                <span>Test password: admin</span>
-              </p>
-            </div>
+
             {% block sonata_user_login_form %}
-              <form action="{{ path("fos_user_security_check") }}" method="post" role="form" class="login--form">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+              <div class="login--form">
+                <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
+                  <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
-                <div class="login--name">
-                  <input type="text" class="login--name-input" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'User name'|trans({}, 'SonataUserBundle') }}"/>
-                </div>
+                  <div class="login--name">
+                    <label for="username">Brugernavn</label>
+                    <input type="text" class="login--name-input" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'User name'|trans({}, 'SonataUserBundle') }}"/>
+                  </div>
 
-                <div class="login--pass">
-                  <input type="password" class="login--pass-input" id="password" name="_password" required="required" placeholder="{{ 'User password'|trans({}, 'SonataUserBundle') }}"/>
-                </div>
-                {% block sonata_user_login_error %}
-                  {% if error %}
-                    <div class="login--alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
-                  {% endif %}
-                {% endblock %}
-                <div class="login--remember-me">
-                  <label for="remember_me">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                    {{ 'Remember me'|trans({}, 'FOSUserBundle') }}
-                  </label>
-                </div>
+                  <div class="login--pass">
+                    <label for="password">Kodeord</label>
+                    <input type="password" class="login--pass-input" id="password" name="_password" required="required" placeholder="{{ 'User password'|trans({}, 'SonataUserBundle') }}"/>
+                  </div>
+                  {% block sonata_user_login_error %}
+                    {% if error %}
+                      <div class="login--alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                    {% endif %}
+                  {% endblock %}
 
-                <div class="login--forgot-password">
-                  <a href="{{ path('fos_user_resetting_request') }}">{{ 'Forgot password'|trans({}, 'SonataUserBundle') }}</a>
-                </div>
+                  <input type="submit" id="_submit" name="_submit" class="login--submit" value="{{ 'Login'|trans({}, 'FOSUserBundle') }}"/>
 
-                <input type="submit" id="_submit" name="_submit" class="login--submit" value="{{ 'Login'|trans({}, 'FOSUserBundle') }}"/>
-              </form>
+                  <div class="login--remember-me">
+                    <input type="checkbox" id="remember_me" class="login--remember-me-checkbox" name="_remember_me" value="on"/>
+                    <label for="remember_me" class="login--remember-me-label">{{ 'Remember me'|trans({}, 'FOSUserBundle') }}</label>
+                  </div>
+                </form>
+              </div>
+              <div class="login--problem">
+                <p class="login--content-list-header">Problemer med at logge ind?</p>
+                <ul class="login--content-list">
+                  <li><a href="{{ path('fos_user_resetting_request') }}">Jeg har glemt mit brugernavn</a<</li>
+                  <li><a href="{{ path('fos_user_resetting_request') }}">Jeg har glemt mit kodeord</a></li>
+                </ul>
+              </div>
             {% endblock %}
           </section>
         </div>

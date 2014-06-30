@@ -11,7 +11,7 @@
   display: inline-block;
   font-size: 125%;
   font-weight: lighter;
-  padding: 1em 2em;
+  padding: .5em 2em;
   position: relative;
 
   cursor: pointer;
@@ -30,20 +30,20 @@
 .button {
   @extend %button;
 
-  background-color: #357FD1; // #222;
+  background-color: #357fd1;
   border: 0;
   color: $white;
 
   &:link,
   &:visited,
   &:hover {
-    background-color: #2361a9; //#111;
+    background-color: #2361a9;
     color: $white;
     text-decoration: none;
   }
 
   &.is-inactive{
-    background-color: #b8b8b8; // #b8b8b8;
+    background-color: #b8b8b8;
     border: 0;
     color: $white;
     cursor: not-allowed;
@@ -51,7 +51,7 @@
     &:link,
     &:visited,
     &:hover {
-      background-color: #b8b8b8; //#b8b8b8;
+      background-color: #b8b8b8;
       color: $white;
       text-decoration: none;
     }

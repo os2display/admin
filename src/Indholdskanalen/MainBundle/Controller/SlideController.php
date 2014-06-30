@@ -42,6 +42,7 @@ class SlideController extends Controller {
     $slide->setOrientation($post->orientation);
     $slide->setTemplate($post->template);
     $slide->setCreated($post->created);
+    $slide->setUser($post->user);
     $slide->setOptions(serialize($post->options));
 
     // Save the entity.
@@ -56,6 +57,7 @@ class SlideController extends Controller {
       "orientation" => $slide->getOrientation(),
       "template" => $slide->getTemplate(),
       "created" => $slide->getCreated(),
+      "user" => $slide->getUser(),
       "options" => unserialize($slide->getOptions()),
     );
 
@@ -88,6 +90,7 @@ class SlideController extends Controller {
         "orientation" => $slide->getOrientation(),
         "template" => $slide->getTemplate(),
         "created" => $slide->getCreated(),
+        "user" => $slide->getUser(),
         "options" => unserialize($slide->getOptions()),
       );
     }
