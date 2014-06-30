@@ -1,6 +1,6 @@
 /**
  *
- * Menu
+ * Edit menu
  *
  */
 
@@ -12,12 +12,19 @@
 
 /* Styles
    ========================================================================== */
+.edit-menu--wrapper {
+  width: 100%;
+  z-index: 1;
+}
 
-.nav {
+
+.edit-menu {
   height: 100%;
   font-size: 10px;
-  position: absolute;
+  position: fixed;
   right: -100%;
+  text-align: left;
+  top: 0;
   z-index: 99;
 
   padding-top: 3.75em;
@@ -31,6 +38,8 @@
   @include box-shadow(-5px 0px 10px transparentize($black, .75));
 
 
+  /* States */
+
   &.is-visible {
     @include animation(toggle-nav-open .15s ease 1 forwards);
   }
@@ -39,51 +48,16 @@
     @include animation(toggle-nav-close .15s ease 1 forwards);
   }
 
-
-  &--header {
-    border-bottom: 1px solid $gray-lighter;
-    margin-right: 3em;
-    margin-bottom: .35em;
-    padding-bottom: .25em;
-
-    color: $gray-light;
-    font-size: 3em;
-    line-height: 1em;
-  }
-
-  &--item-wrapper {
-    border-bottom: 1px solid $gray-lighter;
-    margin-bottom: 1em;
-    padding-bottom: 1em;
-  }
-
-  &--item,
-  &--sub-item {
-    display: block;
-
-    @include strip-link-styles();
-  }
-
-  &--item {
-    font-size: 2em;
-  }
-
-  &--sub-item {
-    padding-left: 1.5em;
-
-    font-size: 1.5em;
-  }
-
-
   &--toggle-icon {
     cursor: pointer;
     float: right;
     font-size: 2em;
   }
 
+  /* Invisible close element that allows the user to close the menu by clicking outside it */
 
   &--overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -98,5 +72,44 @@
 
       @include animation(toggle-nav-overlay .15s linear 1 forwards);
     }
+  }
+
+
+  &--header {
+    border-bottom: 1px solid $gray-lighter;
+    margin-right: 3em;
+    margin-bottom: .35em;
+    padding-bottom: .25em;
+
+    color: $gray-light;
+    font-size: 3em;
+    line-height: 1em;
+  }
+
+  &--label {
+    font-size: 2em;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  &--form-element[type="text"] {
+    background-color: #fbfbfb;
+    font-size: 16px;
+    height: 4.5em;
+    margin-bottom: 2em;
+    padding: 1.5em;
+  }
+
+  &--divider {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  &--dropdown {
+    background-color: #fbfbfb;
+    height: 2.5em;
+    width: 100%;
+    font-size: 2em;
+    margin-bottom: 1em;
   }
 }

@@ -1,0 +1,70 @@
+/**
+ *
+ * Pager
+ *
+ */
+
+
+/* Silent classes and variables related to this document
+   ========================================================================== */
+$pager--border-width: 1px;
+$pager--border-color: $gray;
+$pager--background: #fbfbfb;
+$pager--text-color: $gray;
+$pager--valid: $beige;
+
+
+/* Styles
+   ========================================================================== */
+
+.pager {
+  margin: 0 auto 3em;
+  padding-left: 36px;
+  text-align: center;
+
+  &--inner {
+    display: inline-block;
+  }
+
+
+  &--steps {
+  }
+
+
+  &--step {
+    background: $pager--background;
+    border: $pager--border-width solid $pager--border-color;
+    color: $pager--text-color;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 10px;
+    margin: 0 10px;
+    padding: 16px;
+    height: 10px;
+    width: 10px;
+
+    @include border-radius(100%);
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+
+    &.is-active {
+      border-width: 2px;
+    }
+
+    &.is-valid {
+      background: $pager--valid;
+      color: $gray-dark;
+    }
+  }
+
+  &--line {
+    border-bottom: $pager--border-width solid $pager--border-color;
+    margin: -24px 22px;
+  }
+}
