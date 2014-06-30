@@ -72,14 +72,20 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
   factory.saveSlide = function() {
     var defer = $q.defer();
 
-    $http.post('/api/slide', currentSlide)
-      .success(function(data, status) {
-        defer.resolve(data);
-        currentSlide = null;
-      })
-      .error(function(data, status) {
-        defer.reject(status);
-      });
+    userFactory.getCurrentUser().then(
+      function(user) {
+        currentSlide.user = user.id;
+
+        $http.post('/api/slide', currentSlide)
+          .success(function(data, status) {
+            defer.resolve(data);
+            currentSlide = null;
+          })
+          .error(function(data, status) {
+            defer.reject(status);
+          });
+      }
+    );
 
     return defer.promise;
   }

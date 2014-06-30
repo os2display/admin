@@ -35,6 +35,7 @@ class SlidesController extends Controller {
         'orientation' => $slide->getOrientation(),
         'template' => $slide->getTemplate(),
         'created' => $slide->getCreated(),
+        'user' => $slide->getUser(),
         'options' => unserialize($slide->getOptions()),
       );
     }
