@@ -21,26 +21,27 @@
         <img src="/images/logo.png"/>
       </div>
       <nav class="header--main-menu" >
+        <a class="header--main-menu-item-image-back" href="/#/"></a>
         <ul class="header--main-menu-items">
-          <li class="header--main-menu-item">
+          <li class="header--main-menu-item" ng-class="{'is-active': url === '/channels'}">
             <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/channels'}" href="/#/channels">
               <span class="header--main-menu-item-image-channels"></span>
               <span class="header--main-menu-item-text">Kanaler</span>
             </a>
           </li>
-          <li class="header--main-menu-item">
+          <li class="header--main-menu-item" ng-class="{'is-active': url === '/slides'}">
             <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/slides'}" href="/#/slides">
               <span class="header--main-menu-item-image-slides"></span>
               <span class="header--main-menu-item-text">Slides</span>
             </a>
           </li>
-          <li class="header--main-menu-item">
+          <li class="header--main-menu-item" ng-class="{'is-active': url === '/screens'}" >
             <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/screens'}" href="/#/screens">
               <span class="header--main-menu-item-image-screens"></span>
               <span class="header--main-menu-item-text">Skærme</span>
             </a>
           </li>
-          <li class="header--main-menu-item">
+          <li class="header--main-menu-item" ng-class="{'is-active': url === '/templates'}" >
             <a class="header--main-menu-item-link" ng-class="{'is-active': url === '/templates'}" href="/#/templates">
               <span class="header--main-menu-item-image-templates"></span>
               <span class="header--main-menu-item-text">Skabeloner</span>

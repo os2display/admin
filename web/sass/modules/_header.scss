@@ -10,12 +10,7 @@
 // Selector for main menu items
 %header--main-menu-item--selector {
   display: inline-block;
-  margin: 0 1em 0 1em;
   vertical-align: middle;
-
-  @include breakpoint(1200px) {
-    margin: 0 .5em 0 0;
-  }
 }
 
 
@@ -33,10 +28,16 @@
   z-index: 1;
 
   &--main {
-    padding: 1em 0 0;
+    position: relative;
+    padding: 1em 0;
     overflow: hidden;
 
-    @include breakpoint(1170px) {
+    @include breakpoint(50em) {
+      padding: 0;
+      height: 5em;
+    }
+
+    @include breakpoint(70em) {
       padding: 0 1em;
     }
   }
@@ -46,18 +47,16 @@
  ========================================================================== */
 
   &--logo {
-    width: 50%;
-    margin-bottom: 2em;
-    margin-left: 1em;
+    display: none;
 
-    @include breakpoint(1170px) {
+    @include breakpoint(70em) {
       display: inline-block;
       margin-bottom: 0;
       margin-left: 0;
       margin-right: -4px;
       position: relative;
       padding: 1em 0;
-      top: 0;
+      top: -17px;
       width: 25%;
     }
   }
@@ -67,10 +66,12 @@
  ========================================================================== */
 
   &--main-menu {
-    width: 100%;
+    width: 75%;
+    height: 2.5em;
 
-    @include breakpoint(1170px) {
+    @include breakpoint(70em) {
       display: inline-block;
+      height: auto;
       margin-right: -4px;
       position: relative;
       text-align: center;
@@ -81,59 +82,84 @@
 
 
   &--main-menu-items {
+    @include breakpoint(50em) {
+      text-align: center;
+    }
+
     @include strip-list-styles;
   }
 
 
   &--main-menu-item {
-    display: inline-block;
+    display: none;
+    font-size: 1em;
     margin-bottom: -2px;
     margin-right: -4px;
     text-align: center;
-    width: 25%;
+    width: 50px;
+
+    &.is-active {
+      display: inline-block;
+      font-size: .8em;
+    }
+
+    @include breakpoint(50em) {
+      display: inline-block;
+      padding: 1em;
+      width: 110px;
+
+      &.is-active {
+        background: #E4E4D5;
+        font-size: 1em;
+      }
+
+      &:hover {
+        background: #E4E4D5;
+      }
+    }
   }
 
 
   &--main-menu-item-link {
+    &:hover {
+      cursor: default;
+    }
+
     @include strip-link-styles;
 
-    display: block;
-    padding: 1em 0;
-
-    @include breakpoint(1170px) {
-      padding: 2em 1em 2em;
-    }
-
-    &:hover {
-      background: #E4E4D5;
-    }
-
-    &.is-active {
-      background: #E4E4D5;
-    }
-  }
-
-
-  &--main-menu-item-text {
-    width: 100%;
-
-
-    @include breakpoint(45em) {
+    @include breakpoint(50em) {
       display: inline-block;
-    }
+      position: relative;
+      width: 100%;
 
-    @include breakpoint(1170px) {
-      display: inline-block;
-    }
-
-    @include breakpoint(1200px) {
-      display: inline-block;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
 
   /* Each link.
  ========================================================================== */
+
+
+  &--main-menu-item-image-back {
+    display: inline-block;
+    float: left;
+    margin: 0 1em;
+    position: relative;
+    top: 50%;
+    width: 27px;
+
+    @include translateY(-50%);
+    @include generate-sprite-image($dashboard-sprites, 'arrow-back-icon', 80);
+
+    @include breakpoint(50em) {
+      display: none;
+      width: 0;
+    }
+  }
+
   &--main-menu-item-image-channels{
     @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
 
@@ -162,22 +188,40 @@
   }
 
 
+  &--main-menu-item-text {
+    width: 100%;
+
+
+    @include breakpoint(45em) {
+      display: inline-block;
+    }
+
+    @include breakpoint(70em) {
+      display: inline-block;
+    }
+
+    @include breakpoint(1200px) {
+      display: inline-block;
+    }
+  }
+
   /* Secondary menus section (User and nav link).
  ========================================================================== */
 
   &--secondary-menus {
-    margin-right: 1em;
     position: absolute;
-    right: 0;
-    top: 1em;
+    right: 1em;
+    text-align: right;
+    top: 50%;
     width: 25%;
 
-    @include breakpoint(1170px) {
-      display: inline-block;
+    @include translateY(-50%);
+    @include breakpoint(70em) {
       margin-right: -4px;
-      position: relative;
+      padding: 1em 0;
       text-align: right;
-      top: 0;
+      top: 50%;
+      width: 25%;
     }
   }
 
@@ -188,14 +232,14 @@
   &--user-menu {
     display: inline-block;
     margin-right: -4px;
-    width: 50%;
+    margin-right: 2em;
   }
 
 
   &--user-menu-dropdown-link {
     @include strip-link-styles;
 
-    @include breakpoint(1170px) {
+    @include breakpoint(70em) {
       &:after {
         content:'\00a0\25be';
         vertical-align: top;
@@ -208,7 +252,7 @@
     display: none;
     vertical-align: top;
 
-    @include breakpoint(1200px) {
+    @include breakpoint(70em) {
       display: inline-block;
     }
   }
@@ -227,7 +271,6 @@
     display: inline-block;
     margin-right: -4px;
     vertical-align: top;
-    width: 50%;
   }
 
 
@@ -250,7 +293,7 @@
   &--nav-menu-label-text {
     display: none;
 
-    @include breakpoint(1200px) {
+    @include breakpoint(70em) {
       display: inline-block;
     }
   }
