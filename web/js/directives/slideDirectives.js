@@ -57,10 +57,6 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFac
 
       // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
       attrs.$observe('ikId', function(val) {
-        if (!val) {
-          return;
-        }
-
         slideFactory.getEditSlide(scope.ikId).then(function(data) {
           scope.ikSlide = data;
           scope.template = templateFactory.getTemplate(scope.ikSlide.template);
