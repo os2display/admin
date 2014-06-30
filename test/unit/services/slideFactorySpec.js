@@ -139,12 +139,11 @@ describe('SlideFactory', function(){
     });
   }));
 
-/*  NOT DONE!!
   it("should return 404 for getting a slide that does not exist", inject(function() {
     slideFactory.getSlide(200).then(function(data) {
     }, function(reason) {
-      expect().toEqual('error');
+      expect(reason).toEqual(404);
     });
     $httpBackend.flush();
-  }));*/
+  }));
 });
