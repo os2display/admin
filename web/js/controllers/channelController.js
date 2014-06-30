@@ -5,7 +5,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
   $scope.steps = 4; // Number of steps in the creation process.
   $scope.slides = [];
   $scope.channel = {};
-  var slidesArray = [];
+  $scope.slidesArray = [];
 
   slideFactory.getSlides().then(function(data) {
     $scope.slides = data;
@@ -128,7 +128,8 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    * Fetch the slides related to the channel.
    */
   $scope.getChosenSlides = function() {
-    $scope.slidesArray = [];
+    // Empty array.
+    $scope.slidesArray.length = 0;
     angular.forEach($scope.channel.slides, function(id, index){
       slideFactory.getSlide(id).then(function(data) {
         $scope.slidesArray[index] = data;

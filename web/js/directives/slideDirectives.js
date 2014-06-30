@@ -15,8 +15,12 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
 
       // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
       attrs.$observe('ikId', function(val) {
+        if (!val) {
+          return;
+        }
+
         // Get the slide.
-        slideFactory.getSlide(val).then(function(data) {
+        slideFactory.getSlide(scope.ikId).then(function(data) {
           scope.ikSlide = data;
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
@@ -53,6 +57,10 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFac
 
       // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
       attrs.$observe('ikId', function(val) {
+        if (!val) {
+          return;
+        }
+
         slideFactory.getEditSlide(scope.ikId).then(function(data) {
           scope.ikSlide = data;
           scope.template = templateFactory.getTemplate(scope.ikSlide.template);

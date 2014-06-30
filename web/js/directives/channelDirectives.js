@@ -24,6 +24,10 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
       }
 
       attrs.$observe('ikId', function(val) {
+        if (!val) {
+          return;
+        }
+
         channelFactory.getChannel(val).then(function(data) {
           scope.channel = data;
           angular.forEach(scope.channel.slides, function(value, key) {
