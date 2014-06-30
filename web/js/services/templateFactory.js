@@ -4,32 +4,56 @@ ikApp.factory('templateFactory', function() {
     {
       id: 'text-top',
       image: '/ik-templates/text-top/text-top.png',
-      orientation: 'landscape'
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      }
     },
     {
       id: 'text-bottom',
       image: '/ik-templates/text-bottom/text-bottom.png',
-      orientation: 'landscape'
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      }
     },
     {
       id: 'text-left',
       image: '/ik-templates/text-left/text-left.png',
-      orientation: 'landscape'
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      }
     },
     {
       id: 'text-right',
       image: '/ik-templates/text-right/text-right.png',
-      orientation: 'landscape'
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      }
     },
     {
       id: 'only-image',
       image: '/ik-templates/only-image/only-image.png',
-      orientation: 'landscape'
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      }
     },
     {
       id: 'portrait-text-top',
       image: '/ik-templates/portrait-text-top/portrait-text-top.png',
-      orientation: 'portrait'
+      orientation: 'portrait',
+      idealdimensions: {
+        width: '1080',
+        height: '1920'
+      }
     }
   ];
 
