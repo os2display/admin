@@ -28,12 +28,10 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
           scope.channel = data;
           angular.forEach(scope.channel.slides, function(value, key) {
             slideFactory.getSlide(value).then(function(data) {
-              if (data != []) {
-                scope.slides.push(data);
-                if (key === 0) {
-                  scope.setTemplate();
-                  scope.buttonState = 'play';
-                }
+              scope.slides[key] = (data);
+              if (key === 0) {
+                scope.setTemplate();
+                scope.buttonState = 'play';
               }
             });
           });

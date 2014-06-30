@@ -74,16 +74,21 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
 
     userFactory.getCurrentUser().then(
       function(user) {
-        currentSlide.user = user.id;
+        if (currentSlide === null) {
+          defer.reject(404);
 
-        $http.post('/api/slide', currentSlide)
-          .success(function(data, status) {
-            defer.resolve(data);
-            currentSlide = null;
-          })
-          .error(function(data, status) {
-            defer.reject(status);
-          });
+        } else {
+          currentSlide.user = user.id;
+
+          $http.post('/api/slide', currentSlide)
+            .success(function(data, status) {
+              defer.resolve(data);
+              currentSlide = null;
+            })
+            .error(function(data, status) {
+              defer.reject(status);
+            });
+        }
       }
     );
 
@@ -109,11 +114,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
         image: '',
         headline: '',
-        text: '',
-        idealdimensions: {
-          width: '1920',
-          height: '1080'
-        }
+        text: ''
       }
     };
 
