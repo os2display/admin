@@ -54,7 +54,6 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
    */
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
-      console.log("save screen");
       screenFactory.saveScreen().then(
         function() {
           $location.path('/screens');

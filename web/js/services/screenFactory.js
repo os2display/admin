@@ -138,7 +138,6 @@ ikApp.factory('screenFactory', ['$http', '$q', function($http, $q) {
 
       $http.post('/api/screen', currentScreen)
         .success(function(data, status) {
-          console.log(data);
           defer.resolve(data);
           currentScreen = null;
         })
