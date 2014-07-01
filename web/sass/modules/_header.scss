@@ -4,25 +4,49 @@
  *
  */
 
-/* Selectors related to this document.
+/* Mixins, variables and selectors related to this document.
  ========================================================================== */
 
-// Selector for main menu items
+// Selector for main menu items.
 %header--main-menu-item--selector {
   display: inline-block;
   vertical-align: middle;
 }
 
 
+// Mixin for the changing logo in various cases.
+@mixin header--logo-transition($display-type) {
+  @if $display-type == "arrow" {
+    // Display logo as arrow.
+    display: block;
+    text-indent: -10000px;
+
+    @include generate-sprite-image($dashboard-sprites, 'arrow-back-icon', 80);
+
+    img {
+      display: none;
+    }
+  }
+  @else {
+    // Display logo as site name.
+    background: none;
+    text-indent: 0;
+    width: 100%;
+
+    img {
+      display: block;
+    }
+  }
+}
+
+
 /* Styles.
  ========================================================================== */
-
 
 .header {
   background-color: $beige;
   color: #333;
   margin-bottom: 2em;
-  min-height: 6em;
   overflow: hidden;
   width: 100%;
   z-index: 1;
@@ -47,17 +71,62 @@
  ========================================================================== */
 
   &--logo {
-    display: none;
+    padding: 0 1em;
+    position: absolute;
+    top: 50%;
 
+    @include translateY(-50%);
     @include breakpoint(70em) {
+      background: none;
       display: inline-block;
+      text-indent: 0;
       margin-bottom: 0;
       margin-left: 0;
-      margin-right: -4px;
+      margin-right: $adjust-inline-block;
       position: relative;
-      padding: 1em 0;
-      top: -17px;
-      width: 25%;
+      padding: 0;
+      top: 0%;
+      width: 24%;
+
+      // To overwrite the is-visible from 50 to 70 em.
+      &.is-visible {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Logo on small screens.
+  &--logo-link {
+    @include header--logo-transition(arrow);
+
+    // Logo on broad screens
+    @include breakpoint(70em) {
+      @include header--logo-transition(logo);
+    }
+
+    // Logo when main menu is in sub header.
+    &.is-visible {
+      @include header--logo-transition(logo);
+      width: 80%; // We modify the result of the mixin.
+
+      // Logo on medium screens (main menu in main header, but no room for logo).
+      @include breakpoint(50em) {
+        @include header--logo-transition(arrow);
+
+        // Hide arrow on frontpage.
+        &.is-front {
+          display: none;
+        }
+      }
+
+      // Logo on broad screens (Needed to overwrite state class.)
+      @include breakpoint(70em) {
+        @include header--logo-transition(logo);
+
+        &.is-front {
+          display: block;
+        }
+      }
     }
   }
 
@@ -68,15 +137,17 @@
   &--main-menu {
     width: 75%;
     height: 2.5em;
+    margin-left: 3em;
 
     @include breakpoint(70em) {
       display: inline-block;
       height: auto;
-      margin-right: -4px;
+      margin-left: 0;
+      margin-right: $adjust-inline-block;
       position: relative;
       text-align: center;
       top: 0;
-      width: 50%;
+      width: 52%;
     }
   }
 
@@ -93,10 +164,9 @@
   &--main-menu-item {
     display: none;
     font-size: 1em;
-    margin-bottom: -2px;
-    margin-right: -4px;
+    margin-right: $adjust-inline-block;
     text-align: center;
-    width: 50px;
+    width: 4em;
 
     &.is-active {
       display: inline-block;
@@ -106,15 +176,15 @@
     @include breakpoint(50em) {
       display: inline-block;
       padding: 1em;
-      width: 110px;
+      width: 6em;
 
       &.is-active {
-        background: #E4E4D5;
+        background: $beige-dark;
         font-size: 1em;
       }
 
       &:hover {
-        background: #E4E4D5;
+        background: $beige-dark;
       }
     }
   }
@@ -141,24 +211,6 @@
 
   /* Each link.
  ========================================================================== */
-
-
-  &--main-menu-item-image-back {
-    display: inline-block;
-    float: left;
-    margin: 0 1em;
-    position: relative;
-    top: 50%;
-    width: 27px;
-
-    @include translateY(-50%);
-    @include generate-sprite-image($dashboard-sprites, 'arrow-back-icon', 80);
-
-    @include breakpoint(50em) {
-      display: none;
-      width: 0;
-    }
-  }
 
   &--main-menu-item-image-channels{
     @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
@@ -199,10 +251,6 @@
     @include breakpoint(70em) {
       display: inline-block;
     }
-
-    @include breakpoint(1200px) {
-      display: inline-block;
-    }
   }
 
   /* Secondary menus section (User and nav link).
@@ -213,15 +261,15 @@
     right: 1em;
     text-align: right;
     top: 50%;
-    width: 25%;
+    width: 24%;
 
     @include translateY(-50%);
     @include breakpoint(70em) {
-      margin-right: -4px;
+      margin-right: $adjust-inline-block;
       padding: 1em 0;
       text-align: right;
       top: 50%;
-      width: 25%;
+      width: 20%;
     }
   }
 
@@ -231,7 +279,7 @@
 
   &--user-menu {
     display: inline-block;
-    margin-right: -4px;
+    margin-right: $adjust-inline-block;
     margin-right: 1em;
   }
 
@@ -269,7 +317,7 @@
 
   &--nav-menu {
     display: inline-block;
-    margin-right: -4px;
+    margin-right: $adjust-inline-block;
     vertical-align: top;
   }
 
@@ -299,25 +347,23 @@
   }
 
 
-  /* Header submenu setion
+  /* Header submenu section
  ========================================================================== */
 
   &--sub {
-    background: #E4E4D5;
-    min-height: 3em;
-    padding: 0 1em;
-
-    @extend %grid;
-    @extend %grid--center;
+    background: $beige-dark;
   }
 
 
   &--sub-menu {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--two-thirds;
-    @extend %desk--two-thirds;
+    text-align: center;
+    width: 100%;
+
+    @include breakpoint(50em) {
+      &.is-hidden {
+        display: none;
+      }
+    }
   }
 
 
@@ -345,7 +391,7 @@
   }
 
 
-  .header--sub-menu-item-image-overview {
+  &--sub-menu-item-image-overview {
     @include generate-sprite-image($dashboard-sprites, 'overview-small-icon');
 
     display: inline-block;
@@ -354,11 +400,94 @@
   }
 
 
-  .header--sub-menu-item-image-create-channel {
+  &--sub-menu-item-image-create-channel {
     @include generate-sprite-image($dashboard-sprites, 'add-small-icon');
 
     display: inline-block;
     margin: 0 .5em 0 0;
     vertical-align: middle;
+  }
+
+
+  // On mobile pages without sub pages we show the main menu in the submenu section.
+  &--main-menu--mobile {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+
+    &.is-hidden {
+      display: none;
+    }
+
+    @include breakpoint(50em) {
+      display: none;
+    }
+  }
+
+
+  &--main-menu-items--mobile {
+    text-align: center;
+
+    @include strip-list-styles;
+  }
+
+
+  /* Header main menu mobile. (Display of main menu on pages WITHOUT subpages on narrow screens).
+ ========================================================================== */
+  &--main-menu-item--mobile {
+    font-size: .8em;
+    margin-right: $adjust-inline-block;
+    width: 25%;
+    display: inline-block;
+    padding: 1em 0;
+
+    &:hover {
+      background: $beige-dark;
+    }
+  }
+
+
+  &--main-menu-item-link--mobile {
+    @include strip-link-styles();
+
+    display: block;
+    height: 3em;
+
+    &.is-active {
+      border-bottom: 2px solid black;
+    }
+  }
+
+
+  &--main-menu-item-image-channels--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
+
+    @extend %header--main-menu-item--selector;
+  }
+
+
+  &--main-menu-item-image-slides--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
+
+    @extend %header--main-menu-item--selector;
+  }
+
+
+  &--main-menu-item-image-screens--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
+
+    @extend %header--main-menu-item--selector;
+  }
+
+
+  &--main-menu-item-image-templates--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
+
+    @extend %header--main-menu-item--selector;
+
+  }
+
+  &--main-menu-item-text--mobile {
+    display: block;
   }
 }

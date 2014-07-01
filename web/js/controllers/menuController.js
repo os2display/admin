@@ -2,6 +2,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
   $scope.url = $location.url();
   $scope.navMenuOpen = null;
   $scope.subMenuItems = [];
+  $scope.showMobileMainMenu = false;
 
   /**
    * Set the submenu items according to what the url starts with.
@@ -106,4 +107,17 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
     $scope.navMenuOpen = false;
     updateSubMenu();
   });
+
+  /**
+   * Show/hide mobile main menu.
+   */
+  $scope.mobileMainMenuVisible = function() {
+    if($scope.url.indexOf('/channel') == 0 || $scope.url.indexOf('/slide') == 0 || $scope.url.indexOf('/screen') == 0 || $scope.url.indexOf('/template') == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 });
+
+
