@@ -43,7 +43,18 @@ class ScreenController extends Controller {
     $screen->setCreated($post->created);
     $screen->setWidth($post->width);
     $screen->setHeight($post->height);
-    $screen->setGroups($post->groups);
+
+    // TODO: FIX THIS MANY TO MANY RELATIONSHIP!!!!!
+
+
+    // Update groups
+    foreach($post->groups as $group) {
+      $group = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
+        ->findOneById($group->id);
+      if ($group) {
+        $screen->addGroup($group);
+      }
+    }
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
@@ -80,6 +91,9 @@ class ScreenController extends Controller {
   public function ScreenGetAction($id) {
     $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
+
+    $screenGroups = $this->getDoctrine()->getRepository('IndholdskanalaneMainBundle:ScreenGroup')
+      ->findAll();
 
     // Create the response data.
     $responseData = array();

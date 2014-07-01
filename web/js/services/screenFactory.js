@@ -3,7 +3,7 @@
  */
 ikApp.factory('screenFactory', ['$http', '$q', function($http, $q) {
   var factory = {};
-  var currentGroup = null;
+  var currentScreenGroup = null;
   var currentScreen = null;
 
   /**
@@ -43,6 +43,24 @@ ikApp.factory('screenFactory', ['$http', '$q', function($http, $q) {
     return defer.promise;
   }
 
+  factory.getEditScreenGroup = function(id) {
+    var defer = $q.defer();
+
+    if (id === null || id === undefined || id === '') {
+      defer.resolve(currentScreenGroup);
+    } else {
+      $http.get('/api/screen-group/' + id)
+        .success(function(data, status) {
+          currentScreenGroup = data;
+          defer.resolve(currentScreenGroup);
+        })
+        .error(function(data, status) {
+          defer.reject(status);
+        });
+    }
+
+    return defer.promise;
+  }
 
   /**
    * Get all screen groups.
@@ -51,7 +69,7 @@ ikApp.factory('screenFactory', ['$http', '$q', function($http, $q) {
   factory.getScreenGroups = function() {
     var defer = $q.defer();
 
-    $http.get('/api/screen_groups')
+    $http.get('/api/screen-groups')
       .success(function(data, status) {
         defer.resolve(data);
       })
@@ -90,7 +108,7 @@ ikApp.factory('screenFactory', ['$http', '$q', function($http, $q) {
   factory.getScreenGroup = function(id) {
     var defer = $q.defer();
 
-    $http.get('/api/screen_group/' + id)
+    $http.get('/api/screen-group/' + id)
       .success(function(data, status) {
         defer.resolve(data);
       })
@@ -150,6 +168,28 @@ ikApp.factory('screenFactory', ['$http', '$q', function($http, $q) {
   }
 
   /**
+   * Saves screen group.
+   */
+  factory.saveScreenGroup = function() {
+    var defer = $q.defer();
+
+    if (currentScreenGroup === null) {
+      defer.reject(404);
+    } else {
+      $http.post('/api/screen-group', currentScreenGroup)
+        .success(function(data, status) {
+          defer.resolve(data);
+          currentScreenGroup = null;
+        })
+        .error(function(data, status) {
+          defer.reject(status);
+        });
+    }
+
+    return defer.promise;
+  }
+
+  /**
    * Returns an empty screen.
    * @returns screen (empty)
    */
@@ -173,14 +213,14 @@ ikApp.factory('screenFactory', ['$http', '$q', function($http, $q) {
    * @returns group (empty)
    */
   factory.emptyScreenGroup = function() {
-    currentGroup = {
+    currentScreenGroup = {
       id: null,
       title: '',
       screens: [],
       created: parseInt((new Date().getTime()) / 1000)
     };
 
-    return currentGroup;
+    return currentScreenGroup;
   }
 
   return factory;
