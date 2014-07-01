@@ -3,9 +3,9 @@
     <h1 class="create-screen--header">Opret skærm ({{step}}/{{steps}})</h1>
     <p class="create-screen--header-description">Angiv bredde og højde i pixels på skærmen.</p>
     <form ng-submit="submitStep()">
-      <input type="text" class="create-screen--text" placeholder="Bredde" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="screen.width">
-      <input type="text" class="create-screen--text" placeholder="Højde" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="screen.height">
-      <input type="submit" class="create-screen--button" data-ng-class="{'is-inactive': !validation.titleSet()}" ng-disabled="!validation.dimensionSet()" value="Gem og fortsæt">
+      <input type="text" class="create-screen--text" placeholder="Bredde" data-ng-class="{'is-valid': validation.widthSet()}" data-ng-model="screen.width">
+      <input type="text" class="create-screen--text" placeholder="Højde" data-ng-class="{'is-valid': validation.heightSet()}" data-ng-model="screen.height">
+      <input type="submit" class="create-screen--button" data-ng-class="{'is-inactive': !validation.widthSet() || !validation.heightSet()}" ng-disabled="!validation.widthSet() || !validation.heightSet()" value="Gem og fortsæt">
     </form>
   </div>
 </section>

@@ -128,12 +128,11 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    * Fetch the slides related to the channel.
    */
   $scope.getChosenSlides = function() {
-    // Empty array.
     $scope.slidesArray.length = 0;
     angular.forEach($scope.channel.slides, function(id, index){
       slideFactory.getSlide(id).then(function(data) {
         $scope.slidesArray[index] = data;
-      })
+      });
     });
   }
 

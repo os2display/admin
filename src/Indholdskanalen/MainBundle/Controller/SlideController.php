@@ -25,12 +25,12 @@ class SlideController extends Controller {
    */
   public function SlideSaveAction(Request $request) {
     // Get posted slide information from the request.
-    $post = json_decode($request->getContent());
+    $post = json_decode($request->getContent(), TRUE);
 
-    if ($post->id) {
+    if ($post['id']) {
       // Load current slide.
       $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
-        ->findOneById($post->id);
+        ->findOneById($post['id']);
     }
     else {
       // This is a new slide.
@@ -38,12 +38,12 @@ class SlideController extends Controller {
     }
 
     // Update fields.
-    $slide->setTitle($post->title);
-    $slide->setOrientation($post->orientation);
-    $slide->setTemplate($post->template);
-    $slide->setCreated($post->created);
-    $slide->setUser($post->user);
-    $slide->setOptions(serialize($post->options));
+    $slide->setTitle($post['title']);
+    $slide->setOrientation($post['orientation']);
+    $slide->setTemplate($post['template']);
+    $slide->setCreated($post['created']);
+    $slide->setOptions($post['options']);
+    $slide->setUser($post['user']);
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
@@ -57,8 +57,8 @@ class SlideController extends Controller {
       "orientation" => $slide->getOrientation(),
       "template" => $slide->getTemplate(),
       "created" => $slide->getCreated(),
+      "options" => $slide->getOptions(),
       "user" => $slide->getUser(),
-      "options" => unserialize($slide->getOptions()),
     );
 
     // Send the json response back to client.
@@ -90,8 +90,8 @@ class SlideController extends Controller {
         "orientation" => $slide->getOrientation(),
         "template" => $slide->getTemplate(),
         "created" => $slide->getCreated(),
+        "options" => $slide->getOptions(),
         "user" => $slide->getUser(),
-        "options" => unserialize($slide->getOptions()),
       );
     }
 

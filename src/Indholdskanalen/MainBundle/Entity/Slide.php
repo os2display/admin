@@ -43,7 +43,7 @@ class Slide {
   private $created;
 
   /**
-   * @ORM\Column(name="options", type="text", nullable=true)
+   * @ORM\Column(name="options", type="json_array", nullable=true)
    */
   private $options;
 

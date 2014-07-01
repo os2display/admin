@@ -1,4 +1,4 @@
-ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', function($interval, channelFactory, slideFactory) {
+ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', 'templateFactory', function($interval, channelFactory, slideFactory, templateFactory) {
   return {
     restrict: 'E',
     scope: {
@@ -16,10 +16,12 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', fun
         scope.ikSlide = scope.slides[scope.slideIndex];
         scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
+        var template = templateFactory.getTemplate(scope.ikSlide.template);
+
         scope.theStyle = {
           width: "" + scope.ikWidth + "px",
-          height: "" + parseFloat(scope.ikSlide.options.idealdimensions.height * parseFloat(scope.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px",
-          fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.ikSlide.options.idealdimensions.width)) + "px"
+          height: "" + parseFloat(template.idealdimensions.height * parseFloat(scope.ikWidth / template.idealdimensions.width)) + "px",
+          fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / template.idealdimensions.width)) + "px"
         }
       }
 
