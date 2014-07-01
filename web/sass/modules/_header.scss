@@ -79,19 +79,14 @@
     @include breakpoint(70em) {
       background: none;
       display: inline-block;
-      text-indent: 0;
       margin-bottom: 0;
       margin-left: 0;
       margin-right: $adjust-inline-block;
       position: relative;
       padding: 0;
+      text-indent: 0;
       top: 0%;
       width: 24%;
-
-      // To overwrite the is-visible from 50 to 70 em.
-      &.is-visible {
-        display: inline-block;
-      }
     }
   }
 
@@ -123,6 +118,7 @@
       @include breakpoint(70em) {
         @include header--logo-transition(logo);
 
+        // Show logo on frontpage.
         &.is-front {
           display: block;
         }
@@ -135,9 +131,9 @@
  ========================================================================== */
 
   &--main-menu {
-    width: 75%;
     height: 2.5em;
     margin-left: 3em;
+    width: 75%;
 
     @include breakpoint(70em) {
       display: inline-block;
@@ -215,28 +211,28 @@
   &--main-menu-item-image-channels{
     @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-slides{
     @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-screens{
     @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-templates{
     @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
@@ -435,11 +431,11 @@
   /* Header main menu mobile. (Display of main menu on pages WITHOUT subpages on narrow screens).
  ========================================================================== */
   &--main-menu-item--mobile {
+    display: inline-block;
     font-size: .8em;
     margin-right: $adjust-inline-block;
-    width: 25%;
-    display: inline-block;
     padding: 1em 0;
+    width: 25%;
 
     &:hover {
       background: $beige-dark;
@@ -462,28 +458,28 @@
   &--main-menu-item-image-channels--mobile{
     @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-slides--mobile{
     @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-screens--mobile{
     @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-templates--mobile{
     @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
 
-    @extend %header--main-menu-item--selector;
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
 
   }
 
