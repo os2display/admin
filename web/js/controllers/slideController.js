@@ -110,16 +110,5 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
    */
   $scope.selectOrientation = function(orientation) {
     $scope.slide.orientation = orientation;
-    if (orientation === 'portrait') {
-      $scope.slide.options.idealdimensions = {
-        width: '1080',
-        height: '1920'
-      }
-    } else {
-      $scope.slide.options.idealdimensions = {
-        width: '1920',
-        height: '1080'
-      }
-    }
   }
 });
