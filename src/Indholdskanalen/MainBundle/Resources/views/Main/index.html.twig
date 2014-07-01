@@ -1,57 +1,59 @@
 {% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
 
 {% block body %}
-    <div data-ng-include="'/partials/menu.html'"></div>
+  <div data-ng-include="'/partials/menu.html'"></div>
 
-    {% block content %}
-      <div class="layout-wrapper view-container">
-        <div data-ng-view="" class="view-frame">
-        </div>
+  {% block content %}
+    <div class="layout-wrapper view-container">
+      <div data-ng-view="" class="view-frame">
       </div>
-    {% endblock %}
+    </div>
+  {% endblock %}
 
 {% endblock %}
 
 
 {% block scripts %}
-    <!-- Script imports -->
-    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/lib/angular.min.js') }}"></script>
-    <script src="{{ asset('js/lib/angular-animate.js') }}"></script>
-    <script src="{{ asset('js/lib/angular-route.js') }}"></script>
+  <!-- Script imports -->
+  <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+  <script src="{{ asset('js/lib/angular.min.js') }}"></script>
+  <script src="{{ asset('js/lib/angular-animate.js') }}"></script>
+  <script src="{{ asset('js/lib/angular-route.js') }}"></script>
 
-    <!-- Add ins -->
-    <script src="{{ asset('js/lib/es5-shim.min.js') }}"></script>
-    <script src="{{ asset('js/lib/angular-file-upload.js') }}"></script>
+  <!-- Add ins -->
+  <script src="{{ asset('js/lib/es5-shim.min.js') }}"></script>
+  <script src="{{ asset('js/lib/angular-file-upload.js') }}"></script>
+  <script src="{{ asset('js/lib/angular-checklist-model.js') }}"></script>
 
-    <!-- Base -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/routing.js') }}"></script>
+  <!-- Base -->
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/routing.js') }}"></script>
 
-    <!-- Directives -->
-    <script src="{{ asset('js/directives/helperDirectives.js') }}"></script>
-    <script src="{{ asset('js/directives/slideDirectives.js') }}"></script>
-    <script src="{{ asset('js/directives/channelDirectives.js') }}"></script>
-    <script src="{{ asset('js/directives/screenDirectives.js') }}"></script>
-    <script src="{{ asset('js/directives/mediaDirectives.js') }}"></script>
+  <!-- Directives -->
+  <script src="{{ asset('js/directives/helperDirectives.js') }}"></script>
+  <script src="{{ asset('js/directives/slideDirectives.js') }}"></script>
+  <script src="{{ asset('js/directives/channelDirectives.js') }}"></script>
+  <script src="{{ asset('js/directives/screenDirectives.js') }}"></script>
+  <script src="{{ asset('js/directives/mediaDirectives.js') }}"></script>
 
-    <!-- Services -->
-    <script src="{{ asset('js/services/imageFactory.js') }}"></script>
-    <script src="{{ asset('js/services/templateFactory.js') }}"></script>
-    <script src="{{ asset('js/services/slideFactory.js') }}"></script>
-    <script src="{{ asset('js/services/screenFactory.js') }}"></script>
-    <script src="{{ asset('js/services/channelFactory.js') }}"></script>
-    <script src="{{ asset('js/services/userFactory.js') }}"></script>
+  <!-- Services -->
+  <script src="{{ asset('js/services/imageFactory.js') }}"></script>
+  <script src="{{ asset('js/services/templateFactory.js') }}"></script>
+  <script src="{{ asset('js/services/slideFactory.js') }}"></script>
+  <script src="{{ asset('js/services/screenFactory.js') }}"></script>
+  <script src="{{ asset('js/services/channelFactory.js') }}"></script>
+  <script src="{{ asset('js/services/userFactory.js') }}"></script>
 
-    <!-- Controllers -->
-    <script src="{{ asset('js/controllers/miscControllers.js') }}"></script>
-    <script src="{{ asset('js/controllers/templatesController.js') }}"></script>
-    <script src="{{ asset('js/controllers/menuController.js') }}"></script>
-    <script src="{{ asset('js/controllers/slideController.js') }}"></script>
-    <script src="{{ asset('js/controllers/slidesController.js') }}"></script>
-    <script src="{{ asset('js/controllers/screenController.js') }}"></script>
-    <script src="{{ asset('js/controllers/channelController.js') }}"></script>
-    <script src="{{ asset('js/controllers/channelsController.js') }}"></script>
-    <script src="{{ asset('js/controllers/mediaController.js') }}"></script>
+  <!-- Controllers -->
+  <script src="{{ asset('js/controllers/miscControllers.js') }}"></script>
+  <script src="{{ asset('js/controllers/templatesController.js') }}"></script>
+  <script src="{{ asset('js/controllers/menuController.js') }}"></script>
+  <script src="{{ asset('js/controllers/slideController.js') }}"></script>
+  <script src="{{ asset('js/controllers/slidesController.js') }}"></script>
+  <script src="{{ asset('js/controllers/screenController.js') }}"></script>
+  <script src="{{ asset('js/controllers/screensController.js') }}"></script>
+  <script src="{{ asset('js/controllers/channelController.js') }}"></script>
+  <script src="{{ asset('js/controllers/channelsController.js') }}"></script>
+  <script src="{{ asset('js/controllers/mediaController.js') }}"></script>
 {% endblock %}
 

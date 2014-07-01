@@ -1,1 +1,1 @@
-var ikApp = angular.module('ikApp', ['ngRoute', 'ngAnimate', 'angularFileUpload'], function() {});
+var ikApp = angular.module('ikApp', ['ngRoute', 'ngAnimate', 'angularFileUpload', 'checklist-model'], function() {});

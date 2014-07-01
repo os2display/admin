@@ -2,137 +2,113 @@
  * Screen controller. Controls the screen creation process.
  */
 ikApp.controller('ScreenController', function($scope, $location, $routeParams, screenFactory) {
-    /**
-     * Scope setup
-     */
-    $scope.steps = 3;
-    $scope.screen = [];
-    $scope.groups = [];
+  /**
+   * Scope setup
+   */
+  $scope.steps = 3;
+  $scope.screen = {};
+  $scope.groups = [];
+  screenFactory.getScreenGroups().then(function(data) {
+    $scope.groups = data;
+  });
 
-    /**
-     * Constructor.
-     * Handles different settings of route parameters.
-     */
-    function init() {
-        $scope.groups = screenFactory.getGroups();
-        if (!$routeParams.screenId) {
-            // If the ID is not set, get an empty screen.
-            $scope.screen = screenFactory.emptyScreen();
-            $scope.step = 1;
-        } else {
-            // Get the step.
-            if ($routeParams.step) {
-                if ($routeParams.step < 1 || $routeParams.step > $scope.steps) {
-                    $location.path('/screen/' + $routeParams.screenId + '/1');
-                    return;
-                }
-                else {
-                    $scope.step = $routeParams.step;
-                }
-            }
-            else {
-                $scope.step = 1;
-            }
 
-            // Get screen.
-            $scope.screen = screenFactory.getScreen($routeParams.screenId);
+  /**
+   * Loads a given step
+   */
+  function loadStep(step) {
+    $scope.step = step;
+    $scope.templatePath = '/partials/screen/screen' + $scope.step + '.html';
+  }
 
-            if ($scope.screen === null) {
-                $location.path('/screen');
-                return;
-            }
+  /**
+   * Constructor.
+   * Handles different settings of route parameters.
+   */
+  function init() {
+    if (!$routeParams.id) {
+      // If the ID is not set, get an empty slide.
+      $scope.screen = screenFactory.emptyScreen();
+      loadStep(1);
+    } else {
+      if ($routeParams.id == null || $routeParams.id == undefined || $routeParams.id == '') {
+        $location.path('/screen');
+      } else {
+        // Get the screen from the backend.
+        screenFactory.getEditScreen($routeParams.id).then(function(data) {
+          $scope.screen = data;
 
-            // Make sure we are not placed at steps later than what is set in the data.
-            var s = 1;
-            if ($scope.screen.title !== '') {
-                s = s + 1;
-                if ($scope.screen.orientation !== '') {
-                    s = s + 1;
-                }
-            }
-            if ($scope.step > s) {
-                $location.path('/screen/' + $scope.screen.id + '/' + s);
-                return;
-            }
+          if ($scope.screen === {}) {
+            $location.path('/screen');
+          }
+
+          loadStep($scope.steps);
+        });
+      }
+    }
+  }
+  init();
+
+  /**
+   * Submit a step in the installation process.
+   */
+  $scope.submitStep = function() {
+    if ($scope.step == $scope.steps) {
+      console.log("save screen");
+      screenFactory.saveScreen().then(
+        function() {
+          $location.path('/screens');
         }
+      );
+    } else {
+      loadStep($scope.step + 1);
     }
-    init();
+  }
 
-    /**
-     * Submit a step in the installation process.
-     */
-    $scope.submitStep = function() {
-        $scope.screen = screenFactory.saveScreen($scope.screen);
+  /**
+   * Set the orientation of the screen.
+   * @param orientation
+   */
+  $scope.setOrientation = function(orientation) {
+    $scope.screen.orientation = orientation;
+  }
 
-        if ($scope.step < $scope.steps) {
-            $location.path('/screen/' + $scope.screen.id + '/' + (parseInt($scope.step) + 1));
-        } else {
-            $location.path('/screens');
-        }
+  $scope.goToStep = function(step) {
+    var s = 1;
+    if ($scope.validation.titleSet()) {
+      s++;
+      if ($scope.validation.widthSet() && $scope.validation.heightSet()) {
+        s = s + 2;
+      }
     }
-
-    /**
-     * Set the orientation of the screen.
-     * @param orientation
-     */
-    $scope.setOrientation = function(orientation) {
-        $scope.screen.orientation = orientation;
+    if (step <= s) {
+      loadStep(step);
     }
+  };
 
-    /**
-     * Validates that @field is not empty on screen.
-     */
-    function validateNotEmpty(field) {
-        if (!$scope.screen) {
-            return false;
-        }
-        return $scope.screen[field] !== '';
+  /**
+   * Validates that @field is not empty on screen.
+   */
+  function validateNotEmpty(field) {
+    if (!$scope.screen) {
+      return false;
     }
+    return $scope.screen[field] !== '';
+  }
 
-    /**
-     * Find the groups screen with @id is part of
-     * @param Screen id
-     * @param Group id
-     * @returns boolean
-     */
-    $scope.isScreenInGroup = function(screen_id, group_id) {
-        var screen_id = parseInt(screen_id);
-        var group = screenFactory.getGroup(group_id);
-        if (group.screens.indexOf(screen_id) != -1) {
-            return true;
-        } else {
-            return false;
-        }
+  /**
+   * Handles the validation of the data in the screen.
+   */
+  $scope.validation = {
+    titleSet: function() {
+      return validateNotEmpty('title');
+    },
+    widthSet: function() {
+      return (/^\d+$/.test($scope.screen.width));
+    },
+    heightSet: function() {
+      return (/^\d+$/.test($scope.screen.height));
     }
-
-    /**
-     * Toogle if screen is part group
-     * @param screen_id
-     * @param group_id
-     */
-
-    $scope.toggleGroup = function(screen_id, group_id) {
-        if($scope.isScreenInGroup(screen_id, group_id)) {
-            screenFactory.removeScreenFromGroup(screen_id, group_id);
-        } else {
-            screenFactory.addScreenToGroup(screen_id, group_id);
-        }
-    }
-
-    $scope.openToolbar = function(toolbar) {
-        alert(toolbar);
-    }
-
-    /**
-     * Handles the validation of the data in the screen.
-     */
-    $scope.validation = {
-        titleSet: function() {
-            return validateNotEmpty('title');
-        },
-        dimensionSet: function() {
-            return validateNotEmpty('width') && validateNotEmpty('height');
-        }
-    };
+  };
 
 });

@@ -4,16 +4,9 @@
     <p class="create-screen--header-description">Hvilke grupper er skærmen del af?</p>
     <form ng-submit="submitStep()">
         <label data-ng-repeat="group in groups">
-            <input
-                type="checkbox"
-                name="selectedGroupss[]"
-                value="{{group.title}}"
-                ng-checked="isScreenInGroup(screen.id, group.id)"
-                ng-click="toggleGroup(screen.id, group.id)"
-            >
-            {{group.title}}
+          <input type="checkbox" checklist-model="screen.groups" checklist-value="group.id"> {{group.title}}
         </label>
-      <input type="submit" class="create-screen--button" data-ng-class="{'is-inactive': !validation.titleSet()}" ng-disabled="!validation.dimensionSet()" value="Gem og fortsæt">
+      <input type="submit" class="create-screen--button" value="Gem og fortsæt">
     </form>
   </div>
 </section>

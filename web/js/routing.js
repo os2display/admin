@@ -21,11 +21,11 @@ ikApp.config(function($routeProvider) {$routeProvider
   })
   .when('/screen', {
     controller: 'ScreenController',
-    templateUrl: 'partials/screen/screen1.html'
+    templateUrl: 'partials/screen/screen.html'
   })
-  .when('/screen/:screenId/:step', {
+  .when('/screen/:id', {
     controller: 'ScreenController',
-    templateUrl: function(params){ return 'partials/screen/screen' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+    templateUrl: 'partials/screen/screen.html'
   })
   .when('/slide', {
     controller: 'SlideController',
