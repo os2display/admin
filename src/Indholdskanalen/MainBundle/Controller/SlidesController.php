@@ -36,6 +36,7 @@ class SlidesController extends Controller {
         'template' => $slide->getTemplate(),
         'created' => $slide->getCreated(),
         'options' => $slide->getOptions(),
+        'user' => $slide->getUser(),
       );
     }
 

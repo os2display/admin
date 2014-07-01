@@ -1,7 +1,7 @@
 /**
  * Slide factory.
  */
-ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
+ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q, userFactory) {
   var factory = {};
 
   // Current open slide.
@@ -15,11 +15,11 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
     var defer = $q.defer();
 
     $http.get('/api/slides')
-      .success(function(data) {
+      .success(function(data, status) {
         defer.resolve(data);
       })
-      .error(function() {
-        defer.reject();
+      .error(function(data, status) {
+        defer.reject(status);
       });
 
     return defer.promise;
@@ -36,12 +36,12 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
       defer.resolve(currentSlide);
     } else {
       $http.get('/api/slide/' + id)
-        .success(function(data) {
+        .success(function(data, status) {
           currentSlide = data;
           defer.resolve(currentSlide);
         })
-        .error(function() {
-          defer.reject('error');
+        .error(function(data, status) {
+          defer.reject(status);
         });
     }
 
@@ -56,11 +56,11 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
     var defer = $q.defer();
 
     $http.get('/api/slide/' + id)
-      .success(function(data) {
+      .success(function(data, status) {
         defer.resolve(data);
       })
-      .error(function() {
-        defer.reject();
+      .error(function(data, status) {
+        defer.reject(status);
       });
 
     return defer.promise;
@@ -72,14 +72,25 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
   factory.saveSlide = function() {
     var defer = $q.defer();
 
-    $http.post('/api/slide', currentSlide)
-      .success(function(data) {
-        defer.resolve(data);
-        currentSlide = null;
-      })
-      .error(function() {
-        defer.reject("error");
-      });
+    userFactory.getCurrentUser().then(
+      function(user) {
+        if (currentSlide === null) {
+          defer.reject(404);
+
+        } else {
+          currentSlide.user = user.id;
+
+          $http.post('/api/slide', currentSlide)
+            .success(function(data, status) {
+              defer.resolve(data);
+              currentSlide = null;
+            })
+            .error(function(data, status) {
+              defer.reject(status);
+            });
+        }
+      }
+    );
 
     return defer.promise;
   }
@@ -92,6 +103,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
     currentSlide = {
       id: null,
       title: '',
+      user: '',
       orientation: '',
       template: '',
       created: parseInt((new Date().getTime()) / 1000),
@@ -102,11 +114,7 @@ ikApp.factory('slideFactory', ['$http', '$q', function($http, $q) {
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
         image: '',
         headline: '',
-        text: '',
-        idealdimensions: {
-          width: '1920',
-          height: '1080'
-        }
+        text: ''
       }
     };
 

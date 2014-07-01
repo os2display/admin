@@ -48,6 +48,11 @@ class Slide {
   private $options;
 
   /**
+   * @ORM\Column(name="user", type="text", nullable=true)
+   */
+  private $user;
+
+  /**
    * Get id
    *
    * @return integer
@@ -126,6 +131,24 @@ class Slide {
    */
   public function getCreated() {
     return $this->created;
+  }
+
+  /**
+   * Set user
+   *
+   * @param string $user
+   */
+  public function setUser($user) {
+    $this->user = $user;
+  }
+
+  /**
+   * Get user
+   *
+   * @return string
+   */
+  public function getUser() {
+    return $this->user;
   }
 
   /**

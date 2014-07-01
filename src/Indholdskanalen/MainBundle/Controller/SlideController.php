@@ -43,6 +43,7 @@ class SlideController extends Controller {
     $slide->setTemplate($post['template']);
     $slide->setCreated($post['created']);
     $slide->setOptions($post['options']);
+    $slide->setUser($post['user']);
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
@@ -57,6 +58,7 @@ class SlideController extends Controller {
       "template" => $slide->getTemplate(),
       "created" => $slide->getCreated(),
       "options" => $slide->getOptions(),
+      "user" => $slide->getUser(),
     );
 
     // Send the json response back to client.
@@ -89,6 +91,7 @@ class SlideController extends Controller {
         "template" => $slide->getTemplate(),
         "created" => $slide->getCreated(),
         "options" => $slide->getOptions(),
+        "user" => $slide->getUser(),
       );
     }
 

@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /**
+ *
  * Stylesheet import
  *
- * @author magnify
  */
 /* Compass */
 /**
@@ -1196,7 +1196,7 @@ label {
   display: inline-block;
   font-size: 125%;
   font-weight: lighter;
-  padding: 1em 2em;
+  padding: .5em 2em;
   position: relative;
   cursor: pointer;
   text-align: center;
@@ -1212,7 +1212,7 @@ label {
 
 /* line 30, ../sass/layout/_buttons.scss */
 .button, .create-slide--button, .create-screen--button, .create-channel--button, .login--submit {
-  background-color: #357FD1;
+  background-color: #357fd1;
   border: 0;
   color: white;
 }
@@ -2325,75 +2325,54 @@ label {
     margin: 0 auto;
   }
 }
-/* line 13, ../sass/modules/_login.scss */
-.login--header-wrapper {
-  text-align: center;
+/* line 12, ../sass/modules/_login.scss */
+.login--form, .login--problem {
+  margin-right: auto;
+  margin-bottom: 1em;
+  margin-left: auto;
+  padding: 1.5em;
+  background-color: #f0f0e1;
 }
-/* line 18, ../sass/modules/_login.scss */
-.login--header {
-  border-bottom: 1px solid #e6e6e6;
-  display: inline-block;
-  font-weight: bold;
-  margin: 0 36px 18px 36px;
-  padding-bottom: 1em;
+@media only screen and (min-width: 481px) {
+  /* line 12, ../sass/modules/_login.scss */
+  .login--form, .login--problem {
+    max-width: 50%;
+  }
 }
-/* line 28, ../sass/modules/_login.scss */
-.login--header-description {
-  color: #646464;
-  font-weight: lighter;
-  margin: 0 36px 72px 36px;
-  text-align: center;
-}
-/* line 36, ../sass/modules/_login.scss */
-.login--form {
-  display: inline-block;
-  width: 100%;
-}
-/* line 42, ../sass/modules/_login.scss */
+/* line 27, ../sass/modules/_login.scss */
 .login--alert {
   color: red;
   margin-bottom: 1em;
   text-align: center;
 }
-/* line 49, ../sass/modules/_login.scss */
+/* line 34, ../sass/modules/_login.scss */
 .login--pass, .login--name {
   margin-bottom: 1em;
 }
-/* line 54, ../sass/modules/_login.scss */
-.login--remember-me, .login--forgot-password {
+/* line 39, ../sass/modules/_login.scss */
+.login--remember-me {
+  width: 100%;
+  font-size: .85em;
+}
+/* line 44, ../sass/modules/_login.scss */
+.login--remember-me-checkbox, .login--remember-me-label {
   display: inline-block;
-  margin-left: -4px;
-  width: 50%;
 }
-@media only screen and (min-width: 481px) {
-  /* line 54, ../sass/modules/_login.scss */
-  .login--remember-me, .login--forgot-password {
-    width: 100%;
-    margin: 0;
-  }
-}
-/* line 67, ../sass/modules/_login.scss */
-.login--forgot-password {
-  margin-bottom: 1em;
-  text-align: right;
-}
-@media only screen and (min-width: 481px) {
-  /* line 67, ../sass/modules/_login.scss */
-  .login--forgot-password {
-    text-align: left;
-  }
-}
-/* line 77, ../sass/modules/_login.scss */
+/* line 50, ../sass/modules/_login.scss */
 .login--submit {
-  float: right;
-  padding: .5em 2em;
+  margin-bottom: 1em;
   width: 100%;
 }
-@media only screen and (min-width: 481px) {
-  /* line 77, ../sass/modules/_login.scss */
-  .login--submit {
-    width: auto;
-  }
+/* line 57, ../sass/modules/_login.scss */
+.login--content-list-header {
+  margin-bottom: .5em;
+  font-weight: bold;
+}
+/* line 63, ../sass/modules/_login.scss */
+.login--content-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 2em;
 }
 
 /**

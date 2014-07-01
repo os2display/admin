@@ -5,7 +5,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
   $scope.steps = 4; // Number of steps in the creation process.
   $scope.slides = [];
   $scope.channel = {};
-  var slidesArray = [];
+  $scope.slidesArray = [];
 
   slideFactory.getSlides().then(function(data) {
     $scope.slides = data;
@@ -128,10 +128,11 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    * Fetch the slides related to the channel.
    */
   $scope.getChosenSlides = function() {
-    $scope.slidesArray = [];
+    // Empty array.
+    $scope.slidesArray.length = 0;
     angular.forEach($scope.channel.slides, function(id, index){
       slideFactory.getSlide(id).then(function(data) {
-        $scope.slidesArray.push(data);
+        $scope.slidesArray[index] = data;
       })
     });
   }
@@ -140,12 +141,10 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
   /**
    * Change the positioning of two array elements.
    * */
-  function reorderIndex(arr, old_index, new_index) {
-    // If it's not the last element.
-    if (new_index < arr.length) {
-      // Change index order.
-      arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-    }
+  function swapArrayEntries(arr, first_index, last_index) {
+    var temp = arr[first_index];
+    arr[first_index] = arr[last_index];
+    arr[last_index] = temp;
   }
 
 
@@ -154,8 +153,8 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    * @param index the position of the arrow.
    */
   $scope.pushRight = function($arrow_position) {
-    reorderIndex($scope.channel.slides, $arrow_position, $arrow_position + 1);
-    reorderIndex($scope.slidesArray, $arrow_position, $arrow_position + 1);
+    swapArrayEntries($scope.channel.slides, $arrow_position, $arrow_position + 1);
+    swapArrayEntries($scope.slidesArray, $arrow_position, $arrow_position + 1);
   };
 
 
@@ -164,7 +163,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    * @param index the position of the arrow.
    */
   $scope.pushLeft = function($arrow_position) {
-    reorderIndex($scope.channel.slides, $arrow_position, $arrow_position - 1);
-    reorderIndex($scope.slidesArray, $arrow_position, $arrow_position - 1);
+    swapArrayEntries($scope.channel.slides, $arrow_position, $arrow_position - 1);
+    swapArrayEntries($scope.slidesArray, $arrow_position, $arrow_position - 1);
   };
 });
