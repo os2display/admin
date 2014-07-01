@@ -9,33 +9,18 @@
     }
   }
 
+  &--form,
+  &--problem {
+    margin-right: auto;
+    margin-bottom: 1em;
+    margin-left: auto;
+    padding: 1.5em;
 
-  &--header-wrapper {
-    text-align: center;
-  }
+    background-color: $beige;
 
-
-  &--header {
-    border-bottom: 1px solid $gray-lighter;
-    display: inline-block;
-    font-weight: bold;
-    margin: 0 36px 18px 36px;
-    padding-bottom: 1em;
-  }
-
-
-
-  &--header-description {
-    color: #646464;
-    font-weight: lighter;
-    margin: 0 36px 72px 36px;
-    text-align: center;
-  }
-
-
-  &--form {
-    display: inline-block;
-    width: 100%;
+    @include breakpoint($breakpoint-lap) {
+      max-width: 50%;
+    }
   }
 
 
@@ -51,38 +36,34 @@
     margin-bottom: 1em;
   }
 
-  &--remember-me,
-  &--forgot-password {
-    display: inline-block;
-    margin-left: -4px;
-    width: 50%;
+  &--remember-me {
+    width: 100%;
 
-    @include breakpoint($breakpoint-lap) {
-      width: 100%;
-      margin: 0
+    font-size: .85em;
+
+    &-checkbox,
+    &-label {
+      display: inline-block;
     }
   }
-
-
-  &--forgot-password {
-    margin-bottom: 1em;
-    text-align: right;
-
-    @include breakpoint($breakpoint-lap) {
-      text-align: left; 
-    }
-  }
-
 
   &--submit {
     @extend .button;
 
-    float: right;
-    padding: .5em 2em;
+    margin-bottom: 1em;
     width: 100%;
+  }
 
-    @include breakpoint($breakpoint-lap) {
-      width: auto;
-    }
+  &--content-list-header {
+    margin-bottom: .5em;
+
+    font-weight: bold;
+  }
+
+  &--content-list {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    line-height: 2em;
   }
 }
