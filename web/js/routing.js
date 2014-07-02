@@ -55,9 +55,13 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'ChannelController',
     templateUrl: 'partials/channel/channel.html'
   })
+  .when('/media/upload', {
+    controller: 'MediaController',
+    templateUrl: 'partials/media/media-upload.html'
+  })
   .when('/media', {
     controller: 'MediaController',
-    templateUrl: 'partials/media.html'
+    templateUrl: 'partials/media/media-overview.html'
   })
   .otherwise({redirectTo: '/'});
 });

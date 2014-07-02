@@ -5,7 +5,7 @@ ikApp.controller('MediaController', function ($scope, $fileUploader) {
 // Creates a uploader
   var uploader = $scope.uploader = $fileUploader.create({
     scope: $scope,
-    url: '/media/upload'
+    url: '/api/media'
   });
 
 

@@ -74,6 +74,20 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
         }
       ];
     }
+    else if ($scope.url.indexOf('/media') == 0) {
+        $scope.subMenuItems = [
+            {
+                title: 'Oversigt',
+                path: 'media',
+                classSuffix: 'overview'
+            },
+            {
+                title: 'Upload',
+                path: 'media/upload',
+                classSuffix: 'create-media'
+            }
+        ];
+    }
     else {
       $scope.subMenuItems = [];
     }
@@ -122,7 +136,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
    * Show/hide mobile main menu.
    */
   $scope.mobileMainMenuVisible = function() {
-    if($scope.url.indexOf('/channel') == 0 || $scope.url.indexOf('/slide') == 0 || $scope.url.indexOf('/screen') == 0 || $scope.url.indexOf('/template') == 0) {
+    if($scope.url.indexOf('/channel') == 0 || $scope.url.indexOf('/slide') == 0 || $scope.url.indexOf('/screen') == 0 || $scope.url.indexOf('/template') == 0 || $scope.url.indexOf('/media') == 0) {
       return false;
     } else {
       return true;
