@@ -28,8 +28,8 @@ class ScreenGroup {
   private $title;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Screen", inversedBy="screen_groups")
-   * @ORM\JoinTable(name="screen_group_screens")
+   * @ORM\ManyToMany(targetEntity="Screen", inversedBy="groups")
+   * @ORM\JoinTable(name="screens_groups")
    */
   private $screens;
 
@@ -38,100 +38,100 @@ class ScreenGroup {
    */
   private $created;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->screens = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->screens = new \Doctrine\Common\Collections\ArrayCollection();
+  }
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+  /**
+   * Get id
+   *
+   * @return integer
+   */
+  public function getId()
+  {
+    return $this->id;
+  }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return ScreenGroup
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
+  /**
+   * Set title
+   *
+   * @param string $title
+   * @return ScreenGroup
+   */
+  public function setTitle($title)
+  {
+    $this->title = $title;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+  /**
+   * Get title
+   *
+   * @return string
+   */
+  public function getTitle()
+  {
+    return $this->title;
+  }
 
-    /**
-     * Set created
-     *
-     * @param integer $created
-     * @return ScreenGroup
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
+  /**
+   * Set created
+   *
+   * @param integer $created
+   * @return ScreenGroup
+   */
+  public function setCreated($created)
+  {
+    $this->created = $created;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get created
-     *
-     * @return integer 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
+  /**
+   * Get created
+   *
+   * @return integer
+   */
+  public function getCreated()
+  {
+    return $this->created;
+  }
 
-    /**
-     * Add screens
-     *
-     * @param \Indholdskanalen\MainBundle\Entity\Screen $screens
-     * @return ScreenGroup
-     */
-    public function addScreen(\Indholdskanalen\MainBundle\Entity\Screen $screens)
-    {
-        $this->screens[] = $screens;
+  /**
+   * Add screens
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Screen $screens
+   * @return ScreenGroup
+   */
+  public function addScreen(\Indholdskanalen\MainBundle\Entity\Screen $screens)
+  {
+    $this->screens[] = $screens;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Remove screens
-     *
-     * @param \Indholdskanalen\MainBundle\Entity\Screen $screens
-     */
-    public function removeScreen(\Indholdskanalen\MainBundle\Entity\Screen $screens)
-    {
-        $this->screens->removeElement($screens);
-    }
+  /**
+   * Remove screens
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Screen $screens
+   */
+  public function removeScreen(\Indholdskanalen\MainBundle\Entity\Screen $screens)
+  {
+    $this->screens->removeElement($screens);
+  }
 
-    /**
-     * Get screens
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getScreens()
-    {
-        return $this->screens;
-    }
+  /**
+   * Get screens
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getScreens()
+  {
+    return $this->screens;
+  }
 }
