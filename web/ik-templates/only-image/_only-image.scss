@@ -1,3 +1,7 @@
-.only-image--edit-image-settings {
-  @extend %slide--edit-image-settings;
+.only-image {
+  background-size: cover;
+
+  &--edit-image-settings {
+    @extend %slide--edit-image-settings;
+  }
 }
