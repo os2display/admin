@@ -84,10 +84,17 @@ class SearchIndexer {
 }
 
 class GetSetMethodNormalizer extends \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer {
+  protected $nesting = 1;
   public function normalize($object, $format = null, array $context = array()) {
-    // if the object is a User, unset location for normalization, without touching the original object
+    // TODO: This is not working. Screen groups is never added!
     if($object instanceof \Doctrine\ORM\PersistentCollection) {
-      return parent::normalize($object->unwrap(), $format);
+      if ($this->nesting > 0) {
+        $this->nesting--;
+        return parent::normalize($object->unwrap(), $format);
+      }
+      else {
+        return FALSE;
+      }
     }
     else {
       return parent::normalize($object, $format);
