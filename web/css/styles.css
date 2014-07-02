@@ -3455,6 +3455,11 @@ label {
   text-align: center;
 }
 
+/* line 1, ../ik-templates/only-image/_only-image.scss */
+.only-image {
+  background-size: cover;
+}
+
 /* line 1, ../ik-templates/text-top/_text-top.scss */
 .text-top {
   background-size: cover;

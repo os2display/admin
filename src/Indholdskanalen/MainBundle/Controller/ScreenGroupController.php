@@ -40,7 +40,24 @@ class ScreenGroupController extends Controller {
     // Update fields.
     $screenGroup->setTitle($post->title);
     $screenGroup->setCreated($post->created);
-    $screenGroup->setScreens($post->screens);
+
+    // Remove groups.
+    foreach($screenGroup->getScreens() as $screen) {
+      if (!in_array($screen->getId(), $post->screens)) {
+        $screenGroup->removeScreen($screen);
+      }
+    }
+
+    // Add groups.
+    foreach($post->screens as $screenId) {
+      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+        ->findOneById($screenId);
+      if ($screen) {
+        if (!$screenGroup->getScreens()->contains($screen)) {
+          $screenGroup->addScreen($screen);
+        }
+      }
+    }
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
@@ -75,6 +92,11 @@ class ScreenGroupController extends Controller {
     $screenGroup = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
       ->findOneById($id);
 
+    $screens = [];
+    foreach($screenGroup->getScreens() as $screen) {
+      $screens[] = $screen->getId();
+    }
+
     // Create the response data.
     $responseData = array();
     if ($screenGroup) {
@@ -82,7 +104,7 @@ class ScreenGroupController extends Controller {
         "id" => $screenGroup->getId(),
         "title" => $screenGroup->getTitle(),
         "created" => $screenGroup->getCreated(),
-        "screens" => $screenGroup->getScreens()
+        "screens" => $screens
       );
     }
 

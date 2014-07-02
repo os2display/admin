@@ -7,7 +7,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+//use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 class SearchIndexer {
   public function postPersist(LifecycleEventArgs $args) {
@@ -27,11 +27,18 @@ class SearchIndexer {
     $entity = $args->getEntity();
     $type = get_class($entity);
 
+    // We will not send user data to ES.
+    if ($type == 'Application\Sonata\UserBundle\Entity\User') {
+      return FALSE;
+    }
+
     if ($method != 'DELETE') {
       // Setup our serializer.
-      $encoders = array(new JsonEncoder());
-      $normalizers = array(new GetSetMethodNormalizer());
-      $serializer = new Serializer($normalizers, $encoders);
+      $normalizer = new GetSetMethodNormalizer();
+      $normalizer->setIgnoredAttributes(array('binaryContent'));
+      $encoder = new JsonEncoder();
+
+      $serializer = new Serializer(array($normalizer), array($encoder));
 
       // Convert to json.
       $jsonContent = $serializer->serialize($entity, 'json');
@@ -75,5 +82,17 @@ class SearchIndexer {
 
     // Close connection.
     curl_close ($ch);
+  }
+}
+
+class GetSetMethodNormalizer extends \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer {
+  public function normalize($object, $format = null, array $context = array()) {
+    // if the object is a User, unset location for normalization, without touching the original object
+    if($object instanceof \Doctrine\ORM\PersistentCollection) {
+      return parent::normalize($object->unwrap(), $format);
+    }
+    else {
+      return parent::normalize($object, $format);
+    }
   }
 }

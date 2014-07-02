@@ -9,6 +9,9 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   $scope.slide = {};
   $scope.templates = templateFactory.getTemplates();
 
+  /**
+   * Loads a given step
+   */
   function loadStep(step) {
     $scope.step = step;
     $scope.templatePath = '/partials/slide/slide' + $scope.step + '.html';
@@ -80,6 +83,10 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
     }
   };
 
+  /**
+   * Go the given step in the creation process, if the requirements have been met to be at that step.
+   * @param step
+   */
   $scope.goToStep = function(step) {
     var s = 1;
     if ($scope.validation.titleSet()) {
@@ -98,10 +105,22 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
 
   /**
    * Set the template id of a slide.
+   * Update the options attribute to add fields that are needed for the template.
+   *
    * @param id
    */
   $scope.selectTemplate = function(id) {
     $scope.slide.template = id;
+    if ($scope.slide.options == null) {
+      $scope.slide.options = templateFactory.getTemplate(id).emptyoptions;
+    }
+    else {
+      angular.forEach(templateFactory.getTemplate(id).emptyoptions, function(value, key)  {
+        if ($scope.slide.options[key] == undefined) {
+          $scope.slide.options[key] = value;
+        }
+      });
+    }
   }
 
   /**
@@ -110,5 +129,6 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
    */
   $scope.selectOrientation = function(orientation) {
     $scope.slide.orientation = orientation;
+    $scope.slide.template = '';
   }
 });
