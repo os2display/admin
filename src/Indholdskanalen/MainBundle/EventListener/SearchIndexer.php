@@ -27,6 +27,11 @@ class SearchIndexer {
     $entity = $args->getEntity();
     $type = get_class($entity);
 
+    // We will not send user data to ES.
+    if ($type == 'Application\Sonata\UserBundle\Entity\User') {
+      return FALSE;
+    }
+
     if ($method != 'DELETE') {
       // Setup our serializer.
       $encoders = array(new JsonEncoder());

@@ -1,6 +1,4 @@
 <section class="overview--section">
-  <p class="overview--description">Herunder findes alle skærme i systemet.</p>
-
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
     <div class="overview--filter-orientation">
@@ -17,14 +15,6 @@
       <span class="overview--newest" data-ng-class="{'is-active': sort == '-created'}"  data-ng-click="setSort('-created')">Newest</span>
       <span class="overview--oldest" data-ng-class="{'is-active': sort == 'created'}"  data-ng-click="setSort('created')">Oldest</span>
       <span class="overview--alphabetical" data-ng-class="{'is-active': sort == 'title'}"  data-ng-click="setSort('title')">A-Z</span>
-    </div>
-  </div>
-
-  <div class="overview--screens">
-    <div data-ng-repeat="screen in screens | filter:search | orderBy: sort">
-      <a href="/#/screen/{{screen.id}}">
-        <ik-screen ik-id="{{screen.id}}"></ik-screen>
-      </a>
     </div>
   </div>
 </section>
