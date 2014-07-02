@@ -162,4 +162,16 @@
   &--vertical {
     width: 50%;
   }
+
+
+  /* Screens overview
+ ========================================================================== */
+  &--screen-wrapper {
+    border: 1px solid $gray;
+    @include transform(scale(.5,.5));
+  }
+
+  &--screen-inner {
+
+  }
 }
