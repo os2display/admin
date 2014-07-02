@@ -7,7 +7,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+//use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 class SearchIndexer {
   public function postPersist(LifecycleEventArgs $args) {
@@ -82,5 +82,17 @@ class SearchIndexer {
 
     // Close connection.
     curl_close ($ch);
+  }
+}
+
+class GetSetMethodNormalizer extends \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer {
+  public function normalize($object, $format = null, array $context = array()) {
+    // if the object is a User, unset location for normalization, without touching the original object
+    if($object instanceof \Doctrine\ORM\PersistentCollection) {
+      return parent::normalize($object->unwrap(), $format);
+    }
+    else {
+      return parent::normalize($object, $format);
+    }
   }
 }
