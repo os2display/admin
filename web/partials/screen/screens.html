@@ -20,10 +20,10 @@
     </div>
   </div>
 
-  <div class="overview--slides">
-    <div class="overview--slide" data-ng-repeat="screen in screens | filter:search | orderBy: sort">
+  <div class="overview--screens">
+    <div data-ng-repeat="screen in screens | filter:search | orderBy: sort">
       <a href="/#/screen/{{screen.id}}">
-        <ik-screen ik-id="{{screen.id}}" ik-width="300"></ik-screen>
+        <ik-screen ik-id="{{screen.id}}"></ik-screen>
       </a>
     </div>
   </div>

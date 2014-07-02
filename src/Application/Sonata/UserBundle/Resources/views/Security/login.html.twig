@@ -5,8 +5,8 @@
   {% block content %}
     {% block fos_user_content %}
       <header class="header" role="banner">
-        <div class="header--main">
-          <div class="header--logo">
+        <div class="header--main-anonymous">
+          <div class="header--logo-anonymous">
             <img src="/images/logo.png"/>
           </div>
         </div>
@@ -53,14 +53,8 @@
             {% endblock %}
           </section>
         </div>
-    {% endblock %}
-
-<!--  // User register
-      {% block sonata_user_registration %}
-        {% render controller("SonataUserBundle:RegistrationFOSUser1:register") %}
       {% endblock %}
-      -->
-    {% endblock fos_user_content %}
+    {% endblock %}
   {% endblock %}
 {% endblock %}
 

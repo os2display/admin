@@ -109,5 +109,4 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
       return (/^\d+$/.test($scope.screen.height));
     }
   };
-
 });

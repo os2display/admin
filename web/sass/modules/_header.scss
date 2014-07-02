@@ -66,6 +66,10 @@
     }
   }
 
+  &--main-anonymous {
+    height: 4em;
+  }
+
 
   /* Logo section.
  ========================================================================== */
@@ -123,6 +127,21 @@
           display: block;
         }
       }
+    }
+  }
+
+  &--logo-anonymous {
+    position: relative;
+    text-align: center;
+    top: 50%;
+
+    @include translateY(-50%);
+    @include breakpoint(50em) {
+      padding-top: 0;
+    }
+
+    img {
+      display: inline-block;
     }
   }
 

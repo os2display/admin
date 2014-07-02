@@ -1,15 +1,15 @@
-<div class="create-slide--config">
-    <div class="create-slide--config-text-wrapper">
-        <div class="create-slide--config-text">
-            <h1 class="create-slide--config-header">{{ikScreen.title}}</h1>
-            <div class="create-slide--config-description">({{ikScreen.width}} x {{ikScreen.height}})<br/>
-                Grupper:
-                <ul>
-                    <li data-ng-repeat="group in ikScreenGroups">
-                        {{group.title}}
-                    </li>
-                </ul>
-            </div>
-        </div>
+<div class="overview--screen-wrapper" style="width:{{ikScreen.width}}px; height:{{ikScreen.height}}px;">
+    <div class="overview--screen-inner">
+    <h2 class="overview--screen-header">{{ikScreen.title}}</h2>
+    <div class="overview--screen--description">
+      <span class="overview--screen-dimensions">({{ikScreen.width}} x {{ikScreen.height}})</span>
+      <span class="overview--screen-groups-label">Grupper:</span>
+      <ul class="overview--screen-groups">
+        <li class="overview--screen-group" data-ng-repeat="group in ikScreenGroups">
+          {{group.title}}
+        </li>
+      </ul>
     </div>
+  </div>
 </div>
+
