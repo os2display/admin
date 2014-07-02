@@ -17,24 +17,19 @@
 // Mixin for the changing logo in various cases.
 @mixin header--logo-transition($display-type) {
   @if $display-type == "arrow" {
-    // Display logo as arrow.
-    display: block;
-    text-indent: -10000px;
-
-    @include generate-sprite-image($dashboard-sprites, 'arrow-back-icon', 80);
-
-    img {
+    .header--logo-image {
       display: none;
+    }
+    .header--arrow-image {
+      display: block;
     }
   }
   @else {
-    // Display logo as site name.
-    background: none;
-    text-indent: 0;
-    width: 100%;
-
-    img {
+    .header--logo-image {
       display: block;
+    }
+    .header--arrow-image {
+      display: none;
     }
   }
 }
@@ -56,11 +51,6 @@
     padding: 1em 0;
     overflow: hidden;
 
-    @include breakpoint(50em) {
-      padding: 0;
-      height: 5em;
-    }
-
     @include breakpoint(70em) {
       padding: 0 1em;
     }
@@ -71,13 +61,14 @@
   }
 
 
-  /* Logo section.
+  /* Logo section. (is-visible state class shows logo, else shows as arrow)
  ========================================================================== */
 
   &--logo {
     padding: 0 1em;
     position: absolute;
     top: 50%;
+    width: 55%;
 
     @include translateY(-50%);
     @include breakpoint(70em) {
@@ -85,17 +76,19 @@
       display: inline-block;
       margin-bottom: 0;
       margin-left: 0;
-      margin-right: $adjust-inline-block;
+     // margin-right: $adjust-inline-block;
       position: relative;
       padding: 0;
       text-indent: 0;
       top: 0%;
-      width: 24%;
+      width: 25%;
     }
   }
 
   // Logo on small screens.
   &--logo-link {
+    display: inline-block;
+
     @include header--logo-transition(arrow);
 
     // Logo on broad screens
@@ -106,28 +99,16 @@
     // Logo when main menu is in sub header.
     &.is-visible {
       @include header--logo-transition(logo);
-      width: 80%; // We modify the result of the mixin.
-
-      // Logo on medium screens (main menu in main header, but no room for logo).
-      @include breakpoint(50em) {
-        @include header--logo-transition(arrow);
-
-        // Hide arrow on frontpage.
-        &.is-front {
-          display: none;
-        }
-      }
-
-      // Logo on broad screens (Needed to overwrite state class.)
-      @include breakpoint(70em) {
-        @include header--logo-transition(logo);
-
-        // Show logo on frontpage.
-        &.is-front {
-          display: block;
-        }
-      }
     }
+  }
+
+  .header--logo-image,
+  .header--arrow-image {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+
+    @include translateY(-50%);
   }
 
   &--logo-anonymous {
@@ -151,6 +132,7 @@
 
   &--main-menu {
     height: 2.5em;
+
     margin-left: 3em;
     width: 75%;
 
@@ -162,16 +144,12 @@
       position: relative;
       text-align: center;
       top: 0;
-      width: 52%;
+      width: 50%;
     }
   }
 
 
   &--main-menu-items {
-    @include breakpoint(50em) {
-      text-align: center;
-    }
-
     @include strip-list-styles;
   }
 
@@ -181,17 +159,15 @@
     font-size: 1em;
     margin-right: $adjust-inline-block;
     text-align: center;
-    width: 4em;
 
     &.is-active {
       display: inline-block;
       font-size: .8em;
     }
 
-    @include breakpoint(50em) {
+    @include breakpoint(70em) {
       display: inline-block;
-      padding: 1em;
-      width: 6em;
+      width: auto;
 
       &.is-active {
         background: $beige-dark;
@@ -206,16 +182,20 @@
 
 
   &--main-menu-item-link {
+    line-height: 1.7em;
+    padding: .5em;
+    width: 5em;
+    display: block;
+
+    // On small screens the icon only tells where you are, and should not be styled as link
     &:hover {
       cursor: default;
     }
 
     @include strip-link-styles;
 
-    @include breakpoint(50em) {
-      display: inline-block;
-      position: relative;
-      width: 100%;
+    @include breakpoint(70em) {
+      width: 7em;
 
       &:hover {
         cursor: pointer;
@@ -256,15 +236,11 @@
 
 
   &--main-menu-item-text {
-    width: 100%;
-
-
-    @include breakpoint(45em) {
-      display: inline-block;
-    }
+    display: block;
 
     @include breakpoint(70em) {
       display: inline-block;
+      width: 100%;
     }
   }
 
@@ -276,9 +252,10 @@
     right: 1em;
     text-align: right;
     top: 50%;
-    width: 24%;
+    width: 25%;
 
     @include translateY(-50%);
+
     @include breakpoint(70em) {
       margin-right: $adjust-inline-block;
       padding: 1em 0;
@@ -424,7 +401,9 @@
   }
 
 
-  // On mobile pages without sub pages we show the main menu in the submenu section.
+  /* Header main menu mobile. (Display of main menu on pages WITHOUT subpages on narrow screens).
+ ========================================================================== */
+
   &--main-menu--mobile {
     display: inline-block;
     vertical-align: top;
@@ -434,7 +413,7 @@
       display: none;
     }
 
-    @include breakpoint(50em) {
+    @include breakpoint(70em) {
       display: none;
     }
   }
@@ -447,8 +426,6 @@
   }
 
 
-  /* Header main menu mobile. (Display of main menu on pages WITHOUT subpages on narrow screens).
- ========================================================================== */
   &--main-menu-item--mobile {
     display: inline-block;
     font-size: .8em;

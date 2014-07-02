@@ -448,9 +448,9 @@
  * Mixins
  *
  */
-/* line 168, icons/*.png */
+/* line 160, icons/*.png */
 .icons-sprite {
-  background-image: url('../images/icons-sea74691a2a.png');
+  background-image: url('../images/icons-sa11a07f6da.png');
   background-repeat: no-repeat;
 }
 
@@ -488,39 +488,39 @@
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 103px 1039px;
-  -o-background-size: 103px 1039px;
-  -webkit-background-size: 103px 1039px;
-  background-size: 103px 1039px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 103px 999px;
+  -o-background-size: 103px 999px;
+  -webkit-background-size: 103px 999px;
+  background-size: 103px 999px;
   width: 60px;
   height: 60px;
-  background-position: 0 -162px;
+  background-position: 0 -122px;
 }
 @media only screen and (min-width: 481px) {
   /* line 11, ../sass/theme/_global-silent-classes.scss */
   .create-slide--link-check, .create-screen--link-check, .create-channel--link-check {
-    background: url('../images/icons-s41d9637d79.png');
-    -moz-background-size: 64px 649px;
-    -o-background-size: 64px 649px;
-    -webkit-background-size: 64px 649px;
-    background-size: 64px 649px;
+    background: url('../images/icons-s7dca55d435.png');
+    -moz-background-size: 64px 624px;
+    -o-background-size: 64px 624px;
+    -webkit-background-size: 64px 624px;
+    background-size: 64px 624px;
     width: 37px;
     height: 37px;
-    background-position: 0 -101px;
+    background-position: 0 -76px;
   }
 }
 @media only screen and (min-width: 600px) {
   /* line 11, ../sass/theme/_global-silent-classes.scss */
   .create-slide--link-check, .create-screen--link-check, .create-channel--link-check {
-    background: url('../images/icons-s41d9637d79.png');
-    -moz-background-size: 103px 1039px;
-    -o-background-size: 103px 1039px;
-    -webkit-background-size: 103px 1039px;
-    background-size: 103px 1039px;
+    background: url('../images/icons-s7dca55d435.png');
+    -moz-background-size: 103px 999px;
+    -o-background-size: 103px 999px;
+    -webkit-background-size: 103px 999px;
+    background-size: 103px 999px;
     width: 60px;
     height: 60px;
-    background-position: 0 -162px;
+    background-position: 0 -122px;
   }
 }
 
@@ -594,28 +594,28 @@
   position: absolute;
   right: -10px;
   top: -10px;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 25px;
   height: 25px;
-  background-position: 0 -141px;
+  background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
   /* line 96, ../sass/theme/_global-silent-classes.scss */
   .text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings {
     right: -20px;
     top: -20px;
-    background: url('../images/icons-s41d9637d79.png');
-    -moz-background-size: 64px 649px;
-    -o-background-size: 64px 649px;
-    -webkit-background-size: 64px 649px;
-    background-size: 64px 649px;
+    background: url('../images/icons-s7dca55d435.png');
+    -moz-background-size: 64px 624px;
+    -o-background-size: 64px 624px;
+    -webkit-background-size: 64px 624px;
+    background-size: 64px 624px;
     width: 50px;
     height: 50px;
-    background-position: 0 -281px;
+    background-position: 0 -256px;
   }
 }
 /* line 110, ../sass/theme/_global-silent-classes.scss */
@@ -628,26 +628,26 @@
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 64px 649px;
-  -o-background-size: 64px 649px;
-  -webkit-background-size: 64px 649px;
-  background-size: 64px 649px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 64px 624px;
+  -o-background-size: 64px 624px;
+  -webkit-background-size: 64px 624px;
+  background-size: 64px 624px;
   width: 26px;
   height: 26px;
-  background-position: 0 -341px;
+  background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
   /* line 117, ../sass/theme/_global-silent-classes.scss */
   .only-image--edit-image-settings, .text-top--edit-image-settings, .text-bottom--edit-image-settings, .text-left--edit-image-settings, .text-right--edit-image-settings, .portrait-text-top--edit-image-settings {
-    background: url('../images/icons-s41d9637d79.png');
-    -moz-background-size: 128px 1298px;
-    -o-background-size: 128px 1298px;
-    -webkit-background-size: 128px 1298px;
-    background-size: 128px 1298px;
+    background: url('../images/icons-s7dca55d435.png');
+    -moz-background-size: 128px 1248px;
+    -o-background-size: 128px 1248px;
+    -webkit-background-size: 128px 1248px;
+    background-size: 128px 1248px;
     width: 51px;
     height: 51px;
-    background-position: 0 -682px;
+    background-position: 0 -632px;
   }
 }
 /* line 129, ../sass/theme/_global-silent-classes.scss */
@@ -1275,7 +1275,7 @@ label {
 
 /* Styles.
  ========================================================================== */
-/* line 46, ../sass/modules/_header.scss */
+/* line 41, ../sass/modules/_header.scss */
 .header {
   background-color: #f0f0e1;
   color: #333;
@@ -1283,7 +1283,7 @@ label {
   overflow: hidden;
   width: 100%;
   z-index: 1;
- /* Logo section.
+ /* Logo section. (is-visible state class shows logo, else shows as arrow)
 ========================================================================== */
  /* Main menu section.
 ========================================================================== */
@@ -1300,134 +1300,89 @@ label {
  /* Header main menu mobile. (Display of main menu on pages WITHOUT subpages on narrow screens).
 ========================================================================== */
 }
-/* line 54, ../sass/modules/_header.scss */
+/* line 49, ../sass/modules/_header.scss */
 .header--main {
   position: relative;
   padding: 1em 0;
   overflow: hidden;
 }
-@media only screen and (min-width: 50em) {
-  /* line 54, ../sass/modules/_header.scss */
-  .header--main {
-    padding: 0;
-    height: 5em;
-  }
-}
 @media only screen and (min-width: 70em) {
-  /* line 54, ../sass/modules/_header.scss */
+  /* line 49, ../sass/modules/_header.scss */
   .header--main {
     padding: 0 1em;
   }
 }
-/* line 69, ../sass/modules/_header.scss */
+/* line 59, ../sass/modules/_header.scss */
 .header--main-anonymous {
   height: 4em;
 }
-/* line 77, ../sass/modules/_header.scss */
+/* line 67, ../sass/modules/_header.scss */
 .header--logo {
   padding: 0 1em;
   position: absolute;
   top: 50%;
+  width: 55%;
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 @media only screen and (min-width: 70em) {
-  /* line 77, ../sass/modules/_header.scss */
+  /* line 67, ../sass/modules/_header.scss */
   .header--logo {
     background: none;
     display: inline-block;
     margin-bottom: 0;
     margin-left: 0;
-    margin-right: -4px;
     position: relative;
     padding: 0;
     text-indent: 0;
     top: 0%;
-    width: 24%;
+    width: 25%;
   }
 }
-/* line 98, ../sass/modules/_header.scss */
+/* line 89, ../sass/modules/_header.scss */
 .header--logo-link {
-  display: block;
-  text-indent: -10000px;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 103px 1039px;
-  -o-background-size: 103px 1039px;
-  -webkit-background-size: 103px 1039px;
-  background-size: 103px 1039px;
-  width: 15px;
-  height: 24px;
-  background-position: 0 -27px;
+  display: inline-block;
 }
-/* line 26, ../sass/modules/_header.scss */
-.header--logo-link img {
+/* line 20, ../sass/modules/_header.scss */
+.header--logo-link .header--logo-image {
   display: none;
 }
-@media only screen and (min-width: 70em) {
-  /* line 98, ../sass/modules/_header.scss */
-  .header--logo-link {
-    background: none;
-    text-indent: 0;
-    width: 100%;
-  }
-  /* line 36, ../sass/modules/_header.scss */
-  .header--logo-link img {
-    display: block;
-  }
-}
-/* line 107, ../sass/modules/_header.scss */
-.header--logo-link.is-visible {
-  background: none;
-  text-indent: 0;
-  width: 100%;
-  width: 80%;
-}
-/* line 36, ../sass/modules/_header.scss */
-.header--logo-link.is-visible img {
+/* line 23, ../sass/modules/_header.scss */
+.header--logo-link .header--arrow-image {
   display: block;
 }
-@media only screen and (min-width: 50em) {
-  /* line 107, ../sass/modules/_header.scss */
-  .header--logo-link.is-visible {
-    display: block;
-    text-indent: -10000px;
-    background: url('../images/icons-s41d9637d79.png');
-    -moz-background-size: 103px 1039px;
-    -o-background-size: 103px 1039px;
-    -webkit-background-size: 103px 1039px;
-    background-size: 103px 1039px;
-    width: 15px;
-    height: 24px;
-    background-position: 0 -27px;
-  }
-  /* line 26, ../sass/modules/_header.scss */
-  .header--logo-link.is-visible img {
-    display: none;
-  }
-  /* line 116, ../sass/modules/_header.scss */
-  .header--logo-link.is-visible.is-front {
-    display: none;
-  }
-}
 @media only screen and (min-width: 70em) {
-  /* line 107, ../sass/modules/_header.scss */
-  .header--logo-link.is-visible {
-    background: none;
-    text-indent: 0;
-    width: 100%;
-  }
-  /* line 36, ../sass/modules/_header.scss */
-  .header--logo-link.is-visible img {
+  /* line 28, ../sass/modules/_header.scss */
+  .header--logo-link .header--logo-image {
     display: block;
   }
-  /* line 126, ../sass/modules/_header.scss */
-  .header--logo-link.is-visible.is-front {
-    display: block;
+  /* line 31, ../sass/modules/_header.scss */
+  .header--logo-link .header--arrow-image {
+    display: none;
   }
 }
-/* line 133, ../sass/modules/_header.scss */
+/* line 28, ../sass/modules/_header.scss */
+.header--logo-link.is-visible .header--logo-image {
+  display: block;
+}
+/* line 31, ../sass/modules/_header.scss */
+.header--logo-link.is-visible .header--arrow-image {
+  display: none;
+}
+/* line 105, ../sass/modules/_header.scss */
+.header .header--logo-image,
+.header .header--arrow-image {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/* line 114, ../sass/modules/_header.scss */
 .header--logo-anonymous {
   position: relative;
   text-align: center;
@@ -1438,23 +1393,23 @@ label {
   transform: translateY(-50%);
 }
 @media only screen and (min-width: 50em) {
-  /* line 133, ../sass/modules/_header.scss */
+  /* line 114, ../sass/modules/_header.scss */
   .header--logo-anonymous {
     padding-top: 0;
   }
 }
-/* line 143, ../sass/modules/_header.scss */
+/* line 124, ../sass/modules/_header.scss */
 .header--logo-anonymous img {
   display: inline-block;
 }
-/* line 152, ../sass/modules/_header.scss */
+/* line 133, ../sass/modules/_header.scss */
 .header--main-menu {
   height: 2.5em;
   margin-left: 3em;
   width: 75%;
 }
 @media only screen and (min-width: 70em) {
-  /* line 152, ../sass/modules/_header.scss */
+  /* line 133, ../sass/modules/_header.scss */
   .header--main-menu {
     display: inline-block;
     height: auto;
@@ -1463,52 +1418,51 @@ label {
     position: relative;
     text-align: center;
     top: 0;
-    width: 52%;
+    width: 50%;
   }
 }
-/* line 170, ../sass/modules/_header.scss */
+/* line 152, ../sass/modules/_header.scss */
 .header--main-menu-items {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-@media only screen and (min-width: 50em) {
-  /* line 170, ../sass/modules/_header.scss */
-  .header--main-menu-items {
-    text-align: center;
-  }
-}
-/* line 179, ../sass/modules/_header.scss */
+/* line 157, ../sass/modules/_header.scss */
 .header--main-menu-item {
   display: none;
   font-size: 1em;
   margin-right: -4px;
   text-align: center;
-  width: 4em;
 }
-/* line 186, ../sass/modules/_header.scss */
+/* line 163, ../sass/modules/_header.scss */
 .header--main-menu-item.is-active {
   display: inline-block;
   font-size: .8em;
 }
-@media only screen and (min-width: 50em) {
-  /* line 179, ../sass/modules/_header.scss */
+@media only screen and (min-width: 70em) {
+  /* line 157, ../sass/modules/_header.scss */
   .header--main-menu-item {
     display: inline-block;
-    padding: 1em;
-    width: 6em;
+    width: auto;
   }
-  /* line 196, ../sass/modules/_header.scss */
+  /* line 172, ../sass/modules/_header.scss */
   .header--main-menu-item.is-active {
     background: #e4e4d5;
     font-size: 1em;
   }
-  /* line 201, ../sass/modules/_header.scss */
+  /* line 177, ../sass/modules/_header.scss */
   .header--main-menu-item:hover {
     background: #e4e4d5;
   }
 }
-/* line 209, ../sass/modules/_header.scss */
+/* line 184, ../sass/modules/_header.scss */
+.header--main-menu-item-link {
+  line-height: 1.7em;
+  padding: .5em;
+  width: 5em;
+  display: block;
+}
+/* line 191, ../sass/modules/_header.scss */
 .header--main-menu-item-link:hover {
   cursor: default;
 }
@@ -1532,92 +1486,85 @@ label {
   color: inherit;
   text-decoration: none;
 }
-@media only screen and (min-width: 50em) {
-  /* line 208, ../sass/modules/_header.scss */
+@media only screen and (min-width: 70em) {
+  /* line 184, ../sass/modules/_header.scss */
   .header--main-menu-item-link {
-    display: inline-block;
-    position: relative;
-    width: 100%;
+    width: 7em;
   }
-  /* line 220, ../sass/modules/_header.scss */
+  /* line 200, ../sass/modules/_header.scss */
   .header--main-menu-item-link:hover {
     cursor: pointer;
   }
 }
-/* line 230, ../sass/modules/_header.scss */
+/* line 210, ../sass/modules/_header.scss */
 .header--main-menu-item-image-channels {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 32px;
   height: 25px;
-  background-position: 0 -21px;
+  background-position: 0 -9px;
 }
-/* line 237, ../sass/modules/_header.scss */
+/* line 217, ../sass/modules/_header.scss */
 .header--main-menu-item-image-slides {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 24px;
   height: 19px;
-  background-position: 0 -265px;
+  background-position: 0 -252px;
 }
-/* line 244, ../sass/modules/_header.scss */
+/* line 224, ../sass/modules/_header.scss */
 .header--main-menu-item-image-screens {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 32px;
   height: 20px;
-  background-position: 0 -105px;
+  background-position: 0 -93px;
 }
-/* line 251, ../sass/modules/_header.scss */
+/* line 231, ../sass/modules/_header.scss */
 .header--main-menu-item-image-templates {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 26px;
   height: 19px;
-  background-position: 0 -306px;
+  background-position: 0 -293px;
 }
-/* line 258, ../sass/modules/_header.scss */
+/* line 238, ../sass/modules/_header.scss */
 .header--main-menu-item-text {
-  width: 100%;
-}
-@media only screen and (min-width: 45em) {
-  /* line 258, ../sass/modules/_header.scss */
-  .header--main-menu-item-text {
-    display: inline-block;
-  }
+  display: block;
 }
 @media only screen and (min-width: 70em) {
-  /* line 258, ../sass/modules/_header.scss */
+  /* line 238, ../sass/modules/_header.scss */
   .header--main-menu-item-text {
     display: inline-block;
+    width: 100%;
   }
 }
-/* line 274, ../sass/modules/_header.scss */
+/* line 250, ../sass/modules/_header.scss */
 .header--secondary-menus {
   position: absolute;
   right: 1em;
   text-align: right;
   top: 50%;
-  width: 24%;
+  width: 25%;
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 @media only screen and (min-width: 70em) {
-  /* line 274, ../sass/modules/_header.scss */
+  /* line 250, ../sass/modules/_header.scss */
   .header--secondary-menus {
     margin-right: -4px;
     padding: 1em 0;
@@ -1626,7 +1573,7 @@ label {
     width: 20%;
   }
 }
-/* line 295, ../sass/modules/_header.scss */
+/* line 272, ../sass/modules/_header.scss */
 .header--user-menu {
   display: inline-block;
   margin-right: -4px;
@@ -1653,35 +1600,35 @@ label {
   text-decoration: none;
 }
 @media only screen and (min-width: 70em) {
-  /* line 306, ../sass/modules/_header.scss */
+  /* line 283, ../sass/modules/_header.scss */
   .header--user-menu-dropdown-link:after {
     content: '\00a0\25be';
     vertical-align: top;
   }
 }
-/* line 314, ../sass/modules/_header.scss */
+/* line 291, ../sass/modules/_header.scss */
 .header--user-menu-name {
   display: none;
   vertical-align: top;
 }
 @media only screen and (min-width: 70em) {
-  /* line 314, ../sass/modules/_header.scss */
+  /* line 291, ../sass/modules/_header.scss */
   .header--user-menu-name {
     display: inline-block;
   }
 }
-/* line 324, ../sass/modules/_header.scss */
+/* line 301, ../sass/modules/_header.scss */
 .header--user-menu-image {
   height: 2em;
   margin-right: .5em;
 }
-/* line 333, ../sass/modules/_header.scss */
+/* line 310, ../sass/modules/_header.scss */
 .header--nav-menu {
   display: inline-block;
   margin-right: -4px;
   vertical-align: top;
 }
-/* line 340, ../sass/modules/_header.scss */
+/* line 317, ../sass/modules/_header.scss */
 .header--nav-menu-link {
   cursor: pointer;
 }
@@ -1705,57 +1652,57 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 347, ../sass/modules/_header.scss */
+/* line 324, ../sass/modules/_header.scss */
 .header--nav-menu-label-image {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 31px;
   height: 21px;
-  background-position: 0 -189px;
+  background-position: 0 -176px;
   display: inline-block;
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 356, ../sass/modules/_header.scss */
+/* line 333, ../sass/modules/_header.scss */
 .header--nav-menu-label-text {
   display: none;
 }
 @media only screen and (min-width: 70em) {
-  /* line 356, ../sass/modules/_header.scss */
+  /* line 333, ../sass/modules/_header.scss */
   .header--nav-menu-label-text {
     display: inline-block;
   }
 }
-/* line 368, ../sass/modules/_header.scss */
+/* line 345, ../sass/modules/_header.scss */
 .header--sub {
   background: #e4e4d5;
 }
-/* line 373, ../sass/modules/_header.scss */
+/* line 350, ../sass/modules/_header.scss */
 .header--sub-menu {
   text-align: center;
   width: 100%;
 }
 @media only screen and (min-width: 50em) {
-  /* line 378, ../sass/modules/_header.scss */
+  /* line 355, ../sass/modules/_header.scss */
   .header--sub-menu.is-hidden {
     display: none;
   }
 }
-/* line 385, ../sass/modules/_header.scss */
+/* line 362, ../sass/modules/_header.scss */
 .header--sub-menu-items {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-/* line 390, ../sass/modules/_header.scss */
+/* line 367, ../sass/modules/_header.scss */
 .header--sub-menu-item {
   display: inline-block;
   padding: 0 1em;
 }
-/* line 396, ../sass/modules/_header.scss */
+/* line 373, ../sass/modules/_header.scss */
 .header--sub-menu-item-link {
   display: block;
   height: 3em;
@@ -1781,31 +1728,31 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 403, ../sass/modules/_header.scss */
+/* line 380, ../sass/modules/_header.scss */
 .header--sub-menu-item-link.is-active {
   border-bottom: 2px solid black;
 }
-/* line 409, ../sass/modules/_header.scss */
+/* line 386, ../sass/modules/_header.scss */
 .header--sub-menu-item-image-overview {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 128px 1298px;
-  -o-background-size: 128px 1298px;
-  -webkit-background-size: 128px 1298px;
-  background-size: 128px 1298px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 128px 1248px;
+  -o-background-size: 128px 1248px;
+  -webkit-background-size: 128px 1248px;
+  background-size: 128px 1248px;
   width: 13px;
   height: 13px;
-  background-position: 0 -857px;
+  background-position: 0 -807px;
   display: inline-block;
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 418, ../sass/modules/_header.scss */
+/* line 395, ../sass/modules/_header.scss */
 .header--sub-menu-item-image-create-channel {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 128px 1298px;
-  -o-background-size: 128px 1298px;
-  -webkit-background-size: 128px 1298px;
-  background-size: 128px 1298px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 128px 1248px;
+  -o-background-size: 128px 1248px;
+  -webkit-background-size: 128px 1248px;
+  background-size: 128px 1248px;
   width: 13px;
   height: 13px;
   background-position: 0 0;
@@ -1813,30 +1760,30 @@ label {
   margin: 0 .5em 0 0;
   vertical-align: middle;
 }
-/* line 428, ../sass/modules/_header.scss */
+/* line 407, ../sass/modules/_header.scss */
 .header--main-menu--mobile {
   display: inline-block;
   vertical-align: top;
   width: 100%;
 }
-/* line 433, ../sass/modules/_header.scss */
+/* line 412, ../sass/modules/_header.scss */
 .header--main-menu--mobile.is-hidden {
   display: none;
 }
-@media only screen and (min-width: 50em) {
-  /* line 428, ../sass/modules/_header.scss */
+@media only screen and (min-width: 70em) {
+  /* line 407, ../sass/modules/_header.scss */
   .header--main-menu--mobile {
     display: none;
   }
 }
-/* line 443, ../sass/modules/_header.scss */
+/* line 422, ../sass/modules/_header.scss */
 .header--main-menu-items--mobile {
   text-align: center;
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
-/* line 452, ../sass/modules/_header.scss */
+/* line 429, ../sass/modules/_header.scss */
 .header--main-menu-item--mobile {
   display: inline-block;
   font-size: .8em;
@@ -1844,11 +1791,11 @@ label {
   padding: 1em 0;
   width: 25%;
 }
-/* line 459, ../sass/modules/_header.scss */
+/* line 436, ../sass/modules/_header.scss */
 .header--main-menu-item--mobile:hover {
   background: #e4e4d5;
 }
-/* line 465, ../sass/modules/_header.scss */
+/* line 442, ../sass/modules/_header.scss */
 .header--main-menu-item-link--mobile {
   display: block;
   height: 3em;
@@ -1873,55 +1820,55 @@ label {
   color: inherit;
   text-decoration: none;
 }
-/* line 471, ../sass/modules/_header.scss */
+/* line 448, ../sass/modules/_header.scss */
 .header--main-menu-item-link--mobile.is-active {
   border-bottom: 2px solid black;
 }
-/* line 477, ../sass/modules/_header.scss */
+/* line 454, ../sass/modules/_header.scss */
 .header--main-menu-item-image-channels--mobile {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 32px;
   height: 25px;
-  background-position: 0 -21px;
+  background-position: 0 -9px;
 }
-/* line 484, ../sass/modules/_header.scss */
+/* line 461, ../sass/modules/_header.scss */
 .header--main-menu-item-image-slides--mobile {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 24px;
   height: 19px;
-  background-position: 0 -265px;
+  background-position: 0 -252px;
 }
-/* line 491, ../sass/modules/_header.scss */
+/* line 468, ../sass/modules/_header.scss */
 .header--main-menu-item-image-screens--mobile {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 32px;
   height: 20px;
-  background-position: 0 -105px;
+  background-position: 0 -93px;
 }
-/* line 498, ../sass/modules/_header.scss */
+/* line 475, ../sass/modules/_header.scss */
 .header--main-menu-item-image-templates--mobile {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 26px;
   height: 19px;
-  background-position: 0 -306px;
+  background-position: 0 -293px;
 }
-/* line 505, ../sass/modules/_header.scss */
+/* line 482, ../sass/modules/_header.scss */
 .header--main-menu-item-text--mobile {
   display: block;
 }
@@ -2107,55 +2054,55 @@ label {
 .create-slide--edit-description {
   display: inline-block;
   margin-left: .5em;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 128px 1298px;
-  -o-background-size: 128px 1298px;
-  -webkit-background-size: 128px 1298px;
-  background-size: 128px 1298px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 128px 1248px;
+  -o-background-size: 128px 1248px;
+  -webkit-background-size: 128px 1248px;
+  background-size: 128px 1248px;
   width: 25px;
   height: 25px;
-  background-position: 0 -517px;
+  background-position: 0 -467px;
 }
 /* line 235, ../sass/modules/_create_slide.scss */
 .create-slide--edit-title {
   display: inline-block;
   margin-left: .5em;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 128px 1298px;
-  -o-background-size: 128px 1298px;
-  -webkit-background-size: 128px 1298px;
-  background-size: 128px 1298px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 128px 1248px;
+  -o-background-size: 128px 1248px;
+  -webkit-background-size: 128px 1248px;
+  background-size: 128px 1248px;
   width: 25px;
   height: 25px;
-  background-position: 0 -517px;
+  background-position: 0 -467px;
 }
 /* line 243, ../sass/modules/_create_slide.scss */
 .create-slide--edit-box-settings {
   position: absolute;
   right: -0.5em;
   top: -0.5em;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 32px 325px;
-  -o-background-size: 32px 325px;
-  -webkit-background-size: 32px 325px;
-  background-size: 32px 325px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 32px 312px;
+  -o-background-size: 32px 312px;
+  -webkit-background-size: 32px 312px;
+  background-size: 32px 312px;
   width: 25px;
   height: 25px;
-  background-position: 0 -141px;
+  background-position: 0 -128px;
 }
 @media only screen and (min-width: 481px) {
   /* line 243, ../sass/modules/_create_slide.scss */
   .create-slide--edit-box-settings {
     right: -1em;
     top: -1em;
-    background: url('../images/icons-s41d9637d79.png');
-    -moz-background-size: 64px 649px;
-    -o-background-size: 64px 649px;
-    -webkit-background-size: 64px 649px;
-    background-size: 64px 649px;
+    background: url('../images/icons-s7dca55d435.png');
+    -moz-background-size: 64px 624px;
+    -o-background-size: 64px 624px;
+    -webkit-background-size: 64px 624px;
+    background-size: 64px 624px;
     width: 50px;
     height: 50px;
-    background-position: 0 -281px;
+    background-position: 0 -256px;
   }
 }
 /* line 259, ../sass/modules/_create_slide.scss */
@@ -2163,26 +2110,26 @@ label {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 64px 649px;
-  -o-background-size: 64px 649px;
-  -webkit-background-size: 64px 649px;
-  background-size: 64px 649px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 64px 624px;
+  -o-background-size: 64px 624px;
+  -webkit-background-size: 64px 624px;
+  background-size: 64px 624px;
   width: 26px;
   height: 26px;
-  background-position: 0 -341px;
+  background-position: 0 -316px;
 }
 @media only screen and (min-width: 481px) {
   /* line 259, ../sass/modules/_create_slide.scss */
   .create-slide--edit-image-settings {
-    background: url('../images/icons-s41d9637d79.png');
-    -moz-background-size: 128px 1298px;
-    -o-background-size: 128px 1298px;
-    -webkit-background-size: 128px 1298px;
-    background-size: 128px 1298px;
+    background: url('../images/icons-s7dca55d435.png');
+    -moz-background-size: 128px 1248px;
+    -o-background-size: 128px 1248px;
+    -webkit-background-size: 128px 1248px;
+    background-size: 128px 1248px;
     width: 51px;
     height: 51px;
-    background-position: 0 -682px;
+    background-position: 0 -632px;
   }
 }
 /* line 273, ../sass/modules/_create_slide.scss */
@@ -2979,26 +2926,26 @@ label {
 
 /* line 36, ../sass/modules/_preview.scss */
 .preview--channel-play {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 84px 844px;
-  -o-background-size: 84px 844px;
-  -webkit-background-size: 84px 844px;
-  background-size: 84px 844px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 84px 812px;
+  -o-background-size: 84px 812px;
+  -webkit-background-size: 84px 812px;
+  background-size: 84px 812px;
   width: 42px;
   height: 42px;
-  background-position: 0 -634px;
+  background-position: 0 -601px;
 }
 
 /* line 44, ../sass/modules/_preview.scss */
 .preview--channel-pause {
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 84px 844px;
-  -o-background-size: 84px 844px;
-  -webkit-background-size: 84px 844px;
-  background-size: 84px 844px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 84px 812px;
+  -o-background-size: 84px 812px;
+  -webkit-background-size: 84px 812px;
+  background-size: 84px 812px;
   width: 42px;
   height: 42px;
-  background-position: 0 -579px;
+  background-position: 0 -546px;
 }
 
 /**
@@ -3380,14 +3327,14 @@ label {
 /* line 79, ../sass/animations/_animation.scss */
 .spinner {
   margin: 50px;
-  background: url('../images/icons-s41d9637d79.png');
-  -moz-background-size: 77px 779px;
-  -o-background-size: 77px 779px;
-  -webkit-background-size: 77px 779px;
-  background-size: 77px 779px;
+  background: url('../images/icons-s7dca55d435.png');
+  -moz-background-size: 77px 749px;
+  -o-background-size: 77px 749px;
+  -webkit-background-size: 77px 749px;
+  background-size: 77px 749px;
   width: 29px;
   height: 29px;
-  background-position: 0 -693px;
+  background-position: 0 -663px;
   -moz-animation: spinner 1.5s infinite;
   -webkit-animation: spinner 1.5s infinite;
   animation: spinner 1.5s infinite;
