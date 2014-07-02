@@ -1,24 +1,23 @@
 /**
- * Screen controller. Controls the screen creation process.
+ * Screen group controller. Controls the screen group creation process.
  */
-ikApp.controller('ScreenController', function($scope, $location, $routeParams, screenFactory) {
+ikApp.controller('ScreenGroupController', function($scope, $location, $routeParams, screenFactory) {
   /**
    * Scope setup
    */
-  $scope.steps = 3;
-  $scope.screen = {};
-  $scope.groups = [];
-  screenFactory.getScreenGroups().then(function(data) {
-    $scope.groups = data;
-  });
+  $scope.steps = 2;
+  $scope.screenGroup = {};
 
+  screenFactory.getScreens().then(function(data) {
+    $scope.screens = data;
+  });
 
   /**
    * Loads a given step
    */
   function loadStep(step) {
     $scope.step = step;
-    $scope.templatePath = '/partials/screen/screen' + $scope.step + '.html';
+    $scope.templatePath = '/partials/screen/screen-group' + $scope.step + '.html';
   }
 
   /**
@@ -28,18 +27,18 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
   function init() {
     if (!$routeParams.id) {
       // If the ID is not set, get an empty slide.
-      $scope.screen = screenFactory.emptyScreen();
+      $scope.screenGroup = screenFactory.emptyScreenGroup();
       loadStep(1);
     } else {
       if ($routeParams.id == null || $routeParams.id == undefined || $routeParams.id == '') {
-        $location.path('/screen');
+        $location.path('/screen-group');
       } else {
         // Get the screen from the backend.
-        screenFactory.getEditScreen($routeParams.id).then(function(data) {
-          $scope.screen = data;
+        screenFactory.getEditScreenGroup($routeParams.id).then(function(data) {
+          $scope.screenGroup = data;
 
           if ($scope.screen === {}) {
-            $location.path('/screen');
+            $location.path('/screen-group');
           }
 
           loadStep($scope.steps);
@@ -54,9 +53,9 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
    */
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
-      screenFactory.saveScreen().then(
+      screenFactory.saveScreenGroup().then(
         function() {
-          $location.path('/screens');
+          $location.path('/screen-groups');
         }
       );
     } else {
@@ -72,13 +71,14 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
     $scope.screen.orientation = orientation;
   }
 
+  /**
+   * Move to @step in creation process.
+   * @param step
+   */
   $scope.goToStep = function(step) {
     var s = 1;
     if ($scope.validation.titleSet()) {
       s++;
-      if ($scope.validation.widthSet() && $scope.validation.heightSet()) {
-        s = s + 2;
-      }
     }
     if (step <= s) {
       loadStep(step);
@@ -89,10 +89,10 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
    * Validates that @field is not empty on screen.
    */
   function validateNotEmpty(field) {
-    if (!$scope.screen) {
+    if (!$scope.screenGroup) {
       return false;
     }
-    return $scope.screen[field] !== '';
+    return $scope.screenGroup[field] !== '';
   }
 
   /**
@@ -101,12 +101,7 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
   $scope.validation = {
     titleSet: function() {
       return validateNotEmpty('title');
-    },
-    widthSet: function() {
-      return (/^\d+$/.test($scope.screen.width));
-    },
-    heightSet: function() {
-      return (/^\d+$/.test($scope.screen.height));
     }
   };
+
 });

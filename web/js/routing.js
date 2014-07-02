@@ -15,17 +15,29 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'ScreensController',
     templateUrl: 'partials/screen/screens.html'
   })
+  .when('/screen-groups', {
+    controller: 'ScreenGroupsController',
+    templateUrl: 'partials/screen/screen-groups.html'
+  })
   .when('/templates', {
     controller: 'TemplatesController',
     templateUrl: 'partials/templates.html'
   })
   .when('/screen', {
     controller: 'ScreenController',
-    templateUrl: 'partials/screen/screen1.html'
+    templateUrl: 'partials/screen/screen.html'
   })
-  .when('/screen/:screenId/:step', {
+  .when('/screen/:id', {
     controller: 'ScreenController',
-    templateUrl: function(params){ return 'partials/screen/screen' + ((params.step < 1) ? 1 : params.step) + '.html'; }
+    templateUrl: 'partials/screen/screen.html'
+  })
+  .when('/screen-group', {
+    controller: 'ScreenGroupController',
+    templateUrl: 'partials/screen/screen-group.html'
+  })
+  .when('/screen-group/:id', {
+    controller: 'ScreenGroupController',
+    templateUrl: 'partials/screen/screen-group.html'
   })
   .when('/slide', {
     controller: 'SlideController',

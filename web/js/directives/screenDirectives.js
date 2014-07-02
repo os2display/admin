@@ -3,13 +3,18 @@
  */
 ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
   return {
-    templateUrl: 'partials/screen/screen.html',
+    templateUrl: 'partials/screen/screen-template.html',
     restrict: 'E',
-    scope: {},
+    scope: {
+      ikId: '@',
+      ikWidth: '@'
+    },
     link: function(scope, element, attrs) {
-      scope.ikScreen = screenFactory.getScreen(attrs.ikId);
-      scope.ikScreenGroups = screenFactory.getScreenGroups(attrs.ikId);
-      scope.ikGroups = screenFactory.getGroups();
+      attrs.$observe('ikId', function(val) {
+        screenFactory.getScreen(val).then(function(data) {
+          scope.ikScreen = data;
+        });
+      });
     }
   }
 }]);

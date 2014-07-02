@@ -1,0 +1,10 @@
+<section id="create-screen-one" class="create-screen--section">
+  <div class="create-screen--content--screen-one">
+    <h1 class="create-screen--header">Opret skærmgruppe ({{step}}/{{steps}})</h1>
+    <p class="create-screen--header-description">Giv din skærmgruppe et godt navn så du kan finde den igen senere.</p>
+    <form ng-submit="submitStep()">
+      <input type="text" class="create-screen--text" placeholder="Skriv f.eks. Cafeområdet" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="screenGroup.title">
+      <input type="submit" class="create-screen--button" data-ng-class="{'is-inactive': !validation.titleSet()}" ng-disabled="!validation.titleSet()" value="Gem og fortsæt">
+    </form>
+  </div>
+</section>
