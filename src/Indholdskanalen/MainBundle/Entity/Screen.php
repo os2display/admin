@@ -52,12 +52,14 @@ class Screen {
    */
   private $created;
 
+
   /**
    * Get id
    *
    * @return integer
    */
-  public function getId() {
+  public function getId()
+  {
     return $this->id;
   }
 
@@ -65,9 +67,13 @@ class Screen {
    * Set title
    *
    * @param string $title
+   * @return Screen
    */
-  public function setTitle($title) {
+  public function setTitle($title)
+  {
     $this->title = $title;
+
+    return $this;
   }
 
   /**
@@ -75,134 +81,140 @@ class Screen {
    *
    * @return string
    */
-  public function getTitle() {
+  public function getTitle()
+  {
     return $this->title;
   }
 
   /**
    * Set orientation
    *
-   * @param \int $orientation
+   * @param string $orientation
+   * @return Screen
    */
-  public function setOrientation($orientation) {
+  public function setOrientation($orientation)
+  {
     $this->orientation = $orientation;
+
+    return $this;
   }
 
   /**
    * Get orientation
    *
-   * @return \string
+   * @return string
    */
-  public function getOrientation() {
+  public function getOrientation()
+  {
     return $this->orientation;
   }
 
   /**
    * Set width
    *
-   * @param \int $width
+   * @param integer $width
+   * @return Screen
    */
-  public function setWidth($width) {
+  public function setWidth($width)
+  {
     $this->width = $width;
+
+    return $this;
   }
 
   /**
    * Get width
    *
-   * @return \string
+   * @return integer
    */
-  public function getWidth() {
+  public function getWidth()
+  {
     return $this->width;
   }
 
   /**
    * Set height
    *
-   * @param \int $height
+   * @param integer $height
+   * @return Screen
    */
-  public function setHeight($height) {
+  public function setHeight($height)
+  {
     $this->height = $height;
+
+    return $this;
   }
 
   /**
    * Get height
    *
-   * @return \string
+   * @return integer
    */
-  public function getHeight() {
+  public function getHeight()
+  {
     return $this->height;
   }
 
   /**
    * Set created
    *
-   * @param \int $created
-   */
-  public function setCreated($created) {
-    $this->created = $created;
-  }
-
-  /**
-   * Get created
-   *
-   * @return \int
-   */
-  public function getCreated() {
-    return $this->created;
-  }
-
-  /**
-   * Set groups
-   *
-   * @param array $groups
+   * @param integer $created
    * @return Screen
    */
-  public function setGroups($groups)
+  public function setCreated($created)
   {
-    $this->groups = $groups;
+    $this->created = $created;
 
     return $this;
   }
 
   /**
+   * Get created
+   *
+   * @return integer
+   */
+  public function getCreated()
+  {
+    return $this->created;
+  }
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
+  /**
+   * Add groups
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
+   * @return Screen
+   */
+  public function addGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
+  {
+    $this->groups[] = $groups;
+
+    return $this;
+  }
+
+  /**
+   * Remove groups
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
+   */
+  public function removeGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
+  {
+    $this->groups->removeElement($groups);
+  }
+
+  /**
    * Get groups
    *
-   * @return array
+   * @return \Doctrine\Common\Collections\Collection
    */
   public function getGroups()
   {
     return $this->groups;
   }
-
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add groups
-     *
-     * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
-     * @return Screen
-     */
-    public function addGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
-    {
-        $this->groups[] = $groups;
-
-        return $this;
-    }
-
-    /**
-     * Remove groups
-     *
-     * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
-     */
-    public function removeGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
-    {
-        $this->groups->removeElement($groups);
-    }
 }
