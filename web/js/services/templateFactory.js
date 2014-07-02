@@ -115,18 +115,13 @@ ikApp.factory('templateFactory', function() {
   }
 
   factory.getTemplate = function(id) {
-    var arr = [];
+    var template = null;
     angular.forEach(templates, function(value, key) {
       if (value['id'] == id) {
-        arr.push(value);
+        template = value;
       }
     })
-
-    if (arr.length === 0) {
-      return null;
-    } else {
-      return arr[0];
-    }
+    return template;
   }
 
   return factory;
