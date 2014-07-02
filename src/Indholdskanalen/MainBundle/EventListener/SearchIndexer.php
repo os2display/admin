@@ -34,9 +34,11 @@ class SearchIndexer {
 
     if ($method != 'DELETE') {
       // Setup our serializer.
-      $encoders = array(new JsonEncoder());
-      $normalizers = array(new GetSetMethodNormalizer());
-      $serializer = new Serializer($normalizers, $encoders);
+      $normalizer = new GetSetMethodNormalizer();
+      $normalizer->setIgnoredAttributes(array('binaryContent'));
+      $encoder = new JsonEncoder();
+
+      $serializer = new Serializer(array($normalizer), array($encoder));
 
       // Convert to json.
       $jsonContent = $serializer->serialize($entity, 'json');
