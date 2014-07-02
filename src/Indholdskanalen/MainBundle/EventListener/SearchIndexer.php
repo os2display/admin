@@ -2,24 +2,22 @@
 
 namespace Indholdskanalen\MainBundle\EventListener;
 
-use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-//use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 class SearchIndexer {
   public function postPersist(LifecycleEventArgs $args) {
-    //$this->sendEvent($args, 'POST');
+    $this->sendEvent($args, 'POST');
   }
 
   public function preUpdate(LifecycleEventArgs $args) {
-    //$this->sendEvent($args, 'PUT');
+    $this->sendEvent($args, 'PUT');
   }
 
   public function preRemove(LifecycleEventArgs $args) {
-    //$this->sendEvent($args, 'DELETE');
+    $this->sendEvent($args, 'DELETE');
   }
 
   protected function sendEvent($args, $method) {
