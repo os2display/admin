@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\ScreenGroup;
 
 /**
- * @Route("/api/screen_group")
+ * @Route("/api/screen-group")
  */
 class ScreenGroupController extends Controller {
   /**

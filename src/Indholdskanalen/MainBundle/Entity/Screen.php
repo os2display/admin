@@ -43,7 +43,7 @@ class Screen {
   private $height;
 
   /**
-   * @ORM\Column(name="groups", type="array", nullable=false)
+   * @ORM\ManyToMany(targetEntity="ScreenGroup", mappedBy="screens")
    */
   private $groups;
 
@@ -173,4 +173,36 @@ class Screen {
   {
     return $this->groups;
   }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
+     * @return Screen
+     */
+    public function addGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
+     */
+    public function removeGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
 }
