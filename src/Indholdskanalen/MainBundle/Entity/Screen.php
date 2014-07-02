@@ -193,6 +193,7 @@ class Screen {
    */
   public function addGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
   {
+    $groups->addScreen($this);
     $this->groups[] = $groups;
 
     return $this;
@@ -205,6 +206,7 @@ class Screen {
    */
   public function removeGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
   {
+    $groups->removeScreen($this);
     $this->groups->removeElement($groups);
   }
 
