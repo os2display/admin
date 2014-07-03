@@ -11,7 +11,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
   /**
    * Get all slides.
    */
-  factory.getSlides = function() {
+  factory.getSlides = function getSlides() {
     var defer = $q.defer();
 
     $http.get('/api/slides')
@@ -29,20 +29,26 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
    * Find slide to edit. If id is not set return current slide, else load from backend.
    * @param id
    */
-  factory.getEditSlide = function(id) {
+  factory.getEditSlide = function getEditSlide(id) {
     var defer = $q.defer();
 
     if (id === null || id === undefined || id === '') {
       defer.resolve(currentSlide);
-    } else {
-      $http.get('/api/slide/' + id)
-        .success(function(data, status) {
-          currentSlide = data;
-          defer.resolve(currentSlide);
-        })
-        .error(function(data, status) {
-          defer.reject(status);
-        });
+    }
+    else {
+      if (currentSlide !== null && currentSlide.id == id) {
+        defer.resolve(currentSlide);
+      }
+      else {
+        $http.get('/api/slide/' + id)
+          .success(function(data, status) {
+            currentSlide = data;
+            defer.resolve(currentSlide);
+          })
+          .error(function(data, status) {
+            defer.reject(status);
+          });
+      }
     }
 
     return defer.promise;
@@ -107,15 +113,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
       orientation: '',
       template: '',
       created: parseInt((new Date().getTime()) / 1000),
-      options: {
-        fontsize: '32',
-        bgcolor: '#ccc',
-        textcolor: '#fff',
-        textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
-        headline: '',
-        text: ''
-      }
+      options: null
     };
 
     return currentSlide;

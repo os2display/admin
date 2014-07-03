@@ -26,21 +26,19 @@ class ChannelsController extends Controller {
     $channel_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
       ->findAll();
 
-    // Create response data.
-    $channels = array();
-    foreach ($channel_entities as $channel) {
-      $channels[] = array(
-        'id' => $channel->getId(),
-        'title' => $channel->getTitle(),
-        'orientation' => $channel->getOrientation(),
-        'created' => $channel->getCreated(),
-        'slides' => $channel->getSlides(),
-      );
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+    if ($channel_entities) {
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($channel_entities, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
     }
 
-    // Create and return response.
-    $response = new Response(json_encode($channels));
-    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 }

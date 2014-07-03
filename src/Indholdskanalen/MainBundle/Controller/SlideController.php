@@ -50,20 +50,14 @@ class SlideController extends Controller {
     $em->persist($slide);
     $em->flush();
 
-    // Create the response data.
-    $responseData = array(
-      "id" => $slide->getId(),
-      "title" => $slide->getTitle(),
-      "orientation" => $slide->getOrientation(),
-      "template" => $slide->getTemplate(),
-      "created" => $slide->getCreated(),
-      "options" => $slide->getOptions(),
-      "user" => $slide->getUser(),
-    );
-
-    // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
+    // Create response.
+    $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
+    $serializer = $this->get('jms_serializer');
+    $jsonContent = $serializer->serialize($slide, 'json');
+
+    $response->setContent($jsonContent);
+
     return $response;
   }
 
@@ -81,22 +75,18 @@ class SlideController extends Controller {
     $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
-    $responseData = array();
-
-    if ($slide) {
-      $responseData = array(
-        "id" => $slide->getId(),
-        "title" => $slide->getTitle(),
-        "orientation" => $slide->getOrientation(),
-        "template" => $slide->getTemplate(),
-        "created" => $slide->getCreated(),
-        "options" => $slide->getOptions(),
-        "user" => $slide->getUser(),
-      );
-    }
-
-    $response = new Response(json_encode($responseData));
+    // Create response.
+    $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
+    if ($slide) {
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($slide, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
 
     return $response;
   }

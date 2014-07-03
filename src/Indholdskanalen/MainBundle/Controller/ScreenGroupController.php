@@ -40,24 +40,38 @@ class ScreenGroupController extends Controller {
     // Update fields.
     $screenGroup->setTitle($post->title);
     $screenGroup->setCreated($post->created);
-    $screenGroup->setScreens($post->screens);
+
+    // Remove groups.
+    foreach($screenGroup->getScreens() as $screen) {
+      if (!in_array($screen->getId(), $post->screens)) {
+        $screenGroup->removeScreen($screen);
+      }
+    }
+
+    // Add groups.
+    foreach($post->screens as $screenId) {
+      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+        ->findOneById($screenId);
+      if ($screen) {
+        if (!$screenGroup->getScreens()->contains($screen)) {
+          $screenGroup->addScreen($screen);
+        }
+      }
+    }
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
     $em->persist($screenGroup);
     $em->flush();
 
-    // Create the response data.
-    $responseData = array(
-      "id" => $screenGroup->getId(),
-      "title" => $screenGroup->getTitle(),
-      "created" => $screenGroup->getCreated(),
-      "screens" => $screenGroup->getScreens()
-    );
-
-    // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
+    // Create response.
+    $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
+    $serializer = $this->get('jms_serializer');
+    $jsonContent = $serializer->serialize($screenGroup, 'json');
+
+    $response->setContent($jsonContent);
+
     return $response;
   }
 
@@ -75,20 +89,19 @@ class ScreenGroupController extends Controller {
     $screenGroup = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
       ->findOneById($id);
 
-    // Create the response data.
-    $responseData = array();
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
     if ($screenGroup) {
-      $responseData = array(
-        "id" => $screenGroup->getId(),
-        "title" => $screenGroup->getTitle(),
-        "created" => $screenGroup->getCreated(),
-        "screens" => $screenGroup->getScreens()
-      );
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($screenGroup, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
     }
 
-    // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
-    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 }

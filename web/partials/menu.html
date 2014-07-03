@@ -10,6 +10,8 @@
       <a href="/#/templates" class="nav--item">Templates</a>
       <a href="/#/media" class="nav--item">Media</a>
       <a href="/profile" class="nav--item">Profile (Symfony)</a>
+      <a href="/#/screen-group" class="nav--item">Opret skærmgruppe</a>
+      <a href="/#/screen-groups" class="nav--item">Skærmgrupper</a>
     </div>
     <div class="nav--item-wrapper">
       <a href="/logout" class="nav--item">Log ud</a>
@@ -18,9 +20,9 @@
   <div class="header--inner">
     <div class="header--main">
       <div class="header--logo">
-        <a href="#" class="header--logo-link" data-ng-class="{'is-visible': mobileMainMenuVisible(),'is-front': url === '/'}"><img src="/images/logo.png"/></a>
+        <a href="#" class="header--logo-link" data-ng-class="{'is-visible': mobileMainMenuVisible(),'is-front': url === '/'}"><img class="header--logo-image" src="/images/logo.png"/><img class="header--arrow-image" src="/images/arrow-back-icon.png"/></a>
       </div>
-      <nav class="header--main-menu" >
+      <nav class="header--main-menu">
         <ul class="header--main-menu-items">
           <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/channel') == 0}">
             <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channels">
@@ -40,10 +42,10 @@
               <span class="header--main-menu-item-text">Skærme</span>
             </a>
           </li>
-          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/template') == 0}" >
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/template') == 0}" href="/#/templates">
+          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/media') == 0}" >
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media">
               <span class="header--main-menu-item-image-templates"></span>
-              <span class="header--main-menu-item-text">Skabeloner</span>
+              <span class="header--main-menu-item-text">Media</span>
             </a>
           </li>
         </ul>

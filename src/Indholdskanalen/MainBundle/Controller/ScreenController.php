@@ -44,15 +44,21 @@ class ScreenController extends Controller {
     $screen->setWidth($post->width);
     $screen->setHeight($post->height);
 
-    // TODO: FIX THIS MANY TO MANY RELATIONSHIP!!!!!
+    // Remove groups.
+    foreach($screen->getGroups() as $group) {
+      if (!in_array($group->getId(), $post->groups)) {
+        $screen->removeGroup($group);
+      }
+    }
 
-
-    // Update groups
-    foreach($post->groups as $group) {
+    // Add groups.
+    foreach($post->groups as $groupId) {
       $group = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
-        ->findOneById($group->id);
+        ->findOneById($groupId);
       if ($group) {
-        $screen->addGroup($group);
+        if (!$screen->getGroups()->contains($group)) {
+          $screen->addGroup($group);
+        }
       }
     }
 
@@ -92,26 +98,19 @@ class ScreenController extends Controller {
     $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
 
-    $screenGroups = $this->getDoctrine()->getRepository('IndholdskanalaneMainBundle:ScreenGroup')
-      ->findAll();
-
-    // Create the response data.
-    $responseData = array();
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
     if ($screen) {
-      $responseData = array(
-        "id" => $screen->getId(),
-        "title" => $screen->getTitle(),
-        "orientation" => $screen->getOrientation(),
-        "created" => $screen->getCreated(),
-        "width" => $screen->getWidth(),
-        "height" => $screen->getHeight(),
-        "groups" => $screen->getGroups()
-      );
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($screen, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
     }
 
-    // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
-    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 }

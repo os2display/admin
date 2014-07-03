@@ -38,6 +38,9 @@ class AppKernel extends Kernel
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
 
+            // Serializing.
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+
             new Indholdskanalen\MainBundle\IndholdskanalenMainBundle(),
         );
 

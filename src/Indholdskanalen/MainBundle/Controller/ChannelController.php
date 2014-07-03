@@ -48,21 +48,19 @@ class ChannelController extends Controller {
     $em->persist($channel);
     $em->flush();
 
-    // Create response data.
-    $responseData = array();
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
     if ($channel) {
-      $responseData = array(
-        "id" => $channel->getId(),
-        "title" => $channel->getTitle(),
-        "orientation" => $channel->getOrientation(),
-        "created" => $channel->getCreated(),
-        "slides" => $channel->getSlides(),
-      );
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($channel, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
     }
 
-    // Create and return response.
-    $response = new Response(json_encode($responseData));
-    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 
@@ -80,21 +78,19 @@ class ChannelController extends Controller {
     $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
-    // Create response data.
-    $responseData = array();
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
     if ($channel) {
-      $responseData = array(
-        "id" => $channel->getId(),
-        "title" => $channel->getTitle(),
-        "orientation" => $channel->getOrientation(),
-        "created" => $channel->getCreated(),
-        "slides" => $channel->getSlides(),
-      );
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($channel, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
     }
 
-    // Create and return response.
-    $response = new Response(json_encode($responseData));
-    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 }

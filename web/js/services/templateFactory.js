@@ -8,6 +8,15 @@ ikApp.factory('templateFactory', function() {
       idealdimensions: {
         width: '1920',
         height: '1080'
+      },
+      emptyoptions: {
+        fontsize: '50',
+        bgcolor: '#ccc',
+        textcolor: '#fff',
+        textbgcolor: 'rgba(0, 0, 0, 0.7)',
+        image: '',
+        headline: '',
+        text: ''
       }
     },
     {
@@ -17,7 +26,17 @@ ikApp.factory('templateFactory', function() {
       idealdimensions: {
         width: '1920',
         height: '1080'
+      },
+      emptyoptions: {
+        fontsize: '50',
+        bgcolor: '#ccc',
+        textcolor: '#fff',
+        textbgcolor: 'rgba(0, 0, 0, 0.7)',
+        image: '',
+        headline: '',
+        text: ''
       }
+
     },
     {
       id: 'text-left',
@@ -26,7 +45,17 @@ ikApp.factory('templateFactory', function() {
       idealdimensions: {
         width: '1920',
         height: '1080'
+      },
+      emptyoptions: {
+        fontsize: '50',
+        bgcolor: '#ccc',
+        textcolor: '#fff',
+        textbgcolor: 'rgba(0, 0, 0, 0.7)',
+        image: '',
+        headline: '',
+        text: ''
       }
+
     },
     {
       id: 'text-right',
@@ -35,7 +64,17 @@ ikApp.factory('templateFactory', function() {
       idealdimensions: {
         width: '1920',
         height: '1080'
+      },
+      emptyoptions: {
+        fontsize: '50',
+        bgcolor: '#ccc',
+        textcolor: '#fff',
+        textbgcolor: 'rgba(0, 0, 0, 0.7)',
+        image: '',
+        headline: '',
+        text: ''
       }
+
     },
     {
       id: 'only-image',
@@ -44,6 +83,10 @@ ikApp.factory('templateFactory', function() {
       idealdimensions: {
         width: '1920',
         height: '1080'
+      },
+      emptyoptions: {
+        bgcolor: '#ccc',
+        image: ''
       }
     },
     {
@@ -53,7 +96,17 @@ ikApp.factory('templateFactory', function() {
       idealdimensions: {
         width: '1080',
         height: '1920'
+      },
+      emptyoptions: {
+        fontsize: '50',
+        bgcolor: '#ccc',
+        textcolor: '#fff',
+        textbgcolor: 'rgba(0, 0, 0, 0.7)',
+        image: '',
+        headline: '',
+        text: ''
       }
+
     }
   ];
 
@@ -62,18 +115,13 @@ ikApp.factory('templateFactory', function() {
   }
 
   factory.getTemplate = function(id) {
-    var arr = [];
+    var template = null;
     angular.forEach(templates, function(value, key) {
       if (value['id'] == id) {
-        arr.push(value);
+        template = value;
       }
     })
-
-    if (arr.length === 0) {
-      return null;
-    } else {
-      return arr[0];
-    }
+    return template;
   }
 
   return factory;
