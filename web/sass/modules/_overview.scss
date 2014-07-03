@@ -166,12 +166,42 @@
 
   /* Screens overview
  ========================================================================== */
-  &--screen-wrapper {
-    border: 1px solid $gray;
-    @include transform(scale(.5,.5));
+
+  &--screen-link {
+    font-size: .9em;
+
+    @include strip-link-styles();
   }
 
-  &--screen-inner {
 
+  &--screen-wrapper {
+    background: $gray-lightest;
+    border: 3px solid $gray;
+    box-sizing: border-box;
+    color: $gray-darker;
+    padding: 2em;
+    text-align: center;
+
+    &.is-landscape {
+      height: 12em;
+      width: 20em;
+    }
+
+    &.is-portrait {
+      height: 20em;
+      width: 12em;
+    }
+  }
+
+  &--screen-header {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &--screen--description {
+    position: relative;
+    top:50%;
+
+    @include translateY(-50%);
   }
 }
