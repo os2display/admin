@@ -98,28 +98,19 @@ class ScreenController extends Controller {
     $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
 
-    // Create the response data.
-    $responseData = array();
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
     if ($screen) {
-      $groups = [];
-      foreach($screen->getGroups() as $group) {
-        $groups[] = $group->getId();
-      }
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($screen, 'json');
 
-      $responseData = array(
-        "id" => $screen->getId(),
-        "title" => $screen->getTitle(),
-        "orientation" => $screen->getOrientation(),
-        "created" => $screen->getCreated(),
-        "width" => $screen->getWidth(),
-        "height" => $screen->getHeight(),
-        "groups" => $groups,
-      );
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
     }
 
-    // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
-    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 }
