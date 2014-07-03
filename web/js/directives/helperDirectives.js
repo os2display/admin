@@ -47,6 +47,9 @@ ikApp.directive('contenteditable', function() {
       element.on('keydown', function(event) {
         if (event.keyCode == 13) {
           event.preventDefault();
+
+          // Insert extra newline if this is the end of the text.
+          // To make sure we get a new line at the end.
           if (getCaretCharacterOffsetWithin(element[0]) == element[0].innerHTML.length) {
             document.execCommand('insertHTML', false, '\r\n');
           }
