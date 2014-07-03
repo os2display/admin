@@ -38,7 +38,6 @@ class SearchIndexer {
 
     if ($method != 'DELETE') {
       // Setup our serializer.
-
       $serializer = $this->container->get('jms_serializer');
       $jsonContent = $serializer->serialize($entity, 'json');
 
