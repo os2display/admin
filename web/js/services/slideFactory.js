@@ -11,7 +11,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
   /**
    * Get all slides.
    */
-  factory.getSlides = function() {
+  factory.getSlides = function getSlides() {
     var defer = $q.defer();
 
     $http.get('/api/slides')
@@ -29,7 +29,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
    * Find slide to edit. If id is not set return current slide, else load from backend.
    * @param id
    */
-  factory.getEditSlide = function(id) {
+  factory.getEditSlide = function getEditSlide(id) {
     var defer = $q.defer();
 
     if (id === null || id === undefined || id === '') {
