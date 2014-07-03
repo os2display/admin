@@ -25,7 +25,7 @@ ikApp.directive('contenteditable', function() {
         element.on('keydown', function(event) {
           if (event.keyCode == 13) {
             event.preventDefault();
-            document.execCommand('insertText', false, '\r\n');
+            document.execCommand('insertHTML', false, '\r\n');
           }
         });
       } else {
