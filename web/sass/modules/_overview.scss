@@ -28,12 +28,13 @@
   }
 
   &--description {
-    color: #646464;
+    color: $gray-darker;
     font-weight: lighter;
     margin: 0 36px 72px 36px;
     text-align: center;
   }
 
+  &--screens,
   &--channels,
   &--slides {
     text-align: center;
@@ -45,7 +46,7 @@
     margin: 0 36px 36px 0;
     position: relative;
 
-    @include strip-link-styles(#535353);
+    @include strip-link-styles($gray-darker);
   }
 
   &--slides-container,
@@ -128,8 +129,8 @@
   &--newest,
   &--oldest,
   &--alphabetical {
-    background: #fbfbfb;
-    border: 1px solid #ddd;
+    background: $gray-lightest;
+    border: 1px solid $gray-lighter;
     box-sizing: border-box;
     border-right: 0;
     cursor: pointer;
@@ -139,10 +140,10 @@
     text-align: center;
     width: 33%;
 
-    @include strip-link-styles(#646464);
+    @include strip-link-styles($gray-darker);
 
     &:last-child {
-      border-right: 1px solid #ddd;
+      border-right: 1px solid $gray-lighter;
     }
 
     &:first-child {
@@ -166,9 +167,10 @@
 
   /* Screens overview
  ========================================================================== */
-
   &--screen-link {
+    display: inline-block;
     font-size: .9em;
+    width: 300px;
 
     @include strip-link-styles();
   }
@@ -181,16 +183,6 @@
     color: $gray-darker;
     padding: 2em;
     text-align: center;
-
-    &.is-landscape {
-      height: 12em;
-      width: 20em;
-    }
-
-    &.is-portrait {
-      height: 20em;
-      width: 12em;
-    }
   }
 
   &--screen-header {
