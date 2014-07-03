@@ -4,10 +4,16 @@ namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-use Symfony\Component\Serializer\Serializer;
+/*use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;*/
 
 class SearchIndexer {
+  protected $container;
+
+  function __construct() {
+    $this->container = $this->getContainer();
+  }
   public function postPersist(LifecycleEventArgs $args) {
     //$this->sendEvent($args, 'POST');
   }
@@ -32,13 +38,7 @@ class SearchIndexer {
 
     if ($method != 'DELETE') {
       // Setup our serializer.
-      $normalizer = new GetSetMethodNormalizer();
-      $normalizer->setIgnoredAttributes(array('binaryContent'));
-      $encoder = new JsonEncoder();
-
-      $serializer = new Serializer(array($normalizer), array($encoder));
-
-      // Convert to json.
+      $serializer = $this->container->get('jms_serializer');
       $jsonContent = $serializer->serialize($entity, 'json');
 
       $this->curl('http://localhost:9200/indholdskanalen/' . $type . '/' . $entity->getId(), $method, $jsonContent);
@@ -81,23 +81,21 @@ class SearchIndexer {
     // Close connection.
     curl_close ($ch);
   }
-}
 
-class GetSetMethodNormalizer extends \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer {
-  protected $nesting = 1;
-  public function normalize($object, $format = null, array $context = array()) {
-    // TODO: This is not working. Screen groups is never added!
-    if($object instanceof \Doctrine\ORM\PersistentCollection) {
-      if ($this->nesting > 0) {
-        $this->nesting--;
-        return parent::normalize($object->unwrap(), $format);
-      }
-      else {
-        return FALSE;
-      }
+  /**
+   * Get the container.
+   *
+   * @todo: I am 100% sure that there must be a better way to get access to
+   * doctrine in a helper class than use globals.
+   *
+   * @return \Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected function getContainer() {
+    if (NULL === $this->container) {
+      // This use of global is not the right way, but until DI makes sens... it works.
+      $this->container = $GLOBALS['kernel']->getContainer();
     }
-    else {
-      return parent::normalize($object, $format);
-    }
+
+    return $this->container;
   }
 }

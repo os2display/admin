@@ -47,16 +47,6 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
           title: 'Opret skærm',
           path: 'screen',
           classSuffix: 'create-channel'
-        },
-        {
-          title: 'Skærmgruppeoversigt',
-          path: 'screen-groups',
-          classSuffix: 'overview'
-        },
-        {
-          title: 'Opret skærmgrupper',
-          path: 'screen-group',
-          classSuffix: 'create-channel'
         }
       ];
     }

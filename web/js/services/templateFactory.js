@@ -10,7 +10,7 @@ ikApp.factory('templateFactory', function() {
         height: '1080'
       },
       emptyoptions: {
-        fontsize: '32',
+        fontsize: '50',
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
@@ -28,7 +28,7 @@ ikApp.factory('templateFactory', function() {
         height: '1080'
       },
       emptyoptions: {
-        fontsize: '32',
+        fontsize: '50',
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
@@ -47,7 +47,7 @@ ikApp.factory('templateFactory', function() {
         height: '1080'
       },
       emptyoptions: {
-        fontsize: '32',
+        fontsize: '50',
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
@@ -66,7 +66,7 @@ ikApp.factory('templateFactory', function() {
         height: '1080'
       },
       emptyoptions: {
-        fontsize: '32',
+        fontsize: '50',
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
@@ -98,7 +98,7 @@ ikApp.factory('templateFactory', function() {
         height: '1920'
       },
       emptyoptions: {
-        fontsize: '32',
+        fontsize: '50',
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',

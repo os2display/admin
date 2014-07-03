@@ -26,20 +26,19 @@ class ScreenGroupsController extends Controller {
     $screenGroupEntities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
       ->findAll();
 
-    // Build our screen array.
-    $screenGroups = array();
-    foreach ($screenGroupEntities as $screenGroup) {
-      $screenGroups[] = array(
-        'id' => $screenGroup->getId(),
-        'title' => $screenGroup->getTitle(),
-        'created' => $screenGroup->getCreated(),
-        'screens' => $screenGroup->getScreens()
-      );
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+    if ($screenGroupEntities) {
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($screenGroupEntities, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
     }
 
-    // Create and return response
-    $response = new Response(json_encode($screenGroups));
-    $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
 }
