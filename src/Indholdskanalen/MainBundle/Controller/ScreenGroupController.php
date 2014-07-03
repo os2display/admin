@@ -64,17 +64,14 @@ class ScreenGroupController extends Controller {
     $em->persist($screenGroup);
     $em->flush();
 
-    // Create the response data.
-    $responseData = array(
-      "id" => $screenGroup->getId(),
-      "title" => $screenGroup->getTitle(),
-      "created" => $screenGroup->getCreated(),
-      "screens" => $screenGroup->getScreens()
-    );
-
-    // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
+    // Create response.
+    $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
+    $serializer = $this->get('jms_serializer');
+    $jsonContent = $serializer->serialize($screenGroup, 'json');
+
+    $response->setContent($jsonContent);
+
     return $response;
   }
 
@@ -92,25 +89,19 @@ class ScreenGroupController extends Controller {
     $screenGroup = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
       ->findOneById($id);
 
-    $screens = [];
-    foreach($screenGroup->getScreens() as $screen) {
-      $screens[] = $screen->getId();
-    }
-
-    // Create the response data.
-    $responseData = array();
-    if ($screenGroup) {
-      $responseData = array(
-        "id" => $screenGroup->getId(),
-        "title" => $screenGroup->getTitle(),
-        "created" => $screenGroup->getCreated(),
-        "screens" => $screens
-      );
-    }
-
-    // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
+    // Create response.
+    $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
+    if ($screenGroup) {
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($screenGroup, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
+
     return $response;
   }
 }
