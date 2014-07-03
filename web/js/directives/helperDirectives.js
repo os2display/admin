@@ -20,21 +20,16 @@ ikApp.directive('contenteditable', function() {
       // load init value.
       ctrl.$render();
 
-      if (element[0].tagName == 'PRE') {
-        // Replace enter, to avoid insertion of html tags in the data field.
-        element.on('keydown', function(event) {
-          if (event.keyCode == 13) {
-            event.preventDefault();
-            document.execCommand('insertHTML', false, '\r\n');
+      // Replace enter, to avoid insertion of html tags in the data field.
+      element.on('keydown', function(event) {
+        if (event.keyCode == 13) {
+          if (element.html() == '') {
+            element.append('\r\n');
           }
-        });
-      } else {
-        element.on('keydown', function(event) {
-          if (event.keyCode == 13) {
-            event.preventDefault();
-          }
-        });
-      }
+          event.preventDefault();
+          document.execCommand('insertHTML', false, '\r\n');
+        }
+      });
     }
   };
 });
