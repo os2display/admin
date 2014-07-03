@@ -26,23 +26,18 @@ class SlidesController extends Controller {
     $slide_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findAll();
 
-    // Build our slide array.
-    $slides = array();
-    foreach ($slide_entities as $slide) {
-      $slides[] = array(
-        'id' => $slide->getId(),
-        'title' => $slide->getTitle(),
-        'orientation' => $slide->getOrientation(),
-        'template' => $slide->getTemplate(),
-        'created' => $slide->getCreated(),
-        'options' => $slide->getOptions(),
-        'user' => $slide->getUser(),
-      );
-    }
-
-    $response = new Response(json_encode($slides));
-    // JSON header.
+    // Create response.
+    $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
+    if ($slide_entities) {
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($slide_entities, 'json');
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
 
     return $response;
   }
