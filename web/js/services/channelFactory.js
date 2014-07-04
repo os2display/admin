@@ -1,17 +1,52 @@
 /**
  * Channel factory.
  */
-ikApp.factory('channelFactory', ['$http', '$q', function($http, $q) {
+ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http, $q, searchFactory) {
   var factory = {};
 
   // Current open channel.
   // This is the channel we are editing.
   var currentChannel = {};
 
+  factory.searchLatestChannels = function() {
+    var search = {};
+    search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
+    var defer = $q.defer();
+    searchFactory.connect().then(function() {
+      searchFactory.latest(search);
+      searchFactory.on('result', function (data) {
+        if (data.length === 0) {
+          defer.reject();
+        }
+        defer.resolve(data);
+      });
+    });
+
+    return defer.promise;
+  }
+
+
+  factory.searchChannels = function(search) {
+    search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
+    var defer = $q.defer();
+    searchFactory.connect().then(function() {
+      searchFactory.search(search);
+      searchFactory.on('result', function (data) {
+        if (data.length === 0) {
+          defer.reject();
+        }
+        defer.resolve(data);
+      });
+    });
+
+    return defer.promise;
+  }
+
   /**
    * Get all channels.
    */
   factory.getChannels = function() {
+
     var defer = $q.defer();
 
     $http.get('/api/channels')

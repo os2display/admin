@@ -10,10 +10,12 @@ ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
       ikWidth: '@'
     },
     link: function(scope, element, attrs) {
-      attrs.$observe('ikId', function(val) {
-        screenFactory.getScreen(val).then(function(data) {
-          scope.ikScreen = data;
-        });
+      screenFactory.getScreen(scope.ikId).then(function(data) {
+        scope.ikScreen = data;
+        scope.style = {
+          width: "" + scope.ikWidth + "px",
+          height: "" + (scope.ikScreen.height * parseFloat(scope.ikWidth / scope.ikScreen.width)) + "px"
+        }
       });
     }
   }
