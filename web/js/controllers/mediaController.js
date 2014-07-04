@@ -8,6 +8,18 @@ ikApp.controller('MediaController', function ($scope, $fileUploader) {
     url: '/api/media'
   });
 
+  $scope.steps = 2;
+  $scope.currentStep = 1;
+
+  $scope.selectFiles = function() {
+      angular.element( document.querySelector( '#select-files' )).click();
+  };
+
+  $scope.isImage = function(item) {
+    var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+    return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+  }
+
 
   // ADDING FILTERS
 
@@ -23,6 +35,8 @@ ikApp.controller('MediaController', function ($scope, $fileUploader) {
 
   uploader.bind('afteraddingfile', function (event, item) {
     console.info('After adding a file', item);
+
+    $scope.currentStep++;
   });
 
   uploader.bind('whenaddingfilefailed', function (event, item) {
