@@ -31,7 +31,7 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
   };
 
   $scope.setSort = function(sort, sortOrder) {
-    if (sort == $scope.search.sort.field && sortOrder == $scope.search.sort.order) {
+    if (sort === $scope.search.sort.field && sortOrder === $scope.search.sort.order) {
       return;
     }
 
