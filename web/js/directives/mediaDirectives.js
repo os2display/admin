@@ -19,7 +19,7 @@ ikApp.directive('ikThumb', ['$window', function($window) {
     link: function(scope, element, attributes) {
       if (!helper.support) return;
 
-      var params = scope.$eval(attributes.ngThumb);
+      var params = scope.$eval(attributes.ikThumb);
 
       if (!helper.isFile(params.file)) return;
       if (!helper.isImage(params.file)) return;
@@ -41,6 +41,7 @@ ikApp.directive('ikThumb', ['$window', function($window) {
         var height = params.height || this.height / this.width * params.width;
         canvas.attr({ width: width, height: height });
         canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
+          console.log("test");
       }
     }
   };
