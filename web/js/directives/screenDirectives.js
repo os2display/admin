@@ -16,7 +16,6 @@ ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
           width: "" + scope.ikWidth + "px",
           height: "" + (scope.ikScreen.height * parseFloat(scope.ikWidth / scope.ikScreen.width)) + "px"
         }
-        console.log(scope.style);
       });
     }
   }
