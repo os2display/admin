@@ -6,20 +6,20 @@
       <span href="#" data-ng-class="{'is-active': search.orientation == 'portrait'}" class="overview--vertical" data-ng-click="setOrientation('portrait')">Vertical</span>
     </div>
     <form class="overview--form" accept-charset="UTF-8">
-      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search.title">
+      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field js-text-field" type="text" size="30" maxlength="128" data-ng-model="search.text">
     </form>
   </div>
   <div class="overview--sorting">
     <label class="overview--sort-label">Sorter på:</label>
     <div class="overview--sort-links">
-      <span class="overview--newest" data-ng-class="{'is-active': sort == '-created'}"  data-ng-click="setSort('-created')">Newest</span>
-      <span class="overview--oldest" data-ng-class="{'is-active': sort == 'created'}"  data-ng-click="setSort('created')">Oldest</span>
-      <span class="overview--alphabetical" data-ng-class="{'is-active': sort == 'title'}"  data-ng-click="setSort('title')">A-Z</span>
+      <span class="overview--newest" data-ng-class="{'is-active': search.sort.field == 'created' && search.sort.order == 'desc'}" data-ng-click="setSort('created', 'desc')">Newest</span>
+      <span class="overview--oldest" data-ng-class="{'is-active': search.sort.field == 'created' && search.sortorder == 'asc'}" data-ng-click="setSort('created', 'asc')">Oldest</span>
+      <span class="overview--alphabetical" data-ng-class="{'is-active': search.sort.field == 'title'}"  data-ng-click="setSort('title', 'desc')">A-Z</span>
     </div>
   </div>
 
   <div class="overview--channels">
-    <div class="overview--channel" data-ng-repeat="channel in channels | filter:search | orderBy: sort">
+    <div class="overview--channel" data-ng-repeat="channel in channels">
       <ik-channel class="overview--channel-container" ik-id="{{channel.id}}" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
       <a href="/#/channel/{{channel.id}}"><div class="overview--channel-label">{{channel.title}}</div></a>
       <span class="overview--channel-date">- {{channel.created * 1000 | date:'dd.MM.yyyy'}}</span>
