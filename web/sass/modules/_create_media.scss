@@ -1,0 +1,87 @@
+/**
+ *
+ * Create media
+ *
+ */
+
+
+
+/* Silent classes related to this document
+   ========================================================================== */
+
+
+/* Styles
+   ========================================================================== */
+
+.has-placeholder[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #ccc;
+}
+
+.create-media {
+
+  /* Global settings
+   ========================================================================== */
+  &--section {
+    @extend %create-element--section-default;
+  }
+
+
+  &--header {
+    @extend %create-element--header-default;
+  }
+
+
+  &--header-description {
+    @extend %create-element--header-description-default;
+  }
+
+  &--button {
+    @extend .button;
+
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+  /* Create media - upload file (Page 1)
+ ========================================================================== */
+  &--content--media-one {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-whole;
+    @extend %desk--one-half;
+
+    @extend %create-element--page-name-default ;
+  }
+
+  &--hidden-input-file {
+    width: 0;
+    height: 0;
+    overflow:hidden;
+  }
+
+  &--upload-drop-zone {
+    width: 100%;
+    background-color: $gray-lightest;
+  }
+
+  &--upload-icon {
+    @include generate-sprite-image($dashboard-sprites, 'upload-file-icon');
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2em auto;
+  }
+
+  &--upload-text {
+    width: 100%;
+    display: inline-block;
+    margin: 2em auto;
+  }
+
+
+  &--text[type="text"] {
+    @extend %create-element--page-name-input-default;
+  }
+}
