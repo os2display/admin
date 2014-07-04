@@ -52,9 +52,12 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
     return deferred.promise;
   };
 
-  this.latest = function(type) {
-    //socket.emit('search', { search: '', fields: ['title'], sort: 'id', type: 'Indholdskanalen\\MainBundle\\Entity\\Screen' });
-    socket.emit('search', { search: '', sort: 'id', type: 'Indholdskanalen\\MainBundle\\Entity\\Screen' });
+  this.search = function(search) {
+    socket.emit('search', search);
+  };
+
+  this.latest = function(search) {
+    socket.emit('search', { text: '', sort: 'created', type: search.type });
   };
 
   this.on = function(eventName, callback) {
