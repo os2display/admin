@@ -49,7 +49,7 @@
     @extend .button;
 
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 1em;
   }
 
 
@@ -192,7 +192,6 @@
 
 
   &--content-inner {
-    width: 960px;
     margin: 0 auto 2em;
     position: relative;
   }

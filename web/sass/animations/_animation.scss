@@ -77,7 +77,7 @@
 
 
 .spinner {
-  margin: 50px;
+  margin: 2em;
 
   @include generate-sprite-image($dashboard-sprites, 'spinner-icon', 60);
   @include animation(spinner 1.5s infinite);

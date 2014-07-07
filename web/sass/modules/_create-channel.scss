@@ -5,7 +5,7 @@
  */
 
 
-/* Silent classes related to this document
+/* Silent classes, mixins and variables related to this document
    ========================================================================== */
 
 // Circled arrows and numbers for slide ordering.
@@ -20,6 +20,11 @@
 
   @include border-radius(100%);
 }
+
+
+// Change arrow direction and position on large screens.
+$breakpoint-arrow-switch : 693px;
+
 
 
 /* Styles
@@ -54,7 +59,7 @@
     @extend .button;
 
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 1em;
   }
 
 
@@ -241,7 +246,7 @@
 
     @include transform(rotate(90deg));
 
-    @include breakpoint(663px) {
+    @include breakpoint($breakpoint-arrow-switch) {
       top: 35%;
 
       @include translateY(-50%);
@@ -254,7 +259,7 @@
     left: .5em;
     top: .5em;
 
-    @include breakpoint(663px) {
+    @include breakpoint($breakpoint-arrow-switch) {
       top: 35%;
     }
   }
@@ -264,7 +269,7 @@
     bottom: 2em;
     right: .5em;
 
-    @include breakpoint(663px) {
+    @include breakpoint($breakpoint-arrow-switch) {
       top: 35%;
     }
   }

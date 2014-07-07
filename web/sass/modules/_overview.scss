@@ -30,7 +30,7 @@
   &--description {
     color: $gray-darker;
     font-weight: lighter;
-    margin: 0 36px 72px 36px;
+    margin: 0 $gutter 2em $gutter;
     text-align: center;
   }
 
@@ -44,7 +44,7 @@
   &--channel,
   &--slide {
     display: inline-block;
-    margin: 0 36px 36px 0;
+    margin: 0 $gutter $gutter 0;
     position: relative;
 
     @include strip-link-styles($gray-darker);
@@ -77,12 +77,11 @@
 
 
   &--filter-orientation {
-    margin-bottom: 18px;
+    margin-bottom: 1em;
     position: relative;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
-      margin-bottom: 18px;
       width: 25%;
       display: inline-block;
       float: right;
@@ -91,11 +90,11 @@
 
 
   &--form {
-    margin: 0 0 36px 0;
+    margin: 0 0 1em 0;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
-      margin: 0 0 36px -4px;
+      margin: 0 0 1em $grid-markup-fix;
       width: 70%;
       display: inline-block;
       float: left;
@@ -104,12 +103,12 @@
 
 
   &--sorting {
-    margin: 0 0 36px 0;
+    margin: 0 0 1em 0;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
       max-width: $breakpoint-desk;
-      margin: 0 auto 36px;
+      margin: 0 auto 1em;
     }
   }
 
@@ -136,7 +135,7 @@
     border-right: 0;
     cursor: pointer;
     display: inline-block;
-    margin-left: -4px;
+    margin-left: $grid-markup-fix;
     padding: 0.75em 0;
     text-align: center;
     width: 33%;
@@ -171,7 +170,6 @@
   &--screen-link {
     display: inline-block;
     font-size: .9em;
-    width: 300px;
 
     @include strip-link-styles();
   }
