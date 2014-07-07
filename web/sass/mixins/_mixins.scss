@@ -96,15 +96,7 @@ $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing betwee
 
 
 // Set the preview styles.
-@mixin preview-list-display($alignment:horizontal) {
-  @if $alignment == "horizontal" {
-    // We use static sizes of the preview.
-    display: inline-block;
-    margin: 0 36px 36px 0;
-  }
-  @else {
-    display: inline-block;
-    margin: 1em;
-    // Add width for vertical images.
-  }
+@mixin preview-list-display() {
+  display: inline-block;
+  margin: 0 36px 36px 0;
 }

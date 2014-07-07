@@ -12,12 +12,6 @@
 /* Styles
    ========================================================================== */
 
-.has-placeholder[placeholder]:empty:before {
-  content: attr(placeholder);
-  color: #ccc;
-}
-
-
 .create-slide {
 
   /* Global settings

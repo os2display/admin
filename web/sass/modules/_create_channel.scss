@@ -10,7 +10,7 @@
 
 // Circled arrows and numbers for slide ordering.
 %create-channel--order-circle {
-  background: #fff;
+  background: $white;
   font-size: 1.3em;
   font-weight: bold;
   height: 2.1em;
@@ -24,12 +24,6 @@
 
 /* Styles
    ========================================================================== */
-
-.has-placeholder[placeholder]:empty:before {
-  content: attr(placeholder);
-  color: #ccc;
-}
-
 
 .create-channel {
 
@@ -147,7 +141,7 @@
     background: $beige;
     position: relative;
 
-    @include preview-list-display(horizontal);
+    @include preview-list-display();
   }
 
 
@@ -183,7 +177,7 @@
   &--slide-order-element {
     position: relative;
 
-    @include preview-list-display(horizontal);
+    @include preview-list-display();
 
     // We nest to hide the arrow tag of the last element.
     &:first-child {
@@ -209,7 +203,7 @@
     display: inline-block;
     position: relative;
 
-    @include strip-link-styles(#646464);
+    @include strip-link-styles();
   }
 
 
@@ -217,7 +211,7 @@
     display: inline-block;
     font-size: .9em;
 
-    @include strip-link-styles(#646464);
+    @include strip-link-styles();
   }
 
 
