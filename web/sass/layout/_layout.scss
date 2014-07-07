@@ -30,6 +30,8 @@
 
 
 .layout-wrapper {
+  padding: 0 1em;
+
   @include breakpoint($breakpoint-lap) {
     padding: 0 2em;
   }

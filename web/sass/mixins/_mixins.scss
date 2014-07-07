@@ -97,6 +97,11 @@ $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing betwee
 
 // Set the preview styles.
 @mixin preview-list-display() {
+
   display: inline-block;
-  margin: 0 $gutter $gutter 0;
+  margin: 0 0 $gutter;
+
+  @include breakpoint($breakpoint-lap) {
+    margin: 0 $gutter $gutter 0;
+  }
 }

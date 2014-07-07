@@ -20,11 +20,7 @@
    ========================================================================== */
 
   &--section {
-    margin: 0 $gutter 0;
-
-    @include breakpoint($breakpoint-lap) {
-      margin: 0;
-    }
+    margin: 0;
   }
 
   &--description {
@@ -44,8 +40,11 @@
   &--channel,
   &--slide {
     display: inline-block;
-    margin: 0 $gutter $gutter 0;
-    position: relative;
+    margin: 0 0 $gutter;
+
+    @include breakpoint($breakpoint-lap) {
+      margin: 0 $gutter $gutter 0;
+    }
 
     @include strip-link-styles($gray-darker);
   }

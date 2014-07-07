@@ -48,6 +48,11 @@
 
   /* Create screen - set name (Page 1)
    ========================================================================== */
+  &--form {
+    @extend %create-element--form;
+  }
+
+
   &--content--screen-one {
     @extend %grid__item;
     @extend %grid-markup-fix;
@@ -70,7 +75,6 @@
     @extend %grid;
 
     @extend %create-element--layout-default;
-    width: 50%;
   }
 
 

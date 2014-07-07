@@ -65,6 +65,11 @@ $breakpoint-arrow-switch : 693px;
 
   /* Create channel - set name (Page 1)
    ========================================================================== */
+  &--form {
+    @extend %create-element--form;
+  }
+
+
   &--content--channel-one {
     @extend %grid__item;
     @extend %grid-markup-fix;

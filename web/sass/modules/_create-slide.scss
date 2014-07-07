@@ -55,14 +55,13 @@
 
   /* Create slide - set name (Page 1)
    ========================================================================== */
-  &--content--slide-one {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-whole;
-    @extend %desk--one-half;
+  &--form {
+    @extend %create-element--form;
+  }
 
-    @extend %create-element--page-name-default ;
+
+  &--content--slide-one {
+    @extend %create-element--page-name-default;
 
     &.ng-leave {
       @include animation(fade-out 2s infinite);
@@ -85,39 +84,20 @@
 
 
   &--screens {
+
     max-width: 65em;
     margin: 0 auto 3em;
   }
 
 
   &--screen-landscape {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
-
+    display: inline-block;
     margin-bottom: 2em;
-    padding-left: 0;
-
-    @include breakpoint($breakpoint-lap) {
-      padding-left: $gutter;
-    }
   }
 
 
   &--screen-portrait {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
-
-    padding-left: 0;
-
-    @include breakpoint($breakpoint-lap) {
-      padding-left: $gutter;
-    }
+    display: inline-block;
   }
 
 
@@ -139,13 +119,6 @@
 
 
   &--template {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-third;
-    @extend %bigscreen--one-quarter;
-
     margin-bottom: 2em;
     position: relative;
   }
