@@ -26,8 +26,6 @@
 .preview--channel {
   position: relative;
 
-  @include preview-list-display();
-
   display: block;
   margin: 0;
 }
