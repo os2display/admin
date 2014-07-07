@@ -40,6 +40,7 @@
     text-align: center;
   }
 
+  &--screen,
   &--channel,
   &--slide {
     display: inline-block;
@@ -181,7 +182,9 @@
     border: 3px solid $gray;
     box-sizing: border-box;
     color: $gray-darker;
-    padding: 2em;
+    margin: 1em;
+    max-height: 50em;
+    min-height: 5em;
     text-align: center;
   }
 
