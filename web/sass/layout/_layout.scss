@@ -33,9 +33,11 @@ html.is-locked  body {
 }
 
 
+// A .5 padding fits on the iphon 4 inch with inline styles of 300px width on several pages.
 .layout-wrapper {
-  padding: 0 1em;
+  padding: 0 .5em;
 
+  // Expand the pading a bit when moving to larger screens.
   @include breakpoint($breakpoint-lap) {
     padding: 0 2em;
   }

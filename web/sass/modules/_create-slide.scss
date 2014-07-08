@@ -146,6 +146,12 @@
     @extend %create-element--layout-default;
   }
 
+  &--content-wrapper {
+    margin-bottom: 2em;
+    overflow-x: auto;
+    width: 100%;
+  }
+
 
   &--config {
     margin: 0 auto 1em;
@@ -165,7 +171,7 @@
 
 
   &--content-inner {
-    margin: 0 auto 2em;
+    margin: 0 auto;
     position: relative;
   }
 
@@ -190,35 +196,12 @@
   }
 
 
-  &--edit-description {
-    display: inline-block;
-    margin-left: .5em;
-
-    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
-  }
-
-
-  &--edit-title {
-    display: inline-block;
-    margin-left: .5em;
-
-    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
-  }
-
-
   &--edit-box-settings {
     position: absolute;
-    right: -0.5em;
-    top: -0.5em;
+    right: -1em;
+    top: -1em;
 
-    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 25);
-
-    @include breakpoint($breakpoint-lap) {
-      right: -1em;
-      top: -1em;
-
-      @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
-    }
+    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
   }
 
 
@@ -227,12 +210,7 @@
     position: absolute;
     right: 15%;
 
-    @include generate-sprite-image($dashboard-sprites, 'landscape-icon', 50);
-
-    @include breakpoint($breakpoint-lap) {
-
-      @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
-    }
+    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
   }
 
 

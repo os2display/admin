@@ -175,14 +175,16 @@
 
 
   &--screen-wrapper {
+    margin: 0;
     background: $gray-lightest;
     border: 3px solid $gray;
     box-sizing: border-box;
     color: $gray-darker;
-    margin: 1em;
-    max-height: 50em;
-    min-height: 5em;
     text-align: center;
+
+    @include breakpoint($breakpoint-lap){
+      margin: 0 1em 1em 0;
+    }
   }
 
   &--screen-header {

@@ -38,12 +38,15 @@
 /* Styles.
  ========================================================================== */
 
+.header-wrapper {
+  z-index: 1;
+}
+
 .header {
   background-color: $beige;
   color: $gray-darkest;
   margin-bottom: 2em;
   position: relative;
-  overflow: hidden;
   width: 100%;
   z-index: 1;
 
@@ -69,7 +72,7 @@
     padding: 0 1em;
     position: absolute;
     top: 50%;
-    width: 55%;
+    width: 45%;
 
     @include translateY(-50%);
     @include breakpoint(70em) {
@@ -158,7 +161,7 @@
   &--main-menu-item {
     display: none;
     font-size: 1em;
-    margin-right: $adjust-inline-block;
+    margin-left: $adjust-inline-block;
     text-align: center;
 
     &.is-active {
@@ -452,28 +455,28 @@
 
 
   &--main-menu-item-image-channels--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 20);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-slides--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 20);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-screens--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'display-icon', 20);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-templates--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 20);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
 
