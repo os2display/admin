@@ -5,18 +5,13 @@
  */
 
 
-/* Silent classes and variables related to this document
-   ========================================================================== */
-
-
-
 /* Styles
    ========================================================================== */
 
 .nav {
   height: 100%;
   font-size: .6em;
-  position: absolute;
+  position: fixed;
   right: -100%;
   z-index: 99;
 
@@ -26,6 +21,7 @@
   width: 35em;
 
   background: $white;
+  overflow-y: auto;
 
   @include box-sizing(border-box);
   @include box-shadow(-5px 0px 10px transparentize($black, .75));
@@ -83,7 +79,7 @@
 
 
   &--overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;

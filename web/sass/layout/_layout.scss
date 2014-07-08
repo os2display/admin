@@ -5,6 +5,14 @@
  */
 
 
+/* Make sure the user can't scroll when overlays are active */
+html.is-locked,
+html.is-locked  body {
+  overflow: hidden;
+
+  height: 100%;
+}
+
 /* Switch page animations */
 .view-container {
   position: relative;
@@ -15,8 +23,6 @@
   position: absolute;
   left: 0;
   right: 0;
-
-  //@include animation(fade-in 1s infinite);
 }
 
 
@@ -24,8 +30,6 @@
   position: absolute;
   left: 0;
   right: 0;
-
-  //@include animation(fade-out 1s infinite);
 }
 
 
