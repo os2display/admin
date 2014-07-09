@@ -12,12 +12,6 @@
 /* Styles
    ========================================================================== */
 
-.has-placeholder[placeholder]:empty:before {
-  content: attr(placeholder);
-  color: #ccc;
-}
-
-
 .create-slide {
 
   /* Global settings
@@ -55,20 +49,19 @@
     @extend .button;
 
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 1em;
   }
 
 
   /* Create slide - set name (Page 1)
    ========================================================================== */
-  &--content--slide-one {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-whole;
-    @extend %desk--one-half;
+  &--form {
+    @extend %create-element--form;
+  }
 
-    @extend %create-element--page-name-default ;
+
+  &--content--slide-one {
+    @extend %create-element--page-name-default;
 
     &.ng-leave {
       @include animation(fade-out 2s infinite);
@@ -91,39 +84,20 @@
 
 
   &--screens {
+
     max-width: 65em;
     margin: 0 auto 3em;
   }
 
 
   &--screen-landscape {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
-
+    display: inline-block;
     margin-bottom: 2em;
-    padding-left: 0;
-
-    @include breakpoint($breakpoint-lap) {
-      padding-left: $gutter;
-    }
   }
 
 
   &--screen-portrait {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
-
-    padding-left: 0;
-
-    @include breakpoint($breakpoint-lap) {
-      padding-left: $gutter;
-    }
+    display: inline-block;
   }
 
 
@@ -145,13 +119,6 @@
 
 
   &--template {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-third;
-    @extend %bigscreen--one-quarter;
-
     margin-bottom: 2em;
     position: relative;
   }
@@ -179,6 +146,12 @@
     @extend %create-element--layout-default;
   }
 
+  &--content-wrapper {
+    margin-bottom: 2em;
+    overflow-x: auto;
+    width: 100%;
+  }
+
 
   &--config {
     margin: 0 auto 1em;
@@ -198,8 +171,7 @@
 
 
   &--content-inner {
-    width: 960px;
-    margin: 0 auto 2em;
+    margin: 0 auto;
     position: relative;
   }
 
@@ -213,7 +185,7 @@
 
   &--config-text {
     background: rgba(0,0,0,0.7);
-    color: #fff;
+    color: $white;
     margin: 1em auto;
     padding: 2em;
     text-align: left;
@@ -224,35 +196,12 @@
   }
 
 
-  &--edit-description {
-    display: inline-block;
-    margin-left: .5em;
-
-    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
-  }
-
-
-  &--edit-title {
-    display: inline-block;
-    margin-left: .5em;
-
-    @include generate-sprite-image($dashboard-sprites, 'edit-icon');
-  }
-
-
   &--edit-box-settings {
     position: absolute;
-    right: -0.5em;
-    top: -0.5em;
+    right: -1em;
+    top: -1em;
 
-    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 25);
-
-    @include breakpoint($breakpoint-lap) {
-      right: -1em;
-      top: -1em;
-
-      @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
-    }
+    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
   }
 
 
@@ -261,12 +210,7 @@
     position: absolute;
     right: 15%;
 
-    @include generate-sprite-image($dashboard-sprites, 'landscape-icon', 50);
-
-    @include breakpoint($breakpoint-lap) {
-
-      @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
-    }
+    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
   }
 
 

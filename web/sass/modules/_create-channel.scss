@@ -5,12 +5,12 @@
  */
 
 
-/* Silent classes related to this document
+/* Silent classes, mixins and variables related to this document
    ========================================================================== */
 
 // Circled arrows and numbers for slide ordering.
 %create-channel--order-circle {
-  background: #fff;
+  background: $white;
   font-size: 1.3em;
   font-weight: bold;
   height: 2.1em;
@@ -22,14 +22,13 @@
 }
 
 
+// Change arrow direction and position on large screens.
+$breakpoint-arrow-switch : 693px;
+
+
+
 /* Styles
    ========================================================================== */
-
-.has-placeholder[placeholder]:empty:before {
-  content: attr(placeholder);
-  color: #ccc;
-}
-
 
 .create-channel {
 
@@ -60,12 +59,17 @@
     @extend .button;
 
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 1em;
   }
 
 
   /* Create channel - set name (Page 1)
    ========================================================================== */
+  &--form {
+    @extend %create-element--form;
+  }
+
+
   &--content--channel-one {
     @extend %grid__item;
     @extend %grid-markup-fix;
@@ -147,7 +151,7 @@
     background: $beige;
     position: relative;
 
-    @include preview-list-display(horizontal);
+    @include preview-list-display();
   }
 
 
@@ -183,7 +187,7 @@
   &--slide-order-element {
     position: relative;
 
-    @include preview-list-display(horizontal);
+    @include preview-list-display();
 
     // We nest to hide the arrow tag of the last element.
     &:first-child {
@@ -209,7 +213,7 @@
     display: inline-block;
     position: relative;
 
-    @include strip-link-styles(#646464);
+    @include strip-link-styles();
   }
 
 
@@ -217,7 +221,7 @@
     display: inline-block;
     font-size: .9em;
 
-    @include strip-link-styles(#646464);
+    @include strip-link-styles();
   }
 
 
@@ -247,7 +251,7 @@
 
     @include transform(rotate(90deg));
 
-    @include breakpoint(663px) {
+    @include breakpoint($breakpoint-arrow-switch) {
       top: 35%;
 
       @include translateY(-50%);
@@ -260,17 +264,17 @@
     left: .5em;
     top: .5em;
 
-    @include breakpoint(663px) {
+    @include breakpoint($breakpoint-arrow-switch) {
       top: 35%;
     }
   }
 
 
   &--slide-order-arrow-right {
-    top: 8em;
+    bottom: 2em;
     right: .5em;
 
-    @include breakpoint(663px) {
+    @include breakpoint($breakpoint-arrow-switch) {
       top: 35%;
     }
   }

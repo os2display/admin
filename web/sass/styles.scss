@@ -39,10 +39,10 @@
 
 // Modules
 @import "modules/_header";
-@import "modules/_create_slide";
-@import "modules/_create_screen";
-@import "modules/_create_channel";
-@import "modules/_create_media";
+@import "modules/_create-slide";
+@import "modules/_create-screen";
+@import "modules/_create-channel";
+@import "modules/_create-media";
 @import "modules/_login";
 @import "modules/_nav";
 @import "modules/_overview";
@@ -54,10 +54,6 @@
 
 // Animations
 @import "animations/_animation";
-
-
-// Indholdskanalen stylings
-@import "ik/_ik";
 
 
 // IK templates

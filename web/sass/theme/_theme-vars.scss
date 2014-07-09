@@ -1,5 +1,9 @@
 /* Layout
    ================================================================================================================== */
+$breakpoint-lap:          481px;
+$breakpoint-portable:     1023px;
+$breakpoint-desk:         1024px;
+$breakpoint-bigscreen:    1700px;
 
 $layout-max-width:    75em;
 $border-radius:       .4em;
@@ -9,6 +13,7 @@ $border-radius:       .4em;
   margin-right: -4px;
 }
 
+$grid-markup-fix: -4px;
 
 /* Colors
    ================================================================================================================== */
@@ -50,3 +55,11 @@ $padding-bottom:      1.5em;
    ================================================================================================================== */
 
 $border-color:        $gray-lighter;
+
+
+/* Buttons
+   ================================================================================================================== */
+
+$button-default-background: #357fd1;
+$button-default-alternate: #2361a9;
+$button-default-inactive: #b8b8b8;

@@ -13,12 +13,6 @@
 /* Styles
    ========================================================================== */
 
-.has-placeholder[placeholder]:empty:before {
-  content: attr(placeholder);
-  color: #ccc;
-}
-
-
 .create-screen {
 
   /* Global settings
@@ -48,12 +42,17 @@
     @extend .button;
 
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 1em;
   }
 
 
   /* Create screen - set name (Page 1)
    ========================================================================== */
+  &--form {
+    @extend %create-element--form;
+  }
+
+
   &--content--screen-one {
     @extend %grid__item;
     @extend %grid-markup-fix;
@@ -76,7 +75,6 @@
     @extend %grid;
 
     @extend %create-element--layout-default;
-    width: 50%;
   }
 
 

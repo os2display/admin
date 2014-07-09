@@ -20,7 +20,7 @@
 
 .edit-menu {
   height: 100%;
-  font-size: 10px;
+  font-size: .6em;
   position: fixed;
   right: -100%;
   text-align: left;
@@ -93,8 +93,8 @@
   }
 
   &--form-element[type="text"] {
-    background-color: #fbfbfb;
-    font-size: 16px;
+    background-color: $gray-lightest;
+    font-size: 1.7em;
     height: 4.5em;
     margin-bottom: 2em;
     padding: 1.5em;
@@ -106,7 +106,7 @@
   }
 
   &--dropdown {
-    background-color: #fbfbfb;
+    background-color: $gray-lightest;
     height: 2.5em;
     width: 100%;
     font-size: 2em;

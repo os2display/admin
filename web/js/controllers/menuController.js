@@ -111,6 +111,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.navMenuOpen = false;
     }
     $scope.navMenuOpen = !$scope.navMenuOpen;
+    $('html').toggleClass('is-locked');
   };
 
   /**

@@ -5,27 +5,23 @@
  */
 
 
-/* Silent classes and variables related to this document
-   ========================================================================== */
-
-
-
 /* Styles
    ========================================================================== */
 
 .nav {
   height: 100%;
-  font-size: 10px;
-  position: absolute;
+  font-size: .6em;
+  position: fixed;
   right: -100%;
   z-index: 99;
 
   padding-top: 3.75em;
   padding-right: 3em;
   padding-left: 3em;
-  width: 35em;
+  width: 80%;
 
   background: $white;
+  overflow-y: auto;
 
   @include box-sizing(border-box);
   @include box-shadow(-5px 0px 10px transparentize($black, .75));
@@ -83,7 +79,7 @@
 
 
   &--overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;

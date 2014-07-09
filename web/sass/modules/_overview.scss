@@ -20,17 +20,13 @@
    ========================================================================== */
 
   &--section {
-    margin: 0 $gutter 0;
-
-    @include breakpoint($breakpoint-lap) {
-      margin: 0;
-    }
+    margin: 0;
   }
 
   &--description {
     color: $gray-darker;
     font-weight: lighter;
-    margin: 0 36px 72px 36px;
+    margin: 0 $gutter 2em $gutter;
     text-align: center;
   }
 
@@ -40,11 +36,15 @@
     text-align: center;
   }
 
+  &--screen,
   &--channel,
   &--slide {
     display: inline-block;
-    margin: 0 36px 36px 0;
-    position: relative;
+    margin: 0 0 $gutter;
+
+    @include breakpoint($breakpoint-lap) {
+      margin: 0 $gutter $gutter 0;
+    }
 
     @include strip-link-styles($gray-darker);
   }
@@ -76,12 +76,11 @@
 
 
   &--filter-orientation {
-    margin-bottom: 18px;
+    margin-bottom: 1em;
     position: relative;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
-      margin-bottom: 18px;
       width: 25%;
       display: inline-block;
       float: right;
@@ -90,11 +89,11 @@
 
 
   &--form {
-    margin: 0 0 36px 0;
+    margin: 0 0 1em 0;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
-      margin: 0 0 36px -4px;
+      margin: 0 0 1em $grid-markup-fix;
       width: 70%;
       display: inline-block;
       float: left;
@@ -103,12 +102,12 @@
 
 
   &--sorting {
-    margin: 0 0 36px 0;
+    margin: 0 0 1em 0;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
       max-width: $breakpoint-desk;
-      margin: 0 auto 36px;
+      margin: 0 auto 1em;
     }
   }
 
@@ -135,7 +134,7 @@
     border-right: 0;
     cursor: pointer;
     display: inline-block;
-    margin-left: -4px;
+    margin-left: $grid-markup-fix;
     padding: 0.75em 0;
     text-align: center;
     width: 33%;
@@ -170,19 +169,22 @@
   &--screen-link {
     display: inline-block;
     font-size: .9em;
-    width: 300px;
 
     @include strip-link-styles();
   }
 
 
   &--screen-wrapper {
+    margin: 0;
     background: $gray-lightest;
     border: 3px solid $gray;
     box-sizing: border-box;
     color: $gray-darker;
-    padding: 2em;
     text-align: center;
+
+    @include breakpoint($breakpoint-lap){
+      margin: 0 1em 1em 0;
+    }
   }
 
   &--screen-header {

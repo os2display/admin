@@ -32,8 +32,9 @@
    ================================================================================================================== */
 
 %create-element--section-default {
-  color: #535353;
+  color: $gray-darkest;
   display: block;
+  padding-bottom: 1em;
 }
 
 
@@ -41,16 +42,16 @@
   border-bottom: 1px solid $gray-lighter;
   display: inline-block;
   font-weight: bold;
-  margin: 0 36px 18px 36px;
+  margin: 0 0 1em;
   padding-bottom: 1em;
   text-align: center;
 }
 
 
 %create-element--header-description-default {
-  color: #646464;
+  color: $gray-darkest;
   font-weight: lighter;
-  margin: 0 36px 72px 36px;
+  margin: 0 0 4em;
   text-align: center;
 }
 
@@ -60,21 +61,24 @@
   margin: 0 auto;
   text-align: center;
   padding-left: 0;
+}
 
-  @include breakpoint($breakpoint-lap) {
-    padding-left: $gutter;
-  }
+
+%create-element--form {
+  margin: 0;
 }
 
 
 %create-element--page-name-input-default {
-  background-color: #fbfbfb;
+  background-color: $gray-lightest;
+  display: inline-block;
   height: 4.5em;
   margin-bottom: 2em;
+  max-width: $breakpoint-desk;
   padding: 1.5em;
 
   &.is-valid {
-    background: url('../images/icons/check-circle-icon.png') #fbfbfb;
+    background: url('../images/icons/check-circle-icon.png') $gray-lightest;
     background-size:2em 2em;
     background-repeat:no-repeat;
     background-position: right 1.25em top 1.25em;
