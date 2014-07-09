@@ -33,14 +33,10 @@ class SearchIndexer {
     }
 
     if ($method != 'DELETE') {
-      // Setup our serializer.
-      $serializer = $this->container->get('jms_serializer');
-      $jsonContent = $serializer->serialize($entity, 'json');
-
-      $this->curl('http://localhost:9200/indholdskanalen/' . $type . '/' . $entity->getId(), $method, $jsonContent);
+      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
     }
     else {
-      $this->curl('http://localhost:9200/indholdskanalen/' . $type . '/' . $entity->getId(), $method);
+      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234'));
     }
   }
 
@@ -66,7 +62,15 @@ class SearchIndexer {
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
     if ($method != 'DELETE') {
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+      // Setup our serializer.
+      $serializer = $this->container->get('jms_serializer');
+      $jsonContent = $serializer->serialize($params, 'json');
+
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
+
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json'
+      ));
     }
 
     // Receive server response.
