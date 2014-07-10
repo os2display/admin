@@ -21,20 +21,68 @@ use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;
  *
  * @author <yourname> <youremail>
  */
-class Media extends BaseMedia
-{
+class Media extends BaseMedia {
+  /**
+   * @var integer $id
+   */
+  protected $id;
+
+  /**
+   * @ORM\Column(name="created", type="integer", nullable=false)
+   */
+  private $created;
+
+/**
+   * Get id
+   *
+   * @return integer $id
+   */
+  public function getId() {
+    return $this->id;
+  }
     /**
-     * @var integer $id
+     * @var \Doctrine\Common\Collections\Collection
      */
-    protected $id;
+    private $galleryHasMedias;
 
     /**
-     * Get id
-     *
-     * @return integer $id
+     * Constructor
      */
-    public function getId()
+    public function __construct()
     {
-        return $this->id;
+        $this->galleryHasMedias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add galleryHasMedias
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedias
+     * @return Media
+     */
+    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedias)
+    {
+        $this->galleryHasMedias[] = $galleryHasMedias;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryHasMedias
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedias
+     */
+    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedias)
+    {
+        $this->galleryHasMedias->removeElement($galleryHasMedias);
+    }
+
+    /**
+     * Get galleryHasMedias
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGalleryHasMedias()
+    {
+        return $this->galleryHasMedias;
     }
 }
