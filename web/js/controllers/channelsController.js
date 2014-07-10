@@ -1,17 +1,28 @@
+/**
+ * @file
+ * Channels controller handles the display and selection of channels.
+ */
+
+
 ikApp.controller('ChannelsController', function($scope, channelFactory) {
   $scope.channels = [];
+
+  // Setup default search options.
   $scope.search = {
-    fields: 'title',
-    text: '',
+    "fields": 'title',
+    "text": '',
+    "filter": {
+      "orientation":  'landscape'
+    },
+    "sort": {
+      "created" : {
+        "order": "desc"
+      }
+    }
   };
 
-  $scope.search.filter = {};
-  $scope.search.filter['orientation'] = 'landscape';
-
-  $scope.search.sort = {};
-  $scope.search.sort['created'] = 'desc';
-
-  channelFactory.searchLatestChannels().then(
+  // Send the default search query.
+  channelFactory.searchChannels($scope.search).then(
     function(data) {
       $scope.channels = data;
     }
@@ -20,7 +31,6 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
   var updateChannels = function() {
     channelFactory.searchChannels($scope.search).then(
       function(data) {
-        console.log(data);
         $scope.channels = data;
       }
     );

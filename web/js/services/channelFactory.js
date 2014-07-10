@@ -8,15 +8,6 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
   // This is the channel we are editing.
   var currentChannel = {};
 
-  factory.searchLatestChannels = function() {
-    var search = {};
-    search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
-    search.app_id = 1234;
-
-    return searchFactory.latest(search);
-  };
-
-
   factory.searchChannels = function(search) {
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
     search.app_id = 1234;
