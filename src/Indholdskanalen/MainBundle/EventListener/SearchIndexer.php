@@ -36,7 +36,7 @@ class SearchIndexer {
       $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
     }
     else {
-      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234'));
+      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'id' => $entity->getId()));
     }
   }
 
@@ -61,17 +61,15 @@ class SearchIndexer {
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
-    if ($method != 'DELETE') {
-      // Setup our serializer.
-      $serializer = $this->container->get('jms_serializer');
-      $jsonContent = $serializer->serialize($params, 'json');
+    // Setup our serializer.
+    $serializer = $this->container->get('jms_serializer');
+    $jsonContent = $serializer->serialize($params, 'json');
 
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
 
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json'
-      ));
-    }
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json'
+    ));
 
     // Receive server response.
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
