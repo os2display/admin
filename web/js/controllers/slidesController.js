@@ -1,22 +1,29 @@
+/**
+ * @file
+ * Slides controller handles the display and selection of slides.
+ */
+
+
 ikApp.controller('SlidesController', function($scope, slideFactory) {
   $scope.slides = [];
+
+  // Setup default search options.
   $scope.search = {
-    fields: 'title',
-    text: '',
+    "fields": 'title',
+    "text": '',
+    "filter": {
+      "orientation":  'landscape'
+    },
+    "sort": {
+      "created" : {
+        "order": "desc"
+      }
+    }
   };
 
-  $scope.search.filter = {};
-  $scope.search.filter['orientation'] = 'landscape';
-
-  $scope.search.sort = {};
-  $scope.search.sort['created'] = 'desc';
-
-  slideFactory.searchLatestSlides().then(
-    function(data) {
-      $scope.slides = data;
-    }
-  );
-
+  /**
+   * Updates the slides array by send a search request.
+   */
   var updateSlides = function() {
     slideFactory.searchSlides($scope.search).then(
       function(data) {
@@ -25,19 +32,39 @@ ikApp.controller('SlidesController', function($scope, slideFactory) {
     );
   };
 
+  // Send the default search query.
+  updateSlides();
+
+  /**
+   * Changes orientation and updated the slides.
+   *
+   * @param orientation
+   *   This should either be 'landscape' or 'portrait'.
+   */
   $scope.setOrientation = function(orientation) {
-    $scope.search.filter['orientation'] = orientation;
+    $scope.search.filter.orientation = orientation;
 
     updateSlides();
   };
 
+  /**
+   * Changes the sort order and updated the slides.
+   *
+   * @param sort
+   *   Field to sort on.
+   * @param sortOrder
+   *   The order to sort in 'desc' or 'asc'.
+   */
   $scope.setSort = function(sort, sortOrder) {
     $scope.search.sort = {};
-    $scope.search.sort[sort] = sortOrder;
+    $scope.search.sort[sort] = {
+      "order": sortOrder
+    };
 
     updateSlides();
   };
 
+  // Hook into the search field.
   $('.js-text-field').off("keyup").on("keyup", function() {
     updateSlides();
   });

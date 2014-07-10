@@ -8,15 +8,6 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory', fu
   // This is the slide we are editing.
   var currentSlide = null;
 
-  factory.searchLatestSlides = function() {
-    var search = {};
-    search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
-    search.app_id = 1234;
-
-    return searchFactory.latest(search);
-  };
-
-
   factory.searchSlides = function(search) {
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
     search.app_id = 1234;
