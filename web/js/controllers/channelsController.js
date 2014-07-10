@@ -13,7 +13,6 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
 
   channelFactory.searchLatestChannels().then(
     function(data) {
-      console.log(data);
       $scope.channels = data;
     }
   );
