@@ -13,15 +13,15 @@
   <div class="overview--sorting">
     <label class="overview--sort-label">Sorter på:</label>
     <div class="overview--sort-links">
-      <span class="overview--newest" data-ng-class="{'is-active': sort == '-created'}"  data-ng-click="setSort('-created')">Newest</span>
-      <span class="overview--oldest" data-ng-class="{'is-active': sort == 'created'}"  data-ng-click="setSort('created')">Oldest</span>
-      <span class="overview--alphabetical" data-ng-class="{'is-active': sort == 'title'}"  data-ng-click="setSort('title')">A-Z</span>
+      <span class="overview--newest" data-ng-class="{'is-active': search.sort['created_at'] && search.sort['created_at'] == 'desc'}" data-ng-click="setSort('created_at', 'desc')">Newest</span>
+      <span class="overview--oldest" data-ng-class="{'is-active': search.sort['created_at'] && search.sort['created_at'] == 'asc'}" data-ng-click="setSort('created_at', 'asc')">Oldest</span>
+      <span class="overview--alphabetical" data-ng-class="{'is-active': search.sort['title']}"  data-ng-click="setSort('title', 'desc')">A-Z</span>
     </div>
   </div>
 
   <div class="overview--images">
     <div class="overview--images" data-ng-repeat="image in images">
-
+      {{ image }}
     </div>
   </div>
 </section>

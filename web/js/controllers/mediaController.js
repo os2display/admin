@@ -17,6 +17,8 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
     return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
   }
 
+  $scope.steps = 2;
+  $scope.currentStep = 1;
 
   $scope.images = [];
   $scope.search = {
@@ -25,13 +27,12 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
   };
 
   $scope.search.sort = {};
-  $scope.search.sort['created'] = 'desc';
+  $scope.search.sort['created_at'] = 'desc';
 
-  imageFactory.searchLatestImages().then(
-    function(data) {
-      $scope.images = data;
-    }
-  );
+  imageFactory.searchImages($scope.search).then(function (data) {
+    $scope.images = data;
+    console.log(data);
+  });
 
   var updateImages = function() {
     imageFactory.searchImages($scope.search).then(
