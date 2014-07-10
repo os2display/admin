@@ -1,12 +1,28 @@
 /**
  * Slide factory.
  */
-ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q, userFactory) {
+ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory', function($http, $q, userFactory, searchFactory) {
   var factory = {};
 
   // Current open slide.
   // This is the slide we are editing.
   var currentSlide = null;
+
+  factory.searchLatestSlides = function() {
+    var search = {};
+    search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
+    search.app_id = 1234;
+
+    return searchFactory.latest(search);
+  };
+
+
+  factory.searchSlides = function(search) {
+    search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
+    search.app_id = 1234;
+
+    return searchFactory.search(search);
+  };
 
   /**
    * Get all slides.
@@ -23,7 +39,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
       });
 
     return defer.promise;
-  }
+  };
 
   /**
    * Find slide to edit. If id is not set return current slide, else load from backend.
@@ -52,7 +68,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
     }
 
     return defer.promise;
-  }
+  };
 
   /**
    * Find the slide with @id
@@ -70,7 +86,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
       });
 
     return defer.promise;
-  }
+  };
 
   /**
    * Saves slide to slides. Assigns an id, if it is not set.
@@ -99,7 +115,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
     );
 
     return defer.promise;
-  }
+  };
 
   /**
    * Returns an empty slide.
@@ -117,7 +133,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', function($http, $q,
     };
 
     return currentSlide;
-  }
+  };
 
   return factory;
 }]);
