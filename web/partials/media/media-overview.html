@@ -21,7 +21,8 @@
 
   <div class="overview--images">
     <div class="overview--images" data-ng-repeat="image in images">
-      {{ image }}
+      {{ image.provider_metadata.filename }}<br />
+      {{ image.name }}
     </div>
   </div>
 </section>

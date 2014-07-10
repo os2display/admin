@@ -1,8 +1,64 @@
 /**
- * Channel controller. Controls the channel creation process.
+ * @file
+ * Images controller handles the display, selection and upload of image.
  */
+
 ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactory) {
-// Creates a uploader
+  // Setup some default configuration.
+  $scope.images = [];
+  $scope.steps = 2;
+  $scope.currentStep = 1;
+
+  // Setup default search options.
+  $scope.search = {
+    "fields": 'title',
+    "text": '',
+    "sort": {
+      "created_at" : {
+        "order": "desc"
+      }
+    }
+  };
+
+  /**
+   * Updates the images array by send a search request.
+   */
+  var updateImages = function() {
+    imageFactory.searchImages($scope.search).then(
+      function(data) {
+        console.log(data);
+        $scope.images = data;
+      }
+    );
+  };
+
+  // Send the default search query.
+  updateImages();
+
+  /**
+   * Changes the sort order and updated the images.
+   *
+   * @param sort
+   *   Field to sort on.
+   * @param sortOrder
+   *   The order to sort in 'desc' or 'asc'.
+   */
+  $scope.setSort = function(sort, sortOrder) {
+    $scope.search.sort = {};
+    $scope.search.sort[sort] = {
+      "order": sortOrder
+    };
+
+
+    updateImages();
+  };
+
+  // Hook into the search field.
+  $('.js-text-field').off("keyup").on("keyup", function() {
+    updateImages();
+  });
+
+  // Creates a uploader
   var uploader = $scope.uploader = $fileUploader.create({
     scope: $scope,
     url: '/api/media'
@@ -15,43 +71,7 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
   $scope.isImage = function(item) {
     var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
     return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-  }
-
-  $scope.steps = 2;
-  $scope.currentStep = 1;
-
-  $scope.images = [];
-  $scope.search = {
-    fields: 'title',
-    text: '',
   };
-
-  $scope.search.sort = {};
-  $scope.search.sort['created_at'] = 'desc';
-
-  imageFactory.searchImages($scope.search).then(function (data) {
-    $scope.images = data;
-    console.log(data);
-  });
-
-  var updateImages = function() {
-    imageFactory.searchImages($scope.search).then(
-      function(data) {
-        $scope.images = data;
-      }
-    );
-  };
-
-  $scope.setSort = function(sort, sortOrder) {
-    $scope.search.sort = {};
-    $scope.search.sort[sort] = sortOrder;
-
-    updateImages();
-  };
-
-  $('.js-text-field').off("keyup").on("keyup", function() {
-    updateImages();
-  });
 
   // Images only
   uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
