@@ -21,13 +21,9 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
     }
   };
 
-  // Send the default search query.
-  channelFactory.searchChannels($scope.search).then(
-    function(data) {
-      $scope.channels = data;
-    }
-  );
-
+  /**
+   * Updates the channels array by send a search request.
+   */
   var updateChannels = function() {
     channelFactory.searchChannels($scope.search).then(
       function(data) {
@@ -36,15 +32,34 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
     );
   };
 
+  // Send the default search query.
+  updateChannels();
+
+  /**
+   * Changes orientation and updated the channels.
+   *
+   * @param orientation
+   *   This should either be 'landscape' or 'portrait'.
+   */
   $scope.setOrientation = function(orientation) {
     $scope.search.filter['orientation'] = orientation;
 
     updateChannels();
   };
 
+  /**
+   * Changes the sort order and updated the channels.
+   *
+   * @param sort
+   *   Field to sort on.
+   * @param sortOrder
+   *   The order to sort in 'desc' or 'asc'.
+   */
   $scope.setSort = function(sort, sortOrder) {
     $scope.search.sort = {};
-    $scope.search.sort[sort] = sortOrder;
+    $scope.search.sort[sort] = {
+      "order": sortOrder
+    };
 
     updateChannels();
   };
