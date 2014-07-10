@@ -42,7 +42,7 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
    *   This should either be 'landscape' or 'portrait'.
    */
   $scope.setOrientation = function(orientation) {
-    $scope.search.filter['orientation'] = orientation;
+    $scope.search.filter.orientation = orientation;
 
     updateChannels();
   };
@@ -64,6 +64,7 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
     updateChannels();
   };
 
+  // Hook into the search field.
   $('.js-text-field').off("keyup").on("keyup", function() {
     updateChannels();
   });
