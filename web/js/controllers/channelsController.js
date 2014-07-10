@@ -3,7 +3,7 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
   $scope.search = {
     fields: 'title',
     text: '',
-  }
+  };
 
   $scope.search.filter = {};
   $scope.search.filter['orientation'] = 'landscape';
@@ -25,7 +25,7 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
         $scope.channels = data;
       }
     );
-  }
+  };
 
   $scope.setOrientation = function(orientation) {
     $scope.search.filter['orientation'] = orientation;

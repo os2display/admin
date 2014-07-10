@@ -54,9 +54,10 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
 
   this.search = function(search) {
     var deferred = $q.defer();
+
     connect().then(function () {
       socket.emit('search', search);
-      socket.once('result', function (data) {
+      socket.on('result', function (data) {
         deferred.resolve(data);
       });
     });
@@ -68,7 +69,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
     var deferred = $q.defer();
     connect().then(function () {
       socket.emit('search', { text: '', sort: 'created', type: search.type, app_id: search.app_id });
-      socket.once('result', function (data) {
+      socket.on('result', function (data) {
         deferred.resolve(data);
       });
     });

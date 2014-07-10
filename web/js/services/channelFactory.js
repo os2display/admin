@@ -14,7 +14,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
     search.app_id = 1234;
 
     return searchFactory.latest(search);
-  }
+  };
 
 
   factory.searchChannels = function(search) {
@@ -22,7 +22,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
     search.app_id = 1234;
 
     return searchFactory.search(search);
-  }
+  };
 
   /**
    * Get all channels.
@@ -40,7 +40,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
       });
 
     return defer.promise;
-  }
+  };
 
   /**
    * Find slide to edit. If id is not set return current slide, else load from backend.
@@ -63,7 +63,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
     }
 
     return defer.promise;
-  }
+  };
 
   /**
    * Find the channel with @id
@@ -81,7 +81,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
       });
 
     return defer.promise;
-  }
+  };
 
 
   /**
@@ -97,7 +97,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
     };
 
     return currentChannel;
-  }
+  };
 
 
   /**
@@ -116,7 +116,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
       });
 
     return defer.promise;
-  }
+  };
 
   return factory;
 }]);
