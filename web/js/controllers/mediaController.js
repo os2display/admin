@@ -1,15 +1,12 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-ikApp.controller('MediaController', function ($scope, $fileUploader) {
+ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactory) {
 // Creates a uploader
   var uploader = $scope.uploader = $fileUploader.create({
     scope: $scope,
     url: '/api/media'
   });
-
-  $scope.steps = 2;
-  $scope.currentStep = 1;
 
   $scope.selectFiles = function() {
       angular.element( document.querySelector( '#select-files' )).click();
@@ -21,7 +18,39 @@ ikApp.controller('MediaController', function ($scope, $fileUploader) {
   }
 
 
-  // ADDING FILTERS
+  $scope.images = [];
+  $scope.search = {
+    fields: 'title',
+    text: '',
+  };
+
+  $scope.search.sort = {};
+  $scope.search.sort['created'] = 'desc';
+
+  imageFactory.searchLatestImages().then(
+    function(data) {
+      $scope.images = data;
+    }
+  );
+
+  var updateImages = function() {
+    imageFactory.searchImages($scope.search).then(
+      function(data) {
+        $scope.images = data;
+      }
+    );
+  };
+
+  $scope.setSort = function(sort, sortOrder) {
+    $scope.search.sort = {};
+    $scope.search.sort[sort] = sortOrder;
+
+    updateImages();
+  };
+
+  $('.js-text-field').off("keyup").on("keyup", function() {
+    updateImages();
+  });
 
   // Images only
   uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {

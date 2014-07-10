@@ -1,18 +1,21 @@
-ikApp.factory('imageFactory', ['$http', '$q', function($http, $q) {
-    var factory = {};
-    factory.getImages = function() {
-      var defer = $q.defer();
+ikApp.factory('imageFactory', ['$http', '$q', 'searchFactory', function($http, $q, searchFactory) {
+  var factory = {};
 
-      $http.get('/api/media')
-        .success(function(data) {
-          defer.resolve(data);
-        })
-        .error(function() {
-          defer.reject();
-        });
+  factory.searchLatestImages = function() {
+    var search = {};
+    search.type = 'Application\\Sonata\\MediaBundle\\Entity\\Media';
+    search.app_id = 1234;
 
-      return defer.promise;
-    }
+    return searchFactory.latest(search);
+  };
 
-    return factory;
+
+  factory.searchImages = function(search) {
+    search.type = 'Application\\Sonata\\MediaBundle\\Entity\\Media';
+    search.app_id = 1234;
+
+    return searchFactory.search(search);
+  };
+
+  return factory;
 }]);
