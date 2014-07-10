@@ -1,20 +1,44 @@
 ikApp.controller('ScreensController', function($scope, screenFactory) {
-  screenFactory.getScreens().then(function(data) {
-    $scope.screens = data;
-  });
-
-  $scope.sort = '-created';
+  $scope.screens = [];
   $scope.search = {
-    title: '',
-    orientation: 'landscape'
-  }
+    fields: 'title',
+    text: '',
+  };
+
+  $scope.search.filter = {};
+  $scope.search.filter['orientation'] = 'landscape';
+
+  $scope.search.sort = {};
+  $scope.search.sort['created'] = 'desc';
+
+  screenFactory.searchLatestScreens().then(
+    function(data) {
+      $scope.screens = data;
+    }
+  );
+
+  var updateScreens = function() {
+    slideFactory.searchScreens($scope.search).then(
+      function(data) {
+        $scope.screens = data;
+      }
+    );
+  };
 
   $scope.setOrientation = function(orientation) {
-    $scope.search.orientation = orientation;
-    console.log($scope.screens);
+    $scope.search.filter['orientation'] = orientation;
+
+    updateScreens();
   };
 
-  $scope.setSort = function(sort) {
-    $scope.sort = sort;
+  $scope.setSort = function(sort, sortOrder) {
+    $scope.search.sort = {};
+    $scope.search.sort[sort] = sortOrder;
+
+    updateScreens();
   };
+
+  $('.js-text-field').off("keyup").on("keyup", function() {
+    updateScreens();
+  });
 });
