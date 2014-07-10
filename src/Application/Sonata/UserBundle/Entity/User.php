@@ -40,7 +40,7 @@ class User extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $groups;
+    protected  $groups;
 
     /**
      * Constructor
@@ -56,7 +56,7 @@ class User extends BaseUser
      * @param \Application\Sonata\UserBundle\Entity\Group $groups
      * @return User
      */
-    public function addGroup(\Application\Sonata\UserBundle\Entity\Group $groups)
+    public function addGroup(\FOS\UserBundle\Model\GroupInterface  $groups)
     {
         $this->groups[] = $groups;
 
@@ -68,7 +68,7 @@ class User extends BaseUser
      *
      * @param \Application\Sonata\UserBundle\Entity\Group $groups
      */
-    public function removeGroup(\Application\Sonata\UserBundle\Entity\Group $groups)
+    public function removeGroup(\FOS\UserBundle\Model\GroupInterface  $groups)
     {
         $this->groups->removeElement($groups);
     }

@@ -40,12 +40,12 @@ class GalleryHasMedia extends BaseGalleryHasMedia
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Gallery
      */
-    private $gallery;
+  protected $gallery;
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      */
-    private $media;
+  protected $media;
 
 
     /**
