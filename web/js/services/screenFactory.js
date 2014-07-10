@@ -6,15 +6,6 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory', function($http, 
   var currentScreenGroup = null;
   var currentScreen = null;
 
-  factory.searchLatestScreens = function() {
-    var search = {};
-    search.type = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
-    search.app_id = 1234;
-
-    return searchFactory.latest(search);
-  };
-
-
   factory.searchScreens = function(search) {
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
     search.app_id = 1234;
@@ -24,6 +15,7 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory', function($http, 
 
   /**
    * Get all screens.
+   *
    * @returns {Array}
    */
   factory.getScreens = function() {
