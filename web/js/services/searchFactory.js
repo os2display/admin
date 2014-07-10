@@ -5,6 +5,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
   var socket;
   var self = this;
 
+
   /**
    * Connect to the web-socket.
    *
@@ -37,10 +38,9 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
   /**
    * Create the connection to the server with promise.
    */
-  this.connect = function() {
+  function connect() {
+    // Try to connect to the server if not already connected.
     var deferred = $q.defer();
-
-    // Try to connect to the server if not allready connected.
     if (socket === undefined) {
       // Try to get connection to the proxy.
       getSocket(deferred);
@@ -50,23 +50,29 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
     }
 
     return deferred.promise;
-  };
+  }
 
   this.search = function(search) {
-    socket.emit('search', search);
+    var deferred = $q.defer();
+    connect().then(function () {
+      socket.emit('search', search);
+      socket.once('result', function (data) {
+        deferred.resolve(data);
+      });
+    });
+
+    return deferred.promise;
   };
 
   this.latest = function(search) {
-    socket.emit('search', { text: '', sort: 'created', type: search.type });
-  };
-
-  this.on = function(eventName, callback) {
-    socket.on(eventName, function() {
-      var args = arguments;
-      $rootScope.$apply(function() {
-        callback.apply(socket, args);
+    var deferred = $q.defer();
+    connect().then(function () {
+      socket.emit('search', { text: '', sort: 'created', type: search.type, app_id: search.app_id });
+      socket.once('result', function (data) {
+        deferred.resolve(data);
       });
     });
-  };
 
+    return deferred.promise;
+  };
 }]);

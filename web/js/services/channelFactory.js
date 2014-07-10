@@ -11,35 +11,17 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
   factory.searchLatestChannels = function() {
     var search = {};
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
-    var defer = $q.defer();
-    searchFactory.connect().then(function() {
-      searchFactory.latest(search);
-      searchFactory.on('result', function (data) {
-        if (data.length === 0) {
-          defer.reject();
-        }
-        defer.resolve(data);
-      });
-    });
+    search.app_id = 1234;
 
-    return defer.promise;
+    return searchFactory.latest(search);
   }
 
 
   factory.searchChannels = function(search) {
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
-    var defer = $q.defer();
-    searchFactory.connect().then(function() {
-      searchFactory.search(search);
-      searchFactory.on('result', function (data) {
-        if (data.length === 0) {
-          defer.reject();
-        }
-        defer.resolve(data);
-      });
-    });
+    search.app_id = 1234;
 
-    return defer.promise;
+    return searchFactory.search(search);
   }
 
   /**

@@ -3,15 +3,17 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
   $scope.search = {
     fields: 'title',
     text: '',
-    orientation: 'landscape',
-    sort: {
-      field: 'created',
-      order: 'desc'
-    }
   }
+
+  $scope.search.filter = {};
+  $scope.search.filter['orientation'] = 'landscape';
+
+  $scope.search.sort = {};
+  $scope.search.sort['created'] = 'desc';
 
   channelFactory.searchLatestChannels().then(
     function(data) {
+      console.log(data);
       $scope.channels = data;
     }
   );
@@ -19,24 +21,21 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
   var updateChannels = function() {
     channelFactory.searchChannels($scope.search).then(
       function(data) {
+        console.log(data);
         $scope.channels = data;
       }
     );
   }
 
   $scope.setOrientation = function(orientation) {
-    $scope.search.orientation = orientation;
+    $scope.search.filter['orientation'] = orientation;
 
     updateChannels();
   };
 
   $scope.setSort = function(sort, sortOrder) {
-    if (sort === $scope.search.sort.field && sortOrder === $scope.search.sort.order) {
-      return;
-    }
-
-    $scope.search.sort.field = sort;
-    $scope.search.sort.order = sortOrder;
+    $scope.search.sort = {};
+    $scope.search.sort[sort] = sortOrder;
 
     updateChannels();
   };
