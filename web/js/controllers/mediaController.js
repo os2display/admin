@@ -3,7 +3,7 @@
  * Images controller handles the display, selection and upload of image.
  */
 
-ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactory) {
+ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactory, $location) {
   // Setup some default configuration.
   $scope.images = [];
   $scope.steps = 2;
@@ -21,7 +21,7 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
   };
 
   /**
-   * Updates the images array by send a search request.
+   * Updates the images array by sending a search request.
    */
   var updateImages = function() {
     imageFactory.searchImages($scope.search).then(
@@ -85,8 +85,6 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
 
   uploader.bind('afteraddingfile', function (event, item) {
     console.info('After adding a file', item);
-
-    $scope.currentStep++;
   });
 
   uploader.bind('whenaddingfilefailed', function (event, item) {
@@ -95,6 +93,7 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
 
   uploader.bind('afteraddingall', function (event, items) {
     console.info('After adding all files', items);
+      $scope.currentStep++;
   });
 
   uploader.bind('beforeupload', function (event, item) {
@@ -127,5 +126,12 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
 
   uploader.bind('completeall', function (event, items) {
     console.info('Complete all', items);
+
+    //updateImages();
+    $location.path('/media');
+    $scope.$apply();
+
+    console.info("Testing2");
+
   });
 });

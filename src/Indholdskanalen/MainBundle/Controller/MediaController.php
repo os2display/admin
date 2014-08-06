@@ -14,7 +14,7 @@ use Application\Sonata\MediaBundle\Entity\Media;
  */
 class MediaController extends Controller {
   /**
-   * Mange file upload.
+   * Manage file upload.
    *
    * @Route("")
    * @Method("POST")
@@ -54,8 +54,17 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function MediaListAction() {
-    $results = $this->getDoctrine()->getManager()->createQuery('SELECT m FROM ApplicationSonataMediaBundle:Media m')
-      ->getResult();
+      $em = $this->getDoctrine()->getManager();
+      $qb = $em->createQueryBuilder();
+
+      $qb->select('m')
+          ->from('ApplicationSonataMediaBundle:Media', 'm')
+          ->orderBy('m.updatedAt', 'DESC');
+
+      $query = $qb->getQuery();
+      $results = $query->getResult();
+
+    //$results = $this->getDoctrine()->getManager()->createQuery('SELECT m FROM ApplicationSonataMediaBundle:Media m')->getResult();
 
     $items = array();
     foreach ($results as $media) {

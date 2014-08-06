@@ -1,3 +1,6 @@
+/*
+@TODO Re-implement getting images from ES
+
 ikApp.factory('imageFactory', ['$http', '$q', 'searchFactory', function($http, $q, searchFactory) {
   var factory = {};
 
@@ -9,4 +12,30 @@ ikApp.factory('imageFactory', ['$http', '$q', 'searchFactory', function($http, $
   };
 
   return factory;
+}]);
+
+*/
+
+
+ikApp.factory('imageFactory', ['$http', '$q', function($http, $q) {
+    var factory = {};
+    factory.getImages = function() {
+        var defer = $q.defer();
+
+        $http.get('/api/media')
+            .success(function(data) {
+                defer.resolve(data);
+            })
+            .error(function() {
+                defer.reject();
+            });
+
+        return defer.promise;
+    }
+
+    factory.searchImages = function(search) {
+        return this.getImages();
+    }
+
+    return factory;
 }]);
