@@ -1268,6 +1268,746 @@ html.is-locked body {
 
 /**
  *
+ * Create slides
+ *
+ */
+/* Silent classes related to this document
+   ========================================================================== */
+/* Styles
+   ========================================================================== */
+/* line 15, ../sass/modules/_create-slide.scss */
+.create-slide {
+  /* Global settings
+   ========================================================================== */
+  /* Create slide - set name (Page 1)
+   ========================================================================== */
+  /* Create slide - select screen (Page 2)
+   ========================================================================== */
+  /* Create slide - select template (Page 3)
+   ========================================================================== */
+  /* Create slide - setup content (Page 4)
+   ========================================================================== */
+}
+/* line 22, ../sass/modules/_create-slide.scss */
+.create-slide--section.ng-enter {
+  -moz-animation: fade-in 2s infinite;
+  -webkit-animation: fade-in 2s infinite;
+  animation: fade-in 2s infinite;
+}
+/* line 26, ../sass/modules/_create-slide.scss */
+.create-slide--section.ng-leave {
+  -moz-animation: fade-out 2s infinite;
+  -webkit-animation: fade-out 2s infinite;
+  animation: fade-out 2s infinite;
+}
+/* line 48, ../sass/modules/_create-slide.scss */
+.create-slide--button {
+  display: block;
+  margin: 0 auto 1em;
+}
+/* line 66, ../sass/modules/_create-slide.scss */
+.create-slide--content--slide-one.ng-leave {
+  -moz-animation: fade-out 2s infinite;
+  -webkit-animation: fade-out 2s infinite;
+  animation: fade-out 2s infinite;
+}
+/* line 86, ../sass/modules/_create-slide.scss */
+.create-slide--screens {
+  max-width: 65em;
+  margin: 0 auto 3em;
+}
+/* line 93, ../sass/modules/_create-slide.scss */
+.create-slide--screen-landscape {
+  display: inline-block;
+  margin-bottom: 2em;
+}
+/* line 99, ../sass/modules/_create-slide.scss */
+.create-slide--screen-portrait {
+  display: inline-block;
+}
+/* line 104, ../sass/modules/_create-slide.scss */
+.create-slide--screen-link {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+/* line 77, ../sass/mixins/_mixins.scss */
+.create-slide--screen-link.is-selected {
+  cursor: default;
+}
+/* line 80, ../sass/mixins/_mixins.scss */
+.create-slide--screen-link.is-selected .create-slide--link-check {
+  left: 0;
+  right: 0;
+  visibility: visible;
+}
+/* line 86, ../sass/mixins/_mixins.scss */
+.create-slide--screen-link.is-selected .create-slide--overlay {
+  display: block;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+/* line 121, ../sass/modules/_create-slide.scss */
+.create-slide--template {
+  margin-bottom: 2em;
+  position: relative;
+}
+/* line 127, ../sass/modules/_create-slide.scss */
+.create-slide--templates {
+  margin-bottom: 3em;
+}
+/* line 132, ../sass/modules/_create-slide.scss */
+.create-slide--template-link {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+/* line 77, ../sass/mixins/_mixins.scss */
+.create-slide--template-link.is-selected {
+  cursor: default;
+}
+/* line 80, ../sass/mixins/_mixins.scss */
+.create-slide--template-link.is-selected .create-slide--link-check {
+  left: 0;
+  right: 0;
+  visibility: visible;
+}
+/* line 86, ../sass/mixins/_mixins.scss */
+.create-slide--template-link.is-selected .create-slide--overlay {
+  display: block;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+/* line 149, ../sass/modules/_create-slide.scss */
+.create-slide--content-wrapper {
+  margin-bottom: 2em;
+  overflow-x: auto;
+  width: 100%;
+}
+/* line 156, ../sass/modules/_create-slide.scss */
+.create-slide--config {
+  margin: 0 auto 1em;
+  position: relative;
+  background-size: cover;
+}
+/* line 163, ../sass/modules/_create-slide.scss */
+.create-slide--config-header {
+  font-size: 90%;
+}
+/* line 168, ../sass/modules/_create-slide.scss */
+.create-slide--config-description {
+  font-size: 70%;
+}
+/* line 173, ../sass/modules/_create-slide.scss */
+.create-slide--content-inner {
+  margin: 0 auto;
+  position: relative;
+}
+/* line 178, ../sass/modules/_create-slide.scss */
+.create-slide--config-text-wrapper {
+  position: absolute;
+  width: 100%;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+}
+/* line 186, ../sass/modules/_create-slide.scss */
+.create-slide--config-text {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  margin: 1em auto;
+  padding: 2em;
+  text-align: left;
+  position: relative;
+  width: 80%;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+}
+/* line 199, ../sass/modules/_create-slide.scss */
+.create-slide--edit-box-settings {
+  position: absolute;
+  right: -1em;
+  top: -1em;
+  background: url('../images/icons-sc2cf9bf679.png');
+  -moz-background-size: 64px 674px;
+  -o-background-size: 64px 674px;
+  -webkit-background-size: 64px 674px;
+  background-size: 64px 674px;
+  width: 50px;
+  height: 50px;
+  background-position: 0 -256px;
+}
+/* line 208, ../sass/modules/_create-slide.scss */
+.create-slide--edit-image-settings {
+  bottom: 15%;
+  position: absolute;
+  right: 15%;
+  background: url('../images/icons-sc2cf9bf679.png');
+  -moz-background-size: 128px 1348px;
+  -o-background-size: 128px 1348px;
+  -webkit-background-size: 128px 1348px;
+  background-size: 128px 1348px;
+  width: 51px;
+  height: 51px;
+  background-position: 0 -632px;
+}
+/* line 217, ../sass/modules/_create-slide.scss */
+.create-slide--image {
+  max-height: 100%;
+  width: 100%;
+}
+
+/**
+ *
+ * Create screens
+ *
+ */
+/* Silent classes related to this document
+   ========================================================================== */
+/* Styles
+   ========================================================================== */
+/* line 16, ../sass/modules/_create-screen.scss */
+.create-screen {
+  /* Global settings
+   ========================================================================== */
+  /* Create screen - set name (Page 1)
+   ========================================================================== */
+  /* Create screen - select screen (Page 2)
+   ========================================================================== */
+}
+/* line 41, ../sass/modules/_create-screen.scss */
+.create-screen--button {
+  display: block;
+  margin: 0 auto 1em;
+}
+/* line 81, ../sass/modules/_create-screen.scss */
+.create-screen--screens {
+  max-width: 65em;
+  margin: 0 auto 3em;
+}
+/* line 87, ../sass/modules/_create-screen.scss */
+.create-screen--screen-landscape {
+  margin-bottom: 2em;
+  padding-left: 0;
+}
+@media only screen and (min-width: 481px) {
+  /* line 87, ../sass/modules/_create-screen.scss */
+  .create-screen--screen-landscape {
+    padding-left: 36px;
+  }
+}
+/* line 103, ../sass/modules/_create-screen.scss */
+.create-screen--screen-portrait {
+  padding-left: 0;
+}
+@media only screen and (min-width: 481px) {
+  /* line 103, ../sass/modules/_create-screen.scss */
+  .create-screen--screen-portrait {
+    padding-left: 36px;
+  }
+}
+/* line 118, ../sass/modules/_create-screen.scss */
+.create-screen--screen-link {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+/* line 77, ../sass/mixins/_mixins.scss */
+.create-screen--screen-link.is-selected {
+  cursor: default;
+}
+/* line 80, ../sass/mixins/_mixins.scss */
+.create-screen--screen-link.is-selected .create-screen--link-check {
+  left: 0;
+  right: 0;
+  visibility: visible;
+}
+/* line 86, ../sass/mixins/_mixins.scss */
+.create-screen--screen-link.is-selected .create-screen--overlay {
+  display: block;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+
+/**
+ *
+ * Create channel
+ *
+ */
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+/* line 12, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-number, .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
+  background: white;
+  font-size: 1.3em;
+  font-weight: bold;
+  height: 2.1em;
+  line-height: 2.1em;
+  width: 2.1em;
+  z-index: 1;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+
+/* Styles
+   ========================================================================== */
+/* line 33, ../sass/modules/_create-channel.scss */
+.create-channel {
+  /* Global settings
+   ========================================================================== */
+  /* Create channel - set name (Page 1)
+   ========================================================================== */
+  /* Create channel - select screen (Page 2)
+   ========================================================================== */
+  /* Create channel - slide selection (Page 3)
+   ========================================================================== */
+  /* Create channel - slide order (Page 4)
+   ========================================================================== */
+}
+/* line 58, ../sass/modules/_create-channel.scss */
+.create-channel--button {
+  display: block;
+  margin: 0 auto 1em;
+}
+/* line 98, ../sass/modules/_create-channel.scss */
+.create-channel--screens {
+  max-width: 65em;
+  margin: 0 auto 3em;
+}
+/* line 104, ../sass/modules/_create-channel.scss */
+.create-channel--screen-landscape {
+  margin-bottom: 2em;
+  padding-left: 0;
+}
+@media only screen and (min-width: 481px) {
+  /* line 104, ../sass/modules/_create-channel.scss */
+  .create-channel--screen-landscape {
+    padding-left: 36px;
+  }
+}
+/* line 120, ../sass/modules/_create-channel.scss */
+.create-channel--screen-portrait {
+  padding-left: 0;
+}
+@media only screen and (min-width: 481px) {
+  /* line 120, ../sass/modules/_create-channel.scss */
+  .create-channel--screen-portrait {
+    padding-left: 36px;
+  }
+}
+/* line 135, ../sass/modules/_create-channel.scss */
+.create-channel--screen-link {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+/* line 77, ../sass/mixins/_mixins.scss */
+.create-channel--screen-link.is-selected {
+  cursor: default;
+}
+/* line 80, ../sass/mixins/_mixins.scss */
+.create-channel--screen-link.is-selected .create-channel--link-check {
+  left: 0;
+  right: 0;
+  visibility: visible;
+}
+/* line 86, ../sass/mixins/_mixins.scss */
+.create-channel--screen-link.is-selected .create-channel--overlay {
+  display: block;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+/* line 150, ../sass/modules/_create-channel.scss */
+.create-channel--slide {
+  background: #f0f0e1;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 36px;
+}
+@media only screen and (min-width: 481px) {
+  /* line 150, ../sass/modules/_create-channel.scss */
+  .create-channel--slide {
+    margin: 0 36px 36px 0;
+  }
+}
+/* line 158, ../sass/modules/_create-channel.scss */
+.create-channel--slides {
+  margin-bottom: 3em;
+}
+/* line 163, ../sass/modules/_create-channel.scss */
+.create-channel--slide-link {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+/* line 77, ../sass/mixins/_mixins.scss */
+.create-channel--slide-link.is-selected {
+  cursor: default;
+}
+/* line 80, ../sass/mixins/_mixins.scss */
+.create-channel--slide-link.is-selected .create-channel--link-check {
+  left: 0;
+  right: 0;
+  visibility: visible;
+}
+/* line 86, ../sass/mixins/_mixins.scss */
+.create-channel--slide-link.is-selected .create-channel--overlay {
+  display: block;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+/* line 169, ../sass/modules/_create-channel.scss */
+.create-channel--slide-link.is-selected {
+  cursor: pointer;
+}
+/* line 177, ../sass/modules/_create-channel.scss */
+.create-channel--content--channel-four {
+  overflow: hidden;
+}
+/* line 187, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-element {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 36px;
+}
+@media only screen and (min-width: 481px) {
+  /* line 187, ../sass/modules/_create-channel.scss */
+  .create-channel--slide-order-element {
+    margin: 0 36px 36px 0;
+  }
+}
+/* line 194, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-element:first-child .create-channel--slide-order-arrow-left {
+  display: none;
+}
+/* line 200, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-element:last-child .create-channel--slide-order-arrow-right {
+  display: none;
+}
+/* line 207, ../sass/modules/_create-channel.scss */
+.create-channel--slides {
+  margin-bottom: 3em;
+}
+/* line 212, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-link {
+  display: inline-block;
+  position: relative;
+}
+/* line 49, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-link:link {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 54, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-link:visited {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 59, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 64, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-link:focus {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 220, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-label {
+  display: inline-block;
+  font-size: .9em;
+}
+/* line 49, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-label:link {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 54, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-label:visited {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 59, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-label:hover {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 64, ../sass/mixins/_mixins.scss */
+.create-channel--slide-order-label:focus {
+  color: inherit;
+  text-decoration: none;
+}
+/* line 228, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-number {
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0;
+  top: -1.2em;
+}
+/* line 240, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
+  border: 1px solid #b3b3b3;
+  cursor: pointer;
+  font-size: 1em;
+  position: absolute;
+  right: .5em;
+  z-index: 1;
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+@media only screen and (min-width: 693px) {
+  /* line 240, ../sass/modules/_create-channel.scss */
+  .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
+    top: 35%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+/* line 263, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-arrow-left {
+  left: .5em;
+  top: .5em;
+}
+@media only screen and (min-width: 693px) {
+  /* line 263, ../sass/modules/_create-channel.scss */
+  .create-channel--slide-order-arrow-left {
+    top: 35%;
+  }
+}
+/* line 273, ../sass/modules/_create-channel.scss */
+.create-channel--slide-order-arrow-right {
+  bottom: 2em;
+  right: .5em;
+}
+@media only screen and (min-width: 693px) {
+  /* line 273, ../sass/modules/_create-channel.scss */
+  .create-channel--slide-order-arrow-right {
+    top: 35%;
+  }
+}
+/* line 283, ../sass/modules/_create-channel.scss */
+.create-channel--arrow-left-inner {
+  margin-right: 2px;
+}
+/* line 288, ../sass/modules/_create-channel.scss */
+.create-channel--arrow-right-inner {
+  margin-left: 2px;
+}
+
+/**
+ *
+ * Create media
+ *
+ */
+/* Silent classes related to this document
+   ========================================================================== */
+/* Styles
+   ========================================================================== */
+/* line 16, ../sass/modules/_create-media.scss */
+.create-media {
+  /* Global settings
+   ========================================================================== */
+ /* Create media - upload file (Page 1)
+========================================================================== */
+}
+/* line 34, ../sass/modules/_create-media.scss */
+.create-media--button {
+  display: block;
+  margin: 0 auto 1em;
+}
+/* line 53, ../sass/modules/_create-media.scss */
+.create-media--hidden-input-file {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+/* line 59, ../sass/modules/_create-media.scss */
+.create-media--upload-drop-zone {
+  width: 100%;
+  background-color: #fafafa;
+}
+/* line 64, ../sass/modules/_create-media.scss */
+.create-media--upload-icon {
+  background: url('../images/icons-sc2cf9bf679.png');
+  -moz-background-size: 128px 1348px;
+  -o-background-size: 128px 1348px;
+  -webkit-background-size: 128px 1348px;
+  background-size: 128px 1348px;
+  width: 75px;
+  height: 80px;
+  background-position: 0 -1268px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 2em auto;
+}
+/* line 72, ../sass/modules/_create-media.scss */
+.create-media--upload-text {
+  width: 100%;
+  display: inline-block;
+  margin: 2em auto;
+}
+
+/**
+ *
+ * Edit menu
+ *
+ */
+/* Silent classes and variables related to this document
+   ========================================================================== */
+/* Styles
+   ========================================================================== */
+/* line 15, ../sass/modules/_edit-menu.scss */
+.edit-menu--wrapper {
+  width: 100%;
+  z-index: 1;
+}
+
+/* line 21, ../sass/modules/_edit-menu.scss */
+.edit-menu {
+  height: 100%;
+  font-size: .6em;
+  position: fixed;
+  right: -100%;
+  text-align: left;
+  top: 0;
+  z-index: 99;
+  padding-top: 3.75em;
+  padding-right: 3em;
+  padding-left: 3em;
+  width: 35em;
+  background: white;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  /* States */
+  /* Invisible close element that allows the user to close the menu by clicking outside it */
+}
+/* line 43, ../sass/modules/_edit-menu.scss */
+.edit-menu.is-visible {
+  -moz-animation: toggle-nav-open 0.15s ease 1 forwards;
+  -webkit-animation: toggle-nav-open 0.15s ease 1 forwards;
+  animation: toggle-nav-open 0.15s ease 1 forwards;
+}
+/* line 47, ../sass/modules/_edit-menu.scss */
+.edit-menu.is-hidden {
+  -moz-animation: toggle-nav-close 0.15s ease 1 forwards;
+  -webkit-animation: toggle-nav-close 0.15s ease 1 forwards;
+  animation: toggle-nav-close 0.15s ease 1 forwards;
+}
+/* line 51, ../sass/modules/_edit-menu.scss */
+.edit-menu--toggle-icon {
+  cursor: pointer;
+  float: right;
+  font-size: 2em;
+}
+/* line 59, ../sass/modules/_edit-menu.scss */
+.edit-menu--overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 98;
+  width: 0;
+  cursor: pointer;
+}
+/* line 70, ../sass/modules/_edit-menu.scss */
+.edit-menu--overlay.is-visible {
+  width: 100%;
+  -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
+  -webkit-animation: toggle-nav-overlay 0.15s linear 1 forwards;
+  animation: toggle-nav-overlay 0.15s linear 1 forwards;
+}
+/* line 78, ../sass/modules/_edit-menu.scss */
+.edit-menu--header {
+  border-bottom: 1px solid #e6e6e6;
+  margin-right: 3em;
+  margin-bottom: .35em;
+  padding-bottom: .25em;
+  color: #cccccc;
+  font-size: 3em;
+  line-height: 1em;
+}
+/* line 89, ../sass/modules/_edit-menu.scss */
+.edit-menu--label {
+  font-size: 2em;
+  margin-left: 0;
+  text-align: left;
+}
+/* line 95, ../sass/modules/_edit-menu.scss */
+.edit-menu--form-element[type="text"] {
+  background-color: #fafafa;
+  font-size: 1.7em;
+  height: 4.5em;
+  margin-bottom: 2em;
+  padding: 1.5em;
+}
+/* line 103, ../sass/modules/_edit-menu.scss */
+.edit-menu--divider {
+  font-size: 2em;
+  text-align: center;
+}
+/* line 108, ../sass/modules/_edit-menu.scss */
+.edit-menu--dropdown {
+  background-color: #fafafa;
+  height: 2.5em;
+  width: 100%;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+/**
+ *
+ * Frontpage
+ *
+ */
+/* Styles
+   ========================================================================== */
+/* line 10, ../sass/modules/_frontpage.scss */
+.frontpage--section {
+  margin-left: -36px;
+  text-align: center;
+}
+
+/* line 51, ../sass/modules/_frontpage.scss */
+.layout--inner {
+  background: #fafafa;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+/**
+ *
  * Header
  *
  */
@@ -1883,615 +2623,6 @@ html.is-locked body {
   display: block;
 }
 
-/**
- *
- * Create slides
- *
- */
-/* Silent classes related to this document
-   ========================================================================== */
-/* Styles
-   ========================================================================== */
-/* line 15, ../sass/modules/_create-slide.scss */
-.create-slide {
-  /* Global settings
-   ========================================================================== */
-  /* Create slide - set name (Page 1)
-   ========================================================================== */
-  /* Create slide - select screen (Page 2)
-   ========================================================================== */
-  /* Create slide - select template (Page 3)
-   ========================================================================== */
-  /* Create slide - setup content (Page 4)
-   ========================================================================== */
-}
-/* line 22, ../sass/modules/_create-slide.scss */
-.create-slide--section.ng-enter {
-  -moz-animation: fade-in 2s infinite;
-  -webkit-animation: fade-in 2s infinite;
-  animation: fade-in 2s infinite;
-}
-/* line 26, ../sass/modules/_create-slide.scss */
-.create-slide--section.ng-leave {
-  -moz-animation: fade-out 2s infinite;
-  -webkit-animation: fade-out 2s infinite;
-  animation: fade-out 2s infinite;
-}
-/* line 48, ../sass/modules/_create-slide.scss */
-.create-slide--button {
-  display: block;
-  margin: 0 auto 1em;
-}
-/* line 66, ../sass/modules/_create-slide.scss */
-.create-slide--content--slide-one.ng-leave {
-  -moz-animation: fade-out 2s infinite;
-  -webkit-animation: fade-out 2s infinite;
-  animation: fade-out 2s infinite;
-}
-/* line 86, ../sass/modules/_create-slide.scss */
-.create-slide--screens {
-  max-width: 65em;
-  margin: 0 auto 3em;
-}
-/* line 93, ../sass/modules/_create-slide.scss */
-.create-slide--screen-landscape {
-  display: inline-block;
-  margin-bottom: 2em;
-}
-/* line 99, ../sass/modules/_create-slide.scss */
-.create-slide--screen-portrait {
-  display: inline-block;
-}
-/* line 104, ../sass/modules/_create-slide.scss */
-.create-slide--screen-link {
-  position: relative;
-  display: block;
-  cursor: pointer;
-}
-/* line 77, ../sass/mixins/_mixins.scss */
-.create-slide--screen-link.is-selected {
-  cursor: default;
-}
-/* line 80, ../sass/mixins/_mixins.scss */
-.create-slide--screen-link.is-selected .create-slide--link-check {
-  left: 0;
-  right: 0;
-  visibility: visible;
-}
-/* line 86, ../sass/mixins/_mixins.scss */
-.create-slide--screen-link.is-selected .create-slide--overlay {
-  display: block;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-}
-/* line 121, ../sass/modules/_create-slide.scss */
-.create-slide--template {
-  margin-bottom: 2em;
-  position: relative;
-}
-/* line 127, ../sass/modules/_create-slide.scss */
-.create-slide--templates {
-  margin-bottom: 3em;
-}
-/* line 132, ../sass/modules/_create-slide.scss */
-.create-slide--template-link {
-  display: block;
-  position: relative;
-  cursor: pointer;
-}
-/* line 77, ../sass/mixins/_mixins.scss */
-.create-slide--template-link.is-selected {
-  cursor: default;
-}
-/* line 80, ../sass/mixins/_mixins.scss */
-.create-slide--template-link.is-selected .create-slide--link-check {
-  left: 0;
-  right: 0;
-  visibility: visible;
-}
-/* line 86, ../sass/mixins/_mixins.scss */
-.create-slide--template-link.is-selected .create-slide--overlay {
-  display: block;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-}
-/* line 149, ../sass/modules/_create-slide.scss */
-.create-slide--content-wrapper {
-  margin-bottom: 2em;
-  overflow-x: auto;
-  width: 100%;
-}
-/* line 156, ../sass/modules/_create-slide.scss */
-.create-slide--config {
-  margin: 0 auto 1em;
-  position: relative;
-  background-size: cover;
-}
-/* line 163, ../sass/modules/_create-slide.scss */
-.create-slide--config-header {
-  font-size: 90%;
-}
-/* line 168, ../sass/modules/_create-slide.scss */
-.create-slide--config-description {
-  font-size: 70%;
-}
-/* line 173, ../sass/modules/_create-slide.scss */
-.create-slide--content-inner {
-  margin: 0 auto;
-  position: relative;
-}
-/* line 178, ../sass/modules/_create-slide.scss */
-.create-slide--config-text-wrapper {
-  position: absolute;
-  width: 100%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em;
-}
-/* line 186, ../sass/modules/_create-slide.scss */
-.create-slide--config-text {
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  margin: 1em auto;
-  padding: 2em;
-  text-align: left;
-  position: relative;
-  width: 80%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em;
-}
-/* line 199, ../sass/modules/_create-slide.scss */
-.create-slide--edit-box-settings {
-  position: absolute;
-  right: -1em;
-  top: -1em;
-  background: url('../images/icons-sc2cf9bf679.png');
-  -moz-background-size: 64px 674px;
-  -o-background-size: 64px 674px;
-  -webkit-background-size: 64px 674px;
-  background-size: 64px 674px;
-  width: 50px;
-  height: 50px;
-  background-position: 0 -256px;
-}
-/* line 208, ../sass/modules/_create-slide.scss */
-.create-slide--edit-image-settings {
-  bottom: 15%;
-  position: absolute;
-  right: 15%;
-  background: url('../images/icons-sc2cf9bf679.png');
-  -moz-background-size: 128px 1348px;
-  -o-background-size: 128px 1348px;
-  -webkit-background-size: 128px 1348px;
-  background-size: 128px 1348px;
-  width: 51px;
-  height: 51px;
-  background-position: 0 -632px;
-}
-/* line 217, ../sass/modules/_create-slide.scss */
-.create-slide--image {
-  max-height: 100%;
-  width: 100%;
-}
-
-/**
- *
- * Create screens
- *
- */
-/* Silent classes related to this document
-   ========================================================================== */
-/* Styles
-   ========================================================================== */
-/* line 16, ../sass/modules/_create-screen.scss */
-.create-screen {
-  /* Global settings
-   ========================================================================== */
-  /* Create screen - set name (Page 1)
-   ========================================================================== */
-  /* Create screen - select screen (Page 2)
-   ========================================================================== */
-}
-/* line 41, ../sass/modules/_create-screen.scss */
-.create-screen--button {
-  display: block;
-  margin: 0 auto 1em;
-}
-/* line 81, ../sass/modules/_create-screen.scss */
-.create-screen--screens {
-  max-width: 65em;
-  margin: 0 auto 3em;
-}
-/* line 87, ../sass/modules/_create-screen.scss */
-.create-screen--screen-landscape {
-  margin-bottom: 2em;
-  padding-left: 0;
-}
-@media only screen and (min-width: 481px) {
-  /* line 87, ../sass/modules/_create-screen.scss */
-  .create-screen--screen-landscape {
-    padding-left: 36px;
-  }
-}
-/* line 103, ../sass/modules/_create-screen.scss */
-.create-screen--screen-portrait {
-  padding-left: 0;
-}
-@media only screen and (min-width: 481px) {
-  /* line 103, ../sass/modules/_create-screen.scss */
-  .create-screen--screen-portrait {
-    padding-left: 36px;
-  }
-}
-/* line 118, ../sass/modules/_create-screen.scss */
-.create-screen--screen-link {
-  position: relative;
-  display: block;
-  cursor: pointer;
-}
-/* line 77, ../sass/mixins/_mixins.scss */
-.create-screen--screen-link.is-selected {
-  cursor: default;
-}
-/* line 80, ../sass/mixins/_mixins.scss */
-.create-screen--screen-link.is-selected .create-screen--link-check {
-  left: 0;
-  right: 0;
-  visibility: visible;
-}
-/* line 86, ../sass/mixins/_mixins.scss */
-.create-screen--screen-link.is-selected .create-screen--overlay {
-  display: block;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-}
-
-/**
- *
- * Create channel
- *
- */
-/* Silent classes, mixins and variables related to this document
-   ========================================================================== */
-/* line 12, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-number, .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
-  background: white;
-  font-size: 1.3em;
-  font-weight: bold;
-  height: 2.1em;
-  line-height: 2.1em;
-  width: 2.1em;
-  z-index: 1;
-  -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
-  border-radius: 100%;
-}
-
-/* Styles
-   ========================================================================== */
-/* line 33, ../sass/modules/_create-channel.scss */
-.create-channel {
-  /* Global settings
-   ========================================================================== */
-  /* Create channel - set name (Page 1)
-   ========================================================================== */
-  /* Create channel - select screen (Page 2)
-   ========================================================================== */
-  /* Create channel - slide selection (Page 3)
-   ========================================================================== */
-  /* Create channel - slide order (Page 4)
-   ========================================================================== */
-}
-/* line 58, ../sass/modules/_create-channel.scss */
-.create-channel--button {
-  display: block;
-  margin: 0 auto 1em;
-}
-/* line 98, ../sass/modules/_create-channel.scss */
-.create-channel--screens {
-  max-width: 65em;
-  margin: 0 auto 3em;
-}
-/* line 104, ../sass/modules/_create-channel.scss */
-.create-channel--screen-landscape {
-  margin-bottom: 2em;
-  padding-left: 0;
-}
-@media only screen and (min-width: 481px) {
-  /* line 104, ../sass/modules/_create-channel.scss */
-  .create-channel--screen-landscape {
-    padding-left: 36px;
-  }
-}
-/* line 120, ../sass/modules/_create-channel.scss */
-.create-channel--screen-portrait {
-  padding-left: 0;
-}
-@media only screen and (min-width: 481px) {
-  /* line 120, ../sass/modules/_create-channel.scss */
-  .create-channel--screen-portrait {
-    padding-left: 36px;
-  }
-}
-/* line 135, ../sass/modules/_create-channel.scss */
-.create-channel--screen-link {
-  position: relative;
-  display: block;
-  cursor: pointer;
-}
-/* line 77, ../sass/mixins/_mixins.scss */
-.create-channel--screen-link.is-selected {
-  cursor: default;
-}
-/* line 80, ../sass/mixins/_mixins.scss */
-.create-channel--screen-link.is-selected .create-channel--link-check {
-  left: 0;
-  right: 0;
-  visibility: visible;
-}
-/* line 86, ../sass/mixins/_mixins.scss */
-.create-channel--screen-link.is-selected .create-channel--overlay {
-  display: block;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-}
-/* line 150, ../sass/modules/_create-channel.scss */
-.create-channel--slide {
-  background: #f0f0e1;
-  position: relative;
-  display: inline-block;
-  margin: 0 0 36px;
-}
-@media only screen and (min-width: 481px) {
-  /* line 150, ../sass/modules/_create-channel.scss */
-  .create-channel--slide {
-    margin: 0 36px 36px 0;
-  }
-}
-/* line 158, ../sass/modules/_create-channel.scss */
-.create-channel--slides {
-  margin-bottom: 3em;
-}
-/* line 163, ../sass/modules/_create-channel.scss */
-.create-channel--slide-link {
-  display: block;
-  position: relative;
-  cursor: pointer;
-}
-/* line 77, ../sass/mixins/_mixins.scss */
-.create-channel--slide-link.is-selected {
-  cursor: default;
-}
-/* line 80, ../sass/mixins/_mixins.scss */
-.create-channel--slide-link.is-selected .create-channel--link-check {
-  left: 0;
-  right: 0;
-  visibility: visible;
-}
-/* line 86, ../sass/mixins/_mixins.scss */
-.create-channel--slide-link.is-selected .create-channel--overlay {
-  display: block;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-}
-/* line 169, ../sass/modules/_create-channel.scss */
-.create-channel--slide-link.is-selected {
-  cursor: pointer;
-}
-/* line 177, ../sass/modules/_create-channel.scss */
-.create-channel--content--channel-four {
-  overflow: hidden;
-}
-/* line 187, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-element {
-  position: relative;
-  display: inline-block;
-  margin: 0 0 36px;
-}
-@media only screen and (min-width: 481px) {
-  /* line 187, ../sass/modules/_create-channel.scss */
-  .create-channel--slide-order-element {
-    margin: 0 36px 36px 0;
-  }
-}
-/* line 194, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-element:first-child .create-channel--slide-order-arrow-left {
-  display: none;
-}
-/* line 200, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-element:last-child .create-channel--slide-order-arrow-right {
-  display: none;
-}
-/* line 207, ../sass/modules/_create-channel.scss */
-.create-channel--slides {
-  margin-bottom: 3em;
-}
-/* line 212, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-link {
-  display: inline-block;
-  position: relative;
-}
-/* line 49, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-link:link {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 54, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-link:visited {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 59, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-link:hover {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 64, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-link:focus {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 220, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-label {
-  display: inline-block;
-  font-size: .9em;
-}
-/* line 49, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-label:link {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 54, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-label:visited {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 59, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-label:hover {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 64, ../sass/mixins/_mixins.scss */
-.create-channel--slide-order-label:focus {
-  color: inherit;
-  text-decoration: none;
-}
-/* line 228, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-number {
-  left: 0;
-  margin-left: auto;
-  margin-right: auto;
-  position: absolute;
-  right: 0;
-  top: -1.2em;
-}
-/* line 240, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
-  border: 1px solid #b3b3b3;
-  cursor: pointer;
-  font-size: 1em;
-  position: absolute;
-  right: .5em;
-  z-index: 1;
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-@media only screen and (min-width: 693px) {
-  /* line 240, ../sass/modules/_create-channel.scss */
-  .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
-    top: 35%;
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-}
-/* line 263, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-arrow-left {
-  left: .5em;
-  top: .5em;
-}
-@media only screen and (min-width: 693px) {
-  /* line 263, ../sass/modules/_create-channel.scss */
-  .create-channel--slide-order-arrow-left {
-    top: 35%;
-  }
-}
-/* line 273, ../sass/modules/_create-channel.scss */
-.create-channel--slide-order-arrow-right {
-  bottom: 2em;
-  right: .5em;
-}
-@media only screen and (min-width: 693px) {
-  /* line 273, ../sass/modules/_create-channel.scss */
-  .create-channel--slide-order-arrow-right {
-    top: 35%;
-  }
-}
-/* line 283, ../sass/modules/_create-channel.scss */
-.create-channel--arrow-left-inner {
-  margin-right: 2px;
-}
-/* line 288, ../sass/modules/_create-channel.scss */
-.create-channel--arrow-right-inner {
-  margin-left: 2px;
-}
-
-/**
- *
- * Create media
- *
- */
-/* Silent classes related to this document
-   ========================================================================== */
-/* Styles
-   ========================================================================== */
-/* line 16, ../sass/modules/_create-media.scss */
-.create-media {
-  /* Global settings
-   ========================================================================== */
- /* Create media - upload file (Page 1)
-========================================================================== */
-}
-/* line 34, ../sass/modules/_create-media.scss */
-.create-media--button {
-  display: block;
-  margin: 0 auto 1em;
-}
-/* line 53, ../sass/modules/_create-media.scss */
-.create-media--hidden-input-file {
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-/* line 59, ../sass/modules/_create-media.scss */
-.create-media--upload-drop-zone {
-  width: 100%;
-  background-color: #fafafa;
-}
-/* line 64, ../sass/modules/_create-media.scss */
-.create-media--upload-icon {
-  background: url('../images/icons-sc2cf9bf679.png');
-  -moz-background-size: 128px 1348px;
-  -o-background-size: 128px 1348px;
-  -webkit-background-size: 128px 1348px;
-  background-size: 128px 1348px;
-  width: 75px;
-  height: 80px;
-  background-position: 0 -1268px;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 2em auto;
-}
-/* line 72, ../sass/modules/_create-media.scss */
-.create-media--upload-text {
-  width: 100%;
-  display: inline-block;
-  margin: 2em auto;
-}
-
 /* line 3, ../sass/modules/_login.scss */
 .login--section {
   margin: 0 36px 0;
@@ -2551,6 +2682,28 @@ html.is-locked body {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 2em;
+}
+
+/**
+ *
+ * Media Overview
+ *
+ */
+/**
+* @TODO better layout styling
+*/
+/* line 12, ../sass/modules/_media-overview.scss */
+.overview--image {
+  float: left;
+  padding: 1em;
+}
+
+/* line 17, ../sass/modules/_media-overview.scss */
+.thumbnail {
+  max-width: 250px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
 }
 
 /**
@@ -2908,81 +3061,6 @@ html.is-locked body {
 
 /**
  *
- * Frontpage
- *
- */
-/* Styles
-   ========================================================================== */
-/* line 10, ../sass/modules/_frontpage.scss */
-.frontpage--section {
-  margin-left: -36px;
-  text-align: center;
-}
-
-/* line 51, ../sass/modules/_frontpage.scss */
-.layout--inner {
-  background: #fafafa;
-  margin-bottom: 1em;
-  padding: 1em;
-}
-
-/**
- *
- * Preview
- *
- */
-/* Silent classes related to this document
-   ========================================================================== */
-/* line 11, ../sass/modules/_preview.scss */
-.preview--channel-play, .preview--channel-pause {
-  cursor: pointer;
-  margin: 0 auto;
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 50%;
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-/* Styles
-   ========================================================================== */
-/* line 25, ../sass/modules/_preview.scss */
-.preview--slide,
-.preview--channel {
-  position: relative;
-  display: block;
-  margin: 0;
-}
-
-/* line 33, ../sass/modules/_preview.scss */
-.preview--channel-play {
-  background: url('../images/icons-sc2cf9bf679.png');
-  -moz-background-size: 84px 877px;
-  -o-background-size: 84px 877px;
-  -webkit-background-size: 84px 877px;
-  background-size: 84px 877px;
-  width: 42px;
-  height: 42px;
-  background-position: 0 -601px;
-}
-
-/* line 41, ../sass/modules/_preview.scss */
-.preview--channel-pause {
-  background: url('../images/icons-sc2cf9bf679.png');
-  -moz-background-size: 84px 877px;
-  -o-background-size: 84px 877px;
-  -webkit-background-size: 84px 877px;
-  background-size: 84px 877px;
-  width: 42px;
-  height: 42px;
-  background-position: 0 -546px;
-}
-
-/**
- *
  * Pager
  *
  */
@@ -3038,113 +3116,57 @@ html.is-locked body {
 
 /**
  *
- * Edit menu
+ * Preview
  *
  */
-/* Silent classes and variables related to this document
+/* Silent classes related to this document
    ========================================================================== */
-/* Styles
-   ========================================================================== */
-/* line 15, ../sass/modules/_edit-menu.scss */
-.edit-menu--wrapper {
-  width: 100%;
-  z-index: 1;
+/* line 11, ../sass/modules/_preview.scss */
+.preview--channel-play, .preview--channel-pause {
+  cursor: pointer;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-/* line 21, ../sass/modules/_edit-menu.scss */
-.edit-menu {
-  height: 100%;
-  font-size: .6em;
-  position: fixed;
-  right: -100%;
-  text-align: left;
-  top: 0;
-  z-index: 99;
-  padding-top: 3.75em;
-  padding-right: 3em;
-  padding-left: 3em;
-  width: 35em;
-  background: white;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
-  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
-  /* States */
-  /* Invisible close element that allows the user to close the menu by clicking outside it */
+/* Styles
+   ========================================================================== */
+/* line 25, ../sass/modules/_preview.scss */
+.preview--slide,
+.preview--channel {
+  position: relative;
+  display: block;
+  margin: 0;
 }
-/* line 43, ../sass/modules/_edit-menu.scss */
-.edit-menu.is-visible {
-  -moz-animation: toggle-nav-open 0.15s ease 1 forwards;
-  -webkit-animation: toggle-nav-open 0.15s ease 1 forwards;
-  animation: toggle-nav-open 0.15s ease 1 forwards;
+
+/* line 33, ../sass/modules/_preview.scss */
+.preview--channel-play {
+  background: url('../images/icons-sc2cf9bf679.png');
+  -moz-background-size: 84px 877px;
+  -o-background-size: 84px 877px;
+  -webkit-background-size: 84px 877px;
+  background-size: 84px 877px;
+  width: 42px;
+  height: 42px;
+  background-position: 0 -601px;
 }
-/* line 47, ../sass/modules/_edit-menu.scss */
-.edit-menu.is-hidden {
-  -moz-animation: toggle-nav-close 0.15s ease 1 forwards;
-  -webkit-animation: toggle-nav-close 0.15s ease 1 forwards;
-  animation: toggle-nav-close 0.15s ease 1 forwards;
-}
-/* line 51, ../sass/modules/_edit-menu.scss */
-.edit-menu--toggle-icon {
-  cursor: pointer;
-  float: right;
-  font-size: 2em;
-}
-/* line 59, ../sass/modules/_edit-menu.scss */
-.edit-menu--overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 98;
-  width: 0;
-  cursor: pointer;
-}
-/* line 70, ../sass/modules/_edit-menu.scss */
-.edit-menu--overlay.is-visible {
-  width: 100%;
-  -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
-  -webkit-animation: toggle-nav-overlay 0.15s linear 1 forwards;
-  animation: toggle-nav-overlay 0.15s linear 1 forwards;
-}
-/* line 78, ../sass/modules/_edit-menu.scss */
-.edit-menu--header {
-  border-bottom: 1px solid #e6e6e6;
-  margin-right: 3em;
-  margin-bottom: .35em;
-  padding-bottom: .25em;
-  color: #cccccc;
-  font-size: 3em;
-  line-height: 1em;
-}
-/* line 89, ../sass/modules/_edit-menu.scss */
-.edit-menu--label {
-  font-size: 2em;
-  margin-left: 0;
-  text-align: left;
-}
-/* line 95, ../sass/modules/_edit-menu.scss */
-.edit-menu--form-element[type="text"] {
-  background-color: #fafafa;
-  font-size: 1.7em;
-  height: 4.5em;
-  margin-bottom: 2em;
-  padding: 1.5em;
-}
-/* line 103, ../sass/modules/_edit-menu.scss */
-.edit-menu--divider {
-  font-size: 2em;
-  text-align: center;
-}
-/* line 108, ../sass/modules/_edit-menu.scss */
-.edit-menu--dropdown {
-  background-color: #fafafa;
-  height: 2.5em;
-  width: 100%;
-  font-size: 2em;
-  margin-bottom: 1em;
+
+/* line 41, ../sass/modules/_preview.scss */
+.preview--channel-pause {
+  background: url('../images/icons-sc2cf9bf679.png');
+  -moz-background-size: 84px 877px;
+  -o-background-size: 84px 877px;
+  -webkit-background-size: 84px 877px;
+  background-size: 84px 877px;
+  width: 42px;
+  height: 42px;
+  background-position: 0 -546px;
 }
 
 /* Animations
