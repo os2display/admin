@@ -1,5 +1,5 @@
 /**
- * Directive to insert a screen.
+ * Directive for media upload.
  */
 ikApp.directive('ikThumb', ['$window', function($window) {
   var helper = {
@@ -41,7 +41,6 @@ ikApp.directive('ikThumb', ['$window', function($window) {
         var height = params.height || this.height / this.width * params.width;
         canvas.attr({ width: width, height: height });
         canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
-          console.log("test");
       }
     }
   };

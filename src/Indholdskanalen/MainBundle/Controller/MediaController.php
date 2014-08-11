@@ -25,10 +25,16 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function MediaUploadAction(Request $request) {
+
+    $formData = $request->request->get('formData');
+    $debug = var_export($request->request, true);
+    //$debug = "testing";
+
     foreach ($request->files as $file) {
       $media = new Media;
 
-      $media->setName($file->getClientOriginalName());
+      $media->setName("Title2");
+      $media->setDescription(json_encode(var_export($request, true)));
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
       $media->setProviderName('sonata.media.provider.image');
@@ -38,7 +44,8 @@ class MediaController extends Controller {
       $mediaManager->save($media);
     }
 
-    $response = new Response(json_encode(array()));
+
+    $response = new Response(json_encode($formData));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
 
@@ -54,17 +61,15 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function MediaListAction() {
-      $em = $this->getDoctrine()->getManager();
-      $qb = $em->createQueryBuilder();
+    $em = $this->getDoctrine()->getManager();
+    $qb = $em->createQueryBuilder();
 
-      $qb->select('m')
-          ->from('ApplicationSonataMediaBundle:Media', 'm')
-          ->orderBy('m.updatedAt', 'DESC');
+    $qb->select('m')
+      ->from('ApplicationSonataMediaBundle:Media', 'm')
+      ->orderBy('m.updatedAt', 'DESC');
 
-      $query = $qb->getQuery();
-      $results = $query->getResult();
-
-    //$results = $this->getDoctrine()->getManager()->createQuery('SELECT m FROM ApplicationSonataMediaBundle:Media m')->getResult();
+    $query = $qb->getQuery();
+    $results = $query->getResult();
 
     $items = array();
     foreach ($results as $media) {
@@ -83,6 +88,82 @@ class MediaController extends Controller {
     $response = new Response(json_encode($items));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
+
+    return $response;
+  }
+
+  /**
+   * Get media with ID.
+   *
+   * @Route("/{id}")
+   * @Method("GET")
+   *
+   * @param $id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaGetAction($id) {
+    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    if ($media) {
+      $provider = $this->container->get($media->getProviderName());
+      $data = array();
+      $data['media'] = $media;
+      $data['urls'] = array(
+        'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
+        'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
+      );
+
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($data, 'json');
+
+      $response->setContent($jsonContent);
+    } else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
+  /**
+   * Get media with ID.
+   *
+   * @Route("/{id}")
+   * @Method("GET")
+   *
+   * @param $id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaGetAction($id) {
+    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    if ($media) {
+      $provider = $this->container->get($media->getProviderName());
+      $data = array();
+      $data['media'] = $media;
+      $data['urls'] = array(
+        'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
+        'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
+      );
+
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($data, 'json');
+
+      $response->setContent($jsonContent);
+    } else {
+      $response->setContent(json_encode(array()));
+    }
 
     return $response;
   }
