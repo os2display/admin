@@ -59,6 +59,10 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'MediaController',
     templateUrl: 'partials/media/media-upload.html'
   })
+  .when('/media/:id', {
+    controller: 'ImageController',
+    templateUrl: 'partials/media/media-edit.html'
+  })
   .when('/media', {
     controller: 'MediaController',
     templateUrl: 'partials/media/media-overview.html'

@@ -22,7 +22,7 @@
   <div class="overview--images">
     <div class="overview--image" data-ng-repeat="image in images">
         <a href="/#/media/{{image.id}}" class="overview--screen-link" class="thumbnail">
-            <img ng-src="{{image.url.landscape}}" alt="{{ image.name }}" title="{{image.name}}" class="thumbnail">
+            <img data-ng-src="{{image.url.landscape}}" alt="{{ image.name }}" title="{{image.name}}" class="thumbnail">
         </a>
     </div>
   </div>

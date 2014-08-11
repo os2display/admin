@@ -64,6 +64,8 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
     url: '/api/media'
   });
 
+
+
   $scope.selectFiles = function() {
       angular.element( document.querySelector( '#select-files' )).click();
   };
@@ -85,6 +87,8 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
 
   uploader.bind('afteraddingfile', function (event, item) {
     console.info('After adding a file', item);
+    item.formData.push = item.file.name;
+
   });
 
   uploader.bind('whenaddingfilefailed', function (event, item) {
@@ -127,11 +131,7 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
   uploader.bind('completeall', function (event, items) {
     console.info('Complete all', items);
 
-    //updateImages();
     $location.path('/media');
     $scope.$apply();
-
-    console.info("Testing2");
-
   });
 });

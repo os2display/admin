@@ -27,8 +27,8 @@
       <div data-ng-show="isImage(item.file)">
         <div data-ng-show="uploader.isHTML5" data-ik-thumb="{ file: item.file, height: 100 }"></div>
       </div>
-      <div>{{ item.file.name }}</div>
-      <div><a data-ng-click="item.remove()">(fjern)</a></div>
+        <input type="text" class="create-screen--text" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="item.formData['title']">
+      <div><button data-ng-click="item.remove()">Fjern billede/fil</button></div>
     </li>
   </ul>
   <div>
