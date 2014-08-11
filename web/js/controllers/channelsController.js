@@ -25,6 +25,7 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
    * Updates the channels array by send a search request.
    */
   var updateChannels = function() {
+
     channelFactory.searchChannels($scope.search).then(
       function(data) {
         $scope.channels = data;
@@ -65,7 +66,9 @@ ikApp.controller('ChannelsController', function($scope, channelFactory) {
   };
 
   // Hook into the search field.
-  $('.js-text-field').off("keyup").on("keyup", function() {
-    updateChannels();
+  $('.js-text-field').off("keyup").on("keyup", function(event) {
+    if (event.keyCode === 13 || $scope.search.text.length >= 3) {
+      updateChannels();
+    }
   });
 });
