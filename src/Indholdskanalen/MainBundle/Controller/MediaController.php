@@ -130,41 +130,5 @@ class MediaController extends Controller {
     return $response;
   }
 
-  /**
-   * Get media with ID.
-   *
-   * @Route("/{id}")
-   * @Method("GET")
-   *
-   * @param $id
-   *
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function MediaGetAction($id) {
-    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
-      ->findOneById($id);
 
-    // Create response.
-    $response = new Response();
-    $response->headers->set('Content-Type', 'application/json');
-
-    if ($media) {
-      $provider = $this->container->get($media->getProviderName());
-      $data = array();
-      $data['media'] = $media;
-      $data['urls'] = array(
-        'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
-        'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
-      );
-
-      $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($data, 'json');
-
-      $response->setContent($jsonContent);
-    } else {
-      $response->setContent(json_encode(array()));
-    }
-
-    return $response;
-  }
 }
