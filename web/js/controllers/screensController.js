@@ -41,7 +41,7 @@ ikApp.controller('ScreensController', function($scope, screenFactory) {
    *   This should either be 'landscape' or 'portrait'.
    */
   $scope.setOrientation = function(orientation) {
-    $scope.search.filter['orientation'] = orientation;
+    $scope.search.filter.orientation = orientation;
 
     updateScreens();
   };
@@ -60,12 +60,13 @@ ikApp.controller('ScreensController', function($scope, screenFactory) {
       "order": sortOrder
     };
 
-
     updateScreens();
   };
 
   // Hook into the search field.
   $('.js-text-field').off("keyup").on("keyup", function() {
-    updateScreens();
+    if (event.keyCode === 13 || $scope.search.text.length >= 3) {
+      updateScreens();
+    }
   });
 });
