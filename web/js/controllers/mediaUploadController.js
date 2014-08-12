@@ -3,68 +3,12 @@
  * Images controller handles the display, selection and upload of image.
  */
 
-ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactory, $location) {
-  // Setup some default configuration.
-  $scope.images = [];
-  $scope.steps = 2;
-  $scope.currentStep = 1;
-
-  // Setup default search options.
-  $scope.search = {
-    "fields": 'title',
-    "text": '',
-    "sort": {
-      "created_at" : {
-        "order": "desc"
-      }
-    }
-  };
-
-  /**
-   * Updates the images array by sending a search request.
-   */
-  var updateImages = function() {
-    imageFactory.searchImages($scope.search).then(
-      function(data) {
-        console.log(data);
-        $scope.images = data;
-      }
-    );
-  };
-
-  // Send the default search query.
-  updateImages();
-
-  /**
-   * Changes the sort order and updated the images.
-   *
-   * @param sort
-   *   Field to sort on.
-   * @param sortOrder
-   *   The order to sort in 'desc' or 'asc'.
-   */
-  $scope.setSort = function(sort, sortOrder) {
-    $scope.search.sort = {};
-    $scope.search.sort[sort] = {
-      "order": sortOrder
-    };
-
-
-    updateImages();
-  };
-
-  // Hook into the search field.
-  $('.js-text-field').off("keyup").on("keyup", function() {
-    updateImages();
-  });
-
+ikApp.controller('MediaUploadController', function ($scope, $fileUploader, $location) {
   // Creates a uploader
   var uploader = $scope.uploader = $fileUploader.create({
     scope: $scope,
     url: '/api/media'
   });
-
-
 
   $scope.selectFiles = function() {
       angular.element( document.querySelector( '#select-files' )).click();
@@ -84,11 +28,9 @@ ikApp.controller('MediaController', function ($scope, $fileUploader, imageFactor
 
 
   // REGISTER HANDLERS
-
   uploader.bind('afteraddingfile', function (event, item) {
     console.info('After adding a file', item);
     item.formData.push = item.file.name;
-
   });
 
   uploader.bind('whenaddingfilefailed', function (event, item) {
