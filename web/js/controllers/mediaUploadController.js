@@ -2,50 +2,71 @@
  * @file
  * Images controller handles the display, selection and upload of image.
  */
-ikApp.controller('MediaUploadController', function ($scope, $fileUploader, $location) {
+ikApp.controller('MediaUploadController', function ($scope, FileUploader, $location) {
   $scope.currentStep = 1;
 
   // Create an uploader
-  var uploader = $scope.uploader = $fileUploader.create({
-    scope: $scope,
-    url: '/api/media'
+  $scope.uploader = new FileUploader({
+    url: '/api/media',
+    filters: [{
+      name: 'imageFilter',
+      fn: function(item /*{File|FileLikeObject}*/, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    }]
   });
 
   /**
-   * @TODO: comment missing
+   * Calls the hidden select files button.
    */
   $scope.selectFiles = function() {
     angular.element( document.querySelector( '#select-files' )).click();
   };
 
   /**
-   * @TODO: comment missing
+   * Clear the uploader queue.
+   */
+  $scope.clearQueue = function() {
+    $scope.uploader.clearQueue();
+    $scope.currentStep = 1;
+  }
+
+  /**
+   * Remove item from the uploader queue.
+   * @param item
+   */
+  $scope.removeItem = function(item) {
+    item.remove();
+    if ($scope.uploader.queue.length <= 0) {
+      $scope.currentStep = 1;
+    }
+  }
+
+  /**
+   * Checks whether the item is an image.
    */
   $scope.isImage = function(item) {
     var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
     return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
   };
 
-  /**
-   * @TODO: comment missing
-   * // Images only
-   */
-  uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
-    var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
-    type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
-    return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-  });
-
-  uploader.bind('afteraddingfile', function (event, item) {
+  $scope.uploader.onAfterAddingFile = function(item) {
+    console.log(item);
     item.formData.push = item.file.name;
-  });
+  };
 
-  uploader.bind('afteraddingall', function (event, items) {
+  $scope.uploader.onAfterAddingAll = function(item) {
+    console.log(item);
     $scope.currentStep++;
-  });
+  };
 
-  uploader.bind('completeall', function (event, items) {
+  $scope.uploader.onCompleteAll = function() {
     $location.path('/media');
     $scope.$apply();
-  });
+  };
+
+  $scope.uploader.onCancelItem = function(item, response, status, headers) {
+    console.log("cancel item");
+  };
 });

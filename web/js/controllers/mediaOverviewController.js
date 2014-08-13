@@ -3,7 +3,7 @@
  * Images controller handles the display, selection and upload of image.
  */
 
-ikApp.controller('MediaOverviewController', function ($scope, $http, $fileUploader, mediaFactory) {
+ikApp.controller('MediaOverviewController', function ($scope, $http, mediaFactory) {
   // Setup some default configuration.
   $scope.images = [];
 
