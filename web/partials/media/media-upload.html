@@ -25,19 +25,20 @@
           <div>{{item.file.name}}</div>
           <div data-ng-show="uploader.isHTML5" data-ik-thumb="{ file: item._file, width: 300 }"></div>
         </div>
-        <input type="text" class="create-media--text" placeholder="Giv billedet en titel" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="item.formData['title']">
+        <input type="text" class="create-media--text" placeholder="Giv billedet en titel" data-ng-model="item.formData[0].title">
         <button class="create-media--button" data-ng-click="removeItem(item)">Fjern billede</button>
       </div>
     </div>
     <div>
+      <div class="create-media--error-text">{{ uploadErrorText }}</div>
       <div>
-        Total progress: {{ uploader.progress }}
-        <div class="total-progress-box">
-          <div class="total-progress" data-ng-style="{ 'width': uploader.progress + '%' }"></div>
+        <div class="create-media--progress">
+          <div class="create-media--progress-bar" data-ng-show="uploader.progress > 0" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
         </div>
       </div>
-      <button class="create-media--button"  data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload alle</button>
-      <button class="create-media--button" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Fjern alle</button>
+      <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload alle</button>
+      <button class="create-media--button" data-ng-show="!uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Fjern alle</button>
+      <button class="create-media--button" data-ng-show="uploadComplete" data-ng-click="clearQueue()">Upload flere</button>
     </div>
   </section>
 </div>

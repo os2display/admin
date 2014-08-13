@@ -1891,6 +1891,23 @@ html.is-locked body {
   width: 50%;
   margin: 0 auto 1em;
 }
+/* line 92, ../sass/modules/_create-media.scss */
+.create-media--progress {
+  width: 400px;
+  margin: auto;
+  margin-bottom: 1em;
+}
+/* line 98, ../sass/modules/_create-media.scss */
+.create-media--progress-bar {
+  border: 2px solid #b3b3b3;
+  background-color: #e6e6e6;
+  height: 20px;
+}
+/* line 104, ../sass/modules/_create-media.scss */
+.create-media--error-text {
+  margin: auto;
+  margin-bottom: 1em;
+}
 
 /**
  *

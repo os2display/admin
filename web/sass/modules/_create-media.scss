@@ -88,4 +88,21 @@
     width: 50%;
     margin: 0 auto 1em;
   }
+
+  &--progress {
+    width: 400px;
+    margin: auto;
+    margin-bottom: 1em;
+  }
+
+  &--progress-bar {
+    border: 2px solid $gray;
+    background-color: $gray-lighter;
+    height: 20px;
+  }
+
+  &--error-text {
+    margin: auto;
+    margin-bottom: 1em;
+  }
 }

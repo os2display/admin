@@ -17,9 +17,10 @@
 
   <div class="overview--images">
     <div class="overview--image" data-ng-repeat="image in images">
-        <a href="/#/media/{{image.id}}" class="overview--screen-link" class="thumbnail">
-            <img data-ng-src="{{image.url}}" alt="{{ image.name }}" title="{{image.name}}" class="thumbnail">
-        </a>
+      <a href="/#/media/{{ image.id }}" class="overview--screen-link" class="thumbnail">
+        <div>{{image.name}}</div>
+        <img data-ng-src="{{ image.url }}" class="thumbnail">
+      </a>
     </div>
   </div>
 </section>

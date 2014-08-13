@@ -4,6 +4,9 @@
  */
 ikApp.controller('MediaUploadController', function ($scope, FileUploader, $location) {
   $scope.currentStep = 1;
+  $scope.uploadComplete = false;
+  $scope.uploadErrors = false;
+  $scope.uploadErrorText = '';
 
   // Create an uploader
   $scope.uploader = new FileUploader({
@@ -29,6 +32,8 @@ ikApp.controller('MediaUploadController', function ($scope, FileUploader, $locat
    */
   $scope.clearQueue = function() {
     $scope.uploader.clearQueue();
+    $scope.uploadComplete = false;
+    $scope.uploadErrors = false;
     $scope.currentStep = 1;
   }
 
@@ -40,6 +45,8 @@ ikApp.controller('MediaUploadController', function ($scope, FileUploader, $locat
     item.remove();
     if ($scope.uploader.queue.length <= 0) {
       $scope.currentStep = 1;
+      $scope.uploadComplete = false;
+      $scope.uploadErrors = false;
     }
   }
 
@@ -52,21 +59,24 @@ ikApp.controller('MediaUploadController', function ($scope, FileUploader, $locat
   };
 
   $scope.uploader.onAfterAddingFile = function(item) {
-    console.log(item);
-    item.formData.push = item.file.name;
+    item.formData = [{title: ''}];
   };
 
   $scope.uploader.onAfterAddingAll = function(item) {
-    console.log(item);
     $scope.currentStep++;
   };
 
-  $scope.uploader.onCompleteAll = function() {
-    $location.path('/media');
-    $scope.$apply();
+  $scope.uploader.onErrorItem = function(item, response, status, headers) {
+    $scope.uploadErrors = true;
+
+    if (status === 413) {
+      $scope.uploadErrorText = "Billedet var for stort (fejlkode: 413)";
+    } else {
+      $scope.uploadErrorText = "Der skete en fejl (fejlkode: " + status + ")";
+    }
   };
 
-  $scope.uploader.onCancelItem = function(item, response, status, headers) {
-    console.log("cancel item");
+  $scope.uploader.onCompleteAll = function() {
+    $scope.uploadComplete = true;
   };
 });
