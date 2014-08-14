@@ -92,12 +92,13 @@
 
   &--screen-landscape {
     display: inline-block;
-    margin-bottom: 2em;
+    margin: 0 2em 2em;
   }
 
 
   &--screen-portrait {
     display: inline-block;
+    margin: 0 2em 2em;
   }
 
 
@@ -119,8 +120,8 @@
 
 
   &--template {
-    margin-bottom: 2em;
-    position: relative;
+    display: inline-block;
+    margin: 0 2em 2em;
   }
 
 
