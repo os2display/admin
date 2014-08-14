@@ -129,5 +129,35 @@ class MediaController extends Controller {
     return $response;
   }
 
+  /**
+   * Delete media with ID.
+   *
+   * @Route("/{id}")
+   * @Method("DELETE")
+   *
+   * @param $id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaDeleteAction($id) {
+    $em = $this->getDoctrine()->getManager();
+    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    if($media) {
+      $em->remove(($media));
+      $em->flush();
+      $response->setContent(json_encode(array()));
+    } else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
 
 }
