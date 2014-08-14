@@ -56,7 +56,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
       channelFactory.saveChannel().then(function() {
-        $location.path('/channels');
+        $location.path('/channel-overview');
       });
     } else {
       loadStep($scope.step + 1);
