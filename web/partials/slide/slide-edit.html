@@ -7,9 +7,9 @@
     <h2 class="edit-menu--header">Redigér tekst</h2>
     <form class="edit-menu--form">
       <label class="edit-menu--label">Tekstfarve</label>
-      <input class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.textcolor">
+      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.textcolor">
       <label class="edit-menu--label">Baggrundsfarve</label>
-      <input class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor">
+      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor">
       <label class="edit-menu--label">Skriftstørrelse</label>
       <input class="edit-menu--form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
     </form>
@@ -29,7 +29,7 @@
       </select>
       <p class="edit-menu--divider">-- eller --</p>
       <label class="edit-menu--label">Baggrundsfarve</label>
-      <input class="edit-menu--form-element form-slide-background-background-color" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor">
+      <input colorpicker="rgba" class="edit-menu--form-element form-slide-background-background-color" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor">
     </form>
   </div>
 </div>

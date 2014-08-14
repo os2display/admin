@@ -3210,6 +3210,13 @@ html.is-locked body {
   background-position: 0 -546px;
 }
 
+/* line 1, ../sass/modules/_colorpicker.scss */
+.colorpicker {
+  background-color: white;
+  border: 1px solid #b3b3b3;
+  padding: .5em;
+}
+
 /* Animations
  *
  * ========================================================================== */

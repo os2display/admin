@@ -51,7 +51,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
       slideFactory.saveSlide().then(function() {
-        $location.path('/slides');
+        $location.path('/slide-overview');
       });
     } else {
       loadStep($scope.step + 1);
