@@ -32,10 +32,8 @@ class MediaController extends Controller {
 
       if (isset($title) && $title !== '') {
         $media->setName($title);
-      } else {
-        // @TODO: FIX BUG: This line fails.
-        $media->setName($file->originalName);
       }
+      
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
       $media->setProviderName('sonata.media.provider.image');
