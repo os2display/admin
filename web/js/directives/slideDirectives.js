@@ -45,7 +45,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFactory', function(slideFactory, imageFactory, templateFactory) {
+ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFactory', function(slideFactory, mediaFactory, templateFactory) {
   return {
     restrict: 'E',
     scope: {
@@ -64,7 +64,7 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFac
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '-edit.html';
 
           // Get images for editor
-          imageFactory.getImages().then(function (data) {
+          mediaFactory.getImages().then(function (data) {
             scope.backgroundImages = data;
           });
 
