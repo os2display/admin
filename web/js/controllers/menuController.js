@@ -26,7 +26,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: 'slides',
+          path: 'slide-overview',
           classSuffix: 'overview'
         },
         {

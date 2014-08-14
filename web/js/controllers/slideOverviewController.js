@@ -2,9 +2,7 @@
  * @file
  * Slides controller handles the display and selection of slides.
  */
-
-
-ikApp.controller('SlidesController', function($scope, slideFactory) {
+ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
   $scope.slides = [];
 
   // Setup default search options.
