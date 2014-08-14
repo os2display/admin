@@ -14,9 +14,9 @@
   <div class="overview--sorting">
     <label class="overview--sort-label">Sorter på:</label>
     <div class="overview--sort-links">
-      <span class="overview--newest" data-ng-class="{'is-active': search.sort['created'] && search.sort['created'] == 'desc'}" data-ng-click="setSort('created', 'desc')">Newest</span>
-      <span class="overview--oldest" data-ng-class="{'is-active': search.sort['created'] && search.sort['created'] == 'asc'}" data-ng-click="setSort('created', 'asc')">Oldest</span>
-      <span class="overview--alphabetical" data-ng-class="{'is-active': search.sort['title']}"  data-ng-click="setSort('title', 'desc')">A-Z</span>
+      <span class="overview--newest" data-ng-class="{'is-active': search.sort.created && search.sort.created.order === 'desc'}" data-ng-click="setSort('created', 'desc')">Newest</span>
+      <span class="overview--oldest" data-ng-class="{'is-active': search.sort.created && search.sort.created.order === 'asc'}" data-ng-click="setSort('created', 'asc')">Oldest</span>
+      <span class="overview--alphabetical" data-ng-class="{'is-active': search.sort.title}"  data-ng-click="setSort('title', 'asc')">A-Z</span>
     </div>
   </div>
 

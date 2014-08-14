@@ -170,7 +170,7 @@
  * 5. Required to combine fluid widths and fixed gutters.
  */
 /* line 239, ../sass/base/_grid.scss */
-.create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .create-media--content--media-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
+.create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
   display: inline-block;
   /* [1] */
   padding-left: 36px;
@@ -256,7 +256,7 @@
    * Whole
    */
   /* line 367, ../sass/base/_grid.scss */
-  .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .create-media--content--media-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
+  .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
     width: 100%;
   }
 
@@ -290,7 +290,7 @@
    * Whole
    */
   /* line 367, ../sass/base/_grid.scss */
-  .create-screen--content--screen-one, .create-channel--content--channel-one, .create-media--content--media-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
+  .create-screen--content--screen-one, .create-channel--content--channel-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
     width: 100%;
   }
 
@@ -366,7 +366,7 @@
    * Halves
    */
   /* line 373, ../sass/base/_grid.scss */
-  .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .create-media--content--media-one, .frontpage--layout-beta, .frontpage--layout-gamma {
+  .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-beta, .frontpage--layout-gamma {
     width: 50%;
   }
 
@@ -447,7 +447,7 @@
 /* Layout
    ================================================================================================================== */
 /* line 12, ../sass/theme/_theme-vars.scss */
-.create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .create-media--content--media-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
+.create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
   margin-right: -4px;
 }
 
@@ -1840,21 +1840,21 @@ html.is-locked body {
 }
 /* line 34, ../sass/modules/_create-media.scss */
 .create-media--button {
-  display: block;
+  display: inline-block;
   margin: 0 auto 1em;
 }
-/* line 53, ../sass/modules/_create-media.scss */
+/* line 47, ../sass/modules/_create-media.scss */
 .create-media--hidden-input-file {
   width: 0;
   height: 0;
   overflow: hidden;
 }
-/* line 59, ../sass/modules/_create-media.scss */
+/* line 53, ../sass/modules/_create-media.scss */
 .create-media--upload-drop-zone {
   width: 100%;
   background-color: #fafafa;
 }
-/* line 64, ../sass/modules/_create-media.scss */
+/* line 58, ../sass/modules/_create-media.scss */
 .create-media--upload-icon {
   background: url('../images/icons-sc2cf9bf679.png');
   -moz-background-size: 128px 1348px;
@@ -1868,11 +1868,45 @@ html.is-locked body {
   vertical-align: middle;
   margin: 2em auto;
 }
-/* line 72, ../sass/modules/_create-media.scss */
+/* line 66, ../sass/modules/_create-media.scss */
 .create-media--upload-text {
   width: 100%;
   display: inline-block;
   margin: 2em auto;
+}
+/* line 73, ../sass/modules/_create-media.scss */
+.create-media--text[type="text"] {
+  background-color: white;
+}
+/* line 78, ../sass/modules/_create-media.scss */
+.create-media--thumb-container {
+  max-width: 300px;
+  display: inline-block;
+  background-color: #fafafa;
+  padding: 1em;
+  margin: 1em;
+}
+/* line 87, ../sass/modules/_create-media.scss */
+.create-media--drop-zone {
+  width: 50%;
+  margin: 0 auto 1em;
+}
+/* line 92, ../sass/modules/_create-media.scss */
+.create-media--progress {
+  width: 400px;
+  margin: auto;
+  margin-bottom: 1em;
+}
+/* line 98, ../sass/modules/_create-media.scss */
+.create-media--progress-bar {
+  border: 2px solid #b3b3b3;
+  background-color: #e6e6e6;
+  height: 20px;
+}
+/* line 104, ../sass/modules/_create-media.scss */
+.create-media--error-text {
+  margin: auto;
+  margin-bottom: 1em;
 }
 
 /**

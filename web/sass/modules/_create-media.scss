@@ -34,20 +34,14 @@
   &--button {
     @extend .button;
 
-    display: block;
+    display: inline-block;
     margin: 0 auto 1em;
   }
 
   /* Create media - upload file (Page 1)
  ========================================================================== */
   &--content--media-one {
-    @extend %grid__item;
-    @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-whole;
-    @extend %desk--one-half;
-
-    @extend %create-element--page-name-default ;
+    @extend %create-element--page-name-default;
   }
 
   &--hidden-input-file {
@@ -78,5 +72,37 @@
 
   &--text[type="text"] {
     @extend %create-element--page-name-input-default;
+    background-color: $white;
+  }
+
+  &--thumb-container {
+    max-width: 300px;
+    display: inline-block;
+    background-color: $gray-lightest;
+
+    padding: 1em;
+    margin:  1em;
+  }
+
+  &--drop-zone {
+    width: 50%;
+    margin: 0 auto 1em;
+  }
+
+  &--progress {
+    width: 400px;
+    margin: auto;
+    margin-bottom: 1em;
+  }
+
+  &--progress-bar {
+    border: 2px solid $gray;
+    background-color: $gray-lighter;
+    height: 20px;
+  }
+
+  &--error-text {
+    margin: auto;
+    margin-bottom: 1em;
   }
 }

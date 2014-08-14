@@ -94,10 +94,16 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
     var split = str.split('/');
 
     if (split.length >= 2) {
-      str = split[1];
+      str = "";
+      for (var i = 1; i < split.length; i++) {
+        str = str + split[i];
+        if (i < split.length - 1) {
+          str = str + "/";
+        }
+      }
     }
 
-    if (str == pattern) {
+    if (str === pattern) {
       return true;
     }
     return false;

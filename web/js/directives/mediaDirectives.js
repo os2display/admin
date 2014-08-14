@@ -1,5 +1,8 @@
 /**
- * Directive for media upload.
+ * The ng-thumb directive
+ * NB! Has been renamed to ik-thumb
+ * @author: nerv
+ * @version: 0.1.2, 2014-01-09
  */
 ikApp.directive('ikThumb', ['$window', function($window) {
   var helper = {
@@ -9,7 +12,7 @@ ikApp.directive('ikThumb', ['$window', function($window) {
     },
     isImage: function(file) {
       var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
-      return '|jpg|png|jpeg|gif|'.indexOf(type) !== -1;
+      return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
     }
   };
 
@@ -20,11 +23,19 @@ ikApp.directive('ikThumb', ['$window', function($window) {
       if (!helper.support) return;
 
       var params = scope.$eval(attributes.ikThumb);
+      console.log(params);
 
-      if (!helper.isFile(params.file)) return;
-      if (!helper.isImage(params.file)) return;
+      if (!helper.isFile(params.file)) {
+        console.log("Not a file");
+        return;
+      }
+      if (!helper.isImage(params.file)) {
+        console.log("Not an image");
+        return;
+      }
 
       var canvas = element.find('canvas');
+
       var reader = new FileReader();
 
       reader.onload = onLoadFile;
@@ -45,4 +56,3 @@ ikApp.directive('ikThumb', ['$window', function($window) {
     }
   };
 }]);
-

@@ -14,3 +14,4 @@ config.codekit
 /web/bower_components/
 composer.phar
 web/uploads/
+/bin

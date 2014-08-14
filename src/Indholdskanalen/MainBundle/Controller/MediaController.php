@@ -25,16 +25,15 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function MediaUploadAction(Request $request) {
-
-    $formData = $request->request->get('formData');
-    $debug = var_export($request->request, true);
-    //$debug = "testing";
+    $title = $request->request->get('title');
 
     foreach ($request->files as $file) {
       $media = new Media;
 
-      $media->setName("Title2");
-      $media->setDescription(json_encode(var_export($request, true)));
+      if (isset($title) && $title !== '') {
+        $media->setName($title);
+      }
+
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
       $media->setProviderName('sonata.media.provider.image');
@@ -44,8 +43,8 @@ class MediaController extends Controller {
       $mediaManager->save($media);
     }
 
-
-    $response = new Response(json_encode($formData));
+    // @TODO: send status codes
+    $response = new Response(json_encode(array()));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
 
