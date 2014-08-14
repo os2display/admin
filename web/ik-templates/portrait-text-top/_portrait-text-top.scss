@@ -25,11 +25,15 @@
 
 
 .portrait-text-top--header {
+  @extend %show-placeholder-text;
+
   font-size: 100%;
 }
 
 
 .portrait-text-top--description {
+  @extend %show-placeholder-text;
+
   font-size: 70%;
 }
 

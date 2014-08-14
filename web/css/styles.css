@@ -649,6 +649,12 @@
   cursor: pointer;
 }
 
+/* line 140, ../sass/theme/_global-silent-classes.scss */
+.text-top--header:empty:before, .text-top--description:empty:before, .text-bottom--header:empty:before, .text-bottom--description:empty:before, .text-left--header:empty:before, .text-left--description:empty:before, .text-right--header:empty:before, .text-right--description:empty:before, .portrait-text-top--header:empty:before, .portrait-text-top--description:empty:before {
+  content: attr(placeholder);
+  color: #e6e6e6;
+}
+
 /**
  *
  * Normalize
@@ -3466,7 +3472,7 @@ html.is-locked body {
   font-size: 100%;
 }
 
-/* line 32, ../ik-templates/text-top/_text-top.scss */
+/* line 34, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
   font-size: 70%;
 }
@@ -3505,12 +3511,12 @@ html.is-locked body {
   font-size: 100%;
 }
 
-/* line 33, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 35, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%;
 }
 
-/* line 43, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 47, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%;
@@ -3552,7 +3558,7 @@ html.is-locked body {
   font-size: 100%;
 }
 
-/* line 35, ../ik-templates/text-left/_text-left.scss */
+/* line 37, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%;
 }
@@ -3593,12 +3599,12 @@ html.is-locked body {
   font-size: 100%;
 }
 
-/* line 35, ../ik-templates/text-right/_text-right.scss */
+/* line 37, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%;
 }
 
-/* line 45, ../ik-templates/text-right/_text-right.scss */
+/* line 49, ../ik-templates/text-right/_text-right.scss */
 .text-right--edit-image-settings {
   right: auto;
   left: 15%;
@@ -3637,7 +3643,7 @@ html.is-locked body {
   font-size: 100%;
 }
 
-/* line 32, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 34, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%;
 }
