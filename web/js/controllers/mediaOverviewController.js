@@ -9,7 +9,7 @@ ikApp.controller('MediaOverviewController', function ($scope, $http, mediaFactor
 
   // Setup default search options.
   $scope.search = {
-    "fields": 'title',
+    "fields": 'name',
     "text": '',
     "sort": {
       "created_at" : {
