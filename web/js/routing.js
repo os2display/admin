@@ -3,25 +3,29 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'IndexController',
     templateUrl: 'partials/index.html'
   })
-  .when('/channels', {
-    controller: 'ChannelsController',
-    templateUrl: 'partials/channel/channels.html'
+
+  // Overviews
+  .when('/channel-overview', {
+    controller: 'ChannelOverviewController',
+    templateUrl: 'partials/channel/channel-overview.html'
   })
   .when('/slide-overview', {
     controller: 'SlideOverviewController',
     templateUrl: 'partials/slide/slide-overview.html'
   })
-  .when('/screens', {
-    controller: 'ScreensController',
-    templateUrl: 'partials/screen/screens.html'
+  .when('/screen-overview', {
+    controller: 'ScreenOverviewController',
+    templateUrl: 'partials/screen/screen-overview.html'
   })
+  .when('/media-overview', {
+    controller: 'MediaOverviewController',
+    templateUrl: 'partials/media/media-overview.html'
+  })
+
+  // Screens
   .when('/screen-groups', {
     controller: 'ScreenGroupsController',
     templateUrl: 'partials/screen/screen-groups.html'
-  })
-  .when('/templates', {
-    controller: 'TemplatesController',
-    templateUrl: 'partials/templates.html'
   })
   .when('/screen', {
     controller: 'ScreenController',
@@ -39,6 +43,8 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'ScreenGroupController',
     templateUrl: 'partials/screen/screen-group.html'
   })
+
+  // Slide
   .when('/slide', {
     controller: 'SlideController',
     templateUrl: 'partials/slide/slide.html'
@@ -47,6 +53,8 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'SlideController',
     templateUrl: 'partials/slide/slide.html'
   })
+
+  // Channel
   .when('/channel', {
     controller: 'ChannelController',
     templateUrl: 'partials/channel/channel.html'
@@ -55,6 +63,8 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'ChannelController',
     templateUrl: 'partials/channel/channel.html'
   })
+
+  // Media
   .when('/media/upload', {
     controller: 'MediaUploadController',
     templateUrl: 'partials/media/media-upload.html'
@@ -63,9 +73,11 @@ ikApp.config(function($routeProvider) {$routeProvider
     controller: 'MediaEditController',
     templateUrl: 'partials/media/media-edit.html'
   })
-  .when('/media', {
-    controller: 'MediaOverviewController',
-    templateUrl: 'partials/media/media-overview.html'
+
+  .when('/templates', {
+    controller: 'TemplatesController',
+    templateUrl: 'partials/templates.html'
   })
+
   .otherwise({redirectTo: '/'});
 });

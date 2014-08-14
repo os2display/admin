@@ -12,7 +12,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: 'channels',
+          path: 'channel-overview',
           classSuffix: 'overview'
         },
         {
@@ -40,7 +40,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: 'screens',
+          path: 'screen-overview',
           classSuffix: 'overview'
         },
         {
@@ -54,7 +54,7 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       $scope.subMenuItems = [
         {
           title: 'Oversigt',
-          path: 'templates',
+          path: 'template-overview',
           classSuffix: 'overview'
         },
         {
@@ -65,18 +65,18 @@ ikApp.controller('MenuController', function($scope, $rootScope, $location) {
       ];
     }
     else if ($scope.url.indexOf('/media') == 0) {
-        $scope.subMenuItems = [
-            {
-                title: 'Oversigt',
-                path: 'media',
-                classSuffix: 'overview'
-            },
-            {
-                title: 'Upload',
-                path: 'media/upload',
-                classSuffix: 'create-media'
-            }
-        ];
+      $scope.subMenuItems = [
+        {
+          title: 'Oversigt',
+          path: 'media-overview',
+          classSuffix: 'overview'
+        },
+        {
+          title: 'Upload',
+          path: 'media/upload',
+          classSuffix: 'create-media'
+        }
+      ];
     }
     else {
       $scope.subMenuItems = [];

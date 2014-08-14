@@ -4,7 +4,7 @@
  */
 
 
-ikApp.controller('ChannelsController', function($scope, channelFactory) {
+ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
   $scope.channels = [];
 
   // Setup default search options.

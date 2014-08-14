@@ -3,7 +3,7 @@
  * Screens controller handles the display and selection of screens.
  */
 
-ikApp.controller('ScreensController', function($scope, screenFactory) {
+ikApp.controller('ScreenOverviewController', function($scope, screenFactory) {
   $scope.screens = [];
 
   // Setup default search options.

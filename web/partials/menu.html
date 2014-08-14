@@ -4,11 +4,11 @@
    <div class="nav--toggle-icon" data-ng-click="toggleNavMenu()">X</div>
     <h2 class="nav--header">Navigation</h2>
     <div class="nav--item-wrapper">
-      <a href="/#/channels" class="nav--item">Kanaler</a>
-      <a href="/#/slides" class="nav--item">Slides</a>
-      <a href="/#/screens" class="nav--item">Screens</a>
+      <a href="/#/channel-overview" class="nav--item">Kanaler</a>
+      <a href="/#/slide-overview" class="nav--item">Slides</a>
+      <a href="/#/screen-overview" class="nav--item">Screens</a>
       <a href="/#/templates" class="nav--item">Templates</a>
-      <a href="/#/media" class="nav--item">Media</a>
+      <a href="/#/media-overview" class="nav--item">Media</a>
       <a href="/profile" class="nav--item">Profile (Symfony)</a>
       <a href="/#/screen-group" class="nav--item">Opret skærmgruppe</a>
       <a href="/#/screen-groups" class="nav--item">Skærmgrupper</a>
@@ -25,7 +25,7 @@
       <nav class="header--main-menu">
         <ul class="header--main-menu-items">
           <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/channel') == 0}">
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channels">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channel-overview">
               <span class="header--main-menu-item-image-channels"></span>
               <span class="header--main-menu-item-text">Kanaler</span>
             </a>
@@ -37,13 +37,13 @@
             </a>
           </li>
           <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/screen') == 0}" >
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/screen') == 0}" href="/#/screens">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/screen') == 0}" href="/#/screen-overview">
               <span class="header--main-menu-item-image-screens"></span>
               <span class="header--main-menu-item-text">Skærme</span>
             </a>
           </li>
           <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/media') == 0}" >
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media">
+            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media-overview">
               <span class="header--main-menu-item-image-templates"></span>
               <span class="header--main-menu-item-text">Media</span>
             </a>
@@ -91,25 +91,25 @@
       <nav class="header--main-menu--mobile" data-ng-class="{'is-hidden': !mobileMainMenuVisible()}">
         <ul class="header--main-menu-items--mobile">
           <li class="header--main-menu-item--mobile">
-            <a class="header--main-menu-item-link--mobile" href="/#/channels">
+            <a class="header--main-menu-item-link--mobile" href="/#/channel-overview">
               <span class="header--main-menu-item-image-channels--mobile"></span>
               <span class="header--main-menu-item-text--mobile">Kanaler</span>
             </a>
           </li>
           <li class="header--main-menu-item--mobile">
-            <a class="header--main-menu-item-link--mobile" href="/#/slide/overview">
+            <a class="header--main-menu-item-link--mobile" href="/#/slide-overview">
               <span class="header--main-menu-item-image-slides--mobile"></span>
               <span class="header--main-menu-item-text--mobile">Slides</span>
             </a>
           </li>
           <li class="header--main-menu-item--mobile">
-            <a class="header--main-menu-item-link--mobile" href="/#/screens">
+            <a class="header--main-menu-item-link--mobile" href="/#/screen-overview">
               <span class="header--main-menu-item-image-screens--mobile"></span>
               <span class="header--main-menu-item-text--mobile">Skærme</span>
             </a>
           </li>
           <li class="header--main-menu-item--mobile">
-            <a class="header--main-menu-item-link--mobile" href="/#/media">
+            <a class="header--main-menu-item-link--mobile" href="/#/media-overview">
               <span class="header--main-menu-item-image-templates--mobile"></span>
               <span class="header--main-menu-item-text--mobile">Media</span>
             </a>
