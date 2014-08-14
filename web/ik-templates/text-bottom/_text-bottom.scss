@@ -26,11 +26,15 @@
 
 
 .text-bottom--header {
+  @extend %show-placeholder-text;
+
   font-size: 100%;
 }
 
 
 .text-bottom--description {
+  @extend %show-placeholder-text;
+
   font-size: 70%;
 }
 

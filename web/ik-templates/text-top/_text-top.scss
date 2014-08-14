@@ -25,11 +25,15 @@
 
 
 .text-top--header {
+  @extend %show-placeholder-text;
+
   font-size: 100%;
 }
 
 
 .text-top--description {
+  @extend %show-placeholder-text;
+
   font-size: 70%;
 }
 

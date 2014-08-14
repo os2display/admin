@@ -134,3 +134,11 @@
     cursor: pointer;
   }
 }
+
+
+%show-placeholder-text {
+  &:empty:before {
+    content: attr(placeholder);
+    color: $gray-lighter;
+  }
+}
