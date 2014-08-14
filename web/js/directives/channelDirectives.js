@@ -61,6 +61,13 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', 'te
           scope.buttonState = 'pause';
         }
       }
+
+      scope.$on('$destroy', function() {
+        if (angular.isDefined(scope.interval)) {
+          $interval.cancel(scope.interval);
+          scope.interval = undefined;
+        }
+      });
     },
     template: '<div class="preview--channel"><div data-ng-include="" src="templateURL" class="preview--channel-display"></div><div class="preview--channel-{{buttonState}}" ng-click="play()"></div></div>'
   }
