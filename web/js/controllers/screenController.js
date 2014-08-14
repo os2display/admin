@@ -56,7 +56,7 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
     if ($scope.step == $scope.steps) {
       screenFactory.saveScreen().then(
         function() {
-          $location.path('/screens');
+          $location.path('/screen-overview');
         }
       );
     } else {
