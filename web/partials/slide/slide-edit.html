@@ -1,36 +1,39 @@
-<div data-ng-include="" src="templateURL"></div>
-
-<div class="edit-menu--wrapper" role="banner" ng-show="editor.showTextEditor">
-  <a class="edit-menu--overlay" data-ng-class="{'is-visible': editor.showTextEditor}" data-ng-click="editor.toggleTextEditor()"></a>
-  <div class="edit-menu" data-ng-class="{'is-visible': editor.showTextEditor, 'is-hidden': !editor.showTextEditor}">
-    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleTextEditor()">X</div>
-    <h2 class="edit-menu--header">Redigér tekst</h2>
-    <form class="edit-menu--form">
-      <label class="edit-menu--label">Tekstfarve</label>
-      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.textcolor" data-ng-style="{'background-color': ikSlide.options.textcolor}">
-      <label class="edit-menu--label">Baggrundsfarve</label>
-      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor" data-ng-style="{'background-color': ikSlide.options.textbgcolor}">
-      <label class="edit-menu--label">Skriftstørrelse</label>
-      <input class="edit-menu--form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
-    </form>
+<div data-ng-controller="SlideEditController">
+  <div data-ng-include="" src="templateURL"></div>
+  <div class="edit-menu--wrapper" role="banner" ng-show="editor.showTextEditor">
+    <a class="edit-menu--overlay" data-ng-class="{'is-visible': editor.showTextEditor}" data-ng-click="editor.toggleTextEditor()"></a>
+    <div class="edit-menu" data-ng-class="{'is-visible': editor.showTextEditor, 'is-hidden': !editor.showTextEditor}">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleTextEditor()">X</div>
+      <h2 class="edit-menu--header">Redigér tekst</h2>
+      <form class="edit-menu--form">
+        <label class="edit-menu--label">Tekstfarve</label>
+        <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.textcolor" data-ng-style="{'background-color': ikSlide.options.textcolor}">
+        <label class="edit-menu--label">Baggrundsfarve</label>
+        <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor" data-ng-style="{'background-color': ikSlide.options.textbgcolor}">
+        <label class="edit-menu--label">Skriftstørrelse</label>
+        <input class="edit-menu--form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
+      </form>
+    </div>
   </div>
-</div>
 
-<div class="edit-menu--wrapper" role="banner" ng-show="editor.showBackgroundEditor">
-  <a class="edit-menu--overlay" data-ng-class="{'is-visible': editor.showBackgroundEditor}" data-ng-click="editor.toggleBackgroundEditor()"></a>
-  <div class="edit-menu" data-ng-class="{'is-visible': editor.showBackgroundEditor, 'is-hidden': !editor.showBackgroundEditor}">
-    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleBackgroundEditor()">X</div>
-    <h2 class="edit-menu--header">Redigér baggrund</h2>
-    <form class="edit-menu--form">
-      <label class="edit-menu--label">Vælg billede</label>
-      <select class="edit-menu--dropdown" data-ng-model="ikSlide.options.image">
-        <option value="">-- None --</option>
-        <option value="{{img.url[ikSlide.orientation]}}" data-ng-repeat="img in backgroundImages">{{img.name}}</option>
-      </select>
+  <div class="edit-menu-background--wrapper" role="banner" ng-show="editor.showBackgroundEditor">
+    <div class="edit-menu-background" data-ng-class="{'is-visible': editor.showBackgroundEditor, 'is-hidden': !editor.showBackgroundEditor}">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleBackgroundEditor()">X</div>
+      <div data-ng-show="step === 'background-picker'">
+        <h2 class="edit-menu-background--header">Opret slide - vælg baggrund</h2>
 
-      <p class="edit-menu--divider">-- eller --</p>
-      <label class="edit-menu--label">Baggrundsfarve</label>
-      <input colorpicker="rgba" class="edit-menu--form-element form-slide-background-background-color" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
-    </form>
+        <button class="edit-menu-background--button" data-ng-click="pickFromMedia()">Vælg fil fra medier</button>
+        <button class="edit-menu-background--button" data-ng-click="pickFromComputer()">Vælg fil fra computer</button>
+
+        <p class="edit-menu--divider">- eller -</p>
+        <label class="edit-menu-background--label">Vælg en baggrundsfarve</label>
+        <input colorpicker="rgba" class="form-slide-background-background-color edit-menu-background--form-element" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
+      </div>
+      <div data-ng-show="step === 'pick-from-media'">
+        <h2 class="edit-menu-background--header">Opret slide - baggrund fra medier</h2>
+
+        <div data-ng-include="" src="'partials/media/media-overview.html'"></div>
+      </div>
+    </div>
   </div>
 </div>

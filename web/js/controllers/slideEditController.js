@@ -1,9 +1,24 @@
 /**
- * @file
- * Images controller handles the display, selection and upload of image.
+ * Slide edit controller. Controls the slide creation process.
  */
+ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, slideFactory) {
+  // Get the slide from the backend.
+  slideFactory.getEditSlide(null).then(function(data) {
+    $scope.slide = data;
+  });
 
-ikApp.controller('MediaOverviewController', function ($scope, $http, $location, mediaFactory) {
+  $scope.step = 'background-picker';
+
+  $scope.pickFromMedia = function pickFromMedia() {
+    updateImages();
+
+    $scope.step = 'pick-from-media';
+  };
+
+  $scope.pickFromComputer = function pickFromComputer() {
+    $scope.step = 'pick-from-computer';
+  };
+
   // Setup some default configuration.
   $scope.images = [];
 
@@ -36,8 +51,25 @@ ikApp.controller('MediaOverviewController', function ($scope, $http, $location, 
     );
   };
 
-  $scope.mediaOverviewClickImage = function clickImage(id) {
-    $location.path('/media/' + id);
+  $scope.mediaOverviewClickImage = function clickImage(image) {
+    $scope.slide.options.image = image.url;
+
+    $scope.editor.showBackgroundEditor = false;
+    $scope.editor.showTextEditor = false;
+  }
+
+  // Setup editor states and functions.
+  $scope.editor = {
+    showTextEditor: false,
+    toggleTextEditor: function() {
+      $scope.editor.showBackgroundEditor = false;
+      $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
+    },
+    showBackgroundEditor: false,
+    toggleBackgroundEditor: function() {
+      $scope.editor.showTextEditor = false;
+      $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
+    }
   }
 
   /**
@@ -56,9 +88,6 @@ ikApp.controller('MediaOverviewController', function ($scope, $http, $location, 
 
     updateImages();
   };
-
-  // Send the default search query.
-  updateImages();
 
   // Hook into the search field.
   $('.js-text-field').off("keyup").on("keyup", function() {
