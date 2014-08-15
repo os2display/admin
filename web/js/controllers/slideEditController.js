@@ -9,55 +9,6 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
 
   $scope.step = 'background-picker';
 
-  $scope.pickFromMedia = function pickFromMedia() {
-    updateImages();
-
-    $scope.step = 'pick-from-media';
-  };
-
-  $scope.pickFromComputer = function pickFromComputer() {
-    $scope.step = 'pick-from-computer';
-  };
-
-  // Setup some default configuration.
-  $scope.images = [];
-
-  // Setup default search options.
-  $scope.search = {
-    "fields": 'name',
-    "text": '',
-    "sort": {
-      "created_at" : {
-        "order": "desc"
-      }
-    }
-  };
-
-  /**
-   * Updates the images array by sending a search request.
-   */
-  var updateImages = function() {
-    mediaFactory.searchMedia($scope.search).then(
-      function(data) {
-        $scope.images = data;
-
-        angular.forEach($scope.images, function(value, key) {
-          $http.get('/api/media/' + value.id)
-            .success(function(data, status) {
-              $scope.images[key].url = data.urls.landscape;
-            })
-        });
-      }
-    );
-  };
-
-  $scope.mediaOverviewClickImage = function clickImage(image) {
-    $scope.slide.options.image = image.url;
-
-    $scope.editor.showBackgroundEditor = false;
-    $scope.editor.showTextEditor = false;
-  }
-
   // Setup editor states and functions.
   $scope.editor = {
     showTextEditor: false,
@@ -72,27 +23,23 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
     }
   }
 
-  /**
-   * Changes the sort order and updated the images.
-   *
-   * @param sort
-   *   Field to sort on.
-   * @param sortOrder
-   *   The order to sort in 'desc' or 'asc'.
-   */
-  $scope.setSort = function(sort, sortOrder) {
-    $scope.search.sort = {};
-    $scope.search.sort[sort] = {
-      "order": sortOrder
-    };
-
-    updateImages();
+  $scope.pickFromMedia = function pickFromMedia() {
+    $scope.step = 'pick-from-media';
   };
 
-  // Hook into the search field.
-  $('.js-text-field').off("keyup").on("keyup", function() {
-    if (event.keyCode === 13 || $scope.search.text.length >= 3) {
-      updateImages();
+  $scope.pickFromComputer = function pickFromComputer() {
+    $scope.step = 'pick-from-computer';
+  };
+
+  $scope.$on('mediaOverview.selectImage', function(event, image) {
+    if ($scope.slide.options.image === image.url) {
+      $scope.slide.options.image = '';
     }
+    else {
+      $scope.slide.options.image = image.url;
+    }
+
+    $scope.editor.showBackgroundEditor = false;
+    $scope.editor.showTextEditor = false;
   });
 });
