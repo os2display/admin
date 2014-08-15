@@ -3,12 +3,15 @@
 namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use JMS\Serializer\Serializer;
 
 class SearchIndexer {
   protected $container;
+  protected $serializer;
 
-  function __construct() {
-    $this->container = $this->getContainer();
+  function __construct(Serializer $serializer) {
+    //$this->container = $this->getContainer();
+    $this->serializer = $serializer;
   }
   public function postPersist(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'POST');
@@ -61,9 +64,7 @@ class SearchIndexer {
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
-    // Setup our serializer.
-    $serializer = $this->container->get('jms_serializer');
-    $jsonContent = $serializer->serialize($params, 'json');
+    $jsonContent = $this->serializer->serialize($params, 'json');
 
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
 
@@ -78,22 +79,5 @@ class SearchIndexer {
 
     // Close connection.
     curl_close ($ch);
-  }
-
-  /**
-   * Get the container.
-   *
-   * @todo: I am 100% sure that there must be a better way to get access to
-   * doctrine in a helper class than use globals.
-   *
-   * @return \Symfony\Component\DependencyInjection\ContainerInterface
-   */
-  protected function getContainer() {
-    if (NULL === $this->container) {
-      // This use of global is not the right way, but until DI makes sens... it works.
-      $this->container = $GLOBALS['kernel']->getContainer();
-    }
-
-    return $this->container;
   }
 }

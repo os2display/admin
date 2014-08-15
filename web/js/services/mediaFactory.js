@@ -47,5 +47,24 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory', function($http, $
     return defer.promise;
   };
 
+  /**
+   * Delete the image with @id
+   * @param id
+   */
+
+  factory.deleteImage = function(id) {
+    var defer = $q.defer();
+
+    $http.delete('/api/media/' + id)
+      .success(function(data, status) {
+        defer.resolve(data);
+      })
+      .error(function(data, status) {
+        defer.reject(status);
+      });
+
+    return defer.promise;
+  };
+
   return factory;
 }]);

@@ -7,6 +7,7 @@ services:
 #        arguments: [@service_id, "plain_value", %parameter%]
   indholdskanalen_main.listener:
     class: Indholdskanalen\MainBundle\EventListener\SearchIndexer
+    arguments: [@jms_serializer]
     tags:
       - { name: doctrine.event_listener, event: postPersist }
       - { name: doctrine.event_listener, event: preUpdate }
