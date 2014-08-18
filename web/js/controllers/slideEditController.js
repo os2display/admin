@@ -18,6 +18,7 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
     },
     showBackgroundEditor: false,
     toggleBackgroundEditor: function() {
+      $scope.step = 'background-picker';
       $scope.editor.showTextEditor = false;
       $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
     }
@@ -39,7 +40,34 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
       $scope.slide.options.image = image.url;
     }
 
+    $scope.step = 'background-picker';
     $scope.editor.showBackgroundEditor = false;
     $scope.editor.showTextEditor = false;
+  });
+
+  $scope.$on('mediaUpload.uploadSuccess', function(event, data) {
+    var allSuccess = true;
+
+    for (var i = 0; i < data.queue.length; i++) {
+      var item = data.queue[i];
+
+      if (!item.isSuccess) {
+        allSuccess = false;
+        break;
+      }
+    }
+
+    if (allSuccess) {
+      mediaFactory.getImage(data.id).then(function(image) {
+        console.log(data.id);
+        console.log(image);
+
+        $scope.slide.options.image = image.urls.landscape;
+      });
+
+      $scope.step = 'background-picker';
+      $scope.editor.showBackgroundEditor = false;
+      $scope.editor.showTextEditor = false;
+    }
   });
 });
