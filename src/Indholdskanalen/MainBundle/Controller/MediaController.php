@@ -27,6 +27,8 @@ class MediaController extends Controller {
   public function MediaUploadAction(Request $request) {
     $title = $request->request->get('title');
 
+    $uploadedItems = array();
+
     foreach ($request->files as $file) {
       $media = new Media;
 
@@ -41,10 +43,12 @@ class MediaController extends Controller {
       $mediaManager = $this->get("sonata.media.manager.media");
 
       $mediaManager->save($media);
+
+      $uploadedItems[] = $media->getId();
     }
 
     // @TODO: send status codes
-    $response = new Response(json_encode(array()));
+    $response = new Response(json_encode($uploadedItems));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
 

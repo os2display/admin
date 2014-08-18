@@ -1,4 +1,4 @@
-<div class="create-media--content--media-one" data-nv-file-drop="" uploader="uploader">
+<div class="create-media--content--media-one" data-nv-file-drop="" uploader="uploader" data-ng-controller="MediaUploadEmbeddedController">
   <section id="create-media-one" class="overview--section" data-ng-show="currentStep==1">
     <h1 class="create-media--header">Media - vælg filer</h1>
     <div class="create-media--hidden-input-file">
@@ -6,7 +6,8 @@
     </div>
     <input type="submit" class="create-media--button" value="Vælg en fil fra din computer" data-ng-click="selectFiles()">
 
-    <p>eller</p>
+    <p>-eller-</p>
+
     <div class="create-media--drop-zone" data-ng-show="uploader.isHTML5">
       <div class="create-media--upload-drop-zone over-zone zone">
         <element nv-file-over uploader="uploader">

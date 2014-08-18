@@ -1,8 +1,8 @@
 /**
  * Media Overview Embedded Controller.
  *
- * Emits the mediaOverview.selectImage event for a parent controller to catch.
- *   Catch this event at handle imageClicks.
+ * Emits the 'mediaOverview.selectImage' event for a parent controller to catch.
+ *   Catch this event to handle clicks on an image in the overview.
  */
 ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $location, mediaFactory) {
   // Setup some default configuration.

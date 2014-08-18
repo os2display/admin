@@ -2045,9 +2045,8 @@ html.is-locked body {
 /* line 134, ../sass/modules/_edit-menu.scss */
 .edit-menu-background {
   width: 90%;
-  font-size: .6em;
 }
-/* line 138, ../sass/modules/_edit-menu.scss */
+/* line 137, ../sass/modules/_edit-menu.scss */
 .edit-menu-background--header {
   border-bottom: 1px solid #e6e6e6;
   padding-bottom: 1em;
@@ -2055,23 +2054,23 @@ html.is-locked body {
   font-size: 3em;
   line-height: 1em;
 }
-/* line 148, ../sass/modules/_edit-menu.scss */
+/* line 147, ../sass/modules/_edit-menu.scss */
 .edit-menu-background--button {
   font-size: 2em;
   display: inline-block;
   margin-bottom: 2em;
 }
-/* line 156, ../sass/modules/_edit-menu.scss */
+/* line 155, ../sass/modules/_edit-menu.scss */
 .edit-menu-background--divider {
   font-size: 2em;
   margin: auto;
 }
-/* line 161, ../sass/modules/_edit-menu.scss */
+/* line 160, ../sass/modules/_edit-menu.scss */
 .edit-menu-background--label {
   font-size: 2em;
   margin: auto;
 }
-/* line 166, ../sass/modules/_edit-menu.scss */
+/* line 165, ../sass/modules/_edit-menu.scss */
 .edit-menu-background--form-element {
   max-width: 300px;
   height: 50px;
