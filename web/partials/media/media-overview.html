@@ -1,4 +1,4 @@
-<section class="overview--section">
+<section class="overview--section" data-ng-controller="MediaOverviewEmbeddedController">
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
     <form class="overview--form" accept-charset="UTF-8">
@@ -17,9 +17,9 @@
 
   <div class="overview--images">
     <div class="overview--image" data-ng-repeat="image in images">
-      <a href="/#/media/{{ image.id }}" class="overview--screen-link" class="thumbnail">
+      <a data-ng-click="mediaOverviewClickImage(image)" class="overview--screen-link" class="thumbnail">
         <div>{{image.name}}</div>
-        <img data-ng-src="{{ image.url }}" class="thumbnail">
+        <img data-ng-src="{{ image.url }}" class="thumbnail" data-ng-class="{'is-selected': image.url === slide.options.image}">
       </a>
     </div>
   </div>

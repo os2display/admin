@@ -68,20 +68,6 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
             scope.backgroundImages = data;
           });
 
-          // Setup editor states and functions.
-          scope.editor = {
-            showTextEditor: false,
-            toggleTextEditor: function() {
-              scope.editor.showBackgroundEditor = false;
-              scope.editor.showTextEditor = !scope.editor.showTextEditor;
-            },
-            showBackgroundEditor: false,
-            toggleBackgroundEditor: function() {
-              scope.editor.showTextEditor = false;
-              scope.editor.showBackgroundEditor = !scope.editor.showBackgroundEditor;
-            }
-          }
-
           // Setup the inline styling
           scope.theStyle = {
             width: "" + scope.ikWidth + "px",

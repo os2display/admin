@@ -1173,7 +1173,7 @@ label {
  *
  */
 /* line 10, ../sass/layout/_buttons.scss */
-.button, .create-slide--button, .create-screen--button, .create-channel--button, .create-media--button, .login--submit {
+.button, .create-slide--button, .create-screen--button, .create-channel--button, .create-media--button, .edit-menu-background--button, .login--submit {
   display: inline-block;
   font-size: 125%;
   font-weight: lighter;
@@ -1187,31 +1187,31 @@ label {
   border-radius: 0.4em;
 }
 /* line 21, ../sass/layout/_buttons.scss */
-.button:focus, .create-slide--button:focus, .create-screen--button:focus, .create-channel--button:focus, .create-media--button:focus, .login--submit:focus, .button:hover, .create-slide--button:hover, .create-screen--button:hover, .create-channel--button:hover, .create-media--button:hover, .login--submit:hover, .button:active, .create-slide--button:active, .create-screen--button:active, .create-channel--button:active, .create-media--button:active, .login--submit:active {
+.button:focus, .create-slide--button:focus, .create-screen--button:focus, .create-channel--button:focus, .create-media--button:focus, .edit-menu-background--button:focus, .login--submit:focus, .button:hover, .create-slide--button:hover, .create-screen--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu-background--button:hover, .login--submit:hover, .button:active, .create-slide--button:active, .create-screen--button:active, .create-channel--button:active, .create-media--button:active, .edit-menu-background--button:active, .login--submit:active {
   text-decoration: none;
 }
 
 /* line 30, ../sass/layout/_buttons.scss */
-.button, .create-slide--button, .create-screen--button, .create-channel--button, .create-media--button, .login--submit {
+.button, .create-slide--button, .create-screen--button, .create-channel--button, .create-media--button, .edit-menu-background--button, .login--submit {
   background-color: #357fd1;
   border: 0;
   color: white;
 }
 /* line 37, ../sass/layout/_buttons.scss */
-.button:link, .create-slide--button:link, .create-screen--button:link, .create-channel--button:link, .create-media--button:link, .login--submit:link, .button:visited, .create-slide--button:visited, .create-screen--button:visited, .create-channel--button:visited, .create-media--button:visited, .login--submit:visited, .button:hover, .create-slide--button:hover, .create-screen--button:hover, .create-channel--button:hover, .create-media--button:hover, .login--submit:hover {
+.button:link, .create-slide--button:link, .create-screen--button:link, .create-channel--button:link, .create-media--button:link, .edit-menu-background--button:link, .login--submit:link, .button:visited, .create-slide--button:visited, .create-screen--button:visited, .create-channel--button:visited, .create-media--button:visited, .edit-menu-background--button:visited, .login--submit:visited, .button:hover, .create-slide--button:hover, .create-screen--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu-background--button:hover, .login--submit:hover {
   background-color: #2361a9;
   color: white;
   text-decoration: none;
 }
 /* line 45, ../sass/layout/_buttons.scss */
-.button.is-inactive, .is-inactive.create-slide--button, .is-inactive.create-screen--button, .is-inactive.create-channel--button, .is-inactive.create-media--button, .is-inactive.login--submit {
+.button.is-inactive, .is-inactive.create-slide--button, .is-inactive.create-screen--button, .is-inactive.create-channel--button, .is-inactive.create-media--button, .is-inactive.edit-menu-background--button, .is-inactive.login--submit {
   background-color: #b8b8b8;
   border: 0;
   color: white;
   cursor: not-allowed;
 }
 /* line 51, ../sass/layout/_buttons.scss */
-.button.is-inactive:link, .is-inactive.create-slide--button:link, .is-inactive.create-screen--button:link, .is-inactive.create-channel--button:link, .is-inactive.create-media--button:link, .is-inactive.login--submit:link, .button.is-inactive:visited, .is-inactive.create-slide--button:visited, .is-inactive.create-screen--button:visited, .is-inactive.create-channel--button:visited, .is-inactive.create-media--button:visited, .is-inactive.login--submit:visited, .button.is-inactive:hover, .is-inactive.create-slide--button:hover, .is-inactive.create-screen--button:hover, .is-inactive.create-channel--button:hover, .is-inactive.create-media--button:hover, .is-inactive.login--submit:hover {
+.button.is-inactive:link, .is-inactive.create-slide--button:link, .is-inactive.create-screen--button:link, .is-inactive.create-channel--button:link, .is-inactive.create-media--button:link, .is-inactive.edit-menu-background--button:link, .is-inactive.login--submit:link, .button.is-inactive:visited, .is-inactive.create-slide--button:visited, .is-inactive.create-screen--button:visited, .is-inactive.create-channel--button:visited, .is-inactive.create-media--button:visited, .is-inactive.edit-menu-background--button:visited, .is-inactive.login--submit:visited, .button.is-inactive:hover, .is-inactive.create-slide--button:hover, .is-inactive.create-screen--button:hover, .is-inactive.create-channel--button:hover, .is-inactive.create-media--button:hover, .is-inactive.edit-menu-background--button:hover, .is-inactive.login--submit:hover {
   background-color: #b8b8b8;
   color: white;
   text-decoration: none;
@@ -2027,6 +2027,58 @@ html.is-locked body {
   margin-bottom: 1em;
 }
 
+/* line 118, ../sass/modules/_edit-menu.scss */
+.edit-menu-background--wrapper {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  padding-top: 3.75em;
+  padding-right: 3em;
+  padding-left: 3em;
+  background-color: white;
+}
+
+/* line 134, ../sass/modules/_edit-menu.scss */
+.edit-menu-background {
+  width: 90%;
+  font-size: .6em;
+}
+/* line 138, ../sass/modules/_edit-menu.scss */
+.edit-menu-background--header {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 1em;
+  color: #cccccc;
+  font-size: 3em;
+  line-height: 1em;
+}
+/* line 148, ../sass/modules/_edit-menu.scss */
+.edit-menu-background--button {
+  font-size: 2em;
+  display: inline-block;
+  margin-bottom: 2em;
+}
+/* line 156, ../sass/modules/_edit-menu.scss */
+.edit-menu-background--divider {
+  font-size: 2em;
+  margin: auto;
+}
+/* line 161, ../sass/modules/_edit-menu.scss */
+.edit-menu-background--label {
+  font-size: 2em;
+  margin: auto;
+}
+/* line 166, ../sass/modules/_edit-menu.scss */
+.edit-menu-background--form-element {
+  max-width: 300px;
+  height: 50px;
+  margin: auto;
+  text-align: center;
+}
+
 /**
  *
  * Frontpage
@@ -2745,6 +2797,11 @@ html.is-locked body {
   max-height: 150px;
   width: auto;
   height: auto;
+  border: 2px solid #fafafa;
+}
+/* line 24, ../sass/modules/_media-overview.scss */
+.thumbnail.is-selected {
+  border: 2px dashed #cccccc;
 }
 
 /**
