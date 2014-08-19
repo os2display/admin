@@ -100,3 +100,20 @@ img {
   max-width: 100%;
   vertical-align: bottom;
 }
+
+// SVG images are not clickable when embedded through media tag, so we add apseudo element in the same container.
+// Usage: Add svg-clikcable class to wrapper of object element.
+.svg-clickable {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
