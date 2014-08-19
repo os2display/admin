@@ -87,6 +87,7 @@
   &--drop-zone {
     width: 50%;
     margin: 0 auto 1em;
+    border: 4px solid $gray-light;
   }
 
   &--progress {
@@ -104,5 +105,11 @@
   &--error-text {
     margin: auto;
     margin-bottom: 1em;
+  }
+
+  &--cancel {
+    cursor: pointer;
+    color: $link-color;
+    text-decoration: underline;
   }
 }

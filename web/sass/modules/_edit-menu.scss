@@ -12,50 +12,52 @@
 
 /* Styles
    ========================================================================== */
-.edit-menu--wrapper {
+.edit-menu {
   width: 100%;
   z-index: 1;
-}
 
 
-.edit-menu {
-  height: 100%;
-  font-size: .6em;
-  position: fixed;
-  right: -100%;
-  text-align: left;
-  top: 0;
-  z-index: 99;
+  &--inner {
+    height: 100%;
+    font-size: .6em;
+    position: fixed;
+    right: -100%;
+    text-align: left;
+    top: 0;
+    z-index: 99;
 
-  padding-top: 3.75em;
-  padding-right: 3em;
-  padding-left: 3em;
-  width: 35em;
+    padding-top: 3.75em;
+    padding-right: 3em;
+    padding-left: 3em;
+    width: 35em;
 
-  background: $white;
+    background: $white;
 
-  @include box-sizing(border-box);
-  @include box-shadow(-5px 0px 10px transparentize($black, .75));
+    @include box-sizing(border-box);
+    @include box-shadow(-5px 0px 10px transparentize($black, .75));
 
 
-  /* States */
+    /* States */
 
-  &.is-visible {
-    @include animation(toggle-nav-open .15s ease 1 forwards);
+    &.is-visible {
+      @include animation(toggle-nav-open .15s ease 1 forwards);
+    }
+
+    &.is-hidden {
+      @include animation(toggle-nav-close .15s ease 1 forwards);
+    }
   }
 
-  &.is-hidden {
-    @include animation(toggle-nav-close .15s ease 1 forwards);
-  }
 
   &--toggle-icon {
     cursor: pointer;
-    float: right;
     font-size: 2em;
+    position: absolute;
+    right: 1.5em;
   }
 
-  /* Invisible close element that allows the user to close the menu by clicking outside it */
 
+  /* Invisible close element that allows the user to close the menu by clicking outside it */
   &--overlay {
     position: fixed;
     top: 0;
@@ -112,57 +114,91 @@
     font-size: 2em;
     margin-bottom: 1em;
   }
-}
 
 
-.edit-menu-background--wrapper {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 99;
 
-  padding-top: 3.75em;
-  padding-right: 3em;
-  padding-left: 3em;
+  &--background {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    background-color:rgba(255,255,255,.5);
 
-  background-color: $white;
-}
+    padding-top: 3.75em;
+    padding-right: 3em;
+    padding-left: 3em;
 
-.edit-menu-background {
-  width: 90%;
+    background-color: $white;
 
-  &--header {
-    border-bottom: 1px solid $gray-lighter;
-    padding-bottom: 1em;
+    // States.
 
-    color: $gray-light;
-    font-size: 3em;
-    line-height: 1em;
+    // Snap out.
+    &.is-hidden {
+      display: none;
+      opacity: 0;
+    }
+
+    // Fade in.
+    &.is-visible {
+      display: block;
+      @include animation(fade-in-ninety-five .25s);
+
+      @include animation-timing-function(ease-in);
+      -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+      animation-fill-mode: forwards;
+    }
   }
 
 
-  &--button {
+  &--background-image-back {
+    position: absolute;
+  }
+
+
+  &--background-content {
+    margin-top: 4em;
+  }
+
+
+  &--background-page {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  &--background-header {
+    border-bottom: 1px solid #e6e6e6;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    font-size: 2em;
+  }
+
+
+  &--background-button {
     @extend .button;
 
-    font-size: 2em;
+    font-size: 1.2em;
     display: inline-block;
-    margin-bottom: 2em;
+    margin: 1em 1em 2em;
+    padding: 1em 2em;
   }
 
-  &--divider {
+  &--background-divider {
     font-size: 2em;
     margin: auto;
   }
 
-  &--label {
+  &--background-label {
     font-size: 2em;
     margin: auto;
   }
 
-  &--form-element {
+  &--background-form-element {
     max-width: 300px;
     height: 50px;
     margin: auto;

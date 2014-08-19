@@ -24,6 +24,10 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
     }
   }
 
+  $scope.backgroundPicker = function backgroundPicker() {
+    $scope.step = 'background-picker';
+  };
+
   $scope.pickFromMedia = function pickFromMedia() {
     $scope.step = 'pick-from-media';
   };
@@ -31,6 +35,12 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
   $scope.pickFromComputer = function pickFromComputer() {
     $scope.step = 'pick-from-computer';
   };
+
+  $scope.resetImage = function resetImage() {
+    console.log($scope);
+    $scope.slide.options.image = '';
+  };
+
 
   $scope.$on('mediaOverview.selectImage', function(event, image) {
     if ($scope.slide.options.image === image.url) {
