@@ -38,6 +38,13 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
   };
 
   /**
+   * Perform search
+   */
+  $scope.updateSearch = function() {
+    updateImages();
+  }
+
+  /**
    * Emits event when the user clicks an image.
    * @param image
    */
@@ -65,10 +72,4 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
   // Send the default search query.
   updateImages();
 
-  // Hook into the search field.
-  $('.js-text-field').off("keyup").on("keyup", function() {
-    if (event.keyCode === 13 || $scope.search.text.length >= 3) {
-      updateImages();
-    }
-  });
 });
