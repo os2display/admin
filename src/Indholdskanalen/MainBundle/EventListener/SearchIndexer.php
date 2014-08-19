@@ -35,12 +35,8 @@ class SearchIndexer {
       return FALSE;
     }
 
-    if ($method != 'DELETE') {
-      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
-    }
-    else {
-      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'id' => $entity->getId()));
-    }
+    $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
+
   }
 
   /**

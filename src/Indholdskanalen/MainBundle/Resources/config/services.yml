@@ -11,4 +11,4 @@ services:
     tags:
       - { name: doctrine.event_listener, event: postPersist }
       - { name: doctrine.event_listener, event: preUpdate }
-      - { name: doctrine.event_listener, event: PreRemove }
+      - { name: doctrine.event_listener, event: preRemove }
