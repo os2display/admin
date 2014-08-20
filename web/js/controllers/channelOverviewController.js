@@ -15,7 +15,7 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
       "orientation":  'landscape'
     },
     "sort": {
-      "created" : {
+      "created.raw" : {
         "order": "desc"
       }
     }
@@ -57,6 +57,7 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
    *   The order to sort in 'desc' or 'asc'.
    */
   $scope.setSort = function(sort, sortOrder) {
+    sort += ".raw";
     $scope.search.sort = {};
     $scope.search.sort[sort] = {
       "order": sortOrder
@@ -65,10 +66,11 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
     updateChannels();
   };
 
-  // Hook into the search field.
-  $('.js-text-field').off("keyup").on("keyup", function(event) {
-    if (event.keyCode === 13 || $scope.search.text.length >= 3) {
-      updateChannels();
-    }
-  });
+  /**
+   * Perform search
+   */
+  $scope.updateSearch = function() {
+    updateChannels();
+  }
+
 });
