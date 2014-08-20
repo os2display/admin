@@ -48,12 +48,56 @@
     }
   }
 
+  // Back / close icons.
 
   &--toggle-icon {
     cursor: pointer;
     font-size: 2em;
     position: absolute;
     right: 1.5em;
+    top: 1.5em;
+  }
+
+
+  &--background-image-back {
+    position: absolute;
+    top: 3em;
+  }
+
+
+
+  &--background {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    background-color:rgba(255,255,255,.5);
+
+    padding-top: 3.75em;
+    padding-right: 3em;
+    padding-left: 3em;
+
+    background-color: $white;
+
+    /* States. */
+
+    // Snap out.
+    &.is-hidden {
+      display: none;
+      opacity: 0;
+    }
+
+    // Fade in.
+    &.is-visible {
+      display: block;
+      @include animation(fade-in-ninety-five .25s);
+
+      @include animation-timing-function(ease-in);
+      -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+      animation-fill-mode: forwards;
+    }
   }
 
 
@@ -117,45 +161,6 @@
 
 
 
-  &--background {
-    height: 100%;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 99;
-    background-color:rgba(255,255,255,.5);
-
-    padding-top: 3.75em;
-    padding-right: 3em;
-    padding-left: 3em;
-
-    background-color: $white;
-
-    // States.
-
-    // Snap out.
-    &.is-hidden {
-      display: none;
-      opacity: 0;
-    }
-
-    // Fade in.
-    &.is-visible {
-      display: block;
-      @include animation(fade-in-ninety-five .25s);
-
-      @include animation-timing-function(ease-in);
-      -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
-      animation-fill-mode: forwards;
-    }
-  }
-
-
-  &--background-image-back {
-    position: absolute;
-  }
-
 
   &--background-content {
     margin-top: 4em;
@@ -166,6 +171,11 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+  }
+
+
+  &--background-page-inner {
+    margin-top: 8em;
   }
 
 
