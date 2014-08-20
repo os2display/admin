@@ -17,6 +17,14 @@ security:
       pattern:  ^/(_(profiler|wdt)|css|images|js)/
       security: false
 
+    api_screen_activate:
+      pattern: ^/api/screen/activate
+      security: false
+
+    api_screen_get:
+      pattern: ^/api/screen/get
+      security: false
+
     admin:
       pattern: /admin(.*)
       context: user
@@ -43,6 +51,9 @@ security:
       anonymous:    true
 
   access_control:
+    - { path: ^/api/screen/activate$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
+    - { path: ^/api/screen/get$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
+
     # URL of FOSUserBundle which need to be available to anonymous users
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
