@@ -26,6 +26,18 @@
 }
 
 
+// Fade in animation used for displaying overlay. (Media in slides for one)
+@include keyframes(fade-in-ninety-five) {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: .95;
+  }
+}
+
+
 // Default spinner - rotate a div.
 @include keyframes(spinner) {
   0% {
@@ -76,6 +88,7 @@
 }
 
 
+// Turn a spinner icon.
 .spinner {
   margin: 2em;
 
