@@ -16,7 +16,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
    */
   function getSocket(deferred) {
     // Get connected to the server.
-    socket = io.connect('http://service.indholdskanalen.vm:3000');
+    socket = io.connect('http://service.indholdskanalen.vm:3001');
 
     // Handle error events.
     socket.on('error', function (reason) {

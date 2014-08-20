@@ -52,6 +52,16 @@ class Screen {
    */
   private $created;
 
+  /**
+   * @ORM\Column(name="token", type="text")
+   */
+  protected $token;
+
+  /**
+   * @ORM\Column(name="activation_code", type="integer")
+   */
+  protected $activationCode;
+
 
   /**
    * Get id
@@ -177,6 +187,47 @@ class Screen {
   {
     return $this->created;
   }
+
+  /**
+   * Get token
+   *
+   * @return mixed
+   */
+  public function getToken()
+  {
+    return $this->token;
+  }
+
+  /**
+   * Set token
+   *
+   * @param $token
+   */
+  public function setToken($token)
+  {
+    $this->token = $token;
+  }
+
+  /**
+   * Get activation code
+   *
+   * @return mixed
+   */
+  public function getActivationCode()
+  {
+    return $this->activationCode;
+  }
+
+  /**
+   * Set activation code
+   *
+   * @param $activationCode
+   */
+  public function setActivationCode($activationCode)
+  {
+    $this->activationCode = $activationCode;
+  }
+
   /**
    * Constructor
    */

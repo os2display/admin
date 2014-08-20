@@ -35,7 +35,7 @@ class SearchIndexer {
       return FALSE;
     }
 
-    $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
+    $this->curl('http://localhost:3001/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
 
   }
 

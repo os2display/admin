@@ -14,6 +14,24 @@ use Indholdskanalen\MainBundle\Entity\Screen;
  */
 class ScreenController extends Controller {
   /**
+   * Generates a new unique activation code in the interval between 100000 and 999999.
+   *
+   * @return int
+   */
+  protected function getNewActivationCode()
+  {
+    do {
+      // Pick a random activation code between 100000000 and 999999999.
+      $code = rand(100000000, 999999999);
+
+      // Test if the activation code already exists in the db.
+      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findByActivationCode($code);
+    } while ($screen != null);
+
+    return $code;
+  }
+
+  /**
    * Save a (new) screen.
    *
    * @Route("")
@@ -43,6 +61,8 @@ class ScreenController extends Controller {
     $screen->setCreated($post->created);
     $screen->setWidth($post->width);
     $screen->setHeight($post->height);
+    $screen->setActivationCode($this->getNewActivationCode());
+    $screen->setToken("");
 
     // Remove groups.
     foreach($screen->getGroups() as $group) {
@@ -84,6 +104,7 @@ class ScreenController extends Controller {
     return $response;
   }
 
+
   /**
    * Get screen with ID.
    *
@@ -112,5 +133,84 @@ class ScreenController extends Controller {
     }
 
     return $response;
+  }
+
+  /**
+   * Get screen with token
+   *
+   * NB! This function is used by the Middleware. Do not change unless you change the middleware as well.
+   *
+   * @Route("/get")
+   * @Method("POST")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function ScreenGetPostAction() {
+    $request = Request::createFromGlobals();
+    $body = json_decode($request->getContent());
+
+    // Test for valid request parameters.
+    if (!isset($body->token)) {
+      return new Response("", 403);
+    }
+
+    // Get the screen entity with the given token.
+    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneByToken($body->token);
+
+    // Test for valid screen.
+    if (!isset($screen)) {
+      return new Response("", 404);
+    }
+
+    // Generate the response.
+    $response_data = array(
+      'statusCode' => 200,
+      'id' => $screen->getId(),
+      'name' => $screen->getTitle(),
+      'groups' => $screen->getGroups(),
+    );
+
+    // Return the json response.
+    return new Response(json_encode($response_data), 200);
+  }
+
+  /**
+   * Handler for the screenActivate action.
+   *
+   * NB! This function is used by the Middleware. Do not change unless you change the middleware as well.
+   *
+   * @Route("/activate")
+   * @Method("POST")
+   *
+   * @param $request
+   *
+   * @return Response
+   */
+  public function screenActivateAction(Request $request)
+  {
+    // Get request body as array.
+    $body = json_decode($request->getContent());
+
+    // Test for valid request parameters.
+    if (!isset($body->token) || !isset($body->activationCode)) {
+      return new Response("", 403);
+    }
+
+    // Get the screen entity på activationCode.
+    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneByActivationCode($body->activationCode);
+
+    // Test for valid screen.
+    if (!isset($screen)) {
+      return new Response("", 403);
+    }
+
+    // Set token in screen and persist the screen to the db.
+    $screen->setToken($body->token);
+    $manager = $this->getDoctrine()->getManager();
+    $manager->persist($screen);
+    $manager->flush();
+
+    // Generate the response.
+    return new Response("", 200);
   }
 }

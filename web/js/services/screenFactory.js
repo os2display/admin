@@ -156,7 +156,7 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory', function($http, 
     if (currentScreen === null) {
       defer.reject(404);
     } else {
-      if (currentScreen.width > currentScreen.height) {
+      if (parseInt(currentScreen.width) > parseInt(currentScreen.height)) {
         currentScreen.orientation = 'landscape';
       } else {
         currentScreen.orientation = 'portrait';
