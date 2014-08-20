@@ -27,6 +27,7 @@
       </div>
       <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
       <div class="create-media--cancel" data-ng-show="!uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Annullér</div>
+      <button class="create-media--button" data-ng-show="uploadComplete" data-ng-click="clearQueue()">Nyt billede</button>
     </div>
   </section>
 </div>
