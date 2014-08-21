@@ -3,7 +3,7 @@ ikApp.controller('ScreenGroupsController', function($scope, screenFactory) {
     $scope.screenGroups = data;
   });
 
-  $scope.sort = '-created';
+  $scope.sort = 'created_at';
   $scope.search = {
     title: ''
   }

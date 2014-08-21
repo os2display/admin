@@ -48,9 +48,9 @@ class Screen {
   private $groups;
 
   /**
-   * @ORM\Column(name="created", type="integer", nullable=false)
+   * @ORM\Column(name="created_at", type="integer", nullable=false)
    */
-  private $created;
+  private $created_at;
 
   /**
    * @ORM\Column(name="token", type="text")
@@ -166,29 +166,6 @@ class Screen {
   }
 
   /**
-   * Set created
-   *
-   * @param integer $created
-   * @return Screen
-   */
-  public function setCreated($created)
-  {
-    $this->created = $created;
-
-    return $this;
-  }
-
-  /**
-   * Get created
-   *
-   * @return integer
-   */
-  public function getCreated()
-  {
-    return $this->created;
-  }
-
-  /**
    * Get token
    *
    * @return mixed
@@ -269,5 +246,28 @@ class Screen {
   public function getGroups()
   {
     return $this->groups;
+  }
+
+  /**
+   * Set created_at
+   *
+   * @param integer $createdAt
+   * @return Screen
+   */
+  public function setCreatedAt($createdAt)
+  {
+    $this->created_at = $createdAt;
+
+    return $this;
+  }
+
+  /**
+   * Get created_at
+   *
+   * @return integer
+   */
+  public function getCreatedAt()
+  {
+    return $this->created_at;
   }
 }

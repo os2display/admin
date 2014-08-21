@@ -15,7 +15,7 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
       "orientation":  'landscape'
     },
     "sort": {
-      "created" : {
+      "created_at" : {
         "order": "desc"
       }
     }
@@ -56,15 +56,16 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
    * @param sortOrder
    *   The order to sort in 'desc' or 'asc'.
    */
-  $scope.setSort = function(sort, sortOrder) {
-    sort += ".raw";
-    $scope.search.sort = {};
-    $scope.search.sort[sort] = {
+  $scope.setSort = function(sortfield, sortOrder) {
+    var sortSetup = new Object();
+    sortSetup[sortfield] = {
       "order": sortOrder
-    };
+    }
+    $scope.search.sort[0] = sortSetup;
 
     updateChannels();
   };
+
 
   /**
    * Perform search

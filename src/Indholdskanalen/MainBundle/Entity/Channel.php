@@ -33,9 +33,9 @@ class Channel {
   private $orientation;
 
   /**
-   * @ORM\Column(name="created", type="integer", nullable=false)
+   * @ORM\Column(name="created_at", type="integer", nullable=false)
    */
-  private $created;
+  private $created_at;
 
   /**
    * @ORM\Column(name="slides", type="array", nullable=true)
@@ -88,24 +88,6 @@ class Channel {
   }
 
   /**
-   * Set created
-   *
-   * @param \int $created
-   */
-  public function setCreated($created) {
-    $this->created = $created;
-  }
-
-  /**
-   * Get created
-   *
-   * @return \int
-   */
-  public function getCreated() {
-    return $this->created;
-  }
-
-  /**
    * Set slides
    *
    * @param array $slides
@@ -121,5 +103,28 @@ class Channel {
    */
   public function getSlides() {
     return $this->slides;
+  }
+
+  /**
+   * Set created_at
+   *
+   * @param integer $createdAt
+   * @return Channel
+   */
+  public function setCreatedAt($createdAt)
+  {
+    $this->created_at = $createdAt;
+
+    return $this;
+  }
+
+  /**
+   * Get created_at
+   *
+   * @return integer
+   */
+  public function getCreatedAt()
+  {
+    return $this->created_at;
   }
 }

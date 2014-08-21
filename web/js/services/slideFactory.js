@@ -119,7 +119,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory', fu
       user: '',
       orientation: '',
       template: '',
-      created: parseInt((new Date().getTime()) / 1000),
+      created_at: parseInt((new Date().getTime()) / 1000),
       options: null
     };
 
