@@ -15,7 +15,7 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
       "orientation":  'landscape'
     },
     "sort": {
-      "created.raw" : {
+      "created" : {
         "order": "desc"
       }
     }
@@ -71,6 +71,6 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
    */
   $scope.updateSearch = function() {
     updateChannels();
-  }
+  };
 
 });

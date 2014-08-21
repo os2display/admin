@@ -13,7 +13,7 @@ ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
       "orientation":  'landscape'
     },
     "sort": {
-      "created.raw" : {
+      "created" : {
         "order": "desc"
       }
     }
