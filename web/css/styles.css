@@ -1769,60 +1769,18 @@ html.is-locked body {
       -moz-animation: toggle-nav-close 0.15s ease 1 forwards;
       -webkit-animation: toggle-nav-close 0.15s ease 1 forwards;
       animation: toggle-nav-close 0.15s ease 1 forwards; }
-  /* line 52, ../sass/modules/_edit-menu.scss */
+  /* line 53, ../sass/modules/_edit-menu.scss */
   .edit-menu--toggle-icon {
     cursor: pointer;
     font-size: 2em;
     position: absolute;
-    right: 1.5em; }
-  /* line 61, ../sass/modules/_edit-menu.scss */
-  .edit-menu--overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 98;
-    width: 0;
-    cursor: pointer; }
-    /* line 72, ../sass/modules/_edit-menu.scss */
-    .edit-menu--overlay.is-visible {
-      width: 100%;
-      -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
-      -webkit-animation: toggle-nav-overlay 0.15s linear 1 forwards;
-      animation: toggle-nav-overlay 0.15s linear 1 forwards; }
-  /* line 80, ../sass/modules/_edit-menu.scss */
-  .edit-menu--header {
-    border-bottom: 1px solid #e6e6e6;
-    margin-right: 3em;
-    margin-bottom: .35em;
-    padding-bottom: .25em;
-    color: #cccccc;
-    font-size: 3em;
-    line-height: 1em; }
-  /* line 91, ../sass/modules/_edit-menu.scss */
-  .edit-menu--label {
-    font-size: 2em;
-    margin-left: 0;
-    text-align: left; }
-  /* line 97, ../sass/modules/_edit-menu.scss */
-  .edit-menu--form-element[type="text"] {
-    background-color: #fafafa;
-    font-size: 1.7em;
-    height: 4.5em;
-    margin-bottom: 2em;
-    padding: 1.5em; }
-  /* line 105, ../sass/modules/_edit-menu.scss */
-  .edit-menu--divider {
-    font-size: 2em;
-    text-align: center; }
-  /* line 110, ../sass/modules/_edit-menu.scss */
-  .edit-menu--dropdown {
-    background-color: #fafafa;
-    height: 2.5em;
-    width: 100%;
-    font-size: 2em;
-    margin-bottom: 1em; }
-  /* line 120, ../sass/modules/_edit-menu.scss */
+    right: 1.5em;
+    top: 1.5em; }
+  /* line 62, ../sass/modules/_edit-menu.scss */
+  .edit-menu--background-image-back {
+    position: absolute;
+    top: 3em; }
+  /* line 69, ../sass/modules/_edit-menu.scss */
   .edit-menu--background {
     height: 100%;
     position: fixed;
@@ -1834,12 +1792,13 @@ html.is-locked body {
     padding-top: 3.75em;
     padding-right: 3em;
     padding-left: 3em;
-    background-color: white; }
-    /* line 138, ../sass/modules/_edit-menu.scss */
+    background-color: white;
+    /* States. */ }
+    /* line 87, ../sass/modules/_edit-menu.scss */
     .edit-menu--background.is-hidden {
       display: none;
       opacity: 0; }
-    /* line 144, ../sass/modules/_edit-menu.scss */
+    /* line 93, ../sass/modules/_edit-menu.scss */
     .edit-menu--background.is-visible {
       display: block;
       -moz-animation: fade-in-ninety-five 0.25s;
@@ -1851,18 +1810,65 @@ html.is-locked body {
       -webkit-animation-fill-mode: forwards;
       /* Chrome, Safari, Opera */
       animation-fill-mode: forwards; }
-  /* line 155, ../sass/modules/_edit-menu.scss */
-  .edit-menu--background-image-back {
-    position: absolute; }
-  /* line 160, ../sass/modules/_edit-menu.scss */
+  /* line 105, ../sass/modules/_edit-menu.scss */
+  .edit-menu--overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 98;
+    width: 0;
+    cursor: pointer; }
+    /* line 116, ../sass/modules/_edit-menu.scss */
+    .edit-menu--overlay.is-visible {
+      width: 100%;
+      -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
+      -webkit-animation: toggle-nav-overlay 0.15s linear 1 forwards;
+      animation: toggle-nav-overlay 0.15s linear 1 forwards; }
+  /* line 124, ../sass/modules/_edit-menu.scss */
+  .edit-menu--header {
+    border-bottom: 1px solid #e6e6e6;
+    margin-right: 3em;
+    margin-bottom: .35em;
+    padding-bottom: .25em;
+    color: #cccccc;
+    font-size: 3em;
+    line-height: 1em; }
+  /* line 135, ../sass/modules/_edit-menu.scss */
+  .edit-menu--label {
+    font-size: 2em;
+    margin-left: 0;
+    text-align: left; }
+  /* line 141, ../sass/modules/_edit-menu.scss */
+  .edit-menu--form-element[type="text"] {
+    background-color: #fafafa;
+    font-size: 1.7em;
+    height: 4.5em;
+    margin-bottom: 2em;
+    padding: 1.5em; }
+  /* line 149, ../sass/modules/_edit-menu.scss */
+  .edit-menu--divider {
+    font-size: 2em;
+    text-align: center; }
+  /* line 154, ../sass/modules/_edit-menu.scss */
+  .edit-menu--dropdown {
+    background-color: #fafafa;
+    height: 2.5em;
+    width: 100%;
+    font-size: 2em;
+    margin-bottom: 1em; }
+  /* line 165, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-content {
     margin-top: 4em; }
-  /* line 165, ../sass/modules/_edit-menu.scss */
+  /* line 170, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-page {
     box-sizing: border-box;
     width: 100%;
     height: 100%; }
-  /* line 172, ../sass/modules/_edit-menu.scss */
+  /* line 177, ../sass/modules/_edit-menu.scss */
+  .edit-menu--background-page-inner {
+    margin-top: 8em; }
+  /* line 182, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-header {
     border-bottom: 1px solid #e6e6e6;
     display: inline-block;
@@ -1870,21 +1876,21 @@ html.is-locked body {
     margin-bottom: 1em;
     padding-bottom: 1em;
     font-size: 2em; }
-  /* line 182, ../sass/modules/_edit-menu.scss */
+  /* line 192, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-button {
     font-size: 1.2em;
     display: inline-block;
     margin: 1em 1em 2em;
     padding: 1em 2em; }
-  /* line 191, ../sass/modules/_edit-menu.scss */
+  /* line 201, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-divider {
     font-size: 2em;
     margin: auto; }
-  /* line 196, ../sass/modules/_edit-menu.scss */
+  /* line 206, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-label {
     font-size: 2em;
     margin: auto; }
-  /* line 201, ../sass/modules/_edit-menu.scss */
+  /* line 211, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-form-element {
     max-width: 300px;
     height: 50px;
@@ -2797,40 +2803,40 @@ html.is-locked body {
 /* line 20, ../sass/modules/_pager.scss */
 .pager {
   margin-bottom: 3em;
+  padding: 2em 0;
   text-align: center; }
-  /* line 24, ../sass/modules/_pager.scss */
+  /* line 25, ../sass/modules/_pager.scss */
   .pager--inner {
     display: inline-block; }
-  /* line 29, ../sass/modules/_pager.scss */
+  /* line 30, ../sass/modules/_pager.scss */
   .pager--step {
-    background: #fafafa;
-    border: 1px solid #b3b3b3;
-    color: #b3b3b3;
+    background: white;
+    border: 3px solid #e6e6e6;
+    color: #e6e6e6;
     cursor: pointer;
     display: inline-block;
-    line-height: 10px;
-    margin: 0 10px;
-    padding: 1em;
+    line-height: .5em;
+    margin: 0 .8em;
+    padding: .5em;
+    font-size: 1.8em;
     -moz-border-radius: 100%;
     -webkit-border-radius: 100%;
     border-radius: 100%; }
-    /* line 41, ../sass/modules/_pager.scss */
+    /* line 43, ../sass/modules/_pager.scss */
     .pager--step:first-child {
-      margin-left: 0px; }
-    /* line 45, ../sass/modules/_pager.scss */
+      margin-left: 0; }
+    /* line 47, ../sass/modules/_pager.scss */
     .pager--step:last-child {
-      margin-right: 0px; }
-    /* line 49, ../sass/modules/_pager.scss */
+      margin-right: 0; }
+    /* line 51, ../sass/modules/_pager.scss */
     .pager--step.is-active {
-      border-width: 2px; }
-    /* line 53, ../sass/modules/_pager.scss */
-    .pager--step.is-valid {
-      background: #f0f0e1;
-      color: #737373; }
-  /* line 59, ../sass/modules/_pager.scss */
+      color: #62B001;
+      border-color: #62B001; }
+  /* line 57, ../sass/modules/_pager.scss */
   .pager--line {
-    border-bottom: 1px solid #b3b3b3;
-    margin-bottom: -24px; }
+    border-bottom: 2px solid #e6e6e6;
+    margin: 0 -2em;
+    margin-bottom: -26px; }
 
 /**
  *

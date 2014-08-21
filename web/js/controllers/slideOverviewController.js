@@ -62,10 +62,10 @@ ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
     updateSlides();
   };
 
-  // Hook into the search field.
-  $('.js-text-field').off("keyup").on("keyup", function() {
-    if (event.keyCode === 13 || $scope.search.text.length >= 3) {
-      updateSlides();
-    }
-  });
+  /**
+   * Perform search
+   */
+  $scope.updateSearch = function() {
+    updateSlides();
+  }
 });

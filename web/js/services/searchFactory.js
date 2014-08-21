@@ -67,7 +67,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
    *     "text": '',
    *     "sort": [
    *      {
-   *       "created_at" : {
+   *       "created_at.raw" : {
    *         "order": "desc"
    *       }
    *     }
