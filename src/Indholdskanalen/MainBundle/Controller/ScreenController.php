@@ -167,7 +167,7 @@ class ScreenController extends Controller {
       'statusCode' => 200,
       'id' => $screen->getId(),
       'name' => $screen->getTitle(),
-      'groups' => $screen->getGroups(),
+      'groups' => array('fisk')       // @TODO: FIX THIS TO INCLUDE THE GROUPS IT IS PART OF AND THIS SCREEN
     );
 
     // Return the json response.

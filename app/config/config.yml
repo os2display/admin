@@ -131,3 +131,13 @@ sonata_media:
 sonata_user:
   security_acl: true
   manager_type: orm # can be orm or mongodb
+
+services:
+    indholdskanalen.command.pushchannels:
+        class: Indholdskanalen\MainBundle\Command\PushChannelsCommand
+        tags:
+            -  { name: console.command }
+    indholdskanalen.middleware.communication:
+        class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
+        calls:
+          - [ setContainer,[ @service_container ] ]
