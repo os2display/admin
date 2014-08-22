@@ -67,4 +67,16 @@
       </div>
     </div>
   </div>
+
+  <div class="edit-menu" role="banner" ng-show="editor.showVideoEditor">
+    <a class="edit-menu--overlay" data-ng-class="{'is-visible': editor.showVideoEditor}" data-ng-click="editor.toggleVideoEditor()"></a>
+    <div class="edit-menu--inner" data-ng-class="{'is-visible': editor.showVideoEditor, 'is-hidden': !editor.showVideoEditor}">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleVideoEditor()">X</div>
+      <h2 class="edit-menu--header">Video indstillinger</h2>
+      <form class="edit-menu--form">
+        <label class="edit-menu--label">Youtube URL</label>
+        <input class="edit-menu--form-element" type="text" placeholder="e.g. http://www.youtube.com/watch?v=Lzy9eg4q1bQ" data-ng-class="{'is-valid': youtubeUrlValidate()}" data-ng-model="ikSlide.options.youtubeUrl"/>
+      </form>
+    </div>
+  </div>
 </div>
