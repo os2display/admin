@@ -22,6 +22,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
         // Get the slide.
         slideFactory.getSlide(scope.ikId).then(function(data) {
           scope.ikSlide = data;
+          console.log(scope.ikSlide);
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
           // Get the template.

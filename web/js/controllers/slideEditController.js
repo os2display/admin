@@ -1,7 +1,7 @@
 /**
  * Slide edit controller. Controls the slide creation process.
  */
-ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, slideFactory) {
+ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFactory, slideFactory) {
   // Get the slide from the backend.
   slideFactory.getEditSlide(null).then(function(data) {
     $scope.slide = data;
@@ -21,6 +21,12 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
       $scope.step = 'background-picker';
       $scope.editor.showTextEditor = false;
       $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
+    },
+    showTextEditor: false,
+    showBackgroundEditor: false,
+    showVideoEditor: false,
+    toggleVideoEditor: function() {
+      $scope.editor.showVideoEditor = !$scope.editor.showVideoEditor;
     }
   }
 
@@ -36,8 +42,57 @@ ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, sl
     $scope.step = 'pick-from-computer';
   };
 
+  // Validate youtube URL.
+  $scope.youtubeUrlValidate = function youtubeUrlValidate() {
+    var inputString = '';
+
+    // Input field not empty.
+    if ($scope.slide.options.youtubeUrl) {
+      inputString = $scope.slide.options.youtubeUrl;
+      // We only want youtube paths.
+      $scope.slide.options.isValid = inputString.indexOf("https://www.youtube.com/watch?v=");
+      if ($scope.slide.options.isValid == 0) {
+
+        // Fetch youtube id and save it to slide.
+        var url = inputString.split("=");
+        $scope.slide.options.youtubeId = url[1];
+
+        // The string is valid.
+        return true;
+      } else {
+        // The string is invalid, and reset youtubeID.
+        $scope.slide.options.youtubeId = '';
+
+        return false;
+      }
+    }
+  };
+
+  $scope.trustSrc = function(src) {
+    if (src) {
+      if ($scope.slide.options.isValid == 0) {
+        // Alter the youtube url, to reflect an embed code.
+        src = src.replace("watch?v=", "embed/");
+
+        // Add parameters. ("?" mark for first parameter)
+        // Hide info.
+        src = src + "?showinfo=0";
+
+        //Hide controls.
+        src = src + "&controls=0";
+
+        $scope.slide.options.embedCode = $sce.trustAsResourceUrl(src);
+
+        return $scope.slide.options.embedCode;
+      }
+      else {
+        // Provide no source for iframe.
+        return '';
+      }
+    }
+  }
+
   $scope.resetImage = function resetImage() {
-    console.log($scope);
     $scope.slide.options.image = '';
   };
 
