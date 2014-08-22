@@ -65,7 +65,6 @@
   }
 
 
-
   &--background {
     height: 100%;
     position: fixed;
@@ -132,11 +131,13 @@
     line-height: 1em;
   }
 
+
   &--label {
     font-size: 2em;
     margin-left: 0;
     text-align: left;
   }
+
 
   &--form-element[type="text"] {
     background-color: $gray-lightest;
@@ -144,12 +145,18 @@
     height: 4.5em;
     margin-bottom: 2em;
     padding: 1.5em;
+
+    &.is-valid {
+      @extend %validation-default;
+    }
   }
+
 
   &--divider {
     font-size: 2em;
     text-align: center;
   }
+
 
   &--dropdown {
     background-color: $gray-lightest;
@@ -158,8 +165,6 @@
     font-size: 2em;
     margin-bottom: 1em;
   }
-
-
 
 
   &--background-content {
@@ -198,15 +203,18 @@
     padding: 1em 2em;
   }
 
+
   &--background-divider {
     font-size: 2em;
     margin: auto;
   }
 
+
   &--background-label {
     font-size: 2em;
     margin: auto;
   }
+
 
   &--background-form-element {
     max-width: 300px;
