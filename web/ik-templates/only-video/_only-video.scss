@@ -1,0 +1,6 @@
+.only-video {
+
+  &--settings {
+    @extend %slide--edit-image-settings;
+  }
+}
