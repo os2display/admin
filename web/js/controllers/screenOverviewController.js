@@ -14,7 +14,7 @@ ikApp.controller('ScreenOverviewController', function($scope, screenFactory) {
       "orientation":  'landscape'
     },
     "sort": {
-      "created" : {
+      "created_at" : {
         "order": "desc"
       }
     }

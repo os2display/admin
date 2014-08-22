@@ -38,9 +38,9 @@ class Slide {
   private $template;
 
   /**
-   * @ORM\Column(name="created", type="integer", nullable=false)
+   * @ORM\Column(name="created_at", type="integer", nullable=false)
    */
-  private $created;
+  private $created_at;
 
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
@@ -116,24 +116,6 @@ class Slide {
   }
 
   /**
-   * Set created
-   *
-   * @param \int $created
-   */
-  public function setCreated($created) {
-    $this->created = $created;
-  }
-
-  /**
-   * Get created
-   *
-   * @return \int
-   */
-  public function getCreated() {
-    return $this->created;
-  }
-
-  /**
    * Set user
    *
    * @param string $user
@@ -167,5 +149,28 @@ class Slide {
    */
   public function getOptions() {
     return $this->options;
+  }
+
+  /**
+   * Set created_at
+   *
+   * @param integer $createdAt
+   * @return Slide
+   */
+  public function setCreatedAt($createdAt)
+  {
+    $this->created_at = $createdAt;
+
+    return $this;
+  }
+
+  /**
+   * Get created_at
+   *
+   * @return integer
+   */
+  public function getCreatedAt()
+  {
+    return $this->created_at;
   }
 }

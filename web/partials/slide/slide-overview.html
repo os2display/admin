@@ -6,7 +6,7 @@
       <span href="#" data-ng-class="{'is-active': search.filter.orientation == 'portrait'}" class="overview--vertical" data-ng-click="setOrientation('portrait')">Vertical</span>
     </div>
     <form class="overview--form" accept-charset="UTF-8">
-      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search.text" data-ng-model="updateSearch()">
+      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search.text" data-ng-change="updateSearch()">
     </form>
   </div>
   <div class="overview--sorting">
@@ -23,7 +23,7 @@
       <a href="/#/slide/{{slide.id}}">
         <ik-slide ik-id="{{slide.id}}" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
       </a>
-      <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created * 1000 | date:'dd.MM.yyyy'}}</span>
+      <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>
   </div>
 </section>

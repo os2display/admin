@@ -40,7 +40,7 @@ class ChannelController extends Controller {
     // Update fields.
     $channel->setTitle($post->title);
     $channel->setOrientation($post->orientation);
-    $channel->setCreated($post->created);
+    $channel->setCreatedAt($post->created_at);
     $channel->setSlides($post->slides);
 
     // Save the entity.

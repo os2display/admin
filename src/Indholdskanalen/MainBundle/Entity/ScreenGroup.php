@@ -34,9 +34,9 @@ class ScreenGroup {
   private $screens;
 
   /**
-   * @ORM\Column(name="created", type="integer", nullable=false)
+   * @ORM\Column(name="created_at", type="integer", nullable=false)
    */
-  private $created;
+  private $created_at;
 
   /**
    * Constructor
@@ -80,29 +80,6 @@ class ScreenGroup {
   }
 
   /**
-   * Set created
-   *
-   * @param integer $created
-   * @return ScreenGroup
-   */
-  public function setCreated($created)
-  {
-    $this->created = $created;
-
-    return $this;
-  }
-
-  /**
-   * Get created
-   *
-   * @return integer
-   */
-  public function getCreated()
-  {
-    return $this->created;
-  }
-
-  /**
    * Add screens
    *
    * @param \Indholdskanalen\MainBundle\Entity\Screen $screens
@@ -133,5 +110,28 @@ class ScreenGroup {
   public function getScreens()
   {
     return $this->screens;
+  }
+
+  /**
+   * Set created_at
+   *
+   * @param integer $createdAt
+   * @return ScreenGroup
+   */
+  public function setCreatedAt($createdAt)
+  {
+    $this->created_at = $createdAt;
+
+    return $this;
+  }
+
+  /**
+   * Get created_at
+   *
+   * @return integer
+   */
+  public function getCreatedAt()
+  {
+    return $this->created_at;
   }
 }

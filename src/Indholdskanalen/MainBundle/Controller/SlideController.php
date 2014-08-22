@@ -41,7 +41,7 @@ class SlideController extends Controller {
     $slide->setTitle($post['title']);
     $slide->setOrientation($post['orientation']);
     $slide->setTemplate($post['template']);
-    $slide->setCreated($post['created']);
+    $slide->setCreatedAt($post['created_at']);
     $slide->setOptions($post['options']);
     $slide->setUser($post['user']);
 

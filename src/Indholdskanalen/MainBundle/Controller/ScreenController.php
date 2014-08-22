@@ -58,7 +58,7 @@ class ScreenController extends Controller {
     // Update fields.
     $screen->setTitle($post->title);
     $screen->setOrientation($post->orientation);
-    $screen->setCreated($post->created);
+    $screen->setCreatedAt($post->created_at);
     $screen->setWidth($post->width);
     $screen->setHeight($post->height);
     $screen->setActivationCode($this->getNewActivationCode());
@@ -92,7 +92,7 @@ class ScreenController extends Controller {
       "id" => $screen->getId(),
       "title" => $screen->getTitle(),
       "orientation" => $screen->getOrientation(),
-      "created" => $screen->getCreated(),
+      "created_at" => $screen->getCreated(),
       "width" => $screen->getWidth(),
       "height" => $screen->getHeight(),
       "groups" => $screen->getGroups()

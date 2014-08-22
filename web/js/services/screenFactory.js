@@ -208,7 +208,7 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory', function($http, 
       orientation: '',
       width: '',
       height: '',
-      created: parseInt((new Date().getTime()) / 1000),
+      created_at: parseInt((new Date().getTime()) / 1000),
       groups: []
     };
 
@@ -225,7 +225,7 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory', function($http, 
       id: null,
       title: '',
       screens: [],
-      created: parseInt((new Date().getTime()) / 1000)
+      created_at: parseInt((new Date().getTime()) / 1000)
     };
 
     return currentScreenGroup;

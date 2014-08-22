@@ -83,7 +83,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
       id: null,
       title: '',
       orientation: '',
-      created: parseInt((new Date().getTime()) / 1000),
+      created_at: parseInt((new Date().getTime()) / 1000),
       slides: []
     };
 

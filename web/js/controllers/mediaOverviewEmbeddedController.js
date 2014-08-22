@@ -12,11 +12,11 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
   $scope.search = {
     "fields": 'name',
     "text": '',
-    "sort": [{
-      "created_at.raw" : {
+    "sort": {
+      "created_at" : {
         "order": "desc"
       }
-    }]
+    }
   };
 
   /**
@@ -60,12 +60,12 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
    * @param sortOrder
    *   The order to sort in 'desc' or 'asc'.
    */
-  $scope.setSort = function(sort, sortOrder) {
-    sort += ".raw";
-    $scope.search.sort = {};
-    $scope.search.sort[sort] = {
+  $scope.setSort = function(sortfield, sortOrder) {
+    var sortSetup = new Object();
+    sortSetup[sortfield] = {
       "order": sortOrder
-    };
+    }
+    $scope.search.sort = sortSetup;
 
     updateImages();
   };
