@@ -28,6 +28,14 @@
 }
 
 
+%validation-default {
+  background: url('../images/icons/check-circle-icon.png') $gray-lightest;
+  background-size:2em 2em;
+  background-repeat:no-repeat;
+  background-position: right 1.25em top 1.25em;
+  border: 0;
+}
+
 /* Create element - Default create element styles (A grouping of styles shared by the various creation flows)
    ================================================================================================================== */
 
@@ -78,11 +86,7 @@
   padding: 1.5em;
 
   &.is-valid {
-    background: url('../images/icons/check-circle-icon.png') $gray-lightest;
-    background-size:2em 2em;
-    background-repeat:no-repeat;
-    background-position: right 1.25em top 1.25em;
-    border: 0;
+    @extend %validation-default;
   }
 }
 
@@ -115,7 +119,6 @@
     cursor: pointer;
   }
 }
-
 
 
 %slide--edit-image-settings {
