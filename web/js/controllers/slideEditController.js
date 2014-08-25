@@ -12,20 +12,24 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
   // Setup editor states and functions.
   $scope.editor = {
     showTextEditor: false,
+    showBackgroundEditor: false,
+    showVideoEditor: false,
     toggleTextEditor: function() {
       $scope.editor.showBackgroundEditor = false;
+      $scope.editor.showVideEditor = false;
       $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
     },
-    showBackgroundEditor: false,
+
     toggleBackgroundEditor: function() {
       $scope.step = 'background-picker';
       $scope.editor.showTextEditor = false;
+      $scope.editor.showVideEditor = false;
       $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
     },
-    showTextEditor: false,
-    showBackgroundEditor: false,
-    showVideoEditor: false,
+
     toggleVideoEditor: function() {
+      $scope.editor.showTextEditor = false;
+      $scope.editor.showBackgroundEditor = false;
       $scope.editor.showVideoEditor = !$scope.editor.showVideoEditor;
     }
   }
@@ -42,6 +46,7 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
     $scope.step = 'pick-from-computer';
   };
 
+
   // Validate youtube URL.
   $scope.youtubeUrlValidate = function youtubeUrlValidate() {
     var inputString = '';
@@ -50,12 +55,15 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
     if ($scope.slide.options.youtubeUrl) {
       inputString = $scope.slide.options.youtubeUrl;
       // We only want youtube paths.
-      $scope.slide.options.isValid = inputString.indexOf("https://www.youtube.com/watch?v=");
-      if ($scope.slide.options.isValid == 0) {
+      $scope.slide.options.isValid = inputString.indexOf("youtube.com/watch?v=");
+
+      if ($scope.slide.options.isValid > 0) {
 
         // Fetch youtube id and save it to slide.
         var url = inputString.split("=");
         $scope.slide.options.youtubeId = url[1];
+
+        console.log($scope);
 
         // The string is valid.
         return true;
@@ -68,9 +76,11 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
     }
   };
 
+
+  // Set the iframe source
   $scope.trustSrc = function(src) {
     if (src) {
-      if ($scope.slide.options.isValid == 0) {
+      if ($scope.slide.options.isValid > 0) {
         // Alter the youtube url, to reflect an embed code.
         src = src.replace("watch?v=", "embed/");
 
@@ -81,6 +91,14 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
         //Hide controls.
         src = src + "&controls=0";
 
+        //Hide youtube logo.
+        src = src + "&modestbranding=1";
+
+        //Hide dont play related videos at end.
+        src = src + "&rel=0";
+
+
+        // Escape the source.
         $scope.slide.options.embedCode = $sce.trustAsResourceUrl(src);
 
         return $scope.slide.options.embedCode;
@@ -91,6 +109,7 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
       }
     }
   }
+
 
   $scope.resetImage = function resetImage() {
     $scope.slide.options.image = '';
