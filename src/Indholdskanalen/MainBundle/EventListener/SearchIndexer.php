@@ -3,15 +3,18 @@
 namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Indholdskanalen\MainBundle\Services\MiddlewareCommunication;
 use JMS\Serializer\Serializer;
 
 class SearchIndexer {
   protected $container;
   protected $serializer;
+  protected $middleware;
 
-  function __construct(Serializer $serializer) {
+  function __construct(Serializer $serializer, MiddlewareCommunication $middleware) {
     //$this->container = $this->getContainer();
     $this->serializer = $serializer;
+    $this->middleware = $middleware;
   }
   public function postPersist(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'POST');
@@ -19,6 +22,10 @@ class SearchIndexer {
 
   public function preUpdate(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'PUT');
+  }
+
+  public function postUpdate(LifecycleEventArgs $args) {
+    $this->middleware->pushChannels();
   }
 
   public function preRemove(LifecycleEventArgs $args) {
