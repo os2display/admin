@@ -1,6 +1,17 @@
 .only-video {
+  background: $gray;
+  overflow: hidden;
 
   &--settings {
     @extend %slide--edit-image-settings;
+  }
+
+  // Overlay used to dis able clickable youtube
+  &--overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 }
