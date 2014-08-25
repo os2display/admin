@@ -162,6 +162,7 @@ $breakpoint-arrow-switch : 693px;
 
   &--slide-link {
     display: block;
+    float: left; // Neeeded for displaying video slides.
     position: relative;
 
     @include add-overlay(create-channel);
