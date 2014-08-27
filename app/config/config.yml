@@ -115,9 +115,9 @@ sonata_media:
 
       formats:
         landscape: { width: 960 }
-        portrait: { width: 540 }
+        portrait: { height: 540 }
         landscape_small: { width: 300 }
-        portrait_small: { width: 150 }
+        portrait_small: { height: 150 }
 
   cdn:
     server:
