@@ -37,6 +37,7 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
         // Get the screen from the backend.
         screenFactory.getEditScreen($routeParams.id).then(function(data) {
           $scope.screen = data;
+          $scope.screen.status = 'edit-screen';
 
           if ($scope.screen === {}) {
             $location.path('/screen');
