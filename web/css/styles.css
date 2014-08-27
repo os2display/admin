@@ -2514,6 +2514,7 @@ html.is-locked body {
 .nav {
   height: 100%;
   font-size: .6em;
+  max-width: 40em;
   position: fixed;
   right: -100%;
   z-index: 99;
@@ -2529,17 +2530,17 @@ html.is-locked body {
   -moz-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
   box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25); }
-  /* line 30, ../sass/modules/_nav.scss */
+  /* line 31, ../sass/modules/_nav.scss */
   .nav.is-visible {
     -moz-animation: toggle-nav-open 0.15s ease 1 forwards;
     -webkit-animation: toggle-nav-open 0.15s ease 1 forwards;
     animation: toggle-nav-open 0.15s ease 1 forwards; }
-  /* line 34, ../sass/modules/_nav.scss */
+  /* line 35, ../sass/modules/_nav.scss */
   .nav.is-hidden {
     -moz-animation: toggle-nav-close 0.15s ease 1 forwards;
     -webkit-animation: toggle-nav-close 0.15s ease 1 forwards;
     animation: toggle-nav-close 0.15s ease 1 forwards; }
-  /* line 39, ../sass/modules/_nav.scss */
+  /* line 40, ../sass/modules/_nav.scss */
   .nav--header {
     border-bottom: 1px solid #e6e6e6;
     margin-right: 3em;
@@ -2548,12 +2549,12 @@ html.is-locked body {
     color: #cccccc;
     font-size: 3em;
     line-height: 1em; }
-  /* line 50, ../sass/modules/_nav.scss */
+  /* line 51, ../sass/modules/_nav.scss */
   .nav--item-wrapper {
     border-bottom: 1px solid #e6e6e6;
     margin-bottom: 1em;
     padding-bottom: 1em; }
-  /* line 56, ../sass/modules/_nav.scss */
+  /* line 57, ../sass/modules/_nav.scss */
   .nav--item, .nav--sub-item {
     display: block; }
     /* line 49, ../sass/mixins/_mixins.scss */
@@ -2572,19 +2573,19 @@ html.is-locked body {
     .nav--item:focus, .nav--sub-item:focus {
       color: inherit;
       text-decoration: none; }
-  /* line 63, ../sass/modules/_nav.scss */
+  /* line 64, ../sass/modules/_nav.scss */
   .nav--item {
     font-size: 2em; }
-  /* line 67, ../sass/modules/_nav.scss */
+  /* line 68, ../sass/modules/_nav.scss */
   .nav--sub-item {
     padding-left: 1.5em;
     font-size: 1.5em; }
-  /* line 74, ../sass/modules/_nav.scss */
+  /* line 75, ../sass/modules/_nav.scss */
   .nav--toggle-icon {
     cursor: pointer;
     float: right;
     font-size: 2em; }
-  /* line 81, ../sass/modules/_nav.scss */
+  /* line 82, ../sass/modules/_nav.scss */
   .nav--overlay {
     position: fixed;
     top: 0;
@@ -2593,7 +2594,7 @@ html.is-locked body {
     z-index: 98;
     width: 0;
     cursor: pointer; }
-    /* line 92, ../sass/modules/_nav.scss */
+    /* line 93, ../sass/modules/_nav.scss */
     .nav--overlay.is-visible {
       width: 100%;
       -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
