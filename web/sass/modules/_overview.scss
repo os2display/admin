@@ -31,12 +31,14 @@
   }
 
   &--screens,
+  &--media,
   &--channels,
   &--slides {
     text-align: center;
   }
 
   &--screen,
+  &--media-single,
   &--channel,
   &--slide {
     display: inline-block;
@@ -197,5 +199,36 @@
     top:50%;
 
     @include translateY(-50%);
+  }
+
+
+  /* Media overview
+  ========================================================================== */
+  &--media-single {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  &--media-overlay {
+    background-color: transparentize($black, .35);
+    color: $white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30%;
+    height: 30%;
+
+    &.is-hovering {
+      @include animation(toggle-media-overlay .15s ease 1 forwards);
+
+      animation-timing-function: linear;
+      -webkit-animation-timing-function: linear;
+    }
+  }
+
+  &--media-overlay-inner {
+    padding: .5em;
+    text-align: left;
   }
 }
