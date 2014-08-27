@@ -13,6 +13,12 @@ services:
       - { name: doctrine.event_listener, event: preUpdate }
       - { name: doctrine.event_listener, event: preRemove }
 
+  indholdskanalen_main.serialization_listener:
+    class: Indholdskanalen\MainBundle\EventListener\SerializationListener
+    arguments: [@sonata.media.pool]
+    tags:
+      - { name: jms_serializer.event_subscriber}
+
   sonata.media.provider.zencoder:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
     tags:
