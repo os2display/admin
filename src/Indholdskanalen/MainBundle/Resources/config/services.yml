@@ -18,10 +18,3 @@ services:
       arguments: [@sonata.media.pool]
       tags:
         - { name: jms_serializer.event_subscriber}
-
-
-  #indholdskanalen_main.serializer.handler.image_handler:
-  #    class: Indholdskanalen\MainBundle\EventListener\ImageSerializationHandler
-  #    arguments: []
-  #    tags:
-  #        - { name: "jms_serializer.handler", type: \Application\Sonata\MediaBundle\Entity\Media, format: json, method: serialize }

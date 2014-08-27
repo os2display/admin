@@ -19,6 +19,7 @@ ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
     }
   };
 
+
   /**
    * Updates the slides array by send a search request.
    */

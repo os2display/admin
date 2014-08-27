@@ -18,36 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  */
 class MiddlewareCommunication extends ContainerAware
 {
-  /**
-   * Pushes the channels to the middleware
-   */
-  public function pushChannels()
-  {
-    // Build default channel array.
-    $channel = array(
-      'channelID' => '1',
-      'channelContent' => array(
-        'logo' => '',
-      ),
-      'groups' => array(
-        'fisk',
-      ),
-    );
-
-    $channel['channelContent']['slides'] = array(
-      'slideID' => 1,
-      'title'   => "Fisk",
-      'start'   => 0,
-      'end'     => 111,
-      'layout'  => 'infostander',
-      'media'   => array(
-        'image' => array(
-          'sti'
-        )
-      )
-    );
-
-    // Encode the channel as JSON data.
+  protected function curlSendChannel($channel) {
     $json = json_encode($channel);
 
     // Send  post request to middleware (/push/channel).
@@ -69,5 +40,47 @@ class MiddlewareCommunication extends ContainerAware
     }
 
     curl_close($ch);
+  }
+
+  /**
+   * Pushes the channels to the middleware
+   */
+  public function pushChannels()
+  {
+    // Get all channels
+    $channels = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
+
+    // For each channel
+    for ($i = 0; $i < count($channels); $i++) {
+      $currentChannel = $channels[$i];
+
+      // Build default channel array.
+      $channel = array(
+        'channelID' => $currentChannel->getId(),
+        'channelContent' => array(
+          'logo' => '',
+        ),
+        'groups' => array(
+          'fisk',
+        ),
+      );
+
+      //   Add slides to the channel
+      $slides = $currentChannel->getSlides();
+      foreach ($slides as $key => $value) {
+        $slide = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($value);
+
+        $channel['channelContent']['slides'][] = array(
+          'id' => $slide->getId(),
+          'title'   => $slide->getTitle(),
+          'orientation' => $slide->getOrientation(),
+          'template' => $slide->getTemplate(),
+          'options' => $slide->getOptions(),
+        );
+      }
+
+      //   Set the groups it should be shown in
+      $this->curlSendChannel($channel);
+    }
   }
 }

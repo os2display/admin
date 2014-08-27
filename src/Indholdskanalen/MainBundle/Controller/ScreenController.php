@@ -92,7 +92,7 @@ class ScreenController extends Controller {
       "id" => $screen->getId(),
       "title" => $screen->getTitle(),
       "orientation" => $screen->getOrientation(),
-      "created_at" => $screen->getCreated(),
+      "created_at" => $screen->getCreatedAt(),
       "width" => $screen->getWidth(),
       "height" => $screen->getHeight(),
       "groups" => $screen->getGroups()
