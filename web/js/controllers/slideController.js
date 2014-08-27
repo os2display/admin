@@ -9,6 +9,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   $scope.slide = {};
   $scope.templates = templateFactory.getTemplates();
 
+
   /**
    * Loads a given step
    */
@@ -33,7 +34,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
         // Get the slide from the backend.
         slideFactory.getEditSlide($routeParams.id).then(function(data) {
           $scope.slide = data;
-
+          $scope.slide.status = 'edit-slide';
           if ($scope.slide === {}) {
             $location.path('/slide');
           }
