@@ -1,6 +1,6 @@
 <section id="create-channel-four" class="create-channel--section">
   <div class="create-channel--content--channel-four">
-    <h1 class="create-channel--header">Opret kanal - slides rækkefølge ({{step}}/{{steps}})</h1>
+    <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
       <p class="create-channel--header-description">Træk eller brug pilene for at vælge i hvilken rækkefølge dine slides skal vises.</p>
       <div class="create-channel--slides">
         <div class="create-channel--slide-order-element" data-ng-repeat="slide in slidesArray">
