@@ -2813,34 +2813,41 @@ html.is-locked body {
   .pager--inner {
     display: inline-block; }
   /* line 30, ../sass/modules/_pager.scss */
+  .pager--step-wrapper {
+    display: inline-block;
+    position: relative;
+    color: #e6e6e6;
+    cursor: pointer; }
+    /* line 36, ../sass/modules/_pager.scss */
+    .pager--step-wrapper.is-active {
+      color: #62B001; }
+      /* line 39, ../sass/modules/_pager.scss */
+      .pager--step-wrapper.is-active .pager--step {
+        border-color: #62B001; }
+  /* line 46, ../sass/modules/_pager.scss */
   .pager--step {
     background: white;
     border: 3px solid #e6e6e6;
-    color: #e6e6e6;
-    cursor: pointer;
     display: inline-block;
     line-height: .5em;
     margin: 0 .8em;
     padding: .5em;
+    position: relative;
     font-size: 1.8em;
     -moz-border-radius: 100%;
     -webkit-border-radius: 100%;
     border-radius: 100%; }
-    /* line 43, ../sass/modules/_pager.scss */
-    .pager--step:first-child {
-      margin-left: 0; }
-    /* line 47, ../sass/modules/_pager.scss */
-    .pager--step:last-child {
-      margin-right: 0; }
-    /* line 51, ../sass/modules/_pager.scss */
-    .pager--step.is-active {
-      color: #62B001;
-      border-color: #62B001; }
-  /* line 57, ../sass/modules/_pager.scss */
+  /* line 60, ../sass/modules/_pager.scss */
   .pager--line {
     border-bottom: 2px solid #e6e6e6;
     margin: 0 -2em;
     margin-bottom: -26px; }
+  /* line 67, ../sass/modules/_pager.scss */
+  .pager--text {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    right: 0; }
 
 /**
  *
