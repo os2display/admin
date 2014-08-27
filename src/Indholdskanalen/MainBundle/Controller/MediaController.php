@@ -34,6 +34,9 @@ class MediaController extends Controller {
 
       if (isset($title) && $title !== '') {
         $media->setName($title);
+      } else {
+        $path_parts = pathinfo($file->getClientOriginalName());
+        $media->setName($path_parts['filename']);
       }
 
       $media->setBinaryContent($file->getPathname());
