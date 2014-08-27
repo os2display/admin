@@ -498,7 +498,7 @@
       background-position: 0 -122px; } }
 
 /* line 31, ../sass/theme/_global-silent-classes.scss */
-.is-valid.create-slide--text[type="text"], .is-valid.create-screen--text[type="text"], .is-valid.create-channel--text[type="text"], .is-valid.create-media--text[type="text"], .edit-menu--form-element[type="text"].is-valid {
+.is-valid.create-slide--text[type="text"], .is-valid.create-screen--text[type="text"], .is-valid.create-channel--text[type="text"], .is-valid.create-media--text-input[type="text"], .edit-menu--form-element[type="text"].is-valid {
   background: url("../images/icons/check-circle-icon.png") #fafafa;
   background-size: 2em 2em;
   background-repeat: no-repeat;
@@ -530,7 +530,7 @@
   text-align: center; }
 
 /* line 67, ../sass/theme/_global-silent-classes.scss */
-.create-slide--content--slide-one, .create-screen--content--screen-one, .create-channel--content--channel-one, .create-media--content--media-one {
+.create-slide--content--slide-one, .create-screen--content--screen-one, .create-channel--content--channel-one, .create-media--content {
   display: block;
   margin: 0 auto;
   text-align: center;
@@ -541,7 +541,7 @@
   margin: 0; }
 
 /* line 80, ../sass/theme/_global-silent-classes.scss */
-.create-slide--text[type="text"], .create-screen--text[type="text"], .create-channel--text[type="text"], .create-media--text[type="text"] {
+.create-slide--text[type="text"], .create-screen--text[type="text"], .create-channel--text[type="text"], .create-media--text-input[type="text"] {
   background-color: #fafafa;
   display: inline-block;
   height: 4.5em;
@@ -1658,22 +1658,29 @@ html.is-locked body {
 .create-media {
   /* Global settings
    ========================================================================== */
- /* Create media - upload file (Page 1)
-========================================================================== */ }
+  /* Create media - select files
+  ======================================================================== */
+  /* Create media - upload files
+  ========================================================================= */ }
   /* line 34, ../sass/modules/_create-media.scss */
   .create-media--button {
     display: inline-block;
     margin: 0 auto 1em; }
-  /* line 47, ../sass/modules/_create-media.scss */
+  /* line 46, ../sass/modules/_create-media.scss */
   .create-media--hidden-input-file {
     width: 0;
     height: 0;
     overflow: hidden; }
   /* line 53, ../sass/modules/_create-media.scss */
-  .create-media--upload-drop-zone {
+  .create-media--drop-zone {
+    width: 50%;
+    margin: 0 auto 1em;
+    border: 4px solid #cccccc; }
+  /* line 60, ../sass/modules/_create-media.scss */
+  .create-media--drop-zone-inner {
     width: 100%;
     background-color: #fafafa; }
-  /* line 58, ../sass/modules/_create-media.scss */
+  /* line 66, ../sass/modules/_create-media.scss */
   .create-media--upload-icon {
     background: url('/images/icons-sc2cf9bf679.png');
     -moz-background-size: 128px 1348px;
@@ -1686,41 +1693,62 @@ html.is-locked body {
     display: inline-block;
     vertical-align: middle;
     margin: 2em auto; }
-  /* line 66, ../sass/modules/_create-media.scss */
+  /* line 75, ../sass/modules/_create-media.scss */
   .create-media--upload-text {
     width: 100%;
     display: inline-block;
     margin: 2em auto; }
-  /* line 73, ../sass/modules/_create-media.scss */
-  .create-media--text[type="text"] {
-    background-color: white; }
-  /* line 78, ../sass/modules/_create-media.scss */
+  /* line 89, ../sass/modules/_create-media.scss */
   .create-media--thumb-container {
-    max-width: 300px;
     display: inline-block;
     background-color: #fafafa;
+    overflow: hidden;
     padding: 1em;
     margin: 1em; }
-  /* line 87, ../sass/modules/_create-media.scss */
-  .create-media--drop-zone {
-    width: 50%;
-    margin: 0 auto 1em;
-    border: 4px solid #cccccc; }
-  /* line 93, ../sass/modules/_create-media.scss */
+  /* line 99, ../sass/modules/_create-media.scss */
+  .create-media--thumb {
+    float: left;
+    padding-right: .5em; }
+    /* line 103, ../sass/modules/_create-media.scss */
+    .create-media--thumb canvas {
+      height: 100px; }
+  /* line 109, ../sass/modules/_create-media.scss */
+  .create-media--text {
+    float: left; }
+  /* line 114, ../sass/modules/_create-media.scss */
+  .create-media--text-label {
+    color: #737373;
+    text-align: left; }
+  /* line 120, ../sass/modules/_create-media.scss */
+  .create-media--text-input[type="text"] {
+    background: white;
+    height: 1em;
+    padding: 1em;
+    width: auto;
+    margin-bottom: 0; }
+  /* line 131, ../sass/modules/_create-media.scss */
+  .create-media--remove {
+    color: #2c79d3;
+    cursor: pointer;
+    text-align: right; }
+  /* line 138, ../sass/modules/_create-media.scss */
   .create-media--progress {
+    background-color: #e6e6e6;
     width: 400px;
     margin: auto;
     margin-bottom: 1em; }
-  /* line 99, ../sass/modules/_create-media.scss */
+  /* line 146, ../sass/modules/_create-media.scss */
   .create-media--progress-bar {
-    border: 2px solid #b3b3b3;
-    background-color: #e6e6e6;
-    height: 20px; }
-  /* line 105, ../sass/modules/_create-media.scss */
+    background-color: #b3b3b3;
+    height: 2em;
+    min-width: 10%;
+    vertical-align: middle;
+    line-height: 2em; }
+  /* line 155, ../sass/modules/_create-media.scss */
   .create-media--error-text {
     margin: auto;
     margin-bottom: 1em; }
-  /* line 110, ../sass/modules/_create-media.scss */
+  /* line 161, ../sass/modules/_create-media.scss */
   .create-media--cancel {
     cursor: pointer;
     color: #2c79d3;
@@ -2514,6 +2542,7 @@ html.is-locked body {
 .nav {
   height: 100%;
   font-size: .6em;
+  max-width: 40em;
   position: fixed;
   right: -100%;
   z-index: 99;
@@ -2529,17 +2558,17 @@ html.is-locked body {
   -moz-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
   box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25); }
-  /* line 30, ../sass/modules/_nav.scss */
+  /* line 31, ../sass/modules/_nav.scss */
   .nav.is-visible {
     -moz-animation: toggle-nav-open 0.15s ease 1 forwards;
     -webkit-animation: toggle-nav-open 0.15s ease 1 forwards;
     animation: toggle-nav-open 0.15s ease 1 forwards; }
-  /* line 34, ../sass/modules/_nav.scss */
+  /* line 35, ../sass/modules/_nav.scss */
   .nav.is-hidden {
     -moz-animation: toggle-nav-close 0.15s ease 1 forwards;
     -webkit-animation: toggle-nav-close 0.15s ease 1 forwards;
     animation: toggle-nav-close 0.15s ease 1 forwards; }
-  /* line 39, ../sass/modules/_nav.scss */
+  /* line 40, ../sass/modules/_nav.scss */
   .nav--header {
     border-bottom: 1px solid #e6e6e6;
     margin-right: 3em;
@@ -2548,12 +2577,12 @@ html.is-locked body {
     color: #cccccc;
     font-size: 3em;
     line-height: 1em; }
-  /* line 50, ../sass/modules/_nav.scss */
+  /* line 51, ../sass/modules/_nav.scss */
   .nav--item-wrapper {
     border-bottom: 1px solid #e6e6e6;
     margin-bottom: 1em;
     padding-bottom: 1em; }
-  /* line 56, ../sass/modules/_nav.scss */
+  /* line 57, ../sass/modules/_nav.scss */
   .nav--item, .nav--sub-item {
     display: block; }
     /* line 49, ../sass/mixins/_mixins.scss */
@@ -2572,19 +2601,19 @@ html.is-locked body {
     .nav--item:focus, .nav--sub-item:focus {
       color: inherit;
       text-decoration: none; }
-  /* line 63, ../sass/modules/_nav.scss */
+  /* line 64, ../sass/modules/_nav.scss */
   .nav--item {
     font-size: 2em; }
-  /* line 67, ../sass/modules/_nav.scss */
+  /* line 68, ../sass/modules/_nav.scss */
   .nav--sub-item {
     padding-left: 1.5em;
     font-size: 1.5em; }
-  /* line 74, ../sass/modules/_nav.scss */
+  /* line 75, ../sass/modules/_nav.scss */
   .nav--toggle-icon {
     cursor: pointer;
     float: right;
     font-size: 2em; }
-  /* line 81, ../sass/modules/_nav.scss */
+  /* line 82, ../sass/modules/_nav.scss */
   .nav--overlay {
     position: fixed;
     top: 0;
@@ -2593,7 +2622,7 @@ html.is-locked body {
     z-index: 98;
     width: 0;
     cursor: pointer; }
-    /* line 92, ../sass/modules/_nav.scss */
+    /* line 93, ../sass/modules/_nav.scss */
     .nav--overlay.is-visible {
       width: 100%;
       -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
