@@ -13,3 +13,9 @@ services:
       - { name: doctrine.event_listener, event: preUpdate }
       - { name: doctrine.event_listener, event: preRemove }
       - { name: doctrine.event_listener, event: postUpdate }
+
+  indholdskanalen_main.serialization_listener:
+      class: Indholdskanalen\MainBundle\EventListener\SerializationListener
+      arguments: [@sonata.media.pool]
+      tags:
+        - { name: jms_serializer.event_subscriber}
