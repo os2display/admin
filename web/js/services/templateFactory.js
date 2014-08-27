@@ -106,7 +106,18 @@ ikApp.factory('templateFactory', function() {
         headline: '',
         text: ''
       }
-
+    },
+    {
+      id: 'only-video',
+      image: '/ik-templates/only-video/only-video.png',
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      },
+      emptyoptions: {
+        youtubeUrl: ''
+      }
     }
   ];
 

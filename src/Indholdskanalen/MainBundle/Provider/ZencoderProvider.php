@@ -274,6 +274,6 @@ class ZencoderProvider extends BaseProvider {
   }
 
   protected function postVideoZencoder($media) {
-  
+
   }
 }

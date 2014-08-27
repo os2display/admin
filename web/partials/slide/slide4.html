@@ -1,6 +1,6 @@
 <section id="create-slide-four" class="create-slide--section">
   <div class="create-slide--content--slide-four">
-    <h1 class="create-slide--header">Opret slide ({{step}}/{{steps}})</h1>
+    <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
     <p class="create-slide--header-description">Tilføj indhold - husk at se dit indhold på alle dine skærme.</p>
     <div class="create-slide--content-wrapper">
       <div class="create-slide--content-inner" data-ng-style="{'width': '{{slide.orientation == 'portrait' ? 540 : 960}}px'}">

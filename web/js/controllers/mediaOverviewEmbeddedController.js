@@ -27,11 +27,8 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
       function(data) {
         $scope.images = data;
 
-        angular.forEach($scope.images, function(value, key) {
-          $http.get('/api/media/' + value.id)
-            .success(function(data, status) {
-              $scope.images[key].url = data.urls.landscape;
-            })
+        angular.forEach($scope.images, function(image, key) {
+          image.url = image.urls.default_landscape
         });
       }
     );

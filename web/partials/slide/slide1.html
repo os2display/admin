@@ -1,6 +1,6 @@
 <section id="create-slide-one" class="create-slide--section">
   <div class="create-slide--content--slide-one">
-    <h1 class="create-slide--header">Opret slide ({{step}}/{{steps}})</h1>
+    <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
     <p class="create-slide--header-description">Giv dit slide et godt navn så du kan finde det igen senere.</p>
     <form ng-submit="submitStep()" class="create-slide--form">
       <input type="text" class="create-slide--text" placeholder="Skriv f.eks. Frokost uge 10, Billeder fra DHL eller lignende" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="slide.title">
@@ -8,3 +8,4 @@
     </form>
   </div>
 </section>
+

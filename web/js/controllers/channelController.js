@@ -38,6 +38,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
       else {
         channelFactory.getEditChannel($routeParams.id).then(function(data) {
           $scope.channel = data;
+          $scope.channel.status = 'edit-channel';
 
           if ($scope.channel === {}) {
             $location.path('/channel');
