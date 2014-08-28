@@ -15,11 +15,11 @@
     </div>
   </div>
 
-  <div class="overview--images">
-    <div class="overview--image" data-ng-repeat="image in images">
-      <a data-ng-click="mediaOverviewClickImage(image)" class="overview--screen-link" class="thumbnail">
-        <img data-ng-src="{{ image.urls.default_landscape_small }}" class="thumbnail" data-ng-class="{'is-selected': image.urls.default_landscape === slide.options.image}">
-        <div>{{image.name}}</div>
+  <div class="overview--media">
+    <div class="overview--media-single" data-ng-repeat="image in images">
+      <a data-ng-click="mediaOverviewClickImage(image)" class="overview--media-link" ng-mouseenter="mouseHover(image.id)" ng-mouseleave="mouseHover(false)">
+        <img data-ng-src="{{ image.urls.default_portrait_small }}" data-ng-class="{'is-selected': image.urls.default_landscape === slide.options.image}">
+        <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === image.id}"><div class="overview--media-overlay-inner">{{image.name}}</div></div>
       </a>
     </div>
   </div>

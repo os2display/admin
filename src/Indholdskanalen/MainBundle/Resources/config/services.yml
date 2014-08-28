@@ -15,7 +15,15 @@ services:
       - { name: doctrine.event_listener, event: postUpdate }
 
   indholdskanalen_main.serialization_listener:
-      class: Indholdskanalen\MainBundle\EventListener\SerializationListener
-      arguments: [@sonata.media.pool]
-      tags:
-        - { name: jms_serializer.event_subscriber}
+    class: Indholdskanalen\MainBundle\EventListener\SerializationListener
+    arguments: [@sonata.media.pool]
+    tags:
+      - { name: jms_serializer.event_subscriber}
+
+  sonata.media.provider.zencoder:
+    class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
+    tags:
+      - { name: sonata.media.provider }
+    arguments: [sonata.media.provider.zencoder, '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '@sonata.media.buzz.browser', '@sonata.media.metadata.proxy']
+    calls:
+      - [setTemplates, [{ helper_thumbnail: 'SonataMediaBundle:Provider:thumbnail.html.twig', helper_view: 'SonataMediaBundle:Provider:view_video.html.twig' }]]
