@@ -47,6 +47,9 @@ class MediaController extends Controller {
         case 'image/png':
           $media->setProviderName('sonata.media.provider.image');
           break;
+
+        default:
+          $media->setProviderName('sonata.media.provider.image');
       }
 
       $media->setBinaryContent($file->getPathname());
