@@ -1,7 +1,19 @@
-<div class="create-media--content--media-one">
+<div class="create-media--content">
   <section id="create-media-one" class="create-media--section">
-    <h1 class="" >{{image.media.name}}</h1>
-    <img data-ng-src="{{image.urls.default_landscape}}" alt="{{ image.media.name }}" title="{{image.name}}" >
-     <p><button data-ng-click="delete()">Slet</button></p>
+    <h1 class="" >{{image.name}}</h1>
+    <div ng-switch on="image.content_type" class="create-media--content-element">
+      <div ng-switch-when="image/jpeg">
+        <img data-ng-src="{{image.urls.default_landscape}}" alt="{{ image.media.name }}" title="{{image.name}}" >
+      </div>
+      <div ng-switch-when="video/mp4">
+        <video data-ng-src="{{videoURL(image)}}" controls></video>
+      </div>
+      <div ng-switch-default>
+        <div class="create-media--spinner"></div>
+      </div>
+    </div>
+     <p><a class="create-media--button" data-ng-click="delete()">Slet</a></p>
   </section>
 </div>
+
+
