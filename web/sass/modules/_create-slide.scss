@@ -18,14 +18,6 @@
    ========================================================================== */
   &--section {
     @extend %create-element--section-default;
-
-    &.ng-enter {
-      @include animation(fade-in 2s infinite);
-    }
-
-    &.ng-leave {
-      @include animation(fade-out 2s infinite);
-    }
   }
 
 
