@@ -26,6 +26,7 @@
         </div>
         <div ng-switch-when="video/mp4" ng-mouseenter="mouseHover(image.id)" ng-mouseleave="mouseHover(false)">
           <a data-ng-click="mediaOverviewClickImage(image)" class="overview--media-link">
+            <span class="overview--media-video-icon"></span>
             <video ng-attr-id="{{'video-' + image.id}}" height="150" ng-src="{{videoURL(image)}}"></video>
           </a>
           <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === image.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{image.name}}</span><span data-ng-class="{'is-playing': paused === false}" class="overview--media-play" data-ng-click="playPause(image)"></span></div></div>
