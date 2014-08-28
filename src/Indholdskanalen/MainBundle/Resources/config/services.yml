@@ -24,6 +24,6 @@ services:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
     tags:
       - { name: sonata.media.provider }
-    arguments: [sonata.media.provider.zencoder, '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '%absolute_path_to_server%', '%zencoder_api%]
+    arguments: [sonata.media.provider.zencoder, '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '%absolute_path_to_server%', '%zencoder_api%']
     calls:
       - [setTemplates, [{ helper_thumbnail: 'SonataMediaBundle:Provider:thumbnail.html.twig', helper_view: 'SonataMediaBundle:Provider:view_video.html.twig' }]]
