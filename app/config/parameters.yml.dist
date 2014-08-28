@@ -20,3 +20,5 @@ parameters:
 
     middleware_host: http://127.0.0.1:3000
     absolute_path_to_server: http://localhost
+
+    zencoder_api: API_KEY_HERE
