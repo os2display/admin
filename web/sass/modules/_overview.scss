@@ -212,6 +212,15 @@
   }
 
 
+  &--media-video-icon {
+    right: .5rem;
+    position: absolute;
+    top: .5rem;
+    background: $white;
+
+    @include generate-sprite-image($dashboard-sprites, 'video-icon', 22);
+  }
+
   &--media-overlay {
     background-color: transparentize($white, .35);
     color: $black;
