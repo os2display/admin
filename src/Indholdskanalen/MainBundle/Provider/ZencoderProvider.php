@@ -291,10 +291,34 @@ class ZencoderProvider extends BaseProvider {
     $mp4 = new \stdClass;
     $mp4->format = 'mp4';
     $mp4->label = 'mp4';
+    $mp4->thumbnails = array(
+      array(
+        'label' => 'mp4_thumbnail',
+        'number' => 1,
+        'height' => 150,
+      ),
+      array(
+        'label' => 'mp4_landscape',
+        'number' => 1,
+        'width' => 960,
+      ),
+    );
 
     $ogv = new \stdClass;
     $ogv->format = 'ogv';
     $ogv->label = 'ogv';
+    $ogv->thumbnails = array(
+      array(
+        'label' => 'ogv_thumbnail',
+        'number' => 1,
+        'height' => 150,
+      ),
+      array(
+        'label' => 'ogv_landscape',
+        'number' => 1,
+        'width' => 960,
+      ),
+    );
 
     $api = new \stdClass;
     $api->input = $this->hostname . $url;
@@ -305,6 +329,7 @@ class ZencoderProvider extends BaseProvider {
       $mp4,
       $ogv,
     );
+
     $json = json_encode($api);
 
     $ch = curl_init('https://app.zencoder.com/api/v2/jobs');

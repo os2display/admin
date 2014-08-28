@@ -28,6 +28,7 @@ class ZencoderController extends Controller {
     $post = json_decode($request->getContent());
 
     $log = $this->get('logger');
+    $log->info(print_r($post, true));
 
     $status = FALSE;
 
@@ -44,6 +45,23 @@ class ZencoderController extends Controller {
       foreach ($post->outputs as $output) {
         $filename = basename(substr($output->url, 0, strpos($output->url, '?')));
         file_put_contents($path . '/' . $filename, file_get_contents($output->url));
+
+        // Thumbnails
+        $thumbnails = array();
+        foreach ($output->thumbnails as $remote_thumbnail) {
+          $image = array_shift($remote_thumbnail->images);
+          $filename = basename(substr($image->url, 0, strpos($image->url, '?')));
+          file_put_contents($path . '/' . $filename, file_get_contents($image->url));
+          $thumbnail = array(
+            'label' => $remote_thumbnail->label,
+            'dimensions' => $image->dimensions,
+            'format' => $image->format,
+            'reference' => $filename,
+          );
+
+          $thumbnails[] = $thumbnail;
+        }
+
         $metadata = array(
           'reference' => $filename,
           'label' => $output->label,
@@ -59,7 +77,8 @@ class ZencoderController extends Controller {
           'video_codec' => $output->video_codec,
           'total_bitrate_in_kbps' => $output->total_bitrate_in_kbps,
           'channels' => $output->channels,
-          'video_bitrate_in_kbps' => $output->video_bitrate_in_kbps
+          'video_bitrate_in_kbps' => $output->video_bitrate_in_kbps,
+          'thumbnails' => $thumbnails
         );
         $transcoded[] = $metadata;
       }
@@ -71,7 +90,7 @@ class ZencoderController extends Controller {
       $local_media->setHeight($post->input->height);
       $local_media->setUpdatedAt(new \DateTime);
       $local_media->setAuthorName(NULL);
-      $local_media->setStatus(MediaInterface::STATUS_OK);
+      $local_media->setProviderStatus(MediaInterface::STATUS_OK);
 
       $mediaManager = $this->get("sonata.media.manager.media");
       $mediaManager->save($local_media);
