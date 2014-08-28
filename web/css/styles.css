@@ -1650,27 +1650,31 @@ html.is-locked body {
    ========================================================================== */
   /* Create media - select files
   ======================================================================== */
-  /* Create media - upload files
+  /* Create media - upload files / Edit element
   ========================================================================= */ }
   /* line 34, ../sass/modules/_create-media.scss */
   .create-media--button {
     display: inline-block;
     margin: 0 auto 1em; }
-  /* line 46, ../sass/modules/_create-media.scss */
+  /* line 41, ../sass/modules/_create-media.scss */
+  .create-media--spinner {
+    display: inline-block;
+    text-align: center; }
+  /* line 52, ../sass/modules/_create-media.scss */
   .create-media--hidden-input-file {
     width: 0;
     height: 0;
     overflow: hidden; }
-  /* line 53, ../sass/modules/_create-media.scss */
+  /* line 59, ../sass/modules/_create-media.scss */
   .create-media--drop-zone {
     width: 50%;
     margin: 0 auto 1em;
     border: 4px solid #cccccc; }
-  /* line 60, ../sass/modules/_create-media.scss */
+  /* line 66, ../sass/modules/_create-media.scss */
   .create-media--drop-zone-inner {
     width: 100%;
     background-color: #fafafa; }
-  /* line 66, ../sass/modules/_create-media.scss */
+  /* line 72, ../sass/modules/_create-media.scss */
   .create-media--upload-icon {
     background: url('/images/icons-sc2cf9bf679.png');
     -moz-background-size: 128px 1348px;
@@ -1683,62 +1687,65 @@ html.is-locked body {
     display: inline-block;
     vertical-align: middle;
     margin: 2em auto; }
-  /* line 75, ../sass/modules/_create-media.scss */
+  /* line 81, ../sass/modules/_create-media.scss */
   .create-media--upload-text {
     width: 100%;
     display: inline-block;
     margin: 2em auto; }
-  /* line 89, ../sass/modules/_create-media.scss */
+  /* line 95, ../sass/modules/_create-media.scss */
+  .create-media--content-element {
+    margin-bottom: 1em; }
+  /* line 100, ../sass/modules/_create-media.scss */
   .create-media--thumb-container {
     display: inline-block;
     background-color: #fafafa;
     overflow: hidden;
     padding: 1em;
     margin: 1em; }
-  /* line 99, ../sass/modules/_create-media.scss */
+  /* line 110, ../sass/modules/_create-media.scss */
   .create-media--thumb {
     float: left;
     padding-right: .5em; }
-    /* line 103, ../sass/modules/_create-media.scss */
+    /* line 114, ../sass/modules/_create-media.scss */
     .create-media--thumb canvas {
       height: 100px; }
-  /* line 109, ../sass/modules/_create-media.scss */
+  /* line 120, ../sass/modules/_create-media.scss */
   .create-media--text {
     float: left; }
-  /* line 114, ../sass/modules/_create-media.scss */
+  /* line 125, ../sass/modules/_create-media.scss */
   .create-media--text-label {
     color: #737373;
     text-align: left; }
-  /* line 120, ../sass/modules/_create-media.scss */
+  /* line 131, ../sass/modules/_create-media.scss */
   .create-media--text-input[type="text"] {
     background: white;
     height: 1em;
     padding: 1em;
     width: auto;
     margin-bottom: 0; }
-  /* line 131, ../sass/modules/_create-media.scss */
+  /* line 142, ../sass/modules/_create-media.scss */
   .create-media--remove {
     color: #2c79d3;
     cursor: pointer;
     text-align: right; }
-  /* line 138, ../sass/modules/_create-media.scss */
+  /* line 149, ../sass/modules/_create-media.scss */
   .create-media--progress {
     background-color: #e6e6e6;
     width: 400px;
     margin: auto;
     margin-bottom: 1em; }
-  /* line 146, ../sass/modules/_create-media.scss */
+  /* line 157, ../sass/modules/_create-media.scss */
   .create-media--progress-bar {
     background-color: #b3b3b3;
     height: 2em;
     min-width: 10%;
     vertical-align: middle;
     line-height: 2em; }
-  /* line 155, ../sass/modules/_create-media.scss */
+  /* line 166, ../sass/modules/_create-media.scss */
   .create-media--error-text {
     margin: auto;
     margin-bottom: 1em; }
-  /* line 161, ../sass/modules/_create-media.scss */
+  /* line 172, ../sass/modules/_create-media.scss */
   .create-media--cancel {
     cursor: pointer;
     color: #2c79d3;
@@ -2795,27 +2802,56 @@ html.is-locked body {
   .overview--media-single {
     position: relative;
     cursor: pointer;
+    font-size: 0;
     overflow: hidden; }
-  /* line 213, ../sass/modules/_overview.scss */
+  /* line 215, ../sass/modules/_overview.scss */
   .overview--media-overlay {
-    background-color: rgba(0, 0, 0, 0.65);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.65);
+    color: black;
+    font-size: .8rem;
     position: absolute;
     left: 0;
     right: 0;
     bottom: -30%;
     height: 30%; }
-    /* line 222, ../sass/modules/_overview.scss */
+    /* line 225, ../sass/modules/_overview.scss */
     .overview--media-overlay.is-hovering {
       -moz-animation: toggle-media-overlay 0.15s ease 1 forwards;
       -webkit-animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation-timing-function: linear;
       -webkit-animation-timing-function: linear; }
-  /* line 230, ../sass/modules/_overview.scss */
+  /* line 234, ../sass/modules/_overview.scss */
   .overview--media-overlay-inner {
     padding: .5em;
     text-align: left; }
+  /* line 240, ../sass/modules/_overview.scss */
+  .overview--media-text {
+    float: left;
+    max-width: 80%;
+    overflow-x: hidden;
+    text-overflow: ellipsis; }
+  /* line 248, ../sass/modules/_overview.scss */
+  .overview--media-play {
+    float: right;
+    background: url('/images/icons-sc2cf9bf679.png');
+    -moz-background-size: 52px 540px;
+    -o-background-size: 52px 540px;
+    -webkit-background-size: 52px 540px;
+    background-size: 52px 540px;
+    width: 26px;
+    height: 26px;
+    background-position: 0 -370px; }
+    /* line 253, ../sass/modules/_overview.scss */
+    .overview--media-play.is-playing {
+      background: url('/images/icons-sc2cf9bf679.png');
+      -moz-background-size: 52px 540px;
+      -o-background-size: 52px 540px;
+      -webkit-background-size: 52px 540px;
+      background-size: 52px 540px;
+      width: 26px;
+      height: 26px;
+      background-position: 0 -336px; }
 
 /**
  *
@@ -3084,7 +3120,7 @@ html.is-locked body {
 /* Animation calls (If not related to a module)
  * ========================================================================== */
 /* line 84, ../sass/animations/_animation.scss */
-.spinner {
+.spinner, .create-media--spinner {
   margin: 2em;
   background: url('/images/icons-sc2cf9bf679.png');
   -moz-background-size: 77px 809px;

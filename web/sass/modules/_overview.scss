@@ -207,12 +207,15 @@
   &--media-single {
     position: relative;
     cursor: pointer;
+    font-size: 0; // To counter inline-block.
     overflow: hidden;
   }
 
+
   &--media-overlay {
-    background-color: transparentize($black, .35);
-    color: $white;
+    background-color: transparentize($white, .35);
+    color: $black;
+    font-size: .8rem; // We use rem since the container fontsize is 0 (See "media-single")
     position: absolute;
     left: 0;
     right: 0;
@@ -227,8 +230,28 @@
     }
   }
 
+
   &--media-overlay-inner {
     padding: .5em;
     text-align: left;
+  }
+
+
+  &--media-text {
+    float: left;
+    max-width: 80%;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  &--media-play {
+    float: right;
+
+    @include generate-sprite-image($dashboard-sprites, 'play-icon', 40);
+
+    &.is-playing {
+      @include generate-sprite-image($dashboard-sprites, 'pause-icon', 40);
+    }
   }
 }

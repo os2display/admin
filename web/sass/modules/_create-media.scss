@@ -38,6 +38,12 @@
     margin: 0 auto 1em;
   }
 
+  &--spinner {
+    @extend .spinner;
+
+    display: inline-block;
+    text-align: center;
+  }
 
 
   /* Create media - select files
@@ -79,10 +85,15 @@
   }
 
 
-  /* Create media - upload files
+  /* Create media - upload files / Edit element
   ========================================================================= */
   &--content {
     @extend %create-element--page-name-default;
+  }
+
+
+  &--content-element{
+    margin-bottom: 1em;
   }
 
 
