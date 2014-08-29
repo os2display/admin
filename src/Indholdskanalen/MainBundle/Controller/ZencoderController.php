@@ -51,12 +51,12 @@ class ZencoderController extends Controller {
         foreach ($output->thumbnails as $remote_thumbnail) {
           $image = array_shift($remote_thumbnail->images);
           $filename = basename(substr($image->url, 0, strpos($image->url, '?')));
-          file_put_contents($path . '/' . $filename, file_get_contents($image->url));
+          file_put_contents($path . '/' . $remote_thumbnail->label . $filename, file_get_contents($image->url));
           $thumbnail = array(
             'label' => $remote_thumbnail->label,
             'dimensions' => $image->dimensions,
             'format' => $image->format,
-            'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' .  $filename,
+            'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' .  $remote_thumbnail->label . $filename,
           );
 
           $thumbnails[] = $thumbnail;
