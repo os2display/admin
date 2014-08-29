@@ -20,6 +20,9 @@ services:
     tags:
       - { name: jms_serializer.event_subscriber}
 
+  indholdskanalen_main.api_authentication_service:
+    class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
+
   sonata.media.provider.zencoder:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
     tags:
@@ -27,3 +30,5 @@ services:
     arguments: [sonata.media.provider.zencoder, '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '@sonata.media.buzz.browser', '@sonata.media.metadata.proxy']
     calls:
       - [setTemplates, [{ helper_thumbnail: 'SonataMediaBundle:Provider:thumbnail.html.twig', helper_view: 'SonataMediaBundle:Provider:view_video.html.twig' }]]
+
+
