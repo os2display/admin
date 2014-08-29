@@ -20,11 +20,12 @@ ikApp.controller('MediaEditController', function($scope, $location, $routeParams
     $location.path('/media-overview');
   };
 
-
+  console.log($scope);
   /**
    * Sets the correct local path to the video
    */
-  $scope.videoURL = function(element) {
+  $scope.videoThumb = function(element) {
+    console.log(element);
     var filepath = '/uploads/media/default/0001/01/' + element.provider_reference;
     return filepath;
   }
