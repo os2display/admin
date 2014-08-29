@@ -8,9 +8,21 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+use Gaufrette\Filesystem;
+use Sonata\MediaBundle\CDN\CDNInterface;
+use Sonata\MediaBundle\Generator\GeneratorInterface;
+use Sonata\MediaBundle\Thumbnail\ThumbnailInterface;
 
 class ZencoderProvider extends BaseProvider {
-
+  protected $name;
+  protected $hostname;
+  protected $api_key;
+  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $api_key) {
+    parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
+    $this->name = $name;
+    $this->hostname = $hostname;
+    $this->api_key = $api_key;
+  }
   /**
    * Setup media unique filename.
    *
@@ -30,7 +42,11 @@ class ZencoderProvider extends BaseProvider {
       $media->setSize($media->getBinaryContent()->getSize());
     }
 
-    $media->setProviderStatus(MediaInterface::STATUS_OK);
+    $media->setProviderStatus(MediaInterface::STATUS_PENDING);
+
+    // Send video to Zencoder.
+    $this->postVideoZencoder($media);
+
   }
 
   /**
@@ -58,7 +74,7 @@ class ZencoderProvider extends BaseProvider {
     $media->setWidth($metadata['width']);
     //$media->setLength($metadata['duration']);
     $media->setContentType($media->getContentType());
-    $media->setProviderStatus(MediaInterface::STATUS_OK);
+    $media->setProviderStatus(MediaInterface::STATUS_PENDING);
 
     $media->setCreatedAt(new \Datetime());
     $media->setUpdatedAt(new \Datetime());
@@ -167,7 +183,7 @@ class ZencoderProvider extends BaseProvider {
    */
   public function postUpdate(MediaInterface $media) {
     // Delete the current file from the FS
-    $oldMedia = clone $media;
+    /*$oldMedia = clone $media;
     $oldMedia->setProviderReference($media->getPreviousProviderReference());
 
     $path = $this->getReferenceImage($oldMedia);
@@ -178,10 +194,8 @@ class ZencoderProvider extends BaseProvider {
 
     $this->fixBinaryContent($media);
 
-    $this->setFileContents($media);
+    $this->setFileContents($media);*/
 
-    // Send video to Zencoder.
-    $this->postVideoZencoder($media);
   }
 
   public function postPersist(MediaInterface $media) {
@@ -191,8 +205,6 @@ class ZencoderProvider extends BaseProvider {
 
     $this->setFileContents($media);
 
-    // Send video to Zencoder.
-    $this->postVideoZencoder($media);
   }
 
   public function getHelperProperties(MediaInterface $media, $format, $options = array()) {
@@ -273,7 +285,66 @@ class ZencoderProvider extends BaseProvider {
     return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()->guessExtension();
   }
 
-  protected function postVideoZencoder($media) {
+  protected function postVideoZencoder(MediaInterface $media) {
+    $url = $this->getCdn()->getPath($this->generatePath($media), FALSE) . '/' . $media->getProviderReference();
 
+    $mp4 = new \stdClass;
+    $mp4->format = 'mp4';
+    $mp4->label = 'mp4';
+    $mp4->thumbnails = array(
+      array(
+        'label' => 'mp4_thumbnail',
+        'number' => 1,
+        'height' => 150,
+      ),
+      array(
+        'label' => 'mp4_landscape',
+        'number' => 1,
+        'width' => 960,
+      ),
+    );
+
+    $ogv = new \stdClass;
+    $ogv->format = 'ogv';
+    $ogv->label = 'ogv';
+    $ogv->thumbnails = array(
+      array(
+        'label' => 'ogv_thumbnail',
+        'number' => 1,
+        'height' => 150,
+      ),
+      array(
+        'label' => 'ogv_landscape',
+        'number' => 1,
+        'width' => 960,
+      ),
+    );
+
+    $api = new \stdClass;
+    $api->input = $this->hostname . $url;
+    $api->api_key = $this->api_key;
+    $api->region = 'europe';
+    $api->notifications = $this->hostname . '/zencoder/callback';
+    $api->outputs = array(
+      $mp4,
+      $ogv,
+    );
+
+    $json = json_encode($api);
+
+    $ch = curl_init('https://app.zencoder.com/api/v2/jobs');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($json))
+    );
+
+    $result = json_decode(curl_exec($ch));
+
+    if (isset($result->id)) {
+      $media->setAuthorName($result->id);
+    }
   }
 }
