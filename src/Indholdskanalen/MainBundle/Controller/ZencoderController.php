@@ -56,14 +56,14 @@ class ZencoderController extends Controller {
             'label' => $remote_thumbnail->label,
             'dimensions' => $image->dimensions,
             'format' => $image->format,
-            'reference' => $filename,
+            'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' .  $filename,
           );
 
           $thumbnails[] = $thumbnail;
         }
 
         $metadata = array(
-          'reference' => $filename,
+          'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' . $filename,
           'label' => $output->label,
           'format' => $output->format,
           'frame_rate' => $output->frame_rate,
