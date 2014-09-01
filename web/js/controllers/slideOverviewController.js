@@ -1,8 +1,13 @@
 /**
  * @file
- * Slides controller handles the display and selection of slides.
+ * Slide overview controllers.
+ */
+
+/**
+ * Slide overview controller handles the display and selection of slides.
  */
 ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
+  // Slides to display.
   $scope.slides = [];
 
   // Setup default search options.
@@ -23,7 +28,7 @@ ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
   /**
    * Updates the slides array by send a search request.
    */
-  var updateSlides = function() {
+  $scope.updateSearch = function() {
     slideFactory.searchSlides($scope.search).then(
       function(data) {
         $scope.slides = data;
@@ -32,7 +37,7 @@ ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
   };
 
   // Send the default search query.
-  updateSlides();
+  $scope.updateSearch();
 
   /**
    * Changes orientation and updated the slides.
@@ -43,30 +48,23 @@ ikApp.controller('SlideOverviewController', function($scope, slideFactory) {
   $scope.setOrientation = function(orientation) {
     $scope.search.filter.orientation = orientation;
 
-    updateSlides();
+    $scope.updateSearch();
   };
 
   /**
    * Changes the sort order and updated the slides.
    *
-   * @param sort
+   * @param sortField
    *   Field to sort on.
    * @param sortOrder
    *   The order to sort in 'desc' or 'asc'.
    */
-  $scope.setSort = function(sort, sortOrder) {
+  $scope.setSort = function(sortField, sortOrder) {
     $scope.search.sort = {};
-    $scope.search.sort[sort] = {
+    $scope.search.sort[sortField] = {
       "order": sortOrder
     };
 
-    updateSlides();
+    $scope.updateSearch();
   };
-
-  /**
-   * Perform search
-   */
-  $scope.updateSearch = function() {
-    updateSlides();
-  }
 });

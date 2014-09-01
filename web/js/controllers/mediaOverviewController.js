@@ -1,15 +1,19 @@
 /**
  * @file
- * Images controller handles the media overview page.
+ * Media overview controllers.
  */
-ikApp.controller('MediaOverviewController', function ($scope, $location, $sce) {
+
+/**
+ * Media controller handles the media overview page.
+ */
+ikApp.controller('MediaOverviewController', function ($scope, $location) {
+  // Register event listener for the select image event.
   $scope.$on('mediaOverview.selectImage', function(event, image) {
     $location.path('/media/' + image.id);
   });
 
   // Mouse hover on image.
   $scope.hovering = false;
-
 
   /**
    * Adds hover overlay on media elements.
@@ -22,7 +26,6 @@ ikApp.controller('MediaOverviewController', function ($scope, $location, $sce) {
     }
   }
 
-
   /**
    * Sets the correct local path to the video
    */
@@ -30,7 +33,6 @@ ikApp.controller('MediaOverviewController', function ($scope, $location, $sce) {
     var filepath = '/uploads/media/default/0001/01/' + element.provider_reference;
     return filepath;
   }
-
 
   /**
    * Controls play / pause states for video.

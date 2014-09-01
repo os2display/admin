@@ -1,11 +1,16 @@
 /**
+ * @file
+ * Media overview embedded controllers.
+ */
+
+/**
  * Media Overview Embedded Controller.
  *
  * Emits the 'mediaOverview.selectImage' event for a parent controller to catch.
  *   Catch this event to handle clicks on an image in the overview.
  */
 ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $location, mediaFactory) {
-  // Setup some default configuration.
+  // Media to display.
   $scope.images = [];
 
   // Setup default search options.
@@ -22,24 +27,20 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
   /**
    * Updates the images array by sending a search request.
    */
-  var updateImages = function() {
+  $scope.updateSearch = function() {
     mediaFactory.searchMedia($scope.search).then(
       function(data) {
         $scope.images = data;
 
         angular.forEach($scope.images, function(image, key) {
-          image.url = image.urls.default_landscape
+          image.url = image.urls.default_landscape;
         });
       }
     );
   };
 
-  /**
-   * Perform search
-   */
-  $scope.updateSearch = function() {
-    updateImages();
-  }
+  // Send the default search query.
+  $scope.updateSearch();
 
   /**
    * Emits event when the user clicks an image.
@@ -52,22 +53,17 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
   /**
    * Changes the sort order and updated the images.
    *
-   * @param sort
+   * @param sortField
    *   Field to sort on.
    * @param sortOrder
    *   The order to sort in 'desc' or 'asc'.
    */
-  $scope.setSort = function(sortfield, sortOrder) {
-    var sortSetup = new Object();
-    sortSetup[sortfield] = {
+  $scope.setSort = function(sortField, sortOrder) {
+    $scope.search.sort = {};
+    $scope.search.sort[sortField] = {
       "order": sortOrder
-    }
-    $scope.search.sort = sortSetup;
+    };
 
-    updateImages();
+    $scope.updateSearch();
   };
-
-  // Send the default search query.
-  updateImages();
-
 });

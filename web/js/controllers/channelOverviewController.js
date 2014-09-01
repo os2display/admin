@@ -1,10 +1,13 @@
 /**
  * @file
- * Channels controller handles the display and selection of channels.
+ * Channel overview controllers.
  */
 
-
+/**
+ * Channels controller handles the display and selection of channels.
+ */
 ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
+  // Channels to display.
   $scope.channels = [];
 
   // Setup default search options.
@@ -24,8 +27,7 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
   /**
    * Updates the channels array by send a search request.
    */
-  var updateChannels = function() {
-
+  $scope.updateSearch = function updateSearch() {
     channelFactory.searchChannels($scope.search).then(
       function(data) {
         $scope.channels = data;
@@ -34,7 +36,7 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
   };
 
   // Send the default search query.
-  updateChannels();
+  $scope.updateSearch();
 
   /**
    * Changes orientation and updated the channels.
@@ -42,36 +44,26 @@ ikApp.controller('ChannelOverviewController', function($scope, channelFactory) {
    * @param orientation
    *   This should either be 'landscape' or 'portrait'.
    */
-  $scope.setOrientation = function(orientation) {
+  $scope.setOrientation = function setOrientation(orientation) {
     $scope.search.filter.orientation = orientation;
 
-    updateChannels();
+    $scope.updateSearch();
   };
 
   /**
    * Changes the sort order and updated the channels.
    *
-   * @param sort
+   * @param sortField
    *   Field to sort on.
    * @param sortOrder
    *   The order to sort in 'desc' or 'asc'.
    */
-  $scope.setSort = function(sortfield, sortOrder) {
-    var sortSetup = new Object();
-    sortSetup[sortfield] = {
+  $scope.setSort = function setSort(sortField, sortOrder) {
+    $scope.search.sort = {};
+    $scope.search.sort[sortField] = {
       "order": sortOrder
-    }
-    $scope.search.sort[0] = sortSetup;
+    };
 
-    updateChannels();
+    $scope.updateSearch();
   };
-
-
-  /**
-   * Perform search
-   */
-  $scope.updateSearch = function() {
-    updateChannels();
-  };
-
 });
