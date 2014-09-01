@@ -27,36 +27,47 @@ $pager--valid: $beige;
   }
 
 
+  &--step-wrapper {
+    display: inline-block;
+    position: relative;
+    color: $pager--text-color;
+    cursor: pointer;
+
+    &.is-active {
+      color: #62B001;
+
+      .pager--step {
+        border-color: #62B001;
+      }
+    }
+  }
+
+
   &--step {
     background: $pager--background;
     border: $pager--border-width solid $pager--border-color;
-    color: $pager--text-color;
-    cursor: pointer;
     display: inline-block;
     line-height: .5em;
     margin: 0 .8em;
     padding: .5em;
+    position: relative;
     font-size: 1.8em;
 
     @include border-radius(100%);
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &.is-active {
-      color: #62B001;
-      border-color: #62B001;
-    }
   }
+
 
   &--line {
     border-bottom: 2px solid $pager--border-color;
     margin: 0 -2em;
     margin-bottom: -26px;
+  }
+
+
+  &--text {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    right: 0;
   }
 }

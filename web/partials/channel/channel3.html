@@ -1,6 +1,6 @@
 <section id="create-channel-three" class="create-channel--section">
   <div class="create-channel--content--channel-three">
-    <h1 class="create-channel--header">Opret kanal - vælg slides ({{step}}/{{steps}})</h1>
+    <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
     <p class="create-channel--header-description">Vælg slides der skal vises i din kanal.</p>
     <div class="create-channel--slides">
       <div class="create-channel--slide" data-ng-repeat="slide in slides | filter:{ orientation: channel.orientation}" ng-click="toggleSlide(slide.id)">

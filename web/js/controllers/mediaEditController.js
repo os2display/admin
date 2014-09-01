@@ -16,7 +16,16 @@ ikApp.controller('MediaEditController', function($scope, $location, $routeParams
   });
 
   $scope.delete = function(id) {
-    mediaFactory.deleteImage($scope.image.media.id);
+    mediaFactory.deleteImage($scope.image.id);
     $location.path('/media-overview');
   };
+
+
+  /**
+   * Sets the correct local path to the video
+   */
+  $scope.videoURL = function(element) {
+    var filepath = '/uploads/media/default/0001/01/' + element.provider_reference;
+    return filepath;
+  }
 });

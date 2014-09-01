@@ -2,10 +2,10 @@
   <div class="pager--line"></div>
   <div class="pager--inner">
     <div clasS="pager--steps">
-      <div class="pager--step" data-ng-class="{'is-active': step == 1, 'is-valid': validation.titleSet()}" data-ng-click="goToStep(1)">1</div>
-      <div class="pager--step" data-ng-class="{'is-active': step == 2, 'is-valid': validation.orientationSet()}" data-ng-click="goToStep(2)">2</div>
-      <div class="pager--step" data-ng-class="{'is-active': step == 3, 'is-valid': validation.orientationSet() && step>=3}" data-ng-click="goToStep(3)">3</div>
-      <div class="pager--step" data-ng-class="{'is-active': step == 4, 'is-valid': validation.orientationSet() && step==4}" data-ng-click="goToStep(4)">4</div>
+      <div class="pager--step-wrapper" data-ng-class="{'is-active': step == 1}" data-ng-click="goToStep(1)"><div class="pager--step">1</div><div class="pager--text">{{channel.status === "edit-channel" ? "Titel" : ""}}</div></div>
+      <div class="pager--step-wrapper" data-ng-class="{'is-active': step == 2}" data-ng-click="goToStep(2)"><div class="pager--step">2</div><div class="pager--text">{{channel.status === "edit-channel" ? "Skærmtype" : ""}}</div></div>
+      <div class="pager--step-wrapper" data-ng-class="{'is-active': step == 3}" data-ng-click="goToStep(3)"><div class="pager--step">3</div><div class="pager--text">{{channel.status === "edit-channel" ? "Slides" : ""}}</div></div>
+      <div class="pager--step-wrapper" data-ng-class="{'is-active': step == 4}" data-ng-click="goToStep(4)"><div class="pager--step">4</div><div class="pager--text">{{channel.status === "edit-channel" ? "Rækkefølge" : ""}}</div></div>
     </div>
   </div>
 </section>

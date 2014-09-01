@@ -93,4 +93,24 @@ http://[path_to_project/app/web]/config.php
 
 Fix problems.
 
+###Setup Video for Zencoder
+For Video for Zencoder to work you need a public URL:
+<pre>
+vagrant share
+</pre>
+This URL must be setup in app/config/parameters.yml and Nginx virtual host: /etc/nginx/sites-enabled/service.indholdskanalen.vm.conf
+
+Example of paramaters.yml:
+<pre>
+zencoder_api: 151d072d3239698a4ff1234c0596aed92
+</pre>
+
+Example of line replacement in service.indholdskanalen.vm.conf:
+<pre>
+server_name service.indholdskanalen.vm slight-gopher-8311.vagrantshare.com;
+</pre>
+
+####Vagrant share
+Vagrant Share is a Vagrant Cloud feature which requires an account. Create this at [www.vagrantcloud.com](http://www.vagrantcloud.com)
+
 ###Ready to go!

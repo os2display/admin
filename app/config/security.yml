@@ -25,6 +25,17 @@ security:
       pattern: ^/api/screen/get
       security: false
 
+    api:
+      pattern: ^/api(.*)
+      context: user
+      form_login:
+        check_path: /api/login_check
+      entry_point: indholdskanalen_main.api_authentication_service
+
+    zencoder:
+      pattern: ^/zencoder/callback
+      security: false
+
     admin:
       pattern: /admin(.*)
       context: user
@@ -53,6 +64,9 @@ security:
   access_control:
     - { path: ^/api/screen/activate$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
     - { path: ^/api/screen/get$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
+
+    # Zencoder.
+    - { path: ^zencoder/callback, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     # URL of FOSUserBundle which need to be available to anonymous users
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

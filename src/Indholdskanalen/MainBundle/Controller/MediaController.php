@@ -34,11 +34,26 @@ class MediaController extends Controller {
 
       if (isset($title) && $title !== '') {
         $media->setName($title);
+      } else {
+        $path_parts = pathinfo($file->getClientOriginalName());
+        $media->setName($path_parts['filename']);
+      }
+
+      switch ($file->getMimeType()) {
+        case 'video/mp4':
+          $media->setProviderName('sonata.media.provider.zencoder');
+          break;
+
+        case 'image/png':
+          $media->setProviderName('sonata.media.provider.image');
+          break;
+
+        default:
+          $media->setProviderName('sonata.media.provider.image');
       }
 
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
-      $media->setProviderName('sonata.media.provider.image');
 
       $mediaManager = $this->get("sonata.media.manager.media");
 
@@ -74,21 +89,12 @@ class MediaController extends Controller {
     $query = $qb->getQuery();
     $results = $query->getResult();
 
-    $items = array();
-    foreach ($results as $media) {
-      $provider = $this->container->get($media->getProviderName());
+    $response = new Response();
 
-      $items[] = array(
-        'id' => $media->getId(),
-        'name' => $media->getName(),
-        'url' => array(
-          'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
-          'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
-        )
-      );
-    }
+    $serializer = $this->get('jms_serializer');
+    $jsonContent = $serializer->serialize($results, 'json');
 
-    $response = new Response(json_encode($items));
+    $response->setContent($jsonContent);
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
 
@@ -114,16 +120,8 @@ class MediaController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
 
     if ($media) {
-      $provider = $this->container->get($media->getProviderName());
-      $data = array();
-      $data['media'] = $media;
-      $data['urls'] = array(
-        'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
-        'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
-      );
-
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($data, 'json');
+      $jsonContent = $serializer->serialize($media, 'json');
 
       $response->setContent($jsonContent);
     } else {
