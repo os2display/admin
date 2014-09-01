@@ -1,9 +1,13 @@
 /**
  * @file
- * Screens controller handles the display and selection of screens.
+ * Screen overview controllers.
  */
 
+/**
+ * Screens controller handles the display and selection of screens.
+ */
 ikApp.controller('ScreenOverviewController', function($scope, screenFactory) {
+  // Screens to display.
   $scope.screens = [];
 
   // Setup default search options.
@@ -23,7 +27,7 @@ ikApp.controller('ScreenOverviewController', function($scope, screenFactory) {
   /**
    * Updates the screens array by send a search request.
    */
-  var updateScreens = function() {
+  $scope.updateSearch = function() {
     screenFactory.searchScreens($scope.search).then(
       function(data) {
         $scope.screens = data;
@@ -32,7 +36,7 @@ ikApp.controller('ScreenOverviewController', function($scope, screenFactory) {
   };
 
   // Send the default search query.
-  updateScreens();
+  $scope.updateSearch();
 
   /**
    * Changes orientation and updated the screens.
@@ -43,30 +47,23 @@ ikApp.controller('ScreenOverviewController', function($scope, screenFactory) {
   $scope.setOrientation = function(orientation) {
     $scope.search.filter.orientation = orientation;
 
-    updateScreens();
+    $scope.updateSearch();
   };
 
   /**
    * Changes the sort order and updated the screens.
    *
-   * @param sort
+   * @param sortField
    *   Field to sort on.
    * @param sortOrder
    *   The order to sort in 'desc' or 'asc'.
    */
-  $scope.setSort = function(sort, sortOrder) {
+  $scope.setSort = function(sortField, sortOrder) {
     $scope.search.sort = {};
-    $scope.search.sort[sort] = {
+    $scope.search.sort[sortField] = {
       "order": sortOrder
     };
 
-    updateScreens();
+    $scope.updateSearch();
   };
-
-  /**
-   * Perform search
-   */
-  $scope.updateSearch = function() {
-    updateScreens();
-  }
 });
