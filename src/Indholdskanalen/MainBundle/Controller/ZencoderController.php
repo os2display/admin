@@ -40,27 +40,27 @@ class ZencoderController extends Controller {
 
       $transcoded = array();
       foreach ($post->outputs as $output) {
-        $filename = basename(substr($output->url, 0, strpos($output->url, '?')));
-        file_put_contents($path . '/' . $filename, file_get_contents($output->url));
+        $video_filename = basename(substr($output->url, 0, strpos($output->url, '?')));
+        file_put_contents($path . '/' . $video_filename, file_get_contents($output->url));
 
         // Thumbnails
         $thumbnails = array();
         foreach ($output->thumbnails as $remote_thumbnail) {
           $image = array_shift($remote_thumbnail->images);
-          $filename = basename(substr($image->url, 0, strpos($image->url, '?')));
-          file_put_contents($path . '/' . $post->job->id . $remote_thumbnail->label . $filename, file_get_contents($image->url));
+          $thumb_filename = basename(substr($image->url, 0, strpos($image->url, '?')));
+          file_put_contents($path . '/' . $post->job->id . $remote_thumbnail->label . $thumb_filename, file_get_contents($image->url));
           $thumbnail = array(
             'label' => $remote_thumbnail->label,
             'dimensions' => $image->dimensions,
             'format' => $image->format,
-            'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' .  $post->job->id . $remote_thumbnail->label . $filename,
+            'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' .  $post->job->id . $remote_thumbnail->label . $thumb_filename,
           );
 
           $thumbnails[] = $thumbnail;
         }
 
         $metadata = array(
-          'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' . $filename,
+          'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' . $video_filename,
           'label' => $output->label,
           'format' => $output->format,
           'frame_rate' => $output->frame_rate,

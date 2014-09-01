@@ -25,6 +25,13 @@ security:
       pattern: ^/api/screen/get
       security: false
 
+    api:
+      pattern: ^/api(.*)
+      context: user
+      form_login:
+        check_path: /api/login_check
+      entry_point: indholdskanalen_main.api_authentication_service
+
     zencoder:
       pattern: ^/zencoder/callback
       security: false
