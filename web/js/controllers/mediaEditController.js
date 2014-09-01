@@ -22,13 +22,37 @@ ikApp.controller('MediaEditController', function($scope, $location, $routeParams
 
   /**
    * Sets the correct local path to the video
+   *
+   * @param element
+   * The media element.
+   *
+   * @param format
+   * The desired format to display (ogv, mpeg or thumbnail_SIZE).
    */
-  $scope.videoPath = function(element, browser) {
+
+  $scope.videoPath = function(element, format) {
+    // Init the filepath.
     var filepath = '';
-    if (element.provider_status === '1') {
-      filepath = '/uploads/media/default/0001/01/' + element.provider_reference;
-    }
-    console.log(element);
+
+    // Loop through the different video formats.
+    element.provider_metadata.forEach(function(entry) {
+
+      // Compare video format to desired format.
+      if (entry.format === format) {
+        filepath = entry.reference;
+      }
+
+      // Use thumbnail image.
+      if (format === 'thumbnail_landscape') {
+        // Use thumbnail from mp4 landscape.
+        entry.thumbnails.forEach(function(thumbnail) {
+          if (thumbnail.label === 'mp4_landscape') {
+            filepath = thumbnail.reference;
+          }
+        });
+      }
+
+    });
     return filepath;
   }
 });
