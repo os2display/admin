@@ -221,6 +221,7 @@
     @include generate-sprite-image($dashboard-sprites, 'video-icon', 22);
   }
 
+
   &--media-overlay {
     background-color: transparentize($white, .35);
     color: $black;
@@ -240,6 +241,11 @@
   }
 
 
+  &--media-image {
+    height: 150px;
+  }
+
+
   &--media-overlay-inner {
     padding: .5em;
     text-align: left;
@@ -251,16 +257,5 @@
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;
-  }
-
-
-  &--media-play {
-    float: right;
-
-    @include generate-sprite-image($dashboard-sprites, 'play-icon', 40);
-
-    &.is-playing {
-      @include generate-sprite-image($dashboard-sprites, 'pause-icon', 40);
-    }
   }
 }

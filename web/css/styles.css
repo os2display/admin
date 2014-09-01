@@ -2811,14 +2811,14 @@ html.is-locked body {
     top: .5rem;
     background: white;
     background: url('/images/icons-s55ff22cb09.png');
-    -moz-background-size: 26px 294px;
-    -o-background-size: 26px 294px;
-    -webkit-background-size: 26px 294px;
-    background-size: 26px 294px;
-    width: 26px;
-    height: 21px;
-    background-position: 0 -274px; }
-  /* line 224, ../sass/modules/_overview.scss */
+    -moz-background-size: 29px 324px;
+    -o-background-size: 29px 324px;
+    -webkit-background-size: 29px 324px;
+    background-size: 29px 324px;
+    width: 29px;
+    height: 23px;
+    background-position: 0 -301px; }
+  /* line 225, ../sass/modules/_overview.scss */
   .overview--media-overlay {
     background-color: rgba(255, 255, 255, 0.65);
     color: black;
@@ -2828,44 +2828,26 @@ html.is-locked body {
     right: 0;
     bottom: -30%;
     height: 30%; }
-    /* line 234, ../sass/modules/_overview.scss */
+    /* line 235, ../sass/modules/_overview.scss */
     .overview--media-overlay.is-hovering {
       -moz-animation: toggle-media-overlay 0.15s ease 1 forwards;
       -webkit-animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation-timing-function: linear;
       -webkit-animation-timing-function: linear; }
-  /* line 243, ../sass/modules/_overview.scss */
+  /* line 244, ../sass/modules/_overview.scss */
+  .overview--media-image {
+    height: 150px; }
+  /* line 249, ../sass/modules/_overview.scss */
   .overview--media-overlay-inner {
     padding: .5em;
     text-align: left; }
-  /* line 249, ../sass/modules/_overview.scss */
+  /* line 255, ../sass/modules/_overview.scss */
   .overview--media-text {
     float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis; }
-  /* line 257, ../sass/modules/_overview.scss */
-  .overview--media-play {
-    float: right;
-    background: url('/images/icons-s55ff22cb09.png');
-    -moz-background-size: 52px 588px;
-    -o-background-size: 52px 588px;
-    -webkit-background-size: 52px 588px;
-    background-size: 52px 588px;
-    width: 26px;
-    height: 26px;
-    background-position: 0 -370px; }
-    /* line 262, ../sass/modules/_overview.scss */
-    .overview--media-play.is-playing {
-      background: url('/images/icons-s55ff22cb09.png');
-      -moz-background-size: 52px 588px;
-      -o-background-size: 52px 588px;
-      -webkit-background-size: 52px 588px;
-      background-size: 52px 588px;
-      width: 26px;
-      height: 26px;
-      background-position: 0 -336px; }
 
 /**
  *
