@@ -26,6 +26,7 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
     mediaFactory.searchMedia($scope.search).then(
       function(data) {
         $scope.images = data;
+        console.log($scope.images);
 
         angular.forEach($scope.images, function(image, key) {
           image.url = image.urls.default_landscape
