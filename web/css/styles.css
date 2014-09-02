@@ -1636,19 +1636,44 @@ html.is-locked body {
   /* line 289, ../sass/modules/_create-channel.scss */
   .create-channel--arrow-right-inner {
     margin-left: 2px; }
-  /* line 301, ../sass/modules/_create-channel.scss */
+  /* line 300, ../sass/modules/_create-channel.scss */
+  .create-channel--select-screens {
+    margin-bottom: 3em; }
+  /* line 304, ../sass/modules/_create-channel.scss */
   .create-channel--screen {
-    border-bottom: 1px solid #595959;
-    display: inline-block;
-    font-size: 0;
+    border-bottom: 1px solid #b3b3b3;
+    margin: 0 auto;
     width: 50%; }
-  /* line 314, ../sass/modules/_create-channel.scss */
+    /* line 309, ../sass/modules/_create-channel.scss */
+    .create-channel--screen:first-child {
+      border-top: 1px solid #b3b3b3; }
+  /* line 315, ../sass/modules/_create-channel.scss */
+  .create-channel--screen-element {
+    height: 1.5em;
+    padding: 1em; }
+    /* line 319, ../sass/modules/_create-channel.scss */
+    .create-channel--screen-element:hover {
+      background: #f0f0e1; }
+  /* line 325, ../sass/modules/_create-channel.scss */
   .create-channel--screen-element-check {
-    height: 20px;
-    width: 20px; }
-  /* line 320, ../sass/modules/_create-channel.scss */
+    display: inline-block;
+    position: absolute;
+    left: 0; }
+    /* line 330, ../sass/modules/_create-channel.scss */
+    .create-channel--screen-element-check.is-selected {
+      background: url('/images/icons-s55ff22cb09.png');
+      -moz-background-size: 26px 294px;
+      -o-background-size: 26px 294px;
+      -webkit-background-size: 26px 294px;
+      background-size: 26px 294px;
+      width: 26px;
+      height: 21px;
+      background-position: 0 -50px; }
+  /* line 336, ../sass/modules/_create-channel.scss */
   .create-channel--screen-element-title {
-    font-size: 1rem; }
+    display: inline-block;
+    position: absolute;
+    left: 3em; }
 
 /**
  *
