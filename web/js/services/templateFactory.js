@@ -14,7 +14,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -32,7 +32,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -51,7 +51,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -70,7 +70,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -86,7 +86,7 @@ ikApp.factory('templateFactory', function() {
       },
       emptyoptions: {
         bgcolor: '#ccc',
-        image: ''
+        images: []
       }
     },
     {
@@ -102,7 +102,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -116,7 +116,7 @@ ikApp.factory('templateFactory', function() {
         height: '1080'
       },
       emptyoptions: {
-        youtubeUrl: ''
+        videos: []
       }
     }
   ];

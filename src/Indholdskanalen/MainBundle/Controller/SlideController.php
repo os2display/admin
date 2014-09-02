@@ -79,8 +79,29 @@ class SlideController extends Controller {
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
     if ($slide) {
+      // Get handle to media.
+      $sonataMedia = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media');
+
+      // Add image urls to result.
+      $imageUrls = array();
+      $imageIds = $slide->getOptions()['images'];
+      foreach ($imageIds as $imageId) {
+        $image = $sonataMedia->findOneById($imageId);
+
+        $serializer = $this->get('jms_serializer');
+        $jsonContent = $serializer->serialize($image, 'json');
+
+        $content = json_decode($jsonContent);
+
+        $imageUrls[$imageId] = $content->urls;
+      }
+
       $serializer = $this->get('jms_serializer');
       $jsonContent = $serializer->serialize($slide, 'json');
+
+      $ob = json_decode($jsonContent);
+      $ob->imageUrls = $imageUrls;
+      $jsonContent = json_encode($ob);
 
       $response->setContent($jsonContent);
     }

@@ -2,9 +2,9 @@
  * Media controller handles the media overview page.
  */
 ikApp.controller('MediaOverviewController', function ($scope, $location) {
-  // Register event listener for the select image event.
-  $scope.$on('mediaOverview.selectImage', function(event, image) {
-    $location.path('/media/' + image.id);
+  // Register event listener for the select media event.
+  $scope.$on('mediaOverview.selectMedia', function(event, media) {
+    $location.path('/media/' + media.id);
   });
 
   // Mouse hover on image.
