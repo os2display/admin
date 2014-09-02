@@ -7,14 +7,13 @@
       </div>
       <div class="create-media--video-container">
         <div ng-switch-when="video/mp4">
-          <video controls class="create-media--video">
+          <video width="100%" height="100%" controls class="create-media--video">
             <source data-ng-src="{{videoPath(image, 'ogg')}}"  type="video/ogg">
             <source data-ng-src="{{videoPath(image, 'mpeg4')}}"  type="video/mp4">
             <div class="create-media--currently-encoding">
               Videoen bliver indkodet. Dette kan tage et par minutter, men afhænger af størrelsen på den uploadede fil.
             </div>
           </video>
-          <img class="create-media--thumbnail" data-ng-src="{{videoPath(image, 'thumbnail_landscape')}}"/>
         </div>
       </div>
       <div ng-switch-default>

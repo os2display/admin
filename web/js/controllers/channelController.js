@@ -1,11 +1,16 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-ikApp.controller('ChannelController', function($scope, $location, $routeParams, channelFactory, slideFactory) {
-  $scope.steps = 4; // Number of steps in the creation process.
+ikApp.controller('ChannelController', function($scope, $location, $routeParams, channelFactory, slideFactory, screenFactory) {
+  $scope.steps = 5; // Number of steps in the creation process.
   $scope.slides = [];
   $scope.channel = {};
   $scope.slidesArray = [];
+  $scope.screens = [];
+
+  screenFactory.getScreens().then(function(data) {
+    $scope.screens = data;
+  });
 
   slideFactory.getSlides().then(function(data) {
     $scope.slides = data;
@@ -111,12 +116,30 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     }
   }
 
+
+  /**
+   * Select or deselect the screens related to a channel.
+   * @param id
+   */
+  $scope.toggleScreen = function(id) {
+    console.log($scope);
+    if($scope.channel.screens.indexOf(id)==-1) {
+      $scope.channel.screens.push(id);
+    }
+    else {
+      $scope.channel.screens.splice($scope.channel.screens.indexOf(id), 1);
+    }
+  }
+
+
   $scope.goToStep = function(step) {
     var s = 1;
+    // If title is set enable next step.
     if ($scope.validation.titleSet()) {
       s++;
+      // If orientation is set enable next three steps.
       if ($scope.validation.orientationSet()) {
-        s = s + 2;
+        s = s + 3;
       }
     }
     if (step <= s) {

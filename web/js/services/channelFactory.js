@@ -84,7 +84,8 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
       title: '',
       orientation: '',
       created_at: parseInt((new Date().getTime()) / 1000),
-      slides: []
+      slides: [],
+      screens: []
     };
 
     return currentChannel;
