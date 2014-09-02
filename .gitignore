@@ -1,6 +1,7 @@
 /web/bundles/
 /web/config.rb
 /web/config.codekit
+/web/js/configuration.js
 /app/bootstrap*
 /app/cache/*
 /app/logs/*

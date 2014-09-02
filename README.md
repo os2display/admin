@@ -21,6 +21,10 @@ $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword]
 
 
 ##Installation instructions
+
+### Copy example.configuration.js to configuration.js
+Copy example.configuration.js to configuration.js and change the relevant settings.
+
 ###Get composer
 With brew (global install)
 <pre>
