@@ -1,0 +1,14 @@
+<section id="create-slide-five" class="create-slide--section">
+  <div class="create-slide--content--slide-five">
+    <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
+    <p class="create-slide--header-description">Angiv yderligere indstillinger for dit slide.</p>
+    <div class="create-slide--content-wrapper">
+      <div class="create-slide--duration">
+        <label class="create-slide--duration-label">Varighed</label>
+        <div class="create-slide--duration-text"><input type="text" placeholder="{{slide.duration}}" class="create-slide--duration-input"></input><span class="create-slide--duration-suffix">sekunder.</span></div>
+        <div class="create-slide--duration-description">Angiv hvor længe dit slide skal vises i sekunder</div>
+      </div>
+    </div>
+    <input type="submit" class="create-slide--button" value="Gem og gå til oversigt" data-ng-click="submitStep()">
+  </div>
+</section>
