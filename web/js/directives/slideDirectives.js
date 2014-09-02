@@ -66,7 +66,7 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
         if (!newVal) return;
 
         // If the background color has changed, remove selected images.
-        if (newVal.options.bgcolor !== oldVal.options.bgcolor) {
+        if (!oldVal || newVal.options.bgcolor !== oldVal.options.bgcolor) {
           scope.ikSlide.options.images = [];
         }
 
