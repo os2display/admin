@@ -1,7 +1,7 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-ikApp.controller('ChannelController', function($scope, $location, $routeParams, channelFactory, slideFactory) {
+ikApp.controller('ChannelController', function($scope, $location, $routeParams, $timeout, channelFactory, slideFactory) {
   $scope.steps = 4; // Number of steps in the creation process.
   $scope.slides = [];
   $scope.channel = {};
@@ -57,7 +57,9 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
       channelFactory.saveChannel().then(function() {
-        $location.path('/channel-overview');
+        $timeout(function() {
+          $location.path('/channel-overview');
+        }, 500);
       });
     } else {
       loadStep($scope.step + 1);
