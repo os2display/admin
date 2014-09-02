@@ -1,7 +1,7 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-ikApp.controller('ScreenController', function($scope, $location, $routeParams, screenFactory) {
+ikApp.controller('ScreenController', function($scope, $location, $routeParams, $timeout, screenFactory) {
   /**
    * Scope setup
    */
@@ -55,11 +55,11 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, s
    */
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
-      screenFactory.saveScreen().then(
-        function() {
+      screenFactory.saveScreen().then(function() {
+        $timeout(function() {
           $location.path('/screen-overview');
-        }
-      );
+        }, 500);
+      });
     } else {
       loadStep($scope.step + 1);
     }

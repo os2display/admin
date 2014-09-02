@@ -1,7 +1,7 @@
 /**
  * Slide controller. Controls the slide creation process.
  */
-ikApp.controller('SlideController', function($scope, $location, $routeParams, slideFactory, templateFactory) {
+ikApp.controller('SlideController', function($scope, $location, $routeParams, $timeout, slideFactory, templateFactory) {
   /**
    * Scope setup
    */
@@ -52,7 +52,9 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, sl
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
       slideFactory.saveSlide().then(function() {
-        $location.path('/slide-overview');
+        $timeout(function() {
+          $location.path('/slide-overview');
+        }, 500);
       });
     } else {
       loadStep($scope.step + 1);

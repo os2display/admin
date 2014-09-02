@@ -24,6 +24,12 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
           scope.ikSlide = data;
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
+          if (scope.ikSlide.options.images.length > 0) {
+            scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+          } else {
+            scope.ikSlide.currentImage = '';
+          }
+
           // Get the template.
           scope.template = templateFactory.getTemplate(scope.ikSlide.template);
 
@@ -55,6 +61,23 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
     link: function(scope, element, attrs) {
       scope.templateURL = '/partials/slide/slide-loading.html';
 
+      // Watch for changes to ikSlide.
+      scope.$watch('ikSlide', function (newVal, oldVal) {
+        if (!newVal) return;
+
+        // If the background color has changed, remove selected images.
+        if (newVal.options.bgcolor !== oldVal.options.bgcolor) {
+          scope.ikSlide.options.images = [];
+        }
+
+        // Update image to show.
+        if (scope.ikSlide.options.images.length > 0) {
+          scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+        } else {
+          scope.ikSlide.currentImage = '';
+        }
+      }, true);
+
       // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
       attrs.$observe('ikId', function(val) {
         slideFactory.getEditSlide(scope.ikId).then(function(data) {
@@ -63,10 +86,12 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
 
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '-edit.html';
 
-          // Get images for editor
-          mediaFactory.getImages().then(function (data) {
-            scope.backgroundImages = data;
-          });
+          // Find the current image to display.
+          if (scope.ikSlide.options.images.length > 0) {
+            scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+          } else {
+            scope.ikSlide.currentImage = '';
+          }
 
           // Setup the inline styling
           scope.theStyle = {

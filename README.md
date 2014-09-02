@@ -21,6 +21,11 @@ $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword]
 
 
 ##Installation instructions
+
+### Copy example.configuration.js to configuration.js
+Copy example.configuration.js to configuration.js and change the relevant settings.
+For the vagrant set to: 'http://service.indholdskanalen.vm:3001'
+
 ###Get composer
 With brew (global install)
 <pre>

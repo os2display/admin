@@ -18,6 +18,12 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', 'te
 
         var template = templateFactory.getTemplate(scope.ikSlide.template);
 
+        if (scope.ikSlide.options.images.length > 0) {
+          scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+        } else {
+          scope.ikSlide.currentImage = '';
+        }
+
         scope.theStyle = {
           width: "" + scope.ikWidth + "px",
           height: "" + parseFloat(template.idealdimensions.height * parseFloat(scope.ikWidth / template.idealdimensions.width)) + "px",

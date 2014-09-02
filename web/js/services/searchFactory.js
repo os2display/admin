@@ -4,7 +4,7 @@
  *
  * The communication is based on web-sockets via socket.io library.
  */
-ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
+ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q, $rootScope, configuration) {
   var socket;
   var self = this;
 
@@ -16,7 +16,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
    */
   function getSocket(deferred) {
     // Get connected to the server.
-    socket = io.connect('http://service.indholdskanalen.vm:3001');
+    socket = io.connect(configuration.search.address);
 
     // Handle error events.
     socket.on('error', function (reason) {

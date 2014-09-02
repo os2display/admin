@@ -19,13 +19,13 @@
     <div class="overview--media-single" data-ng-repeat="image in images">
       <div ng-switch on="image.content_type">
         <div ng-switch-when="image/jpeg">
-          <a data-ng-click="mediaOverviewClickImage(image)" class="overview--media-link" ng-mouseenter="mouseHover(image.id)" ng-mouseleave="mouseHover(false)">
+          <a data-ng-click="mediaOverviewClickMedia(image)" class="overview--media-link" ng-mouseenter="mouseHover(image.id)" ng-mouseleave="mouseHover(false)">
             <img class="overview--media-image" data-ng-src="{{ image.urls.default_portrait_small }}"/>
             <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === image.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{image.name}}</span></div></div>
           </a>
         </div>
         <div ng-switch-when="video/mp4" ng-mouseenter="mouseHover(image.id)" ng-mouseleave="mouseHover(false)">
-          <a data-ng-click="mediaOverviewClickImage(image)" class="overview--media-link">
+          <a data-ng-click="mediaOverviewClickMedia(image)" class="overview--media-link">
             <img class="overview--media-image" data-ng-src="{{ videoThumb(image) }}"/>
             <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === image.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{image.name}}</span></div></div>
           </a>

@@ -31,7 +31,6 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
     mediaFactory.searchMedia($scope.search).then(
       function(data) {
         $scope.images = data;
-        console.log($scope.images);
 
         angular.forEach($scope.images, function(image, key) {
           image.url = image.urls.default_landscape;
@@ -44,11 +43,11 @@ ikApp.controller('MediaOverviewEmbeddedController', function ($scope, $http, $lo
   $scope.updateSearch();
 
   /**
-   * Emits event when the user clicks an image.
-   * @param image
+   * Emits event when the user clicks a media.
+   * @param media
    */
-  $scope.mediaOverviewClickImage = function mediaOverviewClickImage(image) {
-    $scope.$emit('mediaOverview.selectImage', image);
+  $scope.mediaOverviewClickMedia = function mediaOverviewClickImage(media) {
+    $scope.$emit('mediaOverview.selectMedia', media);
   }
 
   /**
