@@ -34,6 +34,10 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
     }
   }
 
+  $scope.setStep = function setStep(step) {
+    $scope.step = step;
+  }
+
   $scope.backgroundPicker = function backgroundPicker() {
     $scope.step = 'background-picker';
   };
@@ -46,82 +50,34 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
     $scope.step = 'pick-from-computer';
   };
 
-
-  // Validate youtube URL.
-  $scope.youtubeUrlValidate = function youtubeUrlValidate() {
-    var inputString = '';
-
-    // Input field not empty.
-    if ($scope.slide.options.youtubeUrl) {
-      inputString = $scope.slide.options.youtubeUrl;
-      // We only want youtube paths.
-      $scope.slide.options.isValid = inputString.indexOf("youtube.com/watch?v=");
-
-      if ($scope.slide.options.isValid > 0) {
-
-        // Fetch youtube id and save it to slide.
-        var url = inputString.split("=");
-        $scope.slide.options.youtubeId = url[1];
-
-        console.log($scope);
-
-        // The string is valid.
-        return true;
-      } else {
-        // The string is invalid, and reset youtubeID.
-        $scope.slide.options.youtubeId = '';
-
-        return false;
-      }
-    }
-  };
-
-
-  // Set the iframe source
-  $scope.trustSrc = function(src) {
-    if (src) {
-      if ($scope.slide.options.isValid > 0) {
-        // Alter the youtube url, to reflect an embed code.
-        src = src.replace("watch?v=", "embed/");
-
-        // Add parameters. ("?" mark for first parameter)
-        // Hide info.
-        src = src + "?showinfo=0";
-
-        //Hide controls.
-        src = src + "&controls=0";
-
-        //Hide youtube logo.
-        src = src + "&modestbranding=1";
-
-        //Hide dont play related videos at end.
-        src = src + "&rel=0";
-
-
-        // Escape the source.
-        $scope.slide.options.embedCode = $sce.trustAsResourceUrl(src);
-
-        return $scope.slide.options.embedCode;
-      }
-      else {
-        // Provide no source for iframe.
-        return '';
-      }
-    }
+  $scope.clickBackgroundColor = function clickBackgroundColor() {
+    $scope.slide.options.images = [];
   }
 
+  // Register event listener for select media.
+  $scope.$on('mediaOverview.selectMedia', function(event, media) {
+    // Handle selection of video or image.
+    if (media.content_type.indexOf('image/') === 0) {
+      var index = $scope.slide.options.images.indexOf(media.id);
 
-  $scope.resetImage = function resetImage() {
-    $scope.slide.options.image = '';
-  };
-
-
-  $scope.$on('mediaOverview.selectImage', function(event, image) {
-    if ($scope.slide.options.image === image.url) {
-      $scope.slide.options.image = '';
+      if (index > -1) {
+        $scope.slide.options.images.splice(index, 1);
+        $scope.slide.currentImage = '';
+      }
+      else {
+        $scope.slide.options.images.push(media.id);
+        $scope.slide.imageUrls[media.id] = media.urls;
+      }
     }
-    else {
-      $scope.slide.options.image = image.url;
+    else if (media.content_type.indexOf('video/') === 0) {
+      var index = $scope.slide.options.videos.indexOf(media.id);
+
+      if (index > -1) {
+        $scope.slide.options.videos.splice(index, 1);
+      }
+      else {
+        $scope.slide.options.videos.push(media.id);
+      }
     }
 
     $scope.step = 'background-picker';
@@ -129,6 +85,7 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
     $scope.editor.showTextEditor = false;
   });
 
+  // Register event listener for media upload success.
   $scope.$on('mediaUpload.uploadSuccess', function(event, data) {
     var allSuccess = true;
 
@@ -143,10 +100,8 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
 
     if (allSuccess) {
       mediaFactory.getImage(data.id).then(function(image) {
-        console.log(data.id);
-        console.log(image);
-
-        $scope.slide.options.image = image.urls.landscape;
+        $scope.slide.options.images.push(image.id);
+        $scope.slide.imageUrls[image.id] = image.urls;
       });
 
       $scope.step = 'background-picker';
