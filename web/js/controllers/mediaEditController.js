@@ -51,7 +51,6 @@ ikApp.controller('MediaEditController', function($scope, $location, $routeParams
           }
         });
       }
-
     });
     return filepath;
   }
