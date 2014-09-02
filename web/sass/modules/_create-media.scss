@@ -175,23 +175,27 @@
     text-decoration: underline;
   }
 
-  // Display media. - We use a container for video and thumbnail, to ensure an image on ipads (They dont have video metadata before playing the video)
+  // Display media. - We use a container for video, to ensure proper scaling on ipads (They dont fetch video metadata before playing the video)
   &--video-container {
     height: auto;
     margin: 0 auto;
     position: relative;
     padding-top: 56.25%; // responsive padding trick.
-    position:relative;
-    width: 70%;
+    width: 80%;
   }
 
-  // Thumbnail is used as canvas for ipads, and must follow the same positioning rules as the actual video.
-  &--thumbnail,
+
   &--video {
     display: block;
+    max-width: 94%; // Keep controls inside the video frame.
     position: absolute;
     width: 100%;
     top: 0;
+
+    // Center element.
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 
   &--video {

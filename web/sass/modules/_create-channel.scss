@@ -290,4 +290,34 @@ $breakpoint-arrow-switch : 693px;
     margin-left: 2px;
   }
 
+
+  /* Create channel - screen selection (Page 5)
+   ========================================================================== */
+  &--content--channel-five {
+    @extend %create-element--layout-default;
+  }
+
+
+  &--screen {
+    border-bottom: 1px solid $gray-darker;
+    display: inline-block;
+    font-size: 0;
+    width: 50%;
+  }
+
+
+  &--screen-element {
+
+  }
+
+
+  &--screen-element-check {
+    height: 20px;
+    width: 20px;
+  }
+
+
+  &--screen-element-title {
+    font-size: 1rem;
+  }
 }
