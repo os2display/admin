@@ -66,6 +66,9 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
       }
       else {
         $scope.slide.options.images.push(media.id);
+        if (!$scope.slide.imageUrls) {
+          $scope.slide.imageUrls = [];
+        }
         $scope.slide.imageUrls[media.id] = media.urls;
       }
     }
@@ -101,6 +104,9 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
     if (allSuccess) {
       mediaFactory.getImage(data.id).then(function(image) {
         $scope.slide.options.images.push(image.id);
+        if (!$scope.slide.imageUrls) {
+          $scope.slide.imageUrls = [];
+        }
         $scope.slide.imageUrls[image.id] = image.urls;
       });
 
