@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -550,7 +550,7 @@
   padding: 1.5em; }
 
 /* line 94, ../sass/theme/_global-silent-classes.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
   margin: 0 auto;
   text-align: center;
   width: 100%; }
@@ -1200,6 +1200,8 @@ html.is-locked body {
   /* Create slide - select template (Page 3)
    ========================================================================== */
   /* Create slide - setup content (Page 4)
+   ========================================================================== */
+  /* Create slide - setup content (Page 5)
    ========================================================================== */ }
   /* line 40, ../sass/modules/_create-slide.scss */
   .create-slide--button {
@@ -1340,6 +1342,35 @@ html.is-locked body {
   .create-slide--image {
     max-height: 100%;
     width: 100%; }
+  /* line 224, ../sass/modules/_create-slide.scss */
+  .create-slide--duration {
+    width: 75%;
+    margin: 0 auto;
+    max-width: 30em; }
+    @media only screen and (min-width: 481px) {
+      /* line 224, ../sass/modules/_create-slide.scss */
+      .create-slide--duration {
+        width: 50%; } }
+  /* line 235, ../sass/modules/_create-slide.scss */
+  .create-slide--duration-label {
+    font-size: 1.2em;
+    text-align: left; }
+  /* line 240, ../sass/modules/_create-slide.scss */
+  .create-slide--duration-text {
+    margin-bottom: 1em; }
+  /* line 244, ../sass/modules/_create-slide.scss */
+  .create-slide--duration-input[type="text"] {
+    display: inline-block;
+    width: 47%;
+    margin-right: 2%; }
+  /* line 250, ../sass/modules/_create-slide.scss */
+  .create-slide--duration-suffix {
+    display: inline-block;
+    font-size: 1.5em;
+    width: 50%; }
+  /* line 256, ../sass/modules/_create-slide.scss */
+  .create-slide--duration-description {
+    color: #b3b3b3; }
 
 /**
  *

@@ -120,7 +120,8 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory', fu
       orientation: '',
       template: '',
       created_at: parseInt((new Date().getTime()) / 1000),
-      options: null
+      options: null,
+      duration: '15' // Seconds.
     };
 
     return currentSlide;

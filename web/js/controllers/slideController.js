@@ -5,7 +5,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, $t
   /**
    * Scope setup
    */
-  $scope.steps = 4;
+  $scope.steps = 5;
   $scope.slide = {};
   $scope.templates = templateFactory.getTemplates();
 
@@ -97,7 +97,7 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, $t
       if ($scope.validation.orientationSet()) {
         s++;
         if ($scope.validation.templateSet()) {
-          s++;
+          s = s + 2;
         }
       }
     }
