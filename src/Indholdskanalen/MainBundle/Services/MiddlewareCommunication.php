@@ -43,32 +43,53 @@ class MiddlewareCommunication extends ContainerAware
   }
 
   /**
-   * Pushes the channels to the middleware
+   * Pushes the channels to the middleware.
    */
   public function pushChannels()
   {
     // Get all channels
     $channels = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
 
+    // Path to server
+    $pathToServer = $this->container->getParameter("absolute_path_to_server");
+
+    // Get handle to media.
+    $sonataMedia = $this->container->get('doctrine')->getRepository('ApplicationSonataMediaBundle:Media');
+
     // For each channel
     for ($i = 0; $i < count($channels); $i++) {
       $currentChannel = $channels[$i];
 
+      // Create groups array.
+      $groups = array();
+      foreach($currentChannel->getScreens() as $screen) {
+        $groups[] = $screen->getId();
+      }
+
       // Build default channel array.
       $channel = array(
         'channelID' => $currentChannel->getId(),
+        'groups' => $groups,
         'channelContent' => array(
           'logo' => '',
         ),
-        'groups' => array(
-          'fisk',
-        ),
       );
 
-      //   Add slides to the channel
+      // Add slides to the channel
       $slides = $currentChannel->getSlides();
       foreach ($slides as $key => $value) {
         $slide = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($value);
+
+        // Build image urls.
+        $imageUrls = array();
+        foreach($slide->getOptions()['images'] as $imageId) {
+          $image = $sonataMedia->findOneById($imageId);
+
+          if ($image) {
+            $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
+            $imageUrls[$imageId] = $pathToServer . $path;
+          }
+        }
 
         $channel['channelContent']['slides'][] = array(
           'id' => $slide->getId(),
@@ -76,6 +97,7 @@ class MiddlewareCommunication extends ContainerAware
           'orientation' => $slide->getOrientation(),
           'template' => $slide->getTemplate(),
           'options' => $slide->getOptions(),
+          'imageUrls' => $imageUrls,
         );
       }
 

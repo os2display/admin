@@ -95,7 +95,7 @@ class ScreenController extends Controller {
       "created_at" => $screen->getCreatedAt(),
       "width" => $screen->getWidth(),
       "height" => $screen->getHeight(),
-      "groups" => $screen->getGroups()
+      "groups" => $screen->getGroups(),
     );
 
     // Send the json response back to client.
@@ -162,12 +162,17 @@ class ScreenController extends Controller {
       return new Response("", 404);
     }
 
+    $groups = array();
+    foreach($screen->getChannels() as $channel) {
+      $groups[] = $channel->getId();
+    }
+
     // Generate the response.
     $response_data = array(
       'statusCode' => 200,
       'id' => $screen->getId(),
       'name' => $screen->getTitle(),
-      'groups' => array('fisk')       // @TODO: FIX THIS TO INCLUDE THE GROUPS IT IS PART OF AND THIS SCREEN
+      'groups' => $groups,
     );
 
     // Return the json response.
