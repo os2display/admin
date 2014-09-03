@@ -67,6 +67,7 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
       else {
         $scope.slide.options.images = [];
         $scope.slide.options.images.push(media.id);
+        $scope.slide.imageUrls = [];
         $scope.slide.imageUrls[media.id] = media.urls;
       }
     }
@@ -103,6 +104,7 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
       mediaFactory.getImage(data.id).then(function(image) {
         $scope.slide.options.images = [];
         $scope.slide.options.images.push(image.id);
+        $scope.slide.imageUrls = [];
         $scope.slide.imageUrls[image.id] = image.urls;
       });
 
