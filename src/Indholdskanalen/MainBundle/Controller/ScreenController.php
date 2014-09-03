@@ -163,9 +163,7 @@ class ScreenController extends Controller {
     }
 
     $groups = array();
-    foreach($screen->getChannels() as $channel) {
-      $groups[] = $channel->getId();
-    }
+    $groups[] = "group" . $screen->getId();
 
     // Generate the response.
     $response_data = array(

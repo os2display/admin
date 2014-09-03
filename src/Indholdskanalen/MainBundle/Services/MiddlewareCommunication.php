@@ -63,7 +63,7 @@ class MiddlewareCommunication extends ContainerAware
       // Create groups array.
       $groups = array();
       foreach($currentChannel->getScreens() as $screen) {
-        $groups[] = $screen->getId();
+        $groups[] = "group" . $screen->getId();
       }
 
       // Build default channel array.
