@@ -43,6 +43,20 @@ class Channel {
   private $slides;
 
   /**
+   * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
+   * @ORM\JoinTable(name="screens_channels")
+   */
+  private $screens;
+
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->screens = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
+  /**
    * Get id
    *
    * @return integer
@@ -126,5 +140,35 @@ class Channel {
   public function getCreatedAt()
   {
     return $this->created_at;
+  }
+
+  /**
+   * Add screen
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+   * @return ScreenGroup
+   */
+  public function addScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
+    $this->screens[] = $screen;
+
+    return $this;
+  }
+
+  /**
+   * Remove screen
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+   */
+  public function removeScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
+    $this->screens->removeElement($screen);
+  }
+
+  /**
+   * Get screens
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getScreens() {
+    return $this->screens;
   }
 }

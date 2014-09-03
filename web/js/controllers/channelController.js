@@ -2,22 +2,24 @@
  * Channel controller. Controls the channel creation process.
  */
 ikApp.controller('ChannelController', function($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, screenFactory) {
-  $scope.steps = 5; // Number of steps in the creation process.
+  $scope.steps = 5;
   $scope.slides = [];
   $scope.channel = {};
   $scope.slidesArray = [];
   $scope.screens = [];
 
+  // Get all screens.
   screenFactory.getScreens().then(function(data) {
     $scope.screens = data;
   });
 
+  // Get all slides.
   slideFactory.getSlides().then(function(data) {
     $scope.slides = data;
   });
 
   /**
-   * Loads a given step
+   * Loads a given step.
    */
   function loadStep(step) {
     $scope.step = step;
@@ -25,7 +27,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     if ($scope.step == 4) {
       $scope.getChosenSlides();
     }
-  }
+  };
 
   /**
    * Constructor.
@@ -53,7 +55,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
         });
       }
     }
-  }
+  };
   init();
 
   /**
@@ -69,8 +71,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     } else {
       loadStep($scope.step + 1);
     }
-  }
-
+  };
 
   /**
    * Set the orientation of the channel.
@@ -78,8 +79,24 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
    */
   $scope.setOrientation = function(orientation) {
     $scope.channel.orientation = orientation;
-  }
+  };
 
+  /**
+   * Is the screen selected?
+   * @param screen
+   * @returns {boolean}
+   */
+  $scope.screenSelected = function(id) {
+    var res = false;
+
+    $scope.channel.screens.forEach(function(element, index, array) {
+      if (id == element.id) {
+        res = true;
+      };
+    });
+
+    return res;
+  };
 
   /**
    * Validates that @field is not empty on channel.
@@ -89,8 +106,7 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
       return false;
     }
     return $scope.channel[field] !== '';
-  }
-
+  };
 
   /**
    * Handles the validation of the data in the channel.
@@ -104,36 +120,44 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     }
   };
 
-
   /**
    * Select or deselect the slides related to a channel.
    * @param id
    */
   $scope.toggleSlide = function(id) {
-    if($scope.channel.slides.indexOf(id)==-1) {
+    if($scope.channel.slides.indexOf(id) < 0) {
       $scope.channel.slides.push(id);
     }
     else {
       $scope.channel.slides.splice($scope.channel.slides.indexOf(id), 1);
     }
-  }
-
+  };
 
   /**
    * Select or deselect the screens related to a channel.
    * @param id
    */
-  $scope.toggleScreen = function(id) {
-    console.log($scope);
-    if($scope.channel.screens.indexOf(id)==-1) {
-      $scope.channel.screens.push(id);
+  $scope.toggleScreen = function(screen) {
+    var res = false;
+
+    $scope.channel.screens.forEach(function(element, index, array) {
+      if (screen.id == element.id) {
+        res = true;
+      };
+    });
+
+    if (res) {
+      $scope.channel.screens.splice($scope.channel.screens.indexOf(screen), 1);
     }
     else {
-      $scope.channel.screens.splice($scope.channel.screens.indexOf(id), 1);
+      $scope.channel.screens.push(screen);
     }
   }
 
-
+  /**
+   * Change channel creation step.
+   * @param step
+   */
   $scope.goToStep = function(step) {
     var s = 1;
     // If title is set enable next step.
@@ -149,7 +173,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     }
   };
 
-
   /**
    * Fetch the slides related to the channel.
    */
@@ -162,7 +185,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     });
   }
 
-
   /**
    * Change the positioning of two array elements.
    * */
@@ -172,7 +194,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     arr[last_index] = temp;
   }
 
-
   /**
    * Push a channel slide right.
    * @param index the position of the arrow.
@@ -181,7 +202,6 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
     swapArrayEntries($scope.channel.slides, $arrow_position, $arrow_position + 1);
     swapArrayEntries($scope.slidesArray, $arrow_position, $arrow_position + 1);
   };
-
 
   /**
    * Push a channel slide right.

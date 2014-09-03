@@ -43,6 +43,24 @@ class ChannelController extends Controller {
     $channel->setCreatedAt($post->created_at);
     $channel->setSlides($post->slides);
 
+    // Remove screens.
+    foreach($channel->getScreens() as $screen) {
+      if (!in_array($screen, $post->screens)) {
+        $channel->removeScreen($screen);
+      }
+    }
+
+    // Add screens.
+    foreach($post->screens as $screen) {
+      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+        ->findOneById($screen->id);
+      if ($screen) {
+        if (!$channel->getScreens()->contains($screen)) {
+          $channel->addScreen($screen);
+        }
+      }
+    }
+
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
     $em->persist($channel);
