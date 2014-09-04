@@ -3,7 +3,7 @@
     <label class="overview--filter-label">Filtrér på:</label>
     <div class="overview--filter-orientation">
       <span href="#" data-ng-class="{'is-active': search.filter.orientation == 'landscape'}" class="overview--horisontal" data-ng-click="setOrientation('landscape')">Horisontal</span>
-      <span href="#" data-ng-class="{'is-active': search.filter.orientation == 'portrait'}" class="overview--vertical" data-ng-model="search.text" data-ng-click="setOrientation('portrait')">Vertical</span>
+      <span href="#" data-ng-class="{'is-active': search.filter.orientation == 'portrait'}" class="overview--vertical" data-ng-model="search.text" data-ng-click="setOrientation('portrait')">Vertikal</span>
     </div>
     <form class="overview--form" accept-charset="UTF-8">
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search.text">
@@ -12,9 +12,9 @@
   <div class="overview--sorting">
     <label class="overview--sort-label">Sorter på:</label>
     <div class="overview--sort-links">
-      <span class="overview--newest" data-ng-class="{'is-active': search.sort.created_at && search.sort.created_at.order === 'desc'}" data-ng-click="setSort('created_at', 'desc')">Newest</span>
-      <span class="overview--oldest" data-ng-class="{'is-active': search.sort.created_at && search.sort.created_at.order === 'asc'}" data-ng-click="setSort('created_at', 'asc')">Oldest</span>
-      <span class="overview--alphabetical" data-ng-class="{'is-active': search.sort.title}"  data-ng-click="setSort('title', 'asc')">A-Z</span>
+      <span class="overview--newest" data-ng-class="{'is-active': search.sort.created_at && search.sort.created_at.order === 'desc'}" data-ng-click="setSort('created_at', 'desc')">Nyeste</span>
+      <span class="overview--oldest" data-ng-class="{'is-active': search.sort.created_at && search.sort.created_at.order === 'asc'}" data-ng-click="setSort('created_at', 'asc')">Ældste</span>
+      <span class="overview--alphabetical" data-ng-class="{'is-active': search.sort.title}"  data-ng-click="setSort('title', 'asc')">A-Å</span>
     </div>
   </div>
 
