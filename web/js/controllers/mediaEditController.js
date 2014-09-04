@@ -6,8 +6,8 @@
 /**
  * Media controller. Controls media editing functions.
  */
-ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', 'mediaFactory',
-  function($scope, $location, $routeParams, mediaFactory) {
+ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory',
+  function($scope, $location, $routeParams, $timeout, mediaFactory) {
     mediaFactory.getImage($routeParams.id).then(function(data) {
       $scope.image = data;
 
@@ -20,9 +20,12 @@ ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', 
      * Delete an image.
      * @param id
      */
-    $scope.delete = function(id) {
-      mediaFactory.deleteImage($scope.image.id);
-      $location.path('/media-overview');
+    $scope.delete = function() {
+      mediaFactory.deleteImage($scope.image.id).then(function() {
+        $timeout(function() {
+          $location.path('/media-overview');
+        }, 500);
+      });
     };
 
     /**
