@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  */
 class MiddlewareCommunication extends ContainerAware
 {
+
   protected function curlSendChannel($channel) {
     $json = json_encode($channel);
 
@@ -45,8 +46,7 @@ class MiddlewareCommunication extends ContainerAware
   /**
    * Pushes the channels to the middleware.
    */
-  public function pushChannels()
-  {
+  public function pushChannels() {
     // Get all channels
     $channels = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
 
@@ -57,7 +57,8 @@ class MiddlewareCommunication extends ContainerAware
     $sonataMedia = $this->container->get('doctrine')->getRepository('ApplicationSonataMediaBundle:Media');
 
     // For each channel
-    for ($i = 0; $i < count($channels); $i++) {
+    $count = count($channels);
+    for ($i = 0; $i < $count; $i++) {
       $currentChannel = $channels[$i];
 
       // Create groups array.
