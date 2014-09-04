@@ -1564,16 +1564,10 @@ html.is-locked body {
       /* line 188, ../sass/modules/_create-channel.scss */
       .create-channel--slide-order-element {
         margin: 0 36px 36px 0; } }
-    /* line 195, ../sass/modules/_create-channel.scss */
-    .create-channel--slide-order-element:first-child .create-channel--slide-order-arrow-left {
-      display: none; }
-    /* line 201, ../sass/modules/_create-channel.scss */
-    .create-channel--slide-order-element:last-child .create-channel--slide-order-arrow-right {
-      display: none; }
-  /* line 208, ../sass/modules/_create-channel.scss */
+  /* line 195, ../sass/modules/_create-channel.scss */
   .create-channel--slides {
     margin-bottom: 3em; }
-  /* line 213, ../sass/modules/_create-channel.scss */
+  /* line 200, ../sass/modules/_create-channel.scss */
   .create-channel--slide-order-link {
     display: inline-block;
     position: relative; }
@@ -1593,7 +1587,7 @@ html.is-locked body {
     .create-channel--slide-order-link:focus {
       color: inherit;
       text-decoration: none; }
-  /* line 221, ../sass/modules/_create-channel.scss */
+  /* line 208, ../sass/modules/_create-channel.scss */
   .create-channel--slide-order-label {
     display: inline-block;
     font-size: .9em; }
@@ -1613,7 +1607,7 @@ html.is-locked body {
     .create-channel--slide-order-label:focus {
       color: inherit;
       text-decoration: none; }
-  /* line 229, ../sass/modules/_create-channel.scss */
+  /* line 216, ../sass/modules/_create-channel.scss */
   .create-channel--slide-order-number {
     left: 0;
     margin-left: auto;
@@ -1621,7 +1615,7 @@ html.is-locked body {
     position: absolute;
     right: 0;
     top: -1.2em; }
-  /* line 241, ../sass/modules/_create-channel.scss */
+  /* line 228, ../sass/modules/_create-channel.scss */
   .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
     border: 1px solid #b3b3b3;
     cursor: pointer;
@@ -1634,7 +1628,7 @@ html.is-locked body {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg); }
     @media only screen and (min-width: 693px) {
-      /* line 241, ../sass/modules/_create-channel.scss */
+      /* line 228, ../sass/modules/_create-channel.scss */
       .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
         top: 35%;
         -moz-transform: translateY(-50%);
@@ -1645,52 +1639,52 @@ html.is-locked body {
         -ms-transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg); } }
-  /* line 264, ../sass/modules/_create-channel.scss */
+  /* line 251, ../sass/modules/_create-channel.scss */
   .create-channel--slide-order-arrow-left {
     left: .5em;
     top: .5em; }
     @media only screen and (min-width: 693px) {
-      /* line 264, ../sass/modules/_create-channel.scss */
+      /* line 251, ../sass/modules/_create-channel.scss */
       .create-channel--slide-order-arrow-left {
         top: 35%; } }
-  /* line 274, ../sass/modules/_create-channel.scss */
+  /* line 261, ../sass/modules/_create-channel.scss */
   .create-channel--slide-order-arrow-right {
     bottom: 2em;
     right: .5em; }
     @media only screen and (min-width: 693px) {
-      /* line 274, ../sass/modules/_create-channel.scss */
+      /* line 261, ../sass/modules/_create-channel.scss */
       .create-channel--slide-order-arrow-right {
         top: 35%; } }
-  /* line 284, ../sass/modules/_create-channel.scss */
+  /* line 271, ../sass/modules/_create-channel.scss */
   .create-channel--arrow-left-inner {
     margin-right: 2px; }
-  /* line 289, ../sass/modules/_create-channel.scss */
+  /* line 276, ../sass/modules/_create-channel.scss */
   .create-channel--arrow-right-inner {
     margin-left: 2px; }
-  /* line 300, ../sass/modules/_create-channel.scss */
+  /* line 287, ../sass/modules/_create-channel.scss */
   .create-channel--select-screens {
     margin-bottom: 3em; }
-  /* line 304, ../sass/modules/_create-channel.scss */
+  /* line 291, ../sass/modules/_create-channel.scss */
   .create-channel--screen {
     border-bottom: 1px solid #b3b3b3;
     margin: 0 auto;
     width: 50%; }
-    /* line 309, ../sass/modules/_create-channel.scss */
+    /* line 296, ../sass/modules/_create-channel.scss */
     .create-channel--screen:first-child {
       border-top: 1px solid #b3b3b3; }
-  /* line 315, ../sass/modules/_create-channel.scss */
+  /* line 302, ../sass/modules/_create-channel.scss */
   .create-channel--screen-element {
     height: 1.5em;
     padding: 1em; }
-    /* line 319, ../sass/modules/_create-channel.scss */
+    /* line 306, ../sass/modules/_create-channel.scss */
     .create-channel--screen-element:hover {
       background: #f0f0e1; }
-  /* line 325, ../sass/modules/_create-channel.scss */
+  /* line 312, ../sass/modules/_create-channel.scss */
   .create-channel--screen-element-check {
     display: inline-block;
     position: absolute;
     left: 0; }
-    /* line 330, ../sass/modules/_create-channel.scss */
+    /* line 317, ../sass/modules/_create-channel.scss */
     .create-channel--screen-element-check.is-selected {
       background: url('/images/icons-s55ff22cb09.png');
       -moz-background-size: 26px 294px;
@@ -1700,7 +1694,7 @@ html.is-locked body {
       width: 26px;
       height: 21px;
       background-position: 0 -50px; }
-  /* line 336, ../sass/modules/_create-channel.scss */
+  /* line 323, ../sass/modules/_create-channel.scss */
   .create-channel--screen-element-title {
     display: inline-block;
     position: absolute;

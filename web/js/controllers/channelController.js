@@ -188,27 +188,39 @@ ikApp.controller('ChannelController', function($scope, $location, $routeParams, 
   /**
    * Change the positioning of two array elements.
    * */
-  function swapArrayEntries(arr, first_index, last_index) {
-    var temp = arr[first_index];
-    arr[first_index] = arr[last_index];
-    arr[last_index] = temp;
+  function swapArrayEntries(arr, firstIndex, lastIndex) {
+    var temp = arr[firstIndex];
+    arr[firstIndex] = arr[lastIndex];
+    arr[lastIndex] = temp;
   }
 
   /**
    * Push a channel slide right.
    * @param index the position of the arrow.
    */
-  $scope.pushRight = function($arrow_position) {
-    swapArrayEntries($scope.channel.slides, $arrow_position, $arrow_position + 1);
-    swapArrayEntries($scope.slidesArray, $arrow_position, $arrow_position + 1);
+  $scope.pushRight = function(arrowPosition) {
+    if (arrowPosition == $scope.channel.slides.length - 1) {
+      swapArrayEntries($scope.channel.slides, arrowPosition, 0);
+      swapArrayEntries($scope.slidesArray, arrowPosition, 0);
+    }
+    else {
+      swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition + 1);
+      swapArrayEntries($scope.slidesArray, arrowPosition, arrowPosition + 1);
+    }
   };
 
   /**
    * Push a channel slide right.
    * @param index the position of the arrow.
    */
-  $scope.pushLeft = function($arrow_position) {
-    swapArrayEntries($scope.channel.slides, $arrow_position, $arrow_position - 1);
-    swapArrayEntries($scope.slidesArray, $arrow_position, $arrow_position - 1);
+  $scope.pushLeft = function(arrowPosition) {
+    if (arrowPosition == 0) {
+      swapArrayEntries($scope.channel.slides, arrowPosition, $scope.channel.slides.length - 1);
+      swapArrayEntries($scope.slidesArray, arrowPosition, $scope.channel.slides.length - 1);
+    }
+    else {
+      swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
+      swapArrayEntries($scope.slidesArray, arrowPosition, arrowPosition - 1);
+    }
   };
 });

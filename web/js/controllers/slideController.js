@@ -9,7 +9,6 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, $t
   $scope.slide = {};
   $scope.templates = templateFactory.getTemplates();
 
-
   /**
    * Loads a given step
    */
