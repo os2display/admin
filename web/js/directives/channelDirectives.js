@@ -19,7 +19,12 @@ ikApp.directive('ikChannel', ['$interval', 'channelFactory', 'slideFactory', 'te
         var template = templateFactory.getTemplate(scope.ikSlide.template);
 
         if (scope.ikSlide.options.images.length > 0) {
-          scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+          if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+            scope.ikSlide.currentImage = '/images/not-found.png';
+          }
+          else {
+            scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+          }
         } else {
           scope.ikSlide.currentImage = '';
         }
