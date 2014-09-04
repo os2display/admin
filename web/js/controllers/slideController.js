@@ -50,6 +50,11 @@ ikApp.controller('SlideController', function($scope, $location, $routeParams, $t
    */
   $scope.submitStep = function() {
     if ($scope.step == $scope.steps) {
+      // Set default duration if none is set.
+      if ($scope.slide.duration == '') {
+        $scope.slide.duration = 15;
+      }
+
       slideFactory.saveSlide().then(function() {
         $timeout(function() {
           $location.path('/slide-overview');
