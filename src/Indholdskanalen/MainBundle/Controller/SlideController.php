@@ -44,6 +44,7 @@ class SlideController extends Controller {
     $slide->setCreatedAt($post['created_at']);
     $slide->setOptions($post['options']);
     $slide->setUser($post['user']);
+    $slide->setDuration($post['duration']);
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();

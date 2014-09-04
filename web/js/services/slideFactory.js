@@ -117,11 +117,11 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory', fu
       id: null,
       title: '',
       user: '',
+      duration: '15',
       orientation: '',
       template: '',
       created_at: parseInt((new Date().getTime()) / 1000),
-      options: null,
-      duration: '15' // Seconds.
+      options: null
     };
 
     return currentSlide;

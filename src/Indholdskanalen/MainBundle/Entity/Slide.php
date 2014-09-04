@@ -53,6 +53,11 @@ class Slide {
   private $user;
 
   /**
+   * @ORM\Column(name="duration", type="integer", nullable=true)
+   */
+  private $duration;
+
+  /**
    * Get id
    *
    * @return integer
@@ -172,5 +177,28 @@ class Slide {
   public function getCreatedAt()
   {
     return $this->created_at;
+  }
+
+  /**
+   * Set duration
+   *
+   * @param integer $duration
+   * @return Slide
+   */
+  public function setDuration($duration)
+  {
+    $this->duration = $duration;
+
+    return $this;
+  }
+
+  /**
+   * Get duration
+   *
+   * @return integer
+   */
+  public function getDuration()
+  {
+    return $this->duration;
   }
 }
