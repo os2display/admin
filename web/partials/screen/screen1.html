@@ -1,6 +1,6 @@
 <section id="create-screen-one" class="create-screen--section">
   <div class="create-screen--content--screen-one">
-    <h1 class="create-screen--header">Opret skærm ({{step}}/{{steps}})</h1>
+    <h1 class="create-screen--header">{{screen.status === "edit-screen" ? "Redigér skærm" : "Opret skærm"}}</h1>
     <p class="create-screen--header-description">Giv din skærm et godt navn så du kan finde den igen senere.</p>
     <form ng-submit="submitStep()" class="create-screen--form">
       <input type="text" class="create-screen--text" placeholder="Skriv f.eks. Forhallen i hovedbiblioteket" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="screen.title">
