@@ -98,6 +98,7 @@ class MiddlewareCommunication extends ContainerAware
           'template' => $slide->getTemplate(),
           'options' => $slide->getOptions(),
           'imageUrls' => $imageUrls,
+          'duration' => $slide->getDuration(),
         );
       }
 
