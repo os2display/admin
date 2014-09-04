@@ -6,7 +6,6 @@ namespace Indholdskanalen\MainBundle\EventListener;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Provider\Pool;
-use Sonata\MediaBundle\Model\Media;
 
 
 class SerializationListener implements EventSubscriberInterface

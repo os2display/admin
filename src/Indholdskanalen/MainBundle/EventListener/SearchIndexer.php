@@ -88,7 +88,6 @@ class SearchIndexer {
     $customer_id = $this->container->getParameter('search_customer_id');
     $params = array(
       'customer_id' => $customer_id,
-      'app_secret' => 'test',
       'type' => $type,
       'data' => $entity,
     );
