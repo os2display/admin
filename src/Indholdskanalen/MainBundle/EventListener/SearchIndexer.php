@@ -1,37 +1,69 @@
 <?php
+/**
+ * @file
+ * Event handlers to send content to the search backend.
+ */
 
 namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Indholdskanalen\MainBundle\Services\MiddlewareCommunication;
 use JMS\Serializer\Serializer;
 
+/**
+ * Class SearchIndexer
+ *
+ * @package Indholdskanalen\MainBundle\EventListener
+ */
 class SearchIndexer {
   protected $container;
   protected $serializer;
-  protected $middleware;
 
-  function __construct(Serializer $serializer, MiddlewareCommunication $middleware) {
-    //$this->container = $this->getContainer();
+  /**
+   * Default constructor.
+   *
+   * @param Serializer $serializer
+   */
+  function __construct(Serializer $serializer) {
     $this->serializer = $serializer;
-    $this->middleware = $middleware;
   }
+
+  /**
+   * Listen to post persist events.
+   *
+   * @param LifecycleEventArgs $args
+   */
   public function postPersist(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'POST');
   }
 
+  /**
+   * Listen to pre-update events.
+   *
+   * @param LifecycleEventArgs $args
+   */
   public function preUpdate(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'PUT');
   }
 
-  public function postUpdate(LifecycleEventArgs $args) {
-    $this->middleware->pushChannels();
-  }
-
+  /**
+   * Listen to pre-remove events.
+   *
+   * @param LifecycleEventArgs $args
+   */
   public function preRemove(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'DELETE');
   }
 
+  /**
+   * Helper function to send content/command to the search backend..
+   *
+   * @param array $args
+   *   The arguments send to the original event listener.
+   * @param $method
+   *   The type of operation to preform.
+   *
+   * @return bool
+   */
   protected function sendEvent($args, $method) {
     // Get the current entity.
     $entity = $args->getEntity();
@@ -49,7 +81,7 @@ class SearchIndexer {
   /**
    * Communication function.
    *
-   * Wrapper function for curl to send dato to ES
+   * Wrapper function for curl to send data to ES.
    *
    * @param $url
    *   URL to connect to.
@@ -81,6 +113,6 @@ class SearchIndexer {
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     // Close connection.
-    curl_close ($ch);
+    curl_close($ch);
   }
 }
