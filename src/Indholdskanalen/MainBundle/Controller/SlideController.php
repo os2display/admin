@@ -89,12 +89,14 @@ class SlideController extends Controller {
       foreach ($imageIds as $imageId) {
         $image = $sonataMedia->findOneById($imageId);
 
-        $serializer = $this->get('jms_serializer');
-        $jsonContent = $serializer->serialize($image, 'json');
+        if ($image) {
+          $serializer = $this->get('jms_serializer');
+          $jsonContent = $serializer->serialize($image, 'json');
 
-        $content = json_decode($jsonContent);
+          $content = json_decode($jsonContent);
 
-        $imageUrls[$imageId] = $content->urls;
+          $imageUrls[$imageId] = $content->urls;
+        }
       }
 
       $serializer = $this->get('jms_serializer');

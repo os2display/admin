@@ -25,8 +25,14 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
           if (scope.ikSlide.options.images.length > 0) {
-            scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
-          } else {
+            if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+              scope.ikSlide.currentImage = '/images/not-found.png';
+            }
+            else {
+              scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+            }
+          }
+          else {
             scope.ikSlide.currentImage = '';
           }
 
@@ -72,8 +78,14 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
 
         // Update image to show.
         if (scope.ikSlide.options.images.length > 0) {
-          scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
-        } else {
+          if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+            scope.ikSlide.currentImage = '/images/not-found.png';
+          }
+          else {
+            scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+          }
+        }
+        else {
           scope.ikSlide.currentImage = '';
         }
       }, true);
@@ -88,7 +100,12 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
 
           // Find the current image to display.
           if (scope.ikSlide.options.images.length > 0) {
-            scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+            if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+              scope.ikSlide.currentImage = '/images/not-found.png';
+            }
+            else {
+              scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+            }
           } else {
             scope.ikSlide.currentImage = '';
           }
