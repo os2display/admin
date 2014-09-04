@@ -10,8 +10,6 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory', function($http,
 
   factory.searchChannels = function(search) {
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
-    search.app_id = 1234;
-
     return searchFactory.search(search);
   };
 

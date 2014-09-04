@@ -25,7 +25,9 @@
   <script src="{{ asset('js/lib/angular-file-upload.js') }}"></script>
   <script src="{{ asset('js/lib/angular-checklist-model.js') }}"></script>
   <script src="{{ asset('js/lib/angular-bootstrap-colorpicker.js') }}"></script>
-  <script src="{{ asset('js/lib/socket.io-1.0.6.js') }}"></script>
+
+  <!-- Socket io from the search node, to get right version -->
+  <script src="/proxy/socket.io/socket.io.js"></script>
 
   <!-- Base -->
   <script src="{{ asset('js/app.js') }}"></script>

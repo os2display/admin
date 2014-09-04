@@ -8,8 +8,6 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory', function($http, 
 
   factory.searchScreens = function(search) {
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
-    search.app_id = 1234;
-
     return searchFactory.search(search);
   };
 

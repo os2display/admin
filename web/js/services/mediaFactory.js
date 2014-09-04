@@ -24,8 +24,6 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory', function($http, $
    */
   factory.searchMedia = function(search) {
     search.type = 'Application\\Sonata\\MediaBundle\\Entity\\Media';
-    search.app_id = 1234;
-
     return searchFactory.search(search);
   };
 

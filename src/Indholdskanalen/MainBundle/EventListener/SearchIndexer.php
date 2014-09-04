@@ -18,6 +18,15 @@ class SearchIndexer {
   protected $container;
   protected $serializer;
 
+  protected function getContainer() {
+    if (NULL === $this->container) {
+      // This use of global is not the right way, but until DI makes sens... it works.
+      $this->container = $GLOBALS['kernel']->getContainer();
+    }
+
+    return $this->container;
+  }
+
   /**
    * Default constructor.
    *
@@ -25,6 +34,7 @@ class SearchIndexer {
    */
   function __construct(Serializer $serializer) {
     $this->serializer = $serializer;
+    $this->getContainer();
   }
 
   /**
@@ -57,14 +67,14 @@ class SearchIndexer {
   /**
    * Helper function to send content/command to the search backend..
    *
-   * @param array $args
+   * @param LifecycleEventArgs $args
    *   The arguments send to the original event listener.
    * @param $method
    *   The type of operation to preform.
    *
    * @return bool
    */
-  protected function sendEvent($args, $method) {
+  protected function sendEvent(LifecycleEventArgs $args, $method) {
     // Get the current entity.
     $entity = $args->getEntity();
     $type = get_class($entity);
@@ -74,8 +84,23 @@ class SearchIndexer {
       return FALSE;
     }
 
-    $this->curl('http://localhost:3001/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
+    // Build parameters to send to the search backend.
+    $customer_id = $this->container->getParameter('search_customer_id');
+    $params = array(
+      'customer_id' => $customer_id,
+      'app_secret' => 'test',
+      'type' => $type,
+      'data' => $entity,
+    );
 
+    // Get search backend URL.
+    $url = $this->container->getParameter('search_host');
+    $path = $this->container->getParameter('search_path');
+
+    // Send the request.
+    $data = $this->curl($url . $path, $method, $params);
+
+    // @TODO: Do some error handling based on the $data variable.
   }
 
   /**
@@ -90,7 +115,7 @@ class SearchIndexer {
    * @param array $params
    *   The data to send.
    *
-   * @return \stdClass|string
+   * @return array
    */
   protected function curl($url, $method = 'POST', $params = array()) {
     // Build query.
@@ -114,5 +139,10 @@ class SearchIndexer {
 
     // Close connection.
     curl_close($ch);
+
+    return array(
+      'status' => $http_status,
+      'content' => $content,
+    );
   }
 }

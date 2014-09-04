@@ -12,7 +12,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
    * Connect to the web-socket.
    *
    * @param deferred
-   *   The is a deferred object that should be resovled on connection.
+   *   The is a deferred object that should be resolved on connection.
    */
   function getSocket(deferred) {
     // Get connected to the server.
@@ -84,6 +84,9 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
    */
   this.search = function(search) {
     var deferred = $q.defer();
+
+    // Set customer id for identification in the backend.
+    search.customer_id = configuration.search.customer_id;
 
     connect().then(function () {
       socket.emit('search', search);

@@ -10,8 +10,6 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory', fu
 
   factory.searchSlides = function(search) {
     search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
-    search.app_id = 1234;
-
     return searchFactory.search(search);
   };
 
