@@ -1,2 +1,6 @@
-ikApp.controller('IndexController', function($scope) {});
+ikApp.controller('IndexController', ['$scope',
+  function($scope) {
+
+  }
+]);
 
