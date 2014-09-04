@@ -1,20 +1,20 @@
 <div class="create-media--content">
   <section id="create-media-one" class="create-media--section">
     <h1 class="">{{image.name}}</h1>
-    <div class="create-media--content-element">
-      <div data-ng-show="image.content_type.indexOf('image/') == 0">
+    <div ng-switch on="getContentType(image)" class="create-media--content-element">
+      <div ng-switch-when="image">
         <img data-ng-src="{{image.urls.default_landscape}}" alt="{{ image.media.name }}" title="{{image.name}}" >
       </div>
-      <div data-ng-show="image.content_type.indexOf('video/') == 0" class="create-media--video-container">
-<!--          <video width="100%" height="100%" controls class="create-media--video">
-            <source data-ng-src="{{videoPath(image, 'ogg')}}"  type="video/ogg">
-            <source data-ng-src="{{videoPath(image, 'mpeg4')}}"  type="video/mp4">
-            <div class="create-media--currently-encoding">
-              Videoen bliver indkodet. Dette kan tage et par minutter, men afhænger af størrelsen på den uploadede fil.
-            </div>
-          </video>-->
+      <div ng-switch-when="video" class="create-media--video-container">
+        <video width="100%" height="100%" controls class="create-media--video">
+          <source data-ng-src="{{videoPath(image, 'ogg')}}"  type="video/ogg">
+          <source data-ng-src="{{videoPath(image, 'mpeg4')}}"  type="video/mp4">
+          <div class="create-media--currently-encoding">
+            Videoen bliver indkodet. Dette kan tage et par minutter, men afhænger af størrelsen på den uploadede fil.
+          </div>
+        </video>
       </div>
-      <div data-ng-show="image.content_type.indexOf('image/') != 0 && image.content_type.indexOf('video/') != 0">
+      <div ng-switch-default>
         <div class="create-media--spinner"></div>
       </div>
     </div>

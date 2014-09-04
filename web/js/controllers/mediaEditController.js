@@ -29,6 +29,20 @@ ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', 
     };
 
     /**
+     * Get the content type of a media: image or media
+     * @param media
+     * @returns {*}
+     */
+    $scope.getContentType = function(media) {
+      if (!media) {
+        return "";
+      }
+
+      var type = media.content_type.split("/");
+      return type[0];
+    }
+
+    /**
      * Sets the correct local path to the video
      *
      * @param element
