@@ -189,19 +189,6 @@ $breakpoint-arrow-switch : 693px;
     position: relative;
 
     @include preview-list-display();
-
-    // We nest to hide the arrow tag of the last element.
-    &:first-child {
-      .create-channel--slide-order-arrow-left {
-        display: none;
-      }
-    }
-
-    &:last-child {
-      .create-channel--slide-order-arrow-right {
-        display: none;
-      }
-    }
   }
 
 
