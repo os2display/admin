@@ -46,7 +46,7 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
               $location.path('/slide');
             }
 
-            loadStep($scope.steps);
+            loadStep(4);
           });
         }
       }

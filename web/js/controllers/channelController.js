@@ -1,4 +1,9 @@
 /**
+ * @file
+ * Channel creation controllers.
+ */
+
+/**
  * Channel controller. Controls the channel creation process.
  */
 ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'screenFactory',
@@ -52,7 +57,7 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
               $location.path('/channel');
             }
 
-            loadStep($scope.steps);
+            loadStep(4);
           });
         }
       }
