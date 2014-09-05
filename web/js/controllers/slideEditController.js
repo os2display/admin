@@ -1,7 +1,7 @@
 /**
  * Slide edit controller. Controls the slide creation process.
  */
-ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFactory, slideFactory) {
+ikApp.controller('SlideEditController', function($scope, $http, mediaFactory, slideFactory) {
   // Get the slide from the backend.
   slideFactory.getEditSlide(null).then(function(data) {
     $scope.slide = data;
@@ -32,10 +32,6 @@ ikApp.controller('SlideEditController', function($scope, $sce, $http, mediaFacto
       $scope.editor.showBackgroundEditor = false;
       $scope.editor.showVideoEditor = !$scope.editor.showVideoEditor;
     }
-  }
-
-  $scope.setStep = function setStep(step) {
-    $scope.step = step;
   }
 
   $scope.backgroundPicker = function backgroundPicker() {
