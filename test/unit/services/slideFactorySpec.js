@@ -19,7 +19,7 @@ describe('SlideFactory', function(){
         id: 1
       });
       return defer.promise;
-    }
+    };
 
     return factory;
   }]);
@@ -219,6 +219,9 @@ describe('SlideFactory', function(){
       slideFactory.saveSlide().then(function(data) {
         expect(data.id).toEqual(1);
       });
+      slideFactory.getEditSlide(1).then(function(data) {
+        expect(data.id).toEqual(1);
+      });
       $httpBackend.flush();
     }));
 
@@ -228,6 +231,20 @@ describe('SlideFactory', function(){
         function(reason) {
           expect(reason).toEqual(404);
         });
+    }));
+  });
+
+  /**
+   * Test for clearCurrentSlide()
+   */
+  describe("clearCurrentSlide", function() {
+    it("calling clear current slide, should set current slide to null", inject(function() {
+      var slide = slideFactory.emptySlide();
+      expect(slide).not.toBeNull();
+      slideFactory.clearCurrentSlide();
+      slideFactory.getEditSlide().then(function(data) {
+        expect(data).toBeNull();
+      });
     }));
   });
 });
