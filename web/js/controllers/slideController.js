@@ -72,7 +72,7 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
       else {
         loadStep($scope.step + 1);
       }
-    }
+    };
 
     /**
      * Validates that @field is not empty on slide.
@@ -137,7 +137,7 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
           }
         });
       }
-    }
+    };
 
     /**
      * Set the orientation of the slide.
@@ -146,6 +146,6 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
     $scope.selectOrientation = function(orientation) {
       $scope.slide.orientation = orientation;
       $scope.slide.template = '';
-    }
+    };
   }
 ]);
