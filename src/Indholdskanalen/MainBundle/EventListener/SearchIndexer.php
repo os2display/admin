@@ -43,7 +43,7 @@ class SearchIndexer {
    * @param LifecycleEventArgs $args
    */
   public function postPersist(LifecycleEventArgs $args) {
-    $this->sendEvent($args, 'POST');
+    $this->sendEvent($args, 'PUT');
   }
 
   /**
@@ -52,7 +52,7 @@ class SearchIndexer {
    * @param LifecycleEventArgs $args
    */
   public function preUpdate(LifecycleEventArgs $args) {
-    $this->sendEvent($args, 'PUT');
+    $this->sendEvent($args, 'POST');
   }
 
   /**
