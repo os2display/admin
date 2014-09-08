@@ -1,0 +1,45 @@
+/**
+ *
+ * Preview
+ *
+ */
+
+
+/* Silent classes related to this document
+   ========================================================================== */
+
+%preview--play-pause-positioning {
+  cursor: pointer;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 50%;
+
+  @include translateY(-50%);
+}
+
+/* Styles
+   ========================================================================== */
+
+.preview--slide,
+.preview--channel {
+  position: relative;
+  display: block;
+  margin: 0;
+}
+
+
+.preview--channel-play {
+  @extend %preview--play-pause-positioning;
+
+  @include generate-sprite-image($dashboard-sprites, 'play-icon', 65);
+}
+
+
+
+.preview--channel-pause {
+  @extend %preview--play-pause-positioning;
+
+  @include generate-sprite-image($dashboard-sprites, 'pause-icon', 65);
+}

@@ -1,0 +1,33 @@
+<div class="create-media--content--media-one" data-nv-file-drop="" uploader="uploader" data-ng-controller="MediaUploadEmbeddedController">
+  <section id="create-media-one" class="overview--section" data-ng-show="currentStep==1">
+    <h1 class="create-media--header">Medier - vælg filer</h1>
+    <div class="create-media--hidden-input-file">
+      <input id="select-files" type="file" nv-file-select uploader="uploader" multiple />
+    </div>
+    <input type="submit" class="create-media--button" value="Vælg en fil fra din computer" data-ng-click="selectFiles()">
+  </section>
+
+  <section id="create-media-two" class="overview--section" data-ng-show="currentStep==2">
+    <h1 class="create-media--header">Medier - upload</h1>
+    <div class="create-media--thumbs-container">
+      <div class="create-media--thumb-container" data-ng-repeat="item in uploader.queue">
+        <div data-ng-show="isImage(item.file)">
+          <div>{{item.file.name}}</div>
+          <div data-ng-show="uploader.isHTML5" data-ik-thumb="{ file: item._file, width: 300 }"></div>
+        </div>
+        <input type="text" class="create-media--text" placeholder="Giv billedet en titel" data-ng-model="item.formData[0].title">
+      </div>
+    </div>
+    <div>
+      <div class="create-media--error-text">{{ uploadErrorText }}</div>
+      <div>
+        <div class="create-media--progress">
+          <div class="create-media--progress-bar" data-ng-show="uploader.progress > 0" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
+        </div>
+      </div>
+      <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
+      <div class="create-media--cancel" data-ng-show="!uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Annullér</div>
+      <button class="create-media--button" data-ng-show="uploadComplete" data-ng-click="clearQueue()">Nyt billede</button>
+    </div>
+  </section>
+</div>

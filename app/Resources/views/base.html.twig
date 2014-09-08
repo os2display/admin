@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{# Put your html attributes here. #}
+<html {% block html %}{% endblock %}>
+<head>
+  {# Set the title. #}
+  <title>{% block title %}{% endblock %}</title>
+
+  {# Apply meta tags. #}
+  {% block meta %}{% endblock %}
+
+  {# Stylesheets goes here. #}
+  {% block stylesheets %}{% endblock %}
+</head>
+
+{# Add body attributes here. #}
+<body {% block body_attr %}{% endblock %}>
+ {# Body content goes here. #}
+ {% block body %}
+
+   {# The real content goes here. #}
+   {% block content %}{% endblock %}
+ {% endblock %}
+
+ {# Javascript and other goes here. #}
+ {% block scripts %}{% endblock %}
+</body>
+</html>

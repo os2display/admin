@@ -1,0 +1,15 @@
+{%  extends 'IndholdskanalenMainBundle:Main:loggedin.html.twig' %}
+
+{% block content %}
+  <div class="layout-wrapper">
+    <section id="create-screen-one" class="create-screen--section">
+      <div class="create-screen--content--screen-one">
+        <h1 class="create-screen--header">Opret skærm (2/4)</h1>
+        <p class="create-screen--header-description">Angiv dimensionerne på din skærm.</p>
+        <input type="text" class="create-screen--text is-valid" placeholder="Bredde i pixels">
+        <input type="text" class="create-screen--text is-valid" placeholder="Højde i pixels">
+        <input type="submit" class="create-screen--button is-inactive" value="Gem og fortsæt">
+      </div>
+    </section>
+  </div>
+{% endblock %}

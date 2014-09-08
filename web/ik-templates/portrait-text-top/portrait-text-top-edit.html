@@ -1,0 +1,10 @@
+<div class="portrait-text-top" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': theStyle.width, 'height': theStyle.height, 'font-size': theStyle.fontsize, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+  <div class="portrait-text-top--text-wrapper">
+    <div class="portrait-text-top--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}">
+      <div class="portrait-text-top--edit-box-settings" ng-click="editor.toggleTextEditor()"></div>
+      <h1 class="portrait-text-top--header" placeholder="Tilføj en overskrift" contenteditable="true" data-ng-model="ikSlide.options.headline" spellcheck="false"></h1>
+      <pre class="portrait-text-top--description" placeholder="Her kan du skrive teksten til din slide. Boksen udvider sig når du tilføjer tekst."  contenteditable="true" data-ng-model="ikSlide.options.text" spellcheck="false"></pre>
+    </div>
+  </div>
+  <div class="portrait-text-top--edit-image-settings" ng-click="editor.toggleBackgroundEditor()"></div>
+</div>

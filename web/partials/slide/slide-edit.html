@@ -1,0 +1,91 @@
+<div data-ng-controller="SlideEditController">
+  <div data-ng-include="" src="templateURL"></div>
+  <div class="edit-menu" role="banner" ng-show="editor.showTextEditor">
+    <a class="edit-menu--overlay" data-ng-class="{'is-visible': editor.showTextEditor}" data-ng-click="editor.toggleTextEditor()"></a>
+    <div class="edit-menu--inner" data-ng-class="{'is-visible': editor.showTextEditor, 'is-hidden': !editor.showTextEditor}">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleTextEditor()">X</div>
+      <h2 class="edit-menu--header">Redigér tekst</h2>
+      <form class="edit-menu--form">
+        <label class="edit-menu--label">Tekstfarve</label>
+        <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.textcolor" data-ng-style="{'background-color': ikSlide.options.textcolor}">
+        <label class="edit-menu--label">Baggrundsfarve</label>
+        <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor" data-ng-style="{'background-color': ikSlide.options.textbgcolor}">
+        <label class="edit-menu--label">Skriftstørrelse</label>
+        <input class="edit-menu--form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
+      </form>
+    </div>
+  </div>
+
+  <div class="edit-menu--background" role="banner" data-ng-class="{'is-visible': editor.showBackgroundEditor, 'is-hidden': !editor.showBackgroundEditor}" >
+    <div class="edit-menu--background-inner">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleBackgroundEditor()">
+        <div class="svg-clickable">
+          <object data="images/svg/cancel.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/cancel.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--background-page" data-ng-show="step === 'background-picker'">
+        <div class="edit-menu--background-page-inner">
+          <h2 class="edit-menu--background-header">Sæt baggrund</h2>
+          <div class="edit-menu--background-content">
+            <button class="edit-menu--background-button" data-ng-click="pickFromMedia()">Vælg fil fra medier</button>
+            <button class="edit-menu--background-button" data-ng-click="pickFromComputer()">Vælg fil fra computer</button>
+            <p class="edit-menu--divider">- eller -</p>
+            <label class="edit-menu-background--label">Vælg en baggrundsfarve</label>
+            <input colorpicker="rgba" class="form-slide-background-background-color edit-menu--background-form-element" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
+          </div>
+        </div>
+      </div>
+      <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-media'">
+        <div class="edit-menu--background-image-back" data-ng-click="backgroundPicker()">
+          <div class="svg-clickable">
+            <object data="images/svg/back.svg" type="image/svg+xml">
+              <!-- Fallback (ie8)-->
+              <img src="images/back.png" />
+            </object>
+          </div>
+        </div>
+        <div class="edit-menu--background-page-inner">
+          <h2 class="edit-menu--background-header">Vælg fil fra medier</h2>
+          <div class="edit-menu--background-content" data-ng-include="" src="'partials/media/media-overview.html'"></div>
+        </div>
+      </div>
+      <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-computer'">
+        <div class="edit-menu--background-image-back" data-ng-click="backgroundPicker()">
+          <div class="svg-clickable">
+            <object data="images/svg/back.svg" type="image/svg+xml">
+              <!-- Fallback (ie8)-->
+              <img src="images/back.png" />
+            </object>
+          </div>
+        </div>
+        <div class="edit-menu--background-page-inner">
+          <div class="edit-menu--background-content-alternate" data-ng-include="" src="'partials/media/media-upload-single.html'"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit-menu--background" role="banner" data-ng-class="{'is-visible': editor.showVideoEditor, 'is-hidden': !editor.showVideoEditor}">
+    <div class="edit-menu--background-inner">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleVideoEditor()">
+        <div class="svg-clickable">
+          <object data="images/svg/cancel.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/cancel.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--background-page">
+        <div class="edit-menu--background-page-inner">
+          <h2 class="edit-menu--background-header">Youtube URL</h2>
+          <form class="edit-menu--background-form">
+            <input class="edit-menu--background-form-element" type="text" placeholder="e.g. http://www.youtube.com/watch?v=Lzy9eg4q1bQ" data-ng-class="{'is-valid': youtubeUrlValidate()}" data-ng-model="ikSlide.options.youtubeUrl"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

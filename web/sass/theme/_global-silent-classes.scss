@@ -1,0 +1,147 @@
+/**
+ *
+ * Global silent classes
+ *
+ * Holds silent classes used across multiple modules.
+ *
+ */
+
+
+// Styles for displaying checkbox on selected image.
+%image-check-icon--placeholder {
+  display: block;
+  margin: 0 auto;
+  visibility: hidden;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+
+  @include translateY(-50%);
+  @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
+
+  @include breakpoint($breakpoint-lap) {
+    @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 50);
+  }
+  @include breakpoint(600px) {
+    @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
+  }
+}
+
+
+%validation-default {
+  background: url('../images/icons/check-circle-icon.png') $gray-lightest;
+  background-size:2em 2em;
+  background-repeat:no-repeat;
+  background-position: right 1.25em top 1.25em;
+  border: 0;
+}
+
+/* Create element - Default create element styles (A grouping of styles shared by the various creation flows)
+   ================================================================================================================== */
+
+%create-element--section-default {
+  color: $gray-darkest;
+  display: block;
+  padding-bottom: 1em;
+}
+
+
+%create-element--header-default {
+  border-bottom: 1px solid $gray-lighter;
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 0 1em;
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+
+%create-element--header-description-default {
+  color: $gray-darkest;
+  font-weight: lighter;
+  margin: 0 0 4em;
+  text-align: center;
+}
+
+
+%create-element--page-name-default {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  padding-left: 0;
+}
+
+
+%create-element--form {
+  margin: 0;
+}
+
+
+%create-element--page-name-input-default {
+  background-color: $gray-lightest;
+  display: inline-block;
+  height: 4.5em;
+  margin-bottom: 2em;
+  max-width: $breakpoint-desk;
+  padding: 1.5em;
+
+  &.is-valid {
+    @extend %validation-default;
+  }
+}
+
+
+%create-element--layout-default {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+
+/* Slide configuration elements - Used for displaying edit links on templates in create slide process.
+   ================================================================================================================== */
+
+%slide--edit-box-settings {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+
+  @include generate-sprite-image($dashboard-sprites, 'gear-icon', 25);
+
+  @include breakpoint($breakpoint-lap) {
+    right: -20px;
+    top: -20px;
+
+    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+%slide--edit-image-settings {
+  bottom: 15%;
+  position: absolute;
+  right: 15%;
+
+  @include generate-sprite-image($dashboard-sprites, 'landscape-icon', 50);
+
+  @include breakpoint($breakpoint-lap) {
+
+    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+%show-placeholder-text {
+  &:empty:before {
+    content: attr(placeholder);
+    color: $gray-lighter;
+  }
+}

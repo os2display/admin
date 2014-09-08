@@ -1,0 +1,63 @@
+
+{% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
+
+{% block title %}Login - Indholdskanalen{% endblock %}
+
+{% block body %}
+  {% block content %}
+    {% block fos_user_content %}
+      <header class="header" role="banner">
+        <div class="header--main-anonymous">
+          <div class="header--logo-anonymous">
+            <img src="/images/logo.png"/>
+          </div>
+        </div>
+      </header>
+      {% block sonata_user_login %}
+        <div class="layout-wrapper">
+          <section class="login--section">
+
+            {% block sonata_user_login_form %}
+              <div class="login--form">
+                <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
+                  <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+                  <div class="login--name">
+                    <label for="username">Brugernavn</label>
+                    <input type="text" class="login--name-input" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'User name'|trans({}, 'SonataUserBundle') }}"/>
+                  </div>
+
+                  <div class="login--pass">
+                    <label for="password">Kodeord</label>
+                    <input type="password" class="login--pass-input" id="password" name="_password" required="required" placeholder="{{ 'User password'|trans({}, 'SonataUserBundle') }}"/>
+                  </div>
+                  {% block sonata_user_login_error %}
+                    {% if error %}
+                      <div class="login--alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                    {% endif %}
+                  {% endblock %}
+
+                  <input type="submit" id="_submit" name="_submit" class="login--submit" value="{{ 'Login'|trans({}, 'FOSUserBundle') }}"/>
+
+                  <div class="login--remember-me">
+                    <input type="checkbox" id="remember_me" class="login--remember-me-checkbox" name="_remember_me" value="on"/>
+                    <label for="remember_me" class="login--remember-me-label">{{ 'Remember me'|trans({}, 'FOSUserBundle') }}</label>
+                  </div>
+                </form>
+              </div>
+              <div class="login--problem">
+                <p class="login--content-list-header">Problemer med at logge ind?</p>
+                <ul class="login--content-list">
+                  <li><a href="{{ path('fos_user_resetting_request') }}">Jeg har glemt mit brugernavn</a<</li>
+                  <li><a href="{{ path('fos_user_resetting_request') }}">Jeg har glemt mit kodeord</a></li>
+                </ul>
+              </div>
+            {% endblock %}
+          </section>
+        </div>
+      {% endblock %}
+    {% endblock %}
+  {% endblock %}
+{% endblock %}
+
+{% block scripts %}{% endblock %}

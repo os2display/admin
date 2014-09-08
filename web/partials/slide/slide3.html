@@ -1,0 +1,17 @@
+<section id="create-slide-three" class="create-slide--section">
+  <div class="create-slide--content--slide-three">
+    <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
+    <p class="create-slide--header-description">Vælg template - du kan altid ændre dit valg senere.</p>
+    <div class="create-slide--templates">
+      <div class="create-slide--template" data-ng-repeat="template in templates | filter:{ orientation: slide.orientation }" ng-click="selectTemplate(template.id)">
+        <div class="create-slide--template-link" data-ng-class="{'is-selected': slide.template == template.id}">
+          <span class="create-slide--overlay">
+            <span class="create-slide--link-check"></span>
+          </span>
+          <img data-ng-src="{{template.image}}"/>
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.templateSet()}" data-ng-disabled="!validation.templateSet()" value="Gem og fortsæt" data-ng-click="submitStep()">
+  </div>
+</section>

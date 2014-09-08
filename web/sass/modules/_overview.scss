@@ -1,0 +1,261 @@
+/**
+ *
+ * Overview
+ *
+ */
+
+
+/* Silent classes related to this document
+   ========================================================================== */
+
+
+
+
+/* Styles
+   ========================================================================== */
+
+.overview {
+
+  /* Global settings
+   ========================================================================== */
+
+  &--section {
+    margin: 0;
+  }
+
+  &--description {
+    color: $gray-darker;
+    font-weight: lighter;
+    margin: 0 $gutter 2em $gutter;
+    text-align: center;
+  }
+
+  &--screens,
+  &--media,
+  &--channels,
+  &--slides {
+    text-align: center;
+  }
+
+  &--screen,
+  &--media-single,
+  &--channel,
+  &--slide {
+    display: inline-block;
+    margin: 0 0 $gutter;
+
+    @include breakpoint($breakpoint-lap) {
+      margin: 0 $gutter $gutter 0;
+    }
+
+    @include strip-link-styles($gray-darker);
+  }
+
+  &--slides-container,
+  &--channel-container {
+    display: block;
+  }
+
+  &--channel-label,
+  &--slide-label {
+    display: inline-block;
+    font-size: .9em;
+  }
+
+  &--channel-date,
+  &--slide-date {
+    color: $gray;
+    font-size: .9em;
+  }
+
+
+  &--filter {
+    border-bottom: 0;
+    max-width: $breakpoint-desk;
+    margin: 0 auto;
+    position: relative;
+  }
+
+
+  &--filter-orientation {
+    margin-bottom: 1em;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint($breakpoint-desk) {
+      width: 25%;
+      display: inline-block;
+      float: right;
+    }
+  }
+
+
+  &--form {
+    margin: 0 0 1em 0;
+    width: 100%;
+
+    @include breakpoint($breakpoint-desk) {
+      margin: 0 0 1em $grid-markup-fix;
+      width: 70%;
+      display: inline-block;
+      float: left;
+    }
+  }
+
+
+  &--sorting {
+    margin: 0 0 1em 0;
+    width: 100%;
+
+    @include breakpoint($breakpoint-desk) {
+      max-width: $breakpoint-desk;
+      margin: 0 auto 1em;
+    }
+  }
+
+
+  &--filter-label,
+  &--sort-label {
+    font-weight: bold;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &--sort-links {
+    text-align: center;
+  }
+
+  &--horisontal,
+  &--vertical,
+  &--newest,
+  &--oldest,
+  &--alphabetical {
+    background: $gray-lightest;
+    border: 1px solid $gray-lighter;
+    box-sizing: border-box;
+    border-right: 0;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: $grid-markup-fix;
+    padding: 0.75em 0;
+    text-align: center;
+    width: 33%;
+
+    @include strip-link-styles($gray-darker);
+
+    &:last-child {
+      border-right: 1px solid $gray-lighter;
+    }
+
+    &:first-child {
+      border-radius: (.5em 0 0 .5em);
+    }
+
+    &:last-child {
+      border-radius: (0 .5em .5em 0);
+    }
+
+    &.is-active {
+      background: $beige;
+    }
+  }
+
+  &--horisontal,
+  &--vertical {
+    width: 50%;
+  }
+
+
+  /* Screens overview
+ ========================================================================== */
+  &--screen-link {
+    display: inline-block;
+    font-size: .9em;
+
+    @include strip-link-styles();
+  }
+
+
+  &--screen-wrapper {
+    margin: 0;
+    background: $gray-lightest;
+    border: 3px solid $gray;
+    box-sizing: border-box;
+    color: $gray-darker;
+    text-align: center;
+
+    @include breakpoint($breakpoint-lap){
+      margin: 0 1em 1em 0;
+    }
+  }
+
+  &--screen-header {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &--screen--description {
+    position: relative;
+    top:50%;
+
+    @include translateY(-50%);
+  }
+
+
+  /* Media overview
+  ========================================================================== */
+  &--media-single {
+    position: relative;
+    cursor: pointer;
+    font-size: 0; // To counter inline-block.
+    overflow: hidden;
+  }
+
+
+  &--media-video-icon {
+    right: .5rem;
+    position: absolute;
+    top: .5rem;
+    background: $white;
+
+    @include generate-sprite-image($dashboard-sprites, 'video-icon', 22);
+  }
+
+
+  &--media-overlay {
+    background-color: transparentize($white, .35);
+    color: $black;
+    font-size: .8rem; // We use rem since the container fontsize is 0 (See "media-single")
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30%;
+    height: 30%;
+
+    &.is-hovering {
+      @include animation(toggle-media-overlay .15s ease 1 forwards);
+
+      animation-timing-function: linear;
+      -webkit-animation-timing-function: linear;
+    }
+  }
+
+
+  &--media-image {
+    height: 150px;
+  }
+
+
+  &--media-overlay-inner {
+    padding: .5em;
+    text-align: left;
+  }
+
+
+  &--media-text {
+    float: left;
+    max-width: 80%;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,17 @@
+<section id="create-channel-five" class="create-channel--section">
+  <div class="create-channel--content--channel-five">
+    <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
+      <p class="create-channel--header-description">Vælg hvilke skærme din kanal skal vises på.</p>
+      <div class="create-channel--select-screens">
+        <div class="create-channel--screen" data-ng-repeat="screen in screens | filter:{ orientation: channel.orientation}" ng-click="toggleScreen(screen)">
+          <div class="create-channel--screen-link">
+            <div class="create-channel--screen-element">
+              <div class="create-channel--screen-element-check" data-ng-class="{'is-selected' : screenSelected(screen.id)}"></div>
+              <div class="create-channel--screen-element-title">{{screen.title}} - ({{screen.width}}x{{screen.height}})</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <input type="submit" class="create-channel--button" value="Gem og opret" data-ng-click="submitStep()">
+  </div>
+</section>

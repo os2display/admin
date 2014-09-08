@@ -1,0 +1,488 @@
+/**
+ *
+ * Header
+ *
+ */
+
+/* Mixins, variables and selectors related to this document.
+ ========================================================================== */
+
+// Selector for main menu items.
+%header--main-menu-item--selector {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+// Mixin for the changing logo in various cases.
+@mixin header--logo-transition($display-type) {
+  @if $display-type == "arrow" {
+    .header--logo-image {
+      display: none;
+    }
+    .header--arrow-image {
+      display: block;
+    }
+  }
+  @else {
+    .header--logo-image {
+      display: block;
+    }
+    .header--arrow-image {
+      display: none;
+    }
+  }
+}
+
+
+/* Styles.
+ ========================================================================== */
+
+.header-wrapper {
+  z-index: 1;
+}
+
+.header {
+  background-color: $beige;
+  color: $gray-darkest;
+  margin-bottom: 2em;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  &--main {
+    position: relative;
+    padding: 1em 0;
+    overflow: hidden;
+
+    @include breakpoint(70em) {
+      padding: 0 1em;
+    }
+  }
+
+  &--main-anonymous {
+    height: 4em;
+  }
+
+
+  /* Logo section. (is-visible state class shows logo, else shows as arrow)
+ ========================================================================== */
+
+  &--logo {
+    padding: 0 1em;
+    position: absolute;
+    top: 50%;
+    width: 45%;
+
+    @include translateY(-50%);
+    @include breakpoint(70em) {
+      background: none;
+      display: inline-block;
+      margin-bottom: 0;
+      margin-left: 0;
+     // margin-right: $adjust-inline-block;
+      position: relative;
+      padding: 0;
+      text-indent: 0;
+      top: 0%;
+      width: 25%;
+    }
+  }
+
+  // Logo on small screens.
+  &--logo-link {
+    display: inline-block;
+
+    @include header--logo-transition(arrow);
+
+    // Logo on broad screens
+    @include breakpoint(70em) {
+      @include header--logo-transition(logo);
+    }
+
+    // Logo when main menu is in sub header.
+    &.is-visible {
+      @include header--logo-transition(logo);
+    }
+  }
+
+  .header--logo-image,
+  .header--arrow-image {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+
+    @include translateY(-50%);
+  }
+
+  &--logo-anonymous {
+    position: relative;
+    text-align: center;
+    top: 50%;
+
+    @include translateY(-50%);
+    @include breakpoint(50em) {
+      padding-top: 0;
+    }
+
+    img {
+      display: inline-block;
+    }
+  }
+
+
+  /* Main menu section.
+ ========================================================================== */
+
+  &--main-menu {
+    height: 2.5em;
+
+    margin-left: 3em;
+    width: 75%;
+
+    @include breakpoint(70em) {
+      display: inline-block;
+      height: auto;
+      margin-left: 0;
+      margin-right: $adjust-inline-block;
+      position: relative;
+      text-align: center;
+      top: 0;
+      width: 50%;
+    }
+  }
+
+
+  &--main-menu-items {
+    @include strip-list-styles;
+  }
+
+
+  &--main-menu-item {
+    display: none;
+    font-size: 1em;
+    margin-left: $adjust-inline-block;
+    text-align: center;
+
+    &.is-active {
+      display: inline-block;
+      font-size: .8em;
+    }
+
+    @include breakpoint(70em) {
+      display: inline-block;
+      width: auto;
+
+      &.is-active {
+        background: $beige-dark;
+        font-size: 1em;
+      }
+
+      &:hover {
+        background: $beige-dark;
+      }
+    }
+  }
+
+
+  &--main-menu-item-link {
+    line-height: 1.7em;
+    padding: .5em;
+    width: 5em;
+    display: block;
+
+    // On small screens the icon only tells where you are, and should not be styled as link
+    &:hover {
+      cursor: default;
+    }
+
+    @include strip-link-styles;
+
+    @include breakpoint(70em) {
+      width: 7em;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+
+  /* Each link.
+ ========================================================================== */
+
+  &--main-menu-item-image-channels{
+    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+  }
+
+
+  &--main-menu-item-image-slides{
+    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+  }
+
+
+  &--main-menu-item-image-screens{
+    @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+  }
+
+
+  &--main-menu-item-image-templates{
+    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+  }
+
+
+  &--main-menu-item-text {
+    display: block;
+
+    @include breakpoint(70em) {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  /* Secondary menus section (User and nav link).
+ ========================================================================== */
+
+  &--secondary-menus {
+    position: absolute;
+    right: 1em;
+    text-align: right;
+    top: 50%;
+
+    @include translateY(-50%);
+
+    @include breakpoint(70em) {
+      margin-right: $adjust-inline-block;
+      padding: 1em 0;
+      text-align: right;
+      top: 50%;
+      width: 20%;
+    }
+  }
+
+
+  /* User menu section.
+ ========================================================================== */
+
+  &--user-menu {
+    display: inline-block;
+    margin-right: $adjust-inline-block;
+    margin-right: 1em;
+  }
+
+
+  &--user-menu-dropdown-link {
+    @include strip-link-styles;
+
+    @include breakpoint(70em) {
+      &:after {
+        content:'\00a0\25be';
+        vertical-align: top;
+      }
+    }
+  }
+
+
+  &--user-menu-name {
+    display: none;
+    vertical-align: top;
+
+    @include breakpoint(50em) {
+      display: inline-block;
+    }
+  }
+
+
+  &--user-menu-image {
+    height: 2em;
+    margin-right: .5em;
+  }
+
+
+  /* Navigation menu section.
+ ========================================================================== */
+
+  &--nav-menu {
+    display: inline-block;
+    margin-right: $adjust-inline-block;
+    vertical-align: top;
+  }
+
+
+  &--nav-menu-link {
+    cursor: pointer;
+
+    @include strip-link-styles;
+  }
+
+
+  &--nav-menu-label-image {
+    @include generate-sprite-image($dashboard-sprites, 'menu-icon', 25);
+
+    display: inline-block;
+    margin: 0 .5em 0 0;
+    vertical-align: middle;
+  }
+
+
+  &--nav-menu-label-text {
+    display: none;
+
+    @include breakpoint(50em) {
+      display: inline-block;
+    }
+  }
+
+
+  /* Header submenu section
+ ========================================================================== */
+
+  &--sub {
+    background: $beige-dark;
+  }
+
+
+  &--sub-menu {
+    text-align: center;
+    width: 100%;
+
+    @include breakpoint(50em) {
+      &.is-hidden {
+        display: none;
+      }
+    }
+  }
+
+
+  &--sub-menu-items {
+    @include strip-list-styles();
+  }
+
+
+  &--sub-menu-item {
+    display: inline-block;
+    padding: 0 1em;
+  }
+
+
+  &--sub-menu-item-link {
+    @include strip-link-styles();
+
+    display: block;
+    height: 3em;
+    line-height: 3em;
+
+    &.is-active {
+      border-bottom: 2px solid black;
+    }
+  }
+
+
+  &--sub-menu-item-image-overview {
+    @include generate-sprite-image($dashboard-sprites, 'overview-small-icon');
+
+    display: inline-block;
+    margin: 0 .5em 0 0;
+    vertical-align: middle;
+  }
+
+
+  &--sub-menu-item-image-create-channel {
+    @include generate-sprite-image($dashboard-sprites, 'add-small-icon');
+
+    display: inline-block;
+    margin: 0 .5em 0 0;
+    vertical-align: middle;
+  }
+
+
+  /* Header main menu mobile. (Display of main menu on pages WITHOUT subpages on narrow screens).
+ ========================================================================== */
+
+  &--main-menu--mobile {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+
+    &.is-hidden {
+      display: none;
+    }
+
+    @include breakpoint(70em) {
+      display: none;
+    }
+  }
+
+
+  &--main-menu-items--mobile {
+    text-align: center;
+
+    @include strip-list-styles;
+  }
+
+
+  &--main-menu-item--mobile {
+    display: inline-block;
+    font-size: .8em;
+    margin-right: $adjust-inline-block;
+    padding: 1em 0;
+    width: 25%;
+
+    &:hover {
+      background: $beige-dark;
+    }
+  }
+
+
+  &--main-menu-item-link--mobile {
+    @include strip-link-styles();
+
+    display: block;
+    height: 3em;
+
+    &.is-active {
+      border-bottom: 2px solid black;
+    }
+  }
+
+
+  &--main-menu-item-image-channels--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 20);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+  }
+
+
+  &--main-menu-item-image-slides--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 20);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+  }
+
+
+  &--main-menu-item-image-screens--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'display-icon', 20);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+  }
+
+
+  &--main-menu-item-image-templates--mobile{
+    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 20);
+
+    @extend %header--main-menu-item--selector; // We modify the result of the mixin.
+
+  }
+
+  &--main-menu-item-text--mobile {
+    display: block;
+  }
+}

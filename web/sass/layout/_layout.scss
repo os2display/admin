@@ -1,0 +1,53 @@
+/**
+ *
+ * Layouts
+ *
+ */
+
+
+/* Make sure the user can't scroll when overlays are active */
+html.is-locked,
+html.is-locked  body {
+  overflow: hidden;
+
+  height: 100%;
+}
+
+/* Switch page animations */
+.view-container {
+  position: relative;
+}
+
+
+.view-frame.ng-enter {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+
+.view-frame.ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+
+// A .5 padding fits on the iphon 4 inch with inline styles of 300px width on several pages.
+.layout-wrapper {
+  padding: 0 .5em;
+
+  // Expand the pading a bit when moving to larger screens.
+  @include breakpoint($breakpoint-lap) {
+    padding: 0 2em;
+  }
+}
+
+
+.layout-inner {
+  margin: 0 $gutter / 2;
+
+  @include breakpoint($breakpoint-lap) {
+    margin-left: -$gutter;
+  }
+}

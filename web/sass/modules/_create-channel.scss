@@ -1,0 +1,328 @@
+/**
+ *
+ * Create channel
+ *
+ */
+
+
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+
+// Circled arrows and numbers for slide ordering.
+%create-channel--order-circle {
+  background: $white;
+  font-size: 1.3em;
+  font-weight: bold;
+  height: 2.1em;
+  line-height: 2.1em;
+  width: 2.1em;
+  z-index: 1;
+
+  @include border-radius(100%);
+}
+
+
+// Change arrow direction and position on large screens. (Create channel page 4)
+$breakpoint-arrow-switch : 693px;
+
+
+
+/* Styles
+   ========================================================================== */
+
+.create-channel {
+
+  /* Global settings
+   ========================================================================== */
+  &--section {
+    @extend %create-element--section-default;
+  }
+
+
+  &--header {
+    @extend %create-element--header-default;
+  }
+
+
+  &--header-description {
+    @extend %create-element--header-description-default;
+  }
+
+
+  // Default check circled icon.
+  &--link-check {
+    @extend %image-check-icon--placeholder;
+  }
+
+
+  &--button {
+    @extend .button;
+
+    display: block;
+    margin: 0 auto 1em;
+  }
+
+
+  /* Create channel - set name (Page 1)
+   ========================================================================== */
+  &--form {
+    @extend %create-element--form;
+  }
+
+
+  &--content--channel-one {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-whole;
+    @extend %desk--one-half;
+
+    @extend %create-element--page-name-default;
+  }
+
+
+  &--text[type="text"] {
+    @extend %create-element--page-name-input-default;
+  }
+
+
+  /* Create channel - select screen (Page 2)
+   ========================================================================== */
+  &--content--channel-two {
+    @extend %grid;
+
+    @extend %create-element--layout-default;
+  }
+
+
+  &--screens {
+    max-width: 65em;
+    margin: 0 auto 3em;
+  }
+
+
+  &--screen-landscape {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-half;
+    @extend %desk--one-half;
+
+    margin-bottom: 2em;
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
+  }
+
+
+  &--screen-portrait {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-half;
+    @extend %desk--one-half;
+
+    padding-left: 0;
+
+    @include breakpoint($breakpoint-lap) {
+      padding-left: $gutter;
+    }
+  }
+
+
+  &--screen-link {
+    position: relative;
+    display: block;
+
+    @include add-overlay(create-channel);
+  }
+
+
+  /* Create channel - slide selection (Page 3)
+   ========================================================================== */
+  &--content--channel-three {
+    @extend %create-element--layout-default;
+  }
+
+
+  &--slide {
+    background: $beige;
+    position: relative;
+
+    @include preview-list-display();
+  }
+
+
+  &--slides {
+    margin-bottom: 3em;
+  }
+
+
+  &--slide-link {
+    display: block;
+    float: left; // Neeeded for displaying video slides.
+    position: relative;
+
+    @include add-overlay(create-channel);
+
+    &.is-selected {
+      cursor: pointer;
+    }
+  }
+
+
+  /* Create channel - slide order (Page 4)
+   ========================================================================== */
+  &--content--channel-four {
+    @extend %grid;
+
+    @extend %create-element--layout-default;
+
+    // We hide some arrows between the slides that extends the div.
+    overflow: hidden;
+  }
+
+
+  &--slide-order-element {
+    position: relative;
+
+    @include preview-list-display();
+  }
+
+
+  &--slides {
+    margin-bottom: 3em;
+  }
+
+
+  &--slide-order-link {
+    display: inline-block;
+    position: relative;
+
+    @include strip-link-styles();
+  }
+
+
+  &--slide-order-label {
+    display: inline-block;
+    font-size: .9em;
+
+    @include strip-link-styles();
+  }
+
+
+  &--slide-order-number {
+    @extend %create-channel--order-circle;
+
+    left:0;
+    margin-left:auto;
+    margin-right:auto;
+    position:absolute;
+    right:0;
+    top: -1.2em;
+  }
+
+
+  &--slide-order-arrow-left,
+  &--slide-order-arrow-right {
+    @extend %create-channel--order-circle;
+
+    border: 1px solid $gray;
+    cursor: pointer;
+    font-size: 1em;
+    position: absolute;
+    right: .5em;
+    z-index: 1;
+
+
+    @include transform(rotate(90deg));
+
+    @include breakpoint($breakpoint-arrow-switch) {
+      top: 35%;
+
+      @include translateY(-50%);
+      @include transform(rotate(0deg));
+    }
+  }
+
+
+  &--slide-order-arrow-left {
+    left: .5em;
+    top: .5em;
+
+    @include breakpoint($breakpoint-arrow-switch) {
+      top: 35%;
+    }
+  }
+
+
+  &--slide-order-arrow-right {
+    bottom: 2em;
+    right: .5em;
+
+    @include breakpoint($breakpoint-arrow-switch) {
+      top: 35%;
+    }
+  }
+
+
+  &--arrow-left-inner {
+    margin-right: 2px;
+  }
+
+
+  &--arrow-right-inner {
+    margin-left: 2px;
+  }
+
+
+  /* Create channel - screen selection (Page 5)
+   ========================================================================== */
+  &--content--channel-five {
+    @extend %create-element--layout-default;
+  }
+
+  &--select-screens {
+    margin-bottom: 3em;
+  }
+
+  &--screen {
+    border-bottom: 1px solid $gray;
+    margin: 0 auto;
+    width: 50%;
+
+    &:first-child {
+      border-top: 1px solid $gray;
+    }
+  }
+
+
+  &--screen-element {
+    height: 1.5em;
+    padding: 1em;
+
+    &:hover {
+      background: $beige;
+    }
+  }
+
+
+  &--screen-element-check {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+
+    &.is-selected {
+      @include generate-sprite-image($dashboard-sprites, 'check-icon', 20);
+    }
+  }
+
+
+  &--screen-element-title {
+    display: inline-block;
+    position: absolute;
+    left: 3em;
+  }
+}
