@@ -4,6 +4,8 @@
 
   &--settings {
     @extend %slide--edit-image-settings;
+
+    z-index: 2;
   }
 
   // Overlay used to dis able clickable youtube
