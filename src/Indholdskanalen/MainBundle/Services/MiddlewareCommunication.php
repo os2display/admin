@@ -10,6 +10,7 @@
 namespace Indholdskanalen\MainBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use JMS\Serializer\SerializerBuilder;
 
 /**
  * Class MiddlewareCommunication
@@ -44,67 +45,75 @@ class MiddlewareCommunication extends ContainerAware
   }
 
   /**
-   * Pushes the channels to the middleware.
+   * Pushes the channels for each screen to the middleware.
    */
   public function pushChannels() {
-    // Get all channels
-    $channels = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
+    // Get doctrine handle
+    $doctrine = $this->container->get('doctrine');
 
     // Path to server
     $pathToServer = $this->container->getParameter("absolute_path_to_server");
 
+    // Get all screens
+    $screens = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
+
     // Get handle to media.
-    $sonataMedia = $this->container->get('doctrine')->getRepository('ApplicationSonataMediaBundle:Media');
+    $sonataMedia = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
 
-    // For each channel
-    $count = count($channels);
-    for ($i = 0; $i < $count; $i++) {
-      $currentChannel = $channels[$i];
+    // For each screen
+    //   Join channels
+    //   Push joined channels to the screen
+    // TODO: Should the array be in the order of the channel or mixed??? Is mixed atm.
+    foreach($screens as $screen) {
+      $slides = array();
+      foreach($screen->getChannels() as $channel) {
+        $slideIds = $channel->getSlides();
+        foreach($slideIds as $slideId) {
+          if (!isset($slides[$slideId])) {
+            $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slideId);
 
-      // Create groups array.
-      $groups = array();
-      foreach($currentChannel->getScreens() as $screen) {
-        $groups[] = "group" . $screen->getId();
+            if (!$slide) {
+              continue;
+            }
+
+            // Build image urls.
+            $imageUrls = array();
+            foreach($slide->getOptions()['images'] as $imageId) {
+              $image = $sonataMedia->findOneById($imageId);
+
+              if ($image) {
+                $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
+                $imageUrls[$imageId] = $pathToServer . $path;
+              }
+            }
+
+            $slides[$slideId] = array(
+              'id' => $slide->getId(),
+              'title'   => $slide->getTitle(),
+              'orientation' => $slide->getOrientation(),
+              'template' => $slide->getTemplate(),
+              'options' => $slide->getOptions(),
+              'imageUrls' => $imageUrls,
+              'videoUrls' => array(),                     // TODO: Add videoUrls.
+              'duration' => $slide->getDuration(),
+            );
+          }
+        }
       }
 
-      // Build default channel array.
-      $channel = array(
-        'channelID' => $currentChannel->getId(),
-        'groups' => $groups,
+      // Build default screen array.
+      $screenArray = array(
+        'channelID' => "group" . $screen->getId(),
+        'groups' => array(
+          "group" .$screen->getId()
+        ),
         'channelContent' => array(
           'logo' => '',
+          'slides' => $slides,
         ),
       );
 
-      // Add slides to the channel
-      $slides = $currentChannel->getSlides();
-      foreach ($slides as $key => $value) {
-        $slide = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($value);
-
-        // Build image urls.
-        $imageUrls = array();
-        foreach($slide->getOptions()['images'] as $imageId) {
-          $image = $sonataMedia->findOneById($imageId);
-
-          if ($image) {
-            $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
-            $imageUrls[$imageId] = $pathToServer . $path;
-          }
-        }
-
-        $channel['channelContent']['slides'][] = array(
-          'id' => $slide->getId(),
-          'title'   => $slide->getTitle(),
-          'orientation' => $slide->getOrientation(),
-          'template' => $slide->getTemplate(),
-          'options' => $slide->getOptions(),
-          'imageUrls' => $imageUrls,
-          'duration' => $slide->getDuration(),
-        );
-      }
-
-      //   Set the groups it should be shown in
-      $this->curlSendChannel($channel);
+      $this->curlSendChannel($screenArray);
     }
   }
 }
