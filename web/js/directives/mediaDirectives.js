@@ -1,4 +1,99 @@
 /**
+ * @file
+ * Contains directives for media.
+ */
+
+/**
+ * Directive to insert a media overview.
+ * @param media-type
+ *   which media type should be shown, "image" or "video",
+ *   leave out show all media.
+ */
+ikApp.directive('ikMediaOverview', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      mediaType: '@'
+    },
+    controller: function($scope, $http, $location, mediaFactory) {
+      // Media to display.
+      $scope.images = [];
+
+      // Setup default search options.
+      $scope.search = {
+        "fields": 'name',
+        "text": '',
+        "sort": {
+          "created_at" : {
+            "order": "desc"
+          }
+        }
+      };
+
+      /**
+       * Updates the images array by sending a search request.
+       */
+      $scope.updateSearch = function() {
+        mediaFactory.searchMedia($scope.search).then(
+          function(data) {
+            $scope.images = data;
+
+            angular.forEach($scope.images, function(image, key) {
+              image.url = image.urls.default_landscape;
+            });
+          }
+        );
+      };
+
+      // Send the default search query.
+      $scope.updateSearch();
+
+      /**
+       * Get the content type of a media: image or media
+       * @param media
+       * @returns "", "video" or "image"
+       */
+      $scope.getContentType = function(media) {
+        if (!media) {
+          return "";
+        }
+
+        var type = media.content_type.split("/");
+        return type[0];
+      }
+
+      /**
+       * Emits event when the user clicks a media.
+       * @param media
+       */
+      $scope.mediaOverviewClickMedia = function mediaOverviewClickImage(media) {
+        $scope.$emit('mediaOverview.selectMedia', media);
+      }
+
+      /**
+       * Changes the sort order and updated the images.
+       *
+       * @param sortField
+       *   Field to sort on.
+       * @param sortOrder
+       *   The order to sort in 'desc' or 'asc'.
+       */
+      $scope.setSort = function(sortField, sortOrder) {
+        $scope.search.sort = {};
+        $scope.search.sort[sortField] = {
+          "order": sortOrder
+        };
+
+        $scope.updateSearch();
+      };
+    },
+    link: function(scope, element, attrs) {
+    },
+    templateUrl: 'partials/directives/media-overview.html'
+  }
+});
+
+/**
  * The ng-thumb directive
  * NB! Has been renamed to ik-thumb
  * @author: nerv

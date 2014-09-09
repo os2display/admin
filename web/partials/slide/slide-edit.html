@@ -49,7 +49,7 @@
         </div>
         <div class="edit-menu--background-page-inner">
           <h2 class="edit-menu--background-header">Vælg fil fra medier</h2>
-          <div class="edit-menu--background-content" data-ng-include="" src="'partials/media/media-overview.html'"></div>
+          <ik-media-overview media-type="image"></ik-media-overview>
         </div>
       </div>
       <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-computer'">
@@ -63,27 +63,6 @@
         </div>
         <div class="edit-menu--background-page-inner">
           <div class="edit-menu--background-content-alternate" data-ng-include="" src="'partials/media/media-upload-single.html'"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="edit-menu--background" role="banner" data-ng-class="{'is-visible': editor.showVideoEditor, 'is-hidden': !editor.showVideoEditor}">
-    <div class="edit-menu--background-inner">
-      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleVideoEditor()">
-        <div class="svg-clickable">
-          <object data="images/svg/cancel.svg" type="image/svg+xml">
-            <!-- Fallback (ie8)-->
-            <img src="images/cancel.png" />
-          </object>
-        </div>
-      </div>
-      <div class="edit-menu--background-page">
-        <div class="edit-menu--background-page-inner">
-          <h2 class="edit-menu--background-header">Youtube URL</h2>
-          <form class="edit-menu--background-form">
-            <input class="edit-menu--background-form-element" type="text" placeholder="e.g. http://www.youtube.com/watch?v=Lzy9eg4q1bQ" data-ng-class="{'is-valid': youtubeUrlValidate()}" data-ng-model="ikSlide.options.youtubeUrl"/>
-          </form>
         </div>
       </div>
     </div>
