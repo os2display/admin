@@ -9,7 +9,6 @@
 namespace Indholdskanalen\MainBundle\Command;
 
 use Doctrine\ORM\Mapping\Entity;
-use JMS\Serializer\SerializationContext;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,7 +23,6 @@ use Sonata\MediaBundle\Provider;
  */
 class SearchCommand extends ContainerAwareCommand {
   private $output;
-  private $mediaService;
 
   /**
    * Configure the command
@@ -80,17 +78,28 @@ class SearchCommand extends ContainerAwareCommand {
 
   private function indexEnities($type, $entities) {
     $this->output->write(sprintf('Found %d %s ', count($entities), $type));
+
     foreach ($entities as $entity) {
-      $data = $this->sendEvent($entity, 'POST');
-      if ($data->status == 200) {
-        $this->output->write(sprintf('.'));
-      }
-      else {
-        $this->output->write(sprintf('F'));
-      }
+      $this->indexEntity($entity);
     }
+
     // Make a newline.
     $this->output->writeln('');
+  }
+
+  private function indexEntity($entity, $cmd = 'PUT') {
+    $data = $this->sendEvent($entity, $cmd);
+    if ($data->status == 200) {
+      $this->output->write(sprintf('.'));
+    }
+    elseif ($data->status == 409) {
+      // Document already exists, so update.
+      $this->indexEntity($entity, 'POST');
+    }
+    else {
+      print_r($data);
+      $this->output->write(sprintf('F'));
+    }
   }
 
   /**
@@ -109,6 +118,7 @@ class SearchCommand extends ContainerAwareCommand {
     $params = array(
       'customer_id' => $customer_id,
       'type' => get_class($entity),
+      'id' => $entity->getId(),
       'data' => $entity,
     );
 
