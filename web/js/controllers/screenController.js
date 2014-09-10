@@ -5,13 +5,8 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, $
   /**
    * Scope setup
    */
-  $scope.steps = 3;
+  $scope.steps = 2;
   $scope.screen = {};
-  $scope.groups = [];
-  screenFactory.getScreenGroups().then(function(data) {
-    $scope.groups = data;
-  });
-
 
   /**
    * Loads a given step
@@ -73,12 +68,16 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, $
     $scope.screen.orientation = orientation;
   }
 
+  /**
+   * Load a step. Checks that the previous steps have been filled out.
+   * @param step
+   */
   $scope.goToStep = function(step) {
     var s = 1;
     if ($scope.validation.titleSet()) {
       s++;
       if ($scope.validation.widthSet() && $scope.validation.heightSet()) {
-        s = s + 2;
+        s++;
       }
     }
     if (step <= s) {
