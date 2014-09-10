@@ -74,10 +74,5 @@ ikApp.config(function($routeProvider) {$routeProvider
     templateUrl: 'partials/media/media-edit.html'
   })
 
-  .when('/templates', {
-    controller: 'TemplatesController',
-    templateUrl: 'partials/templates.html'
-  })
-
   .otherwise({redirectTo: '/'});
 });
