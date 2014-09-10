@@ -615,10 +615,22 @@
   .only-image--edit-image-settings:hover, .text-top--edit-image-settings:hover, .text-bottom--edit-image-settings:hover, .text-left--edit-image-settings:hover, .text-right--edit-image-settings:hover, .portrait-text-top--edit-image-settings:hover, .only-video--settings:hover {
     cursor: pointer; }
 
-/* line 143, ../sass/theme/_global-silent-classes.scss */
-.text-top--header:empty:before, .text-top--description:empty:before, .text-bottom--header:empty:before, .text-bottom--description:empty:before, .text-left--header:empty:before, .text-left--description:empty:before, .text-right--header:empty:before, .text-right--description:empty:before, .portrait-text-top--header:empty:before, .portrait-text-top--description:empty:before {
+/* line 144, ../sass/theme/_global-silent-classes.scss */
+.text-top--header.has-placeholder:focus, .text-top--description.has-placeholder:focus, .text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus, .text-left--header.has-placeholder:focus, .text-left--description.has-placeholder:focus, .text-right--header.has-placeholder:focus, .text-right--description.has-placeholder:focus, .portrait-text-top--header.has-placeholder:focus, .portrait-text-top--description.has-placeholder:focus {
+  outline: none; }
+/* line 147, ../sass/theme/_global-silent-classes.scss */
+.text-top--header.has-placeholder:empty:before, .text-top--description.has-placeholder:empty:before, .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before, .text-left--header.has-placeholder:empty:before, .text-left--description.has-placeholder:empty:before, .text-right--header.has-placeholder:empty:before, .text-right--description.has-placeholder:empty:before, .portrait-text-top--header.has-placeholder:empty:before, .portrait-text-top--description.has-placeholder:empty:before {
   content: attr(placeholder);
-  color: #e6e6e6; }
+  color: #b3b3b3;
+  font-style: italic; }
+/* line 152, ../sass/theme/_global-silent-classes.scss */
+.text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before {
+  background-color: #b3d4fd;
+  color: #000; }
+/* line 156, ../sass/theme/_global-silent-classes.scss */
+.text-top--header.has-placeholder:empty:hover:before, .text-top--description.has-placeholder:empty:hover:before, .text-bottom--header.has-placeholder:empty:hover:before, .text-bottom--description.has-placeholder:empty:hover:before, .text-left--header.has-placeholder:empty:hover:before, .text-left--description.has-placeholder:empty:hover:before, .text-right--header.has-placeholder:empty:hover:before, .text-right--description.has-placeholder:empty:hover:before, .portrait-text-top--header.has-placeholder:empty:hover:before, .portrait-text-top--description.has-placeholder:empty:hover:before {
+  background-color: #b3d4fd;
+  color: #000; }
 
 /**
  *
@@ -927,7 +939,7 @@ html {
 body {
   height: 100%;
   overflow-x: hidden;
-  background-color: white;
+  background-color: #fff;
   color: #222;
   font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
@@ -1040,7 +1052,7 @@ textarea {
   width: 100%;
   padding: .75em;
   color: #222;
-  background-color: white;
+  background-color: #fff;
   -moz-border-radius: 0.4em;
   -webkit-border-radius: 0.4em;
   border-radius: 0.4em;
@@ -1117,22 +1129,22 @@ label {
 .button, .create-slide--button, .create-screen--button, .create-channel--button, .create-media--button, .edit-menu--background-button, .login--submit {
   background-color: #357fd1;
   border: 0;
-  color: white; }
+  color: #fff; }
   /* line 37, ../sass/layout/_buttons.scss */
   .button:link, .create-slide--button:link, .create-screen--button:link, .create-channel--button:link, .create-media--button:link, .edit-menu--background-button:link, .login--submit:link, .button:visited, .create-slide--button:visited, .create-screen--button:visited, .create-channel--button:visited, .create-media--button:visited, .edit-menu--background-button:visited, .login--submit:visited, .button:hover, .create-slide--button:hover, .create-screen--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--background-button:hover, .login--submit:hover {
     background-color: #2361a9;
-    color: white;
+    color: #fff;
     text-decoration: none; }
   /* line 45, ../sass/layout/_buttons.scss */
   .button.is-inactive, .is-inactive.create-slide--button, .is-inactive.create-screen--button, .is-inactive.create-channel--button, .is-inactive.create-media--button, .is-inactive.edit-menu--background-button, .is-inactive.login--submit {
     background-color: #b8b8b8;
     border: 0;
-    color: white;
+    color: #fff;
     cursor: not-allowed; }
     /* line 51, ../sass/layout/_buttons.scss */
     .button.is-inactive:link, .is-inactive.create-slide--button:link, .is-inactive.create-screen--button:link, .is-inactive.create-channel--button:link, .is-inactive.create-media--button:link, .is-inactive.edit-menu--background-button:link, .is-inactive.login--submit:link, .button.is-inactive:visited, .is-inactive.create-slide--button:visited, .is-inactive.create-screen--button:visited, .is-inactive.create-channel--button:visited, .is-inactive.create-media--button:visited, .is-inactive.edit-menu--background-button:visited, .is-inactive.login--submit:visited, .button.is-inactive:hover, .is-inactive.create-slide--button:hover, .is-inactive.create-screen--button:hover, .is-inactive.create-channel--button:hover, .is-inactive.create-media--button:hover, .is-inactive.edit-menu--background-button:hover, .is-inactive.login--submit:hover {
       background-color: #b8b8b8;
-      color: white;
+      color: #fff;
       text-decoration: none; }
 
 /**
@@ -1303,7 +1315,7 @@ html.is-locked body {
   /* line 179, ../sass/modules/_create-slide.scss */
   .create-slide--config-text {
     background: rgba(0, 0, 0, 0.7);
-    color: white;
+    color: #fff;
     margin: 1em auto;
     padding: 2em;
     text-align: left;
@@ -1443,7 +1455,7 @@ html.is-locked body {
    ========================================================================== */
 /* line 12, ../sass/modules/_create-channel.scss */
 .create-channel--slide-order-number, .create-channel--slide-order-arrow-left, .create-channel--slide-order-arrow-right {
-  background: white;
+  background: #fff;
   font-size: 1.3em;
   font-weight: bold;
   height: 2.1em;
@@ -1783,7 +1795,7 @@ html.is-locked body {
     text-align: left; }
   /* line 131, ../sass/modules/_create-media.scss */
   .create-media--text-input[type="text"] {
-    background: white;
+    background: #fff;
     height: 1em;
     padding: 1em;
     width: auto;
@@ -1865,7 +1877,7 @@ html.is-locked body {
     padding-right: 3em;
     padding-left: 3em;
     width: 35em;
-    background: white;
+    background: #fff;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -1906,7 +1918,7 @@ html.is-locked body {
     padding-top: 3.75em;
     padding-right: 3em;
     padding-left: 3em;
-    background-color: white;
+    background-color: #fff;
     /* States. */ }
     /* line 86, ../sass/modules/_edit-menu.scss */
     .edit-menu--background.is-hidden {
@@ -2608,7 +2620,7 @@ html.is-locked body {
   padding-right: 3em;
   padding-left: 3em;
   width: 80%;
-  background: white;
+  background: #fff;
   overflow-y: auto;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -2894,7 +2906,7 @@ html.is-locked body {
     right: .5rem;
     position: absolute;
     top: .5rem;
-    background: white;
+    background: #fff;
     background: url('/images/icons-s55ff22cb09.png');
     -moz-background-size: 29px 324px;
     -o-background-size: 29px 324px;
@@ -2906,7 +2918,7 @@ html.is-locked body {
   /* line 225, ../sass/modules/_overview.scss */
   .overview--media-overlay {
     background-color: rgba(255, 255, 255, 0.65);
-    color: black;
+    color: #000;
     font-size: .8rem;
     position: absolute;
     left: 0;
@@ -2965,7 +2977,7 @@ html.is-locked body {
         border-color: #62B001; }
   /* line 46, ../sass/modules/_pager.scss */
   .pager--step {
-    background: white;
+    background: #fff;
     border: 3px solid #e6e6e6;
     display: inline-block;
     line-height: .5em;
@@ -3041,7 +3053,7 @@ html.is-locked body {
 
 /* line 1, ../sass/modules/_colorpicker.scss */
 .colorpicker {
-  background-color: white;
+  background-color: #fff;
   border: 1px solid #b3b3b3;
   padding: .5em; }
 
@@ -3049,153 +3061,99 @@ html.is-locked body {
  *
  * ========================================================================== */
 @-moz-keyframes fade-in-ninety-five {
-  /* line 7, ../sass/animations/_animation.scss */
   0% {
     opacity: 0; }
-
-  /* line 11, ../sass/animations/_animation.scss */
   100% {
     opacity: .95; } }
 @-webkit-keyframes fade-in-ninety-five {
-  /* line 7, ../sass/animations/_animation.scss */
   0% {
     opacity: 0; }
-
-  /* line 11, ../sass/animations/_animation.scss */
   100% {
     opacity: .95; } }
 @keyframes fade-in-ninety-five {
-  /* line 7, ../sass/animations/_animation.scss */
   0% {
     opacity: 0; }
-
-  /* line 11, ../sass/animations/_animation.scss */
   100% {
     opacity: .95; } }
 @-moz-keyframes spinner {
-  /* line 19, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
-
-  /* line 24, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
 @-webkit-keyframes spinner {
-  /* line 19, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
-
-  /* line 24, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
 @keyframes spinner {
-  /* line 19, ../sass/animations/_animation.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
-
-  /* line 24, ../sass/animations/_animation.scss */
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
 @-moz-keyframes toggle-nav-open {
-  /* line 33, ../sass/animations/_animation.scss */
   0% {
     right: -100%; }
-
-  /* line 37, ../sass/animations/_animation.scss */
   100% {
     right: 0; } }
 @-webkit-keyframes toggle-nav-open {
-  /* line 33, ../sass/animations/_animation.scss */
   0% {
     right: -100%; }
-
-  /* line 37, ../sass/animations/_animation.scss */
   100% {
     right: 0; } }
 @keyframes toggle-nav-open {
-  /* line 33, ../sass/animations/_animation.scss */
   0% {
     right: -100%; }
-
-  /* line 37, ../sass/animations/_animation.scss */
   100% {
     right: 0; } }
 @-moz-keyframes toggle-nav-close {
-  /* line 45, ../sass/animations/_animation.scss */
   0% {
     right: 0; }
-
-  /* line 49, ../sass/animations/_animation.scss */
   100% {
     right: -100%; } }
 @-webkit-keyframes toggle-nav-close {
-  /* line 45, ../sass/animations/_animation.scss */
   0% {
     right: 0; }
-
-  /* line 49, ../sass/animations/_animation.scss */
   100% {
     right: -100%; } }
 @keyframes toggle-nav-close {
-  /* line 45, ../sass/animations/_animation.scss */
   0% {
     right: 0; }
-
-  /* line 49, ../sass/animations/_animation.scss */
   100% {
     right: -100%; } }
 @-moz-keyframes toggle-nav-overlay {
-  /* line 57, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent; }
-
-  /* line 61, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65); } }
 @-webkit-keyframes toggle-nav-overlay {
-  /* line 57, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent; }
-
-  /* line 61, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65); } }
 @keyframes toggle-nav-overlay {
-  /* line 57, ../sass/animations/_animation.scss */
   0% {
     background-color: transparent; }
-
-  /* line 61, ../sass/animations/_animation.scss */
   100% {
     background-color: rgba(0, 0, 0, 0.65); } }
 @-moz-keyframes toggle-media-overlay {
-  /* line 68, ../sass/animations/_animation.scss */
   0% {
     bottom: -30%; }
-
-  /* line 72, ../sass/animations/_animation.scss */
   100% {
     bottom: 0; } }
 @-webkit-keyframes toggle-media-overlay {
-  /* line 68, ../sass/animations/_animation.scss */
   0% {
     bottom: -30%; }
-
-  /* line 72, ../sass/animations/_animation.scss */
   100% {
     bottom: 0; } }
 @keyframes toggle-media-overlay {
-  /* line 68, ../sass/animations/_animation.scss */
   0% {
     bottom: -30%; }
-
-  /* line 72, ../sass/animations/_animation.scss */
   100% {
     bottom: 0; } }
 /* Animation calls (If not related to a module)
@@ -3250,7 +3208,7 @@ html.is-locked body {
 .text-top--header {
   font-size: 100%; }
 
-/* line 34, ../ik-templates/text-top/_text-top.scss */
+/* line 36, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
   font-size: 70%; }
 
@@ -3284,11 +3242,11 @@ html.is-locked body {
 .text-bottom--header {
   font-size: 100%; }
 
-/* line 35, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 37, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%; }
 
-/* line 47, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 51, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
@@ -3325,7 +3283,7 @@ html.is-locked body {
 .text-left--header {
   font-size: 100%; }
 
-/* line 37, ../ik-templates/text-left/_text-left.scss */
+/* line 39, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%; }
 
@@ -3361,11 +3319,11 @@ html.is-locked body {
 .text-right--header {
   font-size: 100%; }
 
-/* line 37, ../ik-templates/text-right/_text-right.scss */
+/* line 39, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%; }
 
-/* line 49, ../ik-templates/text-right/_text-right.scss */
+/* line 53, ../ik-templates/text-right/_text-right.scss */
 .text-right--edit-image-settings {
   right: auto;
   left: 15%; }
@@ -3399,7 +3357,7 @@ html.is-locked body {
 .portrait-text-top--header {
   font-size: 100%; }
 
-/* line 34, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 36, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%; }
 

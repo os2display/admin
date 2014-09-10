@@ -139,9 +139,22 @@
 }
 
 
+// Used in ik-templates to show the placeholder text
 %show-placeholder-text {
+  &:focus {
+    outline:none;
+  }
   &:empty:before {
     content: attr(placeholder);
-    color: $gray-lighter;
+    color: $gray;
+    font-style: italic;
+  }
+  &:empty:focus:before {
+    background-color: #b3d4fd;
+    color: #000;
+  }
+  &:empty:hover:before {
+    background-color: #b3d4fd;
+    color: #000;
   }
 }
