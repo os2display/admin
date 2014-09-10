@@ -1,4 +1,9 @@
 /**
+ * @file
+ * Contains screen directives.
+ */
+
+/**
  * Directive to insert a screen.
  */
 ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
