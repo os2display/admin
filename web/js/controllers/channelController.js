@@ -72,7 +72,7 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
         channelFactory.saveChannel().then(function() {
           $timeout(function() {
             $location.path('/channel-overview');
-          }, 500);
+          }, 1000);
         });
       } else {
         loadStep($scope.step + 1);

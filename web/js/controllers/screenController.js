@@ -58,7 +58,7 @@ ikApp.controller('ScreenController', function($scope, $location, $routeParams, $
       screenFactory.saveScreen().then(function() {
         $timeout(function() {
           $location.path('/screen-overview');
-        }, 500);
+        }, 1000);
       });
     } else {
       loadStep($scope.step + 1);
