@@ -63,41 +63,43 @@ class MiddlewareCommunication extends ContainerAware
     // For each screen
     //   Join channels
     //   Push joined channels to the screen
-    // TODO: Should the array be in the order of the channel or mixed??? Is mixed atm.
     foreach($screens as $screen) {
       $slides = array();
       foreach($screen->getChannels() as $channel) {
         $slideIds = $channel->getSlides();
         foreach($slideIds as $slideId) {
-          if (!isset($slides[$slideId])) {
-            $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slideId);
+          $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slideId);
 
-            if (!$slide) {
-              continue;
-            }
-
-            // Build image urls.
-            $imageUrls = array();
-            foreach($slide->getOptions()['images'] as $imageId) {
-              $image = $sonataMedia->findOneById($imageId);
-
-              if ($image) {
-                $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
-                $imageUrls[$imageId] = $pathToServer . $path;
-              }
-            }
-
-            $slides[$slideId] = array(
-              'id' => $slide->getId(),
-              'title'   => $slide->getTitle(),
-              'orientation' => $slide->getOrientation(),
-              'template' => $slide->getTemplate(),
-              'options' => $slide->getOptions(),
-              'imageUrls' => $imageUrls,
-              'videoUrls' => array(),                     // TODO: Add videoUrls.
-              'duration' => $slide->getDuration(),
-            );
+          if (!$slide) {
+            continue;
           }
+
+          // Build image urls.
+          $imageUrls = array();
+          foreach($slide->getOptions()['images'] as $imageId) {
+            $image = $sonataMedia->findOneById($imageId);
+
+            if ($image) {
+              $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
+              $imageUrls[$imageId] = $pathToServer . $path;
+            }
+          }
+
+          // TODO: Add videoUrls.
+
+          // Build slide entry
+          $slideEntry = array(
+            'id' => $slide->getId(),
+            'title'   => $slide->getTitle(),
+            'orientation' => $slide->getOrientation(),
+            'template' => $slide->getTemplate(),
+            'options' => $slide->getOptions(),
+            'imageUrls' => $imageUrls,
+            'videoUrls' => array(),
+            'duration' => $slide->getDuration(),
+          );
+
+          $slides[] = $slideEntry;
         }
       }
 
