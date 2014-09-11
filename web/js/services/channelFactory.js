@@ -106,7 +106,7 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory',
       var defer = $q.defer();
 
       $http.post('/api/channel', currentChannel)
-        .success(function(data) {
+        .success(function() {
           defer.resolve("success");
           currentChannel = null;
         })
