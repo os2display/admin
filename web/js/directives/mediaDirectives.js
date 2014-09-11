@@ -15,7 +15,7 @@ ikApp.directive('ikMediaOverview', function() {
     scope: {
       mediaType: '@'
     },
-    controller: function($scope, $http, $location, mediaFactory) {
+    controller: function($scope, mediaFactory) {
       // Media to display.
       $scope.images = [];
 
@@ -48,27 +48,39 @@ ikApp.directive('ikMediaOverview', function() {
       // Send the default search query.
       $scope.updateSearch();
 
+
+      $scope.filterMediaType = function filterMediaType(type) {
+        // Filter based on field.
+//        $scope.search;
+
+        // Update the search result.
+        $scope.updateSearch();
+      };
+
       /**
        * Get the content type of a media: image or media
+       *
        * @param media
+       *
        * @returns "", "video" or "image"
        */
-      $scope.getContentType = function(media) {
+      $scope.getMediaType = function getMediaType(media) {
         if (!media) {
           return "";
         }
 
         var type = media.content_type.split("/");
         return type[0];
-      }
+      };
 
       /**
        * Emits event when the user clicks a media.
+       *
        * @param media
        */
       $scope.mediaOverviewClickMedia = function mediaOverviewClickImage(media) {
         $scope.$emit('mediaOverview.selectMedia', media);
-      }
+      };
 
       /**
        * Changes the sort order and updated the images.
