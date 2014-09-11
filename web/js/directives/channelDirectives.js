@@ -108,7 +108,7 @@ ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slide
           }
         });
       },
-      template: '<div class="preview--channel"><div data-ng-include="" src="templateURL" class="preview--channel-display" data-ng-click="redirectToChannel()"></div><div class="preview--channel-{{buttonState}}" ng-click="play()"></div></div>'
+      templateUrl: '/partials/channel/channel-template.html'
     }
   }
 ]);

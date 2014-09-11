@@ -621,9 +621,8 @@
 /* line 147, ../sass/theme/_global-silent-classes.scss */
 .text-top--header.has-placeholder:empty:before, .text-top--description.has-placeholder:empty:before, .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before, .text-left--header.has-placeholder:empty:before, .text-left--description.has-placeholder:empty:before, .text-right--header.has-placeholder:empty:before, .text-right--description.has-placeholder:empty:before, .portrait-text-top--header.has-placeholder:empty:before, .portrait-text-top--description.has-placeholder:empty:before {
   content: attr(placeholder);
-  color: #b3b3b3;
-  font-style: italic; }
-/* line 152, ../sass/theme/_global-silent-classes.scss */
+  color: #b3b3b3; }
+/* line 151, ../sass/theme/_global-silent-classes.scss */
 .text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
@@ -3024,8 +3023,12 @@ html.is-locked body {
   position: relative;
   display: block;
   margin: 0; }
+  /* line 31, ../sass/modules/_preview.scss */
+  .preview--slide-display,
+  .preview--channel-display {
+    cursor: pointer; }
 
-/* line 33, ../sass/modules/_preview.scss */
+/* line 37, ../sass/modules/_preview.scss */
 .preview--channel-play {
   background: url('/images/icons-s55ff22cb09.png');
   -moz-background-size: 84px 956px;
@@ -3036,7 +3039,7 @@ html.is-locked body {
   height: 42px;
   background-position: 0 -601px; }
 
-/* line 41, ../sass/modules/_preview.scss */
+/* line 45, ../sass/modules/_preview.scss */
 .preview--channel-pause {
   background: url('/images/icons-s55ff22cb09.png');
   -moz-background-size: 84px 956px;
