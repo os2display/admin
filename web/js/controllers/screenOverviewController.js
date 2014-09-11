@@ -15,9 +15,7 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
     $scope.search = {
       "fields": 'title',
       "text": '',
-      "filter": {
-        "orientation":  'landscape'
-      },
+      "filter": undefined,
       "sort": {
         "created_at" : {
           "order": "desc"
@@ -46,7 +44,13 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
      *   This should either be 'landscape' or 'portrait'.
      */
     $scope.setOrientation = function(orientation) {
-      $scope.search.filter.orientation = orientation;
+      if (orientation !== '') {
+        $scope.search.filter = {};
+        $scope.search.filter.orientation = orientation;
+      }
+      else {
+        $scope.search.filter = undefined;
+      }
 
       $scope.updateSearch();
     };
