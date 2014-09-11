@@ -147,13 +147,8 @@
   &:empty:before {
     content: attr(placeholder);
     color: $gray;
-    font-style: italic;
   }
   &:empty:focus:before {
-    background-color: #b3d4fd;
-    color: #000;
-  }
-  &:empty:hover:before {
     background-color: #b3d4fd;
     color: #000;
   }

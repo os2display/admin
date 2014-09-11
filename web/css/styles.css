@@ -627,10 +627,6 @@
 .text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
-/* line 156, ../sass/theme/_global-silent-classes.scss */
-.text-top--header.has-placeholder:empty:hover:before, .text-top--description.has-placeholder:empty:hover:before, .text-bottom--header.has-placeholder:empty:hover:before, .text-bottom--description.has-placeholder:empty:hover:before, .text-left--header.has-placeholder:empty:hover:before, .text-left--description.has-placeholder:empty:hover:before, .text-right--header.has-placeholder:empty:hover:before, .text-right--description.has-placeholder:empty:hover:before, .portrait-text-top--header.has-placeholder:empty:hover:before, .portrait-text-top--description.has-placeholder:empty:hover:before {
-  background-color: #b3d4fd;
-  color: #000; }
 
 /**
  *
