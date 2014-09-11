@@ -9,7 +9,6 @@
 namespace Indholdskanalen\MainBundle\Command;
 
 use Doctrine\ORM\Mapping\Entity;
-use JMS\Serializer\SerializationContext;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,7 +23,6 @@ use Sonata\MediaBundle\Provider;
  */
 class SearchCommand extends ContainerAwareCommand {
   private $output;
-  private $mediaService;
 
   /**
    * Configure the command
@@ -78,19 +76,46 @@ class SearchCommand extends ContainerAwareCommand {
     $this->indexEnities('Screens', $entities);
   }
 
+  /**
+   * Index the entities given.
+   *
+   * @param string $type
+   *   The type of entities to index (only used in the print).
+   * @param array $entities
+   *   The entities to add to the search backend.
+   */
   private function indexEnities($type, $entities) {
     $this->output->write(sprintf('Found %d %s ', count($entities), $type));
+
     foreach ($entities as $entity) {
-      $data = $this->sendEvent($entity, 'POST');
-      if ($data->status == 200) {
-        $this->output->write(sprintf('.'));
-      }
-      else {
-        $this->output->write(sprintf('F'));
-      }
+      $this->indexEntity($entity);
     }
+
     // Make a newline.
     $this->output->writeln('');
+  }
+
+  /**
+   * Add a single entity to the search backend.
+   *
+   * @param Entity $entity
+   *   The entity to add to the search backend.
+   * @param string $cmd
+   *   The command to use "POST" create, "PUT" update at the search backend.
+   */
+  private function indexEntity($entity, $cmd = 'POST') {
+    $data = $this->sendEvent($entity, $cmd);
+    if ($data->status == 200) {
+      $this->output->write(sprintf('.'));
+    }
+    elseif ($data->status == 409) {
+      // Document already exists, so update.
+      $this->indexEntity($entity, 'PUT');
+    }
+    else {
+      print_r($data);
+      $this->output->write(sprintf('F'));
+    }
   }
 
   /**
@@ -109,6 +134,7 @@ class SearchCommand extends ContainerAwareCommand {
     $params = array(
       'customer_id' => $customer_id,
       'type' => get_class($entity),
+      'id' => $entity->getId(),
       'data' => $entity,
     );
 

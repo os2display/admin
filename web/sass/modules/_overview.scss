@@ -82,6 +82,8 @@
     position: relative;
     width: 100%;
 
+    text-align: center;
+
     @include breakpoint($breakpoint-desk) {
       width: 25%;
       display: inline-block;
@@ -125,6 +127,9 @@
     text-align: center;
   }
 
+  &--screen-all,
+  &--screen-horisontal,
+  &--screen-vertical,
   &--horisontal,
   &--vertical,
   &--newest,
@@ -165,7 +170,6 @@
     width: 50%;
   }
 
-
   /* Screens overview
  ========================================================================== */
   &--screen-link {
@@ -201,9 +205,15 @@
     @include translateY(-50%);
   }
 
+  &--screen-all,
+  &--screen-horisontal,
+  &--screen-vertical {
+    width: 33.3%;
+  }
 
-  /* Media overview
-  ========================================================================== */
+
+/* Media overview
+========================================================================== */
   &--media-single {
     position: relative;
     cursor: pointer;

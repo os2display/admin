@@ -28,14 +28,18 @@
 
 
 .text-right--header {
-  @extend %show-placeholder-text;
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
 
   font-size: 100%;
 }
 
 
 .text-right--description {
-  @extend %show-placeholder-text;
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
 
   font-size: 70%;
 }

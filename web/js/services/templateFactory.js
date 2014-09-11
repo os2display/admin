@@ -1,3 +1,11 @@
+/**
+ * @file
+ * Contains the template factory.
+ */
+
+/**
+ * Template factory. Main entry point for templates.
+ */
 ikApp.factory('templateFactory', function() {
   var factory = {};
   var templates = [

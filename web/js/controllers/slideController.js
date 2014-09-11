@@ -66,7 +66,7 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
         slideFactory.saveSlide().then(function() {
           $timeout(function() {
             $location.path('/slide-overview');
-          }, 500);
+          }, 1000);
         });
       }
       else {
