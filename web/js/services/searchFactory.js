@@ -1,5 +1,9 @@
 /**
  * @file
+ * Contains the search factory.
+ */
+
+/**
  * Search factory that handles communication with search engine.
  *
  * The communication is based on web-sockets via socket.io library.

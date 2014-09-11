@@ -1,4 +1,9 @@
 /**
+ * @file
+ * Contains the helper directives.
+ */
+
+/**
  * Overrides the contenteditable html5 tag to make the field reflect an ngModel.
  */
 ikApp.directive('contenteditable', function() {
