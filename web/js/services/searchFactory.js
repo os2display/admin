@@ -75,7 +75,8 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
    *         "order": "desc"
    *       }
    *     }
-   *     ]
+   *     ],
+   *     "filter": [ ]
    *   }
    * }
    *
@@ -89,13 +90,52 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
   this.search = function(search) {
     var deferred = $q.defer();
 
-    // Set customer id for identification in the backend.
-    search.customer_id = configuration.search.customer_id;
+    // Build default match all search query.
+    var query = {
+      "customer_id": configuration.search.customer_id,
+      "type": search.type,
+      "query": {
+        "match_all": {}
+      }
+    };
+
+    // Text given build field search query.
+    // The analyser ensures that we match the who text string sent not part
+    // of. @TODO: It this the right behaviour.
+    if (search.text !== undefined && search.text !== '') {
+      query.query = {
+        "multi_match": {
+          "query": search.text,
+          "fields": search.fields,
+          "analyzer": 'string_search'
+        }
+      };
+    }
+
+    // Add sort
+    query.sort = search.sort;
+
+    // Add filter.
+    // @TODO: move to the start.
+    if (search.filter !== undefined) {
+      var filter = {
+        "filtered": {
+          "query": query.query,
+          "filter": search.filter
+        }
+      };
+
+      // Swap the filter.
+      query.query = filter;
+    }
+
+    // @TODO: Fix sort on text fields.
+//      sort: { 'name.raw': { order: 'asc' } } }
 
     connect().then(function () {
-      socket.emit('search', search);
-      socket.on('result', function (data) {
-        deferred.resolve(data);
+      socket.emit('search', query);
+      socket.on('result', function (hits) {
+        deferred.resolve(hits);
       });
     });
 
