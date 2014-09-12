@@ -51,23 +51,25 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
      *   This should either be 'landscape' or 'portrait'.
      */
     $scope.setOrientation = function(orientation) {
-      $scope.orientation = orientation;
+      if ($scope.orientation !== orientation) {
+       $scope.orientation = orientation;
 
-      // Update orientation for the search.
-      delete search.filter;
-      if (orientation !== 'all') {
-        search.filter = {
-          "bool": {
-            "must": {
-              "term": {
-                "orientation": orientation
+        // Update orientation for the search.
+        delete search.filter;
+        if (orientation !== 'all') {
+          search.filter = {
+            "bool": {
+              "must": {
+                "term": {
+                  "orientation": orientation
+                }
               }
             }
-          }
-        };
-      }
+          };
+        }
 
-      $scope.updateSearch();
+        $scope.updateSearch();
+      }
     };
 
     /**
