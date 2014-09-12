@@ -31,6 +31,9 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
      * Updates the screens array by send a search request.
      */
     $scope.updateSearch = function() {
+      // Get search text from scope.
+      search.text = $scope.search_text;
+
       screenFactory.searchScreens(search).then(
         function(data) {
           $scope.screens = data;
