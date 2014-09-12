@@ -21,11 +21,14 @@ ikApp.directive('ikMediaOverview', function() {
       mediaType: '@'
     },
     controller: function($scope, mediaFactory) {
+      // Set default orientation and sort.
+      $scope.sort = { "created_at": "desc" };
+
       // Media to display.
       $scope.images = [];
 
       // Setup default search options.
-      $scope.search = {
+      var search = {
         "fields": 'name',
         "text": '',
         "sort": {
@@ -47,13 +50,16 @@ ikApp.directive('ikMediaOverview', function() {
         } else {
           $scope.hovering = false;
         }
-      }
+      };
 
       /**
        * Updates the images array by sending a search request.
        */
       $scope.updateSearch = function() {
-        mediaFactory.searchMedia($scope.search).then(
+        // Get search text from scope.
+        search.text = $scope.search_text;
+
+        mediaFactory.searchMedia(search).then(
           function(data) {
             $scope.images = data;
 
@@ -69,11 +75,25 @@ ikApp.directive('ikMediaOverview', function() {
 
 
       $scope.filterMediaType = function filterMediaType(type) {
-        // Filter based on field.
-//        $scope.search;
+        // Only update search if value changes.
+        if ($scope.media_type !== type) {
+          // Update scope to show selection in GUI.
+          $scope.media_type = type;
 
-        // Update the search result.
-        $scope.updateSearch();
+          // Filter based on content type.
+          search.filter = {
+            "bool": {
+              "must": {
+                "term": {
+                  "content_type":  type
+                }
+              }
+            }
+          };
+
+          // Update the search result.
+          $scope.updateSearch();
+        }
       };
 
       /**
@@ -104,24 +124,32 @@ ikApp.directive('ikMediaOverview', function() {
       /**
        * Changes the sort order and updated the images.
        *
-       * @param sortField
+       * @param sort_field
        *   Field to sort on.
-       * @param sortOrder
+       * @param sort_order
        *   The order to sort in 'desc' or 'asc'.
        */
-      $scope.setSort = function(sortField, sortOrder) {
-        $scope.search.sort = {};
-        $scope.search.sort[sortField] = {
-          "order": sortOrder
-        };
+      $scope.setSort = function(sort_field, sort_order) {
+        // Only update search if sort have changed.
+        if ($scope.sort[sort_field] === undefined || $scope.sort[sort_field] !== sort_order) {
+          // Update the store sort order.
+          $scope.sort = { };
+          $scope.sort[sort_field] = sort_order;
 
-        $scope.updateSearch();
+          // Update the search variable.
+          search.sort = { };
+          search.sort[sort_field] = {
+            "order": sort_order
+          };
+
+          $scope.updateSearch();
+        }
       };
     },
     link: function(scope, element, attrs) {
     },
     templateUrl: 'partials/directives/media-overview.html'
-  }
+  };
 });
 
 /**
@@ -249,7 +277,7 @@ ikApp.directive('ikMediaUpload', function() {
     link: function(scope, element, attrs) {
     },
     templateUrl: 'partials/directives/media-upload.html'
-  }
+  };
 });
 
 /**
