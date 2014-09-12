@@ -50,7 +50,7 @@
         <div class="edit-menu--background-page-inner" data-ng-switch="ikSlide.template">
           <h2 class="edit-menu--background-header">Vælg fil fra medier</h2>
           <ik-media-overview media-type="image" data-ng-switch-when="!only-video"></ik-media-overview>
-          <ik-media-overview media-type="video" data-ng-switch-when="only-video"></ik-media-overview>
+          <ik-media-overview media-type="video" data-ng-switch-default=""></ik-media-overview>
         </div>
       </div>
       <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-computer'">
@@ -63,7 +63,9 @@
           </div>
         </div>
         <div class="edit-menu--background-page-inner">
-          <div class="edit-menu--background-content-alternate" data-ng-include="" src="'partials/media/media-upload-single.html'"></div>
+          <div class="edit-menu--background-content-alternate">
+            <ik-media-upload></ik-media-upload>
+          </div>
         </div>
       </div>
     </div>
