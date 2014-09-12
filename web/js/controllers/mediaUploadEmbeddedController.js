@@ -66,14 +66,28 @@ ikApp.controller('MediaUploadEmbeddedController', ['$scope', 'FileUploader',
       return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
     };
 
+    /**
+     * After adding a file to the upload queue, add an empty title to the file item.
+     */
     $scope.uploader.onAfterAddingFile = function(item) {
       item.formData = [{title: ''}];
     };
 
+    /**
+     * After adding all files, increase current step.
+     * @param item
+     */
     $scope.uploader.onAfterAddingAll = function(item) {
       $scope.currentStep++;
     };
 
+    /**
+     * If an error occurs.
+     * @param item
+     * @param response
+     * @param status
+     * @param headers
+     */
     $scope.uploader.onErrorItem = function(item, response, status, headers) {
       $scope.uploadErrors = true;
 
@@ -84,10 +98,20 @@ ikApp.controller('MediaUploadEmbeddedController', ['$scope', 'FileUploader',
       }
     };
 
+    /**
+     * When all uploads are complete.
+     */
     $scope.uploader.onCompleteAll = function() {
       $scope.uploadComplete = true;
     };
 
+    /**
+     * When an item has been uploaded successfully.
+     * @param item
+     * @param response
+     * @param status
+     * @param headers
+     */
     $scope.uploader.onSuccessItem = function(item, response, status, headers) {
       $scope.$emit('mediaUpload.uploadSuccess', {
         image: item,
