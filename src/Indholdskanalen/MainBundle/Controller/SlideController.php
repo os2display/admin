@@ -37,13 +37,16 @@ class SlideController extends Controller {
       $slide = new Slide();
     }
 
+    // Get user
+    $userEntity = $this->get('security.context')->getToken()->getUser();
+
     // Update fields.
     $slide->setTitle($post['title']);
     $slide->setOrientation($post['orientation']);
     $slide->setTemplate($post['template']);
     $slide->setCreatedAt($post['created_at']);
     $slide->setOptions($post['options']);
-    $slide->setUser($post['user']);
+    $slide->setUser($userEntity->getId());
     $slide->setDuration($post['duration']);
 
     // Save the entity.
