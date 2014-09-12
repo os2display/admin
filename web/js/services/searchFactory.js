@@ -95,7 +95,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
       "customer_id": configuration.search.customer_id,
       "type": search.type,
       "query": {
-        "match_all": {}
+        "match_all": { }
       }
     };
 
@@ -118,15 +118,12 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
     // Add filter.
     // @TODO: move to the start.
     if (search.filter !== undefined) {
-      var filter = {
+      query.query = {
         "filtered": {
           "query": query.query,
           "filter": search.filter
         }
       };
-
-      // Swap the filter.
-      query.query = filter;
     }
 
     // @TODO: Fix sort on text fields.
