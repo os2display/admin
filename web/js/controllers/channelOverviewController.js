@@ -59,12 +59,14 @@ ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
      *   This should either be 'landscape' or 'portrait'.
      */
     $scope.setOrientation = function setOrientation(orientation) {
-      $scope.orientation = orientation;
+      if ($scope.orientation !== orientation) {
+        $scope.orientation = orientation;
 
-      // Update search query.
-      search.filter.bool.must.term.orientation = $scope.orientation;
+        // Update search query.
+        search.filter.bool.must.term.orientation = $scope.orientation;
 
-      $scope.updateSearch();
+        $scope.updateSearch();
+      }
     };
 
     /**
