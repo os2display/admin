@@ -61,8 +61,11 @@ class ScreenController extends Controller {
     $screen->setCreatedAt($post->created_at);
     $screen->setWidth($post->width);
     $screen->setHeight($post->height);
-    $screen->setActivationCode($this->getNewActivationCode());
-    $screen->setToken("");
+
+    if ($screen->getActivationCode() == null) {
+      $screen->setActivationCode($this->getNewActivationCode());
+      $screen->setToken("");
+    }
 
     // Remove groups.
     foreach($screen->getGroups() as $group) {

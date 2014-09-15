@@ -8,15 +8,25 @@
  */
 ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
   function($scope, channelFactory) {
+    // Set default orientation and sort.
+    $scope.orientation = 'landscape';
+    $scope.sort = { "created_at": "desc" };
+
     // Channels to display.
     $scope.channels = [];
 
     // Setup default search options.
-    $scope.search = {
+    var search = {
       "fields": 'title',
       "text": '',
       "filter": {
-        "orientation":  'landscape'
+        "bool": {
+          "must": {
+            "term": {
+              "orientation":  $scope.orientation
+            }
+          }
+        }
       },
       "sort": {
         "created_at" : {
@@ -29,7 +39,10 @@ ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
      * Updates the channels array by send a search request.
      */
     $scope.updateSearch = function updateSearch() {
-      channelFactory.searchChannels($scope.search).then(
+      // Get search text from scope.
+      search.text = $scope.search_text;
+
+      channelFactory.searchChannels(search).then(
         function(data) {
           $scope.channels = data;
         }
@@ -46,26 +59,39 @@ ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
      *   This should either be 'landscape' or 'portrait'.
      */
     $scope.setOrientation = function setOrientation(orientation) {
-      $scope.search.filter.orientation = orientation;
+      if ($scope.orientation !== orientation) {
+        $scope.orientation = orientation;
 
-      $scope.updateSearch();
+        // Update search query.
+        search.filter.bool.must.term.orientation = $scope.orientation;
+
+        $scope.updateSearch();
+      }
     };
 
     /**
      * Changes the sort order and updated the channels.
      *
-     * @param sortField
+     * @param sort_field
      *   Field to sort on.
-     * @param sortOrder
+     * @param sort_order
      *   The order to sort in 'desc' or 'asc'.
      */
-    $scope.setSort = function setSort(sortField, sortOrder) {
-      $scope.search.sort = {};
-      $scope.search.sort[sortField] = {
-        "order": sortOrder
-      };
+    $scope.setSort = function setSort(sort_field, sort_order) {
+      // Only update search if sort have changed.
+      if ($scope.sort[sort_field] === undefined || $scope.sort[sort_field] !== sort_order) {
+        // Update the store sort order.
+        $scope.sort = { };
+        $scope.sort[sort_field] = sort_order;
 
-      $scope.updateSearch();
+        // Update the search variable.
+        search.sort = { };
+        search.sort[sort_field] = {
+          "order": sort_order
+        };
+
+        $scope.updateSearch();
+      }
     };
   }
 ]);

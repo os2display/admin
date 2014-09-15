@@ -6,11 +6,11 @@
 /**
  * Slide factory. Main entry point for slides.
  */
-ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory',
-  function($http, $q, userFactory, searchFactory) {
+ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
+  function($http, $q, searchFactory) {
     var factory = {};
 
-    // Current open slide.
+    // Currently open slide.
     // This is the slide we are editing.
     var currentSlide = null;
 
@@ -96,30 +96,19 @@ ikApp.factory('slideFactory', ['$http', '$q', 'userFactory', 'searchFactory',
     };
 
     /**
-     * Saves slide to slides. Assigns an id, if it is not set.
+     * Saves slide to slides.
      */
     factory.saveSlide = function() {
       var defer = $q.defer();
 
-      userFactory.getCurrentUser().then(
-        function(user) {
-          if (currentSlide === null) {
-            defer.reject(404);
-
-          } else {
-            currentSlide.user = user.id;
-
-            $http.post('/api/slide', currentSlide)
-              .success(function(data, status) {
-                defer.resolve(data);
-                currentSlide = null;
-              })
-              .error(function(data, status) {
-                defer.reject(status);
-              });
-          }
-        }
-      );
+      $http.post('/api/slide', currentSlide)
+        .success(function(data) {
+          defer.resolve(data);
+          currentSlide = null;
+        })
+        .error(function(data, status) {
+          defer.reject(status);
+        });
 
       return defer.promise;
     };

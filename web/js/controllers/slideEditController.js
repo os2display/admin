@@ -13,6 +13,8 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
     // Get the slide from the backend.
     slideFactory.getEditSlide(null).then(function(data) {
       $scope.slide = data;
+
+      $scope.mediaType = 'image';
     });
 
     // Setup editor states and functions.

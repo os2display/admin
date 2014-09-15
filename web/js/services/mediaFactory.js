@@ -25,7 +25,7 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
         });
 
       return defer.promise;
-    }
+    };
 
     /**
      * Search for images defined by search parameter.
@@ -44,7 +44,7 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
       var defer = $q.defer();
 
       $http.get('/api/media/' + id)
-        .success(function(data, status) {
+        .success(function(data) {
           defer.resolve(data);
         })
         .error(function(data, status) {
@@ -63,7 +63,7 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
       var defer = $q.defer();
 
       $http.delete('/api/media/' + id)
-        .success(function(data, status) {
+        .success(function(data) {
           defer.resolve(data);
         })
         .error(function(data, status) {
