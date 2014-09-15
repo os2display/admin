@@ -55,13 +55,11 @@ class Screen {
 
   /**
    * @ORM\Column(name="token", type="text")
-   * @Exclude
    */
   protected $token;
 
   /**
    * @ORM\Column(name="activation_code", type="integer")
-   * @Exclude
    */
   protected $activationCode;
 
