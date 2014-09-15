@@ -29,6 +29,7 @@ class ZencoderController extends Controller {
 
     $status = FALSE;
 
+    // Find the correct media.
     $local_media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
       ->findOneByAuthorName($post->job->id);
 
@@ -39,14 +40,18 @@ class ZencoderController extends Controller {
       $path = $root . $cdn->getPath($zencoder->generatePath($local_media), FALSE);
 
       $transcoded = array();
+
+      // More outputs from Zencoder. No problem.
       foreach ($post->outputs as $output) {
+        // Save the transcoded video.
         $video_filename = basename(substr($output->url, 0, strpos($output->url, '?')));
         file_put_contents($path . '/' . $video_filename, file_get_contents($output->url));
 
-        // Thumbnails
+        // Thumbnails. We save the first thumbnail per output.
         $thumbnails = array();
         foreach ($output->thumbnails as $remote_thumbnail) {
           $image = array_shift($remote_thumbnail->images);
+          // Save the thumbnail.
           $thumb_filename = basename(substr($image->url, 0, strpos($image->url, '?')));
           file_put_contents($path . '/' . $post->job->id . $remote_thumbnail->label . $thumb_filename, file_get_contents($image->url));
           $thumbnail = array(
@@ -59,6 +64,7 @@ class ZencoderController extends Controller {
           $thumbnails[] = $thumbnail;
         }
 
+        // Metadata including everything Zencoder sends us.
         $metadata = array(
           'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' . $video_filename,
           'label' => $output->label,
