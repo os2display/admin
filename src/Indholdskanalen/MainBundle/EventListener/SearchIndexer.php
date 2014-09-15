@@ -89,6 +89,7 @@ class SearchIndexer {
     $params = array(
       'customer_id' => $customer_id,
       'type' => $type,
+      'id' => $entity->getId(),
       'data' => $entity,
     );
 

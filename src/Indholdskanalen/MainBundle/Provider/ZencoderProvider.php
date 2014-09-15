@@ -17,12 +17,102 @@ class ZencoderProvider extends BaseProvider {
   protected $name;
   protected $hostname;
   protected $api_key;
+
+  /**
+   * Setup the provider with correct hostname and API key.
+   *
+   * hostname is current hostname taken from paramenters.yml.
+   * api_key is Zencoder API KEY.
+   *
+   * @param string $name
+   * @param Filesystem $filesystem
+   * @param CDNInterface $cdn
+   * @param GeneratorInterface $pathGenerator
+   * @param ThumbnailInterface $thumbnail
+   * @param $hostname
+   * @param $api_key
+   */
   public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $api_key) {
     parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
     $this->name = $name;
     $this->hostname = $hostname;
     $this->api_key = $api_key;
   }
+
+  /**
+   * Post video to Zencoder.
+   *
+   * @param MediaInterface $media
+   */
+  protected function postVideoZencoder(MediaInterface $media) {
+    // Generate URL to file.
+    $url = $this->getCdn()->getPath($this->generatePath($media), FALSE) . '/' . $media->getProviderReference();
+
+    // Setup formats.
+    $mp4 = new \stdClass;
+    $mp4->format = 'mp4';
+    $mp4->label = 'mp4';
+    $mp4->thumbnails = array(
+      array(
+        'label' => 'mp4_thumbnail',
+        'number' => 1,
+        'height' => 150,
+      ),
+      array(
+        'label' => 'mp4_landscape',
+        'number' => 1,
+        'width' => 960,
+      ),
+    );
+
+    $ogv = new \stdClass;
+    $ogv->format = 'ogv';
+    $ogv->label = 'ogv';
+    $ogv->thumbnails = array(
+      array(
+        'label' => 'ogv_thumbnail',
+        'number' => 1,
+        'height' => 150,
+      ),
+      array(
+        'label' => 'ogv_landscape',
+        'number' => 1,
+        'width' => 960,
+      ),
+    );
+
+    // Setup Zencoder call.
+    $api = new \stdClass;
+    $api->input = $this->hostname . $url;
+    $api->api_key = $this->api_key;
+    $api->region = 'europe';
+    $api->notifications = $this->hostname . '/zencoder/callback';
+    $api->outputs = array(
+      $mp4,
+      $ogv,
+    );
+
+    $json = json_encode($api);
+
+    // Build CURL.
+    $ch = curl_init('https://app.zencoder.com/api/v2/jobs');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($json))
+    );
+
+    // Send data to Zencoder.
+    $result = json_decode(curl_exec($ch));
+
+    // Save zencoder ID for callback usage.
+    if (isset($result->id)) {
+      $media->setAuthorName($result->id);
+    }
+  }
+
   /**
    * Setup media unique filename.
    *
@@ -97,23 +187,21 @@ class ZencoderProvider extends BaseProvider {
     );
   }
 
-  public function getDownloadResponse(MediaInterface $media, $format, $mode, array $headers = array()) {
-  }
-
-  public function getReferenceFile(MediaInterface $media) {
-    return $this->getFilesystem()->get($this->getReferenceImage($media), true);
-  }
-
-  public function getReferenceImage(MediaInterface $media) {
-    return sprintf('%s/%s',
-      $this->generatePath($media),
-      $media->getProviderReference()
-    );
-  }
-
+  /**
+   * Called when metadata is updated.
+   *
+   * @param MediaInterface $media
+   * @param bool $force
+   */
   public function updateMetadata(MediaInterface $media, $force = false) {
   }
 
+  /**
+   * @param MediaInterface $media
+   * @param string $format
+   *
+   * @return string
+   */
   public function generatePublicUrl(MediaInterface $media, $format) {
     return $this->getCdn()->getPath(sprintf('%s/thumb_%d_%s.jpg',
       $this->generatePath($media),
@@ -123,7 +211,12 @@ class ZencoderProvider extends BaseProvider {
   }
 
   /**
-   * {@inheritdoc}
+   * Generate path.
+   *
+   * @param MediaInterface $media
+   * @param string $format
+   *
+   * @return string
    */
   public function generatePrivateUrl(MediaInterface $media, $format) {
     return sprintf('%s/thumb_%d_%s.jpg',
@@ -131,24 +224,6 @@ class ZencoderProvider extends BaseProvider {
       $media->getId(),
       $format
     );
-  }
-
-  public function buildMediaType(FormBuilder $formBuilder) {
-    $formBuilder->add('binaryContent', 'text');
-  }
-
-  public function buildCreateForm(FormMapper $formMapper) {
-    $formMapper->add('binaryContent', array(), array('type' => 'string'));
-  }
-
-  public function buildEditForm(FormMapper $formMapper) {
-    $formMapper->add('name');
-    $formMapper->add('enabled');
-    $formMapper->add('authorName');
-    $formMapper->add('cdnIsFlushable');
-    $formMapper->add('description');
-    $formMapper->add('copyright');
-    $formMapper->add('binaryContent', array(), array('type' => 'string'));
   }
 
   /**
@@ -177,27 +252,16 @@ class ZencoderProvider extends BaseProvider {
   }
 
   /**
-   * Response to update of Zencoder media.
-   *
    * @param MediaInterface $media
    */
   public function postUpdate(MediaInterface $media) {
-    // Delete the current file from the FS
-    /*$oldMedia = clone $media;
-    $oldMedia->setProviderReference($media->getPreviousProviderReference());
-
-    $path = $this->getReferenceImage($oldMedia);
-
-    if ($this->getFilesystem()->has($path)) {
-      $this->getFilesystem()->delete($path);
-    }
-
-    $this->fixBinaryContent($media);
-
-    $this->setFileContents($media);*/
-
   }
 
+  /**
+   * Save new media.
+   *
+   * @param MediaInterface $media
+   */
   public function postPersist(MediaInterface $media) {
     if ($media->getBinaryContent() === null) {
       return;
@@ -207,6 +271,125 @@ class ZencoderProvider extends BaseProvider {
 
   }
 
+  /**
+   * Set the file contents for an image.
+   *
+   * @param \Sonata\MediaBundle\Model\MediaInterface $media
+   *
+   * @param string $contents
+   *   Path to contents, defaults to MediaInterface BinaryContent.
+   *
+   * @return void
+   */
+  protected function setFileContents(MediaInterface $media, $contents = null) {
+    $file = $this->getFilesystem()->get(sprintf('%s/%s', $this->generatePath($media), $media->getProviderReference()), true);
+
+    if (!$contents) {
+      $contents = $media->getBinaryContent();
+    }
+
+    $metadata = $this->getMetadata($media);
+    $file->setContent(file_get_contents($contents), $metadata);
+  }
+
+  /**
+   * Helper function to make sure content is File object.
+   *
+   * @param MediaInterface $media
+   *
+   * @throws \RuntimeException
+   */
+  protected function fixBinaryContent(MediaInterface $media) {
+    if ($media->getBinaryContent() === null) {
+      return;
+    }
+
+    // If the binary content is a filename => convert to a valid File.
+    if (!$media->getBinaryContent() instanceof File) {
+      if (!is_file($media->getBinaryContent())) {
+        throw new \RuntimeException('The file does not exist : ' . $media->getBinaryContent());
+      }
+
+      $binaryContent = new File($media->getBinaryContent());
+
+      $media->setBinaryContent($binaryContent);
+    }
+  }
+
+  /**
+   * Set the file name.
+   *
+   * @param MediaInterface $media
+   *
+   * @throws \RuntimeException
+   */
+  protected function fixFilename(MediaInterface $media) {
+    if ($media->getBinaryContent() instanceof UploadedFile) {
+      $media->setName($media->getName() ?: $media->getBinaryContent()->getClientOriginalName());
+      $media->setMetadataValue('filename', $media->getBinaryContent()->getClientOriginalName());
+    } elseif ($media->getBinaryContent() instanceof File) {
+      $media->setName($media->getName() ?: $media->getBinaryContent()->getBasename());
+      $media->setMetadataValue('filename', $media->getBinaryContent()->getBasename());
+    }
+
+    // This is the original name.
+    if (!$media->getName()) {
+      throw new \RuntimeException('Please define a valid media\'s name');
+    }
+  }
+
+  /**
+   * Generate unique filename.
+   *
+   * @param MediaInterface $media
+   *
+   * @return string
+   */
+  protected function generateReferenceName(MediaInterface $media) {
+    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()->guessExtension();
+  }
+
+  /**
+   * Validate function.
+   *
+   * @param MediaInterface $media
+   * @param string $format
+   * @param string $mode
+   * @param array $headers
+   *
+   * @return \Symfony\Component\HttpFoundation\Response|void
+   */
+  public function getDownloadResponse(MediaInterface $media, $format, $mode, array $headers = array()) {
+  }
+
+  /**
+   * @param MediaInterface $media
+   *
+   * @return \Gaufrette\File
+   */
+  public function getReferenceFile(MediaInterface $media) {
+    return $this->getFilesystem()->get($this->getReferenceImage($media), true);
+  }
+
+  /**
+   * @param MediaInterface $media
+   *
+   * @return string
+   */
+  public function getReferenceImage(MediaInterface $media) {
+    return sprintf('%s/%s',
+      $this->generatePath($media),
+      $media->getProviderReference()
+    );
+  }
+
+  /**
+   * @param MediaInterface $media
+   * @param string $format
+   * @param array $options
+   *
+   * @return array
+   */
   public function getHelperProperties(MediaInterface $media, $format, $options = array()) {
     $defaults = array(
       // (optional) Enable fullscreen capability. Defaults to true.
@@ -231,120 +414,29 @@ class ZencoderProvider extends BaseProvider {
   }
 
   /**
-   * Set the file contents for an image
-   *
-   * @param \Sonata\MediaBundle\Model\MediaInterface $media
-   * @param string                                   $contents path to contents, defaults to MediaInterface BinaryContent
-   *
-   * @return void
+   * @param FormBuilder $formBuilder
    */
-  protected function setFileContents(MediaInterface $media, $contents = null) {
-    $file = $this->getFilesystem()->get(sprintf('%s/%s', $this->generatePath($media), $media->getProviderReference()), true);
-
-    if (!$contents) {
-      $contents = $media->getBinaryContent();
-    }
-
-    $metadata = $this->getMetadata($media);
-    $file->setContent(file_get_contents($contents), $metadata);
+  public function buildMediaType(FormBuilder $formBuilder) {
+    $formBuilder->add('binaryContent', 'text');
   }
 
-  protected function fixBinaryContent(MediaInterface $media) {
-    if ($media->getBinaryContent() === null) {
-      return;
-    }
-
-    // if the binary content is a filename => convert to a valid File
-    if (!$media->getBinaryContent() instanceof File) {
-      if (!is_file($media->getBinaryContent())) {
-        throw new \RuntimeException('The file does not exist : ' . $media->getBinaryContent());
-      }
-
-      $binaryContent = new File($media->getBinaryContent());
-
-      $media->setBinaryContent($binaryContent);
-    }
+  /**
+   * @param FormMapper $formMapper
+   */
+  public function buildCreateForm(FormMapper $formMapper) {
+    $formMapper->add('binaryContent', array(), array('type' => 'string'));
   }
 
-  protected function fixFilename(MediaInterface $media) {
-    if ($media->getBinaryContent() instanceof UploadedFile) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()->getClientOriginalName());
-      $media->setMetadataValue('filename', $media->getBinaryContent()->getClientOriginalName());
-    } elseif ($media->getBinaryContent() instanceof File) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()->getBasename());
-      $media->setMetadataValue('filename', $media->getBinaryContent()->getBasename());
-    }
-
-    // this is the original name
-    if (!$media->getName()) {
-      throw new \RuntimeException('Please define a valid media\'s name');
-    }
-  }
-
-  protected function generateReferenceName(MediaInterface $media) {
-    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()->guessExtension();
-  }
-
-  protected function postVideoZencoder(MediaInterface $media) {
-    $url = $this->getCdn()->getPath($this->generatePath($media), FALSE) . '/' . $media->getProviderReference();
-
-    $mp4 = new \stdClass;
-    $mp4->format = 'mp4';
-    $mp4->label = 'mp4';
-    $mp4->thumbnails = array(
-      array(
-        'label' => 'mp4_thumbnail',
-        'number' => 1,
-        'height' => 150,
-      ),
-      array(
-        'label' => 'mp4_landscape',
-        'number' => 1,
-        'width' => 960,
-      ),
-    );
-
-    $ogv = new \stdClass;
-    $ogv->format = 'ogv';
-    $ogv->label = 'ogv';
-    $ogv->thumbnails = array(
-      array(
-        'label' => 'ogv_thumbnail',
-        'number' => 1,
-        'height' => 150,
-      ),
-      array(
-        'label' => 'ogv_landscape',
-        'number' => 1,
-        'width' => 960,
-      ),
-    );
-
-    $api = new \stdClass;
-    $api->input = $this->hostname . $url;
-    $api->api_key = $this->api_key;
-    $api->region = 'europe';
-    $api->notifications = $this->hostname . '/zencoder/callback';
-    $api->outputs = array(
-      $mp4,
-      $ogv,
-    );
-
-    $json = json_encode($api);
-
-    $ch = curl_init('https://app.zencoder.com/api/v2/jobs');
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($json))
-    );
-
-    $result = json_decode(curl_exec($ch));
-
-    if (isset($result->id)) {
-      $media->setAuthorName($result->id);
-    }
+  /**
+   * @param FormMapper $formMapper
+   */
+  public function buildEditForm(FormMapper $formMapper) {
+    $formMapper->add('name');
+    $formMapper->add('enabled');
+    $formMapper->add('authorName');
+    $formMapper->add('cdnIsFlushable');
+    $formMapper->add('description');
+    $formMapper->add('copyright');
+    $formMapper->add('binaryContent', array(), array('type' => 'string'));
   }
 }
