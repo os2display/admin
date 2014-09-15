@@ -76,6 +76,14 @@ class SearchCommand extends ContainerAwareCommand {
     $this->indexEnities('Screens', $entities);
   }
 
+  /**
+   * Index the entities given.
+   *
+   * @param string $type
+   *   The type of entities to index (only used in the print).
+   * @param array $entities
+   *   The entities to add to the search backend.
+   */
   private function indexEnities($type, $entities) {
     $this->output->write(sprintf('Found %d %s ', count($entities), $type));
 
@@ -87,14 +95,22 @@ class SearchCommand extends ContainerAwareCommand {
     $this->output->writeln('');
   }
 
-  private function indexEntity($entity, $cmd = 'PUT') {
+  /**
+   * Add a single entity to the search backend.
+   *
+   * @param Entity $entity
+   *   The entity to add to the search backend.
+   * @param string $cmd
+   *   The command to use "POST" create, "PUT" update at the search backend.
+   */
+  private function indexEntity($entity, $cmd = 'POST') {
     $data = $this->sendEvent($entity, $cmd);
     if ($data->status == 200) {
       $this->output->write(sprintf('.'));
     }
     elseif ($data->status == 409) {
       // Document already exists, so update.
-      $this->indexEntity($entity, 'POST');
+      $this->indexEntity($entity, 'PUT');
     }
     else {
       print_r($data);
