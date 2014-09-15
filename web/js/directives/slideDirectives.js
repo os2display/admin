@@ -29,16 +29,18 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
           scope.ikSlide = data;
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
-          if (scope.ikSlide.options.images.length > 0) {
-            if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
-              scope.ikSlide.currentImage = '/images/not-found.png';
+          if (scope.ikSlide.options.images) {
+            if (scope.ikSlide.options.images.length > 0) {
+              if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+                scope.ikSlide.currentImage = '/images/not-found.png';
+              }
+              else {
+                scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+              }
             }
             else {
-              scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+              scope.ikSlide.currentImage = '';
             }
-          }
-          else {
-            scope.ikSlide.currentImage = '';
           }
 
           // Get the template.
@@ -82,16 +84,18 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
         }
 
         // Update image to show.
-        if (scope.ikSlide.options.images.length > 0) {
-          if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
-            scope.ikSlide.currentImage = '/images/not-found.png';
+        if (scope.ikSlide.options.images) {
+          if (scope.ikSlide.options.images.length > 0) {
+            if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+              scope.ikSlide.currentImage = '/images/not-found.png';
+            }
+            else {
+              scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+            }
           }
           else {
-            scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+            scope.ikSlide.currentImage = '';
           }
-        }
-        else {
-          scope.ikSlide.currentImage = '';
         }
       }, true);
 
@@ -104,15 +108,17 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '-edit.html';
 
           // Find the current image to display.
-          if (scope.ikSlide.options.images.length > 0) {
-            if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
-              scope.ikSlide.currentImage = '/images/not-found.png';
+          if (scope.ikSlide.options.images) {
+            if (scope.ikSlide.options.images.length > 0) {
+              if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+                scope.ikSlide.currentImage = '/images/not-found.png';
+              }
+              else {
+                scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+              }
+            } else {
+              scope.ikSlide.currentImage = '';
             }
-            else {
-              scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
-            }
-          } else {
-            scope.ikSlide.currentImage = '';
           }
 
           // Setup the inline styling

@@ -1,0 +1,48 @@
+<div class="create-media--content" data-nv-file-drop="" uploader="uploader">
+  <section id="create-media--select-files" class="overview--section" data-ng-show="currentStep==1">
+    <h1 class="create-media--header">Media - vælg filer</h1>
+    <p class="create-media--header-description">Ved upload af video skal videoen indkodes, denne process kan tage flere minutter og afhænger af størrelsen på filen.</p>
+    <div class="create-media--hidden-input-file">
+      <input id="select-files" type="file" nv-file-select uploader="uploader" multiple />
+    </div>
+    <input type="submit" class="create-media--button" value="Vælg en fil fra din computer" data-ng-click="selectFiles()">
+
+    <p>-eller-</p>
+
+    <div class="create-media--drop-zone" data-ng-show="uploader.isHTML5">
+      <div class="create-media--drop-zone-inner over-zone zone">
+        <element nv-file-over uploader="uploader">
+          <span class="create-media--upload-icon"></span>
+          <span class="create-media--upload-text">Træk filer her for at uploade</span>
+        </element>
+      </div>
+    </div>
+  </section>
+
+  <section id="create-media--upload-files" class="overview--section" data-ng-show="currentStep==2">
+    <h1 class="create-media--header">Media - upload</h1>
+    <div class="create-media--elements">
+      <div class="create-media--thumb-container" data-ng-repeat="item in uploader.queue">
+        <div class="create-media--thumb" data-ng-show="isImage(item.file)">
+          <div data-ng-show="uploader.isHTML5" data-ik-thumb="{ file: item._file, height: 100 }"></div>
+        </div>
+        <div class="create-media--text">
+          <label class="create-media--text-label">Titel</label>
+          <input type="text" class="create-media--text-input" placeholder="{{item.file.name}}" data-ng-model="item.formData[0].title">
+          <div class="create-media--remove" data-ng-click="removeItem(item)">Fjern medie</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="create-media--error-text">{{ uploadErrorText }}</div>
+      <div>
+        <div class="create-media--progress" data-ng-show="uploader.progress > 0">
+          <div class="create-media--progress-bar" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
+        </div>
+      </div>
+      <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload alle</button>
+      <button class="create-media--button" data-ng-show="!uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Fjern alle</button>
+      <button class="create-media--button" data-ng-show="uploadComplete" data-ng-click="clearQueue()">Upload flere</button>
+    </div>
+  </section>
+</div>

@@ -88,25 +88,48 @@ class SlideController extends Controller {
 
       // Add image urls to result.
       $imageUrls = array();
-      $imageIds = $slide->getOptions()['images'];
-      foreach ($imageIds as $imageId) {
-        $image = $sonataMedia->findOneById($imageId);
+      if (isset($slide->getOptions()['images'])) {
+        $imageIds = $slide->getOptions()['images'];
+        foreach ($imageIds as $imageId) {
+          $image = $sonataMedia->findOneById($imageId);
 
-        if ($image) {
-          $serializer = $this->get('jms_serializer');
-          $jsonContent = $serializer->serialize($image, 'json');
+          if ($image) {
+            $serializer = $this->get('jms_serializer');
+            $jsonContent = $serializer->serialize($image, 'json');
 
-          $content = json_decode($jsonContent);
+            $content = json_decode($jsonContent);
 
-          $imageUrls[$imageId] = $content->urls;
+            $imageUrls[$imageId] = $content->urls;
+          }
+        }
+      }
+
+      // Add image urls to result.
+      $videoUrls = array();
+      if (isset($slide->getOptions()['videos'])) {
+        $videoIds = $slide->getOptions()['videos'];
+        foreach ($videoIds as $videoId) {
+          $video = $sonataMedia->findOneById($videoId);
+
+          if ($video) {
+            $serializer = $this->get('jms_serializer');
+            $jsonContent = $serializer->serialize($video, 'json');
+
+            $content = json_decode($jsonContent);
+
+            // @TODO: add correct urls to mp4 and ogg
+            //$videoUrls[$videoId] = $content->urls;
+          }
         }
       }
 
       $serializer = $this->get('jms_serializer');
       $jsonContent = $serializer->serialize($slide, 'json');
 
+      // Add media urls to slide
       $ob = json_decode($jsonContent);
       $ob->imageUrls = $imageUrls;
+      $ob->videoUrls = $videoUrls;
       $jsonContent = json_encode($ob);
 
       $response->setContent($jsonContent);

@@ -114,7 +114,7 @@ ikApp.factory('templateFactory', function() {
         headline: '',
         text: ''
       }
-    }/*,
+    },
     {
       id: 'only-video',
       image: '/ik-templates/only-video/only-video.png',
@@ -126,7 +126,7 @@ ikApp.factory('templateFactory', function() {
       emptyoptions: {
         videos: []
       }
-    }*/
+    }
   ];
 
   factory.getTemplates = function() {

@@ -3368,7 +3368,10 @@ html.is-locked body {
 .only-video {
   background: #b3b3b3;
   overflow: hidden; }
-  /* line 10, ../ik-templates/only-video/_only-video.scss */
+  /* line 5, ../ik-templates/only-video/_only-video.scss */
+  .only-video--settings {
+    z-index: 2; }
+  /* line 12, ../ik-templates/only-video/_only-video.scss */
   .only-video--overlay {
     position: absolute;
     top: 0;
