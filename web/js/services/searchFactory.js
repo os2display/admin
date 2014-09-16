@@ -85,7 +85,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
    *
    * @returns {promise}
    *   When data is received from the backend. If no data found an empty JSON
-   *   object is retuned.
+   *   object is returned.
    */
   this.search = function(search) {
     var deferred = $q.defer();
