@@ -43,6 +43,17 @@ ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slide
             scope.ikSlide.currentImage = '';
           }
 
+          if (scope.ikSlide.options.videos.length > 0) {
+            if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+              scope.ikSlide.currentImage = '/images/not-found.png';
+            }
+            else {
+              scope.ikSlide.currentImage = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]].thumbnail;
+            }
+          } else {
+            scope.ikSlide.currentImage = '';
+          }
+
           scope.theStyle = {
             width: "" + scope.ikWidth + "px",
             height: "" + parseFloat(template.idealdimensions.height * parseFloat(scope.ikWidth / template.idealdimensions.width)) + "px",
