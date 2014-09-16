@@ -117,8 +117,13 @@ class SlideController extends Controller {
 
             $content = json_decode($jsonContent);
 
-            // @TODO: add correct urls to mp4 and ogg
-            //$videoUrls[$videoId] = $content->urls;
+            $urls = array(
+              'thumbnail' => $content->provider_metadata[0]->thumbnails[1]->reference,
+              'mp4' => $content->provider_metadata[0]->reference,
+              'ogg' => $content->provider_metadata[1]->reference,
+            );
+
+            $videoUrls[$videoId] = $urls;
           }
         }
       }

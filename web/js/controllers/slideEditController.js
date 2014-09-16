@@ -14,7 +14,12 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
     slideFactory.getEditSlide(null).then(function(data) {
       $scope.slide = data;
 
-      $scope.mediaType = 'image';
+      // @TODO: refactor to check on media_type on slide instead of template.
+      if ($scope.slide.template === 'only-video') {
+        $scope.selectedMediaType = 'video';
+      } else {
+        $scope.selectedMediaType = 'image';
+      }
     });
 
     // Setup editor states and functions.
@@ -53,6 +58,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
      * Set the step to pick-from-media.
      */
     $scope.pickFromMedia = function pickFromMedia() {
+      $scope.$broadcast('mediaOverview.updateSearch');
       $scope.step = 'pick-from-media';
     };
 
@@ -79,7 +85,6 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
 
         if (index > -1) {
           $scope.slide.options.images.splice(index, 1);
-          $scope.slide.currentImage = '';
         }
         else {
           $scope.slide.options.images = [];
@@ -95,7 +100,13 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
           $scope.slide.options.videos.splice(index, 1);
         }
         else {
+          $scope.slide.options.videos = [];
           $scope.slide.options.videos.push(media.id);
+          $scope.slide.videoUrls = [];
+          $scope.slide.videoUrls[media.id] = {
+            "mp4": media.provider_metadata[0].reference,
+            "ogg": media.provider_metadata[1].reference
+          };
         }
       }
 

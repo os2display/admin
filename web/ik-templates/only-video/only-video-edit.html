@@ -1,7 +1,7 @@
 <div class="only-video" data-ng-style="{'width': theStyle.width, 'height': theStyle.height}">
   <div class="only-video--settings" ng-click="editor.toggleBackgroundEditor()"></div>
-  <video width="960" height="540" controls>
-    <source data-ng-src="{{slide.video.mp4}}" type="video/mp4">
-    <source data-ng-src="{{slide.video.ogg}}" type="video/ogg">
+  <video class="only-video--video-player" controls id="videoPlayer">
+    <source data-ng-src="{{ikSlide.currentVideo.mp4}}" type="video/mp4">
+    <source data-ng-src="{{ikSlide.currentVideo.ogg}}" type="video/ogg">
   </video>
 </div>

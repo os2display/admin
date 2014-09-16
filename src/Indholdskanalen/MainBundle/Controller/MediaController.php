@@ -39,12 +39,14 @@ class MediaController extends Controller {
         $media->setName($path_parts['filename']);
       }
 
-      switch ($file->getMimeType()) {
-        case 'video/mp4':
+      $mediaType = explode('/', $file->getMimeType())[0];
+
+      switch ($mediaType) {
+        case 'video':
           $media->setProviderName('sonata.media.provider.zencoder');
           break;
 
-        case 'image/png':
+        case 'image':
           $media->setProviderName('sonata.media.provider.image');
           break;
 

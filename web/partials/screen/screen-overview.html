@@ -5,9 +5,9 @@
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-change="updateSearch()">
     </form>
     <div class="overview--filter-orientation">
-      <span href="#" data-ng-class="{'is-active': orientation == 'all'}" class="overview--screen-all" data-ng-click="setOrientation('all')">Alle</span>
-      <span href="#" data-ng-class="{'is-active': orientation == 'landscape'}" class="overview--screen-horisontal" data-ng-click="setOrientation('landscape')">Horisontal</span>
-      <span href="#" data-ng-class="{'is-active': orientation == 'portrait'}" class="overview--screen-vertical" data-ng-click="setOrientation('portrait')">Vertikal</span>
+      <span href="#" data-ng-class="{'is-active': orientation == 'all'}" class="overview--filter-threesplit-left" data-ng-click="setOrientation('all')">Alle</span>
+      <span href="#" data-ng-class="{'is-active': orientation == 'landscape'}" class="overview--filter-threesplit-middle" data-ng-click="setOrientation('landscape')">Horisontal</span>
+      <span href="#" data-ng-class="{'is-active': orientation == 'portrait'}" class="overview--filter-threesplit-right" data-ng-click="setOrientation('portrait')">Vertikal</span>
     </div>
   </div>
   <div class="overview--sorting">

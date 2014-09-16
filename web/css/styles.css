@@ -2805,7 +2805,7 @@ html.is-locked body {
   .overview--sort-links {
     text-align: center; }
   /* line 130, ../sass/modules/_overview.scss */
-  .overview--screen-all, .overview--screen-horisontal, .overview--screen-vertical, .overview--horisontal, .overview--vertical, .overview--newest, .overview--oldest, .overview--alphabetical {
+  .overview--filter-threesplit-left, .overview--filter-threesplit-middle, .overview--filter-threesplit-right, .overview--horisontal, .overview--vertical, .overview--newest, .overview--oldest, .overview--alphabetical {
     background: #fafafa;
     border: 1px solid #e6e6e6;
     box-sizing: border-box;
@@ -2815,34 +2815,34 @@ html.is-locked body {
     margin-left: -4px;
     padding: 0.75em 0;
     text-align: center;
-    width: 33%; }
+    width: 33.3%; }
     /* line 49, ../sass/mixins/_mixins.scss */
-    .overview--screen-all:link, .overview--screen-horisontal:link, .overview--screen-vertical:link, .overview--horisontal:link, .overview--vertical:link, .overview--newest:link, .overview--oldest:link, .overview--alphabetical:link {
+    .overview--filter-threesplit-left:link, .overview--filter-threesplit-middle:link, .overview--filter-threesplit-right:link, .overview--horisontal:link, .overview--vertical:link, .overview--newest:link, .overview--oldest:link, .overview--alphabetical:link {
       color: #595959;
       text-decoration: none; }
     /* line 54, ../sass/mixins/_mixins.scss */
-    .overview--screen-all:visited, .overview--screen-horisontal:visited, .overview--screen-vertical:visited, .overview--horisontal:visited, .overview--vertical:visited, .overview--newest:visited, .overview--oldest:visited, .overview--alphabetical:visited {
+    .overview--filter-threesplit-left:visited, .overview--filter-threesplit-middle:visited, .overview--filter-threesplit-right:visited, .overview--horisontal:visited, .overview--vertical:visited, .overview--newest:visited, .overview--oldest:visited, .overview--alphabetical:visited {
       color: #595959;
       text-decoration: none; }
     /* line 59, ../sass/mixins/_mixins.scss */
-    .overview--screen-all:hover, .overview--screen-horisontal:hover, .overview--screen-vertical:hover, .overview--horisontal:hover, .overview--vertical:hover, .overview--newest:hover, .overview--oldest:hover, .overview--alphabetical:hover {
+    .overview--filter-threesplit-left:hover, .overview--filter-threesplit-middle:hover, .overview--filter-threesplit-right:hover, .overview--horisontal:hover, .overview--vertical:hover, .overview--newest:hover, .overview--oldest:hover, .overview--alphabetical:hover {
       color: #595959;
       text-decoration: none; }
     /* line 64, ../sass/mixins/_mixins.scss */
-    .overview--screen-all:focus, .overview--screen-horisontal:focus, .overview--screen-vertical:focus, .overview--horisontal:focus, .overview--vertical:focus, .overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
+    .overview--filter-threesplit-left:focus, .overview--filter-threesplit-middle:focus, .overview--filter-threesplit-right:focus, .overview--horisontal:focus, .overview--vertical:focus, .overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
       color: #595959;
       text-decoration: none; }
     /* line 151, ../sass/modules/_overview.scss */
-    .overview--screen-all:last-child, .overview--screen-horisontal:last-child, .overview--screen-vertical:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
+    .overview--filter-threesplit-left:last-child, .overview--filter-threesplit-middle:last-child, .overview--filter-threesplit-right:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
       border-right: 1px solid #e6e6e6; }
     /* line 155, ../sass/modules/_overview.scss */
-    .overview--screen-all:first-child, .overview--screen-horisontal:first-child, .overview--screen-vertical:first-child, .overview--horisontal:first-child, .overview--vertical:first-child, .overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
+    .overview--filter-threesplit-left:first-child, .overview--filter-threesplit-middle:first-child, .overview--filter-threesplit-right:first-child, .overview--horisontal:first-child, .overview--vertical:first-child, .overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
       border-radius: 0.5em 0 0 0.5em; }
     /* line 159, ../sass/modules/_overview.scss */
-    .overview--screen-all:last-child, .overview--screen-horisontal:last-child, .overview--screen-vertical:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
+    .overview--filter-threesplit-left:last-child, .overview--filter-threesplit-middle:last-child, .overview--filter-threesplit-right:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
       border-radius: 0 0.5em 0.5em 0; }
     /* line 163, ../sass/modules/_overview.scss */
-    .overview--screen-all.is-active, .overview--screen-horisontal.is-active, .overview--screen-vertical.is-active, .overview--horisontal.is-active, .overview--vertical.is-active, .overview--newest.is-active, .overview--oldest.is-active, .overview--alphabetical.is-active {
+    .overview--filter-threesplit-left.is-active, .overview--filter-threesplit-middle.is-active, .overview--filter-threesplit-right.is-active, .overview--horisontal.is-active, .overview--vertical.is-active, .overview--newest.is-active, .overview--oldest.is-active, .overview--alphabetical.is-active {
       background: #f0f0e1; }
   /* line 168, ../sass/modules/_overview.scss */
   .overview--horisontal, .overview--vertical {
@@ -3367,14 +3367,12 @@ html.is-locked body {
 /* line 1, ../ik-templates/only-video/_only-video.scss */
 .only-video {
   background: #b3b3b3;
+  background-size: cover;
   overflow: hidden; }
-  /* line 5, ../ik-templates/only-video/_only-video.scss */
+  /* line 6, ../ik-templates/only-video/_only-video.scss */
   .only-video--settings {
     z-index: 2; }
   /* line 12, ../ik-templates/only-video/_only-video.scss */
-  .only-video--overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0; }
+  .only-video--video-player {
+    min-width: 100%;
+    min-height: 100%; }

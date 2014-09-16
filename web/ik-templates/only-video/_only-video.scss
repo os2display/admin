@@ -1,5 +1,6 @@
 .only-video {
   background: $gray;
+  background-size: cover;
   overflow: hidden;
 
   &--settings {
@@ -8,12 +9,8 @@
     z-index: 2;
   }
 
-  // Overlay used to dis able clickable youtube
-  &--overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  &--video-player {
+    min-width: 100%;
+    min-height: 100%;
   }
 }
