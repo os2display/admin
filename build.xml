@@ -49,21 +49,19 @@
   <property name="prepare.done" value="true"/>
  </target>
 
- <target name="lint" description="Perform syntax check of sourcecode files">
-  <apply executable="php" failonerror="true">
-   <arg value="-l" />
-
-   <fileset dir="${basedir}/src">
-    <include name="**/*.php" />
-    <modified />
-   </fileset>
-
-   <fileset dir="${basedir}/tests">
-    <include name="**/*.php" />
-    <modified />
-   </fileset>
-  </apply>
- </target>
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <apply executable="php" failonerror="true">
+            <arg value="-l" />
+            <fileset dir="${sourcedir}">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+            <fileset dir="${basedir}/src/">
+                <include name="**/*Test.php" />
+                <modified />
+            </fileset>
+        </apply>
+    </target>
 
  <target name="phploc"
          description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
