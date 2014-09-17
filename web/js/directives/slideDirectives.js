@@ -132,6 +132,9 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
             scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
           }
         }
+
+        // Update fontsize
+        scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
       }, true);
 
       // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
@@ -182,17 +185,6 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
             height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
             fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
           }
-
-          // Add keyup event listener for fontsize, to make sure the preview updates font size.
-          element.find('.js-ik-slide-editor-fontsize-input').on('keyup', function() {
-            scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
-            scope.$apply();
-          });
-
-          // Cleanup.
-          element.on('$destroy', function() {
-            $(this).find('.js-ik-slide-editor-fontsize-input').off('keyup');
-          });
         });
       });
     },
