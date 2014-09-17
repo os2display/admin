@@ -3209,11 +3209,27 @@ html.is-locked body {
 
 /* line 27, ../ik-templates/text-top/_text-top.scss */
 .text-top--header {
+  overflow: hidden;
+  background-color: transparent;
+  border: 0;
+  resize: none;
   font-size: 100%; }
+  /* line 28, ../ik-templates/text-top/_text-top.scss */
+  .text-top--header:focus {
+    outline: none;
+    border: 0; }
 
-/* line 36, ../ik-templates/text-top/_text-top.scss */
+/* line 47, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
+  overflow: hidden;
+  background-color: transparent;
+  border: 0;
+  resize: none;
   font-size: 70%; }
+  /* line 48, ../ik-templates/text-top/_text-top.scss */
+  .text-top--description:focus {
+    outline: none;
+    border: 0; }
 
 /* line 1, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom {

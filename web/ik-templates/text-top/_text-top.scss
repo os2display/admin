@@ -25,20 +25,42 @@
 
 
 .text-top--header {
+  &:focus {
+    outline:none;
+    border: 0;
+  }
+
+  overflow: hidden;
+
+  background-color: transparent;
+  border: 0;
+  resize: none;
+
+  font-size: 100%;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
-
-  font-size: 100%;
 }
 
 
 .text-top--description {
+  &:focus {
+    outline:none;
+    border: 0;
+  }
+
+  overflow: hidden;
+
+  background-color: transparent;
+  border: 0;
+  resize: none;
+
+  font-size: 70%;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
-
-  font-size: 70%;
 }
 
 

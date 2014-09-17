@@ -78,3 +78,52 @@ ikApp.directive('includeReplace', function () {
   };
 });
 
+/**
+ *
+ */
+ikApp.directive('autoGrow', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attr){
+      var elementWidth = $(element[0]).width();
+
+      var textWidth = function textWidth(txt, font, padding) {
+        $span = $('<span></span>');
+        $span.css({
+          font:font,
+          position:'absolute',
+          top: -1000,
+          left:-1000,
+          padding:padding
+        }).text(txt);
+        $span.appendTo('body');
+        return $span.width();
+      }
+
+      var update = function() {
+        var val = element[0].value;
+
+        var lines = val.split('\n');
+
+        var tooLongLines = 0;
+
+        for (var i = 0; i < lines.length; i++) {
+          var font = element.css('font');
+          var padding = element.css('padding');
+          tooLongLines = tooLongLines + parseInt(textWidth(lines[i], font, padding) / elementWidth);
+        }
+
+        element[0].rows = lines.length + tooLongLines;
+      }
+
+      if (attr.ngModel) {
+        // update when the model changes
+        scope.$watch(attr.ngModel, update);
+      }
+
+      element.bind('keyup keydown keypress change', update);
+
+      setTimeout(update, 1000);
+    }
+  }
+});
