@@ -18,14 +18,21 @@ ikApp.directive('ikMediaOverview', function() {
   return {
     restrict: 'E',
     scope: {
-      mediaType: '@'
+      mediaType: '@',
+      autoSearch: '@'
     },
     controller: function($scope, mediaFactory) {
       // Set default orientation and sort.
       $scope.sort = { "created_at": "desc" };
 
+      // Set default search text.
+      $scope.search_text = '';
+
+      // Set default media type.
+      $scope.media_type = '';
+
       // Media to display.
-      $scope.images = [];
+      $scope.media = [];
 
       // Setup default search options.
       var search = {
@@ -44,7 +51,7 @@ ikApp.directive('ikMediaOverview', function() {
       /**
        * Adds hover overlay on media elements.
        */
-      $scope.mouseHover = function(state) {
+      $scope.mouseHover = function mouseHover(state) {
         if(state > 0) {
           $scope.hovering = state;
         } else {
@@ -55,41 +62,48 @@ ikApp.directive('ikMediaOverview', function() {
       /**
        * Updates the images array by sending a search request.
        */
-      $scope.updateSearch = function() {
+      $scope.updateSearch = function updateSearch() {
         // Get search text from scope.
         search.text = $scope.search_text;
 
         mediaFactory.searchMedia(search).then(
           function(data) {
-            $scope.images = data;
-
-            angular.forEach($scope.images, function(image, key) {
-              image.url = image.urls.default_landscape;
-            });
+            $scope.media = data;
           }
         );
       };
 
       // Send the default search query.
-      $scope.updateSearch();
+      if ($scope.autoSearch) {
+        $scope.updateSearch();
+      }
 
-
+      /**
+       * Set the media type to filter on.
+       * @param type
+       */
       $scope.filterMediaType = function filterMediaType(type) {
         // Only update search if value changes.
         if ($scope.media_type !== type) {
           // Update scope to show selection in GUI.
           $scope.media_type = type;
 
-          // Filter based on content type.
-          search.filter = {
-            "bool": {
-              "must": {
-                "term": {
-                  "content_type":  type
+          // Remove filter if no type is set.
+          if (type === '') {
+            search.filter = undefined;
+          }
+          else {
+            // Filter based on content type.
+            search.filter = {
+              "bool": {
+                "must": {
+                  "term": {
+                    "content_type":  type
+                  }
                 }
               }
-            }
-          };
+            };
+          }
 
           // Update the search result.
           $scope.updateSearch();
@@ -99,27 +113,36 @@ ikApp.directive('ikMediaOverview', function() {
       /**
        * Get the content type of a media: image or media
        *
-       * @param media
+       * @param mediaElement
        *
        * @returns "", "video" or "image"
        */
-      $scope.getMediaType = function getMediaType(media) {
-        if (!media) {
+      $scope.getMediaType = function getMediaType(mediaElement) {
+        if (!mediaElement) {
           return "";
         }
 
-        var type = media.content_type.split("/");
+        var type = mediaElement.content_type.split("/");
         return type[0];
       };
 
       /**
        * Emits event when the user clicks a media.
        *
-       * @param media
+       * @param mediaElement
        */
-      $scope.mediaOverviewClickMedia = function mediaOverviewClickImage(media) {
-        $scope.$emit('mediaOverview.selectMedia', media);
+      $scope.mediaOverviewClickMedia = function mediaOverviewClickImage(mediaElement) {
+        $scope.$emit('mediaOverview.selectMedia', mediaElement);
       };
+
+      /**
+       * Handle mediaOverview.updateSearch events.
+       */
+      $scope.$on('mediaOverview.updateSearch', function(event) {
+        $scope.updateSearch();
+
+        event.preventDefault();
+      });
 
       /**
        * Changes the sort order and updated the images.
@@ -129,7 +152,7 @@ ikApp.directive('ikMediaOverview', function() {
        * @param sort_order
        *   The order to sort in 'desc' or 'asc'.
        */
-      $scope.setSort = function(sort_field, sort_order) {
+      $scope.setSort = function setSort(sort_field, sort_order) {
         // Only update search if sort have changed.
         if ($scope.sort[sort_field] === undefined || $scope.sort[sort_field] !== sort_order) {
           // Update the store sort order.
@@ -147,6 +170,16 @@ ikApp.directive('ikMediaOverview', function() {
       };
     },
     link: function(scope, element, attrs) {
+      attrs.$observe('mediaType', function(val) {
+        if (!val) {
+          return;
+        }
+        if (val == scope.media_type) {
+          return;
+        }
+
+        scope.filterMediaType(val);
+      })
     },
     templateUrl: 'partials/directives/media-overview.html'
   };
@@ -307,11 +340,11 @@ ikApp.directive('ikThumb', ['$window', function($window) {
       var params = scope.$eval(attributes.ikThumb);
 
       if (!helper.isFile(params.file)) {
-        console.log("Not a file");
+        console.log("ikThumb: Not a file");
         return;
       }
       if (!helper.isImage(params.file)) {
-        console.log("Not an image");
+        console.log("ikThumb: Not an image");
         return;
       }
 

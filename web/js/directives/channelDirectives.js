@@ -32,12 +32,23 @@ ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slide
 
           var template = templateFactory.getTemplate(scope.ikSlide.template);
 
-          if (scope.ikSlide.options.images.length > 0) {
+          if (scope.ikSlide.options.images && scope.ikSlide.options.images.length > 0) {
             if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
               scope.ikSlide.currentImage = '/images/not-found.png';
             }
             else {
               scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+            }
+          } else {
+            scope.ikSlide.currentImage = '';
+          }
+
+          if (scope.ikSlide.options.videos && scope.ikSlide.options.videos.length > 0) {
+            if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+              scope.ikSlide.currentImage = '/images/not-found.png';
+            }
+            else {
+              scope.ikSlide.currentImage = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]].thumbnail;
             }
           } else {
             scope.ikSlide.currentImage = '';

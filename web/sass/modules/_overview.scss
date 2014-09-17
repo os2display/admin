@@ -127,9 +127,9 @@
     text-align: center;
   }
 
-  &--screen-all,
-  &--screen-horisontal,
-  &--screen-vertical,
+  &--filter-threesplit-left,
+  &--filter-threesplit-middle,
+  &--filter-threesplit-right,
   &--horisontal,
   &--vertical,
   &--newest,
@@ -144,7 +144,7 @@
     margin-left: $grid-markup-fix;
     padding: 0.75em 0;
     text-align: center;
-    width: 33%;
+    width: 33.3%;
 
     @include strip-link-styles($gray-darker);
 

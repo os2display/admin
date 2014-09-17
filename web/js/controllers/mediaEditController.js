@@ -8,10 +8,12 @@
  */
 ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory',
   function($scope, $location, $routeParams, $timeout, mediaFactory) {
-    mediaFactory.getImage($routeParams.id).then(function(data) {
-      $scope.image = data;
 
-      if ($scope.image === {}) {
+    // Get the selected media
+    mediaFactory.getMedia($routeParams.id).then(function(data) {
+      $scope.media = data;
+
+      if ($scope.media === {}) {
         $location.path('/media-overview');
       }
     });
@@ -21,7 +23,7 @@ ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', 
      * @param id
      */
     $scope.delete = function() {
-      mediaFactory.deleteImage($scope.image.id).then(function() {
+      mediaFactory.deleteMedia($scope.media.id).then(function() {
         $timeout(function() {
           $location.path('/media-overview');
         }, 500);

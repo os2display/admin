@@ -47,10 +47,9 @@
             </object>
           </div>
         </div>
-        <div class="edit-menu--background-page-inner" data-ng-switch="ikSlide.template">
+        <div class="edit-menu--background-page-inner">
           <h2 class="edit-menu--background-header">Vælg fil fra medier</h2>
-          <ik-media-overview media-type="image" data-ng-switch-when="!only-video"></ik-media-overview>
-          <ik-media-overview media-type="video" data-ng-switch-default=""></ik-media-overview>
+          <ik-media-overview media-type="{{selectedMediaType}}" auto-search="false"></ik-media-overview>
         </div>
       </div>
       <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-computer'">
