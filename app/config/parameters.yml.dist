@@ -17,3 +17,12 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    middleware_host: http://127.0.0.1:3020
+    absolute_path_to_server: http://service.indholdskanalen.vm
+
+    zencoder_api: API_KEY_HERE
+
+    search_host: http://127.0.0.1:3010
+    search_path: /api
+    search_customer_id: e7df7cd2ca07f4f1ab415d457a6e1c13

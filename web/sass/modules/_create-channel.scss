@@ -22,7 +22,7 @@
 }
 
 
-// Change arrow direction and position on large screens.
+// Change arrow direction and position on large screens. (Create channel page 4)
 $breakpoint-arrow-switch : 693px;
 
 
@@ -162,6 +162,7 @@ $breakpoint-arrow-switch : 693px;
 
   &--slide-link {
     display: block;
+    float: left; // Neeeded for displaying video slides.
     position: relative;
 
     @include add-overlay(create-channel);
@@ -188,19 +189,6 @@ $breakpoint-arrow-switch : 693px;
     position: relative;
 
     @include preview-list-display();
-
-    // We nest to hide the arrow tag of the last element.
-    &:first-child {
-      .create-channel--slide-order-arrow-left {
-        display: none;
-      }
-    }
-
-    &:last-child {
-      .create-channel--slide-order-arrow-right {
-        display: none;
-      }
-    }
   }
 
 
@@ -289,4 +277,52 @@ $breakpoint-arrow-switch : 693px;
     margin-left: 2px;
   }
 
+
+  /* Create channel - screen selection (Page 5)
+   ========================================================================== */
+  &--content--channel-five {
+    @extend %create-element--layout-default;
+  }
+
+  &--select-screens {
+    margin-bottom: 3em;
+  }
+
+  &--screen {
+    border-bottom: 1px solid $gray;
+    margin: 0 auto;
+    width: 50%;
+
+    &:first-child {
+      border-top: 1px solid $gray;
+    }
+  }
+
+
+  &--screen-element {
+    height: 1.5em;
+    padding: 1em;
+
+    &:hover {
+      background: $beige;
+    }
+  }
+
+
+  &--screen-element-check {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+
+    &.is-selected {
+      @include generate-sprite-image($dashboard-sprites, 'check-icon', 20);
+    }
+  }
+
+
+  &--screen-element-title {
+    display: inline-block;
+    position: absolute;
+    left: 3em;
+  }
 }

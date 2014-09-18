@@ -27,6 +27,10 @@
   position: relative;
   display: block;
   margin: 0;
+
+  &-display {
+    cursor: pointer;
+  }
 }
 
 

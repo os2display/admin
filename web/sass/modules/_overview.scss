@@ -31,12 +31,14 @@
   }
 
   &--screens,
+  &--media,
   &--channels,
   &--slides {
     text-align: center;
   }
 
   &--screen,
+  &--media-single,
   &--channel,
   &--slide {
     display: inline-block;
@@ -79,6 +81,8 @@
     margin-bottom: 1em;
     position: relative;
     width: 100%;
+
+    text-align: center;
 
     @include breakpoint($breakpoint-desk) {
       width: 25%;
@@ -123,6 +127,9 @@
     text-align: center;
   }
 
+  &--filter-threesplit-left,
+  &--filter-threesplit-middle,
+  &--filter-threesplit-right,
   &--horisontal,
   &--vertical,
   &--newest,
@@ -137,7 +144,7 @@
     margin-left: $grid-markup-fix;
     padding: 0.75em 0;
     text-align: center;
-    width: 33%;
+    width: 33.3%;
 
     @include strip-link-styles($gray-darker);
 
@@ -162,7 +169,6 @@
   &--vertical {
     width: 50%;
   }
-
 
   /* Screens overview
  ========================================================================== */
@@ -197,5 +203,69 @@
     top:50%;
 
     @include translateY(-50%);
+  }
+
+  &--screen-all,
+  &--screen-horisontal,
+  &--screen-vertical {
+    width: 33.3%;
+  }
+
+
+/* Media overview
+========================================================================== */
+  &--media-single {
+    position: relative;
+    cursor: pointer;
+    font-size: 0; // To counter inline-block.
+    overflow: hidden;
+  }
+
+
+  &--media-video-icon {
+    right: .5rem;
+    position: absolute;
+    top: .5rem;
+    background: $white;
+
+    @include generate-sprite-image($dashboard-sprites, 'video-icon', 22);
+  }
+
+
+  &--media-overlay {
+    background-color: transparentize($white, .35);
+    color: $black;
+    font-size: .8rem; // We use rem since the container fontsize is 0 (See "media-single")
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30%;
+    height: 30%;
+
+    &.is-hovering {
+      @include animation(toggle-media-overlay .15s ease 1 forwards);
+
+      animation-timing-function: linear;
+      -webkit-animation-timing-function: linear;
+    }
+  }
+
+
+  &--media-image {
+    height: 150px;
+  }
+
+
+  &--media-overlay-inner {
+    padding: .5em;
+    text-align: left;
+  }
+
+
+  &--media-text {
+    float: left;
+    max-width: 80%;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
 }

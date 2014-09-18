@@ -1,5 +1,7 @@
 /web/bundles/
+/web/config.rb
 /web/config.codekit
+/web/js/configuration.js
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
@@ -14,3 +16,4 @@ config.codekit
 /web/bower_components/
 composer.phar
 web/uploads/
+/bin

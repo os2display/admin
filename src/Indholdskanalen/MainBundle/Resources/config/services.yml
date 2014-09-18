@@ -7,7 +7,34 @@ services:
 #        arguments: [@service_id, "plain_value", %parameter%]
   indholdskanalen_main.listener:
     class: Indholdskanalen\MainBundle\EventListener\SearchIndexer
+    arguments: [@jms_serializer, @indholdskanalen.middleware.communication]
     tags:
       - { name: doctrine.event_listener, event: postPersist }
       - { name: doctrine.event_listener, event: preUpdate }
-      - { name: doctrine.event_listener, event: PreRemove }
+      - { name: doctrine.event_listener, event: preRemove }
+
+  indholdskanalen_middleware.listener:
+    class: Indholdskanalen\MainBundle\EventListener\MiddlewareListener
+    arguments: [@indholdskanalen.middleware.communication]
+    tags:
+      - { name: doctrine.event_listener, event: postUpdate }
+
+
+  indholdskanalen_main.serialization_listener:
+    class: Indholdskanalen\MainBundle\EventListener\SerializationListener
+    arguments: [@sonata.media.pool]
+    tags:
+      - { name: jms_serializer.event_subscriber}
+
+  indholdskanalen_main.api_authentication_service:
+    class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
+
+  sonata.media.provider.zencoder:
+    class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
+    tags:
+      - { name: sonata.media.provider }
+    arguments: [sonata.media.provider.zencoder, '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '%absolute_path_to_server%', '%zencoder_api%']
+    calls:
+      - [setTemplates, [{ helper_thumbnail: 'SonataMediaBundle:Provider:thumbnail.html.twig', helper_view: 'SonataMediaBundle:Provider:view_video.html.twig' }]]
+
+

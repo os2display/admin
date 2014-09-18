@@ -14,7 +14,7 @@ use Application\Sonata\MediaBundle\Entity\Media;
  */
 class MediaController extends Controller {
   /**
-   * Mange file upload.
+   * Manage file upload.
    *
    * @Route("")
    * @Method("POST")
@@ -25,20 +25,47 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function MediaUploadAction(Request $request) {
+    $title = $request->request->get('title');
+
+    $uploadedItems = array();
+
     foreach ($request->files as $file) {
       $media = new Media;
 
-      $media->setName($file->getClientOriginalName());
+      if (isset($title) && $title !== '') {
+        $media->setName($title);
+      } else {
+        $path_parts = pathinfo($file->getClientOriginalName());
+        $media->setName($path_parts['filename']);
+      }
+
+      $mediaType = explode('/', $file->getMimeType())[0];
+
+      switch ($mediaType) {
+        case 'video':
+          $media->setProviderName('sonata.media.provider.zencoder');
+          break;
+
+        case 'image':
+          $media->setProviderName('sonata.media.provider.image');
+          break;
+
+        default:
+          $media->setProviderName('sonata.media.provider.image');
+      }
+
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
-      $media->setProviderName('sonata.media.provider.image');
 
       $mediaManager = $this->get("sonata.media.manager.media");
 
       $mediaManager->save($media);
+
+      $uploadedItems[] = $media->getId();
     }
 
-    $response = new Response(json_encode(array()));
+    // @TODO: send status codes
+    $response = new Response(json_encode($uploadedItems));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
 
@@ -54,27 +81,87 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function MediaListAction() {
-    $results = $this->getDoctrine()->getManager()->createQuery('SELECT m FROM ApplicationSonataMediaBundle:Media m')
-      ->getResult();
+    $em = $this->getDoctrine()->getManager();
+    $qb = $em->createQueryBuilder();
 
-    $items = array();
-    foreach ($results as $media) {
-      $provider = $this->container->get($media->getProviderName());
+    $qb->select('m')
+      ->from('ApplicationSonataMediaBundle:Media', 'm')
+      ->orderBy('m.updatedAt', 'DESC');
 
-      $items[] = array(
-        'id' => $media->getId(),
-        'name' => $media->getName(),
-        'url' => array(
-          'landscape' => $provider->generatePublicUrl($media, 'default_landscape'),
-          'portrait' => $provider->generatePublicUrl($media, 'default_portrait'),
-        )
-      );
-    }
+    $query = $qb->getQuery();
+    $results = $query->getResult();
 
-    $response = new Response(json_encode($items));
+    $response = new Response();
+
+    $serializer = $this->get('jms_serializer');
+    $jsonContent = $serializer->serialize($results, 'json');
+
+    $response->setContent($jsonContent);
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
 
     return $response;
   }
+
+  /**
+   * Get media with ID.
+   *
+   * @Route("/{id}")
+   * @Method("GET")
+   *
+   * @param $id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaGetAction($id) {
+    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    if ($media) {
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($media, 'json');
+
+      $response->setContent($jsonContent);
+    } else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
+  /**
+   * Delete media with ID.
+   *
+   * @Route("/{id}")
+   * @Method("DELETE")
+   *
+   * @param $id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaDeleteAction($id) {
+    $em = $this->getDoctrine()->getManager();
+    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    if($media) {
+      $em->remove(($media));
+      $em->flush();
+      $response->setContent(json_encode(array()));
+    } else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
+
 }

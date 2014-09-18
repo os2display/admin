@@ -37,13 +37,17 @@ class SlideController extends Controller {
       $slide = new Slide();
     }
 
+    // Get user
+    $userEntity = $this->get('security.context')->getToken()->getUser();
+
     // Update fields.
     $slide->setTitle($post['title']);
     $slide->setOrientation($post['orientation']);
     $slide->setTemplate($post['template']);
-    $slide->setCreated($post['created']);
+    $slide->setCreatedAt($post['created_at']);
     $slide->setOptions($post['options']);
-    $slide->setUser($post['user']);
+    $slide->setUser($userEntity->getId());
+    $slide->setDuration($post['duration']);
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
@@ -79,8 +83,59 @@ class SlideController extends Controller {
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
     if ($slide) {
+      // Get handle to media.
+      $sonataMedia = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media');
+
+      // Add image urls to result.
+      $imageUrls = array();
+      if (isset($slide->getOptions()['images'])) {
+        $imageIds = $slide->getOptions()['images'];
+        foreach ($imageIds as $imageId) {
+          $image = $sonataMedia->findOneById($imageId);
+
+          if ($image) {
+            $serializer = $this->get('jms_serializer');
+            $jsonContent = $serializer->serialize($image, 'json');
+
+            $content = json_decode($jsonContent);
+
+            $imageUrls[$imageId] = $content->urls;
+          }
+        }
+      }
+
+      // Add image urls to result.
+      $videoUrls = array();
+      if (isset($slide->getOptions()['videos'])) {
+        $videoIds = $slide->getOptions()['videos'];
+        foreach ($videoIds as $videoId) {
+          $video = $sonataMedia->findOneById($videoId);
+
+          if ($video) {
+            $serializer = $this->get('jms_serializer');
+            $jsonContent = $serializer->serialize($video, 'json');
+
+            $content = json_decode($jsonContent);
+
+            $urls = array(
+              'thumbnail' => $content->provider_metadata[0]->thumbnails[1]->reference,
+              'mp4' => $content->provider_metadata[0]->reference,
+              'ogg' => $content->provider_metadata[1]->reference,
+            );
+
+            $videoUrls[$videoId] = $urls;
+          }
+        }
+      }
+
       $serializer = $this->get('jms_serializer');
       $jsonContent = $serializer->serialize($slide, 'json');
+
+      // Add media urls to slide
+      $ob = json_decode($jsonContent);
+      $ob->imageUrls = $imageUrls;
+      $ob->videoUrls = $videoUrls;
+      $jsonContent = json_encode($ob);
 
       $response->setContent($jsonContent);
     }

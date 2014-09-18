@@ -1,6 +1,6 @@
 <section id="create-screen-two" class="create-screen--section">
   <div class="create-screen--content--screen-two">
-    <h1 class="create-screen--header">Opret skærm ({{step}}/{{steps}})</h1>
+    <h1 class="create-screen--header">{{screen.status === "edit-screen" ? "Redigér skærm" : "Opret skærm"}}</h1>
     <p class="create-screen--header-description">Angiv bredde og højde i pixels på skærmen.</p>
     <form ng-submit="submitStep()">
       <input type="text" class="create-screen--text" placeholder="Bredde" data-ng-class="{'is-valid': validation.widthSet()}" data-ng-model="screen.width">

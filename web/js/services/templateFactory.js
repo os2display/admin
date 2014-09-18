@@ -1,3 +1,11 @@
+/**
+ * @file
+ * Contains the template factory.
+ */
+
+/**
+ * Template factory. Main entry point for templates.
+ */
 ikApp.factory('templateFactory', function() {
   var factory = {};
   var templates = [
@@ -14,7 +22,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -32,7 +40,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -51,7 +59,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -70,7 +78,7 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
@@ -86,7 +94,7 @@ ikApp.factory('templateFactory', function() {
       },
       emptyoptions: {
         bgcolor: '#ccc',
-        image: ''
+        images: []
       }
     },
     {
@@ -102,11 +110,22 @@ ikApp.factory('templateFactory', function() {
         bgcolor: '#ccc',
         textcolor: '#fff',
         textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        image: '',
+        images: [],
         headline: '',
         text: ''
       }
-
+    },
+    {
+      id: 'only-video',
+      image: '/ik-templates/only-video/only-video.png',
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      },
+      emptyoptions: {
+        videos: []
+      }
     }
   ];
 

@@ -28,11 +28,19 @@
 
 
 .text-right--header {
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
+
   font-size: 100%;
 }
 
 
 .text-right--description {
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
+
   font-size: 70%;
 }
 

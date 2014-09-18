@@ -18,14 +18,6 @@
    ========================================================================== */
   &--section {
     @extend %create-element--section-default;
-
-    &.ng-enter {
-      @include animation(fade-in 2s infinite);
-    }
-
-    &.ng-leave {
-      @include animation(fade-out 2s infinite);
-    }
   }
 
 
@@ -92,12 +84,13 @@
 
   &--screen-landscape {
     display: inline-block;
-    margin-bottom: 2em;
+    margin: 0 2em 2em;
   }
 
 
   &--screen-portrait {
     display: inline-block;
+    margin: 0 2em 2em;
   }
 
 
@@ -119,8 +112,8 @@
 
 
   &--template {
-    margin-bottom: 2em;
-    position: relative;
+    display: inline-block;
+    margin: 0 2em 2em;
   }
 
 
@@ -217,5 +210,50 @@
   &--image {
     max-height: 100%;
     width: 100%;
+  }
+
+
+  /* Create slide - setup content (Page 5)
+   ========================================================================== */
+  &--content--slide-five {
+    @extend %grid;
+
+    @extend %create-element--layout-default;
+  }
+
+  &--duration {
+    width: 75%;
+    margin: 0 auto;
+    max-width: 30em;
+
+
+    @include breakpoint($breakpoint-lap) {
+      width: 50%;
+    }
+  }
+
+  &--duration-label {
+    font-size: 1.2em;
+    text-align: left;
+  }
+
+  &--duration-text {
+    margin-bottom: 1em;
+  }
+
+  &--duration-input[type="text"] {
+    display: inline-block;
+    width: 47%;
+    margin-right: 2%;
+  }
+
+  &--duration-suffix {
+    display: inline-block;
+    font-size: 1.5em;
+    width: 50%;
+  }
+
+  &--duration-description {
+    color: $gray;
   }
 }

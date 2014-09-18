@@ -1,10 +1,14 @@
 /**
  * @file
+ * Contains the search factory.
+ */
+
+/**
  * Search factory that handles communication with search engine.
  *
  * The communication is based on web-sockets via socket.io library.
  */
-ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
+ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q, $rootScope, configuration) {
   var socket;
   var self = this;
 
@@ -12,11 +16,11 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
    * Connect to the web-socket.
    *
    * @param deferred
-   *   The is a deferred object that should be resovled on connection.
+   *   The is a deferred object that should be resolved on connection.
    */
   function getSocket(deferred) {
     // Get connected to the server.
-    socket = io.connect('http://service.indholdskanalen.vm:3000');
+    socket = io.connect(configuration.search.address);
 
     // Handle error events.
     socket.on('error', function (reason) {
@@ -65,11 +69,14 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
    * {
    *   "fields": 'title',
    *     "text": '',
-   *     "sort": {
-   *       "created_at" : {
+   *     "sort": [
+   *      {
+   *       "created_at.raw" : {
    *         "order": "desc"
    *       }
    *     }
+   *     ],
+   *     "filter": [ ]
    *   }
    * }
    *
@@ -78,15 +85,54 @@ ikApp.service('searchFactory', ['$q', '$rootScope', function($q, $rootScope) {
    *
    * @returns {promise}
    *   When data is received from the backend. If no data found an empty JSON
-   *   object is retuned.
+   *   object is returned.
    */
   this.search = function(search) {
     var deferred = $q.defer();
 
+    // Build default match all search query.
+    var query = {
+      "customer_id": configuration.search.customer_id,
+      "type": search.type,
+      "query": {
+        "match_all": { }
+      }
+    };
+
+    // Text given build field search query.
+    // The analyser ensures that we match the who text string sent not part
+    // of. @TODO: It this the right behaviour.
+    if (search.text !== undefined && search.text !== '') {
+      query.query = {
+        "multi_match": {
+          "query": search.text,
+          "fields": search.fields,
+          "analyzer": 'string_search'
+        }
+      };
+    }
+
+    // Add sort
+    query.sort = search.sort;
+
+    // Add filter.
+    // @TODO: move to the start.
+    if (search.filter !== undefined) {
+      query.query = {
+        "filtered": {
+          "query": query.query,
+          "filter": search.filter
+        }
+      };
+    }
+
+    // @TODO: Fix sort on text fields.
+//      sort: { 'name.raw': { order: 'asc' } } }
+
     connect().then(function () {
-      socket.emit('search', search);
-      socket.on('result', function (data) {
-        deferred.resolve(data);
+      socket.emit('search', query);
+      socket.on('result', function (hits) {
+        deferred.resolve(hits);
       });
     });
 

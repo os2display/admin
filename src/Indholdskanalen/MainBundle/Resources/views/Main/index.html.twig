@@ -24,10 +24,14 @@
   <script src="{{ asset('js/lib/es5-shim.min.js') }}"></script>
   <script src="{{ asset('js/lib/angular-file-upload.js') }}"></script>
   <script src="{{ asset('js/lib/angular-checklist-model.js') }}"></script>
-  <script src="{{ asset('js/lib/socket.io-1.0.6.js') }}"></script>
+  <script src="{{ asset('js/lib/angular-bootstrap-colorpicker.js') }}"></script>
+
+  <!-- Socket io from the search node, to get right version -->
+  <script src="/proxy/socket.io/socket.io.js"></script>
 
   <!-- Base -->
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/configuration.js') }}"></script>
   <script src="{{ asset('js/routing.js') }}"></script>
 
   <!-- Directives -->
@@ -38,26 +42,29 @@
   <script src="{{ asset('js/directives/mediaDirectives.js') }}"></script>
 
   <!-- Services -->
-  <script src="{{ asset('js/services/imageFactory.js') }}"></script>
+  <script src="{{ asset('js/services/mediaFactory.js') }}"></script>
   <script src="{{ asset('js/services/templateFactory.js') }}"></script>
   <script src="{{ asset('js/services/slideFactory.js') }}"></script>
   <script src="{{ asset('js/services/screenFactory.js') }}"></script>
   <script src="{{ asset('js/services/channelFactory.js') }}"></script>
   <script src="{{ asset('js/services/userFactory.js') }}"></script>
   <script src="{{ asset('js/services/searchFactory.js') }}"></script>
+  <script src="{{ asset('js/services/authHttpResponseInterceptor.js') }}"></script>
 
   <!-- Controllers -->
-  <script src="{{ asset('js/controllers/miscControllers.js') }}"></script>
-  <script src="{{ asset('js/controllers/templatesController.js') }}"></script>
+  <script src="{{ asset('js/controllers/slideOverviewController.js') }}"></script>
+  <script src="{{ asset('js/controllers/screenOverviewController.js') }}"></script>
+  <script src="{{ asset('js/controllers/channelOverviewController.js') }}"></script>
+  <script src="{{ asset('js/controllers/mediaOverviewController.js') }}"></script>
+  <script src="{{ asset('js/controllers/indexController.js') }}"></script>
   <script src="{{ asset('js/controllers/menuController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideController.js') }}"></script>
-  <script src="{{ asset('js/controllers/slidesController.js') }}"></script>
+  <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
   <script src="{{ asset('js/controllers/screenController.js') }}"></script>
-  <script src="{{ asset('js/controllers/screensController.js') }}"></script>
   <script src="{{ asset('js/controllers/screenGroupController.js') }}"></script>
   <script src="{{ asset('js/controllers/screenGroupsController.js') }}"></script>
   <script src="{{ asset('js/controllers/channelController.js') }}"></script>
-  <script src="{{ asset('js/controllers/channelsController.js') }}"></script>
-  <script src="{{ asset('js/controllers/mediaController.js') }}"></script>
+  <script src="{{ asset('js/controllers/mediaUploadController.js') }}"></script>
+  <script src="{{ asset('js/controllers/mediaEditController.js') }}"></script>
 {% endblock %}
 

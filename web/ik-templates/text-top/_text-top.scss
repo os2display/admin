@@ -25,11 +25,19 @@
 
 
 .text-top--header {
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
+
   font-size: 100%;
 }
 
 
 .text-top--description {
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
+
   font-size: 70%;
 }
 

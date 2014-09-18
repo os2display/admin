@@ -1,28 +1,80 @@
 <?php
+/**
+ * @file
+ * Event handlers to send content to the search backend.
+ */
 
 namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use JMS\Serializer\Serializer;
 
+/**
+ * Class SearchIndexer
+ *
+ * @package Indholdskanalen\MainBundle\EventListener
+ */
 class SearchIndexer {
   protected $container;
+  protected $serializer;
 
-  function __construct() {
-    $this->container = $this->getContainer();
+  protected function getContainer() {
+    if (NULL === $this->container) {
+      // This use of global is not the right way, but until DI makes sens... it works.
+      $this->container = $GLOBALS['kernel']->getContainer();
+    }
+
+    return $this->container;
   }
+
+  /**
+   * Default constructor.
+   *
+   * @param Serializer $serializer
+   */
+  function __construct(Serializer $serializer) {
+    $this->serializer = $serializer;
+    $this->getContainer();
+  }
+
+  /**
+   * Listen to post persist events.
+   *
+   * @param LifecycleEventArgs $args
+   */
   public function postPersist(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'POST');
   }
 
+  /**
+   * Listen to pre-update events.
+   *
+   * @param LifecycleEventArgs $args
+   */
   public function preUpdate(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'PUT');
   }
 
+  /**
+   * Listen to pre-remove events.
+   *
+   * @param LifecycleEventArgs $args
+   */
   public function preRemove(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'DELETE');
   }
 
-  protected function sendEvent($args, $method) {
+  /**
+   * Helper function to send content/command to the search backend..
+   *
+   * @param LifecycleEventArgs $args
+   *   The arguments send to the original event listener.
+   * @param $method
+   *   The type of operation to preform.
+   *
+   * @return bool
+   */
+  protected function sendEvent(LifecycleEventArgs $args, $method) {
     // Get the current entity.
     $entity = $args->getEntity();
     $type = get_class($entity);
@@ -32,18 +84,29 @@ class SearchIndexer {
       return FALSE;
     }
 
-    if ($method != 'DELETE') {
-      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'type' => $type, 'data' => $entity));
-    }
-    else {
-      $this->curl('http://localhost:3000/api', $method, array('app_id' => '1234', 'app_secret' => 'test', 'id' => $entity->getId()));
-    }
+    // Build parameters to send to the search backend.
+    $customer_id = $this->container->getParameter('search_customer_id');
+    $params = array(
+      'customer_id' => $customer_id,
+      'type' => $type,
+      'id' => $entity->getId(),
+      'data' => $entity,
+    );
+
+    // Get search backend URL.
+    $url = $this->container->getParameter('search_host');
+    $path = $this->container->getParameter('search_path');
+
+    // Send the request.
+    $data = $this->curl($url . $path, $method, $params);
+
+    // @TODO: Do some error handling based on the $data variable.
   }
 
   /**
    * Communication function.
    *
-   * Wrapper function for curl to send dato to ES
+   * Wrapper function for curl to send data to ES.
    *
    * @param $url
    *   URL to connect to.
@@ -52,7 +115,7 @@ class SearchIndexer {
    * @param array $params
    *   The data to send.
    *
-   * @return \stdClass|string
+   * @return array
    */
   protected function curl($url, $method = 'POST', $params = array()) {
     // Build query.
@@ -61,9 +124,7 @@ class SearchIndexer {
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
-    // Setup our serializer.
-    $serializer = $this->container->get('jms_serializer');
-    $jsonContent = $serializer->serialize($params, 'json');
+    $jsonContent = $this->serializer->serialize($params, 'json');
 
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
 
@@ -77,23 +138,11 @@ class SearchIndexer {
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     // Close connection.
-    curl_close ($ch);
-  }
+    curl_close($ch);
 
-  /**
-   * Get the container.
-   *
-   * @todo: I am 100% sure that there must be a better way to get access to
-   * doctrine in a helper class than use globals.
-   *
-   * @return \Symfony\Component\DependencyInjection\ContainerInterface
-   */
-  protected function getContainer() {
-    if (NULL === $this->container) {
-      // This use of global is not the right way, but until DI makes sens... it works.
-      $this->container = $GLOBALS['kernel']->getContainer();
-    }
-
-    return $this->container;
+    return array(
+      'status' => $http_status,
+      'content' => $content,
+    );
   }
 }

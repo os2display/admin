@@ -2,31 +2,19 @@
  *
  * ========================================================================== */
 
-// Fade out animation used for display switching with angular
-@include keyframes(fade-out) {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-
-// Fade in animation used for display switching with angular
-@include keyframes(fade-in) {
+// Fade in animation used for displaying overlay. (Usage: Media in slides)
+@include keyframes(fade-in-ninety-five) {
   0% {
     opacity: 0;
   }
 
   100% {
-    opacity: 1;
+    opacity: .95;
   }
 }
 
 
-// Default spinner - rotate a div.
+// Default spinner - rotate a div. (Usage: Spinner before display of slides/channels)
 @include keyframes(spinner) {
   0% {
     -webkit-transform: rotate(0deg);
@@ -40,7 +28,7 @@
 }
 
 
-// Move a div from outside screen to right side of screen.
+// Move a div from outside screen to right side of screen. (Usage: Nav menu)
 @include keyframes(toggle-nav-open) {
   0% {
     right: -100%;
@@ -52,7 +40,7 @@
 }
 
 
-// Move div from right side of screen to outside of screen
+// Move div from right side of screen to outside of screen (Usage: Nav menu)
 @include keyframes(toggle-nav-close) {
   0% {
     right: 0;
@@ -64,7 +52,7 @@
 }
 
 
-// Create a black overlay.
+// Create a black overlay. (Usage: Nav menu)
 @include keyframes(toggle-nav-overlay) {
   0% {
     background-color: transparent;
@@ -75,7 +63,24 @@
   }
 }
 
+// Create a black overlay. Half from bottom (Usage: Media overview)
+@include keyframes(toggle-media-overlay) {
+  0% {
+    bottom: -30%;
+  }
 
+  100% {
+    bottom: 0;
+  }
+}
+
+
+
+
+/* Animation calls (If not related to a module)
+ * ========================================================================== */
+
+// Turn a spinner icon.
 .spinner {
   margin: 2em;
 

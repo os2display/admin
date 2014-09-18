@@ -7,10 +7,10 @@
 
 /* Silent classes and variables related to this document
    ========================================================================== */
-$pager--border-width: 1px;
-$pager--border-color: $gray;
-$pager--background: $gray-lightest;
-$pager--text-color: $gray;
+$pager--border-width: 3px;
+$pager--border-color: $gray-lighter;
+$pager--background: $white;
+$pager--text-color: $gray-lighter;
 $pager--valid: $beige;
 
 
@@ -19,6 +19,7 @@ $pager--valid: $beige;
 
 .pager {
   margin-bottom: 3em;
+  padding: 2em 0;
   text-align: center;
 
   &--inner {
@@ -26,38 +27,47 @@ $pager--valid: $beige;
   }
 
 
-  &--step {
-    background: $pager--background;
-    border: $pager--border-width solid $pager--border-color;
+  &--step-wrapper {
+    display: inline-block;
+    position: relative;
     color: $pager--text-color;
     cursor: pointer;
-    display: inline-block;
-    line-height: 10px;
-    margin: 0 10px;
-    padding: 1em;
-
-    @include border-radius(100%);
-
-    &:first-child {
-      margin-left: 0px;
-    }
-
-    &:last-child {
-      margin-right: 0px;
-    }
 
     &.is-active {
-      border-width: 2px;
-    }
+      color: #62B001;
 
-    &.is-valid {
-      background: $pager--valid;
-      color: $gray-dark;
+      .pager--step {
+        border-color: #62B001;
+      }
     }
   }
 
+
+  &--step {
+    background: $pager--background;
+    border: $pager--border-width solid $pager--border-color;
+    display: inline-block;
+    line-height: .5em;
+    margin: 0 .8em;
+    padding: .5em;
+    position: relative;
+    font-size: 1.8em;
+
+    @include border-radius(100%);
+  }
+
+
   &--line {
-    border-bottom: $pager--border-width solid $pager--border-color;
-    margin-bottom: -24px;
+    border-bottom: 2px solid $pager--border-color;
+    margin: 0 -2em;
+    margin-bottom: -26px;
+  }
+
+
+  &--text {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    right: 0;
   }
 }

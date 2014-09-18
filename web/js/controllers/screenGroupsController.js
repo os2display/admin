@@ -1,14 +1,24 @@
-ikApp.controller('ScreenGroupsController', function($scope, screenFactory) {
-  screenFactory.getScreenGroups().then(function(data) {
-    $scope.screenGroups = data;
-  });
+/**
+ * @file
+ * Contains the screen groups controller. The List.
+ */
 
-  $scope.sort = '-created';
-  $scope.search = {
-    title: ''
+/**
+ * Screen group controller.
+ */
+ikApp.controller('ScreenGroupsController', ['$scope', 'screenFactory',
+  function($scope, screenFactory) {
+    screenFactory.getScreenGroups().then(function(data) {
+      $scope.screenGroups = data;
+    });
+
+    $scope.sort = 'created_at';
+    $scope.search = {
+      title: ''
+    }
+
+    $scope.setSort = function(sort) {
+      $scope.sort = sort;
+    };
   }
-
-  $scope.setSort = function(sort) {
-    $scope.sort = sort;
-  };
-});
+]);

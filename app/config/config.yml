@@ -4,7 +4,7 @@ imports:
 
 framework:
   #esi:             ~
-  #translator:      { fallback: "%locale%" }
+  translator:      { fallback: "%locale%" }
   secret:          "%secret%"
   router:
     resource: "%kernel.root_dir%/config/routing.yml"
@@ -21,6 +21,7 @@ framework:
   session:
     # handler_id set to null will use default session handler from php.ini
     handler_id:  ~
+    cookie_lifetime: 0
   fragments:       ~
   http_method_override: true
 
@@ -115,9 +116,9 @@ sonata_media:
 
       formats:
         landscape: { width: 960 }
-        portrait: { width: 540 }
+        portrait: { height: 540 }
         landscape_small: { width: 300 }
-        portrait_small: { width: 150 }
+        portrait_small: { height: 150 }
 
   cdn:
     server:
@@ -131,3 +132,13 @@ sonata_media:
 sonata_user:
   security_acl: true
   manager_type: orm # can be orm or mongodb
+
+services:
+    indholdskanalen.command.pushchannels:
+        class: Indholdskanalen\MainBundle\Command\PushChannelsCommand
+        tags:
+            -  { name: console.command }
+    indholdskanalen.middleware.communication:
+        class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
+        calls:
+          - [ setContainer,[ @service_container ] ]

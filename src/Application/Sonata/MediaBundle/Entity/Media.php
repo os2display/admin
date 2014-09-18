@@ -27,6 +27,12 @@ class Media extends BaseMedia {
    */
   protected $id;
 
+
+  /**
+   * @var datetime $updated_at
+   */
+  protected $updatedAt;
+
   /**
    * Get id
    *
@@ -34,5 +40,15 @@ class Media extends BaseMedia {
    */
   public function getId() {
     return $this->id;
+  }
+
+  /**
+   * Get updated_at
+   *
+   * @return datetime $updatedAt
+   */
+  public function getUpdatedAt()
+  {
+    return $this->updatedAt;
   }
 }

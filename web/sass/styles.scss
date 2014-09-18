@@ -38,18 +38,19 @@
 
 
 // Modules
-@import "modules/_header";
 @import "modules/_create-slide";
 @import "modules/_create-screen";
 @import "modules/_create-channel";
 @import "modules/_create-media";
+@import "modules/_edit-menu";
+@import "modules/_frontpage";
+@import "modules/_header";
 @import "modules/_login";
 @import "modules/_nav";
 @import "modules/_overview";
-@import "modules/_frontpage";
-@import "modules/_preview";
 @import "modules/_pager";
-@import "modules/_edit-menu";
+@import "modules/_preview";
+@import "modules/_colorpicker";
 
 
 // Animations
@@ -63,3 +64,4 @@
 @import "../ik-templates/text-left/_text-left";
 @import "../ik-templates/text-right/_text-right";
 @import "../ik-templates/portrait-text-top/_portrait-text-top";
+@import "../ik-templates/only-video/_only-video";

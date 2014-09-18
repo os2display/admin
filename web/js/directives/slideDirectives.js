@@ -1,4 +1,9 @@
 /**
+ * @file
+ * Contains slide directives to display and edit a slide.
+ */
+
+/**
  * Directive to insert html for a slide.
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
@@ -24,6 +29,34 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
           scope.ikSlide = data;
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
+          if (scope.ikSlide.options.images) {
+            if (scope.ikSlide.options.images.length > 0) {
+              if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+                scope.ikSlide.currentImage = '/images/not-found.png';
+              }
+              else {
+                scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape_small'];
+              }
+            }
+            else {
+              scope.ikSlide.currentImage = '';
+            }
+          }
+
+          if (scope.ikSlide.options.videos) {
+            if (scope.ikSlide.options.videos.length > 0) {
+              if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+                scope.ikSlide.currentImage = '/images/not-found.png';
+              }
+              else {
+                scope.ikSlide.currentImage = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]].thumbnail;
+              }
+            }
+            else {
+              scope.ikSlide.currentImage = '';
+            }
+          }
+
           // Get the template.
           scope.template = templateFactory.getTemplate(scope.ikSlide.template);
 
@@ -45,7 +78,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFactory', function(slideFactory, imageFactory, templateFactory) {
+ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFactory', function(slideFactory, mediaFactory, templateFactory) {
   return {
     restrict: 'E',
     scope: {
@@ -55,6 +88,55 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFac
     link: function(scope, element, attrs) {
       scope.templateURL = '/partials/slide/slide-loading.html';
 
+      // Watch for changes to ikSlide.
+      scope.$watch('ikSlide', function (newVal, oldVal) {
+        if (!newVal) return;
+
+        // If the background color has changed, remove selected images.
+        if (oldVal && newVal.options.bgcolor !== oldVal.options.bgcolor) {
+          scope.ikSlide.options.images = [];
+          scope.ikSlide.options.videos = [];
+        }
+
+        // Update image to show.
+        if (scope.ikSlide.options.images) {
+          if (scope.ikSlide.options.images.length > 0) {
+            if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+              scope.ikSlide.currentImage = '/images/not-found.png';
+            }
+            else {
+              scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+            }
+          }
+          else {
+            scope.ikSlide.currentImage = '';
+          }
+        }
+
+        // Update video to show.
+        if (scope.ikSlide.options.videos) {
+          if (scope.ikSlide.options.videos.length > 0) {
+            if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+              scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+            }
+            else {
+              scope.ikSlide.currentVideo = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]];
+
+              // Reload video player.
+              setTimeout(function() {
+                element.find('#videoPlayer').load();
+              }, 1000);
+            }
+          }
+          else {
+            scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+          }
+        }
+
+        // Update fontsize
+        scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
+      }, true);
+
       // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
       attrs.$observe('ikId', function(val) {
         slideFactory.getEditSlide(scope.ikId).then(function(data) {
@@ -63,22 +145,37 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFac
 
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '-edit.html';
 
-          // Get images for editor
-          imageFactory.getImages().then(function (data) {
-            scope.backgroundImages = data;
-          });
+          // Find the current image to display.
+          if (scope.ikSlide.options.images) {
+            if (scope.ikSlide.options.images.length > 0) {
+              if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
+                scope.ikSlide.currentImage = '/images/not-found.png';
+              }
+              else {
+                scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
+              }
+            } else {
+              scope.ikSlide.currentImage = '';
+            }
+          }
 
-          // Setup editor states and functions.
-          scope.editor = {
-            showTextEditor: false,
-            toggleTextEditor: function() {
-              scope.editor.showBackgroundEditor = false;
-              scope.editor.showTextEditor = !scope.editor.showTextEditor;
-            },
-            showBackgroundEditor: false,
-            toggleBackgroundEditor: function() {
-              scope.editor.showTextEditor = false;
-              scope.editor.showBackgroundEditor = !scope.editor.showBackgroundEditor;
+          // Update videos to show.
+          if (scope.ikSlide.options.videos) {
+            if (scope.ikSlide.options.videos.length > 0) {
+              if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+                scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+              }
+              else {
+                scope.ikSlide.currentVideo = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]];
+
+                // Reload video player.
+                setTimeout(function() {
+                  element.find('#videoPlayer').load();
+                }, 1000);
+              }
+            }
+            else {
+              scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
             }
           }
 
@@ -88,17 +185,6 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'imageFactory', 'templateFac
             height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
             fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
           }
-
-          // Add keyup event listener for fontsize, to make sure the preview updates font size.
-          element.find('.js-ik-slide-editor-fontsize-input').on('keyup', function() {
-            scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
-            scope.$apply();
-          });
-
-          // Cleanup.
-          element.on('$destroy', function() {
-            $(this).find('.js-ik-slide-editor-fontsize-input').off('keyup');
-          });
         });
       });
     },

@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Extra
@@ -48,10 +49,24 @@ class Screen {
   private $groups;
 
   /**
-   * @ORM\Column(name="created", type="integer", nullable=false)
+   * @ORM\Column(name="created_at", type="integer", nullable=false)
    */
-  private $created;
+  private $created_at;
 
+  /**
+   * @ORM\Column(name="token", type="text")
+   */
+  protected $token;
+
+  /**
+   * @ORM\Column(name="activation_code", type="integer")
+   */
+  protected $activationCode;
+
+  /**
+   * @ORM\ManyToMany(targetEntity="Channel", mappedBy="screens")
+   */
+  private $channels;
 
   /**
    * Get id
@@ -156,27 +171,45 @@ class Screen {
   }
 
   /**
-   * Set created
+   * Get token
    *
-   * @param integer $created
-   * @return Screen
+   * @return mixed
    */
-  public function setCreated($created)
+  public function getToken()
   {
-    $this->created = $created;
-
-    return $this;
+    return $this->token;
   }
 
   /**
-   * Get created
+   * Set token
    *
-   * @return integer
+   * @param $token
    */
-  public function getCreated()
+  public function setToken($token)
   {
-    return $this->created;
+    $this->token = $token;
   }
+
+  /**
+   * Get activation code
+   *
+   * @return mixed
+   */
+  public function getActivationCode()
+  {
+    return $this->activationCode;
+  }
+
+  /**
+   * Set activation code
+   *
+   * @param $activationCode
+   */
+  public function setActivationCode($activationCode)
+  {
+    $this->activationCode = $activationCode;
+  }
+
   /**
    * Constructor
    */
@@ -218,5 +251,63 @@ class Screen {
   public function getGroups()
   {
     return $this->groups;
+  }
+
+  /**
+   * Set created_at
+   *
+   * @param integer $createdAt
+   * @return Screen
+   */
+  public function setCreatedAt($createdAt)
+  {
+    $this->created_at = $createdAt;
+
+    return $this;
+  }
+
+  /**
+   * Get created_at
+   *
+   * @return integer
+   */
+  public function getCreatedAt()
+  {
+    return $this->created_at;
+  }
+
+  /**
+   * Add channel
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
+   * @return Screen
+   */
+  public function addChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel)
+  {
+    $channel->addScreen($this);
+    $this->channels[] = $channel;
+
+    return $this;
+  }
+
+  /**
+   * Remove channel
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
+   */
+  public function removeChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel)
+  {
+    $channel->removeScreen($this);
+    $this->channels->removeElement($channel);
+  }
+
+  /**
+   * Get channels
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getChannels()
+  {
+    return $this->channels;
   }
 }
