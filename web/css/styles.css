@@ -558,7 +558,7 @@
 /* Slide configuration elements - Used for displaying edit links on templates in create slide process.
    ================================================================================================================== */
 /* line 104, ../sass/theme/_global-silent-classes.scss */
-.text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings {
+.text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings, .manual-calendar--edit-box-settings {
   position: absolute;
   right: -10px;
   top: -10px;
@@ -572,7 +572,7 @@
   background-position: 0 -128px; }
   @media only screen and (min-width: 481px) {
     /* line 104, ../sass/theme/_global-silent-classes.scss */
-    .text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings {
+    .text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings, .manual-calendar--edit-box-settings {
       right: -20px;
       top: -20px;
       background: url('/images/icons-s55ff22cb09.png');
@@ -584,11 +584,11 @@
       height: 50px;
       background-position: 0 -256px; } }
   /* line 118, ../sass/theme/_global-silent-classes.scss */
-  .text-top--edit-box-settings:hover, .text-bottom--edit-box-settings:hover, .text-left--edit-box-settings:hover, .text-right--edit-box-settings:hover, .portrait-text-top--edit-box-settings:hover {
+  .text-top--edit-box-settings:hover, .text-bottom--edit-box-settings:hover, .text-left--edit-box-settings:hover, .text-right--edit-box-settings:hover, .portrait-text-top--edit-box-settings:hover, .manual-calendar--edit-box-settings:hover {
     cursor: pointer; }
 
 /* line 124, ../sass/theme/_global-silent-classes.scss */
-.only-image--edit-image-settings, .text-top--edit-image-settings, .text-bottom--edit-image-settings, .text-left--edit-image-settings, .text-right--edit-image-settings, .portrait-text-top--edit-image-settings, .only-video--settings {
+.only-image--edit-image-settings, .text-top--edit-image-settings, .text-bottom--edit-image-settings, .text-left--edit-image-settings, .text-right--edit-image-settings, .portrait-text-top--edit-image-settings, .only-video--settings, .manual-calendar--edit-image-settings {
   bottom: 15%;
   position: absolute;
   right: 15%;
@@ -602,7 +602,7 @@
   background-position: 0 -316px; }
   @media only screen and (min-width: 481px) {
     /* line 124, ../sass/theme/_global-silent-classes.scss */
-    .only-image--edit-image-settings, .text-top--edit-image-settings, .text-bottom--edit-image-settings, .text-left--edit-image-settings, .text-right--edit-image-settings, .portrait-text-top--edit-image-settings, .only-video--settings {
+    .only-image--edit-image-settings, .text-top--edit-image-settings, .text-bottom--edit-image-settings, .text-left--edit-image-settings, .text-right--edit-image-settings, .portrait-text-top--edit-image-settings, .only-video--settings, .manual-calendar--edit-image-settings {
       background: url('/images/icons-s55ff22cb09.png');
       -moz-background-size: 128px 1470px;
       -o-background-size: 128px 1470px;
@@ -612,18 +612,18 @@
       height: 51px;
       background-position: 0 -632px; } }
   /* line 136, ../sass/theme/_global-silent-classes.scss */
-  .only-image--edit-image-settings:hover, .text-top--edit-image-settings:hover, .text-bottom--edit-image-settings:hover, .text-left--edit-image-settings:hover, .text-right--edit-image-settings:hover, .portrait-text-top--edit-image-settings:hover, .only-video--settings:hover {
+  .only-image--edit-image-settings:hover, .text-top--edit-image-settings:hover, .text-bottom--edit-image-settings:hover, .text-left--edit-image-settings:hover, .text-right--edit-image-settings:hover, .portrait-text-top--edit-image-settings:hover, .only-video--settings:hover, .manual-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
 /* line 144, ../sass/theme/_global-silent-classes.scss */
-.text-top--header.has-placeholder:focus, .text-top--description.has-placeholder:focus, .text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus, .text-left--header.has-placeholder:focus, .text-left--description.has-placeholder:focus, .text-right--header.has-placeholder:focus, .text-right--description.has-placeholder:focus, .portrait-text-top--header.has-placeholder:focus, .portrait-text-top--description.has-placeholder:focus {
+.text-top--header.has-placeholder:focus, .text-top--description.has-placeholder:focus, .text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus, .text-left--header.has-placeholder:focus, .text-left--description.has-placeholder:focus, .text-right--header.has-placeholder:focus, .text-right--description.has-placeholder:focus, .portrait-text-top--header.has-placeholder:focus, .portrait-text-top--description.has-placeholder:focus, .manual-calendar--header.has-placeholder:focus, .manual-calendar--description.has-placeholder:focus {
   outline: none; }
 /* line 147, ../sass/theme/_global-silent-classes.scss */
-.text-top--header.has-placeholder:empty:before, .text-top--description.has-placeholder:empty:before, .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before, .text-left--header.has-placeholder:empty:before, .text-left--description.has-placeholder:empty:before, .text-right--header.has-placeholder:empty:before, .text-right--description.has-placeholder:empty:before, .portrait-text-top--header.has-placeholder:empty:before, .portrait-text-top--description.has-placeholder:empty:before {
+.text-top--header.has-placeholder:empty:before, .text-top--description.has-placeholder:empty:before, .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before, .text-left--header.has-placeholder:empty:before, .text-left--description.has-placeholder:empty:before, .text-right--header.has-placeholder:empty:before, .text-right--description.has-placeholder:empty:before, .portrait-text-top--header.has-placeholder:empty:before, .portrait-text-top--description.has-placeholder:empty:before, .manual-calendar--header.has-placeholder:empty:before, .manual-calendar--description.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
 /* line 151, ../sass/theme/_global-silent-classes.scss */
-.text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before {
+.text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before, .manual-calendar--header.has-placeholder:empty:focus:before, .manual-calendar--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
@@ -3197,21 +3197,22 @@ html.is-locked body {
 /* line 14, ../ik-templates/text-top/_text-top.scss */
 .text-top--text-inner {
   background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
   color: #fff;
-  margin: 3% auto;
+  margin: 1.2rem auto;
   padding: 4%;
   text-align: left;
   position: relative;
-  width: 87%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  width: 95%;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem; }
 
-/* line 27, ../ik-templates/text-top/_text-top.scss */
+/* line 28, ../ik-templates/text-top/_text-top.scss */
 .text-top--header {
   font-size: 100%; }
 
-/* line 36, ../ik-templates/text-top/_text-top.scss */
+/* line 37, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
   font-size: 70%; }
 
@@ -3231,25 +3232,26 @@ html.is-locked body {
 /* line 15, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--text-inner {
   background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
   color: #fff;
-  margin: 3% auto;
+  margin: 1.2rem auto;
   padding: 4%;
   text-align: left;
   position: relative;
-  width: 87%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  width: 95%;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem; }
 
-/* line 28, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 29, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--header {
   font-size: 100%; }
 
-/* line 37, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 38, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%; }
 
-/* line 51, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 52, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
@@ -3271,22 +3273,23 @@ html.is-locked body {
 /* line 16, ../ik-templates/text-left/_text-left.scss */
 .text-left--text-inner {
   background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
   color: #fff;
-  margin: 5% auto;
+  margin: 1.5rem auto;
   padding: 6%;
   text-align: left;
   position: relative;
-  width: 80%;
-  height: 80%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  width: 90%;
+  height: 90%;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem; }
 
-/* line 30, ../ik-templates/text-left/_text-left.scss */
+/* line 31, ../ik-templates/text-left/_text-left.scss */
 .text-left--header {
   font-size: 100%; }
 
-/* line 39, ../ik-templates/text-left/_text-left.scss */
+/* line 40, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%; }
 
@@ -3307,26 +3310,27 @@ html.is-locked body {
 /* line 16, ../ik-templates/text-right/_text-right.scss */
 .text-right--text-inner {
   background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
   color: #fff;
-  margin: 5% auto;
+  margin: 1.5rem auto;
   padding: 6%;
   text-align: left;
   position: relative;
-  width: 80%;
-  height: 80%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  width: 90%;
+  height: 90%;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem; }
 
-/* line 30, ../ik-templates/text-right/_text-right.scss */
+/* line 31, ../ik-templates/text-right/_text-right.scss */
 .text-right--header {
   font-size: 100%; }
 
-/* line 39, ../ik-templates/text-right/_text-right.scss */
+/* line 40, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%; }
 
-/* line 53, ../ik-templates/text-right/_text-right.scss */
+/* line 54, ../ik-templates/text-right/_text-right.scss */
 .text-right--edit-image-settings {
   right: auto;
   left: 15%; }
@@ -3346,21 +3350,22 @@ html.is-locked body {
 /* line 14, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--text-inner {
   background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
   color: #fff;
-  margin: 3% auto;
+  margin: 1.2rem auto;
   padding: 4%;
   text-align: left;
   position: relative;
-  width: 87%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  width: 95%;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem; }
 
-/* line 27, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 28, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--header {
   font-size: 100%; }
 
-/* line 36, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 37, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%; }
 
@@ -3376,3 +3381,41 @@ html.is-locked body {
   .only-video--video-player {
     min-width: 100%;
     min-height: 100%; }
+
+/* line 1, ../ik-templates/manual-calendar/_manual-calendar.scss */
+.manual-calendar {
+  background-size: cover; }
+
+/* line 6, ../ik-templates/manual-calendar/_manual-calendar.scss */
+.manual-calendar--text-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
+
+/* line 17, ../ik-templates/manual-calendar/_manual-calendar.scss */
+.manual-calendar--text-inner {
+  background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  color: #fff;
+  margin: 1.5rem auto;
+  padding: 6%;
+  text-align: left;
+  position: relative;
+  width: 95%;
+  height: 90%;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem; }
+
+/* line 32, ../ik-templates/manual-calendar/_manual-calendar.scss */
+.manual-calendar--header {
+  font-size: 100%; }
+
+/* line 41, ../ik-templates/manual-calendar/_manual-calendar.scss */
+.manual-calendar--description {
+  font-size: 70%; }
