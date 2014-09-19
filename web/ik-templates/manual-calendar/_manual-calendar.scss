@@ -46,9 +46,14 @@
   font-size: 70%;
 }
 
-
+// Edit content icon.
 .manual-calendar--edit-box-settings {
   @extend %slide--edit-box-settings;
+}
+
+
+.manual-calendar--edit-content-settings {
+  @extend %slide--edit-content-settings;
 }
 
 
