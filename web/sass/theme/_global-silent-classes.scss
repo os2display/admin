@@ -103,17 +103,10 @@
 
 %slide--edit-box-settings {
   position: absolute;
-  right: -10px;
-  top: -10px;
+  right: -20px;
+  top: -20px;
 
-  @include generate-sprite-image($dashboard-sprites, 'gear-icon', 25);
-
-  @include breakpoint($breakpoint-lap) {
-    right: -20px;
-    top: -20px;
-
-    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
-  }
+  @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
 
   &:hover {
     cursor: pointer;
@@ -126,12 +119,21 @@
   position: absolute;
   right: 15%;
 
-  @include generate-sprite-image($dashboard-sprites, 'landscape-icon', 50);
+  @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
 
-  @include breakpoint($breakpoint-lap) {
-
-    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+  &:hover {
+    cursor: pointer;
   }
+}
+
+
+%slide--edit-content-settings {
+  position: absolute;
+  right: 0;
+  top: 50%;
+
+  @include transform(translateY(-50%));
+  @include generate-sprite-image($dashboard-sprites, 'plus-icon', 75);
 
   &:hover {
     cursor: pointer;

@@ -189,24 +189,6 @@
   }
 
 
-  &--edit-box-settings {
-    position: absolute;
-    right: -1em;
-    top: -1em;
-
-    @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
-  }
-
-
-  &--edit-image-settings {
-    bottom: 15%;
-    position: absolute;
-    right: 15%;
-
-    @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
-  }
-
-
   &--image {
     max-height: 100%;
     width: 100%;
