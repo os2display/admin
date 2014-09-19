@@ -29,21 +29,31 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
       showVideoEditor: false,
       toggleTextEditor: function() {
         $scope.editor.showBackgroundEditor = false;
-        $scope.editor.showVideEditor = false;
+        $scope.editor.showVideoEditor = false;
+        $scope.editor.showContentEditor = false;
         $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
       },
 
       toggleBackgroundEditor: function() {
         $scope.step = 'background-picker';
         $scope.editor.showTextEditor = false;
-        $scope.editor.showVideEditor = false;
+        $scope.editor.showVideoEditor = false;
+        $scope.editor.showContentEditor = false;
         $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
       },
 
       toggleVideoEditor: function() {
         $scope.editor.showTextEditor = false;
         $scope.editor.showBackgroundEditor = false;
+        $scope.editor.showContentEditor = false;
         $scope.editor.showVideoEditor = !$scope.editor.showVideoEditor;
+      },
+
+      toggleContentEditor: function() {
+        $scope.editor.showTextEditor = false;
+        $scope.editor.showVideoEditor = false;
+        $scope.editor.showBackgroundEditor = false;
+        $scope.editor.showContentEditor = !$scope.editor.showContentEditor;
       }
     }
 

@@ -69,4 +69,60 @@
       </div>
     </div>
   </div>
+
+  <div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.showContentEditor, 'is-hidden': !editor.showContentEditor}" >
+    <div class="edit-menu--content-inner">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleContentEditor()">
+        <div class="svg-clickable">
+          <object data="images/svg/cancel.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/cancel.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--content-page">
+        <div class="edit-menu--content-page-inner">
+          <h2 class="edit-menu--content-header">Opret begivenheder</h2>
+          <div class="edit-menu--calendar-date-template">
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Titel</label>
+              <input class="edit-menu--calendar-form-element" type="text" placeholder="Besøg i botanisk have">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Sted</label>
+              <input class="edit-menu--calendar-form-element" type="text" placeholder="Botanisk have">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Fra</label>
+              <input class="edit-menu--calendar-form-element-date" type="text" placeholder="15/05/2020 - 12.00">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Til</label>
+              <input class="edit-menu--calendar-form-element-date" type="text" placeholder="15/05/2020 - 12.00">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <a href="" class="edit-menu--calendar-add-date">Add</a>
+            </div>
+          </div>
+          <div class="edit-menu--calendar-date-events">
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element" type="text">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element" type="text">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element-date" type="text">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element-date" type="text">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <a href="" class="edit-menu--calendar-add-date">Remove</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
