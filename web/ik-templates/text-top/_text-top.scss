@@ -25,42 +25,24 @@
 
 
 .text-top--header {
-  &:focus {
-    outline:none;
-    border: 0;
-  }
-
-  overflow: hidden;
-
-  background-color: transparent;
-  border: 0;
-  resize: none;
-
-  font-size: 100%;
+  @extend %inline-textarea;
 
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
+
+  font-size: 100%;
 }
 
 
 .text-top--description {
-  &:focus {
-    outline:none;
-    border: 0;
-  }
-
-  overflow: hidden;
-
-  background-color: transparent;
-  border: 0;
-  resize: none;
-
-  font-size: 70%;
+  @extend %inline-textarea;
 
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
+
+  font-size: 70%;
 }
 
 
