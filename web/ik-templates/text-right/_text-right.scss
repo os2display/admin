@@ -15,15 +15,16 @@
 
 .text-right--text-inner {
   background: rgba(0,0,0,0.7);
+  box-sizing: border-box;
   color: #fff;
-  margin: 5% auto;
+  margin: 1.5rem auto;
   padding: 6%;
   text-align: left;
   position:relative;
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
 
-  @include border-radius(1em);
+  @include border-radius(1rem);
 }
 
 
