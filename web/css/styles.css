@@ -627,6 +627,18 @@
   background-color: #b3d4fd;
   color: #000; }
 
+/* line 157, ../sass/theme/_global-silent-classes.scss */
+.text-top--header, .text-top--description, .text-bottom--header, .text-bottom--description, .text-left--header, .text-left--description, .text-right--header, .text-right--description, .portrait-text-top--header, .portrait-text-top--description {
+  overflow: hidden;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  resize: none; }
+  /* line 158, ../sass/theme/_global-silent-classes.scss */
+  .text-top--header:focus, .text-top--description:focus, .text-bottom--header:focus, .text-bottom--description:focus, .text-left--header:focus, .text-left--description:focus, .text-right--header:focus, .text-right--description:focus, .portrait-text-top--header:focus, .portrait-text-top--description:focus {
+    outline: none;
+    border: 0; }
+
 /**
  *
  * Normalize
@@ -3211,7 +3223,7 @@ html.is-locked body {
 .text-top--header {
   font-size: 100%; }
 
-/* line 36, ../ik-templates/text-top/_text-top.scss */
+/* line 38, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
   font-size: 70%; }
 
@@ -3245,11 +3257,11 @@ html.is-locked body {
 .text-bottom--header {
   font-size: 100%; }
 
-/* line 37, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 39, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%; }
 
-/* line 51, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 55, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
@@ -3286,7 +3298,7 @@ html.is-locked body {
 .text-left--header {
   font-size: 100%; }
 
-/* line 39, ../ik-templates/text-left/_text-left.scss */
+/* line 41, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%; }
 
@@ -3322,11 +3334,11 @@ html.is-locked body {
 .text-right--header {
   font-size: 100%; }
 
-/* line 39, ../ik-templates/text-right/_text-right.scss */
+/* line 41, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%; }
 
-/* line 53, ../ik-templates/text-right/_text-right.scss */
+/* line 57, ../ik-templates/text-right/_text-right.scss */
 .text-right--edit-image-settings {
   right: auto;
   left: 15%; }
@@ -3360,7 +3372,7 @@ html.is-locked body {
 .portrait-text-top--header {
   font-size: 100%; }
 
-/* line 36, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 38, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%; }
 

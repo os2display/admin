@@ -26,6 +26,8 @@
 
 
 .text-bottom--header {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
@@ -35,6 +37,8 @@
 
 
 .text-bottom--description {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }

@@ -28,6 +28,8 @@
 
 
 .text-left--header {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
@@ -37,6 +39,8 @@
 
 
 .text-left--description {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
