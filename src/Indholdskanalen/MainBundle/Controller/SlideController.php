@@ -77,9 +77,15 @@ class SlideController extends Controller {
       }
     }
 
+    // Save the entity.
+    $em->persist($slide);
+    $em->flush();
+
+    // Add to channels.
     foreach($post['channels'] as $channel) {
       $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($channel['id']);
 
+      // Check if ChannelSlideOrder already exists, if not create it.
       $channelSlideOrder = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
         array(
           'channel' => $channel,
@@ -87,6 +93,8 @@ class SlideController extends Controller {
         )
       );
       if (!$channelSlideOrder) {
+        // Find the next sort order index for the given channel.
+        $index = 0;
         $channelLargestSortOrder = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
           array(
             'channel' => $channel
@@ -95,16 +103,17 @@ class SlideController extends Controller {
             'sortOrder' => 'DESC'
           )
         );
-        $index = 0;
         if ($channelLargestSortOrder) {
           $index = $channelLargestSortOrder->getSortOrder();
         }
 
+        // Create new ChannelSlideOrder.
         $channelSlideOrder = new ChannelSlideOrder();
         $channelSlideOrder->setChannel($channel);
         $channelSlideOrder->setSlide($slide);
         $channelSlideOrder->setSortOrder($index + 1);
 
+        // Save the ChannelSlideOrder.
         $em->persist($channelSlideOrder);
         $em->flush();
       }
@@ -148,8 +157,8 @@ class SlideController extends Controller {
       // Get handle to media.
       $sonataMedia = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media');
 
+      // Add channels.
       $channels = array();
-
       foreach($slide->getChannelSlideOrders() as $channelSlideOrder) {
         $channels[] = json_decode($serializer->serialize($channelSlideOrder->getChannel(), 'json'));
       }
@@ -196,15 +205,14 @@ class SlideController extends Controller {
         }
       }
 
+      // Create json content.
       $jsonContent = $serializer->serialize($slide, 'json');
 
-      // Add extra data slide
+      // Attach extra fields.
       $ob = json_decode($jsonContent);
-
       $ob->imageUrls = $imageUrls;
       $ob->videoUrls = $videoUrls;
       $ob->channels = $channels;
-
       $jsonContent = json_encode($ob);
 
       // Return slide.

@@ -64,7 +64,6 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      * Submit a step in the installation process.
      */
     $scope.submitStep = function() {
-      console.log($scope.slide);
       if ($scope.step == $scope.steps) {
         $scope.disableSubmitButton = true;
 
@@ -125,7 +124,7 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
         if ($scope.validation.orientationSet()) {
           s++;
           if ($scope.validation.templateSet()) {
-            s = s + 2;
+            s = s + 3;
           }
         }
       }
@@ -199,8 +198,6 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
       else {
         $scope.slide.channels.push(channel);
       }
-
-      console.log($scope.slide);
     }
   }
 ]);

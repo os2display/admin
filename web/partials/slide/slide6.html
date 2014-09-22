@@ -1,13 +1,13 @@
 <section id="create-slide-five" class="create-slide--section">
   <div class="create-slide--content--slide-six">
     <h1 class="create-slide--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
-    <p class="create-slide--header-description">Vælg hvilke skærme din kanal skal vises på.</p>
-    <div class="create-slide--select-channels">
-      <div class="create-slide--channel" data-ng-repeat="channel in channels | filter:{ orientation: slide.orientation}" ng-click="toggleChannel(channel)">
-        <div class="create-slide--channel-link">
-          <div class="create-slide--channel-element">
-            <div class="create-slide--channel-element-check" data-ng-class="{'is-selected' : channelSelected(channel)}"></div>
-            <div class="create-slide--channel-element-title">{{channel.title}}</div>
+    <p class="create-slide--header-description">Vælg hvilke kanaler din skærm skal vises på.</p>
+    <div class="create-channel--select-screens">
+      <div class="create-channel--screen" data-ng-repeat="channel in channels | filter:{ orientation: slide.orientation}" ng-click="toggleChannel(channel)">
+        <div class="create-channel--screen-link">
+          <div class="create-channel--screen-element">
+            <div class="create-channel--screen-element-check" data-ng-class="{'is-selected' : channelSelected(channel)}"></div>
+            <div class="create-channel--screen-element-title">{{channel.title}}</div>
           </div>
         </div>
       </div>

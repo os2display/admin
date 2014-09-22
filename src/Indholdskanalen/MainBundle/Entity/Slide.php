@@ -59,6 +59,7 @@ class Slide {
 
   /**
    * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="slide")
+   * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
   private $channelSlideOrders;
 

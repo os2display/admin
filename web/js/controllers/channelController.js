@@ -53,7 +53,7 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
               $location.path('/channel');
             }
 
-            loadStep(4);
+            loadStep(3);
           });
         }
       }
