@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -550,7 +550,7 @@
   padding: 1.5em; }
 
 /* line 94, ../sass/theme/_global-silent-classes.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
   margin: 0 auto;
   text-align: center;
   width: 100%; }
@@ -1221,7 +1221,9 @@ html.is-locked body {
   /* Create slide - setup content (Page 4)
    ========================================================================== */
   /* Create slide - setup content (Page 5)
-   ========================================================================== */ }
+   ========================================================================== */
+  /* Create slide - setup content (Page 6)
+  ========================================================================== */ }
   /* line 40, ../sass/modules/_create-slide.scss */
   .create-slide--button {
     display: block;
