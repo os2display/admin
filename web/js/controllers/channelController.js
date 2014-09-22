@@ -11,7 +11,6 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
     $scope.steps = 5;
     $scope.slides = [];
     $scope.channel = {};
-    $scope.slidesArray = [];
     $scope.screens = [];
 
     // Get all screens.
@@ -30,9 +29,6 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
     function loadStep(step) {
       $scope.step = step;
       $scope.templatePath = '/partials/channel/channel' + $scope.step + '.html';
-      if ($scope.step == 4) {
-        $scope.getChosenSlides();
-      }
     };
 
     /**
@@ -89,13 +85,30 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
 
     /**
      * Is the screen selected?
-     * @param screen
+     * @param id
      * @returns {boolean}
      */
     $scope.screenSelected = function(id) {
       var res = false;
 
-      $scope.channel.screens.forEach(function(element, index, array) {
+      $scope.channel.screens.forEach(function(element) {
+        if (id == element.id) {
+          res = true;
+        };
+      });
+
+      return res;
+    };
+
+    /**
+     * Is the slide selected?
+     * @param id
+     * @returns {boolean}
+     */
+    $scope.slideSelected = function(id) {
+      var res = false;
+
+      $scope.channel.slides.forEach(function(element) {
         if (id == element.id) {
           res = true;
         };
@@ -128,20 +141,28 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
 
     /**
      * Select or deselect the slides related to a channel.
-     * @param id
+     * @param slide
      */
-    $scope.toggleSlide = function(id) {
-      if($scope.channel.slides.indexOf(id) < 0) {
-        $scope.channel.slides.push(id);
+    $scope.toggleSlide = function(slide) {
+      var res = false;
+
+      $scope.channel.slides.forEach(function(element, index, array) {
+        if (slide.id == element.id) {
+          res = true;
+        };
+      });
+
+      if (res) {
+        $scope.channel.slides.splice($scope.channel.slides.indexOf(slide), 1);
       }
       else {
-        $scope.channel.slides.splice($scope.channel.slides.indexOf(id), 1);
+        $scope.channel.slides.push(slide);
       }
     };
 
     /**
      * Select or deselect the screens related to a channel.
-     * @param id
+     * @param screen
      */
     $scope.toggleScreen = function(screen) {
       var res = false;
@@ -180,18 +201,6 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
     };
 
     /**
-     * Fetch the slides related to the channel.
-     */
-    $scope.getChosenSlides = function() {
-      $scope.slidesArray.length = 0;
-      angular.forEach($scope.channel.slides, function(id, index){
-        slideFactory.getSlide(id).then(function(data) {
-          $scope.slidesArray[index] = data;
-        });
-      });
-    }
-
-    /**
      * Change the positioning of two array elements.
      * */
     function swapArrayEntries(arr, firstIndex, lastIndex) {
@@ -202,31 +211,27 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
 
     /**
      * Push a channel slide right.
-     * @param index the position of the arrow.
+     * @param arrowPosition the position of the arrow.
      */
     $scope.pushRight = function(arrowPosition) {
       if (arrowPosition == $scope.channel.slides.length - 1) {
         swapArrayEntries($scope.channel.slides, arrowPosition, 0);
-        swapArrayEntries($scope.slidesArray, arrowPosition, 0);
       }
       else {
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition + 1);
-        swapArrayEntries($scope.slidesArray, arrowPosition, arrowPosition + 1);
       }
     };
 
     /**
      * Push a channel slide right.
-     * @param index the position of the arrow.
+     * @param arrowPosition the position of the arrow.
      */
     $scope.pushLeft = function(arrowPosition) {
       if (arrowPosition == 0) {
         swapArrayEntries($scope.channel.slides, arrowPosition, $scope.channel.slides.length - 1);
-        swapArrayEntries($scope.slidesArray, arrowPosition, $scope.channel.slides.length - 1);
       }
       else {
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
-        swapArrayEntries($scope.slidesArray, arrowPosition, arrowPosition - 1);
       }
     };
   }

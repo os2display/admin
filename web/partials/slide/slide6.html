@@ -1,0 +1,17 @@
+<section id="create-slide-five" class="create-slide--section">
+  <div class="create-slide--content--slide-six">
+    <h1 class="create-slide--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
+    <p class="create-slide--header-description">Vælg hvilke skærme din kanal skal vises på.</p>
+    <div class="create-slide--select-channels">
+      <div class="create-slide--channel" data-ng-repeat="channel in channels | filter:{ orientation: slide.orientation}" ng-click="toggleChannel(channel)">
+        <div class="create-slide--channel-link">
+          <div class="create-slide--channel-element">
+            <div class="create-slide--channel-element-check" data-ng-class="{'is-selected' : channelSelected(channel)}"></div>
+            <div class="create-slide--channel-element-title">{{channel.title}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="create-slide--button" data-ng-disabled="disableSubmitButton" value="Gem og opret" data-ng-click="submitStep()">
+  </div>
+</section>

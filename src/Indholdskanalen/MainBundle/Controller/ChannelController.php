@@ -27,9 +27,12 @@ class ChannelController extends Controller {
     // Get posted channel information from the request.
     $post = json_decode($request->getContent());
 
+    $doctrine = $this->getDoctrine();
+    $em = $this->getDoctrine()->getManager();
+
     if ($post->id) {
       // Load current slide.
-      $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+      $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')
         ->findOneById($post->id);
     }
     else {
@@ -41,7 +44,6 @@ class ChannelController extends Controller {
     $channel->setTitle($post->title);
     $channel->setOrientation($post->orientation);
     $channel->setCreatedAt($post->created_at);
-    $channel->setSlides($post->slides);
 
     // Remove screens.
     foreach($channel->getScreens() as $screen) {
@@ -52,7 +54,7 @@ class ChannelController extends Controller {
 
     // Add screens.
     foreach($post->screens as $screen) {
-      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+      $screen = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')
         ->findOneById($screen->id);
       if ($screen) {
         if (!$channel->getScreens()->contains($screen)) {
@@ -62,7 +64,6 @@ class ChannelController extends Controller {
     }
 
     // Save the entity.
-    $em = $this->getDoctrine()->getManager();
     $em->persist($channel);
     $em->flush();
 

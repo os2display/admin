@@ -3,8 +3,8 @@
     <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
     <p class="create-channel--header-description">Vælg hvilke slides der skal vises i din kanal.</p>
     <div class="create-channel--slides">
-      <div class="create-channel--slide" data-ng-repeat="slide in slides | filter:{ orientation: channel.orientation}" ng-click="toggleSlide(slide.id)">
-        <div href="#" class="create-channel--slide-link" data-ng-class="{'is-selected': (channel.slides.indexOf(slide.id) > -1)}">
+      <div class="create-channel--slide" data-ng-repeat="slide in slides | filter:{ orientation: channel.orientation}" ng-click="toggleSlide(slide)">
+        <div href="#" class="create-channel--slide-link" data-ng-class="{'is-selected': slideSelected(slide.id)}">
           <span class="create-channel--overlay">
             <span class="create-channel--link-check"></span>
           </span>

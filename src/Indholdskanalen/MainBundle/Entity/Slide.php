@@ -58,6 +58,11 @@ class Slide {
   private $duration;
 
   /**
+   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="slide")
+   **/
+  private $channelSlideOrders;
+
+  /**
    * Get id
    *
    * @return integer
@@ -200,5 +205,46 @@ class Slide {
   public function getDuration()
   {
     return $this->duration;
+  }
+
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->channelSlideOrders = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
+  /**
+   * Add channelSlideOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
+   * @return Slide
+   */
+  public function addChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
+  {
+    $this->channelSlideOrders[] = $channelSlideOrder;
+
+    return $this;
+  }
+
+  /**
+   * Remove channelSlideOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
+   */
+  public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
+  {
+    $this->channelSlideOrders->removeElement($channelSlideOrder);
+  }
+
+  /**
+   * Get channelSlideOrder
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getChannelSlideOrders()
+  {
+    return $this->channelSlideOrders;
   }
 }
