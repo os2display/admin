@@ -67,6 +67,7 @@ ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slide
 
           // Load the channel.
           channelFactory.getChannel(val).then(function(data) {
+            console.log(data);
             if (data.slides.length <= 0) {
               scope.templateURL = 'partials/channel/empty.html';
             }

@@ -41,7 +41,7 @@ class Channel {
   /**
    * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel")
    **/
-  private $channelSlideOrder;
+  private $channelSlideOrders;
 
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
@@ -55,7 +55,7 @@ class Channel {
   public function __construct()
   {
     $this->screens = new ArrayCollection();
-    $this->channelSlideOrder = new ArrayCollection();
+    $this->channelSlideOrders = new ArrayCollection();
   }
 
   /**
@@ -165,7 +165,7 @@ class Channel {
    */
   public function addChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
   {
-    $this->channelSlideOrder[] = $channelSlideOrder;
+    $this->channelSlideOrders[] = $channelSlideOrder;
 
     return $this;
   }
@@ -177,7 +177,7 @@ class Channel {
    */
   public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
   {
-    $this->channelSlideOrder->removeElement($channelSlideOrder);
+    $this->channelSlideOrders->removeElement($channelSlideOrder);
   }
 
   /**
@@ -185,8 +185,8 @@ class Channel {
    *
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getChannelSlideOrder()
+  public function getChannelSlideOrders()
   {
-    return $this->channelSlideOrder;
+    return $this->channelSlideOrders;
   }
 }

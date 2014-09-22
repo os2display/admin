@@ -153,16 +153,6 @@ class SlideController extends Controller {
       foreach($slide->getChannelSlideOrders() as $channelSlideOrder) {
         $channels[] = json_decode($serializer->serialize($channelSlideOrder->getChannel(), 'json'));
       }
-      // Add channels to slide.
-/*      $sortOrderIterator = $slide->getChannelSlideOrders()->getIterator();
-
-      $sortOrderIterator->uasort(function ($first, $second) {
-        return (int) $first->getSortOrder() > (int) $second->getSortOrder() ? 1 : -1;
-      });
-
-      foreach(new ArrayCollection(iterator_to_array($sortOrderIterator)) as $sortOrderItem) {
-        $channels[] = $serializer->serialize($sortOrderItem->getChannel(), 'json');
-      }*/
 
       // Add image urls to result.
       $imageUrls = array();

@@ -97,17 +97,28 @@ class ChannelController extends Controller {
     $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
+    $serializer = $this->get('jms_serializer');
+
     // Create response.
     $response = new Response();
-    $response->headers->set('Content-Type', 'application/json');
     if ($channel) {
-      $serializer = $this->get('jms_serializer');
+      $slides = array();
+      foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
+        $slides[] = json_decode($serializer->serialize($channelSlideOrder->getSlide(), 'json'));
+      }
+
       $jsonContent = $serializer->serialize($channel, 'json');
 
+      // Attach extra fields.
+      $ob = json_decode($jsonContent);
+      $ob->slides = $slides;
+      $jsonContent = json_encode($ob);
+
+      $response->headers->set('Content-Type', 'application/json');
       $response->setContent($jsonContent);
     }
     else {
-      $response->setContent(json_encode(array()));
+      $response->setStatusCode(404);
     }
 
     return $response;
