@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -550,7 +550,7 @@
   padding: 1.5em; }
 
 /* line 94, ../sass/theme/_global-silent-classes.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
   margin: 0 auto;
   text-align: center;
   width: 100%; }
@@ -623,6 +623,18 @@
 .text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before, .manual-calendar--header.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
+
+/* line 159, ../sass/theme/_global-silent-classes.scss */
+.text-top--header, .text-top--description, .text-bottom--header, .text-bottom--description, .text-left--header, .text-left--description, .text-right--header, .text-right--description, .portrait-text-top--header, .portrait-text-top--description {
+  overflow: hidden;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  resize: none; }
+  /* line 160, ../sass/theme/_global-silent-classes.scss */
+  .text-top--header:focus, .text-top--description:focus, .text-bottom--header:focus, .text-bottom--description:focus, .text-left--header:focus, .text-left--description:focus, .text-right--header:focus, .text-right--description:focus, .portrait-text-top--header:focus, .portrait-text-top--description:focus {
+    outline: none;
+    border: 0; }
 
 /**
  *
@@ -1206,7 +1218,9 @@ html.is-locked body {
   /* Create slide - setup content (Page 4)
    ========================================================================== */
   /* Create slide - setup content (Page 5)
-   ========================================================================== */ }
+   ========================================================================== */
+  /* Create slide - setup content (Page 6)
+  ========================================================================== */ }
   /* line 40, ../sass/modules/_create-slide.scss */
   .create-slide--button {
     display: block;
@@ -1348,6 +1362,38 @@ html.is-locked body {
     width: 50%; }
   /* line 238, ../sass/modules/_create-slide.scss */
   .create-slide--duration-description {
+    color: #b3b3b3; }
+  /* line 242, ../sass/modules/_create-slide.scss */
+  .create-slide--published {
+    width: 75%;
+    margin: 0 auto;
+    max-width: 30em; }
+    @media only screen and (min-width: 481px) {
+      /* line 242, ../sass/modules/_create-slide.scss */
+      .create-slide--published {
+        width: 50%; } }
+  /* line 252, ../sass/modules/_create-slide.scss */
+  .create-slide--published-label {
+    font-size: 1.2em;
+    text-align: left; }
+  /* line 257, ../sass/modules/_create-slide.scss */
+  .create-slide--published-description {
+    color: #b3b3b3; }
+  /* line 264, ../sass/modules/_create-slide.scss */
+  .create-slide--schedule {
+    width: 75%;
+    margin: 0 auto;
+    max-width: 30em; }
+    @media only screen and (min-width: 481px) {
+      /* line 264, ../sass/modules/_create-slide.scss */
+      .create-slide--schedule {
+        width: 50%; } }
+  /* line 274, ../sass/modules/_create-slide.scss */
+  .create-slide--schedule-label {
+    font-size: 1.2em;
+    text-align: left; }
+  /* line 279, ../sass/modules/_create-slide.scss */
+  .create-slide--schedule-description {
     color: #b3b3b3; }
 
 /**
@@ -3200,7 +3246,7 @@ html.is-locked body {
 .text-top--header {
   font-size: 100%; }
 
-/* line 37, ../ik-templates/text-top/_text-top.scss */
+/* line 39, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
   font-size: 70%; }
 
@@ -3235,11 +3281,11 @@ html.is-locked body {
 .text-bottom--header {
   font-size: 100%; }
 
-/* line 38, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 40, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%; }
 
-/* line 52, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 56, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
@@ -3277,7 +3323,7 @@ html.is-locked body {
 .text-left--header {
   font-size: 100%; }
 
-/* line 40, ../ik-templates/text-left/_text-left.scss */
+/* line 42, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%; }
 
@@ -3314,11 +3360,11 @@ html.is-locked body {
 .text-right--header {
   font-size: 100%; }
 
-/* line 40, ../ik-templates/text-right/_text-right.scss */
+/* line 42, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%; }
 
-/* line 54, ../ik-templates/text-right/_text-right.scss */
+/* line 58, ../ik-templates/text-right/_text-right.scss */
 .text-right--edit-image-settings {
   right: auto;
   left: 15%; }
@@ -3353,7 +3399,7 @@ html.is-locked body {
 .portrait-text-top--header {
   font-size: 100%; }
 
-/* line 37, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 39, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%; }
 

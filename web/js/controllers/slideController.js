@@ -6,11 +6,12 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory',
-  function($scope, $location, $routeParams, $timeout, slideFactory, templateFactory) {
-    $scope.steps = 5;
+ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory',
+  function($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory) {
+    $scope.steps = 6;
     $scope.slide = {};
     $scope.templates = templateFactory.getTemplates();
+    $scope.channels = [];
 
     /**
      * Load a given step
@@ -25,9 +26,15 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      * Handles different settings of route parameters.
      */
     function init() {
+      // Get all channels for step 6
+      channelFactory.getChannels().then(function(data) {
+        $scope.channels = data;
+      });
+
       if (!$routeParams.id) {
         // If the ID is not set, get an empty slide.
         $scope.slide = slideFactory.emptySlide();
+        $scope.slide.channels = [];
         loadStep(1);
       }
       else {
@@ -58,16 +65,23 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      */
     $scope.submitStep = function() {
       if ($scope.step == $scope.steps) {
+        $scope.disableSubmitButton = true;
+
         // Set default duration if none is set.
         if ($scope.slide.duration == '') {
           $scope.slide.duration = 15;
         }
 
-        slideFactory.saveSlide().then(function() {
-          $timeout(function() {
-            $location.path('/slide-overview');
-          }, 1000);
-        });
+        slideFactory.saveSlide().then(
+          function() {
+            $timeout(function() {
+              $location.path('/slide-overview');
+            }, 1000)
+          },
+          function() {
+            $scope.disableSubmitButton = false;
+          }
+        );
       }
       else {
         loadStep($scope.step + 1);
@@ -110,7 +124,7 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
         if ($scope.validation.orientationSet()) {
           s++;
           if ($scope.validation.templateSet()) {
-            s = s + 2;
+            s = s + 3;
           }
         }
       }
@@ -147,5 +161,43 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
       $scope.slide.orientation = orientation;
       $scope.slide.template = '';
     };
+
+    /**
+     * Is the channel selected?
+     * @param channel
+     * @returns {boolean}
+     */
+    $scope.channelSelected = function(channel) {
+      var res = false;
+
+      $scope.slide.channels.forEach(function(slideChannel) {
+        if (channel.id == slideChannel.id) {
+          res = true;
+        }
+      });
+
+      return res;
+    };
+
+    /**
+     * Add remove a channel.
+     * @param channel
+     */
+    $scope.toggleChannel = function(channel) {
+      var index = null;
+
+      $scope.slide.channels.forEach(function(slideChannel, channelIndex) {
+        if (channel.id == slideChannel.id) {
+          index = channelIndex;
+        }
+      });
+
+      if (index !== null) {
+        $scope.slide.channels.splice(index, 1);
+      }
+      else {
+        $scope.slide.channels.push(channel);
+      }
+    }
   }
 ]);

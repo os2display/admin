@@ -26,6 +26,8 @@
 
 
 .portrait-text-top--header {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
@@ -35,6 +37,8 @@
 
 
 .portrait-text-top--description {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }

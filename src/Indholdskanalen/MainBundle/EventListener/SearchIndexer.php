@@ -18,15 +18,6 @@ class SearchIndexer {
   protected $container;
   protected $serializer;
 
-  protected function getContainer() {
-    if (NULL === $this->container) {
-      // This use of global is not the right way, but until DI makes sens... it works.
-      $this->container = $GLOBALS['kernel']->getContainer();
-    }
-
-    return $this->container;
-  }
-
   /**
    * Default constructor.
    *
@@ -34,7 +25,6 @@ class SearchIndexer {
    */
   function __construct(Serializer $serializer) {
     $this->serializer = $serializer;
-    $this->getContainer();
   }
 
   /**

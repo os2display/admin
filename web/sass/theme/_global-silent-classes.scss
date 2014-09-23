@@ -155,3 +155,17 @@
     color: #000;
   }
 }
+
+%inline-textarea {
+  &:focus {
+    outline:none;
+    border: 0;
+  }
+
+  overflow: hidden;
+  padding: 0;
+
+  background-color: transparent;
+  border: 0;
+  resize: none;
+}
