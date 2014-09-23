@@ -1,62 +1,79 @@
 .manual-calendar {
   background-size: cover;
-}
 
+  &--text-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
 
-.manual-calendar--text-wrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  right: 0;
-
-  @include border-radius(1em);
-}
-
-
-.manual-calendar--text-inner {
-  background: rgba(0,0,0,0.7);
-  box-sizing: border-box;
-  color: #fff;
-  margin: 1.5rem auto;
-  padding: 6%;
-  text-align: left;
-  position:relative;
-  width: 95%;
-  height: 90%;
-
-  @include border-radius(1rem);
-}
-
-
-.manual-calendar--header {
-  &.has-placeholder {
-    @extend %show-placeholder-text;
+    @include border-radius(1em);
   }
 
-  font-size: 100%;
-}
 
+  &--text-inner {
+    background: rgba(0,0,0,0.7);
+    box-sizing: border-box;
+    color: #fff;
+    margin: 1.5rem auto;
+    padding: 6%;
+    text-align: left;
+    position:relative;
+    width: 95%;
+    height: 90%;
 
-.manual-calendar--description {
-  &.has-placeholder {
-    @extend %show-placeholder-text;
+    @include border-radius(1rem);
   }
 
-  font-size: 70%;
-}
 
-// Edit content icon.
-.manual-calendar--edit-box-settings {
-  @extend %slide--edit-box-settings;
-}
+  &--header {
+    &.has-placeholder {
+      @extend %show-placeholder-text;
+    }
 
-
-.manual-calendar--edit-content-settings {
-  @extend %slide--edit-content-settings;
-}
+    font-size: 100%;
+  }
 
 
-.manual-calendar--edit-image-settings {
-  @extend %slide--edit-image-settings;
+  &--events {
+    font-size: 70%;
+  }
+
+
+  &--event {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    margin-bottom: .5em;
+    padding-bottom: .5em;
+  }
+
+
+  &--title,
+  &--place,
+  &--time{
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: -4px;
+    padding: 0 2em 0 .5em;
+    vertical-align: middle;
+    width: 33%;
+  }
+
+
+
+  // Edit content icon.
+  &--edit-box-settings {
+    @extend %slide--edit-box-settings;
+  }
+
+
+  &--edit-content-settings {
+    @extend %slide--edit-content-settings;
+  }
+
+
+  &--edit-image-settings {
+    @extend %slide--edit-image-settings;
+  }
 }
