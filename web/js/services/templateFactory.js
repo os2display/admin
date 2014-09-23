@@ -143,7 +143,8 @@ ikApp.factory('templateFactory', function() {
         images: [],
         headline: '',
         text: '',
-        displayitems: '7'
+        displayitems: '7',
+        eventitems: []
       }
     }
   ];
