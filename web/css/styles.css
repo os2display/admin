@@ -3435,7 +3435,7 @@ html.is-locked body {
     box-sizing: border-box;
     color: #fff;
     margin: 1.5rem auto;
-    padding: 6%;
+    padding: 4%;
     text-align: left;
     position: relative;
     width: 95%;
@@ -3446,16 +3446,20 @@ html.is-locked body {
   /* line 30, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--header {
     font-size: 100%; }
-  /* line 39, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 38, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--events {
-    font-size: 70%; }
-  /* line 44, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    overflow: hidden; }
+  /* line 43, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--event {
+    font-size: 70%;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     margin-bottom: .5em;
     padding-bottom: .5em; }
-  /* line 52, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    /* line 50, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    .manual-calendar--event:last-child {
+      border-bottom: 0; }
+  /* line 56, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--title, .manual-calendar--place, .manual-calendar--time {
     box-sizing: border-box;
     display: inline-block;
