@@ -12,6 +12,10 @@
         <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor" data-ng-style="{'background-color': ikSlide.options.textbgcolor}">
         <label class="edit-menu--label">Skriftstørrelse</label>
         <input class="edit-menu--form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
+        <div data-ng-if="ikSlide.template === 'manual-calendar'">
+          <label class="edit-menu--label">Antal viste begivenheder</label>
+          <input class="edit-menu--form-element" type="text" placeholder="7" data-ng-model="ikSlide.options.displayitems">
+        </div>
       </form>
     </div>
   </div>
@@ -86,39 +90,39 @@
           <div class="edit-menu--calendar-date-template">
             <div class="edit-menu--calendar-form-element-wrapper">
               <label class="edit-menu--calendar-label">Titel</label>
-              <input class="edit-menu--calendar-form-element" type="text" placeholder="Besøg i botanisk have">
+              <input class="edit-menu--calendar-form-element" type="text" placeholder="Besøg i botanisk have" ng-model="addevent.title">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
               <label class="edit-menu--calendar-label">Sted</label>
-              <input class="edit-menu--calendar-form-element" type="text" placeholder="Botanisk have">
+              <input class="edit-menu--calendar-form-element" type="text" placeholder="Botanisk have" ng-model="addevent.place">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
               <label class="edit-menu--calendar-label">Fra</label>
-              <input class="edit-menu--calendar-form-element-date" type="text" placeholder="15/05/2020 - 12.00">
+              <input class="edit-menu--calendar-form-element-date" type="text" placeholder="15/05/2020 - 12.00" ng-model="addevent.from">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
               <label class="edit-menu--calendar-label">Til</label>
-              <input class="edit-menu--calendar-form-element-date" type="text" placeholder="15/05/2020 - 12.00">
+              <input class="edit-menu--calendar-form-element-date" type="text" placeholder="15/05/2020 - 12.00" ng-model="addevent.to">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <a href="" class="edit-menu--calendar-add-date">Add</a>
+              <div class="edit-menu--calendar-add-date" data-ng-click="addEventItem()">Add</div>
             </div>
           </div>
-          <div class="edit-menu--calendar-date-events">
+          <div class="edit-menu--calendar-date-events" ng-repeat="event in slide.options.eventitems | reverseEvents">
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element" type="text">
+              <input class="edit-menu--calendar-form-element" type="text" ng-model="event.title">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element" type="text">
+              <input class="edit-menu--calendar-form-element" type="text" ng-model="event.place">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element-date" type="text">
+              <input class="edit-menu--calendar-form-element-date" type="text" ng-model="event.from">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element-date" type="text">
+              <input class="edit-menu--calendar-form-element-date" type="text" ng-model="event.to">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <a href="" class="edit-menu--calendar-add-date">Remove</a>
+              <a href="" class="edit-menu--calendar-add-date" data-ng-click="removeEventItem(event)">Remove</a>
             </div>
           </div>
         </div>
