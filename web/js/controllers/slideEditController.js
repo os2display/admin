@@ -133,7 +133,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
 
       // If all the data items were uploaded correctly.
       if (allSuccess) {
-        mediaFactory.getImage(data.id).then(function(image) {
+        mediaFactory.getMedia(data.id).then(function(image) {
           $scope.slide.options.images = [];
           $scope.slide.options.images.push(image.id);
           $scope.slide.imageUrls = [];

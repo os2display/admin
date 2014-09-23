@@ -28,7 +28,6 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory',
      * Get all channels.
      */
     factory.getChannels = function() {
-
       var defer = $q.defer();
 
       $http.get('/api/channels')

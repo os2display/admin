@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Extra
@@ -38,9 +39,10 @@ class Channel {
   private $created_at;
 
   /**
-   * @ORM\Column(name="slides", type="array", nullable=true)
-   */
-  private $slides;
+   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel")
+   * @ORM\OrderBy({"sortOrder" = "ASC"})
+   **/
+  private $channelSlideOrders;
 
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
@@ -53,7 +55,8 @@ class Channel {
    */
   public function __construct()
   {
-    $this->screens = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->screens = new ArrayCollection();
+    $this->channelSlideOrders = new ArrayCollection();
   }
 
   /**
@@ -102,24 +105,6 @@ class Channel {
   }
 
   /**
-   * Set slides
-   *
-   * @param array $slides
-   */
-  public function setSlides($slides) {
-    $this->slides = $slides;
-  }
-
-  /**
-   * Get slides
-   *
-   * @return array
-   */
-  public function getSlides() {
-    return $this->slides;
-  }
-
-  /**
    * Set created_at
    *
    * @param integer $createdAt
@@ -146,7 +131,7 @@ class Channel {
    * Add screen
    *
    * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
-   * @return ScreenGroup
+   * @return Channel
    */
   public function addScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
     $this->screens[] = $screen;
@@ -170,5 +155,39 @@ class Channel {
    */
   public function getScreens() {
     return $this->screens;
+  }
+
+
+  /**
+   * Add channelSlideOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
+   * @return Channel
+   */
+  public function addChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
+  {
+    $this->channelSlideOrders[] = $channelSlideOrder;
+
+    return $this;
+  }
+
+  /**
+   * Remove channelSlideOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
+   */
+  public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
+  {
+    $this->channelSlideOrders->removeElement($channelSlideOrder);
+  }
+
+  /**
+   * Get channelSlideOrder
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getChannelSlideOrders()
+  {
+    return $this->channelSlideOrders;
   }
 }

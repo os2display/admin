@@ -73,7 +73,7 @@ ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slide
             else {
               scope.channel = data;
               angular.forEach(scope.channel.slides, function(value, key) {
-                slideFactory.getSlide(value).then(function(data) {
+                slideFactory.getSlide(value.id).then(function(data) {
                   scope.slides[key] = (data);
                   if (key === 0) {
                     scope.setTemplate();

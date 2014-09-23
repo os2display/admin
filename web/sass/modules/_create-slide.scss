@@ -256,4 +256,13 @@
   &--duration-description {
     color: $gray;
   }
+
+
+  /* Create slide - setup content (Page 6)
+  ========================================================================== */
+  &--content--slide-six {
+    @extend %grid;
+
+    @extend %create-element--layout-default;
+  }
 }
