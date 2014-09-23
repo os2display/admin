@@ -119,14 +119,19 @@ ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
      */
     factory.emptySlide = function() {
       currentSlide = {
-        id: null,
-        title: '',
-        user: '',
-        duration: '',
-        orientation: '',
-        template: '',
-        created_at: parseInt((new Date().getTime()) / 1000),
-        options: null
+        "id": null,
+        "published": false,
+        "schedule": {
+          "from": null,
+          "to": null
+        },
+        "title": '',
+        "user": '',
+        "duration": '',
+        "orientation": '',
+        "template": '',
+        "created_at": parseInt((new Date().getTime()) / 1000),
+        "options": null
       };
 
       return currentSlide;
