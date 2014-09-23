@@ -3,8 +3,8 @@
     <div class="manual-calendar--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}">
       <div class="manual-calendar--edit-box-settings" ng-click="editor.toggleTextEditor()"></div>
       <h1 class="manual-calendar--header has-placeholder" placeholder="Tilføj en overskrift" contenteditable="true" data-ng-model="ikSlide.options.headline" spellcheck="false"></h1>
-      <div class="manual-calendar--events" ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems">
-        <div class="manual-calendar--event" data-ng-style="{'border-color': ikSlide.options.textcolor}">
+      <div class="manual-calendar--events">
+        <div class="manual-calendar--event" ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems" data-ng-style="{'border-color': ikSlide.options.textcolor}">
           <div class="manual-calendar--title">
             {{event.title}}
           </div>

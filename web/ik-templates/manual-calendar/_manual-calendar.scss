@@ -17,7 +17,7 @@
     box-sizing: border-box;
     color: #fff;
     margin: 1.5rem auto;
-    padding: 6%;
+    padding: 4%;
     text-align: left;
     position:relative;
     width: 95%;
@@ -35,17 +35,21 @@
     font-size: 100%;
   }
 
-
   &--events {
-    font-size: 70%;
+    overflow: hidden;
   }
 
 
   &--event {
+    font-size: 70%;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     margin-bottom: .5em;
     padding-bottom: .5em;
+
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 
 
