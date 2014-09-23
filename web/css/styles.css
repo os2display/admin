@@ -613,14 +613,14 @@
     cursor: pointer; }
 
 /* line 146, ../sass/theme/_global-silent-classes.scss */
-.text-top--header.has-placeholder:focus, .text-top--description.has-placeholder:focus, .text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus, .text-left--header.has-placeholder:focus, .text-left--description.has-placeholder:focus, .text-right--header.has-placeholder:focus, .text-right--description.has-placeholder:focus, .portrait-text-top--header.has-placeholder:focus, .portrait-text-top--description.has-placeholder:focus, .manual-calendar--header.has-placeholder:focus, .manual-calendar--description.has-placeholder:focus {
+.text-top--header.has-placeholder:focus, .text-top--description.has-placeholder:focus, .text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus, .text-left--header.has-placeholder:focus, .text-left--description.has-placeholder:focus, .text-right--header.has-placeholder:focus, .text-right--description.has-placeholder:focus, .portrait-text-top--header.has-placeholder:focus, .portrait-text-top--description.has-placeholder:focus, .manual-calendar--header.has-placeholder:focus {
   outline: none; }
 /* line 149, ../sass/theme/_global-silent-classes.scss */
-.text-top--header.has-placeholder:empty:before, .text-top--description.has-placeholder:empty:before, .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before, .text-left--header.has-placeholder:empty:before, .text-left--description.has-placeholder:empty:before, .text-right--header.has-placeholder:empty:before, .text-right--description.has-placeholder:empty:before, .portrait-text-top--header.has-placeholder:empty:before, .portrait-text-top--description.has-placeholder:empty:before, .manual-calendar--header.has-placeholder:empty:before, .manual-calendar--description.has-placeholder:empty:before {
+.text-top--header.has-placeholder:empty:before, .text-top--description.has-placeholder:empty:before, .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before, .text-left--header.has-placeholder:empty:before, .text-left--description.has-placeholder:empty:before, .text-right--header.has-placeholder:empty:before, .text-right--description.has-placeholder:empty:before, .portrait-text-top--header.has-placeholder:empty:before, .portrait-text-top--description.has-placeholder:empty:before, .manual-calendar--header.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
 /* line 153, ../sass/theme/_global-silent-classes.scss */
-.text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before, .manual-calendar--header.has-placeholder:empty:focus:before, .manual-calendar--description.has-placeholder:empty:focus:before {
+.text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before, .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before, .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before, .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before, .portrait-text-top--header.has-placeholder:empty:focus:before, .portrait-text-top--description.has-placeholder:empty:focus:before, .manual-calendar--header.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
@@ -3373,37 +3373,47 @@ html.is-locked body {
 /* line 1, ../ik-templates/manual-calendar/_manual-calendar.scss */
 .manual-calendar {
   background-size: cover; }
-
-/* line 6, ../ik-templates/manual-calendar/_manual-calendar.scss */
-.manual-calendar--text-wrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  right: 0;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
-
-/* line 17, ../ik-templates/manual-calendar/_manual-calendar.scss */
-.manual-calendar--text-inner {
-  background: rgba(0, 0, 0, 0.7);
-  box-sizing: border-box;
-  color: #fff;
-  margin: 1.5rem auto;
-  padding: 6%;
-  text-align: left;
-  position: relative;
-  width: 95%;
-  height: 90%;
-  -moz-border-radius: 1rem;
-  -webkit-border-radius: 1rem;
-  border-radius: 1rem; }
-
-/* line 32, ../ik-templates/manual-calendar/_manual-calendar.scss */
-.manual-calendar--header {
-  font-size: 100%; }
-
-/* line 41, ../ik-templates/manual-calendar/_manual-calendar.scss */
-.manual-calendar--description {
-  font-size: 70%; }
+  /* line 4, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  .manual-calendar--text-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em; }
+  /* line 15, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  .manual-calendar--text-inner {
+    background: rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+    color: #fff;
+    margin: 1.5rem auto;
+    padding: 6%;
+    text-align: left;
+    position: relative;
+    width: 95%;
+    height: 90%;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem; }
+  /* line 30, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  .manual-calendar--header {
+    font-size: 100%; }
+  /* line 39, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  .manual-calendar--events {
+    font-size: 70%; }
+  /* line 44, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  .manual-calendar--event {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    margin-bottom: .5em;
+    padding-bottom: .5em; }
+  /* line 52, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  .manual-calendar--title, .manual-calendar--place, .manual-calendar--time {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: -4px;
+    padding: 0 2em 0 .5em;
+    vertical-align: middle;
+    width: 33%; }
