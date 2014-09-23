@@ -6,8 +6,8 @@
 /**
  * Slide edit controller. Controls the slide creation process.
  */
-ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'slideFactory',
-  function($scope, $http, mediaFactory, slideFactory) {
+ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory',
+  function($scope, $http, $filter, mediaFactory, slideFactory) {
     $scope.step = 'background-picker';
 
     // Get the slide from the backend.
@@ -50,10 +50,17 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
       },
 
       toggleContentEditor: function() {
+        // Hide all other editors.
         $scope.editor.showTextEditor = false;
         $scope.editor.showVideoEditor = false;
         $scope.editor.showBackgroundEditor = false;
+
+        //Show content editor.
         $scope.editor.showContentEditor = !$scope.editor.showContentEditor;
+
+        // Run sorting of events.
+        $scope.sortEvents();
+        console.log($scope);
       }
     }
 
@@ -158,5 +165,59 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
         $scope.editor.showTextEditor = false;
       }
     });
+
+
+    /**
+     * Add event to slide
+     */
+    $scope.addEventItem = function addEventItem() {
+      var event = {
+      "title": $scope.addevent.title,
+      "place" : $scope.addevent.place,
+      "from" : $scope.addevent.from,
+      "to" : $scope.addevent.to
+      }
+
+      // Add event data to slide array.
+      $scope.slide.options.eventitems.push(event);
+
+      // Reset input fields.
+      $scope.addevent.title = null;
+      $scope.addevent.place = null;
+      $scope.addevent.from = null;
+      $scope.addevent.to = null;
+    };
+
+
+    /**
+     * Remove event from slide.
+     */
+    $scope.removeEventItem = function removeEventItem(event) {
+      $scope.slide.options.eventitems.splice($scope.slide.options.eventitems.indexOf(event), 1);
+    };
+
+
+    /**
+     * Remove event from slide.
+     */
+    $scope.sortEvents = function sortEvents() {
+      if($scope.slide.options.eventitems.length > 0) {
+        // Sort the events by from date.
+        $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
+      }
+    };
   }
 ]);
+
+
+/**
+ * Add a reverse filter to eventlist.
+ */
+ikApp.filter('reverseEvents', function() {
+  return function(items) {
+    if (!angular.isArray(items)){
+      return false
+    }
+    return items.slice().reverse();
+  };
+});
