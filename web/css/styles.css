@@ -1800,7 +1800,7 @@ html.is-locked body {
   /* line 131, ../sass/modules/_create-media.scss */
   .create-media--text-input[type="text"] {
     background: #fff;
-    height: 1em;
+    height: auto;
     padding: 1em;
     width: auto;
     margin-bottom: 0; }
