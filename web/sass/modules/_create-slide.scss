@@ -203,17 +203,26 @@
     @extend %create-element--layout-default;
   }
 
+  &--publishing,
   &--duration {
-    width: 75%;
-    margin: 0 auto;
+    border-bottom: 1px solid $gray;
+    margin: 0 auto 2em;
     max-width: 30em;
-
+    padding-bottom: 2em;
+    width: 75%;
 
     @include breakpoint($breakpoint-lap) {
       width: 50%;
     }
+
+    &:last-child {
+      border: 0;
+    }
   }
 
+  &--from-label,
+  &--to-label,
+  &--schedule-label,
   &--duration-label {
     font-size: 1.2em;
     text-align: left;
@@ -235,18 +244,9 @@
     width: 50%;
   }
 
-  &--duration-description {
-    color: $gray;
-  }
-
   &--published {
-    width: 75%;
-    margin: 0 auto;
-    max-width: 30em;
-
-    @include breakpoint($breakpoint-lap) {
-      width: 50%;
-    }
+    margin-bottom: 1em;
+    text-align: left;
   }
 
   &--published-label {
@@ -254,34 +254,25 @@
     text-align: left;
   }
 
+  &--duration-description,
+  &--schedule-description,
   &--published-description {
     color: $gray;
   }
 
-  &--published-input[type="checkbox"] {
+  &--schedule-from,
+  &--schedule-to {
+    box-sizing: border-box;
+    padding-right: 1em;
+    display: inline-block;
+    margin-left: -4px;
+    width: 50%;
   }
 
-  &--schedule {
-    width: 75%;
-    margin: 0 auto;
-    max-width: 30em;
-
-    @include breakpoint($breakpoint-lap) {
-      width: 50%;
-    }
+  &--published-checkbox[type="checkbox"] {
+    margin-right: 1em;
   }
 
-  &--schedule-label {
-    font-size: 1.2em;
-    text-align: left;
-  }
-
-  &--schedule-description {
-    color: $gray;
-  }
-
-  &--schedule-input[type="text"] {
-  }
 
   /* Create slide - setup content (Page 6)
   ========================================================================== */

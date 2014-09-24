@@ -238,7 +238,8 @@
     padding-bottom: 1em;
   }
 
-  &--calendar-form-element-wrapper {
+  &--calendar-form-element-wrapper,
+  &--calendar-form-element-wrapper-link {
     box-sizing: border-box;
     display: inline-block;
     margin-left: -4px;
@@ -246,7 +247,23 @@
     width: 20%;
   }
 
+  &--calendar-form-element-wrapper-link {
+    vertical-align: middle;
+  }
+
   &--calendar-label {
     text-align: left;
+  }
+
+  &--calendar-add-date {
+    cursor: pointer;
+
+    @include generate-sprite-image($dashboard-sprites, 'plus-icon', 55);
+  }
+
+  &--calendar-remove-date {
+    cursor: pointer;
+
+    @include generate-sprite-image($dashboard-sprites, 'minus-icon', 55);
   }
 }
