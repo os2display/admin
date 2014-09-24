@@ -126,6 +126,26 @@ ikApp.factory('templateFactory', function() {
       emptyoptions: {
         videos: []
       }
+    },
+    {
+      id: 'manual-calendar',
+      image: '/ik-templates/manual-calendar/manual-calendar.png',
+      orientation: 'landscape',
+      idealdimensions: {
+        width: '1920',
+        height: '1080'
+      },
+      emptyoptions: {
+        fontsize: '50',
+        bgcolor: '#ccc',
+        textcolor: '#fff',
+        textbgcolor: 'rgba(0, 0, 0, 0.7)',
+        images: [],
+        headline: '',
+        text: '',
+        displayitems: '7',
+        eventitems: []
+      }
     }
   ];
 

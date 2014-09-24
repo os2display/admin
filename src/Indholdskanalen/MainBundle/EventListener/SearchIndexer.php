@@ -8,6 +8,8 @@ namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use JMS\Serializer\Serializer;
+use Symfony\Component\DependencyInjection\Container;
+
 
 /**
  * Class SearchIndexer
@@ -22,9 +24,11 @@ class SearchIndexer {
    * Default constructor.
    *
    * @param Serializer $serializer
+   * @param Container $container
    */
-  function __construct(Serializer $serializer) {
+  function __construct(Serializer $serializer, Container $container) {
     $this->serializer = $serializer;
+    $this->container = $container;
   }
 
   /**

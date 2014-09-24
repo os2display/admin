@@ -7,20 +7,21 @@
   position: absolute;
   width: 100%;
 
-  @include border-radius(1em);
+  @include border-radius(10px);
 }
 
 
 .text-top--text-inner {
   background: rgba(0,0,0,0.7);
+  box-sizing: border-box;
   color: #fff;
   margin: 3% auto;
   padding: 4%;
   text-align: left;
   position:relative;
-  width: 87%;
+  width: 95%;
 
-  @include border-radius(1em);
+  @include border-radius(10px);
 }
 
 
