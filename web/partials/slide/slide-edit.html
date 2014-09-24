@@ -104,8 +104,8 @@
               <label class="edit-menu--calendar-label">Til</label>
               <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" ng-model="addevent.to">
             </div>
-            <div class="edit-menu--calendar-form-element-wrapper">
-              <div class="edit-menu--calendar-add-date" data-ng-click="addEventItem()">Add</div>
+            <div class="edit-menu--calendar-form-element-wrapper-link">
+              <div class="edit-menu--calendar-add-date" data-ng-click="addEventItem()"></div>
             </div>
           </div>
           <div class="edit-menu--calendar-date-events" ng-repeat="event in slide.options.eventitems | reverseEvents">
@@ -121,8 +121,8 @@
             <div class="edit-menu--calendar-form-element-wrapper">
               <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" ng-model="event.to">
             </div>
-            <div class="edit-menu--calendar-form-element-wrapper">
-              <a href="" class="edit-menu--calendar-add-date" data-ng-click="removeEventItem(event)">Remove</a>
+            <div class="edit-menu--calendar-form-element-wrapper-link">
+              <div class="edit-menu--calendar-remove-date" data-ng-click="removeEventItem(event)"></div>
             </div>
           </div>
         </div>
