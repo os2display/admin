@@ -7,7 +7,7 @@
   position: absolute;
   width: 100%;
 
-  @include border-radius(1em);
+  @include border-radius(10px);
 }
 
 
@@ -15,13 +15,13 @@
   background: rgba(0,0,0,0.7);
   box-sizing: border-box;
   color: #fff;
-  margin: 1.2rem auto;
+  margin: 3% auto;
   padding: 4%;
   text-align: left;
   position:relative;
   width: 95%;
 
-  @include border-radius(1rem);
+  @include border-radius(10px);
 }
 
 
