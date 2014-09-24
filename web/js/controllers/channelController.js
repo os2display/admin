@@ -144,16 +144,16 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
      * @param slide
      */
     $scope.toggleSlide = function(slide) {
-      var res = false;
+      var res = null;
 
       $scope.channel.slides.forEach(function(element, index, array) {
         if (slide.id == element.id) {
-          res = true;
+          res = index;
         };
       });
 
-      if (res) {
-        $scope.channel.slides.splice($scope.channel.slides.indexOf(slide), 1);
+      if (res !== null) {
+        $scope.channel.slides.splice(res, 1);
       }
       else {
         $scope.channel.slides.push(slide);

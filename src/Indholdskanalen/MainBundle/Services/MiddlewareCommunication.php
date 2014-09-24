@@ -66,9 +66,9 @@ class MiddlewareCommunication extends ContainerAware
     foreach($screens as $screen) {
       $slides = array();
       foreach($screen->getChannels() as $channel) {
-        $slideIds = $channel->getSlides();
-        foreach($slideIds as $slideId) {
-          $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slideId);
+        $channelSlideOrders = $channel->getChannelSlideOrders();
+        foreach($channelSlideOrders as $channelSlideOrder) {
+          $slide = $channelSlideOrder->getSlide();
 
           if (!$slide) {
             continue;

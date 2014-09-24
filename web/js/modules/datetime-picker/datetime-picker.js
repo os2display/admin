@@ -15,6 +15,8 @@ angular.module('datetimePicker', [])
     link: function(scope, el, attrs, ngModel) {
       el.datetimepicker({
         lang: 'da',
+        format: 'd/m/Y H:i',
+        startDate: new Date(),
         onChangeDateTime: function(dp, $input) {
           scope.$apply(function() {
             ngModel.$setViewValue($input.val());
