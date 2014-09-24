@@ -426,9 +426,9 @@
  * Mixins
  *
  */
-/* line 184, icons/*.png */
+/* line 192, icons/*.png */
 .icons-sprite {
-  background-image: url('/images/icons-se2f46b6d78.png');
+  background-image: url('/images/icons-s71a555dbbd.png');
   background-repeat: no-repeat; }
 
 /* Layout
@@ -466,33 +466,33 @@
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url('/images/icons-sfbd3dd6cc9.png');
-  -moz-background-size: 103px 1244px;
-  -o-background-size: 103px 1244px;
-  -webkit-background-size: 103px 1244px;
-  background-size: 103px 1244px;
+  background: url('/images/icons-s5312e08133.png');
+  -moz-background-size: 103px 1311px;
+  -o-background-size: 103px 1311px;
+  -webkit-background-size: 103px 1311px;
+  background-size: 103px 1311px;
   width: 60px;
   height: 60px;
   background-position: 0 -122px; }
   @media only screen and (min-width: 481px) {
     /* line 11, ../sass/theme/_global-silent-classes.scss */
     .create-slide--link-check, .create-screen--link-check, .create-channel--link-check {
-      background: url('/images/icons-sfbd3dd6cc9.png');
-      -moz-background-size: 64px 777px;
-      -o-background-size: 64px 777px;
-      -webkit-background-size: 64px 777px;
-      background-size: 64px 777px;
+      background: url('/images/icons-s5312e08133.png');
+      -moz-background-size: 64px 819px;
+      -o-background-size: 64px 819px;
+      -webkit-background-size: 64px 819px;
+      background-size: 64px 819px;
       width: 37px;
       height: 37px;
       background-position: 0 -76px; } }
   @media only screen and (min-width: 600px) {
     /* line 11, ../sass/theme/_global-silent-classes.scss */
     .create-slide--link-check, .create-screen--link-check, .create-channel--link-check {
-      background: url('/images/icons-sfbd3dd6cc9.png');
-      -moz-background-size: 103px 1244px;
-      -o-background-size: 103px 1244px;
-      -webkit-background-size: 103px 1244px;
-      background-size: 103px 1244px;
+      background: url('/images/icons-s5312e08133.png');
+      -moz-background-size: 103px 1311px;
+      -o-background-size: 103px 1311px;
+      -webkit-background-size: 103px 1311px;
+      background-size: 103px 1311px;
       width: 60px;
       height: 60px;
       background-position: 0 -122px; } }
@@ -562,11 +562,11 @@
   position: absolute;
   right: -20px;
   top: -20px;
-  background: url('/images/icons-sfbd3dd6cc9.png');
-  -moz-background-size: 64px 777px;
-  -o-background-size: 64px 777px;
-  -webkit-background-size: 64px 777px;
-  background-size: 64px 777px;
+  background: url('/images/icons-s5312e08133.png');
+  -moz-background-size: 64px 819px;
+  -o-background-size: 64px 819px;
+  -webkit-background-size: 64px 819px;
+  background-size: 64px 819px;
   width: 50px;
   height: 50px;
   background-position: 0 -256px; }
@@ -579,11 +579,11 @@
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/images/icons-sfbd3dd6cc9.png');
-  -moz-background-size: 128px 1554px;
-  -o-background-size: 128px 1554px;
-  -webkit-background-size: 128px 1554px;
-  background-size: 128px 1554px;
+  background: url('/images/icons-s5312e08133.png');
+  -moz-background-size: 128px 1638px;
+  -o-background-size: 128px 1638px;
+  -webkit-background-size: 128px 1638px;
+  background-size: 128px 1638px;
   width: 51px;
   height: 51px;
   background-position: 0 -632px; }
@@ -600,14 +600,14 @@
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url('/images/icons-sfbd3dd6cc9.png');
-  -moz-background-size: 96px 1166px;
-  -o-background-size: 96px 1166px;
-  -webkit-background-size: 96px 1166px;
-  background-size: 96px 1166px;
+  background: url('/images/icons-s5312e08133.png');
+  -moz-background-size: 96px 1229px;
+  -o-background-size: 96px 1229px;
+  -webkit-background-size: 96px 1229px;
+  background-size: 96px 1229px;
   width: 48px;
   height: 48px;
-  background-position: 0 -756px; }
+  background-position: 0 -819px; }
   /* line 138, ../sass/theme/_global-silent-classes.scss */
   .manual-calendar--edit-content-settings:hover {
     cursor: pointer; }
@@ -625,14 +625,14 @@
   color: #000; }
 
 /* line 159, ../sass/theme/_global-silent-classes.scss */
-.text-top--header, .text-top--description, .text-bottom--header, .text-bottom--description, .text-left--header, .text-left--description, .text-right--header, .text-right--description, .portrait-text-top--header, .portrait-text-top--description {
+.text-top--header, .text-top--description, .text-bottom--header, .text-bottom--description, .text-left--header, .text-left--description, .text-right--header, .text-right--description, .portrait-text-top--header, .portrait-text-top--description, .manual-calendar--header {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
   /* line 160, ../sass/theme/_global-silent-classes.scss */
-  .text-top--header:focus, .text-top--description:focus, .text-bottom--header:focus, .text-bottom--description:focus, .text-left--header:focus, .text-left--description:focus, .text-right--header:focus, .text-right--description:focus, .portrait-text-top--header:focus, .portrait-text-top--description:focus {
+  .text-top--header:focus, .text-top--description:focus, .text-bottom--header:focus, .text-bottom--description:focus, .text-left--header:focus, .text-left--description:focus, .text-right--header:focus, .text-right--description:focus, .portrait-text-top--header:focus, .portrait-text-top--description:focus, .manual-calendar--header:focus {
     outline: none;
     border: 0; }
 
@@ -1335,66 +1335,57 @@ html.is-locked body {
     max-height: 100%;
     width: 100%; }
   /* line 206, ../sass/modules/_create-slide.scss */
-  .create-slide--duration {
-    width: 75%;
-    margin: 0 auto;
-    max-width: 30em; }
+  .create-slide--publishing, .create-slide--duration {
+    border-bottom: 1px solid #b3b3b3;
+    margin: 0 auto 2em;
+    max-width: 30em;
+    padding-bottom: 2em;
+    width: 75%; }
     @media only screen and (min-width: 481px) {
       /* line 206, ../sass/modules/_create-slide.scss */
-      .create-slide--duration {
+      .create-slide--publishing, .create-slide--duration {
         width: 50%; } }
-  /* line 217, ../sass/modules/_create-slide.scss */
-  .create-slide--duration-label {
+    /* line 218, ../sass/modules/_create-slide.scss */
+    .create-slide--publishing:last-child, .create-slide--duration:last-child {
+      border: 0; }
+  /* line 223, ../sass/modules/_create-slide.scss */
+  .create-slide--from-label, .create-slide--to-label, .create-slide--schedule-label, .create-slide--duration-label {
     font-size: 1.2em;
     text-align: left; }
-  /* line 222, ../sass/modules/_create-slide.scss */
+  /* line 231, ../sass/modules/_create-slide.scss */
   .create-slide--duration-text {
     margin-bottom: 1em; }
-  /* line 226, ../sass/modules/_create-slide.scss */
+  /* line 235, ../sass/modules/_create-slide.scss */
   .create-slide--duration-input[type="text"] {
     display: inline-block;
     width: 47%;
     margin-right: 2%; }
-  /* line 232, ../sass/modules/_create-slide.scss */
+  /* line 241, ../sass/modules/_create-slide.scss */
   .create-slide--duration-suffix {
     display: inline-block;
     font-size: 1.5em;
     width: 50%; }
-  /* line 238, ../sass/modules/_create-slide.scss */
-  .create-slide--duration-description {
-    color: #b3b3b3; }
-  /* line 242, ../sass/modules/_create-slide.scss */
+  /* line 247, ../sass/modules/_create-slide.scss */
   .create-slide--published {
-    width: 75%;
-    margin: 0 auto;
-    max-width: 30em; }
-    @media only screen and (min-width: 481px) {
-      /* line 242, ../sass/modules/_create-slide.scss */
-      .create-slide--published {
-        width: 50%; } }
+    margin-bottom: 1em;
+    text-align: left; }
   /* line 252, ../sass/modules/_create-slide.scss */
   .create-slide--published-label {
     font-size: 1.2em;
     text-align: left; }
   /* line 257, ../sass/modules/_create-slide.scss */
-  .create-slide--published-description {
+  .create-slide--duration-description, .create-slide--schedule-description, .create-slide--published-description {
     color: #b3b3b3; }
-  /* line 264, ../sass/modules/_create-slide.scss */
-  .create-slide--schedule {
-    width: 75%;
-    margin: 0 auto;
-    max-width: 30em; }
-    @media only screen and (min-width: 481px) {
-      /* line 264, ../sass/modules/_create-slide.scss */
-      .create-slide--schedule {
-        width: 50%; } }
-  /* line 274, ../sass/modules/_create-slide.scss */
-  .create-slide--schedule-label {
-    font-size: 1.2em;
-    text-align: left; }
-  /* line 279, ../sass/modules/_create-slide.scss */
-  .create-slide--schedule-description {
-    color: #b3b3b3; }
+  /* line 263, ../sass/modules/_create-slide.scss */
+  .create-slide--schedule-from, .create-slide--schedule-to {
+    box-sizing: border-box;
+    padding-right: 1em;
+    display: inline-block;
+    margin-left: -4px;
+    width: 50%; }
+  /* line 272, ../sass/modules/_create-slide.scss */
+  .create-slide--published-checkbox[type="checkbox"] {
+    margin-right: 1em; }
 
 /**
  *
@@ -1710,11 +1701,11 @@ html.is-locked body {
     left: 0; }
     /* line 317, ../sass/modules/_create-channel.scss */
     .create-channel--screen-element-check.is-selected {
-      background: url('/images/icons-sfbd3dd6cc9.png');
-      -moz-background-size: 26px 311px;
-      -o-background-size: 26px 311px;
-      -webkit-background-size: 26px 311px;
-      background-size: 26px 311px;
+      background: url('/images/icons-s5312e08133.png');
+      -moz-background-size: 26px 328px;
+      -o-background-size: 26px 328px;
+      -webkit-background-size: 26px 328px;
+      background-size: 26px 328px;
       width: 26px;
       height: 21px;
       background-position: 0 -50px; }
@@ -1765,14 +1756,14 @@ html.is-locked body {
     background-color: #fafafa; }
   /* line 72, ../sass/modules/_create-media.scss */
   .create-media--upload-icon {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 128px 1554px;
-    -o-background-size: 128px 1554px;
-    -webkit-background-size: 128px 1554px;
-    background-size: 128px 1554px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 128px 1638px;
+    -o-background-size: 128px 1638px;
+    -webkit-background-size: 128px 1638px;
+    background-size: 128px 1638px;
     width: 75px;
     height: 80px;
-    background-position: 0 -1352px;
+    background-position: 0 -1436px;
     display: inline-block;
     vertical-align: middle;
     margin: 2em auto; }
@@ -2042,15 +2033,40 @@ html.is-locked body {
     margin-bottom: 1em;
     padding-bottom: 1em; }
   /* line 241, ../sass/modules/_edit-menu.scss */
-  .edit-menu--calendar-form-element-wrapper {
+  .edit-menu--calendar-form-element-wrapper, .edit-menu--calendar-form-element-wrapper-link {
     box-sizing: border-box;
     display: inline-block;
     margin-left: -4px;
     padding: 1em;
     width: 20%; }
-  /* line 249, ../sass/modules/_edit-menu.scss */
+  /* line 250, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-form-element-wrapper-link {
+    vertical-align: middle; }
+  /* line 254, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-label {
     text-align: left; }
+  /* line 258, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-add-date {
+    cursor: pointer;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 71px 901px;
+    -o-background-size: 71px 901px;
+    -webkit-background-size: 71px 901px;
+    background-size: 71px 901px;
+    width: 36px;
+    height: 36px;
+    background-position: 0 -601px; }
+  /* line 264, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-remove-date {
+    cursor: pointer;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 71px 901px;
+    -o-background-size: 71px 901px;
+    -webkit-background-size: 71px 901px;
+    background-size: 71px 901px;
+    width: 36px;
+    height: 36px;
+    background-position: 0 -444px; }
 
 /**
  *
@@ -2271,44 +2287,44 @@ html.is-locked body {
           cursor: pointer; } }
   /* line 214, ../sass/modules/_header.scss */
   .header--main-menu-item-image-channels {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 32px 389px;
-    -o-background-size: 32px 389px;
-    -webkit-background-size: 32px 389px;
-    background-size: 32px 389px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 32px 410px;
+    -o-background-size: 32px 410px;
+    -webkit-background-size: 32px 410px;
+    background-size: 32px 410px;
     width: 32px;
     height: 25px;
     background-position: 0 -9px; }
   /* line 221, ../sass/modules/_header.scss */
   .header--main-menu-item-image-slides {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 32px 389px;
-    -o-background-size: 32px 389px;
-    -webkit-background-size: 32px 389px;
-    background-size: 32px 389px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 32px 410px;
+    -o-background-size: 32px 410px;
+    -webkit-background-size: 32px 410px;
+    background-size: 32px 410px;
     width: 24px;
     height: 19px;
-    background-position: 0 -273px; }
+    background-position: 0 -294px; }
   /* line 228, ../sass/modules/_header.scss */
   .header--main-menu-item-image-screens {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 32px 389px;
-    -o-background-size: 32px 389px;
-    -webkit-background-size: 32px 389px;
-    background-size: 32px 389px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 32px 410px;
+    -o-background-size: 32px 410px;
+    -webkit-background-size: 32px 410px;
+    background-size: 32px 410px;
     width: 32px;
     height: 20px;
     background-position: 0 -93px; }
   /* line 235, ../sass/modules/_header.scss */
   .header--main-menu-item-image-templates {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 32px 389px;
-    -o-background-size: 32px 389px;
-    -webkit-background-size: 32px 389px;
-    background-size: 32px 389px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 32px 410px;
+    -o-background-size: 32px 410px;
+    -webkit-background-size: 32px 410px;
+    background-size: 32px 410px;
     width: 26px;
     height: 19px;
-    background-position: 0 -314px; }
+    background-position: 0 -335px; }
   /* line 242, ../sass/modules/_header.scss */
   .header--main-menu-item-text {
     display: block; }
@@ -2399,11 +2415,11 @@ html.is-locked body {
       text-decoration: none; }
   /* line 327, ../sass/modules/_header.scss */
   .header--nav-menu-label-image {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 32px 389px;
-    -o-background-size: 32px 389px;
-    -webkit-background-size: 32px 389px;
-    background-size: 32px 389px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 32px 410px;
+    -o-background-size: 32px 410px;
+    -webkit-background-size: 32px 410px;
+    background-size: 32px 410px;
     width: 31px;
     height: 21px;
     background-position: 0 -176px;
@@ -2463,24 +2479,24 @@ html.is-locked body {
       border-bottom: 2px solid black; }
   /* line 389, ../sass/modules/_header.scss */
   .header--sub-menu-item-image-overview {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 128px 1554px;
-    -o-background-size: 128px 1554px;
-    -webkit-background-size: 128px 1554px;
-    background-size: 128px 1554px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 128px 1638px;
+    -o-background-size: 128px 1638px;
+    -webkit-background-size: 128px 1638px;
+    background-size: 128px 1638px;
     width: 13px;
     height: 13px;
-    background-position: 0 -807px;
+    background-position: 0 -891px;
     display: inline-block;
     margin: 0 .5em 0 0;
     vertical-align: middle; }
   /* line 398, ../sass/modules/_header.scss */
   .header--sub-menu-item-image-create-channel {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 128px 1554px;
-    -o-background-size: 128px 1554px;
-    -webkit-background-size: 128px 1554px;
-    background-size: 128px 1554px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 128px 1638px;
+    -o-background-size: 128px 1638px;
+    -webkit-background-size: 128px 1638px;
+    background-size: 128px 1638px;
     width: 13px;
     height: 13px;
     background-position: 0 0;
@@ -2540,44 +2556,44 @@ html.is-locked body {
       border-bottom: 2px solid black; }
   /* line 457, ../sass/modules/_header.scss */
   .header--main-menu-item-image-channels--mobile {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 26px 311px;
-    -o-background-size: 26px 311px;
-    -webkit-background-size: 26px 311px;
-    background-size: 26px 311px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 26px 328px;
+    -o-background-size: 26px 328px;
+    -webkit-background-size: 26px 328px;
+    background-size: 26px 328px;
     width: 26px;
     height: 20px;
     background-position: 0 -7px; }
   /* line 464, ../sass/modules/_header.scss */
   .header--main-menu-item-image-slides--mobile {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 26px 311px;
-    -o-background-size: 26px 311px;
-    -webkit-background-size: 26px 311px;
-    background-size: 26px 311px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 26px 328px;
+    -o-background-size: 26px 328px;
+    -webkit-background-size: 26px 328px;
+    background-size: 26px 328px;
     width: 20px;
     height: 16px;
-    background-position: 0 -219px; }
+    background-position: 0 -236px; }
   /* line 471, ../sass/modules/_header.scss */
   .header--main-menu-item-image-screens--mobile {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 26px 311px;
-    -o-background-size: 26px 311px;
-    -webkit-background-size: 26px 311px;
-    background-size: 26px 311px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 26px 328px;
+    -o-background-size: 26px 328px;
+    -webkit-background-size: 26px 328px;
+    background-size: 26px 328px;
     width: 26px;
     height: 16px;
     background-position: 0 -74px; }
   /* line 478, ../sass/modules/_header.scss */
   .header--main-menu-item-image-templates--mobile {
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 26px 311px;
-    -o-background-size: 26px 311px;
-    -webkit-background-size: 26px 311px;
-    background-size: 26px 311px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 26px 328px;
+    -o-background-size: 26px 328px;
+    -webkit-background-size: 26px 328px;
+    background-size: 26px 328px;
     width: 21px;
     height: 16px;
-    background-position: 0 -252px; }
+    background-position: 0 -268px; }
   /* line 485, ../sass/modules/_header.scss */
   .header--main-menu-item-text--mobile {
     display: block; }
@@ -2940,14 +2956,14 @@ html.is-locked body {
     position: absolute;
     top: .5rem;
     background: #fff;
-    background: url('/images/icons-sfbd3dd6cc9.png');
-    -moz-background-size: 29px 342px;
-    -o-background-size: 29px 342px;
-    -webkit-background-size: 29px 342px;
-    background-size: 29px 342px;
+    background: url('/images/icons-s5312e08133.png');
+    -moz-background-size: 29px 361px;
+    -o-background-size: 29px 361px;
+    -webkit-background-size: 29px 361px;
+    background-size: 29px 361px;
     width: 29px;
     height: 23px;
-    background-position: 0 -320px; }
+    background-position: 0 -338px; }
   /* line 235, ../sass/modules/_overview.scss */
   .overview--media-overlay {
     background-color: rgba(255, 255, 255, 0.65);
@@ -3068,25 +3084,25 @@ html.is-locked body {
 
 /* line 37, ../sass/modules/_preview.scss */
 .preview--channel-play {
-  background: url('/images/icons-sfbd3dd6cc9.png');
-  -moz-background-size: 84px 1011px;
-  -o-background-size: 84px 1011px;
-  -webkit-background-size: 84px 1011px;
-  background-size: 84px 1011px;
+  background: url('/images/icons-s5312e08133.png');
+  -moz-background-size: 84px 1065px;
+  -o-background-size: 84px 1065px;
+  -webkit-background-size: 84px 1065px;
+  background-size: 84px 1065px;
   width: 42px;
   height: 42px;
-  background-position: 0 -601px; }
+  background-position: 0 -656px; }
 
 /* line 45, ../sass/modules/_preview.scss */
 .preview--channel-pause {
-  background: url('/images/icons-sfbd3dd6cc9.png');
-  -moz-background-size: 84px 1011px;
-  -o-background-size: 84px 1011px;
-  -webkit-background-size: 84px 1011px;
-  background-size: 84px 1011px;
+  background: url('/images/icons-s5312e08133.png');
+  -moz-background-size: 84px 1065px;
+  -o-background-size: 84px 1065px;
+  -webkit-background-size: 84px 1065px;
+  background-size: 84px 1065px;
   width: 42px;
   height: 42px;
-  background-position: 0 -546px; }
+  background-position: 0 -601px; }
 
 /* line 1, ../sass/modules/_colorpicker.scss */
 .colorpicker {
@@ -3198,14 +3214,14 @@ html.is-locked body {
 /* line 84, ../sass/animations/_animation.scss */
 .spinner, .create-media--spinner {
   margin: 2em;
-  background: url('/images/icons-sfbd3dd6cc9.png');
-  -moz-background-size: 77px 933px;
-  -o-background-size: 77px 933px;
-  -webkit-background-size: 77px 933px;
-  background-size: 77px 933px;
+  background: url('/images/icons-s5312e08133.png');
+  -moz-background-size: 77px 983px;
+  -o-background-size: 77px 983px;
+  -webkit-background-size: 77px 983px;
+  background-size: 77px 983px;
   width: 29px;
   height: 29px;
-  background-position: 0 -713px;
+  background-position: 0 -764px;
   -moz-animation: spinner 1.5s infinite;
   -webkit-animation: spinner 1.5s infinite;
   animation: spinner 1.5s infinite;
@@ -3419,47 +3435,45 @@ html.is-locked body {
 /* line 1, ../ik-templates/manual-calendar/_manual-calendar.scss */
 .manual-calendar {
   background-size: cover; }
-  /* line 4, ../ik-templates/manual-calendar/_manual-calendar.scss */
-  .manual-calendar--text-wrapper {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    -moz-border-radius: 1em;
-    -webkit-border-radius: 1em;
-    border-radius: 1em; }
-  /* line 15, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 5, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  .manual-calendar--header {
+    font-size: 100%; }
+  /* line 16, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--text-inner {
     background: rgba(0, 0, 0, 0.7);
     box-sizing: border-box;
     color: #fff;
-    margin: 1.5rem auto;
+    margin: 3% auto;
     padding: 4%;
     text-align: left;
     position: relative;
     width: 95%;
     height: 90%;
-    -moz-border-radius: 1rem;
-    -webkit-border-radius: 1rem;
-    border-radius: 1rem; }
-  /* line 30, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+  /* line 33, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--header {
     font-size: 100%; }
-  /* line 38, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 42, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--events {
     overflow: hidden; }
-  /* line 43, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 47, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--event {
     font-size: 70%;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     margin-bottom: .5em;
     padding-bottom: .5em; }
-    /* line 50, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    /* line 54, ../ik-templates/manual-calendar/_manual-calendar.scss */
     .manual-calendar--event:last-child {
       border-bottom: 0; }
-  /* line 56, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 60, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--title, .manual-calendar--place, .manual-calendar--time {
     box-sizing: border-box;
     display: inline-block;
