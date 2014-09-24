@@ -1291,10 +1291,11 @@ html.is-locked body {
         height: 100%;
         background: rgba(255, 255, 255, 0.5);
         position: absolute; }
-  /* line 142, ../sass/modules/_create-slide.scss */
+  /* line 141, ../sass/modules/_create-slide.scss */
   .create-slide--content-wrapper {
     margin-bottom: 2em;
     overflow-x: auto;
+    overflow-y: hidden;
     width: 100%; }
   /* line 149, ../sass/modules/_create-slide.scss */
   .create-slide--config {
@@ -3240,23 +3241,23 @@ html.is-locked body {
 .text-top--text-wrapper {
   position: absolute;
   width: 100%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 14, ../ik-templates/text-top/_text-top.scss */
 .text-top--text-inner {
   background: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
   color: #fff;
-  margin: 1.2rem auto;
+  margin: 3% auto;
   padding: 4%;
   text-align: left;
   position: relative;
   width: 95%;
-  -moz-border-radius: 1rem;
-  -webkit-border-radius: 1rem;
-  border-radius: 1rem; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 28, ../ik-templates/text-top/_text-top.scss */
 .text-top--header {
@@ -3275,23 +3276,23 @@ html.is-locked body {
   position: absolute;
   width: 100%;
   bottom: 0;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 15, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--text-inner {
   background: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
   color: #fff;
-  margin: 1.2rem auto;
+  margin: 3% auto;
   padding: 4%;
   text-align: left;
   position: relative;
   width: 95%;
-  -moz-border-radius: 1rem;
-  -webkit-border-radius: 1rem;
-  border-radius: 1rem; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 29, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--header {
@@ -3316,24 +3317,24 @@ html.is-locked body {
   width: 50%;
   height: 100%;
   left: 0;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 16, ../ik-templates/text-left/_text-left.scss */
 .text-left--text-inner {
   background: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
   color: #fff;
-  margin: 1.5rem auto;
+  margin: 5.5% auto;
   padding: 6%;
   text-align: left;
   position: relative;
   width: 90%;
   height: 90%;
-  -moz-border-radius: 1rem;
-  -webkit-border-radius: 1rem;
-  border-radius: 1rem; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 31, ../ik-templates/text-left/_text-left.scss */
 .text-left--header {
@@ -3353,24 +3354,24 @@ html.is-locked body {
   width: 50%;
   height: 100%;
   right: 0;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 16, ../ik-templates/text-right/_text-right.scss */
 .text-right--text-inner {
   background: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
   color: #fff;
-  margin: 1.5rem auto;
+  margin: 5.5% auto;
   padding: 6%;
   text-align: left;
   position: relative;
   width: 90%;
   height: 90%;
-  -moz-border-radius: 1rem;
-  -webkit-border-radius: 1rem;
-  border-radius: 1rem; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 31, ../ik-templates/text-right/_text-right.scss */
 .text-right--header {
@@ -3393,23 +3394,23 @@ html.is-locked body {
 .portrait-text-top--text-wrapper {
   position: absolute;
   width: 100%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 14, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--text-inner {
   background: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
   color: #fff;
-  margin: 1.2rem auto;
+  margin: 3% auto;
   padding: 4%;
   text-align: left;
   position: relative;
-  width: 95%;
-  -moz-border-radius: 1rem;
-  -webkit-border-radius: 1rem;
-  border-radius: 1rem; }
+  width: 93%;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
 
 /* line 28, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--header {
@@ -3418,6 +3419,11 @@ html.is-locked body {
 /* line 39, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%; }
+
+/* line 50, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+.portrait-text-top--edit-box-settings {
+  right: -15px;
+  top: -15px; }
 
 /* line 1, ../ik-templates/only-video/_only-video.scss */
 .only-video {

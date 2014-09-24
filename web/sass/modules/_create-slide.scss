@@ -130,7 +130,6 @@
   }
 
 
-
   /* Create slide - setup content (Page 4)
    ========================================================================== */
   &--content--slide-four {
@@ -142,6 +141,7 @@
   &--content-wrapper {
     margin-bottom: 2em;
     overflow-x: auto;
+    overflow-y: hidden;
     width: 100%;
   }
 
