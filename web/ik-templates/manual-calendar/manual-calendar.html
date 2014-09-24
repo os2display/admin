@@ -1,0 +1,18 @@
+<div class="manual-calendar" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': theStyle.width, 'height': theStyle.height, 'font-size': theStyle.fontsize, 'background-image': 'url(' + ikSlide.currentImage + ')', 'position': 'relative'}">
+  <div class="manual-calendar--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}">
+    <h1 class="manual-calendar--header">{{ikSlide.options.headline}}</h1>
+    <div class="manual-calendar--events">
+      <div class="manual-calendar--event" ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems" data-ng-style="{'border-color': ikSlide.options.textcolor}">
+        <div class="manual-calendar--title">
+          {{event.title}}
+        </div>
+        <div class="manual-calendar--place">
+          {{event.place}}
+        </div>
+        <div class="manual-calendar--time">
+          <span class="manual-calendar--from">{{event.from}}</span> til <span class="manual-calendar--to">{{event.to}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
