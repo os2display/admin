@@ -8,6 +8,8 @@ namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use JMS\Serializer\Serializer;
+use Symfony\Component\DependencyInjection\Container;
+
 
 /**
  * Class SearchIndexer
@@ -18,23 +20,15 @@ class SearchIndexer {
   protected $container;
   protected $serializer;
 
-  protected function getContainer() {
-    if (NULL === $this->container) {
-      // This use of global is not the right way, but until DI makes sens... it works.
-      $this->container = $GLOBALS['kernel']->getContainer();
-    }
-
-    return $this->container;
-  }
-
   /**
    * Default constructor.
    *
    * @param Serializer $serializer
+   * @param Container $container
    */
-  function __construct(Serializer $serializer) {
+  function __construct(Serializer $serializer, Container $container) {
     $this->serializer = $serializer;
-    $this->getContainer();
+    $this->container = $container;
   }
 
   /**

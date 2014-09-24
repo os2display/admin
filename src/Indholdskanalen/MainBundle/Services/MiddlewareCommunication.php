@@ -76,16 +76,38 @@ class MiddlewareCommunication extends ContainerAware
 
           // Build image urls.
           $imageUrls = array();
-          foreach($slide->getOptions()['images'] as $imageId) {
-            $image = $sonataMedia->findOneById($imageId);
+          if (isset($slide->getOptions()['images'])) {
+            foreach($slide->getOptions()['images'] as $imageId) {
+              $image = $sonataMedia->findOneById($imageId);
 
-            if ($image) {
-              $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
-              $imageUrls[$imageId] = $pathToServer . $path;
+              if ($image) {
+                $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
+                $imageUrls[$imageId] = $pathToServer . $path;
+              }
             }
           }
 
-          // TODO: Add videoUrls.
+          // Build image urls.
+          $videoUrls = array();
+          if (isset($slide->getOptions()['videos'])) {
+            foreach($slide->getOptions()['videos'] as $videoId) {
+              $video = $sonataMedia->findOneById($videoId);
+
+              $serializer = $this->container->get('jms_serializer');
+              $jsonContent = $serializer->serialize($video, 'json');
+
+              $content = json_decode($jsonContent);
+
+              if ($video) {
+                $urls = array(
+                  'mp4' => $pathToServer . $content->provider_metadata[0]->reference,
+                  'ogg' => $pathToServer . $content->provider_metadata[1]->reference,
+                );
+
+                $videoUrls[$videoId] = $urls;
+              }
+            }
+          }
 
           // Build slide entry
           $slideEntry = array(
@@ -95,7 +117,7 @@ class MiddlewareCommunication extends ContainerAware
             'template' => $slide->getTemplate(),
             'options' => $slide->getOptions(),
             'imageUrls' => $imageUrls,
-            'videoUrls' => array(),
+            'videoUrls' => $videoUrls,
             'duration' => $slide->getDuration(),
           );
 

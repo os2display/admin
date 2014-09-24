@@ -8,24 +8,27 @@
   width: 100%;
   bottom: 0;
 
-  @include border-radius(1em);
+  @include border-radius(10px);
 }
 
 
 .text-bottom--text-inner {
   background: rgba(0,0,0,0.7);
+  box-sizing: border-box;
   color: #fff;
   margin: 3% auto;
   padding: 4%;
   text-align: left;
   position:relative;
-  width: 87%;
+  width: 95%;
 
-  @include border-radius(1em);
+  @include border-radius(10px);
 }
 
 
 .text-bottom--header {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }
@@ -35,6 +38,8 @@
 
 
 .text-bottom--description {
+  @extend %inline-textarea;
+
   &.has-placeholder {
     @extend %show-placeholder-text;
   }

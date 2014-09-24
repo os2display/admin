@@ -11,9 +11,9 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
     var factory = {};
 
     /**
-     * Get all images.
+     * Get all media.
      */
-    factory.getImages = function() {
+    factory.getAllMedia = function() {
       var defer = $q.defer();
 
       $http.get('/api/media')
@@ -28,7 +28,7 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
-     * Search for images defined by search parameter.
+     * Search for media defined by search parameter.
      * @param search
      */
     factory.searchMedia = function(search) {
@@ -37,10 +37,10 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
-     * Find the image with @id
+     * Find the media with @id
      * @param id
      */
-    factory.getImage = function(id) {
+    factory.getMedia = function(id) {
       var defer = $q.defer();
 
       $http.get('/api/media/' + id)
@@ -55,11 +55,11 @@ ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
-     * Delete the image with @id
+     * Delete the media with @id
      * @param id
      */
 
-    factory.deleteImage = function(id) {
+    factory.deleteMedia = function(id) {
       var defer = $q.defer();
 
       $http.delete('/api/media/' + id)

@@ -12,6 +12,10 @@
         <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textbgcolor" data-ng-style="{'background-color': ikSlide.options.textbgcolor}">
         <label class="edit-menu--label">Skriftstørrelse</label>
         <input class="edit-menu--form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="ikSlide.options.fontsize">
+        <div data-ng-if="ikSlide.template === 'manual-calendar'">
+          <label class="edit-menu--label">Antal viste begivenheder</label>
+          <input class="edit-menu--form-element" type="text" placeholder="7" data-ng-model="ikSlide.options.displayitems">
+        </div>
       </form>
     </div>
   </div>
@@ -47,10 +51,9 @@
             </object>
           </div>
         </div>
-        <div class="edit-menu--background-page-inner" data-ng-switch="ikSlide.template">
+        <div class="edit-menu--background-page-inner">
           <h2 class="edit-menu--background-header">Vælg fil fra medier</h2>
-          <ik-media-overview media-type="image" data-ng-switch-when="!only-video"></ik-media-overview>
-          <ik-media-overview media-type="video" data-ng-switch-default=""></ik-media-overview>
+          <ik-media-overview media-type="{{selectedMediaType}}" auto-search="false"></ik-media-overview>
         </div>
       </div>
       <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-computer'">
@@ -65,6 +68,62 @@
         <div class="edit-menu--background-page-inner">
           <div class="edit-menu--background-content-alternate">
             <ik-media-upload></ik-media-upload>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.showContentEditor, 'is-hidden': !editor.showContentEditor}" >
+    <div class="edit-menu--content-inner">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleContentEditor()">
+        <div class="svg-clickable">
+          <object data="images/svg/cancel.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/cancel.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--content-page">
+        <div class="edit-menu--content-page-inner">
+          <h2 class="edit-menu--content-header">Opret begivenheder</h2>
+          <div class="edit-menu--calendar-date-template">
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Titel</label>
+              <input class="edit-menu--calendar-form-element" type="text" placeholder="Besøg i botanisk have" ng-model="addevent.title">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Sted</label>
+              <input class="edit-menu--calendar-form-element" type="text" placeholder="Botanisk have" ng-model="addevent.place">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Fra</label>
+              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" ng-model="addevent.from">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <label class="edit-menu--calendar-label">Til</label>
+              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" ng-model="addevent.to">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper-link">
+              <div class="edit-menu--calendar-add-date" data-ng-click="addEventItem()"></div>
+            </div>
+          </div>
+          <div class="edit-menu--calendar-date-events" ng-repeat="event in slide.options.eventitems | reverseEvents">
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element" type="text" ng-model="event.title">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element" type="text" ng-model="event.place">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" ng-model="event.from">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper">
+              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" ng-model="event.to">
+            </div>
+            <div class="edit-menu--calendar-form-element-wrapper-link">
+              <div class="edit-menu--calendar-remove-date" data-ng-click="removeEventItem(event)"></div>
+            </div>
           </div>
         </div>
       </div>

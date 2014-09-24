@@ -216,6 +216,7 @@ class Screen {
   public function __construct()
   {
     $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->channels = new \Doctrine\Common\Collections\ArrayCollection();
   }
 
   /**

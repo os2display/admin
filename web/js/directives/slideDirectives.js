@@ -43,6 +43,20 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
             }
           }
 
+          if (scope.ikSlide.options.videos) {
+            if (scope.ikSlide.options.videos.length > 0) {
+              if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+                scope.ikSlide.currentImage = '/images/not-found.png';
+              }
+              else {
+                scope.ikSlide.currentImage = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]].thumbnail;
+              }
+            }
+            else {
+              scope.ikSlide.currentImage = '';
+            }
+          }
+
           // Get the template.
           scope.template = templateFactory.getTemplate(scope.ikSlide.template);
 
@@ -81,6 +95,7 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
         // If the background color has changed, remove selected images.
         if (oldVal && newVal.options.bgcolor !== oldVal.options.bgcolor) {
           scope.ikSlide.options.images = [];
+          scope.ikSlide.options.videos = [];
         }
 
         // Update image to show.
@@ -97,6 +112,29 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
             scope.ikSlide.currentImage = '';
           }
         }
+
+        // Update video to show.
+        if (scope.ikSlide.options.videos) {
+          if (scope.ikSlide.options.videos.length > 0) {
+            if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+              scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+            }
+            else {
+              scope.ikSlide.currentVideo = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]];
+
+              // Reload video player.
+              setTimeout(function() {
+                element.find('#videoPlayer').load();
+              }, 1000);
+            }
+          }
+          else {
+            scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+          }
+        }
+
+        // Update fontsize
+        scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
       }, true);
 
       // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
@@ -121,23 +159,32 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
             }
           }
 
+          // Update videos to show.
+          if (scope.ikSlide.options.videos) {
+            if (scope.ikSlide.options.videos.length > 0) {
+              if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+                scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+              }
+              else {
+                scope.ikSlide.currentVideo = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]];
+
+                // Reload video player.
+                setTimeout(function() {
+                  element.find('#videoPlayer').load();
+                }, 1000);
+              }
+            }
+            else {
+              scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+            }
+          }
+
           // Setup the inline styling
           scope.theStyle = {
             width: "" + scope.ikWidth + "px",
             height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
             fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
           }
-
-          // Add keyup event listener for fontsize, to make sure the preview updates font size.
-          element.find('.js-ik-slide-editor-fontsize-input').on('keyup', function() {
-            scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
-            scope.$apply();
-          });
-
-          // Cleanup.
-          element.on('$destroy', function() {
-            $(this).find('.js-ik-slide-editor-fontsize-input').off('keyup');
-          });
         });
       });
     },

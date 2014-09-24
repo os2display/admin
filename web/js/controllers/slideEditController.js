@@ -6,15 +6,20 @@
 /**
  * Slide edit controller. Controls the slide creation process.
  */
-ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'slideFactory',
-  function($scope, $http, mediaFactory, slideFactory) {
+ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory',
+  function($scope, $http, $filter, mediaFactory, slideFactory) {
     $scope.step = 'background-picker';
 
     // Get the slide from the backend.
     slideFactory.getEditSlide(null).then(function(data) {
       $scope.slide = data;
 
-      $scope.mediaType = 'image';
+      // @TODO: refactor to check on media_type on slide instead of template.
+      if ($scope.slide.template === 'only-video') {
+        $scope.selectedMediaType = 'video';
+      } else {
+        $scope.selectedMediaType = 'image';
+      }
     });
 
     // Setup editor states and functions.
@@ -24,21 +29,38 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
       showVideoEditor: false,
       toggleTextEditor: function() {
         $scope.editor.showBackgroundEditor = false;
-        $scope.editor.showVideEditor = false;
+        $scope.editor.showVideoEditor = false;
+        $scope.editor.showContentEditor = false;
         $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
       },
 
       toggleBackgroundEditor: function() {
         $scope.step = 'background-picker';
         $scope.editor.showTextEditor = false;
-        $scope.editor.showVideEditor = false;
+        $scope.editor.showVideoEditor = false;
+        $scope.editor.showContentEditor = false;
         $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
       },
 
       toggleVideoEditor: function() {
         $scope.editor.showTextEditor = false;
         $scope.editor.showBackgroundEditor = false;
+        $scope.editor.showContentEditor = false;
         $scope.editor.showVideoEditor = !$scope.editor.showVideoEditor;
+      },
+
+      toggleContentEditor: function() {
+        // Hide all other editors.
+        $scope.editor.showTextEditor = false;
+        $scope.editor.showVideoEditor = false;
+        $scope.editor.showBackgroundEditor = false;
+
+        //Show content editor.
+        $scope.editor.showContentEditor = !$scope.editor.showContentEditor;
+
+        // Run sorting of events.
+        $scope.sortEvents();
+        console.log($scope);
       }
     }
 
@@ -53,6 +75,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
      * Set the step to pick-from-media.
      */
     $scope.pickFromMedia = function pickFromMedia() {
+      $scope.$broadcast('mediaOverview.updateSearch');
       $scope.step = 'pick-from-media';
     };
 
@@ -79,7 +102,6 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
 
         if (index > -1) {
           $scope.slide.options.images.splice(index, 1);
-          $scope.slide.currentImage = '';
         }
         else {
           $scope.slide.options.images = [];
@@ -95,7 +117,13 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
           $scope.slide.options.videos.splice(index, 1);
         }
         else {
+          $scope.slide.options.videos = [];
           $scope.slide.options.videos.push(media.id);
+          $scope.slide.videoUrls = [];
+          $scope.slide.videoUrls[media.id] = {
+            "mp4": media.provider_metadata[0].reference,
+            "ogg": media.provider_metadata[1].reference
+          };
         }
       }
 
@@ -122,7 +150,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
 
       // If all the data items were uploaded correctly.
       if (allSuccess) {
-        mediaFactory.getImage(data.id).then(function(image) {
+        mediaFactory.getMedia(data.id).then(function(image) {
           $scope.slide.options.images = [];
           $scope.slide.options.images.push(image.id);
           $scope.slide.imageUrls = [];
@@ -137,5 +165,59 @@ ikApp.controller('SlideEditController', ['$scope', '$http', 'mediaFactory', 'sli
         $scope.editor.showTextEditor = false;
       }
     });
+
+
+    /**
+     * Add event to slide
+     */
+    $scope.addEventItem = function addEventItem() {
+      var event = {
+      "title": $scope.addevent.title,
+      "place" : $scope.addevent.place,
+      "from" : $scope.addevent.from,
+      "to" : $scope.addevent.to
+      }
+
+      // Add event data to slide array.
+      $scope.slide.options.eventitems.push(event);
+
+      // Reset input fields.
+      $scope.addevent.title = null;
+      $scope.addevent.place = null;
+      $scope.addevent.from = null;
+      $scope.addevent.to = null;
+    };
+
+
+    /**
+     * Remove event from slide.
+     */
+    $scope.removeEventItem = function removeEventItem(event) {
+      $scope.slide.options.eventitems.splice($scope.slide.options.eventitems.indexOf(event), 1);
+    };
+
+
+    /**
+     * Remove event from slide.
+     */
+    $scope.sortEvents = function sortEvents() {
+      if($scope.slide.options.eventitems.length > 0) {
+        // Sort the events by from date.
+        $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
+      }
+    };
   }
 ]);
+
+
+/**
+ * Add a reverse filter to eventlist.
+ */
+ikApp.filter('reverseEvents', function() {
+  return function(items) {
+    if (!angular.isArray(items)){
+      return false
+    }
+    return items.slice().reverse();
+  };
+});
