@@ -4,11 +4,17 @@
  */
 
 /**
- * Slide edit controller. Controls the slide creation process.
+ * Slide edit controller. Controls the editors for the slide creation process.
  */
 ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory',
   function($scope, $http, $filter, mediaFactory, slideFactory) {
     $scope.step = 'background-picker';
+    $scope.addevent = {
+      "title": null,
+      "place" : null,
+      "from" : null,
+      "to" : null
+    };
 
     // Get the slide from the backend.
     slideFactory.getEditSlide(null).then(function(data) {
@@ -26,43 +32,44 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     $scope.editor = {
       showTextEditor: false,
       showBackgroundEditor: false,
-      showVideoEditor: false,
+      showManualCalendarEditor: false,
       toggleTextEditor: function() {
         $scope.editor.showBackgroundEditor = false;
-        $scope.editor.showVideoEditor = false;
         $scope.editor.showContentEditor = false;
         $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
       },
-
       toggleBackgroundEditor: function() {
+        // Add toggle to html tag to avoid scrolling when the menu is open.
+        // We add the class this way because the <html> is not in $scope.
+        $('html').toggleClass('is-locked');
+
         $scope.step = 'background-picker';
         $scope.editor.showTextEditor = false;
-        $scope.editor.showVideoEditor = false;
         $scope.editor.showContentEditor = false;
         $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
       },
+      toggleManualCalendarEditor: function() {
+        // Add toggle to html tag to avoid scrolling when the menu is open.
+        // We add the class this way because the <html> is not in $scope.
+        $('html').toggleClass('is-locked');
 
-      toggleVideoEditor: function() {
-        $scope.editor.showTextEditor = false;
-        $scope.editor.showBackgroundEditor = false;
-        $scope.editor.showContentEditor = false;
-        $scope.editor.showVideoEditor = !$scope.editor.showVideoEditor;
-      },
-
-      toggleContentEditor: function() {
         // Hide all other editors.
         $scope.editor.showTextEditor = false;
-        $scope.editor.showVideoEditor = false;
         $scope.editor.showBackgroundEditor = false;
 
         //Show content editor.
-        $scope.editor.showContentEditor = !$scope.editor.showContentEditor;
+        $scope.editor.showManualCalendarEditor = !$scope.editor.showManualCalendarEditor;
 
         // Run sorting of events.
         $scope.sortEvents();
         $scope.validateEvents();
+      },
+      hideAllEditors: function() {
+        $scope.editor.showBackgroundEditor = false;
+        $scope.editor.showTextEditor = false;
+        $scope.editor.showManualCalendarEditor = false;
       }
-    }
+    };
 
     /**
      * Set the step to background-picker.
@@ -92,7 +99,45 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
      */
     $scope.clickBackgroundColor = function clickBackgroundColor() {
       $scope.slide.options.images = [];
-    }
+    };
+
+    /**
+     * Add event to slide
+     */
+    $scope.addEventItem = function addEventItem() {
+      var event = {
+        "title": $scope.addevent.title,
+        "place" : $scope.addevent.place,
+        "from" : $scope.addevent.from,
+        "to" : $scope.addevent.to
+      };
+
+      // Add event data to slide array.
+      $scope.slide.options.eventitems.push(event);
+
+      // Reset input fields.
+      $scope.addevent.title = null;
+      $scope.addevent.place = null;
+      $scope.addevent.from = null;
+      $scope.addevent.to = null;
+    };
+
+    /**
+     * Remove event from slide.
+     */
+    $scope.removeEventItem = function removeEventItem(event) {
+      $scope.slide.options.eventitems.splice($scope.slide.options.eventitems.indexOf(event), 1);
+    };
+
+    /**
+     * Remove event from slide.
+     */
+    $scope.sortEvents = function sortEvents() {
+      if($scope.slide.options.eventitems.length > 0) {
+        // Sort the events by from date.
+        $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
+      }
+    };
 
     // Register event listener for select media.
     $scope.$on('mediaOverview.selectMedia', function(event, media) {
@@ -131,8 +176,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       $scope.step = 'background-picker';
 
       // Hide editors.
-      $scope.editor.showBackgroundEditor = false;
-      $scope.editor.showTextEditor = false;
+      $scope.hideAllEditors();
     });
 
     // Register event listener for media upload success.
@@ -161,51 +205,9 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.step = 'background-picker';
 
         // Hide editors.
-        $scope.editor.showBackgroundEditor = false;
-        $scope.editor.showTextEditor = false;
+        $scope.hideAllEditors();
       }
     });
-
-
-    /**
-     * Add event to slide
-     */
-    $scope.addEventItem = function addEventItem() {
-      var event = {
-        "title": $scope.addevent.title,
-        "place" : $scope.addevent.place,
-        "from" : $scope.addevent.from,
-        "to" : $scope.addevent.to
-      };
-
-      // Add event data to slide array.
-      $scope.slide.options.eventitems.push(event);
-
-      // Reset input fields.
-      $scope.addevent.title = null;
-      $scope.addevent.place = null;
-      $scope.addevent.from = null;
-      $scope.addevent.to = null;
-    };
-
-
-    /**
-     * Remove event from slide.
-     */
-    $scope.removeEventItem = function removeEventItem(event) {
-      $scope.slide.options.eventitems.splice($scope.slide.options.eventitems.indexOf(event), 1);
-    };
-
-
-    /**
-     * Remove event from slide.
-     */
-    $scope.sortEvents = function sortEvents() {
-      if($scope.slide.options.eventitems.length > 0) {
-        // Sort the events by from date.
-        $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
-      }
-    };
 
 
     /**
@@ -235,16 +237,3 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     };
   }
 ]);
-
-
-/**
- * Add a reverse filter to eventlist.
- */
-ikApp.filter('reverseEvents', function() {
-  return function(items) {
-    if (!angular.isArray(items)){
-      return false
-    }
-    return items.slice().reverse();
-  };
-});

@@ -1,5 +1,8 @@
 <div data-ng-controller="SlideEditController">
+  <!-- Slide template -->
   <div data-ng-include="" src="templateURL"></div>
+
+  <!-- Text editor -->
   <div class="edit-menu" role="banner" ng-show="editor.showTextEditor">
     <a class="edit-menu--overlay" data-ng-class="{'is-visible': editor.showTextEditor}" data-ng-click="editor.toggleTextEditor()"></a>
     <div class="edit-menu--inner" data-ng-class="{'is-visible': editor.showTextEditor, 'is-hidden': !editor.showTextEditor}">
@@ -20,6 +23,7 @@
     </div>
   </div>
 
+  <!-- Background editor -->
   <div class="edit-menu--background" role="banner" data-ng-class="{'is-visible': editor.showBackgroundEditor, 'is-hidden': !editor.showBackgroundEditor}" >
     <div class="edit-menu--background-inner">
       <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleBackgroundEditor()">
@@ -74,9 +78,10 @@
     </div>
   </div>
 
-  <div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.showContentEditor, 'is-hidden': !editor.showContentEditor}" >
+  <!-- Manual calendar editor -->
+  <div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.showManualCalendarEditor, 'is-hidden': !editor.showManualCalendarEditor}" >
     <div class="edit-menu--content-inner">
-      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleContentEditor()">
+      <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleManualCalendarEditor()">
         <div class="svg-clickable">
           <object data="images/svg/cancel.svg" type="image/svg+xml">
             <!-- Fallback (ie8)-->
