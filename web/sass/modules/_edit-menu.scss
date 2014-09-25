@@ -25,7 +25,6 @@
     top: 0;
     z-index: 99;
 
-    padding-top: 3.75em;
     padding-right: 3em;
     padding-left: 3em;
     width: 35em;
@@ -170,8 +169,7 @@
 /* Background and edit content full page
    ========================================================================== */
 
-  &--content,
-  &--background {
+  &--content {
     margin-top: 4em;
   }
 
