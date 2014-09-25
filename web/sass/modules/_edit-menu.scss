@@ -258,9 +258,26 @@
     @include generate-sprite-image($dashboard-sprites, 'plus-icon', 55);
   }
 
+  &--calendar-date-event {
+    &.is-outdated {
+      background: $beige;
+    }
+  }
+
   &--calendar-remove-date {
     cursor: pointer;
+    float: left;
 
     @include generate-sprite-image($dashboard-sprites, 'minus-icon', 55);
+  }
+
+  &--calendar-remove-date-notice {
+    display: none;
+    line-height: 36px;
+    font-weight: bold;
+
+    &.is-outdated {
+      display: block;
+    }
   }
 }

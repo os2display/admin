@@ -4,7 +4,7 @@
     <textarea auto-grow class="manual-calendar--header has-placeholder" data-ng-trim="false" placeholder="Tilføj en overskrift" data-ng-model="ikSlide.options.headline" spellcheck="false" data-ng-style="{'color': ikSlide.options.textcolor}">
     </textarea>
     <div class="manual-calendar--events">
-      <div class="manual-calendar--event" ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems | activeEvents(hide)" data-ng-style="{'border-color': ikSlide.options.textcolor}">
+      <div class="manual-calendar--event" ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems | activeEvents" data-ng-style="{'border-color': ikSlide.options.textcolor}">
         <div class="manual-calendar--title">
           {{event.title}}
         </div>

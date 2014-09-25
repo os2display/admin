@@ -130,13 +130,24 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     };
 
     /**
-     * Remove event from slide.
+     * Sort events for slide.
      */
     $scope.sortEvents = function sortEvents() {
       if($scope.slide.options.eventitems.length > 0) {
         // Sort the events by from date.
         $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
       }
+    };
+
+    /**
+     * Set outdated for events on slide
+     */
+    $scope.setOutdated = function setOutdated(event) {
+      // Set current time.
+      if (event.to * 1000 < Date.now()) {
+        return true;
+      }
+      return false;
     };
 
     // Register event listener for select media.
@@ -230,7 +241,9 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
             item.dailyEvent = true;
           }
 
-          // Save new event item with duration
+          // Mark event as
+
+          // Save new event item with duration.
           $scope.slide.options.eventitems[i] = item;
         }
       }

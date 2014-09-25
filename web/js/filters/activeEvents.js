@@ -6,9 +6,8 @@
 
 /**
  * Add an active events filter to eventlist.
- * @param action: what action to take for items that don't pass.
  */
-ikApp.filter('activeEvents', function(action) {
+ikApp.filter('activeEvents', function() {
   return function(items) {
     // Return if event array empty.
     if (!angular.isArray(items)){
