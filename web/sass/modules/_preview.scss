@@ -15,7 +15,7 @@
   right: 0;
   left: 0;
   top: 50%;
-
+ 
   @include translateY(-50%);
 }
 
@@ -24,9 +24,10 @@
 
 .preview--slide,
 .preview--channel {
-  position: relative;
   display: block;
   margin: 0;
+  position: relative;
+  overflow: hidden;
 
   &-display {
     cursor: pointer;
