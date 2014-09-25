@@ -60,7 +60,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
         // Run sorting of events.
         $scope.sortEvents();
-        console.log($scope);
+        $scope.validateEvents();
       }
     }
 
@@ -172,11 +172,11 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
      */
     $scope.addEventItem = function addEventItem() {
       var event = {
-      "title": $scope.addevent.title,
-      "place" : $scope.addevent.place,
-      "from" : $scope.addevent.from,
-      "to" : $scope.addevent.to
-      }
+        "title": $scope.addevent.title,
+        "place" : $scope.addevent.place,
+        "from" : $scope.addevent.from,
+        "to" : $scope.addevent.to
+      };
 
       // Add event data to slide array.
       $scope.slide.options.eventitems.push(event);
@@ -204,6 +204,33 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       if($scope.slide.options.eventitems.length > 0) {
         // Sort the events by from date.
         $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
+      }
+    };
+
+
+    /**
+     * Validate events related to the slide.
+     */
+    $scope.validateEvents = function validateEvents() {
+      if($scope.slide.options.eventitems.length > 0) {
+        // Run through all events.
+        for (var i = 0; i < $scope.slide.options.eventitems.length; i++) {
+          var item = $scope.slide.options.eventitems[i];
+
+          // Set daily event default.
+          item.dailyEvent = false;
+
+          // Set duration for event item.
+          item.duration = item.to - item.from;
+
+          // Check if the duration is less than 24 hours.
+          if (item.duration < 86400) {
+            item.dailyEvent = true;
+          }
+
+          // Save new event item with duration
+          $scope.slide.options.eventitems[i] = item;
+        }
       }
     };
   }
