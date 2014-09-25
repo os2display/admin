@@ -74,6 +74,10 @@ class MiddlewareCommunication extends ContainerAware
             continue;
           }
 
+          if (!$slide->getPublished()) {
+            continue;
+          }
+
           // Build image urls.
           $imageUrls = array();
           if (isset($slide->getOptions()['images'])) {
