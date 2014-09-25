@@ -2053,9 +2053,13 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -601px; }
-  /* line 261, ../sass/modules/_edit-menu.scss */
+  /* line 262, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-date-event.is-outdated {
+    background: #f0f0e1; }
+  /* line 267, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-remove-date {
     cursor: pointer;
+    float: left;
     background: url('/images/icons-s5312e08133.png');
     -moz-background-size: 71px 901px;
     -o-background-size: 71px 901px;
@@ -2064,6 +2068,14 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -444px; }
+  /* line 274, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-remove-date-notice {
+    display: none;
+    line-height: 36px;
+    font-weight: bold; }
+    /* line 279, ../sass/modules/_edit-menu.scss */
+    .edit-menu--calendar-remove-date-notice.is-outdated {
+      display: block; }
 
 /**
  *
