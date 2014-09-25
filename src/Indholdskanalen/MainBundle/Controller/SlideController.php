@@ -56,6 +56,9 @@ class SlideController extends Controller {
     $slide->setOptions($post['options']);
     $slide->setUser($userEntity->getId());
     $slide->setDuration($post['duration']);
+    $slide->setPublished($post['published']);
+    $slide->setScheduleFrom($post['schedule_from']);
+    $slide->setScheduleTo($post['schedule_to']);
 
     $postChannelIds = array();
     foreach($post['channels'] as $channel) {

@@ -11,17 +11,27 @@ angular.module('datetimePicker', [])
 .directive('datetimePicker', function() {
   return {
     restrict: 'A',
-    require: 'ngModel',
-    link: function(scope, el, attrs, ngModel) {
+    require: '^ngModel',
+    link: function(scope, el, attrs, ctrl) {
+      var dateFormat = 'DD/MM/YYYY HH:mm';
       el.datetimepicker({
         lang: 'da',
         format: 'd/m/Y H:i',
-        startDate: new Date(),
-        onChangeDateTime: function(dp, $input) {
-          scope.$apply(function() {
-            ngModel.$setViewValue($input.val());
-          });
-        }
+        startDate: new Date()
+      });
+
+      ctrl.$formatters.unshift(function (modelValue) {
+        if (!modelValue) return "";
+
+        var ret = moment(modelValue * 1000).format(dateFormat);
+
+        return ret;
+      });
+
+      ctrl.$parsers.unshift(function (viewValue) {
+        var date = moment(viewValue, dateFormat);
+
+        return (date && date.isValid() && date.year() > 1950 ) ? date.unix() : "";
       });
     }
   }

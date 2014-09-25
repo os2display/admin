@@ -58,6 +58,21 @@ class Slide {
   private $duration;
 
   /**
+   * @ORM\Column(name="schedule_from", type="integer", nullable=true)
+   */
+  private $schedule_from;
+
+  /**
+   * @ORM\Column(name="schedule_to", type="integer", nullable=true)
+   */
+  private $schedule_to;
+
+  /**
+   * @ORM\Column(name="published", type="boolean", nullable=true)
+   */
+  private $published;
+
+  /**
    * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="slide")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
@@ -247,5 +262,74 @@ class Slide {
   public function getChannelSlideOrders()
   {
     return $this->channelSlideOrders;
+  }
+
+  /**
+   * Set published
+   *
+   * @param boolean $published
+   * @return Slide
+   */
+  public function setPublished($published)
+  {
+    $this->published = $published;
+
+    return $this;
+  }
+
+  /**
+   * Get published
+   *
+   * @return boolean
+   */
+  public function getPublished()
+  {
+    return $this->published;
+  }
+
+  /**
+   * Set schedule_from
+   *
+   * @param integer $scheduleFrom
+   * @return Slide
+   */
+  public function setScheduleFrom($scheduleFrom)
+  {
+    $this->schedule_from = $scheduleFrom;
+
+    return $this;
+  }
+
+  /**
+   * Get schedule_from
+   *
+   * @return integer
+   */
+  public function getScheduleFrom()
+  {
+    return $this->schedule_from;
+  }
+
+  /**
+   * Set schedule_to
+   *
+   * @param integer $scheduleTo
+   * @return Slide
+   */
+  public function setScheduleTo($scheduleTo)
+  {
+    $this->schedule_to = $scheduleTo;
+
+    return $this;
+  }
+
+  /**
+   * Get schedule_to
+   *
+   * @return integer
+   */
+  public function getScheduleTo()
+  {
+    return $this->schedule_to;
   }
 }
