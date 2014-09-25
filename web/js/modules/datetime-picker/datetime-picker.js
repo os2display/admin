@@ -16,8 +16,7 @@ angular.module('datetimePicker', [])
       var dateFormat = 'DD/MM/YYYY HH:mm';
       el.datetimepicker({
         lang: 'da',
-        format: 'd/m/Y H:i',
-        startDate: new Date()
+        format: 'd/m/Y H:i'
       });
 
       ctrl.$formatters.unshift(function (modelValue) {
