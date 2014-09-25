@@ -74,6 +74,10 @@ class MiddlewareCommunication extends ContainerAware
             continue;
           }
 
+          if (!$slide->getPublished()) {
+            continue;
+          }
+
           // Build image urls.
           $imageUrls = array();
           if (isset($slide->getOptions()['images'])) {
@@ -116,6 +120,9 @@ class MiddlewareCommunication extends ContainerAware
             'orientation' => $slide->getOrientation(),
             'template' => $slide->getTemplate(),
             'options' => $slide->getOptions(),
+            'published' => $slide->getPublished(),
+            'schedule_from' => $slide->getScheduleFrom(),
+            'schedule_to' => $slide->getScheduleTo(),
             'imageUrls' => $imageUrls,
             'videoUrls' => $videoUrls,
             'duration' => $slide->getDuration(),
