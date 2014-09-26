@@ -560,8 +560,8 @@
 /* line 104, ../sass/theme/_global-silent-classes.scss */
 .text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings, .manual-calendar--edit-box-settings {
   position: absolute;
-  right: -20px;
-  top: -20px;
+  right: 0;
+  top: 0;
   background: url('/images/icons-s5312e08133.png');
   -moz-background-size: 64px 819px;
   -o-background-size: 64px 819px;
@@ -3512,4 +3512,5 @@ html.is-locked body {
     width: 33%; }
     /* line 72, ../ik-templates/manual-calendar/_manual-calendar.scss */
     .manual-calendar--title:first-child, .manual-calendar--place:first-child, .manual-calendar--time:first-child {
-      margin-left: 0; }
+      margin-left: 0;
+      padding-left: 0; }
