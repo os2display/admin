@@ -10,7 +10,12 @@
           {{event.place}}
         </div>
         <div class="manual-calendar--time">
-          <span class="manual-calendar--from">{{event.from}}</span> til <span class="manual-calendar--to">{{event.to}}</span>aaa{{event.duration}}aaa
+          <span ng-if="event.dailyEvent == true">
+            <span class="manual-calendar--from">{{event.from * 1000 | date:'dd. MMM'}}</span>  |  <span class="manual-calendar--to">{{event.from * 1000 | date:'HH:mm'}}-{{event.to * 1000 | date:'HH:mm'}} </span>
+          </span>
+          <span ng-if="event.dailyEvent == false">
+            <span class="manual-calendar--from">{{event.from * 1000 | date:'dd. MMM'}} - {{event.to * 1000 | date:'dd. MMM'}}</span>  |  <span class="manual-calendar--to">{{event.from * 1000 | date:'HH:mm'}}</span>
+          </span>
         </div>
       </div>
     </div>
