@@ -36,6 +36,7 @@
     }
 
     font-size: 100%;
+    margin-bottom: .5em;
   }
 
 
@@ -66,6 +67,10 @@
     padding: 0 2em 0 .5em;
     vertical-align: middle;
     width: 33%;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
 
