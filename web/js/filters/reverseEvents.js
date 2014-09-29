@@ -11,6 +11,8 @@ ikApp.filter('reverseEvents', function() {
     if (!angular.isArray(items)){
       return false
     }
+
+    // Turn the list upside down.
     return items.slice().reverse();
   };
 });

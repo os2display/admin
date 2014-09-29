@@ -560,8 +560,8 @@
 /* line 104, ../sass/theme/_global-silent-classes.scss */
 .text-top--edit-box-settings, .text-bottom--edit-box-settings, .text-left--edit-box-settings, .text-right--edit-box-settings, .portrait-text-top--edit-box-settings, .manual-calendar--edit-box-settings {
   position: absolute;
-  right: -20px;
-  top: -20px;
+  right: 0;
+  top: 0;
   background: url('/images/icons-s5312e08133.png');
   -moz-background-size: 64px 819px;
   -o-background-size: 64px 819px;
@@ -1859,9 +1859,40 @@ html.is-locked body {
  */
 /* Silent classes and variables related to this document
    ========================================================================== */
+/* line 11, ../sass/modules/_edit-menu.scss */
+.edit-menu--content-calendar, .edit-menu--content, .edit-menu--background {
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-right: 3em;
+  padding-left: 3em;
+  background-color: #fff;
+  /* States. */ }
+  /* line 29, ../sass/modules/_edit-menu.scss */
+  .is-hidden.edit-menu--content-calendar, .is-hidden.edit-menu--content, .is-hidden.edit-menu--background {
+    display: none;
+    opacity: 0; }
+  /* line 35, ../sass/modules/_edit-menu.scss */
+  .is-visible.edit-menu--content-calendar, .is-visible.edit-menu--content, .is-visible.edit-menu--background {
+    display: block;
+    -moz-animation: fade-in-ninety-five 0.25s;
+    -webkit-animation: fade-in-ninety-five 0.25s;
+    animation: fade-in-ninety-five 0.25s;
+    -moz-animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    -webkit-animation-fill-mode: forwards;
+    /* Chrome, Safari, Opera */
+    animation-fill-mode: forwards; }
+
 /* Styles
    ========================================================================== */
-/* line 14, ../sass/modules/_edit-menu.scss */
+/* line 48, ../sass/modules/_edit-menu.scss */
 .edit-menu {
   width: 100%;
   z-index: 1;
@@ -1870,7 +1901,7 @@ html.is-locked body {
      ========================================================================== */
   /* Add/edit events for calendar template
      ========================================================================== */ }
-  /* line 19, ../sass/modules/_edit-menu.scss */
+  /* line 53, ../sass/modules/_edit-menu.scss */
   .edit-menu--inner {
     height: 100%;
     font-size: .6em;
@@ -1890,58 +1921,30 @@ html.is-locked body {
     -webkit-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
     box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
     /* States */ }
-    /* line 40, ../sass/modules/_edit-menu.scss */
+    /* line 74, ../sass/modules/_edit-menu.scss */
     .edit-menu--inner.is-visible {
       -moz-animation: toggle-nav-open 0.15s ease 1 forwards;
       -webkit-animation: toggle-nav-open 0.15s ease 1 forwards;
       animation: toggle-nav-open 0.15s ease 1 forwards; }
-    /* line 44, ../sass/modules/_edit-menu.scss */
+    /* line 78, ../sass/modules/_edit-menu.scss */
     .edit-menu--inner.is-hidden {
       -moz-animation: toggle-nav-close 0.15s ease 1 forwards;
       -webkit-animation: toggle-nav-close 0.15s ease 1 forwards;
       animation: toggle-nav-close 0.15s ease 1 forwards; }
-  /* line 51, ../sass/modules/_edit-menu.scss */
+  /* line 85, ../sass/modules/_edit-menu.scss */
   .edit-menu--toggle-icon {
     cursor: pointer;
     font-size: 2em;
     position: absolute;
     right: 1.5em;
-    top: 1.5em; }
-  /* line 60, ../sass/modules/_edit-menu.scss */
+    top: 1.5em;
+    z-index: 1; }
+  /* line 95, ../sass/modules/_edit-menu.scss */
   .edit-menu--background-image-back {
     position: absolute;
-    top: 3em; }
-  /* line 66, ../sass/modules/_edit-menu.scss */
-  .edit-menu--content, .edit-menu--background {
-    height: 100%;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 99;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding-top: 3.75em;
-    padding-right: 3em;
-    padding-left: 3em;
-    background-color: #fff;
-    /* States. */ }
-    /* line 85, ../sass/modules/_edit-menu.scss */
-    .edit-menu--content.is-hidden, .edit-menu--background.is-hidden {
-      display: none;
-      opacity: 0; }
-    /* line 91, ../sass/modules/_edit-menu.scss */
-    .edit-menu--content.is-visible, .edit-menu--background.is-visible {
-      display: block;
-      -moz-animation: fade-in-ninety-five 0.25s;
-      -webkit-animation: fade-in-ninety-five 0.25s;
-      animation: fade-in-ninety-five 0.25s;
-      -moz-animation-timing-function: ease-in;
-      -webkit-animation-timing-function: ease-in;
-      animation-timing-function: ease-in;
-      -webkit-animation-fill-mode: forwards;
-      /* Chrome, Safari, Opera */
-      animation-fill-mode: forwards; }
-  /* line 103, ../sass/modules/_edit-menu.scss */
+    top: 3em;
+    left: 3em; }
+  /* line 108, ../sass/modules/_edit-menu.scss */
   .edit-menu--overlay {
     position: fixed;
     top: 0;
@@ -1950,13 +1953,13 @@ html.is-locked body {
     z-index: 98;
     width: 0;
     cursor: pointer; }
-    /* line 114, ../sass/modules/_edit-menu.scss */
+    /* line 119, ../sass/modules/_edit-menu.scss */
     .edit-menu--overlay.is-visible {
       width: 100%;
       -moz-animation: toggle-nav-overlay 0.15s linear 1 forwards;
       -webkit-animation: toggle-nav-overlay 0.15s linear 1 forwards;
       animation: toggle-nav-overlay 0.15s linear 1 forwards; }
-  /* line 122, ../sass/modules/_edit-menu.scss */
+  /* line 127, ../sass/modules/_edit-menu.scss */
   .edit-menu--header {
     border-bottom: 1px solid #e6e6e6;
     margin-right: 3em;
@@ -1965,38 +1968,45 @@ html.is-locked body {
     color: #cccccc;
     font-size: 3em;
     line-height: 1em; }
-  /* line 134, ../sass/modules/_edit-menu.scss */
+  /* line 139, ../sass/modules/_edit-menu.scss */
   .edit-menu--label {
     font-size: 2em;
     margin-left: 0;
     text-align: left; }
-  /* line 141, ../sass/modules/_edit-menu.scss */
+  /* line 146, ../sass/modules/_edit-menu.scss */
   .edit-menu--form-element[type="text"] {
     background-color: #fafafa;
     font-size: 1.7em;
     height: 4.5em;
     margin-bottom: 2em;
     padding: 1.5em; }
-  /* line 154, ../sass/modules/_edit-menu.scss */
+  /* line 159, ../sass/modules/_edit-menu.scss */
   .edit-menu--divider {
     font-size: 2em;
     text-align: center; }
-  /* line 160, ../sass/modules/_edit-menu.scss */
+  /* line 165, ../sass/modules/_edit-menu.scss */
   .edit-menu--dropdown {
     background-color: #fafafa;
     height: 2.5em;
     width: 100%;
     font-size: 2em;
     margin-bottom: 1em; }
-  /* line 175, ../sass/modules/_edit-menu.scss */
-  .edit-menu--content-page, .edit-menu--background-page {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%; }
+  /* line 177, ../sass/modules/_edit-menu.scss */
+  .edit-menu--content-inner {
+    height: 100%;
+    width: 100%; }
   /* line 182, ../sass/modules/_edit-menu.scss */
+  .edit-menu--content-page, .edit-menu--background-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0; }
+  /* line 191, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-page-inner, .edit-menu--background-page-inner {
-    margin-top: 8em; }
-  /* line 187, ../sass/modules/_edit-menu.scss */
+    height: 100%;
+    padding-top: 8em; }
+  /* line 197, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-header, .edit-menu--background-header {
     border-bottom: 1px solid #e6e6e6;
     display: inline-block;
@@ -2004,45 +2014,45 @@ html.is-locked body {
     margin-bottom: 1em;
     padding-bottom: 1em;
     font-size: 2em; }
-  /* line 197, ../sass/modules/_edit-menu.scss */
+  /* line 207, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-button, .edit-menu--background-button {
     font-size: 1.2em;
     display: inline-block;
     margin: 1em 1em 2em;
     padding: 1em 2em; }
-  /* line 207, ../sass/modules/_edit-menu.scss */
+  /* line 217, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-divider, .edit-menu--background-divider {
     font-size: 2em;
     margin: auto; }
-  /* line 213, ../sass/modules/_edit-menu.scss */
+  /* line 223, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-label, .edit-menu--background-label {
     font-size: 2em;
     margin: auto; }
-  /* line 219, ../sass/modules/_edit-menu.scss */
+  /* line 229, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-form-element, .edit-menu--background-form-element {
     max-width: 500px;
     height: 50px;
     margin: auto;
     text-align: center; }
-  /* line 232, ../sass/modules/_edit-menu.scss */
+  /* line 242, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-date-template {
     border-bottom: 2px solid #b3b3b3;
     margin-bottom: 1em;
     padding-bottom: 1em; }
-  /* line 238, ../sass/modules/_edit-menu.scss */
+  /* line 248, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-form-element-wrapper, .edit-menu--calendar-form-element-wrapper-link {
     box-sizing: border-box;
     display: inline-block;
     margin-left: -4px;
     padding: 1em;
     width: 20%; }
-  /* line 247, ../sass/modules/_edit-menu.scss */
+  /* line 257, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-form-element-wrapper-link {
     vertical-align: middle; }
-  /* line 251, ../sass/modules/_edit-menu.scss */
+  /* line 261, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-label {
     text-align: left; }
-  /* line 255, ../sass/modules/_edit-menu.scss */
+  /* line 265, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-add-date {
     cursor: pointer;
     background: url('/images/icons-s5312e08133.png');
@@ -2053,9 +2063,18 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -601px; }
-  /* line 261, ../sass/modules/_edit-menu.scss */
+  /* line 271, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-date-events {
+    display: block;
+    height: 60%;
+    position: relative; }
+  /* line 279, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-date-event.is-outdated {
+    background: #f0f0e1; }
+  /* line 284, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-remove-date {
     cursor: pointer;
+    float: left;
     background: url('/images/icons-s5312e08133.png');
     -moz-background-size: 71px 901px;
     -o-background-size: 71px 901px;
@@ -2064,6 +2083,14 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -444px; }
+  /* line 291, ../sass/modules/_edit-menu.scss */
+  .edit-menu--calendar-remove-date-notice {
+    display: none;
+    line-height: 36px;
+    font-weight: bold; }
+    /* line 296, ../sass/modules/_edit-menu.scss */
+    .edit-menu--calendar-remove-date-notice.is-outdated {
+      display: block; }
 
 /**
  *
@@ -3447,6 +3474,7 @@ html.is-locked body {
     box-sizing: border-box;
     color: #fff;
     margin: 3% auto;
+    overflow: hidden;
     padding: 4%;
     text-align: left;
     position: relative;
@@ -3460,23 +3488,24 @@ html.is-locked body {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px; }
-  /* line 33, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 34, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--header {
-    font-size: 100%; }
-  /* line 42, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    font-size: 100%;
+    margin-bottom: .5em; }
+  /* line 44, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--events {
     overflow: hidden; }
-  /* line 47, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 49, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--event {
     font-size: 70%;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     margin-bottom: .5em;
     padding-bottom: .5em; }
-    /* line 54, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    /* line 56, ../ik-templates/manual-calendar/_manual-calendar.scss */
     .manual-calendar--event:last-child {
       border-bottom: 0; }
-  /* line 60, ../ik-templates/manual-calendar/_manual-calendar.scss */
+  /* line 62, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--title, .manual-calendar--place, .manual-calendar--time {
     box-sizing: border-box;
     display: inline-block;
@@ -3484,3 +3513,7 @@ html.is-locked body {
     padding: 0 2em 0 .5em;
     vertical-align: middle;
     width: 33%; }
+    /* line 72, ../ik-templates/manual-calendar/_manual-calendar.scss */
+    .manual-calendar--title:first-child, .manual-calendar--place:first-child, .manual-calendar--time:first-child {
+      margin-left: 0;
+      padding-left: 0; }

@@ -103,8 +103,8 @@
 
 %slide--edit-box-settings {
   position: absolute;
-  right: -20px;
-  top: -20px;
+  right: 0;
+  top: 0;
 
   @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
 

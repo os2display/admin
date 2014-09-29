@@ -8,6 +8,40 @@
 /* Silent classes and variables related to this document
    ========================================================================== */
 
+%edit-menu--content-container {
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  background-color:rgba(255,255,255,.5);
+
+  padding-right: 3em;
+  padding-left: 3em;
+
+  background-color: $white;
+
+  /* States. */
+
+  // Snap out.
+  &.is-hidden {
+    display: none;
+    opacity: 0;
+  }
+
+  // Fade in.
+  &.is-visible {
+    display: block;
+    @include animation(fade-in-ninety-five .25s);
+
+    @include animation-timing-function(ease-in);
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+    animation-fill-mode: forwards;
+  }
+}
+
 
 /* Styles
    ========================================================================== */
@@ -54,50 +88,21 @@
     position: absolute;
     right: 1.5em;
     top: 1.5em;
+    z-index: 1;
   }
 
 
   &--background-image-back {
     position: absolute;
     top: 3em;
+    left: 3em;
   }
 
-
+  &--content-calendar,
   &--content,
   &--background {
-    height: 100%;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 99;
-    background-color:rgba(255,255,255,.5);
-
-    padding-top: 3.75em;
-    padding-right: 3em;
-    padding-left: 3em;
-
-    background-color: $white;
-
-    /* States. */
-
-    // Snap out.
-    &.is-hidden {
-      display: none;
-      opacity: 0;
-    }
-
-    // Fade in.
-    &.is-visible {
-      display: block;
-      @include animation(fade-in-ninety-five .25s);
-
-      @include animation-timing-function(ease-in);
-      -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
-      animation-fill-mode: forwards;
-    }
+    @extend %edit-menu--content-container;
   }
-
 
   /* Invisible close element that allows the user to close the menu by clicking outside it */
   &--overlay {
@@ -169,19 +174,24 @@
 /* Background and edit content full page
    ========================================================================== */
 
-  &--content {
+  &--content-inner {
+    height: 100%;
+    width: 100%;
   }
 
   &--content-page,
   &--background-page {
-    box-sizing: border-box;
     width: 100%;
     height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
   }
 
   &--content-page-inner,
   &--background-page-inner {
-    margin-top: 8em;
+    height: 100%;
+    padding-top: 8em;
   }
 
   &--content-header,
@@ -258,9 +268,33 @@
     @include generate-sprite-image($dashboard-sprites, 'plus-icon', 55);
   }
 
+  &--calendar-date-events {
+    display: block;
+    height: 60%;
+    position: relative;
+  }
+
+
+  &--calendar-date-event {
+    &.is-outdated {
+      background: $beige;
+    }
+  }
+
   &--calendar-remove-date {
     cursor: pointer;
+    float: left;
 
     @include generate-sprite-image($dashboard-sprites, 'minus-icon', 55);
+  }
+
+  &--calendar-remove-date-notice {
+    display: none;
+    line-height: 36px;
+    font-weight: bold;
+
+    &.is-outdated {
+      display: block;
+    }
   }
 }

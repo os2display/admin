@@ -62,6 +62,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
         // Run sorting of events.
         $scope.sortEvents();
+        $scope.validateEvents();
       },
       hideAllEditors: function() {
         $scope.editor.showBackgroundEditor = false;
@@ -129,13 +130,24 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     };
 
     /**
-     * Remove event from slide.
+     * Sort events for slide.
      */
     $scope.sortEvents = function sortEvents() {
       if($scope.slide.options.eventitems.length > 0) {
         // Sort the events by from date.
         $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
       }
+    };
+
+    /**
+     * Set outdated for events on slide
+     */
+    $scope.setOutdated = function setOutdated(event) {
+      // Set current time.
+      if (event.to * 1000 < Date.now()) {
+        return true;
+      }
+      return false;
     };
 
     // Register event listener for select media.
@@ -207,5 +219,34 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.hideAllEditors();
       }
     });
+
+
+    /**
+     * Validate events related to the slide.
+     */
+    $scope.validateEvents = function validateEvents() {
+      if($scope.slide.options.eventitems.length > 0) {
+        // Run through all events.
+        for (var i = 0; i < $scope.slide.options.eventitems.length; i++) {
+          var item = $scope.slide.options.eventitems[i];
+
+          // Set daily event default.
+          item.dailyEvent = false;
+
+          // Set duration for event item.
+          item.duration = item.to - item.from;
+
+          // Check if the duration is less than 24 hours.
+          if (item.duration < 86400) {
+            item.dailyEvent = true;
+          }
+
+          // Mark event as
+
+          // Save new event item with duration.
+          $scope.slide.options.eventitems[i] = item;
+        }
+      }
+    };
   }
 ]);
