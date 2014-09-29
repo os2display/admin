@@ -36,6 +36,14 @@ class ChannelController extends Controller {
       // Load current slide.
       $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')
         ->findOneById($post->id);
+
+      // If channel is not found, return Not Found
+      if (!$channel) {
+        $response = new Response();
+        $response->setStatusCode(404);
+
+        return $response;
+      }
     }
     else {
       // This is a new slide.
@@ -71,7 +79,7 @@ class ChannelController extends Controller {
       $postSlideIds[] = $slide->id;
     }
 
-    // Remove slides
+    // Remove slides.
     foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
       $slide = $channelSlideOrder->getChannel();
 

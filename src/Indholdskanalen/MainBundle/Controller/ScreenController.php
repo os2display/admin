@@ -49,6 +49,13 @@ class ScreenController extends Controller {
       // Load current slide.
       $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
         ->findOneById($post->id);
+
+      if (!$screen) {
+        $response = new Response();
+        $response->setStatusCode(404);
+
+        return $response;
+      }
     }
     else {
       // This is a new slide.
@@ -56,12 +63,23 @@ class ScreenController extends Controller {
     }
 
     // Update fields.
-    $screen->setTitle($post->title);
-    $screen->setOrientation($post->orientation);
-    $screen->setCreatedAt($post->created_at);
-    $screen->setWidth($post->width);
-    $screen->setHeight($post->height);
+    if (isset($post->title)) {
+      $screen->setTitle($post->title);
+    }
+    if (isset($post->orientation)) {
+      $screen->setOrientation($post->orientation);
+    }
+    if (isset($post->created_at)) {
+      $screen->setCreatedAt($post->created_at);
+    }
+    if (isset($post->width)) {
+      $screen->setWidth($post->width);
+    }
+    if (isset($post->height)) {
+      $screen->setHeight($post->height);
+    }
 
+    // Set an activation code and empty token for new screens.
     if ($screen->getActivationCode() == null) {
       $screen->setActivationCode($this->getNewActivationCode());
       $screen->setToken("");

@@ -31,6 +31,13 @@ class ScreenGroupController extends Controller {
       // Load current slide.
       $screenGroup = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
         ->findOneById($post->id);
+
+      if (!$screenGroup) {
+        $response = new Response();
+        $response->setStatusCode(404);
+
+        return $response;
+      }
     }
     else {
       // This is a new slide.

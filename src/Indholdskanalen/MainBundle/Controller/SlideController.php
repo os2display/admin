@@ -41,14 +41,18 @@ class SlideController extends Controller {
       // Load current slide.
       $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')
         ->findOneById($post['id']);
+
+      if (!$slide) {
+        $response = new Response();
+        $response->setStatusCode(404);
+
+        return $response;
+      }
     }
     else {
       // This is a new slide.
       $slide = new Slide();
     }
-
-    // Get user
-    $userEntity = $this->get('security.context')->getToken()->getUser();
 
     // Update fields from post.
     if (isset($post['title'])) {
@@ -80,6 +84,7 @@ class SlideController extends Controller {
     }
 
     // Update user.
+    $userEntity = $this->get('security.context')->getToken()->getUser();
     $slide->setUser($userEntity->getId());
 
     // Get channel ids.
