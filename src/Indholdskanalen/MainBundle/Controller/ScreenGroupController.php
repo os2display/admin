@@ -45,8 +45,12 @@ class ScreenGroupController extends Controller {
     }
 
     // Update fields.
-    $screenGroup->setTitle($post->title);
-    $screenGroup->setCreatedAt($post->created_at);
+    if (isset($post->title)) {
+      $screenGroup->setTitle($post->title);
+    }
+    if (isset($post->created_at)) {
+      $screenGroup->setCreatedAt($post->created_at);
+    }
 
     // Remove groups.
     foreach($screenGroup->getScreens() as $screen) {

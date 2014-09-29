@@ -51,9 +51,15 @@ class ChannelController extends Controller {
     }
 
     // Update fields.
-    $channel->setTitle($post->title);
-    $channel->setOrientation($post->orientation);
-    $channel->setCreatedAt($post->created_at);
+    if (isset($post->title)) {
+      $channel->setTitle($post->title);
+    }
+    if (isset($post->orientation)) {
+      $channel->setOrientation($post->orientation);
+    }
+    if (isset($post->created_at)) {
+      $channel->setCreatedAt($post->created_at);
+    }
 
     // Remove screens.
     foreach($channel->getScreens() as $screen) {
