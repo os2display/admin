@@ -187,7 +187,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       $scope.step = 'background-picker';
 
       // Hide editors.
-      $scope.hideAllEditors();
+      $scope.editor.hideAllEditors();
     });
 
     // Register event listener for media upload success.
@@ -216,7 +216,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.step = 'background-picker';
 
         // Hide editors.
-        $scope.hideAllEditors();
+        $scope.editor.hideAllEditors();
       }
     });
 
