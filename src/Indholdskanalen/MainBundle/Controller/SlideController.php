@@ -32,9 +32,11 @@ class SlideController extends Controller {
     // Get posted slide information from the request.
     $post = json_decode($request->getContent(), TRUE);
 
+    // Get hooks into doctrine.
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getManager();
 
+    // Check if slide exists, to update, else create new slide.
     if ($post['id']) {
       // Load current slide.
       $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')
@@ -48,23 +50,45 @@ class SlideController extends Controller {
     // Get user
     $userEntity = $this->get('security.context')->getToken()->getUser();
 
-    // Update fields.
-    $slide->setTitle($post['title']);
-    $slide->setOrientation($post['orientation']);
-    $slide->setTemplate($post['template']);
-    $slide->setCreatedAt($post['created_at']);
-    $slide->setOptions($post['options']);
-    $slide->setUser($userEntity->getId());
-    $slide->setDuration($post['duration']);
-    $slide->setPublished($post['published']);
-    $slide->setScheduleFrom($post['schedule_from']);
-    $slide->setScheduleTo($post['schedule_to']);
+    // Update fields from post.
+    if (isset($post['title'])) {
+      $slide->setTitle($post['title']);
+    }
+    if (isset($post['orientation'])) {
+      $slide->setOrientation($post['orientation']);
+    }
+    if (isset($post['template'])) {
+      $slide->setTemplate($post['template']);
+    }
+    if (isset($post['created_at'])) {
+      $slide->setCreatedAt($post['created_at']);
+    }
+    if (isset($post['options'])) {
+      $slide->setOptions($post['options']);
+    }
+    if (isset($post['duration'])) {
+      $slide->setDuration($post['duration']);
+    }
+    if (isset($post['published'])) {
+      $slide->setPublished($post['published']);
+    }
+    if (isset($post['schedule_from'])) {
+      $slide->setScheduleFrom($post['schedule_from']);
+    }
+    if (isset($post['schedule_to'])) {
+      $slide->setScheduleTo($post['schedule_to']);
+    }
 
+    // Update user.
+    $slide->setUser($userEntity->getId());
+
+    // Get channel ids.
     $postChannelIds = array();
     foreach($post['channels'] as $channel) {
       $postChannelIds[] = $channel['id'];
     }
 
+    // Update channel orders.
     foreach($slide->getChannelSlideOrders() as $channelSlideOrder) {
       $channel = $channelSlideOrder->getChannel();
 
@@ -131,7 +155,6 @@ class SlideController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
     $serializer = $this->get('jms_serializer');
     $jsonContent = $serializer->serialize($slide, 'json');
-
     $response->setContent($jsonContent);
 
     return $response;
