@@ -354,7 +354,7 @@ class Slide {
    */
   public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
   {
-    $this->mediaOrders[] = $mediaOrders;
+    $this->mediaOrders[] = $mediaOrder;
 
     return $this;
   }

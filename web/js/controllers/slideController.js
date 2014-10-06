@@ -13,7 +13,6 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
     $scope.templates = templateFactory.getTemplates();
     $scope.channels = [];
 
-
     /**
      * Load a given step
      */

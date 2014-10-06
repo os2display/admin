@@ -38,7 +38,7 @@ class Media extends BaseMedia {
    * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="media")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
-  private $mediaOrders;
+  protected $mediaOrders;
 
   /**
    * Constructor
@@ -71,7 +71,7 @@ class Media extends BaseMedia {
    * Add mediaOrder
    *
    * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
-   * @return Slide
+   * @return Media
    */
   public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
   {

@@ -186,6 +186,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.slide.media.splice(index, 1);
       }
       else {
+        $scope.slide.media = [];
         $scope.slide.media.push(media)
       }
 

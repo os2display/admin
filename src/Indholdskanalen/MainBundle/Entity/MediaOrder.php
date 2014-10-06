@@ -98,10 +98,10 @@ class MediaOrder {
   /**
    * Set media
    *
-   * @param \Indholdskanalen\MainBundle\Entity\Media $media
+   * @param \Application\Sonata\MediaBundle\Entity\Media $media
    * @return MediaOrder
    */
-  public function setMedia(\Indholdskanalen\MainBundle\Entity\Media $media = null)
+  public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = null)
   {
     $this->media = $media;
 
@@ -111,7 +111,7 @@ class MediaOrder {
   /**
    * Get media
    *
-   * @return \Indholdskanalen\MainBundle\Entity\Media
+   * @return \Application\Sonata\MediaBundle\Entity\Media
    */
   public function getMedia()
   {

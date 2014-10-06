@@ -83,6 +83,9 @@ class SlideController extends Controller {
     if (isset($post['schedule_to'])) {
       $slide->setScheduleTo($post['schedule_to']);
     }
+    if (isset($post['media_type'])) {
+      $slide->setMediaType($post['media_type']);
+    }
 
     // Update user.
     $userEntity = $this->get('security.context')->getToken()->getUser();
@@ -99,20 +102,9 @@ class SlideController extends Controller {
       $channel = $channelSlideOrder->getChannel();
 
       if (!in_array($channel->getId(), $postChannelIds)) {
-        $channelSlideOrder->getChannel()->removeChannelSlideOrder($channelSlideOrder);
-        $channelSlideOrder->getSlide()->removeChannelSlideOrder($channelSlideOrder);
-
-        $em->persist($channelSlideOrder->getChannel());
-        $em->persist($channelSlideOrder->getSlide());
-
         $em->remove($channelSlideOrder);
-        //$em->flush();
       }
     }
-
-    // Save the entity.
-    $em->persist($slide);
-    //$em->flush();
 
     // Add to channels.
     foreach($post['channels'] as $channel) {
@@ -148,7 +140,8 @@ class SlideController extends Controller {
 
         // Save the ChannelSlideOrder.
         $em->persist($channelSlideOrder);
-        //$em->flush();
+
+        $slide->addChannelSlideOrder($channelSlideOrder);
       }
     }
 
@@ -163,24 +156,13 @@ class SlideController extends Controller {
       $media = $mediaOrder->getMedia();
 
       if (!in_array($media->getId(), $postMediaIds)) {
-        $mediaOrder->getMedia()->removeMediaOrder($mediaOrder);
-        $mediaOrder->getSlide()->removeMediaOrder($mediaOrder);
-
-        $em->persist($mediaOrder->getMedia());
-        $em->persist($mediaOrder->getSlide());
-
         $em->remove($mediaOrder);
-        //$em->flush();
       }
     }
 
-    // Save the entity.
-    $em->persist($slide);
-    //$em->flush();
-
     // Add to media.
     foreach($post['media'] as $media) {
-      $media = $doctrine->getRepository('IndholdskanalenMainBundle:Media')->findOneById($media['id']);
+      $media = $doctrine->getRepository('ApplicationSonataMediaBundle:Media')->findOneById($media['id']);
 
       // Check if ChannelSlideOrder already exists, if not create it.
       $mediaOrder = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder')->findOneBy(
@@ -212,7 +194,8 @@ class SlideController extends Controller {
 
         // Save the ChannelSlideOrder.
         $em->persist($mediaOrder);
-        //$em->flush();
+
+        $slide->addMediaOrder($mediaOrder);
       }
     }
 
@@ -266,49 +249,7 @@ class SlideController extends Controller {
       foreach($slide->getMediaOrders() as $mediaOrder) {
         $media[] = json_decode($serializer->serialize($mediaOrder->getMedia(), 'json'));
       }
-/*
-      // Add image urls to result.
-      $imageUrls = array();
-      if (isset($slide->getOptions()['images'])) {
-        $imageIds = $slide->getOptions()['images'];
-        foreach ($imageIds as $imageId) {
-          $image = $sonataMedia->findOneById($imageId);
 
-          if ($image) {
-            $serializer = $this->get('jms_serializer');
-            $jsonContent = $serializer->serialize($image, 'json');
-
-            $content = json_decode($jsonContent);
-
-            $imageUrls[$imageId] = $content->urls;
-          }
-        }
-      }
-
-      // Add image urls to result.
-      $videoUrls = array();
-      if (isset($slide->getOptions()['videos'])) {
-        $videoIds = $slide->getOptions()['videos'];
-        foreach ($videoIds as $videoId) {
-          $video = $sonataMedia->findOneById($videoId);
-
-          if ($video) {
-            $serializer = $this->get('jms_serializer');
-            $jsonContent = $serializer->serialize($video, 'json');
-
-            $content = json_decode($jsonContent);
-
-            $urls = array(
-              'thumbnail' => $content->provider_metadata[0]->thumbnails[1]->reference,
-              'mp4' => $content->provider_metadata[0]->reference,
-              'ogg' => $content->provider_metadata[1]->reference,
-            );
-
-            $videoUrls[$videoId] = $urls;
-          }
-        }
-      }
-*/
       // Create json content.
       $jsonContent = $serializer->serialize($slide, 'json');
 
