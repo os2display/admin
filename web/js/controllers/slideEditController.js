@@ -180,13 +180,18 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
     // Register event listener for select media.
     $scope.$on('mediaOverview.selectMedia', function(event, media) {
-      var index = $scope.slide.media.indexOf(media);
+      var index = -1;
+      $scope.slide.media.forEach(function(element, elIndex, array) {
+        if (element.id == media.id) {
+          index = elIndex;
+        }
+      });
 
       if (index > -1) {
-        $scope.slide.media.splice(index, 1);
+        $scope.slide.media.length = 0;
       }
       else {
-        $scope.slide.media = [];
+        $scope.slide.media.length = 0;
         $scope.slide.media.push(media)
       }
 
@@ -213,6 +218,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       // If all the data items were uploaded correctly.
       if (allSuccess) {
         mediaFactory.getMedia(data.id).then(function(media) {
+          $scope.slide.media.length = 0;
           $scope.slide.media.push(media);
         });
 
