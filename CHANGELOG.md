@@ -2,7 +2,7 @@
 
 #v0.0.4
 * Added manual calendar template.
-* Added publishing.
+* Added publishing for slides.
 * Added scheduling for slides.
 * Changed input fields in slide creation to use textfield and textarea. - #8480
 * Fixed duration bug - #8370
