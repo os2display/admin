@@ -3279,15 +3279,16 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 95%;
+  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 28, ../ik-templates/text-top/_text-top.scss */
+/* line 29, ../ik-templates/text-top/_text-top.scss */
 .text-top--header {
   font-size: 100%; }
 
-/* line 39, ../ik-templates/text-top/_text-top.scss */
+/* line 40, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
   font-size: 70%; }
 
@@ -3314,19 +3315,20 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 95%;
+  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 29, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 30, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--header {
   font-size: 100%; }
 
-/* line 40, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 41, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%; }
 
-/* line 56, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 57, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
@@ -3356,15 +3358,16 @@ html.is-locked body {
   position: relative;
   width: 90%;
   height: 90%;
+  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 31, ../ik-templates/text-left/_text-left.scss */
+/* line 32, ../ik-templates/text-left/_text-left.scss */
 .text-left--header {
   font-size: 100%; }
 
-/* line 42, ../ik-templates/text-left/_text-left.scss */
+/* line 43, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%; }
 
@@ -3393,19 +3396,20 @@ html.is-locked body {
   position: relative;
   width: 90%;
   height: 90%;
+  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 31, ../ik-templates/text-right/_text-right.scss */
+/* line 32, ../ik-templates/text-right/_text-right.scss */
 .text-right--header {
   font-size: 100%; }
 
-/* line 42, ../ik-templates/text-right/_text-right.scss */
+/* line 43, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%; }
 
-/* line 58, ../ik-templates/text-right/_text-right.scss */
+/* line 59, ../ik-templates/text-right/_text-right.scss */
 .text-right--edit-image-settings {
   right: auto;
   left: 15%; }
@@ -3432,19 +3436,20 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 93%;
+  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 28, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 29, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--header {
   font-size: 100%; }
 
-/* line 39, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 40, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%; }
 
-/* line 50, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 51, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--edit-box-settings {
   right: -15px;
   top: -15px; }
