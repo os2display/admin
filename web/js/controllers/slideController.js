@@ -142,16 +142,20 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      */
     $scope.selectTemplate = function(id) {
       $scope.slide.template = id;
+      var template = templateFactory.getTemplate(id);
+
       if ($scope.slide.options == null) {
-        $scope.slide.options = templateFactory.getTemplate(id).emptyoptions;
+        $scope.slide.options = template.emptyoptions;
       }
       else {
-        angular.forEach(templateFactory.getTemplate(id).emptyoptions, function(value, key)  {
+        angular.forEach(template.emptyoptions, function(value, key)  {
           if ($scope.slide.options[key] == undefined) {
             $scope.slide.options[key] = value;
           }
         });
       }
+
+      $scope.slide.media_type = template.mediatype;
     };
 
     /**

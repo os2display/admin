@@ -21,7 +21,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       $scope.slide = data;
 
       // @TODO: refactor to check on media_type on slide instead of template.
-      if ($scope.slide.template === 'only-video') {
+      if ($scope.slide.media_type === 'video') {
         $scope.selectedMediaType = 'video';
       } else {
         $scope.selectedMediaType = 'image';
@@ -150,77 +150,6 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       return false;
     };
 
-    // Register event listener for select media.
-    $scope.$on('mediaOverview.selectMedia', function(event, media) {
-      // Handle selection of video or image.
-      if (media.content_type.indexOf('image/') === 0) {
-        var index = $scope.slide.options.images.indexOf(media.id);
-
-        if (index > -1) {
-          $scope.slide.options.images.splice(index, 1);
-        }
-        else {
-          $scope.slide.options.images = [];
-          $scope.slide.options.images.push(media.id);
-          $scope.slide.imageUrls = [];
-          $scope.slide.imageUrls[media.id] = media.urls;
-        }
-      }
-      else if (media.content_type.indexOf('video/') === 0) {
-        var index = $scope.slide.options.videos.indexOf(media.id);
-
-        if (index > -1) {
-          $scope.slide.options.videos.splice(index, 1);
-        }
-        else {
-          $scope.slide.options.videos = [];
-          $scope.slide.options.videos.push(media.id);
-          $scope.slide.videoUrls = [];
-          $scope.slide.videoUrls[media.id] = {
-            "mp4": media.provider_metadata[0].reference,
-            "ogg": media.provider_metadata[1].reference
-          };
-        }
-      }
-
-      // Reset step to background-picker.
-      $scope.step = 'background-picker';
-
-      // Hide editors.
-      $scope.editor.hideAllEditors();
-    });
-
-    // Register event listener for media upload success.
-    $scope.$on('mediaUpload.uploadSuccess', function(event, data) {
-      var allSuccess = true;
-
-      for (var i = 0; i < data.queue.length; i++) {
-        var item = data.queue[i];
-
-        if (!item.isSuccess) {
-          allSuccess = false;
-          break;
-        }
-      }
-
-      // If all the data items were uploaded correctly.
-      if (allSuccess) {
-        mediaFactory.getMedia(data.id).then(function(image) {
-          $scope.slide.options.images = [];
-          $scope.slide.options.images.push(image.id);
-          $scope.slide.imageUrls = [];
-          $scope.slide.imageUrls[image.id] = image.urls;
-        });
-
-        // Reset step to background-picker.
-        $scope.step = 'background-picker';
-
-        // Hide editors.
-        $scope.editor.hideAllEditors();
-      }
-    });
-
-
     /**
      * Validate events related to the slide.
      */
@@ -248,5 +177,50 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         }
       }
     };
+
+    // Register event listener for select media.
+    $scope.$on('mediaOverview.selectMedia', function(event, media) {
+      var index = $scope.slide.media.indexOf(media);
+
+      if (index > -1) {
+        $scope.slide.media.splice(index, 1);
+      }
+      else {
+        $scope.slide.media.push(media)
+      }
+
+      // Reset step to background-picker.
+      $scope.step = 'background-picker';
+
+      // Hide editors.
+      $scope.editor.hideAllEditors();
+    });
+
+    // Register event listener for media upload success.
+    $scope.$on('mediaUpload.uploadSuccess', function(event, data) {
+      var allSuccess = true;
+
+      for (var i = 0; i < data.queue.length; i++) {
+        var item = data.queue[i];
+
+        if (!item.isSuccess) {
+          allSuccess = false;
+          break;
+        }
+      }
+
+      // If all the data items were uploaded correctly.
+      if (allSuccess) {
+        mediaFactory.getMedia(data.id).then(function(media) {
+          $scope.slide.media.push(media);
+        });
+
+        // Reset step to background-picker.
+        $scope.step = 'background-picker';
+
+        // Hide editors.
+        $scope.editor.hideAllEditors();
+      }
+    });
   }
 ]);

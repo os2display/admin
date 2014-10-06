@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Indholdskanalen\MainBundle\Entity\MediaOrder;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -105,13 +106,13 @@ class SlideController extends Controller {
         $em->persist($channelSlideOrder->getSlide());
 
         $em->remove($channelSlideOrder);
-        $em->flush();
+        //$em->flush();
       }
     }
 
     // Save the entity.
     $em->persist($slide);
-    $em->flush();
+    //$em->flush();
 
     // Add to channels.
     foreach($post['channels'] as $channel) {
@@ -147,12 +148,78 @@ class SlideController extends Controller {
 
         // Save the ChannelSlideOrder.
         $em->persist($channelSlideOrder);
-        $em->flush();
+        //$em->flush();
+      }
+    }
+
+    // Get channel ids.
+    $postMediaIds = array();
+    foreach($post['media'] as $media) {
+      $postMediaIds[] = $media['id'];
+    }
+
+    // Update media orders.
+    foreach($slide->getMediaOrders() as $mediaOrder) {
+      $media = $mediaOrder->getMedia();
+
+      if (!in_array($media->getId(), $postMediaIds)) {
+        $mediaOrder->getMedia()->removeMediaOrder($mediaOrder);
+        $mediaOrder->getSlide()->removeMediaOrder($mediaOrder);
+
+        $em->persist($mediaOrder->getMedia());
+        $em->persist($mediaOrder->getSlide());
+
+        $em->remove($mediaOrder);
+        //$em->flush();
       }
     }
 
     // Save the entity.
     $em->persist($slide);
+    //$em->flush();
+
+    // Add to media.
+    foreach($post['media'] as $media) {
+      $media = $doctrine->getRepository('IndholdskanalenMainBundle:Media')->findOneById($media['id']);
+
+      // Check if ChannelSlideOrder already exists, if not create it.
+      $mediaOrder = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder')->findOneBy(
+        array(
+          'media' => $media,
+          'slide' => $slide,
+        )
+      );
+      if (!$mediaOrder) {
+        // Find the next sort order index for the given channel.
+        $index = 0;
+        $mediaLargestSortOrder = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder')->findOneBy(
+          array(
+            'media' => $media
+          ),
+          array(
+            'sortOrder' => 'DESC'
+          )
+        );
+        if ($mediaLargestSortOrder) {
+          $index = $mediaLargestSortOrder->getSortOrder();
+        }
+
+        // Create new ChannelSlideOrder.
+        $mediaOrder = new MediaOrder();
+        $mediaOrder->setMedia($media);
+        $mediaOrder->setSlide($slide);
+        $mediaOrder->setSortOrder($index + 1);
+
+        // Save the ChannelSlideOrder.
+        $em->persist($mediaOrder);
+        //$em->flush();
+      }
+    }
+
+    // Save the slide.
+    $em->persist($slide);
+
+    // Persist to database.
     $em->flush();
 
     // Create response.
@@ -194,6 +261,12 @@ class SlideController extends Controller {
         $channels[] = json_decode($serializer->serialize($channelSlideOrder->getChannel(), 'json'));
       }
 
+      // Add channels.
+      $media = array();
+      foreach($slide->getMediaOrders() as $mediaOrder) {
+        $media[] = json_decode($serializer->serialize($mediaOrder->getMedia(), 'json'));
+      }
+/*
       // Add image urls to result.
       $imageUrls = array();
       if (isset($slide->getOptions()['images'])) {
@@ -235,14 +308,15 @@ class SlideController extends Controller {
           }
         }
       }
-
+*/
       // Create json content.
       $jsonContent = $serializer->serialize($slide, 'json');
 
       // Attach extra fields.
       $ob = json_decode($jsonContent);
-      $ob->imageUrls = $imageUrls;
-      $ob->videoUrls = $videoUrls;
+      //$ob->imageUrls = $imageUrls;
+      //$ob->videoUrls = $videoUrls;
+      $ob->media = $media;
       $ob->channels = $channels;
       $jsonContent = json_encode($ob);
 

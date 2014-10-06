@@ -79,6 +79,27 @@ class Slide {
   private $channelSlideOrders;
 
   /**
+   * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="slide")
+   * @ORM\OrderBy({"sortOrder" = "ASC"})
+   **/
+  private $mediaOrders;
+
+  /**
+   * @ORM\Column(name="media_type", type="string", nullable=true)
+   *   "video" or "image".
+   */
+  private $mediaType;
+
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->channelSlideOrders = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->mediaOrders = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
+  /**
    * Get id
    *
    * @return integer
@@ -224,14 +245,6 @@ class Slide {
   }
 
   /**
-   * Constructor
-   */
-  public function __construct()
-  {
-    $this->channelSlideOrders = new \Doctrine\Common\Collections\ArrayCollection();
-  }
-
-  /**
    * Add channelSlideOrder
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
@@ -331,5 +344,61 @@ class Slide {
   public function getScheduleTo()
   {
     return $this->schedule_to;
+  }
+
+  /**
+   * Add mediaOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
+   * @return Slide
+   */
+  public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
+  {
+    $this->mediaOrders[] = $mediaOrders;
+
+    return $this;
+  }
+
+  /**
+   * Remove mediaOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
+   */
+  public function removeMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
+  {
+    $this->mediaOrders->removeElement($mediaOrder);
+  }
+
+  /**
+   * Get mediaOrders
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getMediaOrders()
+  {
+    return $this->mediaOrders;
+  }
+
+  /**
+   * Set mediaType
+   *
+   * @param string $mediaType
+   * @return Slide
+   */
+  public function setMediaType($mediaType)
+  {
+    $this->mediaType = $mediaType;
+
+    return $this;
+  }
+
+  /**
+   * Get mediaType
+   *
+   * @return string
+   */
+  public function getMediaType()
+  {
+    return $this->mediaType;
   }
 }

@@ -75,15 +75,15 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
 
 /**
  * Directive to insert html for a slide, that is editable.
- * @param ik-id: the id of the slide.
+ * @param ik-slide: the slide.
  * @param ik-width: the width of the slide.
  */
-ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFactory', function(slideFactory, mediaFactory, templateFactory) {
+ikApp.directive('ikSlideEditable', ['templateFactory', function($templateFactory) {
   return {
     restrict: 'E',
     scope: {
       ikWidth: '@',
-      ikId: '@'
+      ikSlide: '='
     },
     link: function(scope, element, attrs) {
       scope.templateURL = '/partials/slide/slide-loading.html';
@@ -92,38 +92,26 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
       scope.$watch('ikSlide', function (newVal, oldVal) {
         if (!newVal) return;
 
-        // If the background color has changed, remove selected images.
-        if (oldVal && newVal.options.bgcolor !== oldVal.options.bgcolor) {
-          scope.ikSlide.options.images = [];
-          scope.ikSlide.options.videos = [];
-        }
+        console.log(newVal);
 
-        // Update image to show.
-        if (scope.ikSlide.options.images) {
-          if (scope.ikSlide.options.images.length > 0) {
-            if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
-              scope.ikSlide.currentImage = '/images/not-found.png';
-            }
-            else {
-              scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
-            }
+        if (scope.ikSlide.media_type === 'image') {
+          if (scope.ikSlide.media.length > 0) {
+            scope.ikSlide.currentImage = scope.ikSlide.media[0].urls.default_landscape;
           }
           else {
             scope.ikSlide.currentImage = '';
           }
         }
-
-        // Update video to show.
-        if (scope.ikSlide.options.videos) {
-          if (scope.ikSlide.options.videos.length > 0) {
-            if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
+        else {
+          if (scope.ikSlide.media.length > 0) {
+            if (scope.ikSlide.media[0] === undefined) {
               scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
             }
             else {
-              scope.ikSlide.currentVideo = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]];
+              scope.ikSlide.currentVideo = scope.ikSlide.media[0];
 
               // Reload video player.
-              setTimeout(function() {
+              setTimeout(function () {
                 element.find('#videoPlayer').load();
               }, 1000);
             }
@@ -133,60 +121,23 @@ ikApp.directive('ikSlideEditable', ['slideFactory', 'mediaFactory', 'templateFac
           }
         }
 
-        // Update fontsize
-        scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
-      }, true);
-
-      // Observe for changes to the ik-id attribute. Setup slide when ik-id is set.
-      attrs.$observe('ikId', function(val) {
-        slideFactory.getEditSlide(scope.ikId).then(function(data) {
-          scope.ikSlide = data;
-          scope.template = templateFactory.getTemplate(scope.ikSlide.template);
-
+        if (!scope.template || newVal.template !== oldVal.template) {
           scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '-edit.html';
+          scope.template = $templateFactory.getTemplate(scope.ikSlide.template);
+        }
 
-          // Find the current image to display.
-          if (scope.ikSlide.options.images) {
-            if (scope.ikSlide.options.images.length > 0) {
-              if (scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]] === undefined) {
-                scope.ikSlide.currentImage = '/images/not-found.png';
-              }
-              else {
-                scope.ikSlide.currentImage = scope.ikSlide.imageUrls[scope.ikSlide.options.images[0]]['default_landscape'];
-              }
-            } else {
-              scope.ikSlide.currentImage = '';
-            }
-          }
-
-          // Update videos to show.
-          if (scope.ikSlide.options.videos) {
-            if (scope.ikSlide.options.videos.length > 0) {
-              if (scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]] === undefined) {
-                scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
-              }
-              else {
-                scope.ikSlide.currentVideo = scope.ikSlide.videoUrls[scope.ikSlide.options.videos[0]];
-
-                // Reload video player.
-                setTimeout(function() {
-                  element.find('#videoPlayer').load();
-                }, 1000);
-              }
-            }
-            else {
-              scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
-            }
-          }
-
+        if (!scope.theStyle) {
           // Setup the inline styling
           scope.theStyle = {
             width: "" + scope.ikWidth + "px",
             height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
             fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
           }
-        });
-      });
+        } else {
+          // Update fontsize
+          scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
+        }
+      }, true);
     },
     templateUrl: '/partials/slide/slide-edit.html'
   }

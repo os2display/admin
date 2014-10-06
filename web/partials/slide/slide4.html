@@ -4,7 +4,7 @@
     <p class="create-slide--header-description">Tilføj indhold.</p>
     <div class="create-slide--content-wrapper">
       <div class="create-slide--content-inner" data-ng-style="{'width': '{{slide.orientation == 'portrait' ? 540 : 960}}px'}">
-        <ik-slide-editable ik-id="{{slide.id}}" ik-width="{{slide.orientation == 'portrait' ? 540 : 960}}"></ik-slide-editable>
+        <ik-slide-editable ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 540 : 960}}"></ik-slide-editable>
       </div>
     </div>
     <input type="submit" class="create-slide--button" value="Gem og fortsæt" data-ng-click="submitStep()">
