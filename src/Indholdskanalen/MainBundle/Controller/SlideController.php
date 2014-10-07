@@ -53,6 +53,8 @@ class SlideController extends Controller {
     else {
       // This is a new slide.
       $slide = new Slide();
+
+      $slide->setCreatedAt(time());
     }
 
     // Update fields from post.
@@ -64,9 +66,6 @@ class SlideController extends Controller {
     }
     if (isset($post['template'])) {
       $slide->setTemplate($post['template']);
-    }
-    if (isset($post['created_at'])) {
-      $slide->setCreatedAt($post['created_at']);
     }
     if (isset($post['options'])) {
       $slide->setOptions($post['options']);

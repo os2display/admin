@@ -130,7 +130,6 @@ ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
         "duration": '',
         "orientation": '',
         "template": '',
-        "created_at": parseInt((new Date().getTime()) / 1000),
         "options": null
       };
 
