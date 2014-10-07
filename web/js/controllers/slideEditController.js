@@ -34,6 +34,8 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       showBackgroundEditor: false,
       showManualCalendarEditor: false,
       toggleTextEditor: function() {
+        $('html').toggleClass('is-locked');
+
         $scope.editor.showBackgroundEditor = false;
         $scope.editor.showContentEditor = false;
         $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
@@ -68,6 +70,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.editor.showBackgroundEditor = false;
         $scope.editor.showTextEditor = false;
         $scope.editor.showManualCalendarEditor = false;
+        $('html').removeClass('is-locked');
       }
     };
 
