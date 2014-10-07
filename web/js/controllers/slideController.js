@@ -153,6 +153,9 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
           }
         });
       }
+      if ($scope.slide.options.headline !== undefined && $scope.slide.options.headline == '') {
+        $scope.slide.options.headline = $scope.slide.title;
+      }
 
       $scope.slide.media_type = template.mediatype;
     };
