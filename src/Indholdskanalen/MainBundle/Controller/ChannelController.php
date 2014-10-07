@@ -87,7 +87,7 @@ class ChannelController extends Controller {
 
     // Remove slides.
     foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
-      $slide = $channelSlideOrder->getChannel();
+      $slide = $channelSlideOrder->getSlide();
 
       if (!in_array($slide->getId(), $postSlideIds)) {
         $em->remove($channelSlideOrder);
