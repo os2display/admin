@@ -46,15 +46,20 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
           slideFactory.clearCurrentSlide();
 
           // Get the slide from the backend.
-          slideFactory.getEditSlide($routeParams.id).then(function(data) {
-            $scope.slide = data;
-            $scope.slide.status = 'edit-slide';
-            if ($scope.slide === {}) {
-              $location.path('/slide');
-            }
+          slideFactory.getEditSlide($routeParams.id).then(
+            function(data) {
+              $scope.slide = data;
+              $scope.slide.status = 'edit-slide';
+              if ($scope.slide === {}) {
+                $location.path('/slide');
+              }
 
-            loadStep(4);
-          });
+              loadStep(4);
+            },
+            function(reason) {
+              $location.path('/slide-overview');
+            }
+          );
         }
       }
     }
