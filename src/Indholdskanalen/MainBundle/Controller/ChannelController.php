@@ -90,20 +90,9 @@ class ChannelController extends Controller {
       $slide = $channelSlideOrder->getChannel();
 
       if (!in_array($slide->getId(), $postSlideIds)) {
-        $channelSlideOrder->getChannel()->removeChannelSlideOrder($channelSlideOrder);
-        $channelSlideOrder->getSlide()->removeChannelSlideOrder($channelSlideOrder);
-
-        $em->persist($channelSlideOrder->getChannel());
-        $em->persist($channelSlideOrder->getSlide());
-
         $em->remove($channelSlideOrder);
-        $em->flush();
       }
     }
-
-    // Save the entity.
-    $em->persist($channel);
-    $em->flush();
 
     // Add slides and update sort order.
     $sortOrder = 0;
@@ -127,7 +116,8 @@ class ChannelController extends Controller {
 
       // Save the ChannelSlideOrder.
       $em->persist($channelSlideOrder);
-      $em->flush();
+
+      $channel->addChannelSlideOrder($channelSlideOrder);
     }
 
     // Save the entity.
