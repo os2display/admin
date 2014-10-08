@@ -2884,12 +2884,13 @@ html.is-locked body {
     display: inline-block;
     margin: 0 0 36px;
     overflow: hidden;
-    position: relative; }
+    position: relative;
+    vertical-align: middle; }
     @media only screen and (min-width: 481px) {
       /* line 52, ../sass/modules/_overview.scss */
       .overview--screen, .overview--media-single, .overview--slide {
         margin: 0 36px 36px 0; } }
-  /* line 65, ../sass/modules/_overview.scss */
+  /* line 66, ../sass/modules/_overview.scss */
   .overview--slide-unpublished-overlay {
     background: #fff;
     height: 168.75px;
@@ -2899,7 +2900,7 @@ html.is-locked body {
     z-index: 1;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
     opacity: 0.7; }
-  /* line 76, ../sass/modules/_overview.scss */
+  /* line 77, ../sass/modules/_overview.scss */
   .overview--slide-unpublished-icon {
     position: absolute;
     top: 5px;
@@ -2913,7 +2914,7 @@ html.is-locked body {
     width: 20px;
     height: 20px;
     background-position: 0 -179px; }
-  /* line 85, ../sass/modules/_overview.scss */
+  /* line 86, ../sass/modules/_overview.scss */
   .overview--slide-published-icon {
     position: absolute;
     top: 5px;
@@ -2943,16 +2944,16 @@ html.is-locked body {
   .overview--slide-link:focus {
     color: inherit;
     text-decoration: none; }
-  /* line 98, ../sass/modules/_overview.scss */
+  /* line 99, ../sass/modules/_overview.scss */
   .overview--slides-container, .overview--channel-container {
     display: block; }
-  /* line 103, ../sass/modules/_overview.scss */
+  /* line 104, ../sass/modules/_overview.scss */
   .overview--channel-empty {
     width: 300px;
     height: 168.75px;
     position: relative;
     background-color: #cccccc; }
-  /* line 110, ../sass/modules/_overview.scss */
+  /* line 111, ../sass/modules/_overview.scss */
   .overview--channel-empty-text {
     font-size: 1em;
     position: relative;
@@ -2961,15 +2962,15 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  /* line 118, ../sass/modules/_overview.scss */
+  /* line 119, ../sass/modules/_overview.scss */
   .overview--channel-label, .overview--slide-label {
     display: inline-block;
     font-size: .9em; }
-  /* line 124, ../sass/modules/_overview.scss */
+  /* line 125, ../sass/modules/_overview.scss */
   .overview--channel-date, .overview--slide-date {
     color: #b3b3b3;
     font-size: .9em; }
-  /* line 131, ../sass/modules/_overview.scss */
+  /* line 132, ../sass/modules/_overview.scss */
   .overview--filter {
     border-bottom: 0;
     display: inline-block;
@@ -2977,49 +2978,49 @@ html.is-locked body {
     margin: 0 auto;
     position: relative;
     width: 100%; }
-  /* line 141, ../sass/modules/_overview.scss */
+  /* line 142, ../sass/modules/_overview.scss */
   .overview--filter-orientation {
     margin-bottom: 1em;
     position: relative;
     width: 100%;
     text-align: center; }
     @media only screen and (min-width: 1024px) {
-      /* line 141, ../sass/modules/_overview.scss */
+      /* line 142, ../sass/modules/_overview.scss */
       .overview--filter-orientation {
         width: 25%;
         display: inline-block;
         float: right; } }
-  /* line 156, ../sass/modules/_overview.scss */
+  /* line 157, ../sass/modules/_overview.scss */
   .overview--form {
     margin: 0 0 1em 0;
     width: 100%; }
     @media only screen and (min-width: 1024px) {
-      /* line 156, ../sass/modules/_overview.scss */
+      /* line 157, ../sass/modules/_overview.scss */
       .overview--form {
         margin: 0 0 1em -4px;
         width: 70%;
         display: inline-block;
         float: left; } }
-  /* line 169, ../sass/modules/_overview.scss */
+  /* line 170, ../sass/modules/_overview.scss */
   .overview--sorting {
     display: inline-block;
     margin: 0 0 1em 0;
     width: 100%; }
     @media only screen and (min-width: 1024px) {
-      /* line 169, ../sass/modules/_overview.scss */
+      /* line 170, ../sass/modules/_overview.scss */
       .overview--sorting {
         max-width: 1024px;
         margin: 0 auto 1em; } }
-  /* line 181, ../sass/modules/_overview.scss */
+  /* line 182, ../sass/modules/_overview.scss */
   .overview--filter-label, .overview--sort-label {
     font-weight: bold;
     overflow: hidden;
     text-align: left;
     width: 100%; }
-  /* line 189, ../sass/modules/_overview.scss */
+  /* line 190, ../sass/modules/_overview.scss */
   .overview--sort-links {
     text-align: center; }
-  /* line 193, ../sass/modules/_overview.scss */
+  /* line 194, ../sass/modules/_overview.scss */
   .overview--filter-threesplit-left, .overview--filter-threesplit-middle, .overview--filter-threesplit-right, .overview--horisontal, .overview--vertical, .overview--newest, .overview--oldest, .overview--alphabetical {
     background: #fafafa;
     border: 1px solid #e6e6e6;
@@ -3047,22 +3048,22 @@ html.is-locked body {
     .overview--filter-threesplit-left:focus, .overview--filter-threesplit-middle:focus, .overview--filter-threesplit-right:focus, .overview--horisontal:focus, .overview--vertical:focus, .overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
       color: #595959;
       text-decoration: none; }
-    /* line 214, ../sass/modules/_overview.scss */
+    /* line 215, ../sass/modules/_overview.scss */
     .overview--filter-threesplit-left:last-child, .overview--filter-threesplit-middle:last-child, .overview--filter-threesplit-right:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
       border-right: 1px solid #e6e6e6; }
-    /* line 218, ../sass/modules/_overview.scss */
+    /* line 219, ../sass/modules/_overview.scss */
     .overview--filter-threesplit-left:first-child, .overview--filter-threesplit-middle:first-child, .overview--filter-threesplit-right:first-child, .overview--horisontal:first-child, .overview--vertical:first-child, .overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
       border-radius: 0.5em 0 0 0.5em; }
-    /* line 222, ../sass/modules/_overview.scss */
+    /* line 223, ../sass/modules/_overview.scss */
     .overview--filter-threesplit-left:last-child, .overview--filter-threesplit-middle:last-child, .overview--filter-threesplit-right:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
       border-radius: 0 0.5em 0.5em 0; }
-    /* line 226, ../sass/modules/_overview.scss */
+    /* line 227, ../sass/modules/_overview.scss */
     .overview--filter-threesplit-left.is-active, .overview--filter-threesplit-middle.is-active, .overview--filter-threesplit-right.is-active, .overview--horisontal.is-active, .overview--vertical.is-active, .overview--newest.is-active, .overview--oldest.is-active, .overview--alphabetical.is-active {
       background: #f0f0e1; }
-  /* line 231, ../sass/modules/_overview.scss */
+  /* line 232, ../sass/modules/_overview.scss */
   .overview--horisontal, .overview--vertical {
     width: 50%; }
-  /* line 238, ../sass/modules/_overview.scss */
+  /* line 239, ../sass/modules/_overview.scss */
   .overview--screen-link {
     display: inline-block;
     font-size: .9em; }
@@ -3082,7 +3083,7 @@ html.is-locked body {
     .overview--screen-link:focus {
       color: inherit;
       text-decoration: none; }
-  /* line 246, ../sass/modules/_overview.scss */
+  /* line 247, ../sass/modules/_overview.scss */
   .overview--screen-wrapper {
     margin: 0;
     background: #fafafa;
@@ -3091,14 +3092,14 @@ html.is-locked body {
     color: #595959;
     text-align: center; }
     @media only screen and (min-width: 481px) {
-      /* line 246, ../sass/modules/_overview.scss */
+      /* line 247, ../sass/modules/_overview.scss */
       .overview--screen-wrapper {
         margin: 0 1em 1em 0; } }
-  /* line 259, ../sass/modules/_overview.scss */
+  /* line 260, ../sass/modules/_overview.scss */
   .overview--screen-header {
     font-weight: bold;
     text-align: center; }
-  /* line 264, ../sass/modules/_overview.scss */
+  /* line 265, ../sass/modules/_overview.scss */
   .overview--screen--description {
     position: relative;
     top: 50%;
@@ -3106,16 +3107,16 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  /* line 271, ../sass/modules/_overview.scss */
+  /* line 272, ../sass/modules/_overview.scss */
   .overview--screen-all, .overview--screen-horisontal, .overview--screen-vertical {
     width: 33.3%; }
-  /* line 280, ../sass/modules/_overview.scss */
+  /* line 281, ../sass/modules/_overview.scss */
   .overview--media-single {
     position: relative;
     cursor: pointer;
     font-size: 0;
     overflow: hidden; }
-  /* line 288, ../sass/modules/_overview.scss */
+  /* line 289, ../sass/modules/_overview.scss */
   .overview--media-video-icon {
     right: .5rem;
     position: absolute;
@@ -3129,7 +3130,7 @@ html.is-locked body {
     width: 29px;
     height: 23px;
     background-position: 0 -375px; }
-  /* line 298, ../sass/modules/_overview.scss */
+  /* line 299, ../sass/modules/_overview.scss */
   .overview--media-overlay {
     background-color: rgba(255, 255, 255, 0.65);
     color: #000;
@@ -3139,21 +3140,21 @@ html.is-locked body {
     right: 0;
     bottom: -30%;
     height: 30%; }
-    /* line 308, ../sass/modules/_overview.scss */
+    /* line 309, ../sass/modules/_overview.scss */
     .overview--media-overlay.is-hovering {
       -moz-animation: toggle-media-overlay 0.15s ease 1 forwards;
       -webkit-animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation-timing-function: linear;
       -webkit-animation-timing-function: linear; }
-  /* line 317, ../sass/modules/_overview.scss */
+  /* line 318, ../sass/modules/_overview.scss */
   .overview--media-image {
     height: 150px; }
-  /* line 322, ../sass/modules/_overview.scss */
+  /* line 323, ../sass/modules/_overview.scss */
   .overview--media-overlay-inner {
     padding: .5em;
     text-align: left; }
-  /* line 328, ../sass/modules/_overview.scss */
+  /* line 329, ../sass/modules/_overview.scss */
   .overview--media-text {
     float: left;
     max-width: 80%;

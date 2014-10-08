@@ -9,7 +9,7 @@
 ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
   function($scope, slideFactory) {
     // Set default orientation and sort.
-    $scope.orientation = 'landscape';
+    $scope.orientation = 'all';
     $scope.sort = { "created_at": "desc" };
 
 
@@ -20,15 +20,6 @@ ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
     var search = {
       "fields": [ 'title' ],
       "text": $scope.search_text,
-      "filter": {
-        "bool": {
-          "must": {
-            "term": {
-              "orientation":  $scope.orientation
-            }
-          }
-        }
-      },
       "sort": {
         "created_at" : {
           "order": "desc"
@@ -64,7 +55,20 @@ ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
         $scope.orientation = orientation;
 
         // Update search query.
-        search.filter.bool.must.term.orientation = $scope.orientation;
+
+        // Update orientation for the search.
+        delete search.filter;
+        if (orientation !== 'all') {
+          search.filter = {
+            "bool": {
+              "must": {
+                "term": {
+                  "orientation": orientation
+                }
+              }
+            }
+          };
+        }
 
         $scope.updateSearch();
       }
