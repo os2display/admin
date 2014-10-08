@@ -28,9 +28,14 @@
   margin: 0;
   position: relative;
   overflow: hidden;
+}
 
-  &-display {
-    cursor: pointer;
+.preview--channel-display,
+.preview--slide-display {
+  cursor: pointer;
+
+  &.is-empty {
+    cursor: default;
   }
 }
 

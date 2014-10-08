@@ -20,7 +20,7 @@
 
   <div class="overview--slides">
     <div class="overview--slide" data-ng-repeat="slide in slides">
-      <a href="/#/slide/{{slide.id}}">
+      <a href="/#/slide/{{slide.id}}" class="overview--slide-link">
         <ik-slide ik-id="{{slide.id}}" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
       </a>
       <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
