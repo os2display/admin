@@ -53,15 +53,23 @@
   &--slide {
     display: inline-block;
     margin: 0 0 $gutter;
+    overflow: hidden;
     position: relative;
 
     @include breakpoint($breakpoint-lap) {
       margin: 0 $gutter $gutter 0;
     }
+  }
 
-    &.is-unpublished {
-      @include opacity(.4);
-    }
+  &--slide-unpublished-overlay {
+    background: $white;
+    height: 168.75px; // Static since we are working within a static div anyway.
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @include opacity(.7);
   }
 
   &--slide-unpublished-icon {
@@ -71,6 +79,15 @@
     z-index: 1;
 
     @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
+  }
+
+  &--slide-published-icon {
+    position: absolute;
+    top: 5px; // Static since we are working within a static div anyway.
+    right: 5px;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
   }
 
   &--slide-link {
