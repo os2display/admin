@@ -42,6 +42,35 @@ ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
+     * Load the slides with the given ids.
+     *
+     * @param ids
+     */
+    factory.loadSlidesBulk = function loadSlidesBulk(ids) {
+      var defer = $q.defer();
+
+      // Build query string.
+      var queryString = "?";
+      for (var i = 0; i < ids.length; i++) {
+        queryString = queryString + "ids[]=" + ids[i];
+        if (i < ids.length - 1) {
+          queryString = queryString + "&"
+        }
+      }
+
+      // Load bulk.
+      $http.get('/api/slides/bulk' + queryString)
+        .success(function(data, status) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status)
+        });
+
+      return defer.promise;
+    };
+
+    /**
      * Clear currently slide.
      */
     factory.clearCurrentSlide = function clearCurrentSlide() {
@@ -123,12 +152,13 @@ ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
         "published": false,
         "schedule_from": null,
         "schedule_to": null,
+        "media": [],
+        "media_type": null,
         "title": '',
         "user": '',
         "duration": '',
         "orientation": '',
         "template": '',
-        "created_at": parseInt((new Date().getTime()) / 1000),
         "options": null
       };
 

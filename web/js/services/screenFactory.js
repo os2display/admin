@@ -42,6 +42,35 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
+     * Load the screens with the given ids.
+     *
+     * @param ids
+     */
+    factory.loadScreensBulk = function loadScreensBulk(ids) {
+      var defer = $q.defer();
+
+      // Build query string.
+      var queryString = "?";
+      for (var i = 0; i < ids.length; i++) {
+        queryString = queryString + "ids[]=" + ids[i];
+        if (i < ids.length - 1) {
+          queryString = queryString + "&"
+        }
+      }
+
+      // Load bulk.
+      $http.get('/api/screens/bulk' + queryString)
+        .success(function(data, status) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status)
+        });
+
+      return defer.promise;
+    };
+
+    /**
      * Get the current screen.
      * @param id
      * @returns {promiseAndHandler.promise|*|Promise._progressUnchecked.promise|promise|exports.exports.Reduction.promise|PromiseResolver.promise}

@@ -175,7 +175,6 @@
    ========================================================================== */
 
   &--content-inner {
-    position: relative;
     height: 100%;
     width: 100%;
   }
@@ -255,12 +254,6 @@
     width: 20%;
   }
 
-  &--calendar-form-element-date {
-    &.is-error {
-      background: $beige;
-    }
-  }
-
   &--calendar-form-element-wrapper-link {
     vertical-align: middle;
   }
@@ -270,15 +263,9 @@
   }
 
   &--calendar-add-date {
-    border: 0;
     cursor: pointer;
-    float: left;
 
     @include generate-sprite-image($dashboard-sprites, 'plus-icon', 55);
-
-    &.is-error {
-      display: none;
-    }
   }
 
   &--calendar-date-events {
@@ -301,17 +288,12 @@
     @include generate-sprite-image($dashboard-sprites, 'minus-icon', 55);
   }
 
-  &--calendar-notices {
-    display: inline-block;
-    width: 50%;
-  }
-
   &--calendar-remove-date-notice {
     display: none;
-    line-height: 36px; // Same height as the absolute height of the icon next to it.
+    line-height: 36px;
     font-weight: bold;
 
-    &.is-error{
+    &.is-outdated {
       display: block;
     }
   }

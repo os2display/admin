@@ -8,6 +8,7 @@ namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Extra
@@ -20,33 +21,39 @@ class Channel {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
+   * @Groups({"api"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
+   * @Groups({"api"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
+   * @Groups({"api"})
    */
   private $created_at;
 
   /**
    * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
+   * @Groups({"api"})
    **/
   private $channelSlideOrders;
 
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
    * @ORM\JoinTable(name="screens_channels")
+   * @Groups({"api"})
    */
   private $screens;
 
