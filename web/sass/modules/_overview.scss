@@ -21,6 +21,7 @@
 
   &--section {
     margin: 0;
+    text-align: center;
   }
 
   &--description {
@@ -129,9 +130,11 @@
 
   &--filter {
     border-bottom: 0;
+    display: inline-block;
     max-width: $breakpoint-desk;
     margin: 0 auto;
     position: relative;
+    width: 100%;
   }
 
 
@@ -164,6 +167,7 @@
 
 
   &--sorting {
+    display: inline-block;
     margin: 0 0 1em 0;
     width: 100%;
 
@@ -178,6 +182,7 @@
   &--sort-label {
     font-weight: bold;
     overflow: hidden;
+    text-align: left;
     width: 100%;
   }
 
