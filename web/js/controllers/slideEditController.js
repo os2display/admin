@@ -169,7 +169,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
      * Set error for events on slide if not all input fields have value.
      */
     $scope.setValidationError = function setError(event) {
-      if (event.to < event.from || event.title == null || event.place == null || event.to == null || event.from == null) {
+      if (event.to < event.from || event.title == null || event.place == null || event.to == null || event.from == null || event.to * 1000 < Date.now() || event.from * 1000 < Date.now()) {
         return true;
       }
       return false;
