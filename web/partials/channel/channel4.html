@@ -4,7 +4,8 @@
       <p class="create-channel--header-description">Brug pilene for at vælge i hvilken rækkefølge dine slides skal vises.</p>
       <div class="create-channel--slides">
         <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
-          <div href="#" class="create-channel--slide-order-link">
+          <div class="create-channel--slide-order-link" data-ng-class="{'is-unpublished': slide.published == false}">
+            <div class="create-channel--slide-unpublished-icon" data-ng-if="slide.published == false" title="Dette slide er ikke publiseret."></div>
             <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><span class="create-channel--arrow-left-inner"> &#10094; </span></span>
             <span class="create-channel--slide-order-number">{{$index + 1}}</span>
             <ik-slide ik-id="{{slide.id}}" ik-width="300"></ik-slide>

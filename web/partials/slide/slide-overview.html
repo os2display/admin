@@ -19,7 +19,8 @@
   </div>
 
   <div class="overview--slides">
-    <div class="overview--slide" data-ng-repeat="slide in slides">
+    <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-class="{'is-unpublished': slide.published == false}">
+      <div class="overview--slide-unpublished-icon" data-ng-if="slide.published == false" title="Dette slide er ikke publiseret."></div>
       <a href="/#/slide/{{slide.id}}" class="overview--slide-link">
         <ik-slide ik-id="{{slide.id}}" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
       </a>
