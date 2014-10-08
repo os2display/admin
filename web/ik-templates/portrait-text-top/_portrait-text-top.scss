@@ -20,6 +20,7 @@
   text-align: left;
   position:relative;
   width: 93%;
+  overflow: hidden;
 
   @include border-radius(10px);
 }

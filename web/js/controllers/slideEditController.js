@@ -150,6 +150,31 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       return false;
     };
 
+    /**
+     * Set error for events on slide if duration is not valid (ends before it starts).
+     */
+    $scope.setDateError = function setError(event) {
+      // Has the user put in values yet?
+      if (event.to != null && event.from != null) {
+        // Are the values old or reversed?
+        if (event.to < event.from || event.to * 1000 < Date.now() || event.from * 1000 < Date.now()) {
+          return true;
+        }
+      }
+
+      return false;
+    };
+
+    /**
+     * Set error for events on slide if not all input fields have value.
+     */
+    $scope.setValidationError = function setError(event) {
+      if (event.to < event.from || event.title == null || event.place == null || event.to == null || event.from == null || event.to * 1000 < Date.now() || event.from * 1000 < Date.now()) {
+        return true;
+      }
+      return false;
+    };
+
     // Register event listener for select media.
     $scope.$on('mediaOverview.selectMedia', function(event, media) {
       // Handle selection of video or image.

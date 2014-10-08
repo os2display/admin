@@ -21,6 +21,7 @@
   text-align: left;
   position:relative;
   width: 95%;
+  overflow: hidden;
 
   @include border-radius(10px);
 }

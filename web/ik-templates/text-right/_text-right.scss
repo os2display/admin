@@ -23,6 +23,7 @@
   position:relative;
   width: 90%;
   height: 90%;
+  overflow: hidden;
 
   @include border-radius(10px);
 }
