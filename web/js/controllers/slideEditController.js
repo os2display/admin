@@ -266,8 +266,6 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
             item.dailyEvent = true;
           }
 
-          // Mark event as
-
           // Save new event item with duration.
           $scope.slide.options.eventitems[i] = item;
         }
