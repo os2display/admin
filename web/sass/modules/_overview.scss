@@ -53,10 +53,24 @@
   &--slide {
     display: inline-block;
     margin: 0 0 $gutter;
+    position: relative;
 
     @include breakpoint($breakpoint-lap) {
       margin: 0 $gutter $gutter 0;
     }
+
+    &.is-unpublished {
+      @include opacity(.4);
+    }
+  }
+
+  &--slide-unpublished-icon {
+    position: absolute;
+    top: 5px; // Static since we are working within a static div anyway.
+    right: 5px;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
   }
 
   &--slide-link {
@@ -69,7 +83,7 @@
   }
 
   &--channel-empty {
-    width: 300px; // Static sizes to
+    width: 300px; // Static sizes to correspond with the inline styles set on non empty channels.
     height: 168.75px;
     position: relative;
     background-color: rgb(204, 204, 204);

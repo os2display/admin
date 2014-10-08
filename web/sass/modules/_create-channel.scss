@@ -202,6 +202,19 @@ $breakpoint-arrow-switch : 693px;
     position: relative;
 
     @include strip-link-styles();
+
+    &.is-unpublished {
+      @include opacity(.4);
+    }
+  }
+
+  &--slide-unpublished-icon {
+    position: absolute;
+    top: 5px; // Static since we are working within a static div anyway.
+    right: 5px;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
   }
 
 
