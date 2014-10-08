@@ -40,7 +40,7 @@
           <div class="create-media--progress-bar" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
         </div>
       </div>
-      <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload alle</button>
+      <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
       <button class="create-media--button" data-ng-show="!uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Fjern alle</button>
       <button class="create-media--button" data-ng-show="uploadComplete" data-ng-click="clearQueue()">Upload flere</button>
     </div>
