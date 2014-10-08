@@ -74,7 +74,10 @@ class SearchIndexer {
     $type = get_class($entity);
 
     // We will not send user data to ES.
-    if ($type == 'Application\Sonata\UserBundle\Entity\User') {
+    // Ignore ChannelSlideOrders and MediaOrders as well.
+    if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder') {
       return FALSE;
     }
 
