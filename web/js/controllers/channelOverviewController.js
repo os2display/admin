@@ -44,7 +44,18 @@ ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
 
       channelFactory.searchChannels(search).then(
         function(data) {
-          $scope.channels = data;
+          // Extract search ids.
+          var ids = [];
+          for (var i = 0; i < data.length; i++) {
+            ids.push(data[i].id);
+          }
+
+          // Load slides bulk.
+          channelFactory.loadChannelsBulk(ids).then(
+            function (data) {
+              $scope.channels = data;
+            }
+          );
         }
       );
     };
