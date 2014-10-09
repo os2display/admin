@@ -75,6 +75,28 @@ ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
     };
 
     /**
+     * Calculates if a scheduling is set and whether we are currently showing it or not.
+     *
+     * @param slide
+     *   The current slide.
+     *
+     * @return
+     *   True if the slide has a schedule set, and we are outside the scope of the schedule.
+     */
+    $scope.outOfSchedule = function outOfSchedule(slide) {
+      if (slide.schedule_from && slide.schedule_to) { // From and to time is set.
+        if (slide.schedule_from * 1000 < Date.now() && slide.schedule_to * 1000 > Date.now() ) {
+          // Current time is between from and to time (ie inside schedule).
+          return false;
+        }
+        // Current time is set but is outside from and to time (ie out of schedule).
+        return true;
+      }
+      // No schedule is set.
+      return false;
+    };
+
+    /**
      * Changes the sort order and updated the slides.
      *
      * @param sort_field
