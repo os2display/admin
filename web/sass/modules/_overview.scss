@@ -299,7 +299,7 @@
   &--media-overlay {
     background-color: transparentize($white, .35);
     color: $black;
-    font-size: .8rem; // We use rem since the container fontsize is 0 (See "media-single")
+    font-size: .8rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
     position: absolute;
     left: 0;
     right: 0;
@@ -316,7 +316,7 @@
 
 
   &--media-image {
-    height: 150px;
+    height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
   }
 
 
@@ -331,5 +331,17 @@
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;
+  }
+
+  &--no-video {
+    background: $gray-lightest;
+    border: 2px solid $gray-light;
+    box-sizing: border-box;
+    color: $gray;
+    font-size: 1rem;
+    height: 10rem;
+    line-height: 10rem;
+    vertical-align: middle;
+    width: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
   }
 }
