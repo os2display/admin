@@ -8,72 +8,39 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slideFactory', 'templateFactory',
-  function($interval, $location, channelFactory, slideFactory, templateFactory) {
+ikApp.directive('ikChannel', ['$interval', '$location',
+  function($interval, $location) {
     return {
       restrict: 'E',
       scope: {
         ikWidth: '@',
-        ikId: '@'
+        ikChannel: '='
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
-        scope.channel = {};
         scope.slides = [];
-        scope.templateURL = '/partials/slide/slide-loading.html';
         scope.playText = '';
 
-        /**
-         * Set the template, current image and update the style.
-         */
-        scope.setTemplate = function() {
-          scope.ikSlide = scope.slides[scope.slideIndex];
-          scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
-
-          var template = templateFactory.getTemplate(scope.ikSlide.template);
-
-          scope.ikSlide.currentImage = '';
-
-          if (scope.ikSlide.media_type == 'image' && scope.ikSlide.media.length > 0) {
-            scope.ikSlide.currentImage = scope.ikSlide.media[0].urls.default_landscape_small;
-          }
-
-          if (scope.ikSlide.media_type == 'video' && scope.ikSlide.media.length > 0) {
-            // @TODO: TEST THIS!!!
-            scope.ikSlide.currentImage = scope.ikSlide.media[0].thumbnail;
-          }
-
-          scope.theStyle = {
-            width: "" + scope.ikWidth + "px",
-            height: "" + parseFloat(template.idealdimensions.height * parseFloat(scope.ikWidth / template.idealdimensions.width)) + "px",
-            fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / template.idealdimensions.width)) + "px"
-          }
-        };
-
-        // Observe on changes to ik-id, for when it is set.
-        attrs.$observe('ikId', function(val) {
+        // Observe on changes to ik-slide, for when it is set.
+        attrs.$observe('ikChannel', function(val) {
           if (!val) {
             return;
           }
 
-          // Load the channel.
-          channelFactory.getChannel(val).then(function(data) {
-            if (data.slides.length <= 0) {
-              scope.templateURL = 'partials/channel/empty.html';
-            }
-            else {
-              scope.channel = data;
-              angular.forEach(scope.channel.slides, function(value, key) {
-                slideFactory.getSlide(value.id).then(function(data) {
-                  scope.slides[key] = (data);
-                  if (key === 0) {
-                    scope.setTemplate();
-                    scope.buttonState = 'play';
-                  }
-                });
-              });
-            }
-          });
+          // If channel is empty, display empty channel.
+          if (scope.ikChannel.length <= 0) {
+            scope.templateURL = 'partials/channel/empty.html';
+          }
+          else {
+            scope.templateURL = 'partials/channel/non-empty.html';
+
+            // Get all the slides from the channel.
+            scope.ikChannel.channel_slide_orders.forEach(function(element) {
+              scope.slides.push(element.slide);
+            });
+
+            scope.buttonState = 'play';
+          }
         });
 
         /**
@@ -86,11 +53,8 @@ ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slide
             scope.buttonState = 'play';
           } else {
             scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
-            scope.setTemplate();
 
             scope.interval = $interval(function() {
-              scope.setTemplate();
-
               scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
             }, 2000);
             scope.buttonState = 'pause';

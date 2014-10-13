@@ -20,7 +20,7 @@
 
   <div class="overview--channels">
     <div class="overview--channel" data-ng-repeat="channel in channels">
-      <ik-channel class="overview--channel-container" ik-id="{{channel.id}}" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
+      <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}"></ik-channel>
       <a href="/#/channel/{{channel.id}}"><div class="overview--channel-label">{{channel.title}}</div></a>
       <span class="overview--channel-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>
