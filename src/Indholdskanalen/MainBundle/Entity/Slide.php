@@ -414,6 +414,24 @@ class Slide {
   }
 
   /**
+   * Get channels
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("channels")
+   * @Groups({"api"})
+   */
+  public function getChannels()
+  {
+    $result = new ArrayCollection();
+    foreach($this->getChannelSlideOrders() as $channelorder) {
+      $result->add($channelorder->getChannel());
+    }
+    return $result;
+  }
+
+  /**
    * Set mediaType
    *
    * @param string $mediaType
