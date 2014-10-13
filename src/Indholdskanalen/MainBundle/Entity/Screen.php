@@ -20,19 +20,19 @@ class Screen {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api"})
+   * @Groups({"api", "search"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api"})
+   * @Groups({"api", "search"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=false)
-   * @Groups({"api"})
+   * @Groups({"api", "search"})
    */
   private $orientation;
 
@@ -50,7 +50,6 @@ class Screen {
 
   /**
    * @ORM\ManyToMany(targetEntity="ScreenGroup", mappedBy="screens")
-   * @Groups({"api"})
    */
   private $groups;
 
@@ -74,7 +73,6 @@ class Screen {
 
   /**
    * @ORM\ManyToMany(targetEntity="Channel", mappedBy="screens")
-   * @Groups({"api"})
    */
   private $channels;
 

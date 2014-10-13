@@ -21,6 +21,8 @@ use Doctrine\ORM\Mapping as ORM;
  * References :
  *   working with object : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/working-with-objects/en
  *
+ * Serialization is defined in config/serializer/Entity.Media.xml
+ *
  * @author <yourname> <youremail>
  */
 class Media extends BaseMedia {
@@ -99,4 +101,10 @@ class Media extends BaseMedia {
   {
     return $this->mediaOrders;
   }
+
+  /**
+   * Get media URLs
+   *
+   *
+   */
 }

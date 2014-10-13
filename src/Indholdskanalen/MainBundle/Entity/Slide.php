@@ -7,9 +7,11 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\MaxDepth;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Extra
@@ -89,16 +91,12 @@ class Slide {
   /**
    * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="slide")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
-   * @Groups({"api"})
-   * @MaxDepth(2)
    **/
   private $channelSlideOrders;
 
   /**
    * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="slide")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
-   * @Groups({"api"})
-   * @SerializedName("media")
    **/
   private $mediaOrders;
 
@@ -396,6 +394,24 @@ class Slide {
   public function getMediaOrders()
   {
     return $this->mediaOrders;
+  }
+
+  /**
+   * Get media
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("media")
+   * @Groups({"api"})
+   */
+  public function getMedia()
+  {
+    $result = new ArrayCollection();
+    foreach($this->getMediaOrders() as $mediaorder) {
+      $result->add($mediaorder->getMedia());
+    }
+    return $result;
   }
 
   /**

@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializationContext;
 
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
@@ -159,6 +160,9 @@ class ChannelController extends Controller {
     // Create response.
     $response = new Response();
     if ($channel) {
+
+      /*
+
       // Get slides.
       $slides = array();
       foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
@@ -174,6 +178,12 @@ class ChannelController extends Controller {
       $jsonContent = json_encode($ob);
 
       $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($jsonContent);
+
+      */
+
+      $response->headers->set('Content-Type', 'application/json');
+      $jsonContent = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
       $response->setContent($jsonContent);
     }
     else {

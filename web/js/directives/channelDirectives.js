@@ -35,12 +35,12 @@ ikApp.directive('ikChannel', ['$interval', '$location', 'channelFactory', 'slide
           scope.ikSlide.currentImage = '';
 
           if (scope.ikSlide.media_type == 'image' && scope.ikSlide.media.length > 0) {
-            scope.ikSlide.currentImage = scope.ikSlide.media_orders[0].media.urls.default_landscape_small;
+            scope.ikSlide.currentImage = scope.ikSlide.media[0].urls.default_landscape_small;
           }
 
           if (scope.ikSlide.media_type == 'video' && scope.ikSlide.media.length > 0) {
             // @TODO: TEST THIS!!!
-            scope.ikSlide.currentImage = scope.ikSlide.media_orders[0].media.thumbnail;
+            scope.ikSlide.currentImage = scope.ikSlide.media[0].thumbnail;
           }
 
           scope.theStyle = {

@@ -9,6 +9,7 @@ namespace Indholdskanalen\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 
+
 /**
  * Media Order.
  * Represents an ordered media element.
@@ -21,29 +22,26 @@ class MediaOrder {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="sort_order", type="integer")
-   * @Groups({"api"})
    */
   private $sortOrder;
 
   /**
    * @ORM\ManyToOne(targetEntity="Slide", inversedBy="slide_media_orders")
    * @ORM\JoinColumn(name="slide_id", referencedColumnName="id")
-   * @Groups({"api"})
    **/
   private $slide;
 
   /**
    * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="slide_media_orders")
    * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
-   * @Groups({"api"})
-   **/
+   */
   private $media;
+
 
   /**
    * Get id

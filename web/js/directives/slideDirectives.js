@@ -27,21 +27,21 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
         scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
 
         if (scope.ikSlide.media_type === 'image') {
-          if (scope.ikSlide.media_orders.length > 0) {
-            scope.ikSlide.currentImage = scope.ikSlide.media_orders[0].media.urls.default_landscape_small;
+          if (scope.ikSlide.media.length > 0) {
+            scope.ikSlide.currentImage = scope.ikSlide.media[0].urls.default_landscape_small;
           }
           else {
             scope.ikSlide.currentImage = '';
           }
         }
         else {
-          if (scope.ikSlide.media_orders.length > 0) {
+          if (scope.ikSlide.media.length > 0) {
             if (scope.ikSlide.media[0] === undefined) {
               scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
             }
             else {
               // @TODO: test this!!
-              scope.ikSlide.currentVideo = scope.ikSlide.media_orders[0].media;
+              scope.ikSlide.currentVideo = scope.ikSlide.media[0].media;
 
               // Reload video player.
               setTimeout(function () {

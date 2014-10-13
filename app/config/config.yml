@@ -142,3 +142,11 @@ services:
         class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
         calls:
           - [ setContainer,[ @service_container ] ]
+
+jms_serializer:
+  metadata:
+    auto_detection: true
+    directories:
+      SonataMediaBundle:
+        namespace_prefix: "Sonata\\MediaBundle"
+        path: "@ApplicationSonataMediaBundle/Resources/config/serializer/SonataMedia"
