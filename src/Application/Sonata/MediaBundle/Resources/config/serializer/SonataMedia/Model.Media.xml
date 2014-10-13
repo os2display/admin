@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serializer>
     <class name="Sonata\MediaBundle\Model\Media" exclusion-policy="all" xml-root-name="media">
-
         <property name="name"        type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search,api,search" />
         <property name="description" type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search,api,search" />
 
@@ -15,7 +14,7 @@
         <property name="width"       type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
         <property name="height"      type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
         <property name="length"      type="double" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
-        <property name="contentType" type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
+        <property name="contentType" type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api, search" />
         <property name="size"        type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
         <property name="copyright"  type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
@@ -27,7 +26,7 @@
         <property name="cdnFlushAt"     type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
         <property name="cdnStatus"      type="integer"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
-        <property name="createdAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api" />
+        <property name="createdAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api, search" />
         <property name="updatedAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api" />
 
     </class>

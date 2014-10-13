@@ -55,7 +55,7 @@ class Screen {
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
-   * @Groups({"api"})
+   * @Groups({"api", "search"})
    */
   private $created_at;
 
