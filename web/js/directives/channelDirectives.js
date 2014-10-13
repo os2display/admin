@@ -65,7 +65,7 @@ ikApp.directive('ikChannel', ['$interval', '$location',
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function() {
-          $location.path("/channel/" + scope.channel.id);
+          $location.path("/channel/" + scope.ikChannel.id);
         };
 
         // Register event listener for destroy.
