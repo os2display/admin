@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Slide;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/slides")
@@ -31,7 +32,7 @@ class SlidesController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
     if ($slide_entities) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($slide_entities, 'json');
+      $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()->setGroups(array('api')));
 
       $response->setContent($jsonContent);
     }
@@ -68,7 +69,8 @@ class SlidesController extends Controller {
 
       $result = $qb->getQuery()->getResult();
       $serializer = $this->get('jms_serializer');
-      $response->setContent($serializer->serialize($result, 'json'));
+      $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($serializer->serialize($result, 'json', SerializationContext::create()->setGroups(array('api'))));
     }
     else {
       $response->setContent(json_encode(array()));
