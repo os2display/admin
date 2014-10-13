@@ -21,6 +21,7 @@
 
   &--section {
     margin: 0;
+    text-align: center;
   }
 
   &--description {
@@ -53,10 +54,42 @@
   &--slide {
     display: inline-block;
     margin: 0 0 $gutter;
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
 
     @include breakpoint($breakpoint-lap) {
       margin: 0 $gutter $gutter 0;
     }
+  }
+
+  &--slide-unpublished-overlay {
+    background: $white;
+    height: 168.75px; // Static since we are working within a static div anyway.
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @include opacity(.7);
+  }
+
+  &--slide-unpublished-icon {
+    position: absolute;
+    top: 5px; // Static since we are working within a static div anyway.
+    right: 5px;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
+  }
+
+  &--slide-published-icon {
+    position: absolute;
+    top: 5px; // Static since we are working within a static div anyway.
+    right: 5px;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
   }
 
   &--slide-link {
@@ -69,7 +102,7 @@
   }
 
   &--channel-empty {
-    width: 300px; // Static sizes to
+    width: 300px; // Static sizes to correspond with the inline styles set on non empty channels.
     height: 168.75px;
     position: relative;
     background-color: rgb(204, 204, 204);
@@ -98,9 +131,11 @@
 
   &--filter {
     border-bottom: 0;
+    display: inline-block;
     max-width: $breakpoint-desk;
     margin: 0 auto;
     position: relative;
+    width: 100%;
   }
 
 
@@ -133,6 +168,7 @@
 
 
   &--sorting {
+    display: inline-block;
     margin: 0 0 1em 0;
     width: 100%;
 
@@ -147,6 +183,7 @@
   &--sort-label {
     font-weight: bold;
     overflow: hidden;
+    text-align: left;
     width: 100%;
   }
 
@@ -262,7 +299,7 @@
   &--media-overlay {
     background-color: transparentize($white, .35);
     color: $black;
-    font-size: .8rem; // We use rem since the container fontsize is 0 (See "media-single")
+    font-size: .8rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
     position: absolute;
     left: 0;
     right: 0;
@@ -279,7 +316,7 @@
 
 
   &--media-image {
-    height: 150px;
+    height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
   }
 
 
@@ -294,5 +331,17 @@
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;
+  }
+
+  &--no-video {
+    background: $gray-lightest;
+    border: 2px solid $gray-light;
+    box-sizing: border-box;
+    color: $gray;
+    font-size: 1rem;
+    height: 10rem;
+    line-height: 10rem;
+    vertical-align: middle;
+    width: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
   }
 }

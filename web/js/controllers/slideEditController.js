@@ -68,6 +68,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.editor.showBackgroundEditor = false;
         $scope.editor.showTextEditor = false;
         $scope.editor.showManualCalendarEditor = false;
+        $('html').removeClass('is-locked');
       }
     };
 

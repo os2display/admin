@@ -2,8 +2,9 @@
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
     <div class="overview--filter-orientation">
-      <span href="#" data-ng-class="{'is-active': orientation == 'landscape'}" class="overview--horisontal" data-ng-click="setOrientation('landscape')">Horisontal</span>
-      <span href="#" data-ng-class="{'is-active': orientation == 'portrait'}" class="overview--vertical" data-ng-click="setOrientation('portrait')">Vertikal</span>
+      <span href="#" data-ng-class="{'is-active': orientation == 'all'}" class="overview--filter-threesplit-left" data-ng-click="setOrientation('all')">Alle</span>
+      <span href="#" data-ng-class="{'is-active': orientation == 'landscape'}" class="overview--filter-threesplit-middle" data-ng-click="setOrientation('landscape')">Horisontal</span>
+      <span href="#" data-ng-class="{'is-active': orientation == 'portrait'}" class="overview--filter-threesplit-right" data-ng-click="setOrientation('portrait')">Vertikal</span>
     </div>
     <form class="overview--form" accept-charset="UTF-8">
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-change="updateSearch()">
@@ -21,6 +22,13 @@
   <div class="overview--slides">
     <div class="overview--slide" data-ng-repeat="slide in slides">
       <a href="/#/slide/{{slide.id}}" class="overview--slide-link">
+        <div data-ng-if="slide.published == true">
+          <div class="overview--slide-published-icon" title="Dette slide er publiseret."></div>
+        </div>
+        <div data-ng-if="slide.published == false || outOfSchedule(slide)">
+          <div class="overview--slide-unpublished-overlay"></div>
+          <div class="overview--slide-unpublished-icon" title="Dette slide er ikke publiseret."></div>
+        </div>
         <ik-slide ik-id="{{slide.id}}" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
       </a>
       <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
