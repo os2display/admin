@@ -7,7 +7,7 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Extra
@@ -20,26 +20,31 @@ class Screen {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api", "search"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
+   * @Groups({"api", "search"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=false)
+   * @Groups({"api", "search"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="width", type="integer", nullable=false)
+   * @Groups({"api"})
    */
   private $width;
 
   /**
    * @ORM\Column(name="height", type="integer", nullable=false)
+   * @Groups({"api"})
    */
   private $height;
 
@@ -50,16 +55,19 @@ class Screen {
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
+   * @Groups({"api"})
    */
   private $created_at;
 
   /**
    * @ORM\Column(name="token", type="text")
+   * @Groups({"api"})
    */
   protected $token;
 
   /**
    * @ORM\Column(name="activation_code", type="integer")
+   * @Groups({"api"})
    */
   protected $activationCode;
 

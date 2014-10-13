@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Indholdskanalen\MainBundle\Entity\Slide;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializationContext;
 use Sonata\MediaBundle\Provider;
 
 /**
@@ -23,6 +24,7 @@ use Sonata\MediaBundle\Provider;
  */
 class SearchCommand extends ContainerAwareCommand {
   private $output;
+  private $serializer;
 
   /**
    * Configure the command
@@ -41,6 +43,7 @@ class SearchCommand extends ContainerAwareCommand {
    * @return int|null|void
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
+    $this->serializer = $this->getContainer()->get('jms_serializer');
     $this->output = $output;
 
     // Find all media elements.
@@ -167,16 +170,7 @@ class SearchCommand extends ContainerAwareCommand {
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
-    // Get serializer to encode the entity.
-    $serializer = SerializerBuilder::create()->build();
-    $jsonContent = $serializer->serialize($params, 'json');
-
-    // @TODO: This is a HACK to get urls into the data sent to search.
-    if (isset($params['data']->urls)) {
-      $data = json_decode($jsonContent);
-      $data->data->urls = $params['data']->urls;
-      $jsonContent = json_encode($data);
-    }
+    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
 
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(

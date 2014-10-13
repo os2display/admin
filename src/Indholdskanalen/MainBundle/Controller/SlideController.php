@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\SerializationContext;
 
 use Indholdskanalen\MainBundle\Entity\Slide;
 
@@ -234,6 +234,7 @@ class SlideController extends Controller {
     // Create response.
     $response = new Response();
     if ($slide) {
+      /*
       // Get handle to media.
       $sonataMedia = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media');
 
@@ -262,6 +263,11 @@ class SlideController extends Controller {
 
       // Return slide.
       $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($jsonContent);
+      */
+
+      $response->headers->set('Content-Type', 'application/json');
+      $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }
     else {

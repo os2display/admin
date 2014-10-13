@@ -7,6 +7,8 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
+
 
 /**
  * Media Order.
@@ -37,8 +39,9 @@ class MediaOrder {
   /**
    * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="slide_media_orders")
    * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
-   **/
+   */
   private $media;
+
 
   /**
    * Get id

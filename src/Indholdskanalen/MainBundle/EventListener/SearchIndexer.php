@@ -8,6 +8,7 @@ namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\Container;
 
 
@@ -121,7 +122,7 @@ class SearchIndexer {
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
-    $jsonContent = $this->serializer->serialize($params, 'json');
+    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
 
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
 
