@@ -9,7 +9,7 @@
 ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
   function($scope, slideFactory) {
     // Set default orientation and sort.
-    $scope.orientation = 'landscape';
+    $scope.orientation = 'all';
     $scope.sort = { "created_at": "desc" };
 
 
@@ -20,15 +20,6 @@ ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
     var search = {
       "fields": [ 'title' ],
       "text": $scope.search_text,
-      "filter": {
-        "bool": {
-          "must": {
-            "term": {
-              "orientation":  $scope.orientation
-            }
-          }
-        }
-      },
       "sort": {
         "created_at" : {
           "order": "desc"
@@ -72,10 +63,45 @@ ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
         $scope.orientation = orientation;
 
         // Update search query.
-        search.filter.bool.must.term.orientation = $scope.orientation;
+
+        // Update orientation for the search.
+        delete search.filter;
+        if (orientation !== 'all') {
+          search.filter = {
+            "bool": {
+              "must": {
+                "term": {
+                  "orientation": orientation
+                }
+              }
+            }
+          };
+        }
 
         $scope.updateSearch();
       }
+    };
+
+    /**
+     * Calculates if a scheduling is set and whether we are currently showing it or not.
+     *
+     * @param slide
+     *   The current slide.
+     *
+     * @return
+     *   True if the slide has a schedule set, and we are outside the scope of the schedule.
+     */
+    $scope.outOfSchedule = function outOfSchedule(slide) {
+      if (slide.schedule_from && slide.schedule_to) { // From and to time is set.
+        if (slide.schedule_from * 1000 < Date.now() && slide.schedule_to * 1000 > Date.now() ) {
+          // Current time is between from and to time (ie inside schedule).
+          return false;
+        }
+        // Current time is set but is outside from and to time (ie out of schedule).
+        return true;
+      }
+      // No schedule is set.
+      return false;
     };
 
     /**

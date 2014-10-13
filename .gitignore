@@ -9,7 +9,6 @@
 /app/config/parameters.yml
 /.idea/
 .DS_Store
-composer.lock
 .sass-cache/
 config.codekit
 /node_modules/
