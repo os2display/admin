@@ -8,9 +8,16 @@ namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\AccessorOrder;
+
 
 /**
  * Extra
+ *
+ * @AccessorOrder("custom", custom = {"id", "title" ,"orientation", "created_at", "slides"})
  *
  * @ORM\Table(name="channel")
  * @ORM\Entity
@@ -20,21 +27,25 @@ class Channel {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api", "search", "sharing"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
+   * @Groups({"api", "search", "sharing"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
+   * @Groups({"api", "search", "sharing"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
+   * @Groups({"api", "search", "sharing"})
    */
   private $created_at;
 
@@ -47,6 +58,7 @@ class Channel {
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
    * @ORM\JoinTable(name="screens_channels")
+   * @Groups({"api"})
    */
   private $screens;
 
@@ -189,5 +201,23 @@ class Channel {
   public function getChannelSlideOrders()
   {
     return $this->channelSlideOrders;
+  }
+
+  /**
+   * Get slide
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("slides")
+   * @Groups({"api"})
+   */
+  public function getMedia()
+  {
+    $result = new ArrayCollection();
+    foreach($this->getChannelSlideOrders() as $slideorder) {
+      $result->add($slideorder->getSlide());
+    }
+    return $result;
   }
 }

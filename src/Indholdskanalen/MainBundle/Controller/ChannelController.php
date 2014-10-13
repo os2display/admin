@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializationContext;
 
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
@@ -87,23 +88,12 @@ class ChannelController extends Controller {
 
     // Remove slides.
     foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
-      $slide = $channelSlideOrder->getChannel();
+      $slide = $channelSlideOrder->getSlide();
 
       if (!in_array($slide->getId(), $postSlideIds)) {
-        $channelSlideOrder->getChannel()->removeChannelSlideOrder($channelSlideOrder);
-        $channelSlideOrder->getSlide()->removeChannelSlideOrder($channelSlideOrder);
-
-        $em->persist($channelSlideOrder->getChannel());
-        $em->persist($channelSlideOrder->getSlide());
-
         $em->remove($channelSlideOrder);
-        $em->flush();
       }
     }
-
-    // Save the entity.
-    $em->persist($channel);
-    $em->flush();
 
     // Add slides and update sort order.
     $sortOrder = 0;
@@ -127,7 +117,8 @@ class ChannelController extends Controller {
 
       // Save the ChannelSlideOrder.
       $em->persist($channelSlideOrder);
-      $em->flush();
+
+      $channel->addChannelSlideOrder($channelSlideOrder);
     }
 
     // Save the entity.
@@ -169,6 +160,9 @@ class ChannelController extends Controller {
     // Create response.
     $response = new Response();
     if ($channel) {
+
+      /*
+
       // Get slides.
       $slides = array();
       foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
@@ -184,6 +178,12 @@ class ChannelController extends Controller {
       $jsonContent = json_encode($ob);
 
       $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($jsonContent);
+
+      */
+
+      $response->headers->set('Content-Type', 'application/json');
+      $jsonContent = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
       $response->setContent($jsonContent);
     }
     else {

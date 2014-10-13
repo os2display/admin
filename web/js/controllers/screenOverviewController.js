@@ -36,7 +36,18 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
 
       screenFactory.searchScreens(search).then(
         function(data) {
-          $scope.screens = data;
+          // Extract search ids.
+          var ids = [];
+          for (var i = 0; i < data.length; i++) {
+            ids.push(data[i].id);
+          }
+
+          // Load slides bulk.
+          screenFactory.loadScreensBulk(ids).then(
+            function (data) {
+              $scope.screens = data;
+            }
+          );
         }
       );
     };

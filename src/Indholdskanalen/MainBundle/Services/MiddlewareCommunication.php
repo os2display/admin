@@ -57,9 +57,6 @@ class MiddlewareCommunication extends ContainerAware
     // Get all screens
     $screens = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
 
-    // Get handle to media.
-    $sonataMedia = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
-
     // For each screen
     //   Join channels
     //   Push joined channels to the screen
@@ -78,24 +75,15 @@ class MiddlewareCommunication extends ContainerAware
             continue;
           }
 
-          // Build image urls.
-          $imageUrls = array();
-          if (isset($slide->getOptions()['images'])) {
-            foreach($slide->getOptions()['images'] as $imageId) {
-              $image = $sonataMedia->findOneById($imageId);
-
-              if ($image) {
-                $path = $this->container->get('sonata.media.twig.extension')->path($image, 'reference');
-                $imageUrls[$imageId] = $pathToServer . $path;
-              }
+          // Insert media paths.
+          $media = array();
+          foreach ($slide->getMediaOrders() as $mediaOrder) {
+            if ($slide->getMediaType() === 'image') {
+              $path = $this->container->get('sonata.media.twig.extension')->path($mediaOrder->getMedia(), 'reference');
+              $media[] = $pathToServer . $path;
             }
-          }
-
-          // Build image urls.
-          $videoUrls = array();
-          if (isset($slide->getOptions()['videos'])) {
-            foreach($slide->getOptions()['videos'] as $videoId) {
-              $video = $sonataMedia->findOneById($videoId);
+            else {
+              $video = $mediaOrder->getMedia();
 
               $serializer = $this->container->get('jms_serializer');
               $jsonContent = $serializer->serialize($video, 'json');
@@ -108,7 +96,7 @@ class MiddlewareCommunication extends ContainerAware
                   'ogg' => $pathToServer . $content->provider_metadata[1]->reference,
                 );
 
-                $videoUrls[$videoId] = $urls;
+                $media[] = $urls;
               }
             }
           }
@@ -123,8 +111,8 @@ class MiddlewareCommunication extends ContainerAware
             'published' => $slide->getPublished(),
             'schedule_from' => $slide->getScheduleFrom(),
             'schedule_to' => $slide->getScheduleTo(),
-            'imageUrls' => $imageUrls,
-            'videoUrls' => $videoUrls,
+            'media' => $media,
+            'media_type' => $slide->getMediaType(),
             'duration' => $slide->getDuration(),
           );
 

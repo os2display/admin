@@ -41,4 +41,39 @@ class ChannelsController extends Controller {
 
     return $response;
   }
+
+  /**
+   * Get a bulk of channels.
+   *
+   * @Route("/bulk")
+   * @Method("GET")
+   *
+   * @param $request
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function ChannelsGetBulkAction(Request $request) {
+    $ids = $request->query->get('ids');
+
+    $response = new Response();
+
+    // Check if slide exists, to update, else create new slide.
+    if (isset($ids)) {
+      $em = $this->getDoctrine()->getManager();
+
+      $qb = $em->createQueryBuilder();
+      $qb->select('m');
+      $qb->from('IndholdskanalenMainBundle:Channel', 'm');
+      $qb->where($qb->expr()->in('m.id', $ids));
+
+      $result = $qb->getQuery()->getResult();
+      $serializer = $this->get('jms_serializer');
+      $response->setContent($serializer->serialize($result, 'json'));
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
 }

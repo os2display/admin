@@ -11,12 +11,17 @@ ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
     templateUrl: 'partials/screen/screen-template.html',
     restrict: 'E',
     scope: {
-      ikId: '@',
+      ikScreen: '=',
       ikWidth: '@'
     },
     link: function(scope, element, attrs) {
-      screenFactory.getScreen(scope.ikId).then(function(data) {
-        scope.ikScreen = data;
+      // Observe for changes to the ikScreen attribute.
+      attrs.$observe('ikScreen', function(val) {
+        if (!val) {
+          return;
+        }
+
+        // Set the style of the screen.
         scope.style = {
           width: "" + scope.ikWidth + "px",
           height: "" + (scope.ikScreen.height * parseFloat(scope.ikWidth / scope.ikScreen.width)) + "px"
