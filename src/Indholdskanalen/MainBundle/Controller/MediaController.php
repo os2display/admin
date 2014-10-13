@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Application\Sonata\MediaBundle\Entity\Media;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/media")
@@ -39,7 +40,8 @@ class MediaController extends Controller {
         $media->setName($path_parts['filename']);
       }
 
-      $mediaType = explode('/', $file->getMimeType())[0];
+      $mediaType = explode('/', $file->getMimeType());
+      $mediaType = $mediaType[0];
 
       switch ($mediaType) {
         case 'video':
@@ -123,7 +125,7 @@ class MediaController extends Controller {
 
     if ($media) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($media, 'json');
+      $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()->setGroups(array('api')));
 
       $response->setContent($jsonContent);
     } else {

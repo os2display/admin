@@ -234,40 +234,8 @@ class SlideController extends Controller {
     // Create response.
     $response = new Response();
     if ($slide) {
-      /*
-      // Get handle to media.
-      $sonataMedia = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media');
-
-      // Add channels.
-      $channels = array();
-      foreach($slide->getChannelSlideOrders() as $channelSlideOrder) {
-        $channels[] = json_decode($serializer->serialize($channelSlideOrder->getChannel(), 'json'));
-      }
-
-      // Add channels.
-      $media = array();
-      foreach($slide->getMediaOrders() as $mediaOrder) {
-        $media[] = json_decode($serializer->serialize($mediaOrder->getMedia(), 'json'));
-      }
-
-      // Create json content.
-      $jsonContent = $serializer->serialize($slide, 'json');
-
-      // Attach extra fields.
-      $ob = json_decode($jsonContent);
-      //$ob->imageUrls = $imageUrls;
-      //$ob->videoUrls = $videoUrls;
-      $ob->media = $media;
-      $ob->channels = $channels;
-      $jsonContent = json_encode($ob);
-
-      // Return slide.
       $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($jsonContent);
-      */
-
-      $response->headers->set('Content-Type', 'application/json');
-      $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+      $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api')));
       $response->setContent($jsonContent);
     }
     else {
