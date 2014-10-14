@@ -110,10 +110,54 @@ Example of paramaters.yml:
 zencoder_api: 151d072d3239698a4ff1234c0596aed92
 </pre>
 
-Example of line replacement in service.indholdskanalen.vm.conf:
+Example of line replacement in service.indholdskanalen.vm.conf (in /var/nginx/sites-enabled):
 <pre>
 server_name service.indholdskanalen.vm slight-gopher-8311.vagrantshare.com;
 </pre>
+
+To be able to use ZenCoder with a vagrant setup for ssl, the following hacks have to be applied to the service.indholdskanalen.vm.conf:
+<pre>
+upstream nodejs_search {
+  server 127.0.0.1:3010;
+}
+
+#server {
+#  listen 80;
+
+#  server_name service.indholdskanalen.vm;
+#  root /var/www/backend/web;
+
+#  rewrite ^ https://$server_name$request_uri? permanent;
+
+#  access_log /var/log/nginx/backend_access.log;
+#  error_log /var/log/nginx/backend_error.log;
+#}
+
+
+# HTTPS server
+#
+server {
+#  listen 443;
+  listen 80;
+
+  server_name slight-gopher-8311.vagrantshare.com;
+#  server_name service.indholdskanalen.vm;
+
+...
+
+#  ssl on;
+  ssl off;
+
+...
+</pre>
+
+Also change the absolute_path_to_server parameter in app/config/parameters.yml to slight-gopher-8311.vagrantshare.com.
+
+With these changes it is possible to get ZenCoder to work.
+
+Access the site through slight-gopher-8311.vagrantshare.com, upload the media.
+
+After this revert to the setup from before.
 
 ####Vagrant share
 Vagrant Share is a Vagrant Cloud feature which requires an account. Create this at [www.vagrantcloud.com](http://www.vagrantcloud.com)
