@@ -2037,21 +2037,20 @@ html.is-locked body {
     margin-bottom: 1em; }
   /* line 177, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-inner {
-    position: relative;
     height: 100%;
     width: 100%; }
-  /* line 183, ../sass/modules/_edit-menu.scss */
+  /* line 182, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-page, .edit-menu--background-page {
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     right: 0; }
-  /* line 192, ../sass/modules/_edit-menu.scss */
+  /* line 191, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-page-inner, .edit-menu--background-page-inner {
     height: 100%;
     padding-top: 8em; }
-  /* line 198, ../sass/modules/_edit-menu.scss */
+  /* line 197, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-header, .edit-menu--background-header {
     border-bottom: 1px solid #e6e6e6;
     display: inline-block;
@@ -2059,52 +2058,47 @@ html.is-locked body {
     margin-bottom: 1em;
     padding-bottom: 1em;
     font-size: 2em; }
-  /* line 208, ../sass/modules/_edit-menu.scss */
+  /* line 207, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-button, .edit-menu--background-button {
     font-size: 1.2em;
     display: inline-block;
     margin: 1em 1em 2em;
     padding: 1em 2em; }
-  /* line 218, ../sass/modules/_edit-menu.scss */
+  /* line 217, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-divider, .edit-menu--background-divider {
     font-size: 2em;
     margin: auto; }
-  /* line 224, ../sass/modules/_edit-menu.scss */
+  /* line 223, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-label, .edit-menu--background-label {
     font-size: 2em;
     margin: auto; }
-  /* line 230, ../sass/modules/_edit-menu.scss */
+  /* line 229, ../sass/modules/_edit-menu.scss */
   .edit-menu--content-form-element, .edit-menu--background-form-element {
     max-width: 500px;
     height: 50px;
     margin: auto;
     text-align: center; }
-  /* line 243, ../sass/modules/_edit-menu.scss */
+  /* line 242, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-date-template {
     border-bottom: 2px solid #b3b3b3;
     margin-bottom: 1em;
     padding-bottom: 1em; }
-  /* line 249, ../sass/modules/_edit-menu.scss */
+  /* line 248, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-form-element-wrapper, .edit-menu--calendar-form-element-wrapper-link {
     box-sizing: border-box;
     display: inline-block;
     margin-left: -4px;
     padding: 1em;
     width: 20%; }
-  /* line 259, ../sass/modules/_edit-menu.scss */
-  .edit-menu--calendar-form-element-date.is-error {
-    background: #f0f0e1; }
-  /* line 264, ../sass/modules/_edit-menu.scss */
+  /* line 257, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-form-element-wrapper-link {
     vertical-align: middle; }
-  /* line 268, ../sass/modules/_edit-menu.scss */
+  /* line 261, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-label {
     text-align: left; }
-  /* line 272, ../sass/modules/_edit-menu.scss */
+  /* line 265, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-add-date {
-    border: 0;
     cursor: pointer;
-    float: left;
     background: url('/images/icons-sf1628d1b99.png');
     -moz-background-size: 71px 994px;
     -o-background-size: 71px 994px;
@@ -2113,18 +2107,15 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -693px; }
-    /* line 279, ../sass/modules/_edit-menu.scss */
-    .edit-menu--calendar-add-date.is-error {
-      display: none; }
-  /* line 284, ../sass/modules/_edit-menu.scss */
+  /* line 271, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-date-events {
     display: block;
     height: 60%;
     position: relative; }
-  /* line 292, ../sass/modules/_edit-menu.scss */
+  /* line 279, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-date-event.is-outdated {
     background: #f0f0e1; }
-  /* line 297, ../sass/modules/_edit-menu.scss */
+  /* line 284, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-remove-date {
     cursor: pointer;
     float: left;
@@ -2136,17 +2127,13 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -537px; }
-  /* line 304, ../sass/modules/_edit-menu.scss */
-  .edit-menu--calendar-notices {
-    display: inline-block;
-    width: 50%; }
-  /* line 309, ../sass/modules/_edit-menu.scss */
+  /* line 291, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-remove-date-notice {
     display: none;
     line-height: 36px;
     font-weight: bold; }
-    /* line 314, ../sass/modules/_edit-menu.scss */
-    .edit-menu--calendar-remove-date-notice.is-error {
+    /* line 296, ../sass/modules/_edit-menu.scss */
+    .edit-menu--calendar-remove-date-notice.is-outdated {
       display: block; }
 
 /**
@@ -3438,16 +3425,15 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 95%;
-  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 29, ../ik-templates/text-top/_text-top.scss */
+/* line 28, ../ik-templates/text-top/_text-top.scss */
 .text-top--header {
   font-size: 100%; }
 
-/* line 40, ../ik-templates/text-top/_text-top.scss */
+/* line 39, ../ik-templates/text-top/_text-top.scss */
 .text-top--description {
   font-size: 70%; }
 
@@ -3474,20 +3460,19 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 95%;
-  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 30, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 29, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--header {
   font-size: 100%; }
 
-/* line 41, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 40, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--description {
   font-size: 70%; }
 
-/* line 57, ../ik-templates/text-bottom/_text-bottom.scss */
+/* line 56, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
@@ -3517,16 +3502,15 @@ html.is-locked body {
   position: relative;
   width: 90%;
   height: 90%;
-  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 32, ../ik-templates/text-left/_text-left.scss */
+/* line 31, ../ik-templates/text-left/_text-left.scss */
 .text-left--header {
   font-size: 100%; }
 
-/* line 43, ../ik-templates/text-left/_text-left.scss */
+/* line 42, ../ik-templates/text-left/_text-left.scss */
 .text-left--description {
   font-size: 70%; }
 
@@ -3555,20 +3539,19 @@ html.is-locked body {
   position: relative;
   width: 90%;
   height: 90%;
-  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 32, ../ik-templates/text-right/_text-right.scss */
+/* line 31, ../ik-templates/text-right/_text-right.scss */
 .text-right--header {
   font-size: 100%; }
 
-/* line 43, ../ik-templates/text-right/_text-right.scss */
+/* line 42, ../ik-templates/text-right/_text-right.scss */
 .text-right--description {
   font-size: 70%; }
 
-/* line 59, ../ik-templates/text-right/_text-right.scss */
+/* line 58, ../ik-templates/text-right/_text-right.scss */
 .text-right--edit-image-settings {
   right: auto;
   left: 15%; }
@@ -3595,20 +3578,19 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 93%;
-  overflow: hidden;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-/* line 29, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 28, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--header {
   font-size: 100%; }
 
-/* line 40, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 39, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--description {
   font-size: 70%; }
 
-/* line 51, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
+/* line 50, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--edit-box-settings {
   right: -15px;
   top: -15px; }
@@ -3637,7 +3619,7 @@ html.is-locked body {
     background: rgba(0, 0, 0, 0.7);
     box-sizing: border-box;
     color: #fff;
-    margin: 0 auto;
+    margin: 3% auto;
     overflow: hidden;
     padding: 4%;
     text-align: left;

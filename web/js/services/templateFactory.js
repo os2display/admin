@@ -13,6 +13,7 @@ ikApp.factory('templateFactory', function() {
       id: 'text-top',
       image: '/ik-templates/text-top/text-top.png',
       orientation: 'landscape',
+      mediatype: 'image',
       idealdimensions: {
         width: '1920',
         height: '1080'
@@ -31,6 +32,7 @@ ikApp.factory('templateFactory', function() {
       id: 'text-bottom',
       image: '/ik-templates/text-bottom/text-bottom.png',
       orientation: 'landscape',
+      mediatype: 'image',
       idealdimensions: {
         width: '1920',
         height: '1080'
@@ -50,6 +52,7 @@ ikApp.factory('templateFactory', function() {
       id: 'text-left',
       image: '/ik-templates/text-left/text-left.png',
       orientation: 'landscape',
+      mediatype: 'image',
       idealdimensions: {
         width: '1920',
         height: '1080'
@@ -69,6 +72,7 @@ ikApp.factory('templateFactory', function() {
       id: 'text-right',
       image: '/ik-templates/text-right/text-right.png',
       orientation: 'landscape',
+      mediatype: 'image',
       idealdimensions: {
         width: '1920',
         height: '1080'
@@ -88,6 +92,7 @@ ikApp.factory('templateFactory', function() {
       id: 'only-image',
       image: '/ik-templates/only-image/only-image.png',
       orientation: 'landscape',
+      mediatype: 'image',
       idealdimensions: {
         width: '1920',
         height: '1080'
@@ -101,6 +106,7 @@ ikApp.factory('templateFactory', function() {
       id: 'portrait-text-top',
       image: '/ik-templates/portrait-text-top/portrait-text-top.png',
       orientation: 'portrait',
+      mediatype: 'image',
       idealdimensions: {
         width: '1080',
         height: '1920'
@@ -118,6 +124,7 @@ ikApp.factory('templateFactory', function() {
     {
       id: 'only-video',
       image: '/ik-templates/only-video/only-video.png',
+      mediatype: 'video',
       orientation: 'landscape',
       idealdimensions: {
         width: '1920',
@@ -131,6 +138,7 @@ ikApp.factory('templateFactory', function() {
       id: 'manual-calendar',
       image: '/ik-templates/manual-calendar/manual-calendar.png',
       orientation: 'landscape',
+      mediatype: 'image',
       idealdimensions: {
         width: '1920',
         height: '1080'

@@ -13,7 +13,6 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
     $scope.templates = templateFactory.getTemplates();
     $scope.channels = [];
 
-
     /**
      * Load a given step
      */
@@ -47,15 +46,20 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
           slideFactory.clearCurrentSlide();
 
           // Get the slide from the backend.
-          slideFactory.getEditSlide($routeParams.id).then(function(data) {
-            $scope.slide = data;
-            $scope.slide.status = 'edit-slide';
-            if ($scope.slide === {}) {
-              $location.path('/slide');
-            }
+          slideFactory.getEditSlide($routeParams.id).then(
+            function(data) {
+              $scope.slide = data;
+              $scope.slide.status = 'edit-slide';
+              if ($scope.slide === {}) {
+                $location.path('/slide');
+              }
 
-            loadStep(4);
-          });
+              loadStep(4);
+            },
+            function(reason) {
+              $location.path('/slide-overview');
+            }
+          );
         }
       }
     }
@@ -142,16 +146,23 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      */
     $scope.selectTemplate = function(id) {
       $scope.slide.template = id;
+      var template = templateFactory.getTemplate(id);
+
       if ($scope.slide.options == null) {
-        $scope.slide.options = templateFactory.getTemplate(id).emptyoptions;
+        $scope.slide.options = template.emptyoptions;
       }
       else {
-        angular.forEach(templateFactory.getTemplate(id).emptyoptions, function(value, key)  {
+        angular.forEach(template.emptyoptions, function(value, key)  {
           if ($scope.slide.options[key] == undefined) {
             $scope.slide.options[key] = value;
           }
         });
       }
+      if ($scope.slide.options.headline !== undefined && $scope.slide.options.headline == '') {
+        $scope.slide.options.headline = $scope.slide.title;
+      }
+
+      $scope.slide.media_type = template.mediatype;
     };
 
     /**

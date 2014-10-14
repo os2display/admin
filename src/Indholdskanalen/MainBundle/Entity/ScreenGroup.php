@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Extra
@@ -19,22 +20,26 @@ class ScreenGroup {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
+   * @Groups({"api"})
    */
   private $title;
 
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="groups")
    * @ORM\JoinTable(name="screens_groups")
+   * @Groups({"api"})
    */
   private $screens;
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
+   * @Groups({"api"})
    */
   private $created_at;
 

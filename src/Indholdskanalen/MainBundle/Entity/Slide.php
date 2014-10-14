@@ -7,6 +7,10 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Extra
@@ -19,56 +23,67 @@ class Slide {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api", "search", "sharing"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
+   * @Groups({"api", "search", "sharing"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
+   * @Groups({"api", "search", "sharing"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="template", type="string", nullable=true)
+   * @Groups({"api"})
    */
   private $template;
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
+   * @Groups({"api", "search", "sharing"})
    */
   private $created_at;
 
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
+   * @Groups({"api", "search", "sharing"})
    */
   private $options;
 
   /**
    * @ORM\Column(name="user", type="text", nullable=true)
+   * @Groups({"api"})
    */
   private $user;
 
   /**
    * @ORM\Column(name="duration", type="integer", nullable=true)
+   * @Groups({"api"})
    */
   private $duration;
 
   /**
    * @ORM\Column(name="schedule_from", type="integer", nullable=true)
+   * @Groups({"api"})
    */
   private $schedule_from;
 
   /**
    * @ORM\Column(name="schedule_to", type="integer", nullable=true)
+   * @Groups({"api"})
    */
   private $schedule_to;
 
   /**
    * @ORM\Column(name="published", type="boolean", nullable=true)
+   * @Groups({"api"})
    */
   private $published;
 
@@ -77,6 +92,28 @@ class Slide {
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
   private $channelSlideOrders;
+
+  /**
+   * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="slide")
+   * @ORM\OrderBy({"sortOrder" = "ASC"})
+   **/
+  private $mediaOrders;
+
+  /**
+   * @ORM\Column(name="media_type", type="string", nullable=true)
+   *   "video" or "image".
+   * @Groups({"api"})
+   */
+  private $mediaType;
+
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->channelSlideOrders = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->mediaOrders = new \Doctrine\Common\Collections\ArrayCollection();
+  }
 
   /**
    * Get id
@@ -224,14 +261,6 @@ class Slide {
   }
 
   /**
-   * Constructor
-   */
-  public function __construct()
-  {
-    $this->channelSlideOrders = new \Doctrine\Common\Collections\ArrayCollection();
-  }
-
-  /**
    * Add channelSlideOrder
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
@@ -331,5 +360,97 @@ class Slide {
   public function getScheduleTo()
   {
     return $this->schedule_to;
+  }
+
+  /**
+   * Add mediaOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
+   * @return Slide
+   */
+  public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
+  {
+    $this->mediaOrders[] = $mediaOrder;
+
+    return $this;
+  }
+
+  /**
+   * Remove mediaOrder
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
+   */
+  public function removeMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
+  {
+    $this->mediaOrders->removeElement($mediaOrder);
+  }
+
+  /**
+   * Get mediaOrders
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getMediaOrders()
+  {
+    return $this->mediaOrders;
+  }
+
+  /**
+   * Get media
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("media")
+   * @Groups({"api"})
+   */
+  public function getMedia()
+  {
+    $result = new ArrayCollection();
+    foreach($this->getMediaOrders() as $mediaorder) {
+      $result->add($mediaorder->getMedia());
+    }
+    return $result;
+  }
+
+  /**
+   * Get channels
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("channels")
+   * @Groups({"api"})
+   */
+  public function getChannels()
+  {
+    $result = new ArrayCollection();
+    foreach($this->getChannelSlideOrders() as $channelorder) {
+      $result->add($channelorder->getChannel());
+    }
+    return $result;
+  }
+
+  /**
+   * Set mediaType
+   *
+   * @param string $mediaType
+   * @return Slide
+   */
+  public function setMediaType($mediaType)
+  {
+    $this->mediaType = $mediaType;
+
+    return $this;
+  }
+
+  /**
+   * Get mediaType
+   *
+   * @return string
+   */
+  public function getMediaType()
+  {
+    return $this->mediaType;
   }
 }

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Application\Sonata\MediaBundle\Entity\Media;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/media")
@@ -39,7 +40,8 @@ class MediaController extends Controller {
         $media->setName($path_parts['filename']);
       }
 
-      $mediaType = explode('/', $file->getMimeType())[0];
+      $mediaType = explode('/', $file->getMimeType());
+      $mediaType = $mediaType[0];
 
       switch ($mediaType) {
         case 'video':
@@ -104,6 +106,42 @@ class MediaController extends Controller {
   }
 
   /**
+   * Get a bulk of media.
+   *
+   * @Route("/bulk")
+   * @Method("GET")
+   *
+   * @param $request
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaGetBulkAction(Request $request) {
+    $ids = $request->query->get('ids');
+
+    $response = new Response();
+
+    // Check if slide exists, to update, else create new slide.
+    if (isset($ids)) {
+      $em = $this->getDoctrine()->getManager();
+
+      $qb = $em->createQueryBuilder();
+      $qb->select('m');
+      $qb->from('ApplicationSonataMediaBundle:Media', 'm');
+      $qb->where($qb->expr()->in('m.id', $ids));
+
+      $result = $qb->getQuery()->getResult();
+      $serializer = $this->get('jms_serializer');
+      $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($serializer->serialize($result, 'json', SerializationContext::create()->setGroups(array('api'))));
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
+  /**
    * Get media with ID.
    *
    * @Route("/{id}")
@@ -123,7 +161,7 @@ class MediaController extends Controller {
 
     if ($media) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($media, 'json');
+      $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()->setGroups(array('api')));
 
       $response->setContent($jsonContent);
     } else {

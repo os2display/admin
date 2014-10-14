@@ -36,13 +36,21 @@ ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
 
       slideFactory.searchSlides(search).then(
         function(data) {
-          $scope.slides = data;
+          // Extract search ids.
+          var ids = [];
+          for (var i = 0; i < data.length; i++) {
+            ids.push(data[i].id);
+          }
+
+          // Load slides bulk.
+          slideFactory.loadSlidesBulk(ids).then(
+            function(data) {
+              $scope.slides = data;
+            }
+          );
         }
       );
     };
-
-    // Send the default search query.
-    $scope.updateSearch();
 
     /**
      * Changes orientation and updated the slides.
@@ -120,5 +128,8 @@ ikApp.controller('SlideOverviewController', ['$scope', 'slideFactory',
         $scope.updateSearch();
       }
     };
+
+    // Send the default search query.
+    $scope.updateSearch();
   }
 ]);

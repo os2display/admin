@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Screen;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/screen")
@@ -145,8 +146,8 @@ class ScreenController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
     if ($screen) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($screen, 'json');
-
+      $response->headers->set('Content-Type', 'application/json');
+      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('api')));
       $response->setContent($jsonContent);
     }
     else {

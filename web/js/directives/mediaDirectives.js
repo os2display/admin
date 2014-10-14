@@ -68,7 +68,17 @@ ikApp.directive('ikMediaOverview', function() {
 
         mediaFactory.searchMedia(search).then(
           function(data) {
-            $scope.media = data;
+            // Extract search ids.
+            var ids = [];
+            for (var i = 0; i < data.length; i++) {
+              ids.push(data[i].id);
+            }
+
+            mediaFactory.loadMediaBulk(ids).then(
+              function(data) {
+                $scope.media = data;
+              }
+            );
           }
         );
       };
