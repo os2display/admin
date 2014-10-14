@@ -98,6 +98,31 @@ http://[path_to_project/app/web]/config.php
 
 Fix problems.
 
+###Set memory size
+Increase the memory size in php.ini to at least 256 mb to handle image/media uploads (/etc/php5/fpm/php.ini).
+
+###File sizes
+Increase client_max_body_size in the nginx configuration.
+
+Increase file sizes to handle larger files in php.ini:
+<pre>
+;The maximum size of an uploaded file.
+upload_max_filesize = 256M
+
+;Sets max size of post data allowed. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize
+post_max_size = 300M
+</pre>
+
+###Add mime type to nginx configuration
+Firefox needs the ogg mime type added to the nginx configuration to be able to handle video files.
+Add the following to the nginx configuration:
+<pre>
+  include /etc/nginx/mime.types;
+  types {
+    video/ogg ogg;
+  }
+</pre>
+
 ###Setup Video for Zencoder
 For Video for Zencoder to work you need a public URL:
 <pre>
@@ -110,10 +135,54 @@ Example of paramaters.yml:
 zencoder_api: 151d072d3239698a4ff1234c0596aed92
 </pre>
 
-Example of line replacement in service.indholdskanalen.vm.conf:
+Example of line replacement in service.indholdskanalen.vm.conf (in /var/nginx/sites-enabled):
 <pre>
 server_name service.indholdskanalen.vm slight-gopher-8311.vagrantshare.com;
 </pre>
+
+To be able to use ZenCoder with a vagrant setup for ssl, the following hacks have to be applied to the service.indholdskanalen.vm.conf:
+<pre>
+upstream nodejs_search {
+  server 127.0.0.1:3010;
+}
+
+#server {
+#  listen 80;
+
+#  server_name service.indholdskanalen.vm;
+#  root /var/www/backend/web;
+
+#  rewrite ^ https://$server_name$request_uri? permanent;
+
+#  access_log /var/log/nginx/backend_access.log;
+#  error_log /var/log/nginx/backend_error.log;
+#}
+
+
+# HTTPS server
+#
+server {
+#  listen 443;
+  listen 80;
+
+  server_name slight-gopher-8311.vagrantshare.com;
+#  server_name service.indholdskanalen.vm;
+
+...
+
+#  ssl on;
+  ssl off;
+
+...
+</pre>
+
+Also change the absolute_path_to_server parameter in app/config/parameters.yml to slight-gopher-8311.vagrantshare.com.
+
+With these changes it is possible to get ZenCoder to work.
+
+Access the site through slight-gopher-8311.vagrantshare.com, upload the media.
+
+After this revert to the setup from before.
 
 ####Vagrant share
 Vagrant Share is a Vagrant Cloud feature which requires an account. Create this at [www.vagrantcloud.com](http://www.vagrantcloud.com)

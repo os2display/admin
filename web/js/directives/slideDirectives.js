@@ -37,16 +37,10 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
         else {
           if (scope.ikSlide.media.length > 0) {
             if (scope.ikSlide.media[0] === undefined) {
-              scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+              scope.ikSlide.currentImage = "";
             }
             else {
-              // @TODO: test this!!
-              scope.ikSlide.currentVideo = scope.ikSlide.media[0].media;
-
-              // Reload video player.
-              setTimeout(function () {
-                element.find('#videoPlayer').load();
-              }, 1000);
+              scope.ikSlide.currentImage = scope.ikSlide.media[0].provider_metadata[0].thumbnails[1].reference;
             }
           }
           else {
@@ -102,7 +96,11 @@ ikApp.directive('ikSlideEditable', ['templateFactory', function($templateFactory
               scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
             }
             else {
-              scope.ikSlide.currentVideo = scope.ikSlide.media[0];
+              // Set current video variable to path to video files.
+              scope.ikSlide.currentVideo = {
+                "mp4": scope.ikSlide.media[0].provider_metadata[0].reference,
+                "ogg": scope.ikSlide.media[0].provider_metadata[1].reference
+              };
 
               // Reload video player.
               setTimeout(function () {
