@@ -193,7 +193,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       }
       else {
         $scope.slide.media.length = 0;
-        $scope.slide.media.push(media)
+        $scope.slide.media.push(media);
       }
 
       // Reset step to background-picker.
