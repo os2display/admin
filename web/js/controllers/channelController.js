@@ -8,7 +8,7 @@
  */
 ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'screenFactory',
   function($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, screenFactory) {
-    $scope.steps = 5;
+    $scope.steps = 4;
     $scope.slides = [];
     $scope.channel = {};
     $scope.screens = [];
@@ -248,6 +248,23 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
       }
     };
+    
+
+    /**
+     * Toggle Editor.
+     */
+    $scope.toggleSlideAddEditor = function toggleSlideAddEditor () {
+      $('html').toggleClass('is-locked');
+      if ($scope.showSlideAddEditor === true) {
+        // Close editor.
+        $scope.showSlideAddEditor = false;
+      }
+      else {
+        // Show editor.
+        $scope.showSlideAddEditor = true;
+      }
+    };
+
 
     /**
      * Calculates if a scheduling is set and whether we are currently showing it or not.
