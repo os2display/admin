@@ -102,6 +102,8 @@ Fix problems.
 Increase the memory size in php.ini to at least 256 mb to handle image/media uploads (/etc/php5/fpm/php.ini).
 
 ###File sizes
+Increase client_max_body_size in the nginx configuration.
+
 Increase file sizes to handle larger files in php.ini:
 <pre>
 ;The maximum size of an uploaded file.
