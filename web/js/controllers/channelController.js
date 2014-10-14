@@ -23,6 +23,9 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
       $scope.slides = data;
     });
 
+    // Hide slideAdd editor as default
+    $scope.showSlideAddEditor = false;
+
     /**
      * Loads a given step.
      */
@@ -234,6 +237,23 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
       }
     };
+    
+
+    /**
+     * Toggle Editor.
+     */
+    $scope.toggleSlideAddEditor = function toggleSlideAddEditor () {
+      $('html').toggleClass('is-locked');
+      if ($scope.showSlideAddEditor === true) {
+        // Close editor.
+        $scope.showSlideAddEditor = false;
+      }
+      else {
+        // Show editor.
+        $scope.showSlideAddEditor = true;
+      }
+    };
+
 
     /**
      * Calculates if a scheduling is set and whether we are currently showing it or not.

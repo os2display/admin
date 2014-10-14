@@ -190,8 +190,10 @@
 
   &--content-page-inner,
   &--background-page-inner {
+    box-sizing: border-box;
     height: 100%;
     padding-top: 8em;
+    text-align: center;
   }
 
   &--content-header,
