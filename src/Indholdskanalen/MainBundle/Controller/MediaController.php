@@ -106,6 +106,42 @@ class MediaController extends Controller {
   }
 
   /**
+   * Get a bulk of media.
+   *
+   * @Route("/bulk")
+   * @Method("GET")
+   *
+   * @param $request
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaGetBulkAction(Request $request) {
+    $ids = $request->query->get('ids');
+
+    $response = new Response();
+
+    // Check if slide exists, to update, else create new slide.
+    if (isset($ids)) {
+      $em = $this->getDoctrine()->getManager();
+
+      $qb = $em->createQueryBuilder();
+      $qb->select('m');
+      $qb->from('ApplicationSonataMediaBundle:Media', 'm');
+      $qb->where($qb->expr()->in('m.id', $ids));
+
+      $result = $qb->getQuery()->getResult();
+      $serializer = $this->get('jms_serializer');
+      $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($serializer->serialize($result, 'json', SerializationContext::create()->setGroups(array('api'))));
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
+  /**
    * Get media with ID.
    *
    * @Route("/{id}")
