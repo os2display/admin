@@ -98,6 +98,29 @@ http://[path_to_project/app/web]/config.php
 
 Fix problems.
 
+###Set memory size
+Increase the memory size in php.ini to at least 256 mb to handle image/media uploads (/etc/php5/fpm/php.ini).
+
+###File sizes
+Increase file sizes to handle larger files in php.ini:
+<pre>
+;The maximum size of an uploaded file.
+upload_max_filesize = 256M
+
+;Sets max size of post data allowed. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize
+post_max_size = 300M
+</pre>
+
+###Add mime type to nginx configuration
+Firefox needs the ogg mime type added to the nginx configuration to be able to handle video files.
+Add the following to the nginx configuration:
+<pre>
+  include /etc/nginx/mime.types;
+  types {
+    video/ogg ogg;
+  }
+</pre>
+
 ###Setup Video for Zencoder
 For Video for Zencoder to work you need a public URL:
 <pre>
