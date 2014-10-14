@@ -14,13 +14,27 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
     $scope.screens = [];
 
     // Get all screens.
-    screenFactory.getScreens().then(function(data) {
+    screenFactory.getScreens().then(function (data) {
       $scope.screens = data;
     });
 
     // Get all slides.
-    slideFactory.getSlides().then(function(data) {
+    slideFactory.getSlides().then(function (data) {
       $scope.slides = data;
+    });
+
+    // Setup the editor.
+    $scope.editor = {
+      slideOverviewEditor: false,
+      toggleSlideOverviewEditor: function() {
+        $scope.editor.slideOverviewEditor = !$scope.editor.slideOverviewEditor;
+      }
+    };
+
+    // Register event listener for clickSlide.
+    $scope.$on('slideOverview.clickSlide', function(event, slide) {
+      $scope.toggleSlide(slide);
+      $scope.editor.slideOverviewEditor = false;
     });
 
     /**

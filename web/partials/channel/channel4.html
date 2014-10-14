@@ -1,5 +1,7 @@
 <section id="create-channel-four" class="create-channel--section">
   <div class="create-channel--content--channel-four">
+    <input type="button" class="create-channel--button" data-ng-click="editor.toggleSlideOverviewEditor()" value="Tilføj slide">
+
     <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
       <p class="create-channel--header-description">Brug pilene for at vælge i hvilken rækkefølge dine slides skal vises.</p>
       <div class="create-channel--slides">
@@ -23,3 +25,11 @@
     <input type="submit" class="create-channel--button" value="Gem og fortsæt" data-ng-click="submitStep()">
   </div>
 </section>
+
+<div class="edit-menu--background" role="banner" data-ng-show="editor.slideOverviewEditor">
+  <a class="edit-menu--background-overlay" data-ng-class="{'is-visible': editor.slideOverviewEditor}" data-ng-click="editor.toggleSlideOverviewEditor()"></a>
+  <div class="edit-menu--background-inner" data-ng-class="{'is-visible': editor.slideOverviewEditor, 'is-hidden': !editor.slideOverviewEditor}">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleSlideOverviewEditor()">X</div>
+    <ik-slide-overview></ik-slide-overview>
+  </div>
+</div>
