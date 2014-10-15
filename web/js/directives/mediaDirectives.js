@@ -355,11 +355,9 @@ ikApp.directive('ikThumb', ['$window', function($window) {
       var params = scope.$eval(attributes.ikThumb);
 
       if (!helper.isFile(params.file)) {
-        console.log("ikThumb: Not a file");
         return;
       }
       if (!helper.isImage(params.file)) {
-        console.log("ikThumb: Not an image");
         return;
       }
 
