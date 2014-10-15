@@ -142,7 +142,10 @@ ikApp.directive('ikSlideOverview', function() {
   return {
     restrict: 'E',
     scope: {
-      ikSelectedSlides: '='
+      ikSelectedSlides: '=',
+      ikHideFilters: '=',
+      ikFilter: '@',
+      ikOverlay: '@'
     },
     controller: function($scope, slideFactory) {
       // Set default orientation and sort.
@@ -295,6 +298,11 @@ ikApp.directive('ikSlideOverview', function() {
       $scope.slideOverviewClickSlide = function slideOverviewClickSlide(slide) {
         $scope.$emit('slideOverview.clickSlide', slide);
       };
+
+      // Set filter if parameter ikFilter is set.
+      if ($scope.ikFilter) {
+        $scope.setOrientation($scope.ikFilter);
+      }
 
       // Send the default search query.
       $scope.updateSearch();
