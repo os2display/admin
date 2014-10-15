@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -62,15 +63,29 @@ class SlidesController extends Controller {
     if (isset($ids)) {
       $em = $this->getDoctrine()->getManager();
 
+      // Create query to load the entities.
       $qb = $em->createQueryBuilder();
       $qb->select('m');
       $qb->from('IndholdskanalenMainBundle:Slide', 'm');
       $qb->where($qb->expr()->in('m.id', $ids));
+      $results = $qb->getQuery()->getResult();
 
-      $result = $qb->getQuery()->getResult();
+      // Sort the entities based on the order of the ids given in the
+      // parameters.
+      // @todo: Use mysql order by FIELD('id',1,4,2)....
+      $entities = array();
+      foreach ($ids as $id) {
+        foreach ($results as $index => $entity) {
+          if ($entity->getId() == $id) {
+            $entities[] = $entity;
+            unset($results[$index]);
+          }
+        }
+      }
+
       $serializer = $this->get('jms_serializer');
       $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($serializer->serialize($result, 'json', SerializationContext::create()->setGroups(array('api'))));
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
     }
     else {
       $response->setContent(json_encode(array()));

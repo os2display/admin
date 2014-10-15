@@ -263,11 +263,11 @@ $breakpoint-arrow-switch : 693px;
   &--slide-remove {
     cursor: pointer;
     position:absolute;
-    right: -.9em;
-    top: -.9em;
+    right: -.5em;
+    top: -.5em;
     z-index: 1;
 
-    @include generate-sprite-image($dashboard-sprites, 'minus-icon', 40);
+    @include generate-sprite-image($dashboard-sprites, 'cancel-icon', 30);
   }
 
 
