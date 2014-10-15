@@ -11,6 +11,7 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializationContext;
 
 /**
  * Class MiddlewareCommunication
@@ -57,10 +58,13 @@ class MiddlewareCommunication extends ContainerAware
     // Get all screens
     $screens = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
 
+
+
     // For each screen
     //   Join channels
     //   Push joined channels to the screen
     foreach($screens as $screen) {
+      /*
       $slides = array();
       foreach($screen->getChannels() as $channel) {
         $channelSlideOrders = $channel->getChannelSlideOrders();
@@ -133,6 +137,12 @@ class MiddlewareCommunication extends ContainerAware
       );
 
       $this->curlSendChannel($screenArray);
+      */
+
+      $serializer = $this->container->get('jms_serializer');
+      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('middleware')));
+
+      $this->curlSendChannel($jsonContent);
     }
   }
 }

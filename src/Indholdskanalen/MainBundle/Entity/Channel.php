@@ -204,7 +204,7 @@ class Channel {
   }
 
   /**
-   * Get slide
+   * Get slides
    *
    * @return \Doctrine\Common\Collections\Collection
    *
@@ -212,12 +212,57 @@ class Channel {
    * @SerializedName("slides")
    * @Groups({"api"})
    */
-  public function getMedia()
+  public function getSlides()
   {
     $result = new ArrayCollection();
     foreach($this->getChannelSlideOrders() as $slideorder) {
       $result->add($slideorder->getSlide());
     }
     return $result;
+  }
+
+  /**
+   * Get channelID
+   *
+   * @return \string
+   *
+   * @VirtualProperty
+   * @SerializedName("channelID")
+   * @Groups({"middleware"})
+   */
+  public function getChannelID()
+  {
+    return "group" . $this->getId();
+  }
+
+  /**
+   * Get channel groups
+   *
+   * @return \array
+   *
+   * @VirtualProperty
+   * @SerializedName("groups")
+   * @Groups({"middleware"})
+   */
+  public function getChannelGroups()
+  {
+    return array("group" . $this->getId());
+  }
+
+  /**
+   * Get channel contant
+   *
+   * @return \array
+   *
+   * @VirtualProperty
+   * @SerializedName("channelContent")
+   * @Groups({"middleware"})
+   */
+  public function getChannelContent()
+  {
+    return array(
+      'logo' => '',
+      'slides' => $this->getSlides()
+    );
   }
 }
