@@ -6,7 +6,7 @@
         <label data-ng-repeat="group in groups">
           <input type="checkbox" checklist-model="screen.groups" checklist-value="group"> {{group.title}}
         </label>
-      <input type="submit" class="create-screen--button" value="Gem og fortsæt">
+      <input type="submit" data-ng-disabled="disableSubmitButton" class="create-screen--button" value="Gem og fortsæt">
     </form>
   </div>
 </section>

@@ -79,11 +79,18 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
      */
     $scope.submitStep = function() {
       if ($scope.step == $scope.steps) {
-        channelFactory.saveChannel().then(function() {
-          $timeout(function() {
-            $location.path('/channel-overview');
-          }, 1000);
-        });
+        $scope.disableSubmitButton = true;
+
+        channelFactory.saveChannel().then(
+          function() {
+            $timeout(function() {
+              $location.path('/channel-overview');
+            }, 1000);
+          },
+          function() {
+            $scope.disableSubmitButton = false;
+          }
+        );
       } else {
         loadStep($scope.step + 1);
       }
