@@ -73,6 +73,7 @@ class Screen {
 
   /**
    * @ORM\ManyToMany(targetEntity="Channel", mappedBy="screens")
+   * @Groups({"api"})
    */
   private $channels;
 

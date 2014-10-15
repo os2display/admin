@@ -86,20 +86,26 @@ class ScreenController extends Controller {
       $screen->setToken("");
     }
 
-    // Remove groups.
-    foreach($screen->getGroups() as $group) {
-      if (!in_array($group->getId(), $post->groups)) {
-        $screen->removeGroup($group);
+    // Get channel ids.
+    $postChannelIds = array();
+    foreach($post->channels as $channel) {
+      $postChannelIds[] = $channel->id;
+    }
+
+    // Remove channels.
+    foreach($screen->getChannels() as $channel) {
+      if (!in_array($channel->getId(), $postChannelIds)) {
+        $screen->removeChannel($channel);
       }
     }
 
-    // Add groups.
-    foreach($post->groups as $groupId) {
-      $group = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
-        ->findOneById($groupId);
-      if ($group) {
-        if (!$screen->getGroups()->contains($group)) {
-          $screen->addGroup($group);
+    // Add channels.
+    foreach($post->channels as $channel) {
+      $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+        ->findOneById($channel->id);
+      if ($channel) {
+        if (!$screen->getChannels()->contains($channel)) {
+          $screen->addChannel($channel);
         }
       }
     }
