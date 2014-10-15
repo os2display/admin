@@ -19,7 +19,6 @@ ikApp.directive('ikChannel', ['$interval', '$location',
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
-        scope.slides = [];
         scope.playText = '';
 
         // Observe on changes to ik-slide, for when it is set.
@@ -35,11 +34,6 @@ ikApp.directive('ikChannel', ['$interval', '$location',
           else {
             scope.templateURL = 'partials/channel/non-empty.html';
 
-            // Get all the slides from the channel.
-            scope.ikChannel.channel_slide_orders.forEach(function(element) {
-              scope.slides.push(element.slide);
-            });
-
             scope.buttonState = 'play';
           }
         });
@@ -53,10 +47,10 @@ ikApp.directive('ikChannel', ['$interval', '$location',
             scope.interval = undefined;
             scope.buttonState = 'play';
           } else {
-            scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
+            scope.slideIndex = (scope.slideIndex + 1) % scope.ikChannel.slides.length;
 
             scope.interval = $interval(function() {
-              scope.slideIndex = (scope.slideIndex + 1) % scope.slides.length;
+              scope.slideIndex = (scope.slideIndex + 1) % scope.ikChannel.slides.length;
             }, 2000);
             scope.buttonState = 'pause';
           }

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Channel;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/channels")
@@ -61,14 +62,28 @@ class ChannelsController extends Controller {
     if (isset($ids)) {
       $em = $this->getDoctrine()->getManager();
 
+      // Create query to load the entities.
       $qb = $em->createQueryBuilder();
       $qb->select('m');
       $qb->from('IndholdskanalenMainBundle:Channel', 'm');
       $qb->where($qb->expr()->in('m.id', $ids));
+      $results = $qb->getQuery()->getResult();
 
-      $result = $qb->getQuery()->getResult();
+      // Sort the entities based on the order of the ids given in the
+      // parameters.
+      // @todo: Use mysql order by FIELD('id',1,4,2)....
+      $entities = array();
+      foreach ($ids as $id) {
+        foreach ($results as $index => $entity) {
+          if ($entity->getId() == $id) {
+            $entities[] = $entity;
+            unset($results[$index]);
+          }
+        }
+      }
+
       $serializer = $this->get('jms_serializer');
-      $response->setContent($serializer->serialize($result, 'json'));
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
     }
     else {
       $response->setContent(json_encode(array()));

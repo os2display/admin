@@ -1,7 +1,7 @@
 <section class="overview--section">
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
-    <div class="overview--filter-orientation">
+    <div class="overview--filter-orientation" data-ng-show="!ikHideFilters">
       <span href="#" data-ng-class="{'is-active': orientation == 'all'}" class="overview--filter-threesplit-left" data-ng-click="setOrientation('all')">Alle</span>
       <span href="#" data-ng-class="{'is-active': orientation == 'landscape'}" class="overview--filter-threesplit-middle" data-ng-click="setOrientation('landscape')">Horisontal</span>
       <span href="#" data-ng-class="{'is-active': orientation == 'portrait'}" class="overview--filter-threesplit-right" data-ng-click="setOrientation('portrait')">Vertikal</span>

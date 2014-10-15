@@ -4,6 +4,19 @@
 This project consists of the backend for Indholdskanalen. The backend is a symfony project.
 
 ###Helpful commands
+We have defined a couple of commands for Indholdskanalen.
+
+To push channels
+<pre>
+php app/console indholdskanalen:pushchannels
+</pre>
+
+To reindex search
+<pre>
+php app/console indholdskanalen:reindex
+</pre>
+This does not include delete of records that are removed from symfony but not search.
+
 To clear cache
 <pre>
 php app/console cache:clear

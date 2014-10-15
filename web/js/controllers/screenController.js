@@ -59,11 +59,17 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      */
     $scope.submitStep = function() {
       if ($scope.step == $scope.steps) {
-        screenFactory.saveScreen().then(function() {
-          $timeout(function() {
-            $location.path('/screen-overview');
-          }, 1000);
-        });
+        $scope.disableSubmitButton = true;
+
+        screenFactory.saveScreen().then(
+          function() {
+            $timeout(function() {
+              $location.path('/screen-overview');
+            }, 1000);
+          },
+          function() {
+            $scope.disableSubmitButton = false;
+          });
       } else {
         loadStep($scope.step + 1);
       }
