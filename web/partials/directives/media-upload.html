@@ -35,15 +35,15 @@
     </div>
     <div>
       <div class="create-media--error-text">{{ uploadErrorText }}</div>
-      <div>
-        <div class="create-media--progress" data-ng-show="uploader.progress > 0">
-          <div class="create-media--progress-bar" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
-        </div>
+      <div class="create-media--progress" data-ng-show="uploadInProgress" data-ng-show="uploader.progress > 0">
+        <div class="create-media--progress-bar" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
       </div>
-      <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
-      <button class="create-media--button" data-ng-show="!uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Ryd</button>
+      <div class="create-media--text" data-ng-show="!uploadInProgress && uploadComplete">Upload gennemført</div>
 
-      <button class="create-media--button" data-ng-show="uploadComplete" data-ng-click="clearQueue()">Upload flere</button>
+      <button class="create-media--button" data-ng-show="!uploadInProgress && !uploadComplete" data-ng-click="upload()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
+      <button class="create-media--button" data-ng-show="!uploadInProgress && !uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Ryd</button>
+      <button class="create-media--button" data-ng-show="!uploadInProgress && uploadComplete" data-ng-click="clearQueue()">Upload flere</button>
+      <div class="spinner" data-ng-show="uploadInProgress"></div>
     </div>
   </section>
 </div>

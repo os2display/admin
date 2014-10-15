@@ -211,6 +211,7 @@ ikApp.directive('ikMediaUpload', function() {
       $scope.currentStep = 1;
       $scope.uploadComplete = false;
       $scope.uploadErrors = false;
+      $scope.uploadInProgress = false;
       $scope.uploadErrorText = '';
 
       var acceptedVideotypes = '|mp4|avi|wmv|mov|mpeg|mpg|mkv|ogg|ogv|webm|m4v';
@@ -245,7 +246,7 @@ ikApp.directive('ikMediaUpload', function() {
         $scope.uploadComplete = false;
         $scope.uploadErrors = false;
         $scope.currentStep = 1;
-      }
+      };
 
       /**
        * Remove item from the uploader queue.
@@ -258,6 +259,11 @@ ikApp.directive('ikMediaUpload', function() {
           $scope.uploadComplete = false;
           $scope.uploadErrors = false;
         }
+      };
+
+      $scope.upload = function upload() {
+        $scope.uploadInProgress = true;
+        $scope.uploader.uploadAll();
       }
 
       /**
@@ -305,6 +311,7 @@ ikApp.directive('ikMediaUpload', function() {
        */
       $scope.uploader.onCompleteAll = function() {
         $scope.uploadComplete = true;
+        $scope.uploadInProgress = false;
       };
 
       /**
