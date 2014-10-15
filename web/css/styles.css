@@ -151,7 +151,7 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
 /* line 213, ../sass/base/_grid.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-screen--content-screen-three, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -550,7 +550,7 @@
   padding: 1.5em; }
 
 /* line 94, ../sass/theme/_global-silent-classes.scss */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-screen--content-screen-three, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
   margin: 0 auto;
   text-align: center;
   width: 100%; }
@@ -1253,22 +1253,19 @@ html.is-locked body {
     position: relative;
     display: block;
     cursor: pointer; }
-    /* line 77, ../sass/mixins/_mixins.scss */
-    .create-slide--screen-link.is-selected {
-      cursor: default; }
-      /* line 80, ../sass/mixins/_mixins.scss */
-      .create-slide--screen-link.is-selected .create-slide--link-check {
-        left: 0;
-        right: 0;
-        visibility: visible; }
-      /* line 86, ../sass/mixins/_mixins.scss */
-      .create-slide--screen-link.is-selected .create-slide--overlay {
-        display: block;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.5);
-        position: absolute; }
+    /* line 79, ../sass/mixins/_mixins.scss */
+    .create-slide--screen-link.is-selected .create-slide--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible; }
+    /* line 85, ../sass/mixins/_mixins.scss */
+    .create-slide--screen-link.is-selected .create-slide--overlay {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute; }
   /* line 114, ../sass/modules/_create-slide.scss */
   .create-slide--template {
     display: inline-block;
@@ -1281,22 +1278,19 @@ html.is-locked body {
     display: block;
     position: relative;
     cursor: pointer; }
-    /* line 77, ../sass/mixins/_mixins.scss */
-    .create-slide--template-link.is-selected {
-      cursor: default; }
-      /* line 80, ../sass/mixins/_mixins.scss */
-      .create-slide--template-link.is-selected .create-slide--link-check {
-        left: 0;
-        right: 0;
-        visibility: visible; }
-      /* line 86, ../sass/mixins/_mixins.scss */
-      .create-slide--template-link.is-selected .create-slide--overlay {
-        display: block;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.5);
-        position: absolute; }
+    /* line 79, ../sass/mixins/_mixins.scss */
+    .create-slide--template-link.is-selected .create-slide--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible; }
+    /* line 85, ../sass/mixins/_mixins.scss */
+    .create-slide--template-link.is-selected .create-slide--overlay {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute; }
   /* line 141, ../sass/modules/_create-slide.scss */
   .create-slide--content-wrapper {
     margin-bottom: 2em;
@@ -1410,6 +1404,8 @@ html.is-locked body {
   /* Create screen - set name (Page 1)
    ========================================================================== */
   /* Create screen - select screen (Page 2)
+   ========================================================================== */
+  /* Create screen - select screen (Page 3)
    ========================================================================== */ }
   /* line 41, ../sass/modules/_create-screen.scss */
   .create-screen--button {
@@ -1439,22 +1435,38 @@ html.is-locked body {
     position: relative;
     display: block;
     cursor: pointer; }
-    /* line 77, ../sass/mixins/_mixins.scss */
-    .create-screen--screen-link.is-selected {
-      cursor: default; }
-      /* line 80, ../sass/mixins/_mixins.scss */
-      .create-screen--screen-link.is-selected .create-screen--link-check {
-        left: 0;
-        right: 0;
-        visibility: visible; }
-      /* line 86, ../sass/mixins/_mixins.scss */
-      .create-screen--screen-link.is-selected .create-screen--overlay {
-        display: block;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.5);
-        position: absolute; }
+    /* line 79, ../sass/mixins/_mixins.scss */
+    .create-screen--screen-link.is-selected .create-screen--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible; }
+    /* line 85, ../sass/mixins/_mixins.scss */
+    .create-screen--screen-link.is-selected .create-screen--overlay {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute; }
+  /* line 134, ../sass/modules/_create-screen.scss */
+  .create-screen--channel-link {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    cursor: pointer; }
+    /* line 79, ../sass/mixins/_mixins.scss */
+    .create-screen--channel-link.is-selected .create-screen--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible; }
+    /* line 85, ../sass/mixins/_mixins.scss */
+    .create-screen--channel-link.is-selected .create-screen--overlay {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute; }
 
 /**
  *
@@ -1520,22 +1532,19 @@ html.is-locked body {
     position: relative;
     display: block;
     cursor: pointer; }
-    /* line 77, ../sass/mixins/_mixins.scss */
-    .create-channel--screen-link.is-selected {
-      cursor: default; }
-      /* line 80, ../sass/mixins/_mixins.scss */
-      .create-channel--screen-link.is-selected .create-channel--link-check {
-        left: 0;
-        right: 0;
-        visibility: visible; }
-      /* line 86, ../sass/mixins/_mixins.scss */
-      .create-channel--screen-link.is-selected .create-channel--overlay {
-        display: block;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.5);
-        position: absolute; }
+    /* line 79, ../sass/mixins/_mixins.scss */
+    .create-channel--screen-link.is-selected .create-channel--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible; }
+    /* line 85, ../sass/mixins/_mixins.scss */
+    .create-channel--screen-link.is-selected .create-channel--overlay {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute; }
   /* line 150, ../sass/modules/_create-channel.scss */
   .create-channel--slide {
     background: #f0f0e1;
@@ -1555,22 +1564,19 @@ html.is-locked body {
     float: left;
     position: relative;
     cursor: pointer; }
-    /* line 77, ../sass/mixins/_mixins.scss */
-    .create-channel--slide-link.is-selected {
-      cursor: default; }
-      /* line 80, ../sass/mixins/_mixins.scss */
-      .create-channel--slide-link.is-selected .create-channel--link-check {
-        left: 0;
-        right: 0;
-        visibility: visible; }
-      /* line 86, ../sass/mixins/_mixins.scss */
-      .create-channel--slide-link.is-selected .create-channel--overlay {
-        display: block;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.5);
-        position: absolute; }
+    /* line 79, ../sass/mixins/_mixins.scss */
+    .create-channel--slide-link.is-selected .create-channel--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible; }
+    /* line 85, ../sass/mixins/_mixins.scss */
+    .create-channel--slide-link.is-selected .create-channel--overlay {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute; }
     /* line 170, ../sass/modules/_create-channel.scss */
     .create-channel--slide-link.is-selected {
       cursor: pointer; }
@@ -3219,27 +3225,42 @@ html.is-locked body {
   /* line 46, ../sass/modules/_pager.scss */
   .pager--step {
     background: #fff;
-    border: 3px solid #e6e6e6;
+    border: 1px solid #e6e6e6;
     display: inline-block;
     line-height: .5em;
-    margin: 0 .8em;
+    margin: 0 .5em;
     padding: .5em;
     position: relative;
-    font-size: 1.8em;
+    font-size: 1.3em;
     -moz-border-radius: 100%;
     -webkit-border-radius: 100%;
     border-radius: 100%; }
-  /* line 60, ../sass/modules/_pager.scss */
+    @media only screen and (min-width: 50em) {
+      /* line 46, ../sass/modules/_pager.scss */
+      .pager--step {
+        border: 3px solid #e6e6e6;
+        margin: 0 .8em;
+        font-size: 1.8em; } }
+  /* line 66, ../sass/modules/_pager.scss */
   .pager--line {
     border-bottom: 2px solid #e6e6e6;
     margin: 0 -2em;
-    margin-bottom: -26px; }
-  /* line 67, ../sass/modules/_pager.scss */
+    margin-bottom: -18px; }
+    @media only screen and (min-width: 50em) {
+      /* line 66, ../sass/modules/_pager.scss */
+      .pager--line {
+        margin-bottom: -26px; } }
+  /* line 77, ../sass/modules/_pager.scss */
   .pager--text {
     position: absolute;
     top: 55px;
     left: 0;
-    right: 0; }
+    right: 0;
+    display: none; }
+    @media only screen and (min-width: 1023px) {
+      /* line 77, ../sass/modules/_pager.scss */
+      .pager--text {
+        display: block; } }
 
 /**
  *
