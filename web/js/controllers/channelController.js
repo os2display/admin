@@ -8,19 +8,33 @@
  */
 ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'screenFactory',
   function($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, screenFactory) {
-    $scope.steps = 5;
+    $scope.steps = 4;
     $scope.slides = [];
     $scope.channel = {};
     $scope.screens = [];
 
     // Get all screens.
-    screenFactory.getScreens().then(function(data) {
+    screenFactory.getScreens().then(function (data) {
       $scope.screens = data;
     });
 
     // Get all slides.
-    slideFactory.getSlides().then(function(data) {
+    slideFactory.getSlides().then(function (data) {
       $scope.slides = data;
+    });
+
+    // Setup the editor.
+    $scope.editor = {
+      slideOverviewEditor: false,
+      toggleSlideOverviewEditor: function() {
+        $('html').toggleClass('is-locked');
+        $scope.editor.slideOverviewEditor = !$scope.editor.slideOverviewEditor;
+      }
+    };
+
+    // Register event listener for clickSlide.
+    $scope.$on('slideOverview.clickSlide', function(event, slide) {
+      $scope.toggleSlide(slide);
     });
 
     /**
