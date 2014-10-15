@@ -213,14 +213,19 @@ ikApp.directive('ikMediaUpload', function() {
       $scope.uploadErrors = false;
       $scope.uploadErrorText = '';
 
+      var acceptedVideotypes = '|mp4|avi|wmv|mov|mpeg|mpg|mkv|ogg|ogv|webm|m4v';
+      var acceptedImagetypes = '|jpg|png|jpeg|bmp|gif';
+      var acceptedMediatypes = acceptedVideotypes + acceptedImagetypes;
+
       // Create an uploader
       $scope.uploader = new FileUploader({
         url: '/api/media',
+        queueLimit: 1,
         filters: [{
           name: 'imageFilter',
           fn: function(item /*{File|FileLikeObject}*/, options) {
             var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-            return '|jpg|png|jpeg|bmp|gif|mp4|'.indexOf(type) !== -1;
+            return acceptedMediatypes.indexOf(type) !== -1;
           }
         }]
       });
@@ -260,7 +265,7 @@ ikApp.directive('ikMediaUpload', function() {
        */
       $scope.isImage = function(item) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        return acceptedImagetypes.indexOf(type) !== -1;
       };
 
       /**

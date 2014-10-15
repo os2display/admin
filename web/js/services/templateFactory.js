@@ -12,6 +12,7 @@ ikApp.factory('templateFactory', function() {
     {
       id: 'text-top',
       image: '/ik-templates/text-top/text-top.png',
+      paths: '',
       orientation: 'landscape',
       mediatype: 'image',
       idealdimensions: {
