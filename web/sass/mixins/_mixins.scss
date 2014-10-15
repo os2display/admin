@@ -75,7 +75,6 @@ $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing betwee
 
   // We nest to have is-selected on wrapper only.
   &.is-selected {
-    cursor: default;
 
     .#{$selector-namespace}--link-check {
       left: 0;
