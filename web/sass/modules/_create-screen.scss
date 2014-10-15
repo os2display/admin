@@ -122,4 +122,20 @@
     @include add-overlay(create-screen);
   }
 
+
+  /* Create screen - select screen (Page 3)
+   ========================================================================== */
+  &--content-screen-three {
+    @extend %grid;
+
+    @extend %create-element--layout-default;
+  }
+
+  &--channel-link {
+    cursor: pointer;
+    display: block;
+    position: relative;
+
+    @include add-overlay(create-screen);
+  }
 }

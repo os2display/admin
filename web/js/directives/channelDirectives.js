@@ -14,7 +14,8 @@ ikApp.directive('ikChannel', ['$interval', '$location',
       restrict: 'E',
       scope: {
         ikWidth: '@',
-        ikChannel: '='
+        ikChannel: '=',
+        ikSingleSlide: '='
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
@@ -59,7 +60,9 @@ ikApp.directive('ikChannel', ['$interval', '$location',
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function() {
-          $location.path("/channel/" + scope.ikChannel.id);
+          if(scope.ikSingleSlide != true) {
+            $location.path("/channel/" + scope.ikChannel.id);
+          }
         };
 
         // Register event listener for destroy.
