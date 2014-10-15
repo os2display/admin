@@ -298,6 +298,7 @@ ikApp.directive('ikMediaUpload', function() {
        */
       $scope.uploader.onErrorItem = function(item, response, status, headers) {
         $scope.uploadErrors = true;
+        $scope.uploadInProgress = false;
 
         if (status === 413) {
           $scope.uploadErrorText = "Billedet var for stort (fejlkode: 413)";
