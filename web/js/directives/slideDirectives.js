@@ -142,8 +142,7 @@ ikApp.directive('ikSlideOverview', function() {
   return {
     restrict: 'E',
     scope: {
-      mediaType: '@',
-      autoSearch: '@'
+      ikSelectedSlides: '='
     },
     controller: function($scope, slideFactory) {
       // Set default orientation and sort.
@@ -217,6 +216,28 @@ ikApp.directive('ikSlideOverview', function() {
 
           $scope.updateSearch();
         }
+      };
+
+      /**
+       * Returns true if slide is in selected slides array.
+       *
+       * @param slide
+       * @returns {boolean}
+       */
+      $scope.slideSelected = function slideSelected(slide) {
+        if (!$scope.ikSelectedSlides) {
+          return false;
+        }
+
+        var res = false;
+
+        $scope.ikSelectedSlides.forEach(function(element, index) {
+          if (element.id == slide.id) {
+            res = true;
+          }
+        });
+
+        return res;
       };
 
       /**
