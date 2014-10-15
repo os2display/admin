@@ -164,7 +164,8 @@ class MediaController extends Controller {
       $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()->setGroups(array('api')));
 
       $response->setContent($jsonContent);
-    } else {
+    }
+    else {
       $response->setContent(json_encode(array()));
     }
 
@@ -190,11 +191,12 @@ class MediaController extends Controller {
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
-    if($media) {
+    if ($media) {
       $em->remove(($media));
       $em->flush();
       $response->setContent(json_encode(array()));
-    } else {
+    }
+    else {
       $response->setContent(json_encode(array()));
     }
 
