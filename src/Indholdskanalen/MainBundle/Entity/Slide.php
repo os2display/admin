@@ -426,7 +426,7 @@ class Slide {
    *
    * @VirtualProperty
    * @SerializedName("media")
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   public function getMedia()
   {
