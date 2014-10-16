@@ -2,10 +2,10 @@
 
 namespace Indholdskanalen\MainBundle\EventListener;
 
-
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Provider\Pool;
+use Indholdskanalen\MainBundle\Entity\Slide;
 
 
 class SerializationListener implements EventSubscriberInterface
@@ -29,22 +29,32 @@ class SerializationListener implements EventSubscriberInterface
   static public function getSubscribedEvents()
   {
     return array(
-      array('event' => 'serializer.post_serialize', 'class' => 'Application\Sonata\MediaBundle\Entity\Media', 'method' => 'onPostSerialize'),
+      array('event' => 'serializer.post_serialize', 'class' => 'Application\Sonata\MediaBundle\Entity\Media', 'method' => 'onPostMediaSerialize'),
+      //array('event' => 'serializer.post_serialize', 'class' => 'Indholdskanalen\MainBundle\Entity\Slide', 'method' => 'onPostSlideSerialize'),
     );
   }
 
-  public function onPostSerialize(ObjectEvent $event)
+  public function onPostMediaSerialize(ObjectEvent $event)
   {
-    $media = $event->getObject();
-    $provider = $this->mediaService->getProvider($media->getProviderName());
-    $formats = $provider->getFormats();
+    $context = $event->getContext();
+    $context->attributes->get('groups')->map(
+      function(array $groups) use ($event) {
 
-    $urls = array();
-    foreach ($formats as $name => $format) {
-      $urls[$name] = $provider->generatePublicUrl($media, $name);
-    }
+        // API, Search Serialization
+        if (in_array('api', $groups) || in_array('search', $groups)) {
+          $media = $event->getObject();
+          $provider = $this->mediaService->getProvider($media->getProviderName());
+          $formats = $provider->getFormats();
 
-    $event->getVisitor()->addData('urls', $urls);
+          $urls = array();
+          foreach ($formats as $name => $format) {
+            $urls[$name] = $provider->generatePublicUrl($media, $name);
+          }
+
+          $event->getVisitor()->addData('urls', $urls);
+        }
+      }
+    );
   }
 
 }

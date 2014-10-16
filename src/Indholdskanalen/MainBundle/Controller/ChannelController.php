@@ -160,28 +160,6 @@ class ChannelController extends Controller {
     // Create response.
     $response = new Response();
     if ($channel) {
-
-      /*
-
-      // Get slides.
-      $slides = array();
-      foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
-        $slides[] = json_decode($serializer->serialize($channelSlideOrder->getSlide(), 'json'));
-      }
-
-      // Create json content.
-      $jsonContent = $serializer->serialize($channel, 'json');
-
-      // Attach extra fields.
-      $ob = json_decode($jsonContent);
-      $ob->slides = $slides;
-      $jsonContent = json_encode($ob);
-
-      $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($jsonContent);
-
-      */
-
       $response->headers->set('Content-Type', 'application/json');
       $jsonContent = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
       $response->setContent($jsonContent);
