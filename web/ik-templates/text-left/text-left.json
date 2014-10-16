@@ -1,0 +1,23 @@
+{
+  "id": "text-left",
+  "icon": "text-left.png",
+  "paths": {
+    "live": "text-left.html",
+    "edit": "text-left-edit.html",
+    "preview": "text-left.html"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": ""
+  }
+}

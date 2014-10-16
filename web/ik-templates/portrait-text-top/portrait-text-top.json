@@ -1,0 +1,23 @@
+{
+  "id": "portrait-text-top",
+  "icon": "portrait-text-top.png",
+  "paths": {
+    "live": "portrait-text-top.html",
+    "edit": "portrait-text-top-edit.html",
+    "preview": "portrait-text-top.html"
+  },
+  "orientation": "portrait",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1080",
+    "height": "1920"
+  },
+  "emptyoptions": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": ""
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "manual-calendar",
+  "icon": "manual-calendar.png",
+  "paths": {
+    "live": "manual-calendar.html",
+    "edit": "manual-calendar-edit.html",
+    "preview": "manual-calendar.html"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": "",
+    "displayitems": "7",
+    "eventitems": []
+  }
+}

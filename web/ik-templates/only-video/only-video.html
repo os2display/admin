@@ -1,2 +1,6 @@
-<div class="only-video" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': theStyle.width, 'height': theStyle.height, 'font-size': theStyle.fontsize, 'background-image': 'url(' + ikSlide.currentImage + ')', 'position': 'relative'}">
+<div class="only-video">
+  <video id="videoPlayer" class="only-video--video-player" preload="none">
+    <source data-ng-src="{{ikSlide.currentVideo.mp4}}" type="video/mp4">
+    <source data-ng-src="{{ikSlide.currentVideo.ogg}}" type="video/ogg">
+  </video>
 </div>

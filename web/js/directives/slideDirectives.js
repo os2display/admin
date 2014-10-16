@@ -24,8 +24,6 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
           return;
         }
 
-        scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '.html';
-
         if (scope.ikSlide.media_type === 'image') {
           if (scope.ikSlide.media.length > 0) {
             scope.ikSlide.currentImage = scope.ikSlide.media[0].urls.default_landscape_small;
@@ -49,14 +47,18 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
         }
 
         // Get the template.
-        scope.template = templateFactory.getTemplate(scope.ikSlide.template);
+        templateFactory.getTemplate(scope.ikSlide.template).then(
+          function(data) {
+            scope.template = data;
+            scope.templateURL = scope.template.paths.preview;
 
-        // Setup inline styling.
-        scope.theStyle = {
-          width: "" + scope.ikWidth + "px",
-          height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
-          fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
-        }
+            scope.theStyle = {
+              width: "" + scope.ikWidth + "px",
+              height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
+              fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
+            };
+          }
+        );
       });
     },
     template: '<div class="preview--slide" data-ng-include="" src="templateURL"></div>'
@@ -68,7 +70,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
  * @param ik-slide: the slide.
  * @param ik-width: the width of the slide.
  */
-ikApp.directive('ikSlideEditable', ['templateFactory', function($templateFactory) {
+ikApp.directive('ikSlideEditable', ['templateFactory', function(templateFactory) {
   return {
     restrict: 'E',
     scope: {
@@ -114,18 +116,22 @@ ikApp.directive('ikSlideEditable', ['templateFactory', function($templateFactory
         }
 
         if (!scope.template || newVal.template !== oldVal.template) {
-          scope.templateURL = '/ik-templates/' + scope.ikSlide.template + '/' + scope.ikSlide.template + '-edit.html';
-          scope.template = $templateFactory.getTemplate(scope.ikSlide.template);
+          templateFactory.getTemplate(scope.ikSlide.template).then(
+            function(data) {
+              scope.template = data;
+              scope.templateURL = scope.template.paths.edit;
+
+              // Setup the inline styling
+              scope.theStyle = {
+                width: "" + scope.ikWidth + "px",
+                height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
+                fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
+              }
+            }
+          );
         }
 
-        if (!scope.theStyle) {
-          // Setup the inline styling
-          scope.theStyle = {
-            width: "" + scope.ikWidth + "px",
-            height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
-            fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
-          }
-        } else {
+        if (scope.theStyle) {
           // Update fontsize
           scope.theStyle.fontsize =  "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
         }
