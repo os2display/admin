@@ -27,7 +27,7 @@
     top: 50%;
 
     @include transform(translateY(-50%));
-    @include border-radius(10px);
+    @include border-radius(4%);
   }
 
 
