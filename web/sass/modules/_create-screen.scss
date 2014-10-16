@@ -46,6 +46,16 @@
   }
 
 
+  &--finish-button {
+    @extend %create-element--finish-button-wrapper;
+  }
+
+
+  &--spinner {
+    @extend %create-element--submit-spinner;
+  }
+
+
   /* Create screen - set name (Page 1)
    ========================================================================== */
   &--form {
@@ -114,13 +124,6 @@
     }
   }
 
-
-  &--screen-link {
-    position: relative;
-    display: block;
-
-    @include add-overlay(create-screen);
-  }
 
 
   /* Create screen - select screen (Page 3)
