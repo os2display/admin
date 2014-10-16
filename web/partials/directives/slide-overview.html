@@ -19,7 +19,22 @@
     </div>
   </div>
   <div class="overview--slides">
-    <div class="overview--slide" data-ng-repeat="slide in slides">
+    <!-- If normal display-->
+    <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="!ikOverlay">
+      <div class="overview--slide-link" data-ng-click="slideOverviewClickSlide(slide)" data-ng-class="{'is-selected': slideSelected(slide)}">
+        <div data-ng-if="slide.published == true">
+          <div class="overview--slide-published-icon" title="Dette slide er publiseret."></div>
+        </div>
+        <div data-ng-if="slide.published == false || outOfSchedule(slide)">
+          <div class="overview--slide-unpublished-overlay"></div>
+          <div class="overview--slide-unpublished-icon" title="Dette slide er ikke publiseret."></div>
+        </div>
+        <ik-slide ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
+      </div>
+      <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
+    </div>
+    <!-- If overlay display-->
+    <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="ikOverlay">
       <div class="overview--slide-link" data-ng-click="slideOverviewClickSlide(slide)" data-ng-class="{'is-selected': slideSelected(slide)}">
        <span class="overview--overlay">
           <span class="overview--link-check"></span>
@@ -28,7 +43,6 @@
           <div class="overview--slide-published-icon" title="Dette slide er publiseret."></div>
         </div>
         <div data-ng-if="slide.published == false || outOfSchedule(slide)">
-          <div class="overview--slide-unpublished-overlay"></div>
           <div class="overview--slide-unpublished-icon" title="Dette slide er ikke publiseret."></div>
         </div>
         <ik-slide ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
