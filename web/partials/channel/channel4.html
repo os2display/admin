@@ -12,6 +12,9 @@
           </div>
         </div>
       </div>
-    <input type="submit" data-ng-disabled="disableSubmitButton" class="create-channel--button" value="Gem og opret" data-ng-click="submitStep()">
+    <div class="create-channel--finish-button">
+      <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
+      <input type="submit" data-ng-disabled="disableSubmitButton" class="create-channel--button" value="Gem og opret" data-ng-click="submitStep()">
+    </div>
   </div>
 </section>

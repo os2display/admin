@@ -21,8 +21,8 @@
   <div class="overview--slides">
     <div class="overview--slide" data-ng-repeat="slide in slides">
       <div class="overview--slide-link" data-ng-click="slideOverviewClickSlide(slide)" data-ng-class="{'is-selected': slideSelected(slide)}">
-       <span class="overview--slide-link-overlay">
-          <span class="overview--slide-link-check"></span>
+       <span class="overview--overlay">
+          <span class="overview--link-check"></span>
         </span>
         <div data-ng-if="slide.published == true">
           <div class="overview--slide-published-icon" title="Dette slide er publiseret."></div>

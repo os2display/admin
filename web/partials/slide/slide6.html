@@ -12,6 +12,10 @@
         </div>
       </div>
     </div>
-    <input type="submit" class="create-slide--button" data-ng-disabled="disableSubmitButton" value="Gem og opret" data-ng-click="submitStep()">
+    <div class="create-slide--finish-button">
+      <div class="create-slide--spinner" data-ng-show="disableSubmitButton"></div>
+      <input type="submit" class="create-slide--button" data-ng-disabled="disableSubmitButton" value="Gem og opret" data-ng-click="submitStep()">
+    </div>
   </div>
 </section>
+

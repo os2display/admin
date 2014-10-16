@@ -14,6 +14,9 @@
         <span class="overview--channel-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
       </div>
     </div>
-    <input type="submit" class="create-channel--button" value="Gem og afslut" data-ng-click="submitStep()">
+    <div class="create-screen--finish-button">
+      <div class="create-screen--spinner" data-ng-show="disableSubmitButton"></div>
+      <input type="submit" class="create-screen--button" value="Gem og afslut" data-ng-click="submitStep()">
+    </div>
   </div>
 </section>
