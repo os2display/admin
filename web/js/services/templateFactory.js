@@ -6,170 +6,68 @@
 /**
  * Template factory. Main entry point for templates.
  */
-ikApp.factory('templateFactory', function() {
-  var factory = {};
-  var templates = [
-    {
-      id: 'text-top',
-      image: '/ik-templates/text-top/text-top.png',
-      orientation: 'landscape',
-      mediatype: 'image',
-      idealdimensions: {
-        width: '1920',
-        height: '1080'
-      },
-      emptyoptions: {
-        fontsize: '50',
-        bgcolor: '#ccc',
-        textcolor: '#fff',
-        textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        images: [],
-        headline: '',
-        text: ''
+ikApp.factory('templateFactory', ['$q', '$http',
+  function($q, $http) {
+    var factory = {};
+    var templates = null;
+    var orderedTemplates = null;
+
+    /**
+     * Gets templates from cache or symfony.
+     *
+     * @returns {templates|*}
+     */
+    factory.getTemplates = function() {
+      var defer = $q.defer();
+
+      if (templates !== null) {
+        defer.resolve(templates);
       }
-    },
-    {
-      id: 'text-bottom',
-      image: '/ik-templates/text-bottom/text-bottom.png',
-      orientation: 'landscape',
-      mediatype: 'image',
-      idealdimensions: {
-        width: '1920',
-        height: '1080'
-      },
-      emptyoptions: {
-        fontsize: '50',
-        bgcolor: '#ccc',
-        textcolor: '#fff',
-        textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        images: [],
-        headline: '',
-        text: ''
+      else {
+        $http.get('/api/templates/')
+          .success(function(data, status) {
+            templates = data;
+            orderedTemplates = [];
+            templates.forEach(function(element, index) {
+              orderedTemplates[element.id] = element;
+            });
+            defer.resolve(templates);
+          })
+          .error(function(data, status) {
+            defer.reject(status);
+          });
       }
 
-    },
-    {
-      id: 'text-left',
-      image: '/ik-templates/text-left/text-left.png',
-      orientation: 'landscape',
-      mediatype: 'image',
-      idealdimensions: {
-        width: '1920',
-        height: '1080'
-      },
-      emptyoptions: {
-        fontsize: '50',
-        bgcolor: '#ccc',
-        textcolor: '#fff',
-        textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        images: [],
-        headline: '',
-        text: ''
+      return defer.promise;
+    };
+
+    /**
+     * Get template with id from cache or symfony.
+     *
+     * @param id
+     * @returns {*}
+     */
+    factory.getTemplate = function(id) {
+      var defer = $q.defer();
+
+      if (orderedTemplates !== null) {
+        defer.resolve(orderedTemplates[id]);
+      }
+      else {
+        factory.getTemplates().then(
+          function(data) {
+            defer.resolve(orderedTemplates[id]);
+          },
+          function(reason) {
+            defer.reject(reason);
+          }
+        );
       }
 
-    },
-    {
-      id: 'text-right',
-      image: '/ik-templates/text-right/text-right.png',
-      orientation: 'landscape',
-      mediatype: 'image',
-      idealdimensions: {
-        width: '1920',
-        height: '1080'
-      },
-      emptyoptions: {
-        fontsize: '50',
-        bgcolor: '#ccc',
-        textcolor: '#fff',
-        textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        images: [],
-        headline: '',
-        text: ''
-      }
+      return defer.promise;
+    };
 
-    },
-    {
-      id: 'only-image',
-      image: '/ik-templates/only-image/only-image.png',
-      orientation: 'landscape',
-      mediatype: 'image',
-      idealdimensions: {
-        width: '1920',
-        height: '1080'
-      },
-      emptyoptions: {
-        bgcolor: '#ccc',
-        images: []
-      }
-    },
-    {
-      id: 'portrait-text-top',
-      image: '/ik-templates/portrait-text-top/portrait-text-top.png',
-      orientation: 'portrait',
-      mediatype: 'image',
-      idealdimensions: {
-        width: '1080',
-        height: '1920'
-      },
-      emptyoptions: {
-        fontsize: '50',
-        bgcolor: '#ccc',
-        textcolor: '#fff',
-        textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        images: [],
-        headline: '',
-        text: ''
-      }
-    },
-    {
-      id: 'only-video',
-      image: '/ik-templates/only-video/only-video.png',
-      mediatype: 'video',
-      orientation: 'landscape',
-      idealdimensions: {
-        width: '1920',
-        height: '1080'
-      },
-      emptyoptions: {
-        videos: []
-      }
-    },
-    {
-      id: 'manual-calendar',
-      image: '/ik-templates/manual-calendar/manual-calendar.png',
-      orientation: 'landscape',
-      mediatype: 'image',
-      idealdimensions: {
-        width: '1920',
-        height: '1080'
-      },
-      emptyoptions: {
-        fontsize: '50',
-        bgcolor: '#ccc',
-        textcolor: '#fff',
-        textbgcolor: 'rgba(0, 0, 0, 0.7)',
-        images: [],
-        headline: '',
-        text: '',
-        displayitems: '7',
-        eventitems: []
-      }
-    }
-  ];
 
-  factory.getTemplates = function() {
-    return templates;
+    return factory;
   }
-
-  factory.getTemplate = function(id) {
-    var template = null;
-    angular.forEach(templates, function(value, key) {
-      if (value['id'] == id) {
-        template = value;
-      }
-    })
-    return template;
-  }
-
-  return factory;
-});
+]);

@@ -63,6 +63,16 @@ $breakpoint-arrow-switch : 693px;
   }
 
 
+  &--finish-button {
+    @extend %create-element--finish-button-wrapper;
+  }
+
+
+  &--spinner {
+    @extend %create-element--submit-spinner;
+  }
+
+
   /* Create channel - set name (Page 1)
    ========================================================================== */
   &--form {
@@ -184,6 +194,12 @@ $breakpoint-arrow-switch : 693px;
     overflow: hidden;
   }
 
+  &--add-slide-button {
+    @extend .button; // Needs refactoring (We shouldn't extend on classes from other documents but rather silent classes)
+
+    margin-bottom: 2em;
+    width: 10em;
+  }
 
   &--slide-order-element {
     position: relative;
@@ -218,7 +234,7 @@ $breakpoint-arrow-switch : 693px;
   &--slide-unpublished-icon {
     position: absolute;
     top: 5px; // Static since we are working within a static div anyway.
-    right: 5px;
+    left: 5px;
     z-index: 1;
 
     @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
@@ -227,7 +243,7 @@ $breakpoint-arrow-switch : 693px;
   &--slide-published-icon {
     position: absolute;
     top: 5px; // Static since we are working within a static div anyway.
-    right: 5px;
+    left: 5px;
     z-index: 1;
 
     @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
@@ -251,6 +267,17 @@ $breakpoint-arrow-switch : 693px;
     position:absolute;
     right:0;
     top: -1.2em;
+  }
+
+
+  &--slide-remove {
+    cursor: pointer;
+    position:absolute;
+    right: -.5em;
+    top: -.5em;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'cancel-icon', 30);
   }
 
 

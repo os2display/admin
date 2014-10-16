@@ -68,7 +68,17 @@ ikApp.directive('ikMediaOverview', function() {
 
         mediaFactory.searchMedia(search).then(
           function(data) {
-            $scope.media = data;
+            // Extract search ids.
+            var ids = [];
+            for (var i = 0; i < data.length; i++) {
+              ids.push(data[i].id);
+            }
+
+            mediaFactory.loadMediaBulk(ids).then(
+              function(data) {
+                $scope.media = data;
+              }
+            );
           }
         );
       };
@@ -201,16 +211,22 @@ ikApp.directive('ikMediaUpload', function() {
       $scope.currentStep = 1;
       $scope.uploadComplete = false;
       $scope.uploadErrors = false;
+      $scope.uploadInProgress = false;
       $scope.uploadErrorText = '';
+
+      var acceptedVideotypes = '|mp4|avi|wmv|mov|mpeg|mpg|mkv|ogg|ogv|webm|m4v';
+      var acceptedImagetypes = '|jpg|png|jpeg|bmp|gif';
+      var acceptedMediatypes = acceptedVideotypes + acceptedImagetypes;
 
       // Create an uploader
       $scope.uploader = new FileUploader({
         url: '/api/media',
+        queueLimit: 1,
         filters: [{
           name: 'imageFilter',
           fn: function(item /*{File|FileLikeObject}*/, options) {
             var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-            return '|jpg|png|jpeg|bmp|gif|mp4|'.indexOf(type) !== -1;
+            return acceptedMediatypes.indexOf(type) !== -1;
           }
         }]
       });
@@ -230,7 +246,7 @@ ikApp.directive('ikMediaUpload', function() {
         $scope.uploadComplete = false;
         $scope.uploadErrors = false;
         $scope.currentStep = 1;
-      }
+      };
 
       /**
        * Remove item from the uploader queue.
@@ -243,6 +259,11 @@ ikApp.directive('ikMediaUpload', function() {
           $scope.uploadComplete = false;
           $scope.uploadErrors = false;
         }
+      };
+
+      $scope.upload = function upload() {
+        $scope.uploadInProgress = true;
+        $scope.uploader.uploadAll();
       }
 
       /**
@@ -250,7 +271,25 @@ ikApp.directive('ikMediaUpload', function() {
        */
       $scope.isImage = function(item) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        return acceptedImagetypes.indexOf(type) !== -1;
+      };
+
+      /**
+       * Returns the uploader progress.
+       * NB! THIS IS A HACK!
+       *
+       * @returns {*}
+       */
+      $scope.getProgress = function() {
+        if (!$scope.uploader.progress) {
+          return;
+        }
+
+        if ($scope.uploadInProgress) {
+          return $scope.uploader.progress - 5;
+        } else {
+          return $scope.uploader.progress
+        }
       };
 
       /**
@@ -277,6 +316,7 @@ ikApp.directive('ikMediaUpload', function() {
        */
       $scope.uploader.onErrorItem = function(item, response, status, headers) {
         $scope.uploadErrors = true;
+        $scope.uploadInProgress = false;
 
         if (status === 413) {
           $scope.uploadErrorText = "Billedet var for stort (fejlkode: 413)";
@@ -290,6 +330,7 @@ ikApp.directive('ikMediaUpload', function() {
        */
       $scope.uploader.onCompleteAll = function() {
         $scope.uploadComplete = true;
+        $scope.uploadInProgress = false;
       };
 
       /**
@@ -340,11 +381,9 @@ ikApp.directive('ikThumb', ['$window', function($window) {
       var params = scope.$eval(attributes.ikThumb);
 
       if (!helper.isFile(params.file)) {
-        console.log("ikThumb: Not a file");
         return;
       }
       if (!helper.isImage(params.file)) {
-        console.log("ikThumb: Not an image");
         return;
       }
 

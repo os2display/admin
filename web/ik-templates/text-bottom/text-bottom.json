@@ -1,0 +1,23 @@
+{
+  "id": "text-bottom",
+  "icon": "text-bottom.png",
+  "paths": {
+    "live": "text-bottom.html",
+    "edit": "text-bottom-edit.html",
+    "preview": "text-bottom.html"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": ""
+  }
+}

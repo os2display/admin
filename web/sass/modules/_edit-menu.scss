@@ -16,12 +16,17 @@
   right: 0;
   top: 0;
   z-index: 99;
-  background-color:rgba(255,255,255,.5);
+  background-color:rgba(0,0,0,.7);
 
-  padding-right: 3em;
-  padding-left: 3em;
+  box-sizing: border-box;
 
-  background-color: $white;
+  padding: 2em;
+
+  @include breakpoint($breakpoint-lap) {
+    padding: 4em;
+  }
+
+
 
   /* States. */
 
@@ -86,16 +91,16 @@
     cursor: pointer;
     font-size: 2em;
     position: absolute;
-    right: 1.5em;
-    top: 1.5em;
+    right: .5em;
+    top: .5em;
     z-index: 1;
   }
 
 
   &--background-image-back {
     position: absolute;
-    top: 3em;
-    left: 3em;
+    top: 1em;
+    left: 1em;
   }
 
   &--content-calendar,
@@ -174,9 +179,12 @@
 /* Background and edit content full page
    ========================================================================== */
 
+  &--background-inner,
   &--content-inner {
+    background: $white;
     height: 100%;
     width: 100%;
+    position: relative;
   }
 
   &--content-page,
@@ -190,8 +198,11 @@
 
   &--content-page-inner,
   &--background-page-inner {
+    box-sizing: border-box;
     height: 100%;
-    padding-top: 8em;
+    padding: 5em 1em 0;
+    text-align: center;
+    overflow: auto;
   }
 
   &--content-header,

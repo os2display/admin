@@ -1,0 +1,19 @@
+{
+  "id": "only-image",
+  "icon": "only-image.png",
+  "paths": {
+    "live": "only-image.html",
+    "edit": "only-image-edit.html",
+    "preview": "only-image.html"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "bgcolor": "#ccc",
+    "images": []
+  }
+}

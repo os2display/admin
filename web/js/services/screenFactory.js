@@ -9,7 +9,6 @@
 ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory',
   function($http, $q, searchFactory) {
     var factory = {};
-    var currentScreenGroup = null;
     var currentScreen = null;
 
     /**
@@ -95,48 +94,6 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
-     * Get the current screen group.
-     * @param id
-     * @returns {promiseAndHandler.promise|*|Promise._progressUnchecked.promise|promise|exports.exports.Reduction.promise|PromiseResolver.promise}
-     */
-    factory.getEditScreenGroup = function(id) {
-      var defer = $q.defer();
-
-      if (id === null || id === undefined || id === '') {
-        defer.resolve(currentScreenGroup);
-      } else {
-        $http.get('/api/screen-group/' + id)
-          .success(function(data) {
-            currentScreenGroup = data;
-            defer.resolve(currentScreenGroup);
-          })
-          .error(function(data, status) {
-            defer.reject(status);
-          });
-      }
-
-      return defer.promise;
-    };
-
-    /**
-     * Get all screen groups.
-     * @returns {Array}
-     */
-    factory.getScreenGroups = function() {
-      var defer = $q.defer();
-
-      $http.get('/api/screen-groups')
-        .success(function(data) {
-          defer.resolve(data);
-        })
-        .error(function(data, status) {
-          defer.reject(status);
-        });
-
-      return defer.promise;
-    };
-
-    /**
      * Find the screen with @id
      * @param id
      * @returns screen or null
@@ -145,44 +102,6 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory',
       var defer = $q.defer();
 
       $http.get('/api/screen/' + id)
-        .success(function(data) {
-          defer.resolve(data);
-        })
-        .error(function(data, status) {
-          defer.reject(status);
-        });
-
-      return defer.promise;
-    };
-
-    /**
-     * Find the screenGroup with @id
-     * @param id
-     * @returns screen or null
-     */
-    factory.getScreenGroup = function(id) {
-      var defer = $q.defer();
-
-      $http.get('/api/screen-group/' + id)
-        .success(function(data) {
-          defer.resolve(data);
-        })
-        .error(function(data, status) {
-          defer.reject(status);
-        });
-
-      return defer.promise;
-    };
-
-    /**
-     * Find the screen groups that screen with @id is part of
-     * @param id
-     * @returns group or null
-     */
-    factory.getScreenScreenGroups = function(id) {
-      var defer = $q.defer();
-
-      $http.get('/api/screen/' + id + '/screen_groups')
         .success(function(data) {
           defer.resolve(data);
         })
@@ -222,28 +141,6 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
-     * Saves screen group.
-     */
-    factory.saveScreenGroup = function() {
-      var defer = $q.defer();
-
-      if (currentScreenGroup === null) {
-        defer.reject(404);
-      } else {
-        $http.post('/api/screen-group', currentScreenGroup)
-          .success(function(data) {
-            defer.resolve(data);
-            currentScreenGroup = null;
-          })
-          .error(function(data, status) {
-            defer.reject(status);
-          });
-      }
-
-      return defer.promise;
-    };
-
-    /**
      * Returns an empty screen.
      * @returns screen (empty)
      */
@@ -252,28 +149,13 @@ ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory',
         id: null,
         title: '',
         orientation: '',
+        channels: [],
         width: '',
         height: '',
-        created_at: parseInt((new Date().getTime()) / 1000),
-        groups: []
-      };
-
-      return currentScreen;
-    };
-
-    /**
-     * Returns an empty group.
-     * @returns group (empty)
-     */
-    factory.emptyScreenGroup = function() {
-      currentScreenGroup = {
-        id: null,
-        title: '',
-        screens: [],
         created_at: parseInt((new Date().getTime()) / 1000)
       };
 
-      return currentScreenGroup;
+      return currentScreen;
     };
 
     return factory;

@@ -10,7 +10,12 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
   function($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory) {
     $scope.steps = 6;
     $scope.slide = {};
-    $scope.templates = templateFactory.getTemplates();
+    $scope.templates = [];
+    templateFactory.getTemplates().then(
+      function(data) {
+        $scope.templates = data;
+      }
+    );
     $scope.channels = [];
 
     /**
@@ -146,7 +151,18 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      */
     $scope.selectTemplate = function(id) {
       $scope.slide.template = id;
-      var template = templateFactory.getTemplate(id);
+
+      var template = null;
+
+      $scope.templates.forEach(function(element) {
+        if (element.id === id) {
+          template = element;
+        }
+      });
+
+      if (template === null) {
+        return;
+      }
 
       if ($scope.slide.options == null) {
         $scope.slide.options = template.emptyoptions;

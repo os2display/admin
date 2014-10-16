@@ -1,12 +1,22 @@
-<section id="create-screen-two" class="create-screen--section">
-  <div class="create-screen--content--screen-one">
+<section id="create-screen-three" class="create-screen--section">
+  <div class="create-screen--content-screen-three">
     <h1 class="create-screen--header">{{screen.status === "edit-screen" ? "Redigér skærm" : "Opret skærm"}}</h1>
-    <p class="create-screen--header-description">Hvilke grupper er skærmen del af?</p>
-    <form ng-submit="submitStep()">
-        <label data-ng-repeat="group in groups">
-          <input type="checkbox" checklist-model="screen.groups" checklist-value="group"> {{group.title}}
-        </label>
-      <input type="submit" class="create-screen--button" value="Gem og fortsæt">
-    </form>
+    <p class="create-screen--header-description">Tilføj og fjern kanaler.</p>
+    <div class="overview--channels">
+      <div class="overview--channel" data-ng-repeat="channel in channels">
+        <div class="create-screen--channel-link" data-ng-class="{'is-selected': hasChannel(channel)}" ng-click="toggleChannel(channel)">
+          <span class="create-screen--overlay">
+            <span class="create-screen--link-check"></span>
+          </span>
+          <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}" ik-single-slide="true"></ik-channel>
+        </div>
+        <a href="/#/channel/{{channel.id}}"><div class="overview--channel-label">{{channel.title}}</div></a>
+        <span class="overview--channel-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
+      </div>
+    </div>
+    <div class="create-screen--finish-button">
+      <div class="create-screen--spinner" data-ng-show="disableSubmitButton"></div>
+      <input type="submit" class="create-screen--button" value="Gem og afslut" data-ng-click="submitStep()">
+    </div>
   </div>
 </section>

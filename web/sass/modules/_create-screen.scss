@@ -46,6 +46,16 @@
   }
 
 
+  &--finish-button {
+    @extend %create-element--finish-button-wrapper;
+  }
+
+
+  &--spinner {
+    @extend %create-element--submit-spinner;
+  }
+
+
   /* Create screen - set name (Page 1)
    ========================================================================== */
   &--form {
@@ -115,11 +125,20 @@
   }
 
 
-  &--screen-link {
-    position: relative;
+
+  /* Create screen - select screen (Page 3)
+   ========================================================================== */
+  &--content-screen-three {
+    @extend %grid;
+
+    @extend %create-element--layout-default;
+  }
+
+  &--channel-link {
+    cursor: pointer;
     display: block;
+    position: relative;
 
     @include add-overlay(create-screen);
   }
-
 }

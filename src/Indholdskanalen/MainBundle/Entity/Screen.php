@@ -74,6 +74,7 @@ class Screen {
 
   /**
    * @ORM\ManyToMany(targetEntity="Channel", mappedBy="screens")
+   * @Groups({"api"})
    */
   private $channels;
 
@@ -224,43 +225,7 @@ class Screen {
    */
   public function __construct()
   {
-    $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
     $this->channels = new \Doctrine\Common\Collections\ArrayCollection();
-  }
-
-  /**
-   * Add groups
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
-   * @return Screen
-   */
-  public function addGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
-  {
-    $groups->addScreen($this);
-    $this->groups[] = $groups;
-
-    return $this;
-  }
-
-  /**
-   * Remove groups
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\ScreenGroup $groups
-   */
-  public function removeGroup(\Indholdskanalen\MainBundle\Entity\ScreenGroup $groups)
-  {
-    $groups->removeScreen($this);
-    $this->groups->removeElement($groups);
-  }
-
-  /**
-   * Get groups
-   *
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getGroups()
-  {
-    return $this->groups;
   }
 
   /**

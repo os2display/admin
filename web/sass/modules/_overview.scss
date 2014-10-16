@@ -20,7 +20,8 @@
    ========================================================================== */
 
   &--section {
-    margin: 0;
+    margin: 0 auto;
+    max-width: 100em;
     text-align: center;
   }
 
@@ -77,7 +78,7 @@
   &--slide-unpublished-icon {
     position: absolute;
     top: 5px; // Static since we are working within a static div anyway.
-    right: 5px;
+    left: 5px;
     z-index: 1;
 
     @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
@@ -86,7 +87,7 @@
   &--slide-published-icon {
     position: absolute;
     top: 5px; // Static since we are working within a static div anyway.
-    right: 5px;
+    left: 5px;
     z-index: 1;
 
     @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
@@ -343,5 +344,17 @@
     line-height: 10rem;
     vertical-align: middle;
     width: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
+  }
+
+
+  /* slide overview
+ ========================================================================== */
+  &--slide-link {
+    @include add-overlay(overview);
+  }
+
+  // Default check circled icon.
+  &--link-check {
+    @extend %image-check-icon--placeholder;
   }
 }

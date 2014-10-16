@@ -106,6 +106,55 @@ class MediaController extends Controller {
   }
 
   /**
+   * Get a bulk of media.
+   *
+   * @Route("/bulk")
+   * @Method("GET")
+   *
+   * @param $request
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaGetBulkAction(Request $request) {
+    $ids = $request->query->get('ids');
+
+    $response = new Response();
+
+    // Check if slide exists, to update, else create new slide.
+    if (isset($ids)) {
+      $em = $this->getDoctrine()->getManager();
+
+      $qb = $em->createQueryBuilder();
+      $qb->select('m');
+      $qb->from('ApplicationSonataMediaBundle:Media', 'm');
+      $qb->where($qb->expr()->in('m.id', $ids));
+      $results = $qb->getQuery()->getResult();
+
+      // Sort the entities based on the order of the ids given in the
+      // parameters.
+      // @todo: Use mysql order by FIELD('id',1,4,2)....
+      $entities = array();
+      foreach ($ids as $id) {
+        foreach ($results as $index => $entity) {
+          if ($entity->getId() == $id) {
+            $entities[] = $entity;
+            unset($results[$index]);
+          }
+        }
+      }
+
+      $serializer = $this->get('jms_serializer');
+      $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
+  /**
    * Get media with ID.
    *
    * @Route("/{id}")
@@ -128,7 +177,8 @@ class MediaController extends Controller {
       $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()->setGroups(array('api')));
 
       $response->setContent($jsonContent);
-    } else {
+    }
+    else {
       $response->setContent(json_encode(array()));
     }
 
@@ -154,11 +204,12 @@ class MediaController extends Controller {
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
-    if($media) {
+    if ($media) {
       $em->remove(($media));
       $em->flush();
       $response->setContent(json_encode(array()));
-    } else {
+    }
+    else {
       $response->setContent(json_encode(array()));
     }
 

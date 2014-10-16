@@ -3,7 +3,7 @@
     <h1 class="create-media--header">Media - vælg filer</h1>
     <p class="create-media--header-description">Ved upload af video skal videoen indkodes, denne process kan tage flere minutter og afhænger af størrelsen på filen.</p>
     <div class="create-media--hidden-input-file">
-      <input id="select-files" type="file" nv-file-select uploader="uploader" multiple />
+      <input id="select-files" type="file" nv-file-select uploader="uploader" />
     </div>
     <input type="submit" class="create-media--button" value="Vælg en fil fra din computer" data-ng-click="selectFiles()">
 
@@ -35,14 +35,14 @@
     </div>
     <div>
       <div class="create-media--error-text">{{ uploadErrorText }}</div>
-      <div>
-        <div class="create-media--progress" data-ng-show="uploader.progress > 0">
-          <div class="create-media--progress-bar" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
-        </div>
+      <div class="create-media--progress" data-ng-show="uploadInProgress && uploader.progress > 0">
+        <div class="create-media--progress-bar" ng-style="{ 'width': getProgress() + '%' }">{{ getProgress() }} %</div>
       </div>
-      <button class="create-media--button" data-ng-show="!uploadComplete" data-ng-click="uploader.uploadAll()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload alle</button>
-      <button class="create-media--button" data-ng-show="!uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Fjern alle</button>
-      <button class="create-media--button" data-ng-show="uploadComplete" data-ng-click="clearQueue()">Upload flere</button>
+      <div class="create-media--text" data-ng-show="!uploadInProgress && uploadComplete">Upload gennemført</div>
+
+      <button class="create-media--button" data-ng-show="!uploadInProgress && !uploadComplete" data-ng-click="upload()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
+      <button class="create-media--button" data-ng-show="!uploadInProgress && !uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Ryd</button>
+      <button class="create-media--button" data-ng-show="!uploadInProgress && uploadComplete" data-ng-click="clearQueue()">Upload flere</button>
     </div>
   </section>
 </div>
