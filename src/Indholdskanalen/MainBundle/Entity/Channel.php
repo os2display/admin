@@ -204,7 +204,7 @@ class Channel {
   }
 
   /**
-   * Get slide
+   * Get slides
    *
    * @return \Doctrine\Common\Collections\Collection
    *
@@ -212,7 +212,7 @@ class Channel {
    * @SerializedName("slides")
    * @Groups({"api"})
    */
-  public function getMedia()
+  public function getSlides()
   {
     $result = new ArrayCollection();
     foreach($this->getChannelSlideOrders() as $slideorder) {
@@ -220,4 +220,5 @@ class Channel {
     }
     return $result;
   }
+
 }
