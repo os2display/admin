@@ -221,48 +221,4 @@ class Channel {
     return $result;
   }
 
-  /**
-   * Get channelID
-   *
-   * @return \string
-   *
-   * @VirtualProperty
-   * @SerializedName("channelID")
-   * @Groups({"middleware"})
-   */
-  public function getChannelID()
-  {
-    return "group" . $this->getId();
-  }
-
-  /**
-   * Get channel groups
-   *
-   * @return \array
-   *
-   * @VirtualProperty
-   * @SerializedName("groups")
-   * @Groups({"middleware"})
-   */
-  public function getChannelGroups()
-  {
-    return array("group" . $this->getId());
-  }
-
-  /**
-   * Get channel contant
-   *
-   * @return \array
-   *
-   * @VirtualProperty
-   * @SerializedName("channelContent")
-   * @Groups({"middleware"})
-   */
-  public function getChannelContent()
-  {
-    return array(
-      'logo' => '',
-      'slides' => $this->getSlides()
-    );
-  }
 }
