@@ -50,6 +50,7 @@ class Screen {
 
   /**
    * @ORM\ManyToMany(targetEntity="ScreenGroup", mappedBy="screens")
+   * @Groups({"api"})
    */
   private $groups;
 

@@ -30,7 +30,7 @@ class SerializationListener implements EventSubscriberInterface
   {
     return array(
       array('event' => 'serializer.post_serialize', 'class' => 'Application\Sonata\MediaBundle\Entity\Media', 'method' => 'onPostMediaSerialize'),
-      array('event' => 'serializer.post_serialize', 'class' => 'Indholdskanalen\MainBundle\Entity\Slide', 'method' => 'onPostSlideSerialize'),
+      //array('event' => 'serializer.post_serialize', 'class' => 'Indholdskanalen\MainBundle\Entity\Slide', 'method' => 'onPostSlideSerialize'),
     );
   }
 
@@ -40,8 +40,8 @@ class SerializationListener implements EventSubscriberInterface
     $context->attributes->get('groups')->map(
       function(array $groups) use ($event) {
 
-        // API Serialization
-        if (in_array('api', $groups)) {
+        // API, Search Serialization
+        if (in_array('api', $groups) || in_array('search', $groups)) {
           $media = $event->getObject();
           $provider = $this->mediaService->getProvider($media->getProviderName());
           $formats = $provider->getFormats();
@@ -52,37 +52,6 @@ class SerializationListener implements EventSubscriberInterface
           }
 
           $event->getVisitor()->addData('urls', $urls);
-        }
-      }
-    );
-
-  }
-
-  public function onPostSlideSerialize(ObjectEvent $event)
-  {
-    $context = $event->getContext();
-    $context->attributes->get('groups')->map(
-      function(array $groups) use ($event) {
-
-        // Middleware Serialization
-        if (in_array('middleware', $groups)) {
-          $slide = $event->getObject();
-          $urls = array();
-
-          if ($slide->getMediaType() === 'image') {
-            foreach($slide->getMedia() as $media) {
-              $provider = $this->mediaService->getProvider($media->getProviderName());
-              $urls[] = $provider->generatePublicUrl($media, 'reference');
-            }
-          } else if ($slide->getMediaType() === 'video') {
-            $urls = array(
-              'mp4' => $pathToServer . $content->provider_metadata[0]->reference,
-              'ogg' => $pathToServer . $content->provider_metadata[1]->reference,
-            );
-          }
-
-
-          $event->getVisitor()->addData('media', $urls);
         }
       }
     );
