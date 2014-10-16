@@ -128,11 +128,24 @@ class MediaController extends Controller {
       $qb->select('m');
       $qb->from('ApplicationSonataMediaBundle:Media', 'm');
       $qb->where($qb->expr()->in('m.id', $ids));
+      $results = $qb->getQuery()->getResult();
 
-      $result = $qb->getQuery()->getResult();
+      // Sort the entities based on the order of the ids given in the
+      // parameters.
+      // @todo: Use mysql order by FIELD('id',1,4,2)....
+      $entities = array();
+      foreach ($ids as $id) {
+        foreach ($results as $index => $entity) {
+          if ($entity->getId() == $id) {
+            $entities[] = $entity;
+            unset($results[$index]);
+          }
+        }
+      }
+
       $serializer = $this->get('jms_serializer');
       $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($serializer->serialize($result, 'json', SerializationContext::create()->setGroups(array('api'))));
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
     }
     else {
       $response->setContent(json_encode(array()));
