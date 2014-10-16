@@ -94,6 +94,7 @@ class MiddlewareCommunication extends ContainerAware
                 $urls = array(
                   'mp4' => $pathToServer . $content->provider_metadata[0]->reference,
                   'ogg' => $pathToServer . $content->provider_metadata[1]->reference,
+                  'webm' => $pathToServer . $content->provider_metadata[2]->reference,
                 );
 
                 $media[] = $urls;
