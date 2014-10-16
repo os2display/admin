@@ -8,9 +8,9 @@
  */
 ikApp.config(function($routeProvider) {
   $routeProvider
+    // Frontpage, set to channel overview.
     .when('/', {
-      controller: 'IndexController',
-      templateUrl: 'partials/index.html'
+      redirectTo: '/channel-overview'
     })
 
     // Overview

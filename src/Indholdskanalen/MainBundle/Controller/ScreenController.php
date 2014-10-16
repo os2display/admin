@@ -123,7 +123,6 @@ class ScreenController extends Controller {
       "created_at" => $screen->getCreatedAt(),
       "width" => $screen->getWidth(),
       "height" => $screen->getHeight(),
-      "groups" => $screen->getGroups(),
     );
 
     // Send the json response back to client.
@@ -190,6 +189,7 @@ class ScreenController extends Controller {
       return new Response("", 404);
     }
 
+    // Set group id of screen.
     $groups = array();
     $groups[] = "group" . $screen->getId();
 

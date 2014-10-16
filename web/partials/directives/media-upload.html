@@ -35,8 +35,8 @@
     </div>
     <div>
       <div class="create-media--error-text">{{ uploadErrorText }}</div>
-      <div class="create-media--progress" data-ng-show="uploadInProgress" data-ng-show="uploader.progress > 0">
-        <div class="create-media--progress-bar" ng-style="{ 'width': uploader.progress + '%' }">{{ uploader.progress }} %</div>
+      <div class="create-media--progress" data-ng-show="uploadInProgress && uploader.progress > 0">
+        <div class="create-media--progress-bar" ng-style="{ 'width': getProgress() + '%' }">{{ getProgress() }} %</div>
       </div>
       <div class="create-media--text" data-ng-show="!uploadInProgress && uploadComplete">Upload gennemført</div>
 
