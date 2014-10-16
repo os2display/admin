@@ -31,18 +31,12 @@
     @extend %create-element--header-description-default;
   }
 
+
   &--button {
     @extend .button;
 
     display: inline-block;
     margin: 0 auto 1em;
-  }
-
-  &--spinner {
-    @extend .spinner;
-
-    display: inline-block;
-    text-align: center;
   }
 
 

@@ -345,4 +345,16 @@
     vertical-align: middle;
     width: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
   }
+
+
+  /* slide overview
+ ========================================================================== */
+  &--slide-link {
+    @include add-overlay(overview);
+  }
+
+  // Default check circled icon.
+  &--link-check {
+    @extend %image-check-icon--placeholder;
+  }
 }

@@ -63,6 +63,16 @@ $breakpoint-arrow-switch : 693px;
   }
 
 
+  &--finish-button {
+    @extend %create-element--finish-button-wrapper;
+  }
+
+
+  &--spinner {
+    @extend %create-element--submit-spinner;
+  }
+
+
   /* Create channel - set name (Page 1)
    ========================================================================== */
   &--form {
