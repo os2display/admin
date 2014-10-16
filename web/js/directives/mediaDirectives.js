@@ -275,6 +275,24 @@ ikApp.directive('ikMediaUpload', function() {
       };
 
       /**
+       * Returns the uploader progress.
+       * NB! THIS IS A HACK!
+       *
+       * @returns {*}
+       */
+      $scope.getProgress = function() {
+        if (!$scope.uploader.progress) {
+          return;
+        }
+
+        if ($scope.uploadInProgress) {
+          return $scope.uploader.progress - 5;
+        } else {
+          return $scope.uploader.progress
+        }
+      };
+
+      /**
        * After adding a file to the upload queue, add an empty title to the file item.
        */
       $scope.uploader.onAfterAddingFile = function(item) {
