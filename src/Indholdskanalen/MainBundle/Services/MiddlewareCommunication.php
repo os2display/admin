@@ -19,6 +19,11 @@ use JMS\Serializer\SerializerBuilder;
  */
 class MiddlewareCommunication extends ContainerAware
 {
+  protected $templateService;
+
+  function __construct(TemplateService $templateService) {
+    $this->templateService = $templateService;
+  }
 
   protected function curlSendChannel($channel) {
     $json = json_encode($channel);
@@ -50,6 +55,9 @@ class MiddlewareCommunication extends ContainerAware
   public function pushChannels() {
     // Get doctrine handle
     $doctrine = $this->container->get('doctrine');
+
+    // Templates
+    $templates = $this->templateService->getTemplates();
 
     // Path to server
     $pathToServer = $this->container->getParameter("absolute_path_to_server");
@@ -101,12 +109,22 @@ class MiddlewareCommunication extends ContainerAware
             }
           }
 
+          // Load template
+          $slideTemplate = "";
+
+          foreach ($templates as $template) {
+            if ($template->id == $slide->getTemplate()) {
+              $slideTemplate = $template->paths->live;
+              break;
+            }
+          }
+
           // Build slide entry
           $slideEntry = array(
             'id' => $slide->getId(),
             'title'   => $slide->getTitle(),
             'orientation' => $slide->getOrientation(),
-            'template' => $slide->getTemplate(),
+            'template' => $slideTemplate,
             'options' => $slide->getOptions(),
             'published' => $slide->getPublished(),
             'schedule_from' => $slide->getScheduleFrom(),
