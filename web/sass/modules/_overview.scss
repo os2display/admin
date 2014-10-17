@@ -213,16 +213,14 @@
 
     @include strip-link-styles($gray-darker);
 
+    &:first-child {
+      @include border-radius(.5em 0 0 .5em);
+    }
+
     &:last-child {
       border-right: 1px solid $gray-lighter;
-    }
 
-    &:first-child {
-      border-radius: (.5em 0 0 .5em);
-    }
-
-    &:last-child {
-      border-radius: (0 .5em .5em 0);
+      @include border-radius(0 .5em .5em 0);
     }
 
     &.is-active {

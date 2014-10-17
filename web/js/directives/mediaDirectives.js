@@ -70,8 +70,8 @@ ikApp.directive('ikMediaOverview', function() {
           function(data) {
             // Extract search ids.
             var ids = [];
-            for (var i = 0; i < data.length; i++) {
-              ids.push(data[i].id);
+            for (var i = 0; i < data.results.length; i++) {
+              ids.push(data.results[i].id);
             }
 
             mediaFactory.loadMediaBulk(ids).then(

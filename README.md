@@ -187,9 +187,14 @@ server {
   ssl off;
 
 ...
+
+And restart nginx:
+service nginx restart
 </pre>
 
-Also change the absolute_path_to_server parameter in app/config/parameters.yml to slight-gopher-8311.vagrantshare.com.
+Also
+change the absolute_path_to_server parameter in app/config/parameters.yml to slight-gopher-8311.vagrantshare.com.
+change web/js/configuration.js - address from 'https://' to "address": 'http://
 
 With these changes it is possible to get ZenCoder to work.
 
