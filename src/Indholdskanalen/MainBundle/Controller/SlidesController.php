@@ -31,15 +31,10 @@ class SlidesController extends Controller {
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
-    if ($slide_entities) {
-      $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()->setGroups(array('api')));
 
-      $response->setContent($jsonContent);
-    }
-    else {
-      $response->setContent(json_encode(array()));
-    }
+    $serializer = $this->get('jms_serializer');
+    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()->setGroups(array('api')));
+    $response->setContent($jsonContent);
 
     return $response;
   }

@@ -30,15 +30,9 @@ class ScreensController extends Controller {
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
-    if ($screen_entities) {
-      $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($screen_entities, 'json');
 
-      $response->setContent($jsonContent);
-    }
-    else {
-      $response->setContent(json_encode(array()));
-    }
+	  $serializer = $this->get('jms_serializer');
+	  $response->setContent($serializer->serialize($screen_entities, 'json', SerializationContext::create()->setGroups(array('api'))));
 
     return $response;
   }
