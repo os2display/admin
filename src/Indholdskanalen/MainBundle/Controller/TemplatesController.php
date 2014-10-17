@@ -32,7 +32,7 @@ class TemplatesController extends Controller {
     // Iterate through templates directory (configurable).
     if ($handle = opendir($templatesDirectory)) {
       while (false !== ($entry = readdir($handle))) {
-        if ($entry !== '.' && $entry !== '..') {
+        if (is_dir($templatesDirectory . $entry) && $entry !== '.' && $entry !== '..') {
           // Read config.json for template
           $str = file_get_contents($templatesDirectory . $entry . '/' . $entry . ".json");
           $obj = json_decode($str);
@@ -51,7 +51,9 @@ class TemplatesController extends Controller {
     }
 
     // Create response.
-    $response = new Response(json_encode($templates));
+	  $response = new Response();
+	  $response->headers->set('Content-Type', 'application/json');
+    $response->setContent(json_encode($templates));
 
     return $response;
   }
