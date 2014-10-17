@@ -323,7 +323,7 @@ class Screen {
 	{
 		$slides = array();
 		foreach($this->getChannels() as $channel) {
-			foreach($channel->getSlides() as $slide) {
+			foreach($channel->getPublishedSlides() as $slide) {
 				$slides[] = $slide;
 			}
 		}
