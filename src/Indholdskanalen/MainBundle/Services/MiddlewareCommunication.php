@@ -52,13 +52,8 @@ class MiddlewareCommunication extends ContainerAware
     // Get doctrine handle
     $doctrine = $this->container->get('doctrine');
 
-    // Path to server
-    $pathToServer = $this->container->getParameter("absolute_path_to_server");
-
     // Get all screens
     $screens = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
-
-
 
     // For each screen
     //   Join channels

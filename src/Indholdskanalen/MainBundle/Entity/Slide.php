@@ -23,7 +23,7 @@ class Slide {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "search", "sharing", "middleware"})
    */
   private $id;
 
@@ -173,7 +173,11 @@ class Slide {
    * Get template
    *
    * @return \string
+   * @VirtualProperty
+   * @SerializedName("template")
+   * @Groups({"middleware"})
    */
+
   public function getTemplate() {
     return $this->template;
   }
@@ -209,6 +213,9 @@ class Slide {
    * Get options
    *
    * @return string
+   * @VirtualProperty
+   * @SerializedName("options")
+   * @Groups({"middleware"})
    */
   public function getOptions() {
     return $this->options;
@@ -426,7 +433,7 @@ class Slide {
    *
    * @VirtualProperty
    * @SerializedName("media")
-   * @Groups({"api", "middleware"})
+   * @Groups({"api"})
    */
   public function getMedia()
   {

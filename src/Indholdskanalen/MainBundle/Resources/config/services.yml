@@ -22,7 +22,7 @@ services:
 
   indholdskanalen_main.serialization_listener:
     class: Indholdskanalen\MainBundle\EventListener\SerializationListener
-    arguments: [@sonata.media.pool]
+    arguments: [@sonata.media.pool, @service_container]
     tags:
       - { name: jms_serializer.event_subscriber}
 
