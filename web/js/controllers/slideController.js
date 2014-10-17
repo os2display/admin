@@ -13,7 +13,9 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
     $scope.templates = [];
     templateFactory.getTemplates().then(
       function(data) {
-        $scope.templates = data;
+        for (var key in data) {
+          $scope.templates.push(data[key]);
+        }
       }
     );
     $scope.channels = [];
@@ -152,7 +154,13 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
     $scope.selectTemplate = function(id) {
       $scope.slide.template = id;
 
-      var template = $scope.templates[id];
+      var template = null;
+
+      $scope.templates.forEach(function(element) {
+        if (element.id === id) {
+          template = element;
+        }
+      });
 
       if (template === null) {
         return;
