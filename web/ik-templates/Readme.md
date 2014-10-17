@@ -26,42 +26,42 @@ Template setup
 
 **Folder structure and naming example**
 
-- web
+web
 
 -- ik-templates
 
---- template-1
+---- template-1
 
----- template-1.html
+------ template-1.html
 
----- template-1-preview.html
+------ template-1-preview.html
 
----- template-1-edit.html
+------ template-1-edit.html
 
----- template-1.css
+------ template-1.css
 
----- _template-1.scss
+------ _template-1.scss
 
----- template-1.json
+------ template-1.json
 
----- template-1.png
+------ template-1.png
 
----- template-1.js
+------ template-1.js
 
---- text-bottom
+---- text-bottom
 
----- text-bottom.html
+------ text-bottom.html
 
----- text-bottom-preview.html
+------ text-bottom-preview.html
 
----- text-bottom-edit.html
+------ text-bottom-edit.html
 
----- text-bottom.css
+------ text-bottom.css
 
----- _text-bottom.scss
+------ _text-bottom.scss
 
----- text-bottom.json
+------ text-bottom.json
 
----- text-bottom.png
+------ text-bottom.png
 
----- text-bottom.js
+------ text-bottom.js
