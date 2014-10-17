@@ -21,10 +21,10 @@ Template setup
 * All files related to a template should be contained in the same template folder.
 * The folder name of a template folder should consist of only letters and dashes.
 * The optional sass file should be prefixed with underscore.
-* All other files within the folder should be named: folder-name.type (e.g manual-calendar.html)
+* All files within the folder should be contain the folder name. (e.g manual-calendar.html)
 
 
-### Folder structure and naming example**
+### Folder structure and naming example
 
 **/web**
 
