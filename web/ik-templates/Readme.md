@@ -24,13 +24,13 @@ Template setup
 * All other files within the folder should be named: folder-name.type (e.g manual-calendar.html)
 
 
-**Folder structure and naming example**
+### Folder structure and naming example**
 
-web
+**/web**
 
--- ik-templates
+-- **/ik-templates**
 
----- template-1
+---- **/template-1**
 
 ------ template-1.html
 
@@ -48,7 +48,7 @@ web
 
 ------ template-1.js
 
----- text-bottom
+---- **/text-bottom**
 
 ------ text-bottom.html
 
