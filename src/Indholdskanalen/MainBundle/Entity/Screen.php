@@ -293,7 +293,7 @@ class Screen {
 	 */
 	public function getChannelID()
 	{
-		return "group" . $this->getId();
+		return $this->getId();
 	}
 
 	/**
