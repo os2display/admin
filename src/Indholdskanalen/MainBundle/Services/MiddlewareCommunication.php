@@ -27,17 +27,15 @@ class MiddlewareCommunication extends ContainerAware
   }
 
   protected function curlSendChannel($channel) {
-    $json = json_encode($channel);
-
     // Send  post request to middleware (/push/channel).
     $url = $this->container->getParameter("middleware_host") . "/push/channel";
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $channel);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
       'Content-type: application/json',
-      'Content-Length: ' . strlen($json),
+      'Content-Length: ' . strlen($channel),
     ));
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
