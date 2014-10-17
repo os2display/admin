@@ -29,7 +29,7 @@ class TemplateService extends ContainerAware
     // Iterate through templates directory (configurable).
     if ($handle = opendir($path)) {
       while (false !== ($entry = readdir($handle))) {
-        if ($entry !== '.' && $entry !== '..') {
+        if (is_dir($path . "/" . $entry) && $entry !== '.' && $entry !== '..') {
           // Read config.json for template
           $str = file_get_contents($path . $entry . '/' . $entry . ".json");
           $obj = json_decode($str);
@@ -40,7 +40,7 @@ class TemplateService extends ContainerAware
           $obj->paths->edit = $serverAddress . $entry . '/' . $obj->paths->edit;
           $obj->paths->preview = $serverAddress . $entry . '/' . $obj->paths->preview;
 
-          $templates[] = $obj;
+          $templates[$entry] = $obj;
         }
       }
 

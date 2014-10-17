@@ -23,25 +23,25 @@ class Slide {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "search", "sharing", "middleware"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "search", "sharing", "middleware"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "search", "sharing", "middleware"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="template", type="string", nullable=true)
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   private $template;
 
@@ -53,7 +53,7 @@ class Slide {
 
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "search", "sharing", "middleware"})
    */
   private $options;
 
@@ -65,25 +65,25 @@ class Slide {
 
   /**
    * @ORM\Column(name="duration", type="integer", nullable=true)
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   private $duration;
 
   /**
    * @ORM\Column(name="schedule_from", type="integer", nullable=true)
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   private $schedule_from;
 
   /**
    * @ORM\Column(name="schedule_to", type="integer", nullable=true)
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   private $schedule_to;
 
   /**
    * @ORM\Column(name="published", type="boolean", nullable=true)
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   private $published;
 
@@ -102,7 +102,7 @@ class Slide {
   /**
    * @ORM\Column(name="media_type", type="string", nullable=true)
    *   "video" or "image".
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   private $mediaType;
 
@@ -173,7 +173,11 @@ class Slide {
    * Get template
    *
    * @return \string
+   * @VirtualProperty
+   * @SerializedName("template")
+   * @Groups({"middleware"})
    */
+
   public function getTemplate() {
     return $this->template;
   }
@@ -209,6 +213,9 @@ class Slide {
    * Get options
    *
    * @return string
+   * @VirtualProperty
+   * @SerializedName("options")
+   * @Groups({"middleware"})
    */
   public function getOptions() {
     return $this->options;
@@ -395,6 +402,30 @@ class Slide {
     return $this->mediaOrders;
   }
 
+
+  /**
+   * Set mediaType
+   *
+   * @param string $mediaType
+   * @return Slide
+   */
+  public function setMediaType($mediaType)
+  {
+    $this->mediaType = $mediaType;
+
+    return $this;
+  }
+
+  /**
+   * Get mediaType
+   *
+   * @return string
+   */
+  public function getMediaType()
+  {
+    return $this->mediaType;
+  }
+
   /**
    * Get media
    *
@@ -431,26 +462,5 @@ class Slide {
     return $result;
   }
 
-  /**
-   * Set mediaType
-   *
-   * @param string $mediaType
-   * @return Slide
-   */
-  public function setMediaType($mediaType)
-  {
-    $this->mediaType = $mediaType;
 
-    return $this;
-  }
-
-  /**
-   * Get mediaType
-   *
-   * @return string
-   */
-  public function getMediaType()
-  {
-    return $this->mediaType;
-  }
 }

@@ -11,6 +11,7 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializationContext;
 
 /**
  * Class MiddlewareCommunication
@@ -56,101 +57,14 @@ class MiddlewareCommunication extends ContainerAware
     // Get doctrine handle
     $doctrine = $this->container->get('doctrine');
 
-    // Templates
-    $templates = $this->templateService->getTemplates();
-
-    // Path to server
-    $pathToServer = $this->container->getParameter("absolute_path_to_server");
-
     // Get all screens
     $screens = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
 
-    // For each screen
-    //   Join channels
-    //   Push joined channels to the screen
     foreach($screens as $screen) {
-      $slides = array();
-      foreach($screen->getChannels() as $channel) {
-        $channelSlideOrders = $channel->getChannelSlideOrders();
-        foreach($channelSlideOrders as $channelSlideOrder) {
-          $slide = $channelSlideOrder->getSlide();
+      $serializer = $this->container->get('jms_serializer');
+      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('middleware')));
 
-          if (!$slide) {
-            continue;
-          }
-
-          if (!$slide->getPublished()) {
-            continue;
-          }
-
-          // Insert media paths.
-          $media = array();
-          foreach ($slide->getMediaOrders() as $mediaOrder) {
-            if ($slide->getMediaType() === 'image') {
-              $path = $this->container->get('sonata.media.twig.extension')->path($mediaOrder->getMedia(), 'reference');
-              $media[] = $pathToServer . $path;
-            }
-            else {
-              $video = $mediaOrder->getMedia();
-
-              $serializer = $this->container->get('jms_serializer');
-              $jsonContent = $serializer->serialize($video, 'json');
-
-              $content = json_decode($jsonContent);
-
-              if ($video) {
-                $urls = array(
-                  'mp4' => $pathToServer . $content->provider_metadata[0]->reference,
-                  'ogg' => $pathToServer . $content->provider_metadata[1]->reference,
-                );
-
-                $media[] = $urls;
-              }
-            }
-          }
-
-          // Load template
-          $slideTemplate = "";
-
-          foreach ($templates as $template) {
-            if ($template->id == $slide->getTemplate()) {
-              $slideTemplate = $template->paths->live;
-              break;
-            }
-          }
-
-          // Build slide entry
-          $slideEntry = array(
-            'id' => $slide->getId(),
-            'title'   => $slide->getTitle(),
-            'orientation' => $slide->getOrientation(),
-            'template' => $slideTemplate,
-            'options' => $slide->getOptions(),
-            'published' => $slide->getPublished(),
-            'schedule_from' => $slide->getScheduleFrom(),
-            'schedule_to' => $slide->getScheduleTo(),
-            'media' => $media,
-            'media_type' => $slide->getMediaType(),
-            'duration' => $slide->getDuration(),
-          );
-
-          $slides[] = $slideEntry;
-        }
-      }
-
-      // Build default screen array.
-      $screenArray = array(
-        'channelID' => "group" . $screen->getId(),
-        'groups' => array(
-          "group" .$screen->getId()
-        ),
-        'channelContent' => array(
-          'logo' => '',
-          'slides' => $slides,
-        ),
-      );
-
-      $this->curlSendChannel($screenArray);
+      $this->curlSendChannel($jsonContent);
     }
   }
 }

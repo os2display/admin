@@ -87,7 +87,8 @@
 
 
   &--content-element{
-    margin-bottom: 1em;
+    margin: 1em auto;
+    max-width: 80em;
   }
 
 
@@ -111,8 +112,21 @@
   }
 
 
+  &--text-wrapper {
+    margin-bottom: 2em;
+  }
+
+
+  &--text-icon {
+    display: inline-block;
+    margin-right: 1em;
+
+    @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
+  }
+
   &--text {
-    float: left;
+    color: #68ac18;
+    vertical-align: top;
   }
 
 
@@ -174,25 +188,28 @@
     height: auto;
     margin: 0 auto;
     position: relative;
-    padding-top: 56.25%; // responsive padding trick.
-    width: 80%;
   }
 
 
   &--video {
     display: block;
-    max-width: 94%; // Keep controls inside the video frame.
-    position: absolute;
-    width: 100%;
     top: 0;
-
-    // Center element.
-    margin: 0 auto;
-    left: 0;
-    right: 0;
   }
 
   &--video {
     z-index: 1;
+  }
+
+  &--no-video {
+    background: $gray-lightest;
+    border: 2px solid $gray-light;
+    box-sizing: border-box;
+    color: $gray;
+    font-size: 1rem;
+    height: 10em;
+    line-height: 10em;
+    vertical-align: middle;
+    width: 15em;
+    margin: 0 auto 1em;
   }
 }

@@ -14,7 +14,7 @@ $pager--text-color: $gray-lighter;
 $pager--valid: $beige;
 
 
-/* Styles
+/* Pager for the creation pages (The one just below header.)
    ========================================================================== */
 
 .pager {
@@ -85,4 +85,43 @@ $pager--valid: $beige;
       display: block;
     }
   }
+
+  /* Pager for the search result pages.
+     ========================================================================== */
+
+  &--search{
+    margin-bottom: 2em;
+    text-align: center;
+  }
+
+  &--search-item {
+    display: inline-block;
+    background: $gray-lightest;
+    border: 1px solid $gray-lighter;
+    box-sizing: border-box;
+    border-right: 0;
+    cursor: pointer;
+    margin-left: $grid-markup-fix;
+    text-align: center;
+
+    &:first-child {
+      @include border-radius(.5em 0 0 .5em);
+    }
+
+    &:last-child {
+      border-right: 1px solid $gray-lighter;
+
+      @include border-radius(0 .5em .5em 0);
+    }
+
+    &.is-active {
+      background: $beige;
+    }
+  }
+
+  &--search-item-inner {
+    padding: .4em .9em;
+    display: block;
+  }
 }
+
