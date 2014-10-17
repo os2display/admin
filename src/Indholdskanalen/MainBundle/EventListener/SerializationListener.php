@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\EventListener;
 
+use Indholdskanalen\MainBundle\Services\TemplateService;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Provider\Pool;
@@ -21,13 +22,20 @@ class SerializationListener implements EventSubscriberInterface
 	protected $container;
 
   /**
+   * @var TemplateService
+   */
+  protected $templateService;
+
+  /**
    * @param Pool $mediaService
    * @param Container $container
+   * @param TemplateService $templateService
    */
-  public function __construct(Pool $mediaService, Container $container)
+  public function __construct(Pool $mediaService, Container $container, TemplateService $templateService)
   {
     $this->mediaService = $mediaService;
 	  $this->container = $container;
+    $this->templateService = $templateService;
   }
 
   /**
@@ -41,6 +49,11 @@ class SerializationListener implements EventSubscriberInterface
     );
   }
 
+  /**
+   * Add fields when serializing media.
+   *
+   * @param ObjectEvent $event
+   */
   public function onPostMediaSerialize(ObjectEvent $event)
   {
     $context = $event->getContext();
@@ -64,19 +77,23 @@ class SerializationListener implements EventSubscriberInterface
     );
   }
 
+  /**
+   * Add fields when serializing slide.
+   *
+   * @param ObjectEvent $event
+   */
 	public function onPostSlideSerialize(ObjectEvent $event)
 	{
 		$context = $event->getContext();
 		$context->attributes->get('groups')->map(
 			function(array $groups) use ($event) {
-				$urls = array();
-
 				// Middleware Serialization
 				if (in_array('middleware', $groups)) {
-					$slide = $event->getObject();
+          $urls = array();
+
+          $slide = $event->getObject();
 					foreach($slide->getMedia() as $media) {
 						$providerName = $media->getProviderName();
-						$urls = array();
 
 						// Video
 						if($providerName === 'sonata.media.provider.zencoder') {
@@ -93,12 +110,12 @@ class SerializationListener implements EventSubscriberInterface
 							$urls[] = $provider->generatePublicUrl($media, 'reference');
 						}
 					}
+          $event->getVisitor()->addData('media', $urls);
 
-					$event->getVisitor()->addData('media', $urls);
+          $templates = $this->templateService->getTemplates();
+          $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
 				}
-
 			}
 		);
 	}
-
 }

@@ -203,8 +203,8 @@ class Channel {
     return $this->channelSlideOrders;
   }
 
-  /**
-   * Get slides
+	/**
+   * Get all slides
    *
    * @return \Doctrine\Common\Collections\Collection
    *
@@ -212,7 +212,7 @@ class Channel {
    * @SerializedName("slides")
    * @Groups({"api"})
    */
-  public function getSlides()
+  public function getAllSlides()
   {
     $result = new ArrayCollection();
     foreach($this->getChannelSlideOrders() as $slideorder) {
@@ -220,5 +220,22 @@ class Channel {
     }
     return $result;
   }
+
+	/**
+	 * Get all published slides
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getPublishedSlides()
+	{
+		$result = new ArrayCollection();
+		foreach($this->getChannelSlideOrders() as $slideorder) {
+			$slide = $slideorder->getSlide();
+			if($slide->getPublished()) {
+				$result->add($slide);
+			}
+		}
+		return $result;
+	}
 
 }

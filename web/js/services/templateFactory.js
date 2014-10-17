@@ -10,7 +10,6 @@ ikApp.factory('templateFactory', ['$q', '$http',
   function($q, $http) {
     var factory = {};
     var templates = null;
-    var orderedTemplates = null;
 
     /**
      * Gets templates from cache or symfony.
@@ -25,12 +24,8 @@ ikApp.factory('templateFactory', ['$q', '$http',
       }
       else {
         $http.get('/api/templates/')
-          .success(function(data, status) {
+          .success(function(data) {
             templates = data;
-            orderedTemplates = [];
-            templates.forEach(function(element, index) {
-              orderedTemplates[element.id] = element;
-            });
             defer.resolve(templates);
           })
           .error(function(data, status) {
@@ -50,13 +45,13 @@ ikApp.factory('templateFactory', ['$q', '$http',
     factory.getTemplate = function(id) {
       var defer = $q.defer();
 
-      if (orderedTemplates !== null) {
-        defer.resolve(orderedTemplates[id]);
+      if (templates !== null) {
+        defer.resolve(templates[id]);
       }
       else {
         factory.getTemplates().then(
           function(data) {
-            defer.resolve(orderedTemplates[id]);
+            defer.resolve(data[id]);
           },
           function(reason) {
             defer.reject(reason);

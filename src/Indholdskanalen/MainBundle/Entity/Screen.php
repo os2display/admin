@@ -293,7 +293,7 @@ class Screen {
 	 */
 	public function getChannelID()
 	{
-		return "group" . $this->getId();
+		return $this->getId();
 	}
 
 	/**
@@ -323,7 +323,7 @@ class Screen {
 	{
 		$slides = array();
 		foreach($this->getChannels() as $channel) {
-			foreach($channel->getSlides() as $slide) {
+			foreach($channel->getPublishedSlides() as $slide) {
 				$slides[] = $slide;
 			}
 		}
