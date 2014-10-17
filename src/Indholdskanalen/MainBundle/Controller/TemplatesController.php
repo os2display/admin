@@ -29,7 +29,9 @@ class TemplatesController extends Controller {
     $templates = $templateService->getTemplates();
 
     // Create response.
-    $response = new Response(json_encode($templates));
+	  $response = new Response();
+	  $response->headers->set('Content-Type', 'application/json');
+    $response->setContent(json_encode($templates));
 
     return $response;
   }
