@@ -152,13 +152,7 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
     $scope.selectTemplate = function(id) {
       $scope.slide.template = id;
 
-      var template = null;
-
-      $scope.templates.forEach(function(element) {
-        if (element.id === id) {
-          template = element;
-        }
-      });
+      var template = $scope.templates[id];
 
       if (template === null) {
         return;
