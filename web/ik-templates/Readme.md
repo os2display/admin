@@ -1,3 +1,3 @@
 Template setup
 =============
-[link](ik3-templates.pdf)
+[link](IK3-templates.pdf)
