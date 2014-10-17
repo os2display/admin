@@ -246,6 +246,7 @@ ikApp.directive('ikMediaUpload', function() {
         $scope.uploadComplete = false;
         $scope.uploadErrors = false;
         $scope.currentStep = 1;
+        $scope.uploadErrorText = '';
       };
 
       /**
@@ -319,7 +320,7 @@ ikApp.directive('ikMediaUpload', function() {
         $scope.uploadInProgress = false;
 
         if (status === 413) {
-          $scope.uploadErrorText = "Billedet var for stort (fejlkode: 413)";
+          $scope.uploadErrorText = "Filen var for stor (fejlkode: 413)";
         } else {
           $scope.uploadErrorText = "Der skete en fejl (fejlkode: " + status + ")";
         }

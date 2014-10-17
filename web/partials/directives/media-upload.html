@@ -38,7 +38,7 @@
       <div class="create-media--progress" data-ng-show="uploadInProgress && uploader.progress > 0">
         <div class="create-media--progress-bar" ng-style="{ 'width': getProgress() + '%' }">{{ getProgress() }} %</div>
       </div>
-      <div class="create-media--text-wrapper" data-ng-show="!uploadInProgress && uploadComplete"><span class="create-media--text-icon"></span><span class="create-media--text">Upload gennemført</span></div>
+      <div class="create-media--text-wrapper" data-ng-show="!uploadInProgress && uploadComplete && !uploadErrors"><span class="create-media--text-icon"></span><span class="create-media--text">Upload gennemført</span></div>
 
       <button class="create-media--button" data-ng-show="!uploadInProgress && !uploadComplete" data-ng-click="upload()" data-ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
       <button class="create-media--button" data-ng-show="!uploadInProgress && !uploadComplete && uploader.queue.length > 0" data-ng-click="clearQueue()" data-ng-disabled="!uploader.queue.length">Ryd</button>

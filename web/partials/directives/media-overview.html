@@ -35,7 +35,7 @@
               <img class="overview--media-image" data-ng-src="{{ mediaElement.provider_metadata[0].thumbnails[1].reference }}"/>
             </div>
             <div data-ng-if="!mediaElement.provider_metadata[0].thumbnails[1].reference">
-              <div class="overview--no-video">Video ikke tilgængelig endnu</div>
+              <div class="overview--no-video">Video ikke klar</div>
             </div>
             <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === mediaElement.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{mediaElement.name}} (video)</span></div></div>
           </a>
