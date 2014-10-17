@@ -6,11 +6,11 @@ Template setup
 
 
 ### Navngivning
-* live.html
+* live.html  
   The html displayed in the client
 
 * preview.html
-  
+
 * edit.html
 * styles.scss
 * styles.css
