@@ -145,6 +145,8 @@ ikApp.directive('ikSlideEditable', ['templateFactory', function(templateFactory)
  * Directive to show the slide overview.
  */
 ikApp.directive('ikSlideOverview', function() {
+  "use strict";
+
   return {
     restrict: 'E',
     scope: {
@@ -158,6 +160,13 @@ ikApp.directive('ikSlideOverview', function() {
       $scope.orientation = 'all';
       $scope.sort = {"created_at": "desc"};
 
+      // Default pager values.
+      $scope.pager = {
+        "size": 3,
+        "page": 0
+      };
+      $scope.hits = 0;
+
       // Slides to display.
       $scope.slides = [];
 
@@ -169,7 +178,8 @@ ikApp.directive('ikSlideOverview', function() {
           "created_at": {
             "order": "desc"
           }
-        }
+        },
+        'pager': $scope.pager
       };
 
       /**
@@ -181,10 +191,13 @@ ikApp.directive('ikSlideOverview', function() {
 
         slideFactory.searchSlides(search).then(
           function (data) {
+            // Total hits.
+            $scope.hits = data.hits;
+
             // Extract search ids.
             var ids = [];
-            for (var i = 0; i < data.length; i++) {
-              ids.push(data[i].id);
+            for (var i = 0; i < data.results.length; i++) {
+              ids.push(data.results[i].id);
             }
 
             // Load slides bulk.
@@ -314,5 +327,5 @@ ikApp.directive('ikSlideOverview', function() {
       $scope.updateSearch();
     },
     templateUrl: '/partials/directives/slide-overview.html'
-  }
+  };
 });

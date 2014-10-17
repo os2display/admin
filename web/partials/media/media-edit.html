@@ -6,17 +6,19 @@
         <img data-ng-src="{{media.urls.default_landscape}}" alt="{{ media.name }}" title="{{media.name}}" >
       </div>
       <div ng-switch-when="video" class="create-media--video-container">
-        <video width="100%" height="100%" controls class="create-media--video">
-          <source data-ng-src="{{videoPath(media, 'ogg')}}"  type="video/ogg">
-          <source data-ng-src="{{videoPath(media, 'mpeg4')}}"  type="video/mp4">
-          <div class="create-media--currently-encoding">
-            Videoen bliver indkodet. Dette kan tage et par minutter, men afhænger af størrelsen på den uploadede fil.
-          </div>
-        </video>
+        <div ng-if="media.provider_metadata.0">
+          <video width="100%" controls class="create-media--video">
+            <source data-ng-src="{{videoPath(media, 'ogg')}}"  type="video/ogg">
+            <source data-ng-src="{{videoPath(media, 'mpeg4')}}"  type="video/mp4">
+          </video>
+        </div>
+        <div class="create-media--currently-encoding" ng-if="!media.provider_metadata.0">
+          <div class="create-media--no-video">Video not available.</div>
+          Videoen bliver indkodet. Dette kan tage et par minutter, men afhænger af størrelsen på den uploadede fil.
+        </div>
       </div>
-      <div ng-switch-default>
-        <div class="create-media--spinner"></div>
-      </div>
+
+      <div class="create-media--spinner"></div>
     </div>
      <p><a class="create-media--button" data-ng-click="delete()">Slet</a></p>
   </section>
