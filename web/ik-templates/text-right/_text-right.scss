@@ -9,7 +9,7 @@
   height: 100%;
   right: 0;
 
-  @include border-radius(10px);
+  @include border-radius(1em);
 }
 
 
@@ -24,7 +24,7 @@
   width: 90%;
   height: 90%;
 
-  @include border-radius(4%);
+  @include border-radius(1em);
 }
 
 

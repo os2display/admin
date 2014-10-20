@@ -8,7 +8,7 @@
   width: 100%;
   bottom: 0;
 
-  @include border-radius(10px);
+  @include border-radius(1em);
 }
 
 
@@ -22,7 +22,7 @@
   position:relative;
   width: 95%;
 
-  @include border-radius(4%);
+  @include border-radius(1em);
 }
 
 

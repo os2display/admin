@@ -3523,9 +3523,9 @@ html.is-locked body {
 .text-top--text-wrapper {
   position: absolute;
   width: 100%;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 14, ../ik-templates/text-top/_text-top.scss */
 .text-top--text-inner {
@@ -3537,9 +3537,9 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 95%;
-  -moz-border-radius: 4%;
-  -webkit-border-radius: 4%;
-  border-radius: 4%; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 28, ../ik-templates/text-top/_text-top.scss */
 .text-top--header {
@@ -3558,9 +3558,9 @@ html.is-locked body {
   position: absolute;
   width: 100%;
   bottom: 0;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 15, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--text-inner {
@@ -3572,9 +3572,9 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 95%;
-  -moz-border-radius: 4%;
-  -webkit-border-radius: 4%;
-  border-radius: 4%; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 29, ../ik-templates/text-bottom/_text-bottom.scss */
 .text-bottom--header {
@@ -3599,9 +3599,9 @@ html.is-locked body {
   width: 50%;
   height: 100%;
   left: 0;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 16, ../ik-templates/text-left/_text-left.scss */
 .text-left--text-inner {
@@ -3614,9 +3614,9 @@ html.is-locked body {
   position: relative;
   width: 90%;
   height: 90%;
-  -moz-border-radius: 4%;
-  -webkit-border-radius: 4%;
-  border-radius: 4%; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 31, ../ik-templates/text-left/_text-left.scss */
 .text-left--header {
@@ -3636,9 +3636,9 @@ html.is-locked body {
   width: 50%;
   height: 100%;
   right: 0;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 16, ../ik-templates/text-right/_text-right.scss */
 .text-right--text-inner {
@@ -3651,9 +3651,9 @@ html.is-locked body {
   position: relative;
   width: 90%;
   height: 90%;
-  -moz-border-radius: 4%;
-  -webkit-border-radius: 4%;
-  border-radius: 4%; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 31, ../ik-templates/text-right/_text-right.scss */
 .text-right--header {
@@ -3676,9 +3676,9 @@ html.is-locked body {
 .portrait-text-top--text-wrapper {
   position: absolute;
   width: 100%;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 14, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--text-inner {
@@ -3690,9 +3690,9 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 93%;
-  -moz-border-radius: 4%;
-  -webkit-border-radius: 4%;
-  border-radius: 4%; }
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
 /* line 28, ../ik-templates/portrait-text-top/_portrait-text-top.scss */
 .portrait-text-top--header {
@@ -3743,9 +3743,9 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    -moz-border-radius: 4%;
-    -webkit-border-radius: 4%;
-    border-radius: 4%; }
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em; }
   /* line 34, ../ik-templates/manual-calendar/_manual-calendar.scss */
   .manual-calendar--header {
     font-size: 100%;
