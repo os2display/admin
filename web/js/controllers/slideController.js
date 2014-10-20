@@ -152,34 +152,40 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      * @param id
      */
     $scope.selectTemplate = function(id) {
+      // Set name of template.
       $scope.slide.template = id;
 
+      // Find selected template.
       var template = null;
-
       $scope.templates.forEach(function(element) {
         if (element.id === id) {
           template = element;
         }
       });
 
+      // Bail out if no template is selected.
       if (template === null) {
         return;
       }
 
-      if ($scope.slide.options == null) {
-        $scope.slide.options = template.emptyoptions;
+      // Make sure the options field has been set.
+      if (!$scope.slide.options) {
+        $scope.slide.options = {};
       }
-      else {
-        angular.forEach(template.emptyoptions, function(value, key)  {
-          if ($scope.slide.options[key] == undefined) {
-            $scope.slide.options[key] = value;
-          }
-        });
-      }
-      if ($scope.slide.options.headline !== undefined && $scope.slide.options.headline == '') {
+
+      // Update options field.
+      angular.forEach(template.emptyoptions, function(value, key)  {
+        if ($scope.slide.options[key] == undefined) {
+          $scope.slide.options[key] = value;
+        }
+      });
+
+      // Set the headline equal to the title, if it is empty.
+      if ($scope.slide.options.headline == '') {
         $scope.slide.options.headline = $scope.slide.title;
       }
 
+      // Get the media type from the template.
       $scope.slide.media_type = template.mediatype;
     };
 
