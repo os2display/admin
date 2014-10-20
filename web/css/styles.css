@@ -2054,16 +2054,15 @@ html.is-locked body {
     display: inline-block;
     margin-left: -4px;
     padding: 1em;
-    width: 20%; }
-  /* line 268, ../sass/modules/_edit-menu.scss */
-  .edit-menu--calendar-form-element-wrapper-link {
+    width: 20%;
     vertical-align: middle; }
-  /* line 272, ../sass/modules/_edit-menu.scss */
+  /* line 269, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-label {
     text-align: left; }
-  /* line 276, ../sass/modules/_edit-menu.scss */
+  /* line 273, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-add-date {
     cursor: pointer;
+    margin-top: 1.5em;
     background: url('/../images/icons-s1200d42609.png');
     -moz-background-size: 71px 1040px;
     -o-background-size: 71px 1040px;
@@ -2072,15 +2071,15 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -740px; }
-  /* line 282, ../sass/modules/_edit-menu.scss */
+  /* line 280, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-date-events {
     display: block;
     height: 60%;
     position: relative; }
-  /* line 290, ../sass/modules/_edit-menu.scss */
+  /* line 288, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-date-event.is-outdated {
     background: #f0f0e1; }
-  /* line 295, ../sass/modules/_edit-menu.scss */
+  /* line 293, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-remove-date {
     cursor: pointer;
     float: left;
@@ -2092,12 +2091,12 @@ html.is-locked body {
     width: 36px;
     height: 36px;
     background-position: 0 -583px; }
-  /* line 302, ../sass/modules/_edit-menu.scss */
+  /* line 300, ../sass/modules/_edit-menu.scss */
   .edit-menu--calendar-remove-date-notice {
     display: none;
     line-height: 36px;
     font-weight: bold; }
-    /* line 307, ../sass/modules/_edit-menu.scss */
+    /* line 305, ../sass/modules/_edit-menu.scss */
     .edit-menu--calendar-remove-date-notice.is-outdated {
       display: block; }
 
@@ -3243,7 +3242,11 @@ html.is-locked body {
     /* line 117, ../sass/modules/_pager.scss */
     .pager--search-item.is-active {
       background: #f0f0e1; }
-  /* line 122, ../sass/modules/_pager.scss */
+    /* line 121, ../sass/modules/_pager.scss */
+    .pager--search-item.is-disabled {
+      color: #CCC;
+      cursor: default; }
+  /* line 127, ../sass/modules/_pager.scss */
   .pager--search-item-inner {
     padding: .4em .9em;
     display: block; }

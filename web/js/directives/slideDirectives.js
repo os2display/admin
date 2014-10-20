@@ -162,7 +162,7 @@ ikApp.directive('ikSlideOverview', function() {
 
       // Default pager values.
       $scope.pager = {
-        "size": 3,
+        "size": 9,
         "page": 0
       };
       $scope.hits = 0;
