@@ -3322,7 +3322,11 @@ html.is-locked body {
     /* line 117, ../sass/modules/_pager.scss */
     .pager--search-item.is-active {
       background: #f0f0e1; }
-  /* line 122, ../sass/modules/_pager.scss */
+    /* line 121, ../sass/modules/_pager.scss */
+    .pager--search-item.is-disabled {
+      color: #CCC;
+      cursor: default; }
+  /* line 127, ../sass/modules/_pager.scss */
   .pager--search-item-inner {
     padding: .4em .9em;
     display: block; }
