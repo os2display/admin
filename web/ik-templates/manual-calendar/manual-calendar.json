@@ -4,7 +4,8 @@
   "paths": {
     "live": "manual-calendar.html",
     "edit": "manual-calendar-edit.html",
-    "preview": "manual-calendar.html"
+    "preview": "manual-calendar.html",
+    "css": "manual-calendar.css"
   },
   "orientation": "landscape",
   "mediatype": "image",

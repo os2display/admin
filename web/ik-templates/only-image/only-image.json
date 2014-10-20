@@ -4,7 +4,8 @@
   "paths": {
     "live": "only-image.html",
     "edit": "only-image-edit.html",
-    "preview": "only-image.html"
+    "preview": "only-image.html",
+    "css": "only-image.css"
   },
   "orientation": "landscape",
   "mediatype": "image",

@@ -1,18 +1,20 @@
-.text-bottom {
+@import "compass/css3";
+@import "../_imports.scss";
+
+.portrait-text-top {
   background-size: cover;
 }
 
 
-.text-bottom--text-wrapper {
+.portrait-text-top--text-wrapper {
   position: absolute;
   width: 100%;
-  bottom: 0;
 
   @include border-radius(1em);
 }
 
 
-.text-bottom--text-inner {
+.portrait-text-top--text-inner {
   background: rgba(0,0,0,0.7);
   box-sizing: border-box;
   color: #fff;
@@ -20,13 +22,13 @@
   padding: 4%;
   text-align: left;
   position:relative;
-  width: 95%;
+  width: 93%;
 
   @include border-radius(1em);
 }
 
 
-.text-bottom--header {
+.portrait-text-top--header {
   @extend %inline-textarea;
 
   &.has-placeholder {
@@ -37,7 +39,7 @@
 }
 
 
-.text-bottom--description {
+.portrait-text-top--description {
   @extend %inline-textarea;
 
   &.has-placeholder {
@@ -48,14 +50,14 @@
 }
 
 
-.text-bottom--edit-box-settings {
+.portrait-text-top--edit-box-settings {
   @extend %slide--edit-box-settings;
+
+  right: -15px;
+  top: -15px;
 }
 
 
-.text-bottom--edit-image-settings {
+.portrait-text-top--edit-image-settings {
   @extend %slide--edit-image-settings;
-
-  bottom: auto;
-  top: 15%;
 }

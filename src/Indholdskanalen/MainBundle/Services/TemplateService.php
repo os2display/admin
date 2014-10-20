@@ -39,6 +39,7 @@ class TemplateService extends ContainerAware
           $obj->paths->live = $serverAddress . $entry . '/' . $obj->paths->live;
           $obj->paths->edit = $serverAddress . $entry . '/' . $obj->paths->edit;
           $obj->paths->preview = $serverAddress . $entry . '/' . $obj->paths->preview;
+          $obj->paths->css = $serverAddress . $entry . '/' . $obj->paths->css;
 
           $templates[$entry] = $obj;
         }
