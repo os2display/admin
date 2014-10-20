@@ -263,9 +263,6 @@
     margin-left: -4px;
     padding: 1em;
     width: 20%;
-  }
-
-  &--calendar-form-element-wrapper-link {
     vertical-align: middle;
   }
 
@@ -275,6 +272,7 @@
 
   &--calendar-add-date {
     cursor: pointer;
+    margin-top: 1.5em;
 
     @include generate-sprite-image($dashboard-sprites, 'plus-icon', 55);
   }
