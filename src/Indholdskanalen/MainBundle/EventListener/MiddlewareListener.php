@@ -32,6 +32,15 @@ class MiddlewareListener {
    * @param LifecycleEventArgs $args
    */
   public function postUpdate(LifecycleEventArgs $args) {
+    // Get the current entity.
+    $entity = $args->getEntity();
+    $type = get_class($entity);
+
+    // Do not push channels on user update.
+    if ($type === 'Application\Sonata\UserBundle\Entity\User') {
+      return;
+    }
+
     $this->middleware->pushChannels();
   }
 }
