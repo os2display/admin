@@ -90,13 +90,13 @@ class Slide {
   /**
    * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="slide")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
-   **/
+   */
   private $channelSlideOrders;
 
   /**
    * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="slide")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
-   **/
+   */
   private $mediaOrders;
 
   /**

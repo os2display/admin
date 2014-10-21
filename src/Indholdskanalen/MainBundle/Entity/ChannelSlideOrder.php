@@ -31,17 +31,17 @@ class ChannelSlideOrder {
   private $sortOrder;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Slide", inversedBy="channelslideorders")
+   * @ORM\ManyToOne(targetEntity="Slide", inversedBy="channelSlideOrders")
    * @ORM\JoinColumn(name="slide_id", referencedColumnName="id")
    * @Groups({"api"})
-   **/
+   */
   private $slide;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Channel", inversedBy="channelslideorders")
+   * @ORM\ManyToOne(targetEntity="Channel", inversedBy="channelSlideOrders")
    * @ORM\JoinColumn(name="channel_id", referencedColumnName="id")
    * @Groups({"api"})
-   **/
+   */
   private $channel;
 
   /**
