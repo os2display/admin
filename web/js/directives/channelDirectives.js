@@ -28,7 +28,7 @@ ikApp.directive('ikChannel', ['$interval', '$location',
           }
 
           // If channel is empty, display empty channel.
-          if (scope.ikChannel.length <= 0) {
+          if (scope.ikChannel.slides.length <= 0) {
             scope.templateURL = 'partials/channel/empty.html';
           }
           else {

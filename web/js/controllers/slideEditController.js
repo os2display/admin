@@ -19,13 +19,6 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     // Get the slide from the backend.
     slideFactory.getEditSlide(null).then(function(data) {
       $scope.slide = data;
-
-      // @TODO: refactor to check on media_type on slide instead of template.
-      if ($scope.slide.media_type === 'video') {
-        $scope.selectedMediaType = 'video';
-      } else {
-        $scope.selectedMediaType = 'image';
-      }
     });
 
     // Setup editor states and functions.
@@ -181,14 +174,15 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
     // Register event listener for select media.
     $scope.$on('mediaOverview.selectMedia', function(event, media) {
-      var index = -1;
-      $scope.slide.media.forEach(function(element, elIndex, array) {
-        if (element.id == media.id) {
-          index = elIndex;
+      var containsMedia = false;
+
+      $scope.slide.media.forEach(function(element) {
+        if (element.id === media.id) {
+          containsMedia = true;
         }
       });
 
-      if (index > -1) {
+      if (containsMedia) {
         $scope.slide.media.length = 0;
       }
       else {

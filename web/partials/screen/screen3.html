@@ -5,13 +5,13 @@
     <div class="create-channel--add-slide-button" data-ng-click="editor.toggleChannelOverviewEditor()">Tilføj kanaler</div>
     <div class="overview--channels">
       <div class="overview--channel" data-ng-repeat="channel in screen.channels">
-        <div class="create-screen--channel-link" data-ng-class="{'is-selected': hasChannel(channel)}" ng-click="toggleChannel(channel)">
+        <div class="create-screen--channel-link" data-ng-class="{'is-selected': hasChannel(channel)}" data-ng-click="toggleChannel(channel)">
           <span class="create-screen--overlay">
             <span class="create-screen--link-check"></span>
           </span>
           <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}" ik-single-slide="true"></ik-channel>
         </div>
-        <a href="/#/channel/{{channel.id}}"><div class="overview--channel-label">{{channel.title}}</div></a>
+        <div class="overview--channel-label">{{channel.title}}</div>
         <span class="overview--channel-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
       </div>
     </div>
@@ -22,7 +22,7 @@
   </div>
 </section>
 
-<!-- Select slide editor -->
+<!-- Select channel editor -->
 <div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.channelOverviewEditor, 'is-hidden': !editor.channelOverviewEditor}" >
   <div class="edit-menu--content-inner">
     <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleChannelOverviewEditor()">

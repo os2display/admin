@@ -7,7 +7,7 @@
         <property name="enabled" type="boolean" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write" />
 
         <property         name="providerName"      type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
-        <property         name="providerStatus"    type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
+        <property         name="providerStatus"    type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
         <property         name="providerReference" type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
         <virtual-property name="providerMetadata"  type="array"   expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api, middleware" method="getProviderMetadata" />

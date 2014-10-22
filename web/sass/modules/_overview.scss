@@ -44,7 +44,7 @@
     margin: 0 0 $gutter;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 $gutter $gutter 0;
+      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
     }
 
     @include strip-link-styles();
@@ -61,7 +61,7 @@
     vertical-align: middle;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 $gutter $gutter 0;
+      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
     }
   }
 
@@ -166,6 +166,10 @@
       width: 70%;
       display: inline-block;
       float: left;
+
+      &.full-width {
+        width: 100%;
+      }
     }
   }
 
@@ -346,6 +350,9 @@
     width: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
   }
 
+  &--media-link {
+    @include add-overlay(overview);
+  }
 
   /* slide overview
  ========================================================================== */
