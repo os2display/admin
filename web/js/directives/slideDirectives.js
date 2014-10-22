@@ -38,7 +38,9 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
               scope.ikSlide.currentImage = "";
             }
             else {
-              scope.ikSlide.currentImage = scope.ikSlide.media[0].provider_metadata[0].thumbnails[1].reference;
+              if (scope.ikSlide.media[0].provider_metadata.length > 0) {
+                scope.ikSlide.currentImage = scope.ikSlide.media[0].provider_metadata[0].thumbnails[1].reference;
+              }
             }
           }
           else {
