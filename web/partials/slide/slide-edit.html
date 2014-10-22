@@ -42,7 +42,7 @@
             <button class="edit-menu--background-button" data-ng-click="pickFromComputer()">Vælg fil fra computer</button>
             <p class="edit-menu--divider">- eller -</p>
             <label class="edit-menu-background--label">Vælg en baggrundsfarve</label>
-            <input colorpicker="rgba" class="form-slide-background-background-color edit-menu--background-form-element" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
+            <input colorpicker="hex" class="form-slide-background-background-color edit-menu--background-form-element" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="edit-menu--background-page-inner">
           <h2 class="edit-menu--background-header">Vælg fil fra medier</h2>
-          <ik-media-overview media-type="{{selectedMediaType}}" auto-search="false" ik-hide-filters="true"></ik-media-overview>
+          <ik-media-overview ik-media-type="ikSlide.media_type" ik-auto-search="false" ik-hide-filters="true" ik-selected-media="ikSlide.media"></ik-media-overview>
         </div>
       </div>
       <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-computer'">
@@ -99,7 +99,7 @@
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
               <label class="edit-menu--calendar-label">Sted</label>
-              <input class="edit-menu--calendar-form-element" type="text" placeholder="Botanisk have" ng-model="addevent.place">
+              <input class="edit-menu--calendar-form-element" type="text" placeholder="Botanisk have" data-ng-model="addevent.place">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
               <label class="edit-menu--calendar-label">Fra</label>

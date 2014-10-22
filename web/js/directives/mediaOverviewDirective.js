@@ -18,8 +18,10 @@ ikApp.directive('ikMediaOverview', function() {
   return {
     restrict: 'E',
     scope: {
-      mediaType: '@',
-      autoSearch: '@'
+      ikMediaType: '@',
+      ikAutoSearch: '@',
+      ikHideFilters: '=',
+      ikSelectedMedia: '='
     },
     controller: function($scope, mediaFactory) {
       // Set default orientation and sort.
@@ -94,10 +96,27 @@ ikApp.directive('ikMediaOverview', function() {
         );
       };
 
-      // Send the default search query.
-      if ($scope.autoSearch) {
-        $scope.updateSearch();
-      }
+      /**
+       * Returns true if media is in selected media array.
+       *
+       * @param media
+       * @returns {boolean}
+       */
+      $scope.mediaSelected = function mediaSelected(media) {
+        if (!$scope.ikSelectedMedia) {
+          return false;
+        }
+
+        var res = false;
+
+        $scope.ikSelectedMedia.forEach(function(element, index) {
+          if (element.id == media.id) {
+            res = true;
+          }
+        });
+
+        return res;
+      };
 
       /**
        * Set the media type to filter on.
@@ -148,24 +167,6 @@ ikApp.directive('ikMediaOverview', function() {
       };
 
       /**
-       * Emits event when the user clicks a media.
-       *
-       * @param mediaElement
-       */
-      $scope.mediaOverviewClickMedia = function mediaOverviewClickImage(mediaElement) {
-        $scope.$emit('mediaOverview.selectMedia', mediaElement);
-      };
-
-      /**
-       * Handle mediaOverview.updateSearch events.
-       */
-      $scope.$on('mediaOverview.updateSearch', function(event) {
-        $scope.updateSearch();
-
-        event.preventDefault();
-      });
-
-      /**
        * Changes the sort order and updated the images.
        *
        * @param sort_field
@@ -189,6 +190,29 @@ ikApp.directive('ikMediaOverview', function() {
           $scope.updateSearch();
         }
       };
+
+      /**
+       * Emits event when the user clicks a media.
+       *
+       * @param mediaElement
+       */
+      $scope.mediaOverviewClickMedia = function mediaOverviewClickImage(mediaElement) {
+        $scope.$emit('mediaOverview.selectMedia', mediaElement);
+      };
+
+      /**
+       * Handle mediaOverview.updateSearch events.
+       */
+      $scope.$on('mediaOverview.updateSearch', function(event) {
+        $scope.updateSearch();
+
+        event.preventDefault();
+      });
+
+      // Send the default search query.
+      if ($scope.ikAutoSearch) {
+        $scope.updateSearch();
+      }
     },
     link: function(scope, element, attrs) {
       attrs.$observe('mediaType', function(val) {

@@ -350,6 +350,9 @@
     width: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
   }
 
+  &--media-link {
+    @include add-overlay(overview);
+  }
 
   /* slide overview
  ========================================================================== */

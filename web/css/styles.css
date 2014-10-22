@@ -3132,7 +3132,23 @@ html.is-locked body {
     line-height: 10rem;
     vertical-align: middle;
     width: 10rem; }
-  /* line 356, ../sass/modules/_overview.scss */
+  /* line 353, ../sass/modules/_overview.scss */
+  .overview--media-link {
+    cursor: pointer; }
+    /* line 79, ../sass/mixins/_mixins.scss */
+    .overview--media-link.is-selected .overview--link-check {
+      left: 0;
+      right: 0;
+      visibility: visible; }
+    /* line 85, ../sass/mixins/_mixins.scss */
+    .overview--media-link.is-selected .overview--overlay {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute; }
+  /* line 359, ../sass/modules/_overview.scss */
   .overview--slide-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3148,7 +3164,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 367, ../sass/modules/_overview.scss */
+  /* line 370, ../sass/modules/_overview.scss */
   .overview--channel-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
