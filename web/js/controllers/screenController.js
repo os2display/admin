@@ -26,7 +26,6 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
       $scope.toggleChannel(channel);
     });
 
-
     /**
      * Loads a given step
      */

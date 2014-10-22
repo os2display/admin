@@ -20,6 +20,20 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
     );
     $scope.channels = [];
 
+    // Setup the editor.
+    $scope.editor = {
+      channelOverviewEditor: false,
+      toggleChannelOverviewEditor: function() {
+        $('html').toggleClass('is-locked');
+        $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;
+      }
+    };
+
+    // Register event listener for clickSlide.
+    $scope.$on('channelOverview.clickChannel', function(event, channel) {
+      $scope.toggleChannel(channel);
+    });
+
     /**
      * Load a given step
      */
@@ -212,6 +226,22 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
         }
       });
 
+      return res;
+    };
+
+    /**
+     * Check if channel is included in the current screen.
+     * @param channel
+     * @returns {boolean}
+     */
+    $scope.hasChannel = function hasChannel(channel) {
+      var res = false;
+
+      $scope.slide.channels.forEach(function(element) {
+        if (channel.id == element.id) {
+          res = true;
+        }
+      });
       return res;
     };
 
