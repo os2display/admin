@@ -36,8 +36,10 @@ class MiddlewareListener {
     $entity = $args->getEntity();
     $type = get_class($entity);
 
-    // Do not push channels on user update.
-    if ($type === 'Application\Sonata\UserBundle\Entity\User') {
+    // Ignore User, ChannelSlideOrder, MediaOrder.
+    if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder') {
       return;
     }
 
