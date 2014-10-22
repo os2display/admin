@@ -47,7 +47,7 @@ ikApp.directive('ikPager', function() {
         }
       );
     },
-    templateUrl: '/partials/directives/pager.html'
+    templateUrl: '/partials/directives/pager-directive.html'
   };
 });
 

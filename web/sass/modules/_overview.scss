@@ -166,6 +166,10 @@
       width: 70%;
       display: inline-block;
       float: left;
+
+      &.full-width {
+        width: 100%;
+      }
     }
   }
 

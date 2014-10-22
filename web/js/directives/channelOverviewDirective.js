@@ -162,6 +162,6 @@ ikApp.directive('ikChannelOverview', function() {
       // Send the default search query.
       $scope.updateSearch();
     },
-    templateUrl: '/partials/directives/channel-overview.html'
+    templateUrl: '/partials/directives/channel-overview-directive.html'
   };
 });
