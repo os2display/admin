@@ -52,7 +52,8 @@
 
   &--screen,
   &--media-single,
-  &--slide {
+  &--slide,
+  &--channel {
     display: inline-block;
     margin: 0 0 $gutter;
     overflow: hidden;
@@ -93,7 +94,8 @@
     @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
   }
 
-  &--slide-link {
+  &--slide-link,
+  &--channel-link {
     @include strip-link-styles();
   }
 
@@ -355,4 +357,12 @@
   &--link-check {
     @extend %image-check-icon--placeholder;
   }
+
+  /* channel overview
+ ========================================================================== */
+  &--channel-link {
+    @include add-overlay(overview);
+  }
+
+
 }
