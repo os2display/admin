@@ -2818,7 +2818,7 @@ html.is-locked body {
     @media only screen and (min-width: 481px) {
       /* line 42, ../sass/modules/_overview.scss */
       .overview--channel {
-        margin: 0 36px 36px 0; } }
+        margin: 0 18px 36px 18px; } }
     /* line 49, ../sass/mixins/_mixins.scss */
     .overview--channel:link {
       color: inherit;
@@ -2845,7 +2845,7 @@ html.is-locked body {
     @media only screen and (min-width: 481px) {
       /* line 53, ../sass/modules/_overview.scss */
       .overview--screen, .overview--media-single, .overview--slide, .overview--channel {
-        margin: 0 36px 36px 0; } }
+        margin: 0 18px 36px 18px; } }
   /* line 68, ../sass/modules/_overview.scss */
   .overview--slide-unpublished-overlay {
     background: #fff;

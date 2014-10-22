@@ -44,7 +44,7 @@
     margin: 0 0 $gutter;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 $gutter $gutter 0;
+      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
     }
 
     @include strip-link-styles();
@@ -61,7 +61,7 @@
     vertical-align: middle;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 $gutter $gutter 0;
+      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
     }
   }
 
