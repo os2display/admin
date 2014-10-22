@@ -215,7 +215,7 @@ ikApp.directive('ikMediaOverview', function() {
       }
     },
     link: function(scope, element, attrs) {
-      attrs.$observe('mediaType', function(val) {
+      attrs.$observe('ikMediaType', function(val) {
         if (!val) {
           return;
         }
