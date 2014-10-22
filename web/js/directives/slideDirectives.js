@@ -98,12 +98,14 @@ ikApp.directive('ikSlideEditable', ['templateFactory', function(templateFactory)
               scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
             }
             else {
-              // Set current video variable to path to video files.
-              scope.ikSlide.currentVideo = {
-                "mp4": scope.ikSlide.media[0].provider_metadata[0].reference,
-                "ogg": scope.ikSlide.media[0].provider_metadata[1].reference,
-                "webm": scope.ikSlide.media[0].provider_metadata[2].reference
-              };
+              if (scope.ikSlide.media.length > 0 && scope.ikSlide.media[0].provider_metadata.length > 0) {
+                // Set current video variable to path to video files.
+                scope.ikSlide.currentVideo = {
+                  "mp4": scope.ikSlide.media[0].provider_metadata[0].reference,
+                  "ogg": scope.ikSlide.media[0].provider_metadata[1].reference,
+                  "webm": scope.ikSlide.media[0].provider_metadata[2].reference
+                };
+              }
 
               // Reload video player.
               setTimeout(function () {
