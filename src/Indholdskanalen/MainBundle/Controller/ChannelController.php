@@ -49,6 +49,7 @@ class ChannelController extends Controller {
     else {
       // This is a new slide.
       $channel = new Channel();
+	    $em->persist($channel);
     }
 
     // Update fields.
@@ -91,7 +92,7 @@ class ChannelController extends Controller {
       $slide = $channelSlideOrder->getSlide();
 
       if (!in_array($slide->getId(), $postSlideIds)) {
-        $em->remove($channelSlideOrder);
+	      $channel->removeChannelSlideOrder($channelSlideOrder);
       }
     }
 
@@ -107,22 +108,21 @@ class ChannelController extends Controller {
         )
       );
       if (!$channelSlideOrder) {
-        $channelSlideOrder = new ChannelSlideOrder();
+        // New ChannelSLideOrder
+	      $channelSlideOrder = new ChannelSlideOrder();
         $channelSlideOrder->setChannel($channel);
         $channelSlideOrder->setSlide($slide);
+	      $em->persist($channelSlideOrder);
+
+	      // Associate Order to Channel
+	      $channel->addChannelSlideOrder($channelSlideOrder);
       }
 
       $channelSlideOrder->setSortOrder($sortOrder);
       $sortOrder++;
-
-      // Save the ChannelSlideOrder.
-      $em->persist($channelSlideOrder);
-
-      $channel->addChannelSlideOrder($channelSlideOrder);
     }
 
     // Save the entity.
-    $em->persist($channel);
     $em->flush();
 
     // Create response.

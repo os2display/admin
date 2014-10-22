@@ -37,7 +37,7 @@ class Media extends BaseMedia {
   protected $updatedAt;
 
   /**
-   * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="media")
+   * @ORM\OneToMany(name="mediaOrders", targetEntity="Indholdskanalen\MainBundle\Entity\MediaOrder", mappedBy="media")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
   protected $mediaOrders;

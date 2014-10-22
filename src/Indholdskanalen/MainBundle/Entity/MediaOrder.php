@@ -8,6 +8,7 @@ namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use Application\Sonata\MediaBundle\Entity\Media as Media;
 
 
 /**
@@ -31,13 +32,13 @@ class MediaOrder {
   private $sortOrder;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Slide", inversedBy="slide_media_orders")
+   * @ORM\ManyToOne(targetEntity="Slide", inversedBy="mediaOrders")
    * @ORM\JoinColumn(name="slide_id", referencedColumnName="id")
-   **/
+   */
   private $slide;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="slide_media_orders")
+   * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="mediaOrders")
    * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
    */
   private $media;

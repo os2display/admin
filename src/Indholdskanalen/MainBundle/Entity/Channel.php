@@ -50,7 +50,7 @@ class Channel {
   private $created_at;
 
   /**
-   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel")
+   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel", orphanRemoval=true)
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
   private $channelSlideOrders;
@@ -215,7 +215,8 @@ class Channel {
   public function getAllSlides()
   {
     $result = new ArrayCollection();
-    foreach($this->getChannelSlideOrders() as $slideorder) {
+	  $slideorders = $this->getChannelSlideOrders();
+    foreach($slideorders as $slideorder) {
       $result->add($slideorder->getSlide());
     }
     return $result;
@@ -229,7 +230,8 @@ class Channel {
 	public function getPublishedSlides()
 	{
 		$result = new ArrayCollection();
-		foreach($this->getChannelSlideOrders() as $slideorder) {
+		$slideorders = $this->getChannelSlideOrders();
+		foreach($slideorders as $slideorder) {
 			$slide = $slideorder->getSlide();
 			if($slide->getPublished()) {
 				$result->add($slide);

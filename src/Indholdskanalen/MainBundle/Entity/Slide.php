@@ -88,15 +88,15 @@ class Slide {
   private $published;
 
   /**
-   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="slide")
+   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="slide", orphanRemoval=true)
    * @ORM\OrderBy({"sortOrder" = "ASC"})
-   **/
+   */
   private $channelSlideOrders;
 
   /**
    * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="slide")
    * @ORM\OrderBy({"sortOrder" = "ASC"})
-   **/
+   */
   private $mediaOrders;
 
   /**

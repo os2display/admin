@@ -143,8 +143,7 @@ class ScreenController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function ScreenGetAction($id) {
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
-      ->findOneById($id);
+    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneById($id);
 
     // Create response.
     $response = new Response();

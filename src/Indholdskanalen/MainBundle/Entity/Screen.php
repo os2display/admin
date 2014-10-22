@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
@@ -73,6 +74,14 @@ class Screen {
    * @Groups({"api"})
    */
   private $channels;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->channels = new ArrayCollection();
+	}
 
   /**
    * Get id
@@ -214,14 +223,6 @@ class Screen {
   public function setActivationCode($activationCode)
   {
     $this->activationCode = $activationCode;
-  }
-
-  /**
-   * Constructor
-   */
-  public function __construct()
-  {
-    $this->channels = new \Doctrine\Common\Collections\ArrayCollection();
   }
 
   /**
