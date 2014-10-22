@@ -1,6 +1,23 @@
 Template setup
 =============
 
+
+### To add a new template
+* figure out a name for your template, and namespace it with your organisation, e.g.:
+<pre>
+Name: my-template
+
+Organisation: this-library
+
+This results in the template name: this-library-my-template
+</pre>
+
+* make a new folder with the template name, in web/ik-templates/
+
+* include the html, css, png and json files needed (see list below).
+
+* add the path to the .css in imports.html.
+
 ### Template setup
 [link](IK3-templates.pdf)
 
@@ -12,16 +29,15 @@ Template setup
 * **(name).scss**  An optional sass file to render into the css file.
 * **(name).css**  The actual styles related to all the html files.
 * **(name).png**  An image to represent what kind of template the we are dealing with.
-* **(name).js**  Optional custom javascript related specifically to the template (e.g . Sliding through several images)
 * **(name).json**  The configuration settings for the slide.
 
 
 ### Naming
+* Important! All custom made templates should be namespaced with organisation name, so templates do not collide.
 * All templates should be included in the shared ik-templates folder.
 * All files related to a template should be contained in the same template folder.
 * The folder name of a template folder should consist of only letters and dashes.
-* The optional sass file should be prefixed with underscore.
-* All files within the folder should contain the folder name. (e.g manual-calendar.html)
+* All files within the folder should start with the folder name. (e.g. manual-calendar.html)
 
 
 ### Folder structure and naming example

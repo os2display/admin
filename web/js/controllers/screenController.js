@@ -12,6 +12,21 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
     $scope.screen = {};
     $scope.channels = [];
 
+    // Setup the editor.
+    $scope.editor = {
+      channelOverviewEditor: false,
+      toggleChannelOverviewEditor: function() {
+        $('html').toggleClass('is-locked');
+        $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;
+      }
+    };
+
+    // Register event listener for clickSlide.
+    $scope.$on('channelOverview.clickChannel', function(event, channel) {
+      $scope.toggleChannel(channel);
+    });
+
+
     /**
      * Loads a given step
      */

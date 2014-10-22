@@ -4,7 +4,8 @@
   "paths": {
     "live": "portrait-text-top.html",
     "edit": "portrait-text-top-edit.html",
-    "preview": "portrait-text-top.html"
+    "preview": "portrait-text-top.html",
+    "css": "portrait-text-top.css"
   },
   "orientation": "portrait",
   "mediatype": "image",

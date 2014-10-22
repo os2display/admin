@@ -4,7 +4,8 @@
   "paths": {
     "live": "only-video.html",
     "edit": "only-video-edit.html",
-    "preview": "only-video-preview.html"
+    "preview": "only-video-preview.html",
+    "css": "only-video-preview.css"
   },
   "mediatype": "video",
   "orientation": "landscape",

@@ -4,7 +4,8 @@
   "paths": {
     "live": "text-right.html",
     "edit": "text-right-edit.html",
-    "preview": "text-right.html"
+    "preview": "text-right.html",
+    "css": "text-right.css"
   },
   "orientation": "landscape",
   "mediatype": "image",

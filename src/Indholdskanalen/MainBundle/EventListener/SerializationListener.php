@@ -114,6 +114,7 @@ class SerializationListener implements EventSubscriberInterface
 
           $templates = $this->templateService->getTemplates();
           $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
+          $event->getVisitor()->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
 				}
 			}
 		);

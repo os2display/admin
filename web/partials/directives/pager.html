@@ -5,7 +5,7 @@
   </div>
 
   <div data-ng-repeat="i in pager.pages" data-ng-click="changePage(i)" ng-class="{ 'is-active': pager.page == i }"  class="pager--search-item">
-    <span class="pager--search-item-inner">{{ i  }}</span>
+    <span class="pager--search-item-inner">{{ $index + 1 }}</span>
   </div>
 
   <div data-ng-click="nextPage()" ng-class="{ 'is-disabled': pager.page == pager.max - 1 }" class="pager--search-item">

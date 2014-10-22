@@ -1,3 +1,6 @@
+@import "compass/css3";
+@import "../_imports.scss";
+
 .manual-calendar {
   background-size: cover;
 
@@ -17,7 +20,7 @@
     background: rgba(0,0,0,0.7);
     box-sizing: border-box;
     color: #fff;
-    margin: 3% auto;
+    margin: 0 auto;
     overflow: hidden;
     padding: 4%;
     text-align: left;

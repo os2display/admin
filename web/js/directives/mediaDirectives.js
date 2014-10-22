@@ -34,6 +34,13 @@ ikApp.directive('ikMediaOverview', function() {
       // Media to display.
       $scope.media = [];
 
+      // Default pager values.
+      $scope.pager = {
+        "size": 9,
+        "page": 0
+      };
+      $scope.hits = 0;
+
       // Setup default search options.
       var search = {
         "fields": 'name',
@@ -42,7 +49,8 @@ ikApp.directive('ikMediaOverview', function() {
           "created_at" : {
             "order": "desc"
           }
-        }
+        },
+        'pager': $scope.pager
       };
 
       // Mouse hover on image.
@@ -68,6 +76,9 @@ ikApp.directive('ikMediaOverview', function() {
 
         mediaFactory.searchMedia(search).then(
           function(data) {
+            // Total hits.
+            $scope.hits = data.hits;
+
             // Extract search ids.
             var ids = [];
             for (var i = 0; i < data.results.length; i++) {

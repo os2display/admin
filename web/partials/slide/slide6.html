@@ -1,6 +1,6 @@
 <section id="create-slide-five" class="create-slide--section">
   <div class="create-slide--content--slide-six">
-    <h1 class="create-slide--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
+    <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
     <p class="create-slide--header-description">Vælg hvilke kanaler din skærm skal vises på.</p>
     <div class="create-channel--select-screens">
       <div class="create-channel--screen" data-ng-repeat="channel in channels | filter:{ orientation: slide.orientation}" ng-click="toggleChannel(channel)">

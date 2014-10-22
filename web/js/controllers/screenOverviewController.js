@@ -8,10 +8,18 @@
  */
 ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
   function($scope, screenFactory) {
+    "use strict";
+
     // Set default values.
     $scope.orientation = 'all';
     $scope.sort = { "created_at": "desc" };
 
+    // Default pager values.
+    $scope.pager = {
+      "size": 9,
+      "page": 0
+    };
+    $scope.hits = 0;
 
     // Screens to display.
     $scope.screens = [];
@@ -24,7 +32,8 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
         "created_at" : {
           "order": "desc"
         }
-      }
+      },
+      'pager': $scope.pager
     };
 
     /**
@@ -36,6 +45,9 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
 
       screenFactory.searchScreens(search).then(
         function(data) {
+          // Total hits.
+          $scope.hits = data.hits;
+
           // Extract search ids.
           var ids = [];
           for (var i = 0; i < data.results.length; i++) {
