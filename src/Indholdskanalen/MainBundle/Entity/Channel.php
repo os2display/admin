@@ -50,7 +50,7 @@ class Channel {
   private $created_at;
 
   /**
-   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel")
+   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel", orphanRemoval=true)
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
   private $channelSlideOrders;
