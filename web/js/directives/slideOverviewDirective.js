@@ -73,6 +73,13 @@ ikApp.directive('ikSlideOverview', function() {
       };
 
       /**
+       * Update search result on channel deletion.
+       */
+      $scope.$on('slide-deleted', function(data) {
+        $scope.updateSearch();
+      });
+
+      /**
        * Changes orientation and updated the slides.
        *
        * @param orientation

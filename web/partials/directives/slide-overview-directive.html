@@ -31,7 +31,9 @@
         </div>
         <ik-slide ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
       </div>
-      <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
+      <span class="overview--slide-label">{{slide.title}}</span>
+      <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
+      <ik-delete id="{{ slide.id }}" type="slide" />
     </div>
     <!-- If overlay display-->
     <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="ikOverlay">
