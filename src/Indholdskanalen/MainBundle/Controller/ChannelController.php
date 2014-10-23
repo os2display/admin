@@ -38,7 +38,7 @@ class ChannelController extends Controller {
       $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')
         ->findOneById($post->id);
 
-      // If channel is not found, return Not Found
+      // If channel is not found, return Not Found.
       if (!$channel) {
         $response = new Response();
         $response->setStatusCode(404);
@@ -61,14 +61,14 @@ class ChannelController extends Controller {
     }
 
     // Remove screens.
-    foreach($channel->getScreens() as $screen) {
+    foreach ($channel->getScreens() as $screen) {
       if (!in_array($screen, $post->screens)) {
         $channel->removeScreen($screen);
       }
     }
 
     // Add screens.
-    foreach($post->screens as $screen) {
+    foreach ($post->screens as $screen) {
       $screen = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')
         ->findOneById($screen->id);
       if ($screen) {
@@ -79,44 +79,44 @@ class ChannelController extends Controller {
     }
 
     // Get all slide ids from POST.
-    $postSlideIds = array();
-    foreach($post->slides as $slide) {
-      $postSlideIds[] = $slide->id;
+    $post_slide_ids = array();
+    foreach ($post->slides as $slide) {
+      $post_slide_ids[] = $slide->id;
     }
 
     // Remove slides.
-    foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
-      $slide = $channelSlideOrder->getSlide();
+    foreach ($channel->getChannelSlideOrders() as $channel_slide_order) {
+      $slide = $channel_slide_order->getSlide();
 
-      if (!in_array($slide->getId(), $postSlideIds)) {
-	      $channel->removeChannelSlideOrder($channelSlideOrder);
+      if (!in_array($slide->getId(), $post_slide_ids)) {
+        $channel->removeChannelSlideOrder($channel_slide_order);
       }
     }
 
     // Add slides and update sort order.
-    $sortOrder = 0;
-    foreach($postSlideIds as $slideId) {
-      $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slideId);
+    $sort_order = 0;
+    foreach ($post_slide_ids as $slide_id) {
+      $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slide_id);
 
-      $channelSlideOrder = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
+      $channel_slide_order = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
         array(
           'channel' => $channel,
           'slide' => $slide,
         )
       );
-      if (!$channelSlideOrder) {
-        // New ChannelSLideOrder
-	      $channelSlideOrder = new ChannelSlideOrder();
-        $channelSlideOrder->setChannel($channel);
-        $channelSlideOrder->setSlide($slide);
-	      $em->persist($channelSlideOrder);
+      if (!$channel_slide_order) {
+        // New ChannelSLideOrder.
+        $channel_slide_order = new ChannelSlideOrder();
+        $channel_slide_order->setChannel($channel);
+        $channel_slide_order->setSlide($slide);
+        $em->persist($channel_slide_order);
 
-	      // Associate Order to Channel
-	      $channel->addChannelSlideOrder($channelSlideOrder);
+        // Associate Order to Channel.
+        $channel->addChannelSlideOrder($channel_slide_order);
       }
 
-      $channelSlideOrder->setSortOrder($sortOrder);
-      $sortOrder++;
+      $channel_slide_order->setSortOrder($sort_order);
+      $sort_order++;
     }
 
     // Save the entity.
@@ -128,9 +128,9 @@ class ChannelController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
     if ($channel) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($channel, 'json');
+      $json_content = $serializer->serialize($channel, 'json');
 
-      $response->setContent($jsonContent);
+      $response->setContent($json_content);
     }
     else {
       $response->setContent(json_encode(array()));
@@ -159,8 +159,8 @@ class ChannelController extends Controller {
     $response = new Response();
     if ($channel) {
       $response->headers->set('Content-Type', 'application/json');
-      $jsonContent = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
-      $response->setContent($jsonContent);
+      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
+      $response->setContent($json_content);
     }
     else {
       $response->setStatusCode(404);
