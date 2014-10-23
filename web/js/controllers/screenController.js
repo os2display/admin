@@ -87,7 +87,7 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
       } else {
         loadStep($scope.step + 1);
       }
-    }
+    };
 
     /**
      * Set the orientation of the screen.
@@ -95,7 +95,7 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      */
     $scope.setOrientation = function(orientation) {
       $scope.screen.orientation = orientation;
-    }
+    };
 
     /**
      * Load a step. Checks that the previous steps have been filled out.
@@ -175,6 +175,6 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
       else {
         $scope.screen.channels.push(channel);
       }
-    }
+    };
   }
 ]);
