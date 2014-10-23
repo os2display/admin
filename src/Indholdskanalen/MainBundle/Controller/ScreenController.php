@@ -59,8 +59,9 @@ class ScreenController extends Controller {
       }
     }
     else {
-      // This is a new slide.
+      // This is a new screen.
       $screen = new Screen();
+      $screen->setCreatedAt(time());
     }
 
     // Update fields.
@@ -69,9 +70,6 @@ class ScreenController extends Controller {
     }
     if (isset($post->orientation)) {
       $screen->setOrientation($post->orientation);
-    }
-    if (isset($post->created_at)) {
-      $screen->setCreatedAt($post->created_at);
     }
     if (isset($post->width)) {
       $screen->setWidth($post->width);

@@ -52,7 +52,6 @@ class SlideController extends Controller {
     else {
       // This is a new slide.
       $slide = new Slide();
-
       $slide->setCreatedAt(time());
     }
 

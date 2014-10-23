@@ -47,9 +47,9 @@ class ChannelController extends Controller {
       }
     }
     else {
-      // This is a new slide.
+      // This is a new channel.
       $channel = new Channel();
-	    $em->persist($channel);
+      $channel->setCreatedAt(time());
     }
 
     // Update fields.
@@ -58,9 +58,6 @@ class ChannelController extends Controller {
     }
     if (isset($post->orientation)) {
       $channel->setOrientation($post->orientation);
-    }
-    if (isset($post->created_at)) {
-      $channel->setCreatedAt($post->created_at);
     }
 
     // Remove screens.
@@ -123,6 +120,7 @@ class ChannelController extends Controller {
     }
 
     // Save the entity.
+    $em->persist($channel);
     $em->flush();
 
     // Create response.
