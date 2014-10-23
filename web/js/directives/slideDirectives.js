@@ -44,7 +44,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
             }
           }
           else {
-            scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+            scope.ikSlide.currentVideo = {"mp4": "", "ogg": "", "webm": ""};
           }
         }
 
@@ -116,7 +116,7 @@ ikApp.directive('ikSlideEditable', ['templateFactory', function(templateFactory)
             }
           }
           else {
-            scope.ikSlide.currentVideo = {"mp4": "", "ogg": ""};
+            scope.ikSlide.currentVideo = {"mp4": "", "ogg": "", "webm": ""};
           }
         }
 
