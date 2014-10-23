@@ -99,7 +99,7 @@ class ZencoderProvider extends BaseProvider {
 
     // Setup Zencoder call.
     $api = new \stdClass();;
-    $api->input = $this->hostname . $url;
+    $api->input = $url;
     $api->api_key = $this->api_key;
     $api->region = 'europe';
     $api->notifications = $this->hostname . '/zencoder/callback';
