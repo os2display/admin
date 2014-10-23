@@ -94,7 +94,7 @@ class Slide {
   private $channelSlideOrders;
 
   /**
-   * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="slide")
+   * @ORM\OneToMany(targetEntity="MediaOrder", mappedBy="slide", orphanRemoval=true)
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    */
   private $mediaOrders;

@@ -36,8 +36,9 @@ $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword]
 ##Installation instructions
 
 ### Copy example.configuration.js to configuration.js
-Copy example.configuration.js to configuration.js and change the relevant settings.
-For the vagrant set to: 'http://service.indholdskanalen.vm:3001'
+Copy example.configuration.js to configuration.js in the directory (web/js/)and change the relevant settings.
+
+For a vagrant set to: 'http://service.indholdskanalen.vm:3001'
 
 ###Get composer
 With brew (global install)
@@ -83,13 +84,15 @@ $ cp app/config/parameters.yml.dist app/config/parameters.yml
 
 Fill in relevant settings.
 
-###Setup DB and after changing an entity
+###Setup DB
+To generate the relevant tables in the database, use the following command:
 <pre>
 $ php app/console doctrine:schema:update --force
 </pre>
-(--force) is not for production server, only first setup.
+(--force) is not recommended for a production server, only first setup.
 
-###Set up webserver
+###Setup webserver
+See the following link for different server setup (we use nginx):
 <pre>
 http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
 </pre>
@@ -144,16 +147,18 @@ location /ik-templates/ {
 }
 </pre>
 
-###Setup Video for Zencoder
-For Video for Zencoder to work you need a public URL:
+###Vagrant setup for video with Zencoder
+For Video for Zencoder to work in your vagrant you need a public URL:
 <pre>
 vagrant share
 </pre>
+Vagrant Share is a Vagrant Cloud feature which requires an account. Create this at [www.vagrantcloud.com](http://www.vagrantcloud.com)
+
 This URL must be setup in app/config/parameters.yml and Nginx virtual host: /etc/nginx/sites-enabled/service.indholdskanalen.vm.conf
 
 Example of paramaters.yml:
 <pre>
-zencoder_api: 151d072d3239698a4ff1234c0596aed92
+zencoder_api: 1234567890
 </pre>
 
 Example of line replacement in service.indholdskanalen.vm.conf (in /var/nginx/sites-enabled):
@@ -195,10 +200,9 @@ server {
   ssl off;
 
 ...
-
+</pre>
 And restart nginx:
 service nginx restart
-</pre>
 
 Also
 change the absolute_path_to_server parameter in app/config/parameters.yml to slight-gopher-8311.vagrantshare.com.
@@ -209,8 +213,5 @@ With these changes it is possible to get ZenCoder to work.
 Access the site through slight-gopher-8311.vagrantshare.com, upload the media.
 
 After this revert to the setup from before.
-
-####Vagrant share
-Vagrant Share is a Vagrant Cloud feature which requires an account. Create this at [www.vagrantcloud.com](http://www.vagrantcloud.com)
 
 ###Ready to go!

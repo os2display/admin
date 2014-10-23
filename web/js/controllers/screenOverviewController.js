@@ -64,6 +64,13 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
       );
     };
 
+    /**
+     * Update search result on screen deletion.
+     */
+    $scope.$on('screen-deleted', function(data) {
+      $scope.updateSearch();
+    });
+
     // Send the default search query.
     $scope.updateSearch();
 

@@ -82,6 +82,13 @@ ikApp.directive('ikChannelOverview', function() {
       };
 
       /**
+       * Update search result on channel deletion.
+       */
+      $scope.$on('channel-deleted', function(data) {
+        $scope.updateSearch();
+      });
+
+      /**
        * Returns true if channel is in selected channels array.
        *
        * @param channel

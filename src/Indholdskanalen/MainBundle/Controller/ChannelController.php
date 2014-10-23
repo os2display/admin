@@ -145,7 +145,8 @@ class ChannelController extends Controller {
    * @Route("/{id}")
    * @Method("GET")
    *
-   * @param $id
+   * @param int $id
+   *   Channel id of the channel to delete.
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
@@ -163,6 +164,40 @@ class ChannelController extends Controller {
       $response->setContent($json_content);
     }
     else {
+      $response->setStatusCode(404);
+    }
+
+    return $response;
+  }
+
+  /**
+   * Delete channel.
+   *
+   * @Route("/{id}")
+   * @Method("DELETE")
+   *
+   * @param int $id
+   *   Channel id of the channel to delete.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function ChannelDeleteAction($id) {
+    $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+
+    if ($channel) {
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($channel);
+      $em->flush();
+
+      // Element deleted.
+      $response->setStatusCode(200);
+    }
+    else {
+      // Not found.
       $response->setStatusCode(404);
     }
 
