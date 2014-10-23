@@ -73,7 +73,7 @@ ikApp.directive('ikSlideOverview', function() {
       };
 
       /**
-       * Update search result on channel deletion.
+       * Update search result on slide deletion.
        */
       $scope.$on('slide-deleted', function(data) {
         $scope.updateSearch();
