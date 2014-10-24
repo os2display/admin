@@ -8,6 +8,7 @@ namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
@@ -200,8 +201,9 @@ class Channel {
    */
   public function getChannelSlideOrders()
   {
-    return $this->channelSlideOrders;
+	  return $this->channelSlideOrders;
   }
+
 
 	/**
    * Get all slides
@@ -230,13 +232,16 @@ class Channel {
 	public function getPublishedSlides()
 	{
 		$result = new ArrayCollection();
-		$slideorders = $this->getChannelSlideOrders();
+		$criteria = Criteria::create()->orderBy(array("sortOrder" => Criteria::ASC));
+
+		$slideorders = $this->getChannelSlideOrders()->matching($criteria);
 		foreach($slideorders as $slideorder) {
 			$slide = $slideorder->getSlide();
 			if($slide->getPublished()) {
 				$result->add($slide);
 			}
 		}
+
 		return $result;
 	}
 
