@@ -100,7 +100,7 @@ class SerializationListener implements EventSubscriberInterface
 							$pathToServer = $this->container->getParameter("absolute_path_to_server");
 							$metadata = $media->getProviderMetadata();
 							foreach($metadata as $data) {
-								$urls[$data['label']] = $pathToServer.$data['reference'];
+								$urls[$data['label']] = $data['reference'];
 							}
 						}
 
