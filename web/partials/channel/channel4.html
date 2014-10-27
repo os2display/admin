@@ -3,7 +3,7 @@
     <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
       <p class="create-channel--header-description">Vælg hvilke skærme din kanal skal vises på.</p>
       <div class="create-channel--select-screens">
-        <div class="create-channel--screen" data-ng-repeat="screen in screens | filter:{ orientation: channel.orientation}" ng-click="toggleScreen(screen)">
+        <div class="create-channel--screen" data-ng-repeat="screen in screens | filter:{ orientation: channel.orientation}" data-ng-click="toggleScreen(screen)">
           <div class="create-channel--screen-link">
             <div class="create-channel--screen-element">
               <div class="create-channel--screen-element-check" data-ng-class="{'is-selected' : screenSelected(screen.id)}"></div>
@@ -14,7 +14,7 @@
       </div>
     <div class="create-channel--finish-button">
       <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
-      <input type="submit" data-ng-disabled="disableSubmitButton" class="create-channel--button" value="Gem og opret" data-ng-click="submitStep()">
+      <input type="submit" data-ng-disabled="disableSubmitButton" class="create-channel--button" value="Gem kanal" data-ng-click="submitStep()">
     </div>
   </div>
 </section>
