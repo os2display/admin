@@ -2,10 +2,10 @@
   <div class="create-screen--content--screen-two">
     <h1 class="create-screen--header">{{screen.status === "edit-screen" ? "Redigér skærm" : "Opret skærm"}}</h1>
     <p class="create-screen--header-description">Angiv bredde og højde i pixels på skærmen.</p>
-    <form ng-submit="submitStep()">
+    <form data-ng-submit="submitStep()">
       <input type="text" class="create-screen--text" placeholder="Bredde" data-ng-class="{'is-valid': validation.widthSet()}" data-ng-model="screen.width">
       <input type="text" class="create-screen--text" placeholder="Højde" data-ng-class="{'is-valid': validation.heightSet()}" data-ng-model="screen.height">
-      <input type="submit" class="create-screen--button" data-ng-class="{'is-inactive': !validation.widthSet() || !validation.heightSet()}" ng-disabled="!validation.widthSet() || !validation.heightSet()" value="Gem og fortsæt">
+      <input type="submit" class="create-screen--button" data-ng-class="{'is-inactive': !validation.widthSet() || !validation.heightSet()}" data-ng-disabled="!validation.widthSet() || !validation.heightSet()" value="Fortsæt">
     </form>
   </div>
 </section>
