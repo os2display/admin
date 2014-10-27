@@ -20,6 +20,9 @@
 
       <div class="create-media--spinner"></div>
     </div>
-     <p><a class="create-media--button" data-ng-click="delete()">Slet</a></p>
+     <p>
+         <a data-ng-hide="media.media_is_in_use" class="create-media--button" data-ng-click="delete()">Slet</a>
+         <span data-ng-hide="!media.media_is_in_use">Kan ikke slettes - bruges på et eller flere slides</span>
+     </p>
   </section>
 </div>
