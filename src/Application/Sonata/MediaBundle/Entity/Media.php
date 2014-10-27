@@ -37,9 +37,8 @@ class Media extends BaseMedia {
   protected $updatedAt;
 
   /**
-   * @ORM\OneToMany(name="mediaOrders", targetEntity="Indholdskanalen\MainBundle\Entity\MediaOrder", mappedBy="media")
-   * @ORM\OrderBy({"sortOrder" = "ASC"})
-   **/
+   * @var ArrayCollection $mediaOrders
+   */
   protected $mediaOrders;
 
   /**
@@ -101,5 +100,15 @@ class Media extends BaseMedia {
   {
     return $this->mediaOrders;
   }
+
+	/**
+	 * Get if media is being used in slide(s)
+	 *
+	 * @return boolean
+	 */
+	public function getMediaIsInUse()
+	{
+		return !$this->mediaOrders->isEmpty();
+	}
 
 }
