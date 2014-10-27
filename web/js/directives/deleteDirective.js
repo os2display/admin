@@ -21,7 +21,7 @@ ikApp.directive('ikDelete', ['$http', '$rootScope', function($http, $rootScope) 
     link: function(scope, element, attrs) {
       // Handle clicks on numbers.
       scope.remove = function () {
-        var result = window.confirm("Er du sikre på at du vil udføre sletningne!");
+        var result = window.confirm("Er du sikre på at du vil udføre sletningen!? Det kan ikke rulles tilbage!");
         if (result === true) {
           $http.delete('/api/' + scope.type + '/' + scope.id)
             .success(function(data) {
