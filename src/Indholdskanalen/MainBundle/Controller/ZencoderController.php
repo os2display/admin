@@ -37,7 +37,8 @@ class ZencoderController extends Controller {
       $cdn = $this->get('sonata.media.cdn.server');
       $zencoder = $this->get('sonata.media.provider.zencoder');
       $root = $this->get('kernel')->getRootDir() . '/../web';
-      $path = $root . $cdn->getPath($zencoder->generatePath($local_media), FALSE);
+	    $media_url_path = $cdn->getPath($zencoder->generatePath($local_media), FALSE);
+      $path = $root . parse_url($media_url_path, PHP_URL_PATH);
 
       $transcoded = array();
 

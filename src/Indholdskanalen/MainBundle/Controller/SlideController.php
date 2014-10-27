@@ -90,12 +90,12 @@ class SlideController extends Controller {
 
     // Get channel ids.
     $postChannelIds = array();
-    foreach($post['channels'] as $channel) {
+    foreach ($post['channels'] as $channel) {
       $postChannelIds[] = $channel['id'];
     }
 
     // Update channel orders.
-    foreach($slide->getChannelSlideOrders() as $channelSlideOrder) {
+    foreach ($slide->getChannelSlideOrders() as $channelSlideOrder) {
       $channel = $channelSlideOrder->getChannel();
 
       if (!in_array($channel->getId(), $postChannelIds)) {
@@ -104,7 +104,7 @@ class SlideController extends Controller {
     }
 
     // Add to channels.
-    foreach($post['channels'] as $channel) {
+    foreach ($post['channels'] as $channel) {
       $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($channel['id']);
 
       // Check if ChannelSlideOrder already exists, if not create it.
@@ -118,12 +118,8 @@ class SlideController extends Controller {
         // Find the next sort order index for the given channel.
         $index = 0;
         $channelLargestSortOrder = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
-          array(
-            'channel' => $channel
-          ),
-          array(
-            'sortOrder' => 'DESC'
-          )
+          array('channel' => $channel),
+          array('sortOrder' => 'DESC')
         );
         if ($channelLargestSortOrder) {
           $index = $channelLargestSortOrder->getSortOrder();
@@ -144,12 +140,12 @@ class SlideController extends Controller {
 
     // Get channel ids.
     $postMediaIds = array();
-    foreach($post['media'] as $media) {
+    foreach ($post['media'] as $media) {
       $postMediaIds[] = $media['id'];
     }
 
     // Update media orders.
-    foreach($slide->getMediaOrders() as $mediaOrder) {
+    foreach ($slide->getMediaOrders() as $mediaOrder) {
       $media = $mediaOrder->getMedia();
 
       if (!in_array($media->getId(), $postMediaIds)) {
@@ -158,7 +154,7 @@ class SlideController extends Controller {
     }
 
     // Add to media.
-    foreach($post['media'] as $media) {
+    foreach ($post['media'] as $media) {
       $media = $doctrine->getRepository('ApplicationSonataMediaBundle:Media')->findOneById($media['id']);
 
       // Check if ChannelSlideOrder already exists, if not create it.
@@ -172,12 +168,8 @@ class SlideController extends Controller {
         // Find the next sort order index for the given channel.
         $index = 0;
         $mediaLargestSortOrder = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder')->findOneBy(
-          array(
-            'media' => $media
-          ),
-          array(
-            'sortOrder' => 'DESC'
-          )
+          array('media' => $media),
+          array('sortOrder' => 'DESC')
         );
         if ($mediaLargestSortOrder) {
           $index = $mediaLargestSortOrder->getSortOrder();
@@ -235,6 +227,40 @@ class SlideController extends Controller {
       $response->headers->set('Content-Type', 'application/json');
       $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api')));
       $response->setContent($jsonContent);
+    }
+    else {
+      // Not found.
+      $response->setStatusCode(404);
+    }
+
+    return $response;
+  }
+
+  /**
+   * Delete slide.
+   *
+   * @Route("/{id}")
+   * @Method("DELETE")
+   *
+   * @param int $id
+   *   Slide id of the slide to delete.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function SlideDeleteAction($id) {
+    $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+
+    if ($slide) {
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($slide);
+      $em->flush();
+
+      // Element deleted.
+      $response->setStatusCode(200);
     }
     else {
       // Not found.

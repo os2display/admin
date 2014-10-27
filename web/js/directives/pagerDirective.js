@@ -37,6 +37,7 @@ ikApp.directive('ikPager', function() {
       // Keep an any on changes in number of hits.
       $scope.$watch('hits', function(hits) {
           var pages = [];
+          $scope.pager.max = 0;
           if (hits > $scope.pager.size) {
             $scope.pager.max = Math.ceil(hits / $scope.pager.size);
             for (var i=0; i < $scope.pager.max; i++) {

@@ -241,4 +241,38 @@ class ScreenController extends Controller {
     // Generate the response.
     return new Response("", 200);
   }
+
+  /**
+   * Delete screen.
+   *
+   * @Route("/{id}")
+   * @Method("DELETE")
+   *
+   * @param int $id
+   *   Slide id of the slide to delete.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function ScreenDeleteAction($id) {
+    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+
+    if ($screen) {
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($screen);
+      $em->flush();
+
+      // Element deleted.
+      $response->setStatusCode(200);
+    }
+    else {
+      // Not found.
+      $response->setStatusCode(404);
+    }
+
+    return $response;
+  }
 }
