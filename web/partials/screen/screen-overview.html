@@ -24,7 +24,9 @@
       <a href="/#/screen/{{screen.id}}" class="overview--screen-link">
         <ik-screen ik-screen="screen" ik-width="{{screen.orientation == 'landscape' ? 300 : 150}}"></ik-screen>
       </a>
-      <ik-delete id="{{ screen.id }}" type="screen" />
+      <div>
+        <ik-delete id="{{ screen.id }}" type="screen" />
+      </div>
     </div>
   </div>
   <ik-pager></ik-pager>
