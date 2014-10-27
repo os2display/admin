@@ -3,16 +3,16 @@
     <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
     <p class="create-channel--header-description">Vælg hvilken type skærme du du vil vise kanalen på - er de brede eller høje?</p>
     <div class="create-channel--screens">
-      <div class="create-channel--screen-landscape" ng-click="setOrientation('landscape')">
-        <div class="create-channel--screen-link" ng-class="{'is-selected': channel!==null && channel.orientation=='landscape'}">
+      <div class="create-channel--screen-landscape" data-ng-click="setOrientation('landscape')">
+        <div class="create-channel--screen-link" data-ng-class="{'is-selected': channel!==null && channel.orientation=='landscape'}">
           <span class="create-channel--overlay">
             <span class="create-channel--link-check"></span>
           </span>
           <img src="/images/outlines/landscape-outline.png"/>
         </div>
       </div>
-      <div class="create-channel--screen-portrait" ng-click="setOrientation('portrait')">
-        <div class="create-channel--screen-link" ng-class="{'is-selected': channel!==null && channel.orientation=='portrait'}">
+      <div class="create-channel--screen-portrait" data-ng-click="setOrientation('portrait')">
+        <div class="create-channel--screen-link" data-ng-class="{'is-selected': channel!==null && channel.orientation=='portrait'}">
           <span class="create-channel--overlay">
             <span class="create-channel--link-check"></span>
           </span>
@@ -20,6 +20,6 @@
         </div>
       </div>
     </div>
-    <input type="submit" class="create-channel--button" value="Gem og fortsæt" data-ng-disabled="!validation.orientationSet()" data-ng-class="{'is-inactive': !validation.orientationSet()}" data-ng-click="submitStep()">
+    <input type="submit" class="create-channel--button" value="Fortsæt" data-ng-disabled="!validation.orientationSet()" data-ng-class="{'is-inactive': !validation.orientationSet()}" data-ng-click="submitStep()">
   </div>
 </section>

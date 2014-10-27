@@ -1,10 +1,10 @@
 <section id="create-channel-one" class="create-channel--section">
   <div class="create-channel--content--channel-one">
     <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
-    <p class="create-channel--header-description">Giv din kanal et godt navn så du kan finde det igen senere.</p>
-    <form ng-submit="submitStep()" class="create-channel--form">
+    <p class="create-channel--header-description">Giv din kanal et godt navn så du kan finde den igen senere.</p>
+    <form data-ng-submit="submitStep()" class="create-channel--form">
       <input type="text" class="create-channel--text" placeholder="F.eks. skærme i forhallen, skærm i børnesektion eller lignende" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="channel.title">
-      <input type="submit" class="create-channel--button" data-ng-class="{'is-inactive': !validation.titleSet()}" ng-disabled="!validation.titleSet()" value="Gem og fortsæt">
+      <input type="submit" class="create-channel--button" data-ng-class="{'is-inactive': !validation.titleSet()}" data-ng-disabled="!validation.titleSet()" value="Fortsæt">
     </form>
   </div>
 </section>
