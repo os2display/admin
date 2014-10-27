@@ -1,18 +1,18 @@
 <section id="create-slide-two" class="create-slide--section">
   <div class="create-slide--content--slide-two">
     <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
-    <p class="create-slide--header-description">Vælg hvilken type skærm sliden skal bruges til - er den bred eller høj?</p>
+    <p class="create-slide--header-description">Vælg hvilken type skærm din slide skal bruges til - er den bred eller høj?</p>
     <div class="create-slide--screens">
-      <div class="create-slide--screen-landscape" ng-click="selectOrientation('landscape')">
-        <div class="create-slide--screen-link" ng-class="{'is-selected': slide!==null && slide.orientation=='landscape'}">
+      <div class="create-slide--screen-landscape" data-ng-click="selectOrientation('landscape')">
+        <div class="create-slide--screen-link" data-ng-class="{'is-selected': slide!==null && slide.orientation=='landscape'}">
           <span class="create-slide--overlay">
             <span class="create-slide--link-check"></span>
           </span>
           <img src="/images/outlines/landscape-outline.png"/>
         </div>
       </div>
-      <div class="create-slide--screen-portrait" ng-click="selectOrientation('portrait')">
-        <div class="create-slide--screen-link" ng-class="{'is-selected': slide!==null && slide.orientation=='portrait'}">
+      <div class="create-slide--screen-portrait" data-ng-click="selectOrientation('portrait')">
+        <div class="create-slide--screen-link" data-ng-class="{'is-selected': slide!==null && slide.orientation=='portrait'}">
           <span class="create-slide--overlay">
             <span class="create-slide--link-check"></span>
           </span>
@@ -20,6 +20,6 @@
         </div>
       </div>
     </div>
-    <input type="submit" class="create-slide--button" value="Gem og fortsæt" data-ng-disabled="!validation.orientationSet()" data-ng-class="{'is-inactive': !validation.orientationSet()}" data-ng-click="submitStep()">
+    <input type="submit" class="create-slide--button" value="Fortsæt" data-ng-disabled="!validation.orientationSet()" data-ng-class="{'is-inactive': !validation.orientationSet()}" data-ng-click="submitStep()">
   </div>
 </section>
