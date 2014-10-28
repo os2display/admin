@@ -428,7 +428,7 @@
  */
 /* line 216, icons/*.png */
 .icons-sprite {
-  background-image: url('/../images/icons-s619c35ec82.png');
+  background-image: url('/images/icons-s619c35ec82.png');
   background-repeat: no-repeat; }
 
 /* Layout
@@ -466,7 +466,7 @@
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url('/../images/icons-s1200d42609.png');
+  background: url('/images/icons-s1200d42609.png');
   -moz-background-size: 103px 1512px;
   -o-background-size: 103px 1512px;
   -webkit-background-size: 103px 1512px;
@@ -477,7 +477,7 @@
   @media only screen and (min-width: 481px) {
     /* line 11, ../sass/theme/_global-silent-classes.scss */
     .create-slide--link-check, .create-screen--link-check, .create-channel--link-check, .overview--link-check {
-      background: url('/../images/icons-s1200d42609.png');
+      background: url('/images/icons-s1200d42609.png');
       -moz-background-size: 64px 945px;
       -o-background-size: 64px 945px;
       -webkit-background-size: 64px 945px;
@@ -488,7 +488,7 @@
   @media only screen and (min-width: 600px) {
     /* line 11, ../sass/theme/_global-silent-classes.scss */
     .create-slide--link-check, .create-screen--link-check, .create-channel--link-check, .overview--link-check {
-      background: url('/../images/icons-s1200d42609.png');
+      background: url('/images/icons-s1200d42609.png');
       -moz-background-size: 103px 1512px;
       -o-background-size: 103px 1512px;
       -webkit-background-size: 103px 1512px;
@@ -1550,7 +1550,7 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 39px 567px;
     -o-background-size: 39px 567px;
     -webkit-background-size: 39px 567px;
@@ -1564,7 +1564,7 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 39px 567px;
     -o-background-size: 39px 567px;
     -webkit-background-size: 39px 567px;
@@ -1607,7 +1607,7 @@ html.is-locked body {
     right: -.5em;
     top: -.5em;
     z-index: 1;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 39px 567px;
     -o-background-size: 39px 567px;
     -webkit-background-size: 39px 567px;
@@ -1686,7 +1686,7 @@ html.is-locked body {
     left: 0; }
     /* line 373, ../sass/modules/_create-channel.scss */
     .create-channel--screen-element-check.is-selected {
-      background: url('/../images/icons-s1200d42609.png');
+      background: url('/images/icons-s1200d42609.png');
       -moz-background-size: 26px 378px;
       -o-background-size: 26px 378px;
       -webkit-background-size: 26px 378px;
@@ -1737,7 +1737,7 @@ html.is-locked body {
     background-color: #fafafa; }
   /* line 66, ../sass/modules/_create-media.scss */
   .create-media--upload-icon {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 128px 1890px;
     -o-background-size: 128px 1890px;
     -webkit-background-size: 128px 1890px;
@@ -1778,7 +1778,7 @@ html.is-locked body {
   .create-media--text-icon {
     display: inline-block;
     margin-right: 1em;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 39px 567px;
     -o-background-size: 39px 567px;
     -webkit-background-size: 39px 567px;
@@ -2063,7 +2063,7 @@ html.is-locked body {
   .edit-menu--calendar-add-date {
     cursor: pointer;
     margin-top: 1.5em;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 71px 1040px;
     -o-background-size: 71px 1040px;
     -webkit-background-size: 71px 1040px;
@@ -2083,7 +2083,7 @@ html.is-locked body {
   .edit-menu--calendar-remove-date {
     cursor: pointer;
     float: left;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 71px 1040px;
     -o-background-size: 71px 1040px;
     -webkit-background-size: 71px 1040px;
@@ -2319,7 +2319,7 @@ html.is-locked body {
           cursor: pointer; } }
   /* line 214, ../sass/modules/_header.scss */
   .header--main-menu-item-image-channels {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 32px 473px;
     -o-background-size: 32px 473px;
     -webkit-background-size: 32px 473px;
@@ -2329,7 +2329,7 @@ html.is-locked body {
     background-position: 0 -30px; }
   /* line 221, ../sass/modules/_header.scss */
   .header--main-menu-item-image-slides {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 32px 473px;
     -o-background-size: 32px 473px;
     -webkit-background-size: 32px 473px;
@@ -2339,7 +2339,7 @@ html.is-locked body {
     background-position: 0 -357px; }
   /* line 228, ../sass/modules/_header.scss */
   .header--main-menu-item-image-screens {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 32px 473px;
     -o-background-size: 32px 473px;
     -webkit-background-size: 32px 473px;
@@ -2349,7 +2349,7 @@ html.is-locked body {
     background-position: 0 -135px; }
   /* line 235, ../sass/modules/_header.scss */
   .header--main-menu-item-image-templates {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 32px 473px;
     -o-background-size: 32px 473px;
     -webkit-background-size: 32px 473px;
@@ -2447,7 +2447,7 @@ html.is-locked body {
       text-decoration: none; }
   /* line 327, ../sass/modules/_header.scss */
   .header--nav-menu-label-image {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 32px 473px;
     -o-background-size: 32px 473px;
     -webkit-background-size: 32px 473px;
@@ -2511,7 +2511,7 @@ html.is-locked body {
       border-bottom: 2px solid black; }
   /* line 389, ../sass/modules/_header.scss */
   .header--sub-menu-item-image-overview {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 128px 1890px;
     -o-background-size: 128px 1890px;
     -webkit-background-size: 128px 1890px;
@@ -2524,7 +2524,7 @@ html.is-locked body {
     vertical-align: middle; }
   /* line 398, ../sass/modules/_header.scss */
   .header--sub-menu-item-image-create-channel {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 128px 1890px;
     -o-background-size: 128px 1890px;
     -webkit-background-size: 128px 1890px;
@@ -2588,7 +2588,7 @@ html.is-locked body {
       border-bottom: 2px solid black; }
   /* line 457, ../sass/modules/_header.scss */
   .header--main-menu-item-image-channels--mobile {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 26px 378px;
     -o-background-size: 26px 378px;
     -webkit-background-size: 26px 378px;
@@ -2598,7 +2598,7 @@ html.is-locked body {
     background-position: 0 -24px; }
   /* line 464, ../sass/modules/_header.scss */
   .header--main-menu-item-image-slides--mobile {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 26px 378px;
     -o-background-size: 26px 378px;
     -webkit-background-size: 26px 378px;
@@ -2608,7 +2608,7 @@ html.is-locked body {
     background-position: 0 -286px; }
   /* line 471, ../sass/modules/_header.scss */
   .header--main-menu-item-image-screens--mobile {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 26px 378px;
     -o-background-size: 26px 378px;
     -webkit-background-size: 26px 378px;
@@ -2618,7 +2618,7 @@ html.is-locked body {
     background-position: 0 -108px; }
   /* line 478, ../sass/modules/_header.scss */
   .header--main-menu-item-image-templates--mobile {
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 26px 378px;
     -o-background-size: 26px 378px;
     -webkit-background-size: 26px 378px;
@@ -2862,7 +2862,7 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 39px 567px;
     -o-background-size: 39px 567px;
     -webkit-background-size: 39px 567px;
@@ -2876,7 +2876,7 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 39px 567px;
     -o-background-size: 39px 567px;
     -webkit-background-size: 39px 567px;
@@ -2908,8 +2908,9 @@ html.is-locked body {
     width: 300px;
     height: 168.75px;
     position: relative;
-    background-color: #cccccc; }
-  /* line 114, ../sass/modules/_overview.scss */
+    background-color: #cccccc;
+    cursor: pointer; }
+  /* line 115, ../sass/modules/_overview.scss */
   .overview--channel-empty-text {
     font-size: 1em;
     position: relative;
@@ -2918,15 +2919,15 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  /* line 122, ../sass/modules/_overview.scss */
+  /* line 123, ../sass/modules/_overview.scss */
   .overview--channel-label, .overview--slide-label {
     display: inline-block;
     font-size: .9em; }
-  /* line 128, ../sass/modules/_overview.scss */
+  /* line 129, ../sass/modules/_overview.scss */
   .overview--channel-date, .overview--slide-date {
     color: #b3b3b3;
     font-size: .9em; }
-  /* line 135, ../sass/modules/_overview.scss */
+  /* line 136, ../sass/modules/_overview.scss */
   .overview--filter {
     border-bottom: 0;
     display: inline-block;
@@ -2934,52 +2935,52 @@ html.is-locked body {
     margin: 0 auto;
     position: relative;
     width: 100%; }
-  /* line 145, ../sass/modules/_overview.scss */
+  /* line 146, ../sass/modules/_overview.scss */
   .overview--filter-orientation {
     margin-bottom: 1em;
     position: relative;
     width: 100%;
     text-align: center; }
     @media only screen and (min-width: 1024px) {
-      /* line 145, ../sass/modules/_overview.scss */
+      /* line 146, ../sass/modules/_overview.scss */
       .overview--filter-orientation {
         width: 25%;
         display: inline-block;
         float: right; } }
-  /* line 160, ../sass/modules/_overview.scss */
+  /* line 161, ../sass/modules/_overview.scss */
   .overview--form {
     margin: 0 0 1em 0;
     width: 100%; }
     @media only screen and (min-width: 1024px) {
-      /* line 160, ../sass/modules/_overview.scss */
+      /* line 161, ../sass/modules/_overview.scss */
       .overview--form {
         margin: 0 0 1em -4px;
-        width: 70%;
+        width: 50%;
         display: inline-block;
         float: left; }
-        /* line 170, ../sass/modules/_overview.scss */
+        /* line 171, ../sass/modules/_overview.scss */
         .overview--form.full-width {
           width: 100%; } }
-  /* line 177, ../sass/modules/_overview.scss */
+  /* line 178, ../sass/modules/_overview.scss */
   .overview--sorting {
     display: inline-block;
     margin: 0 0 1em 0;
     width: 100%; }
     @media only screen and (min-width: 1024px) {
-      /* line 177, ../sass/modules/_overview.scss */
+      /* line 178, ../sass/modules/_overview.scss */
       .overview--sorting {
         max-width: 1024px;
         margin: 0 auto 1em; } }
-  /* line 189, ../sass/modules/_overview.scss */
+  /* line 190, ../sass/modules/_overview.scss */
   .overview--filter-label, .overview--sort-label {
     font-weight: bold;
     overflow: hidden;
     text-align: left;
     width: 100%; }
-  /* line 197, ../sass/modules/_overview.scss */
+  /* line 198, ../sass/modules/_overview.scss */
   .overview--sort-links {
     text-align: center; }
-  /* line 201, ../sass/modules/_overview.scss */
+  /* line 202, ../sass/modules/_overview.scss */
   .overview--filter-threesplit-left, .overview--filter-threesplit-middle, .overview--filter-threesplit-right, .overview--horisontal, .overview--vertical, .overview--newest, .overview--oldest, .overview--alphabetical {
     background: #fafafa;
     border: 1px solid #e6e6e6;
@@ -3007,24 +3008,24 @@ html.is-locked body {
     .overview--filter-threesplit-left:focus, .overview--filter-threesplit-middle:focus, .overview--filter-threesplit-right:focus, .overview--horisontal:focus, .overview--vertical:focus, .overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
       color: #595959;
       text-decoration: none; }
-    /* line 222, ../sass/modules/_overview.scss */
+    /* line 223, ../sass/modules/_overview.scss */
     .overview--filter-threesplit-left:first-child, .overview--filter-threesplit-middle:first-child, .overview--filter-threesplit-right:first-child, .overview--horisontal:first-child, .overview--vertical:first-child, .overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
       -moz-border-radius: 0.5em 0 0 0.5em;
       -webkit-border-radius: 0.5em;
       border-radius: 0.5em 0 0 0.5em; }
-    /* line 226, ../sass/modules/_overview.scss */
+    /* line 227, ../sass/modules/_overview.scss */
     .overview--filter-threesplit-left:last-child, .overview--filter-threesplit-middle:last-child, .overview--filter-threesplit-right:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
       border-right: 1px solid #e6e6e6;
       -moz-border-radius: 0 0.5em 0.5em 0;
       -webkit-border-radius: 0;
       border-radius: 0 0.5em 0.5em 0; }
-    /* line 232, ../sass/modules/_overview.scss */
+    /* line 233, ../sass/modules/_overview.scss */
     .overview--filter-threesplit-left.is-active, .overview--filter-threesplit-middle.is-active, .overview--filter-threesplit-right.is-active, .overview--horisontal.is-active, .overview--vertical.is-active, .overview--newest.is-active, .overview--oldest.is-active, .overview--alphabetical.is-active {
       background: #f0f0e1; }
-  /* line 237, ../sass/modules/_overview.scss */
+  /* line 238, ../sass/modules/_overview.scss */
   .overview--horisontal, .overview--vertical {
     width: 50%; }
-  /* line 244, ../sass/modules/_overview.scss */
+  /* line 245, ../sass/modules/_overview.scss */
   .overview--screen-link {
     display: inline-block;
     font-size: .9em; }
@@ -3044,7 +3045,7 @@ html.is-locked body {
     .overview--screen-link:focus {
       color: inherit;
       text-decoration: none; }
-  /* line 252, ../sass/modules/_overview.scss */
+  /* line 253, ../sass/modules/_overview.scss */
   .overview--screen-wrapper {
     margin: 0;
     background: #fafafa;
@@ -3053,14 +3054,14 @@ html.is-locked body {
     color: #595959;
     text-align: center; }
     @media only screen and (min-width: 481px) {
-      /* line 252, ../sass/modules/_overview.scss */
+      /* line 253, ../sass/modules/_overview.scss */
       .overview--screen-wrapper {
         margin: 0 1em 1em 0; } }
-  /* line 265, ../sass/modules/_overview.scss */
+  /* line 266, ../sass/modules/_overview.scss */
   .overview--screen-header {
     font-weight: bold;
     text-align: center; }
-  /* line 270, ../sass/modules/_overview.scss */
+  /* line 271, ../sass/modules/_overview.scss */
   .overview--screen--description {
     position: relative;
     top: 50%;
@@ -3068,22 +3069,22 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  /* line 277, ../sass/modules/_overview.scss */
+  /* line 278, ../sass/modules/_overview.scss */
   .overview--screen-all, .overview--screen-horisontal, .overview--screen-vertical {
     width: 33.3%; }
-  /* line 286, ../sass/modules/_overview.scss */
+  /* line 287, ../sass/modules/_overview.scss */
   .overview--media-single {
     position: relative;
     cursor: pointer;
     font-size: 0;
     overflow: hidden; }
-  /* line 294, ../sass/modules/_overview.scss */
+  /* line 295, ../sass/modules/_overview.scss */
   .overview--media-video-icon {
     right: .5rem;
     position: absolute;
     top: .5rem;
     background: #fff;
-    background: url('/../images/icons-s1200d42609.png');
+    background: url('/images/icons-s1200d42609.png');
     -moz-background-size: 29px 416px;
     -o-background-size: 29px 416px;
     -webkit-background-size: 29px 416px;
@@ -3091,7 +3092,7 @@ html.is-locked body {
     width: 29px;
     height: 23px;
     background-position: 0 -394px; }
-  /* line 304, ../sass/modules/_overview.scss */
+  /* line 305, ../sass/modules/_overview.scss */
   .overview--media-overlay {
     background-color: rgba(255, 255, 255, 0.65);
     color: #000;
@@ -3101,27 +3102,27 @@ html.is-locked body {
     right: 0;
     bottom: -30%;
     height: 30%; }
-    /* line 314, ../sass/modules/_overview.scss */
+    /* line 315, ../sass/modules/_overview.scss */
     .overview--media-overlay.is-hovering {
       -moz-animation: toggle-media-overlay 0.15s ease 1 forwards;
       -webkit-animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation-timing-function: linear;
       -webkit-animation-timing-function: linear; }
-  /* line 323, ../sass/modules/_overview.scss */
+  /* line 324, ../sass/modules/_overview.scss */
   .overview--media-image {
     height: 10rem; }
-  /* line 328, ../sass/modules/_overview.scss */
+  /* line 329, ../sass/modules/_overview.scss */
   .overview--media-overlay-inner {
     padding: .5em;
     text-align: left; }
-  /* line 334, ../sass/modules/_overview.scss */
+  /* line 335, ../sass/modules/_overview.scss */
   .overview--media-text {
     float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis; }
-  /* line 341, ../sass/modules/_overview.scss */
+  /* line 342, ../sass/modules/_overview.scss */
   .overview--no-video {
     background: #fafafa;
     border: 2px solid #cccccc;
@@ -3132,7 +3133,7 @@ html.is-locked body {
     line-height: 10rem;
     vertical-align: middle;
     width: 10rem; }
-  /* line 353, ../sass/modules/_overview.scss */
+  /* line 354, ../sass/modules/_overview.scss */
   .overview--media-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3148,7 +3149,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 359, ../sass/modules/_overview.scss */
+  /* line 360, ../sass/modules/_overview.scss */
   .overview--slide-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3164,7 +3165,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 370, ../sass/modules/_overview.scss */
+  /* line 371, ../sass/modules/_overview.scss */
   .overview--channel-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3329,7 +3330,7 @@ html.is-locked body {
 
 /* line 43, ../sass/modules/_preview.scss */
 .preview--channel-play {
-  background: url('/../images/icons-s1200d42609.png');
+  background: url('/images/icons-s1200d42609.png');
   -moz-background-size: 84px 1229px;
   -o-background-size: 84px 1229px;
   -webkit-background-size: 84px 1229px;
@@ -3340,7 +3341,7 @@ html.is-locked body {
 
 /* line 51, ../sass/modules/_preview.scss */
 .preview--channel-pause {
-  background: url('/../images/icons-s1200d42609.png');
+  background: url('/images/icons-s1200d42609.png');
   -moz-background-size: 84px 1229px;
   -o-background-size: 84px 1229px;
   -webkit-background-size: 84px 1229px;
@@ -3458,7 +3459,7 @@ html.is-locked body {
  * ========================================================================== */
 /* line 84, ../sass/animations/_animation.scss */
 .spinner, .create-slide--spinner, .create-screen--spinner, .create-channel--spinner {
-  background: url('/../images/icons-s1200d42609.png');
+  background: url('/images/icons-s1200d42609.png');
   -moz-background-size: 77px 1134px;
   -o-background-size: 77px 1134px;
   -webkit-background-size: 77px 1134px;

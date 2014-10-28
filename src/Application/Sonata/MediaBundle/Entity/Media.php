@@ -41,6 +41,11 @@ class Media extends BaseMedia {
    */
   protected $mediaOrders;
 
+	/**
+	 * @var string $user
+	 */
+	private $user;
+
   /**
    * Constructor
    */
