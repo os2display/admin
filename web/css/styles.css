@@ -3356,6 +3356,10 @@ html.is-locked body {
   border: 1px solid #b3b3b3;
   padding: .5em; }
 
+/* line 2, ../sass/modules/_delete.scss */
+.delete--button {
+  cursor: pointer; }
+
 /* Animations
  *
  * ========================================================================== */
