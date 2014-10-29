@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation\Groups;
  * References :
  *   working with object : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/working-with-objects/en
  *
- * Serialization is defined in config/serializer/Entity.Media.xml
+ * Serialization is defined in config/serializer/Entity.Media.xml and inherited properties in SonataMedia/Model.Media.xml.
  *
  * @author <yourname> <youremail>
  */
@@ -42,12 +42,12 @@ class Media extends BaseMedia {
   protected $mediaOrders;
 
 	/**
-	 * @var string $user
+	 * @var integer $user
 	 */
 	protected $user;
 
   /**
-   * @var string $media_type;
+   * @var string $media_type
    */
   protected $mediaType;
 

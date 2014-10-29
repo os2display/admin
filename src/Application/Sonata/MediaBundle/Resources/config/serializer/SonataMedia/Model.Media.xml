@@ -10,9 +10,6 @@
         <property name="providerStatus"    type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
         <property name="providerReference" type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
-        <virtual-property name="providerMetadata"  type="array"   expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api, middleware" method="getProviderMetadata" />
-        <virtual-property name="isInUse"  type="boolean"   expose="true" since-version="1.0" groups="api" method="getMediaIsInUse" />
-
         <property name="width"       type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
         <property name="height"      type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
         <property name="length"      type="double" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
@@ -31,7 +28,6 @@
         <property name="createdAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api, search" />
         <property name="updatedAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api" />
 
-        <property name="mediaType" type="string" expose="true" since-version="1.0" groups="api,search" />
     </class>
 </serializer>
 
