@@ -63,6 +63,12 @@ class Channel {
    */
   private $screens;
 
+	/**
+	 * @ORM\Column(name="user", type="integer", nullable=true)
+	 * @Groups({"api", "search"})
+	 */
+	private $user;
+
   /**
    * Constructor
    */
@@ -245,4 +251,27 @@ class Channel {
 		return $result;
 	}
 
+
+    /**
+     * Set user
+     *
+     * @param integer $user
+     * @return Channel
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

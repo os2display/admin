@@ -76,12 +76,19 @@ class Screen {
   private $channels;
 
 	/**
+	 * @ORM\Column(name="user", type="integer", nullable=true)
+	 * @Groups({"api", "search"})
+	 */
+	private $user;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
 		$this->channels = new ArrayCollection();
 	}
+
 
   /**
    * Get id
@@ -333,4 +340,27 @@ class Screen {
 			'slides' => $slides
 		);
 	}
+
+    /**
+     * Set user
+     *
+     * @param integer $user
+     * @return Screen
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

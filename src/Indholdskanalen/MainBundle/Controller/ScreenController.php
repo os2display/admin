@@ -108,6 +108,10 @@ class ScreenController extends Controller {
       }
     }
 
+	  // Update user.
+	  $userEntity = $this->get('security.context')->getToken()->getUser();
+	  $screen->setUser($userEntity->getId());
+
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
     $em->persist($screen);

@@ -59,6 +59,10 @@ class MediaController extends Controller {
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
 
+	    // Update user.
+	    $userEntity = $this->get('security.context')->getToken()->getUser();
+	    $media->setUser($userEntity->getId());
+
       $mediaManager = $this->get("sonata.media.manager.media");
 
       $mediaManager->save($media);

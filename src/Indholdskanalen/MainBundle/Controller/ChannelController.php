@@ -119,6 +119,10 @@ class ChannelController extends Controller {
       $sort_order++;
     }
 
+	  // Update user.
+	  $userEntity = $this->get('security.context')->getToken()->getUser();
+	  $channel->setUser($userEntity->getId());
+
     // Save the entity.
     $em->persist($channel);
     $em->flush();

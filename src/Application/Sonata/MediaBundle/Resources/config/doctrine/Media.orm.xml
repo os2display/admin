@@ -23,5 +23,7 @@
             </order-by>
         </one-to-many>
 
+        <field name="user" type="integer" column="user" nullable="true" />
+
     </entity>
 </doctrine-mapping>
