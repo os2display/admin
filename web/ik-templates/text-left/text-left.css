@@ -434,26 +434,26 @@
   .text-left--edit-image-settings:hover {
     cursor: pointer; }
 
-/* line 163, ../../sass/theme/_global-silent-classes.scss */
+/* line 176, ../../sass/theme/_global-silent-classes.scss */
 .text-left--header.has-placeholder:focus, .text-left--description.has-placeholder:focus {
   outline: none; }
-/* line 166, ../../sass/theme/_global-silent-classes.scss */
+/* line 179, ../../sass/theme/_global-silent-classes.scss */
 .text-left--header.has-placeholder:empty:before, .text-left--description.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
-/* line 170, ../../sass/theme/_global-silent-classes.scss */
+/* line 183, ../../sass/theme/_global-silent-classes.scss */
 .text-left--header.has-placeholder:empty:focus:before, .text-left--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
-/* line 176, ../../sass/theme/_global-silent-classes.scss */
+/* line 189, ../../sass/theme/_global-silent-classes.scss */
 .text-left--header, .text-left--description {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
-  /* line 177, ../../sass/theme/_global-silent-classes.scss */
+  /* line 190, ../../sass/theme/_global-silent-classes.scss */
   .text-left--header:focus, .text-left--description:focus {
     outline: none;
     border: 0; }

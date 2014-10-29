@@ -64,3 +64,8 @@
   right: auto;
   left: 15%;
 }
+
+
+.text-right--edit-logo-settings {
+  @extend %slide--edit-logo-settings;
+}

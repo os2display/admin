@@ -62,3 +62,11 @@
   bottom: auto;
   top: 15%;
 }
+
+
+.text-bottom--edit-logo-settings {
+  @extend %slide--edit-logo-settings;
+
+  bottom: auto;
+  top: 5%;
+}

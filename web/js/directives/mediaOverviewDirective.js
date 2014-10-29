@@ -97,6 +97,8 @@ ikApp.directive('ikMediaOverview', function() {
             mediaFactory.loadMediaBulk(ids).then(
               function(data) {
                 $scope.media = data;
+
+                console.log(data);
               }
             );
           }
@@ -136,7 +138,6 @@ ikApp.directive('ikMediaOverview', function() {
           $scope.media_type = type;
 
           $scope.setSearchFilters();
-          $scope.updateSearch();
         }
       };
 
@@ -172,7 +173,6 @@ ikApp.directive('ikMediaOverview', function() {
         }
 
         $scope.updateSearch();
-
       };
 
       /**
@@ -232,11 +232,6 @@ ikApp.directive('ikMediaOverview', function() {
 
         event.preventDefault();
       });
-
-      // Send the default search query.
-      if ($scope.ikAutoSearch) {
-        $scope.updateSearch();
-      }
     },
     link: function(scope, element, attrs) {
       attrs.$observe('ikMediaType', function(val) {
@@ -248,6 +243,13 @@ ikApp.directive('ikMediaOverview', function() {
         }
 
         scope.filterMediaType(val);
+      });
+
+      attrs.$observe('ikAutoSearch', function(val) {
+        // Send the default search query.
+        if (scope.ikAutoSearch === true) {
+          $scope.updateSearch();
+        }
       })
     },
     templateUrl: 'partials/directives/media-overview-directive.html'

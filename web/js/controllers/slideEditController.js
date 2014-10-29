@@ -23,71 +23,63 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
     // Setup editor states and functions.
     $scope.editor = {
-      showTextEditor: false,
-      showBackgroundEditor: false,
-      showManualCalendarEditor: false,
+      editorOpen: false,
       toggleTextEditor: function() {
         $('html').toggleClass('is-locked');
 
-        $scope.editor.showBackgroundEditor = false;
-        $scope.editor.showContentEditor = false;
-        $scope.editor.showTextEditor = !$scope.editor.showTextEditor;
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'partials/slide/editors/text-editor.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
       },
       toggleBackgroundEditor: function() {
-        // Add toggle to html tag to avoid scrolling when the menu is open.
-        // We add the class this way because the <html> is not in $scope.
         $('html').toggleClass('is-locked');
 
-        $scope.step = 'background-picker';
-        $scope.editor.showTextEditor = false;
-        $scope.editor.showContentEditor = false;
-        $scope.editor.showBackgroundEditor = !$scope.editor.showBackgroundEditor;
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'partials/slide/editors/background-editor.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
+      },
+      toggleLogoEditor: function() {
+        $('html').toggleClass('is-locked');
+
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'partials/slide/editors/logo-editor.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
       },
       toggleManualCalendarEditor: function() {
-        // Add toggle to html tag to avoid scrolling when the menu is open.
-        // We add the class this way because the <html> is not in $scope.
         $('html').toggleClass('is-locked');
 
-        // Hide all other editors.
-        $scope.editor.showTextEditor = false;
-        $scope.editor.showBackgroundEditor = false;
-
-        //Show content editor.
-        $scope.editor.showManualCalendarEditor = !$scope.editor.showManualCalendarEditor;
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'partials/slide/editors/manual-calendar-editor.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
 
         // Run sorting of events.
         $scope.sortEvents();
         $scope.validateEvents();
       },
       hideAllEditors: function() {
-        $scope.editor.showBackgroundEditor = false;
-        $scope.editor.showTextEditor = false;
-        $scope.editor.showManualCalendarEditor = false;
+        $scope.editorOpen = false;
         $('html').removeClass('is-locked');
+
+        $scope.editorURL = '';
       }
     };
 
-    /**
-     * Set the step to background-picker.
-     */
-    $scope.backgroundPicker = function backgroundPicker() {
-      $scope.step = 'background-picker';
-    };
-
-    /**
-     * Set the step to pick-from-media.
-     */
-    $scope.pickFromMedia = function pickFromMedia() {
-      $scope.$broadcast('mediaOverview.updateSearch');
-      $scope.step = 'pick-from-media';
-    };
-
-    /**
-     * Set the step to pick-from-computer.
-     */
-    $scope.pickFromComputer = function pickFromComputer() {
-      $scope.step = 'pick-from-computer';
-    };
 
     /**
      * When clicking the background color button,
@@ -174,24 +166,26 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
     // Register event listener for select media.
     $scope.$on('mediaOverview.selectMedia', function(event, media) {
-      var containsMedia = false;
-
-      $scope.slide.media.forEach(function(element) {
-        if (element.id === media.id) {
-          containsMedia = true;
-        }
-      });
-
-      if (containsMedia) {
-        $scope.slide.media.length = 0;
+      if (media.media_type === 'logo') {
+        $scope.slide.logo = media;
       }
       else {
-        $scope.slide.media.length = 0;
-        $scope.slide.media.push(media);
-      }
+        var containsMedia = false;
 
-      // Reset step to background-picker.
-      $scope.step = 'background-picker';
+        $scope.slide.media.forEach(function(element) {
+          if (element.id === media.id) {
+            containsMedia = true;
+          }
+        });
+
+        if (containsMedia) {
+          $scope.slide.media.length = 0;
+        }
+        else {
+          $scope.slide.media.length = 0;
+          $scope.slide.media.push(media);
+        }
+      }
 
       // Hide editors.
       $scope.editor.hideAllEditors();

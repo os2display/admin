@@ -417,6 +417,23 @@
   .only-video--settings:hover {
     cursor: pointer; }
 
+/* line 147, ../../sass/theme/_global-silent-classes.scss */
+.only-video--edit-logo-settings {
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  background: url('/../../images/icons-s1200d42609.png');
+  -moz-background-size: 128px 1890px;
+  -o-background-size: 128px 1890px;
+  -webkit-background-size: 128px 1890px;
+  background-size: 128px 1890px;
+  width: 51px;
+  height: 51px;
+  background-position: 0 -884px; }
+  /* line 154, ../../sass/theme/_global-silent-classes.scss */
+  .only-video--edit-logo-settings:hover {
+    cursor: pointer; }
+
 /**
  *
  * Normalize

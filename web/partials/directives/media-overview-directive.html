@@ -40,7 +40,7 @@
         <div data-ng-switch-when="logo">
           <a class="overview--media-link" data-ng-mouseenter="mouseHover(mediaElement.id)" data-ng-mouseleave="mouseHover(false)">
             <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
-            <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === mediaElement.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{mediaElement.name}} (image)</span></div></div>
+            <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === mediaElement.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{mediaElement.name}} (logo)</span></div></div>
           </a>
         </div>
         <div data-ng-switch-when="video" data-ng-mouseenter="mouseHover(mediaElement.id)" data-ng-mouseleave="mouseHover(false)">
