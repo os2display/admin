@@ -14,7 +14,9 @@
 ikApp.directive('ikMediaUpload', function() {
   return {
     restrict: 'E',
-    scope: {},
+    scope: {
+      ikUploadType: '@'
+    },
     controller: function($scope, FileUploader) {
       $scope.currentStep = 1;
       $scope.uploadComplete = false;
@@ -24,14 +26,23 @@ ikApp.directive('ikMediaUpload', function() {
 
       var acceptedVideotypes = '|mp4|avi|wmv|mov|mpeg|mpg|mkv|ogg|ogv|webm|m4v';
       var acceptedImagetypes = '|jpg|png|jpeg|bmp|gif';
-      var acceptedMediatypes = acceptedVideotypes + acceptedImagetypes;
+
+      // Set accepted media types.
+      var acceptedMediatypes = '';
+      if ($scope.ikUploadType === 'image' || $scope.ikUploadType === 'logo') {
+        acceptedMediatypes = acceptedImagetypes;
+      } else if ($scope.ikUploadType === 'video') {
+        acceptedMediatypes = acceptedVideotypes;
+      } else {
+        acceptedMediatypes = acceptedVideotypes + acceptedImagetypes;
+      }
 
       // Create an uploader
       $scope.uploader = new FileUploader({
         url: '/api/media',
         queueLimit: 1,
         filters: [{
-          name: 'imageFilter',
+          name: 'mediaFilter',
           fn: function(item /*{File|FileLikeObject}*/, options) {
             var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
             return acceptedMediatypes.indexOf(type) !== -1;
@@ -105,7 +116,12 @@ ikApp.directive('ikMediaUpload', function() {
        * After adding a file to the upload queue, add an empty title to the file item.
        */
       $scope.uploader.onAfterAddingFile = function(item) {
-        item.formData = [{title: ''}];
+        item.formData = [
+          {
+            "title": "",
+            "logo": false
+          }
+        ];
       };
 
       /**

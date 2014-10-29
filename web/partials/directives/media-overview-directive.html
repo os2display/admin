@@ -27,11 +27,17 @@
 
   <div class="overview--media">
     <div class="overview--media-single" data-ng-click="mediaOverviewClickMedia(mediaElement)" data-ng-repeat="mediaElement in media">
-      <div class="overview--media-link" data-ng-switch data-on="getMediaType(mediaElement)" data-ng-class="{'is-selected': mediaSelected(mediaElement)}">
+      <div class="overview--media-link" data-ng-switch data-on="mediaElement.media_type" data-ng-class="{'is-selected': mediaSelected(mediaElement)}">
         <span class="overview--overlay">
           <span class="overview--link-check"></span>
         </span>
         <div data-ng-switch-when="image">
+          <a class="overview--media-link" data-ng-mouseenter="mouseHover(mediaElement.id)" data-ng-mouseleave="mouseHover(false)">
+            <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
+            <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === mediaElement.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{mediaElement.name}} (image)</span></div></div>
+          </a>
+        </div>
+        <div data-ng-switch-when="logo">
           <a class="overview--media-link" data-ng-mouseenter="mouseHover(mediaElement.id)" data-ng-mouseleave="mouseHover(false)">
             <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
             <div class="overview--media-overlay" data-ng-class="{'is-hovering': hovering === mediaElement.id}"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{mediaElement.name}} (image)</span></div></div>

@@ -156,14 +156,18 @@ ikApp.directive('ikMediaOverview', function() {
         }
 
         if ($scope.media_type !== 'all') {
-          var term = new Object();
-          term.term = {content_type : $scope.media_type};
+          var term = {};
+          term.term = {
+            media_type : $scope.media_type
+          };
           search.filter.bool.must.push(term);
         }
 
         if ($scope.showFromUser !== 'all') {
-          var term = new Object();
-          term.term = {user : $scope.currentUser.id};
+          var term = {};
+          term.term = {
+            user : $scope.currentUser.id
+          };
           search.filter.bool.must.push(term);
         }
 
@@ -184,22 +188,6 @@ ikApp.directive('ikMediaOverview', function() {
           $scope.setSearchFilters();
           $scope.updateSearch();
         }
-      };
-
-      /**
-       * Get the content type of a media: image or media
-       *
-       * @param mediaElement
-       *
-       * @returns "", "video" or "image"
-       */
-      $scope.getMediaType = function getMediaType(mediaElement) {
-        if (!mediaElement) {
-          return "";
-        }
-
-        var type = mediaElement.content_type.split("/");
-        return type[0];
       };
 
       /**
