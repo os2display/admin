@@ -94,7 +94,7 @@ ikApp.directive('ikMediaUpload', function() {
           return;
         }
 
-        if ($scope.uploadInProgress) {
+        if ($scope.uploadInProgress && $scope.uploader.progress > 5) {
           return $scope.uploader.progress - 5;
         } else {
           return $scope.uploader.progress

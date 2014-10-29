@@ -44,7 +44,12 @@ class Media extends BaseMedia {
 	/**
 	 * @var string $user
 	 */
-	private $user;
+	protected $user;
+
+  /**
+   * @var string $media_type;
+   */
+  protected $mediaType;
 
   /**
    * Constructor
@@ -116,4 +121,21 @@ class Media extends BaseMedia {
 		return !$this->mediaOrders->isEmpty();
 	}
 
+  /**
+   * Get mediaType
+   *
+   * @return string
+   */
+  public function getMediaType() {
+    return $this->mediaType;
+  }
+
+  /**
+   * Set mediaType
+   *
+   * @param $mediaType
+   */
+  public function setMediaType($mediaType) {
+    $this->mediaType = $mediaType;
+  }
 }

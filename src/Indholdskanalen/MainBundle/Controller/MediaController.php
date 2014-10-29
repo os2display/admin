@@ -46,10 +46,19 @@ class MediaController extends Controller {
       switch ($mediaType) {
         case 'video':
           $media->setProviderName('sonata.media.provider.zencoder');
+          $media->setMediaType('video');
           break;
 
         case 'image':
           $media->setProviderName('sonata.media.provider.image');
+
+          $isLogo = $request->request->get('logo');
+          if (isset($isLogo) || $isLogo) {
+            $media->setMediaType('logo');
+          } else {
+            $media->setMediaType('image');
+          }
+
           break;
 
         default:
@@ -70,7 +79,6 @@ class MediaController extends Controller {
       $uploadedItems[] = $media->getId();
     }
 
-    // @TODO: send status codes
     $response = new Response(json_encode($uploadedItems));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');

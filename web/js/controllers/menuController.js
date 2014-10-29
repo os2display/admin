@@ -81,7 +81,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location',
             classSuffix: 'overview'
           },
           {
-            title: 'Upload',
+            title: 'Upload medie',
             path: 'media/upload',
             classSuffix: 'create-media'
           }

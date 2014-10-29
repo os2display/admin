@@ -25,5 +25,7 @@
 
         <field name="user" type="integer" column="user" nullable="true" />
 
+        <field name="mediaType" type="string" column="media_type" nullable="true" />
+
     </entity>
 </doctrine-mapping>

@@ -103,12 +103,22 @@
 
 
   &--thumb{
-    float: left;
     padding-right: .5em;
 
     canvas {
       height: 100px;
     }
+  }
+
+  &--is-logo {
+    float: left;
+    color: $gray-dark;
+    display: inline-block;
+  }
+
+
+  &--options {
+
   }
 
 
