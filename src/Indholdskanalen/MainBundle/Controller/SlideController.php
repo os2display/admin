@@ -53,6 +53,10 @@ class SlideController extends Controller {
       // This is a new slide.
       $slide = new Slide();
       $slide->setCreatedAt(time());
+
+	    // Set creator.
+	    $userEntity = $this->get('security.context')->getToken()->getUser();
+	    $slide->setUser($userEntity->getId());
     }
 
     // Update fields from post.
@@ -83,10 +87,6 @@ class SlideController extends Controller {
     if (isset($post['media_type'])) {
       $slide->setMediaType($post['media_type']);
     }
-
-    // Update user.
-    $userEntity = $this->get('security.context')->getToken()->getUser();
-    $slide->setUser($userEntity->getId());
 
     // Get channel ids.
     $postChannelIds = array();

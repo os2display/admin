@@ -138,4 +138,27 @@ class Media extends BaseMedia {
   public function setMediaType($mediaType) {
     $this->mediaType = $mediaType;
   }
+
+	/**
+	 * Set user
+	 *
+	 * @param integer $user
+	 * @return Media
+	 */
+	public function setUser($user)
+	{
+		$this->user = $user;
+
+		return $this;
+	}
+
+	/**
+	 * Get user
+	 *
+	 * @return integer
+	 */
+	public function getUser()
+	{
+		return $this->user;
+	}
 }

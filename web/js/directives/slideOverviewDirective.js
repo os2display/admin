@@ -143,8 +143,6 @@ ikApp.directive('ikSlideOverview', function() {
           search.filter.bool.must.push(term);
         }
 
-        console.log(search);
-
         $scope.updateSearch();
 
       };

@@ -23,15 +23,22 @@ ikApp.directive('ikMediaOverview', function() {
       ikHideFilters: '=',
       ikSelectedMedia: '='
     },
-    controller: function($scope, mediaFactory) {
+    controller: function($scope, mediaFactory, userFactory) {
       // Set default orientation and sort.
       $scope.sort = { "created_at": "desc" };
+      $scope.showFromUser = 'all';
+
+      userFactory.getCurrentUser().then(
+        function(data) {
+          $scope.currentUser = data;
+        }
+      );
 
       // Set default search text.
       $scope.search_text = '';
 
       // Set default media type.
-      $scope.media_type = '';
+      $scope.media_type = 'all';
 
       // Media to display.
       $scope.media = [];
@@ -128,24 +135,53 @@ ikApp.directive('ikMediaOverview', function() {
           // Update scope to show selection in GUI.
           $scope.media_type = type;
 
-          // Remove filter if no type is set.
-          if (type === '') {
-            search.filter = undefined;
-          }
-          else {
-            // Filter based on content type.
-            search.filter = {
-              "bool": {
-                "must": {
-                  "term": {
-                    "content_type":  type
-                  }
-                }
-              }
-            };
-          }
+          $scope.setSearchFilters();
+          $scope.updateSearch();
+        }
+      };
 
-          // Update the search result.
+      /**
+       * Updates the search filter based on current orientation and user
+       */
+      $scope.setSearchFilters = function setSearchFilters() {
+        // Update orientation for the search.
+        delete search.filter;
+
+        if($scope.media_type !== 'all' || $scope.showFromUser !== 'all') {
+          search.filter = {
+            "bool": {
+              "must": []
+            }
+          }
+        }
+
+        if ($scope.media_type !== 'all') {
+          var term = new Object();
+          term.term = {content_type : $scope.media_type};
+          search.filter.bool.must.push(term);
+        }
+
+        if ($scope.showFromUser !== 'all') {
+          var term = new Object();
+          term.term = {user : $scope.currentUser.id};
+          search.filter.bool.must.push(term);
+        }
+
+        $scope.updateSearch();
+
+      };
+
+      /**
+       * Changes if all slides are shown or only slides belonging to current user
+       *
+       * @param user
+       *   This should either be 'mine' or 'all'.
+       */
+      $scope.setUser = function setUser(user) {
+        if ($scope.showFromUser !== user) {
+          $scope.showFromUser = user;
+
+          $scope.setSearchFilters();
           $scope.updateSearch();
         }
       };
