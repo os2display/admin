@@ -50,6 +50,10 @@ class ChannelController extends Controller {
       // This is a new channel.
       $channel = new Channel();
       $channel->setCreatedAt(time());
+
+	    // Set creator.
+	    $userEntity = $this->get('security.context')->getToken()->getUser();
+	    $channel->setUser($userEntity->getId());
     }
 
     // Update fields.
@@ -118,10 +122,6 @@ class ChannelController extends Controller {
       $channel_slide_order->setSortOrder($sort_order);
       $sort_order++;
     }
-
-	  // Update user.
-	  $userEntity = $this->get('security.context')->getToken()->getUser();
-	  $channel->setUser($userEntity->getId());
 
     // Save the entity.
     $em->persist($channel);

@@ -6,13 +6,20 @@
 /**
  * Screens controller handles the display and selection of screens.
  */
-ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
-  function($scope, screenFactory) {
+ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory',
+  function($scope, screenFactory, userFactory) {
     "use strict";
 
     // Set default values.
     $scope.orientation = 'all';
+    $scope.showFromUser = 'all';
     $scope.sort = { "created_at": "desc" };
+
+    userFactory.getCurrentUser().then(
+      function(data) {
+        $scope.currentUser = data;
+      }
+    );
 
     // Default pager values.
     $scope.pager = {
@@ -84,22 +91,56 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory',
       if ($scope.orientation !== orientation) {
        $scope.orientation = orientation;
 
-        // Update orientation for the search.
-        delete search.filter;
-        if (orientation !== 'all') {
-          search.filter = {
-            "bool": {
-              "must": {
-                "term": {
-                  "orientation": orientation
-                }
-              }
-            }
-          };
-        }
+        $scope.setSearchFilters();
 
         $scope.updateSearch();
       }
+    };
+
+    /**
+     * Changes if all slides are shown or only slides belonging to current user
+     *
+     * @param user
+     *   This should either be 'mine' or 'all'.
+     */
+    $scope.setUser = function setUser(user) {
+      if ($scope.showFromUser !== user) {
+        $scope.showFromUser = user;
+
+        $scope.setSearchFilters();
+        $scope.updateSearch();
+      }
+    };
+
+    /**
+     * Updates the search filter based on current orientation and user
+     */
+    $scope.setSearchFilters = function setSearchFilters() {
+      // Update orientation for the search.
+      delete search.filter;
+
+      if($scope.orientation !== 'all' || $scope.showFromUser !== 'all') {
+        search.filter = {
+          "bool": {
+            "must": []
+          }
+        }
+      }
+
+      if ($scope.orientation !== 'all') {
+        var term = new Object();
+        term.term = {orientation : $scope.orientation};
+        search.filter.bool.must.push(term);
+      }
+
+      if ($scope.showFromUser !== 'all') {
+        var term = new Object();
+        term.term = {user : $scope.currentUser.id};
+        search.filter.bool.must.push(term);
+      }
+
+      $scope.updateSearch();
+
     };
 
     /**

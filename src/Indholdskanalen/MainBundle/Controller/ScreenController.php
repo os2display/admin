@@ -62,6 +62,10 @@ class ScreenController extends Controller {
       // This is a new screen.
       $screen = new Screen();
       $screen->setCreatedAt(time());
+
+	    // Set creator.
+	    $userEntity = $this->get('security.context')->getToken()->getUser();
+	    $screen->setUser($userEntity->getId());
     }
 
     // Update fields.
@@ -107,10 +111,6 @@ class ScreenController extends Controller {
         }
       }
     }
-
-	  // Update user.
-	  $userEntity = $this->get('security.context')->getToken()->getUser();
-	  $screen->setUser($userEntity->getId());
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();

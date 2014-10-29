@@ -59,7 +59,7 @@ class MediaController extends Controller {
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
 
-	    // Update user.
+	    // Set creator.
 	    $userEntity = $this->get('security.context')->getToken()->getUser();
 	    $media->setUser($userEntity->getId());
 

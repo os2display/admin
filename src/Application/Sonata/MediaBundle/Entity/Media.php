@@ -116,4 +116,27 @@ class Media extends BaseMedia {
 		return !$this->mediaOrders->isEmpty();
 	}
 
+	/**
+	 * Set user
+	 *
+	 * @param integer $user
+	 * @return Channel
+	 */
+	public function setUser($user)
+	{
+		$this->user = $user;
+
+		return $this;
+	}
+
+	/**
+	 * Get user
+	 *
+	 * @return integer
+	 */
+	public function getUser()
+	{
+		return $this->user;
+	}
+
 }
