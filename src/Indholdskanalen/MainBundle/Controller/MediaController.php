@@ -53,7 +53,7 @@ class MediaController extends Controller {
           $media->setProviderName('sonata.media.provider.image');
 
           $isLogo = $request->request->get('logo');
-          if (isset($isLogo) || $isLogo) {
+          if (isset($isLogo) && $isLogo === 'true') {
             $media->setMediaType('logo');
           } else {
             $media->setMediaType('image');
