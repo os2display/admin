@@ -73,9 +73,11 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.validateEvents();
       },
       hideAllEditors: function() {
-        $scope.editorOpen = false;
         $('html').removeClass('is-locked');
 
+        $scope.editor.editorOpen = false;
+        $scope.step = 'background-picker';
+        $scope.logoStep = 'logo-picker';
         $scope.editorURL = '';
       }
     };
@@ -269,5 +271,41 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     $scope.pickLogoFromComputer = function pickLogoFromComputer() {
       $scope.logoStep = 'pick-from-computer';
     };
+
+    $scope.logoPositions = [
+      {
+        value: "top: 0; left: 0; max-width: 10%; max-height: 10%",
+        text: "top venstre 10%"
+      },
+      {
+        value: "top: 0; right: 0; max-width: 10%; max-height: 10%",
+        text: "top højre 10%"
+      },
+      {
+        value: "bottom: 0; left: 0; max-width: 10%; max-height: 10%",
+        text: "bund venstre 10%"
+      },
+      {
+        value: "bottom: 0; right: 0; max-width: 10%; max-height: 10%",
+        text: "bund højre 10%"
+      },
+      {
+        value: "top: 0; left: 0; max-width: 20%; max-height: 20%",
+        text: "top venstre 20%"
+      },
+      {
+        value: "top: 0; right: 0; max-width: 20%; max-height: 20%",
+        text: "top højre 20%"
+      },
+      {
+        value: "bottom: 0; left: 0; max-width: 20%; max-height: 20%",
+        text: "bund venstre 20%"
+      },
+      {
+        value: "bottom: 0; right: 0; max-width: 20%; max-height: 20%",
+        text: "bund højre 20%"
+      }
+
+    ];
   }
 ]);
