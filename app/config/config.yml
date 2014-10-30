@@ -140,3 +140,9 @@ jms_serializer:
       SonataMediaBundle:
         namespace_prefix: "Sonata\\MediaBundle"
         path: "@ApplicationSonataMediaBundle/Resources/config/serializer/SonataMedia"
+      SonataUserBundle:
+        namespace_prefix: "Sonata\\UserBundle"
+        path: "@ApplicationSonataUserBundle/Resources/config/serializer/SonataUser"
+      FOSUserBundle:
+        namespace_prefix: "FOS\\UserBundle"
+        path: "@ApplicationSonataUserBundle/Resources/config/serializer/FOSUser"
