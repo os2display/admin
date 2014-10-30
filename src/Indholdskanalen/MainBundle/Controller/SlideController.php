@@ -188,6 +188,15 @@ class SlideController extends Controller {
       }
     }
 
+    // Set logo
+    if (isset($post['logo'])) {
+      $logo = $doctrine->getRepository('ApplicationSonataMediaBundle:Media')->findOneById($post['logo']['id']);
+
+      if ($logo) {
+        $slide->setLogo($logo);
+      }
+    }
+
     // Save the slide.
     $em->persist($slide);
 

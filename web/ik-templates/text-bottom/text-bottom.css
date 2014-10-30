@@ -1202,3 +1202,9 @@ html.is-locked body {
 .text-bottom--edit-logo-settings {
   bottom: auto;
   top: 5%; }
+
+/* line 75, text-bottom.scss */
+.text-bottom--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%; }

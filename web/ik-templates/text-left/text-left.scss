@@ -61,3 +61,10 @@
 .text-left--edit-image-settings {
   @extend %slide--edit-image-settings;
 }
+
+
+.text-left--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%;
+}

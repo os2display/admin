@@ -27,5 +27,7 @@
             </order-by>
         </one-to-many>
 
+        <one-to-many target-entity="Indholdskanalen\MainBundle\Entity\Slide" mapped-by="logo" field="logoSlides" />
+
     </entity>
 </doctrine-mapping>

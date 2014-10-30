@@ -436,9 +436,9 @@
 
 /* line 147, ../../sass/theme/_global-silent-classes.scss */
 .text-top--edit-logo-settings {
-  bottom: 15%;
+  bottom: 5%;
   position: absolute;
-  left: 15%;
+  left: 5%;
   background: url('/../../images/icons-s1200d42609.png');
   -moz-background-size: 128px 1890px;
   -o-background-size: 128px 1890px;
@@ -1191,3 +1191,9 @@ html.is-locked body {
 /* line 42, text-top.scss */
 .text-top--description {
   font-size: 70%; }
+
+/* line 68, text-top.scss */
+.text-top--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%; }

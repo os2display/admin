@@ -1196,3 +1196,9 @@ html.is-locked body {
 .portrait-text-top--edit-box-settings {
   right: -15px;
   top: -15px; }
+
+/* line 71, portrait-text-top.scss */
+.portrait-text-top--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%; }

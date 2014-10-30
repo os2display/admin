@@ -12,4 +12,10 @@
   &--edit-logo-settings {
     @extend %slide--edit-logo-settings;
   }
+
+  &--logo {
+    position: absolute;
+    max-width: 10%;
+    max-height: 10%;
+  }
 }

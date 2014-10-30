@@ -63,3 +63,10 @@
 .text-top--edit-logo-settings {
   @extend %slide--edit-logo-settings;
 }
+
+
+.text-top--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%;
+}

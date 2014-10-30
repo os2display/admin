@@ -1199,3 +1199,9 @@ html.is-locked body {
 .text-right--edit-image-settings {
   right: auto;
   left: 15%; }
+
+/* line 74, text-right.scss */
+.text-right--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%; }

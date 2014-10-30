@@ -207,12 +207,14 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       // If all the data items were uploaded correctly.
       if (allSuccess) {
         mediaFactory.getMedia(data.id).then(function(media) {
-          $scope.slide.media.length = 0;
-          $scope.slide.media.push(media);
+          if (media.media_type === 'logo') {
+            $scope.slide.logo = media;
+          }
+          else {
+            $scope.slide.media.length = 0;
+            $scope.slide.media.push(media);
+          }
         });
-
-        // Reset step to background-picker.
-        $scope.step = 'background-picker';
 
         // Hide editors.
         $scope.editor.hideAllEditors();
@@ -244,20 +246,20 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
       $scope.step = 'pick-from-computer';
     };
 
-    $scope.step = 'logo-picker';
+    $scope.logoStep = 'logo-picker';
 
     /**
      * Set the step to logo-picker.
      */
     $scope.logoPicker = function logoPicker() {
-      $scope.step = 'logo-picker';
+      $scope.logoStep = 'logo-picker';
     };
 
     /**
      * Set the step to pick-logo-from-media.
      */
     $scope.pickLogoFromMedia = function pickLogoFromMedia() {
-      $scope.step = 'pick-logo-from-media';
+      $scope.logoStep = 'pick-logo-from-media';
       $scope.$emit('mediaOverview.updateSearch');
     };
 
@@ -265,7 +267,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
      * Set the step to pick-logo-from-computer.
      */
     $scope.pickLogoFromComputer = function pickLogoFromComputer() {
-      $scope.step = 'pick-logo-from-computer';
+      $scope.logoStep = 'pick-from-computer';
     };
   }
 ]);
