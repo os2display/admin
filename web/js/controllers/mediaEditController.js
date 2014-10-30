@@ -54,8 +54,6 @@ ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', 
      * The desired format to display (ogv, mpeg or thumbnail_SIZE).
      */
     $scope.videoPath = function(element, format) {
-      console.log(element);
-      console.log(format);
       // Init the filepath.
       var filepath = '';
 

@@ -97,8 +97,6 @@ ikApp.directive('ikMediaOverview', function() {
             mediaFactory.loadMediaBulk(ids).then(
               function(data) {
                 $scope.media = data;
-
-                console.log(data);
               }
             );
           }
