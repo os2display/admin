@@ -245,8 +245,8 @@ ikApp.directive('ikMediaOverview', function() {
 
       attrs.$observe('ikAutoSearch', function(val) {
         // Send the default search query.
-        if (scope.ikAutoSearch === true) {
-          $scope.updateSearch();
+        if (scope.ikAutoSearch === "true") {
+          scope.updateSearch();
         }
       })
     },
