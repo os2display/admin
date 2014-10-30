@@ -170,6 +170,8 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     $scope.$on('mediaOverview.selectMedia', function(event, media) {
       if (media.media_type === 'logo') {
         $scope.slide.logo = media;
+
+        $scope.logoStep = 'logo-picker';
       }
       else {
         var containsMedia = false;
@@ -187,10 +189,10 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
           $scope.slide.media.length = 0;
           $scope.slide.media.push(media);
         }
-      }
 
-      // Hide editors.
-      $scope.editor.hideAllEditors();
+        // Hide editors.
+        $scope.editor.hideAllEditors();
+      }
     });
 
     // Register event listener for media upload success.
@@ -211,15 +213,17 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         mediaFactory.getMedia(data.id).then(function(media) {
           if (media.media_type === 'logo') {
             $scope.slide.logo = media;
+
+            $scope.logoStep = 'logo-picker';
           }
           else {
             $scope.slide.media.length = 0;
             $scope.slide.media.push(media);
+
+            // Hide editors.
+            $scope.editor.hideAllEditors();
           }
         });
-
-        // Hide editors.
-        $scope.editor.hideAllEditors();
       }
     });
 
