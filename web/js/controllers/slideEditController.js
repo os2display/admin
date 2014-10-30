@@ -273,7 +273,7 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
      * Set the step to pick-logo-from-computer.
      */
     $scope.pickLogoFromComputer = function pickLogoFromComputer() {
-      $scope.logoStep = 'pick-from-computer';
+      $scope.logoStep = 'pick-logo-from-computer';
     };
 
     $scope.logoPositions = [

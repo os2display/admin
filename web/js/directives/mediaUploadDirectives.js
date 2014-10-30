@@ -122,6 +122,10 @@ ikApp.directive('ikMediaUpload', function() {
             "logo": false
           }
         ];
+
+        if ($scope.ikUploadType === 'logo') {
+          item.formData[0].logo = true;
+        }
       };
 
       /**
