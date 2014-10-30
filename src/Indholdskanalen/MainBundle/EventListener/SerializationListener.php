@@ -119,6 +119,7 @@ class SerializationListener implements EventSubscriberInterface
           if ($logo) {
             $providerName = $logo->getProviderName();
             if($providerName === 'sonata.media.provider.image') {
+              $provider = $this->mediaService->getProvider($providerName);
               $logoPath = $provider->generatePublicUrl($logo, 'reference');
             }
           }
