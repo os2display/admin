@@ -136,7 +136,6 @@ ikApp.directive('ikMediaOverview', function() {
           $scope.media_type = type;
 
           $scope.setSearchFilters();
-          $scope.updateSearch();
         }
       };
 
@@ -156,19 +155,22 @@ ikApp.directive('ikMediaOverview', function() {
         }
 
         if ($scope.media_type !== 'all') {
-          var term = new Object();
-          term.term = {content_type : $scope.media_type};
+          var term = {};
+          term.term = {
+            media_type : $scope.media_type
+          };
           search.filter.bool.must.push(term);
         }
 
         if ($scope.showFromUser !== 'all') {
-          var term = new Object();
-          term.term = {user : $scope.currentUser.id};
+          var term = {};
+          term.term = {
+            user : $scope.currentUser.id
+          };
           search.filter.bool.must.push(term);
         }
 
         $scope.updateSearch();
-
       };
 
       /**
@@ -184,22 +186,6 @@ ikApp.directive('ikMediaOverview', function() {
           $scope.setSearchFilters();
           $scope.updateSearch();
         }
-      };
-
-      /**
-       * Get the content type of a media: image or media
-       *
-       * @param mediaElement
-       *
-       * @returns "", "video" or "image"
-       */
-      $scope.getMediaType = function getMediaType(mediaElement) {
-        if (!mediaElement) {
-          return "";
-        }
-
-        var type = mediaElement.content_type.split("/");
-        return type[0];
       };
 
       /**
@@ -244,11 +230,6 @@ ikApp.directive('ikMediaOverview', function() {
 
         event.preventDefault();
       });
-
-      // Send the default search query.
-      if ($scope.ikAutoSearch) {
-        $scope.updateSearch();
-      }
     },
     link: function(scope, element, attrs) {
       attrs.$observe('ikMediaType', function(val) {
@@ -260,6 +241,13 @@ ikApp.directive('ikMediaOverview', function() {
         }
 
         scope.filterMediaType(val);
+      });
+
+      attrs.$observe('ikAutoSearch', function(val) {
+        // Send the default search query.
+        if (scope.ikAutoSearch === "true") {
+          scope.updateSearch();
+        }
       })
     },
     templateUrl: 'partials/directives/media-overview-directive.html'

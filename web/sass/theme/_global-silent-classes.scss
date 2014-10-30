@@ -144,6 +144,19 @@
 }
 
 
+%slide--edit-logo-settings {
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+
+  @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
 %slide--edit-content-settings {
   position: absolute;
   right: 0;

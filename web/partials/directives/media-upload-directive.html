@@ -30,7 +30,7 @@
           <label class="create-media--text-label">Titel</label>
           <input type="text" class="create-media--text-input" placeholder="{{item.file.name}}" data-ng-model="item.formData[0].title">
           <div class="create-media--options">
-            <div class="create-media--is-logo" data-ng-show="isImage(item.file)">
+            <div class="create-media--is-logo" data-ng-show="!ikUploadType && isImage(item.file)">
               <input type="checkbox" data-ng-model="item.formData[0].logo"> Logo
             </div>
             <div class="create-media--remove" data-ng-click="removeItem(item)">Fjern medie</div>

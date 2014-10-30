@@ -41,6 +41,14 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
           }
         }
 
+        // Set the currentLogo variable.
+        if (scope.ikSlide.logo !== undefined && scope.ikSlide.logo !== null) {
+          scope.ikSlide.currentLogo = scope.ikSlide.logo.urls.default_landscape;
+        }
+        else {
+          scope.ikSlide.currentLogo = '';
+        }
+
         // Get the template.
         templateFactory.getTemplate(scope.ikSlide.template).then(
           function(data) {
@@ -116,6 +124,14 @@ ikApp.directive('ikSlideEditable', ['templateFactory', function(templateFactory)
           else {
             scope.ikSlide.currentVideo = {"mp4": "", "ogg": "", "webm": ""};
           }
+        }
+
+        // Set the currentLogo variable.
+        if (scope.ikSlide.logo !== undefined && scope.ikSlide.logo !== null) {
+          scope.ikSlide.currentLogo = scope.ikSlide.logo.urls.default_landscape;
+        }
+        else {
+          scope.ikSlide.currentLogo = '';
         }
 
         if (!scope.template || newVal.template !== oldVal.template) {

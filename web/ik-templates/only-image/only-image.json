@@ -15,6 +15,7 @@
   },
   "emptyoptions": {
     "bgcolor": "#ccc",
-    "images": []
+    "images": [],
+    "logopos": ""
   }
 }

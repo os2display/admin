@@ -64,3 +64,15 @@
   right: auto;
   left: 15%;
 }
+
+
+.text-right--edit-logo-settings {
+  @extend %slide--edit-logo-settings;
+}
+
+
+.text-right--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%;
+}

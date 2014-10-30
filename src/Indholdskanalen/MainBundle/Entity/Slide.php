@@ -107,6 +107,13 @@ class Slide {
   private $mediaType;
 
   /**
+   * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="logoSlides")
+   * @ORM\JoinColumn(name="logo_id", referencedColumnName="id")
+   * @Groups({"api"})
+   */
+  private $logo;
+
+  /**
    * Constructor
    */
   public function __construct()
@@ -462,5 +469,26 @@ class Slide {
     return $result;
   }
 
+  /**
+   * Get logo
+   *
+   * @return mixed
+   */
+  public function getLogo()
+  {
+    return $this->logo;
+  }
 
+  /**
+   * Set logo
+   *
+   * @param $logo
+   * @return $this
+   */
+  public function setLogo($logo)
+  {
+    $this->logo = $logo;
+
+    return $this;
+  }
 }

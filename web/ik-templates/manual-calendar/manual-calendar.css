@@ -435,6 +435,25 @@
     cursor: pointer; }
 
 /* line 147, ../../sass/theme/_global-silent-classes.scss */
+.manual-calendar--edit-logo-settings {
+  width: 10%;
+  height: 10%;
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  background: url('/../../images/icons-s1200d42609.png');
+  -moz-background-size: 128px 1890px;
+  -o-background-size: 128px 1890px;
+  -webkit-background-size: 128px 1890px;
+  background-size: 128px 1890px;
+  width: 51px;
+  height: 51px;
+  background-position: 0 -884px; }
+  /* line 156, ../../sass/theme/_global-silent-classes.scss */
+  .manual-calendar--edit-logo-settings:hover {
+    cursor: pointer; }
+
+/* line 162, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--edit-content-settings {
   position: absolute;
   right: 0;
@@ -451,30 +470,30 @@
   width: 48px;
   height: 48px;
   background-position: 0 -1008px; }
-  /* line 155, ../../sass/theme/_global-silent-classes.scss */
+  /* line 170, ../../sass/theme/_global-silent-classes.scss */
   .manual-calendar--edit-content-settings:hover {
     cursor: pointer; }
 
-/* line 163, ../../sass/theme/_global-silent-classes.scss */
+/* line 178, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header.has-placeholder:focus {
   outline: none; }
-/* line 166, ../../sass/theme/_global-silent-classes.scss */
+/* line 181, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
-/* line 170, ../../sass/theme/_global-silent-classes.scss */
+/* line 185, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
-/* line 176, ../../sass/theme/_global-silent-classes.scss */
+/* line 191, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
-  /* line 177, ../../sass/theme/_global-silent-classes.scss */
+  /* line 192, ../../sass/theme/_global-silent-classes.scss */
   .manual-calendar--header:focus {
     outline: none;
     border: 0; }

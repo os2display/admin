@@ -52,11 +52,19 @@ class Media extends BaseMedia {
   protected $mediaType;
 
   /**
+   * @var ArrayCollection $logoSlides
+   *
+   * Contains the slides bound to this media as logo.
+   */
+  protected $logoSlides;
+
+  /**
    * Constructor
    */
   public function __construct()
   {
     $this->mediaOrders = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->logo_slides = new \Doctrine\Common\Collections\ArrayCollection();
   }
 
   /**
@@ -161,4 +169,37 @@ class Media extends BaseMedia {
 	{
 		return $this->user;
 	}
+
+  /**
+   * Add a slide to logo slides
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Slide $slide
+   * @return $this
+   */
+  public function addLogoSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide)
+  {
+    $this->logoSlides[] = $slide;
+
+    return $this;
+  }
+
+  /**
+   * Remove a slide from logo slides
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Slide $slide
+   */
+  public function removeLogoSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide)
+  {
+    $this->logoSlides->removeElement($slide);
+  }
+
+  /**
+   * Get logo slides
+   *
+   * @return ArrayCollection
+   */
+  public function getLogoSlides()
+  {
+    return $this->logoSlides;
+  }
 }

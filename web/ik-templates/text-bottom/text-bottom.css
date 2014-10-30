@@ -434,26 +434,43 @@
   .text-bottom--edit-image-settings:hover {
     cursor: pointer; }
 
-/* line 163, ../../sass/theme/_global-silent-classes.scss */
+/* line 147, ../../sass/theme/_global-silent-classes.scss */
+.text-bottom--edit-logo-settings {
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  background: url('/../../images/icons-s1200d42609.png');
+  -moz-background-size: 128px 1890px;
+  -o-background-size: 128px 1890px;
+  -webkit-background-size: 128px 1890px;
+  background-size: 128px 1890px;
+  width: 51px;
+  height: 51px;
+  background-position: 0 -884px; }
+  /* line 154, ../../sass/theme/_global-silent-classes.scss */
+  .text-bottom--edit-logo-settings:hover {
+    cursor: pointer; }
+
+/* line 176, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus {
   outline: none; }
-/* line 166, ../../sass/theme/_global-silent-classes.scss */
+/* line 179, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
-/* line 170, ../../sass/theme/_global-silent-classes.scss */
+/* line 183, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
-/* line 176, ../../sass/theme/_global-silent-classes.scss */
+/* line 189, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header, .text-bottom--description {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
-  /* line 177, ../../sass/theme/_global-silent-classes.scss */
+  /* line 190, ../../sass/theme/_global-silent-classes.scss */
   .text-bottom--header:focus, .text-bottom--description:focus {
     outline: none;
     border: 0; }
@@ -1180,3 +1197,14 @@ html.is-locked body {
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
+
+/* line 67, text-bottom.scss */
+.text-bottom--edit-logo-settings {
+  bottom: auto;
+  top: 5%; }
+
+/* line 75, text-bottom.scss */
+.text-bottom--logo {
+  position: absolute;
+  max-width: 10%;
+  max-height: 10%; }

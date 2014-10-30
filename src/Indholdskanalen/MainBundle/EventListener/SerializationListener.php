@@ -91,6 +91,7 @@ class SerializationListener implements EventSubscriberInterface
 				if (in_array('middleware', $groups)) {
           $urls = array();
 
+          // Set media paths
           $slide = $event->getObject();
 					foreach($slide->getMedia() as $media) {
 						$providerName = $media->getProviderName();
@@ -112,6 +113,19 @@ class SerializationListener implements EventSubscriberInterface
 					}
           $event->getVisitor()->addData('media', $urls);
 
+          // Set logo path
+          $logoPath = "";
+          $logo = $slide->getLogo();
+          if ($logo) {
+            $providerName = $logo->getProviderName();
+            if($providerName === 'sonata.media.provider.image') {
+              $provider = $this->mediaService->getProvider($providerName);
+              $logoPath = $provider->generatePublicUrl($logo, 'reference');
+            }
+          }
+          $event->getVisitor()->addData('logo', $logoPath);
+
+          // Set template paths
           $templates = $this->templateService->getTemplates();
           $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
           $event->getVisitor()->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
