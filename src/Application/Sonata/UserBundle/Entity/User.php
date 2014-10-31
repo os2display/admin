@@ -23,64 +23,84 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
  */
 class User extends BaseUser
 {
-    /**
-     * @var integer $id
-     */
-    protected $id;
+	/**
+	 * @var integer $id
+	 */
+	protected $id;
 
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    protected  $groups;
+	/**
+	 * Get id
+	 *
+	 * @return integer $id
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+	/**
+	 * @var \Doctrine\Common\Collections\Collection
+	 */
+	protected  $groups;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
-    /**
-     * Add groups
-     *
-     * @param \Application\Sonata\UserBundle\Entity\Group $groups
-     * @return User
-     */
-    public function addGroup(\FOS\UserBundle\Model\GroupInterface  $groups)
-    {
-        $this->groups[] = $groups;
 
-        return $this;
-    }
+	/**
+	 * Is user administrator
+	 *
+	 * @return boolean
+	 */
+	public function isAdmin() {
+		$result = false;
 
-    /**
-     * Remove groups
-     *
-     * @param \Application\Sonata\UserBundle\Entity\Group $groups
-     */
-    public function removeGroup(\FOS\UserBundle\Model\GroupInterface  $groups)
-    {
-        $this->groups->removeElement($groups);
-    }
+		foreach($this->getRoles() as $role){
+			if($role == "ROLE_SUPER_ADMIN"){
+				$result = true;
+			}
+		}
 
-    /**
-     * Get groups
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGroups()
-    {
-        return $this->groups;
-    }
+		return $result;
+	}
+
+
+
+	/**
+	 * Add groups
+	 *
+	 * @param \Application\Sonata\UserBundle\Entity\Group $groups
+	 * @return User
+	 */
+	public function addGroup(\FOS\UserBundle\Model\GroupInterface  $groups)
+	{
+		$this->groups[] = $groups;
+
+		return $this;
+	}
+
+	/**
+	 * Remove groups
+	 *
+	 * @param \Application\Sonata\UserBundle\Entity\Group $groups
+	 */
+	public function removeGroup(\FOS\UserBundle\Model\GroupInterface  $groups)
+	{
+		$this->groups->removeElement($groups);
+	}
+
+	/**
+	 * Get groups
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getGroups()
+	{
+		return $this->groups;
+	}
 }

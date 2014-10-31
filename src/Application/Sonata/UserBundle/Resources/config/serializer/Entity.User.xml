@@ -8,7 +8,8 @@
 
     <class name="Application\Sonata\UserBundle\Entity\User" exclusion-policy="all" xml-root-name="_user">
 
-        <property xml-attribute-map="true" name="id" type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property xml-attribute-map="true" name="id" type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search, api" />
+        <virtual-property name="isAdmin"  type="boolean"  expose="true" since-version="1.0" groups="api" method="isAdmin" />
 
     </class>
 </serializer>
