@@ -158,12 +158,13 @@
   bottom: 5%;
   position: absolute;
   left: 5%;
+  cursor: pointer;
+  font-size: 0.6em;
+  color: $white;
+  padding: .3em .8em;
+  background: rgba(0,0,0,0.5);
 
-  @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
-
-  &:hover {
-    cursor: pointer;
-  }
+  @include border-radius(1em);
 }
 
 

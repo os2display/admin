@@ -439,38 +439,35 @@
   bottom: 5%;
   position: absolute;
   left: 5%;
-  background: url('/../../images/icons-s1200d42609.png');
-  -moz-background-size: 128px 1890px;
-  -o-background-size: 128px 1890px;
-  -webkit-background-size: 128px 1890px;
-  background-size: 128px 1890px;
-  width: 51px;
-  height: 51px;
-  background-position: 0 -884px; }
-  /* line 164, ../../sass/theme/_global-silent-classes.scss */
-  .text-right--edit-logo-settings:hover {
-    cursor: pointer; }
+  cursor: pointer;
+  font-size: 0.6em;
+  color: #fff;
+  padding: .3em .8em;
+  background: rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
 
-/* line 186, ../../sass/theme/_global-silent-classes.scss */
+/* line 187, ../../sass/theme/_global-silent-classes.scss */
 .text-right--header.has-placeholder:focus, .text-right--description.has-placeholder:focus {
   outline: none; }
-/* line 189, ../../sass/theme/_global-silent-classes.scss */
+/* line 190, ../../sass/theme/_global-silent-classes.scss */
 .text-right--header.has-placeholder:empty:before, .text-right--description.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
-/* line 193, ../../sass/theme/_global-silent-classes.scss */
+/* line 194, ../../sass/theme/_global-silent-classes.scss */
 .text-right--header.has-placeholder:empty:focus:before, .text-right--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
-/* line 199, ../../sass/theme/_global-silent-classes.scss */
+/* line 200, ../../sass/theme/_global-silent-classes.scss */
 .text-right--header, .text-right--description {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
-  /* line 200, ../../sass/theme/_global-silent-classes.scss */
+  /* line 201, ../../sass/theme/_global-silent-classes.scss */
   .text-right--header:focus, .text-right--description:focus {
     outline: none;
     border: 0; }
