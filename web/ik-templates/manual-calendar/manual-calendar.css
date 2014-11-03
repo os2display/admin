@@ -400,7 +400,7 @@
    ================================================================================================================== */
 /* Slide configuration elements - Used for displaying edit links on templates in create slide process.
    ================================================================================================================== */
-/* line 121, ../../sass/theme/_global-silent-classes.scss */
+/* line 131, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--edit-box-settings {
   position: absolute;
   right: 10px;
@@ -413,11 +413,11 @@
   width: 50px;
   height: 50px;
   background-position: 0 -382px; }
-  /* line 128, ../../sass/theme/_global-silent-classes.scss */
+  /* line 138, ../../sass/theme/_global-silent-classes.scss */
   .manual-calendar--edit-box-settings:hover {
     cursor: pointer; }
 
-/* line 134, ../../sass/theme/_global-silent-classes.scss */
+/* line 144, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -430,14 +430,12 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
-  /* line 141, ../../sass/theme/_global-silent-classes.scss */
+  /* line 151, ../../sass/theme/_global-silent-classes.scss */
   .manual-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
-/* line 147, ../../sass/theme/_global-silent-classes.scss */
+/* line 157, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--edit-logo-settings {
-  width: 10%;
-  height: 10%;
   bottom: 5%;
   position: absolute;
   left: 5%;
@@ -449,11 +447,11 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
-  /* line 156, ../../sass/theme/_global-silent-classes.scss */
+  /* line 164, ../../sass/theme/_global-silent-classes.scss */
   .manual-calendar--edit-logo-settings:hover {
     cursor: pointer; }
 
-/* line 162, ../../sass/theme/_global-silent-classes.scss */
+/* line 170, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--edit-content-settings {
   position: absolute;
   right: 0;
@@ -470,30 +468,30 @@
   width: 48px;
   height: 48px;
   background-position: 0 -1008px; }
-  /* line 170, ../../sass/theme/_global-silent-classes.scss */
+  /* line 178, ../../sass/theme/_global-silent-classes.scss */
   .manual-calendar--edit-content-settings:hover {
     cursor: pointer; }
 
-/* line 178, ../../sass/theme/_global-silent-classes.scss */
+/* line 186, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header.has-placeholder:focus {
   outline: none; }
-/* line 181, ../../sass/theme/_global-silent-classes.scss */
+/* line 189, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
-/* line 185, ../../sass/theme/_global-silent-classes.scss */
+/* line 193, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
-/* line 191, ../../sass/theme/_global-silent-classes.scss */
+/* line 199, ../../sass/theme/_global-silent-classes.scss */
 .manual-calendar--header {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
-  /* line 192, ../../sass/theme/_global-silent-classes.scss */
+  /* line 200, ../../sass/theme/_global-silent-classes.scss */
   .manual-calendar--header:focus {
     outline: none;
     border: 0; }
@@ -1183,11 +1181,12 @@ html.is-locked body {
 
 /* line 4, manual-calendar.scss */
 .manual-calendar {
-  background-size: cover; }
-  /* line 8, manual-calendar.scss */
+  background-size: cover;
+  background-position: center; }
+  /* line 9, manual-calendar.scss */
   .manual-calendar--header {
     font-size: 100%; }
-  /* line 19, manual-calendar.scss */
+  /* line 20, manual-calendar.scss */
   .manual-calendar--text-inner {
     background: rgba(0, 0, 0, 0.7);
     box-sizing: border-box;
@@ -1207,24 +1206,24 @@ html.is-locked body {
     -moz-border-radius: 1em;
     -webkit-border-radius: 1em;
     border-radius: 1em; }
-  /* line 37, manual-calendar.scss */
+  /* line 38, manual-calendar.scss */
   .manual-calendar--header {
     font-size: 100%;
     margin-bottom: .5em; }
-  /* line 47, manual-calendar.scss */
+  /* line 48, manual-calendar.scss */
   .manual-calendar--events {
     overflow: hidden; }
-  /* line 52, manual-calendar.scss */
+  /* line 53, manual-calendar.scss */
   .manual-calendar--event {
     font-size: 70%;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     margin-bottom: .5em;
     padding-bottom: .5em; }
-    /* line 59, manual-calendar.scss */
+    /* line 60, manual-calendar.scss */
     .manual-calendar--event:last-child {
       border-bottom: 0; }
-  /* line 65, manual-calendar.scss */
+  /* line 66, manual-calendar.scss */
   .manual-calendar--title, .manual-calendar--place, .manual-calendar--time {
     box-sizing: border-box;
     display: inline-block;
@@ -1232,7 +1231,7 @@ html.is-locked body {
     padding: 0 2em 0 .5em;
     vertical-align: middle;
     width: 33%; }
-    /* line 75, manual-calendar.scss */
+    /* line 76, manual-calendar.scss */
     .manual-calendar--title:first-child, .manual-calendar--place:first-child, .manual-calendar--time:first-child {
       margin-left: 0;
       padding-left: 0; }

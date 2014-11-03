@@ -400,7 +400,7 @@
    ================================================================================================================== */
 /* Slide configuration elements - Used for displaying edit links on templates in create slide process.
    ================================================================================================================== */
-/* line 121, ../../sass/theme/_global-silent-classes.scss */
+/* line 131, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--edit-box-settings {
   position: absolute;
   right: 10px;
@@ -413,11 +413,11 @@
   width: 50px;
   height: 50px;
   background-position: 0 -382px; }
-  /* line 128, ../../sass/theme/_global-silent-classes.scss */
+  /* line 138, ../../sass/theme/_global-silent-classes.scss */
   .text-bottom--edit-box-settings:hover {
     cursor: pointer; }
 
-/* line 134, ../../sass/theme/_global-silent-classes.scss */
+/* line 144, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -430,11 +430,11 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
-  /* line 141, ../../sass/theme/_global-silent-classes.scss */
+  /* line 151, ../../sass/theme/_global-silent-classes.scss */
   .text-bottom--edit-image-settings:hover {
     cursor: pointer; }
 
-/* line 147, ../../sass/theme/_global-silent-classes.scss */
+/* line 157, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--edit-logo-settings {
   bottom: 5%;
   position: absolute;
@@ -447,30 +447,30 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
-  /* line 154, ../../sass/theme/_global-silent-classes.scss */
+  /* line 164, ../../sass/theme/_global-silent-classes.scss */
   .text-bottom--edit-logo-settings:hover {
     cursor: pointer; }
 
-/* line 176, ../../sass/theme/_global-silent-classes.scss */
+/* line 186, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus {
   outline: none; }
-/* line 179, ../../sass/theme/_global-silent-classes.scss */
+/* line 189, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
-/* line 183, ../../sass/theme/_global-silent-classes.scss */
+/* line 193, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
-/* line 189, ../../sass/theme/_global-silent-classes.scss */
+/* line 199, ../../sass/theme/_global-silent-classes.scss */
 .text-bottom--header, .text-bottom--description {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
-  /* line 190, ../../sass/theme/_global-silent-classes.scss */
+  /* line 200, ../../sass/theme/_global-silent-classes.scss */
   .text-bottom--header:focus, .text-bottom--description:focus {
     outline: none;
     border: 0; }
@@ -1160,9 +1160,10 @@ html.is-locked body {
 
 /* line 4, text-bottom.scss */
 .text-bottom {
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
 
-/* line 9, text-bottom.scss */
+/* line 10, text-bottom.scss */
 .text-bottom--text-wrapper {
   position: absolute;
   width: 100%;
@@ -1171,7 +1172,7 @@ html.is-locked body {
   -webkit-border-radius: 1em;
   border-radius: 1em; }
 
-/* line 18, text-bottom.scss */
+/* line 19, text-bottom.scss */
 .text-bottom--text-inner {
   background: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
@@ -1185,25 +1186,25 @@ html.is-locked body {
   -webkit-border-radius: 1em;
   border-radius: 1em; }
 
-/* line 32, text-bottom.scss */
+/* line 33, text-bottom.scss */
 .text-bottom--header {
   font-size: 100%; }
 
-/* line 43, text-bottom.scss */
+/* line 44, text-bottom.scss */
 .text-bottom--description {
   font-size: 70%; }
 
-/* line 59, text-bottom.scss */
+/* line 60, text-bottom.scss */
 .text-bottom--edit-image-settings {
   bottom: auto;
   top: 15%; }
 
-/* line 67, text-bottom.scss */
+/* line 68, text-bottom.scss */
 .text-bottom--edit-logo-settings {
   bottom: auto;
   top: 5%; }
 
-/* line 75, text-bottom.scss */
+/* line 76, text-bottom.scss */
 .text-bottom--logo {
   position: absolute;
   max-width: 10%;

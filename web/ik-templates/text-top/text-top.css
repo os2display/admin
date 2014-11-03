@@ -400,7 +400,7 @@
    ================================================================================================================== */
 /* Slide configuration elements - Used for displaying edit links on templates in create slide process.
    ================================================================================================================== */
-/* line 121, ../../sass/theme/_global-silent-classes.scss */
+/* line 131, ../../sass/theme/_global-silent-classes.scss */
 .text-top--edit-box-settings {
   position: absolute;
   right: 10px;
@@ -413,11 +413,11 @@
   width: 50px;
   height: 50px;
   background-position: 0 -382px; }
-  /* line 128, ../../sass/theme/_global-silent-classes.scss */
+  /* line 138, ../../sass/theme/_global-silent-classes.scss */
   .text-top--edit-box-settings:hover {
     cursor: pointer; }
 
-/* line 134, ../../sass/theme/_global-silent-classes.scss */
+/* line 144, ../../sass/theme/_global-silent-classes.scss */
 .text-top--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -430,11 +430,11 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
-  /* line 141, ../../sass/theme/_global-silent-classes.scss */
+  /* line 151, ../../sass/theme/_global-silent-classes.scss */
   .text-top--edit-image-settings:hover {
     cursor: pointer; }
 
-/* line 147, ../../sass/theme/_global-silent-classes.scss */
+/* line 157, ../../sass/theme/_global-silent-classes.scss */
 .text-top--edit-logo-settings {
   bottom: 5%;
   position: absolute;
@@ -447,30 +447,30 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
-  /* line 154, ../../sass/theme/_global-silent-classes.scss */
+  /* line 164, ../../sass/theme/_global-silent-classes.scss */
   .text-top--edit-logo-settings:hover {
     cursor: pointer; }
 
-/* line 176, ../../sass/theme/_global-silent-classes.scss */
+/* line 186, ../../sass/theme/_global-silent-classes.scss */
 .text-top--header.has-placeholder:focus, .text-top--description.has-placeholder:focus {
   outline: none; }
-/* line 179, ../../sass/theme/_global-silent-classes.scss */
+/* line 189, ../../sass/theme/_global-silent-classes.scss */
 .text-top--header.has-placeholder:empty:before, .text-top--description.has-placeholder:empty:before {
   content: attr(placeholder);
   color: #b3b3b3; }
-/* line 183, ../../sass/theme/_global-silent-classes.scss */
+/* line 193, ../../sass/theme/_global-silent-classes.scss */
 .text-top--header.has-placeholder:empty:focus:before, .text-top--description.has-placeholder:empty:focus:before {
   background-color: #b3d4fd;
   color: #000; }
 
-/* line 189, ../../sass/theme/_global-silent-classes.scss */
+/* line 199, ../../sass/theme/_global-silent-classes.scss */
 .text-top--header, .text-top--description {
   overflow: hidden;
   padding: 0;
   background-color: transparent;
   border: 0;
   resize: none; }
-  /* line 190, ../../sass/theme/_global-silent-classes.scss */
+  /* line 200, ../../sass/theme/_global-silent-classes.scss */
   .text-top--header:focus, .text-top--description:focus {
     outline: none;
     border: 0; }
@@ -1160,9 +1160,10 @@ html.is-locked body {
 
 /* line 4, text-top.scss */
 .text-top {
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
 
-/* line 9, text-top.scss */
+/* line 10, text-top.scss */
 .text-top--text-wrapper {
   position: absolute;
   width: 100%;
@@ -1170,7 +1171,7 @@ html.is-locked body {
   -webkit-border-radius: 1em;
   border-radius: 1em; }
 
-/* line 17, text-top.scss */
+/* line 18, text-top.scss */
 .text-top--text-inner {
   background: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
@@ -1184,15 +1185,15 @@ html.is-locked body {
   -webkit-border-radius: 1em;
   border-radius: 1em; }
 
-/* line 31, text-top.scss */
+/* line 32, text-top.scss */
 .text-top--header {
   font-size: 100%; }
 
-/* line 42, text-top.scss */
+/* line 43, text-top.scss */
 .text-top--description {
   font-size: 70%; }
 
-/* line 68, text-top.scss */
+/* line 69, text-top.scss */
 .text-top--logo {
   position: absolute;
   max-width: 10%;
