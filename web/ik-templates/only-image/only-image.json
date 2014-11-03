@@ -16,6 +16,7 @@
   "emptyoptions": {
     "bgcolor": "#ccc",
     "images": [],
-    "logopos": ""
+    "logopos": "",
+    "logosize": ""
   }
 }

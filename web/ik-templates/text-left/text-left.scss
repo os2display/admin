@@ -63,9 +63,15 @@
   @extend %slide--edit-image-settings;
 }
 
+.text-left--edit-logo-settings {
+  @extend %slide--edit-logo-settings;
+
+  left: auto;
+  right: 5%;
+}
 
 .text-left--logo {
   position: absolute;
-  max-width: 10%;
-  max-height: 10%;
+  width: 10%;
+  padding: 2%;
 }

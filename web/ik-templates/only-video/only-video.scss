@@ -19,15 +19,15 @@
     min-height: 100%;
   }
 
-
   &--edit-logo-settings {
     @extend %slide--edit-logo-settings;
-  }
 
+    font-size: .9em;
+  }
 
   &--logo {
     position: absolute;
-    max-width: 10%;
-    max-height: 10%;
+    width: 10%;
+    padding: 2%;
   }
 }

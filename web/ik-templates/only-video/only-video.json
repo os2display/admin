@@ -15,6 +15,7 @@
   },
   "emptyoptions": {
     "videos": [],
-    "logopos": ""
+    "logopos": "",
+    "logosize": ""
   }
 }

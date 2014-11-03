@@ -278,38 +278,36 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
     $scope.logoPositions = [
       {
-        value: "top: 0; left: 0; max-width: 10%; max-height: 10%",
-        text: "top venstre 10%"
+        value: "top: 0; left: 0;",
+        text: "top venstre"
       },
       {
-        value: "top: 0; right: 0; max-width: 10%; max-height: 10%",
-        text: "top højre 10%"
+        value: "top: 0; right: 0;",
+        text: "top højre"
       },
       {
-        value: "bottom: 0; left: 0; max-width: 10%; max-height: 10%",
-        text: "bund venstre 10%"
+        value: "bottom: 0; left: 0;",
+        text: "bund venstre"
       },
       {
-        value: "bottom: 0; right: 0; max-width: 10%; max-height: 10%",
-        text: "bund højre 10%"
-      },
-      {
-        value: "top: 0; left: 0; max-width: 20%; max-height: 20%",
-        text: "top venstre 20%"
-      },
-      {
-        value: "top: 0; right: 0; max-width: 20%; max-height: 20%",
-        text: "top højre 20%"
-      },
-      {
-        value: "bottom: 0; left: 0; max-width: 20%; max-height: 20%",
-        text: "bund venstre 20%"
-      },
-      {
-        value: "bottom: 0; right: 0; max-width: 20%; max-height: 20%",
-        text: "bund højre 20%"
+        value: "bottom: 0; right: 0;",
+        text: "bund højre"
       }
+    ];
 
+    $scope.logoSizes = [
+      {
+        value: "width: 5%;",
+        text: "lille"
+      },
+      {
+        value: "width: 10%;",
+        text: "medium"
+      },
+      {
+        value: "width: 15%;",
+        text: "stor"
+      }
     ];
   }
 ]);

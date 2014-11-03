@@ -37,7 +37,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
             scope.ikSlide.currentImage = scope.ikSlide.media[0].provider_metadata[0].thumbnails[1].reference;
           }
           else {
-            scope.ikSlide.currentImage = "";
+            scope.ikSlide.currentImage = '';
           }
         }
 
