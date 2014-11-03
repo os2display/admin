@@ -114,6 +114,16 @@
   margin: 0 auto;
 }
 
+// Remove element from list icon (Used on "Channel order list" and "Screen channel select list").
+%create-element--remove-element {
+  cursor: pointer;
+  position:absolute;
+  right: -.5em;
+  top: -.5em;
+  z-index: 1;
+
+  @include generate-sprite-image($dashboard-sprites, 'cancel-icon', 30);
+}
 
 /* Slide configuration elements - Used for displaying edit links on templates in create slide process.
    ================================================================================================================== */

@@ -141,4 +141,12 @@
 
     @include add-overlay(create-screen);
   }
+
+
+  &--add-slide-button {
+    @extend %buttons--default; // Needs refactoring (We shouldn't extend on classes from other documents but rather silent classes)
+
+    margin-bottom: 2em;
+    width: 10em;
+  }
 }
