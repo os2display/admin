@@ -90,7 +90,7 @@ ikApp.directive('ikMediaUpload', function() {
        * Checks whether the item is an image.
        */
       $scope.isImage = function(item) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1);
         return acceptedImagetypes.indexOf(type) !== -1;
       };
 
@@ -196,7 +196,7 @@ ikApp.directive('ikThumb', ['$window', function($window) {
       return angular.isObject(item) && item instanceof $window.File;
     },
     isImage: function(file) {
-      var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
+      var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1);
       return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
     }
   };
