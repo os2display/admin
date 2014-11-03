@@ -1,12 +1,23 @@
-<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div>
+{% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
+{% block body %}
+  <header class="header" role="banner">
+    <div class="header--main-anonymous">
+      <div class="header--logo-anonymous">
+        <a href="/"><img src="/images/logo.png"/></a>
+      </div>
+    </div>
+  </header>
+  <div class="login--reset-form">
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
+      <div class="login--name">
         {% if invalid_username is defined %}
-            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+          <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
         {% endif %}
-        <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
-        <input type="text" id="username" name="username" required="required" />
-    </div>
-    <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
-    </div>
-</form>
+        <label for="username" class="login--reset-label">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+        <input class="login--reset-input" type="text" id="username" name="username" required="required" placeholder="{{ 'User name or email'|trans({}, 'SonataUserBundle') }}"/>
+      </div>
+      <input type="submit" class="login--submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+    </form>
+  </div>
+{% endblock %}
+{% block scripts %}{% endblock %}

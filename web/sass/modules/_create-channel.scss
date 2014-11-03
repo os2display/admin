@@ -21,11 +21,8 @@
   @include border-radius(100%);
 }
 
-
-// Change arrow direction and position on large screens. (Create channel page 4)
+// Change arrow direction and position on large screens. (Create channel page 4).
 $breakpoint-arrow-switch : 693px;
-
-
 
 /* Styles
    ========================================================================== */
@@ -195,7 +192,7 @@ $breakpoint-arrow-switch : 693px;
   }
 
   &--add-slide-button {
-    @extend .button; // Needs refactoring (We shouldn't extend on classes from other documents but rather silent classes)
+    @extend %buttons--default; // Needs refactoring (We shouldn't extend on classes from other documents but rather silent classes)
 
     margin-bottom: 2em;
     width: 10em;
@@ -205,6 +202,8 @@ $breakpoint-arrow-switch : 693px;
     position: relative;
 
     @include preview-list-display();
+
+    z-index: 0;
   }
 
 
@@ -271,13 +270,7 @@ $breakpoint-arrow-switch : 693px;
 
 
   &--slide-remove {
-    cursor: pointer;
-    position:absolute;
-    right: -.5em;
-    top: -.5em;
-    z-index: 1;
-
-    @include generate-sprite-image($dashboard-sprites, 'cancel-icon', 30);
+    @extend %create-element--remove-element;
   }
 
 

@@ -56,7 +56,6 @@
   &--channel {
     display: inline-block;
     margin: 0 0 $gutter;
-    overflow: hidden;
     position: relative;
     vertical-align: middle;
 
@@ -372,5 +371,16 @@
     @include add-overlay(overview);
   }
 
+  &--channel-remove {
+    @extend %create-element--remove-element;
+  }
 
+  &--channel-overlay {
+    display: block;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0);
+    position: absolute;
+  }
 }

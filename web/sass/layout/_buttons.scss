@@ -57,3 +57,9 @@
     }
   }
 }
+
+// We should probably refactor this.
+//
+%buttons--default {
+  @extend .button;
+}

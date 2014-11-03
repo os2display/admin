@@ -1121,15 +1121,17 @@ html.is-locked body {
 .only-video {
   background: #b3b3b3;
   background-size: cover;
-  overflow: hidden; }
-  /* line 9, only-video.scss */
+  overflow: hidden;
+  height: 100%;
+  min-height: 100%; }
+  /* line 11, only-video.scss */
   .only-video--settings {
     z-index: 2; }
-  /* line 15, only-video.scss */
+  /* line 17, only-video.scss */
   .only-video--video-player {
     min-width: 100%;
     min-height: 100%; }
-  /* line 26, only-video.scss */
+  /* line 28, only-video.scss */
   .only-video--logo {
     position: absolute;
     max-width: 10%;

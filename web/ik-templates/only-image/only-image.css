@@ -400,7 +400,7 @@
    ================================================================================================================== */
 /* Slide configuration elements - Used for displaying edit links on templates in create slide process.
    ================================================================================================================== */
-/* line 134, ../../sass/theme/_global-silent-classes.scss */
+/* line 144, ../../sass/theme/_global-silent-classes.scss */
 .only-image--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -413,11 +413,15 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
-  /* line 141, ../../sass/theme/_global-silent-classes.scss */
+  /* line 151, ../../sass/theme/_global-silent-classes.scss */
   .only-image--edit-image-settings:hover {
     cursor: pointer; }
 
+<<<<<<< HEAD
 /* line 147, ../../sass/theme/_global-silent-classes.scss */
+=======
+/* line 157, ../../sass/theme/_global-silent-classes.scss */
+>>>>>>> edd74a162792d80daae22ba54d27d6a9d744a4ba
 .only-image--edit-logo-settings {
   bottom: 5%;
   position: absolute;
@@ -430,7 +434,11 @@
   width: 51px;
   height: 51px;
   background-position: 0 -884px; }
+<<<<<<< HEAD
   /* line 154, ../../sass/theme/_global-silent-classes.scss */
+=======
+  /* line 164, ../../sass/theme/_global-silent-classes.scss */
+>>>>>>> edd74a162792d80daae22ba54d27d6a9d744a4ba
   .only-image--edit-logo-settings:hover {
     cursor: pointer; }
 
@@ -1119,8 +1127,14 @@ html.is-locked body {
 
 /* line 4, only-image.scss */
 .only-image {
+<<<<<<< HEAD
   background-size: cover; }
   /* line 16, only-image.scss */
+=======
+  background-size: cover;
+  background-position: center; }
+  /* line 17, only-image.scss */
+>>>>>>> edd74a162792d80daae22ba54d27d6a9d744a4ba
   .only-image--logo {
     position: absolute;
     max-width: 10%;

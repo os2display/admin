@@ -3,6 +3,7 @@
 
 .only-image {
   background-size: cover;
+  background-position: center;
 
   &--edit-image-settings {
     @extend %slide--edit-image-settings;

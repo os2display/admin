@@ -1,7 +1,15 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
-{% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}
-</p>
+{% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
+{% block body %}
+  <header class="header" role="banner">
+    <div class="header--main-anonymous">
+      <div class="header--logo-anonymous">
+        <a href="/"><img src="/images/logo.png"/></a>
+      </div>
+    </div>
+  </header>
+  <div class="login--text">
+    <p>{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}</p>
+    <p><a href="/">Tilbage</a></p>
+  </div>
 {% endblock %}
+{% block scripts %}{% endblock %}
