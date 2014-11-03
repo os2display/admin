@@ -1235,5 +1235,5 @@ html.is-locked body {
   /* line 82, manual-calendar.scss */
   .manual-calendar--logo {
     position: absolute;
-    max-width: 10%;
-    max-height: 10%; }
+    width: 10%;
+    padding: 2%; }

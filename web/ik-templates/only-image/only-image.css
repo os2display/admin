@@ -1121,5 +1121,5 @@ html.is-locked body {
   /* line 16, only-image.scss */
   .only-image--logo {
     position: absolute;
-    max-width: 10%;
-    max-height: 10%; }
+    width: 10%;
+    padding: 2%; }

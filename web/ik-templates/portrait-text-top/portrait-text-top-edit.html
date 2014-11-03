@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <img class="portrait-text-top--logo" style="{{ikSlide.options.logopos}}" src="{{ikSlide.currentLogo}}" />
+  <img class="portrait-text-top--logo" data-ng-show="{{ikSlide.logo && ikSlide.logo !== ''}}" style="{{ikSlide.options.logopos}}{{ikSlide.options.logosize}}" src="{{ikSlide.currentLogo}}" />
 
   <div class="portrait-text-top--edit-image-settings" ng-click="editor.toggleBackgroundEditor()"></div>
   <div class="portrait-text-top--edit-logo-settings" data-ng-click="editor.toggleLogoEditor()">Tilføj/rediger logo</div>

@@ -1134,5 +1134,5 @@ html.is-locked body {
   /* line 28, only-video.scss */
   .only-video--logo {
     position: absolute;
-    max-width: 10%;
-    max-height: 10%; }
+    width: 10%;
+    padding: 2%; }

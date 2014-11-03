@@ -6,5 +6,5 @@
     </div>
   </div>
 
-  <img class="text-bottom--logo" style="{{ikSlide.options.logopos}}" src="{{ikSlide.currentLogo}}" />
+  <img class="text-bottom--logo" data-ng-show="{{ikSlide.logo && ikSlide.logo !== ''}}" style="{{ikSlide.options.logopos}}{{ikSlide.options.logosize}}" src="{{ikSlide.currentLogo}}" />
 </div>

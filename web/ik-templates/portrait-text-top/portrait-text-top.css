@@ -1198,5 +1198,4 @@ html.is-locked body {
 /* line 70, portrait-text-top.scss */
 .portrait-text-top--logo {
   position: absolute;
-  max-width: 10%;
-  max-height: 10%; }
+  width: 10%; }
