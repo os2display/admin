@@ -44,7 +44,7 @@ ikApp.directive('ikMediaUpload', function() {
         filters: [{
           name: 'mediaFilter',
           fn: function(item /*{File|FileLikeObject}*/, options) {
-            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1);
             return acceptedMediatypes.indexOf(type) !== -1;
           }
         }]
