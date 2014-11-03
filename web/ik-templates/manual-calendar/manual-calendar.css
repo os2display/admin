@@ -1235,3 +1235,8 @@ html.is-locked body {
     .manual-calendar--title:first-child, .manual-calendar--place:first-child, .manual-calendar--time:first-child {
       margin-left: 0;
       padding-left: 0; }
+  /* line 82, manual-calendar.scss */
+  .manual-calendar--logo {
+    position: absolute;
+    width: 10%;
+    padding: 2%; }
