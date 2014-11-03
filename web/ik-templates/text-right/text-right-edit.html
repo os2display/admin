@@ -8,7 +8,7 @@
       </textarea>    </div>
   </div>
 
-  <img class="text-right--logo" data-ng-show="{{ikSlide.logo && ikSlide.logo !== ''}}" style="{{ikSlide.options.logopos}}{{ikSlide.options.logosize}}" data-ng-src="{{ikSlide.currentLogo}}" />
+  <img class="text-right--logo" data-ng-show="ikSlide.currentLogo" style="{{ikSlide.options.logopos}}{{ikSlide.options.logosize}}" data-ng-src="{{ikSlide.currentLogo}}" />
 
   <div class="text-right--edit-image-settings" ng-click="editor.toggleBackgroundEditor()"></div>
   <div class="text-right--edit-logo-settings" data-ng-click="editor.toggleLogoEditor()">Tilføj/rediger logo</div>
