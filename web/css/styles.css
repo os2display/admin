@@ -2649,7 +2649,7 @@ html.is-locked body {
     .login--section {
       margin: 0 auto; } }
 /* line 12, ../sass/modules/_login.scss */
-.login--form, .login--problem {
+.login--reset-form, .login--form, .login--problem {
   margin-right: auto;
   margin-bottom: 1em;
   margin-left: auto;
@@ -2657,32 +2657,37 @@ html.is-locked body {
   background-color: #f0f0e1; }
   @media only screen and (min-width: 481px) {
     /* line 12, ../sass/modules/_login.scss */
-    .login--form, .login--problem {
+    .login--reset-form, .login--form, .login--problem {
       max-width: 50%; } }
-/* line 27, ../sass/modules/_login.scss */
+/* line 28, ../sass/modules/_login.scss */
 .login--alert {
   color: red;
   margin-bottom: 1em;
   text-align: center; }
-/* line 34, ../sass/modules/_login.scss */
+/* line 36, ../sass/modules/_login.scss */
+.login--text {
+  margin-bottom: 1em;
+  margin: 0 2em;
+  text-align: center; }
+/* line 43, ../sass/modules/_login.scss */
 .login--pass, .login--name {
   margin-bottom: 1em; }
-/* line 39, ../sass/modules/_login.scss */
+/* line 48, ../sass/modules/_login.scss */
 .login--remember-me {
   width: 100%;
   font-size: .85em; }
-  /* line 44, ../sass/modules/_login.scss */
+  /* line 53, ../sass/modules/_login.scss */
   .login--remember-me-checkbox, .login--remember-me-label {
     display: inline-block; }
-/* line 50, ../sass/modules/_login.scss */
+/* line 59, ../sass/modules/_login.scss */
 .login--submit {
   margin-bottom: 1em;
   width: 100%; }
-/* line 57, ../sass/modules/_login.scss */
+/* line 66, ../sass/modules/_login.scss */
 .login--content-list-header {
   margin-bottom: .5em;
   font-weight: bold; }
-/* line 63, ../sass/modules/_login.scss */
+/* line 72, ../sass/modules/_login.scss */
 .login--content-list {
   margin-top: 0;
   margin-bottom: 0;
