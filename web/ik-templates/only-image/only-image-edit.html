@@ -1,5 +1,5 @@
 <div class="only-image" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': theStyle.width, 'height': theStyle.height, 'font-size': theStyle.fontsize, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
-  <img class="only-image--logo" style="{{ikSlide.options.logopos ? ikSlide.options.logopos : ''}}" src="{{ikSlide.currentLogo}}" />
+  <img class="only-image--logo" data-ng-hide="{{!ikSlide.logo || ikSlide.logo === ''}}" style="{{ikSlide.options.logopos}}" src="{{ikSlide.currentLogo}}" />
 
   <div class="only-image--edit-image-settings" data-ng-click="editor.toggleBackgroundEditor()" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen}"></div>
   <div class="only-image--edit-logo-settings" data-ng-click="editor.toggleLogoEditor()"></div>

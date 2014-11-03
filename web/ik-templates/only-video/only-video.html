@@ -5,5 +5,5 @@
     <source data-ng-src="{{ikSlide.currentVideo.webm}}" type="video/webm">
   </video>
 
-  <img class="only-video--logo" style="{{ikSlide.options.logopos ? ikSlide.options.logopos : ''}}" src="{{ikSlide.currentLogo}}" />
+  <img class="only-video--logo" data-ng-hide="{{!ikSlide.logo || ikSlide.logo === ''}}" style="{{ikSlide.options.logopos}}" src="{{ikSlide.currentLogo}}" />
 </div>
