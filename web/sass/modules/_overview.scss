@@ -321,7 +321,8 @@
 
 
   &--media-image {
-    height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
+    max-height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
+    max-width: 300px;
   }
 
 
