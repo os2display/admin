@@ -2954,48 +2954,56 @@ html.is-locked body {
     margin-bottom: 1em;
     position: relative;
     width: 100%;
+    margin-left: -4px;
+    box-sizing: border-box;
+    padding-right: 0;
     text-align: center; }
     @media only screen and (min-width: 1024px) {
       /* line 144, ../sass/modules/_overview.scss */
       .overview--filter-owner, .overview--filter-orientation {
-        width: 25%;
-        display: inline-block;
-        float: right; } }
-  /* line 160, ../sass/modules/_overview.scss */
+        width: 35%;
+        display: inline-block; } }
+  @media only screen and (min-width: 1024px) {
+    /* line 160, ../sass/modules/_overview.scss */
+    .overview--filter-owner {
+      padding-right: 1em;
+      width: 25%; } }
+  /* line 168, ../sass/modules/_overview.scss */
   .overview--form {
     margin: 0 0 1em 0;
     width: 100%; }
     @media only screen and (min-width: 1024px) {
-      /* line 160, ../sass/modules/_overview.scss */
+      /* line 168, ../sass/modules/_overview.scss */
       .overview--form {
         margin: 0 0 1em -4px;
-        width: 50%;
+        width: 40%;
         display: inline-block;
-        float: left; }
-        /* line 170, ../sass/modules/_overview.scss */
+        box-sizing: border-box;
+        padding-right: 1em; }
+        /* line 179, ../sass/modules/_overview.scss */
         .overview--form.full-width {
           width: 100%; } }
-  /* line 177, ../sass/modules/_overview.scss */
+  /* line 186, ../sass/modules/_overview.scss */
   .overview--sorting {
     display: inline-block;
     margin: 0 0 1em 0;
     width: 100%; }
     @media only screen and (min-width: 1024px) {
-      /* line 177, ../sass/modules/_overview.scss */
+      /* line 186, ../sass/modules/_overview.scss */
       .overview--sorting {
         max-width: 1024px;
         margin: 0 auto 1em; } }
-  /* line 189, ../sass/modules/_overview.scss */
+  /* line 198, ../sass/modules/_overview.scss */
   .overview--filter-label, .overview--sort-label {
     font-weight: bold;
     overflow: hidden;
     text-align: left;
     width: 100%; }
-  /* line 197, ../sass/modules/_overview.scss */
+  /* line 206, ../sass/modules/_overview.scss */
   .overview--sort-links {
     text-align: center; }
-  /* line 201, ../sass/modules/_overview.scss */
-  .overview--filter-threesplit-left, .overview--filter-threesplit-middle, .overview--filter-threesplit-right, .overview--horisontal, .overview--vertical, .overview--newest, .overview--oldest, .overview--alphabetical {
+  /* line 210, ../sass/modules/_overview.scss */
+  .overview--filter-twosplit-left, .overview--filter-twosplit-right, .overview--filter-threesplit-left, .overview--filter-threesplit-middle, .overview--filter-threesplit-right, .overview--filter-foursplit-left, .overview--filter-foursplit-middle, .overview--filter-foursplit-right, .overview--horisontal, .overview--vertical, .overview--newest, .overview--oldest, .overview--alphabetical {
     background: #fafafa;
     border: 1px solid #e6e6e6;
     box-sizing: border-box;
@@ -3007,39 +3015,45 @@ html.is-locked body {
     text-align: center;
     width: 33.3%; }
     /* line 49, ../sass/mixins/_mixins.scss */
-    .overview--filter-threesplit-left:link, .overview--filter-threesplit-middle:link, .overview--filter-threesplit-right:link, .overview--horisontal:link, .overview--vertical:link, .overview--newest:link, .overview--oldest:link, .overview--alphabetical:link {
+    .overview--filter-twosplit-left:link, .overview--filter-twosplit-right:link, .overview--filter-threesplit-left:link, .overview--filter-threesplit-middle:link, .overview--filter-threesplit-right:link, .overview--filter-foursplit-left:link, .overview--filter-foursplit-middle:link, .overview--filter-foursplit-right:link, .overview--horisontal:link, .overview--vertical:link, .overview--newest:link, .overview--oldest:link, .overview--alphabetical:link {
       color: #595959;
       text-decoration: none; }
     /* line 54, ../sass/mixins/_mixins.scss */
-    .overview--filter-threesplit-left:visited, .overview--filter-threesplit-middle:visited, .overview--filter-threesplit-right:visited, .overview--horisontal:visited, .overview--vertical:visited, .overview--newest:visited, .overview--oldest:visited, .overview--alphabetical:visited {
+    .overview--filter-twosplit-left:visited, .overview--filter-twosplit-right:visited, .overview--filter-threesplit-left:visited, .overview--filter-threesplit-middle:visited, .overview--filter-threesplit-right:visited, .overview--filter-foursplit-left:visited, .overview--filter-foursplit-middle:visited, .overview--filter-foursplit-right:visited, .overview--horisontal:visited, .overview--vertical:visited, .overview--newest:visited, .overview--oldest:visited, .overview--alphabetical:visited {
       color: #595959;
       text-decoration: none; }
     /* line 59, ../sass/mixins/_mixins.scss */
-    .overview--filter-threesplit-left:hover, .overview--filter-threesplit-middle:hover, .overview--filter-threesplit-right:hover, .overview--horisontal:hover, .overview--vertical:hover, .overview--newest:hover, .overview--oldest:hover, .overview--alphabetical:hover {
+    .overview--filter-twosplit-left:hover, .overview--filter-twosplit-right:hover, .overview--filter-threesplit-left:hover, .overview--filter-threesplit-middle:hover, .overview--filter-threesplit-right:hover, .overview--filter-foursplit-left:hover, .overview--filter-foursplit-middle:hover, .overview--filter-foursplit-right:hover, .overview--horisontal:hover, .overview--vertical:hover, .overview--newest:hover, .overview--oldest:hover, .overview--alphabetical:hover {
       color: #595959;
       text-decoration: none; }
     /* line 64, ../sass/mixins/_mixins.scss */
-    .overview--filter-threesplit-left:focus, .overview--filter-threesplit-middle:focus, .overview--filter-threesplit-right:focus, .overview--horisontal:focus, .overview--vertical:focus, .overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
+    .overview--filter-twosplit-left:focus, .overview--filter-twosplit-right:focus, .overview--filter-threesplit-left:focus, .overview--filter-threesplit-middle:focus, .overview--filter-threesplit-right:focus, .overview--filter-foursplit-left:focus, .overview--filter-foursplit-middle:focus, .overview--filter-foursplit-right:focus, .overview--horisontal:focus, .overview--vertical:focus, .overview--newest:focus, .overview--oldest:focus, .overview--alphabetical:focus {
       color: #595959;
       text-decoration: none; }
-    /* line 222, ../sass/modules/_overview.scss */
-    .overview--filter-threesplit-left:first-child, .overview--filter-threesplit-middle:first-child, .overview--filter-threesplit-right:first-child, .overview--horisontal:first-child, .overview--vertical:first-child, .overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
+    /* line 236, ../sass/modules/_overview.scss */
+    .overview--filter-twosplit-left:first-child, .overview--filter-twosplit-right:first-child, .overview--filter-threesplit-left:first-child, .overview--filter-threesplit-middle:first-child, .overview--filter-threesplit-right:first-child, .overview--filter-foursplit-left:first-child, .overview--filter-foursplit-middle:first-child, .overview--filter-foursplit-right:first-child, .overview--horisontal:first-child, .overview--vertical:first-child, .overview--newest:first-child, .overview--oldest:first-child, .overview--alphabetical:first-child {
       -moz-border-radius: 0.5em 0 0 0.5em;
       -webkit-border-radius: 0.5em;
       border-radius: 0.5em 0 0 0.5em; }
-    /* line 226, ../sass/modules/_overview.scss */
-    .overview--filter-threesplit-left:last-child, .overview--filter-threesplit-middle:last-child, .overview--filter-threesplit-right:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
+    /* line 240, ../sass/modules/_overview.scss */
+    .overview--filter-twosplit-left:last-child, .overview--filter-twosplit-right:last-child, .overview--filter-threesplit-left:last-child, .overview--filter-threesplit-middle:last-child, .overview--filter-threesplit-right:last-child, .overview--filter-foursplit-left:last-child, .overview--filter-foursplit-middle:last-child, .overview--filter-foursplit-right:last-child, .overview--horisontal:last-child, .overview--vertical:last-child, .overview--newest:last-child, .overview--oldest:last-child, .overview--alphabetical:last-child {
       border-right: 1px solid #e6e6e6;
       -moz-border-radius: 0 0.5em 0.5em 0;
       -webkit-border-radius: 0;
       border-radius: 0 0.5em 0.5em 0; }
-    /* line 232, ../sass/modules/_overview.scss */
-    .overview--filter-threesplit-left.is-active, .overview--filter-threesplit-middle.is-active, .overview--filter-threesplit-right.is-active, .overview--horisontal.is-active, .overview--vertical.is-active, .overview--newest.is-active, .overview--oldest.is-active, .overview--alphabetical.is-active {
+    /* line 246, ../sass/modules/_overview.scss */
+    .overview--filter-twosplit-left.is-active, .overview--filter-twosplit-right.is-active, .overview--filter-threesplit-left.is-active, .overview--filter-threesplit-middle.is-active, .overview--filter-threesplit-right.is-active, .overview--filter-foursplit-left.is-active, .overview--filter-foursplit-middle.is-active, .overview--filter-foursplit-right.is-active, .overview--horisontal.is-active, .overview--vertical.is-active, .overview--newest.is-active, .overview--oldest.is-active, .overview--alphabetical.is-active {
       background: #f0f0e1; }
-  /* line 237, ../sass/modules/_overview.scss */
+  /* line 251, ../sass/modules/_overview.scss */
+  .overview--filter-twosplit-left, .overview--filter-twosplit-right {
+    width: 50%; }
+  /* line 256, ../sass/modules/_overview.scss */
+  .overview--filter-foursplit-left, .overview--filter-foursplit-middle, .overview--filter-foursplit-right {
+    width: 25%; }
+  /* line 263, ../sass/modules/_overview.scss */
   .overview--horisontal, .overview--vertical {
     width: 50%; }
-  /* line 244, ../sass/modules/_overview.scss */
+  /* line 270, ../sass/modules/_overview.scss */
   .overview--screen-link {
     display: inline-block;
     font-size: .9em; }
@@ -3059,7 +3073,7 @@ html.is-locked body {
     .overview--screen-link:focus {
       color: inherit;
       text-decoration: none; }
-  /* line 252, ../sass/modules/_overview.scss */
+  /* line 278, ../sass/modules/_overview.scss */
   .overview--screen-wrapper {
     margin: 0;
     background: #fafafa;
@@ -3068,14 +3082,14 @@ html.is-locked body {
     color: #595959;
     text-align: center; }
     @media only screen and (min-width: 481px) {
-      /* line 252, ../sass/modules/_overview.scss */
+      /* line 278, ../sass/modules/_overview.scss */
       .overview--screen-wrapper {
         margin: 0 1em 1em 0; } }
-  /* line 265, ../sass/modules/_overview.scss */
+  /* line 291, ../sass/modules/_overview.scss */
   .overview--screen-header {
     font-weight: bold;
     text-align: center; }
-  /* line 270, ../sass/modules/_overview.scss */
+  /* line 296, ../sass/modules/_overview.scss */
   .overview--screen--description {
     position: relative;
     top: 50%;
@@ -3083,16 +3097,16 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  /* line 277, ../sass/modules/_overview.scss */
+  /* line 303, ../sass/modules/_overview.scss */
   .overview--screen-all, .overview--screen-horisontal, .overview--screen-vertical {
     width: 33.3%; }
-  /* line 286, ../sass/modules/_overview.scss */
+  /* line 312, ../sass/modules/_overview.scss */
   .overview--media-single {
     position: relative;
     cursor: pointer;
     font-size: 0;
     overflow: hidden; }
-  /* line 294, ../sass/modules/_overview.scss */
+  /* line 320, ../sass/modules/_overview.scss */
   .overview--media-video-icon {
     right: .5rem;
     position: absolute;
@@ -3106,7 +3120,7 @@ html.is-locked body {
     width: 29px;
     height: 23px;
     background-position: 0 -394px; }
-  /* line 304, ../sass/modules/_overview.scss */
+  /* line 330, ../sass/modules/_overview.scss */
   .overview--media-overlay {
     background-color: rgba(255, 255, 255, 0.65);
     color: #000;
@@ -3116,28 +3130,27 @@ html.is-locked body {
     right: 0;
     bottom: -30%;
     height: 30%; }
-    /* line 314, ../sass/modules/_overview.scss */
+    /* line 340, ../sass/modules/_overview.scss */
     .overview--media-overlay.is-hovering {
       -moz-animation: toggle-media-overlay 0.15s ease 1 forwards;
       -webkit-animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation: toggle-media-overlay 0.15s ease 1 forwards;
       animation-timing-function: linear;
       -webkit-animation-timing-function: linear; }
-  /* line 323, ../sass/modules/_overview.scss */
+  /* line 349, ../sass/modules/_overview.scss */
   .overview--media-image {
-    max-height: 10rem;
-    max-width: 300px; }
-  /* line 329, ../sass/modules/_overview.scss */
+    height: 10rem; }
+  /* line 354, ../sass/modules/_overview.scss */
   .overview--media-overlay-inner {
     padding: .5em;
     text-align: left; }
-  /* line 335, ../sass/modules/_overview.scss */
+  /* line 360, ../sass/modules/_overview.scss */
   .overview--media-text {
     float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis; }
-  /* line 342, ../sass/modules/_overview.scss */
+  /* line 367, ../sass/modules/_overview.scss */
   .overview--no-video {
     background: #fafafa;
     border: 2px solid #cccccc;
@@ -3148,7 +3161,7 @@ html.is-locked body {
     line-height: 10rem;
     vertical-align: middle;
     width: 10rem; }
-  /* line 354, ../sass/modules/_overview.scss */
+  /* line 379, ../sass/modules/_overview.scss */
   .overview--media-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3164,7 +3177,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 360, ../sass/modules/_overview.scss */
+  /* line 385, ../sass/modules/_overview.scss */
   .overview--slide-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3180,7 +3193,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 371, ../sass/modules/_overview.scss */
+  /* line 396, ../sass/modules/_overview.scss */
   .overview--channel-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3196,7 +3209,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 379, ../sass/modules/_overview.scss */
+  /* line 404, ../sass/modules/_overview.scss */
   .overview--channel-overlay {
     display: block;
     z-index: 1;
