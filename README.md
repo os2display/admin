@@ -139,14 +139,6 @@ Add the following to the nginx configuration:
   }
 </pre>
 
-###Allow other domains to load from the templates folder ("/ik-templates/").
-Add the following to the nginx configuration (in /etc/nginx/sites-enabled/service.indholdskanalen.vm.conf):
-<pre>
-location /ik-templates/ {
-  add_header 'Access-Control-Allow-Origin' "*";
-}
-</pre>
-
 ###Vagrant setup for video with Zencoder
 For Video for Zencoder to work in your vagrant you need a public URL:
 <pre>
