@@ -1200,9 +1200,9 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    -moz-border-radius: 1em;
-    -webkit-border-radius: 1em;
-    border-radius: 1em; }
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+    border-radius: 0.5em; }
   /* line 38, manual-calendar.scss */
   .manual-calendar--header {
     font-size: 100%;

@@ -13,7 +13,7 @@
   height: 100%;
   left: 0;
 
-  @include border-radius(1em);
+  @include border-radius(.5em);
 }
 
 
@@ -28,7 +28,7 @@
   width: 90%;
   height: 90%;
 
-  @include border-radius(1em);
+  @include border-radius(.5em);
 }
 
 
