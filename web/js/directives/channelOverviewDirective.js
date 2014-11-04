@@ -173,19 +173,18 @@ ikApp.directive('ikChannelOverview', function() {
         }
 
         if ($scope.orientation !== 'all') {
-          var term = new Object();
+          var term = {};
           term.term = {orientation : $scope.orientation};
           search.filter.bool.must.push(term);
         }
 
         if ($scope.showFromUser !== 'all') {
-          var term = new Object();
+          var term = {};
           term.term = {user : $scope.currentUser.id};
           search.filter.bool.must.push(term);
         }
 
         $scope.updateSearch();
-
       };
 
       /**
@@ -216,10 +215,9 @@ ikApp.directive('ikChannelOverview', function() {
       // Set filter if parameter ikFilter is set.
       if ($scope.ikFilter) {
         $scope.setOrientation($scope.ikFilter);
-      } else {
-        // Send the default search query.
-        $scope.updateSearch();
       }
+
+      $scope.updateSearch();
     },
     templateUrl: '/partials/directives/channel-overview-directive.html'
   };
