@@ -216,10 +216,9 @@ ikApp.directive('ikChannelOverview', function() {
       // Set filter if parameter ikFilter is set.
       if ($scope.ikFilter) {
         $scope.setOrientation($scope.ikFilter);
-      } else {
-        // Send the default search query.
-        $scope.updateSearch();
       }
+
+      $scope.updateSearch();
     },
     templateUrl: '/partials/directives/channel-overview-directive.html'
   };
