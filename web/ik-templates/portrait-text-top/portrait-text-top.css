@@ -1164,9 +1164,9 @@ html.is-locked body {
 .portrait-text-top--text-wrapper {
   position: absolute;
   width: 100%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em; }
 
 /* line 18, portrait-text-top.scss */
 .portrait-text-top--text-inner {
@@ -1178,9 +1178,9 @@ html.is-locked body {
   text-align: left;
   position: relative;
   width: 93%;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em; }
 
 /* line 32, portrait-text-top.scss */
 .portrait-text-top--header {
