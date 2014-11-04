@@ -11,12 +11,12 @@
     <form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
       <div class="login--name">
         {% if invalid_username is defined %}
-          <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+          <p class="login--alert">Brugernavnet eller emailadressen findes ikke i systemet</p>
         {% endif %}
-        <label for="username" class="login--reset-label">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
-        <input class="login--reset-input" type="text" id="username" name="username" required="required" placeholder="{{ 'User name or email'|trans({}, 'SonataUserBundle') }}"/>
+        <label for="username" class="login--reset-label">Brugernavn eller email adresse</label>
+        <input class="login--reset-input" type="text" id="username" name="username" required="required" placeholder="Brugernavn eller email adresse"/>
       </div>
-      <input type="submit" class="login--submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+      <input type="submit" class="login--submit" value="Send email"/>
     </form>
   </div>
 {% endblock %}
