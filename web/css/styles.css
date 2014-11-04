@@ -3139,18 +3139,19 @@ html.is-locked body {
       -webkit-animation-timing-function: linear; }
   /* line 349, ../sass/modules/_overview.scss */
   .overview--media-image {
-    height: 10rem; }
-  /* line 354, ../sass/modules/_overview.scss */
+    max-height: 10rem;
+    max-width: 300px; }
+  /* line 355, ../sass/modules/_overview.scss */
   .overview--media-overlay-inner {
     padding: .5em;
     text-align: left; }
-  /* line 360, ../sass/modules/_overview.scss */
+  /* line 361, ../sass/modules/_overview.scss */
   .overview--media-text {
     float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis; }
-  /* line 367, ../sass/modules/_overview.scss */
+  /* line 368, ../sass/modules/_overview.scss */
   .overview--no-video {
     background: #fafafa;
     border: 2px solid #cccccc;
@@ -3161,7 +3162,7 @@ html.is-locked body {
     line-height: 10rem;
     vertical-align: middle;
     width: 10rem; }
-  /* line 379, ../sass/modules/_overview.scss */
+  /* line 380, ../sass/modules/_overview.scss */
   .overview--media-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3177,7 +3178,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 385, ../sass/modules/_overview.scss */
+  /* line 386, ../sass/modules/_overview.scss */
   .overview--slide-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3193,7 +3194,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 396, ../sass/modules/_overview.scss */
+  /* line 397, ../sass/modules/_overview.scss */
   .overview--channel-link {
     cursor: pointer; }
     /* line 79, ../sass/mixins/_mixins.scss */
@@ -3209,7 +3210,7 @@ html.is-locked body {
       height: 100%;
       background: rgba(255, 255, 255, 0.5);
       position: absolute; }
-  /* line 404, ../sass/modules/_overview.scss */
+  /* line 405, ../sass/modules/_overview.scss */
   .overview--channel-overlay {
     display: block;
     z-index: 1;
