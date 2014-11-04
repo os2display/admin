@@ -1209,30 +1209,28 @@ html.is-locked body {
     margin-bottom: .5em; }
   /* line 48, manual-calendar.scss */
   .manual-calendar--events {
-    overflow: hidden; }
-  /* line 53, manual-calendar.scss */
+    overflow: hidden;
+    width: 100%; }
+  /* line 54, manual-calendar.scss */
   .manual-calendar--event {
     font-size: 70%;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     margin-bottom: .5em;
     padding-bottom: .5em; }
-    /* line 60, manual-calendar.scss */
+    /* line 61, manual-calendar.scss */
     .manual-calendar--event:last-child {
       border-bottom: 0; }
-  /* line 66, manual-calendar.scss */
+  /* line 67, manual-calendar.scss */
   .manual-calendar--title, .manual-calendar--place, .manual-calendar--time {
     box-sizing: border-box;
-    display: inline-block;
-    margin-left: -4px;
-    padding: 0 2em 0 .5em;
-    vertical-align: middle;
-    width: 33%; }
-    /* line 76, manual-calendar.scss */
+    padding: .5em;
+    vertical-align: middle; }
+    /* line 74, manual-calendar.scss */
     .manual-calendar--title:first-child, .manual-calendar--place:first-child, .manual-calendar--time:first-child {
       margin-left: 0;
       padding-left: 0; }
-  /* line 82, manual-calendar.scss */
+  /* line 80, manual-calendar.scss */
   .manual-calendar--logo {
     position: absolute;
     width: 10%;

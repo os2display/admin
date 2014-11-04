@@ -47,6 +47,7 @@
 
   &--events {
     overflow: hidden;
+    width: 100%;
   }
 
 
@@ -67,11 +68,8 @@
   &--place,
   &--time{
     box-sizing: border-box;
-    display: inline-block;
-    margin-left: -4px;
-    padding: 0 2em 0 .5em;
+    padding: .5em;
     vertical-align: middle;
-    width: 33%;
 
     &:first-child {
       margin-left: 0;
