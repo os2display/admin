@@ -102,9 +102,10 @@ class ScreenController extends Controller {
     }
 
     // Add channels.
+	  $channelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel');
+
     foreach($post->channels as $channel) {
-      $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
-        ->findOneById($channel->id);
+      $channel = $channelRepository->findOneById($channel->id);
       if ($channel) {
         if (!$screen->getChannels()->contains($channel)) {
           $screen->addChannel($channel);
@@ -117,19 +118,10 @@ class ScreenController extends Controller {
     $em->persist($screen);
     $em->flush();
 
-    // Create the response data.
-    $responseData = array(
-      "id" => $screen->getId(),
-      "title" => $screen->getTitle(),
-      "orientation" => $screen->getOrientation(),
-      "created_at" => $screen->getCreatedAt(),
-      "width" => $screen->getWidth(),
-      "height" => $screen->getHeight(),
-    );
-
     // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
-    $response->headers->set('Content-Type', 'application/json');
+    $response = new Response();
+	  $response->setStatusCode(200);
+
     return $response;
   }
 

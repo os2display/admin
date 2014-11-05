@@ -108,7 +108,7 @@ class MediaController extends Controller {
     $response = new Response();
 
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($results, 'json');
+    $jsonContent = $serializer->serialize($results, 'json', SerializationContext::create()->setGroups(array('api')));
 
     $response->setContent($jsonContent);
     // JSON header.
