@@ -458,7 +458,9 @@ class Slide {
 	 */
 	public function getIsMediaReady()
 	{
-		$result = true;
+    return true;
+		/*
+    $result = true;
 		foreach($this->getMediaOrders() as $mediaorder) {
 			$media = $mediaorder->getMedia();
 			if($media->getProviderStatus() !== 1) {
@@ -466,7 +468,7 @@ class Slide {
 			}
 
 		}
-		return $result;
+		return $result;*/
 	}
 
   /**
