@@ -24,7 +24,7 @@ ikApp.directive('ikMediaUpload', function() {
       $scope.uploadInProgress = false;
       $scope.uploadErrorText = '';
 
-      var acceptedVideotypes = '|mp4|avi|wmv|mov|mpeg|mpg|mkv|ogg|ogv|webm|m4v';
+      var acceptedVideotypes = '|mp4|x-msvideo|x-ms-wmv|quicktime|mpeg|mpg|x-matroska|ogg|webm';
       var acceptedImagetypes = '|jpg|png|jpeg|bmp|gif';
 
       // Set accepted media types.
