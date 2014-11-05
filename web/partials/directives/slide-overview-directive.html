@@ -33,7 +33,7 @@
           <div class="overview--slide-unpublished-overlay"></div>
           <div class="overview--slide-unpublished-icon" title="Dette slide er ikke publiseret."></div>
         </div>
-        <ik-slide ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
+        <ik-slide ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 168.75 : 300 }}"></ik-slide>
       </div>
       <span class="overview--slide-label">{{slide.title}}</span>
       <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}} -</span>
@@ -51,7 +51,7 @@
         <div data-ng-if="slide.published == false">
           <div class="overview--slide-unpublished-icon" title="Dette slide er ikke publiseret."></div>
         </div>
-        <ik-slide ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 150 : 300 }}"></ik-slide>
+        <ik-slide ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 168.75 : 300 }}"></ik-slide>
       </div>
       <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>

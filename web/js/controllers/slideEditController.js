@@ -301,16 +301,24 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
 
     $scope.logoSizes = [
       {
-        value: "width: 5%;",
-        text: "lille"
+        value: "width: 5%",
+        text: "Meget lille (5% af skærmen)"
       },
       {
         value: "width: 10%;",
-        text: "medium"
+        text: "Lille (10% af skærmen)"
       },
       {
         value: "width: 15%;",
-        text: "stor"
+        text: "Medium (15% af skærmen)"
+      },
+      {
+        value: "width: 20%;",
+        text: "Stor (20% af skærmen)"
+      },
+      {
+        value: "width: 40%;",
+        text: "Ekstra stor (40% af skærmen)"
       }
     ];
   }

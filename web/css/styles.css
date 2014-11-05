@@ -2863,7 +2863,7 @@ html.is-locked body {
   /* line 67, ../sass/modules/_overview.scss */
   .overview--slide-unpublished-overlay {
     background: #fff;
-    height: 168.75px;
+    height: 100%;
     position: absolute;
     top: 0;
     width: 100%;

@@ -57,9 +57,12 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
 
             scope.theStyle = {
               width: "" + scope.ikWidth + "px",
-              height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
-              fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
+              height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
             };
+
+            if (scope.ikSlide.options.fontsize) {
+              scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
+            }
           }
         );
       });
@@ -145,7 +148,7 @@ ikApp.directive('ikSlideEditable', ['templateFactory', function(templateFactory)
                 width: "" + scope.ikWidth + "px",
                 height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
                 fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
-              }
+              };
             }
           );
         }
