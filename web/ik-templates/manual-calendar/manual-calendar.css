@@ -1209,11 +1209,11 @@ html.is-locked body {
     margin-bottom: .5em; }
   /* line 48, manual-calendar.scss */
   .manual-calendar--events {
+    font-size: 70%;
     overflow: hidden;
     width: 100%; }
-  /* line 54, manual-calendar.scss */
+  /* line 55, manual-calendar.scss */
   .manual-calendar--event {
-    font-size: 70%;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     margin-bottom: .5em;

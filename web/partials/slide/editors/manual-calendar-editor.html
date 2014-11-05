@@ -15,7 +15,7 @@
         <div class="edit-menu--calendar-date-template">
           <div class="edit-menu--calendar-form-element-wrapper">
             <label class="edit-menu--calendar-label">Titel</label>
-            <input class="edit-menu--calendar-form-element" type="text" placeholder="Besøg i botanisk have" ng-model="addevent.title">
+            <input class="edit-menu--calendar-form-element" type="text" placeholder="Besøg i botanisk have" data-ng-model="addevent.title">
           </div>
           <div class="edit-menu--calendar-form-element-wrapper">
             <label class="edit-menu--calendar-label">Sted</label>
@@ -23,32 +23,32 @@
           </div>
           <div class="edit-menu--calendar-form-element-wrapper">
             <label class="edit-menu--calendar-label">Fra</label>
-            <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" ng-model="addevent.from">
+            <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" data-ng-model="addevent.from">
           </div>
           <div class="edit-menu--calendar-form-element-wrapper">
             <label class="edit-menu--calendar-label">Til</label>
-            <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" ng-model="addevent.to">
+            <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" data-ng-model="addevent.to">
           </div>
           <div class="edit-menu--calendar-form-element-wrapper-link">
             <div class="edit-menu--calendar-add-date" data-ng-click="addEventItem()" data-ng-disabled="addevent.from > addevent.to" data-ng-class="{'is-inactive': addevent.from > addevent.to}"></div>
           </div>
         </div>
         <div class="edit-menu--calendar-date-events">
-          <div class="edit-menu--calendar-date-event" ng-repeat="event in slide.options.eventitems | reverseEvents" data-ng-class="{'is-outdated': setOutdated(event)}">
+          <div class="edit-menu--calendar-date-event" data-ng-repeat="event in slide.options.eventitems | reverseEvents" data-ng-class="{'is-outdated': eventIsOutdated(event)}">
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element" type="text" ng-model="event.title">
+              <input class="edit-menu--calendar-form-element" type="text" data-ng-model="event.title">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element" type="text" ng-model="event.place">
+              <input class="edit-menu--calendar-form-element" type="text" data-ng-model="event.place">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" ng-model="event.from">
+              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" data-ng-model="event.from">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper">
-              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" ng-model="event.to">
+              <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" data-ng-model="event.to">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper-link">
-              <div class="edit-menu--calendar-remove-date" data-ng-click="removeEventItem(event)"></div><span class="edit-menu--calendar-remove-date-notice" data-ng-class="{'is-outdated': setOutdated(event)}">Forældet!</span>
+              <div class="edit-menu--calendar-remove-date" data-ng-click="removeEventItem(event)"></div><span class="edit-menu--calendar-remove-date-notice" data-ng-class="{'is-outdated': eventIsOutdated(event)}">Forældet!</span>
             </div>
           </div>
         </div>

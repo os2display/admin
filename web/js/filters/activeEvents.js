@@ -14,23 +14,24 @@ ikApp.filter('activeEvents', function() {
       return false
     }
 
+    // Get current time.
+    var currentTime = parseInt(Date.now() / 1000);
+
+    var ret = [];
+
     // Loop through event items.
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
 
-      // Set current time.
-      var currentTime = Date.now();
-
       // Calculate event duration.
-      var duration = item.to - item.from;
-
-      // If negative duration (end before start time) or end time is exceeded (old event).
-      if (duration < 0 || item.to * 1000 < currentTime) {
-
-        // Remove event item from view (Still exists in slide).
-        items.splice(i,1);
+      if (item.from && item.to && item.to >= currentTime) {
+        ret.push(item);
+      }
+      else if (item.from && item.from >= currentTime) {
+        ret.push(item);
       }
     }
-    return items;
+
+    return ret;
   };
 });

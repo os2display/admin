@@ -130,14 +130,14 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
     };
 
     /**
-     * Set outdated for events on slide
+     * Is outdated for events on slide
      */
-    $scope.setOutdated = function setOutdated(event) {
-      // Set current time.
-      if (event.to * 1000 < Date.now()) {
-        return true;
-      }
-      return false;
+    $scope.eventIsOutdated = function setOutdated(event) {
+      var to = event.to;
+      var from = event.from;
+      var now = Date.now() / 1000;
+
+      return (to && now > to) || (!to && now > from);
     };
 
     /**
@@ -149,15 +149,19 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         for (var i = 0; i < $scope.slide.options.eventitems.length; i++) {
           var item = $scope.slide.options.eventitems[i];
 
-          // Set daily event default.
-          item.dailyEvent = false;
-
-          // Set duration for event item.
-          item.duration = item.to - item.from;
-
-          // Check if the duration is less than 24 hours.
-          if (item.duration < 86400) {
+          if (item.from && !item.to) {
             item.dailyEvent = true;
+          }
+          else {
+            var fromDate = new Date(item.from * 1000);
+            var toDate = new Date(item.to * 1000);
+
+            if (fromDate.getDate() === toDate.getDate()) {
+              item.dailyEvent = true;
+            }
+            else {
+              item.dailyEvent = false;
+            }
           }
 
           // Save new event item with duration.
