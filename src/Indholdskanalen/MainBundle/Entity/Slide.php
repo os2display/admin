@@ -451,6 +451,24 @@ class Slide {
     return $result;
   }
 
+	/**
+	 * Is all media ready
+	 *
+	 * @return boolean
+	 */
+	public function getIsMediaReady()
+	{
+		$result = true;
+		foreach($this->getMediaOrders() as $mediaorder) {
+			$media = $mediaorder->getMedia();
+			if($media->getProviderStatus() !== 1) {
+				$result = false;
+			}
+
+		}
+		return $result;
+	}
+
   /**
    * Get channels
    *

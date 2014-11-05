@@ -243,7 +243,7 @@ class Channel {
 		$slideorders = $this->getChannelSlideOrders()->matching($criteria);
 		foreach($slideorders as $slideorder) {
 			$slide = $slideorder->getSlide();
-			if($slide->getPublished()) {
+			if($slide->getPublished() && $slide->getIsMediaReady()) {
 				$result->add($slide);
 			}
 		}
