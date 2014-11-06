@@ -61,7 +61,7 @@ class SerializationListener implements EventSubscriberInterface
       function(array $groups) use ($event) {
 
         // API, Search Serialization
-        if (in_array('api', $groups)) {
+        if (in_array('api', $groups) || in_array('api-bulk', $groups)) {
           $media = $event->getObject();
           $provider = $this->mediaService->getProvider($media->getProviderName());
           $formats = $provider->getFormats();

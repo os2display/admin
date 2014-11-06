@@ -7,13 +7,13 @@
         <property name="enabled" type="boolean" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write" />
 
         <property name="providerName"      type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
-        <property name="providerStatus"    type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
+        <property name="providerStatus"    type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api,api-bulk" />
         <property name="providerReference" type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
-        <property name="width"       type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
-        <property name="height"      type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
-        <property name="length"      type="double" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api" />
-        <property name="contentType" type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api,search" />
+        <property name="width"       type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api,api-bulk" />
+        <property name="height"      type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api,api-bulk" />
+        <property name="length"      type="double" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api,api-bulk" />
+        <property name="contentType" type="string"  expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api,search,api-bulk" />
         <property name="size"        type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
         <property name="copyright"  type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />

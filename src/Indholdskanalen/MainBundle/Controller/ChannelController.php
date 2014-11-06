@@ -132,16 +132,7 @@ class ChannelController extends Controller {
 
     // Create response.
     $response = new Response();
-    $response->headers->set('Content-Type', 'application/json');
-    if ($channel) {
-      $serializer = $this->get('jms_serializer');
-      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
-
-      $response->setContent($json_content);
-    }
-    else {
-      $response->setContent(json_encode(array()));
-    }
+		$response->setStatusCode(200);
 
     return $response;
   }
@@ -167,7 +158,7 @@ class ChannelController extends Controller {
     $response = new Response();
     if ($channel) {
       $response->headers->set('Content-Type', 'application/json');
-      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
+      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
       $response->setContent($json_content);
     }
     else {

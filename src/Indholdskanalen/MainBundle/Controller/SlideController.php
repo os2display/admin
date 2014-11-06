@@ -211,10 +211,7 @@ class SlideController extends Controller {
 
     // Create response.
     $response = new Response();
-    $response->headers->set('Content-Type', 'application/json');
-    $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api')));
-    $response->setContent($jsonContent);
+		$response->setStatusCode(200);
 
     return $response;
   }
@@ -240,7 +237,7 @@ class SlideController extends Controller {
     $response = new Response();
     if ($slide) {
       $response->headers->set('Content-Type', 'application/json');
-      $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api')));
+      $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }
     else {

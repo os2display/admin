@@ -32,7 +32,7 @@ class ScreensController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
 
 	  $serializer = $this->get('jms_serializer');
-	  $response->setContent($serializer->serialize($screen_entities, 'json', SerializationContext::create()->setGroups(array('api'))));
+	  $response->setContent($serializer->serialize($screen_entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
 
     return $response;
   }
@@ -77,7 +77,7 @@ class ScreensController extends Controller {
       }
 
       $serializer = $this->get('jms_serializer');
-      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
     }
     else {
       $response->setContent(json_encode(array()));
