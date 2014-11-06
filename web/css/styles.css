@@ -2982,7 +2982,7 @@ html.is-locked body {
         padding-right: 1em; }
         /* line 179, ../sass/modules/_overview.scss */
         .overview--form.full-width {
-          width: 100%; } }
+          width: 75%; } }
   /* line 186, ../sass/modules/_overview.scss */
   .overview--sorting {
     display: inline-block;
