@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Extra
@@ -23,37 +24,37 @@ class Slide {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "search", "sharing", "middleware"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api", "search", "sharing", "middleware"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
-   * @Groups({"api", "search", "sharing", "middleware"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="template", type="string", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "api-bulk", "middleware"})
    */
   private $template;
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $created_at;
 
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
-   * @Groups({"api", "search", "sharing", "middleware"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
    */
   private $options;
 
@@ -102,7 +103,7 @@ class Slide {
   /**
    * @ORM\Column(name="media_type", type="string", nullable=true)
    *   "video" or "image".
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "api-bulk", "middleware"})
    */
   private $mediaType;
 
@@ -440,7 +441,7 @@ class Slide {
    *
    * @VirtualProperty
    * @SerializedName("media")
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   public function getMedia()
   {
@@ -456,7 +457,7 @@ class Slide {
 	 *
 	 * @return boolean
 	 */
-	public function getIsMediaReady()
+	public function isMediaReady()
 	{
 		foreach($this->getMediaOrders() as $mediaorder) {
 			$media = $mediaorder->getMedia();
@@ -468,6 +469,26 @@ class Slide {
 		return true;
 	}
 
+	/**
+	 * Is the Slide currently scheduled to be shown
+	 *
+	 * @return boolean
+	 */
+	public function isSlideInSchedule()
+	{
+		return $this->getScheduleTo() === null || $this->getScheduleTo() > time();
+	}
+
+	/**
+	 * Is the Slide ready and active
+	 *
+	 * @return boolean
+	 */
+	public function isSlideActive()
+	{
+		return $this->getPublished() && $this->isSlideInSchedule() && $this->isMediaReady();
+	}
+
   /**
    * Get channels
    *
@@ -476,6 +497,7 @@ class Slide {
    * @VirtualProperty
    * @SerializedName("channels")
    * @Groups({"api"})
+   * @MaxDepth(6)
    */
   public function getChannels()
   {

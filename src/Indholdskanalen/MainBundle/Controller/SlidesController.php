@@ -33,7 +33,7 @@ class SlidesController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()->setGroups(array('api')));
+    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks());
     $response->setContent($jsonContent);
 
     return $response;
@@ -80,7 +80,7 @@ class SlidesController extends Controller {
 
       $serializer = $this->get('jms_serializer');
       $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
     }
     else {
       $response->setContent(json_encode(array()));

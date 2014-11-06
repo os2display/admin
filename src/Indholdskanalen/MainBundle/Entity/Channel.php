@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\AccessorOrder;
+use JMS\Serializer\Annotation\MaxDepth;
 
 
 /**
@@ -28,25 +29,25 @@ class Channel {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
-   * @Groups({"api", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $created_at;
 
@@ -234,6 +235,10 @@ class Channel {
 	 * Get all published slides
 	 *
 	 * @return \Doctrine\Common\Collections\Collection
+	 *
+	 * @VirtualProperty
+	 * @SerializedName("slides")
+	 * @Groups({"api-bulk"})
 	 */
 	public function getPublishedSlides()
 	{
@@ -243,7 +248,7 @@ class Channel {
 		$slideorders = $this->getChannelSlideOrders()->matching($criteria);
 		foreach($slideorders as $slideorder) {
 			$slide = $slideorder->getSlide();
-			if($slide->getPublished() && $slide->getIsMediaReady()) {
+			if($slide->isSlideActive()) {
 				$result->add($slide);
 			}
 		}
