@@ -5,10 +5,11 @@
     <div class="create-channel--add-slide-button" data-ng-click="editor.toggleChannelOverviewEditor()">Tilføj til kanaler</div>
     <div class="overview--channels">
       <div class="overview--channel" data-ng-repeat="channel in slide.channels">
-        <div class="create-screen--channel-link" data-ng-class="{'is-selected': hasChannel(channel)}" data-ng-click="toggleChannel(channel)">
+        <div class="create-screen--channel-link" data-ng-class="{'is-selected': hasChannel(channel)}">
           <span class="create-screen--overlay">
             <span class="create-screen--link-check"></span>
           </span>
+          <div class="overview--channel-remove" data-ng-click="toggleChannel(channel)"></div>
           <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}" ik-single-slide="true"></ik-channel>
         </div>
         <div class="overview--channel-label">{{channel.title}}</div>
