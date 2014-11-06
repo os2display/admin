@@ -458,17 +458,14 @@ class Slide {
 	 */
 	public function getIsMediaReady()
 	{
-    return true;
-		/*
-    $result = true;
 		foreach($this->getMediaOrders() as $mediaorder) {
 			$media = $mediaorder->getMedia();
 			if($media->getProviderStatus() !== 1) {
-				$result = false;
+				return false;
 			}
 
 		}
-		return $result;*/
+		return true;
 	}
 
   /**

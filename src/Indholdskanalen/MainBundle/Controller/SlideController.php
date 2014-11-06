@@ -104,11 +104,14 @@ class SlideController extends Controller {
     }
 
     // Add to channels.
+	  $channelRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Channel');
+	  $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
+
     foreach ($post['channels'] as $channel) {
-      $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($channel['id']);
+      $channel = $channelRepository->findOneById($channel['id']);
 
       // Check if ChannelSlideOrder already exists, if not create it.
-      $channelSlideOrder = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
+      $channelSlideOrder = $channelSlideOrderRepository->findOneBy(
         array(
           'channel' => $channel,
           'slide' => $slide,
@@ -117,7 +120,7 @@ class SlideController extends Controller {
       if (!$channelSlideOrder) {
         // Find the next sort order index for the given channel.
         $index = 0;
-        $channelLargestSortOrder = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
+        $channelLargestSortOrder = $channelSlideOrderRepository->findOneBy(
           array('channel' => $channel),
           array('sortOrder' => 'DESC')
         );
@@ -154,11 +157,14 @@ class SlideController extends Controller {
     }
 
     // Add to media.
+	  $mediaRepository = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
+	  $mediaOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder');
+
     foreach ($post['media'] as $media) {
-      $media = $doctrine->getRepository('ApplicationSonataMediaBundle:Media')->findOneById($media['id']);
+      $media = $mediaRepository->findOneById($media['id']);
 
       // Check if ChannelSlideOrder already exists, if not create it.
-      $mediaOrder = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder')->findOneBy(
+      $mediaOrder = $mediaOrderRepository->findOneBy(
         array(
           'media' => $media,
           'slide' => $slide,
@@ -167,7 +173,7 @@ class SlideController extends Controller {
       if (!$mediaOrder) {
         // Find the next sort order index for the given channel.
         $index = 0;
-        $mediaLargestSortOrder = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder')->findOneBy(
+        $mediaLargestSortOrder = $mediaOrderRepository->findOneBy(
           array('media' => $media),
           array('sortOrder' => 'DESC')
         );
@@ -190,7 +196,7 @@ class SlideController extends Controller {
 
     // Set logo
     if (isset($post['logo'])) {
-      $logo = $doctrine->getRepository('ApplicationSonataMediaBundle:Media')->findOneById($post['logo']['id']);
+      $logo = $mediaRepository->findOneById($post['logo']['id']);
 
       if ($logo) {
         $slide->setLogo($logo);
@@ -207,7 +213,7 @@ class SlideController extends Controller {
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($slide, 'json');
+    $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api')));
     $response->setContent($jsonContent);
 
     return $response;

@@ -99,10 +99,13 @@ class ChannelController extends Controller {
 
     // Add slides and update sort order.
     $sort_order = 0;
-    foreach ($post_slide_ids as $slide_id) {
-      $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slide_id);
+	  $slideRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Slide');
+	  $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
 
-      $channel_slide_order = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
+    foreach ($post_slide_ids as $slide_id) {
+      $slide = $slideRepository->findOneById($slide_id);
+
+      $channel_slide_order = $channelSlideOrderRepository->findOneBy(
         array(
           'channel' => $channel,
           'slide' => $slide,
@@ -132,7 +135,7 @@ class ChannelController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
     if ($channel) {
       $serializer = $this->get('jms_serializer');
-      $json_content = $serializer->serialize($channel, 'json');
+      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api')));
 
       $response->setContent($json_content);
     }
