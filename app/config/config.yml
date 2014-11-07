@@ -100,6 +100,10 @@ fos_user:
   service:
     user_manager: sonata.user.orm.user_manager
 
+  from_email:
+      address:        "%mailer_from_email%"
+      sender_name:    "%mailer_from_name%"
+
 sonata_media:
   # if you don't use default namespace configuration
   #class:
