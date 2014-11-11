@@ -456,7 +456,7 @@ class Slide {
 	public function isSlideInSchedule() {
     $to = $this->getScheduleTo();
 
-		return $to === null || $to === 0 || $to > time();
+		return empty($to) || $to > time();
 	}
 
 	/**
