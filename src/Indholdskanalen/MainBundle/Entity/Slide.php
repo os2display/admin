@@ -117,8 +117,7 @@ class Slide {
   /**
    * Constructor
    */
-  public function __construct()
-  {
+  public function __construct() {
     $this->channelSlideOrders = new \Doctrine\Common\Collections\ArrayCollection();
     $this->mediaOrders = new \Doctrine\Common\Collections\ArrayCollection();
   }
@@ -235,8 +234,7 @@ class Slide {
    * @param integer $createdAt
    * @return Slide
    */
-  public function setCreatedAt($createdAt)
-  {
+  public function setCreatedAt($createdAt) {
     $this->created_at = $createdAt;
 
     return $this;
@@ -247,8 +245,7 @@ class Slide {
    *
    * @return integer
    */
-  public function getCreatedAt()
-  {
+  public function getCreatedAt() {
     return $this->created_at;
   }
 
@@ -258,8 +255,7 @@ class Slide {
    * @param integer $duration
    * @return Slide
    */
-  public function setDuration($duration)
-  {
+  public function setDuration($duration) {
     $this->duration = $duration;
 
     return $this;
@@ -270,8 +266,7 @@ class Slide {
    *
    * @return integer
    */
-  public function getDuration()
-  {
+  public function getDuration() {
     return $this->duration;
   }
 
@@ -281,8 +276,7 @@ class Slide {
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
    * @return Slide
    */
-  public function addChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
-  {
+  public function addChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder) {
     $this->channelSlideOrders[] = $channelSlideOrder;
 
     return $this;
@@ -293,8 +287,7 @@ class Slide {
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
    */
-  public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
-  {
+  public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder) {
     $this->channelSlideOrders->removeElement($channelSlideOrder);
   }
 
@@ -303,8 +296,7 @@ class Slide {
    *
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getChannelSlideOrders()
-  {
+  public function getChannelSlideOrders() {
     return $this->channelSlideOrders;
   }
 
@@ -314,8 +306,7 @@ class Slide {
    * @param boolean $published
    * @return Slide
    */
-  public function setPublished($published)
-  {
+  public function setPublished($published) {
     $this->published = $published;
 
     return $this;
@@ -326,8 +317,7 @@ class Slide {
    *
    * @return boolean
    */
-  public function getPublished()
-  {
+  public function getPublished() {
     return $this->published;
   }
 
@@ -337,8 +327,7 @@ class Slide {
    * @param integer $scheduleFrom
    * @return Slide
    */
-  public function setScheduleFrom($scheduleFrom)
-  {
+  public function setScheduleFrom($scheduleFrom) {
     $this->schedule_from = $scheduleFrom;
 
     return $this;
@@ -349,8 +338,7 @@ class Slide {
    *
    * @return integer
    */
-  public function getScheduleFrom()
-  {
+  public function getScheduleFrom() {
     return $this->schedule_from;
   }
 
@@ -360,8 +348,7 @@ class Slide {
    * @param integer $scheduleTo
    * @return Slide
    */
-  public function setScheduleTo($scheduleTo)
-  {
+  public function setScheduleTo($scheduleTo) {
     $this->schedule_to = $scheduleTo;
 
     return $this;
@@ -372,8 +359,7 @@ class Slide {
    *
    * @return integer
    */
-  public function getScheduleTo()
-  {
+  public function getScheduleTo() {
     return $this->schedule_to;
   }
 
@@ -383,8 +369,7 @@ class Slide {
    * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
    * @return Slide
    */
-  public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
-  {
+  public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder) {
     $this->mediaOrders[] = $mediaOrder;
 
     return $this;
@@ -395,8 +380,7 @@ class Slide {
    *
    * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
    */
-  public function removeMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
-  {
+  public function removeMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder) {
     $this->mediaOrders->removeElement($mediaOrder);
   }
 
@@ -405,8 +389,7 @@ class Slide {
    *
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getMediaOrders()
-  {
+  public function getMediaOrders() {
     return $this->mediaOrders;
   }
 
@@ -417,8 +400,7 @@ class Slide {
    * @param string $mediaType
    * @return Slide
    */
-  public function setMediaType($mediaType)
-  {
+  public function setMediaType($mediaType) {
     $this->mediaType = $mediaType;
 
     return $this;
@@ -429,8 +411,7 @@ class Slide {
    *
    * @return string
    */
-  public function getMediaType()
-  {
+  public function getMediaType() {
     return $this->mediaType;
   }
 
@@ -443,8 +424,7 @@ class Slide {
    * @SerializedName("media")
    * @Groups({"api", "api-bulk"})
    */
-  public function getMedia()
-  {
+  public function getMedia() {
     $result = new ArrayCollection();
     foreach($this->getMediaOrders() as $mediaorder) {
       $result->add($mediaorder->getMedia());
@@ -457,8 +437,7 @@ class Slide {
 	 *
 	 * @return boolean
 	 */
-	public function isMediaReady()
-	{
+	public function isMediaReady() {
 		foreach($this->getMediaOrders() as $mediaorder) {
 			$media = $mediaorder->getMedia();
 			if($media->getProviderStatus() !== 1) {
@@ -474,9 +453,10 @@ class Slide {
 	 *
 	 * @return boolean
 	 */
-	public function isSlideInSchedule()
-	{
-		return $this->getScheduleTo() === null || $this->getScheduleTo() > time();
+	public function isSlideInSchedule() {
+    $to = $this->getScheduleTo();
+
+		return $to === null || $to === 0 || $to > time();
 	}
 
 	/**
@@ -484,8 +464,7 @@ class Slide {
 	 *
 	 * @return boolean
 	 */
-	public function isSlideActive()
-	{
+	public function isSlideActive() {
 		return $this->getPublished() && $this->isSlideInSchedule() && $this->isMediaReady();
 	}
 
@@ -499,8 +478,7 @@ class Slide {
    * @Groups({"api"})
    * @MaxDepth(6)
    */
-  public function getChannels()
-  {
+  public function getChannels() {
     $result = new ArrayCollection();
     foreach($this->getChannelSlideOrders() as $channelorder) {
       $result->add($channelorder->getChannel());
@@ -513,8 +491,7 @@ class Slide {
    *
    * @return mixed
    */
-  public function getLogo()
-  {
+  public function getLogo() {
     return $this->logo;
   }
 
@@ -524,8 +501,7 @@ class Slide {
    * @param $logo
    * @return $this
    */
-  public function setLogo($logo)
-  {
+  public function setLogo($logo) {
     $this->logo = $logo;
 
     return $this;
