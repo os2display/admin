@@ -15,6 +15,7 @@ services:
     arguments: [@indholdskanalen.middleware.communication]
     tags:
       - { name: doctrine.event_listener, event: postUpdate }
+      - { name: doctrine.event_listener, event: postPersist }
 
   indholdskanalen_main.serialization_listener:
     class: Indholdskanalen\MainBundle\EventListener\SerializationListener
