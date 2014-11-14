@@ -72,6 +72,17 @@ ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFac
         $scope.sortEvents();
         $scope.validateEvents();
       },
+      toggleSourceEditor: function() {
+        $('html').toggleClass('is-locked');
+
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'partials/slide/editors/source-editor.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
+      },
       hideAllEditors: function() {
         $('html').removeClass('is-locked');
 
