@@ -9,6 +9,9 @@
       <a href="/#/screen-overview" class="nav--item">Skærme</a>
       <a href="/#/media-overview" class="nav--item">Medier</a>
     </div>
+    <div class="nav--item-wrapper" data-ng-show="currentUser.is_admin">
+      <a href="/admin" class="nav--item">Brugere</a>
+    </div>
     <div class="nav--item-wrapper">
       <a href="/logout" class="nav--item">Log ud</a>
     </div>
@@ -48,16 +51,6 @@
       </nav>
       <div class="header--secondary-menus">
         <div class="header--secondary-menus-inner">
-          <div class="header--user-menu">
-            <div class="header--user-menu-label">
-              <a class="header--user-menu-dropdown-link" href="#">
-                <img class="header--user-menu-image" src="/images/user-default.png"/>
-                <span class="header--user-menu-name">Profil</span>
-              </a>
-            </div>
-            <nav class="header--user-menu-links">
-            </nav>
-          </div>
           <div class="header--nav-menu">
             <div class="header--nav-menu-label">
               <span class="header--nav-menu-link" data-ng-click="toggleNavMenu()">

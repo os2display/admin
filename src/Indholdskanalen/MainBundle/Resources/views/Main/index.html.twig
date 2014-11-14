@@ -21,12 +21,17 @@
   <script src="{{ asset('js/lib/angular-route.js') }}"></script>
 
   <!-- Add ins -->
+  <script src="{{ asset('js/lib/moment.min.js') }}"></script>
   <script src="{{ asset('js/lib/es5-shim.min.js') }}"></script>
   <script src="{{ asset('js/lib/angular-file-upload.js') }}"></script>
   <script src="{{ asset('js/lib/angular-checklist-model.js') }}"></script>
   <script src="{{ asset('js/lib/angular-bootstrap-colorpicker.js') }}"></script>
+  <script src="{{ asset('js/lib/angular-placeholder.js') }}"></script>
+
+  <!-- Modules -->
   <script src="{{ asset('js/modules/datetime-picker/jquery.datetimepicker.js') }}"></script>
   <script src="{{ asset('js/modules/datetime-picker/datetime-picker.js') }}"></script>
+  <script src="{{ asset('js/modules/locale/da.js') }}"></script>
 
   <!-- Socket io from the search node, to get right version -->
   <script src="/proxy/socket.io/socket.io.js"></script>
@@ -36,12 +41,21 @@
   <script src="{{ asset('js/configuration.js') }}"></script>
   <script src="{{ asset('js/routing.js') }}"></script>
 
+  <!-- Filters -->
+  <script src="{{ asset('js/filters/activeEvents.js') }}"></script>
+  <script src="{{ asset('js/filters/reverseEvents.js') }}"></script>
+
   <!-- Directives -->
   <script src="{{ asset('js/directives/helperDirectives.js') }}"></script>
+  <script src="{{ asset('js/directives/pagerDirective.js') }}"></script>
   <script src="{{ asset('js/directives/slideDirectives.js') }}"></script>
   <script src="{{ asset('js/directives/channelDirectives.js') }}"></script>
   <script src="{{ asset('js/directives/screenDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/mediaDirectives.js') }}"></script>
+  <script src="{{ asset('js/directives/mediaUploadDirectives.js') }}"></script>
+  <script src="{{ asset('js/directives/slideOverviewDirective.js') }}"></script>
+  <script src="{{ asset('js/directives/channelOverviewDirective.js') }}"></script>
+  <script src="{{ asset('js/directives/mediaOverviewDirective.js') }}"></script>
+  <script src="{{ asset('js/directives/deleteDirective.js') }}"></script>
 
   <!-- Services -->
   <script src="{{ asset('js/services/mediaFactory.js') }}"></script>
@@ -63,8 +77,6 @@
   <script src="{{ asset('js/controllers/slideController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
   <script src="{{ asset('js/controllers/screenController.js') }}"></script>
-  <script src="{{ asset('js/controllers/screenGroupController.js') }}"></script>
-  <script src="{{ asset('js/controllers/screenGroupsController.js') }}"></script>
   <script src="{{ asset('js/controllers/channelController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaUploadController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaEditController.js') }}"></script>

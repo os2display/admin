@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Application\Sonata\MediaBundle\Entity\Media;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/media")
@@ -39,15 +40,25 @@ class MediaController extends Controller {
         $media->setName($path_parts['filename']);
       }
 
-      $mediaType = explode('/', $file->getMimeType())[0];
+      $mediaType = explode('/', $file->getMimeType());
+      $mediaType = $mediaType[0];
 
       switch ($mediaType) {
         case 'video':
           $media->setProviderName('sonata.media.provider.zencoder');
+          $media->setMediaType('video');
           break;
 
         case 'image':
           $media->setProviderName('sonata.media.provider.image');
+
+          $isLogo = $request->request->get('logo');
+          if (isset($isLogo) && $isLogo === 'true') {
+            $media->setMediaType('logo');
+          } else {
+            $media->setMediaType('image');
+          }
+
           break;
 
         default:
@@ -57,6 +68,10 @@ class MediaController extends Controller {
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
 
+	    // Set creator.
+	    $userEntity = $this->get('security.context')->getToken()->getUser();
+	    $media->setUser($userEntity->getId());
+
       $mediaManager = $this->get("sonata.media.manager.media");
 
       $mediaManager->save($media);
@@ -64,7 +79,6 @@ class MediaController extends Controller {
       $uploadedItems[] = $media->getId();
     }
 
-    // @TODO: send status codes
     $response = new Response(json_encode($uploadedItems));
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
@@ -94,11 +108,60 @@ class MediaController extends Controller {
     $response = new Response();
 
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($results, 'json');
+    $jsonContent = $serializer->serialize($results, 'json', SerializationContext::create()->setGroups(array('api')));
 
     $response->setContent($jsonContent);
     // JSON header.
     $response->headers->set('Content-Type', 'application/json');
+
+    return $response;
+  }
+
+  /**
+   * Get a bulk of media.
+   *
+   * @Route("/bulk")
+   * @Method("GET")
+   *
+   * @param $request
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function MediaGetBulkAction(Request $request) {
+    $ids = $request->query->get('ids');
+
+    $response = new Response();
+
+    // Check if slide exists, to update, else create new slide.
+    if (isset($ids)) {
+      $em = $this->getDoctrine()->getManager();
+
+      $qb = $em->createQueryBuilder();
+      $qb->select('m');
+      $qb->from('ApplicationSonataMediaBundle:Media', 'm');
+      $qb->where($qb->expr()->in('m.id', $ids));
+      $results = $qb->getQuery()->getResult();
+
+      // Sort the entities based on the order of the ids given in the
+      // parameters.
+      // @todo: Use mysql order by FIELD('id',1,4,2)....
+      $entities = array();
+      foreach ($ids as $id) {
+        foreach ($results as $index => $entity) {
+          if ($entity->getId() == $id) {
+            $entities[] = $entity;
+            unset($results[$index]);
+          }
+        }
+      }
+
+      $serializer = $this->get('jms_serializer');
+      $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
 
     return $response;
   }
@@ -123,10 +186,11 @@ class MediaController extends Controller {
 
     if ($media) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($media, 'json');
+      $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()->setGroups(array('api')));
 
       $response->setContent($jsonContent);
-    } else {
+    }
+    else {
       $response->setContent(json_encode(array()));
     }
 
@@ -145,18 +209,18 @@ class MediaController extends Controller {
    */
   public function MediaDeleteAction($id) {
     $em = $this->getDoctrine()->getManager();
-    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
-      ->findOneById($id);
+    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')->findOneById($id);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
-    if($media) {
+    if ($media && $media->getMediaOrders()->isEmpty()) {
       $em->remove(($media));
       $em->flush();
       $response->setContent(json_encode(array()));
-    } else {
+    }
+    else {
       $response->setContent(json_encode(array()));
     }
 

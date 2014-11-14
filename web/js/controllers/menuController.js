@@ -6,12 +6,18 @@
 /**
  * Menu controller. Controls the menues.
  */
-ikApp.controller('MenuController', ['$scope', '$rootScope', '$location',
-  function($scope, $rootScope, $location) {
+ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFactory',
+  function($scope, $rootScope, $location, userFactory) {
     $scope.url = $location.url();
     $scope.navMenuOpen = null;
     $scope.subMenuItems = [];
     $scope.showMobileMainMenu = false;
+
+    userFactory.getCurrentUser().then(
+      function(data) {
+        $scope.currentUser = data;
+      }
+    );
 
     /**
      * Set the submenu items according to what the url starts with.
@@ -81,7 +87,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location',
             classSuffix: 'overview'
           },
           {
-            title: 'Upload',
+            title: 'Upload medie',
             path: 'media/upload',
             classSuffix: 'create-media'
           }

@@ -42,6 +42,35 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory',
     };
 
     /**
+     * Load the channels with the given ids.
+     *
+     * @param ids
+     */
+    factory.loadChannelsBulk = function loadChannelsBulk(ids) {
+      var defer = $q.defer();
+
+      // Build query string.
+      var queryString = "?";
+      for (var i = 0; i < ids.length; i++) {
+        queryString = queryString + "ids[]=" + ids[i];
+        if (i < ids.length - 1) {
+          queryString = queryString + "&"
+        }
+      }
+
+      // Load bulk.
+      $http.get('/api/channels/bulk' + queryString)
+        .success(function(data, status) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status)
+        });
+
+      return defer.promise;
+    };
+
+    /**
      * Find slide to edit. If id is not set return current slide, else load from backend.
      * @param id
      */

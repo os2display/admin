@@ -10,8 +10,29 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
   function($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory) {
     $scope.steps = 6;
     $scope.slide = {};
-    $scope.templates = templateFactory.getTemplates();
+    $scope.templates = [];
+    templateFactory.getTemplates().then(
+      function(data) {
+        for (var key in data) {
+          $scope.templates.push(data[key]);
+        }
+      }
+    );
     $scope.channels = [];
+
+    // Setup the editor.
+    $scope.editor = {
+      channelOverviewEditor: false,
+      toggleChannelOverviewEditor: function() {
+        $('html').toggleClass('is-locked');
+        $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;
+      }
+    };
+
+    // Register event listener for clickSlide.
+    $scope.$on('channelOverview.clickChannel', function(event, channel) {
+      $scope.toggleChannel(channel);
+    });
 
     /**
      * Load a given step
@@ -46,15 +67,20 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
           slideFactory.clearCurrentSlide();
 
           // Get the slide from the backend.
-          slideFactory.getEditSlide($routeParams.id).then(function(data) {
-            $scope.slide = data;
-            $scope.slide.status = 'edit-slide';
-            if ($scope.slide === {}) {
-              $location.path('/slide');
-            }
+          slideFactory.getEditSlide($routeParams.id).then(
+            function(data) {
+              $scope.slide = data;
+              $scope.slide.status = 'edit-slide';
+              if ($scope.slide === {}) {
+                $location.path('/slide');
+              }
 
-            loadStep(4);
-          });
+              loadStep(4);
+            },
+            function(reason) {
+              $location.path('/slide-overview');
+            }
+          );
         }
       }
     }
@@ -140,17 +166,41 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
      * @param id
      */
     $scope.selectTemplate = function(id) {
+      // Set name of template.
       $scope.slide.template = id;
-      if ($scope.slide.options == null) {
-        $scope.slide.options = templateFactory.getTemplate(id).emptyoptions;
+
+      // Find selected template.
+      var template = null;
+      $scope.templates.forEach(function(element) {
+        if (element.id === id) {
+          template = element;
+        }
+      });
+
+      // Bail out if no template is selected.
+      if (template === null) {
+        return;
       }
-      else {
-        angular.forEach(templateFactory.getTemplate(id).emptyoptions, function(value, key)  {
-          if ($scope.slide.options[key] == undefined) {
-            $scope.slide.options[key] = value;
-          }
-        });
+
+      // Make sure the options field has been set.
+      if (!$scope.slide.options) {
+        $scope.slide.options = {};
       }
+
+      // Update options field.
+      angular.forEach(template.emptyoptions, function(value, key)  {
+        if ($scope.slide.options[key] == undefined) {
+          $scope.slide.options[key] = value;
+        }
+      });
+
+      // Set the headline equal to the title, if it is empty.
+      if ($scope.slide.options.headline == '') {
+        $scope.slide.options.headline = $scope.slide.title;
+      }
+
+      // Get the media type from the template.
+      $scope.slide.media_type = template.mediatype;
     };
 
     /**
@@ -176,6 +226,22 @@ ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$ti
         }
       });
 
+      return res;
+    };
+
+    /**
+     * Check if channel is included in the current screen.
+     * @param channel
+     * @returns {boolean}
+     */
+    $scope.hasChannel = function hasChannel(channel) {
+      var res = false;
+
+      $scope.slide.channels.forEach(function(element) {
+        if (channel.id == element.id) {
+          res = true;
+        }
+      });
       return res;
     };
 

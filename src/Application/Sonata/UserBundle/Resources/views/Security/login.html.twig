@@ -24,12 +24,12 @@
 
                   <div class="login--name">
                     <label for="username">Brugernavn</label>
-                    <input type="text" class="login--name-input" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'User name'|trans({}, 'SonataUserBundle') }}"/>
+                    <input type="text" class="login--name-input" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Brugernavn"/>
                   </div>
 
                   <div class="login--pass">
                     <label for="password">Kodeord</label>
-                    <input type="password" class="login--pass-input" id="password" name="_password" required="required" placeholder="{{ 'User password'|trans({}, 'SonataUserBundle') }}"/>
+                    <input type="password" class="login--pass-input" id="password" name="_password" required="required" placeholder="Kodeord"/>
                   </div>
                   {% block sonata_user_login_error %}
                     {% if error %}
@@ -41,15 +41,14 @@
 
                   <div class="login--remember-me">
                     <input type="checkbox" id="remember_me" class="login--remember-me-checkbox" name="_remember_me" value="on"/>
-                    <label for="remember_me" class="login--remember-me-label">{{ 'Remember me'|trans({}, 'FOSUserBundle') }}</label>
+                    <label for="remember_me" class="login--remember-me-label">Husk mig</label>
                   </div>
                 </form>
               </div>
               <div class="login--problem">
                 <p class="login--content-list-header">Problemer med at logge ind?</p>
                 <ul class="login--content-list">
-                  <li><a href="{{ path('fos_user_resetting_request') }}">Jeg har glemt mit brugernavn</a<</li>
-                  <li><a href="{{ path('fos_user_resetting_request') }}">Jeg har glemt mit kodeord</a></li>
+                  <li><a href="{{ path('fos_user_resetting_request') }}">Jeg har glemt mit brugernavn eller kodeord.</a></li>
                 </ul>
               </div>
             {% endblock %}

@@ -14,7 +14,7 @@ $pager--text-color: $gray-lighter;
 $pager--valid: $beige;
 
 
-/* Styles
+/* Pager for the creation pages (The one just below header.)
    ========================================================================== */
 
 .pager {
@@ -44,23 +44,33 @@ $pager--valid: $beige;
 
 
   &--step {
-    background: $pager--background;
-    border: $pager--border-width solid $pager--border-color;
+    background: #fff;
+    border: 1px solid #e6e6e6;
     display: inline-block;
     line-height: .5em;
-    margin: 0 .8em;
+    margin: 0 .5em;
     padding: .5em;
     position: relative;
-    font-size: 1.8em;
+    font-size: 1.3em;
 
     @include border-radius(100%);
+
+    @include breakpoint(50em) {
+      border: 3px solid #e6e6e6;
+      margin: 0 .8em;
+      font-size: 1.8em;
+    }
   }
 
 
   &--line {
     border-bottom: 2px solid $pager--border-color;
     margin: 0 -2em;
-    margin-bottom: -26px;
+    margin-bottom: -18px;
+
+    @include breakpoint(50em) {
+      margin-bottom: -26px;
+    }
   }
 
 
@@ -69,5 +79,54 @@ $pager--valid: $beige;
     top: 55px;
     left: 0;
     right: 0;
+    display: none;
+
+    @include breakpoint($breakpoint-portable) {
+      display: block;
+    }
+  }
+
+  /* Pager for the search result pages.
+     ========================================================================== */
+
+  &--search{
+    margin-bottom: 2em;
+    text-align: center;
+  }
+
+  &--search-item {
+    display: inline-block;
+    background: $gray-lightest;
+    border: 1px solid $gray-lighter;
+    box-sizing: border-box;
+    border-right: 0;
+    cursor: pointer;
+    margin-left: $grid-markup-fix;
+    text-align: center;
+
+    &:first-child {
+      @include border-radius(.5em 0 0 .5em);
+    }
+
+    &:last-child {
+      border-right: 1px solid $gray-lighter;
+
+      @include border-radius(0 .5em .5em 0);
+    }
+
+    &.is-active {
+      background: $beige;
+    }
+
+    &.is-disabled {
+      color: #CCC;
+      cursor: default;
+    }
+  }
+
+  &--search-item-inner {
+    padding: .4em .9em;
+    display: block;
   }
 }
+

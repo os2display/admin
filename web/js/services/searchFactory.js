@@ -126,8 +126,11 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
       };
     }
 
-    // @TODO: Fix sort on text fields.
-//      sort: { 'name.raw': { order: 'asc' } } }
+    // Add pager to the query.
+    if (search.hasOwnProperty('pager')) {
+      query.size = search.pager.size;
+      query.from = search.pager.page * search.pager.size;
+    }
 
     connect().then(function () {
       socket.emit('search', query);

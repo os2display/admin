@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  *
@@ -19,24 +20,28 @@ class ChannelSlideOrder {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="sort_order", type="integer")
+   * @Groups({"api"})
    */
   private $sortOrder;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Slide", inversedBy="channelslideorders")
+   * @ORM\ManyToOne(targetEntity="Slide", inversedBy="channelSlideOrders")
    * @ORM\JoinColumn(name="slide_id", referencedColumnName="id")
-   **/
+   * @Groups({"api"})
+   */
   private $slide;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Channel", inversedBy="channelslideorders")
+   * @ORM\ManyToOne(targetEntity="Channel", inversedBy="channelSlideOrders")
    * @ORM\JoinColumn(name="channel_id", referencedColumnName="id")
-   **/
+   * @Groups({"api"})
+   */
   private $channel;
 
   /**

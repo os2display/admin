@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Screen;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/screen")
@@ -49,38 +50,66 @@ class ScreenController extends Controller {
       // Load current slide.
       $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
         ->findOneById($post->id);
+
+      if (!$screen) {
+        $response = new Response();
+        $response->setStatusCode(404);
+
+        return $response;
+      }
     }
     else {
-      // This is a new slide.
+      // This is a new screen.
       $screen = new Screen();
+      $screen->setCreatedAt(time());
+
+	    // Set creator.
+	    $userEntity = $this->get('security.context')->getToken()->getUser();
+	    $screen->setUser($userEntity->getId());
     }
 
     // Update fields.
-    $screen->setTitle($post->title);
-    $screen->setOrientation($post->orientation);
-    $screen->setCreatedAt($post->created_at);
-    $screen->setWidth($post->width);
-    $screen->setHeight($post->height);
+    if (isset($post->title)) {
+      $screen->setTitle($post->title);
+    }
+    if (isset($post->orientation)) {
+      $screen->setOrientation($post->orientation);
+    }
+    if (isset($post->width)) {
+      $screen->setWidth($post->width);
+    }
+    if (isset($post->height)) {
+      $screen->setHeight($post->height);
+    }
+    $screen->setModifiedAt(time());
 
+    // Set an activation code and empty token for new screens.
     if ($screen->getActivationCode() == null) {
       $screen->setActivationCode($this->getNewActivationCode());
       $screen->setToken("");
     }
 
-    // Remove groups.
-    foreach($screen->getGroups() as $group) {
-      if (!in_array($group->getId(), $post->groups)) {
-        $screen->removeGroup($group);
+    // Get channel ids.
+    $postChannelIds = array();
+    foreach($post->channels as $channel) {
+      $postChannelIds[] = $channel->id;
+    }
+
+    // Remove channels.
+    foreach($screen->getChannels() as $channel) {
+      if (!in_array($channel->getId(), $postChannelIds)) {
+        $screen->removeChannel($channel);
       }
     }
 
-    // Add groups.
-    foreach($post->groups as $groupId) {
-      $group = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenGroup')
-        ->findOneById($groupId);
-      if ($group) {
-        if (!$screen->getGroups()->contains($group)) {
-          $screen->addGroup($group);
+    // Add channels.
+	  $channelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel');
+
+    foreach($post->channels as $channel) {
+      $channel = $channelRepository->findOneById($channel->id);
+      if ($channel) {
+        if (!$screen->getChannels()->contains($channel)) {
+          $screen->addChannel($channel);
         }
       }
     }
@@ -90,20 +119,10 @@ class ScreenController extends Controller {
     $em->persist($screen);
     $em->flush();
 
-    // Create the response data.
-    $responseData = array(
-      "id" => $screen->getId(),
-      "title" => $screen->getTitle(),
-      "orientation" => $screen->getOrientation(),
-      "created_at" => $screen->getCreatedAt(),
-      "width" => $screen->getWidth(),
-      "height" => $screen->getHeight(),
-      "groups" => $screen->getGroups(),
-    );
-
     // Send the json response back to client.
-    $response = new Response(json_encode($responseData));
-    $response->headers->set('Content-Type', 'application/json');
+    $response = new Response();
+	  $response->setStatusCode(200);
+
     return $response;
   }
 
@@ -119,16 +138,15 @@ class ScreenController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function ScreenGetAction($id) {
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
-      ->findOneById($id);
+    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneById($id);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
     if ($screen) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($screen, 'json');
-
+      $response->headers->set('Content-Type', 'application/json');
+      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }
     else {
@@ -165,6 +183,7 @@ class ScreenController extends Controller {
       return new Response("", 404);
     }
 
+    // Set group id of screen.
     $groups = array();
     $groups[] = "group" . $screen->getId();
 
@@ -218,5 +237,39 @@ class ScreenController extends Controller {
 
     // Generate the response.
     return new Response("", 200);
+  }
+
+  /**
+   * Delete screen.
+   *
+   * @Route("/{id}")
+   * @Method("DELETE")
+   *
+   * @param int $id
+   *   Slide id of the slide to delete.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function ScreenDeleteAction($id) {
+    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+
+    if ($screen) {
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($screen);
+      $em->flush();
+
+      // Element deleted.
+      $response->setStatusCode(200);
+    }
+    else {
+      // Not found.
+      $response->setStatusCode(404);
+    }
+
+    return $response;
   }
 }

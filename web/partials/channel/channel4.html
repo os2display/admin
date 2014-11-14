@@ -1,18 +1,20 @@
-<section id="create-channel-four" class="create-channel--section">
-  <div class="create-channel--content--channel-four">
+<section id="create-channel-five" class="create-channel--section">
+  <div class="create-channel--content--channel-five">
     <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
-      <p class="create-channel--header-description">Brug pilene for at vælge i hvilken rækkefølge dine slides skal vises.</p>
-      <div class="create-channel--slides">
-        <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
-          <div href="#" class="create-channel--slide-order-link">
-            <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><span class="create-channel--arrow-left-inner"> &#10094; </span></span>
-            <span class="create-channel--slide-order-number">{{$index + 1}}</span>
-            <ik-slide ik-id="{{slide.id}}" ik-width="300"></ik-slide>
-            <span class="create-channel--slide-order-label">{{slide.title}}</span>
-            <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><span class="create-channel--arrow-right-inner">&#10095; </span></span>
+      <p class="create-channel--header-description">Vælg hvilke skærme din kanal skal vises på.</p>
+      <div class="create-channel--select-screens">
+        <div class="create-channel--screen" data-ng-repeat="screen in screens | filter:{ orientation: channel.orientation}" data-ng-click="toggleScreen(screen)">
+          <div class="create-channel--screen-link">
+            <div class="create-channel--screen-element">
+              <div class="create-channel--screen-element-check" data-ng-class="{'is-selected' : screenSelected(screen.id)}"></div>
+              <div class="create-channel--screen-element-title">{{screen.title}} - ({{screen.width}}x{{screen.height}})</div>
+            </div>
           </div>
         </div>
       </div>
-    <input type="submit" class="create-channel--button" value="Gem og fortsæt" data-ng-click="submitStep()">
+    <div class="create-channel--finish-button">
+      <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
+      <input type="submit" data-ng-disabled="disableSubmitButton" class="create-channel--button" value="Gem kanal" data-ng-click="submitStep()">
+    </div>
   </div>
 </section>

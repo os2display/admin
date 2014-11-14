@@ -7,5 +7,9 @@
       <textarea auto-grow class="text-right--description has-placeholder" data-ng-trim="false" placeholder="Her kan du skrive teksten til din slide. Boksen udvider sig når du tilføjer tekst." data-ng-model="ikSlide.options.text" spellcheck="false" data-ng-style="{'color': ikSlide.options.textcolor}">
       </textarea>    </div>
   </div>
+
+  <img class="text-right--logo" data-ng-show="ikSlide.currentLogo" style="{{ikSlide.options.logopos}}{{ikSlide.options.logosize}}" data-ng-src="{{ikSlide.currentLogo}}" />
+
   <div class="text-right--edit-image-settings" ng-click="editor.toggleBackgroundEditor()"></div>
+  <div class="text-right--edit-logo-settings" data-ng-click="editor.toggleLogoEditor()">Tilføj/rediger logo</div>
 </div>

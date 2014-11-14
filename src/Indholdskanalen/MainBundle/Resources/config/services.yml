@@ -2,9 +2,6 @@ parameters:
 #    indholdskanalen_main.example.class: Indholdskanalen\MainBundle\Example
 
 services:
-#    indholdskanalen_main.example:
-#        class: %indholdskanalen_main.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
   indholdskanalen_main.listener:
     class: Indholdskanalen\MainBundle\EventListener\SearchIndexer
     arguments: [@jms_serializer, @service_container]
@@ -19,12 +16,27 @@ services:
     tags:
       - { name: doctrine.event_listener, event: postUpdate }
 
-
   indholdskanalen_main.serialization_listener:
     class: Indholdskanalen\MainBundle\EventListener\SerializationListener
-    arguments: [@sonata.media.pool]
+    arguments: [@sonata.media.pool, @service_container, @indholdskanalen.template_service]
     tags:
       - { name: jms_serializer.event_subscriber}
+
+  indholdskanalen.command.pushchannels:
+    class: Indholdskanalen\MainBundle\Command\PushChannelsCommand
+    tags:
+      -  { name: console.command }
+
+  indholdskanalen.template_service:
+    class: Indholdskanalen\MainBundle\Services\TemplateService
+    calls:
+      - [ setContainer,[ @service_container ] ]
+
+  indholdskanalen.middleware.communication:
+    class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
+    arguments: [@indholdskanalen.template_service]
+    calls:
+      - [ setContainer,[ @service_container ] ]
 
   indholdskanalen_main.api_authentication_service:
     class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
@@ -36,5 +48,3 @@ services:
     arguments: [sonata.media.provider.zencoder, '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '%absolute_path_to_server%', '%zencoder_api%']
     calls:
       - [setTemplates, [{ helper_thumbnail: 'SonataMediaBundle:Provider:thumbnail.html.twig', helper_view: 'SonataMediaBundle:Provider:view_video.html.twig' }]]
-
-

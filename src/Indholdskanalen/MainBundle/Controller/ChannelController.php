@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializationContext;
 
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
@@ -36,26 +37,44 @@ class ChannelController extends Controller {
       // Load current slide.
       $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')
         ->findOneById($post->id);
+
+      // If channel is not found, return Not Found.
+      if (!$channel) {
+        $response = new Response();
+        $response->setStatusCode(404);
+
+        return $response;
+      }
     }
     else {
-      // This is a new slide.
+      // This is a new channel.
       $channel = new Channel();
+      $channel->setCreatedAt(time());
+
+	    // Set creator.
+	    $userEntity = $this->get('security.context')->getToken()->getUser();
+	    $channel->setUser($userEntity->getId());
     }
 
     // Update fields.
-    $channel->setTitle($post->title);
-    $channel->setOrientation($post->orientation);
-    $channel->setCreatedAt($post->created_at);
+    if (isset($post->title)) {
+      $channel->setTitle($post->title);
+    }
+    if (isset($post->orientation)) {
+      $channel->setOrientation($post->orientation);
+    }
+    $channel->setModifiedAt(time());
+
 
     // Remove screens.
-    foreach($channel->getScreens() as $screen) {
+    foreach ($channel->getScreens() as $screen) {
       if (!in_array($screen, $post->screens)) {
         $channel->removeScreen($screen);
       }
     }
 
     // Add screens.
-    foreach($post->screens as $screen) {
+    foreach ($post->screens as $screen) {
       $screen = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')
         ->findOneById($screen->id);
       if ($screen) {
@@ -66,54 +85,47 @@ class ChannelController extends Controller {
     }
 
     // Get all slide ids from POST.
-    $postSlideIds = array();
-    foreach($post->slides as $slide) {
-      $postSlideIds[] = $slide->id;
+    $post_slide_ids = array();
+    foreach ($post->slides as $slide) {
+      $post_slide_ids[] = $slide->id;
     }
 
-    // Remove slides
-    foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
-      $slide = $channelSlideOrder->getChannel();
+    // Remove slides.
+    foreach ($channel->getChannelSlideOrders() as $channel_slide_order) {
+      $slide = $channel_slide_order->getSlide();
 
-      if (!in_array($slide->getId(), $postSlideIds)) {
-        $channelSlideOrder->getChannel()->removeChannelSlideOrder($channelSlideOrder);
-        $channelSlideOrder->getSlide()->removeChannelSlideOrder($channelSlideOrder);
-
-        $em->persist($channelSlideOrder->getChannel());
-        $em->persist($channelSlideOrder->getSlide());
-
-        $em->remove($channelSlideOrder);
-        $em->flush();
+      if (!in_array($slide->getId(), $post_slide_ids)) {
+        $channel->removeChannelSlideOrder($channel_slide_order);
       }
     }
 
-    // Save the entity.
-    $em->persist($channel);
-    $em->flush();
-
     // Add slides and update sort order.
-    $sortOrder = 0;
-    foreach($postSlideIds as $slideId) {
-      $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')->findOneById($slideId);
+    $sort_order = 0;
+	  $slideRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Slide');
+	  $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
 
-      $channelSlideOrder = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder')->findOneBy(
+    foreach ($post_slide_ids as $slide_id) {
+      $slide = $slideRepository->findOneById($slide_id);
+
+      $channel_slide_order = $channelSlideOrderRepository->findOneBy(
         array(
           'channel' => $channel,
           'slide' => $slide,
         )
       );
-      if (!$channelSlideOrder) {
-        $channelSlideOrder = new ChannelSlideOrder();
-        $channelSlideOrder->setChannel($channel);
-        $channelSlideOrder->setSlide($slide);
+      if (!$channel_slide_order) {
+        // New ChannelSLideOrder.
+        $channel_slide_order = new ChannelSlideOrder();
+        $channel_slide_order->setChannel($channel);
+        $channel_slide_order->setSlide($slide);
+        $em->persist($channel_slide_order);
+
+        // Associate Order to Channel.
+        $channel->addChannelSlideOrder($channel_slide_order);
       }
 
-      $channelSlideOrder->setSortOrder($sortOrder);
-      $sortOrder++;
-
-      // Save the ChannelSlideOrder.
-      $em->persist($channelSlideOrder);
-      $em->flush();
+      $channel_slide_order->setSortOrder($sort_order);
+      $sort_order++;
     }
 
     // Save the entity.
@@ -122,16 +134,7 @@ class ChannelController extends Controller {
 
     // Create response.
     $response = new Response();
-    $response->headers->set('Content-Type', 'application/json');
-    if ($channel) {
-      $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($channel, 'json');
-
-      $response->setContent($jsonContent);
-    }
-    else {
-      $response->setContent(json_encode(array()));
-    }
+		$response->setStatusCode(200);
 
     return $response;
   }
@@ -142,7 +145,8 @@ class ChannelController extends Controller {
    * @Route("/{id}")
    * @Method("GET")
    *
-   * @param $id
+   * @param int $id
+   *   Channel id of the channel to delete.
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
@@ -155,24 +159,45 @@ class ChannelController extends Controller {
     // Create response.
     $response = new Response();
     if ($channel) {
-      // Get slides.
-      $slides = array();
-      foreach($channel->getChannelSlideOrders() as $channelSlideOrder) {
-        $slides[] = json_decode($serializer->serialize($channelSlideOrder->getSlide(), 'json'));
-      }
-
-      // Create json content.
-      $jsonContent = $serializer->serialize($channel, 'json');
-
-      // Attach extra fields.
-      $ob = json_decode($jsonContent);
-      $ob->slides = $slides;
-      $jsonContent = json_encode($ob);
-
       $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($jsonContent);
+      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+      $response->setContent($json_content);
     }
     else {
+      $response->setStatusCode(404);
+    }
+
+    return $response;
+  }
+
+  /**
+   * Delete channel.
+   *
+   * @Route("/{id}")
+   * @Method("DELETE")
+   *
+   * @param int $id
+   *   Channel id of the channel to delete.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function ChannelDeleteAction($id) {
+    $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+
+    if ($channel) {
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($channel);
+      $em->flush();
+
+      // Element deleted.
+      $response->setStatusCode(200);
+    }
+    else {
+      // Not found.
       $response->setStatusCode(404);
     }
 

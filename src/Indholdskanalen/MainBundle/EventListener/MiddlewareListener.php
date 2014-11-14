@@ -32,6 +32,18 @@ class MiddlewareListener {
    * @param LifecycleEventArgs $args
    */
   public function postUpdate(LifecycleEventArgs $args) {
+    // Get the current entity.
+    $entity = $args->getEntity();
+    $type = get_class($entity);
+
+    // Ignore User, ChannelSlideOrder, MediaOrder. "Order" entities will never be persisted alone, but always as part
+	  // of persiting a primary entity.
+    if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder') {
+      return;
+    }
+
     $this->middleware->pushChannels();
   }
 }

@@ -45,6 +45,16 @@
   }
 
 
+  &--finish-button {
+    @extend %create-element--finish-button-wrapper;
+  }
+
+
+  &--spinner {
+    @extend %create-element--submit-spinner;
+  }
+
+
   /* Create slide - set name (Page 1)
    ========================================================================== */
   &--form {

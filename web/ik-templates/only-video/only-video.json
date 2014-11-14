@@ -1,0 +1,21 @@
+{
+  "id": "only-video",
+  "icon": "only-video.png",
+  "paths": {
+    "live": "only-video.html",
+    "edit": "only-video-edit.html",
+    "preview": "only-video-preview.html",
+    "css": "only-video.css"
+  },
+  "mediatype": "video",
+  "orientation": "landscape",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "videos": [],
+    "logopos": "",
+    "logosize": ""
+  }
+}

@@ -12,6 +12,13 @@ ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
     $scope.orientation = 'landscape';
     $scope.sort = { "created_at": "desc" };
 
+    // Default pager values.
+    $scope.pager = {
+      "size": 9,
+      "page": 0
+    };
+    $scope.hits = 0;
+
     // Channels to display.
     $scope.channels = [];
 
@@ -32,7 +39,8 @@ ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
         "created_at" : {
           "order": "desc"
         }
-      }
+      },
+      'pager': $scope.pager
     };
 
     /**
@@ -44,7 +52,21 @@ ikApp.controller('ChannelOverviewController', ['$scope', 'channelFactory',
 
       channelFactory.searchChannels(search).then(
         function(data) {
-          $scope.channels = data;
+          // Total hits.
+          $scope.hits = data.hits;
+
+          // Extract search ids.
+          var ids = [];
+          for (var i = 0; i < data.results.length; i++) {
+            ids.push(data.results[i].id);
+          }
+
+          // Load slides bulk.
+          channelFactory.loadChannelsBulk(ids).then(
+            function (data) {
+              $scope.channels = data;
+            }
+          );
         }
       );
     };

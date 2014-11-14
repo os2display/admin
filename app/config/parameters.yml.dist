@@ -6,10 +6,12 @@ parameters:
     database_user:     root
     database_password: ~
 
-    mailer_transport:  smtp
+    mailer_transport:  sendmail
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
+    mailer_from_email: webmaster@ik3.indholdskanalen.dk
+    mailer_from_name: Webmaster Indholdskanalen
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
@@ -26,3 +28,5 @@ parameters:
     search_host: http://127.0.0.1:3010
     search_path: /api
     search_customer_id: e7df7cd2ca07f4f1ab415d457a6e1c13
+
+    templates_directory: ik-templates/

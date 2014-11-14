@@ -1,0 +1,79 @@
+@import "compass/css3";
+@import "../_imports.scss";
+
+.text-right {
+  background-size: cover;
+  background-position: center;
+}
+
+
+.text-right--text-wrapper {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+
+  @include border-radius(.5em);
+}
+
+
+.text-right--text-inner {
+  background: rgba(0,0,0,0.7);
+  box-sizing: border-box;
+  color: #fff;
+  margin: 5.5% auto;
+  padding: 6%;
+  text-align: left;
+  position:relative;
+  width: 90%;
+  height: 90%;
+
+  @include border-radius(.5em);
+}
+
+
+.text-right--header {
+  @extend %inline-textarea;
+
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
+
+  font-size: 100%;
+}
+
+
+.text-right--description {
+  @extend %inline-textarea;
+
+  &.has-placeholder {
+    @extend %show-placeholder-text;
+  }
+
+  font-size: 70%;
+}
+
+
+.text-right--edit-box-settings {
+  @extend %slide--edit-box-settings;
+}
+
+
+.text-right--edit-image-settings {
+  @extend %slide--edit-image-settings;
+
+  right: auto;
+  left: 15%;
+}
+
+
+.text-right--edit-logo-settings {
+  @extend %slide--edit-logo-settings;
+}
+
+
+.text-right--logo {
+  position: absolute;
+  width: 10%;
+  padding: 2%;
+}

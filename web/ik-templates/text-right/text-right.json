@@ -1,0 +1,26 @@
+{
+  "id": "text-right",
+  "icon": "text-right.png",
+  "paths": {
+    "live": "text-right.html",
+    "edit": "text-right-edit.html",
+    "preview": "text-right.html",
+    "css": "text-right.css"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": "",
+    "logopos": "",
+    "logosize": ""
+  }
+}

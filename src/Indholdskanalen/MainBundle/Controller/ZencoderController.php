@@ -37,7 +37,8 @@ class ZencoderController extends Controller {
       $cdn = $this->get('sonata.media.cdn.server');
       $zencoder = $this->get('sonata.media.provider.zencoder');
       $root = $this->get('kernel')->getRootDir() . '/../web';
-      $path = $root . $cdn->getPath($zencoder->generatePath($local_media), FALSE);
+	    $media_url_path = $cdn->getPath($zencoder->generatePath($local_media), FALSE);
+      $path = $root . parse_url($media_url_path, PHP_URL_PATH);
 
       $transcoded = array();
 
@@ -81,7 +82,7 @@ class ZencoderController extends Controller {
           'total_bitrate_in_kbps' => $output->total_bitrate_in_kbps,
           'channels' => $output->channels,
           'video_bitrate_in_kbps' => $output->video_bitrate_in_kbps,
-          'thumbnails' => $thumbnails
+          'thumbnails' => $thumbnails,
         );
         $transcoded[] = $metadata;
       }
@@ -91,12 +92,12 @@ class ZencoderController extends Controller {
       $local_media->setLength($post->input->duration_in_ms / 1000);
       $local_media->setWidth($post->input->width);
       $local_media->setHeight($post->input->height);
-      $local_media->setUpdatedAt(new \DateTime);
+      $local_media->setUpdatedAt(new \DateTime());
       $local_media->setAuthorName(NULL);
       $local_media->setProviderStatus(MediaInterface::STATUS_OK);
 
-      $mediaManager = $this->get("sonata.media.manager.media");
-      $mediaManager->save($local_media);
+      $media_manager = $this->get("sonata.media.manager.media");
+      $media_manager->save($local_media);
 
       $status = TRUE;
     }

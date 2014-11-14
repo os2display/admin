@@ -6,10 +6,25 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory',
-  function($scope, $location, $routeParams, $timeout, screenFactory) {
-    $scope.steps = 2;
+ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory',
+  function($scope, $location, $routeParams, $timeout, screenFactory, channelFactory) {
+    $scope.steps = 3;
     $scope.screen = {};
+    $scope.channels = [];
+
+    // Setup the editor.
+    $scope.editor = {
+      channelOverviewEditor: false,
+      toggleChannelOverviewEditor: function() {
+        $('html').toggleClass('is-locked');
+        $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;
+      }
+    };
+
+    // Register event listener for clickSlide.
+    $scope.$on('channelOverview.clickChannel', function(event, channel) {
+      $scope.toggleChannel(channel);
+    });
 
     /**
      * Loads a given step
@@ -24,6 +39,11 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      * Handles different settings of route parameters.
      */
     function init() {
+      // Get all channels for step 3
+      channelFactory.getChannels().then(function(data) {
+        $scope.channels = data;
+      });
+
       if (!$routeParams.id) {
         // If the ID is not set, get an empty slide.
         $scope.screen = screenFactory.emptyScreen();
@@ -53,15 +73,21 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      */
     $scope.submitStep = function() {
       if ($scope.step == $scope.steps) {
-        screenFactory.saveScreen().then(function() {
-          $timeout(function() {
-            $location.path('/screen-overview');
-          }, 1000);
-        });
+        $scope.disableSubmitButton = true;
+
+        screenFactory.saveScreen().then(
+          function() {
+            $timeout(function() {
+              $location.path('/screen-overview');
+            }, 1000);
+          },
+          function() {
+            $scope.disableSubmitButton = false;
+          });
       } else {
         loadStep($scope.step + 1);
       }
-    }
+    };
 
     /**
      * Set the orientation of the screen.
@@ -69,7 +95,7 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      */
     $scope.setOrientation = function(orientation) {
       $scope.screen.orientation = orientation;
-    }
+    };
 
     /**
      * Load a step. Checks that the previous steps have been filled out.
@@ -110,6 +136,44 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
       },
       heightSet: function() {
         return (/^\d+$/.test($scope.screen.height));
+      }
+    };
+
+    /**
+     * Check if channel is included in the current screen.
+     * @param channel
+     * @returns {boolean}
+     */
+    $scope.hasChannel = function hasChannel(channel) {
+      var res = false;
+
+      $scope.screen.channels.forEach(function(element) {
+        if (channel.id == element.id) {
+          res = true;
+        }
+      });
+      return res;
+    };
+
+
+    /**
+     * Add remove a channel.
+     * @param channel
+     */
+    $scope.toggleChannel = function(channel) {
+      var index = null;
+
+      $scope.screen.channels.forEach(function(slideChannel, channelIndex) {
+        if (channel.id == slideChannel.id) {
+          index = channelIndex;
+        }
+      });
+
+      if (index !== null) {
+        $scope.screen.channels.splice(index, 1);
+      }
+      else {
+        $scope.screen.channels.push(channel);
       }
     };
   }

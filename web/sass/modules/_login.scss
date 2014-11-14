@@ -9,6 +9,7 @@
     }
   }
 
+  &--reset-form,
   &--form,
   &--problem {
     margin-right: auto;
@@ -27,6 +28,14 @@
   &--alert {
     color: red;
     margin-bottom: 1em;
+    text-align: center;
+  }
+
+
+
+  &--text {
+    margin-bottom: 1em;
+    margin: 0 2em;
     text-align: center;
   }
 
@@ -65,5 +74,13 @@
     margin-bottom: 0;
 
     line-height: 2em;
+  }
+
+  &--reset-label {
+
+  }
+
+  &--reset-input {
+
   }
 }

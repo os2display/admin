@@ -8,6 +8,7 @@ namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\Container;
 
 
@@ -74,7 +75,10 @@ class SearchIndexer {
     $type = get_class($entity);
 
     // We will not send user data to ES.
-    if ($type == 'Application\Sonata\UserBundle\Entity\User') {
+    // Ignore ChannelSlideOrders and MediaOrders as well.
+    if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder') {
       return FALSE;
     }
 
@@ -118,7 +122,7 @@ class SearchIndexer {
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
-    $jsonContent = $this->serializer->serialize($params, 'json');
+    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
 
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
 

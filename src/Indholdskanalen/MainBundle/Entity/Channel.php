@@ -8,9 +8,18 @@ namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\AccessorOrder;
+use JMS\Serializer\Annotation\MaxDepth;
+
 
 /**
  * Extra
+ *
+ * @AccessorOrder("custom", custom = {"id", "title" ,"orientation", "created_at", "slides"})
  *
  * @ORM\Table(name="channel")
  * @ORM\Entity
@@ -20,26 +29,30 @@ class Channel {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
+   * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $created_at;
 
   /**
-   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel")
+   * @ORM\OneToMany(targetEntity="ChannelSlideOrder", mappedBy="channel", orphanRemoval=true)
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    **/
   private $channelSlideOrders;
@@ -47,8 +60,20 @@ class Channel {
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
    * @ORM\JoinTable(name="screens_channels")
+   * @Groups({"api"})
    */
   private $screens;
+
+  /**
+   * @ORM\Column(name="user", type="integer", nullable=true)
+   * @Groups({"api", "search"})
+   */
+  private $user;
+
+  /**
+   * @ORM\Column(name="modified_at", type="integer", nullable=false)
+   */
+  private $modified_at;
 
   /**
    * Constructor
@@ -189,5 +214,93 @@ class Channel {
   public function getChannelSlideOrders()
   {
     return $this->channelSlideOrders;
+  }
+
+
+  /**
+   * Get all slides
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("slides")
+   * @Groups({"api"})
+   */
+  public function getAllSlides()
+  {
+    $result = new ArrayCollection();
+    $slideorders = $this->getChannelSlideOrders();
+    foreach($slideorders as $slideorder) {
+      $result->add($slideorder->getSlide());
+    }
+    return $result;
+  }
+
+  /**
+   * Get all published slides
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("slides")
+   * @Groups({"api-bulk"})
+   */
+  public function getPublishedSlides()
+  {
+    $result = new ArrayCollection();
+    $criteria = Criteria::create()->orderBy(array("sortOrder" => Criteria::ASC));
+
+    $slideorders = $this->getChannelSlideOrders()->matching($criteria);
+    foreach($slideorders as $slideorder) {
+      $slide = $slideorder->getSlide();
+      if($slide->isSlideActive()) {
+        $result->add($slide);
+      }
+    }
+
+    return $result;
+  }
+
+
+  /**
+   * Set user
+   *
+   * @param integer $user
+   * @return Channel
+   */
+  public function setUser($user) {
+    $this->user = $user;
+
+    return $this;
+  }
+
+  /**
+   * Get user
+   *
+   * @return integer
+   */
+  public function getUser() {
+    return $this->user;
+  }
+
+  /**
+   * Set modified_at
+   *
+   * @param integer $modifiedAt
+   * @return Channel
+   */
+  public function setModifiedAt($modifiedAt) {
+    $this->modified_at = $modifiedAt;
+
+    return $this;
+  }
+
+  /**
+   * Get modified_at
+   *
+   * @return integer
+   */
+  public function getModifiedAt() {
+    return $this->modified_at;
   }
 }

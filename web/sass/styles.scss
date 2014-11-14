@@ -51,18 +51,8 @@
 @import "modules/_pager";
 @import "modules/_preview";
 @import "modules/_colorpicker";
+@import "modules/_delete";
 
 
 // Animations
 @import "animations/_animation";
-
-
-// IK templates
-@import "../ik-templates/only-image/_only-image";
-@import "../ik-templates/text-top/_text-top";
-@import "../ik-templates/text-bottom/_text-bottom";
-@import "../ik-templates/text-left/_text-left";
-@import "../ik-templates/text-right/_text-right";
-@import "../ik-templates/portrait-text-top/_portrait-text-top";
-@import "../ik-templates/only-video/_only-video";
-@import "../ik-templates/manual-calendar/_manual-calendar";

@@ -27,13 +27,13 @@ class ZencoderProvider extends BaseProvider {
    * @param string $name
    * @param Filesystem $filesystem
    * @param CDNInterface $cdn
-   * @param GeneratorInterface $pathGenerator
+   * @param GeneratorInterface $path_generator
    * @param ThumbnailInterface $thumbnail
    * @param $hostname
    * @param $api_key
    */
-  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $api_key) {
-    parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
+  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $path_generator, ThumbnailInterface $thumbnail, $hostname, $api_key) {
+    parent::__construct($name, $filesystem, $cdn, $path_generator, $thumbnail);
     $this->name = $name;
     $this->hostname = $hostname;
     $this->api_key = $api_key;
@@ -49,7 +49,7 @@ class ZencoderProvider extends BaseProvider {
     $url = $this->getCdn()->getPath($this->generatePath($media), FALSE) . '/' . $media->getProviderReference();
 
     // Setup formats.
-    $mp4 = new \stdClass;
+    $mp4 = new \stdClass();
     $mp4->format = 'mp4';
     $mp4->label = 'mp4';
     $mp4->thumbnails = array(
@@ -65,7 +65,7 @@ class ZencoderProvider extends BaseProvider {
       ),
     );
 
-    $ogv = new \stdClass;
+    $ogv = new \stdClass();;
     $ogv->format = 'ogv';
     $ogv->label = 'ogv';
     $ogv->thumbnails = array(
@@ -81,15 +81,32 @@ class ZencoderProvider extends BaseProvider {
       ),
     );
 
+    $webm = new \stdClass();;
+    $webm->format = 'webm';
+    $webm->label = 'webm';
+    $webm->thumbnails = array(
+      array(
+        'label' => 'webm_thumbnail',
+        'number' => 1,
+        'height' => 150,
+      ),
+      array(
+        'label' => 'webm_landscape',
+        'number' => 1,
+        'width' => 960,
+      ),
+    );
+
     // Setup Zencoder call.
-    $api = new \stdClass;
-    $api->input = $this->hostname . $url;
+    $api = new \stdClass();;
+    $api->input = $url;
     $api->api_key = $this->api_key;
     $api->region = 'europe';
     $api->notifications = $this->hostname . '/zencoder/callback';
     $api->outputs = array(
       $mp4,
       $ogv,
+      $webm,
     );
 
     $json = json_encode($api);
@@ -98,7 +115,7 @@ class ZencoderProvider extends BaseProvider {
     $ch = curl_init('https://app.zencoder.com/api/v2/jobs');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
     curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
         'Content-Length: ' . strlen($json))
@@ -118,11 +135,12 @@ class ZencoderProvider extends BaseProvider {
    *
    * @param MediaInterface $media
    */
-  protected function doTransform(MediaInterface $media) { // first hit
+  protected function doTransform(MediaInterface $media) {
+    // First hit.
     $this->fixBinaryContent($media);
     $this->fixFilename($media);
 
-    // this is the name used to store the file
+    // this is the name used to store the file.
     if (!$media->getProviderReference()) {
       $media->setProviderReference($this->generateReferenceName($media));
     }
@@ -144,8 +162,9 @@ class ZencoderProvider extends BaseProvider {
    *
    * @param MediaInterface $media
    */
-  public function prePersist(MediaInterface $media) { // 2. hit
-    if ($media->getBinaryContent() === null) {
+  public function prePersist(MediaInterface $media) {
+    // 2. hit.
+    if ($media->getBinaryContent() === NULL) {
       return;
     }
 
@@ -162,7 +181,6 @@ class ZencoderProvider extends BaseProvider {
     $media->setAuthorName($metadata['author_name']);
     $media->setHeight($metadata['height']);
     $media->setWidth($metadata['width']);
-    //$media->setLength($metadata['duration']);
     $media->setContentType($media->getContentType());
     $media->setProviderStatus(MediaInterface::STATUS_PENDING);
 
@@ -177,7 +195,8 @@ class ZencoderProvider extends BaseProvider {
    *
    * @return array
    */
-  public function getMetadata(MediaInterface $media) { // 3. hit
+  public function getMetadata(MediaInterface $media) {
+    // 3. hit.
     return array(
       'title' => $media->getName(),
       'description' => $media->getDescription(),
@@ -263,7 +282,7 @@ class ZencoderProvider extends BaseProvider {
    * @param MediaInterface $media
    */
   public function postPersist(MediaInterface $media) {
-    if ($media->getBinaryContent() === null) {
+    if ($media->getBinaryContent() === NULL) {
       return;
     }
 
@@ -281,8 +300,8 @@ class ZencoderProvider extends BaseProvider {
    *
    * @return void
    */
-  protected function setFileContents(MediaInterface $media, $contents = null) {
-    $file = $this->getFilesystem()->get(sprintf('%s/%s', $this->generatePath($media), $media->getProviderReference()), true);
+  protected function setFileContents(MediaInterface $media, $contents = NULL) {
+    $file = $this->getFilesystem()->get(sprintf('%s/%s', $this->generatePath($media), $media->getProviderReference()), TRUE);
 
     if (!$contents) {
       $contents = $media->getBinaryContent();
@@ -300,7 +319,7 @@ class ZencoderProvider extends BaseProvider {
    * @throws \RuntimeException
    */
   protected function fixBinaryContent(MediaInterface $media) {
-    if ($media->getBinaryContent() === null) {
+    if ($media->getBinaryContent() === NULL) {
       return;
     }
 
@@ -310,9 +329,9 @@ class ZencoderProvider extends BaseProvider {
         throw new \RuntimeException('The file does not exist : ' . $media->getBinaryContent());
       }
 
-      $binaryContent = new File($media->getBinaryContent());
+      $binary_content = new File($media->getBinaryContent());
 
-      $media->setBinaryContent($binaryContent);
+      $media->setBinaryContent($binary_content);
     }
   }
 
@@ -327,7 +346,8 @@ class ZencoderProvider extends BaseProvider {
     if ($media->getBinaryContent() instanceof UploadedFile) {
       $media->setName($media->getName() ?: $media->getBinaryContent()->getClientOriginalName());
       $media->setMetadataValue('filename', $media->getBinaryContent()->getClientOriginalName());
-    } elseif ($media->getBinaryContent() instanceof File) {
+    }
+    elseif ($media->getBinaryContent() instanceof File) {
       $media->setName($media->getName() ?: $media->getBinaryContent()->getBasename());
       $media->setMetadataValue('filename', $media->getBinaryContent()->getBasename());
     }
@@ -368,7 +388,7 @@ class ZencoderProvider extends BaseProvider {
    * @return \Gaufrette\File
    */
   public function getReferenceFile(MediaInterface $media) {
-    return $this->getFilesystem()->get($this->getReferenceImage($media), true);
+    return $this->getFilesystem()->get($this->getReferenceImage($media), TRUE);
   }
 
   /**
@@ -392,7 +412,7 @@ class ZencoderProvider extends BaseProvider {
    */
   public function getHelperProperties(MediaInterface $media, $format, $options = array()) {
     $defaults = array(
-      // (optional) Enable fullscreen capability. Defaults to true.
+      // (optional) Enable full screen capability. Defaults to true.
       'fullscreen' => true,
 
       // (optional) Show the byline on the video. Defaults to true.
@@ -405,9 +425,9 @@ class ZencoderProvider extends BaseProvider {
     $player_parameters =  array_merge($defaults, isset($options['player_parameters']) ? $options['player_parameters'] : array());
 
     $params = array(
-      'src'         => http_build_query($player_parameters),
-      'width'       => isset($options['width'])             ? $options['width']  : $media->getWidth(),
-      'height'      => isset($options['height'])            ? $options['height'] : $media->getHeight(),
+      'src' => http_build_query($player_parameters),
+      'width' => isset($options['width']) ? $options['width']  : $media->getWidth(),
+      'height' => isset($options['height']) ? $options['height'] : $media->getHeight(),
     );
 
     return $params;

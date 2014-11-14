@@ -8,19 +8,33 @@
  */
 ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'screenFactory',
   function($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, screenFactory) {
-    $scope.steps = 5;
+    $scope.steps = 4;
     $scope.slides = [];
     $scope.channel = {};
     $scope.screens = [];
 
     // Get all screens.
-    screenFactory.getScreens().then(function(data) {
+    screenFactory.getScreens().then(function (data) {
       $scope.screens = data;
     });
 
     // Get all slides.
-    slideFactory.getSlides().then(function(data) {
+    slideFactory.getSlides().then(function (data) {
       $scope.slides = data;
+    });
+
+    // Setup the editor.
+    $scope.editor = {
+      slideOverviewEditor: false,
+      toggleSlideOverviewEditor: function() {
+        $('html').toggleClass('is-locked');
+        $scope.editor.slideOverviewEditor = !$scope.editor.slideOverviewEditor;
+      }
+    };
+
+    // Register event listener for clickSlide.
+    $scope.$on('slideOverview.clickSlide', function(event, slide) {
+      $scope.toggleSlide(slide);
     });
 
     /**
@@ -65,11 +79,18 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
      */
     $scope.submitStep = function() {
       if ($scope.step == $scope.steps) {
-        channelFactory.saveChannel().then(function() {
-          $timeout(function() {
-            $location.path('/channel-overview');
-          }, 1000);
-        });
+        $scope.disableSubmitButton = true;
+
+        channelFactory.saveChannel().then(
+          function() {
+            $timeout(function() {
+              $location.path('/channel-overview');
+            }, 1000);
+          },
+          function() {
+            $scope.disableSubmitButton = false;
+          }
+        );
       } else {
         loadStep($scope.step + 1);
       }
@@ -144,16 +165,16 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
      * @param slide
      */
     $scope.toggleSlide = function(slide) {
-      var res = false;
+      var res = null;
 
       $scope.channel.slides.forEach(function(element, index, array) {
         if (slide.id == element.id) {
-          res = true;
+          res = index;
         };
       });
 
-      if (res) {
-        $scope.channel.slides.splice($scope.channel.slides.indexOf(slide), 1);
+      if (res !== null) {
+        $scope.channel.slides.splice(res, 1);
       }
       else {
         $scope.channel.slides.push(slide);
@@ -234,5 +255,6 @@ ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
       }
     };
+
   }
 ]);

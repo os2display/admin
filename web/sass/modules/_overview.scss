@@ -20,7 +20,9 @@
    ========================================================================== */
 
   &--section {
-    margin: 0;
+    margin: 0 auto;
+    max-width: 100em;
+    text-align: center;
   }
 
   &--description {
@@ -37,23 +39,84 @@
     text-align: center;
   }
 
-  &--screen,
-  &--media-single,
-  &--channel,
-  &--slide {
+  &--channel {
     display: inline-block;
     margin: 0 0 $gutter;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 $gutter $gutter 0;
+      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
     }
 
-    @include strip-link-styles($gray-darker);
+    @include strip-link-styles();
+  }
+
+  &--screen,
+  &--media-single,
+  &--slide,
+  &--channel {
+    display: inline-block;
+    margin: 0 0 $gutter;
+    position: relative;
+    vertical-align: middle;
+
+    @include breakpoint($breakpoint-lap) {
+      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
+    }
+  }
+
+  &--slide-unpublished-overlay {
+    background: $white;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @include opacity(.7);
+  }
+
+  &--slide-unpublished-icon {
+    position: absolute;
+    top: 5px; // Static since we are working within a static div anyway.
+    left: 5px;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
+  }
+
+  &--slide-published-icon {
+    position: absolute;
+    top: 5px; // Static since we are working within a static div anyway.
+    left: 5px;
+    z-index: 1;
+
+    @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
+  }
+
+  &--slide-link,
+  &--channel-link {
+    @include strip-link-styles();
   }
 
   &--slides-container,
   &--channel-container {
     display: block;
+  }
+
+  &--channel-empty {
+    width: 300px; // Static sizes to correspond with the inline styles set on non empty channels.
+    height: 168.75px;
+    position: relative;
+    background-color: rgb(204, 204, 204);
+    cursor: pointer;
+  }
+
+  &--channel-empty-text {
+    font-size: 1em;
+    position: relative;
+    top:50%;
+
+    @include translateY(-50%);
   }
 
   &--channel-label,
@@ -71,23 +134,33 @@
 
   &--filter {
     border-bottom: 0;
+    display: inline-block;
     max-width: $breakpoint-desk;
     margin: 0 auto;
     position: relative;
+    width: 100%;
   }
 
-
+  &--filter-owner,
   &--filter-orientation {
     margin-bottom: 1em;
     position: relative;
     width: 100%;
-
+    margin-left: $grid-markup-fix;
+    box-sizing: border-box;
+    padding-right: 0;
     text-align: center;
 
     @include breakpoint($breakpoint-desk) {
-      width: 25%;
+      width: 35%;
       display: inline-block;
-      float: right;
+    }
+  }
+
+  &--filter-owner {
+    @include breakpoint($breakpoint-desk) {
+      padding-right: 1em;
+      width: 25%;
     }
   }
 
@@ -98,14 +171,20 @@
 
     @include breakpoint($breakpoint-desk) {
       margin: 0 0 1em $grid-markup-fix;
-      width: 70%;
+      width: 40%;
       display: inline-block;
-      float: left;
+      box-sizing: border-box;
+      padding-right: 1em;
+
+      &.full-width {
+        width: 75%;
+      }
     }
   }
 
 
   &--sorting {
+    display: inline-block;
     margin: 0 0 1em 0;
     width: 100%;
 
@@ -120,6 +199,7 @@
   &--sort-label {
     font-weight: bold;
     overflow: hidden;
+    text-align: left;
     width: 100%;
   }
 
@@ -127,9 +207,14 @@
     text-align: center;
   }
 
+  &--filter-twosplit-left,
+  &--filter-twosplit-right,
   &--filter-threesplit-left,
   &--filter-threesplit-middle,
   &--filter-threesplit-right,
+  &--filter-foursplit-left,
+  &--filter-foursplit-middle,
+  &--filter-foursplit-right,
   &--horisontal,
   &--vertical,
   &--newest,
@@ -148,22 +233,32 @@
 
     @include strip-link-styles($gray-darker);
 
+    &:first-child {
+      @include border-radius(.5em 0 0 .5em);
+    }
+
     &:last-child {
       border-right: 1px solid $gray-lighter;
-    }
 
-    &:first-child {
-      border-radius: (.5em 0 0 .5em);
-    }
-
-    &:last-child {
-      border-radius: (0 .5em .5em 0);
+      @include border-radius(0 .5em .5em 0);
     }
 
     &.is-active {
       background: $beige;
     }
   }
+
+  &--filter-twosplit-left,
+  &--filter-twosplit-right {
+    width: 50%;
+  }
+
+  &--filter-foursplit-left,
+  &--filter-foursplit-middle,
+  &--filter-foursplit-right {
+    width: 25%;
+  }
+
 
   &--horisontal,
   &--vertical {
@@ -235,7 +330,7 @@
   &--media-overlay {
     background-color: transparentize($white, .35);
     color: $black;
-    font-size: .8rem; // We use rem since the container fontsize is 0 (See "media-single")
+    font-size: .8rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
     position: absolute;
     left: 0;
     right: 0;
@@ -252,7 +347,8 @@
 
 
   &--media-image {
-    height: 150px;
+    max-height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
+    max-width: 300px;
   }
 
 
@@ -267,5 +363,51 @@
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;
+  }
+
+  &--no-video {
+    background: $gray-lightest;
+    border: 2px solid $gray-light;
+    box-sizing: border-box;
+    color: $gray;
+    font-size: 1rem;
+    height: 10rem;
+    line-height: 10rem;
+    vertical-align: middle;
+    width: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
+  }
+
+  &--media-link {
+    @include add-overlay(overview);
+  }
+
+  /* slide overview
+ ========================================================================== */
+  &--slide-link {
+    @include add-overlay(overview);
+  }
+
+  // Default check circled icon.
+  &--link-check {
+    @extend %image-check-icon--placeholder;
+  }
+
+  /* channel overview
+ ========================================================================== */
+  &--channel-link {
+    @include add-overlay(overview);
+  }
+
+  &--channel-remove {
+    @extend %create-element--remove-element;
+  }
+
+  &--channel-overlay {
+    display: block;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0);
+    position: absolute;
   }
 }
