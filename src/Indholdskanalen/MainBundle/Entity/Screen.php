@@ -83,6 +83,11 @@ class Screen {
 	 */
 	private $user;
 
+  /**
+   * @ORM\Column(name="modified_at", type="integer", nullable=false)
+   */
+  private $modified_at;
+
 	/**
 	 * Constructor
 	 */
@@ -365,4 +370,26 @@ class Screen {
 	{
 		return $this->user;
 	}
+
+
+  /**
+   * Set modified_at
+   *
+   * @param integer $modifiedAt
+   * @return Screen
+   */
+  public function setModifiedAt($modifiedAt) {
+    $this->modified_at = $modifiedAt;
+
+    return $this;
+  }
+
+  /**
+   * Get modified_at
+   *
+   * @return integer
+   */
+  public function getModifiedAt() {
+    return $this->modified_at;
+  }
 }

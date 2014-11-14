@@ -115,6 +115,12 @@ class Slide {
   private $logo;
 
   /**
+   * @ORM\Column(name="modified_at", type="integer", nullable=false)
+   */
+  private $modified_at;
+
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -505,5 +511,26 @@ class Slide {
     $this->logo = $logo;
 
     return $this;
+  }
+
+  /**
+   * Set modified_at
+   *
+   * @param integer $modifiedAt
+   * @return Slide
+   */
+  public function setModifiedAt($modifiedAt) {
+    $this->modified_at = $modifiedAt;
+
+    return $this;
+  }
+
+  /**
+   * Get modified_at
+   *
+   * @return integer
+   */
+  public function getModifiedAt() {
+    return $this->modified_at;
   }
 }

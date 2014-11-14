@@ -64,11 +64,16 @@ class Channel {
    */
   private $screens;
 
-	/**
-	 * @ORM\Column(name="user", type="integer", nullable=true)
-	 * @Groups({"api", "search"})
-	 */
-	private $user;
+  /**
+   * @ORM\Column(name="user", type="integer", nullable=true)
+   * @Groups({"api", "search"})
+   */
+  private $user;
+
+  /**
+   * @ORM\Column(name="modified_at", type="integer", nullable=false)
+   */
+  private $modified_at;
 
   /**
    * Constructor
@@ -208,11 +213,11 @@ class Channel {
    */
   public function getChannelSlideOrders()
   {
-	  return $this->channelSlideOrders;
+    return $this->channelSlideOrders;
   }
 
 
-	/**
+  /**
    * Get all slides
    *
    * @return \Doctrine\Common\Collections\Collection
@@ -224,59 +229,78 @@ class Channel {
   public function getAllSlides()
   {
     $result = new ArrayCollection();
-	  $slideorders = $this->getChannelSlideOrders();
+    $slideorders = $this->getChannelSlideOrders();
     foreach($slideorders as $slideorder) {
       $result->add($slideorder->getSlide());
     }
     return $result;
   }
 
-	/**
-	 * Get all published slides
-	 *
-	 * @return \Doctrine\Common\Collections\Collection
-	 *
-	 * @VirtualProperty
-	 * @SerializedName("slides")
-	 * @Groups({"api-bulk"})
-	 */
-	public function getPublishedSlides()
-	{
-		$result = new ArrayCollection();
-		$criteria = Criteria::create()->orderBy(array("sortOrder" => Criteria::ASC));
+  /**
+   * Get all published slides
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   *
+   * @VirtualProperty
+   * @SerializedName("slides")
+   * @Groups({"api-bulk"})
+   */
+  public function getPublishedSlides()
+  {
+    $result = new ArrayCollection();
+    $criteria = Criteria::create()->orderBy(array("sortOrder" => Criteria::ASC));
 
-		$slideorders = $this->getChannelSlideOrders()->matching($criteria);
-		foreach($slideorders as $slideorder) {
-			$slide = $slideorder->getSlide();
-			if($slide->isSlideActive()) {
-				$result->add($slide);
-			}
-		}
-
-		return $result;
-	}
-
-
-    /**
-     * Set user
-     *
-     * @param integer $user
-     * @return Channel
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
+    $slideorders = $this->getChannelSlideOrders()->matching($criteria);
+    foreach($slideorders as $slideorder) {
+      $slide = $slideorder->getSlide();
+      if($slide->isSlideActive()) {
+        $result->add($slide);
+      }
     }
 
-    /**
-     * Get user
-     *
-     * @return integer 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
+    return $result;
+  }
+
+
+  /**
+   * Set user
+   *
+   * @param integer $user
+   * @return Channel
+   */
+  public function setUser($user) {
+    $this->user = $user;
+
+    return $this;
+  }
+
+  /**
+   * Get user
+   *
+   * @return integer
+   */
+  public function getUser() {
+    return $this->user;
+  }
+
+  /**
+   * Set modified_at
+   *
+   * @param integer $modifiedAt
+   * @return Channel
+   */
+  public function setModifiedAt($modifiedAt) {
+    $this->modified_at = $modifiedAt;
+
+    return $this;
+  }
+
+  /**
+   * Get modified_at
+   *
+   * @return integer
+   */
+  public function getModifiedAt() {
+    return $this->modified_at;
+  }
 }

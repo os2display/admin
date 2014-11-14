@@ -46,19 +46,4 @@ class MiddlewareListener {
 
     $this->middleware->pushChannels();
   }
-
-  /**
-   * List to post persist events.
-   *
-   * @param LifecycleEventArgs $args
-   */
-  public function postPersist(LifecycleEventArgs $args) {
-    // Get the current entity.
-    $entity = $args->getEntity();
-    $type = get_class($entity);
-
-    if ($type === 'Indholdskanalen\MainBundle\Entity\MediaOrder') {
-      $this->middleware->pushChannels();
-    }
-  }
 }

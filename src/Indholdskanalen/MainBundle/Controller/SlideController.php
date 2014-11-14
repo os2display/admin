@@ -87,6 +87,7 @@ class SlideController extends Controller {
     if (isset($post['media_type'])) {
       $slide->setMediaType($post['media_type']);
     }
+    $slide->setModifiedAt(time());
 
     // Get channel ids.
     $postChannelIds = array();

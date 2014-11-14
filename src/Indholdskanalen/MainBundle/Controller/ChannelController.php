@@ -63,6 +63,8 @@ class ChannelController extends Controller {
     if (isset($post->orientation)) {
       $channel->setOrientation($post->orientation);
     }
+    $channel->setModifiedAt(time());
+
 
     // Remove screens.
     foreach ($channel->getScreens() as $screen) {
