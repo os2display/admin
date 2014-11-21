@@ -1,0 +1,15 @@
+<div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': show, 'is-hidden': !show}" >
+  <div class="edit-menu--content-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="hideModal()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="./images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--content-page-inner">
+      <div class="ng-modal-dialog-content" data-ng-transclude></div>
+    </div>
+  </div>
+</div>

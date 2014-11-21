@@ -31,6 +31,7 @@
       </div>
       <span class="overview--channel-label">{{channel.title}}</span>
       <span class="overview--slide-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}} -</span>
+      <ik-channel-share ik-channel="channel" data-ng-if="ikShare"></ik-channel-share> -
       <ik-delete id="{{ channel.id }}" type="channel" />
     </div>
     <!-- If overlay display-->

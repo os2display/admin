@@ -20,6 +20,10 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
       return shareFactory.search(search);
     };
 
+    factory.getSharingIndexes = function() {
+      return [{title: "fisk"}];
+    };
+
     return factory;
   }
 ]);

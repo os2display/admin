@@ -1,1 +1,10 @@
-<ik-channel-overview></ik-channel-overview>
+<ik-channel-overview ik-share="true"></ik-channel-overview>
+<modal-dialog show="shareDialogShow">
+  <h2 class="edit-menu--content-header">Vælg indeks</h2>
+  <p class="edit-menu--content-description">Vælg hvilke indeks kanalen skal deles i</p>
+  <div class="edit-menu--background-content">
+    <div data-ng-repeat="index in sharedIndexes">
+      <span>{{index.title}}</span>
+    </div>
+  </div>
+</modal-dialog>

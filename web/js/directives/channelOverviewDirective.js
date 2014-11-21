@@ -15,7 +15,8 @@ ikApp.directive('ikChannelOverview', function() {
       ikSelectedChannels: '=',
       ikHideFilters: '=',
       ikFilter: '@',
-      ikOverlay: '@'
+      ikOverlay: '@',
+      ikShare: '@'
     },
     controller: function($scope, channelFactory, userFactory) {
       // Set default orientation and sort.
