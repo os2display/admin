@@ -76,12 +76,17 @@ class Channel {
   private $modified_at;
 
   /**
+   * @ORM\ManyToMany(targetEntity="SharingIndex", mappedBy="channels")
+   */
+  private $sharingIndexes;
+
+  /**
    * Constructor
    */
-  public function __construct()
-  {
+  public function __construct() {
     $this->screens = new ArrayCollection();
     $this->channelSlideOrders = new ArrayCollection();
+    $this->sharingIndexes = new ArrayCollection();
   }
 
   /**
@@ -135,8 +140,7 @@ class Channel {
    * @param integer $createdAt
    * @return Channel
    */
-  public function setCreatedAt($createdAt)
-  {
+  public function setCreatedAt($createdAt) {
     $this->created_at = $createdAt;
 
     return $this;
@@ -147,8 +151,7 @@ class Channel {
    *
    * @return integer
    */
-  public function getCreatedAt()
-  {
+  public function getCreatedAt() {
     return $this->created_at;
   }
 
@@ -189,8 +192,7 @@ class Channel {
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
    * @return Channel
    */
-  public function addChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
-  {
+  public function addChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder) {
     $this->channelSlideOrders[] = $channelSlideOrder;
 
     return $this;
@@ -201,8 +203,7 @@ class Channel {
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
    */
-  public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder)
-  {
+  public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder) {
     $this->channelSlideOrders->removeElement($channelSlideOrder);
   }
 
@@ -211,8 +212,7 @@ class Channel {
    *
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getChannelSlideOrders()
-  {
+  public function getChannelSlideOrders() {
     return $this->channelSlideOrders;
   }
 
@@ -226,8 +226,7 @@ class Channel {
    * @SerializedName("slides")
    * @Groups({"api"})
    */
-  public function getAllSlides()
-  {
+  public function getAllSlides() {
     $result = new ArrayCollection();
     $slideorders = $this->getChannelSlideOrders();
     foreach($slideorders as $slideorder) {
@@ -243,10 +242,9 @@ class Channel {
    *
    * @VirtualProperty
    * @SerializedName("slides")
-   * @Groups({"api-bulk"})
+   * @Groups({"api-bulk", "sharing"})
    */
-  public function getPublishedSlides()
-  {
+  public function getPublishedSlides() {
     $result = new ArrayCollection();
     $criteria = Criteria::create()->orderBy(array("sortOrder" => Criteria::ASC));
 
@@ -302,5 +300,37 @@ class Channel {
    */
   public function getModifiedAt() {
     return $this->modified_at;
+  }
+
+  /**
+   * Add SharingIndex
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex
+   * @return Channel
+   */
+  public function addSharingIndex(\Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex) {
+    $sharingIndex->addChannel($this);
+    $this->sharingIndexes[] = $sharingIndex;
+
+    return $this;
+  }
+
+  /**
+   * Remove SharingIndex
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex
+   */
+  public function removeSharingIndex(\Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex) {
+    $sharingIndex->removeChannel($this);
+    $this->sharingIndexes->removeElement($sharingIndex);
+  }
+
+  /**
+   * Get SharingIndexes
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getSharingIndexes() {
+    return $this->sharingIndexes;
   }
 }

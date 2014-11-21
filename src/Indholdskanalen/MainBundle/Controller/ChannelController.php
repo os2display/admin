@@ -2,15 +2,21 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use JMS\Serializer\SerializationContext;
-
+use Indholdskanalen\MainBundle\Entity\SharingIndex;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvents;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/channel")
@@ -31,7 +37,7 @@ class ChannelController extends Controller {
     $post = json_decode($request->getContent());
 
     $doctrine = $this->getDoctrine();
-    $em = $this->getDoctrine()->getManager();
+    $em = $doctrine->getManager();
 
     if ($post->id) {
       // Load current slide.
@@ -64,7 +70,6 @@ class ChannelController extends Controller {
       $channel->setOrientation($post->orientation);
     }
     $channel->setModifiedAt(time());
-
 
     // Remove screens.
     foreach ($channel->getScreens() as $screen) {
@@ -130,12 +135,83 @@ class ChannelController extends Controller {
 
     // Save the entity.
     $em->persist($channel);
+
+    // Flush updates
     $em->flush();
 
     // Create response.
     $response = new Response();
 		$response->setStatusCode(200);
 
+    return $response;
+  }
+
+  /**
+   * Update which indexes a channel is shared to.
+   *
+   * @Route("/share")
+   * @Method("POST")
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   {
+   *     channel {
+   *       id: *
+   *     },
+   *     sharingIndexes: [
+   *       *
+   *     ]
+   *   }
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function ChannelShareAction($request) {
+    $post = json_decode($request->getContent());
+
+    $doctrine = $this->getDoctrine();
+    $em = $doctrine->getManager();
+
+    $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($post->channel->id);
+
+    // Test for existance of sharingIndexes in post
+    if (isset($post->sharingIndexes)) {
+      $dispatcher = $this->get('event_dispatcher');
+
+      // Remove sharing indexes.
+      foreach ($channel->getSharingIndexes() as $sharingIndex) {
+        if (!in_array($sharingIndex, $post->sharingIndexes)) {
+          $channel->removeSharingIndex($sharingIndex);
+
+          // Send event to sharingService to delete channel from index.
+          $event = new SharingServiceEvent($channel, $sharingIndex);
+          $dispatcher->dispatch(SharingServiceEvents::ADD_CHANNEL_TO_INDEX, $event);
+        }
+      }
+
+      // Add sharing indexes.
+      foreach ($post->sharingIndexes as $sharingIndex) {
+        $sharingIndex = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')
+          ->findOneById($sharingIndex->id);
+        if ($sharingIndex) {
+          if (!$channel->getSharingIndexes()->contains($sharingIndex)) {
+            $channel->addSharingIndex($sharingIndex);
+
+            // Send event to sharingService to add channel to index.
+            $event = new SharingServiceEvent($channel, $sharingIndex);
+            $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
+          }
+          else {
+            // Send event to sharingService to update channel in index.
+            $event = new SharingServiceEvent($channel, $sharingIndex);
+            $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
+          }
+        }
+      }
+    }
+
+    $em->flush();
+
+    $response = new Response();
+    $response->setStatusCode(200);
     return $response;
   }
 

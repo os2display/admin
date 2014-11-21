@@ -32,6 +32,14 @@ services:
     calls:
       - [ setContainer,[ @service_container ] ]
 
+  indholdskanalen.sharing_service:
+    class: Indholdskanalen\MainBundle\Services\SharingService
+    arguments: [@jms_serializer, @service_container]
+    tags:
+      - { name: kernel.event_listener, event: indholdskanalen_sharing_service.add_channel_to_index, method: onAddChannelToIndex }
+      - { name: kernel.event_listener, event: indholdskanalen_sharing_service.remove_channel_from_index, method: onRemoveChannelFromIndex }
+      - { name: kernel.event_listener, event: indholdskanalen_sharing_service.update_channel, method: onUpdateChannel }
+
   indholdskanalen.middleware.communication:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
     arguments: [@indholdskanalen.template_service]

@@ -30,3 +30,6 @@ parameters:
     search_customer_id: e7df7cd2ca07f4f1ab415d457a6e1c13
 
     templates_directory: ik-templates/
+
+    sharing_host: http://127.0.0.1:3010
+    sharing_path: /api
