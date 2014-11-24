@@ -2,6 +2,7 @@
 
 #In development
 * ik-iframe template
+* sharing channels with sharingService
 
 #v1.0.0
 * Release 1
