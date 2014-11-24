@@ -3398,6 +3398,11 @@ html.is-locked body {
   cursor: pointer;
   color: #2c79d3; }
 
+/* line 2, ../sass/modules/_share.scss */
+.share--button {
+  cursor: pointer;
+  color: #2c79d3; }
+
 /* Animations
  *
  * ========================================================================== */

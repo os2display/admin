@@ -20,7 +20,7 @@ ikApp.service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', funct
    */
   function getSocket(deferred) {
     // Get connected to the server.
-    socket = io.connect(configuration.shareService.address);
+    socket = io.connect(configuration.sharingService.address);
 
     // Handle error events.
     socket.on('error', function (reason) {

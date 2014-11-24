@@ -121,7 +121,8 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory',
         orientation: '',
         created_at: parseInt((new Date().getTime()) / 1000),
         slides: [],
-        screens: []
+        screens: [],
+        sharing_indexes: []
       };
 
       return currentChannel;
@@ -140,6 +141,25 @@ ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory',
         })
         .error(function() {
           defer.reject("error");
+        });
+
+      return defer.promise;
+    };
+
+    /**
+     * Update which indexes a channel is shared with.
+     * @param channel
+     * @returns {*}
+     */
+    factory.channelShare = function(channel) {
+      var defer = $q.defer();
+
+      $http.post('/api/channel/share', channel)
+        .success(function(data) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status);
         });
 
       return defer.promise;

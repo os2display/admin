@@ -23,7 +23,7 @@ class SharingController extends Controller {
   /**
    * Get a list of all sharing indexes.
    *
-   * @Route("")
+   * @Route("/indexes")
    * @Method("GET")
    *
    * @return \Symfony\Component\HttpFoundation\Response

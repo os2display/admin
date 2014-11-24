@@ -164,40 +164,46 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelShareAction($request) {
+  public function ChannelShareAction(Request $request) {
     $post = json_decode($request->getContent());
 
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getManager();
 
-    $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($post->channel->id);
+    $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($post->id);
 
     // Test for existance of sharingIndexes in post
-    if (isset($post->sharingIndexes)) {
+    if (isset($post->sharing_indexes)) {
       $dispatcher = $this->get('event_dispatcher');
+
+      // Get all sharing_indexes ids from POST.
+      $post_sharing_indexes_ids = array();
+      foreach ($post->sharing_indexes as $index) {
+        $post_sharing_indexes_ids[] = $index->id;
+      }
 
       // Remove sharing indexes.
       foreach ($channel->getSharingIndexes() as $sharingIndex) {
-        if (!in_array($sharingIndex, $post->sharingIndexes)) {
+        if (!in_array($sharingIndex->getId(), $post_sharing_indexes_ids)) {
           $channel->removeSharingIndex($sharingIndex);
 
           // Send event to sharingService to delete channel from index.
           $event = new SharingServiceEvent($channel, $sharingIndex);
-          $dispatcher->dispatch(SharingServiceEvents::ADD_CHANNEL_TO_INDEX, $event);
+          $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
         }
       }
 
       // Add sharing indexes.
-      foreach ($post->sharingIndexes as $sharingIndex) {
+      foreach ($post_sharing_indexes_ids as $sharingIndexId) {
         $sharingIndex = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')
-          ->findOneById($sharingIndex->id);
+          ->findOneById($sharingIndexId);
         if ($sharingIndex) {
           if (!$channel->getSharingIndexes()->contains($sharingIndex)) {
             $channel->addSharingIndex($sharingIndex);
 
             // Send event to sharingService to add channel to index.
             $event = new SharingServiceEvent($channel, $sharingIndex);
-            $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
+            $dispatcher->dispatch(SharingServiceEvents::ADD_CHANNEL_TO_INDEX, $event);
           }
           else {
             // Send event to sharingService to update channel in index.

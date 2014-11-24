@@ -20,8 +20,22 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
       return shareFactory.search(search);
     };
 
+    /**
+     * Get the available sharing indexes.
+     * @returns array of sharing indexes.
+     */
     factory.getSharingIndexes = function() {
-      return [{title: "fisk"}];
+      var defer = $q.defer();
+
+      $http.get('/api/sharing/indexes')
+        .success(function(data) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status);
+        });
+
+      return defer.promise;
     };
 
     return factory;

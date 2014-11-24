@@ -18,7 +18,7 @@ ikApp.directive('ikChannelShare',
           scope.$emit('ikChannelShare.clickShare', scope.ikChannel);
         }
       },
-      template: '<span data-ng-click="clickShare()">Del</span>'
+      templateUrl: 'partials/directives/share-directive.html'
     }
   }
 );

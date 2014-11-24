@@ -77,6 +77,7 @@ class Channel {
 
   /**
    * @ORM\ManyToMany(targetEntity="SharingIndex", mappedBy="channels")
+   * @Groups({"api"})
    */
   private $sharingIndexes;
 

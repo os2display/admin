@@ -78,7 +78,8 @@ class SearchIndexer {
     // Ignore ChannelSlideOrders and MediaOrders as well.
     if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
         $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
-        $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder') {
+        $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\SharingIndex') {
       return FALSE;
     }
 
