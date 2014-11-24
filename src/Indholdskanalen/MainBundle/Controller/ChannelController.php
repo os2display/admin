@@ -139,6 +139,15 @@ class ChannelController extends Controller {
     // Flush updates
     $em->flush();
 
+    $dispatcher = $this->get('event_dispatcher');
+
+    // Add sharing indexes.
+    foreach ($channel->getSharingIndexes() as $sharingIndex) {
+      // Send event to sharingService to update channel in index.
+      $event = new SharingServiceEvent($channel, $sharingIndex);
+      $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
+    }
+
     // Create response.
     $response = new Response();
 		$response->setStatusCode(200);
@@ -205,11 +214,6 @@ class ChannelController extends Controller {
             $event = new SharingServiceEvent($channel, $sharingIndex);
             $dispatcher->dispatch(SharingServiceEvents::ADD_CHANNEL_TO_INDEX, $event);
           }
-          else {
-            // Send event to sharingService to update channel in index.
-            $event = new SharingServiceEvent($channel, $sharingIndex);
-            $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
-          }
         }
       }
     }
@@ -266,6 +270,15 @@ class ChannelController extends Controller {
   public function ChannelDeleteAction($id) {
     $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
+
+    $dispatcher = $this->get('event_dispatcher');
+
+    // Add sharing indexes.
+    foreach ($channel->getSharingIndexes() as $sharingIndex) {
+      // Send event to sharingService to update channel in index.
+      $event = new SharingServiceEvent($channel, $sharingIndex);
+      $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
+    }
 
     // Create response.
     $response = new Response();
