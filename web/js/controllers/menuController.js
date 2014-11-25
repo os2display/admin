@@ -6,8 +6,8 @@
 /**
  * Menu controller. Controls the menues.
  */
-ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFactory',
-  function($scope, $rootScope, $location, userFactory) {
+ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFactory', 'configuration',
+  function($scope, $rootScope, $location, userFactory, configuration) {
     $scope.url = $location.url();
     $scope.navMenuOpen = null;
     $scope.subMenuItems = [];
@@ -36,6 +36,16 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
             classSuffix: 'create-channel'
           }
         ];
+
+        if (configuration.sharingService.enabled) {
+          $scope.subMenuItems.push(
+            {
+              title: 'Delte kanaler',
+              path: 'shared-channel-overview',
+              classSuffix: 'overview'
+            }
+          );
+        }
       }
       else if ($scope.url.indexOf('/slide') == 0) {
         $scope.subMenuItems = [

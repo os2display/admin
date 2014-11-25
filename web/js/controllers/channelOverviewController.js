@@ -6,35 +6,38 @@
 /**
  * Channels controller handles the display and selection of channels.
  */
-ikApp.controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory',
-  function($scope, sharedChannelFactory, channelFactory) {
+ikApp.controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'configuration',
+  function($scope, sharedChannelFactory, channelFactory, configuration) {
     $scope.shareDialogShow = false;
     $scope.shareDialogChannel = null;
 
-    $scope.$on('ikChannelShare.clickShare', function(event, channel) {
-      $scope.shareDialogShow = true;
-      $scope.shareDialogChannel = channel;
+    // If the sharingService is enabled.
+    if (configuration.sharingService.enabled) {
+      $scope.$on('ikChannelShare.clickShare', function(event, channel) {
+        $scope.shareDialogShow = true;
+        $scope.shareDialogChannel = channel;
 
-      channelFactory.getChannel(channel.id).then(
-        function(data) {
-          $scope.shareDialogChannel = data;
-          if (!$scope.shareDialogChannel.sharing_indexes) {
-            $scope.shareDialogChannel.sharing_indexes = [];
+        channelFactory.getChannel(channel.id).then(
+          function(data) {
+            $scope.shareDialogChannel = data;
+            if (!$scope.shareDialogChannel.sharing_indexes) {
+              $scope.shareDialogChannel.sharing_indexes = [];
+            }
           }
-        }
-      );
-    });
+        );
+      });
 
-    $scope.sharingIndexes = [];
-    sharedChannelFactory.getSharingIndexes().then(function(data) {
-      $scope.sharingIndexes = data;
-    });
+      $scope.sharingIndexes = [];
+      sharedChannelFactory.getSharingIndexes().then(function(data) {
+        $scope.sharingIndexes = data;
+      });
 
-    $scope.saveSharingChannel = function saveSharingChannel() {
-      channelFactory.channelShare($scope.shareDialogChannel).then(
-        function(data) {},
-        function(reason) {}
-      );
-    };
+      $scope.saveSharingChannel = function saveSharingChannel() {
+        channelFactory.channelShare($scope.shareDialogChannel).then(
+          function(data) {},
+          function(reason) {}
+        );
+      };
+    }
   }
 ]);
