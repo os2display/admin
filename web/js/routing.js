@@ -13,7 +13,7 @@ ikApp.config(function($routeProvider) {
       redirectTo: '/channel-overview'
     })
 
-    // Overview
+    // Overviews
     .when('/channel-overview', {
       controller: 'ChannelOverviewController',
       templateUrl: 'partials/channel/channel-overview.html'
@@ -30,9 +30,9 @@ ikApp.config(function($routeProvider) {
       controller: 'MediaOverviewController',
       templateUrl: 'partials/media/media-overview.html'
     })
-    .when('/screen-groups', {
-      controller: 'ScreenGroupsController',
-      templateUrl: 'partials/screen/screen-groups.html'
+    .when('/channel-sharing-overview', {
+      controller: 'ChannelSharingOverviewController',
+      templateUrl: 'partials/channel-sharing/channel-sharing-overview.html'
     })
 
     // Screen

@@ -7,7 +7,7 @@
  * Shared Channel factory. Main entry point for accessing shared channels.
  */
 ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
-  function($http, $q, shareFactory) {
+  function($http, $q, sharedSearchFactory) {
     var factory = {};
 
     /**
@@ -15,9 +15,9 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
      * @param search
      * @returns {*|Number}
      */
-    factory.searchChannels = function(search) {
+    factory.searchChannels = function(search, indexName) {
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
-      return shareFactory.search(search);
+      return sharedSearchFactory.search(search, indexName);
     };
 
     /**

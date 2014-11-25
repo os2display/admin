@@ -12,6 +12,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
     $scope.navMenuOpen = null;
     $scope.subMenuItems = [];
     $scope.showMobileMainMenu = false;
+    $scope.showSharingOptions = configuration.sharingService.enabled;
 
     userFactory.getCurrentUser().then(
       function(data) {
@@ -37,11 +38,11 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
           }
         ];
 
-        if (configuration.sharingService.enabled) {
+        if ($scope.showSharingOptions) {
           $scope.subMenuItems.push(
             {
               title: 'Delte kanaler',
-              path: 'shared-channel-overview',
+              path: 'channel-sharing-overview',
               classSuffix: 'overview'
             }
           );

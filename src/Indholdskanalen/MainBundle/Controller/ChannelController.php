@@ -136,9 +136,6 @@ class ChannelController extends Controller {
     // Save the entity.
     $em->persist($channel);
 
-    // Flush updates
-    $em->flush();
-
     $dispatcher = $this->get('event_dispatcher');
 
     // Add sharing indexes.
@@ -147,6 +144,9 @@ class ChannelController extends Controller {
       $event = new SharingServiceEvent($channel, $sharingIndex);
       $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
     }
+
+    // Flush updates
+    $em->flush();
 
     // Create response.
     $response = new Response();
@@ -204,8 +204,7 @@ class ChannelController extends Controller {
 
       // Add sharing indexes.
       foreach ($post_sharing_indexes_ids as $sharingIndexId) {
-        $sharingIndex = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')
-          ->findOneById($sharingIndexId);
+        $sharingIndex = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')->findOneById($sharingIndexId);
         if ($sharingIndex) {
           if (!$channel->getSharingIndexes()->contains($sharingIndex)) {
             $channel->addSharingIndex($sharingIndex);
@@ -218,6 +217,7 @@ class ChannelController extends Controller {
       }
     }
 
+    $em->persist($channel);
     $em->flush();
 
     $response = new Response();

@@ -1,13 +1,13 @@
 /**
  * @file
- * Contains the channel overview controller.
+ * Contains the channel sharing overview controller.
  */
 
 /**
- * Directive to show the Channel overview.
+ * Directive to show the Channel Sharing overview.
  */
-ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration',
-  function(channelFactory, userFactory, configuration) {
+ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration',
+  function(sharedChannelFactory, userFactory, configuration) {
     "use strict";
 
     return {
@@ -19,7 +19,14 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
         ikOverlay: '@'
       },
       link: function(scope, element, attrs) {
+        scope.index = {
+          "customer_id": "bibshare"
+        };
         scope.displaySharingOption = configuration.sharingService.enabled;
+        scope.sharingIndexes = [];
+        sharedChannelFactory.getSharingIndexes().then(function(data) {
+          scope.sharingIndexes = data;
+        });
 
         // Set default orientation and sort.
         scope.orientation = 'landscape';
@@ -70,23 +77,12 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
           // Get search text from scope.
           search.text = scope.search_text;
 
-          channelFactory.searchChannels(search).then(
+          sharedChannelFactory.searchChannels(search, scope.index.customer_id).then(
             function(data) {
-              // Total hits.
               scope.hits = data.hits;
+              scope.channels = data.results;
 
-              // Extract search ids.
-              var ids = [];
-              for (var i = 0; i < data.results.length; i++) {
-                ids.push(data.results[i].id);
-              }
-
-              // Load slides bulk.
-              channelFactory.loadChannelsBulk(ids).then(
-                function (data) {
-                  scope.channels = data;
-                }
-              );
+              console.log(scope.channels);
             }
           );
         };
@@ -94,7 +90,7 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
         /**
          * Update search result on channel deletion.
          */
-        scope.$on('channel-deleted', function(data) {
+        scope.$on('channel-deleted', function() {
           scope.updateSearch();
         });
 
@@ -111,7 +107,7 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
 
           var res = false;
 
-          scope.ikSelectedChannels.forEach(function(element, index) {
+          scope.ikSelectedChannels.forEach(function(element) {
             if (element.id == channel.id) {
               res = true;
             }
@@ -125,8 +121,8 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
          *
          * @param channel
          */
-        scope.channelOverviewClickChannel = function channelOverviewClickChannel(channel) {
-          scope.$emit('channelOverview.clickChannel', channel);
+        scope.clickChannel = function clickChannel(channel) {
+          scope.$emit('channelSharingOverview.clickChannel', channel);
         };
 
         /**
@@ -139,7 +135,7 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
           if (scope.orientation !== orientation) {
             scope.orientation = orientation;
 
-            scope.setSearchFilters();
+            scope.updateSearch();
           }
         };
 
@@ -153,9 +149,10 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
           if (scope.showFromUser !== user) {
             scope.showFromUser = user;
 
-            scope.setSearchFilters();
+            scope.updateSearch();
           }
         };
+
 
         /**
          * Updates the search filter based on current orientation and user
@@ -219,7 +216,7 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
 
         scope.updateSearch();
       },
-      templateUrl: '/partials/directives/channel-overview-directive.html'
+      templateUrl: '/partials/directives/channel-sharing-overview-directive.html'
     };
   }
 ]);

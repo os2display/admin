@@ -130,6 +130,49 @@ class SerializationListener implements EventSubscriberInterface
           $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
           $event->getVisitor()->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
 				}
+        else if (in_array('sharing', $groups)) {
+          $urls = array();
+
+          // Set media paths
+          $slide = $event->getObject();
+          foreach($slide->getMedia() as $media) {
+            $providerName = $media->getProviderName();
+
+            // Video
+            if($providerName === 'sonata.media.provider.zencoder') {
+              $pathToServer = $this->container->getParameter("absolute_path_to_server");
+              $metadata = $media->getProviderMetadata();
+              foreach($metadata as $data) {
+                $urls[$data['label']] = $data['reference'];
+              }
+            }
+
+            // Image
+            else if($providerName === 'sonata.media.provider.image') {
+              $provider = $this->mediaService->getProvider($providerName);
+              $urls[] = $provider->generatePublicUrl($media, 'reference');
+            }
+          }
+          $event->getVisitor()->addData('media', $urls);
+
+          // Set logo path
+          $logoPath = "";
+          $logo = $slide->getLogo();
+          if ($logo) {
+            $providerName = $logo->getProviderName();
+            if($providerName === 'sonata.media.provider.image') {
+              $provider = $this->mediaService->getProvider($providerName);
+              $logoPath = $provider->generatePublicUrl($logo, 'reference');
+            }
+          }
+          $event->getVisitor()->addData('logo', $logoPath);
+
+          // Set template paths
+          $templates = $this->templateService->getTemplates();
+          $event->getVisitor()->addData('preview_path', $templates[$slide->getTemplate()]->paths->preview);
+          $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
+          $event->getVisitor()->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
+        }
 			}
 		);
 	}

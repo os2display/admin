@@ -29,10 +29,10 @@ class SharingIndex {
   private $id;
 
   /**
-   * @ORM\Column(name="title", type="text", nullable=false)
+   * @ORM\Column(name="name", type="text", nullable=false)
    * @Groups({"api"})
    */
-  private $title;
+  private $name;
 
   /**
    * @ORM\Column(name="customer_id", type="text", nullable=false)
@@ -65,21 +65,21 @@ class SharingIndex {
   }
 
   /**
-   * Set title
+   * Set name
    *
-   * @param string $title
+   * @param string $name
    */
-  public function setTitle($title) {
-    $this->title = $title;
+  public function setTitle($name) {
+    $this->name = $name;
   }
 
   /**
-   * Get title
+   * Get name
    *
    * @return string
    */
-  public function getTitle() {
-    return $this->title;
+  public function getName() {
+    return $this->name;
   }
 
   /**
@@ -126,8 +126,7 @@ class SharingIndex {
    *
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getChannels()
-  {
+  public function getChannels() {
     return $this->channels;
   }
 }

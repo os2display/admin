@@ -42,7 +42,7 @@ class Slide {
 
   /**
    * @ORM\Column(name="template", type="string", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $template;
 
@@ -66,25 +66,25 @@ class Slide {
 
   /**
    * @ORM\Column(name="duration", type="integer", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
   private $duration;
 
   /**
    * @ORM\Column(name="schedule_from", type="integer", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
   private $schedule_from;
 
   /**
    * @ORM\Column(name="schedule_to", type="integer", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
   private $schedule_to;
 
   /**
    * @ORM\Column(name="published", type="boolean", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
   private $published;
 
@@ -103,7 +103,7 @@ class Slide {
   /**
    * @ORM\Column(name="media_type", type="string", nullable=true)
    *   "video" or "image".
-   * @Groups({"api", "api-bulk", "middleware"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $mediaType;
 

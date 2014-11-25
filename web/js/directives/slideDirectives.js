@@ -72,6 +72,71 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
 }]);
 
 /**
+ * Directive to insert html for a slide.
+ * @param ik-id: the id of the slide.
+ * @param ik-width: the width of the slide.
+ */
+ikApp.directive('ikSharedSlide', ['cssInjector', function(cssInjector) {
+  return {
+    restrict: 'E',
+    scope: {
+      ikWidth: '@',
+      ikSlide: '='
+    },
+    link: function(scope, element, attrs) {
+      scope.templateURL = '/partials/slide/slide-loading.html';
+
+      // Observe for changes to the ik-slide attribute. Setup slide when ik-slide is set.
+      attrs.$observe('ikSlide', function(val) {
+        if (!val) {
+          return;
+        }
+
+        cssInjector.add(scope.ikSlide.css_path);
+
+        if (scope.ikSlide.media_type === 'image') {
+          if (scope.ikSlide.media.length > 0) {
+            scope.ikSlide.currentImage = scope.ikSlide.media[0];
+          }
+          else {
+            scope.ikSlide.currentImage = '';
+          }
+        }
+        else {
+          if (scope.ikSlide.media.length > 0 && scope.ikSlide.media[0].provider_metadata.length > 0) {
+            scope.ikSlide.currentImage = scope.ikSlide.media[0].provider_metadata[0].thumbnails[1].reference;
+          }
+          else {
+            scope.ikSlide.currentImage = '';
+          }
+        }
+
+        // Set the currentLogo variable.
+        if (scope.ikSlide.logo !== undefined && scope.ikSlide.logo !== null) {
+          scope.ikSlide.currentLogo = scope.ikSlide.logo;
+        }
+        else {
+          scope.ikSlide.currentLogo = '';
+        }
+
+        scope.templateURL = scope.ikSlide.preview_path;
+
+        scope.theStyle = {
+          width: "" + scope.ikWidth + "px",
+          height: "" + parseFloat(1080.0 * parseFloat(scope.ikWidth / 1920.0)) + "px"
+        };
+
+        if (scope.ikSlide.options.fontsize) {
+          scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / 1920)) + "px"
+        }
+      });
+    },
+    template: '<div class="preview--slide" data-ng-include="" src="templateURL"></div>'
+  }
+}]);
+
+
+/**
  * Directive to insert html for a slide, that is editable.
  * @param ik-slide: the slide.
  * @param ik-width: the width of the slide.
