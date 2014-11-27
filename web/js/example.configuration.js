@@ -7,7 +7,7 @@ ikApp.value('configuration', {
     "address": 'https://service.indholdskanalen.vm',
     "customer_id": 'e7df7cd2ca07f4f1ab415d457a6e1c13'
   },
-  "shareService": {
+  "sharingService": {
     "enabled": false,
     "address": "https://service.indholdskanalen.vm"
   }
