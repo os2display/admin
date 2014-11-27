@@ -3351,7 +3351,7 @@ html.is-locked body {
 /* line 25, ../sass/modules/_preview.scss */
 .preview--slide,
 .preview--channel {
-  display: block;
+  display: inline-block;
   margin: 0;
   position: relative;
   overflow: hidden; }
