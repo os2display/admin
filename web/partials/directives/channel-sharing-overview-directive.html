@@ -25,6 +25,7 @@
   <div class="overview--channels">
     <div data-ng-repeat="channel in channels">
       <ik-shared-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}"></ik-shared-channel>
+      <div>{{channel.title}}</div>
     </div>
   </div>
   <ik-pager></ik-pager>

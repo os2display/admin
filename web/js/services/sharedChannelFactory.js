@@ -21,6 +21,24 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
     };
 
     /**
+     * Get a shared channel.
+     * @param id
+     */
+    factory.getSharedChannel = function getSharedChannel(id) {
+      var defer = $q.defer();
+
+      $http.get('/api/sharing/indexes')
+        .success(function(data) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status);
+        });
+
+      return defer.promise;
+    };
+
+    /**
      * Get the available sharing indexes.
      * @returns array of sharing indexes.
      */

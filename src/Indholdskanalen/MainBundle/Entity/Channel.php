@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  *
  * @AccessorOrder("custom", custom = {"id", "title" ,"orientation", "created_at", "slides"})
  *
- * @ORM\Table(name="channel")
+ * @ORM\Table(name="ik_channel")
  * @ORM\Entity
  */
 class Channel {
@@ -59,7 +59,7 @@ class Channel {
 
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
-   * @ORM\JoinTable(name="screens_channels")
+   * @ORM\JoinTable(name="ik_screens_channels")
    * @Groups({"api"})
    */
   private $screens;

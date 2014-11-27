@@ -3350,22 +3350,29 @@ html.is-locked body {
    ========================================================================== */
 /* line 25, ../sass/modules/_preview.scss */
 .preview--slide,
-.preview--channel {
-  display: inline-block;
+.preview--channel,
+.preview--channel-display {
+  display: block;
   margin: 0;
   position: relative;
   overflow: hidden; }
 
-/* line 33, ../sass/modules/_preview.scss */
+/* line 34, ../sass/modules/_preview.scss */
 .preview--channel-display,
-.preview--slide-display {
+.preview--slide-display,
+.preview--channel-display {
   cursor: pointer; }
-  /* line 37, ../sass/modules/_preview.scss */
+  /* line 39, ../sass/modules/_preview.scss */
   .preview--channel-display.is-empty,
-  .preview--slide-display.is-empty {
+  .preview--slide-display.is-empty,
+  .preview--channel-display.is-empty {
     cursor: default; }
 
-/* line 43, ../sass/modules/_preview.scss */
+/* line 44, ../sass/modules/_preview.scss */
+.preview--channel-display {
+  display: inline-block; }
+
+/* line 48, ../sass/modules/_preview.scss */
 .preview--channel-play {
   background: url('/../images/icons-s1200d42609.png');
   -moz-background-size: 84px 1229px;
@@ -3376,7 +3383,7 @@ html.is-locked body {
   height: 42px;
   background-position: 0 -819px; }
 
-/* line 51, ../sass/modules/_preview.scss */
+/* line 56, ../sass/modules/_preview.scss */
 .preview--channel-pause {
   background: url('/../images/icons-s1200d42609.png');
   -moz-background-size: 84px 1229px;

@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  * SharingIndex
  * Represents an index existing in the sharing service.
  *
- * @ORM\Table(name="sharing_index")
+ * @ORM\Table(name="ik_sharing_index")
  * @ORM\Entity
  */
 class SharingIndex {
@@ -42,7 +42,7 @@ class SharingIndex {
 
   /**
    * @ORM\ManyToMany(targetEntity="Channel", inversedBy="sharingIndexes")
-   * @ORM\JoinTable(name="sharing_indexes_channels")
+   * @ORM\JoinTable(name="ik_sharing_indexes_channels")
    * @Groups({"api"})
    * @MaxDepth(3)
    */

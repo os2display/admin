@@ -60,9 +60,7 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location',
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function() {
-          if(scope.ikSingleSlide != true) {
-            $location.path("/channel-shared/" + scope.ikChannel.id);
-          }
+          $location.path("/shared-channel/" + scope.ikChannel.id + "/0");
         };
 
         // Register event listener for destroy.

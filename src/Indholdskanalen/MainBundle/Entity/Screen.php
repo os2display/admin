@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation\MaxDepth;
 /**
  * Extra
  *
- * @ORM\Table(name="screen")
+ * @ORM\Table(name="ik_screen")
  * @ORM\Entity
  */
 class Screen {
@@ -77,6 +77,12 @@ class Screen {
 	 */
 	private $channels;
 
+  /**
+   * @ORM\ManyToMany(targetEntity="SharedChannel", mappedBy="screens")
+   * @Groups({"api"})
+   */
+  private $shared_channels;
+
 	/**
 	 * @ORM\Column(name="user", type="integer", nullable=true)
 	 * @Groups({"api", "search"})
@@ -100,6 +106,7 @@ class Screen {
 	public function __construct()
 	{
 		$this->channels = new ArrayCollection();
+    $this->shared_channels = new ArrayCollection();
 	}
 
 
@@ -325,7 +332,40 @@ class Screen {
 		return $this->channels;
 	}
 
-	/**
+  /**
+   * Add shared_channel
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel
+   * @return Screen
+   */
+  public function addSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel) {
+    $shared_channel->addScreen($this);
+    $this->shared_channels[] = $shared_channel;
+
+    return $this;
+  }
+
+  /**
+   * Remove shared_channel
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel
+   */
+  public function removeSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel) {
+    $shared_channel->removeScreen($this);
+    $this->shared_channels->removeElement($shared_channel);
+  }
+
+  /**
+   * Get shared_channels
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getSharedChannels() {
+    return $this->shared_channels;
+  }
+
+
+  /**
 	 * Get channelID - used for Middleware serialization
 	 *
 	 * @return \string

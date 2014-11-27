@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation\MaxDepth;
 /**
  * Extra
  *
- * @ORM\Table(name="slide")
+ * @ORM\Table(name="ik_slide")
  * @ORM\Entity
  */
 class Slide {

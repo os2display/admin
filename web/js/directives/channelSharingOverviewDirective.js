@@ -81,8 +81,6 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
             function(data) {
               scope.hits = data.hits;
               scope.channels = data.results;
-
-              console.log(scope.channels);
             }
           );
         };
@@ -117,7 +115,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         };
 
         /**
-         * Emits the slideOverview.clickSlide event.
+         * Emits the channelSharingOverview.clickChannel event.
          *
          * @param channel
          */
