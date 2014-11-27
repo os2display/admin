@@ -32,7 +32,7 @@ class MiddlewareCommunication extends ContainerAware
    * @param $screen
    * @return boolean
    */
-  protected function curlSendScreen($screen) {
+  protected function curlSendContent($screen) {
     // Send  post request to middleware (/push/channel).
     $url = $this->container->getParameter("middleware_host") . "/push/channel";
     $ch = curl_init($url);
@@ -77,7 +77,7 @@ class MiddlewareCommunication extends ContainerAware
       $sha1 = sha1($jsonContent);
 
       if ($force || $sha1 !== $screen->getLastPushHash()) {
-        $curlResult = $this->curlSendChannel($jsonContent);
+        $curlResult = $this->curlSendContent($jsonContent);
 
         // If the result was delivered, update the last hash.
         if ($curlResult) {
