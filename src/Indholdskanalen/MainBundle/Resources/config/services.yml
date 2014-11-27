@@ -22,8 +22,8 @@ services:
     tags:
       - { name: jms_serializer.event_subscriber}
 
-  indholdskanalen.command.pushchannels:
-    class: Indholdskanalen\MainBundle\Command\PushChannelsCommand
+  indholdskanalen.command.pushcontent:
+    class: Indholdskanalen\MainBundle\Command\PushContentCommand
     tags:
       -  { name: console.command }
 

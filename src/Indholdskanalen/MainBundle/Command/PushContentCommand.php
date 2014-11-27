@@ -10,21 +10,29 @@
 namespace Indholdskanalen\MainBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class PushScheduleCommand
+ * Class PushContentCommand
  *
  * @package Indholdskanalen\MainBundle\Command
  */
-class PushChannelsCommand extends ContainerAwareCommand {
+class PushContentCommand extends ContainerAwareCommand {
   /**
    * Configure the command
    */
   protected function configure() {
-    $this->setName('indholdskanalen:pushchannels')
-      ->setDescription("Push the indholdskanalen channels");
+    $this
+      ->setName('indholdskanalen:pushcontent')
+      ->setDescription("Push content to the screens")
+      ->addArgument(
+        'force',
+        InputArgument::OPTIONAL,
+        'Should the push be forced through?'
+      );
   }
 
   /**
@@ -35,7 +43,11 @@ class PushChannelsCommand extends ContainerAwareCommand {
    * @return int|null|void
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
+    $force = $input->getArgument('force');
+
     $middlewareCommunication = $this->getContainer()->get('indholdskanalen.middleware.communication');
-    $middlewareCommunication->pushChannels();
+    $middlewareCommunication->pushToScreens($force);
+
+    $output->writeln("Content pushed to screens.");
   }
 }

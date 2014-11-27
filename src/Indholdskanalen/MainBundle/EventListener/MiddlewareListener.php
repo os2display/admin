@@ -44,6 +44,6 @@ class MiddlewareListener {
       return;
     }
 
-    $this->middleware->pushChannels();
+    $this->middleware->pushToScreens(false);
   }
 }
