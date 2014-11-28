@@ -11,6 +11,7 @@
     </div>
     <div class="nav--item-wrapper" data-ng-show="currentUser.is_admin">
       <a href="/admin" class="nav--item">Brugere</a>
+      <a href="/#/admin-sharing" class="nav--item">Delingsindstillinger</a>
     </div>
     <div class="nav--item-wrapper">
       <a href="/logout" class="nav--item">Log ud</a>
@@ -23,7 +24,7 @@
       </div>
       <nav class="header--main-menu">
         <ul class="header--main-menu-items">
-          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/channel') == 0}">
+          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/channel') == 0 || url.indexOf('shared-channel') === 0}">
             <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channel-overview">
               <span class="header--main-menu-item-image-channels"></span>
               <span class="header--main-menu-item-text">Kanaler</span>

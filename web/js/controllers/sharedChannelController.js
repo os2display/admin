@@ -8,11 +8,12 @@
  */
 ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory',
   function($scope, $location, $routeParams, $timeout, screenFactory, sharedChannelFactory) {
-    console.log("fisk");
-
     $scope.steps = 2;
     $scope.step = 1;
     $scope.screens = [];
+    $scope.channel = {};
+    $scope.channel.slides = [];
+    $scope.status = 'edit';
 
     // Get all screens.
     screenFactory.getScreens().then(function (data) {
@@ -37,10 +38,9 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
       } else {
         sharedChannelFactory.getSharedChannel($routeParams.id, $routeParams.ownerId).then(function(data) {
           $scope.channel = data;
-          $scope.channel.status = 'edit-channel';
 
           if ($scope.channel === {}) {
-            $location.path('/channel');
+            $location.path('/channel-sharing-overview');
           }
 
           loadStep(1);
@@ -70,7 +70,7 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
       $scope.channel.screens.forEach(function(element) {
         if (id == element.id) {
           res = true;
-        };
+        }
       });
 
       return res;
@@ -86,7 +86,7 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
       $scope.channel.screens.forEach(function(element, index, array) {
         if (screen.id == element.id) {
           res = true;
-        };
+        }
       });
 
       if (res) {
@@ -95,7 +95,7 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
       else {
         $scope.channel.screens.push(screen);
       }
-    }
+    };
 
     /**
      * Change channel creation step.

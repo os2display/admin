@@ -56,6 +56,11 @@ class SharedChannel {
   private $modified_at;
 
   /**
+   * @ORM\Column(name="content", type="string", nullable=true)
+   */
+  private $content;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -159,5 +164,26 @@ class SharedChannel {
    */
   public function getModifiedAt() {
     return $this->modified_at;
+  }
+
+  /**
+   * Set content
+   *
+   * @param integer $content
+   * @return Channel
+   */
+  public function setContent($content) {
+    $this->content = $content;
+
+    return $this;
+  }
+
+  /**
+   * Get content
+   *
+   * @return integer
+   */
+  public function getContent() {
+    return $this->content;
   }
 }

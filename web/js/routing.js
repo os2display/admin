@@ -13,6 +13,11 @@ ikApp.config(function($routeProvider) {
       redirectTo: '/channel-overview'
     })
 
+    .when('/admin-sharing', {
+      controller: 'AdminSharingController',
+      templateUrl: 'partials/channel-sharing/admin-sharing.html'
+    })
+
     // Overviews
     .when('/channel-overview', {
       controller: 'ChannelOverviewController',

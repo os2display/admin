@@ -43,4 +43,25 @@ class SharingController extends Controller {
 
     return $response;
   }
+
+  /**
+   * Save a list of sharing indexes.
+   *
+   * @Route("/indexes")
+   * @Method("POST")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function SharingIndexesSaveAction(Request $request) {
+    $post = json_decode($request->getContent());
+
+    $doctrine = $this->getDoctrine();
+    $em = $doctrine->getManager();
+
+
+
+    $response = new Response();
+    $response->setStatusCode(200);
+    return $response;
+  }
 }

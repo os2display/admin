@@ -12,7 +12,8 @@ ikApp.directive('ikChecklist', function() {
     replace: false,
     scope: {
       elements: '=',
-      selected: '='
+      selected: '=',
+      identity: '='
     },
     link: function(scope, element, attrs) {
       scope.toggleElement = function toggleElement(el) {
@@ -42,7 +43,7 @@ ikApp.directive('ikChecklist', function() {
         }
 
         for (var i = 0; i < scope.selected.length; i++) {
-          if (scope.selected[i].id === el.id) {
+          if (scope.selected[i][scope.identity] === el[scope.identity]) {
             return true;
           }
         }

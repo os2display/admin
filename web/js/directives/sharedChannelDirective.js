@@ -8,8 +8,8 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-ikApp.directive('ikSharedChannel', ['$interval', '$location',
-  function($interval, $location) {
+ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
+  function($interval, $location, cssInjector) {
     return {
       restrict: 'E',
       scope: {
@@ -36,6 +36,12 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location',
 
             scope.buttonState = 'play';
           }
+
+          // Injector stylesheets
+          scope.ikChannel.slides.forEach(function(el) {
+            // Inject stylesheet.
+            cssInjector.add(el.css_path);
+          });
         });
 
         /**
