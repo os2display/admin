@@ -24,7 +24,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
      * Set the submenu items according to what the url starts with.
      */
     var updateSubMenu = function() {
-      if ($scope.url.indexOf('/channel') == 0) {
+      if ($scope.url.indexOf('/channel') === 0 || $scope.url.indexOf('/shared-channel') === 0) {
         $scope.subMenuItems = [
           {
             title: 'Oversigt',
@@ -48,7 +48,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
           );
         }
       }
-      else if ($scope.url.indexOf('/slide') == 0) {
+      else if ($scope.url.indexOf('/slide') === 0) {
         $scope.subMenuItems = [
           {
             title: 'Oversigt',
@@ -62,7 +62,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
           }
         ];
       }
-      else if ($scope.url.indexOf('/screen') == 0) {
+      else if ($scope.url.indexOf('/screen') === 0) {
         $scope.subMenuItems = [
           {
             title: 'Oversigt',
@@ -76,7 +76,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
           }
         ];
       }
-      else if ($scope.url.indexOf('/template') == 0) {
+      else if ($scope.url.indexOf('/template') === 0) {
         $scope.subMenuItems = [
           {
             title: 'Oversigt',
@@ -90,7 +90,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
           }
         ];
       }
-      else if ($scope.url.indexOf('/media') == 0) {
+      else if ($scope.url.indexOf('/media') === 0) {
         $scope.subMenuItems = [
           {
             title: 'Oversigt',
@@ -107,7 +107,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
       else {
         $scope.subMenuItems = [];
       }
-    }
+    };
     updateSubMenu();
 
     /**
@@ -129,11 +129,8 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
         }
       }
 
-      if (str === pattern) {
-        return true;
-      }
-      return false;
-    }
+      return str === pattern;
+    };
 
     /**
      * Open/Close navigation menu.
@@ -159,11 +156,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
      * Show/hide mobile main menu.
      */
     $scope.mobileMainMenuVisible = function() {
-      if($scope.url.indexOf('/channel') == 0 || $scope.url.indexOf('/slide') == 0 || $scope.url.indexOf('/screen') == 0 || $scope.url.indexOf('/template') == 0 || $scope.url.indexOf('/media') == 0) {
-        return false;
-      } else {
-        return true;
-      }
+      return $scope.url.indexOf('/channel') == 0 && $scope.url.indexOf('/slide') == 0 && $scope.url.indexOf('/screen') == 0 && $scope.url.indexOf('/media') == 0;
     }
   }
 ]);
