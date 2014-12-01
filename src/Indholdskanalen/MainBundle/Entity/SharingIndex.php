@@ -49,6 +49,12 @@ class SharingIndex {
   private $channels;
 
   /**
+   * @ORM\Column(name="enabled", type="boolean", nullable=true)
+   * @Groups({"api"})
+   */
+  private $enabled;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -69,7 +75,7 @@ class SharingIndex {
    *
    * @param string $name
    */
-  public function setTitle($name) {
+  public function setName($name) {
     $this->name = $name;
   }
 
@@ -80,6 +86,25 @@ class SharingIndex {
    */
   public function getName() {
     return $this->name;
+  }
+
+
+  /**
+   * Set enabled
+   *
+   * @param string $enabled
+   */
+  public function setEnabled($enabled) {
+    $this->enabled = $enabled;
+  }
+
+  /**
+   * Get enabled
+   *
+   * @return string
+   */
+  public function getEnabled() {
+    return $this->enabled;
   }
 
   /**

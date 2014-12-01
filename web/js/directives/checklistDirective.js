@@ -24,7 +24,7 @@ ikApp.directive('ikChecklist', function() {
         var index = -1;
 
         scope.selected.forEach(function(element, ind) {
-          if (element.id === el.id) {
+          if (element[scope.identity] === el[scope.identity]) {
             index = ind;
           }
         });

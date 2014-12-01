@@ -9,6 +9,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Indholdskanalen\MainBundle\Entity\SharingIndex;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -57,8 +58,32 @@ class SharingController extends Controller {
 
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getManager();
+    $sharingIndexRepository = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex');
 
+    // Disable all sharingIndexes
+    $sharingIndexes = $sharingIndexRepository->findAll();
+    foreach ($sharingIndexes as $sharingIndex) {
+      $sharingIndex->setEnabled(false);
+    }
 
+    // Add new sharing indexes and enable all selected sharingIndexes
+    foreach ($post as $postSharingIndex) {
+      $sharingIndex = $sharingIndexRepository->findOneByCustomerId($postSharingIndex->customer_id);
+
+      if (!$sharingIndex) {
+        $sharingIndex = new SharingIndex();
+        $sharingIndex->setCustomerId($postSharingIndex->customer_id);
+        $sharingIndex->setName($postSharingIndex->name);
+        $sharingIndex->setEnabled(true);
+
+        $em->persist($sharingIndex);
+      }
+      else {
+        $sharingIndex->setEnabled(true);
+      }
+    }
+
+    $em->flush();
 
     $response = new Response();
     $response->setStatusCode(200);

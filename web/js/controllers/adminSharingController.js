@@ -8,6 +8,8 @@
  */
 ikApp.controller('AdminSharingController', ['$scope', 'sharedChannelFactory',
   function($scope, sharedChannelFactory) {
+    $scope.saving = false;
+
     $scope.availableIndexes = [];
     sharedChannelFactory.getAvailableIndexes().then(
       function(data) {
@@ -22,9 +24,13 @@ ikApp.controller('AdminSharingController', ['$scope', 'sharedChannelFactory',
     );
 
     $scope.save = function() {
+      $scope.saving = true;
       sharedChannelFactory.saveSharingIndexes($scope.chosenIndexes).then(
         function(data) {
-          console.log("fisk");
+          $scope.saving = false;
+        },
+        function(reason) {
+          $scope.saving = false;
         }
       );
     }

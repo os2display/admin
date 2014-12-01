@@ -136,7 +136,7 @@ class SharingService extends ContainerAware
    */
   public function getSharingIndexes() {
     $doctrine = $this->container->get('doctrine');
-    $sharingIndexes = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')->findAll();
+    $sharingIndexes = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')->findByEnabled(true);
 
     return $sharingIndexes;
   }

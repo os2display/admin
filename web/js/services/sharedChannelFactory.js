@@ -9,7 +9,6 @@
 ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
   function($http, $q, sharedSearchFactory) {
     var factory = {};
-    var sharingIndexes = null;
 
     /**
      * Search via share Factory.
@@ -46,18 +45,15 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
       var available = [
         {
           name: 'ITK Dev Share',
-          customer_id: 'itkdevshare',
-          id: 1
+          customer_id: 'itkdevshare'
         },
         {
           name: 'Biblioteks Share',
-          customer_id: 'bibshare',
-          id: 2
+          customer_id: 'bibshare'
         },
         {
           name: 'Fiskedeling',
-          customer_id: 'altforfiskene',
-          id: 3
+          customer_id: 'altforfiskene'
         }
       ];
       defer.resolve(available);
@@ -87,19 +83,13 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
     factory.getSharingIndexes = function() {
       var defer = $q.defer();
 
-      if (sharingIndexes !== null) {
-        defer.resolve(sharingIndexes);
-      }
-      else {
-        $http.get('/api/sharing/indexes')
-          .success(function(data) {
-            sharingIndexes = data;
-            defer.resolve(data);
-          })
-          .error(function(data, status) {
-            defer.reject(status);
-          });
-      }
+      $http.get('/api/sharing/indexes')
+        .success(function(data) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status);
+        });
 
       return defer.promise;
     };
