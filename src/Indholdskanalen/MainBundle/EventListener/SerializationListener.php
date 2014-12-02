@@ -132,6 +132,7 @@ class SerializationListener implements EventSubscriberInterface
 				}
         else if (in_array('sharing', $groups)) {
           $urls = array();
+          $thumbs = array();
 
           // Set media paths
           $slide = $event->getObject();
@@ -140,20 +141,20 @@ class SerializationListener implements EventSubscriberInterface
 
             // Video
             if($providerName === 'sonata.media.provider.zencoder') {
-              $pathToServer = $this->container->getParameter("absolute_path_to_server");
               $metadata = $media->getProviderMetadata();
               foreach($metadata as $data) {
                 $urls[$data['label']] = $data['reference'];
               }
             }
-
             // Image
             else if($providerName === 'sonata.media.provider.image') {
               $provider = $this->mediaService->getProvider($providerName);
               $urls[] = $provider->generatePublicUrl($media, 'reference');
+              $thumbs[] = $provider->generatePublicUrl($media, 'default_landscape');
             }
           }
           $event->getVisitor()->addData('media', $urls);
+          $event->getVisitor()->addData('media_thumbs', $thumbs);
 
           // Set logo path
           $logoPath = "";
