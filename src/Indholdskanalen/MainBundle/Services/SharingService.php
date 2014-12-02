@@ -139,6 +139,10 @@ class SharingService extends ContainerAware
 
     $result = $this->curl($this->url, 'GET', $params);
 
+    if ($result['status'] !== 200) {
+      return false;
+    }
+
     return $result['content'];
   }
 
