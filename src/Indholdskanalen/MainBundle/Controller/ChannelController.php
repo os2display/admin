@@ -213,11 +213,21 @@ class ChannelController extends Controller {
             $event = new SharingServiceEvent($channel, $sharingIndex);
             $dispatcher->dispatch(SharingServiceEvents::ADD_CHANNEL_TO_INDEX, $event);
           }
+          else {
+            // Send event to sharingService to add channel to index.
+            $event = new SharingServiceEvent($channel, $sharingIndex);
+            $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
+          }
         }
       }
     }
 
-    $em->persist($channel);
+    // Set the sharing id, if it is not set.
+    if ($channel->getSharingId === null) {
+      $customer_id = $this->container->getParameter('search_customer_id');
+      $id = md5($customer_id . $channel->getId());
+      $channel->setSharingId($id);
+    }
     $em->flush();
 
     $response = new Response();

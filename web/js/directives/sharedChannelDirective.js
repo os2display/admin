@@ -15,7 +15,7 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
       scope: {
         ikWidth: '@',
         ikChannel: '=',
-        ikSingleSlide: '='
+        ikSharingIndex: '='
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
@@ -66,7 +66,7 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function() {
-          $location.path("/shared-channel/" + scope.ikChannel.id + "/0");
+          $location.path("/shared-channel/" + scope.ikChannel.sharing_id + "/" + scope.ikSharingIndex);
         };
 
         // Register event listener for destroy.

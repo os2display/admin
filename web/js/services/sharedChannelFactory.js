@@ -24,11 +24,12 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
     /**
      * Get a shared channel.
      * @param id
+     * @param index
      */
-    factory.getSharedChannel = function getSharedChannel(id) {
+    factory.getSharedChannel = function getSharedChannel(id, index) {
       var defer = $q.defer();
 
-      $http.get('/api/sharing/channel/' + id)
+      $http.get('/api/sharing/channel/' + id + '/' + index)
         .success(function(data) {
           defer.resolve(data);
         })

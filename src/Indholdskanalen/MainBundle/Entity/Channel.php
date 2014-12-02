@@ -82,6 +82,12 @@ class Channel {
   private $sharingIndexes;
 
   /**
+   * @ORM\Column(name="sharing_id", type="string", nullable=false)
+   * @Groups({"sharing", "api"})
+   */
+  private $sharingId;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -116,6 +122,25 @@ class Channel {
   public function getTitle() {
     return $this->title;
   }
+
+  /**
+   * Set sharingId
+   *
+   * @param string $sharingId
+   */
+  public function setSharingId($sharingId) {
+    $this->sharingId = $sharingId;
+  }
+
+  /**
+   * Get sharingId
+   *
+   * @return string
+   */
+  public function getSharingId() {
+    return $this->sharingId;
+  }
+
 
   /**
    * Set orientation
@@ -259,7 +284,6 @@ class Channel {
 
     return $result;
   }
-
 
   /**
    * Set user

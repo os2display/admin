@@ -24,18 +24,21 @@ class SharingService extends ContainerAware
 {
   protected $serializer;
   protected $container;
+  protected $doctrine;
   protected $url;
 
   /**
    * Default constructor.
    *
    * @param Serializer $serializer
+   * @param Container $container
    */
   function __construct(Serializer $serializer, Container $container) {
     $this->serializer = $serializer;
     $this->container = $container;
 
     $this->url = $this->container->getParameter('sharing_host') . $this->container->getParameter('sharing_path');
+    $this->doctrine = $this->container->get('doctrine');
   }
 
   /**
@@ -78,7 +81,7 @@ class SharingService extends ContainerAware
     $params = array(
       'customer_id' => $index->getCustomerId(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel->getId(),
+      'id' => $channel->getSharingID(),
       'data' => $channel,
     );
 
@@ -95,7 +98,7 @@ class SharingService extends ContainerAware
     $params = array(
       'customer_id' => $index->getCustomerId(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel->getId(),
+      'id' => $channel->getSharingID(),
       'data' => $channel,
     );
 
@@ -112,7 +115,7 @@ class SharingService extends ContainerAware
     $params = array(
       'customer_id' => $index->getCustomerId(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel->getId(),
+      'id' => $channel->getSharingID(),
       'data' => $channel,
     );
 
@@ -122,27 +125,36 @@ class SharingService extends ContainerAware
   /**
    * Get channel from index on external SharingService.
    *
-   * @param $channelID
+   * @param $channel_id
    * @param $index
    *
-   * @TODO: Implement!
+   * @return mixed
    */
-  public function getChannelFromIndex($channelID, $index) {
+  public function getChannelFromIndex($channel_id, $index) {
+    $params = array(
+      'customer_id' => $index,
+      'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
+      'id' => $channel_id
+    );
 
+    $result = $this->curl($this->url, 'GET', $params);
+
+    return $result['content'];
   }
 
   /**
-   * Get all sharing indexes.
+   * Get all enabled sharing indexes.
    */
   public function getSharingIndexes() {
-    $doctrine = $this->container->get('doctrine');
-    $sharingIndexes = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')->findByEnabled(true);
+    $sharingIndexes = $this->doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')->findByEnabled(true);
 
     return $sharingIndexes;
   }
 
   /**
    * Save (new) sharing index
+   *
+   * @param IndholdskanalenMainBundle:SharingIndex $index
    */
   public function saveSharingIndex($index) {
     $doctrine = $this->container->get('doctrine');

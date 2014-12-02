@@ -33,10 +33,10 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
      * Handles different settings of route parameters.
      */
     function init() {
-      if (!$routeParams.id || !$routeParams.ownerId) {
+      if (!$routeParams.id || !$routeParams.index) {
         $location.path('/channel-sharing-overview');
       } else {
-        sharedChannelFactory.getSharedChannel($routeParams.id, $routeParams.ownerId).then(function(data) {
+        sharedChannelFactory.getSharedChannel($routeParams.id, $routeParams.index).then(function(data) {
           $scope.channel = data;
 
           if ($scope.channel === {}) {

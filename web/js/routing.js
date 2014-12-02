@@ -71,7 +71,7 @@ ikApp.config(function($routeProvider) {
     })
 
     // Channel
-    .when('/shared-channel/:id/:ownerId', {
+    .when('/shared-channel/:id/:index', {
       controller: 'SharedChannelController',
       templateUrl: 'partials/channel-sharing/shared-channel.html'
     })

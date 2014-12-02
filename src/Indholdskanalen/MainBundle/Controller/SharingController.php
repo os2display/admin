@@ -10,6 +10,7 @@
 namespace Indholdskanalen\MainBundle\Controller;
 
 use Indholdskanalen\MainBundle\Entity\SharingIndex;
+use Indholdskanalen\MainBundle\Entity\SharedChannel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -21,6 +22,47 @@ use JMS\Serializer\SerializationContext;
  * @Route("/api/sharing")
  */
 class SharingController extends Controller {
+  /**
+   * Get a shared channel with id from index
+   *
+   * @Route("/channel/{id}/{index}")
+   * @Method("GET")
+   *
+   * @param int $id
+   * @param string $index
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function SharedChannelGetAction($id, $index) {
+    $sharingService = $this->container->get('indholdskanalen.sharing_service');
+    $doctrine = $this->container->get('doctrine');
+    $em = $doctrine->getManager();
+
+    $channelFromSharing = $sharingService->getChannelFromIndex($id, $index);
+
+    if ($channelFromSharing) {
+      $sharedChannel = $doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findOneById($id);
+
+      if (!$sharedChannel) {
+        $sharedChannel = new SharedChannel();
+        $sharedChannel->setUniqueId($id);
+        $sharedChannel->setIndex($index);
+        $sharedChannel->setCreatedAt(time());
+        $em->persist($sharedChannel);
+      }
+      $sharedChannel->setContent($channelFromSharing);
+      $sharedChannel->setModifiedAt(time());
+
+      $em->flush();
+    }
+
+    $response = new Response();
+    $response->setContent(json_encode($channelFromSharing));
+    $response->headers->set('Content-Type', 'application/json');
+    return $response;
+  }
+
+
   /**
    * Get a list of all sharing indexes.
    *
