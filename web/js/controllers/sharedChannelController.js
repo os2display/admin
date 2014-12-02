@@ -1,6 +1,6 @@
 /**
  * @file
- * Channel creation controllers.
+ * Shared channel creation controllers.
  */
 
 /**
@@ -102,18 +102,7 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
      * @param step
      */
     $scope.goToStep = function(step) {
-      var s = 1;
-      // If title is set enable next step.
-      if ($scope.validation.titleSet()) {
-        s++;
-        // If orientation is set enable next three steps.
-        if ($scope.validation.orientationSet()) {
-          s = s + 3;
-        }
-      }
-      if (step <= s) {
-        loadStep(step);
-      }
+      loadStep(step);
     };
   }
 ]);
