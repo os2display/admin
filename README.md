@@ -206,4 +206,27 @@ Access the site through slight-gopher-8311.vagrantshare.com, upload the media.
 
 After this revert to the setup from before.
 
+###Setup CRONTAB for updates
+To setup the pushcontent as a crontab. On the server:
+
+<pre>
+$ crontab -e
+</pre>
+
+Add the following line:
+
+<pre>
+*/1 * * * * php path_to_backend/app/console indholdskanalen:pushcontent
+</pre>
+
+Disable the push-on-changes feature in the src/Indholdskanalen/MainBundle/Resources/config/services.yml by commenting out the middleware listener.
+
+<pre>
+#  indholdskanalen_middleware.listener:
+#    class: Indholdskanalen\MainBundle\EventListener\MiddlewareListener
+#    arguments: [@indholdskanalen.middleware.communication]
+#    tags:
+#      - { name: doctrine.event_listener, event: postUpdate }
+</pre>
+
 ###Ready to go!
