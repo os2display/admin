@@ -85,7 +85,9 @@ class SharingService extends ContainerAware {
       'data' => $channel,
     );
 
-    $this->curl($this->url, 'POST', $params);
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
+
+    $this->curl($this->url, 'POST', $data);
   }
 
   /**
@@ -102,7 +104,9 @@ class SharingService extends ContainerAware {
       'data' => $channel,
     );
 
-    $this->curl($this->url, 'DELETE', $params);
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
+
+    $this->curl($this->url, 'DELETE', $data);
   }
 
   /**
@@ -119,7 +123,9 @@ class SharingService extends ContainerAware {
       'data' => $channel,
     );
 
-    $this->curl($this->url, 'PUT', $params);
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
+
+    $this->curl($this->url, 'PUT', $data);
   }
 
   /**
@@ -136,22 +142,26 @@ class SharingService extends ContainerAware {
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
       'query' => array(
         'ids' => array(
-          'values' => array($channel_id)
+          'values' => array(
+            $channel_id
+          )
         )
       )
     );
 
-    $result = $this->curl($this->url . '/search', 'POST', $params);
+    $data = json_encode($params);
+
+    $result = $this->curl($this->url . '/search', 'POST', $data);
 
     if ($result['status'] !== 200) {
-      return $result['status'] . "    " . $result['content'];
+      return false;
     }
 
     return $result['content'];
   }
 
   public function getAvailableSharingIndexes() {
-    $result = $this->curl($this->url . '/indexes', 'GET');
+    $result = $this->curl($this->url . '/indexes', 'GET', json_encode(array()));
 
     if ($result['status'] !== 200) {
       return array();
@@ -264,19 +274,17 @@ class SharingService extends ContainerAware {
    * @param $url
    * @param $method
    * @param $token
-   * @param $jsonContent
+   * @param $data
    * @return resource
    */
-  private function buildQuery($url, $method, $token, $jsonContent) {
+  private function buildQuery($url, $method, $token, $data) {
     // Build query.
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json'
-    ));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
       'Authorization: Bearer ' . $token
     ));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -292,20 +300,17 @@ class SharingService extends ContainerAware {
    *   URL to connect to.
    * @param string $method
    *   Method to send/get data "POST" or "PUT".
-   * @param array $params
+   * @param array $data
    *   The data to send.
    *
    * @return array
    */
-  protected function curl($url, $method = 'POST', $params = array()) {
-    // Serialize the params.
-    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
-
+  protected function curl($url, $method = 'POST', $data) {
     // Get the authentication token.
     $token = $this->sharingAuthenticate();
 
     // Execute request.
-    $ch = $this->buildQuery($url, $method, $token, $jsonContent);
+    $ch = $this->buildQuery($url, $method, $token, $data);
     $content = curl_exec($ch);
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     // Close connection.
@@ -316,7 +321,7 @@ class SharingService extends ContainerAware {
       $token = $this->sharingReauthenticate();
 
       // Execute.
-      $ch = $this->buildQuery($url, $method, $token, $jsonContent);
+      $ch = $this->buildQuery($url, $method, $token, $data);
       $content = curl_exec($ch);
       $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
       // Close connection.

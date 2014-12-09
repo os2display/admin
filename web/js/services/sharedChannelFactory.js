@@ -85,7 +85,6 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
 
       $http.post('/api/sharing/indexes', indexes)
         .success(function(data) {
-          sharingIndexes = data;
           defer.resolve(data);
         })
         .error(function(data, status) {

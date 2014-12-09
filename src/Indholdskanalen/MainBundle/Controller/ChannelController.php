@@ -181,6 +181,13 @@ class ChannelController extends Controller {
 
     $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($post->id);
 
+    // Set the sharing id, if it is not set.
+    if ($channel->getSharingId() === null || $channel->getSharingId() === '0') {
+      $customer_id = $this->container->getParameter('search_customer_id');
+      $id = md5($customer_id . $channel->getId());
+      $channel->setSharingId($id);
+    }
+
     // Test for existance of sharingIndexes in post
     if (isset($post->sharing_indexes)) {
       $dispatcher = $this->get('event_dispatcher');
@@ -222,12 +229,6 @@ class ChannelController extends Controller {
       }
     }
 
-    // Set the sharing id, if it is not set.
-    if ($channel->getSharingId === null) {
-      $customer_id = $this->container->getParameter('search_customer_id');
-      $id = md5($customer_id . $channel->getId());
-      $channel->setSharingId($id);
-    }
     $em->flush();
 
     $response = new Response();
