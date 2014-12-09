@@ -25,7 +25,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
  * @Route("/api/search/auth")
  */
 class SearchAuthorizationController extends Controller {
-  private function authorize() {
+  private function authenticate() {
     $apikey = $this->container->getParameter('search_apikey');
     $search_host = $this->container->getParameter('search_host');
 
@@ -80,7 +80,7 @@ class SearchAuthorizationController extends Controller {
       $token = $session->get('search_token');
     }
     else {
-      $token = $this->authorize();
+      $token = $this->authenticate();
       if ($token) {
         $session->set('search_token', $token);
       }
@@ -109,7 +109,7 @@ class SearchAuthorizationController extends Controller {
     $session = new Session();
     $session->remove('search_token');
 
-    $token = $this->authorize();
+    $token = $this->authenticate();
     if ($token) {
       $session->set('search_token', $token);
     }

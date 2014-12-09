@@ -8,9 +8,10 @@
  *
  * The communication is based on web-sockets via socket.io library.
  */
-ikApp.service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', function($q, $rootScope, configuration) {
+ikApp.service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', '$http', function($q, $rootScope, configuration, $http) {
   var socket;
   var self = this;
+  var token = null;
 
   /**
    * Connect to the web-socket.
@@ -50,9 +51,21 @@ ikApp.service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', funct
   function connect() {
     // Try to connect to the server if not already connected.
     var deferred = $q.defer();
+
     if (socket === undefined) {
-      // Try to get connection to the proxy.
-      getSocket(deferred);
+      if (token !== null) {
+        getSocket(deferred);
+      }
+      else {
+        $http.get('api/sharing/authenticate')
+          .success(function(data) {
+            token = data;
+            getSocket(deferred);
+          })
+          .error(function(data, status) {
+            defer.reject(status);
+          });
+      }
     }
     else {
       deferred.resolve('Connected to the server.');

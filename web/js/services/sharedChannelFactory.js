@@ -10,6 +10,8 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
   function($http, $q, sharedSearchFactory) {
     var factory = {};
 
+    var availableIndexes = null;
+
     /**
      * Search via share Factory.
      * @param search
@@ -43,6 +45,20 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
     factory.getAvailableIndexes = function() {
       var defer = $q.defer();
 
+      if (availableIndexes !== null) {
+        defer.resolve(availableIndexes);
+      }
+      else {
+        $http.get('/api/sharing/available_indexes')
+          .success(function(data) {
+            availableIndexes = data;
+            defer.resolve(data);
+          })
+          .error(function(data, status) {
+            defer.reject(status);
+          });
+      }
+/*
       var available = [
         {
           name: 'ITK Dev Share',
@@ -58,6 +74,8 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
         }
       ];
       defer.resolve(available);
+*/
+
 
       return defer.promise;
     };

@@ -62,7 +62,7 @@ class SharedChannel {
   private $modified_at;
 
   /**
-   * @ORM\Column(name="content", type="string", nullable=true)
+   * @ORM\Column(name="content", type="text", nullable=true)
    */
   private $content;
 
