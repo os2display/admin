@@ -148,7 +148,7 @@ class SharingController extends Controller {
 
     // Add new sharing indexes and enable all selected sharingIndexes
     foreach ($post as $postSharingIndex) {
-      $sharingIndex = $sharingIndexRepository->findOneByCustomerId($postSharingIndex->customer_id);
+      $sharingIndex = $sharingIndexRepository->findOneByIndex($postSharingIndex->index);
 
       if (!$sharingIndex) {
         $sharingIndex = new SharingIndex();
