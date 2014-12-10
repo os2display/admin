@@ -13,7 +13,12 @@ ikApp.controller('AdminSharingController', ['$scope', 'sharedChannelFactory',
     $scope.availableIndexes = [];
     sharedChannelFactory.getAvailableIndexes().then(
       function(data) {
-        $scope.availableIndexes = data;
+        data.forEach(function(element) {
+          // Only include "shared" indexes.
+          if (element.tag === 'shared') {
+            $scope.availableIndexes.push(element);
+          }
+        });
       }
     );
     $scope.chosenIndexes = [];

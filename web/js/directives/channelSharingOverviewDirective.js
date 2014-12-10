@@ -19,9 +19,8 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         ikOverlay: '@'
       },
       link: function(scope, element, attrs) {
-        scope.index = {
-          "customer_id": "bibshare"
-        };
+        scope.index = {};
+
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.sharingIndexes = [];
         sharedChannelFactory.getSharingIndexes().then(function(data) {
@@ -220,8 +219,6 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         if (scope.ikFilter) {
           scope.setOrientation(scope.ikFilter);
         }
-
-        scope.updateSearch();
       },
       templateUrl: '/partials/directives/channel-sharing-overview-directive.html'
     };
