@@ -56,10 +56,10 @@ class SharingController extends Controller {
     $doctrine = $this->container->get('doctrine');
     $em = $doctrine->getManager();
 
-    $channelFromSharing = $sharingService->getChannelFromIndex($id, $index);
+    $channelFromSharing = json_encode(json_decode($sharingService->getChannelFromIndex($id, $index)));
 
     if ($channelFromSharing) {
-      $sharedChannel = $doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findOneById($id);
+      $sharedChannel = $doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findOneByUniqueId($id);
 
       if (!$sharedChannel) {
         $sharedChannel = new SharedChannel();

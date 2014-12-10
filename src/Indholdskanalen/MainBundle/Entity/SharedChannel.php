@@ -35,10 +35,10 @@ class SharedChannel {
    * @ORM\Column(name="unique_id", type="text", nullable=false)
    * @Groups({"api", "api-bulk", "search", "sharing"})
    */
-  private $unique_id;
+  private $uniqueId;
 
   /**
-   * @ORM\Column(name="index", type="text", nullable=false)
+   * @ORM\Column(name="`index`", type="text", nullable=false)
    * @Groups({"api", "api-bulk", "search", "sharing"})
    */
   private $index;
@@ -83,21 +83,21 @@ class SharedChannel {
   }
 
   /**
-   * Set unique_id
+   * Set uniqueId
    *
-   * @param string $unique_id
+   * @param string $uniqueId
    */
-  public function setUniqueId($unique_id) {
-    $this->unique_id = $unique_id;
+  public function setUniqueId($uniqueId) {
+    $this->uniqueId = $uniqueId;
   }
 
   /**
-   * Get unique_id
+   * Get uniqueId
    *
    * @return string
    */
   public function getUniqueId() {
-    return $this->unique_id;
+    return $this->uniqueId;
   }
 
 

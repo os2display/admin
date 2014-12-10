@@ -137,16 +137,16 @@ class SharingService extends ContainerAware {
    * @return mixed
    */
   public function getChannelFromIndex($channel_id, $index) {
-    // @TODO: FIX THIS!!!!!
-
     $params = array(
       'customer_id' => $index,
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
       'id' => $channel_id,
       'query' => array(
-        'ids' => array(
-          'values' => array(
-            $channel_id
+        'query' => array(
+          'ids' => array(
+            'values' => array(
+              $channel_id
+            )
           )
         )
       )
