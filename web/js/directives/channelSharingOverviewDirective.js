@@ -20,6 +20,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
       },
       link: function(scope, element, attrs) {
         scope.index = {};
+        scope.loading = false;
 
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.sharingIndexes = [];
@@ -85,8 +86,10 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
           // Get search text from scope.
           search.text = scope.search_text;
 
+          scope.loading = true;
           sharedChannelFactory.searchChannels(search, scope.index.customer_id).then(
             function(data) {
+              scope.loading = false;
               scope.hits = data.hits;
               scope.channels = data.results;
             }
@@ -99,6 +102,13 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         scope.$on('channel-deleted', function() {
           scope.updateSearch();
         });
+
+        /**
+         *
+         */
+        scope.updatedIndex = function updatedIndex() {
+          scope.updateSearch();
+        };
 
         /**
          * Returns true if channel is in selected channels array.

@@ -24,7 +24,8 @@
   </div>
 
   <div class="overview--screens">
-    <div data-ng-repeat="screen in screens" class="overview--screen">
+    <div class="spinner overview--spinner" data-ng-show="loading"></div>
+    <div data-ng-repeat="screen in screens" class="overview--screen" data-ng-show="!loading">
       <a href="/#/screen/{{screen.id}}" class="overview--screen-link">
         <ik-screen ik-screen="screen" ik-width="{{screen.orientation == 'landscape' ? 300 : 168.75}}"></ik-screen>
       </a>

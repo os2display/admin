@@ -15,7 +15,6 @@
       <span href="#" data-ng-class="{'is-active': media_type == 'video'}" class="overview--filter-foursplit-right" data-ng-click="filterMediaType('video')">Videoer</span>
     </div>
   </div>
-
   <div class="overview--sorting">
     <label class="overview--sort-label">Sorter på:</label>
     <div class="overview--sort-links">
@@ -26,7 +25,8 @@
   </div>
 
   <div class="overview--media">
-    <div class="overview--media-single" data-ng-click="mediaOverviewClickMedia(mediaElement)" data-ng-repeat="mediaElement in media">
+    <div class="spinner overview--spinner" data-ng-show="loading"></div>
+    <div class="overview--media-single" data-ng-show="!loading" data-ng-click="mediaOverviewClickMedia(mediaElement)" data-ng-repeat="mediaElement in media">
       <div class="overview--media-link" data-ng-switch data-on="mediaElement.media_type" data-ng-class="{'is-selected': mediaSelected(mediaElement)}">
         <span class="overview--overlay">
           <span class="overview--link-check"></span>

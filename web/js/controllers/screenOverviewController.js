@@ -10,6 +10,8 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFa
   function($scope, screenFactory, userFactory) {
     "use strict";
 
+    $scope.loading = false;
+
     // Set default values.
     $scope.orientation = 'all';
     $scope.showFromUser = 'all';
@@ -50,6 +52,8 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFa
       // Get search text from scope.
       search.text = $scope.search_text;
 
+      $scope.loading = true;
+
       screenFactory.searchScreens(search).then(
         function(data) {
           // Total hits.
@@ -65,6 +69,8 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFa
           screenFactory.loadScreensBulk(ids).then(
             function (data) {
               $scope.screens = data;
+
+              $scope.loading = false;
             }
           );
         }
