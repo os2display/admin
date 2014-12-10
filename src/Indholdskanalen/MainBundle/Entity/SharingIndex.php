@@ -35,7 +35,7 @@ class SharingIndex {
   private $name;
 
   /**
-   * @ORM\Column(name="index", type="text", nullable=false)
+   * @ORM\Column(name="`index`", type="text", nullable=false)
    * @Groups({"api"})
    */
   private $index;
