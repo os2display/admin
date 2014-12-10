@@ -82,7 +82,7 @@ class Channel {
   private $sharingIndexes;
 
   /**
-   * @ORM\Column(name="sharing_id", type="string", nullable=false)
+   * @ORM\Column(name="sharing_id", type="string", nullable=true)
    * @Groups({"sharing", "api"})
    */
   private $sharingId;
