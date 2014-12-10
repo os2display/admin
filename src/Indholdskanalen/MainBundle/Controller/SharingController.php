@@ -152,7 +152,7 @@ class SharingController extends Controller {
 
       if (!$sharingIndex) {
         $sharingIndex = new SharingIndex();
-        $sharingIndex->setCustomerId($postSharingIndex->customer_id);
+        $sharingIndex->setIndex($postSharingIndex->index);
         $sharingIndex->setName($postSharingIndex->name);
         $sharingIndex->setEnabled(true);
 
