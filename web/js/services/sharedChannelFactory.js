@@ -42,6 +42,29 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
       return defer.promise;
     };
 
+    /**
+     * Save shared channel.
+     * @param channel
+     * @returns {*}
+     */
+    factory.saveSharedChannel = function saveSharedChannel(channel) {
+      var defer = $q.defer();
+
+      $http.post('/api/sharing/channel', channel)
+        .success(function(data) {
+          defer.resolve(data);
+        })
+        .error(function(data, status) {
+          defer.reject(status);
+        });
+
+      return defer.promise;
+    };
+
+    /**
+     * Get available indexes from sharing service
+     * @returns {*}
+     */
     factory.getAvailableIndexes = function() {
       var defer = $q.defer();
 
@@ -62,6 +85,11 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
       return defer.promise;
     };
 
+    /**
+     * Save sharing indexes.
+     * @param indexes
+     * @returns {*}
+     */
     factory.saveSharingIndexes = function(indexes) {
       var defer = $q.defer();
 

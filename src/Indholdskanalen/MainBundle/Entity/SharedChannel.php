@@ -63,6 +63,7 @@ class SharedChannel {
 
   /**
    * @ORM\Column(name="content", type="text", nullable=true)
+   * @Groups({"api"})
    */
   private $content;
 
@@ -194,7 +195,7 @@ class SharedChannel {
   /**
    * Set content
    *
-   * @param integer $content
+   * @param string $content
    * @return Channel
    */
   public function setContent($content) {

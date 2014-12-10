@@ -56,27 +56,113 @@ class SharingController extends Controller {
     $doctrine = $this->container->get('doctrine');
     $em = $doctrine->getManager();
 
-    $channelFromSharing = json_encode(json_decode($sharingService->getChannelFromIndex($id, $index)));
+    // Get channel from sharing service.
+    $channelFromSharing = json_decode($sharingService->getChannelFromIndex($id, $index));
 
-    if ($channelFromSharing) {
-      $sharedChannel = $doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findOneByUniqueId($id);
-
-      if (!$sharedChannel) {
-        $sharedChannel = new SharedChannel();
-        $sharedChannel->setUniqueId($id);
-        $sharedChannel->setIndex($index);
-        $sharedChannel->setCreatedAt(time());
-        $em->persist($sharedChannel);
-      }
-      $sharedChannel->setContent($channelFromSharing);
-      $sharedChannel->setModifiedAt(time());
-
-      $em->flush();
+    // No hits founds, or too many.
+    if (!$channelFromSharing) {
+      $response = new Response();
+      $response->setStatusCode(500);
+      $response->setContent("Error: Could not retrieve channel from sharing service.");
+      return $response;
+    }
+    else if ($channelFromSharing->hits > 1) {
+      $response = new Response();
+      $response->setStatusCode(500);
+      $response->setContent("Error: More than one entry with that id found.");
+      return $response;
+    }
+    else if ($channelFromSharing->hits < 1) {
+      $response = new Response();
+      $response->setStatusCode(404);
+      return $response;
     }
 
+    // Encode channel as json.
+    $channelFromSharing = $channelFromSharing->results[0];
+
+    // Get shared channel entity with unique id.
+    $sharedChannel = $doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findOneByUniqueId($id);
+
+    // If the shared channel does not exist, create it.
+    if (!$sharedChannel) {
+      $sharedChannel = new SharedChannel();
+      $sharedChannel->setUniqueId($id);
+      $sharedChannel->setIndex($index);
+      $sharedChannel->setCreatedAt(time());
+      $em->persist($sharedChannel);
+    }
+
+    // Update content.
+    $sharedChannel->setContent(json_encode($channelFromSharing));
+    $sharedChannel->setModifiedAt(time());
+
+    // Update database.
+    $em->flush();
+
+    $serializer = $this->get('jms_serializer');
+    $content = $serializer->serialize($sharedChannel, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+
     $response = new Response();
-    $response->setContent(json_encode($channelFromSharing));
+    $response->setContent($content);
     $response->headers->set('Content-Type', 'application/json');
+    return $response;
+  }
+
+  /**
+   * Save a shared channel.
+   *
+   * @Route("/channel")
+   * @Method("POST")
+   *
+   * @param Request $request
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function SharedChannelSaveAction(Request $request) {
+    $post = json_decode($request->getContent());
+
+    $doctrine = $this->getDoctrine();
+    $em = $doctrine->getManager();
+    $sharedChannelRepository = $doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel');
+    $screenRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Screen');
+
+    // Add new sharing indexes and enable all selected sharingIndexes
+    $sharedChannel = $sharedChannelRepository->findOneByUniqueId($post->unique_id);
+
+    if (!$sharedChannel) {
+      $response = new Response();
+      $response->setStatusCode(404);
+      return $response;
+    }
+
+    // Get all sharing_indexes ids from POST.
+    $post_screens_ids = array();
+    foreach ($post->screens as $screen) {
+      $post_screens_ids[] = $screen->id;
+    }
+
+    // Remove screens.
+    foreach ($sharedChannel->getScreens() as $screen) {
+      if (!in_array($screen->getId(), $post_screens_ids)) {
+        $sharedChannel->removeScreen($screen);
+      }
+    }
+
+    // Add screens.
+    foreach ($post_screens_ids as $screenId) {
+      $screen = $screenRepository->findOneById($screenId);
+      if ($screen) {
+        if (!$sharedChannel->getScreens()->contains($screen)) {
+          $sharedChannel->addScreen($screen);
+        }
+      }
+    }
+
+    $em->flush();
+
+    $response = new Response();
+    $response->setStatusCode(200);
     return $response;
   }
 

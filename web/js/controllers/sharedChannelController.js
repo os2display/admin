@@ -12,6 +12,7 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
     $scope.step = 1;
     $scope.screens = [];
     $scope.channel = {};
+    $scope.sharedChannel = {};
     $scope.channel.slides = [];
     $scope.status = 'edit';
 
@@ -37,7 +38,8 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
         $location.path('/channel-sharing-overview');
       } else {
         sharedChannelFactory.getSharedChannel($routeParams.id, $routeParams.index).then(function(data) {
-          $scope.channel = data;
+          $scope.channel = JSON.parse(data.content);
+          $scope.sharedChannel = data;
 
           if ($scope.channel === {}) {
             $location.path('/channel-sharing-overview');
@@ -53,7 +55,11 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
      * Submit a step in the installation process.
      */
     $scope.submitStep = function() {
+      // If last step, save shared channel.
       if ($scope.step == $scope.steps) {
+        sharedChannelFactory.saveSharedChannel($scope.sharedChannel).then(function() {
+          $location.path('/channel-sharing-overview');
+        });
       } else {
         loadStep($scope.step + 1);
       }
@@ -67,7 +73,7 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
     $scope.screenSelected = function(id) {
       var res = false;
 
-      $scope.channel.screens.forEach(function(element) {
+      $scope.sharedChannel.screens.forEach(function(element) {
         if (id == element.id) {
           res = true;
         }
@@ -83,17 +89,17 @@ ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParam
     $scope.toggleScreen = function(screen) {
       var res = false;
 
-      $scope.channel.screens.forEach(function(element, index, array) {
+      $scope.sharedChannel.screens.forEach(function(element, index, array) {
         if (screen.id == element.id) {
           res = true;
         }
       });
 
       if (res) {
-        $scope.channel.screens.splice($scope.channel.screens.indexOf(screen), 1);
+        $scope.sharedChannel.screens.splice($scope.sharedChannel.screens.indexOf(screen), 1);
       }
       else {
-        $scope.channel.screens.push(screen);
+        $scope.sharedChannel.screens.push(screen);
       }
     };
 
