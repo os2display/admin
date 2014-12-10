@@ -58,24 +58,6 @@ ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
             defer.reject(status);
           });
       }
-/*
-      var available = [
-        {
-          name: 'ITK Dev Share',
-          customer_id: 'itkdevshare'
-        },
-        {
-          name: 'Biblioteks Share',
-          customer_id: 'bibshare'
-        },
-        {
-          name: 'Fiskedeling',
-          customer_id: 'altforfiskene'
-        }
-      ];
-      defer.resolve(available);
-*/
-
 
       return defer.promise;
     };

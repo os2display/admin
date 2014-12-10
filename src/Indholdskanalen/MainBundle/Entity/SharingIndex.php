@@ -35,10 +35,10 @@ class SharingIndex {
   private $name;
 
   /**
-   * @ORM\Column(name="customer_id", type="text", nullable=false)
+   * @ORM\Column(name="index", type="text", nullable=false)
    * @Groups({"api"})
    */
-  private $customerId;
+  private $index;
 
   /**
    * @ORM\ManyToMany(targetEntity="Channel", inversedBy="sharingIndexes")
@@ -108,21 +108,21 @@ class SharingIndex {
   }
 
   /**
-   * Set customerId
+   * Set index
    *
-   * @param string $customerId
+   * @param string $index
    */
-  public function setCustomerId($customerId) {
-    $this->customerId = $customerId;
+  public function setIndex($index) {
+    $this->index = $index;
   }
 
   /**
-   * Get customerId
+   * Get index
    *
    * @return string
    */
-  public function getCustomerId() {
-    return $this->customerId;
+  public function getIndex() {
+    return $this->index;
   }
 
   /**

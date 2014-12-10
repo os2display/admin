@@ -79,7 +79,7 @@ class SharingService extends ContainerAware {
    */
   public function addChannelToIndex($channel, $index) {
     $params = array(
-      'customer_id' => $index->getCustomerId(),
+      'customer_id' => $index->getIndex(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
       'id' => $channel->getSharingID(),
       'data' => $channel,
@@ -98,7 +98,7 @@ class SharingService extends ContainerAware {
    */
   public function removeChannelFromIndex($channel, $index) {
     $params = array(
-      'customer_id' => $index->getCustomerId(),
+      'customer_id' => $index->getIndex(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
       'id' => $channel->getSharingID(),
       'data' => $channel,
@@ -117,7 +117,7 @@ class SharingService extends ContainerAware {
    */
   public function updateChannel($channel, $index) {
     $params = array(
-      'customer_id' => $index->getCustomerId(),
+      'customer_id' => $index->getIndex(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
       'id' => $channel->getSharingID(),
       'data' => $channel,
@@ -137,9 +137,12 @@ class SharingService extends ContainerAware {
    * @return mixed
    */
   public function getChannelFromIndex($channel_id, $index) {
+    // @TODO: FIX THIS!!!!!
+
     $params = array(
       'customer_id' => $index,
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
+      'id' => $channel_id,
       'query' => array(
         'ids' => array(
           'values' => array(

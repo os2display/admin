@@ -25,7 +25,16 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.sharingIndexes = [];
         sharedChannelFactory.getSharingIndexes().then(function(data) {
-          scope.sharingIndexes = data;
+          // @TODO: Revert to below line when customer_id is renamed to index
+          //scope.sharingIndexes = data;
+          data.forEach(function(element) {
+            scope.sharingIndexes.push(
+              {
+                "name": element.name,
+                "customer_id": element.index
+              }
+            );
+          });
         });
 
         // Set default orientation and sort.
