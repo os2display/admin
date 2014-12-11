@@ -75,7 +75,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
      */
     factory.clearCurrentSlide = function clearCurrentSlide() {
       currentSlide = null;
-    }
+    };
 
     /**
      * Find slide to edit. If id is not set return current slide, else load from backend.

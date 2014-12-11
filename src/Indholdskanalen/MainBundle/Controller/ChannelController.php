@@ -183,8 +183,8 @@ class ChannelController extends Controller {
 
     // Set the sharing id, if it is not set.
     if ($channel->getSharingId() === null || $channel->getSharingId() === '0') {
-      $customer_id = $this->container->getParameter('search_customer_id');
-      $id = md5($customer_id . $channel->getId());
+      $index = $this->container->getParameter('search_index');
+      $id = md5($index . $channel->getId());
       $channel->setSharingId($id);
     }
 
@@ -194,8 +194,8 @@ class ChannelController extends Controller {
 
       // Get all sharing_indexes ids from POST.
       $post_sharing_indexes_ids = array();
-      foreach ($post->sharing_indexes as $index) {
-        $post_sharing_indexes_ids[] = $index->id;
+      foreach ($post->sharing_indexes as $ind) {
+        $post_sharing_indexes_ids[] = $ind->id;
       }
 
       // Remove sharing indexes.

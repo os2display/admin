@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration',
-  function(sharedChannelFactory, userFactory, configuration) {
+ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
+  function(sharedChannelFactory, userFactory, configuration, $timeout) {
     "use strict";
 
     return {
@@ -25,16 +25,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.sharingIndexes = [];
         sharedChannelFactory.getSharingIndexes().then(function(data) {
-          // @TODO: Revert to below line when customer_id is renamed to index
-          //scope.sharingIndexes = data;
-          data.forEach(function(element) {
-            scope.sharingIndexes.push(
-              {
-                "name": element.name,
-                "customer_id": element.index
-              }
-            );
-          });
+          scope.sharingIndexes = data;
         });
 
         // Set default orientation and sort.
@@ -87,7 +78,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
           search.text = scope.search_text;
 
           scope.loading = true;
-          sharedChannelFactory.searchChannels(search, scope.index.customer_id).then(
+          sharedChannelFactory.searchChannels(search, scope.index.index).then(
             function(data) {
               scope.loading = false;
               scope.hits = data.hits;

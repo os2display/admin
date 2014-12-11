@@ -92,7 +92,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', function($q
 
     // Build default match all search query.
     var query = {
-      "customer_id": configuration.search.customer_id,
+      "index": configuration.search.index,
       "type": search.type,
       "query": {
         "match_all": { }

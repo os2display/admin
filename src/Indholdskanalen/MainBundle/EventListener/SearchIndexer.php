@@ -161,9 +161,9 @@ class SearchIndexer {
     }
 
     // Build parameters to send to the search backend.
-    $customer_id = $this->container->getParameter('search_customer_id');
+    $index = $this->container->getParameter('search_index');
     $params = array(
-      'customer_id' => $customer_id,
+      'index' => $index,
       'type' => $type,
       'id' => $entity->getId(),
       'data' => $entity,
