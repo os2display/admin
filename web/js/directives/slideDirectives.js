@@ -94,30 +94,11 @@ ikApp.directive('ikSharedSlide', ['cssInjector', function(cssInjector) {
 
         cssInjector.add(scope.ikSlide.css_path);
 
-        if (scope.ikSlide.media_type === 'image') {
-          if (scope.ikSlide.media.length > 0) {
-            scope.ikSlide.currentImage = scope.ikSlide.media[0];
-          }
-          else {
-            scope.ikSlide.currentImage = '';
-          }
-        }
-        else {
-          if (scope.ikSlide.media.length > 0 && scope.ikSlide.media[0].provider_metadata.length > 0) {
-            scope.ikSlide.currentImage = scope.ikSlide.media[0].provider_metadata[0].thumbnails[1].reference;
-          }
-          else {
-            scope.ikSlide.currentImage = '';
-          }
+        if (scope.ikSlide.media_thumbs && scope.ikSlide.media_thumbs.length > 0) {
+          scope.ikSlide.currentImage = scope.ikSlide.media_thumbs[0];
         }
 
-        // Set the currentLogo variable.
-        if (scope.ikSlide.logo !== undefined && scope.ikSlide.logo !== null) {
-          scope.ikSlide.currentLogo = scope.ikSlide.logo;
-        }
-        else {
-          scope.ikSlide.currentLogo = '';
-        }
+        scope.ikSlide.currentLogo = scope.ikSlide.logo;
 
         scope.templateURL = scope.ikSlide.preview_path;
 

@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration',
-  function(sharedChannelFactory, userFactory, configuration) {
+ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
+  function(sharedChannelFactory, userFactory, configuration, $timeout) {
     "use strict";
 
     return {
@@ -19,9 +19,9 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         ikOverlay: '@'
       },
       link: function(scope, element, attrs) {
-        scope.index = {
-          "customer_id": "bibshare"
-        };
+        scope.index = {};
+        scope.loading = false;
+
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.sharingIndexes = [];
         sharedChannelFactory.getSharingIndexes().then(function(data) {
@@ -77,12 +77,12 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
           // Get search text from scope.
           search.text = scope.search_text;
 
-          sharedChannelFactory.searchChannels(search, scope.index.customer_id).then(
+          scope.loading = true;
+          sharedChannelFactory.searchChannels(search, scope.index.index).then(
             function(data) {
+              scope.loading = false;
               scope.hits = data.hits;
               scope.channels = data.results;
-
-              console.log(scope.channels);
             }
           );
         };
@@ -93,6 +93,13 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         scope.$on('channel-deleted', function() {
           scope.updateSearch();
         });
+
+        /**
+         *
+         */
+        scope.updatedIndex = function updatedIndex() {
+          scope.updateSearch();
+        };
 
         /**
          * Returns true if channel is in selected channels array.
@@ -117,7 +124,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         };
 
         /**
-         * Emits the slideOverview.clickSlide event.
+         * Emits the channelSharingOverview.clickChannel event.
          *
          * @param channel
          */
@@ -213,8 +220,6 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         if (scope.ikFilter) {
           scope.setOrientation(scope.ikFilter);
         }
-
-        scope.updateSearch();
       },
       templateUrl: '/partials/directives/channel-sharing-overview-directive.html'
     };

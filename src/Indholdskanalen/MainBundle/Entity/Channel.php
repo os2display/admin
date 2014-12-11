@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  *
  * @AccessorOrder("custom", custom = {"id", "title" ,"orientation", "created_at", "slides"})
  *
- * @ORM\Table(name="channel")
+ * @ORM\Table(name="ik_channel")
  * @ORM\Entity
  */
 class Channel {
@@ -59,7 +59,7 @@ class Channel {
 
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
-   * @ORM\JoinTable(name="screens_channels")
+   * @ORM\JoinTable(name="ik_screens_channels")
    * @Groups({"api"})
    */
   private $screens;
@@ -80,6 +80,12 @@ class Channel {
    * @Groups({"api"})
    */
   private $sharingIndexes;
+
+  /**
+   * @ORM\Column(name="sharing_id", type="string", nullable=true)
+   * @Groups({"sharing", "api"})
+   */
+  private $sharingId;
 
   /**
    * Constructor
@@ -116,6 +122,25 @@ class Channel {
   public function getTitle() {
     return $this->title;
   }
+
+  /**
+   * Set sharingId
+   *
+   * @param string $sharingId
+   */
+  public function setSharingId($sharingId) {
+    $this->sharingId = $sharingId;
+  }
+
+  /**
+   * Get sharingId
+   *
+   * @return string
+   */
+  public function getSharingId() {
+    return $this->sharingId;
+  }
+
 
   /**
    * Set orientation
@@ -259,7 +284,6 @@ class Channel {
 
     return $result;
   }
-
 
   /**
    * Set user

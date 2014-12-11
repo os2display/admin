@@ -181,14 +181,21 @@ class ChannelController extends Controller {
 
     $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($post->id);
 
+    // Set the sharing id, if it is not set.
+    if ($channel->getSharingId() === null || $channel->getSharingId() === '0') {
+      $index = $this->container->getParameter('search_index');
+      $id = md5($index . $channel->getId());
+      $channel->setSharingId($id);
+    }
+
     // Test for existance of sharingIndexes in post
     if (isset($post->sharing_indexes)) {
       $dispatcher = $this->get('event_dispatcher');
 
       // Get all sharing_indexes ids from POST.
       $post_sharing_indexes_ids = array();
-      foreach ($post->sharing_indexes as $index) {
-        $post_sharing_indexes_ids[] = $index->id;
+      foreach ($post->sharing_indexes as $ind) {
+        $post_sharing_indexes_ids[] = $ind->id;
       }
 
       // Remove sharing indexes.
@@ -213,11 +220,15 @@ class ChannelController extends Controller {
             $event = new SharingServiceEvent($channel, $sharingIndex);
             $dispatcher->dispatch(SharingServiceEvents::ADD_CHANNEL_TO_INDEX, $event);
           }
+          else {
+            // Send event to sharingService to add channel to index.
+            $event = new SharingServiceEvent($channel, $sharingIndex);
+            $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
+          }
         }
       }
     }
 
-    $em->persist($channel);
     $em->flush();
 
     $response = new Response();

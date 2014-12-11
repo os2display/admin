@@ -23,15 +23,17 @@
    ========================================================================== */
 
 .preview--slide,
-.preview--channel {
-  display: inline-block;
+.preview--channel,
+.preview--channel-display {
+  display: block;
   margin: 0;
   position: relative;
   overflow: hidden;
 }
 
 .preview--channel-display,
-.preview--slide-display {
+.preview--slide-display,
+.preview--channel-display {
   cursor: pointer;
 
   &.is-empty {
@@ -39,6 +41,9 @@
   }
 }
 
+.preview--channel-display {
+  display: inline-block;
+}
 
 .preview--channel-play {
   @extend %preview--play-pause-positioning;

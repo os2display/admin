@@ -15,7 +15,7 @@ use Application\Sonata\MediaBundle\Entity\Media as Media;
  * Media Order.
  * Represents an ordered media element.
  *
- * @ORM\Table(name="media_order")
+ * @ORM\Table(name="ik_media_order")
  * @ORM\Entity
  */
 class MediaOrder {

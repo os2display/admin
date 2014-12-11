@@ -23,8 +23,9 @@
     </div>
   </div>
   <div class="overview--slides">
+    <div class="spinner overview--spinner" data-ng-show="loading"></div>
     <!-- If normal display-->
-    <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="!ikOverlay">
+    <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="!ikOverlay && !loading">
       <div class="overview--slide-link" data-ng-click="slideOverviewClickSlide(slide)" data-ng-class="{'is-selected': slideSelected(slide)}">
         <div data-ng-if="slide.published == true">
           <div class="overview--slide-published-icon" title="Dette slide er publiseret."></div>
@@ -40,7 +41,7 @@
       <ik-delete id="{{ slide.id }}" type="slide" />
     </div>
     <!-- If overlay display-->
-    <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="ikOverlay">
+    <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="ikOverlay && !loading">
       <div class="overview--slide-link" data-ng-click="slideOverviewClickSlide(slide)" data-ng-class="{'is-selected': slideSelected(slide)}">
        <span class="overview--overlay">
           <span class="overview--link-check"></span>

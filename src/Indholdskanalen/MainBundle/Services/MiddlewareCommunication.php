@@ -74,6 +74,17 @@ class MiddlewareCommunication extends ContainerAware
       $serializer = $this->container->get('jms_serializer');
       $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('middleware')));
 
+      // Add shared channels.
+      // @TODO: find more pretty solution than decode/encode.
+      $content = json_decode($jsonContent);
+      foreach($screen->getSharedChannels() as $sharedChannel) {
+        $channel = json_decode($sharedChannel->getContent());
+        foreach($channel->slides as $slide) {
+          $content->channelContent->slides[] = $slide;
+        }
+      }
+      $jsonContent = json_encode($content);
+
       $sha1 = sha1($jsonContent);
 
       if ($force || $sha1 !== $screen->getLastPushHash()) {

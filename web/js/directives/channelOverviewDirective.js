@@ -20,6 +20,7 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
       },
       link: function(scope, element, attrs) {
         scope.displaySharingOption = configuration.sharingService.enabled;
+        scope.loading = false;
 
         // Set default orientation and sort.
         scope.orientation = 'landscape';
@@ -70,6 +71,8 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
           // Get search text from scope.
           search.text = scope.search_text;
 
+          scope.loading = true;
+
           channelFactory.searchChannels(search).then(
             function(data) {
               // Total hits.
@@ -85,6 +88,8 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
               channelFactory.loadChannelsBulk(ids).then(
                 function (data) {
                   scope.channels = data;
+
+                  scope.loading = false;
                 }
               );
             }

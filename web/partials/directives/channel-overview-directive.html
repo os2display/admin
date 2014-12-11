@@ -24,8 +24,9 @@
   </div>
 
   <div class="overview--channels">
+    <div class="spinner overview--spinner" data-ng-show="loading"></div>
     <!-- If normal display-->
-    <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="!ikOverlay">
+    <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="!ikOverlay && !loading">
       <div class="overview--channel-link" data-ng-click="clickChannel(channel)" data-ng-class="{'is-selected': channelSelected(channel)}">
         <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-single-slide="false"></ik-channel>
       </div>
@@ -35,7 +36,7 @@
       <ik-delete id="{{ channel.id }}" type="channel" />
     </div>
     <!-- If overlay display-->
-    <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="ikOverlay">
+    <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="ikOverlay && !loading">
       <div class="overview--channel-link" data-ng-click="channelOverviewClickChannel(channel)" data-ng-class="{'is-selected': channelSelected(channel)}">
        <span class="overview--overlay">
           <span class="overview--link-check"></span>

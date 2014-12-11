@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  * SharingIndex
  * Represents an index existing in the sharing service.
  *
- * @ORM\Table(name="sharing_index")
+ * @ORM\Table(name="ik_sharing_index")
  * @ORM\Entity
  */
 class SharingIndex {
@@ -35,18 +35,24 @@ class SharingIndex {
   private $name;
 
   /**
-   * @ORM\Column(name="customer_id", type="text", nullable=false)
+   * @ORM\Column(name="`index`", type="text", nullable=false)
    * @Groups({"api"})
    */
-  private $customerId;
+  private $index;
 
   /**
    * @ORM\ManyToMany(targetEntity="Channel", inversedBy="sharingIndexes")
-   * @ORM\JoinTable(name="sharing_indexes_channels")
+   * @ORM\JoinTable(name="ik_sharing_indexes_channels")
    * @Groups({"api"})
    * @MaxDepth(3)
    */
   private $channels;
+
+  /**
+   * @ORM\Column(name="enabled", type="boolean", nullable=true)
+   * @Groups({"api"})
+   */
+  private $enabled;
 
   /**
    * Constructor
@@ -69,7 +75,7 @@ class SharingIndex {
    *
    * @param string $name
    */
-  public function setTitle($name) {
+  public function setName($name) {
     $this->name = $name;
   }
 
@@ -82,22 +88,41 @@ class SharingIndex {
     return $this->name;
   }
 
+
   /**
-   * Set customerId
+   * Set enabled
    *
-   * @param string $customerId
+   * @param string $enabled
    */
-  public function setCustomerId($customerId) {
-    $this->customerId = $customerId;
+  public function setEnabled($enabled) {
+    $this->enabled = $enabled;
   }
 
   /**
-   * Get customerId
+   * Get enabled
    *
    * @return string
    */
-  public function getCustomerId() {
-    return $this->customerId;
+  public function getEnabled() {
+    return $this->enabled;
+  }
+
+  /**
+   * Set index
+   *
+   * @param string $index
+   */
+  public function setIndex($index) {
+    $this->index = $index;
+  }
+
+  /**
+   * Get index
+   *
+   * @return string
+   */
+  public function getIndex() {
+    return $this->index;
   }
 
   /**

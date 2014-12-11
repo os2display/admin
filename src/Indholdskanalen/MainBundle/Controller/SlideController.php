@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\Serializer\SerializationContext;
 use Indholdskanalen\MainBundle\Entity\Slide;
+use Indholdskanalen\MainBundle\Entity\SharingIndex;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvents;
 
 
 /**
@@ -201,6 +204,16 @@ class SlideController extends Controller {
 
       if ($logo) {
         $slide->setLogo($logo);
+      }
+    }
+
+    // Update shared channels
+    $dispatcher = $this->get('event_dispatcher');
+    foreach ($slide->getChannels() as $channel) {
+      foreach ($channel->getSharingIndexes() as $sharingIndex) {
+        // Send event to sharingService to add channel to index.
+        $event = new SharingServiceEvent($channel, $sharingIndex);
+        $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
       }
     }
 

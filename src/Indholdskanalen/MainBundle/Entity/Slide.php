@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation\MaxDepth;
 /**
  * Extra
  *
- * @ORM\Table(name="slide")
+ * @ORM\Table(name="ik_slide")
  * @ORM\Entity
  */
 class Slide {
@@ -110,7 +110,7 @@ class Slide {
   /**
    * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="logoSlides")
    * @ORM\JoinColumn(name="logo_id", referencedColumnName="id")
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   private $logo;
 

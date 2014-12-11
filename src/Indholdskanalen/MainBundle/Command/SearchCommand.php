@@ -133,9 +133,9 @@ class SearchCommand extends ContainerAwareCommand {
    */
   private function sendEvent($entity, $method) {
     // Build parameters to send to the search backend.
-    $customer_id = $this->getContainer()->getParameter('search_customer_id');
+    $index = $this->getContainer()->getParameter('search_index');
     $params = array(
-      'customer_id' => $customer_id,
+      'index' => $index,
       'type' => get_class($entity),
       'id' => $entity->getId(),
       'data' => $entity,

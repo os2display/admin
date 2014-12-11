@@ -8,14 +8,14 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-ikApp.directive('ikSharedChannel', ['$interval', '$location',
-  function($interval, $location) {
+ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
+  function($interval, $location, cssInjector) {
     return {
       restrict: 'E',
       scope: {
         ikWidth: '@',
         ikChannel: '=',
-        ikSingleSlide: '='
+        ikSharingIndex: '='
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
@@ -36,6 +36,12 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location',
 
             scope.buttonState = 'play';
           }
+
+          // Injector stylesheets
+          scope.ikChannel.slides.forEach(function(el) {
+            // Inject stylesheet.
+            cssInjector.add(el.css_path);
+          });
         });
 
         /**
@@ -60,9 +66,7 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location',
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function() {
-          if(scope.ikSingleSlide != true) {
-            $location.path("/channel-shared/" + scope.ikChannel.id);
-          }
+          $location.path("/shared-channel/" + scope.ikChannel.sharing_id + "/" + scope.ikSharingIndex);
         };
 
         // Register event listener for destroy.

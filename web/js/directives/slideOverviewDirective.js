@@ -18,6 +18,8 @@ ikApp.directive('ikSlideOverview', function() {
       ikOverlay: '@'
     },
     controller: function($scope, slideFactory, userFactory) {
+      $scope.loading = false;
+
       // Set default orientation and sort.
       $scope.orientation = 'all';
       $scope.showFromUser = 'all';
@@ -58,6 +60,8 @@ ikApp.directive('ikSlideOverview', function() {
         // Get search text from scope.
         search.text = $scope.search_text;
 
+        $scope.loading = true;
+
         slideFactory.searchSlides(search).then(
           function (data) {
             // Total hits.
@@ -73,6 +77,8 @@ ikApp.directive('ikSlideOverview', function() {
             slideFactory.loadSlidesBulk(ids).then(
               function (data) {
                 $scope.slides = data;
+
+                $scope.loading = false;
               }
             );
           }

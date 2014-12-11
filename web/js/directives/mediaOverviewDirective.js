@@ -27,6 +27,7 @@ ikApp.directive('ikMediaOverview', function() {
       // Set default orientation and sort.
       $scope.sort = { "created_at": "desc" };
       $scope.showFromUser = 'all';
+      $scope.loading = false;
 
       userFactory.getCurrentUser().then(
         function(data) {
@@ -83,6 +84,8 @@ ikApp.directive('ikMediaOverview', function() {
         // Get search text from scope.
         search.text = $scope.search_text;
 
+        $scope.loading = true;
+
         mediaFactory.searchMedia(search).then(
           function(data) {
             // Total hits.
@@ -97,6 +100,8 @@ ikApp.directive('ikMediaOverview', function() {
             mediaFactory.loadMediaBulk(ids).then(
               function(data) {
                 $scope.media = data;
+
+                $scope.loading = false;
               }
             );
           }

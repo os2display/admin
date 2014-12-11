@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\Groups;
 /**
  *
  *
- * @ORM\Table(name="channelslideorder")
+ * @ORM\Table(name="ik_channelslideorder")
  * @ORM\Entity
  */
 class ChannelSlideOrder {
