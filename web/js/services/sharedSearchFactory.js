@@ -58,7 +58,7 @@ ikApp.service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', '$htt
           getSocket(deferred);
         }
         else {
-          $http.get('api/sharing/authenticate')
+          $http.get('api/auth/sharing')
             .success(function(data) {
               token = data;
               getSocket(deferred);
@@ -81,17 +81,17 @@ ikApp.service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', '$htt
      * The default search should have this form:
      *
      * {
-   *   "fields": 'title',
-   *     "text": '',
-   *     "sort": [
-   *      {
-   *       "created_at.raw" : {
-   *         "order": "desc"
-   *       }
-   *     }
-   *     ],
-   *     "filter": [ ]
-   *   }
+     *   "fields": 'title',
+     *     "text": '',
+     *     "sort": [
+     *      {
+     *       "created_at.raw" : {
+     *         "order": "desc"
+     *       }
+     *     }
+     *     ],
+     *     "filter": [ ]
+     *   }
      * }
      *
      * @param search

@@ -23,24 +23,6 @@ use JMS\Serializer\SerializationContext;
  */
 class SharingController extends Controller {
   /**
-   * Get the authentication token.
-   *
-   * @Route("/authenticate")
-   * @Method("GET")
-   *
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function SharingAuthenticateGetAction() {
-    $sharingService = $this->container->get('indholdskanalen.sharing_service');
-    $token = $sharingService->sharingAuthenticate();
-
-    $response = new Response();
-    $response->setContent($token);
-    $response->headers->set('Content-Type', 'application/json');
-    return $response;
-  }
-
-  /**
    * Get a shared channel with id from index
    *
    * @Route("/channel/{id}/{index}")
