@@ -206,6 +206,8 @@ class SharingController extends Controller {
    * @Route("/indexes")
    * @Method("POST")
    *
+   * @param Request $request
+   *
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function SharingIndexesSaveAction(Request $request) {

@@ -10,14 +10,18 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
   function($scope, $location, $routeParams, $timeout, screenFactory, channelFactory) {
     $scope.steps = 3;
     $scope.screen = {};
-    $scope.channels = [];
 
     // Setup the editor.
     $scope.editor = {
       channelOverviewEditor: false,
+      sharedChannelOverviewEditor: false,
       toggleChannelOverviewEditor: function() {
         $('html').toggleClass('is-locked');
         $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;
+      },
+      toggleSharedChannelOverviewEditor: function() {
+        $('html').toggleClass('is-locked');
+        $scope.editor.sharedChannelOverviewEditor = !$scope.editor.sharedChannelOverviewEditor;
       }
     };
 
@@ -39,11 +43,6 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      * Handles different settings of route parameters.
      */
     function init() {
-      // Get all channels for step 3
-      channelFactory.getChannels().then(function(data) {
-        $scope.channels = data;
-      });
-
       if (!$routeParams.id) {
         // If the ID is not set, get an empty slide.
         $scope.screen = screenFactory.emptyScreen();
@@ -55,6 +54,11 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
           // Get the screen from the backend.
           screenFactory.getEditScreen($routeParams.id).then(function(data) {
             $scope.screen = data;
+
+            $scope.screen.shared_channels.forEach(function(element) {
+              element.content = JSON.parse(element.content);
+            });
+
             $scope.screen.status = 'edit-screen';
 
             if ($scope.screen === {}) {
@@ -174,6 +178,27 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
       }
       else {
         $scope.screen.channels.push(channel);
+      }
+    };
+
+    /**
+     * Add remove a channel.
+     * @param channel
+     */
+    $scope.toggleSharedChannel = function(channel) {
+      var index = null;
+
+      $scope.screen.shared_channels.forEach(function(slideChannel, channelIndex) {
+        if (channel.id == slideChannel.id) {
+          index = channelIndex;
+        }
+      });
+
+      if (index !== null) {
+        $scope.screen.shared_channels.splice(index, 1);
+      }
+      else {
+        $scope.screen.shared_channels.push(channel);
       }
     };
   }
