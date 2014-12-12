@@ -52,28 +52,34 @@ class SharingController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function SharedChannelGetAction($id, $index) {
+    $response = new Response();
     $sharingService = $this->container->get('indholdskanalen.sharing_service');
     $doctrine = $this->container->get('doctrine');
     $em = $doctrine->getManager();
 
     // Get channel from sharing service.
-    $channelFromSharing = json_decode($sharingService->getChannelFromIndex($id, $index));
+    $result = $sharingService->getChannelFromIndex($id, $index);
+
+    if ($result['status'] !== 200) {
+      $response = new Response();
+      $response->setStatusCode($result['status']);
+      return $response;
+    }
+
+    $channelFromSharing = json_decode($result['content']);
 
     // No hits founds, or too many.
     if (!$channelFromSharing) {
-      $response = new Response();
       $response->setStatusCode(500);
       $response->setContent("Error: Could not retrieve channel from sharing service.");
       return $response;
     }
     else if ($channelFromSharing->hits > 1) {
-      $response = new Response();
       $response->setStatusCode(500);
       $response->setContent("Error: More than one entry with that id found.");
       return $response;
     }
     else if ($channelFromSharing->hits < 1) {
-      $response = new Response();
       $response->setStatusCode(404);
       return $response;
     }
@@ -100,10 +106,11 @@ class SharingController extends Controller {
     // Update database.
     $em->flush();
 
+    // Serialize shared channel
     $serializer = $this->get('jms_serializer');
     $content = $serializer->serialize($sharedChannel, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
 
-    $response = new Response();
+    // Send response.
     $response->setContent($content);
     $response->headers->set('Content-Type', 'application/json');
     return $response;

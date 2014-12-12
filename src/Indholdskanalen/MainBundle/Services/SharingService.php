@@ -156,11 +156,30 @@ class SharingService extends ContainerAware {
 
     $result = $this->curl($this->url . '/search', 'POST', $data);
 
-    if ($result['status'] !== 200) {
-      return false;
+    return $result;
+  }
+
+  /**
+   * Update the content of all shared channels.
+   * For CRON process.
+   */
+  public function updateAllSharedChannels() {
+    $sharedChannels = $this->doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findAll();
+    $em = $this->doctrine->getManager();
+
+    foreach($sharedChannels as $sharedChannel) {
+      $content = $this->getChannelFromIndex($sharedChannel->getUniqueId(), $sharedChannel->getIndex());
+
+      if ($content['status'] === 200) {
+        $sharedChannel->setContent(json_encode(json_decode($content['content'])->results[0]));
+      }
+      else if ($content['status'] === 404) {
+        // Channel removed, remove content of from db.
+        $sharedChannel->setContent(null);
+      }
     }
 
-    return $result['content'];
+    $em->flush();
   }
 
   public function getAvailableSharingIndexes() {
