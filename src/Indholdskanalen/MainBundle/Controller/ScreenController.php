@@ -235,7 +235,10 @@ class ScreenController extends Controller {
     $manager->flush();
 
     // Generate the response.
-    return new Response(json_encode(array("id" => $screen->getId())), 200);
+    return new Response(json_encode(array(
+      "id" => $screen->getId(),
+      "title" => $screen->getTitle,
+    )), 200);
   }
 
   /**
