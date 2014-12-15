@@ -71,6 +71,9 @@ ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFa
               $scope.screens = data;
 
               $scope.loading = false;
+            },
+            function (reason) {
+              $scope.loading = false;
             }
           );
         }

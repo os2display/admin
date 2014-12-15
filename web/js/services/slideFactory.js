@@ -149,7 +149,7 @@ ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
     factory.emptySlide = function() {
       currentSlide = {
         "id": null,
-        "published": false,
+        "published": true,
         "schedule_from": null,
         "schedule_to": null,
         "media": [],

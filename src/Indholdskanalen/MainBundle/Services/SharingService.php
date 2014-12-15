@@ -22,20 +22,23 @@ use Symfony\Component\HttpFoundation\Session\Session;
  * @package Indholdskanalen\MainBundle\Services
  */
 class SharingService extends ContainerAware {
+  protected $authenticationService;
   protected $serializer;
   protected $container;
   protected $doctrine;
   protected $url;
 
   /**
-   * Default constructor.
+   * Constructor.
    *
    * @param Serializer $serializer
    * @param Container $container
+   * @param AuthenticationService $authenticationService
    */
-  function __construct(Serializer $serializer, Container $container) {
+  function __construct(Serializer $serializer, Container $container, AuthenticationService $authenticationService) {
     $this->serializer = $serializer;
     $this->container = $container;
+    $this->authenticationService = $authenticationService;
 
     $this->url = $this->container->getParameter('sharing_host') . $this->container->getParameter('sharing_path');
     $this->doctrine = $this->container->get('doctrine');
@@ -156,11 +159,30 @@ class SharingService extends ContainerAware {
 
     $result = $this->curl($this->url . '/search', 'POST', $data);
 
-    if ($result['status'] !== 200) {
-      return false;
+    return $result;
+  }
+
+  /**
+   * Update the content of all shared channels.
+   * For CRON process.
+   */
+  public function updateAllSharedChannels() {
+    $sharedChannels = $this->doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findAll();
+    $em = $this->doctrine->getManager();
+
+    foreach($sharedChannels as $sharedChannel) {
+      $content = $this->getChannelFromIndex($sharedChannel->getUniqueId(), $sharedChannel->getIndex());
+
+      if ($content['status'] === 200) {
+        $sharedChannel->setContent(json_encode(json_decode($content['content'])->results[0]));
+      }
+      else if ($content['status'] === 404) {
+        // Channel removed, remove content of from db.
+        $sharedChannel->setContent(null);
+      }
     }
 
-    return $result['content'];
+    $em->flush();
   }
 
   public function getAvailableSharingIndexes() {
@@ -195,81 +217,6 @@ class SharingService extends ContainerAware {
     $em->flush();
   }
 
-  /**
-   * Authenticate with the sharing service.
-   *
-   * @return bool
-   */
-  private function curlAuthenticate() {
-    $apikey = $this->container->getParameter('sharing_apikey');
-    $search_host = $this->container->getParameter('sharing_host');
-
-    $jsonContent = json_encode(
-      array(
-        'apikey' => $apikey
-      )
-    );
-
-    // Build, execute and close query.
-    $ch = curl_init($search_host . "/authenticate");
-    curl_setopt($ch, CURLOPT_POST, TRUE);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json'
-    ));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $content = curl_exec($ch);
-    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($http_status === 200) {
-      return json_decode($content)->token;
-    }
-    else {
-      return false;
-    }
-  }
-
-  /**
-   * Get the authentication token from session else from Service.
-   *
-   * @return bool|mixed|null
-   */
-  public function sharingAuthenticate() {
-    $session = new Session();
-    $token = null;
-
-    // If the token is set return it.
-    if ($session->has('sharing_token')) {
-      $token = $session->get('sharing_token');
-    }
-    else {
-      $token = $this->curlAuthenticate();
-      if ($token) {
-        $session->set('sharing_token', $token);
-      }
-    }
-
-    return $token;
-  }
-
-  /**
-   * Remove session token and authenticate from Service.
-   *
-   * @return bool|mixed|null
-   */
-  public function sharingReauthenticate() {
-    $session = new Session();
-    $session->remove('sharing_token');
-
-    $token = $this->curlAuthenticate();
-    if ($token) {
-      $session->set('sharing_token', $token);
-    }
-
-    return $token;
-  }
 
   /**
    * Helper method: build the curl query.
@@ -309,8 +256,7 @@ class SharingService extends ContainerAware {
    * @return array
    */
   protected function curl($url, $method = 'POST', $data) {
-    // Get the authentication token.
-    $token = $this->sharingAuthenticate();
+    $token = $this->authenticationService->getAuthentication('sharing');
 
     // Execute request.
     $ch = $this->buildQuery($url, $method, $token, $data);
@@ -321,7 +267,7 @@ class SharingService extends ContainerAware {
 
     // If unauthenticated, reauthenticate and retry.
     if ($http_status === 401) {
-      $token = $this->sharingReauthenticate();
+      $token = $token = $this->authenticationService->getAuthentication('sharing', true);
 
       // Execute.
       $ch = $this->buildQuery($url, $method, $token, $data);

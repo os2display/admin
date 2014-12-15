@@ -60,7 +60,7 @@ ikApp.directive('ikChannel', ['$interval', '$location',
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function() {
-          if(scope.ikSingleSlide != true) {
+          if (scope.ikSingleSlide != true) {
             $location.path("/channel/" + scope.ikChannel.id);
           }
         };

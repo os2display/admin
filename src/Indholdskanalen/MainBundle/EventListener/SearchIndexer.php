@@ -7,10 +7,10 @@
 namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Indholdskanalen\MainBundle\Services\AuthenticationService;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 
 /**
@@ -21,16 +21,19 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class SearchIndexer {
   protected $container;
   protected $serializer;
+  protected $authenticationService;
 
   /**
-   * Default constructor.
+   * Constructor
    *
    * @param Serializer $serializer
    * @param Container $container
+   * @param AuthenticationService $authenticationService
    */
-  function __construct(Serializer $serializer, Container $container) {
+  function __construct(Serializer $serializer, Container $container, AuthenticationService $authenticationService) {
     $this->serializer = $serializer;
     $this->container = $container;
+    $this->authenticationService = $authenticationService;
   }
 
   /**
@@ -58,82 +61,6 @@ class SearchIndexer {
    */
   public function preRemove(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'DELETE');
-  }
-
-  /**
-   * Authenticate with the sharing service.
-   *
-   * @return bool
-   */
-  private function curlAuthenticate() {
-    $apikey = $this->container->getParameter('search_apikey');
-    $search_host = $this->container->getParameter('search_host');
-
-    $data = json_encode(
-      array(
-        'apikey' => $apikey
-      )
-    );
-
-    // Build, execute and close query.
-    $ch = curl_init($search_host . "/authenticate");
-    curl_setopt($ch, CURLOPT_POST, TRUE);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json'
-    ));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $content = curl_exec($ch);
-    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($http_status === 200) {
-      return json_decode($content)->token;
-    }
-    else {
-      return false;
-    }
-  }
-
-  /**
-   * Get the authentication token from session else from Service.
-   *
-   * @return bool|mixed|null
-   */
-  public function searchAuthenticate() {
-    $session = new Session();
-    $token = null;
-
-    // If the token is set return it.
-    if ($session->has('search_token')) {
-      $token = $session->get('search_token');
-    }
-    else {
-      $token = $this->curlAuthenticate();
-      if ($token) {
-        $session->set('search_token', $token);
-      }
-    }
-
-    return $token;
-  }
-
-  /**
-   * Remove session token and authenticate from Service.
-   *
-   * @return bool|mixed|null
-   */
-  public function searchReauthenticate() {
-    $session = new Session();
-    $session->remove('search_token');
-
-    $token = $this->curlAuthenticate();
-    if ($token) {
-      $session->set('search_token', $token);
-    }
-
-    return $token;
   }
 
   /**
@@ -211,7 +138,7 @@ class SearchIndexer {
    */
   protected function curl($url, $method = 'POST', $params = array()) {
     // Get the authentication token.
-    $token = $this->searchAuthenticate();
+    $token = $this->authenticationService->getAuthentication('search');
 
     $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
 
@@ -223,7 +150,7 @@ class SearchIndexer {
 
     // If unauthenticated, reauthenticate and retry.
     if ($http_status === 401) {
-      $token = $this->searchReauthenticate();
+      $token = $this->authenticationService->getAuthentication('search', true);
 
       $ch = $this->buildQuery($url, $method, $jsonContent, $token);
       $content = curl_exec($ch);

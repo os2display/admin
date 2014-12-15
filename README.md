@@ -216,8 +216,10 @@ $ crontab -e
 Add the following line:
 
 <pre>
-*/1 * * * * php path_to_backend/app/console indholdskanalen:pushcontent
+*/1 * * * * php path_to_backend/app/console indholdskanalen:cron
 </pre>
+
+This command will fetch the latest content from the providers and push to the screens if necessary.
 
 Disable the push-on-changes feature in the src/Indholdskanalen/MainBundle/Resources/config/services.yml by commenting out the middleware listener.
 

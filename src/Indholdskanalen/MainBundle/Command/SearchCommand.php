@@ -150,6 +150,31 @@ class SearchCommand extends ContainerAwareCommand {
   }
 
   /**
+   * Builds the curl query.
+   *
+   * @param $url
+   * @param $method
+   * @param $data
+   * @param $token
+   * @return resource
+   */
+  private function buildQuery($url, $method, $data, $token) {
+    // Build query.
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $token
+    ));
+    // Receive server response.
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    return $ch;
+  }
+
+  /**
    * Communication function.
    *
    * Wrapper function for curl to send data to ES.
@@ -164,26 +189,30 @@ class SearchCommand extends ContainerAwareCommand {
    * @return array
    */
   private function curl($url, $method = 'POST', $params) {
+    $authenticationService = $this->getContainer()->get('indholdskanalen.authentication_service');
+
+    // Get the authentication token.
+    $token = $authenticationService->getAuthentication('search');
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
+
     // Build query.
-    $ch = curl_init($url);
-
-    curl_setopt($ch, CURLOPT_POST, TRUE);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-
-    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
-
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json'
-    ));
-
-    // Receive server response.
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $ch = $this->buildQuery($url, $method, $data, $token);
     $content = curl_exec($ch);
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     // Close connection.
     curl_close($ch);
+
+    // If unauthenticated, reauthenticate and retry.
+    if ($http_status === 401) {
+      $token = $authenticationService->getAuthentication('search', true);
+
+      $ch = $this->buildQuery($url, $method, $data, $token);
+      $content = curl_exec($ch);
+      $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+      // Close connection.
+      curl_close($ch);
+    }
 
     return (object) array(
       'status' => $http_status,

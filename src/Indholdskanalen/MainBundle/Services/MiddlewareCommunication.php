@@ -75,16 +75,22 @@ class MiddlewareCommunication extends ContainerAware
       $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('middleware')));
 
       // Add shared channels.
-      // @TODO: find more pretty solution than decode/encode.
+      // @TODO: find a more pretty solution than decode/encode.
       $content = json_decode($jsonContent);
       foreach($screen->getSharedChannels() as $sharedChannel) {
-        $channel = json_decode($sharedChannel->getContent());
+        $channel = $sharedChannel->getContent();
+        if ($channel === null) {
+          continue;
+        }
+
+        $channel = json_decode($channel);
         foreach($channel->slides as $slide) {
           $content->channelContent->slides[] = $slide;
         }
       }
       $jsonContent = json_encode($content);
 
+      // Calculate hash of content, used to avoid unnecessary push.
       $sha1 = sha1($jsonContent);
 
       if ($force || $sha1 !== $screen->getLastPushHash()) {

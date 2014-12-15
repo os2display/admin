@@ -30,6 +30,7 @@ parameters:
     sharing_host: http://127.0.0.1:3010
     sharing_path: /api
     sharing_apikey: 1234567890
+    sharing_enabled: true
 
     search_host: http://127.0.0.1:3010
     search_path: /api

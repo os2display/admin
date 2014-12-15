@@ -25,7 +25,7 @@ ikApp.factory('userFactory', ['$http', '$q',
         });
 
       return defer.promise;
-    }
+    };
 
     return factory;
   }

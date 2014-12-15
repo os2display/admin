@@ -79,6 +79,9 @@ ikApp.directive('ikSlideOverview', function() {
                 $scope.slides = data;
 
                 $scope.loading = false;
+              },
+              function (reason) {
+                $scope.loading = false;
               }
             );
           }
