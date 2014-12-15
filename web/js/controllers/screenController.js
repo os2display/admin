@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory',
-  function($scope, $location, $routeParams, $timeout, screenFactory, channelFactory) {
+ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory',
+  function($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory) {
     $scope.steps = 3;
     $scope.screen = {};
 
@@ -28,6 +28,11 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
     // Register event listener for clickSlide.
     $scope.$on('channelOverview.clickChannel', function(event, channel) {
       $scope.toggleChannel(channel);
+    });
+
+    // Register event listener for clickSlide.
+    $scope.$on('channelSharingOverview.clickSharedChannel', function(event, channel, index) {
+      $scope.toggleSharedChannel(channel, index);
     });
 
     /**
@@ -185,21 +190,26 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      * Add remove a channel.
      * @param channel
      */
-    $scope.toggleSharedChannel = function(channel) {
+    $scope.toggleSharedChannel = function(channel, channel_index) {
       var index = null;
 
-      $scope.screen.shared_channels.forEach(function(slideChannel, channelIndex) {
-        if (channel.id == slideChannel.id) {
-          index = channelIndex;
+      sharedChannelFactory.getSharedChannel(channel.unique_id, channel_index).then(function(data) {
+        channel = data;
+        channel.content = JSON.parse(channel.content);
+
+        $scope.screen.shared_channels.forEach(function(slideChannel, channelIndex) {
+          if (channel.unique_id === slideChannel.unique_id) {
+            index = channelIndex;
+          }
+        });
+
+        if (index !== null) {
+          $scope.screen.shared_channels.splice(index, 1);
+        }
+        else {
+          $scope.screen.shared_channels.push(channel);
         }
       });
-
-      if (index !== null) {
-        $scope.screen.shared_channels.splice(index, 1);
-      }
-      else {
-        $scope.screen.shared_channels.push(channel);
-      }
     };
   }
 ]);

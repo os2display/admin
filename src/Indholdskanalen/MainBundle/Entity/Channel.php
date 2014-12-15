@@ -82,10 +82,10 @@ class Channel {
   private $sharingIndexes;
 
   /**
-   * @ORM\Column(name="sharing_id", type="string", nullable=true)
+   * @ORM\Column(name="unique_id", type="string", nullable=true)
    * @Groups({"sharing", "api"})
    */
-  private $sharingId;
+  private $uniqueId;
 
   /**
    * Constructor
@@ -124,21 +124,21 @@ class Channel {
   }
 
   /**
-   * Set sharingId
+   * Set uniqueId
    *
-   * @param string $sharingId
+   * @param string $uniqueId
    */
-  public function setSharingId($sharingId) {
-    $this->sharingId = $sharingId;
+  public function setUniqueId($uniqueId) {
+    $this->uniqueId = $uniqueId;
   }
 
   /**
-   * Get sharingId
+   * Get uniqueId
    *
    * @return string
    */
-  public function getSharingId() {
-    return $this->sharingId;
+  public function getUniqueId() {
+    return $this->uniqueId;
   }
 
 

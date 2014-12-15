@@ -16,7 +16,8 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         ikSelectedChannels: '=',
         ikHideFilters: '=',
         ikFilter: '@',
-        ikOverlay: '@'
+        ikOverlay: '@',
+        ikSingleSlide: '='
       },
       link: function(scope, element, attrs) {
         scope.index = {};
@@ -130,9 +131,10 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
          * Emits the channelSharingOverview.clickChannel event.
          *
          * @param channel
+         * @param index
          */
-        scope.clickChannel = function clickChannel(channel) {
-          scope.$emit('channelSharingOverview.clickChannel', channel);
+        scope.clickSharedChannel = function clickSharedChannel(channel, index) {
+          scope.$emit('channelSharingOverview.clickSharedChannel', channel, index);
         };
 
         /**

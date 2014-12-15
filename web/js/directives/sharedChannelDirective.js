@@ -15,15 +15,15 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
       scope: {
         ikWidth: '@',
         ikChannel: '=',
-        ikSharingIndex: '=',
-        ikSingleSlide: '='
+        ikSingleSlide: '@',
+        ikSharingIndex: '='
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
         scope.playText = '';
 
         // Observe on changes to ik-slide, for when it is set.
-        attrs.$observe('ikChannel', function(val) {
+        attrs.$observe('ikChannel', function (val) {
           if (!val) {
             return;
           }
@@ -39,7 +39,7 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
           }
 
           // Injector stylesheets
-          scope.ikChannel.slides.forEach(function(el) {
+          scope.ikChannel.slides.forEach(function (el) {
             // Inject stylesheet.
             cssInjector.add(el.css_path);
           });
@@ -48,7 +48,7 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
         /**
          * Start playing the slides.
          */
-        scope.play = function() {
+        scope.play = function play() {
           if (angular.isDefined(scope.interval)) {
             $interval.cancel(scope.interval);
             scope.interval = undefined;
@@ -66,15 +66,15 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
         /**
          * Redirect to the channel editor page.
          */
-        scope.redirectToChannel = function() {
-          if (scope.ikSingleSlide != true) {
+        scope.redirectToChannel = function redirectToChannel() {
+          if (scope.ikSingleSlide != "true") {
             $location.path("/shared-channel/" + scope.ikChannel.sharing_id + "/" + scope.ikSharingIndex);
           }
         };
 
         // Register event listener for destroy.
         //   Cleanup interval.
-        scope.$on('$destroy', function() {
+        scope.$on('$destroy', function () {
           if (angular.isDefined(scope.interval)) {
             $interval.cancel(scope.interval);
             scope.interval = undefined;

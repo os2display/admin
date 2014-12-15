@@ -182,10 +182,10 @@ class ChannelController extends Controller {
     $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($post->id);
 
     // Set the sharing id, if it is not set.
-    if ($channel->getSharingId() === null || $channel->getSharingId() === '0') {
+    if ($channel->getUniqueId() === null || $channel->getUniqueId() === '0') {
       $index = $this->container->getParameter('search_index');
       $id = md5($index . $channel->getId());
-      $channel->setSharingId($id);
+      $channel->getUniqueId($id);
     }
 
     // Test for existance of sharingIndexes in post

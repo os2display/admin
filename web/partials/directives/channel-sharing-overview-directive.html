@@ -25,7 +25,7 @@
   <div class="overview--channels">
     <div class="spinner overview--spinner" data-ng-show="loading"></div>
     <div data-ng-repeat="channel in channels" data-ng-show="!loading">
-      <ik-shared-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index"></ik-shared-channel>
+      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
       <div>{{channel.title}}</div>
     </div>
   </div>
