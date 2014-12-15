@@ -83,6 +83,9 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
               scope.loading = false;
               scope.hits = data.hits;
               scope.channels = data.results;
+            },
+            function (reason) {
+              scope.loading = false;
             }
           );
         };

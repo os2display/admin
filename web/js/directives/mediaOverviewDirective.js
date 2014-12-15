@@ -102,6 +102,9 @@ ikApp.directive('ikMediaOverview', function() {
                 $scope.media = data;
 
                 $scope.loading = false;
+              },
+              function (reason) {
+                $scope.loading = false;
               }
             );
           }

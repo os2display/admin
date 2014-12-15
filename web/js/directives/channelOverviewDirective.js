@@ -90,6 +90,9 @@ ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configur
                   scope.channels = data;
 
                   scope.loading = false;
+                },
+                function (reason) {
+                  scope.loading = false;
                 }
               );
             }
