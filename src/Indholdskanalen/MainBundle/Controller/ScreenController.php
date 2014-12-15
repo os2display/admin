@@ -171,28 +171,22 @@ class ScreenController extends Controller {
     $body = json_decode($request->getContent());
 
     // Test for valid request parameters.
-    if (!isset($body->token)) {
+    if (!isset($body->id)) {
       return new Response("", 403);
     }
 
     // Get the screen entity with the given token.
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneByToken($body->token);
+    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneById($body->id);
 
     // Test for valid screen.
     if (!isset($screen)) {
       return new Response("", 404);
     }
 
-    // Set group id of screen.
-    $groups = array();
-    $groups[] = "group" . $screen->getId();
-
     // Generate the response.
     $response_data = array(
-      'statusCode' => 200,
       'id' => $screen->getId(),
-      'name' => $screen->getTitle(),
-      'groups' => $groups,
+      'title' => $screen->getTitle(),
     );
 
     // Return the json response.
