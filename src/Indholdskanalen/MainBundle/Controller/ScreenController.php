@@ -217,7 +217,7 @@ class ScreenController extends Controller {
     $body = json_decode($request->getContent());
 
     // Test for valid request parameters.
-    if (!isset($body->activationCode)) {
+    if (!isset($body->token) || !isset($body->activationCode)) {
       return new Response("", 403);
     }
 
@@ -230,12 +230,13 @@ class ScreenController extends Controller {
     }
 
     // Set token in screen and persist the screen to the db.
+    $screen->setToken($body->token);
     $manager = $this->getDoctrine()->getManager();
     $manager->persist($screen);
     $manager->flush();
 
     // Generate the response.
-    return new Response(json_encode(array("id" => $screen->getId())), 200);
+    return new Response("", 200);
   }
 
   /**
