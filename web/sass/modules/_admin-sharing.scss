@@ -1,0 +1,59 @@
+/**
+ *
+ * Admin sharing
+ *
+ */
+
+
+/* Styles
+   ========================================================================== */
+
+.admin-sharing {
+  &--content {
+    @extend %grid__item;
+    @extend %grid-markup-fix;
+    @extend %palm--one-whole;
+    @extend %lap--one-whole;
+    @extend %desk--one-half;
+
+    @extend %create-element--page-name-default;
+
+    position: relative;
+  }
+
+
+  &--header {
+    @extend %create-element--header-default;
+  }
+
+
+  &--header-description {
+    @extend %create-element--header-description-default;
+  }
+
+  &--list {
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  &--button {
+    @extend .button;
+
+    display: block;
+    margin: 0 auto 1em;
+  }
+
+  &--finish-button {
+    @extend %create-element--finish-button-wrapper;
+  }
+
+
+  &--spinner {
+    @extend %create-element--submit-spinner;
+
+    bottom: .5em;
+    right: 3em;
+    top: auto;
+  }
+}
+

@@ -84,7 +84,7 @@ class SharingService extends ContainerAware {
     $params = array(
       'index' => $index->getIndex(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel->getSharingID(),
+      'id' => $channel->getUniqueId(),
       'data' => $channel,
     );
 
@@ -103,7 +103,7 @@ class SharingService extends ContainerAware {
     $params = array(
       'index' => $index->getIndex(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel->getSharingID(),
+      'id' => $channel->getUniqueId(),
       'data' => $channel,
     );
 
@@ -122,7 +122,7 @@ class SharingService extends ContainerAware {
     $params = array(
       'index' => $index->getIndex(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel->getSharingID(),
+      'id' => $channel->getUniqueId(),
       'data' => $channel,
     );
 
@@ -174,11 +174,13 @@ class SharingService extends ContainerAware {
       $content = $this->getChannelFromIndex($sharedChannel->getUniqueId(), $sharedChannel->getIndex());
 
       if ($content['status'] === 200) {
-        $sharedChannel->setContent(json_encode(json_decode($content['content'])->results[0]));
-      }
-      else if ($content['status'] === 404) {
-        // Channel removed, remove content of from db.
-        $sharedChannel->setContent(null);
+        $result = json_decode($content['content']);
+        if ($result->hits > 0) {
+          $sharedChannel->setContent(json_encode($result->results[0]));
+        }
+        else {
+          $em->remove($sharedChannel);
+        }
       }
     }
 

@@ -4,8 +4,8 @@
     <form class="overview--form" accept-charset="UTF-8" data-ng-class="{'full-width': ikHideFilters}">
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
     </form>
-    <div class="overview--filter-owner" data-ng-show="sharingIndexes.length > 0">
-      <select data-ng-model="index" data-ng-options="ind.name for ind in sharingIndexes" data-ng-change="updatedIndex()"></select>
+    <div class="overview--filter-owner">
+      <div class="overview--filter-owner-button" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
     </div>
     <div class="overview--filter-orientation" data-ng-show="!ikHideFilters">
       <span data-ng-class="{'is-active': orientation == 'all'}" class="overview--filter-threesplit-left" data-ng-click="setOrientation('all')">Alle</span>
@@ -24,10 +24,31 @@
 
   <div class="overview--channels">
     <div class="spinner overview--spinner" data-ng-show="loading"></div>
-    <div data-ng-repeat="channel in channels" data-ng-show="!loading">
-      <ik-shared-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index"></ik-shared-channel>
+    <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="!ikOverlay && !loading">
+      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
+      <div>{{channel.title}}</div>
+    </div>
+    <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="ikOverlay && !loading">
+      <div class="overview--channel-link" data-ng-click="clickSharedChannel(channel, index.index)" data-ng-class="{'is-selected': channelSelected(channel)}">
+       <span class="overview--overlay">
+          <span class="overview--link-check"></span>
+        </span>
+      </div>
+      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
       <div>{{channel.title}}</div>
     </div>
   </div>
   <ik-pager></ik-pager>
 </section>
+
+<modal-dialog show="pickIndexDialog">
+  <h2 class="edit-menu--content-header">Vælg indeks</h2>
+  <p class="edit-menu--content-description">Vælg hvilket indeks du vil søge i</p>
+  <div class="create-channel--screen" data-ng-repeat="index in sharingIndexes" data-ng-click="setIndex(index)">
+    <div class="create-channel--screen-link">
+      <div class="create-channel--screen-element">
+        <div class="create-channel--screen-element-title">{{index.name}}</div>
+      </div>
+    </div>
+  </div>
+</modal-dialog>

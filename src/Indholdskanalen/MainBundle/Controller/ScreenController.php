@@ -114,6 +114,30 @@ class ScreenController extends Controller {
       }
     }
 
+    // Get shared channel ids.
+    $postSharedChannelIds = array();
+    foreach($post->shared_channels as $channel) {
+      $postSharedChannelIds[] = $channel->unique_id;
+    }
+
+    // Remove channels.
+    foreach($screen->getSharedChannels() as $channel) {
+      if (!in_array($channel->getUniqueId(), $postSharedChannelIds)) {
+        $screen->removeSharedChannel($channel);
+      }
+    }
+
+    $sharedChannelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:SharedChannel');
+
+    foreach($postSharedChannelIds as $channel_id) {
+      $channel = $sharedChannelRepository->findOneByUniqueId($channel_id);
+      if ($channel) {
+        if (!$screen->getSharedChannels()->contains($channel)) {
+          $screen->addSharedChannel($channel);
+        }
+      }
+    }
+
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
     $em->persist($screen);

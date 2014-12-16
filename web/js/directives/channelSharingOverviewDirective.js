@@ -16,11 +16,13 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         ikSelectedChannels: '=',
         ikHideFilters: '=',
         ikFilter: '@',
-        ikOverlay: '@'
+        ikOverlay: '@',
+        ikSingleSlide: '='
       },
       link: function(scope, element, attrs) {
         scope.index = {};
         scope.loading = false;
+        scope.pickIndexDialog = false;
 
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.sharingIndexes = [];
@@ -118,7 +120,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
           var res = false;
 
           scope.ikSelectedChannels.forEach(function(element) {
-            if (element.id == channel.id) {
+            if (element.unique_id == channel.unique_id) {
               res = true;
             }
           });
@@ -130,9 +132,21 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
          * Emits the channelSharingOverview.clickChannel event.
          *
          * @param channel
+         * @param index
          */
-        scope.clickChannel = function clickChannel(channel) {
-          scope.$emit('channelSharingOverview.clickChannel', channel);
+        scope.clickSharedChannel = function clickSharedChannel(channel, index) {
+          scope.$emit('channelSharingOverview.clickSharedChannel', channel, index);
+        };
+
+        /**
+         * Change which index is selected.
+         * @param index
+         */
+        scope.setIndex = function setIndex(index) {
+          scope.index = index;
+          scope.pickIndexDialog = false;
+
+          scope.updateSearch();
         };
 
         /**
