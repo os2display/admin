@@ -193,10 +193,10 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
      * Add remove a channel.
      * @param channel
      */
-    $scope.toggleSharedChannel = function(channel, channel_index) {
+    $scope.toggleSharedChannel = function(channel, sharing_index) {
       var index = null;
 
-      sharedChannelFactory.getSharedChannel(channel.unique_id, channel_index).then(function(data) {
+      sharedChannelFactory.getSharedChannel(channel.unique_id, sharing_index).then(function(data) {
         channel = data;
         channel.content = JSON.parse(channel.content);
 
