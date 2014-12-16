@@ -17,6 +17,8 @@
     @extend %desk--one-half;
 
     @extend %create-element--page-name-default;
+
+    position: relative;
   }
 
 
@@ -43,6 +45,15 @@
 
   &--finish-button {
     @extend %create-element--finish-button-wrapper;
+  }
+
+
+  &--spinner {
+    @extend %create-element--submit-spinner;
+
+    bottom: .5em;
+    right: 3em;
+    top: auto;
   }
 }
 

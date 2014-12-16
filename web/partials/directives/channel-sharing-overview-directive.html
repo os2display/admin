@@ -5,7 +5,7 @@
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
     </form>
     <div class="overview--filter-owner">
-      <div class="button" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
+      <div class="overview--filter-owner-button" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
     </div>
     <div class="overview--filter-orientation" data-ng-show="!ikHideFilters">
       <span data-ng-class="{'is-active': orientation == 'all'}" class="overview--filter-threesplit-left" data-ng-click="setOrientation('all')">Alle</span>

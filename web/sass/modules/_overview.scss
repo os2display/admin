@@ -168,6 +168,17 @@
     }
   }
 
+  &--filter-owner-button {
+    background: $gray-lightest;
+    border: 1px solid $gray-lighter;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0.75em 0;
+    width: 100%;
+
+    @include border-radius(.5em);
+    @include strip-link-styles($gray-darker);
+  }
 
   &--form {
     margin: 0 0 1em 0;

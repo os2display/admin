@@ -535,7 +535,7 @@
   text-align: center;
   width: 100%; }
 
-.create-slide--spinner, .create-screen--spinner, .create-channel--spinner {
+.create-slide--spinner, .create-screen--spinner, .create-channel--spinner, .admin-sharing--spinner {
   position: absolute;
   right: 1em;
   top: 25%; }
@@ -2569,6 +2569,28 @@ html.is-locked body {
     .overview--filter-owner {
       padding-right: 1em;
       width: 25%; } }
+  .overview--filter-owner-button {
+    background: #fafafa;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0.75em 0;
+    width: 100%;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+    border-radius: 0.5em; }
+    .overview--filter-owner-button:link {
+      color: #595959;
+      text-decoration: none; }
+    .overview--filter-owner-button:visited {
+      color: #595959;
+      text-decoration: none; }
+    .overview--filter-owner-button:hover {
+      color: #595959;
+      text-decoration: none; }
+    .overview--filter-owner-button:focus {
+      color: #595959;
+      text-decoration: none; }
   .overview--form {
     margin: 0 0 1em 0;
     width: 100%; }
@@ -2944,12 +2966,18 @@ html.is-locked body {
  */
 /* Styles
    ========================================================================== */
+.admin-sharing--content {
+  position: relative; }
 .admin-sharing--list {
   display: block;
   margin-bottom: 1em; }
 .admin-sharing--button {
   display: block;
   margin: 0 auto 1em; }
+.admin-sharing--spinner {
+  bottom: .5em;
+  right: 3em;
+  top: auto; }
 
 /* Animations
  *
@@ -3052,7 +3080,7 @@ html.is-locked body {
     bottom: 0; } }
 /* Animation calls (If not related to a module)
  * ========================================================================== */
-.spinner, .create-slide--spinner, .create-screen--spinner, .create-channel--spinner {
+.spinner, .create-slide--spinner, .create-screen--spinner, .create-channel--spinner, .admin-sharing--spinner {
   background: url('/../images/icons-s1200d42609.png');
   -moz-background-size: 77px 1134px;
   -o-background-size: 77px 1134px;
