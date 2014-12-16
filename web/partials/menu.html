@@ -1,6 +1,6 @@
 <header class="header" role="banner" ng-controller="MenuController">
   <a class="nav--overlay" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen}" data-ng-click="toggleNavMenu()"></a>
-  <nav class="nav" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+  <nav class="nav" data-ng-show="navMenuOpen" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
    <div class="nav--toggle-icon" data-ng-click="toggleNavMenu()">X</div>
     <h2 class="nav--header">Navigation</h2>
     <div class="nav--item-wrapper">
