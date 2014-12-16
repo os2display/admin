@@ -22,6 +22,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
       link: function(scope, element, attrs) {
         scope.index = {};
         scope.loading = false;
+        scope.pickIndexDialog = false;
 
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.sharingIndexes = [];
@@ -135,6 +136,17 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
          */
         scope.clickSharedChannel = function clickSharedChannel(channel, index) {
           scope.$emit('channelSharingOverview.clickSharedChannel', channel, index);
+        };
+
+        /**
+         * Change which index is selected.
+         * @param index
+         */
+        scope.setIndex = function setIndex(index) {
+          scope.index = index;
+          scope.pickIndexDialog = false;
+
+          scope.updateSearch();
         };
 
         /**

@@ -6,8 +6,10 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory',
-  function($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory) {
+ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
+  function($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, configuration) {
+    $scope.sharingEnabled = configuration.sharingService.enabled;
+
     $scope.steps = 3;
     $scope.screen = {};
 
@@ -15,6 +17,7 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
     $scope.editor = {
       channelOverviewEditor: false,
       sharedChannelOverviewEditor: false,
+      showSharedChannels: false,
       toggleChannelOverviewEditor: function() {
         $('html').toggleClass('is-locked');
         $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;

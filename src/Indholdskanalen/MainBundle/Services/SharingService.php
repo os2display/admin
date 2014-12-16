@@ -178,10 +178,9 @@ class SharingService extends ContainerAware {
         if ($result->hits > 0) {
           $sharedChannel->setContent(json_encode($result->results[0]));
         }
-      }
-      else if ($content['status'] === 404) {
-        // Channel removed, remove content of from db.
-        $sharedChannel->setContent(null);
+        else {
+          $em->remove($sharedChannel);
+        }
       }
     }
 

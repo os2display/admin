@@ -68,7 +68,7 @@ ikApp.directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
          */
         scope.redirectToChannel = function redirectToChannel() {
           if (scope.ikSingleSlide != "true") {
-            $location.path("/shared-channel/" + scope.ikChannel.sharing_id + "/" + scope.ikSharingIndex);
+            $location.path("/shared-channel/" + scope.ikChannel.unique_id + "/" + scope.ikSharingIndex);
           }
         };
 
