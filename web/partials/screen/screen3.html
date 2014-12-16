@@ -25,7 +25,7 @@
       <div class="overview--channels">
         <div class="overview--channel" data-ng-repeat="channel in screen.shared_channels">
           <div class="overview--channel-overlay"></div>
-          <div class="overview--channel-remove" data-ng-click="toggleSharedChannel(channel)"></div>
+          <div class="overview--channel-remove" data-ng-click="toggleSharedChannel(channel, channel.index)"></div>
           <ik-shared-channel class="overview--channel-container" ik-channel="channel.content" ik-single-slide="true" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index"></ik-shared-channel>
           <div class="overview--channel-label">{{channel.content.title}}</div>
           <span class="overview--channel-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
