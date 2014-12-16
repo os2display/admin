@@ -15,6 +15,7 @@ ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$t
     $scope.editor = {
       channelOverviewEditor: false,
       sharedChannelOverviewEditor: false,
+      showSharedChannels: false,
       toggleChannelOverviewEditor: function() {
         $('html').toggleClass('is-locked');
         $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;
