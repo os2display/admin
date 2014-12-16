@@ -3,7 +3,7 @@
     <h1 class="create-screen--header">{{screen.status === "edit-screen" ? "Redigér skærm" : "Opret skærm"}}</h1>
     <p class="create-screen--header-description">Tilføj og fjern kanaler.</p>
 
-    <div class="overview--filter-owner">
+    <div class="overview--filter-owner" data-ng-if="sharingEnabled">
       <span href="#" data-ng-class="{'is-active': !editor.showSharedChannels}" class="overview--filter-twosplit-left" data-ng-click="editor.showSharedChannels = false">Interne kanaler</span>
       <span href="#" data-ng-class="{'is-active': editor.showSharedChannels}" class="overview--filter-twosplit-right" data-ng-click="editor.showSharedChannels = true">Eksterne kanaler</span>
     </div>
