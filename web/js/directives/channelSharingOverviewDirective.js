@@ -120,7 +120,7 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
           var res = false;
 
           scope.ikSelectedChannels.forEach(function(element) {
-            if (element.id == channel.id) {
+            if (element.unique_id == channel.unique_id) {
               res = true;
             }
           });

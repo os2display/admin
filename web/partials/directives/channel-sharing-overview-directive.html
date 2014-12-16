@@ -25,13 +25,11 @@
   <div class="overview--channels">
     <div class="spinner overview--spinner" data-ng-show="loading"></div>
     <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="!ikOverlay && !loading">
-      <div data-ng-show="!loading">
-        <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
-        <div>{{channel.title}}</div>
-      </div>
+      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
+      <div>{{channel.title}}</div>
     </div>
     <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="ikOverlay && !loading">
-      <div class="overview--channel-link" data-ng-click="channelOverviewClickChannel(channel)" data-ng-class="{'is-selected': channelSelected(channel)}">
+      <div class="overview--channel-link" data-ng-click="clickSharedChannel(channel, index.index)" data-ng-class="{'is-selected': channelSelected(channel)}">
        <span class="overview--overlay">
           <span class="overview--link-check"></span>
         </span>
