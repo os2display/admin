@@ -46,7 +46,7 @@ class MiddlewareCommunication extends ContainerAware
 
     if ($force || $sha1 !== $channel->getLastPushHash()) {
       $curlResult = $this->utilityService->curl(
-        $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $id . "/push",
+        $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $id,
         'POST',
         $data,
         'middleware'
