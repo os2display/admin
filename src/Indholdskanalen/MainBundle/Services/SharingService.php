@@ -14,7 +14,7 @@ use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Indholdskanalen\MainBundle\Services\UtilityService;
 
 /**
  * Class SharingService
@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
  * @package Indholdskanalen\MainBundle\Services
  */
 class SharingService extends ContainerAware {
-  protected $authenticationService;
+  protected $utilityService;
   protected $serializer;
   protected $container;
   protected $doctrine;
@@ -33,12 +33,12 @@ class SharingService extends ContainerAware {
    *
    * @param Serializer $serializer
    * @param Container $container
-   * @param AuthenticationService $authenticationService
+   * @param UtilityService $utilityService
    */
-  function __construct(Serializer $serializer, Container $container, AuthenticationService $authenticationService) {
+  function __construct(Serializer $serializer, Container $container, UtilityService $utilityService) {
     $this->serializer = $serializer;
     $this->container = $container;
-    $this->authenticationService = $authenticationService;
+    $this->utilityService = $utilityService;
 
     $this->url = $this->container->getParameter('sharing_host') . $this->container->getParameter('sharing_path');
     $this->doctrine = $this->container->get('doctrine');
@@ -90,7 +90,7 @@ class SharingService extends ContainerAware {
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
 
-    $this->curl($this->url, 'POST', $data);
+    $this->utilityService->curl($this->url, 'POST', $data, 'sharing');
   }
 
   /**
@@ -109,7 +109,7 @@ class SharingService extends ContainerAware {
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
 
-    $this->curl($this->url, 'DELETE', $data);
+    $this->utilityService->curl($this->url, 'DELETE', $data, 'sharing');
   }
 
   /**
@@ -128,7 +128,7 @@ class SharingService extends ContainerAware {
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
 
-    $this->curl($this->url, 'PUT', $data);
+    $this->utilityService->curl($this->url, 'PUT', $data, 'sharing');
   }
 
   /**
@@ -157,7 +157,7 @@ class SharingService extends ContainerAware {
 
     $data = json_encode($params);
 
-    $result = $this->curl($this->url . '/search', 'POST', $data);
+    $result = $this->utilityService->curl($this->url . '/search', 'POST', $data, 'sharing');
 
     return $result;
   }
@@ -188,7 +188,7 @@ class SharingService extends ContainerAware {
   }
 
   public function getAvailableSharingIndexes() {
-    $result = $this->curl($this->url . '/indexes', 'GET', json_encode(array()));
+    $result = $this->utilityService->curl($this->url . '/indexes', 'GET', json_encode(array()), 'sharing');
 
     if ($result['status'] !== 200) {
       return array();
@@ -217,71 +217,5 @@ class SharingService extends ContainerAware {
 
     $em->persist($index);
     $em->flush();
-  }
-
-
-  /**
-   * Helper method: build the curl query.
-   *
-   * @param $url
-   * @param $method
-   * @param $token
-   * @param $data
-   * @return resource
-   */
-  private function buildQuery($url, $method, $token, $data) {
-    // Build query.
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_POST, TRUE);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json',
-      'Authorization: Bearer ' . $token
-    ));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    return $ch;
-  }
-
-  /**
-   * Communication function.
-   *
-   * Wrapper function for curl to send data to ES.
-   *
-   * @param $url
-   *   URL to connect to.
-   * @param string $method
-   *   Method to send/get data "POST" or "PUT".
-   * @param array $data
-   *   The data to send.
-   *
-   * @return array
-   */
-  protected function curl($url, $method = 'POST', $data) {
-    $token = $this->authenticationService->getAuthentication('sharing');
-
-    // Execute request.
-    $ch = $this->buildQuery($url, $method, $token, $data);
-    $content = curl_exec($ch);
-    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    // Close connection.
-    curl_close($ch);
-
-    // If unauthenticated, reauthenticate and retry.
-    if ($http_status === 401) {
-      $token = $token = $this->authenticationService->getAuthentication('sharing', true);
-
-      // Execute.
-      $ch = $this->buildQuery($url, $method, $token, $data);
-      $content = curl_exec($ch);
-      $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      // Close connection.
-      curl_close($ch);
-    }
-
-    return array(
-      'status' => $http_status,
-      'content' => $content,
-    );
   }
 }

@@ -7,7 +7,7 @@
 namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Indholdskanalen\MainBundle\Services\AuthenticationService;
+use Indholdskanalen\MainBundle\Services\UtilityService;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\Container;
@@ -21,19 +21,19 @@ use Symfony\Component\DependencyInjection\Container;
 class SearchIndexer {
   protected $container;
   protected $serializer;
-  protected $authenticationService;
+  protected $utilityService;
 
   /**
    * Constructor
    *
    * @param Serializer $serializer
    * @param Container $container
-   * @param AuthenticationService $authenticationService
+   * @param UtilityService $utilityService
    */
-  function __construct(Serializer $serializer, Container $container, AuthenticationService $authenticationService) {
+  function __construct(Serializer $serializer, Container $container, UtilityService $utilityService) {
     $this->serializer = $serializer;
     $this->container = $container;
-    $this->authenticationService = $authenticationService;
+    $this->utilityService = $utilityService;
   }
 
   /**
@@ -71,7 +71,7 @@ class SearchIndexer {
    * @param $method
    *   The type of operation to preform.
    *
-   * @return bool
+   * @return boolean
    */
   protected function sendEvent(LifecycleEventArgs $args, $method) {
     // Get the current entity.
@@ -100,68 +100,15 @@ class SearchIndexer {
     $url = $this->container->getParameter('search_host');
     $path = $this->container->getParameter('search_path');
 
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
+
     // Send the request.
-    $data = $this->curl($url . $path, $method, $params);
+    $result = $this->utilityService->curl($url . $path, $method, $data, 'search');
 
-    // @TODO: Do some error handling based on the $data['status'] variable.
-  }
-
-  private function buildQuery($url, $method, $data, $token) {
-    // Build query.
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_POST, TRUE);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json',
-      'Authorization: Bearer ' . $token
-    ));
-    // Receive server response.
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    return $ch;
-  }
-
-  /**
-   * Communication function.
-   *
-   * Wrapper function for curl to send data to ES.
-   *
-   * @param $url
-   *   URL to connect to.
-   * @param string $method
-   *   Method to send/get data "POST" or "PUT".
-   * @param array $params
-   *   The data to send.
-   *
-   * @return array
-   */
-  protected function curl($url, $method = 'POST', $params = array()) {
-    // Get the authentication token.
-    $token = $this->authenticationService->getAuthentication('search');
-
-    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
-
-    $ch = $this->buildQuery($url, $method, $jsonContent, $token);
-    $content = curl_exec($ch);
-    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    // Close connection.
-    curl_close($ch);
-
-    // If unauthenticated, reauthenticate and retry.
-    if ($http_status === 401) {
-      $token = $this->authenticationService->getAuthentication('search', true);
-
-      $ch = $this->buildQuery($url, $method, $jsonContent, $token);
-      $content = curl_exec($ch);
-      $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      // Close connection.
-      curl_close($ch);
+    if ($result['status'] !== 200) {
+      // TODO: Handle !
     }
 
-    return array(
-      'status' => $http_status,
-      'content' => $content,
-    );
+    return $result['status'] === 200;
   }
 }
