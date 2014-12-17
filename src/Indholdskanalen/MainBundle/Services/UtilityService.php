@@ -34,6 +34,7 @@ class UtilityService extends ContainerAware {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
       'Content-Type: application/json',
+      'Content-Length: ' . strlen($data),
       'Authorization: Bearer ' . $token
     ));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

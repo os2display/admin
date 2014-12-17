@@ -50,7 +50,7 @@ services:
 
   indholdskanalen.middleware.communication:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
-    arguments: [@indholdskanalen.template_service]
+    arguments: [@indholdskanalen.template_service, @indholdskanalen.utility_service]
     calls:
       - [ setContainer,[ @service_container ] ]
 

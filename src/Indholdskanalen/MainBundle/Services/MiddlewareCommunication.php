@@ -12,6 +12,7 @@ namespace Indholdskanalen\MainBundle\Services;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializationContext;
+use Indholdskanalen\MainBundle\Services\UtilityService;
 
 /**
  * Class MiddlewareCommunication
@@ -21,9 +22,11 @@ use JMS\Serializer\SerializationContext;
 class MiddlewareCommunication extends ContainerAware
 {
   protected $templateService;
+  protected $utilityService;
 
-  function __construct(TemplateService $templateService) {
+  function __construct(TemplateService $templateService, UtilityService $utilityService) {
     $this->templateService = $templateService;
+    $this->utilityService = $utilityService;
   }
 
   /**
@@ -66,7 +69,24 @@ class MiddlewareCommunication extends ContainerAware
     // Get doctrine handle
     $doctrine = $this->container->get('doctrine');
     $em = $doctrine->getManager();
+    $serializer = $this->container->get('jms_serializer');
 
+    $channels = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
+
+    foreach ($channels as $channel) {
+      $jsonContent = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
+
+      $curlResult = $this->utilityService->curl(
+        $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $channel->getId() . "/push",
+        'POST',
+        $jsonContent,
+        'middleware'
+      );
+
+      print_r($curlResult);
+    }
+
+    /*
     // Get all screens
     $screens = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
 
@@ -106,6 +126,6 @@ class MiddlewareCommunication extends ContainerAware
           $em->flush();
         }
       }
-    }
+    }*/
   }
 }

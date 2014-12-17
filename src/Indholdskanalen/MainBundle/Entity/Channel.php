@@ -60,7 +60,7 @@ class Channel {
   /**
    * @ORM\ManyToMany(targetEntity="Screen", inversedBy="channels")
    * @ORM\JoinTable(name="ik_screens_channels")
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   private $screens;
 
