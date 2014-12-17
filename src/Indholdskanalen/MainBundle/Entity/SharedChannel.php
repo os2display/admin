@@ -68,6 +68,11 @@ class SharedChannel {
   private $content;
 
   /**
+   * @ORM\Column(name="last_push_hash", type="string", nullable=true)
+   */
+  private $lastPushHash;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -81,6 +86,27 @@ class SharedChannel {
    */
   public function getId() {
     return $this->id;
+  }
+
+  /**
+   * Set lastPushHash
+   *
+   * @param string $lastPushHash
+   * @return Screen
+   */
+  public function setLastPushHash($lastPushHash) {
+    $this->lastPushHash = $lastPushHash;
+
+    return $this;
+  }
+
+  /**
+   * Get lastPushHash
+   *
+   * @return string
+   */
+  public function getLastPushHash() {
+    return $this->lastPushHash;
   }
 
   /**
@@ -211,5 +237,38 @@ class SharedChannel {
    */
   public function getContent() {
     return $this->content;
+  }
+
+  /**
+   * Get screens
+   *
+   * @return \array
+   *
+   * @VirtualProperty
+   * @SerializedName("screens")
+   * @Groups({"middleware"})
+   */
+  public function getMiddlewareScreens() {
+    $slides = array();
+    foreach($this->getScreens() as $screen) {
+      $slides[] = $screen->getId();
+    }
+    return $slides;
+  }
+
+  /**
+   * Get channel content.
+   *
+   * @return \array
+   *
+   * @VirtualProperty
+   * @SerializedName("data")
+   * @Groups({"middleware"})
+   */
+  public function getData() {
+    return array(
+      'id' => $this->getUniqueId(),
+      'slides' => json_encode(json_decode($this->content)->slides)
+    );
   }
 }
