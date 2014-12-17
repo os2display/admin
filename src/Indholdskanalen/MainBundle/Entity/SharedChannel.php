@@ -62,7 +62,7 @@ class SharedChannel {
   private $modified_at;
 
   /**
-   * @ORM\Column(name="content", type="json_array", nullable=true)
+   * @ORM\Column(name="content", type="text", nullable=true)
    * @Groups({"api"})
    */
   private $content;
