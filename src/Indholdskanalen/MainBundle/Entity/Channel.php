@@ -326,6 +326,7 @@ class Channel {
       $slides[] = $slide;
     }
     return array(
+      'id' => $this->getId(),
       'slides' => $slides
     );
   }

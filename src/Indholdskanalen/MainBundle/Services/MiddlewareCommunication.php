@@ -74,16 +74,16 @@ class MiddlewareCommunication extends ContainerAware
     $channels = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
 
     foreach ($channels as $channel) {
-      $jsonContent = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
+      $data = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
 
       // Calculate hash of content, used to avoid unnecessary push.
-      $sha1 = sha1($jsonContent);
+      $sha1 = sha1($data);
 
       if ($force || $sha1 !== $channel->getLastPushHash()) {
         $curlResult = $this->utilityService->curl(
           $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $channel->getId() . "/push",
           'POST',
-          $jsonContent,
+          $data,
           'middleware'
         );
 
@@ -96,8 +96,6 @@ class MiddlewareCommunication extends ContainerAware
           $channel->setLastPushHash(null);
           $em->flush();
         }
-
-        print_r($curlResult);
       }
     }
 
