@@ -59,6 +59,38 @@ class MiddlewareCommunication extends ContainerAware
     return $result;
   }
 
+  public function pushChannel($channel, $force) {
+    $doctrine = $this->container->get('doctrine');
+    $em = $doctrine->getManager();
+    $serializer = $this->container->get('jms_serializer');
+
+    $data = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
+
+    // Calculate hash of content, used to avoid unnecessary push.
+    $sha1 = sha1($data);
+
+    if ($force || $sha1 !== $channel->getLastPushHash()) {
+      $curlResult = $this->utilityService->curl(
+        $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $channel->getId() . "/push",
+        'POST',
+        $data,
+        'middleware'
+      );
+
+      print_r($curlResult);
+
+      // If the result was delivered, update the last hash.
+      if ($curlResult['status'] === 200) {
+        $channel->setLastPushHash($sha1);
+        $em->flush();
+      }
+      else {
+        $channel->setLastPushHash(null);
+        $em->flush();
+      }
+    }
+  }
+
   /**
    * Pushes the channels for each screen to the middleware.
    *
@@ -74,7 +106,7 @@ class MiddlewareCommunication extends ContainerAware
     $channels = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
 
     foreach ($channels as $channel) {
-      $data = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
+/*      $data = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
 
       // Calculate hash of content, used to avoid unnecessary push.
       $sha1 = sha1($data);
@@ -88,15 +120,17 @@ class MiddlewareCommunication extends ContainerAware
         );
 
         // If the result was delivered, update the last hash.
-        if ($curlResult) {
+        if ($curlResult['status'] === 200) {
           $channel->setLastPushHash($sha1);
           $em->flush();
         }
         else {
+          print_r($curlResult);
           $channel->setLastPushHash(null);
           $em->flush();
         }
-      }
+      }*/
+      $this->pushChannel($channel, $force);
     }
 
     /*
