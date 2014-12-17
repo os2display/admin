@@ -100,13 +100,6 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
         });
 
         /**
-         *
-         */
-        scope.updatedIndex = function updatedIndex() {
-          scope.updateSearch();
-        };
-
-        /**
          * Returns true if channel is in selected channels array.
          *
          * @param channel
@@ -146,7 +139,11 @@ ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactor
           scope.index = index;
           scope.pickIndexDialog = false;
 
-          scope.updateSearch();
+          $timeout(
+            function() {
+              scope.updateSearch();
+            }
+          , 10);
         };
 
         /**
