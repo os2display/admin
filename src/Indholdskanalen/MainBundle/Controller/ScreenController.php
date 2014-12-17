@@ -258,7 +258,7 @@ class ScreenController extends Controller {
     // Generate the response.
     return new Response(json_encode(array(
       "id" => $screen->getId(),
-      "title" => $screen->getTitle,
+      "title" => $screen->getTitle(),
     )), 200);
   }
 
