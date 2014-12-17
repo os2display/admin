@@ -24,7 +24,7 @@ class Screen {
 	 * @ORM\Column(type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
-	 * @Groups({"api", "api-bulk", "search", "middleware"})
+	 * @Groups({"api", "api-bulk", "search"})
 	 */
 	private $id;
 
@@ -363,29 +363,6 @@ class Screen {
   public function getSharedChannels() {
     return $this->shared_channels;
   }
-
-	/**
-	 * Get all slides from all channels assigned to this screen - used for Middleware serialization
-	 *
-	 * @return \array
-	 *
-	 * @VirtualProperty
-	 * @SerializedName("channelContent")
-	 * @Groups({})
-	 */
-	public function getChannelContent()
-	{
-		$slides = array();
-		foreach($this->getChannels() as $channel) {
-			foreach($channel->getPublishedSlides() as $slide) {
-				$slides[] = $slide;
-			}
-		}
-		return array(
-			'logo' => '',
-			'slides' => $slides
-		);
-	}
 
 	/**
 	 * Set user

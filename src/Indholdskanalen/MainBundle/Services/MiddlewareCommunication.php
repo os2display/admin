@@ -76,14 +76,29 @@ class MiddlewareCommunication extends ContainerAware
     foreach ($channels as $channel) {
       $jsonContent = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
 
-      $curlResult = $this->utilityService->curl(
-        $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $channel->getId() . "/push",
-        'POST',
-        $jsonContent,
-        'middleware'
-      );
+      // Calculate hash of content, used to avoid unnecessary push.
+      $sha1 = sha1($jsonContent);
 
-      print_r($curlResult);
+      if ($force || $sha1 !== $channel->getLastPushHash()) {
+        $curlResult = $this->utilityService->curl(
+          $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $channel->getId() . "/push",
+          'POST',
+          $jsonContent,
+          'middleware'
+        );
+
+        // If the result was delivered, update the last hash.
+        if ($curlResult) {
+          $channel->setLastPushHash($sha1);
+          $em->flush();
+        }
+        else {
+          $channel->setLastPushHash(null);
+          $em->flush();
+        }
+
+        print_r($curlResult);
+      }
     }
 
     /*
