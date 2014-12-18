@@ -88,7 +88,7 @@ class AuthenticationService extends ContainerAware {
     $token = null;
     $tokenName = $prefix . '_token';
 
-    if (true || $reAuthenticate) {
+    if ($reAuthenticate) {
       $session->remove($tokenName);
     }
 
