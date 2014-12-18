@@ -64,7 +64,7 @@ ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', '$http',
             getSocket(deferred);
           })
           .error(function(data, status) {
-            defer.reject(status);
+            deferred.reject(status);
           });
       }
     }
