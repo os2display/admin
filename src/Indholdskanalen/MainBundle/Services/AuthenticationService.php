@@ -88,7 +88,7 @@ class AuthenticationService extends ContainerAware {
     $token = null;
     $tokenName = $prefix . '_token';
 
-    if ($reAuthenticate) {
+    if (true || $reAuthenticate) {
       $session->remove($tokenName);
     }
 
@@ -107,9 +107,11 @@ class AuthenticationService extends ContainerAware {
 
       $auth = $this->authenticate($host, $apiKey);
 
-      $token = json_decode($auth['content'])->token;
+      if ($auth['status'] === 200) {
+        $token = json_decode($auth['content'])->token;
 
-      $session->set($tokenName, $token);
+        $session->set($tokenName, $token);
+      }
 
       $res = array(
         'status' => $auth['status'],
