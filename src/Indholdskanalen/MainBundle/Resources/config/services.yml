@@ -29,6 +29,7 @@ services:
 
   indholdskanalen.template_service:
     class: Indholdskanalen\MainBundle\Services\TemplateService
+    arguments: [@service_container]
     calls:
       - [ setContainer,[ @service_container ] ]
 
