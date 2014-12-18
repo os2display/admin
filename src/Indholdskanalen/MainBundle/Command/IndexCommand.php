@@ -26,7 +26,7 @@ class IndexCommand extends ContainerAwareCommand {
    */
   protected function configure() {
     $this
-      ->setName('ik:index')
+      ->setName('ik:send_to_index')
       ->setDescription("Index")
       ->addArgument(
         'entity_id',
@@ -37,6 +37,16 @@ class IndexCommand extends ContainerAwareCommand {
         'method',
         InputArgument::REQUIRED,
         'Method: POST, PUT, DELETE?'
+      )
+      ->addArgument(
+        'url',
+        InputArgument::REQUIRED,
+        'Request url?'
+      )
+      ->addArgument(
+        'prefix',
+        InputArgument::REQUIRED,
+        'middleware, search, sharing?'
       );
   }
 
@@ -48,16 +58,5 @@ class IndexCommand extends ContainerAwareCommand {
    * @return int|null|void
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    // Update shared channels.
-    if ($this->getContainer()->getParameter('sharing_enabled')) {
-      $sharingService = $this->getContainer()->get('indholdskanalen.sharing_service');
-      $sharingService->updateAllSharedChannels();
-    }
-
-    // Push content to screens.
-    $middlewareCommunication = $this->getContainer()->get('indholdskanalen.middleware.communication');
-    $middlewareCommunication->pushToScreens();
-
-    $output->writeln("Content pushed to screens.");
   }
 }
