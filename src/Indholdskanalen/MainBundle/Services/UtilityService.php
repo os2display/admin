@@ -29,6 +29,11 @@ class UtilityService extends ContainerAware {
   private function buildQuery($url, $method, $token, $data) {
     // Build query.
     $ch = curl_init($url);
+
+    // SSL fix (self signed).
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
