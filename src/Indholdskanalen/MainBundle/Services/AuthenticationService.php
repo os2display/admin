@@ -41,6 +41,10 @@ class AuthenticationService extends ContainerAware {
     // Build query.
     $ch = curl_init($host . "/authenticate");
 
+    // SSL fix (self signed).
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
     curl_setopt($ch, CURLOPT_POSTFIELDS,
