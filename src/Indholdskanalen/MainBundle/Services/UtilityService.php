@@ -63,10 +63,10 @@ class UtilityService extends ContainerAware {
    * @return array
    */
   public function curl($url, $method = 'POST', $data, $prefix) {
-    $token = $this->authenticationService->getAuthentication($prefix);
+    $auth = $this->authenticationService->getAuthentication($prefix);
 
     // Execute request.
-    $ch = $this->buildQuery($url, $method, $token, $data);
+    $ch = $this->buildQuery($url, $method, $auth['token'], $data);
     $content = curl_exec($ch);
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     // Close connection.
@@ -74,10 +74,10 @@ class UtilityService extends ContainerAware {
 
     // If unauthenticated, reauthenticate and retry.
     if ($http_status === 401) {
-      $token = $token = $this->authenticationService->getAuthentication($prefix, true);
+      $auth = $token = $this->authenticationService->getAuthentication($prefix, true);
 
       // Execute.
-      $ch = $this->buildQuery($url, $method, $token, $data);
+      $ch = $this->buildQuery($url, $method, $auth['token'], $data);
       $content = curl_exec($ch);
       $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
       // Close connection.

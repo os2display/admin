@@ -192,11 +192,12 @@ class SearchCommand extends ContainerAwareCommand {
     $authenticationService = $this->getContainer()->get('indholdskanalen.authentication_service');
 
     // Get the authentication token.
-    $token = $authenticationService->getAuthentication('search');
+    $auth = $authenticationService->getAuthentication('search');
+
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
 
     // Build query.
-    $ch = $this->buildQuery($url, $method, $data, $token);
+    $ch = $this->buildQuery($url, $method, $data, $auth['token']);
     $content = curl_exec($ch);
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -205,9 +206,9 @@ class SearchCommand extends ContainerAwareCommand {
 
     // If unauthenticated, reauthenticate and retry.
     if ($http_status === 401) {
-      $token = $authenticationService->getAuthentication('search', true);
+      $auth = $authenticationService->getAuthentication('search', true);
 
-      $ch = $this->buildQuery($url, $method, $data, $token);
+      $ch = $this->buildQuery($url, $method, $data, $auth['token']);
       $content = curl_exec($ch);
       $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
       // Close connection.
