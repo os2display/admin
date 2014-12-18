@@ -161,6 +161,11 @@ class SearchCommand extends ContainerAwareCommand {
   private function buildQuery($url, $method, $data, $token) {
     // Build query.
     $ch = curl_init($url);
+    
+    // SSL fix (self signed).
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
