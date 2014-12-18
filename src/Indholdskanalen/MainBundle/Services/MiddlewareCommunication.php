@@ -62,8 +62,6 @@ class MiddlewareCommunication extends ContainerAware
         $em->flush();
       }
     }
-
-    print_r($data . "\n\n");
   }
 
   /**
