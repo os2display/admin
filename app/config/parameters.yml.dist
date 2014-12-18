@@ -49,3 +49,5 @@ parameters:
       - text-left
       - text-right
       - text-top
+
+    logo: images/logo_default.png

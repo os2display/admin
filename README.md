@@ -231,4 +231,28 @@ Disable the push-on-changes feature in the src/Indholdskanalen/MainBundle/Resour
 #      - { name: doctrine.event_listener, event: postUpdate }
 </pre>
 
+###Templates
+The templates are placed in the web/ik-templates/ directory.
+To enable a template from the templates folder, add the name to parameters.yml, e.g.:
+
+<pre>
+  templates_enabled:
+    - ik-iframe
+    - manual-calender
+    - only-image
+</pre>
+
+
+###Logo
+To set a custom logo: 
+
+1. Add logo.png to web/images/logo.png
+
+2. Change the logo parameter in parameters.yml to 
+
+<pre>
+  logo: images/logo.png
+</pre>
+
+
 ###Ready to go!
