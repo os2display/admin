@@ -364,58 +364,6 @@ class Screen {
     return $this->shared_channels;
   }
 
-
-  /**
-	 * Get channelID - used for Middleware serialization
-	 *
-	 * @return \string
-	 *
-	 * @VirtualProperty
-	 * @SerializedName("channelID")
-	 * @Groups({"middleware"})
-	 */
-	public function getChannelID()
-	{
-		return $this->getId();
-	}
-
-	/**
-	 * Get channel groups - used for Middleware serialization
-	 *
-	 * @return \array
-	 *
-	 * @VirtualProperty
-	 * @SerializedName("groups")
-	 * @Groups({"middleware"})
-	 */
-	public function getChannelGroups()
-	{
-		return array("group" . $this->getId());
-	}
-
-	/**
-	 * Get all slides from all channels assigned to this screen - used for Middleware serialization
-	 *
-	 * @return \array
-	 *
-	 * @VirtualProperty
-	 * @SerializedName("channelContent")
-	 * @Groups({"middleware"})
-	 */
-	public function getChannelContent()
-	{
-		$slides = array();
-		foreach($this->getChannels() as $channel) {
-			foreach($channel->getPublishedSlides() as $slide) {
-				$slides[] = $slide;
-			}
-		}
-		return array(
-			'logo' => '',
-			'slides' => $slides
-		);
-	}
-
 	/**
 	 * Set user
 	 *

@@ -39,7 +39,20 @@
 
   <!-- Base -->
   <script src="{{ asset('js/app.js') }}"></script>
-  <script src="{{ asset('js/configuration.js') }}"></script>
+<!--  <script src="{{ asset('js/configuration.js') }}"></script>-->
+  <script type="text/javascript">
+    ikApp.value('configuration', {
+      "search": {
+        "address": "{{ search_host }}",
+        "index": "{{ search_index }}"
+      },
+      "sharingService": {
+        "enabled": "{{ sharing_enabled }}",
+        "address": "{{ sharing_host }}"
+      },
+      "logo": "{{ logo }}"
+    });
+  </script>
   <script src="{{ asset('js/routing.js') }}"></script>
 
   <!-- Filters -->

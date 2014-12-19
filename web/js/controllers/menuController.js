@@ -13,6 +13,7 @@ ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFa
     $scope.subMenuItems = [];
     $scope.showMobileMainMenu = false;
     $scope.showSharingOptions = configuration.sharingService.enabled;
+    $scope.logo = configuration.logo;
 
     userFactory.getCurrentUser().then(
       function(data) {

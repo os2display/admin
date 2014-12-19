@@ -9,6 +9,7 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
@@ -18,11 +19,15 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  */
 class TemplateService extends ContainerAware
 {
-  /**
-   * Gets all templates from the "templates_directory" defined in parameters.yml.
-   */
-  public function getTemplates() {
-    $templates = array();
+  protected $templates;
+  protected $container;
+
+  function __construct(Container $container) {
+    $this->templates = array();
+    $this->container = $container;
+
+    $enabledTemplates = $this->container->getParameter("templates_enabled");
+
     $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter("templates_directory");
     $serverAddress = $this->container->getParameter("absolute_path_to_server") . "/" . $this->container->getParameter("templates_directory");;
 
@@ -30,6 +35,10 @@ class TemplateService extends ContainerAware
     if ($handle = opendir($path)) {
       while (false !== ($entry = readdir($handle))) {
         if (is_dir($path . "/" . $entry) && $entry !== '.' && $entry !== '..') {
+          if (!in_array($entry, $enabledTemplates)) {
+            continue;
+          }
+
           // Read config.json for template
           $str = file_get_contents($path . $entry . '/' . $entry . ".json");
           $obj = json_decode($str);
@@ -41,13 +50,18 @@ class TemplateService extends ContainerAware
           $obj->paths->preview = $serverAddress . $entry . '/' . $obj->paths->preview;
           $obj->paths->css = $serverAddress . $entry . '/' . $obj->paths->css;
 
-          $templates[$entry] = $obj;
+          $this->templates[$entry] = $obj;
         }
       }
 
       closedir($handle);
     }
+  }
 
-    return $templates;
+  /**
+   * Gets all templates from the "templates_directory" defined in parameters.yml.
+   */
+  public function getTemplates() {
+    return $this->templates;
   }
 }

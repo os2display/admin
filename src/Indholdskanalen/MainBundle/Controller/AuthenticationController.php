@@ -43,11 +43,10 @@ class AuthenticationController extends Controller {
     $response = new Response();
     $authenticationService = $this->container->get('indholdskanalen.authentication_service');
 
-    $token = $authenticationService->getAuthentication($prefix, $reauth === 'reauth');
+    $res = $authenticationService->getAuthentication($prefix, $reauth === 'reauth');
 
-    // Create response.
     $response->setStatusCode(200);
-    $response->setContent($token);
+    $response->setContent(json_encode($res));
 
     return $response;
   }

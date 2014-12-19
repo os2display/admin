@@ -41,6 +41,10 @@ class AuthenticationService extends ContainerAware {
     // Build query.
     $ch = curl_init($host . "/authenticate");
 
+    // SSL fix (self signed).
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
     curl_setopt($ch, CURLOPT_POSTFIELDS,
@@ -62,12 +66,10 @@ class AuthenticationService extends ContainerAware {
     // Close connection.
     curl_close($ch);
 
-    if ($http_status === 200) {
-      return json_decode($content)->token;
-    }
-    else {
-      return false;
-    }
+    return array(
+      'status' => $http_status,
+      'content' => $content
+    );
   }
 
   /**
@@ -93,20 +95,30 @@ class AuthenticationService extends ContainerAware {
     // If the token is set return it.
     if (!$reAuthenticate && $session->has($tokenName)) {
       $token = $session->get($tokenName);
+
+      $res = array(
+        'status' => 200,
+        'token' => $token
+      );
     }
     else {
       $apiKey = $this->container->getParameter($prefix . '_apikey');
       $host = $this->container->getParameter($prefix . '_host');
 
-      $token = $this->authenticate($host, $apiKey);
-      if ($token) {
+      $auth = $this->authenticate($host, $apiKey);
+
+      if ($auth['status'] === 200) {
+        $token = json_decode($auth['content'])->token;
+
         $session->set($tokenName, $token);
       }
-      else {
-        return false;
-      }
+
+      $res = array(
+        'status' => $auth['status'],
+        'token' => $token
+      );
     }
 
-    return $token;
+    return $res;
   }
 }

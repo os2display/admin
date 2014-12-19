@@ -12,6 +12,7 @@ namespace Indholdskanalen\MainBundle\Services;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializationContext;
+use Indholdskanalen\MainBundle\Services\UtilityService;
 
 /**
  * Class MiddlewareCommunication
@@ -21,39 +22,46 @@ use JMS\Serializer\SerializationContext;
 class MiddlewareCommunication extends ContainerAware
 {
   protected $templateService;
+  protected $utilityService;
 
-  function __construct(TemplateService $templateService) {
+  function __construct(TemplateService $templateService, UtilityService $utilityService) {
     $this->templateService = $templateService;
+    $this->utilityService = $utilityService;
   }
 
   /**
-   * Send the screen to the middleware.
+   * Push a channel to the middleware.
    *
-   * @param $screen
-   * @return boolean
+   * @param $channel
+   * @param $data
+   * @param $id
+   * @param $force
    */
-  protected function curlSendContent($screen) {
-    // Send  post request to middleware (/push/channel).
-    $url = $this->container->getParameter("middleware_host") . "/push/channel";
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $screen);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-type: application/json',
-      'Content-Length: ' . strlen($screen),
-    ));
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+  public function pushChannel($channel, $data, $id, $force) {
+    $doctrine = $this->container->get('doctrine');
+    $em = $doctrine->getManager();
 
-    if (!$result = curl_exec($ch)) {
-      $logger = $this->container->get('logger');
-      $logger->error(curl_error($ch));
+    // Calculate hash of content, used to avoid unnecessary push.
+    $sha1 = sha1($data);
+
+    if ($force || $sha1 !== $channel->getLastPushHash()) {
+      $curlResult = $this->utilityService->curl(
+        $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") . "/channel/" . $id,
+        'POST',
+        $data,
+        'middleware'
+      );
+
+      // If the result was delivered, update the last hash.
+      if ($curlResult['status'] === 200) {
+        $channel->setLastPushHash($sha1);
+        $em->flush();
+      }
+      else {
+        $channel->setLastPushHash(null);
+        $em->flush();
+      }
     }
-
-    curl_close($ch);
-
-    return $result;
   }
 
   /**
@@ -65,47 +73,27 @@ class MiddlewareCommunication extends ContainerAware
   public function pushToScreens($force = false) {
     // Get doctrine handle
     $doctrine = $this->container->get('doctrine');
-    $em = $doctrine->getManager();
 
-    // Get all screens
-    $screens = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
+    $serializer = $this->container->get('jms_serializer');
 
-    foreach($screens as $screen) {
-      $serializer = $this->container->get('jms_serializer');
-      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('middleware')));
+    // Push channels
+    $channels = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
+    foreach ($channels as $channel) {
+      $data = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('middleware')));
 
-      // Add shared channels.
-      // @TODO: find a more pretty solution than decode/encode.
-      $content = json_decode($jsonContent);
-      foreach($screen->getSharedChannels() as $sharedChannel) {
-        $channel = $sharedChannel->getContent();
-        if ($channel === null) {
-          continue;
-        }
+      $this->pushChannel($channel, $data, $channel->getId(), $force);
+    }
 
-        $channel = json_decode($channel);
-        foreach($channel->slides as $slide) {
-          $content->channelContent->slides[] = $slide;
-        }
+    // Push shared channels
+    $sharedChannels = $doctrine->getRepository('IndholdskanalenMainBundle:SharedChannel')->findAll();
+    foreach($sharedChannels as $sharedChannel) {
+      $data = $serializer->serialize($sharedChannel, 'json', SerializationContext::create()->setGroups(array('middleware')));
+
+      if ($data === null) {
+        continue;
       }
-      $jsonContent = json_encode($content);
 
-      // Calculate hash of content, used to avoid unnecessary push.
-      $sha1 = sha1($jsonContent);
-
-      if ($force || $sha1 !== $screen->getLastPushHash()) {
-        $curlResult = $this->curlSendContent($jsonContent);
-
-        // If the result was delivered, update the last hash.
-        if ($curlResult) {
-          $screen->setLastPushHash($sha1);
-          $em->flush();
-        }
-        else {
-          $screen->setLastPushHash(null);
-          $em->flush();
-        }
-      }
+      $this->pushChannel($sharedChannel, $data, $sharedChannel->getUniqueId(), $force);
     }
   }
 }

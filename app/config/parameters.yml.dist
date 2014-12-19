@@ -20,12 +20,9 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
 
-    middleware_host: http://127.0.0.1:3020
     absolute_path_to_server: http://service.indholdskanalen.vm
 
     zencoder_api: API_KEY_HERE
-
-    templates_directory: ik-templates/
 
     sharing_host: http://127.0.0.1:3010
     sharing_path: /api
@@ -36,3 +33,21 @@ parameters:
     search_path: /api
     search_apikey: 1234567890
     search_index: e7df7cd2ca07f4f1ab415d457a6e1c13
+
+    middleware_host: http://127.0.0.1:3020
+    middleware_path: /api
+    middleware_apikey: 1234567890
+
+    templates_directory: ik-templates/
+    templates_enabled:
+      - ik-iframe
+      - manual-calender
+      - only-image
+      - only-video
+      - portrait-text-top
+      - text-bottom
+      - text-left
+      - text-right
+      - text-top
+
+    logo: images/logo_default.png

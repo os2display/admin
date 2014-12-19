@@ -29,6 +29,7 @@ services:
 
   indholdskanalen.template_service:
     class: Indholdskanalen\MainBundle\Services\TemplateService
+    arguments: [@service_container]
     calls:
       - [ setContainer,[ @service_container ] ]
 
@@ -50,7 +51,7 @@ services:
 
   indholdskanalen.middleware.communication:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
-    arguments: [@indholdskanalen.template_service]
+    arguments: [@indholdskanalen.template_service, @indholdskanalen.utility_service]
     calls:
       - [ setContainer,[ @service_container ] ]
 
