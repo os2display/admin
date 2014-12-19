@@ -94,12 +94,6 @@ class Screen {
    */
   private $modified_at;
 
-  /**
-   * @ORM\Column(name="last_push_hash", type="string", nullable=true)
-   * @Groups({"api"})
-   */
-  private $lastPushHash;
-
 	/**
 	 * Constructor
 	 */
@@ -142,28 +136,6 @@ class Screen {
 	{
 		return $this->title;
 	}
-
-
-  /**
-   * Set lastPushHash
-   *
-   * @param string $lastPushHash
-   * @return Screen
-   */
-  public function setLastPushHash($lastPushHash) {
-    $this->lastPushHash = $lastPushHash;
-
-    return $this;
-  }
-
-  /**
-   * Get lastPushHash
-   *
-   * @return string
-   */
-  public function getLastPushHash() {
-    return $this->lastPushHash;
-  }
 
 	/**
 	 * Set orientation
@@ -408,4 +380,5 @@ class Screen {
   public function getModifiedAt() {
     return $this->modified_at;
   }
+
 }

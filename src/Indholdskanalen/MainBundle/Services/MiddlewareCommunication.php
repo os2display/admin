@@ -54,13 +54,41 @@ class MiddlewareCommunication extends ContainerAware
 
       // If the result was delivered, update the last hash.
       if ($curlResult['status'] === 200) {
+        $lastPushScreens = $channel->getLastPushScreens();
+        $screens = $channel->getScreens();
+        $ids = array();
+
+        foreach($screens as $screen) {
+          $ids[] = $screen->getId();
+        }
+
+        $deleteSuccess = true;
+
+        foreach (json_decode($lastPushScreens) as $lp_id) {
+          if (!in_array($lp_id, $ids)) {
+            $curlResult = $this->utilityService->curl(
+              $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path") .
+              "/channel/" . $id . "/screen/" . $lp_id,
+              'DELETE',
+              json_encode(array()),
+              'middleware'
+            );
+
+            if ($curlResult['status'] !== 200) {
+              $deleteSuccess = false;
+            }
+          }
+        }
+
+        if ($deleteSuccess) {
+          $channel->setLastPushScreens(json_encode($ids));
+        }
         $channel->setLastPushHash($sha1);
-        $em->flush();
       }
       else {
         $channel->setLastPushHash(null);
-        $em->flush();
       }
+      $em->flush();
     }
   }
 

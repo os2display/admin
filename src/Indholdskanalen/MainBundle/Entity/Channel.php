@@ -35,7 +35,7 @@ class Channel {
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api", "api-bulk", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
    */
   private $title;
 
@@ -93,6 +93,11 @@ class Channel {
   private $lastPushHash;
 
   /**
+   * @ORM\Column(name="last_push_screens", type="json_array", nullable=true)
+   */
+  private $lastPushScreens;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -129,6 +134,28 @@ class Channel {
    */
   public function getLastPushHash() {
     return $this->lastPushHash;
+  }
+
+
+  /**
+   * Set lastPushScreens
+   *
+   * @param string $lastPushScreens
+   * @return Screen
+   */
+  public function setLastPushScreens($lastPushScreens) {
+    $this->lastPushScreens = $lastPushScreens;
+
+    return $this;
+  }
+
+  /**
+   * Get lastPushScreens
+   *
+   * @return string
+   */
+  public function getLastPushScreens() {
+    return $this->lastPushScreens;
   }
 
   /**
