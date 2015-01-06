@@ -6,14 +6,14 @@ This project consists of the backend for Indholdskanalen. The backend is a symfo
 ###Helpful commands
 We have defined a couple of commands for Indholdskanalen.
 
-To push channels
+To push content
 <pre>
-php app/console indholdskanalen:pushchannels
+php app/console ik:push
 </pre>
 
 To reindex search
 <pre>
-php app/console indholdskanalen:reindex
+php app/console ik:reindex
 </pre>
 This does not include delete of records that are removed from symfony but not search.
 
@@ -216,7 +216,7 @@ $ crontab -e
 Add the following line:
 
 <pre>
-*/1 * * * * php path_to_backend/app/console indholdskanalen:cron
+*/1 * * * * php path_to_backend/app/console ik:cron
 </pre>
 
 This command will fetch the latest content from the providers and push to the screens if necessary.
