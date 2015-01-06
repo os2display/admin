@@ -26,7 +26,7 @@ class PushContentCommand extends ContainerAwareCommand {
    */
   protected function configure() {
     $this
-      ->setName('indholdskanalen:pushcontent')
+      ->setName('ik:push')
       ->setDescription("Push content to the screens")
       ->addOption(
         'force',

@@ -30,7 +30,7 @@ class SearchCommand extends ContainerAwareCommand {
    * Configure the command
    */
   protected function configure() {
-    $this->setName('indholdskanalen:reindex')
+    $this->setName('ik:reindex')
       ->setDescription("Re-index all in the search backend.");
   }
 

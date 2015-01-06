@@ -26,7 +26,7 @@ class CronCommand extends ContainerAwareCommand {
    */
   protected function configure() {
     $this
-      ->setName('indholdskanalen:cron')
+      ->setName('ik:cron')
       ->setDescription("Cron");
   }
 
