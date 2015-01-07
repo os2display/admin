@@ -79,6 +79,8 @@ class SharingService extends ContainerAware {
    *
    * @param $channel
    * @param $index
+   *
+   * @return array
    */
   public function addChannelToIndex($channel, $index) {
     $params = array(
@@ -90,7 +92,7 @@ class SharingService extends ContainerAware {
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
 
-    $this->utilityService->curl($this->url, 'POST', $data, 'sharing');
+    return $this->utilityService->curl($this->url, 'POST', $data, 'sharing');
   }
 
   /**
@@ -98,6 +100,8 @@ class SharingService extends ContainerAware {
    *
    * @param $channel
    * @param $index
+   *
+   * @return array
    */
   public function removeChannelFromIndex($channel, $index) {
     $params = array(
@@ -109,7 +113,7 @@ class SharingService extends ContainerAware {
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
 
-    $this->utilityService->curl($this->url, 'DELETE', $data, 'sharing');
+    return $this->utilityService->curl($this->url, 'DELETE', $data, 'sharing');
   }
 
   /**
@@ -117,6 +121,8 @@ class SharingService extends ContainerAware {
    *
    * @param $channel
    * @param $index
+   *
+   * @return array
    */
   public function updateChannel($channel, $index) {
     $params = array(
@@ -128,7 +134,7 @@ class SharingService extends ContainerAware {
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
 
-    $this->utilityService->curl($this->url, 'PUT', $data, 'sharing');
+    return $this->utilityService->curl($this->url, 'PUT', $data, 'sharing');
   }
 
   /**
@@ -157,9 +163,7 @@ class SharingService extends ContainerAware {
 
     $data = json_encode($params);
 
-    $result = $this->utilityService->curl($this->url . '/search', 'POST', $data, 'sharing');
-
-    return $result;
+    return $this->utilityService->curl($this->url . '/search', 'POST', $data, 'sharing');
   }
 
   /**

@@ -183,9 +183,9 @@ class ChannelController extends Controller {
 
     // Set the sharing id, if it is not set.
     if ($channel->getUniqueId() === null || $channel->getUniqueId() === '0') {
-      $index = $this->container->getParameter('search_index');
-      $id = md5($index . $channel->getId());
-      $channel->getUniqueId($id);
+      $index = $this->container->getParameter('sharing_apikey');
+      $id = sha1($index . $channel->getId());
+      $channel->setUniqueId($id);
     }
 
     // Test for existance of sharingIndexes in post
@@ -284,7 +284,7 @@ class ChannelController extends Controller {
 
     $dispatcher = $this->get('event_dispatcher');
 
-    // Add sharing indexes.
+    // Remove from sharing indexes.
     foreach ($channel->getSharingIndexes() as $sharingIndex) {
       // Send event to sharingService to update channel in index.
       $event = new SharingServiceEvent($channel, $sharingIndex);
