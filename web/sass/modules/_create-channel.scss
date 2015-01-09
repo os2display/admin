@@ -316,14 +316,19 @@ $breakpoint-arrow-switch : 693px;
     }
   }
 
-
-  &--arrow-left-inner {
+  &--arrow-left-image {
     margin-right: 2px;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-top: -2px;
   }
 
 
-  &--arrow-right-inner {
+  &--arrow-right-image {
     margin-left: 2px;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-top: -2px;
   }
 
 
