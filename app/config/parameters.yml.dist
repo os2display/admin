@@ -41,7 +41,7 @@ parameters:
     templates_directory: ik-templates/
     templates_enabled:
       - ik-iframe
-      - manual-calender
+      - manual-calendar
       - only-image
       - only-video
       - portrait-text-top
