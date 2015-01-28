@@ -14,7 +14,12 @@
     "height": "1080"
   },
   "emptyoptions": {
-    "logopos": "",
-    "logosize": ""
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
   }
 }
