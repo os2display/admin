@@ -1,20 +1,34 @@
-<section class="pager">
-  <div class="pager--line"></div>
-  <div class="pager--inner">
-    <div clasS="pager--steps">
-      <div class="pager--step-wrapper" data-ng-class="{'is-active': step == 1}" data-ng-click="goToStep(1)">
-        <div class="pager--step">1</div>
-        <div class="pager--text">Titel</div>
-      </div>
-      <div class="pager--step-wrapper" data-ng-class="{'is-active': step == 2}" data-ng-click="goToStep(2)">
-        <div class="pager--step">2</div>
-        <div class="pager--text">Dimensioner</div>
-      </div>
-      <div class="pager--step-wrapper" data-ng-class="{'is-active': step == 3}" data-ng-click="goToStep(3)">
-        <div class="pager--step">3</div>
-        <div class="pager--text">Kanaler og Gem</div>
+<div class="screen--layout">
+  <div class="screen--layout-inner">
+    <div class="screen--layout-content">
+      <div class="presentation--border" style="max-width: 1010px;">
+        <div class="presentation">
+          <div class="presentation--inner" style="width: 960px;height:540px;">
+            <div class="presentation--region-horizontal" style="width: 50%; height:inherit;">
+              <div class="presentation--region-vertical" style="width: auto; height:60%;">
+                <div class="presentation--region-content">
+                  alpha
+                </div>
+              </div>
+              <div class="presentation--region-vertical" style="width: auto; height:40%;">
+                <div class="presentation--region-content is-active">
+                  beta
+                </div>
+              </div>
+            </div>
+            <div class="presentation--region-horizontal" style="width: 50%; height:inherit;">
+              <div class="presentation--region-vertical" style="width: auto; height:100%;">
+                <div class="presentation--region-content">
+                  gamma
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="screen--layout-menu">
+      content
+    </div>
   </div>
-</section>
-<div data-ng-include="" src="templatePath"></div>
+</div>

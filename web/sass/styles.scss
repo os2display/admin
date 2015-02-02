@@ -54,7 +54,11 @@
 @import "modules/_delete";
 @import "modules/_share";
 @import "modules/_admin-sharing";
-
+@import "modules/_presentation";
 
 // Animations
 @import "animations/_animation";
+
+// ITK components.
+@import "components/_itk-menu";
+@import "components/_itk-tabs";

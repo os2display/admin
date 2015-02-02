@@ -1,0 +1,75 @@
+/**
+ *
+ * Presentation display.
+ *
+ */
+
+
+
+/* Silent classes related to this document
+   ========================================================================== */
+
+%presentation--item {
+  box-sizing: border-box;
+  padding: 2px 1px;
+}
+
+%presentation--item-inner {
+  background: $gray-lighter;
+  box-sizing: border-box;
+  border: 1px solid $gray;
+  font-size: 1rem;
+  height: 100%;
+
+  &:hover {
+    border-color: $orange;
+  }
+
+  &.is-active {
+    border-color: $orange;
+    border-width: 3px;
+  }
+}
+
+/* Styles
+   ========================================================================== */
+
+
+// Additional wrapper for styling border wrapping the actual presentation.
+.presentation--border {
+  background: $white;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 1.5em;
+
+  @include border-radius(30px);
+}
+
+
+.presentation {
+  width: 100%;
+  overflow-x: auto;
+
+  &--inner {
+    font-size: 0; // inline-block fix.
+    margin: 0 auto;
+  }
+}
+
+
+.presentation--region-horizontal {
+  @extend %presentation--item;
+
+  display: inline-block;
+  vertical-align: top;
+}
+
+.presentation--region-vertical {
+  @extend %presentation--item;
+
+  display: block;
+}
+
+.presentation--region-content {
+  @extend %presentation--item-inner;
+}
