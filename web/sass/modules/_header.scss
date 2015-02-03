@@ -10,29 +10,16 @@
 // Selector for main menu items.
 %header--main-menu-item--selector {
   display: inline-block;
+  padding-right: .5em;
   vertical-align: middle;
 }
 
-
-// Mixin for the changing logo in various cases.
-@mixin header--logo-transition($display-type) {
-  @if $display-type == "arrow" {
-    .header--logo-image {
-      display: none;
-    }
-    .header--arrow-image {
-      display: block;
-    }
-  }
-  @else {
-    .header--logo-image {
-      display: block;
-    }
-    .header--arrow-image {
-      display: none;
-    }
-  }
-}
+// @todo Include these in the _variables file as global color variables to be used when launching the new colors.
+$header--gray:          #333;
+$header--gray-dark:     #222;
+$header--text:          $white;
+$header--sub:           $white;
+$header--sub-text:      #222;
 
 
 /* Styles.
@@ -43,66 +30,52 @@
 }
 
 .header {
-  background-color: $beige;
-  color: $gray-darkest;
+  background-color: $header--gray;
+  color: $header--text;
   margin-bottom: 2em;
   position: relative;
   width: 100%;
   z-index: 1;
 
   &--main {
+    min-height: 5.5em;
     position: relative;
-    padding: 1em 0;
+    width: 100%;
     overflow: hidden;
-
-    @include breakpoint(70em) {
-      padding: 0 1em;
-    }
   }
 
   &--main-anonymous {
     height: 4em;
   }
 
+  &--arrow {
+    margin-left: 1em;
+    display: block;
+
+    @include breakpoint(70em) {
+      display: none;
+    }
+  }
 
   /* Logo section. (is-visible state class shows logo, else shows as arrow)
  ========================================================================== */
 
   &--logo {
-    padding: 0 1em;
-    position: absolute;
-    top: 50%;
-    width: 45%;
+    display: none;
+    z-index: 2;
 
-    @include translateY(-50%);
     @include breakpoint(70em) {
       background: none;
       display: inline-block;
       margin-bottom: 0;
       margin-left: 0;
-     // margin-right: $adjust-inline-block;
-      position: relative;
-      padding: 0;
+      position: absolute;
+      padding-left: 2em;
       text-indent: 0;
-      top: 0%;
-      width: 25%;
-    }
-  }
+      top: 50%;
+      width: 15em;
 
-  // Logo on small screens.
-  &--logo-link {
-    display: inline-block;
-
-    @include header--logo-transition(arrow);
-
-    // Logo on broad screens
-    @include breakpoint(70em) {
-      @include header--logo-transition(logo);
-    }
-
-    // Logo when main menu is in sub header.
-    &.is-visible {
-      @include header--logo-transition(logo);
+      @include translateY(-50%);
     }
   }
 
@@ -135,10 +108,9 @@
  ========================================================================== */
 
   &--main-menu {
-    height: 2.5em;
-
-    margin-left: 3em;
-    width: 75%;
+    margin-left: 1.5em;
+    z-index: 1;
+    width: 100%;
 
     @include breakpoint(70em) {
       display: inline-block;
@@ -148,7 +120,6 @@
       position: relative;
       text-align: center;
       top: 0;
-      width: 50%;
     }
   }
 
@@ -174,22 +145,23 @@
       width: auto;
 
       &.is-active {
-        background: $beige-dark;
+        background: $header--gray-dark;
         font-size: 1em;
       }
 
       &:hover {
-        background: $beige-dark;
+        background: $header--gray-dark;
       }
     }
   }
 
 
   &--main-menu-item-link {
-    line-height: 1.7em;
-    padding: .5em;
-    width: 5em;
     display: block;
+    line-height: 1.7em;
+    padding: 2em 1.5em;
+    width: 5em;
+
 
     // On small screens the icon only tells where you are, and should not be styled as link
     &:hover {
@@ -212,28 +184,28 @@
  ========================================================================== */
 
   &--main-menu-item-image-channels{
-    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-slides{
-    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-screens{
-    @include generate-sprite-image($dashboard-sprites, 'display-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'screens-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-templates{
-    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'media-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
@@ -241,10 +213,10 @@
 
   &--main-menu-item-text {
     display: block;
+    margin-top: .5em;
 
     @include breakpoint(70em) {
       display: inline-block;
-      width: 100%;
     }
   }
 
@@ -256,6 +228,7 @@
     right: 1em;
     text-align: right;
     top: 50%;
+    z-index: 2;
 
     @include translateY(-50%);
 
@@ -264,7 +237,7 @@
       padding: 1em 0;
       text-align: right;
       top: 50%;
-      width: 20%;
+      width: 3.5em;
     }
   }
 
@@ -325,7 +298,7 @@
 
 
   &--nav-menu-label-image {
-    @include generate-sprite-image($dashboard-sprites, 'menu-icon', 25);
+    @include generate-sprite-image($dashboard-sprites, 'menu-icon', 100);
 
     display: inline-block;
     margin: 0 .5em 0 0;
@@ -346,7 +319,9 @@
  ========================================================================== */
 
   &--sub {
-    background: $beige-dark;
+    background: $header--sub;
+    color: $header--sub-text;
+    border-bottom: 1px solid $gray-lighter;
   }
 
 
@@ -369,7 +344,7 @@
 
   &--sub-menu-item {
     display: inline-block;
-    padding: 0 1em;
+    padding: 0 1.5em;
   }
 
 
@@ -455,28 +430,28 @@
 
 
   &--main-menu-item-image-channels--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 20);
+    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-slides--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 20);
+    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-screens--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'display-icon', 20);
+    @include generate-sprite-image($dashboard-sprites, 'screens-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-templates--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'templates-icon', 20);
+    @include generate-sprite-image($dashboard-sprites, 'media-icon', 100);
 
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
 

@@ -45,25 +45,29 @@ $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing betwee
 
 
 // Strip all link styles default to inherit.
-@mixin strip-link-styles($color:inherit) {
+@mixin strip-link-styles($color:inherit, $text-decoration:none) {
   &:link {
     color: $color;
-    text-decoration: none;
+    outline: 0;
+    text-decoration: $text-decoration;
   }
 
   &:visited {
     color: $color;
-    text-decoration: none;
+    outline: 0;
+    text-decoration: $text-decoration;
   }
 
   &:hover {
     color: $color;
-    text-decoration: none;
+    outline: 0;
+    text-decoration: $text-decoration;
   }
 
   &:focus {
     color: $color;
-    text-decoration: none;
+    outline: 0;
+    text-decoration: $text-decoration;
   }
 }
 
