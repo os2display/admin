@@ -5,55 +5,65 @@
  */
 
 
-
-/* Silent classes related to this document
-   ========================================================================== */
-
-
 /* Styles
    ========================================================================== */
 .screen--layout {
   @extend %grid;
 
-  margin-left: -.5em;
-
   // We create a full height container for the screen layout.
-  height: 100vh;
-  position: fixed;
+  height: 100%;
+  margin: 0;
+  position: relative;
   width: 100%;
   top: 0;
 
-  @include breakpoint($breakpoint-lap) {
-    margin-left: -2em;
-  }
-
   &-inner {
-    height: 100%;
-    margin-top: 7.5em;
+    background: $gray-lightest;
+    height: auto;
+    min-height: 100%;
     position: relative;
   }
 
   &-content {
     @extend %grid__item;
-    @extend %lap--one-whole;
-    @extend %two-thirds;
     @extend %palm--one-whole;
+    @extend %lap--one-whole;
+    @extend %portable--one-whole;
+    @extend %two-thirds;
     @extend %grid-markup-fix;
 
     box-sizing: border-box;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     padding: 2em;
 
-    background: $gray-lighter;
+    @include breakpoint($breakpoint-desk) {
+      position: relative;
+    }
   }
 
-  &-menu {
+  &-control-panel {
     @extend %grid__item;
     @extend %lap--one-whole;
     @extend %one-third;
     @extend %palm--one-whole;
     @extend %grid-markup-fix;
 
-    height: 100%;
+    display: none;
+    bottom: 0;
+    height: auto;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    max-width: 18em;
+    right: 0;
+    padding: 0;
+    z-index: 0;
+
+    @include breakpoint($breakpoint-desk) {
+      display: inline-block;
+      max-width: 100%;
+      position: relative;
+    }
   }
 }

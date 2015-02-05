@@ -1,0 +1,113 @@
+/**
+ *
+ * Control panel.
+ *
+ * Wrapper for controlling the presentation.
+ * For specific widget styles see _control-panel-widgets.scss
+ *
+ */
+
+
+
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+
+// Control panel styling shared by all panels.
+%control-panel {
+  border-left: $border-width solid $gray-lighter;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1.5em;
+
+  background: $white;
+  color: $gray-darker;
+}
+
+
+
+/* Styles
+   ========================================================================== */
+
+/* The default control panel. */
+.control-panel--main {
+  display: none;  // @todo support mobile configuration.
+
+  @extend %control-panel;
+
+  @include breakpoint($breakpoint-desk) {
+    display: block;
+  }
+}
+
+
+/* Toggle for mobile devices. (Disabled) */
+.control-panel--main-toggle {
+  display: none;  // @todo support mobile configuration.
+  border: 1px solid $gray-lighter;
+  box-sizing: border-box;
+  position: absolute;
+  margin-left: -4.5em;
+  height: 3em;
+  width: 3em;
+
+  background: white;
+  line-height: 3em;
+  text-align: center;
+
+  @include strip-link-styles();
+  @include border-left-radius($border-radius);
+
+  &-image {
+    vertical-align: middle;
+  }
+}
+
+
+/* The overlay control panels. */
+.control-panel--tool {
+  @extend %itk--menu;  // Use the ITK menu component.
+
+  position: absolute; // Override component settings.
+  max-width: 100%;  // Override component settings.
+  @include box-shadow(0 0 0 transparentize($black, .75)); // Override component settings.
+
+  @extend %control-panel;
+
+  top: 0;
+}
+
+
+/* Display navigation in the control panel */
+.control-panel--nav-wrapper {
+  margin-bottom: 2em;
+}
+
+.control-panel--nav {
+  @extend %itk--tabs; // Use the ITK tabs component.
+}
+
+.control-panel--nav-item {
+  @extend %itk--tabs-item; // Use the ITK tabs component.
+
+  &.is-active {
+    font-weight: bold;
+  }
+}
+
+
+/* Bottom actions for control panel. */
+.control-panel--actions {
+  border-top: $border-width solid $gray-lighter;
+  border-bottom: $border-width solid $gray-lighter;
+  padding: 1em 0;
+  text-align: center;
+  margin: 0 -1.5em;
+
+  &-close {
+    @extend %button--default;
+
+    font-size: 110%;
+    max-width: 15em;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,245 @@
+/**
+ *
+ * CPW - Control panel widgets
+ *
+ * For displaying widgets inside the control panel.
+ *
+ */
+
+
+
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+
+/* A simple wrapper for grouping widgets. */
+%cpw--wrapper {
+  border: $border-width solid $gray-light;
+  margin-bottom: 2em;
+  padding: 2em;
+
+  @include border-radius($border-radius);
+}
+
+// Default display and margin for labels in the control panel.
+%cpw--label {
+  color: $gray-darker;
+  margin-bottom: 1em;
+}
+
+
+%cpw--text { // Overwrite _forms.scss.
+  margin-bottom: 2em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+%cpw--search {
+  background: url("../../images/filter-icon.png") no-repeat 1em 50%;
+  padding-left: 3em;
+}
+
+
+%cpw--list-item {
+  box-sizing: border-box;
+  border: $border-width solid $gray-light;
+  font-size: 0;
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+  @include border-radius(.4rem);
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+/* Styles
+   ========================================================================== */
+
+
+/* A simple wrapper for grouping widgets. */
+.cpw--wrapper {
+  @extend %cpw--wrapper;
+}
+
+
+
+/* Text widget */
+.cpw--text {
+  @extend %cpw--text;
+
+  &-label {
+    @extend %cpw--label;
+  }
+}
+
+
+
+/* Screen sections widget */
+.cpw--screen-sections {
+  @extend %cpw--wrapper;
+
+  text-align: center;
+
+  &-item {
+    display: inline-block;
+    margin: 1em .5em;
+  }
+
+  &-label {
+    @extend %cpw--label;
+  }
+
+  // Always include border and change color depending on states to avoid the blocks from moving around
+  &-link {
+    @include strip-link-styles();
+
+    border: 1px solid $white; // Default border is white. Narrow border.
+    display: block;
+
+    &.is-active .cpw--screen-sections-icon {
+      border-color: $orange;  // If active link the broad inner border should be shown.
+    }
+
+    &:hover {
+      border-color: $orange;  // On hover the narrow outer border should be shown.
+
+      &.is-active {
+        border-color: $white; // Unless it's already active in which case we just show the broad - active border
+      }
+    }
+  }
+
+  &-icon {
+    border: 3px solid $white; // Default border is white. Broad border.
+    box-sizing: border-box;
+  }
+}
+
+
+
+/* Screen tamplates widget */
+.cpw--screen-templates {
+  @extend %cpw--wrapper;
+
+  text-align: center;
+
+  &-item {
+    display: inline-block;
+    margin: 1em .5em;
+  }
+
+  &-label {
+    @extend %cpw--label;
+  }
+
+  // Always include border and change color depending on states to avoid the blocks from moving around
+  &-link {
+    @include strip-link-styles();
+
+    border: 1px solid $white; // Default border is white. Narrow border.
+    display: block;
+
+    &.is-active .cpw--screen-templates-icon {
+      border-color: $orange;  // If active link the broad inner border should be shown.
+    }
+
+    &:hover {
+      border-color: $orange;  // On hover the narrow outer border should be shown.
+
+      &.is-active {
+        border-color: $white; // Unless it's already active in which case we just show the broad - active border
+      }
+    }
+  }
+
+  &-icon {
+    border: 3px solid $white; // Default border is white. Broad border.
+    box-sizing: border-box;
+  }
+}
+
+
+
+/* Add channels widget */
+.cpw--add-channels {
+  margin-bottom: 2em;
+
+  &-search[type="search"] {
+    @extend %cpw--text;
+    @extend %cpw--search;
+  }
+
+  &-item {
+    @extend %cpw--list-item;
+
+    &-image {
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: .9rem;
+      padding-right: 1rem;
+      vertical-align: top;
+      width: 50%;
+    }
+
+    &-content {
+      display: inline-block;
+      font-size: .9rem;
+      width: 50%;
+    }
+
+    &-meta {
+      margin-bottom: 2rem;
+    }
+
+    &-action {
+      @extend %button--action;
+
+      padding: .3rem;
+    }
+  }
+}
+
+
+
+/* Selected channels widget */
+.cpw--selected-channels {
+  margin-bottom: 2em;
+
+  &-search[type="search"] {
+    @extend %cpw--text;
+    @extend %cpw--search;
+  }
+
+  &-item {
+    @extend %cpw--list-item;
+
+    &-image {
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: .9rem;
+      padding-right: 1rem;
+      vertical-align: top;
+      width: 50%;
+    }
+
+    &-content {
+      display: inline-block;
+      font-size: .9rem;
+      width: 50%;
+    }
+
+    &-meta {
+      margin-bottom: 2rem;
+    }
+
+    &-action {
+      @extend %button--action-warning;
+
+      padding: .3rem;
+    }
+  }
+}

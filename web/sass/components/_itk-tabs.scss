@@ -11,16 +11,16 @@
    ========================================================================== */
 
 /* Variables used within this document. */
-$itk--tabs-color:               $black; // Text color of the tabs.
-$itk--tabs-active-color:        $white; // Active text color.
-$itk--tabs-background:          $white; // Tabs background color.
-$itk--tabs-active-background:   $black; // Tabs active background color.
-$itk--tabs-border:              $border-width solid $black; // Border around the tabs.
-$itk--tabs-padding:             0.75em 1em; // Padding of the tabs
+$itk--tabs-color:               $gray-darker; // Text color of the tabs.
+$itk--tabs-active-color:        inherit; // Active text color.
+$itk--tabs-background:          $gray-lightest; // Tabs background color.
+$itk--tabs-active-background:   $gray-lighter; // Tabs active background color.
+$itk--tabs-border:              $border-width solid $gray-light; // Border around the tabs.
+$itk--tabs-padding:             .5em .75em; // Padding of the tabs
 $itk--tabs-font-size:           1rem;   // Inline block fix. The margin of -4px does not solve issue in chrome (this does).
 $itk--tabs-border-radius:       $border-radius; // The roundness!!
 $itk--tabs-hover-background:    $gray-lighter;  // Background color on hover.
-$itk--tabs-hover-color:         $black; // Text color on hover.
+$itk--tabs-hover-color:         inherit; // Text color on hover.
 
 
 /* Styles
