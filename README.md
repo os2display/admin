@@ -254,5 +254,7 @@ To set a custom logo:
   logo: images/logo.png
 </pre>
 
+### Activate indexes
+Before you can used te system you need to go into the search node administration and activate the different indexes needed.
 
 ###Ready to go!
