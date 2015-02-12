@@ -12,9 +12,9 @@
 
 
 // Create our sprite map.
+
 $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing between images in sprite.
 @import "icons/*.png"; // Files to include in sprite
-
 
 // Fetch image from a sprite map and optionally resize it.
 // Examples:
@@ -34,6 +34,7 @@ $dashboard-sprites: sprite-map("icons/*.png", $spacing: 20px); // Spacing betwee
   height: ceil($height*($percent/100));
   background-position: 0 floor(nth(sprite-position($map, $sprite), 2)  * ($percent/100) );
 }
+
 
 
 // Strip all list styles.
