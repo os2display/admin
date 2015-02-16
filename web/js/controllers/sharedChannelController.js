@@ -6,7 +6,7 @@
 /**
  * Shared channel controller. Controls the channel creation process.
  */
-ikApp.controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory',
+angular.module('ikApp').controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory',
   function($scope, $location, $routeParams, $timeout, screenFactory, sharedChannelFactory) {
     $scope.steps = 2;
     $scope.step = 1;

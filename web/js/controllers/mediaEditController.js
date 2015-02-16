@@ -6,7 +6,7 @@
 /**
  * Media controller. Controls media editing functions.
  */
-ikApp.controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory',
+angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory',
   function($scope, $location, $routeParams, $timeout, mediaFactory) {
 
     // Get the selected media

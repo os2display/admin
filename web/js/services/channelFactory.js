@@ -6,7 +6,7 @@
 /**
  * Channel factory. Main entry point for accessing channels.
  */
-ikApp.factory('channelFactory', ['$http', '$q', 'searchFactory',
+angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory',
   function($http, $q, searchFactory) {
     var factory = {};
 

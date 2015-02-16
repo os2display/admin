@@ -6,7 +6,7 @@
 /**
  * Directive to insert a screen.
  */
-ikApp.directive('ikScreen', ['screenFactory', function(screenFactory) {
+angular.module('ikApp').directive('ikScreen', ['screenFactory', function(screenFactory) {
   return {
     templateUrl: 'partials/screen/screen-template.html',
     restrict: 'E',

@@ -6,7 +6,7 @@
 /**
  * Index controller.
  */
-ikApp.controller('IndexController', ['$scope',
+angular.module('ikApp').controller('IndexController', ['$scope',
   function($scope) {
 
   }

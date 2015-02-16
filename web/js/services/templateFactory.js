@@ -6,7 +6,7 @@
 /**
  * Template factory. Main entry point for templates.
  */
-ikApp.factory('templateFactory', ['$q', '$http',
+angular.module('ikApp').factory('templateFactory', ['$q', '$http',
   function($q, $http) {
     var factory = {};
     var templates = null;

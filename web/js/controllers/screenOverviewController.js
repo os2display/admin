@@ -6,7 +6,7 @@
 /**
  * Screens controller handles the display and selection of screens.
  */
-ikApp.controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory',
+angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory',
   function($scope, screenFactory, userFactory) {
     "use strict";
 

@@ -6,7 +6,7 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-ikApp.controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory',
+angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory',
   function($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory) {
     $scope.steps = 6;
     $scope.slide = {};

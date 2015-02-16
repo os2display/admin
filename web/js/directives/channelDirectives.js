@@ -8,7 +8,7 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-ikApp.directive('ikChannel', ['$interval', '$location',
+angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
   function($interval, $location) {
     return {
       restrict: 'E',

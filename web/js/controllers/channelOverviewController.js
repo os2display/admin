@@ -6,7 +6,7 @@
 /**
  * Channels controller handles the display and selection of channels.
  */
-ikApp.controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'configuration',
+angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'configuration',
   function($scope, sharedChannelFactory, channelFactory, configuration) {
     $scope.shareDialogShow = false;
     $scope.shareDialogChannel = null;

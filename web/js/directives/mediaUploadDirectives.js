@@ -11,7 +11,7 @@
  * Emits the 'mediaUpload.uploadComplete' event for a parent controller to catch.
  *   Catch this event to handle when the upload is complete.
  */
-ikApp.directive('ikMediaUpload', function() {
+angular.module('ikApp').directive('ikMediaUpload', function() {
   return {
     restrict: 'E',
     scope: {
@@ -189,7 +189,7 @@ ikApp.directive('ikMediaUpload', function() {
  * @author: nerv
  * @version: 0.1.2, 2014-01-09
  */
-ikApp.directive('ikThumb', ['$window', function($window) {
+angular.module('ikApp').directive('ikThumb', ['$window', function($window) {
   var helper = {
     support: !!($window.FileReader && $window.CanvasRenderingContext2D),
     isFile: function(item) {

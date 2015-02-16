@@ -6,7 +6,7 @@
 /**
  * Directive to show the slide overview.
  */
-ikApp.directive('ikSlideOverview', function() {
+angular.module('ikApp').directive('ikSlideOverview', function() {
   "use strict";
 
   return {

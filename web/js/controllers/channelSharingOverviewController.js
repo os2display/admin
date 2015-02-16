@@ -6,7 +6,7 @@
 /**
  * Channel sharing overview controller. Controls the sharing channel overview.
  */
-ikApp.controller('ChannelSharingOverviewController', ['$scope', 'configuration',
+angular.module('ikApp').controller('ChannelSharingOverviewController', ['$scope', 'configuration',
   function($scope, configuration) {
 
   }

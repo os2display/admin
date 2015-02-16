@@ -14,7 +14,7 @@
  *   which media type should be shown, "image" or "video",
  *   leave out show all media.
  */
-ikApp.directive('ikMediaOverview', function() {
+angular.module('ikApp').directive('ikMediaOverview', function() {
   return {
     restrict: 'E',
     scope: {

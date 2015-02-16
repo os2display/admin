@@ -6,7 +6,11 @@
  * response is a "401 Unauthorized"
  */
 
-ikApp.factory('authHttpResponseInterceptor',['$q','$location', '$window',function($q,$location, $window){
+/**
+ * Interceptor for 401 (unauthorized) responses.
+ * Logs out.
+ */
+angular.module('ikApp').factory('authHttpResponseInterceptor',['$q','$location', '$window',function($q,$location, $window){
   return {
     responseError: function(rejection) {
       if (rejection.status === 401) {
@@ -17,6 +21,9 @@ ikApp.factory('authHttpResponseInterceptor',['$q','$location', '$window',functio
   }
 }]);
 
-ikApp.config(['$httpProvider',function($httpProvider) {
+/**
+ * Register the event interceptor.
+ */
+angular.module('ikApp').config(['$httpProvider',function($httpProvider) {
   $httpProvider.interceptors.push('authHttpResponseInterceptor');
 }]);

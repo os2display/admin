@@ -6,7 +6,7 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-ikApp.controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'screenFactory',
+angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'screenFactory',
   function($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, screenFactory) {
     $scope.steps = 4;
     $scope.slides = [];

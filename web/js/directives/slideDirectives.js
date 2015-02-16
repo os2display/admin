@@ -8,7 +8,7 @@
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFactory, templateFactory) {
+angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFactory, templateFactory) {
   return {
     restrict: 'E',
     scope: {
@@ -76,7 +76,7 @@ ikApp.directive('ikSlide', ['slideFactory', 'templateFactory', function(slideFac
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-ikApp.directive('ikSharedSlide', ['cssInjector', function(cssInjector) {
+angular.module('ikApp').directive('ikSharedSlide', ['cssInjector', function(cssInjector) {
   return {
     restrict: 'E',
     scope: {
@@ -122,7 +122,7 @@ ikApp.directive('ikSharedSlide', ['cssInjector', function(cssInjector) {
  * @param ik-slide: the slide.
  * @param ik-width: the width of the slide.
  */
-ikApp.directive('ikSlideEditable', ['templateFactory', function(templateFactory) {
+angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', function(templateFactory) {
   return {
     restrict: 'E',
     scope: {

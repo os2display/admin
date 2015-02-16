@@ -6,7 +6,7 @@
 /**
  * Shared Channel factory. Main entry point for accessing shared channels.
  */
-ikApp.factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
+angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
   function($http, $q, sharedSearchFactory) {
     var factory = {};
 

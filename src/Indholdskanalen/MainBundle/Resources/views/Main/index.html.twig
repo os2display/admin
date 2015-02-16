@@ -39,9 +39,10 @@
 
   <!-- Base -->
   <script src="{{ asset('js/app.js') }}"></script>
-<!--  <script src="{{ asset('js/configuration.js') }}"></script>-->
+
+  <!-- Configuration -->
   <script type="text/javascript">
-    ikApp.value('configuration', {
+    angular.module('ikApp').value('configuration', {
       "search": {
         "address": "{{ search_host }}",
         "index": "{{ search_index }}"

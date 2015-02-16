@@ -6,7 +6,7 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-ikApp.controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
   function($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, configuration) {
     $scope.sharingEnabled = configuration.sharingService.enabled;
 

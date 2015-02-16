@@ -6,7 +6,7 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-ikApp.directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
+angular.module('ikApp').directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
   function(sharedChannelFactory, userFactory, configuration, $timeout) {
     "use strict";
 

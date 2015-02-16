@@ -1,8 +1,12 @@
 /**
  * @file
- *
+ * Paging directive.
  */
-ikApp.directive('ikPager', function() {
+
+/**
+ * Paging directive.
+ */
+angular.module('ikApp').directive('ikPager', function() {
   "use strict";
   return {
     restrict: 'E',

@@ -8,7 +8,7 @@
  *
  * The communication is based on web-sockets via socket.io library.
  */
-ikApp.service('searchFactory', ['$q', '$rootScope', 'configuration', '$http',
+angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configuration', '$http',
   function($q, $rootScope, configuration, $http) {
   var socket;
   var self = this;

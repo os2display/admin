@@ -3,8 +3,11 @@
  * Contains the checklist directive
  */
 
-
-ikApp.directive('ikChecklist', function() {
+/**
+ * Checklist directive.
+ *
+ */
+angular.module('ikApp').directive('ikChecklist', function() {
   "use strict";
 
   return {

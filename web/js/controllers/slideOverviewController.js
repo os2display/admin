@@ -6,7 +6,7 @@
 /**
  * Slide overview controller handles the display and selection of slides.
  */
-ikApp.controller('SlideOverviewController', ['$scope', '$location',
+angular.module('ikApp').controller('SlideOverviewController', ['$scope', '$location',
   function($scope, $location) {
     // Register event listener for the click slide event.
     $scope.$on('slideOverview.clickSlide', function(event, slide) {

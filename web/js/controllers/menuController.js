@@ -6,7 +6,7 @@
 /**
  * Menu controller. Controls the menues.
  */
-ikApp.controller('MenuController', ['$scope', '$rootScope', '$location', 'userFactory', 'configuration',
+angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', 'userFactory', 'configuration',
   function($scope, $rootScope, $location, userFactory, configuration) {
     $scope.url = $location.url();
     $scope.navMenuOpen = null;

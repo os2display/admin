@@ -6,7 +6,7 @@
 /**
  * Admin sharing controller.
  */
-ikApp.controller('AdminSharingController', ['$scope', 'sharedChannelFactory',
+angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedChannelFactory',
   function($scope, sharedChannelFactory) {
     $scope.saving = false;
 

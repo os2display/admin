@@ -6,7 +6,7 @@
 /**
  * Screen factory. Main entry point for screens and screen groups.
  */
-ikApp.factory('screenFactory', ['$http', '$q', 'searchFactory',
+angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory',
   function($http, $q, searchFactory) {
     var factory = {};
     var currentScreen = null;

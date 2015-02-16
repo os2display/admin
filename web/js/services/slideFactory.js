@@ -6,7 +6,7 @@
 /**
  * Slide factory. Main entry point for slides.
  */
-ikApp.factory('slideFactory', ['$http', '$q', 'searchFactory',
+angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
   function($http, $q, searchFactory) {
     var factory = {};
 

@@ -6,7 +6,7 @@
 /**
  * Media factory. Main entry to media.
  */
-ikApp.factory('mediaFactory', ['$http', '$q', 'searchFactory',
+angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
   function($http, $q, searchFactory) {
     var factory = {};
 

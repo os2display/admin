@@ -6,7 +6,7 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-ikApp.controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory',
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory',
   function($scope, $http, $filter, mediaFactory, slideFactory) {
     $scope.step = 'background-picker';
     $scope.addevent = {

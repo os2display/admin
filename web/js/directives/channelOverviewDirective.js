@@ -6,7 +6,7 @@
 /**
  * Directive to show the Channel overview.
  */
-ikApp.directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration', '$timeout',
+angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration', '$timeout',
   function(channelFactory, userFactory, configuration, $timeout) {
     "use strict";
 

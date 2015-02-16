@@ -6,7 +6,7 @@
 /**
  * User factory.
  */
-ikApp.factory('userFactory', ['$http', '$q',
+angular.module('ikApp').factory('userFactory', ['$http', '$q',
   function($http, $q) {
     var factory = {};
 

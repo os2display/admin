@@ -6,7 +6,7 @@
 /**
  * HTML attribute to replace the ng-include div.
  */
-ikApp.directive('includeReplace', function () {
+angular.module('ikApp').directive('includeReplace', function () {
   return {
     require: 'ngInclude',
     restrict: 'A',
@@ -20,7 +20,7 @@ ikApp.directive('includeReplace', function () {
  * HTML attribute for textareas. Makes the textarea grow.
  * Uses jQuery.
  */
-ikApp.directive('autoGrow', function() {
+angular.module('ikApp').directive('autoGrow', function() {
   return {
     restrict: 'A',
     scope: {

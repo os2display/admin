@@ -6,7 +6,7 @@
 /**
  *
  */
-ikApp.directive('ikChannelShare',
+angular.module('ikApp').directive('ikChannelShare',
   function() {
     return {
       restrict: 'E',
