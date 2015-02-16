@@ -140,21 +140,23 @@ class SharingService extends ContainerAware {
   /**
    * Get channel from index on external SharingService.
    *
-   * @param $channel_id
+   * @param $channelId
+   *   Id of the channel.
    * @param $index
+   *   The index to get channel from.
    *
    * @return mixed
    */
-  public function getChannelFromIndex($channel_id, $index) {
+  public function getChannelFromIndex($channelId, $index) {
     $params = array(
       'index' => $index,
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel_id,
+      'id' => $channelId,
       'query' => array(
         'query' => array(
           'ids' => array(
             'values' => array(
-              $channel_id
+              $channelId
             )
           )
         )

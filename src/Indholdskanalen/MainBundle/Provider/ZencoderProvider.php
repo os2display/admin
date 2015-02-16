@@ -27,16 +27,16 @@ class ZencoderProvider extends BaseProvider {
    * @param string $name
    * @param Filesystem $filesystem
    * @param CDNInterface $cdn
-   * @param GeneratorInterface $path_generator
+   * @param GeneratorInterface $pathGenerator
    * @param ThumbnailInterface $thumbnail
    * @param $hostname
-   * @param $api_key
+   * @param $apiKey
    */
-  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $path_generator, ThumbnailInterface $thumbnail, $hostname, $api_key) {
-    parent::__construct($name, $filesystem, $cdn, $path_generator, $thumbnail);
+  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $apiKey) {
+    parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
     $this->name = $name;
     $this->hostname = $hostname;
-    $this->api_key = $api_key;
+    $this->api_key = $apiKey;
   }
 
   /**

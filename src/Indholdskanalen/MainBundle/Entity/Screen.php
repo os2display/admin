@@ -307,12 +307,12 @@ class Screen {
   /**
    * Add shared_channel
    *
-   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel
+   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel
    * @return Screen
    */
-  public function addSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel) {
-    $shared_channel->addScreen($this);
-    $this->shared_channels[] = $shared_channel;
+  public function addSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel) {
+    $sharedChannel->addScreen($this);
+    $this->shared_channels[] = $sharedChannel;
 
     return $this;
   }
@@ -320,11 +320,11 @@ class Screen {
   /**
    * Remove shared_channel
    *
-   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel
+   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel
    */
-  public function removeSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $shared_channel) {
-    $shared_channel->removeScreen($this);
-    $this->shared_channels->removeElement($shared_channel);
+  public function removeSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel) {
+    $sharedChannel->removeScreen($this);
+    $this->shared_channels->removeElement($sharedChannel);
   }
 
   /**
