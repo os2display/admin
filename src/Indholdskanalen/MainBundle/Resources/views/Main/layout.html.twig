@@ -18,8 +18,12 @@
 
   {# Import css files for templates. #}
   {% for template in templates_slides_enabled %}
-    <link rel="stylesheet" href="{{ templates_slides_directory }}/{{ template }}/{{ template }}.css">
+    <link rel="stylesheet" href="{{ templates_slides_directory }}{{ template }}/{{ template }}.css">
   {% endfor %}
+
+  {% for template in templates_screens_enabled %}
+    <link rel="stylesheet" href="{{ templates_screens_directory }}{{ template }}/{{ template }}.css">
+  {% endfor  %}
 {% endblock %}
 
 {% block scripts %}{% endblock %}

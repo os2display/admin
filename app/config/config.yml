@@ -37,6 +37,8 @@ twig:
     logo: %logo%
     templates_slides_enabled: %templates_slides_enabled%
     templates_slides_directory: %templates_slides_directory%
+    templates_screens_enabled: %templates_screens_enabled%
+    templates_screens_directory: %templates_screens_directory%
 
 # Assetic Configuration
 assetic:
