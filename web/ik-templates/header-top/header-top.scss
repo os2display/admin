@@ -20,15 +20,17 @@ body {
 }
 
 .header-top--header-wrapper {
-  padding: 2em 2em 1em;
+  padding: 2vw 2vw 2.5vw;
 
   background-color: #379f40;
 }
 
 .header-top--header {
+  margin-bottom: 0;
+
   background-color: #379f40;
   color: #fff;
-  font-size: 225%;
+  font-size: 4vw;
   font-weight: bold;
 }
 
