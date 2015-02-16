@@ -231,12 +231,12 @@ Disable the push-on-changes feature in the src/Indholdskanalen/MainBundle/Resour
 #      - { name: doctrine.event_listener, event: postUpdate }
 </pre>
 
-###Templates
-The templates are placed in the web/ik-templates/ directory.
+###Templates (slides)
+The templates are placed in the web/templates/slides/ directory.
 To enable a template from the templates folder, add the name to parameters.yml, e.g.:
 
 <pre>
-  templates_enabled:
+  templates_slides_enabled:
     - ik-iframe
     - manual-calender
     - only-image

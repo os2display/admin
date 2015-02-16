@@ -32,10 +32,10 @@ class TemplateService extends ContainerAware
     $this->templates = array();
     $this->container = $container;
 
-    $enabledTemplates = $this->container->getParameter("templates_enabled");
+    $enabledTemplates = $this->container->getParameter("templates_slides_enabled");
 
-    $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter("templates_directory");
-    $serverAddress = $this->container->getParameter("absolute_path_to_server") . "/" . $this->container->getParameter("templates_directory");;
+    $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter("templates_slides_directory");
+    $serverAddress = $this->container->getParameter("absolute_path_to_server") . "/" . $this->container->getParameter("templates_slides_directory");;
 
     // Iterate through templates directory (configurable).
     if ($handle = opendir($path)) {

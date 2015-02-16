@@ -35,6 +35,8 @@ twig:
     search_host: %search_host%
     search_index: %search_index%
     logo: %logo%
+    templates_slides_enabled: %templates_slides_enabled%
+    templates_slides_directory: %templates_slides_directory%
 
 # Assetic Configuration
 assetic:
