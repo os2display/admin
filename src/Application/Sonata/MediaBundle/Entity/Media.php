@@ -41,10 +41,10 @@ class Media extends BaseMedia {
    */
   protected $mediaOrders;
 
-	/**
-	 * @var integer $user
-	 */
-	protected $user;
+  /**
+   * @var integer $user
+   */
+  protected $user;
 
   /**
    * @var string $media_type
@@ -61,8 +61,7 @@ class Media extends BaseMedia {
   /**
    * Constructor
    */
-  public function __construct()
-  {
+  public function __construct() {
     $this->mediaOrders = new \Doctrine\Common\Collections\ArrayCollection();
     $this->logo_slides = new \Doctrine\Common\Collections\ArrayCollection();
   }
@@ -81,8 +80,7 @@ class Media extends BaseMedia {
    *
    * @return datetime $updatedAt
    */
-  public function getUpdatedAt()
-  {
+  public function getUpdatedAt() {
     return $this->updatedAt;
   }
 
@@ -92,8 +90,7 @@ class Media extends BaseMedia {
    * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
    * @return Media
    */
-  public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
-  {
+  public function addMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder) {
     $this->mediaOrders[] = $mediaOrder;
 
     return $this;
@@ -104,8 +101,7 @@ class Media extends BaseMedia {
    *
    * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
    */
-  public function removeMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder)
-  {
+  public function removeMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder) {
     $this->mediaOrders->removeElement($mediaOrder);
   }
 
@@ -114,20 +110,18 @@ class Media extends BaseMedia {
    *
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getMediaOrders()
-  {
+  public function getMediaOrders() {
     return $this->mediaOrders;
   }
 
-	/**
-	 * Get if media is being used in slide(s)
-	 *
-	 * @return boolean
-	 */
-	public function getMediaIsInUse()
-	{
-		return !$this->mediaOrders->isEmpty();
-	}
+  /**
+   * Get if media is being used in slide(s)
+   *
+   * @return boolean
+   */
+  public function getMediaIsInUse() {
+    return !$this->mediaOrders->isEmpty();
+  }
 
   /**
    * Get mediaType
@@ -147,28 +141,26 @@ class Media extends BaseMedia {
     $this->mediaType = $mediaType;
   }
 
-	/**
-	 * Set user
-	 *
-	 * @param integer $user
-	 * @return Media
-	 */
-	public function setUser($user)
-	{
-		$this->user = $user;
+  /**
+   * Set user
+   *
+   * @param integer $user
+   * @return Media
+   */
+  public function setUser($user) {
+    $this->user = $user;
 
-		return $this;
-	}
+    return $this;
+  }
 
-	/**
-	 * Get user
-	 *
-	 * @return integer
-	 */
-	public function getUser()
-	{
-		return $this->user;
-	}
+  /**
+   * Get user
+   *
+   * @return integer
+   */
+  public function getUser() {
+    return $this->user;
+  }
 
   /**
    * Add a slide to logo slides
@@ -176,8 +168,7 @@ class Media extends BaseMedia {
    * @param \Indholdskanalen\MainBundle\Entity\Slide $slide
    * @return $this
    */
-  public function addLogoSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide)
-  {
+  public function addLogoSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide) {
     $this->logoSlides[] = $slide;
 
     return $this;
@@ -188,8 +179,7 @@ class Media extends BaseMedia {
    *
    * @param \Indholdskanalen\MainBundle\Entity\Slide $slide
    */
-  public function removeLogoSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide)
-  {
+  public function removeLogoSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide) {
     $this->logoSlides->removeElement($slide);
   }
 
@@ -198,8 +188,7 @@ class Media extends BaseMedia {
    *
    * @return ArrayCollection
    */
-  public function getLogoSlides()
-  {
+  public function getLogoSlides() {
     return $this->logoSlides;
   }
 }
