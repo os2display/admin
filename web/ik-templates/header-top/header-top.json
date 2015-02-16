@@ -1,0 +1,31 @@
+{
+  "id": "text-top",
+  "icon": "text-top.png",
+  "paths": {
+    "live": "text-top.html",
+    "edit": "text-top-edit.html",
+    "preview": "text-top.html",
+    "css": "text-top.css"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": "",
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
+  }
+}
