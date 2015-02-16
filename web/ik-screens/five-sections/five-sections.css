@@ -2,7 +2,7 @@
  *
  * Shared base.
  *
- * Contains shared placeholder classes and variables to be used when creating new templates.
+ * Contains shared placeholder classes and variables to be used when creating new screens.
  *
  */
 /* Default imports (Used in all templates!)
@@ -264,6 +264,15 @@ table {
 
 /**
  *
+ * Shared base.
+ *
+ * Contains shared placeholder classes and variables to be used when creating new templates.
+ *
+ */
+/* Default imports (Used in all templates!)
+   ========================================================================== */
+/**
+ *
  * Mixins
  *
  */
@@ -277,108 +286,22 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
-.text-bottom--edit-box-settings {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: url('/../../images/icons-se731c6030f.png');
-  -moz-background-size: 64px 894px;
-  -o-background-size: 64px 894px;
-  -webkit-background-size: 64px 894px;
-  background-size: 64px 894px;
-  width: 50px;
-  height: 50px;
-  background-position: 0 -341px; }
-  .text-bottom--edit-box-settings:hover {
-    cursor: pointer; }
+/* Variables
+   ========================================================================== */
+/* Silent classes related to this document
+   ========================================================================== */
+.five-sections--region-content {
+  font-size: 1rem;
+  height: 100%;
+  overflow: hidden; }
 
-.text-bottom--edit-image-settings {
-  bottom: 15%;
-  position: absolute;
-  right: 15%;
-  background: url('/../../images/icons-se731c6030f.png');
-  -moz-background-size: 128px 1788px;
-  -o-background-size: 128px 1788px;
-  -webkit-background-size: 128px 1788px;
-  background-size: 128px 1788px;
-  width: 51px;
-  height: 51px;
-  background-position: 0 -802px; }
-  .text-bottom--edit-image-settings:hover {
-    cursor: pointer; }
-
-.text-bottom--edit-logo-settings {
-  bottom: 5%;
-  position: absolute;
-  left: 5%;
-  cursor: pointer;
-  font-size: 0.6em;
-  color: #fff;
-  padding: .3em .8em;
-  background: rgba(0, 0, 0, 0.5);
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em; }
-
-.text-bottom--header.has-placeholder:focus, .text-bottom--description.has-placeholder:focus {
-  outline: none; }
-.text-bottom--header.has-placeholder:empty:before, .text-bottom--description.has-placeholder:empty:before {
-  content: attr(placeholder);
-  color: #b3b3b3; }
-.text-bottom--header.has-placeholder:empty:focus:before, .text-bottom--description.has-placeholder:empty:focus:before {
-  background-color: #b3d4fd;
-  color: #000; }
-
-.text-bottom--header, .text-bottom--description {
-  overflow: hidden;
-  padding: 0;
-  background-color: transparent;
-  border: 0;
-  resize: none; }
-  .text-bottom--header:focus, .text-bottom--description:focus {
-    outline: none;
-    border: 0; }
-
-.text-bottom {
-  background-size: cover;
-  background-position: center; }
-
-.text-bottom--text-wrapper {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  -moz-border-radius: 0.5em;
-  -webkit-border-radius: 0.5em;
-  border-radius: 0.5em; }
-
-.text-bottom--text-inner {
-  background: rgba(0, 0, 0, 0.7);
-  box-sizing: border-box;
-  color: #fff;
-  margin: 3% auto;
-  padding: 4%;
-  text-align: left;
-  position: relative;
-  width: 95%;
-  -moz-border-radius: 0.5em;
-  -webkit-border-radius: 0.5em;
-  border-radius: 0.5em; }
-
-.text-bottom--header {
-  font-size: 100%; }
-
-.text-bottom--description {
-  font-size: 70%; }
-
-.text-bottom--edit-image-settings {
-  bottom: auto;
-  top: 15%; }
-
-.text-bottom--edit-logo-settings {
-  bottom: auto;
-  top: 5%; }
-
-.text-bottom--logo {
-  position: absolute;
-  width: 10%;
-  padding: 2%; }
+/* Styles
+   ========================================================================== */
+.five-sections--inner {
+  font-size: 0;
+  margin: 0 auto; }
+.five-sections--region-horizontal {
+  display: inline-block;
+  vertical-align: top; }
+.five-sections--vertical {
+  display: block; }
