@@ -30,7 +30,7 @@ class SearchIndexer {
    * @param Container $container
    * @param UtilityService $utilityService
    */
-  function __construct(Serializer $serializer, Container $container, UtilityService $utilityService) {
+  public function __construct(Serializer $serializer, Container $container, UtilityService $utilityService) {
     $this->serializer = $serializer;
     $this->container = $container;
     $this->utilityService = $utilityService;

@@ -24,7 +24,15 @@ class MiddlewareCommunication extends ContainerAware
   protected $templateService;
   protected $utilityService;
 
-  function __construct(TemplateService $templateService, UtilityService $utilityService) {
+  /**
+   * Constructor.
+   *
+   * @param TemplateService $templateService
+   *   The template service.
+   * @param UtilityService $utilityService
+   *   The utility service.
+   */
+  public function __construct(TemplateService $templateService, UtilityService $utilityService) {
     $this->templateService = $templateService;
     $this->utilityService = $utilityService;
   }

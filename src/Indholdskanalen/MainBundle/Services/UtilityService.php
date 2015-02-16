@@ -1,10 +1,18 @@
 <?php
+/**
+ * @file
+ * Contains the utility service.
+ */
 
 namespace Indholdskanalen\MainBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Indholdskanalen\MainBundle\Services\AuthenticationService;
 
+/**
+ * Class UtilityService
+ * @package Indholdskanalen\MainBundle\Services
+ */
 class UtilityService extends ContainerAware {
   protected $authenticationService;
 
@@ -12,8 +20,9 @@ class UtilityService extends ContainerAware {
    * Constructor.
    *
    * @param AuthenticationService $authenticationService
+   *   The authentication service.
    */
-  function __construct(AuthenticationService $authenticationService) {
+  public function __construct(AuthenticationService $authenticationService) {
     $this->authenticationService = $authenticationService;
   }
 

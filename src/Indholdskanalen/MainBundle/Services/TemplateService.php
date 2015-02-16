@@ -22,7 +22,13 @@ class TemplateService extends ContainerAware
   protected $templates;
   protected $container;
 
-  function __construct(Container $container) {
+  /**
+   * Constructor.
+   *
+   * @param Container $container
+   *   The service container.
+   */
+  public function __construct(Container $container) {
     $this->templates = array();
     $this->container = $container;
 

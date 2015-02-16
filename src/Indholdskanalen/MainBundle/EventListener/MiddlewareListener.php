@@ -22,7 +22,7 @@ class MiddlewareListener {
    *
    * @param MiddlewareCommunication $middleware
    */
-  function __construct(MiddlewareCommunication $middleware) {
+  public function __construct(MiddlewareCommunication $middleware) {
     $this->middleware = $middleware;
   }
 
