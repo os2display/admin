@@ -262,26 +262,26 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/* Variables
-   ========================================================================== */
-/* Mixins
-   ========================================================================== */
 /**
  *
  * Mixins
  *
  */
 .icons-sprite {
-  background-image: url('/../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../images/icons-s15e2aefe08.png');
   background-repeat: no-repeat; }
 
+/* Variables
+   ========================================================================== */
+/* Mixins
+   ========================================================================== */
 /* Placeholders
    ========================================================================== */
 .portrait-text-top--edit-box-settings {
   position: absolute;
   right: 10px;
   top: 10px;
-  background: url('/../../images/icons-se731c6030f.png');
+  background: url('/../../../images/icons-se731c6030f.png');
   -moz-background-size: 64px 894px;
   -o-background-size: 64px 894px;
   -webkit-background-size: 64px 894px;
@@ -296,7 +296,7 @@ table {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/../../images/icons-se731c6030f.png');
+  background: url('/../../../images/icons-se731c6030f.png');
   -moz-background-size: 128px 1788px;
   -o-background-size: 128px 1788px;
   -webkit-background-size: 128px 1788px;

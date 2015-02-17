@@ -9,15 +9,14 @@
 
 /* Default imports (Used in all templates!)
    ========================================================================== */
-@import "../../sass/base/normalize";
-@import "../../sass/mixins/mixins";
+@import "../../../sass/base/normalize";
+@import "../../../sass/mixins/mixins";
 
 /* Variables
    ========================================================================== */
 
 $black:                #000;
 $white:                #fff;
-
 
 $gray-lightest:       lighten($black, 98%);
 $gray-lighter:        lighten($black, 90%);

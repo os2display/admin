@@ -268,7 +268,7 @@ table {
  *
  */
 .icons-sprite {
-  background-image: url('/../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../images/icons-s15e2aefe08.png');
   background-repeat: no-repeat; }
 
 /* Variables
@@ -281,7 +281,7 @@ table {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/../../images/icons-se731c6030f.png');
+  background: url('/../../../images/icons-se731c6030f.png');
   -moz-background-size: 128px 1788px;
   -o-background-size: 128px 1788px;
   -webkit-background-size: 128px 1788px;
