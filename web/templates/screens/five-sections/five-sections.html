@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <title>Indholdskanalen</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="five-sections.css">
+    <link rel="stylesheet" href="../../ik-templates/manual-calendar/manual-calendar.css">
+    <link rel="stylesheet" href="../../ik-templates/only-image/only-image.css">
+    <link rel="stylesheet" href="../../ik-templates/only-video/only-video.css">
+    <link rel="stylesheet" href="../../ik-templates/portrait-text-top/portrait-text-top.css">
+    <link rel="stylesheet" href="../../ik-templates/text-bottom/text-bottom.css">
+    <link rel="stylesheet" href="../../ik-templates/text-left/text-left.css">
+    <link rel="stylesheet" href="../../ik-templates/text-right/text-right.css">
+    <link rel="stylesheet" href="../../ik-templates/text-top/text-top.css">
+    <link rel="stylesheet" href="../../ik-templates/ik-iframe/ik-iframe.css">
+  </head>
+  <body>
+    <div class="five-sections">
+      <div class="five-sections--inner">
+        <div class="five-sections--region-vertical" style="width: auto; height:50%;">
+          <div class="five-sections--region-horizontal" style="width: 50%; height:100%;">
+            <div class="five-sections--region-content">
+              <div class="slide" data-ng-include="" src="templateURL">
+                <div class="text-bottom ng-scope" style="width: 100%; height: 100%; font-size: 25px; position: relative; background-image: url(https://service.indholdskanalen.vm/); background-color: rgb(204, 204, 204);">
+                  <div class="text-bottom--text-wrapper">
+                    <div class="text-bottom--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.701961);">
+                      <pre class="text-bottom--header ng-binding">sd</pre>
+                      <pre class="text-bottom--description ng-binding"></pre>
+                    </div>
+                  </div>
+                  <img class="text-bottom--logo ng-hide" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="" style="top: 0px; bottom: auto; left: 0px; right: auto; width: 10%;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="five-sections--region-horizontal" style="width: 50%; height:100%;">
+            <div class="five-sections--region-content is-active">
+              <div data-ng-repeat="slide in channels[1][channelKey]" data-ng-show="channelIndex === channelKey &amp;&amp; slideIndex === $index &amp;&amp; displayIndex === 1" class="slide ng-scope ng-hide">
+                <ik-slide>
+                  <div data-ng-include="" src="ikSlide.template_path" class="ng-scope">
+                      <div class="manual-calendar ng-scope" style="width: 100%; height: 100%; font-size: 65px; position: relative; background-image: url(https://service-dev.indholdskanalen.dk/uploads/media/default/0001/01/30a672406f8e065ab98b7ad7bdb7a18593e88352.jpeg); background-color: rgb(204, 204, 204);">
+                      <div class="manual-calendar--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}" style="color: rgb(0, 33, 54); background-color: rgba(255, 255, 255, 0.701961);">
+                        <h1 class="manual-calendar--header ng-binding">Dev Team ferie</h1>
+                        <table class="manual-calendar--events" data-ng-style="{'color': ikSlide.options.textcolor}" style="color: rgb(0, 33, 54);">
+                          <tbody>
+                          <tr class="manual-calendar--event ng-scope" data-ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems | activeEvents" data-ng-style="{'border-color': ikSlide.options.textcolor}" style="border-color: rgb(0, 33, 54);">
+                            <td class="manual-calendar--title ng-binding">
+                              Troels
+                            </td>
+                            <td class="manual-calendar--place ng-binding">
+                              3 dages ferie
+                            </td>
+                            <td class="manual-calendar--time">
+                              <span data-ng-if="event.dailyEvent === false" class="ng-scope">
+                                <span class="manual-calendar--from ng-binding">11. Feb - 13. Feb</span>  |  <span class="manual-calendar--to ng-binding">00:00</span>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr class="manual-calendar--event ng-scope" data-ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems | activeEvents" data-ng-style="{'border-color': ikSlide.options.textcolor}" style="border-color: rgb(0, 33, 54);">
+                            <td class="manual-calendar--title ng-binding">Yde</td>
+                            <td class="manual-calendar--place ng-binding">Lanzarote</td>
+                            <td class="manual-calendar--time">
+                              <span data-ng-if="event.dailyEvent === false" class="ng-scope">
+                                <span class="manual-calendar--from ng-binding">20. Feb - 27. Feb</span>  |  <span class="manual-calendar--to ng-binding">00:00</span>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr class="manual-calendar--event ng-scope" data-ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems | activeEvents" data-ng-style="{'border-color': ikSlide.options.textcolor}" style="border-color: rgb(0, 33, 54);">
+                            <td class="manual-calendar--title ng-binding">
+                              Jesper
+                            </td>
+                            <td class="manual-calendar--place ng-binding">
+                              Skiferie #1
+                            </td>
+                            <td class="manual-calendar--time">
+                              <span data-ng-if="event.dailyEvent === false" class="ng-scope">
+                                <span class="manual-calendar--from ng-binding">22. Feb - 02. Mar</span>  |  <span class="manual-calendar--to ng-binding">00:00</span>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr class="manual-calendar--event ng-scope" data-ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems | activeEvents" data-ng-style="{'border-color': ikSlide.options.textcolor}" style="border-color: rgb(0, 33, 54);">
+                            <td class="manual-calendar--title ng-binding">
+                              Jesper
+                            </td>
+                            <td class="manual-calendar--place ng-binding">
+                              Skiferie #2
+                            </td>
+                            <td class="manual-calendar--time">
+                              <span data-ng-if="event.dailyEvent === false" class="ng-scope">
+                                <span class="manual-calendar--from ng-binding">23. Mar - 27. Mar</span>  |  <span class="manual-calendar--to ng-binding">00:00</span>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr class="manual-calendar--event ng-scope" data-ng-repeat="event in ikSlide.options.eventitems | limitTo : ikSlide.options.displayitems | activeEvents" data-ng-style="{'border-color': ikSlide.options.textcolor}" style="border-color: rgb(0, 33, 54);">
+                            <td class="manual-calendar--title ng-binding">
+                              Alle
+                            </td>
+                            <td class="manual-calendar--place ng-binding">
+                              Påskeferie
+                            </td>
+                            <td class="manual-calendar--time">
+                              <span data-ng-if="event.dailyEvent === false" class="ng-scope">
+                                <span class="manual-calendar--from ng-binding">30. Mar - 06. Apr</span>  |  <span class="manual-calendar--to ng-binding">00:00</span>
+                              </span>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <img class="manual-calendar--logo ng-hide" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="" style="top: 0px; bottom: auto; left: 0px; right: auto; width: 15%;">
+                    </div>
+                  </div>
+                </ik-slide>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="five-sections--region-vertical" style="width: auto; height:50%;">
+          <div class="five-sections--region-horizontal" style="width: 25%; height:100%;">
+            <div class="five-sections--region-content">
+              <div class="slide">
+                <ik-slide ik-slide="slide" ik-array-id="1" ik-channel-id="channelKey" ik-index="$index" ik-show="channelIndex === channelKey &amp;&amp; slideIndex === $index &amp;&amp; displayIndex === 1" class="ng-isolate-scope"><!-- ngInclude:  -->
+                  <div data-ng-include="" src="ikSlide.template_path" class="ng-scope">
+                    <div class="text-bottom ng-scope"style="width: 100%; height: 100%; font-size: 25px; position: relative; background-image: url(https://service-dev.indholdskanalen.dk/uploads/media/default/0001/01/a98c608950d970ae114a0fc1624de255c7611e55.jpeg); background-color: rgb(204, 204, 204);">
+                      <div class="text-bottom--text-wrapper">
+                        <div class="text-bottom--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}" style="color: rgb(255, 255, 255); background-color: rgba(10, 133, 0, 0.952941);">
+                          <pre class="text-bottom--header ng-binding">Madplan uge 7</pre>
+                          <pre class="text-bottom--description ng-binding">
+Mandag: Aspargessuppe med kødboller</br>
+Tirsdag: Smør selv</br>
+Onsdag: Fiskefrikadeller med persillesovs og kartofler</br>
+Torsdag: Bøf Bernaise</br>
+Fredag: Smør selv
+                          </pre>
+                        </div>
+                      </div>
+                      <img class="text-bottom--logo" src="https://service-dev.indholdskanalen.dk/uploads/media/default/0001/01/d0fd5fdaf98557729f4aa9a647004b159fd6d238.png" style="top: 0px; bottom: auto; left: auto; right: 0px; width: 10%;">
+                    </div>
+                  </div>
+                </ik-slide>
+              </div>
+            </div>
+          </div>
+          <div class="five-sections--region-horizontal" style="width: 25%; height:100%;">
+            <div class="five-sections--region-content">
+
+            </div>
+          </div>
+          <div class="five-sections--region-horizontal" style="width: 50%; height:100%;">
+            <div class="five-sections--region-content">
+              <div class="slide">
+                <div class="text-left ng-scope" style="width: 100%; height: 100%; font-size: 25px; position: relative; background-image: url(https://service.indholdskanalen.vm/); background-color: rgb(204, 204, 204);">
+                  <div class="text-left--text-wrapper">
+                    <div class="text-left--text-inner" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.701961);">
+                      <pre class="text-left--header ng-binding">asd</pre>
+                      <pre class="text-left--description ng-binding"></pre>
+                    </div>
+                  </div>
+                  <img class="text-left--logo ng-hide" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="" style="top: 0px; bottom: auto; left: 0px; right: auto; width: 10%;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

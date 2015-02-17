@@ -1,5 +1,5 @@
 @import "compass/css3";
-@import "../_imports.scss";
+@import "../_shared-base.scss";
 
 .text-bottom {
   background-size: cover;
@@ -19,7 +19,7 @@
 .text-bottom--text-inner {
   background: rgba(0,0,0,0.7);
   box-sizing: border-box;
-  color: #fff;
+  color: $white;
   margin: 3% auto;
   padding: 4%;
   text-align: left;

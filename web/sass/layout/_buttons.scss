@@ -63,3 +63,61 @@
 %buttons--default {
   @extend .button;
 }
+%button--default {
+  @extend %button;
+  @include strip-link-styles($white);
+
+  background-color: $gray-dark;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  padding: .3em;
+  width: 100%;
+
+  &:visited,
+  &:hover {
+    background-color: $gray-darker;
+  }
+}
+
+
+%button--action {
+  @extend %button;
+  @include strip-link-styles($white);
+
+  background-color: $button-default-background;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  padding: .3em;
+  width: 100%;
+
+  &:visited,
+  &:hover {
+    background-color: $button-default-alternate;
+  }
+}
+
+
+%button--action-warning {
+  @extend %button;
+  @include strip-link-styles($white);
+
+  background-color: $button-default-warning;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  padding: .3em;
+  width: 100%;
+
+  &:visited,
+  &:hover {
+    background-color: $button-default-warning;
+  }
+}

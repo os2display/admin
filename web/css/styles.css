@@ -150,7 +150,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-screen--content-screen-three, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .screen--layout, .create-channel--content--channel-two, .create-channel--content--channel-four, .frontpage--section {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -167,7 +167,7 @@
  * 4. Full-width unless told to behave otherwise.
  * 5. Required to combine fluid widths and fixed gutters.
  */
-.create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+.screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
   display: inline-block;
   /* [1] */
   padding-left: 36px;
@@ -226,6 +226,12 @@
 /**
  * Thirds
  */
+.screen--layout-control-panel {
+  width: 33.333%; }
+
+.screen--layout-content {
+  width: 66.666%; }
+
 /**
  * Quarters
  */
@@ -251,7 +257,7 @@
   /**
    * Whole
    */
-  .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+  .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
     width: 100%; }
 
   /**
@@ -282,13 +288,13 @@
   /**
    * Whole
    */
-  .create-screen--content--screen-one, .create-channel--content--channel-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+  .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
     width: 100%; }
 
   /**
    * Halves
    */
-  .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--screen-landscape, .create-channel--screen-portrait {
+  .create-channel--screen-landscape, .create-channel--screen-portrait {
     width: 50%; }
 
   /**
@@ -316,6 +322,9 @@
   /**
    * Whole
    */
+  .screen--layout-content {
+    width: 100%; }
+
   /**
    * Halves
    */
@@ -350,7 +359,7 @@
   /**
    * Halves
    */
-  .create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-beta, .frontpage--layout-gamma, .admin-sharing--content {
+  .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-beta, .frontpage--layout-gamma, .admin-sharing--content {
     width: 50%; }
 
   /**
@@ -425,7 +434,7 @@
 
 /* Layout
    ================================================================================================================== */
-.create-screen--content--screen-one, .create-screen--screen-landscape, .create-screen--screen-portrait, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+.screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
   margin-right: -4px; }
 
 /* Colors
@@ -445,7 +454,7 @@
  * Holds silent classes used across multiple modules.
  *
  */
-.create-slide--link-check, .create-screen--link-check, .create-channel--link-check, .overview--link-check {
+.create-slide--link-check, .create-channel--link-check, .overview--link-check {
   display: block;
   margin: 0 auto;
   visibility: hidden;
@@ -465,7 +474,7 @@
   height: 60px;
   background-position: 0 -191px; }
   @media only screen and (min-width: 481px) {
-    .create-slide--link-check, .create-screen--link-check, .create-channel--link-check, .overview--link-check {
+    .create-slide--link-check, .create-channel--link-check, .overview--link-check {
       background: url('/../images/icons-se731c6030f.png');
       -moz-background-size: 64px 894px;
       -o-background-size: 64px 894px;
@@ -475,7 +484,7 @@
       height: 37px;
       background-position: 0 -119px; } }
   @media only screen and (min-width: 600px) {
-    .create-slide--link-check, .create-screen--link-check, .create-channel--link-check, .overview--link-check {
+    .create-slide--link-check, .create-channel--link-check, .overview--link-check {
       background: url('/../images/icons-se731c6030f.png');
       -moz-background-size: 103px 1431px;
       -o-background-size: 103px 1431px;
@@ -485,7 +494,7 @@
       height: 60px;
       background-position: 0 -191px; } }
 
-.is-valid.create-slide--text[type="text"], .is-valid.create-screen--text[type="text"], .is-valid.create-channel--text[type="text"], .is-valid.create-media--text-input[type="text"], .edit-menu--form-element[type="text"].is-valid {
+.is-valid.create-slide--text[type="text"], .is-valid.create-channel--text[type="text"], .is-valid.create-media--text-input[type="text"], .edit-menu--form-element[type="text"].is-valid {
   background: url("../images/icons/check-circle-icon.png") #fafafa;
   background-size: 2em 2em;
   background-repeat: no-repeat;
@@ -494,12 +503,12 @@
 
 /* Create element - Default create element styles (A grouping of styles shared by the various creation flows)
    ================================================================================================================== */
-.create-slide--section, .create-screen--section, .create-channel--section, .create-media--section {
+.create-slide--section, .create-channel--section, .create-media--section {
   color: #404040;
   display: block;
   padding-bottom: 1em; }
 
-.create-slide--header, .create-screen--header, .create-channel--header, .create-media--header, .admin-sharing--header {
+.create-slide--header, .create-channel--header, .create-media--header, .admin-sharing--header {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
   font-weight: bold;
@@ -507,22 +516,22 @@
   padding-bottom: 1em;
   text-align: center; }
 
-.create-slide--header-description, .create-screen--header-description, .create-channel--header-description, .create-media--header-description, .admin-sharing--header-description {
+.create-slide--header-description, .create-channel--header-description, .create-media--header-description, .admin-sharing--header-description {
   color: #404040;
   font-weight: lighter;
   margin: 0 0 4em;
   text-align: center; }
 
-.create-slide--content--slide-one, .create-screen--content--screen-one, .create-channel--content--channel-one, .create-media--content, .admin-sharing--content {
+.create-slide--content--slide-one, .create-channel--content--channel-one, .create-media--content, .admin-sharing--content {
   display: block;
   margin: 0 auto;
   text-align: center;
   padding-left: 0; }
 
-.create-slide--form, .create-screen--form, .create-channel--form {
+.create-slide--form, .create-channel--form {
   margin: 0; }
 
-.create-slide--text[type="text"], .create-screen--text[type="text"], .create-channel--text[type="text"], .create-media--text-input[type="text"] {
+.create-slide--text[type="text"], .create-channel--text[type="text"], .create-media--text-input[type="text"] {
   background-color: #fafafa;
   display: inline-block;
   height: 4.5em;
@@ -530,17 +539,17 @@
   max-width: 1024px;
   padding: 1.5em; }
 
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-screen--content--screen-two, .create-screen--content-screen-three, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
   margin: 0 auto;
   text-align: center;
   width: 100%; }
 
-.create-slide--spinner, .create-screen--spinner, .create-channel--spinner, .admin-sharing--spinner {
+.create-slide--spinner, .create-channel--spinner, .admin-sharing--spinner {
   position: absolute;
   right: 1em;
   top: 25%; }
 
-.create-slide--finish-button, .create-screen--finish-button, .create-channel--finish-button, .admin-sharing--finish-button {
+.create-slide--finish-button, .create-channel--finish-button, .admin-sharing--finish-button {
   position: relative;
   width: 21em;
   margin: 0 auto; }
@@ -986,7 +995,7 @@ label {
  * This is an example file
  *
  */
-.button, .create-screen--add-slide-button, .create-channel--add-slide-button, .create-slide--button, .create-screen--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button {
+.button, .create-channel--add-slide-button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button, .control-panel--actions-close, .cpw--add-channels-item-action, .cpw--selected-channels-item-action {
   display: inline-block;
   font-size: 125%;
   font-weight: lighter;
@@ -998,26 +1007,110 @@ label {
   -moz-border-radius: 0.4em;
   -webkit-border-radius: 0.4em;
   border-radius: 0.4em; }
-  .button:focus, .create-screen--add-slide-button:focus, .create-channel--add-slide-button:focus, .create-slide--button:focus, .create-screen--button:focus, .create-channel--button:focus, .create-media--button:focus, .edit-menu--content-button:focus, .edit-menu--background-button:focus, .login--submit:focus, .admin-sharing--button:focus, .button:hover, .create-screen--add-slide-button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-screen--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover, .button:active, .create-screen--add-slide-button:active, .create-channel--add-slide-button:active, .create-slide--button:active, .create-screen--button:active, .create-channel--button:active, .create-media--button:active, .edit-menu--content-button:active, .edit-menu--background-button:active, .login--submit:active, .admin-sharing--button:active {
+  .button:focus, .create-channel--add-slide-button:focus, .create-slide--button:focus, .create-channel--button:focus, .create-media--button:focus, .edit-menu--content-button:focus, .edit-menu--background-button:focus, .login--submit:focus, .admin-sharing--button:focus, .control-panel--actions-close:focus, .cpw--add-channels-item-action:focus, .cpw--selected-channels-item-action:focus, .button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover, .control-panel--actions-close:hover, .cpw--add-channels-item-action:hover, .cpw--selected-channels-item-action:hover, .button:active, .create-channel--add-slide-button:active, .create-slide--button:active, .create-channel--button:active, .create-media--button:active, .edit-menu--content-button:active, .edit-menu--background-button:active, .login--submit:active, .admin-sharing--button:active, .control-panel--actions-close:active, .cpw--add-channels-item-action:active, .cpw--selected-channels-item-action:active {
     text-decoration: none; }
 
-.button, .create-screen--add-slide-button, .create-channel--add-slide-button, .create-slide--button, .create-screen--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button {
+.button, .create-channel--add-slide-button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button {
   background-color: #357fd1;
   border: 0;
   color: #fff; }
-  .button:link, .create-screen--add-slide-button:link, .create-channel--add-slide-button:link, .create-slide--button:link, .create-screen--button:link, .create-channel--button:link, .create-media--button:link, .edit-menu--content-button:link, .edit-menu--background-button:link, .login--submit:link, .admin-sharing--button:link, .button:visited, .create-screen--add-slide-button:visited, .create-channel--add-slide-button:visited, .create-slide--button:visited, .create-screen--button:visited, .create-channel--button:visited, .create-media--button:visited, .edit-menu--content-button:visited, .edit-menu--background-button:visited, .login--submit:visited, .admin-sharing--button:visited, .button:hover, .create-screen--add-slide-button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-screen--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover {
+  .button:link, .create-channel--add-slide-button:link, .create-slide--button:link, .create-channel--button:link, .create-media--button:link, .edit-menu--content-button:link, .edit-menu--background-button:link, .login--submit:link, .admin-sharing--button:link, .button:visited, .create-channel--add-slide-button:visited, .create-slide--button:visited, .create-channel--button:visited, .create-media--button:visited, .edit-menu--content-button:visited, .edit-menu--background-button:visited, .login--submit:visited, .admin-sharing--button:visited, .button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover {
     background-color: #2361a9;
     color: #fff;
     text-decoration: none; }
-  .button.is-inactive, .is-inactive.create-screen--add-slide-button, .is-inactive.create-channel--add-slide-button, .is-inactive.create-slide--button, .is-inactive.create-screen--button, .is-inactive.create-channel--button, .is-inactive.create-media--button, .is-inactive.edit-menu--content-button, .is-inactive.edit-menu--background-button, .is-inactive.login--submit, .is-inactive.admin-sharing--button {
+  .button.is-inactive, .is-inactive.create-channel--add-slide-button, .is-inactive.create-slide--button, .is-inactive.create-channel--button, .is-inactive.create-media--button, .is-inactive.edit-menu--content-button, .is-inactive.edit-menu--background-button, .is-inactive.login--submit, .is-inactive.admin-sharing--button {
     background-color: #b8b8b8;
     border: 0;
     color: #fff;
     cursor: not-allowed; }
-    .button.is-inactive:link, .is-inactive.create-screen--add-slide-button:link, .is-inactive.create-channel--add-slide-button:link, .is-inactive.create-slide--button:link, .is-inactive.create-screen--button:link, .is-inactive.create-channel--button:link, .is-inactive.create-media--button:link, .is-inactive.edit-menu--content-button:link, .is-inactive.edit-menu--background-button:link, .is-inactive.login--submit:link, .is-inactive.admin-sharing--button:link, .button.is-inactive:visited, .is-inactive.create-screen--add-slide-button:visited, .is-inactive.create-channel--add-slide-button:visited, .is-inactive.create-slide--button:visited, .is-inactive.create-screen--button:visited, .is-inactive.create-channel--button:visited, .is-inactive.create-media--button:visited, .is-inactive.edit-menu--content-button:visited, .is-inactive.edit-menu--background-button:visited, .is-inactive.login--submit:visited, .is-inactive.admin-sharing--button:visited, .button.is-inactive:hover, .is-inactive.create-screen--add-slide-button:hover, .is-inactive.create-channel--add-slide-button:hover, .is-inactive.create-slide--button:hover, .is-inactive.create-screen--button:hover, .is-inactive.create-channel--button:hover, .is-inactive.create-media--button:hover, .is-inactive.edit-menu--content-button:hover, .is-inactive.edit-menu--background-button:hover, .is-inactive.login--submit:hover, .is-inactive.admin-sharing--button:hover {
+    .button.is-inactive:link, .is-inactive.create-channel--add-slide-button:link, .is-inactive.create-slide--button:link, .is-inactive.create-channel--button:link, .is-inactive.create-media--button:link, .is-inactive.edit-menu--content-button:link, .is-inactive.edit-menu--background-button:link, .is-inactive.login--submit:link, .is-inactive.admin-sharing--button:link, .button.is-inactive:visited, .is-inactive.create-channel--add-slide-button:visited, .is-inactive.create-slide--button:visited, .is-inactive.create-channel--button:visited, .is-inactive.create-media--button:visited, .is-inactive.edit-menu--content-button:visited, .is-inactive.edit-menu--background-button:visited, .is-inactive.login--submit:visited, .is-inactive.admin-sharing--button:visited, .button.is-inactive:hover, .is-inactive.create-channel--add-slide-button:hover, .is-inactive.create-slide--button:hover, .is-inactive.create-channel--button:hover, .is-inactive.create-media--button:hover, .is-inactive.edit-menu--content-button:hover, .is-inactive.edit-menu--background-button:hover, .is-inactive.login--submit:hover, .is-inactive.admin-sharing--button:hover {
       background-color: #b8b8b8;
       color: #fff;
       text-decoration: none; }
+
+.control-panel--actions-close {
+  background-color: #737373;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  padding: .3em;
+  width: 100%; }
+  .control-panel--actions-close:link {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--actions-close:visited {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--actions-close:hover {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--actions-close:focus {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--actions-close:visited, .control-panel--actions-close:hover {
+    background-color: #595959; }
+
+.cpw--add-channels-item-action {
+  background-color: #357fd1;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  padding: .3em;
+  width: 100%; }
+  .cpw--add-channels-item-action:link {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--add-channels-item-action:visited {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--add-channels-item-action:hover {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--add-channels-item-action:focus {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--add-channels-item-action:visited, .cpw--add-channels-item-action:hover {
+    background-color: #2361a9; }
+
+.cpw--selected-channels-item-action {
+  background-color: #b20000;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  padding: .3em;
+  width: 100%; }
+  .cpw--selected-channels-item-action:link {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--selected-channels-item-action:visited {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--selected-channels-item-action:hover {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--selected-channels-item-action:focus {
+    color: #fff;
+    outline: 0;
+    text-decoration: none; }
+  .cpw--selected-channels-item-action:visited, .cpw--selected-channels-item-action:hover {
+    background-color: #b20000; }
 
 /**
  *
@@ -1034,6 +1127,9 @@ html.is-locked body {
 .view-container {
   position: relative; }
 
+.view-frame {
+  height: 100%; }
+
 .view-frame.ng-enter {
   position: absolute;
   left: 0;
@@ -1045,16 +1141,174 @@ html.is-locked body {
   right: 0; }
 
 .layout-wrapper {
-  padding: 0 .5em; }
-  @media only screen and (min-width: 481px) {
-    .layout-wrapper {
-      padding: 0 2em; } }
+  height: 100%;
+  margin: 0; }
 
 .layout-inner {
   margin: 0 18px; }
   @media only screen and (min-width: 481px) {
     .layout-inner {
       margin-left: -36px; } }
+
+/**
+ *
+ * Itk tabs
+ *
+ * A component for displaying an expanding side menu.
+ *
+ */
+/* Imports, placeholder classes, mixins and variables related to this document.
+   ========================================================================== */
+/* Variables used within this document. */
+/* Menu positioning */
+/* Animations related to this document.
+   ========================================================================== */
+@-moz-keyframes toggle-nav-open {
+  0% {
+    right: -100%; }
+  100% {
+    right: 0; } }
+@-webkit-keyframes toggle-nav-open {
+  0% {
+    right: -100%; }
+  100% {
+    right: 0; } }
+@keyframes toggle-nav-open {
+  0% {
+    right: -100%; }
+  100% {
+    right: 0; } }
+@-moz-keyframes toggle-nav-close {
+  0% {
+    right: 0; }
+  100% {
+    right: -100%; } }
+@-webkit-keyframes toggle-nav-close {
+  0% {
+    right: 0; }
+  100% {
+    right: -100%; } }
+@keyframes toggle-nav-close {
+  0% {
+    right: 0; }
+  100% {
+    right: -100%; } }
+@-moz-keyframes toggle-nav-overlay {
+  0% {
+    background-color: transparent; }
+  100% {
+    background-color: rgba(0, 0, 0, 0.65); } }
+@-webkit-keyframes toggle-nav-overlay {
+  0% {
+    background-color: transparent; }
+  100% {
+    background-color: rgba(0, 0, 0, 0.65); } }
+@keyframes toggle-nav-overlay {
+  0% {
+    background-color: transparent; }
+  100% {
+    background-color: rgba(0, 0, 0, 0.65); } }
+/* Styles
+   ========================================================================== */
+.control-panel--tool {
+  color: #595959;
+  height: 100%;
+  overflow-y: auto;
+  position: fixed;
+  right: -100%;
+  z-index: 99;
+  max-width: 90%;
+  width: 100%;
+  background: #fff;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
+  /* States */ }
+  .is-visible.control-panel--tool {
+    -moz-animation: toggle-nav-open 0.75s ease 1 forwards;
+    -webkit-animation: toggle-nav-open 0.75s ease 1 forwards;
+    animation: toggle-nav-open 0.75s ease 1 forwards; }
+  .is-hidden.control-panel--tool {
+    -moz-animation: toggle-nav-close 0.75s ease 1 forwards;
+    -webkit-animation: toggle-nav-close 0.75s ease 1 forwards;
+    animation: toggle-nav-close 0.75s ease 1 forwards; }
+
+/* Invisible close element that allows the user to close the menu by clicking outside it */
+/* Make sure the user can't scroll when overlays are active */
+html.is-locked,
+html.is-locked body {
+  overflow: hidden;
+  height: 100%; }
+
+/**
+ *
+ * Itk tabs
+ *
+ * A component for displaying tabs as rounded corners.
+ *
+ */
+/* Imports, placeholder classes, mixins and variables related to this document
+   ========================================================================== */
+/* Variables used within this document. */
+/* Styles
+   ========================================================================== */
+.control-panel--nav {
+  font-size: 0;
+  text-align: center; }
+  .is-full-width.control-panel--nav {
+    font-size: 0; }
+  .is-full-width[itk--tabs-count="2"].control-panel--nav > .control-panel--nav-item {
+    width: 50%; }
+  .is-full-width[itk--tabs-count="3"].control-panel--nav > .control-panel--nav-item {
+    width: 33.33%; }
+  .is-full-width[itk--tabs-count="4"].control-panel--nav > .control-panel--nav-item {
+    width: 25%; }
+
+.control-panel--nav-item {
+  background: #fafafa;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-right: 0;
+  color: #595959;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.5em 0.75em;
+  text-align: center; }
+  .control-panel--nav-item:link {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--nav-item:visited {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--nav-item:hover {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--nav-item:focus {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--nav-item:first-child {
+    -moz-border-radius: 0.4em 0 0 0.4em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em 0 0 0.4em; }
+  .control-panel--nav-item:last-child {
+    border: 1px solid #cccccc;
+    -moz-border-radius: 0 0.4em 0.4em 0;
+    -webkit-border-radius: 0;
+    border-radius: 0 0.4em 0.4em 0; }
+  .control-panel--nav-item:hover {
+    background: #e6e6e6;
+    color: inherit; }
+  .is-active.control-panel--nav-item {
+    background: #e6e6e6;
+    color: inherit; }
 
 /**
  *
@@ -1213,55 +1467,43 @@ html.is-locked body {
  * Create screens
  *
  */
-/* Silent classes related to this document
-   ========================================================================== */
 /* Styles
    ========================================================================== */
-.create-screen {
-  /* Global settings
-   ========================================================================== */
-  /* Create screen - set name (Page 1)
-   ========================================================================== */
-  /* Create screen - select screen (Page 2)
-   ========================================================================== */
-  /* Create screen - select screen (Page 3)
-   ========================================================================== */ }
-  .create-screen--button {
-    display: block;
-    margin: 0 auto 1em; }
-  .create-screen--screens {
-    max-width: 65em;
-    margin: 0 auto 3em; }
-  .create-screen--screen-landscape {
-    margin-bottom: 2em;
-    padding-left: 0; }
-    @media only screen and (min-width: 481px) {
-      .create-screen--screen-landscape {
-        padding-left: 36px; } }
-  .create-screen--screen-portrait {
-    padding-left: 0; }
-    @media only screen and (min-width: 481px) {
-      .create-screen--screen-portrait {
-        padding-left: 36px; } }
-  .create-screen--channel-link {
-    cursor: pointer;
-    display: block;
-    position: relative;
-    cursor: pointer; }
-    .create-screen--channel-link.is-selected .create-screen--link-check {
-      left: 0;
-      right: 0;
-      visibility: visible; }
-    .create-screen--channel-link.is-selected .create-screen--overlay {
-      display: block;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.5);
-      position: absolute; }
-  .create-screen--add-slide-button {
-    margin-bottom: 2em;
-    width: 10em; }
+.screen--layout {
+  height: 100%;
+  margin: 0;
+  position: relative;
+  width: 100%;
+  top: 0; }
+  .screen--layout-inner {
+    background: #fafafa;
+    height: auto;
+    min-height: 100%;
+    position: relative; }
+  .screen--layout-content {
+    box-sizing: border-box;
+    height: auto;
+    min-height: 100%;
+    padding: 2em; }
+    @media only screen and (min-width: 1024px) {
+      .screen--layout-content {
+        position: relative; } }
+  .screen--layout-control-panel {
+    display: none;
+    bottom: 0;
+    height: auto;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    max-width: 18em;
+    right: 0;
+    padding: 0;
+    z-index: 0; }
+    @media only screen and (min-width: 1024px) {
+      .screen--layout-control-panel {
+        display: inline-block;
+        max-width: 100%;
+        position: relative; } }
 
 /**
  *
@@ -1907,7 +2149,6 @@ html.is-locked body {
 .header {
   background-color: #333;
   color: #fff;
-  margin-bottom: 2em;
   position: relative;
   width: 100%;
   z-index: 1;
@@ -3028,6 +3269,301 @@ html.is-locked body {
   right: 3em;
   top: auto; }
 
+/**
+ *
+ * Presentation display.
+ *
+ */
+/* Silent classes related to this document
+   ========================================================================== */
+.presentation--region-horizontal, .presentation--region-vertical {
+  box-sizing: border-box;
+  padding: 2px 1px; }
+
+.presentation--region-content {
+  background: #fafafa;
+  box-sizing: border-box;
+  border: 1px solid #b3b3b3;
+  font-size: 1rem;
+  height: 100%; }
+  .presentation--region-content:hover {
+    border-color: #FF8600; }
+  .is-active.presentation--region-content {
+    border-color: #FF8600;
+    border-width: 3px; }
+
+/* Styles
+   ========================================================================== */
+.presentation--border {
+  background: #fff;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 1.5em;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px; }
+
+.presentation {
+  width: 100%;
+  overflow-x: auto; }
+  .presentation--inner {
+    font-size: 0;
+    margin: 0 auto; }
+
+.presentation--region-horizontal {
+  display: inline-block;
+  vertical-align: top; }
+
+.presentation--region-vertical {
+  display: block; }
+
+/**
+ *
+ * Control panel.
+ *
+ * Wrapper for controlling the presentation.
+ * For specific widget styles see _control-panel-widgets.scss
+ *
+ */
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+.control-panel--main, .control-panel--tool {
+  border-left: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1.5em;
+  background: #fff;
+  color: #595959; }
+
+/* Styles
+   ========================================================================== */
+/* The default control panel. */
+.control-panel--main {
+  display: none; }
+  @media only screen and (min-width: 1024px) {
+    .control-panel--main {
+      display: block; } }
+
+/* Toggle for mobile devices. (Disabled) */
+.control-panel--main-toggle {
+  display: none;
+  border: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  position: absolute;
+  margin-left: -4.5em;
+  height: 3em;
+  width: 3em;
+  background: white;
+  line-height: 3em;
+  text-align: center;
+  -moz-border-radius-topleft: 0.4em;
+  -webkit-border-top-left-radius: 0.4em;
+  border-top-left-radius: 0.4em;
+  -moz-border-radius-bottomleft: 0.4em;
+  -webkit-border-bottom-left-radius: 0.4em;
+  border-bottom-left-radius: 0.4em; }
+  .control-panel--main-toggle:link {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle:visited {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle:hover {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle:focus {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle-image {
+    vertical-align: middle; }
+
+/* The overlay control panels. */
+.control-panel--tool {
+  position: absolute;
+  max-width: 100%;
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  top: 0; }
+
+/* Display navigation in the control panel */
+.control-panel--nav-wrapper {
+  margin-bottom: 2em; }
+
+.control-panel--nav-item.is-active {
+  font-weight: bold; }
+
+/* Bottom actions for control panel. */
+.control-panel--actions {
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 1em 0;
+  text-align: center;
+  margin: 0 -1.5em; }
+  .control-panel--actions-close {
+    font-size: 110%;
+    max-width: 15em;
+    margin: 0 auto; }
+
+/**
+ *
+ * CPW - Control panel widgets
+ *
+ * For displaying widgets inside the control panel.
+ *
+ */
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+/* A simple wrapper for grouping widgets. */
+.cpw--wrapper, .cpw--screen-sections, .cpw--screen-templates {
+  border: 1px solid #cccccc;
+  margin-bottom: 2em;
+  padding: 2em;
+  -moz-border-radius: 0.4em;
+  -webkit-border-radius: 0.4em;
+  border-radius: 0.4em; }
+
+.cpw--text-label, .cpw--screen-sections-label, .cpw--screen-templates-label {
+  color: #595959;
+  margin-bottom: 1em; }
+
+.cpw--text, .cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
+  margin-bottom: 2em; }
+  .cpw--text:last-child, .cpw--add-channels-search[type="search"]:last-child, .cpw--selected-channels-search[type="search"]:last-child {
+    margin-bottom: 0; }
+
+.cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
+  background: url("../../images/filter-icon.png") no-repeat 1em 50%;
+  padding-left: 3em; }
+
+.cpw--add-channels-item, .cpw--selected-channels-item {
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  font-size: 0;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  -moz-border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  border-radius: 0.4rem; }
+  .cpw--add-channels-item:last-child, .cpw--selected-channels-item:last-child {
+    margin: 0; }
+
+/* Styles
+   ========================================================================== */
+/* A simple wrapper for grouping widgets. */
+/* Text widget */
+/* Screen sections widget */
+.cpw--screen-sections {
+  text-align: center; }
+  .cpw--screen-sections-item {
+    display: inline-block;
+    margin: 1em .5em; }
+  .cpw--screen-sections-link {
+    border: 1px solid #fff;
+    display: block; }
+    .cpw--screen-sections-link:link {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link:visited {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link:hover {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link:focus {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link.is-active .cpw--screen-sections-icon {
+      border-color: #FF8600; }
+    .cpw--screen-sections-link:hover {
+      border-color: #FF8600; }
+      .cpw--screen-sections-link:hover.is-active {
+        border-color: #fff; }
+  .cpw--screen-sections-icon {
+    border: 3px solid #fff;
+    box-sizing: border-box; }
+
+/* Screen tamplates widget */
+.cpw--screen-templates {
+  text-align: center; }
+  .cpw--screen-templates-item {
+    display: inline-block;
+    margin: 1em .5em; }
+  .cpw--screen-templates-link {
+    border: 1px solid #fff;
+    display: block; }
+    .cpw--screen-templates-link:link {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link:visited {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link:hover {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link:focus {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link.is-active .cpw--screen-templates-icon {
+      border-color: #FF8600; }
+    .cpw--screen-templates-link:hover {
+      border-color: #FF8600; }
+      .cpw--screen-templates-link:hover.is-active {
+        border-color: #fff; }
+  .cpw--screen-templates-icon {
+    border: 3px solid #fff;
+    box-sizing: border-box; }
+
+/* Add channels widget */
+.cpw--add-channels {
+  margin-bottom: 2em; }
+  .cpw--add-channels-item-image {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: .9rem;
+    padding-right: 1rem;
+    vertical-align: top;
+    width: 50%; }
+  .cpw--add-channels-item-content {
+    display: inline-block;
+    font-size: .9rem;
+    width: 50%; }
+  .cpw--add-channels-item-meta {
+    margin-bottom: 2rem; }
+  .cpw--add-channels-item-action {
+    padding: .3rem; }
+
+/* Selected channels widget */
+.cpw--selected-channels {
+  margin-bottom: 2em; }
+  .cpw--selected-channels-item-image {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: .9rem;
+    padding-right: 1rem;
+    vertical-align: top;
+    width: 50%; }
+  .cpw--selected-channels-item-content {
+    display: inline-block;
+    font-size: .9rem;
+    width: 50%; }
+  .cpw--selected-channels-item-meta {
+    margin-bottom: 2rem; }
+  .cpw--selected-channels-item-action {
+    padding: .3rem; }
+
 /* Animations
  *
  * ========================================================================== */
@@ -3129,7 +3665,7 @@ html.is-locked body {
     bottom: 0; } }
 /* Animation calls (If not related to a module)
  * ========================================================================== */
-.spinner, .create-slide--spinner, .create-screen--spinner, .create-channel--spinner, .admin-sharing--spinner {
+.spinner, .create-slide--spinner, .create-channel--spinner, .admin-sharing--spinner {
   background: url('/../images/icons-se731c6030f.png');
   -moz-background-size: 77px 1073px;
   -o-background-size: 77px 1073px;
