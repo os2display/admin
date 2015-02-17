@@ -38,8 +38,8 @@ parameters:
     middleware_path: /api
     middleware_apikey: 1234567890
 
-    templates_directory: ik-templates/
-    templates_enabled:
+    templates_slides_directory: templates/slides/
+    templates_slides_enabled:
       - ik-iframe
       - manual-calendar
       - only-image
@@ -49,5 +49,9 @@ parameters:
       - text-left
       - text-right
       - text-top
+
+    templates_screens_directory: templates/screens/
+    templates_screens_enabled:
+
 
     logo: images/logo_default.png

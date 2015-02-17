@@ -12,11 +12,9 @@ Organisation: this-library
 This results in the template name: this-library-my-template
 </pre>
 
-* make a new folder with the template name, in web/ik-templates/
+* make a new folder with the template name, in web/templates/slides/
 
 * include the html, css, png and json files needed (see list below).
-
-* add the path to the .css in imports.html.
 
 ### Template setup
 [link](IK3-templates.pdf)
@@ -34,7 +32,7 @@ This results in the template name: this-library-my-template
 
 ### Naming
 * Important! All custom made templates should be namespaced with organisation name, so templates do not collide.
-* All templates should be included in the shared ik-templates folder.
+* All templates should be included in the shared web/templates/slides/ folder.
 * All files related to a template should be contained in the same template folder.
 * The folder name of a template folder should consist of only letters and dashes.
 * All files within the folder should start with the folder name. (e.g. manual-calendar.html)
@@ -44,7 +42,7 @@ This results in the template name: this-library-my-template
 
 **/web**
 
--- **/ik-templates**
+-- **/templates/slides/**
 
 ---- **/template-1**
 
