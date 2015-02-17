@@ -41,6 +41,7 @@ parameters:
     templates_slides_directory: templates/slides/
     templates_slides_enabled:
       - ik-iframe
+      - header-top
       - manual-calendar
       - only-image
       - only-video
