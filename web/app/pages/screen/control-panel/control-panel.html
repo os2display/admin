@@ -1,0 +1,44 @@
+<div class="control-panel--main">
+  <div class="control-panel--nav-wrapper">
+    <div class="control-panel--nav is-full-width" itk--tabs-count="2">
+      <a data-ng-click="clickTab('settings')" class="control-panel--nav-item" data-ng-class="{'is-active': !selectedTab || selectedTab === 'settings'}">Indstillinger</a>
+      <a data-ng-click="clickTab('template')" class="control-panel--nav-item" data-ng-class="{'is-active': selectedTab === 'template'}">Skabelon</a>
+    </div>
+  </div>
+
+  <!-- @TODO: Wrap in widget -->
+  <div class="control-panel--tab" data-ng-if="!selectedTab || selectedTab === 'settings'">
+    <form class="cpw--wrapper">
+      <div class="cpw--text">
+        <label class="cpw--text-label">Skærmnavn</label>
+        <input type="text" class="cpw--text-input" placeholder="f.eks. Hovedindgang til højre" data-ng-model="data.title">
+      </div>
+      <div class="cpw--text">
+        <label class="cpw--text-label">Bredde</label>
+        <input type="text" class="cpw--text-input" placeholder="Indtast bredde i pixels" data-ng-model="data.width">
+      </div>
+      <div class="cpw--text">
+        <label class="cpw--text-label">Højde</label>
+        <input type="text" class="cpw--text-input" placeholder="Indtast højde i pixels" data-ng-model="data.height">
+      </div>
+    </form>
+  </div>
+
+  <!-- @TODO: Wrap in widget, load from screen templates installed -->
+  <div class="control-panel--tab" data-ng-if="selectedTab === 'template'">
+    <div class="cpw--screen-sections">
+      <div class="cpw--screen-sections-item">
+        <label class="cpw--screen-sections-label">1 sektion</label>
+        <a href="#" class="cpw--screen-sections-link is-active">
+          <img class="cpw--screen-sections-icon" src="../../images/outlines/default-template.png"/>
+        </a>
+      </div>
+      <div class="cpw--screen-sections-item">
+        <label class="cpw--screen-sections-label">5 sektioner</label>
+        <a href="#" class="cpw--screen-sections-link">
+          <img class="cpw--screen-sections-icon" src="../../images/outlines/sections-5.png"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
