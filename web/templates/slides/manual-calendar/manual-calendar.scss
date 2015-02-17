@@ -1,5 +1,8 @@
+// Include base vars
 @import "compass/css3";
-@import "../_imports.scss";
+@import "../_shared-base.scss";
+
+
 
 .manual-calendar {
   background-size: cover;
@@ -20,7 +23,7 @@
   &--text-inner {
     background: rgba(0,0,0,0.7);
     box-sizing: border-box;
-    color: #fff;
+    color: $white;
     margin: 0 auto;
     overflow: hidden;
     padding: 4%;

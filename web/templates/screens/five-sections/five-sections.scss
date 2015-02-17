@@ -1,0 +1,23 @@
+@import "compass/css3";
+@import "../_shared-base-screens.scss";
+
+
+.five-sections {
+  &--inner {
+    font-size: 0; // inline-block fix.
+    margin: 0 auto;
+  }
+
+  &--region-horizontal {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &--vertical {
+    display: block;
+  }
+
+  &--region-content {
+    @extend %presentation--item-inner;
+  }
+}
