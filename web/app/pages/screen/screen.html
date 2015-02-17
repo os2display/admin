@@ -1,0 +1,9 @@
+<section data-ng-controller="ScreenController">
+  <div class="preview">
+    <div data-ng-include="screenEditor"></div>
+  </div>
+  <div class="controls">
+    <control-panel template="'app/pages/screen/control-panel.html'" data="dataelement"></control-panel>
+    <control-panel template="toolbarTemplate" data-ng-show="toolbarTemplate !== null" data="dataelement"></control-panel>
+  </div>
+</section>

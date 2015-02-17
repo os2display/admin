@@ -147,6 +147,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
     factory.emptyScreen = function() {
       currentScreen = {
         id: null,
+        template: '',
         title: '',
         orientation: '',
         channels: [],

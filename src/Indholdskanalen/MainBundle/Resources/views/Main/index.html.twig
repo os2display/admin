@@ -97,7 +97,7 @@
   <script src="{{ asset('js/controllers/menuController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
-  <script src="{{ asset('js/controllers/screenController.js') }}"></script>
+  <!--<script src="{{ asset('js/controllers/screenController.js') }}"></script>-->
   <script src="{{ asset('js/controllers/channelController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaUploadController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaEditController.js') }}"></script>
@@ -106,7 +106,13 @@
   <script src="{{ asset('js/controllers/adminSharingController.js') }}"></script>
 
   <!-- Components -->
-  <script src="{{ asset('components/ngModal/ng-modal.js') }}"></script>
+  <script src="{{ asset('app/shared/ngModal/ng-modal.js') }}"></script>
+
+  <!-- Screen -->
+  <script src="{{ asset('app/pages/screen/screen.js') }}"></script>
+
+  <!-- Control Panel -->
+  <script src="{{ asset('app/shared/controlPanel/control-panel.js') }}"></script>
 
 {% endblock %}
 
