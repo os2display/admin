@@ -1030,6 +1030,7 @@ label {
 
 .control-panel--actions-close {
   background-color: #737373;
+  color: #fff;
   display: block;
   box-sizing: border-box;
   font-size: 1em;
@@ -1058,6 +1059,7 @@ label {
 
 .cpw--add-channels-item-action {
   background-color: #357fd1;
+  color: #fff;
   display: block;
   box-sizing: border-box;
   font-size: 1em;
@@ -2800,7 +2802,7 @@ html.is-locked body {
     outline: 0;
     text-decoration: none; }
   .overview--slides-container, .overview--channel-container {
-    display: block; }
+    display: inline-block; }
   .overview--channel-empty {
     width: 300px;
     height: 168.75px;
@@ -3400,7 +3402,7 @@ html.is-locked body {
   border-bottom: 1px solid #e6e6e6;
   padding: 1em 0;
   text-align: center;
-  margin: 0 -1.5em; }
+  margin: 8em -1.5em 0; }
   .control-panel--actions-close {
     font-size: 110%;
     max-width: 15em;
@@ -3434,6 +3436,7 @@ html.is-locked body {
     margin-bottom: 0; }
 
 .cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
+  box-sizing: border-box;
   background: url("../../images/filter-icon.png") no-repeat 1em 50%;
   padding-left: 3em; }
 

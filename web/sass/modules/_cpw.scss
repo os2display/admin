@@ -37,6 +37,7 @@
 
 
 %cpw--search {
+  box-sizing: border-box;
   background: url("../../images/filter-icon.png") no-repeat 1em 50%;
   padding-left: 3em;
 }
@@ -168,7 +169,7 @@
 .cpw--add-channels {
   margin-bottom: 2em;
 
-  &-search[type="search"] {
+  &-search[type="search"] { // Override default search form.
     @extend %cpw--text;
     @extend %cpw--search;
   }
