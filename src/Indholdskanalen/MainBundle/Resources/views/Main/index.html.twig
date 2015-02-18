@@ -15,30 +15,30 @@
 
 {% block scripts %}
   <!-- Script imports -->
-  <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/lib/angular.min.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-animate.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-route.js') }}"></script>
+  <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-animate.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-route.js') }}"></script>
 
   <!-- Add ins -->
-  <script src="{{ asset('js/lib/moment.min.js') }}"></script>
-  <script src="{{ asset('js/lib/es5-shim.min.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-file-upload.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-checklist-model.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-bootstrap-colorpicker.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-placeholder.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-css-injector.js') }}"></script>
+  <script src="{{ asset('assets/libs/moment.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/es5-shim.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-file-upload.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-checklist-model.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-bootstrap-colorpicker.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-placeholder.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-css-injector.js') }}"></script>
 
   <!-- Modules -->
-  <script src="{{ asset('js/modules/datetime-picker/jquery.datetimepicker.js') }}"></script>
-  <script src="{{ asset('js/modules/datetime-picker/datetime-picker.js') }}"></script>
-  <script src="{{ asset('js/modules/locale/da.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker.jquery.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker.js') }}"></script>
+  <script src="{{ asset('assets/libs/locale_da.js') }}"></script>
 
   <!-- Socket io from the search node, to get right version -->
   <script src="/proxy/socket.io/socket.io.js"></script>
 
   <!-- Base -->
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('app/app.js') }}"></script>
 
   <!-- Configuration -->
   <script type="text/javascript">
@@ -54,7 +54,7 @@
       "logo": "{{ logo }}"
     });
   </script>
-  <script src="{{ asset('js/routing.js') }}"></script>
+  <script src="{{ asset('app/routing.js') }}"></script>
 
   <!-- Filters -->
   <script src="{{ asset('js/filters/activeEvents.js') }}"></script>
@@ -97,7 +97,6 @@
   <script src="{{ asset('js/controllers/menuController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
-  <!--<script src="{{ asset('js/controllers/screenController.js') }}"></script>-->
   <script src="{{ asset('js/controllers/channelController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaUploadController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaEditController.js') }}"></script>
