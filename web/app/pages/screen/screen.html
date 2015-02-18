@@ -1,57 +1,11 @@
-<!--
-<section data-ng-controller="ScreenController">
-  <div class="preview">
-    <div data-ng-include="screenEditor"></div>
-  </div>
-  <div class="controls">
-    <control-panel template="'app/pages/screen/control-panel.html'" data="dataelement"></control-panel>
-    <control-panel template="toolbarTemplate" data-ng-show="toolbarTemplate !== null" data="dataelement"></control-panel>
-  </div>
-</section>
--->
-
-<div class="screen--layout" data-ng-controller="ScreenController">
+<div class="screen--layout">
   <div class="screen--layout-inner">
     <div class="screen--layout-content">
-      <div class="presentation--border" style="max-width: 750px;">
-        <div class="presentation breakpoint-50">
-          <div class="presentation--inner" style="width: 700px;height:340px;">
-            <div class="presentation--region-vertical" style="width: auto; height:50%;" data-ng-click="triggerTool({name: 'channel-picker-tool', region: '2'})">
-              <div class="presentation--region-horizontal" style="width: 50%; height:100%;">
-                <div class="presentation--region-content">
-                  alpha
-                </div>
-              </div>
-              <div class="presentation--region-horizontal" style="width: 50%; height:100%;">
-                <div class="presentation--region-content is-active">
-                  beta
-                </div>
-              </div>
-            </div>
-            <div class="presentation--region-vertical" style="width: auto; height:50%;">
-              <div class="presentation--region-horizontal" style="width: 33%; height:100%;">
-                <div class="presentation--region-content">
-                  gamma
-                </div>
-              </div>
-              <div class="presentation--region-horizontal" style="width: 34%; height:100%;">
-                <div class="presentation--region-content">
-                  delta
-                </div>
-              </div>
-              <div class="presentation--region-horizontal" style="width: 33%; height:100%;">
-                <div class="presentation--region-content">
-                  epsilon
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div data-ng-include="screen.template"></div>
     </div>
     <div class="screen--layout-control-panel">
       <control-panel template="'app/pages/screen/control-panel/control-panel.html'" display-tool="true" data="screen"></control-panel>
-      <control-panel template="toolbarTemplate" display-tool="toolbarTemplate !== null" data="screen"></control-panel>
+      <control-panel template="toolbarTemplate" display-tool="displayToolbar" data="screen"></control-panel>
     </div>
     <div class="control-panel--actions">
       <a class="control-panel--actions-close" data-ng-click="saveScreen()">Gem</a>

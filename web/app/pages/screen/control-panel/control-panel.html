@@ -21,6 +21,10 @@
         <label class="cpw--text-label">Højde</label>
         <input type="text" class="cpw--text-input" placeholder="Indtast højde i pixels" data-ng-model="data.height">
       </div>
+      <div class="cpw--text" data-ng-if="data.activation_code">
+        <label class="cpw--text-label">Aktiveringskode</label>
+        <input type="text" class="cpw--text-input" disabled="disabled" data-ng-model="data.activation_code">
+      </div>
     </form>
   </div>
 
