@@ -9,12 +9,24 @@
   }
 
   &--region-horizontal {
+    border-right: 1px solid $white;
+    box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
+
+    &:last-child {
+      border: 0;
+    }
   }
 
-  &--vertical {
+  &--region-vertical {
+    border-bottom: 1px solid $white;
+    box-sizing: border-box;
     display: block;
+
+    &:last-child {
+      border: 0;
+    }
   }
 
   &--region-content {

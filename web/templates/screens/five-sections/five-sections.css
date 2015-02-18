@@ -277,7 +277,7 @@ table {
  *
  */
 .icons-sprite {
-  background-image: url('/../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../images/icons-s15e2aefe08.png');
   background-repeat: no-repeat; }
 
 /* Variables
@@ -301,7 +301,15 @@ table {
   font-size: 0;
   margin: 0 auto; }
 .five-sections--region-horizontal {
+  border-right: 1px solid #fff;
+  box-sizing: border-box;
   display: inline-block;
   vertical-align: top; }
-.five-sections--vertical {
+  .five-sections--region-horizontal:last-child {
+    border: 0; }
+.five-sections--region-vertical {
+  border-bottom: 1px solid #fff;
+  box-sizing: border-box;
   display: block; }
+  .five-sections--region-vertical:last-child {
+    border: 0; }

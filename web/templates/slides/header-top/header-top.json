@@ -1,11 +1,11 @@
 {
-  "id": "text-top",
-  "icon": "text-top.png",
+  "id": "header-top",
+  "icon": "header-top.png",
   "paths": {
-    "live": "text-top.html",
-    "edit": "text-top-edit.html",
-    "preview": "text-top.html",
-    "css": "text-top.css"
+    "live": "header-top.html",
+    "edit": "header-top-edit.html",
+    "preview": "header-top.html",
+    "css": "header-top.css"
   },
   "orientation": "landscape",
   "mediatype": "image",
