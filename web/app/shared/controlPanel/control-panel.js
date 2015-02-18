@@ -9,7 +9,8 @@
         scope: {
           template: '=',
           data: '=',
-          displayTool: '@'
+          displayTool: '=',
+          saveAction: '&'
         },
         replace: true,
         link: function(scope, element, attrs) {

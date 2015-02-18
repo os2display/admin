@@ -73,10 +73,9 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      */
     $scope.saveScreen = function saveScreen() {
       screenFactory.saveScreen().then(
-        function(screen) {
+        function() {
           // @TODO: Show success to user.
-          console.log("saved...");
-          console.log(screen);
+          $scope.displayToolbar = false;
         },
         function(reason) {
           // @TODO: Handle error.
@@ -85,6 +84,11 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       );
     };
 
+    /**
+     * Trigger the tool defined in the tool parameter.
+     * @param tool
+     *   The tool and region to trigger.
+     */
     $scope.triggerTool = function triggerTool(tool) {
       $scope.toolbarTemplate = 'app/shared/toolbars/' + tool.name + '.html';
       $scope.region = tool.region;
