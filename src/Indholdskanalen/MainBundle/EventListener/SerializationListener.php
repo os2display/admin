@@ -131,7 +131,7 @@ class SerializationListener implements EventSubscriberInterface
           $event->getVisitor()->addData('logo', $logoPath);
 
           // Set template paths
-          $templates = $this->templateService->getTemplates();
+          $templates = $this->templateService->getSlideTemplates();
           $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
           $event->getVisitor()->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
 				}
@@ -179,7 +179,7 @@ class SerializationListener implements EventSubscriberInterface
           $event->getVisitor()->addData('logo', $logoPath);
 
           // Set template paths
-          $templates = $this->templateService->getTemplates();
+          $templates = $this->templateService->getSlideTemplates();
           $event->getVisitor()->addData('preview_path', $templates[$slide->getTemplate()]->paths->preview);
           $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
           $event->getVisitor()->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
