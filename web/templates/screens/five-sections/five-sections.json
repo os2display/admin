@@ -1,0 +1,16 @@
+{
+  "id": "five-sections",
+  "name": "Femdelt",
+  "icon": "five-sections.png",
+  "paths": {
+    "live": "five-sections.html",
+    "edit": "five-sections-edit.html",
+    "preview": "five-sections.html",
+    "css": "five-sections.css"
+  },
+  "orientation": "landscape",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  }
+}

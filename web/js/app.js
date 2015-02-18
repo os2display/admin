@@ -10,7 +10,7 @@
 angular.module('ikApp', [
     'ngRoute', 'ngAnimate', 'angularFileUpload', 'checklist-model',
     'colorpicker.module', 'datetimePicker', 'ngLocale', 'taiPlaceholder',
-    'ngModal', 'angular.css.injector', 'itkControlPanel'
+    'ngModal', 'angular.css.injector', 'itkControlPanel', 'itkScreenTemplatePickerWidget'
   ],
   function() {
 

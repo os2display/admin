@@ -30,19 +30,6 @@
 
   <!-- @TODO: Wrap in widget, load from screen templates installed -->
   <div class="control-panel--tab" data-ng-if="selectedTab === 'template'">
-    <div class="cpw--screen-sections">
-      <div class="cpw--screen-sections-item">
-        <label class="cpw--screen-sections-label">1 sektion</label>
-        <a href="#" class="cpw--screen-sections-link is-active">
-          <img class="cpw--screen-sections-icon" src="../../images/outlines/default-template.png"/>
-        </a>
-      </div>
-      <div class="cpw--screen-sections-item">
-        <label class="cpw--screen-sections-label">5 sektioner</label>
-        <a href="#" class="cpw--screen-sections-link">
-          <img class="cpw--screen-sections-icon" src="../../images/outlines/sections-5.png"/>
-        </a>
-      </div>
-    </div>
+    <screen-template-picker-widget screen="data"></screen-template-picker-widget>
   </div>
 </div>

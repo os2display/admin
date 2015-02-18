@@ -11,7 +11,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
     $scope.steps = 6;
     $scope.slide = {};
     $scope.templates = [];
-    templateFactory.getTemplates().then(
+    templateFactory.getSlideTemplates().then(
       function(data) {
         for (var key in data) {
           $scope.templates.push(data[key]);

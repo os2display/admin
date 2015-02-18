@@ -50,7 +50,7 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
         }
 
         // Get the template.
-        templateFactory.getTemplate(scope.ikSlide.template).then(
+        templateFactory.getSlideTemplate(scope.ikSlide.template).then(
           function(data) {
             scope.template = data;
             scope.templateURL = scope.template.paths.preview;
@@ -184,7 +184,7 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', functio
         }
 
         if (!scope.template || newVal.template !== oldVal.template) {
-          templateFactory.getTemplate(scope.ikSlide.template).then(
+          templateFactory.getSlideTemplate(scope.ikSlide.template).then(
             function(data) {
               scope.template = data;
               scope.templateURL = scope.template.paths.edit;

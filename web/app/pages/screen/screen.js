@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
-  function($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory',
+  function($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory) {
     $scope.sharingEnabled = configuration.sharingService.enabled;
     $scope.screen = {};
     $scope.toolbarTemplate = null;
@@ -19,8 +19,6 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      * Handles different settings of route parameters.
      */
     function init() {
-      console.log("init");
-
       if (!$routeParams.id) {
         // If the ID is not set, get an empty slide.
         $scope.screen = screenFactory.emptyScreen();
@@ -33,8 +31,17 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             function(data) {
               $scope.screen = data;
 
-              // @TODO: Fix the default, so the template defaulted to full-screen. Then remove this!
-              $scope.screen.template = 'templates/screens/five-sections/five-sections-edit.html';
+              // To handle unset template values.
+              if (!$scope.screen.template) {
+                $scope.screen.template = 'full-screen';
+              }
+
+              // Get the template information, load into the $scope.screen.template
+              templateFactory.getScreenTemplate($scope.screen.template).then(
+                function(data) {
+                  $scope.screen.template = data;
+                }
+              );
 
               $scope.screen.shared_channels.forEach(function(element) {
                 element.content = JSON.parse(element.content);
@@ -43,8 +50,6 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
               if ($scope.screen === {}) {
                 $location.path('/screen');
               }
-
-              console.log($scope.screen);
             },
             // Error getting
             function(reason) {
