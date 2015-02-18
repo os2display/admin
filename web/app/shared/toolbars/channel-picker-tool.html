@@ -1,0 +1,59 @@
+<!-- Channel picker tool -->
+<div class="control-panel--tool" data-ng-class="{'is-visible': displayTool}">
+  <a href="#" class="control-panel--main-toggle"><img class="control-panel--toggle-image" src="./images/arrow-right-icon.png"/></a>
+
+  <div class="control-panel--nav-wrapper">
+    <div class="control-panel--nav is-full-width" itk--tabs-count="2">
+      <a class="control-panel--nav-item" data-ng-click="clickTab('pick-channels')" data-ng-class="{'is-active': !selectedTab || selectedTab === 'pick-channels'}">Tilføj kanaler</a>
+      <a class="control-panel--nav-item" data-ng-click="clickTab('view-channels')" data-ng-class="{'is-active': selectedTab === 'view-channels'}">Valgte kanaler</a>
+    </div>
+  </div>
+  <div class="control-panel--tool-tab" data-ng-if="!selectedTab || selectedTab === 'pick-channels'">
+    <!-- @TODO: channel picker widget -->
+    <div class="cpw--add-channels">
+      <input type="search" class="cpw--add-channels-search" placeholder="Søg..." data-ng-model="temp.temp">
+      <div class="cpw--add-channels-list">
+        <div class="cpw--add-channels-item">
+          <div class="cpw--add-channels-item-image"><img src=""/></div>
+          <div class="cpw--add-channels-item-content">
+            <h3 class="cpw--add-channels-item-header">Til receptionen</h3>
+            <div class="cpw--add-channels-item-meta">Dette kunne være en beskrivelse på sigt.</div>
+            <a href="#" class="cpw--add-channels-item-action">Tilføj</a>
+          </div>
+        </div>
+        <div class="cpw--add-channels-item">
+          <div class="cpw--add-channels-item-image"><img src=""/></div>
+          <div class="cpw--add-channels-item-content">
+            <h3 class="cpw--add-channels-item-header">Reception 2</h3>
+            <div class="cpw--add-channels-item-meta">Dette kunne være en beskrivelse på sigt.</div>
+            <a href="#" class="cpw--add-channels-item-action">Tilføj</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="control-panel--tool-tab" data-ng-if="selectedTab === 'view-channels'">
+    <!-- @TODO: channel selected widget -->
+    <div class="cpw--selected-channels">
+      <input type="search" class="cpw--selected-channels-search" placeholder="Søg..." data-ng-model="temp.temp">
+      <div class="cpw--selected-channels-list">
+        <div class="cpw--selected-channels-item">
+          <div class="cpw--selected-channels-item-image"><img src=""/></div>
+          <div class="cpw--selected-channels-item-content">
+            <h3 class="cpw--selected-channels-item-header">Til receptionen</h3>
+            <div class="cpw--selected-channels-item-meta">Dette kunne være en beskrivelse på sigt.</div>
+            <a href="#" class="cpw--selected-channels-item-action">Fjern</a>
+          </div>
+        </div>
+        <div class="cpw--selected-channels-item">
+          <div class="cpw--selected-channels-item-image"><img src=""/></div>
+          <div class="cpw--selected-channels-item-content">
+            <h3 class="cpw--selected-channels-item-header">Reception 2</h3>
+            <div class="cpw--selected-channels-item-meta">Dette kunne være en beskrivelse på sigt.</div>
+            <a href="#" class="cpw--selected-channels-item-action">Fjern</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

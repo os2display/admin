@@ -43,11 +43,11 @@ angular.module('ikApp').config(function($routeProvider) {
     // Screen
     .when('/screen', {
       controller: 'ScreenController',
-      templateUrl: 'partials/screen/screen.html'
+      templateUrl: 'app/pages/screen/screen.html'
     })
     .when('/screen/:id', {
       controller: 'ScreenController',
-      templateUrl: 'partials/screen/screen.html'
+      templateUrl: 'app/pages/screen/screen.html'
     })
 
     // Screen group

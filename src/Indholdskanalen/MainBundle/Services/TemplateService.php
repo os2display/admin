@@ -17,9 +17,9 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  *
  * @package Indholdskanalen\MainBundle\Services
  */
-class TemplateService extends ContainerAware
-{
-  protected $templates;
+class TemplateService extends ContainerAware {
+  protected $slideTemplates;
+  protected $screenTemplates;
   protected $container;
 
   /**
@@ -29,9 +29,18 @@ class TemplateService extends ContainerAware
    *   The service container.
    */
   public function __construct(Container $container) {
-    $this->templates = array();
     $this->container = $container;
+  }
 
+  /**
+   * Gets all slide templates from the "templates_slides_directory" defined in parameters.yml.
+   */
+  public function getSlideTemplates() {
+    if ($this->slideTemplates) {
+      return $this->slideTemplates;
+    }
+
+    $this->slideTemplates = array();
     $enabledTemplates = $this->container->getParameter("templates_slides_enabled");
 
     $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter("templates_slides_directory");
@@ -56,18 +65,55 @@ class TemplateService extends ContainerAware
           $obj->paths->preview = $serverAddress . $entry . '/' . $obj->paths->preview;
           $obj->paths->css = $serverAddress . $entry . '/' . $obj->paths->css;
 
-          $this->templates[$entry] = $obj;
+          $this->slideTemplates[$entry] = $obj;
         }
       }
 
       closedir($handle);
     }
+
+    return $this->slideTemplates;
   }
 
   /**
-   * Gets all templates from the "templates_directory" defined in parameters.yml.
+   * Gets all screen templates from the "templates_screens_directory" defined in parameters.yml.
    */
-  public function getTemplates() {
-    return $this->templates;
+  public function getScreenTemplates() {
+    if ($this->screenTemplates) {
+      return $this->screenTemplates;
+    }
+
+    $this->screenTemplates = array();
+    $enabledTemplates = $this->container->getParameter("templates_screens_enabled");
+
+    $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter("templates_screens_directory");
+    $serverAddress = $this->container->getParameter("absolute_path_to_server") . "/" . $this->container->getParameter("templates_screens_directory");;
+
+    // Iterate through templates directory (configurable).
+    if ($handle = opendir($path)) {
+      while (false !== ($entry = readdir($handle))) {
+        if (is_dir($path . "/" . $entry) && $entry !== '.' && $entry !== '..') {
+          if (!in_array($entry, $enabledTemplates)) {
+            continue;
+          }
+
+          // Read config.json for template
+          $str = file_get_contents($path . $entry . '/' . $entry . ".json");
+          $obj = json_decode($str);
+
+          $obj->icon = $serverAddress . $entry . '/' . $obj->icon;
+          $obj->paths->live = $serverAddress . $entry . '/' . $obj->paths->live;
+          $obj->paths->edit = $serverAddress . $entry . '/' . $obj->paths->edit;
+          $obj->paths->preview = $serverAddress . $entry . '/' . $obj->paths->preview;
+          $obj->paths->css = $serverAddress . $entry . '/' . $obj->paths->css;
+
+          $this->screenTemplates[$entry] = $obj;
+        }
+      }
+
+      closedir($handle);
+    }
+
+    return $this->screenTemplates;
   }
 }

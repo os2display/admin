@@ -8,11 +8,21 @@
  * @type {*}
  */
 angular.module('ikApp', [
-    'ngRoute', 'ngAnimate', 'angularFileUpload', 'checklist-model',
-    'colorpicker.module', 'datetimePicker', 'ngLocale', 'taiPlaceholder',
-    'ngModal', 'angular.css.injector'
-  ],
-  function() {
+    'ngRoute',
+    'ngAnimate',
+    'angularFileUpload',
+    'checklist-model',
+    'colorpicker.module',
+    'datetimePicker',
+    'ngLocale',
+    'taiPlaceholder',
+    'ngModal',
+    'angular.css.injector',
 
-  }
+    'itkControlPanel',
+    'itkScreenTemplatePickerWidget',
+    'itkTextWidget',
+    'itkNumberWidget'
+  ],
+  function() {}
 );

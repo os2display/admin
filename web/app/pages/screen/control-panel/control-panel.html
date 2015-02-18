@@ -1,0 +1,35 @@
+<div class="control-panel--main">
+  <div class="control-panel--nav-wrapper">
+    <div class="control-panel--nav is-full-width" itk--tabs-count="2">
+      <a data-ng-click="clickTab('settings')" class="control-panel--nav-item" data-ng-class="{'is-active': !selectedTab || selectedTab === 'settings'}">Indstillinger</a>
+      <a data-ng-click="clickTab('template')" class="control-panel--nav-item" data-ng-class="{'is-active': selectedTab === 'template'}">Skabelon</a>
+    </div>
+  </div>
+
+  <!-- Settings tab -->
+  <div class="control-panel--tab" data-ng-if="!selectedTab || selectedTab === 'settings'">
+    <form class="cpw--wrapper">
+      <div class="cpw--text">
+        <label class="cpw--text-label">Skærmnavn</label>
+        <text-widget field="data.title" placeholder-text="f.eks. Hovedindgang til højre"></text-widget>
+      </div>
+      <div class="cpw--text">
+        <label class="cpw--text-label">Bredde (i pixels)</label>
+        <number-widget field="data.width" placeholder-text="Indtast bredde i pixels"></number-widget>
+      </div>
+      <div class="cpw--text">
+        <label class="cpw--text-label">Højde (i pixels)</label>
+        <number-widget field="data.height" placeholder-text="Indtast højde i pixels"></number-widget>
+      </div>
+      <div class="cpw--text" data-ng-if="data.activation_code">
+        <label class="cpw--text-label">Aktiveringskode</label>
+        <input type="text" class="cpw--text-input" disabled="disabled" data-ng-model="data.activation_code">
+      </div>
+    </form>
+  </div>
+
+  <!-- Template picker tab -->
+  <div class="control-panel--tab" data-ng-if="selectedTab === 'template'">
+    <screen-template-picker-widget screen="data"></screen-template-picker-widget>
+  </div>
+</div>
