@@ -1,3 +1,5 @@
+/* Imports.
+   ========================================================================== */
 /**
  *
  * Shared base.
@@ -277,9 +279,21 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
-.header-top {
+/* Placeholders related to this document
+   ========================================================================== */
+.event-calendar--title, .event-calendar--title-header, .event-calendar--place, .event-calendar--place-header, .event-calendar--time, .event-calendar--time-header {
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  padding: .5em;
+  vertical-align: middle;
+  text-align: left; }
+
+/* Styles
+   ========================================================================== */
+.event-calendar {
   height: 100%;
-  background: url(header-top-background.png) no-repeat;
+  background: url(event-calendar-background.png) no-repeat;
   color: #000;
   font-family: Arial, sans-serif;
   font-size: 6vw;
@@ -287,23 +301,73 @@ table {
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover; }
-
-.header-top--inner {
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.85);
-  overflow: hidden; }
-
-.header-top--header-wrapper {
-  background-color: #379f40; }
-
-.header-top--header {
-  font-size: 100%;
-  margin: 0;
-  padding: 2vw;
-  background-color: #379f40;
-  color: #fff;
-  font-weight: bold; }
-
-.header-top--content {
-  font-size: 50%;
-  padding: 2vw; }
+  .event-calendar--inner {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    overflow: hidden; }
+  .event-calendar--header {
+    background-color: #379f40;
+    position: relative;
+    overflow: hidden; }
+  .event-calendar--title-wrapper {
+    box-sizing: border-box;
+    float: left;
+    width: 85%; }
+  .event-calendar--day-inner, .event-calendar--header-title {
+    background-color: #379f40;
+    color: #fff;
+    font-weight: bold;
+    font-size: 100%;
+    margin: 0; }
+  .event-calendar--day {
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    float: left;
+    text-align: center;
+    width: 15%;
+    height: 20vw;
+    position: absolute;
+    right: 0; }
+  .event-calendar--day-inner {
+    background: transparent; }
+  .event-calendar--week-day {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 40%;
+    line-height: 1em; }
+  .event-calendar--month {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 60%;
+    line-height: 1em; }
+  .event-calendar--date {
+    line-height: 1em; }
+  .event-calendar--content {
+    font-size: 40%; }
+  .event-calendar--events {
+    font-size: 70%;
+    overflow: hidden;
+    width: 100%; }
+  .event-calendar--event {
+    border-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    overflow: hidden;
+    width: 100%;
+    display: block; }
+    .event-calendar--event:first-child {
+      border-bottom: 0;
+      padding-bottom: 1%; }
+    .event-calendar--event:last-child {
+      border-bottom: 0; }
+  .event-calendar--title, .event-calendar--title-header {
+    width: 40%; }
+  .event-calendar--place, .event-calendar--place-header {
+    width: 40%; }
+  .event-calendar--time, .event-calendar--time-header {
+    width: 20%; }
+  .event-calendar--title-header, .event-calendar--place-header, .event-calendar--time-header {
+    font-weight: bold; }
+  .event-calendar--title, .event-calendar--place, .event-calendar--time {
+    border-right: 1px solid;
+    border-color: inherit; }
+    .event-calendar--title:last-child, .event-calendar--place:last-child, .event-calendar--time:last-child {
+      border: 0px; }

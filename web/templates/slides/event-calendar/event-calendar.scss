@@ -1,0 +1,164 @@
+/* Imports.
+   ========================================================================== */
+
+@import "compass/css3";
+@import "../_shared-base.scss";
+
+
+
+/* Placeholders related to this document
+   ========================================================================== */
+%event-attribute {
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  padding: .5em;
+  vertical-align: middle;
+  text-align: left;
+}
+
+/* Styles
+   ========================================================================== */
+
+
+.event-calendar {
+  height: 100%;
+
+  background: url(event-calendar-background.png) no-repeat;
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 6vw;
+
+  @include background-size(cover);
+
+
+  &--inner {
+    height: 100%;
+
+    background-color: rgba(255, 255, 255, .85);
+
+    overflow: hidden;
+  }
+
+  &--header{
+    background-color: #379f40;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &--title-wrapper {
+    box-sizing: border-box;
+    float: left;
+    width: 85%;
+  }
+
+
+  &--day-inner,
+  &--header-title {
+    background-color: #379f40;
+    color: #fff;
+    font-weight: bold;
+    font-size: 100%;
+    margin: 0;
+  }
+
+  &--day {
+    background: rgba(0, 0, 0, .2);
+    font-size: 100%;
+    float: left;
+    text-align: center;
+    width: 15%;
+    height: 20vw;
+    position: absolute;
+    right: 0;
+  }
+
+
+  &--day-inner {
+    background: transparent;
+  }
+
+  &--week-day {
+    color: rgba(255, 255, 255, .75);
+    font-size: 40%;
+    line-height: 1em;
+  }
+
+  &--month {
+    color: rgba(255, 255, 255, .75);
+    font-size: 60%;
+    line-height: 1em;
+  }
+
+  &--date {
+    line-height: 1em;
+  }
+
+
+  &--content {
+    font-size: 40%;
+  }
+
+  &--events {
+    font-size: 70%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+
+  &--event {
+    border-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+
+    &:first-child {
+      border-bottom: 0;
+      padding-bottom: 1%;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &--title,
+  &--title-header {
+    @extend %event-attribute;
+
+    width: 40%;
+  }
+
+  &--place,
+  &--place-header {
+    @extend %event-attribute;
+
+    width: 40%;
+  }
+
+  &--time,
+  &--time-header {
+    @extend %event-attribute;
+
+    width: 20%;
+  }
+
+  &--title-header,
+  &--place-header,
+  &--time-header {
+    font-weight: bold;
+  }
+
+  &--title,
+  &--place,
+  &--time {
+    border-right: 1px solid;
+    border-color: inherit;
+
+    &:last-child {
+      border: 0px;
+    }
+  }
+}

@@ -1,11 +1,11 @@
 {
-  "id": "header-top",
-  "icon": "header-top.png",
+  "id": "event-calendar",
+  "icon": "event-calendar.png",
   "paths": {
-    "live": "header-top.html",
-    "edit": "header-top-edit.html",
-    "preview": "header-top.html",
-    "css": "header-top.css"
+    "live": "event-calendar.html",
+    "edit": "event-calendar-edit.html",
+    "preview": "event-calendar.html",
+    "css": "event-calendar.css"
   },
   "orientation": "landscape",
   "mediatype": "image",
