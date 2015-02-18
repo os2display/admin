@@ -19,8 +19,7 @@
 
   &-inner {
     background: $gray-lightest;
-    height: auto;
-    min-height: 100%;
+    height: 100%;
     position: relative;
   }
 
@@ -33,8 +32,7 @@
     @extend %grid-markup-fix;
 
     box-sizing: border-box;
-    height: auto;
-    min-height: 100%;
+    height: 100%;
     padding: 2em;
 
     @include breakpoint($breakpoint-desk) {
@@ -51,8 +49,7 @@
 
     display: none;
     bottom: 0;
-    height: auto;
-    min-height: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     max-width: 18em;
