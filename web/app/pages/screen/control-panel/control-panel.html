@@ -6,20 +6,20 @@
     </div>
   </div>
 
-  <!-- @TODO: Wrap in widget -->
+  <!-- Settings tab -->
   <div class="control-panel--tab" data-ng-if="!selectedTab || selectedTab === 'settings'">
     <form class="cpw--wrapper">
       <div class="cpw--text">
         <label class="cpw--text-label">Skærmnavn</label>
-        <input type="text" class="cpw--text-input" placeholder="f.eks. Hovedindgang til højre" data-ng-model="data.title">
+        <text-widget field="data.title" placeholder-text="f.eks. Hovedindgang til højre"></text-widget>
       </div>
       <div class="cpw--text">
-        <label class="cpw--text-label">Bredde</label>
-        <input type="text" class="cpw--text-input" placeholder="Indtast bredde i pixels" data-ng-model="data.width">
+        <label class="cpw--text-label">Bredde (i pixels)</label>
+        <number-widget field="data.width" placeholder-text="Indtast bredde i pixels"></number-widget>
       </div>
       <div class="cpw--text">
-        <label class="cpw--text-label">Højde</label>
-        <input type="text" class="cpw--text-input" placeholder="Indtast højde i pixels" data-ng-model="data.height">
+        <label class="cpw--text-label">Højde (i pixels)</label>
+        <number-widget field="data.height" placeholder-text="Indtast højde i pixels"></number-widget>
       </div>
       <div class="cpw--text" data-ng-if="data.activation_code">
         <label class="cpw--text-label">Aktiveringskode</label>
@@ -28,7 +28,7 @@
     </form>
   </div>
 
-  <!-- @TODO: Wrap in widget, load from screen templates installed -->
+  <!-- Template picker tab -->
   <div class="control-panel--tab" data-ng-if="selectedTab === 'template'">
     <screen-template-picker-widget screen="data"></screen-template-picker-widget>
   </div>

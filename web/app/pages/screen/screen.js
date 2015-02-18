@@ -22,12 +22,19 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       if (!$routeParams.id) {
         // If the ID is not set, get an empty slide.
         $scope.screen = screenFactory.emptyScreen();
+
+        // Get the template information, load into the $scope.screen.template
+        templateFactory.getScreenTemplate($scope.screen.template).then(
+          function(data) {
+            $scope.screen.template = data;
+          }
+        );
       } else {
         if ($routeParams.id === null || $routeParams.id === undefined || $routeParams.id === '') {
           $location.path('/screen-overview');
         } else {
           // Get the screen from the backend.
-          screenFactory.getScreen($routeParams.id).then(
+          screenFactory.getEditScreen($routeParams.id).then(
             function(data) {
               $scope.screen = data;
 
@@ -65,14 +72,15 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      * Save the screen.
      */
     $scope.saveScreen = function saveScreen() {
-      console.log("saving...");
-
       screenFactory.saveScreen().then(
-        function() {
+        function(screen) {
           // @TODO: Show success to user.
+          console.log("saved...");
+          console.log(screen);
         },
-        function() {
+        function(reason) {
           // @TODO: Handle error.
+          console.log(reason);
         }
       );
     };

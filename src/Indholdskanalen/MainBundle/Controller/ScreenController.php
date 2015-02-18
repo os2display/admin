@@ -19,8 +19,7 @@ class ScreenController extends Controller {
    *
    * @return int
    */
-  protected function getNewActivationCode()
-  {
+  protected function getNewActivationCode() {
     do {
       // Pick a random activation code between 100000000 and 999999999.
       $code = rand(100000000, 999999999);

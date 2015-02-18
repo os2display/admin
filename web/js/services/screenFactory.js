@@ -130,7 +130,6 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
         $http.post('/api/screen', currentScreen)
           .success(function(data) {
             defer.resolve(data);
-            currentScreen = null;
           })
           .error(function(data, status) {
             defer.reject(status);
@@ -147,13 +146,12 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
     factory.emptyScreen = function() {
       currentScreen = {
         id: null,
-        template: '',
+        template: 'full-screen',
         title: '',
         orientation: '',
         channels: [],
-        width: '',
-        height: '',
-        created_at: parseInt((new Date().getTime()) / 1000)
+        width: 1920,
+        height: 1080
       };
 
       return currentScreen;
