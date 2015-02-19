@@ -67,7 +67,6 @@
 }
 
 
-
 /* Text widget */
 .cpw--text {
   @extend %cpw--text;
@@ -77,7 +76,18 @@
   }
 }
 
+/* Text widget */
+.cpw--textarea {
+  @extend %cpw--text;
 
+  &-label {
+    @extend %cpw--label;
+  }
+
+  &-input {
+    max-width: 100%;
+  }
+}
 
 /* Screen sections widget */
 .cpw--screen-sections {

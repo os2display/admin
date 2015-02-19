@@ -16,10 +16,13 @@
 %control-panel {
   border-left: $border-width solid $gray-lighter;
   box-sizing: border-box;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   padding: 1.5em;
+  overflow: visible;
 
   background: $white;
+  width: 100%;
   color: $gray-darker;
 }
 
@@ -30,13 +33,7 @@
 
 /* The default control panel. */
 .control-panel--main {
-  display: none;  // @todo support mobile configuration.
-
   @extend %control-panel;
-
-  @include breakpoint($breakpoint-desk) {
-    display: block;
-  }
 }
 
 
@@ -69,6 +66,7 @@
 
   position: absolute; // Override component settings.
   max-width: 100%;  // Override component settings.
+
   @include box-shadow(0 0 0 transparentize($black, .75)); // Override component settings.
 
   @extend %control-panel;
