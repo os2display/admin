@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Screen controller.
+ */
 
 namespace Indholdskanalen\MainBundle\Controller;
 
@@ -11,11 +15,13 @@ use Indholdskanalen\MainBundle\Entity\Screen;
 use JMS\Serializer\SerializationContext;
 
 /**
+ * ScreenController.
+ *
  * @Route("/api/screen")
  */
 class ScreenController extends Controller {
   /**
-   * Generates a new unique activation code in the interval between 100000 and 999999.
+   * Generates a new unique activation code in the interval between 100000000 and 999999999.
    *
    * @return int
    */
@@ -25,8 +31,11 @@ class ScreenController extends Controller {
       $code = rand(100000000, 999999999);
 
       // Test if the activation code already exists in the db.
-      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findByActivationCode($code);
-    } while ($screen != null);
+      $screen = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:Screen')
+        ->findByActivationCode($code);
+    }
+    while ($screen != NULL);
 
     return $code;
   }
@@ -47,9 +56,11 @@ class ScreenController extends Controller {
 
     if ($post->id) {
       // Load current slide.
-      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+      $screen = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:Screen')
         ->findOneById($post->id);
 
+      // Throw error if screen does not exist.
       if (!$screen) {
         $response = new Response();
         $response->setStatusCode(404);
@@ -62,9 +73,9 @@ class ScreenController extends Controller {
       $screen = new Screen();
       $screen->setCreatedAt(time());
 
-	    // Set creator.
-	    $userEntity = $this->get('security.context')->getToken()->getUser();
-	    $screen->setUser($userEntity->getId());
+      // Set creator.
+      $userEntity = $this->get('security.context')->getToken()->getUser();
+      $screen->setUser($userEntity->getId());
     }
 
     // Update fields.
@@ -83,62 +94,10 @@ class ScreenController extends Controller {
     $screen->setModifiedAt(time());
 
     // Set an activation code and empty token for new screens.
-    if ($screen->getActivationCode() == null) {
+    if ($screen->getActivationCode() == NULL) {
       $screen->setActivationCode($this->getNewActivationCode());
       $screen->setToken("");
     }
-
-    // Get channel ids.
-    $postChannelIds = array();
-    foreach($post->channels as $channel) {
-      $postChannelIds[] = $channel->id;
-    }
-
-    // Remove channels.
-    foreach($screen->getChannels() as $channel) {
-      if (!in_array($channel->getId(), $postChannelIds)) {
-        $screen->removeChannel($channel);
-      }
-    }
-
-    // Add channels.
-	  $channelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel');
-
-    foreach($post->channels as $channel) {
-      $channel = $channelRepository->findOneById($channel->id);
-      if ($channel) {
-        if (!$screen->getChannels()->contains($channel)) {
-          $screen->addChannel($channel);
-        }
-      }
-    }
-
-    if (isset($post->shared_channels)) {
-      // Get shared channel ids.
-      $postSharedChannelIds = array();
-      foreach($post->shared_channels as $channel) {
-        $postSharedChannelIds[] = $channel->unique_id;
-      }
-
-      // Remove channels.
-      foreach($screen->getSharedChannels() as $channel) {
-        if (!in_array($channel->getUniqueId(), $postSharedChannelIds)) {
-          $screen->removeSharedChannel($channel);
-        }
-      }
-
-      $sharedChannelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:SharedChannel');
-
-      foreach($postSharedChannelIds as $channel_id) {
-        $channel = $sharedChannelRepository->findOneByUniqueId($channel_id);
-        if ($channel) {
-          if (!$screen->getSharedChannels()->contains($channel)) {
-            $screen->addSharedChannel($channel);
-          }
-        }
-      }
-    }
-
 
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
@@ -147,7 +106,7 @@ class ScreenController extends Controller {
 
     // Send the json response back to client.
     $response = new Response();
-	  $response->setStatusCode(200);
+    $response->setStatusCode(200);
 
     return $response;
   }
@@ -164,7 +123,9 @@ class ScreenController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function ScreenGetAction($id) {
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneById($id);
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneById($id);
 
     // Create response.
     $response = new Response();
@@ -172,7 +133,9 @@ class ScreenController extends Controller {
     if ($screen) {
       $serializer = $this->get('jms_serializer');
       $response->headers->set('Content-Type', 'application/json');
-      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()
+          ->setGroups(array('api'))
+          ->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }
     else {
@@ -202,7 +165,9 @@ class ScreenController extends Controller {
     }
 
     // Get the screen entity with the given token.
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneById($body->id);
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneById($body->id);
 
     // Test for valid screen.
     if (!isset($screen)) {
@@ -231,8 +196,7 @@ class ScreenController extends Controller {
    *
    * @return Response
    */
-  public function screenActivateAction(Request $request)
-  {
+  public function screenActivateAction(Request $request) {
     // Get request body as array.
     $body = json_decode($request->getContent());
 
@@ -242,7 +206,9 @@ class ScreenController extends Controller {
     }
 
     // Get the screen entity på activationCode.
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneByActivationCode($body->activationCode);
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneByActivationCode($body->activationCode);
 
     // Test for valid screen.
     if (!isset($screen)) {
@@ -273,7 +239,8 @@ class ScreenController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function ScreenDeleteAction($id) {
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
 
     // Create response.
