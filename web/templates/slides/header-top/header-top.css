@@ -277,12 +277,40 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
+.header-top--edit-box-settings {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: url('/../../../images/icons-se731c6030f.png');
+  -moz-background-size: 64px 894px;
+  -o-background-size: 64px 894px;
+  -webkit-background-size: 64px 894px;
+  background-size: 64px 894px;
+  width: 50px;
+  height: 50px;
+  background-position: 0 -341px; }
+  .header-top--edit-box-settings:hover {
+    cursor: pointer; }
+
+.header-top--edit-image-settings {
+  bottom: 15%;
+  position: absolute;
+  right: 15%;
+  background: url('/../../../images/icons-se731c6030f.png');
+  -moz-background-size: 128px 1788px;
+  -o-background-size: 128px 1788px;
+  -webkit-background-size: 128px 1788px;
+  background-size: 128px 1788px;
+  width: 51px;
+  height: 51px;
+  background-position: 0 -802px; }
+  .header-top--edit-image-settings:hover {
+    cursor: pointer; }
+
 .header-top {
   height: 100%;
-  background: url(header-top-background.png) no-repeat;
   color: #000;
   font-family: Arial, sans-serif;
-  font-size: 6vw;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
@@ -290,7 +318,6 @@ table {
 
 .header-top--inner {
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.85);
   overflow: hidden; }
 
 .header-top--header-wrapper {
@@ -300,8 +327,6 @@ table {
   font-size: 100%;
   margin: 0;
   padding: 2vw;
-  background-color: #379f40;
-  color: #fff;
   font-weight: bold; }
 
 .header-top--content {

@@ -35,6 +35,28 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
+      toggleTextEditorResponsive: function() {
+        $('html').toggleClass('is-locked');
+
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'partials/slide/editors/text-editor-responsive.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
+      },
+      toggleBackgroundEditorTransparent: function() {
+        $('html').toggleClass('is-locked');
+
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'partials/slide/editors/background-editor-transparent.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
+      },
       toggleBackgroundEditor: function() {
         $('html').toggleClass('is-locked');
 

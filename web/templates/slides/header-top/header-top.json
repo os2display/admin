@@ -1,6 +1,7 @@
 {
   "id": "header-top",
   "icon": "header-top.png",
+  "type": "responsive",
   "paths": {
     "live": "header-top.html",
     "edit": "header-top-edit.html",
@@ -15,17 +16,12 @@
   },
   "emptyoptions": {
     "fontsize": "50",
-    "bgcolor": "#ccc",
+    "bgcolor": "rgba(255,255,255,0.90)",
     "textcolor": "#fff",
-    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "textbgcolor": "#379f40",
     "headline": "",
     "text": "",
-    "logopos": {
-      "top":"0",
-      "bottom":"auto",
-      "left":"0",
-      "right":"auto"
-    },
-    "logosize": "10%"
+    "defaultImage": "header-top.png"
   }
 }
+

@@ -1472,8 +1472,8 @@ html.is-locked body {
 /* Styles
    ========================================================================== */
 .screen--layout {
-  height: 100%;
   margin: 0;
+  height: 100%;
   position: relative;
   width: 100%;
   top: 0; }
@@ -1489,20 +1489,17 @@ html.is-locked body {
       .screen--layout-content {
         position: relative; } }
   .screen--layout-control-panel {
-    display: none;
     bottom: 0;
     height: 100%;
-    position: absolute;
+    position: relative;
     top: 0;
-    max-width: 18em;
     right: 0;
     padding: 0;
     z-index: 0; }
     @media only screen and (min-width: 1024px) {
       .screen--layout-control-panel {
         display: inline-block;
-        max-width: 100%;
-        position: relative; } }
+        max-width: 100%; } }
 
 /**
  *
@@ -3329,20 +3326,17 @@ html.is-locked body {
 .control-panel--main, .control-panel--tool {
   border-left: 1px solid #e6e6e6;
   box-sizing: border-box;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   padding: 1.5em;
+  overflow: visible;
   background: #fff;
+  width: 100%;
   color: #595959; }
 
 /* Styles
    ========================================================================== */
 /* The default control panel. */
-.control-panel--main {
-  display: none; }
-  @media only screen and (min-width: 1024px) {
-    .control-panel--main {
-      display: block; } }
-
 /* Toggle for mobile devices. (Disabled) */
 .control-panel--main-toggle {
   display: none;
@@ -3426,13 +3420,13 @@ html.is-locked body {
   -webkit-border-radius: 0.4em;
   border-radius: 0.4em; }
 
-.cpw--text-label, .cpw--screen-sections-label, .cpw--screen-templates-label {
+.cpw--text-label, .cpw--textarea-label, .cpw--screen-sections-label, .cpw--screen-templates-label {
   color: #595959;
   margin-bottom: 1em; }
 
-.cpw--text, .cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
+.cpw--text, .cpw--textarea, .cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
   margin-bottom: 2em; }
-  .cpw--text:last-child, .cpw--add-channels-search[type="search"]:last-child, .cpw--selected-channels-search[type="search"]:last-child {
+  .cpw--text:last-child, .cpw--textarea:last-child, .cpw--add-channels-search[type="search"]:last-child, .cpw--selected-channels-search[type="search"]:last-child {
     margin-bottom: 0; }
 
 .cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
@@ -3456,6 +3450,10 @@ html.is-locked body {
    ========================================================================== */
 /* A simple wrapper for grouping widgets. */
 /* Text widget */
+/* Text widget */
+.cpw--textarea-input {
+  max-width: 100%; }
+
 /* Screen sections widget */
 .cpw--screen-sections {
   text-align: center; }

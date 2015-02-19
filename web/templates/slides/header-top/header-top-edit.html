@@ -1,0 +1,12 @@
+<div class="header-top" style="background-image: url('header-top.png')" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+  <div class="header-top--inner" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
+    <div class="header-top--header-wrapper" data-ng-style="{'background-color': ikSlide.options.textbgcolor, 'color': ikSlide.options.textcolor}">
+      <h1 class="header-top--header">{{ikSlide.options.headline}}</h1>
+    </div>
+    <div class="header-top--content">
+      <div class="header-top--edit-box-settings" ng-click="editor.toggleTextEditorResponsive()"></div>
+      {{ikSlide.options.text}}
+    </div>
+  </div>
+  <div class="header-top--edit-image-settings" ng-click="editor.toggleBackgroundEditorTransparent()"></div>
+</div>
