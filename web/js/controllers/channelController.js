@@ -6,17 +6,11 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'screenFactory',
-  function($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, screenFactory) {
-    $scope.steps = 4;
+angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory',
+  function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory) {
+    $scope.steps = 3;
     $scope.slides = [];
     $scope.channel = {};
-    $scope.screens = [];
-
-    // Get all screens.
-    screenFactory.getScreens().then(function (data) {
-      $scope.screens = data;
-    });
 
     // Get all slides.
     slideFactory.getSlides().then(function (data) {
@@ -26,14 +20,14 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     // Setup the editor.
     $scope.editor = {
       slideOverviewEditor: false,
-      toggleSlideOverviewEditor: function() {
+      toggleSlideOverviewEditor: function () {
         $('html').toggleClass('is-locked');
         $scope.editor.slideOverviewEditor = !$scope.editor.slideOverviewEditor;
       }
     };
 
     // Register event listener for clickSlide.
-    $scope.$on('slideOverview.clickSlide', function(event, slide) {
+    $scope.$on('slideOverview.clickSlide', function (event, slide) {
       $scope.toggleSlide(slide);
     });
 
@@ -43,7 +37,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     function loadStep(step) {
       $scope.step = step;
       $scope.templatePath = '/partials/channel/channel' + $scope.step + '.html';
-    };
+    }
 
     /**
      * Constructor.
@@ -59,7 +53,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
           $location.path('/channel');
         }
         else {
-          channelFactory.getEditChannel($routeParams.id).then(function(data) {
+          channelFactory.getEditChannel($routeParams.id).then(function (data) {
             $scope.channel = data;
             $scope.channel.status = 'edit-channel';
 
@@ -71,23 +65,24 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
           });
         }
       }
-    };
+    }
+
     init();
 
     /**
      * Submit a step in the installation process.
      */
-    $scope.submitStep = function() {
+    $scope.submitStep = function () {
       if ($scope.step == $scope.steps) {
         $scope.disableSubmitButton = true;
 
         channelFactory.saveChannel().then(
-          function() {
-            $timeout(function() {
+          function () {
+            $timeout(function () {
               $location.path('/channel-overview');
             }, 1000);
           },
-          function() {
+          function () {
             $scope.disableSubmitButton = false;
           }
         );
@@ -100,25 +95,8 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * Set the orientation of the channel.
      * @param orientation
      */
-    $scope.setOrientation = function(orientation) {
+    $scope.setOrientation = function (orientation) {
       $scope.channel.orientation = orientation;
-    };
-
-    /**
-     * Is the screen selected?
-     * @param id
-     * @returns {boolean}
-     */
-    $scope.screenSelected = function(id) {
-      var res = false;
-
-      $scope.channel.screens.forEach(function(element) {
-        if (id == element.id) {
-          res = true;
-        };
-      });
-
-      return res;
     };
 
     /**
@@ -126,13 +104,13 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * @param id
      * @returns {boolean}
      */
-    $scope.slideSelected = function(id) {
+    $scope.slideSelected = function (id) {
       var res = false;
 
-      $scope.channel.slides.forEach(function(element) {
+      $scope.channel.slides.forEach(function (element) {
         if (id == element.id) {
           res = true;
-        };
+        }
       });
 
       return res;
@@ -146,16 +124,16 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
         return false;
       }
       return $scope.channel[field] !== '';
-    };
+    }
 
     /**
      * Handles the validation of the data in the channel.
      */
     $scope.validation = {
-      titleSet: function() {
+      titleSet: function () {
         return validateNotEmpty('title');
       },
-      orientationSet: function() {
+      orientationSet: function () {
         return validateNotEmpty('orientation');
       }
     };
@@ -164,13 +142,13 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * Select or deselect the slides related to a channel.
      * @param slide
      */
-    $scope.toggleSlide = function(slide) {
+    $scope.toggleSlide = function toggleSlide(slide) {
       var res = null;
 
-      $scope.channel.slides.forEach(function(element, index, array) {
+      $scope.channel.slides.forEach(function (element, index, array) {
         if (slide.id == element.id) {
           res = index;
-        };
+        }
       });
 
       if (res !== null) {
@@ -182,31 +160,10 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     };
 
     /**
-     * Select or deselect the screens related to a channel.
-     * @param screen
-     */
-    $scope.toggleScreen = function(screen) {
-      var res = false;
-
-      $scope.channel.screens.forEach(function(element, index, array) {
-        if (screen.id == element.id) {
-          res = true;
-        };
-      });
-
-      if (res) {
-        $scope.channel.screens.splice($scope.channel.screens.indexOf(screen), 1);
-      }
-      else {
-        $scope.channel.screens.push(screen);
-      }
-    }
-
-    /**
      * Change channel creation step.
      * @param step
      */
-    $scope.goToStep = function(step) {
+    $scope.goToStep = function goToStep(step) {
       var s = 1;
       // If title is set enable next step.
       if ($scope.validation.titleSet()) {
@@ -234,7 +191,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * Push a channel slide right.
      * @param arrowPosition the position of the arrow.
      */
-    $scope.pushRight = function(arrowPosition) {
+    $scope.pushRight = function pushRight(arrowPosition) {
       if (arrowPosition == $scope.channel.slides.length - 1) {
         swapArrayEntries($scope.channel.slides, arrowPosition, 0);
       }
@@ -247,7 +204,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * Push a channel slide right.
      * @param arrowPosition the position of the arrow.
      */
-    $scope.pushLeft = function(arrowPosition) {
+    $scope.pushLeft = function pushLeft(arrowPosition) {
       if (arrowPosition == 0) {
         swapArrayEntries($scope.channel.slides, arrowPosition, $scope.channel.slides.length - 1);
       }
@@ -255,6 +212,5 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
       }
     };
-
   }
 ]);
