@@ -94,7 +94,7 @@ class Screen {
   private $modifiedAt;
 
   /**
-   * @ORM\Column(name="template", type="string", nullable=true)
+   * @ORM\ManyToOne(targetEntity="ScreenTemplate", inversedBy="screens")
    * @Groups({"api"})
    */
   private $template;
