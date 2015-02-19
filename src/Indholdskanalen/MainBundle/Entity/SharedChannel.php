@@ -47,10 +47,10 @@ class SharedChannel {
    * @ORM\Column(name="created_at", type="integer", nullable=false)
    * @Groups({"api", "api-bulk", "search", "sharing"})
    */
-  private $created_at;
+  private $createdAt;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Screen", inversedBy="shared_channels")
+   * @ORM\ManyToMany(targetEntity="Screen", inversedBy="sharedChannels")
    * @ORM\JoinTable(name="ik_screens_shared_channels")
    * @Groups({"api"})
    */
@@ -59,7 +59,7 @@ class SharedChannel {
   /**
    * @ORM\Column(name="modified_at", type="integer", nullable=false)
    */
-  private $modified_at;
+  private $modifiedAt;
 
   /**
    * @ORM\Column(name="content", type="text", nullable=true)
@@ -174,24 +174,24 @@ class SharedChannel {
   }
 
   /**
-   * Set created_at
+   * Set createdAt
    *
    * @param integer $createdAt
    * @return Channel
    */
   public function setCreatedAt($createdAt) {
-    $this->created_at = $createdAt;
+    $this->createdAt = $createdAt;
 
     return $this;
   }
 
   /**
-   * Get created_at
+   * Get createdAt
    *
    * @return integer
    */
   public function getCreatedAt() {
-    return $this->created_at;
+    return $this->createdAt;
   }
 
   /**
@@ -225,24 +225,24 @@ class SharedChannel {
   }
 
   /**
-   * Set modified_at
+   * Set modifiedAt
    *
    * @param integer $modifiedAt
    * @return Channel
    */
   public function setModifiedAt($modifiedAt) {
-    $this->modified_at = $modifiedAt;
+    $this->modifiedAt = $modifiedAt;
 
     return $this;
   }
 
   /**
-   * Get modified_at
+   * Get modifiedAt
    *
    * @return integer
    */
   public function getModifiedAt() {
-    return $this->modified_at;
+    return $this->modifiedAt;
   }
 
   /**
@@ -277,7 +277,7 @@ class SharedChannel {
    */
   public function getMiddlewareScreens() {
     $slides = array();
-    foreach($this->getScreens() as $screen) {
+    foreach ($this->getScreens() as $screen) {
       $slides[] = $screen->getId();
     }
     return $slides;

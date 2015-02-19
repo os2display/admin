@@ -79,7 +79,9 @@ class TemplateService extends ContainerAware {
    * Gets all screen templates from the "templates_screens_directory" defined in parameters.yml.
    */
   public function getScreenTemplates() {
-    if ($this->screenTemplates) {
+    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findAll();
+  }
+    /*if ($this->screenTemplates) {
       return $this->screenTemplates;
     }
 
@@ -115,5 +117,5 @@ class TemplateService extends ContainerAware {
     }
 
     return $this->screenTemplates;
-  }
+  }*/
 }

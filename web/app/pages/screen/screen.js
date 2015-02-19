@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory',
-  function($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
+  function($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration) {
     $scope.sharingEnabled = configuration.sharingService.enabled;
     $scope.screen = {};
     $scope.toolbarTemplate = null;
@@ -22,13 +22,6 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       if (!$routeParams.id) {
         // If the ID is not set, get an empty slide.
         $scope.screen = screenFactory.emptyScreen();
-
-        // Get the template information, load into the $scope.screen.template
-        templateFactory.getScreenTemplate($scope.screen.template).then(
-          function(data) {
-            $scope.screen.template = data;
-          }
-        );
       } else {
         if ($routeParams.id === null || $routeParams.id === undefined || $routeParams.id === '') {
           $location.path('/screen-overview');
@@ -37,18 +30,6 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
           screenFactory.getEditScreen($routeParams.id).then(
             function(data) {
               $scope.screen = data;
-
-              // To handle unset template values.
-              if (!$scope.screen.template) {
-                $scope.screen.template = 'full-screen';
-              }
-
-              // Get the template information, load into the $scope.screen.template
-              templateFactory.getScreenTemplate($scope.screen.template).then(
-                function(data) {
-                  $scope.screen.template = data;
-                }
-              );
 
               $scope.screen.shared_channels.forEach(function(element) {
                 element.content = JSON.parse(element.content);

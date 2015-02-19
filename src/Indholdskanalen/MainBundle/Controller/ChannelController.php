@@ -71,24 +71,6 @@ class ChannelController extends Controller {
     }
     $channel->setModifiedAt(time());
 
-    // Remove screens.
-    foreach ($channel->getScreens() as $screen) {
-      if (!in_array($screen, $post->screens)) {
-        $channel->removeScreen($screen);
-      }
-    }
-
-    // Add screens.
-    foreach ($post->screens as $screen) {
-      $screen = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')
-        ->findOneById($screen->id);
-      if ($screen) {
-        if (!$channel->getScreens()->contains($screen)) {
-          $channel->addScreen($screen);
-        }
-      }
-    }
-
     // Get all slide ids from POST.
     $post_slide_ids = array();
     foreach ($post->slides as $slide) {
