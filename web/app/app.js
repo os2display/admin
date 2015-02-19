@@ -22,6 +22,7 @@ angular.module('ikApp', [
     'itkControlPanel',
     'itkScreenTemplatePickerWidget',
     'itkTextWidget',
+    'itkTextAreaWidget',
     'itkNumberWidget',
     'itkChannelPickerWidget'
   ],
