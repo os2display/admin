@@ -35,7 +35,7 @@
             scope.selectedTab = tab;
           };
         },
-        template: '<div data-ng-include="getContent()" include-replace=""></div>'
+        template: '<div data-ng-include="getContent()"></div>'
       };
     }
   );
