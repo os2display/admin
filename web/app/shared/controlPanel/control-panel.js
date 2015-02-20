@@ -10,7 +10,8 @@
           template: '=',
           data: '=',
           displayTool: '=',
-          saveAction: '&'
+          saveAction: '&',
+          region: '='
         },
         replace: true,
         link: function(scope, element, attrs) {

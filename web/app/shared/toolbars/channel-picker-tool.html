@@ -9,29 +9,7 @@
     </div>
   </div>
   <div class="control-panel--tool-tab" data-ng-if="!selectedTab || selectedTab === 'pick-channels'">
-    <!-- @TODO: channel picker widget -->
- <!--   <div class="cpw--add-channels">
-      <input type="search" class="cpw--add-channels-search" placeholder="Søg..." data-ng-model="temp.temp">
-      <div class="cpw--add-channels-list">
-        <div class="cpw--add-channels-item">
-          <div class="cpw--add-channels-item-image"><img src=""/></div>
-          <div class="cpw--add-channels-item-content">
-            <h3 class="cpw--add-channels-item-header">Til receptionen</h3>
-            <div class="cpw--add-channels-item-meta">Dette kunne være en beskrivelse på sigt.</div>
-            <a href="#" class="cpw--add-channels-item-action">Tilføj</a>
-          </div>
-        </div>
-        <div class="cpw--add-channels-item">
-          <div class="cpw--add-channels-item-image"><img src=""/></div>
-          <div class="cpw--add-channels-item-content">
-            <h3 class="cpw--add-channels-item-header">Reception 2</h3>
-            <div class="cpw--add-channels-item-meta">Dette kunne være en beskrivelse på sigt.</div>
-            <a href="#" class="cpw--add-channels-item-action">Tilføj</a>
-          </div>
-        </div>
-      </div>
-    </div>-->
-    <channel-picker-widget screen="data"></channel-picker-widget>
+    <channel-picker-widget screen="data" region="region"></channel-picker-widget>
   </div>
   <div class="control-panel--tool-tab" data-ng-if="selectedTab === 'view-channels'">
     <!-- @TODO: channel selected widget -->

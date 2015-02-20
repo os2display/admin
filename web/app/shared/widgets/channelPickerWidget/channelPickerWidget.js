@@ -12,9 +12,9 @@
         templateUrl: 'app/shared/widgets/channelPickerWidget/channel-picker-widget.html',
         scope: {
           screen: '=',
-          selectedChannels: '='
+          region: '='
         },
-        link: function(scope, element, attrs) {
+        link: function(scope) {
           scope.displaySharingOption = configuration.sharingService.enabled;
           scope.loading = false;
 
@@ -96,57 +96,61 @@
           };
 
           /**
-           * Returns true if channel is in selected channels array.
+           * Returns true if channel is in channel array with region.
            *
            * @param channel
            * @returns {boolean}
            */
           scope.channelSelected = function channelSelected(channel) {
-            if (!scope.ikSelectedChannels) {
-              return false;
-            }
-
-            var res = false;
-
-            scope.ikSelectedChannels.forEach(function(element, index) {
-              if (element.id == channel.id) {
-                res = true;
+            var element;
+            for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
+              element = scope.screen.channel_screen_regions[i];
+              if (element.channel.id === channel.id && element.region === scope.region) {
+                return true;
               }
-            });
-
-            return res;
+            }
+            return false;
           };
 
           /**
            * Adding a channel to screen region.
            * @param channel
-           *
-           * @TODO: implement this!
+           *   Channel to add to the screen region.
            */
           scope.addChannel = function addChannel(channel) {
-            console.log("adding channel");
-            console.log(channel);
+            scope.screen.channel_screen_regions.push({
+              "id": null,
+              "screen_id": scope.screen.id,
+              "channel": channel,
+              "region": scope.region
+            });
           };
 
           /**
            * Removing a channel from a screen region.
            * @param channel
-           *
-           * @TODO: implement this!
+           *   Channel to remove from the screen region.
            */
           scope.removeChannel = function removeChannel(channel) {
-            console.log("removing channel");
-            console.log(channel);
+            var element;
+            for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
+              element = scope.screen.channel_screen_regions[i];
+              if (element.channel.id === channel.id && element.region === scope.region) {
+                scope.screen.channel_screen_regions.splice(i, 1);
+              }
+            }
           };
 
           /**
            * When the screen is loaded, set search orientation.
            */
-          scope.$watch('screen', function (newVal, oldVal) {
-            if (!newVal) return;
+          scope.$watch('screen', function (val) {
+            if (!val) return;
 
+            // Set the orientation.
             scope.orientation = scope.screen.orientation;
 
+            // Update the search.
             scope.updateSearch();
           });
         }

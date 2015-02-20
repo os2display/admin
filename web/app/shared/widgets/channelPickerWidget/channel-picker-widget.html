@@ -9,7 +9,7 @@
         <h3 class="cpw--add-channels-item-header">{{ channel.title }}</h3>
         <div class="cpw--add-channels-item-meta">{{ channel.description }}</div>
         <a data-ng-click="addChannel(channel)" class="cpw--add-channels-item-action" data-ng-if="!channelSelected(channel)">Tilføj</a>
-        <a data-ng-click="removeChannel(channel)" class="cpw--add-channels-item-action" data-ng-if="channelSelected(channel)">Fjern</a>
+        <a data-ng-click="removeChannel(channel)" class="cpw--selected-channels-item-action" data-ng-if="channelSelected(channel)">Fjern</a>
       </div>
     </div>
   </div>

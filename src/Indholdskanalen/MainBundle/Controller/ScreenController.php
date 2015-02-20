@@ -6,6 +6,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Indholdskanalen\MainBundle\Entity\ChannelScreenRegion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -53,6 +54,9 @@ class ScreenController extends Controller {
   public function ScreenSaveAction(Request $request) {
     // Get posted screen information from the request.
     $post = json_decode($request->getContent());
+
+    // Get the entity manager.
+    $em = $this->getDoctrine()->getManager();
 
     if ($post->id) {
       // Load current slide.
@@ -111,8 +115,46 @@ class ScreenController extends Controller {
       }
     }
 
+    // Set selected channels.
+    if (isset($post->channel_screen_regions)) {
+      $channelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel');
+
+      // Gather channel screen region ids.
+      $ids = array();
+      foreach ($post->channel_screen_regions as $channelScreenRegion) {
+        if (isset($channelScreenRegion->id)) {
+          $ids[] = $channelScreenRegion->id;
+        }
+      }
+
+      // Remove ChannelScreenRegions no longer present in Screen.
+      foreach ($screen->getChannelScreenRegions() as $channelScreenRegion) {
+        if (!in_array($channelScreenRegion->getId(), $ids)) {
+          $screen->removeChannelScreenRegion($channelScreenRegion);
+        }
+      }
+
+      // Add new ChannelScreenRegions.
+      foreach ($post->channel_screen_regions as $channelScreenRegion) {
+        if (!isset($channelScreenRegion->id)) {
+          // Get channel.
+          $channel = $channelRepository->findOneById($channelScreenRegion->channel->id);
+
+          // If the channel exists, create new ChannelScreenRegion.
+          if ($channel) {
+            $newChannelScreenRegion = new ChannelScreenRegion();
+            $newChannelScreenRegion->setChannel($channel);
+            $newChannelScreenRegion->setRegion($channelScreenRegion->region);
+            $newChannelScreenRegion->setScreen($screen);
+            $newChannelScreenRegion->setSortOrder(1);
+
+            $em->persist($newChannelScreenRegion);
+          }
+        }
+      }
+    }
+
     // Save the entity.
-    $em = $this->getDoctrine()->getManager();
     $em->persist($screen);
     $em->flush();
 
