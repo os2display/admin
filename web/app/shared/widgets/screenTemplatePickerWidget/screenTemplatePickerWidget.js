@@ -18,6 +18,7 @@
 
           scope.pickTemplate = function pickTemplate(template) {
             scope.screen.template = template;
+            console.log(scope.screen);
           };
         },
         templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html'

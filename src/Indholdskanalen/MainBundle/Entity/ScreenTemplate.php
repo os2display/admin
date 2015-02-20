@@ -21,6 +21,7 @@ class ScreenTemplate {
   /**
    * @ORM\Column(type="string")
    * @ORM\Id
+   * @Groups({"api"})
    */
   protected $id;
 

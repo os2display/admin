@@ -99,6 +99,15 @@ class ScreenController extends Controller {
       $screen->setToken("");
     }
 
+    // Change the template if it is set.
+    if (isset($post->template)) {
+      $template = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findOneById($post->template->id);
+
+      if ($template) {
+        $screen->setTemplate($template);
+      }
+    }
+
     // Save the entity.
     $em = $this->getDoctrine()->getManager();
     $em->persist($screen);
