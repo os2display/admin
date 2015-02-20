@@ -11,8 +11,8 @@
   @extend %grid;
 
   // We create a full height container for the screen layout.
-  height: 100%;
   margin: 0;
+  height: 100%;
   position: relative;
   width: 100%;
   top: 0;
@@ -47,12 +47,10 @@
     @extend %palm--one-whole;
     @extend %grid-markup-fix;
 
-    display: none;
     bottom: 0;
     height: 100%;
-    position: absolute;
+    position: relative;
     top: 0;
-    max-width: 18em;
     right: 0;
     padding: 0;
     z-index: 0;
@@ -60,7 +58,6 @@
     @include breakpoint($breakpoint-desk) {
       display: inline-block;
       max-width: 100%;
-      position: relative;
     }
   }
 }

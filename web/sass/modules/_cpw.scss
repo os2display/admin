@@ -37,6 +37,7 @@
 
 
 %cpw--search {
+  box-sizing: border-box;
   background: url("../../images/filter-icon.png") no-repeat 1em 50%;
   padding-left: 3em;
 }
@@ -66,7 +67,6 @@
 }
 
 
-
 /* Text widget */
 .cpw--text {
   @extend %cpw--text;
@@ -76,7 +76,18 @@
   }
 }
 
+/* Text widget */
+.cpw--textarea {
+  @extend %cpw--text;
 
+  &-label {
+    @extend %cpw--label;
+  }
+
+  &-input {
+    max-width: 100%;
+  }
+}
 
 /* Screen sections widget */
 .cpw--screen-sections {
@@ -168,7 +179,7 @@
 .cpw--add-channels {
   margin-bottom: 2em;
 
-  &-search[type="search"] {
+  &-search[type="search"] { // Override default search form.
     @extend %cpw--text;
     @extend %cpw--search;
   }
