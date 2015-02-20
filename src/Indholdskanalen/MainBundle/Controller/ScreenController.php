@@ -91,6 +91,9 @@ class ScreenController extends Controller {
     if (isset($post->height)) {
       $screen->setHeight($post->height);
     }
+    if (isset($post->description)) {
+      $screen->setDescription($post->description);
+    }
     $screen->setModifiedAt(time());
 
     // Set an activation code and empty token for new screens.
