@@ -1,6 +1,6 @@
 /**
  * @file
- * Contains the routing of the angular app.
+ * Contains the routing for the ikApp module.
  */
 
 /**
@@ -48,16 +48,6 @@ angular.module('ikApp').config(function($routeProvider) {
     .when('/screen/:id', {
       controller: 'ScreenController',
       templateUrl: 'app/pages/screen/screen.html'
-    })
-
-    // Screen group
-    .when('/screen-group', {
-      controller: 'ScreenGroupController',
-      templateUrl: 'partials/screen/screen-group.html'
-    })
-    .when('/screen-group/:id', {
-      controller: 'ScreenGroupController',
-      templateUrl: 'partials/screen/screen-group.html'
     })
 
     // Slide

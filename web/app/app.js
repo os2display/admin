@@ -5,7 +5,8 @@
 
 /**
  * ikApp - Main entry point for the app.
- * @type {*}
+ *
+ * Register modules here.
  */
 angular.module('ikApp', [
     'ngRoute',
@@ -24,7 +25,8 @@ angular.module('ikApp', [
     'itkTextWidget',
     'itkTextAreaWidget',
     'itkNumberWidget',
-    'itkChannelPickerWidget'
+    'itkChannelPickerWidget',
+    'itkChannelRemoverWidget'
   ],
   function() {}
 );

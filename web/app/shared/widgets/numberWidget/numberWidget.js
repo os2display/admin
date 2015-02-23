@@ -1,7 +1,24 @@
+/**
+ * @file
+ * Contains the itkNumberWidget module.
+ */
+
+/**
+ * Setup the module.
+ */
 (function() {
+  "use strict";
+
   var app;
   app = angular.module("itkNumberWidget", []);
 
+  /**
+   * number-widget directive.
+   *
+   * html parameters:
+   *   field: The field to modify.
+   *   placeholderText (string): The placeholder text to display.
+   */
   app.directive('numberWidget',
     function() {
       return {

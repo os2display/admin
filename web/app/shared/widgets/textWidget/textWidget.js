@@ -1,7 +1,22 @@
+/**
+ * @file
+ * Contains the itkTextWidget module.
+ */
+
+/**
+ * Setup the module.
+ */
 (function() {
   var app;
   app = angular.module("itkTextWidget", []);
 
+  /**
+   * text-widget directive.
+   *
+   * html paramters:
+   *   field: The field to modify.
+   *   placeholderText (string): The placeholder text to display.
+   */
   app.directive('textWidget',
     function() {
       return {

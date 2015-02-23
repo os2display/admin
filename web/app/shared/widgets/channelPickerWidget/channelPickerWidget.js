@@ -1,9 +1,24 @@
+/**
+ * @file
+ * Contains the itkChannelPickerWidget module.
+ */
+
+/**
+ * Setup the module.
+ */
 (function() {
   "use strict";
 
   var app;
   app = angular.module("itkChannelPickerWidget", []);
 
+  /**
+   * channel-picker-widget directive.
+   *
+   * html parameters:
+   *   screen (object): The screen to modify.
+   *   region (integer): The region of the screen to modify.
+   */
   app.directive('channelPickerWidget', ['configuration', 'userFactory', 'channelFactory',
     function(configuration, userFactory, channelFactory) {
       return {
@@ -31,7 +46,7 @@
 
           // Default pager values.
           scope.pager = {
-            "size": 9,
+            "size": 5,
             "page": 0
           };
           scope.hits = 0;

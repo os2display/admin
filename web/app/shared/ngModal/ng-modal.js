@@ -1,9 +1,26 @@
+/**
+ * @file
+ * Contains the ngModel module.
+ */
+
+/**
+ * Setup the module.
+ */
 (function() {
   var app;
 
   app = angular.module("ngModal", []);
 
-  app.directive('modalDialog', ['$sce', function($sce) {
+  /**
+   * modal-dialog directive.
+   *
+   * This is a modified version of: https://github.com/adamalbrecht/ngModal
+   *
+   * html parameters:
+   *   show (boolean): should the modal be visible?
+   *   onClose (function): function to call on close action.
+   */
+  app.directive('modalDialog', [function() {
       return {
         restrict: 'E',
         scope: {
@@ -12,7 +29,7 @@
         },
         replace: true,
         transclude: true,
-        link: function(scope, element, attrs) {
+        link: function(scope) {
           scope.hideModal = function() {
             return scope.show = false;
           };
@@ -31,5 +48,4 @@
       };
     }
   ]);
-
 }).call(this);
