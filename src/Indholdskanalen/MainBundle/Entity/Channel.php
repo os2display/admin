@@ -369,8 +369,8 @@ class Channel {
    */
   public function getMiddlewareScreens() {
     $slides = array();
-    foreach ($this->getScreens() as $screen) {
-      $slides[] = $screen->getId();
+    foreach ($this->getChannelScreenRegions() as $region) {
+      $slides[] = $region->getScreen()->getId();
     }
     return $slides;
   }

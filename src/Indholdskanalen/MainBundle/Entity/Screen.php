@@ -307,38 +307,6 @@ class Screen {
   }
 
   /**
-   * Add channel
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
-   * @return Screen
-   */
-  public function addChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel) {
-    $channel->addScreen($this);
-    $this->channels[] = $channel;
-
-    return $this;
-  }
-
-  /**
-   * Remove channel
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
-   */
-  public function removeChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel) {
-    $channel->removeScreen($this);
-    $this->channels->removeElement($channel);
-  }
-
-  /**
-   * Get channels
-   *
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getChannels() {
-    return $this->channels;
-  }
-
-  /**
    * Add sharedChannel
    *
    * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel

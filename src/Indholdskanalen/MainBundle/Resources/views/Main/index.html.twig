@@ -1,7 +1,7 @@
 {% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
 
 {% block body %}
-  <div data-ng-include="'/partials/menu.html'"></div>
+  <div data-ng-include="'/app/shared/menu/menu.html'"></div>
 
   {% block content %}
     <div class="layout-wrapper view-container">
@@ -94,7 +94,6 @@
   <script src="{{ asset('js/controllers/channelOverviewController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaOverviewController.js') }}"></script>
   <script src="{{ asset('js/controllers/indexController.js') }}"></script>
-  <script src="{{ asset('js/controllers/menuController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
   <script src="{{ asset('js/controllers/channelController.js') }}"></script>
@@ -104,7 +103,10 @@
   <script src="{{ asset('js/controllers/sharedChannelController.js') }}"></script>
   <script src="{{ asset('js/controllers/adminSharingController.js') }}"></script>
 
-  <!-- Components -->
+  <!-- Menu -->
+  <script src="{{ asset('app/shared/menu/menuController.js') }}"></script>
+
+  <!-- Modal -->
   <script src="{{ asset('app/shared/ngModal/ng-modal.js') }}"></script>
 
   <!-- Screen -->
