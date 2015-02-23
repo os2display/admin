@@ -1,7 +1,7 @@
 <div class="cpw--selected-channels">
   <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
   <div class="cpw--selected-channels-list">
-    <div class="cpw--selected-channels-item" data-ng-repeat="csr in screen.channel_screen_regions | filter: {channel: getSearch()}" data-ng-if="channelSelected(csr.channel)">
+    <div class="cpw--selected-channels-item" data-ng-repeat="csr in screen.channel_screen_regions | filter: {channel: getSearch(), region: region}" data-ng-if="channelSelected(csr.channel)">
       <div class="cpw--selected-channels-item-image">
         <ik-channel class="overview--channel-container" ik-channel="csr.channel" ik-width="{{channel.orientation == 'portrait' ? 112.5 : 200 }}" ik-single-slide="false"></ik-channel>
       </div>

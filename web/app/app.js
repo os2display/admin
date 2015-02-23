@@ -26,7 +26,8 @@ angular.module('ikApp', [
     'itkTextAreaWidget',
     'itkNumberWidget',
     'itkChannelPickerWidget',
-    'itkChannelRemoverWidget'
+    'itkChannelRemoverWidget',
+    'itkRegionPreviewWidget'
   ],
   function() {}
 );
