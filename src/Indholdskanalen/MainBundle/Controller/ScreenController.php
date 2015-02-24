@@ -228,10 +228,14 @@ class ScreenController extends Controller {
       return new Response("", 404);
     }
 
+    $serializer = $this->get('jms_serializer');
+
     // Generate the response.
     $response_data = array(
       'id' => $screen->getId(),
       'title' => $screen->getTitle(),
+      'options' => $screen->getOptions(),
+      "template" => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()->setGroups(array('middleware'))))
     );
 
     // Return the json response.
@@ -274,10 +278,14 @@ class ScreenController extends Controller {
     $manager->persist($screen);
     $manager->flush();
 
+    $serializer = $this->get('jms_serializer');
+
     // Generate the response.
     return new Response(json_encode(array(
       "id" => $screen->getId(),
       "title" => $screen->getTitle(),
+      "options" => $screen->getOptions(),
+      "template" => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()->setGroups(array('middleware'))))
     )), 200);
   }
 

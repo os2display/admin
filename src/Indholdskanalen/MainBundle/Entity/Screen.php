@@ -107,6 +107,12 @@ class Screen {
   private $description;
 
   /**
+   * @ORM\Column(name="options", type="json_array", nullable=true)
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
+   */
+  private $options;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -142,6 +148,24 @@ class Screen {
    */
   public function getTitle() {
     return $this->title;
+  }
+
+  /**
+   * Set options
+   *
+   * @param string $options
+   */
+  public function setOptions($options) {
+    $this->options = $options;
+  }
+
+  /**
+   * Get options
+   *
+   * @return string
+   */
+  public function getOptions() {
+    return $this->options;
   }
 
   /**
@@ -231,7 +255,7 @@ class Screen {
   /**
    * Set template
    *
-   * @param string $template
+   * @param ScreenTemplate $template
    * @return Screen
    */
   public function setTemplate($template) {
@@ -243,7 +267,7 @@ class Screen {
   /**
    * Get template
    *
-   * @return string
+   * @return ScreenTemplate
    */
   public function getTemplate() {
     return $this->template;

@@ -63,10 +63,10 @@ class MiddlewareCommunication extends ContainerAware
       // If the result was delivered, update the last hash.
       if ($curlResult['status'] === 200) {
         $lastPushScreens = $channel->getLastPushScreens();
-        $screens = $channel->getScreens();
+        $screens = $channel->getChannelScreenRegions();
         $ids = array();
 
-        foreach($screens as $screen) {
+        foreach ($screens as $screen) {
           $ids[] = $screen->getId();
         }
 

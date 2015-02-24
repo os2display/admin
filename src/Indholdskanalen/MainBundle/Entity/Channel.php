@@ -370,9 +370,31 @@ class Channel {
   public function getMiddlewareScreens() {
     $slides = array();
     foreach ($this->getChannelScreenRegions() as $region) {
-      $slides[] = $region->getScreen()->getId();
+      if (!in_array($region->getScreen()->getId(), $slides)) {
+        $slides[] = $region->getScreen()->getId();
+      }
     }
     return $slides;
+  }
+
+  /**
+   * Get regions.
+   *
+   * @return \array
+   *
+   * @VirtualProperty
+   * @SerializedName("regions")
+   * @Groups({"middleware"})
+   */
+  public function getMiddlewareChannelScreenRegions() {
+    $regions = array();
+    foreach ($this->getChannelScreenRegions() as $region) {
+      $regions[] = array(
+        "screen" => $region->getScreen()->getId(),
+        "region" => $region->getRegion()
+      );
+    }
+    return $regions;
   }
 
   /**
@@ -478,5 +500,18 @@ class Channel {
    */
   public function getChannelScreenRegions() {
     return $this->channelScreenRegions;
+  }
+
+  /**
+   * Get screens
+   */
+  public function getScreens() {
+    $screens = array();
+
+    foreach($this->getChannelScreenRegions() as $region) {
+      $screens[] = $region->getScreen();
+    }
+
+    return $screens;
   }
 }

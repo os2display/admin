@@ -3,7 +3,7 @@
   "name": "Femdelt",
   "icon": "five-sections.png",
   "paths": {
-    "live": "five-sections.html",
+    "live": "five-sections-live.html",
     "edit": "five-sections-edit.html",
     "preview": "five-sections.html",
     "css": "five-sections.css"

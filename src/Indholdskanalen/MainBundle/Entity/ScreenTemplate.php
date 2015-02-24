@@ -21,7 +21,7 @@ class ScreenTemplate {
   /**
    * @ORM\Column(type="string")
    * @ORM\Id
-   * @Groups({"api"})
+   * @Groups({"api", "middleware"})
    */
   protected $id;
 
@@ -38,6 +38,7 @@ class ScreenTemplate {
 
   /**
    * @ORM\Column(name="path_live", type="string")
+   * @Groups({"middleware"})
    */
   protected $pathLive;
 
@@ -89,7 +90,7 @@ class ScreenTemplate {
    * @SerializedName("paths")
    * @Groups({"api"})
    */
-  public function getChannels() {
+  public function getPaths() {
     $result = array(
       'icon' => $this->getPathIcon(),
       'live' => $this->getPathLive(),
