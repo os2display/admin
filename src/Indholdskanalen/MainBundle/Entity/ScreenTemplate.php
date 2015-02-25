@@ -54,6 +54,7 @@ class ScreenTemplate {
 
   /**
    * @ORM\Column(name="path_css", type="string")
+   * @Groups({"middleware"})
    */
   protected $pathCss;
 
