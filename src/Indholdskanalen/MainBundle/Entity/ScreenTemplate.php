@@ -33,6 +33,7 @@ class ScreenTemplate {
 
   /**
    * @ORM\Column(name="path_icon", type="string")
+   * @Groups({"api", "api-bulk"})
    */
   protected $pathIcon;
 
@@ -78,7 +79,6 @@ class ScreenTemplate {
 
   /**
    * @ORM\OneToMany(targetEntity="Screen", mappedBy="template")
-   * @Groups({"api"})
    */
   protected $screens;
 

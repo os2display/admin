@@ -22,9 +22,17 @@ angular.module('ikApp').directive('ikScreen', ['screenFactory', function(screenF
         }
 
         // Set the style of the screen.
-        scope.style = {
-          width: "" + scope.ikWidth + "px",
-          height: "" + (scope.ikScreen.height * parseFloat(scope.ikWidth / scope.ikScreen.width)) + "px"
+        if (scope.ikScreen.width > scope.ikScreen.height) {
+          scope.style = {
+            width: "300px",
+            height: "168.5px"
+          }
+        }
+        else {
+          scope.style = {
+            height: "300px",
+            width: "168.5px"
+          }
         }
       });
     }

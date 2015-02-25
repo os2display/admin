@@ -96,7 +96,7 @@ class Screen {
 
   /**
    * @ORM\ManyToOne(targetEntity="ScreenTemplate", inversedBy="screens")
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   private $template;
 
