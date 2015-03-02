@@ -44,7 +44,7 @@
             }
           });
         },
-        templateUrl: "app/shared/ngModal/ng-modal.html"
+        templateUrl: "app/shared/elements/ngModal/ng-modal.html"
       };
     }
   ]);

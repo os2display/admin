@@ -14,13 +14,11 @@
 
 
 {% block scripts %}
-  <!-- Script imports -->
+  <!-- Imports -->
   <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/libs/angular.min.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-animate.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-route.js') }}"></script>
-
-  <!-- Add ins -->
   <script src="{{ asset('assets/libs/moment.min.js') }}"></script>
   <script src="{{ asset('assets/libs/es5-shim.min.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-file-upload.js') }}"></script>
@@ -28,8 +26,6 @@
   <script src="{{ asset('assets/libs/angular-bootstrap-colorpicker.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-placeholder.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-css-injector.js') }}"></script>
-
-  <!-- Modules -->
   <script src="{{ asset('assets/libs/datetimepicker.jquery.js') }}"></script>
   <script src="{{ asset('assets/libs/datetimepicker.js') }}"></script>
   <script src="{{ asset('assets/libs/locale_da.js') }}"></script>
@@ -37,7 +33,7 @@
   <!-- Socket io from the search node, to get right version -->
   <script src="/proxy/socket.io/socket.io.js"></script>
 
-  <!-- Base -->
+  <!-- Main app -->
   <script src="{{ asset('app/app.js') }}"></script>
 
   <!-- Configuration -->
@@ -54,13 +50,13 @@
       "logo": "{{ logo }}"
     });
   </script>
+
+  <!-- Routing -->
   <script src="{{ asset('app/routing.js') }}"></script>
 
   <!-- Filters -->
   <script src="{{ asset('app/shared/filters/activeEvents.js') }}"></script>
   <script src="{{ asset('app/shared/filters/reverseEvents.js') }}"></script>
-
-  <!-- Directives -->
 
   <!-- Services -->
   <script src="{{ asset('app/shared/services/mediaFactory.js') }}"></script>
@@ -73,8 +69,6 @@
   <script src="{{ asset('app/shared/services/sharedSearchFactory.js') }}"></script>
   <script src="{{ asset('app/shared/services/sharedChannelFactory.js') }}"></script>
   <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js') }}"></script>
-
-  <!-- Controllers -->
 
   <!-- Menu -->
   <script src="{{ asset('app/shared/menu/menuController.js') }}"></script>
@@ -93,9 +87,6 @@
   <script src="{{ asset('app/pages/slideOverview/slideOverviewController.js') }}"></script>
   <script src="{{ asset('app/pages/slide/slideController.js') }}"></script>
   <script src="{{ asset('app/pages/slide/slideEditController.js') }}"></script>
-
-  <!-- Modal -->
-  <script src="{{ asset('app/shared/ngModal/ng-modal.js') }}"></script>
 
   <!-- Elements -->
   <script src="{{ asset('app/shared/elements/sharedChannel/sharedChannelDirective.js') }}"></script>
@@ -116,9 +107,8 @@
   <script src="{{ asset('app/shared/elements/thumb/thumbDirective.js') }}"></script>
   <script src="{{ asset('app/shared/elements/autoGrow/autoGrowDirective.js') }}"></script>
   <script src="{{ asset('app/shared/elements/includeReplace/includeReplaceDirective.js') }}"></script>
-
-  <!-- Control Panel -->
-  <script src="{{ asset('app/shared/controlPanel/control-panel.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/controlPanel/control-panel.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/ngModal/ng-modal.js') }}"></script>
 
   <!-- Widgets -->
   <script src="{{ asset('app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js') }}"></script>
