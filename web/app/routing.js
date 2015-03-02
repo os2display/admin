@@ -21,7 +21,7 @@ angular.module('ikApp').config(function($routeProvider) {
     // Overviews
     .when('/channel-overview', {
       controller: 'ChannelOverviewController',
-      templateUrl: 'partials/channel/channel-overview.html'
+      templateUrl: 'app/pages/channelOverview/channel-overview.html'
     })
     .when('/slide-overview', {
       controller: 'SlideOverviewController',
@@ -29,11 +29,11 @@ angular.module('ikApp').config(function($routeProvider) {
     })
     .when('/screen-overview', {
       controller: 'ScreenOverviewController',
-      templateUrl: 'partials/screen/screen-overview.html'
+      templateUrl: 'app/pages/screenOverview/screen-overview.html'
     })
     .when('/media-overview', {
       controller: 'MediaOverviewController',
-      templateUrl: 'partials/media/media-overview.html'
+      templateUrl: 'app/pages/mediaOverview/media-overview.html'
     })
     .when('/shared-channel-overview', {
       controller: 'SharedChannelOverviewController',
@@ -77,11 +77,11 @@ angular.module('ikApp').config(function($routeProvider) {
     // Media
     .when('/media/upload', {
       controller: 'MediaUploadController',
-      templateUrl: 'partials/media/media-upload.html'
+      templateUrl: 'app/pages/mediaUpload/media-upload.html'
     })
     .when('/media/:id', {
       controller: 'MediaEditController',
-      templateUrl: 'partials/media/media-edit.html'
+      templateUrl: 'app/pages/mediaEdit/media-edit.html'
     })
 
     .otherwise({redirectTo: '/'});
