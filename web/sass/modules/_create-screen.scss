@@ -10,12 +10,14 @@
 .screen--layout {
   @extend %grid;
 
-  // We create a full height container for the screen layout.
+  // The content container is fixed to full height below the header. Elements below handle the scrolling individually.
   margin: 0;
   height: 100%;
-  position: relative;
+  position: fixed;
   width: 100%;
+  padding-top: 9.2em;
   top: 0;
+  box-sizing: border-box;
 
   &-inner {
     background: $gray-lightest;
@@ -30,7 +32,7 @@
     @extend %portable--one-whole;
     @extend %two-thirds;
     @extend %grid-markup-fix;
-
+ 
     box-sizing: border-box;
     height: 100%;
     padding: 2em;

@@ -13,12 +13,10 @@
    ========================================================================== */
 
 // Control panel styling shared by all panels.
-%control-panel {
+%control-panel-base {
   border-left: $border-width solid $gray-lighter;
   box-sizing: border-box;
-  height: auto;
-  min-height: 100%;
-  padding: 1.5em;
+  height: 100%;
   overflow: visible;
 
   background: $white;
@@ -26,14 +24,30 @@
   color: $gray-darker;
 }
 
+%control-panel--tab {
+  position: absolute;
+  margin-top: 6em;
+  margin-bottom: 7em;
+  overflow-y: auto;
+  width: 100%;
+  padding: 2em;
+  box-sizing: border-box;
+  bottom: 0;
+  top: 0;
+}
+
 
 
 /* Styles
    ========================================================================== */
 
+.control-panel {
+  height: 100%;
+}
+
 /* The default control panel. */
 .control-panel--main {
-  @extend %control-panel;
+  @extend %control-panel-base;
 }
 
 
@@ -59,6 +73,12 @@
   }
 }
 
+// Tabs in a control panel.
+.control-panel--tool-tab,
+.control-panel--tab {
+  @extend %control-panel--tab;
+}
+
 
 /* The overlay control panels. */
 .control-panel--tool {
@@ -69,7 +89,7 @@
 
   @include box-shadow(0 0 0 transparentize($black, .75)); // Override component settings.
 
-  @extend %control-panel;
+  @extend %control-panel-base;
 
   top: 0;
 }
@@ -77,7 +97,15 @@
 
 /* Display navigation in the control panel */
 .control-panel--nav-wrapper {
-  margin-bottom: 2em;
+  height: 3em;
+  margin: 2em 0;
+  padding: 0 2em;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  left: 0;
+  top: 0;
 }
 
 .control-panel--nav {
@@ -95,11 +123,19 @@
 
 /* Bottom actions for control panel. */
 .control-panel--actions {
-  border-top: $border-width solid $gray-lighter;
-  border-bottom: $border-width solid $gray-lighter;
-  padding: 1em 0;
-  text-align: center;
-  margin: 8em -1.5em 0;
+  background: $white;
+  height: 7em;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+
+  &-inner {
+    border-top: $border-width solid $gray-lighter;
+    border-bottom: $border-width solid $gray-lighter;
+    margin-bottom: 3em;
+    padding: 1em 0;
+    text-align: center;
+  }
 
   &-close {
     @extend %button--default;
