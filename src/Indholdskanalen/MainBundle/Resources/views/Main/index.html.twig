@@ -14,13 +14,11 @@
 
 
 {% block scripts %}
-  <!-- Script imports -->
+  <!-- Imports -->
   <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/libs/angular.min.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-animate.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-route.js') }}"></script>
-
-  <!-- Add ins -->
   <script src="{{ asset('assets/libs/moment.min.js') }}"></script>
   <script src="{{ asset('assets/libs/es5-shim.min.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-file-upload.js') }}"></script>
@@ -28,8 +26,6 @@
   <script src="{{ asset('assets/libs/angular-bootstrap-colorpicker.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-placeholder.js') }}"></script>
   <script src="{{ asset('assets/libs/angular-css-injector.js') }}"></script>
-
-  <!-- Modules -->
   <script src="{{ asset('assets/libs/datetimepicker.jquery.js') }}"></script>
   <script src="{{ asset('assets/libs/datetimepicker.js') }}"></script>
   <script src="{{ asset('assets/libs/locale_da.js') }}"></script>
@@ -37,7 +33,7 @@
   <!-- Socket io from the search node, to get right version -->
   <script src="/proxy/socket.io/socket.io.js"></script>
 
-  <!-- Base -->
+  <!-- Main app -->
   <script src="{{ asset('app/app.js') }}"></script>
 
   <!-- Configuration -->
@@ -54,25 +50,13 @@
       "logo": "{{ logo }}"
     });
   </script>
+
+  <!-- Routing -->
   <script src="{{ asset('app/routing.js') }}"></script>
 
   <!-- Filters -->
   <script src="{{ asset('app/shared/filters/activeEvents.js') }}"></script>
   <script src="{{ asset('app/shared/filters/reverseEvents.js') }}"></script>
-
-  <!-- Directives -->
-  <script src="{{ asset('js/directives/helperDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/pagerDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/slideDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/channelDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/screenDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/mediaUploadDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/slideOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/channelOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/mediaOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/deleteDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/channelShareDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/checklistDirective.js') }}"></script>
 
   <!-- Services -->
   <script src="{{ asset('app/shared/services/mediaFactory.js') }}"></script>
@@ -86,16 +70,6 @@
   <script src="{{ asset('app/shared/services/sharedChannelFactory.js') }}"></script>
   <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js') }}"></script>
 
-  <!-- Controllers -->
-  <script src="{{ asset('js/controllers/slideOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/screenOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/channelOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/mediaOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/slideController.js') }}"></script>
-  <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
-  <script src="{{ asset('js/controllers/mediaUploadController.js') }}"></script>
-  <script src="{{ asset('js/controllers/mediaEditController.js') }}"></script>
-
   <!-- Menu -->
   <script src="{{ asset('app/shared/menu/menuController.js') }}"></script>
 
@@ -105,16 +79,36 @@
   <script src="{{ asset('app/pages/sharedChannelOverview/sharedChannelOverviewController.js') }}"></script>
   <script src="{{ asset('app/pages/adminSharing/adminSharingController.js') }}"></script>
   <script src="{{ asset('app/pages/channel/channelController.js') }}"></script>
-
-  <!-- Modal -->
-  <script src="{{ asset('app/shared/ngModal/ng-modal.js') }}"></script>
+  <script src="{{ asset('app/pages/channelOverview/channelOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/mediaOverview/mediaOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/screenOverview/screenOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/mediaEdit/mediaEditController.js') }}"></script>
+  <script src="{{ asset('app/pages/mediaUpload/mediaUploadController.js') }}"></script>
+  <script src="{{ asset('app/pages/slideOverview/slideOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/slide/slideController.js') }}"></script>
+  <script src="{{ asset('app/pages/slide/slideEditController.js') }}"></script>
 
   <!-- Elements -->
   <script src="{{ asset('app/shared/elements/sharedChannel/sharedChannelDirective.js') }}"></script>
   <script src="{{ asset('app/shared/elements/sharedChannelOverview/sharedChannelOverview.js') }}"></script>
-
-  <!-- Control Panel -->
-  <script src="{{ asset('app/shared/controlPanel/control-panel.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/channel/channelDirectives.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/channelOverview/channelOverviewDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/pager/pagerDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/delete/deleteDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/channelShare/channelShareDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/checklist/checklistDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/screen/screenDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slideOverview/slideOverviewDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/slideDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/slideEditableDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/sharedSlideDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/mediaOverview/mediaOverviewDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/mediaUpload/mediaUploadDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/thumb/thumbDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/autoGrow/autoGrowDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/includeReplace/includeReplaceDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/controlPanel/control-panel.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/ngModal/ng-modal.js') }}"></script>
 
   <!-- Widgets -->
   <script src="{{ asset('app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js') }}"></script>
