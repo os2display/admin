@@ -16,7 +16,8 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
         ikWidth: '@',
         ikChannel: '=',
         ikSingleSlide: '@',
-        ikSharingIndex: '='
+        ikSharingIndex: '=',
+        ikClickable: '='
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
@@ -67,7 +68,7 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function redirectToChannel() {
-          if (scope.ikSingleSlide != "true") {
+          if (scope.ikClickable) {
             $location.path("/shared-channel/" + scope.ikChannel.unique_id + "/" + scope.ikSharingIndex);
           }
         };

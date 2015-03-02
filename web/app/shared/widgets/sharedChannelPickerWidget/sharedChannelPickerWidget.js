@@ -1,6 +1,6 @@
 /**
  * @file
- * Contains the itkChannelPickerWidget module.
+ * Contains the itkSharedChannelPickerWidget module.
  */
 
 /**
@@ -10,28 +10,35 @@
   "use strict";
 
   var app;
-  app = angular.module("itkChannelPickerWidget", []);
+  app = angular.module("itkSharedChannelPickerWidget", []);
 
   /**
-   * channel-picker-widget directive.
+   * shared-channel-picker-widget directive.
    *
    * html parameters:
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('channelPickerWidget', ['configuration', 'userFactory', 'channelFactory',
-    function(configuration, userFactory, channelFactory) {
+  app.directive('sharedChannelPickerWidget', ['configuration', 'userFactory', 'sharedChannelFactory', '$timeout',
+    function(configuration, userFactory, sharedChannelFactory, $timeout) {
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/widgets/channelPickerWidget/channel-picker-widget.html',
+        templateUrl: 'app/shared/widgets/sharedChannelPickerWidget/shared-channel-picker-widget.html',
         scope: {
           screen: '=',
           region: '='
         },
         link: function(scope) {
-          scope.sharingEnabled = configuration.sharingService.enabled;
+          scope.index = {};
           scope.loading = false;
+          scope.pickIndexDialog = false;
+
+          scope.displaySharingOption = configuration.sharingService.enabled;
+          scope.sharingIndexes = [];
+          sharedChannelFactory.getSharingIndexes().then(function(data) {
+            scope.sharingIndexes = data;
+          });
 
           // Set default orientation and sort.
           scope.orientation = 'landscape';
@@ -46,7 +53,7 @@
 
           // Default pager values.
           scope.pager = {
-            "size": 5,
+            "size": 9,
             "page": 0
           };
           scope.hits = 0;
@@ -79,35 +86,49 @@
            * Updates the channels array by send a search request.
            */
           scope.updateSearch = function updateSearch() {
+            if (scope.index === {}) {
+              return;
+            }
+
             // Get search text from scope.
             search.text = scope.search_text;
 
             scope.loading = true;
-
-            channelFactory.searchChannels(search).then(
+            sharedChannelFactory.searchChannels(search, scope.index.index).then(
               function(data) {
-                // Total hits.
+                scope.loading = false;
                 scope.hits = data.hits;
-
-                // Extract search ids.
-                var ids = [];
-                for (var i = 0; i < data.results.length; i++) {
-                  ids.push(data.results[i].id);
-                }
-
-                // Load slides bulk.
-                channelFactory.loadChannelsBulk(ids).then(
-                  function (data) {
-                    scope.channels = data;
-
-                    scope.loading = false;
-                  },
-                  function (reason) {
-                    scope.loading = false;
-                  }
-                );
+                scope.channels = data.results;
+              },
+              function () {
+                scope.loading = false;
               }
             );
+          };
+
+          /**
+           * Emits the channelSharingOverview.clickChannel event.
+           *
+           * @param channel
+           * @param index
+           */
+          scope.clickSharedChannel = function clickSharedChannel(channel, index) {
+            scope.$emit('channelSharingOverview.clickSharedChannel', channel, index);
+          };
+
+          /**
+           * Change which index is selected.
+           * @param index
+           */
+          scope.setIndex = function setIndex(index) {
+            scope.index = index;
+            scope.pickIndexDialog = false;
+
+            $timeout(
+              function() {
+                scope.updateSearch();
+              }
+              , 10);
           };
 
           /**
@@ -120,7 +141,7 @@
             var element;
             for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
               element = scope.screen.channel_screen_regions[i];
-              if (element.channel && element.channel.id === channel.id && element.region === scope.region) {
+              if (element.shared_channel && element.shared_channel.id === channel.id && element.region === scope.region) {
                 return true;
               }
             }
@@ -136,7 +157,7 @@
             scope.screen.channel_screen_regions.push({
               "id": null,
               "screen_id": scope.screen.id,
-              "channel": channel,
+              "shared_channel": channel,
               "region": scope.region
             });
           };
@@ -150,7 +171,7 @@
             var element;
             for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
               element = scope.screen.channel_screen_regions[i];
-              if (element.channel && element.channel.id === channel.id && element.region === scope.region) {
+              if (element.shared_channel && element.shared_channel.id === channel.id && element.region === scope.region) {
                 scope.screen.channel_screen_regions.splice(i, 1);
               }
             }

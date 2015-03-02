@@ -1,0 +1,28 @@
+<div class="cpw--add-channels" data-ng-if="displaySharingOption">
+  <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
+  <div>
+    <div class="" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
+    <div data-ng-show="pickIndexDialog">
+      <div class="" data-ng-repeat="index in sharingIndexes" data-ng-click="setIndex(index)">
+        <div class="">
+          <div class="">
+            <div class="">{{index.name}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cpw--add-channels-list">
+    <div class="cpw--add-channels-item" data-ng-repeat="channel in channels" data-ng-if="!channelSelected(channel)">
+      <div class="cpw--add-channels-item-image">
+        <ik-shared-channel class="overview--channel-container" ik-sharingIndex="index" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 112.5 : 200 }}" ik-single-slide="false"></ik-shared-channel>
+      </div>
+      <div class="cpw--add-channels-item-content">
+        <h3 class="cpw--add-channels-item-header">{{ channel.title }}</h3>
+        <div class="cpw--add-channels-item-meta">{{ channel.description }}</div>
+        <a data-ng-click="addChannel(channel)" class="cpw--add-channels-item-action">Tilføj</a>
+      </div>
+    </div>
+    <ik-pager></ik-pager>
+  </div>
+</div>

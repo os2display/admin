@@ -13,6 +13,7 @@
   </div>
   <div class="control-panel--tool-tab" data-ng-if="!selectedTab || selectedTab === 'pick-channels'">
     <channel-picker-widget screen="data" region="region"></channel-picker-widget>
+    <shared-channel-picker-widget screen="data" region="region"></shared-channel-picker-widget>
   </div>
   <div class="control-panel--tool-tab" data-ng-if="selectedTab === 'view-channels'">
     <channel-remover-widget screen="data" region="region"></channel-remover-widget>

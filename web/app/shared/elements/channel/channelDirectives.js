@@ -15,7 +15,8 @@ angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
       scope: {
         ikWidth: '@',
         ikChannel: '=',
-        ikSingleSlide: '='
+        ikSingleSlide: '=',
+        ikClickable: '='
       },
       link: function(scope, element, attrs) {
         scope.slideIndex = 0;
@@ -60,7 +61,7 @@ angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
          * Redirect to the channel editor page.
          */
         scope.redirectToChannel = function() {
-          if (scope.ikSingleSlide != true) {
+          if (scope.ikClickable) {
             $location.path("/channel/" + scope.ikChannel.id);
           }
         };
