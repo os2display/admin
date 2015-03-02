@@ -15,7 +15,7 @@ angular.module('ikApp').config(function($routeProvider) {
 
     .when('/admin-sharing', {
       controller: 'AdminSharingController',
-      templateUrl: 'partials/channel-sharing/admin-sharing.html'
+      templateUrl: 'app/pages/adminSharing/admin-sharing.html'
     })
 
     // Overviews
@@ -35,9 +35,9 @@ angular.module('ikApp').config(function($routeProvider) {
       controller: 'MediaOverviewController',
       templateUrl: 'partials/media/media-overview.html'
     })
-    .when('/channel-sharing-overview', {
-      controller: 'ChannelSharingOverviewController',
-      templateUrl: 'partials/channel-sharing/channel-sharing-overview.html'
+    .when('/shared-channel-overview', {
+      controller: 'SharedChannelOverviewController',
+      templateUrl: 'app/pages/sharedChannelOverview/shared-channel-overview.html'
     })
 
     // Screen
@@ -63,15 +63,15 @@ angular.module('ikApp').config(function($routeProvider) {
     // Channel
     .when('/shared-channel/:id/:index', {
       controller: 'SharedChannelController',
-      templateUrl: 'partials/channel-sharing/shared-channel.html'
+      templateUrl: 'app/pages/sharedChannel/shared-channel.html'
     })
     .when('/channel', {
       controller: 'ChannelController',
-      templateUrl: 'partials/channel/channel.html'
+      templateUrl: 'app/pages/channel/channel.html'
     })
     .when('/channel/:id', {
       controller: 'ChannelController',
-      templateUrl: 'partials/channel/channel.html'
+      templateUrl: 'app/pages/channel/channel.html'
     })
 
     // Media

@@ -30,10 +30,10 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
 
           // If channel is empty, display empty channel.
           if (scope.ikChannel.slides.length <= 0) {
-            scope.templateURL = 'partials/channel-sharing/empty.html';
+            scope.templateURL = 'app/shared/elements/sharedChannel/empty-channel.html';
           }
           else {
-            scope.templateURL = 'partials/channel-sharing/non-empty.html';
+            scope.templateURL = 'app/shared/elements/sharedChannel/non-empty-channel.html';
 
             scope.buttonState = 'play';
           }
@@ -81,7 +81,7 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
           }
         });
       },
-      templateUrl: '/partials/channel-sharing/shared-channel-template.html'
+      templateUrl: 'app/shared/elements/sharedChannel/shared-channel-template.html'
     }
   }
 ]);

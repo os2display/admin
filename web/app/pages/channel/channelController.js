@@ -36,7 +36,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      */
     function loadStep(step) {
       $scope.step = step;
-      $scope.templatePath = '/partials/channel/channel' + $scope.step + '.html';
+      $scope.templatePath = '/app/pages/channel/channel-step' + $scope.step + '.html';
     }
 
     /**

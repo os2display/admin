@@ -57,8 +57,8 @@
   <script src="{{ asset('app/routing.js') }}"></script>
 
   <!-- Filters -->
-  <script src="{{ asset('js/filters/activeEvents.js') }}"></script>
-  <script src="{{ asset('js/filters/reverseEvents.js') }}"></script>
+  <script src="{{ asset('app/shared/filters/activeEvents.js') }}"></script>
+  <script src="{{ asset('app/shared/filters/reverseEvents.js') }}"></script>
 
   <!-- Directives -->
   <script src="{{ asset('js/directives/helperDirectives.js') }}"></script>
@@ -73,44 +73,45 @@
   <script src="{{ asset('js/directives/deleteDirective.js') }}"></script>
   <script src="{{ asset('js/directives/channelShareDirective.js') }}"></script>
   <script src="{{ asset('js/directives/checklistDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/channelSharingOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/sharedChannelDirective.js') }}"></script>
 
   <!-- Services -->
-  <script src="{{ asset('js/services/mediaFactory.js') }}"></script>
-  <script src="{{ asset('js/services/templateFactory.js') }}"></script>
-  <script src="{{ asset('js/services/slideFactory.js') }}"></script>
-  <script src="{{ asset('js/services/screenFactory.js') }}"></script>
-  <script src="{{ asset('js/services/channelFactory.js') }}"></script>
-  <script src="{{ asset('js/services/userFactory.js') }}"></script>
-  <script src="{{ asset('js/services/searchFactory.js') }}"></script>
-  <script src="{{ asset('js/services/sharedSearchFactory.js') }}"></script>
-  <script src="{{ asset('js/services/sharedChannelFactory.js') }}"></script>
-  <script src="{{ asset('js/services/authHttpResponseInterceptor.js') }}"></script>
+  <script src="{{ asset('app/shared/services/mediaFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/templateFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/slideFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/screenFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/channelFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/userFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/searchFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/sharedSearchFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/sharedChannelFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js') }}"></script>
 
   <!-- Controllers -->
   <script src="{{ asset('js/controllers/slideOverviewController.js') }}"></script>
   <script src="{{ asset('js/controllers/screenOverviewController.js') }}"></script>
   <script src="{{ asset('js/controllers/channelOverviewController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/indexController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideController.js') }}"></script>
   <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
-  <script src="{{ asset('js/controllers/channelController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaUploadController.js') }}"></script>
   <script src="{{ asset('js/controllers/mediaEditController.js') }}"></script>
-  <script src="{{ asset('js/controllers/channelSharingOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/sharedChannelController.js') }}"></script>
-  <script src="{{ asset('js/controllers/adminSharingController.js') }}"></script>
 
   <!-- Menu -->
   <script src="{{ asset('app/shared/menu/menuController.js') }}"></script>
 
+  <!-- Pages -->
+  <script src="{{ asset('app/pages/screen/screen.js') }}"></script>
+  <script src="{{ asset('app/pages/sharedChannel/sharedChannelController.js') }}"></script>
+  <script src="{{ asset('app/pages/sharedChannelOverview/sharedChannelOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/adminSharing/adminSharingController.js') }}"></script>
+  <script src="{{ asset('app/pages/channel/channelController.js') }}"></script>
+
   <!-- Modal -->
   <script src="{{ asset('app/shared/ngModal/ng-modal.js') }}"></script>
 
-  <!-- Screen -->
-  <script src="{{ asset('app/pages/screen/screen.js') }}"></script>
+  <!-- Elements -->
+  <script src="{{ asset('app/shared/elements/sharedChannel/sharedChannelDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/sharedChannelOverview/sharedChannelOverview.js') }}"></script>
 
   <!-- Control Panel -->
   <script src="{{ asset('app/shared/controlPanel/control-panel.js') }}"></script>

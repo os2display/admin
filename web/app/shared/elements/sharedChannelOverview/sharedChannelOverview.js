@@ -6,7 +6,7 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-angular.module('ikApp').directive('ikChannelSharingOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
+angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
   function(sharedChannelFactory, userFactory, configuration, $timeout) {
     "use strict";
 
@@ -235,7 +235,7 @@ angular.module('ikApp').directive('ikChannelSharingOverview', ['sharedChannelFac
           scope.setOrientation(scope.ikFilter);
         }
       },
-      templateUrl: '/partials/directives/channel-sharing-overview-directive.html'
+      templateUrl: '/app/shared/elements/sharedChannelOverview/shared-channel-overview.html'
     };
   }
 ]);

@@ -7,14 +7,14 @@
  * Admin sharing controller.
  */
 angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedChannelFactory',
-  function($scope, sharedChannelFactory) {
+  function ($scope, sharedChannelFactory) {
     $scope.saving = false;
 
     $scope.availableIndexes = [];
     sharedChannelFactory.getAvailableIndexes().then(
-      function(data) {
-        data.forEach(function(element) {
-          // Only include "shared" indexes.
+      function (data) {
+        data.forEach(function (element) {
+          // Only include shared indexes.
           if (element.tag === 'shared') {
             $scope.availableIndexes.push(element);
           }
@@ -23,18 +23,18 @@ angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedC
     );
     $scope.chosenIndexes = [];
     sharedChannelFactory.getSharingIndexes().then(
-      function(data) {
+      function (data) {
         $scope.chosenIndexes = data;
       }
     );
 
-    $scope.save = function() {
+    $scope.save = function () {
       $scope.saving = true;
       sharedChannelFactory.saveSharingIndexes($scope.chosenIndexes).then(
-        function(data) {
+        function (data) {
           $scope.saving = false;
         },
-        function(reason) {
+        function (reason) {
           $scope.saving = false;
         }
       );

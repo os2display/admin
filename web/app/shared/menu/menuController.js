@@ -43,7 +43,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
           $scope.subMenuItems.push(
             {
               title: 'Delte kanaler',
-              path: 'channel-sharing-overview',
+              path: 'shared-channel-overview',
               classSuffix: 'overview'
             }
           );

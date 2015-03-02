@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation\MaxDepth;
 
 
 /**
- * Extra
+ * Shared Channel - Channel that is loaded from another installation.
  *
  * @ORM\Table(name="ik_shared_channel")
  * @ORM\Entity
@@ -50,11 +50,13 @@ class SharedChannel {
   private $createdAt;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Screen", inversedBy="sharedChannels")
-   * @ORM\JoinTable(name="ik_screens_shared_channels")
+   * Mappings between channel and screens/regions.
+   *
+   * @ORM\OneToMany(targetEntity="ChannelScreenRegion", mappedBy="sharedChannel", orphanRemoval=true)
+   * @ORM\OrderBy({"sortOrder" = "ASC"})
    * @Groups({"api"})
    */
-  private $screens;
+  private $channelScreenRegions;
 
   /**
    * @ORM\Column(name="modified_at", type="integer", nullable=false)
@@ -195,36 +197,6 @@ class SharedChannel {
   }
 
   /**
-   * Add screen
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
-   * @return Channel
-   */
-  public function addScreen(Screen $screen) {
-    $this->screens[] = $screen;
-
-    return $this;
-  }
-
-  /**
-   * Remove screen
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
-   */
-  public function removeScreen(Screen $screen) {
-    $this->screens->removeElement($screen);
-  }
-
-  /**
-   * Get screens
-   *
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getScreens() {
-    return $this->screens;
-  }
-
-  /**
    * Set modifiedAt
    *
    * @param integer $modifiedAt
@@ -267,7 +239,7 @@ class SharedChannel {
   }
 
   /**
-   * Get screens
+   * Get channel content.
    *
    * @return \array
    *
@@ -277,8 +249,10 @@ class SharedChannel {
    */
   public function getMiddlewareScreens() {
     $slides = array();
-    foreach ($this->getScreens() as $screen) {
-      $slides[] = $screen->getId();
+    foreach ($this->getChannelScreenRegions() as $region) {
+      if (!in_array($region->getScreen()->getId(), $slides)) {
+        $slides[] = $region->getScreen()->getId();
+      }
     }
     return $slides;
   }
@@ -297,5 +271,49 @@ class SharedChannel {
       'id' => $this->getUniqueId(),
       'slides' => json_encode(json_decode($this->content)->slides)
     );
+  }
+
+
+  /**
+   * Add channelScreenRegion
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   * @return Screen
+   */
+  public function addChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
+    $this->channelScreenRegions[] = $channelScreenRegion;
+
+    return $this;
+  }
+
+  /**
+   * Remove channelScreenRegion
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   */
+  public function removeChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
+    $this->channelScreenRegions->removeElement($channelScreenRegion);
+  }
+
+  /**
+   * Get channelScreenRegion
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getChannelScreenRegions() {
+    return $this->channelScreenRegions;
+  }
+
+  /**
+   * Get screens
+   */
+  public function getScreens() {
+    $screens = array();
+
+    foreach($this->getChannelScreenRegions() as $region) {
+      $screens[] = $region->getScreen();
+    }
+
+    return $screens;
   }
 }

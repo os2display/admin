@@ -31,8 +31,11 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             function(data) {
               $scope.screen = data;
 
-              $scope.screen.shared_channels.forEach(function(element) {
-                element.content = JSON.parse(element.content);
+              // Decode the shared channels.
+              $scope.screen.channel_screen_regions.forEach(function(csr) {
+                if (csr.shared_channel) {
+                  csr.shared_channel.content = JSON.parse(csr.shared_channel.content);
+                }
               });
 
               if ($scope.screen === {}) {

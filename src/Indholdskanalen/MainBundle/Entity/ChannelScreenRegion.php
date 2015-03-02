@@ -55,10 +55,19 @@ class ChannelScreenRegion {
    * Channel to add.
    *
    * @ORM\ManyToOne(targetEntity="Channel", inversedBy="channelScreenRegions")
-   * @ORM\JoinColumn(name="channel_id", referencedColumnName="id")
+   * @ORM\JoinColumn(name="channel_id", referencedColumnName="id", nullable=true)
    * @Groups({"api"})
    */
   protected $channel;
+
+  /**
+   * Channel to add.
+   *
+   * @ORM\ManyToOne(targetEntity="SharedChannel", inversedBy="channelScreenRegions")
+   * @ORM\JoinColumn(name="shared_channel_id", referencedColumnName="id", nullable=true)
+   * @Groups({"api"})
+   */
+  protected $sharedChannel;
 
   /**
    * Constructor.
@@ -161,5 +170,26 @@ class ChannelScreenRegion {
    */
   public function getChannel() {
     return $this->channel;
+  }
+
+  /**
+   * Set sharedChannel
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel
+   * @return ChannelScreenRegion
+   */
+  public function setSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel = NULL) {
+    $this->sharedChannel = $sharedChannel;
+
+    return $this;
+  }
+
+  /**
+   * Get sharedChannel
+   *
+   * @return \Indholdskanalen\MainBundle\Entity\SharedChannel
+   */
+  public function getSharedChannel() {
+    return $this->sharedChannel;
   }
 }

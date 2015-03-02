@@ -78,12 +78,6 @@ class Screen {
   private $channelScreenRegions;
 
   /**
-   * @ORM\ManyToMany(targetEntity="SharedChannel", mappedBy="screens")
-   * @Groups({"api"})
-   */
-  private $sharedChannels;
-
-  /**
    * @ORM\Column(name="user", type="integer", nullable=true)
    * @Groups({"api", "search"})
    */

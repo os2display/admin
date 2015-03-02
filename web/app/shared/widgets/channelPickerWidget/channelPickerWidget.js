@@ -30,7 +30,7 @@
           region: '='
         },
         link: function(scope) {
-          scope.displaySharingOption = configuration.sharingService.enabled;
+          scope.sharingEnabled = configuration.sharingService.enabled;
           scope.loading = false;
 
           // Set default orientation and sort.

@@ -242,6 +242,12 @@ To enable a template from the templates folder, add the name to parameters.yml, 
     - only-image
 </pre>
 
+###Templates (screens)
+To import the templates from the template directory:
+<pre>
+$ app/console ik:templates:load
+</pre>
+
 
 ###Logo
 To set a custom logo: 
