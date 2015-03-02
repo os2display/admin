@@ -25,7 +25,7 @@ angular.module('ikApp').config(function($routeProvider) {
     })
     .when('/slide-overview', {
       controller: 'SlideOverviewController',
-      templateUrl: 'partials/slide/slide-overview.html'
+      templateUrl: 'app/pages/slideOverview/slide-overview.html'
     })
     .when('/screen-overview', {
       controller: 'ScreenOverviewController',
