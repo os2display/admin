@@ -73,3 +73,14 @@
 .presentation--region-content {
   @extend %presentation--item-inner;
 }
+
+.presentation--region-text {
+  display: block;
+  left: 0;
+  right: 0;
+  position: relative;
+  top: 50%;
+  text-align: center;
+
+  @include transform(translateY(-50%));
+}

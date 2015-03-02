@@ -36,6 +36,9 @@
           // Which control panel tab is selected?
           scope.selectedTab = null;
 
+          // Lock scrolling on page.
+          document.getElementsByTagName("body")[0].style.overflow = "hidden";
+
           /**
            * Get the template for the control panel.
            * @returns string
@@ -53,6 +56,12 @@
           scope.clickTab = function clickNav(tab) {
             scope.selectedTab = tab;
           };
+
+          // Register event listener for destroy.
+          // Remove scroll lock.
+          scope.$on('$destroy', function() {
+            document.getElementsByTagName("body")[0].style.overflow = "";
+          });
         },
         template: '<div data-ng-include="getContent()"></div>'
       };
