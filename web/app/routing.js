@@ -53,11 +53,11 @@ angular.module('ikApp').config(function($routeProvider) {
     // Slide
     .when('/slide', {
       controller: 'SlideController',
-      templateUrl: 'partials/slide/slide.html'
+      templateUrl: 'app/pages/slide/slide.html'
     })
     .when('/slide/:id', {
       controller: 'SlideController',
-      templateUrl: 'partials/slide/slide.html'
+      templateUrl: 'app/pages/slide/slide.html'
     })
 
     // Channel

@@ -18,7 +18,7 @@ angular.module('ikApp').directive('ikChannelShare',
           scope.$emit('ikChannelShare.clickShare', scope.ikChannel);
         }
       },
-      templateUrl: 'partials/directives/share-directive.html'
+      templateUrl: 'app/shared/elements/channelShare/channel-share.html'
     }
   }
 );

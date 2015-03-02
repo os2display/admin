@@ -227,7 +227,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
         scope.updateSearch();
       },
-      templateUrl: '/partials/directives/channel-overview-directive.html'
+      templateUrl: '/app/shared/elements/channelOverview/channel-overview-directive.html'
     };
   }
 ]);

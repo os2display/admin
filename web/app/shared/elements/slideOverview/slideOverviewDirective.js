@@ -242,6 +242,6 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
         $scope.updateSearch();
       }
     },
-    templateUrl: '/partials/directives/slide-overview-directive.html'
+    templateUrl: '/app/shared/elements/slideOverview/slide-overview-directive.html'
   };
 });

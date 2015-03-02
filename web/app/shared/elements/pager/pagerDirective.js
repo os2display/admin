@@ -52,7 +52,7 @@ angular.module('ikApp').directive('ikPager', function() {
         }
       );
     },
-    templateUrl: '/partials/directives/pager-directive.html'
+    templateUrl: '/app/shared/elements/pager/pager-directive.html'
   };
 });
 

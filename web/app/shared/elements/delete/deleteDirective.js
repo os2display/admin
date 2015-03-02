@@ -33,6 +33,6 @@ angular.module('ikApp').directive('ikDelete', ['$http', '$rootScope', function($
         }
       };
     },
-    templateUrl: 'partials/directives/delete-directive.html'
+    templateUrl: 'app/shared/elements/delete/delete.html'
   };
 }]);

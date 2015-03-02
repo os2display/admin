@@ -29,7 +29,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'partials/slide/editors/text-editor.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/text-editor.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
@@ -40,7 +40,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'partials/slide/editors/text-editor-responsive.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/text-editor-responsive.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
@@ -51,7 +51,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'partials/slide/editors/background-editor-transparent.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/background-editor-transparent.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
@@ -62,7 +62,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'partials/slide/editors/background-editor.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/background-editor.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
@@ -73,7 +73,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'partials/slide/editors/logo-editor.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/logo-editor.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
@@ -84,7 +84,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'partials/slide/editors/manual-calendar-editor.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/manual-calendar-editor.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
@@ -99,7 +99,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'partials/slide/editors/source-editor.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/source-editor.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';

@@ -258,6 +258,6 @@ angular.module('ikApp').directive('ikMediaOverview', function() {
         }
       })
     },
-    templateUrl: 'partials/directives/media-overview-directive.html'
+    templateUrl: '/app/shared/elements/mediaOverview/media-overview-directive.html'
   };
 });

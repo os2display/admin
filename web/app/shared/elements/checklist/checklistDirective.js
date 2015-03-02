@@ -54,6 +54,6 @@ angular.module('ikApp').directive('ikChecklist', function() {
         return false;
       };
     },
-    templateUrl: 'partials/directives/checklist-directive.html'
+    templateUrl: 'app/shared/elements/checklist/checklist.html'
   };
 });

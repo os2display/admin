@@ -1,20 +1,7 @@
 /**
  * @file
- * Contains the helper directives.
+ * Contains the auto-grow directive.
  */
-
-/**
- * HTML attribute to replace the ng-include div.
- */
-angular.module('ikApp').directive('includeReplace', function () {
-  return {
-    require: 'ngInclude',
-    restrict: 'A',
-    link: function (scope, el, attrs) {
-      el.replaceWith(el.children());
-    }
-  };
-});
 
 /**
  * HTML attribute for textareas. Makes the textarea grow.
@@ -34,7 +21,7 @@ angular.module('ikApp').directive('autoGrow', function() {
         var sh = el.prop("scrollHeight");
         var minh = el.css("min-height").replace("px", "");
         el.css("height", Math.max(sh, minh) + "px");
-      }
+      };
 
       element.bind('keyup', function() {
         resizeTextArea(el);

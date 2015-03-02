@@ -39,7 +39,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      */
     function loadStep(step) {
       $scope.step = step;
-      $scope.templatePath = '/partials/slide/slide' + $scope.step + '.html';
+      $scope.templatePath = '/app/pages/slide/slide-step' + $scope.step + '.html';
     }
 
     /**
