@@ -247,6 +247,46 @@
     @include breakpoint($breakpoint-bigscreen) {
       width: auto;  // Position search next to shared channels filter.
     }
+
+    &.is-active {
+      font-weight: bold;
+    }
+  }
+
+  &-select-index {
+    margin-bottom: 2em;
+    position: relative;
+  }
+
+  &-select-index-button {
+    @extend %button--default;
+
+    z-index: 2;
+  }
+
+  &-select-index-items {
+    background: $white;
+    box-sizing: border-box;
+    border-left: 1px solid $gray-dark;
+    border-right: 1px solid $gray-dark;
+    border-bottom: 1px solid $gray-dark;
+    padding: .3em 0;
+    position: absolute;
+    width: 100%;
+    top: 1.9em;
+    z-index: 1;
+
+    @include border-bottom-radius(.3em);
+  }
+
+  &-select-index-item {
+    background: $white;
+    cursor: pointer;
+    padding: 0 1em;
+
+    &:hover {
+      background: $gray-lighter;
+    }
   }
 }
 

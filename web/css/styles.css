@@ -995,7 +995,7 @@ label {
  * This is an example file
  *
  */
-.button, .create-channel--add-slide-button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button, .presentation--region-content-button, .control-panel--actions-close, .cpw--add-channels-item-action, .cpw--selected-channels-item-action {
+.button, .create-channel--add-slide-button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button, .presentation--region-content-button, .control-panel--actions-close, .cpw--add-channels-select-index-button, .cpw--add-channels-item-action, .cpw--selected-channels-item-action {
   display: inline-block;
   font-size: 125%;
   font-weight: lighter;
@@ -1007,7 +1007,7 @@ label {
   -moz-border-radius: 0.4em;
   -webkit-border-radius: 0.4em;
   border-radius: 0.4em; }
-  .button:focus, .create-channel--add-slide-button:focus, .create-slide--button:focus, .create-channel--button:focus, .create-media--button:focus, .edit-menu--content-button:focus, .edit-menu--background-button:focus, .login--submit:focus, .admin-sharing--button:focus, .presentation--region-content-button:focus, .control-panel--actions-close:focus, .cpw--add-channels-item-action:focus, .cpw--selected-channels-item-action:focus, .button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover, .presentation--region-content-button:hover, .control-panel--actions-close:hover, .cpw--add-channels-item-action:hover, .cpw--selected-channels-item-action:hover, .button:active, .create-channel--add-slide-button:active, .create-slide--button:active, .create-channel--button:active, .create-media--button:active, .edit-menu--content-button:active, .edit-menu--background-button:active, .login--submit:active, .admin-sharing--button:active, .presentation--region-content-button:active, .control-panel--actions-close:active, .cpw--add-channels-item-action:active, .cpw--selected-channels-item-action:active {
+  .button:focus, .create-channel--add-slide-button:focus, .create-slide--button:focus, .create-channel--button:focus, .create-media--button:focus, .edit-menu--content-button:focus, .edit-menu--background-button:focus, .login--submit:focus, .admin-sharing--button:focus, .presentation--region-content-button:focus, .control-panel--actions-close:focus, .cpw--add-channels-select-index-button:focus, .cpw--add-channels-item-action:focus, .cpw--selected-channels-item-action:focus, .button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover, .presentation--region-content-button:hover, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover, .cpw--add-channels-item-action:hover, .cpw--selected-channels-item-action:hover, .button:active, .create-channel--add-slide-button:active, .create-slide--button:active, .create-channel--button:active, .create-media--button:active, .edit-menu--content-button:active, .edit-menu--background-button:active, .login--submit:active, .admin-sharing--button:active, .presentation--region-content-button:active, .control-panel--actions-close:active, .cpw--add-channels-select-index-button:active, .cpw--add-channels-item-action:active, .cpw--selected-channels-item-action:active {
     text-decoration: none; }
 
 .button, .create-channel--add-slide-button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button {
@@ -1028,7 +1028,7 @@ label {
       color: #fff;
       text-decoration: none; }
 
-.presentation--region-content-button, .control-panel--actions-close {
+.presentation--region-content-button, .control-panel--actions-close, .cpw--add-channels-select-index-button {
   background-color: #737373;
   color: #fff;
   display: block;
@@ -1038,23 +1038,23 @@ label {
   text-align: center;
   padding: .3em;
   width: 100%; }
-  .presentation--region-content-button:link, .control-panel--actions-close:link {
+  .presentation--region-content-button:link, .control-panel--actions-close:link, .cpw--add-channels-select-index-button:link {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:visited, .control-panel--actions-close:visited {
+  .presentation--region-content-button:visited, .control-panel--actions-close:visited, .cpw--add-channels-select-index-button:visited {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:hover, .control-panel--actions-close:hover {
+  .presentation--region-content-button:hover, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:focus, .control-panel--actions-close:focus {
+  .presentation--region-content-button:focus, .control-panel--actions-close:focus, .cpw--add-channels-select-index-button:focus {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:visited, .control-panel--actions-close:visited, .presentation--region-content-button:hover, .control-panel--actions-close:hover {
+  .presentation--region-content-button:visited, .control-panel--actions-close:visited, .cpw--add-channels-select-index-button:visited, .presentation--region-content-button:hover, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover {
     background-color: #595959; }
 
 .cpw--add-channels-item-action {
@@ -3637,6 +3637,36 @@ html.is-locked body {
     @media only screen and (min-width: 1700px) {
       .cpw--add-channels-type-item {
         width: auto; } }
+    .cpw--add-channels-type-item.is-active {
+      font-weight: bold; }
+  .cpw--add-channels-select-index {
+    margin-bottom: 2em;
+    position: relative; }
+  .cpw--add-channels-select-index-button {
+    z-index: 2; }
+  .cpw--add-channels-select-index-items {
+    background: #fff;
+    box-sizing: border-box;
+    border-left: 1px solid #737373;
+    border-right: 1px solid #737373;
+    border-bottom: 1px solid #737373;
+    padding: .3em 0;
+    position: absolute;
+    width: 100%;
+    top: 1.9em;
+    z-index: 1;
+    -moz-border-radius-bottomleft: 0.3em;
+    -webkit-border-bottom-left-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+    -moz-border-radius-bottomright: 0.3em;
+    -webkit-border-bottom-right-radius: 0.3em;
+    border-bottom-right-radius: 0.3em; }
+  .cpw--add-channels-select-index-item {
+    background: #fff;
+    cursor: pointer;
+    padding: 0 1em; }
+    .cpw--add-channels-select-index-item:hover {
+      background: #e6e6e6; }
 
 /* Selected channels widget */
 .cpw--selected-channels {

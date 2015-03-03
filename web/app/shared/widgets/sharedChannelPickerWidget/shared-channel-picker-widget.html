@@ -1,14 +1,10 @@
 <div class="cpw--add-channels">
   <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
-  <div>
-    <div class="" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
-    <div data-ng-show="pickIndexDialog">
-      <div class="" data-ng-repeat="index in sharingIndexes" data-ng-click="setIndex(index)">
-        <div class="">
-          <div class="">
-            <div class="">{{index.name}}</div>
-          </div>
-        </div>
+  <div class="cpw--add-channels-select-index">
+    <div class="cpw--add-channels-select-index-button" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
+    <div class="cpw--add-channels-select-index-items" data-ng-show="pickIndexDialog">
+      <div class="cpw--add-channels-select-index-item" data-ng-repeat="index in sharingIndexes" data-ng-click="setIndex(index)">
+        {{index.name}}
       </div>
     </div>
   </div>
