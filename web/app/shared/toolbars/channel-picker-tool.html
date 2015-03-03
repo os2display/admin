@@ -12,8 +12,18 @@
     </div>
   </div>
   <div class="control-panel--tool-tab" data-ng-if="!selectedTab || selectedTab === 'pick-channels'">
-    <channel-picker-widget screen="data" region="region"></channel-picker-widget>
-    <shared-channel-picker-widget screen="data" region="region"></shared-channel-picker-widget>
+    <div class="cpw--add-channels-type">
+      <div class="cpw--add-channels-type-items">
+        <a class="cpw--add-channels-type-item" data-ng-click="toggleChannelType('local')" data-ng-class="{'is-active': !channelType || channelType === 'local'}">Lokale kanaler</a>
+        <a class="cpw--add-channels-type-item" data-ng-click="toggleChannelType('shared')" data-ng-class="{'is-active': channelType === 'shared'}">Delte kanaler</a>
+      </div>
+    </div>
+    <div data-ng-if="!channelType || channelType === 'local'">
+      <channel-picker-widget screen="data" region="region"></channel-picker-widget>
+    </div>
+    <div data-ng-if="channelType === 'shared'">
+      <shared-channel-picker-widget screen="data" region="region"></shared-channel-picker-widget>
+    </div>
   </div>
   <div class="control-panel--tool-tab" data-ng-if="selectedTab === 'view-channels'">
     <channel-remover-widget screen="data" region="region"></channel-remover-widget>

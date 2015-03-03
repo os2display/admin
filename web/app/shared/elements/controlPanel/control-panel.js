@@ -57,6 +57,10 @@
             scope.selectedTab = tab;
           };
 
+          scope.toggleChannelType = function toggleChannelType(type) {
+            scope.channelType = type;
+          };
+
           // Register event listener for destroy.
           // Remove scroll lock.
           scope.$on('$destroy', function() {

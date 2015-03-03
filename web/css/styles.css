@@ -1258,19 +1258,19 @@ html.is-locked body {
 /* Variables used within this document. */
 /* Styles
    ========================================================================== */
-.control-panel--nav {
+.control-panel--nav, .cpw--add-channels-type-items {
   font-size: 0;
   text-align: center; }
-  .is-full-width.control-panel--nav {
+  .is-full-width.control-panel--nav, .is-full-width.cpw--add-channels-type-items {
     font-size: 0; }
-  .is-full-width[itk--tabs-count="2"].control-panel--nav > .control-panel--nav-item {
+  .is-full-width[itk--tabs-count="2"].control-panel--nav > .control-panel--nav-item, .is-full-width[itk--tabs-count="2"].cpw--add-channels-type-items > .control-panel--nav-item, .is-full-width[itk--tabs-count="2"].control-panel--nav > .cpw--add-channels-type-item, .is-full-width[itk--tabs-count="2"].cpw--add-channels-type-items > .cpw--add-channels-type-item {
     width: 50%; }
-  .is-full-width[itk--tabs-count="3"].control-panel--nav > .control-panel--nav-item {
+  .is-full-width[itk--tabs-count="3"].control-panel--nav > .control-panel--nav-item, .is-full-width[itk--tabs-count="3"].cpw--add-channels-type-items > .control-panel--nav-item, .is-full-width[itk--tabs-count="3"].control-panel--nav > .cpw--add-channels-type-item, .is-full-width[itk--tabs-count="3"].cpw--add-channels-type-items > .cpw--add-channels-type-item {
     width: 33.33%; }
-  .is-full-width[itk--tabs-count="4"].control-panel--nav > .control-panel--nav-item {
+  .is-full-width[itk--tabs-count="4"].control-panel--nav > .control-panel--nav-item, .is-full-width[itk--tabs-count="4"].cpw--add-channels-type-items > .control-panel--nav-item, .is-full-width[itk--tabs-count="4"].control-panel--nav > .cpw--add-channels-type-item, .is-full-width[itk--tabs-count="4"].cpw--add-channels-type-items > .cpw--add-channels-type-item {
     width: 25%; }
 
-.control-panel--nav-item {
+.control-panel--nav-item, .cpw--add-channels-type-item {
   background: #fafafa;
   border: 1px solid #cccccc;
   box-sizing: border-box;
@@ -1281,35 +1281,35 @@ html.is-locked body {
   font-size: 1rem;
   padding: 0.5em 0.75em;
   text-align: center; }
-  .control-panel--nav-item:link {
+  .control-panel--nav-item:link, .cpw--add-channels-type-item:link {
     color: inherit;
     outline: 0;
     text-decoration: none; }
-  .control-panel--nav-item:visited {
+  .control-panel--nav-item:visited, .cpw--add-channels-type-item:visited {
     color: inherit;
     outline: 0;
     text-decoration: none; }
-  .control-panel--nav-item:hover {
+  .control-panel--nav-item:hover, .cpw--add-channels-type-item:hover {
     color: inherit;
     outline: 0;
     text-decoration: none; }
-  .control-panel--nav-item:focus {
+  .control-panel--nav-item:focus, .cpw--add-channels-type-item:focus {
     color: inherit;
     outline: 0;
     text-decoration: none; }
-  .control-panel--nav-item:first-child {
+  .control-panel--nav-item:first-child, .cpw--add-channels-type-item:first-child {
     -moz-border-radius: 0.4em 0 0 0.4em;
     -webkit-border-radius: 0.4em;
     border-radius: 0.4em 0 0 0.4em; }
-  .control-panel--nav-item:last-child {
+  .control-panel--nav-item:last-child, .cpw--add-channels-type-item:last-child {
     border: 1px solid #cccccc;
     -moz-border-radius: 0 0.4em 0.4em 0;
     -webkit-border-radius: 0;
     border-radius: 0 0.4em 0.4em 0; }
-  .control-panel--nav-item:hover {
+  .control-panel--nav-item:hover, .cpw--add-channels-type-item:hover {
     background: #e6e6e6;
     color: inherit; }
-  .is-active.control-panel--nav-item {
+  .is-active.control-panel--nav-item, .is-active.cpw--add-channels-type-item {
     background: #e6e6e6;
     color: inherit; }
 
@@ -3601,6 +3601,9 @@ html.is-locked body {
 /* Add channels widget */
 .cpw--add-channels {
   margin-bottom: 2em; }
+  @media only screen and (min-width: 1700px) {
+    .cpw--add-channels-search[type="search"] {
+      width: 50%; } }
   .cpw--add-channels-item-image {
     box-sizing: border-box;
     display: inline-block;
@@ -3620,6 +3623,20 @@ html.is-locked body {
     margin-bottom: 2rem; }
   .cpw--add-channels-item-action {
     padding: .3rem; }
+  .cpw--add-channels-type {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1em; }
+    @media only screen and (min-width: 1700px) {
+      .cpw--add-channels-type {
+        position: absolute;
+        right: 1.5em;
+        width: auto; } }
+  .cpw--add-channels-type-item {
+    width: 50%; }
+    @media only screen and (min-width: 1700px) {
+      .cpw--add-channels-type-item {
+        width: auto; } }
 
 /* Selected channels widget */
 .cpw--selected-channels {
