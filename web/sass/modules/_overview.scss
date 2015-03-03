@@ -239,6 +239,7 @@
     border: 1px solid $gray-lighter;
     box-sizing: border-box;
     border-right: 0;
+    color: $gray-darker;
     cursor: pointer;
     display: inline-block;
     margin-left: $grid-markup-fix;
@@ -259,7 +260,8 @@
     }
 
     &.is-active {
-      background: $beige;
+      background: $gray-lighter;
+      font-weight: bold;
     }
   }
 

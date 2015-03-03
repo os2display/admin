@@ -194,6 +194,13 @@
       padding-right: 1rem;
       vertical-align: top;
       width: 50%;
+
+      // todo Move this styling to overview stylesheet if we use this styling on all pages.
+      ik-channel {
+        display: block; // Nesting since we reuse the ik channel html across old and new design.
+        text-align: center;
+        width: 100%;
+      }
     }
 
     &-content {
@@ -235,6 +242,13 @@
       padding-right: 1rem;
       vertical-align: top;
       width: 50%;
+
+      // todo Move this styling to overview stylesheet if we use this styling on all pages.
+      ik-channel {
+        display: block; // Nesting since we reuse the ik channel html across old and new design.
+        text-align: center;
+        width: 100%;
+      }
     }
 
     &-content {
