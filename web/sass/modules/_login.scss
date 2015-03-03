@@ -1,23 +1,22 @@
 .login {
 
   &--section {
-    margin: 0 $gutter 0;
+    margin: 5em $gutter 0;
     max-width: $breakpoint-desk;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 auto;
+      margin: 5em auto 0;
     }
   }
 
   &--reset-form,
   &--form,
   &--problem {
+    background-color: $gray-lighter;
     margin-right: auto;
     margin-bottom: 1em;
     margin-left: auto;
     padding: 1.5em;
-
-    background-color: $beige;
 
     @include breakpoint($breakpoint-lap) {
       max-width: 50%;

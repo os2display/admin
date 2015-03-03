@@ -23,6 +23,14 @@
     background: $gray-lightest;
     height: 100%;
     position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include breakpoint($breakpoint-desk) {
+      position: relative;
+      height: 100%;
+      overflow-y: hidden;
+    }
   }
 
   &-content {
@@ -32,13 +40,13 @@
     @extend %portable--one-whole;
     @extend %two-thirds;
     @extend %grid-markup-fix;
- 
+
     box-sizing: border-box;
-    height: 100%;
     padding: 2em;
 
     @include breakpoint($breakpoint-desk) {
       position: relative;
+      height: 100%;
     }
   }
 

@@ -59,10 +59,11 @@
 }
 
 // We should probably refactor this.
-//
 %buttons--default {
   @extend .button;
 }
+
+
 %button--default {
   @extend %button;
   @include strip-link-styles($white);
@@ -110,6 +111,7 @@
   @include strip-link-styles($white);
 
   background-color: $button-default-warning;
+  color: $white;
   display: block;
   box-sizing: border-box;
   font-size: 1em;

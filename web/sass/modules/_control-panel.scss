@@ -42,7 +42,11 @@
    ========================================================================== */
 
 .control-panel {
-  height: 100%;
+  height: auto;
+
+  @include breakpoint($breakpoint-desk) {
+    height: 100%;
+  }
 }
 
 /* The default control panel. */

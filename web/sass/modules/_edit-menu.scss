@@ -54,7 +54,6 @@
   width: 100%;
   z-index: 1;
 
-
   &--inner {
     height: 100%;
     font-size: .6em;
@@ -245,6 +244,25 @@
     text-align: center;
   }
 
+  &--background-label {
+    color: $gray-darker;
+    font-size: 1.2em;
+    text-align: lefT;
+  }
+
+  &--background-settings {
+    width: 15em;
+    margin: 0 auto;
+  }
+
+  &--background-size,
+  &--background-location {
+    margin-bottom: 2em;
+
+    select {
+      width: 15em;
+    }
+  }
 
 
 /* Add/edit events for calendar template

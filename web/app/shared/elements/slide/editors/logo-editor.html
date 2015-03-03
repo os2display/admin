@@ -16,14 +16,15 @@
           <button class="edit-menu--background-button" data-ng-click="pickLogoFromMedia()">Vælg fil fra medier</button>
           <button class="edit-menu--background-button" data-ng-click="pickLogoFromComputer()">Vælg fil fra computer</button>
         </div>
-
-        <div>
-          Vælg placering
-          <select data-ng-model="ikSlide.options.logopos" data-ng-options="logopos.value as logopos.text for logopos in logoPositions"></select>
-        </div>
-        <div>
-          Vælg størrelse
-          <select data-ng-model="ikSlide.options.logosize" data-ng-options="logosize.value as logosize.text for logosize in logoSizes"></select>
+        <div class="edit-menu--background-settings">
+          <div class="edit-menu--background-location">
+            <label class="edit-menu--background-label">Vælg placering</label>
+            <select data-ng-model="ikSlide.options.logopos" data-ng-options="logopos.value as logopos.text for logopos in logoPositions"></select>
+          </div>
+          <div class="edit-menu--background-size">
+            <label class="edit-menu--background-label">Vælg størrelse</label>
+            <select data-ng-model="ikSlide.options.logosize" data-ng-options="logosize.value as logosize.text for logosize in logoSizes"></select>
+          </div>
         </div>
       </div>
     </div>
