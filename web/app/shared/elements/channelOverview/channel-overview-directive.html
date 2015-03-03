@@ -28,7 +28,7 @@
     <!-- If normal display-->
     <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="!ikOverlay && !loading">
       <div class="overview--channel-link" data-ng-click="clickChannel(channel)" data-ng-class="{'is-selected': channelSelected(channel)}">
-        <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-single-slide="false"></ik-channel>
+        <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-single-slide="false" ik-clickable="true"></ik-channel>
       </div>
       <span class="overview--channel-label">{{channel.title}}</span>
       <span class="overview--slide-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}} -</span>
@@ -41,7 +41,7 @@
        <span class="overview--overlay">
           <span class="overview--link-check"></span>
         </span>
-        <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-single-slide="true"></ik-channel>
+        <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-single-slide="true" ik-clickable="false"></ik-channel>
       </div>
       <span class="overview--channel-label">{{channel.title}}</span> <span class="overview--slide-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>

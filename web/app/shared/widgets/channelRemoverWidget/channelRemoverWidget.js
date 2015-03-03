@@ -75,10 +75,10 @@
             var element;
             for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
               element = scope.screen.channel_screen_regions[i];
-              if (element.channel && channel.unique_id === undefined && element.channel.id === channel.id && element.region === scope.region) {
+              if (element.shared_channel === undefined && element.channel.id === channel.id && element.region === scope.region) {
                 scope.screen.channel_screen_regions.splice(i, 1);
               }
-              else if (element.shared_channel && channel.unique_id && element.shared_channel.unique_id === channel.unique_id && element.region === scope.region) {
+              else if (element.shared_channel && element.shared_channel.unique_id === channel.unique_id && element.region === scope.region) {
                 scope.screen.channel_screen_regions.splice(i, 1);
               }
             }

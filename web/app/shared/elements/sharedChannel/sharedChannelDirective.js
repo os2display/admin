@@ -24,7 +24,7 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
         scope.playText = '';
 
         // Observe on changes to ik-slide, for when it is set.
-        attrs.$observe('ikChannel', function (val) {
+        scope.$watch('ikChannel', function (val) {
           if (!val) {
             return;
           }

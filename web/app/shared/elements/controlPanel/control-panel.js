@@ -29,7 +29,8 @@
           data: '=',
           display: '=',
           saveAction: '&',
-          region: '='
+          region: '=',
+          options: '='
         },
         replace: true,
         link: function(scope, element, attrs) {

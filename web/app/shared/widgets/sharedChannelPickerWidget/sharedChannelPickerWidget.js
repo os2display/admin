@@ -19,8 +19,8 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('sharedChannelPickerWidget', ['configuration', 'userFactory', 'sharedChannelFactory', '$timeout',
-    function(configuration, userFactory, sharedChannelFactory, $timeout) {
+  app.directive('sharedChannelPickerWidget', ['sharedChannelFactory',
+    function(sharedChannelFactory) {
       return {
         restrict: 'E',
         replace: true,
@@ -29,14 +29,13 @@
           screen: '=',
           region: '='
         },
-        link: function(scope) {
-          scope.index = {};
+        link: function(scope, element, attrs) {
+          scope.index = null;
           scope.loading = false;
           scope.pickIndexDialog = false;
 
-          scope.displaySharingOption = configuration.sharingService.enabled;
           scope.sharingIndexes = [];
-          sharedChannelFactory.getSharingIndexes().then(function(data) {
+          sharedChannelFactory.getSharingIndexes().then(function (data) {
             scope.sharingIndexes = data;
           });
 
@@ -44,12 +43,6 @@
           scope.orientation = 'landscape';
           scope.showFromUser = 'all';
           scope.sort = { "created_at": "desc" };
-
-          userFactory.getCurrentUser().then(
-            function(data) {
-              scope.currentUser = data;
-            }
-          );
 
           // Default pager values.
           scope.pager = {
@@ -86,7 +79,7 @@
            * Updates the channels array by send a search request.
            */
           scope.updateSearch = function updateSearch() {
-            if (scope.index === {}) {
+            if (scope.index === null) {
               return;
             }
 
@@ -107,16 +100,6 @@
           };
 
           /**
-           * Emits the channelSharingOverview.clickChannel event.
-           *
-           * @param channel
-           * @param index
-           */
-          scope.clickSharedChannel = function clickSharedChannel(channel, index) {
-            scope.$emit('channelSharingOverview.clickSharedChannel', channel, index);
-          };
-
-          /**
            * Change which index is selected.
            * @param index
            */
@@ -124,11 +107,7 @@
             scope.index = index;
             scope.pickIndexDialog = false;
 
-            $timeout(
-              function() {
-                scope.updateSearch();
-              }
-              , 10);
+            scope.updateSearch();
           };
 
           /**
@@ -180,7 +159,7 @@
           /**
            * When the screen is loaded, set search orientation.
            */
-          scope.$watch('screen', function (val) {
+          attrs.$observe('screen', function (val) {
             if (!val) return;
 
             // Set the orientation.

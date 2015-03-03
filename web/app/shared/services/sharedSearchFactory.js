@@ -16,11 +16,10 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
 
     /**
      * Connect to the web-socket.
-     *
-     * @param deferred
-     *   The is a deferred object that should be resolved on connection.
      */
-    function getSocket(deferred) {
+    function getSocket() {
+      var deferred = $q.defer();
+
       // Get connected to the server.
       socket = io.connect(configuration.sharingService.address);
 
@@ -41,6 +40,8 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
         // request will be queued and send all at once... which could give some
         // strange side effects in the application if not handled.
       });
+
+      return deferred.promise;
     }
 
     /**
@@ -61,10 +62,15 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
           $http.get('api/auth/sharing')
             .success(function(data) {
               token = data;
-              getSocket(deferred);
+              getSocket().then(function() {
+                deferred.resolve("Connected");
+              },
+              function(reason) {
+                deferred.reject(reason);
+              });
             })
             .error(function(data, status) {
-              defer.reject(status);
+              deferred.reject(status);
             });
         }
       }
@@ -149,14 +155,17 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
         query.from = search.pager.page * search.pager.size;
       }
 
-      connect().then(function () {
-        socket.emit('search', query);
+      connect().then(function (data) {
         socket.on('result', function (hits) {
           deferred.resolve(hits);
         });
+        socket.emit('search', query);
       });
 
       return deferred.promise;
     };
+
+    // Connect to the search.
+    connect();
   }
 ]);

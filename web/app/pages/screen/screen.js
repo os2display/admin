@@ -11,7 +11,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
     $scope.sharingEnabled = configuration.sharingService.enabled;
     $scope.screen = {};
     $scope.toolbarTemplate = null;
-    $scope.displayToolbar = false;
+    $scope.display = false;
     $scope.region = null;
 
     /**
