@@ -199,7 +199,7 @@ class Channel {
    * Set lastPushTime
    *
    * @param integer $lastPushTime
-   * @return Screen
+   * @return Channel
    */
   public function setLastPushTime($lastPushTime) {
     $this->lastPushTime = $lastPushTime;

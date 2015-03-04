@@ -12,6 +12,8 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializationContext;
 use Indholdskanalen\MainBundle\Services\UtilityService;
+use Indholdskanalen\MainBundle\Entity\Channel;
+use Indholdskanalen\MainBundle\Entity\SharedChannel;
 
 /**
  * Class MiddlewareCommunication
@@ -41,9 +43,9 @@ class MiddlewareCommunication extends ContainerAware {
   /**
    * Push a Channel or a SharedChannel to the middleware.
    *
-   * @param Channel/SharedChannel $channel
+   * @param Channel|SharedChannel $channel
    *   The Channel or SharedChannel to push.
-   * @param string $data
+   * @param mixed $data
    *   The Data that should be pushed for $channel encoded as json.
    * @param string $id
    *   The id of the channel (internal id for Channel, unique_id for SharedChannel)

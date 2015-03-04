@@ -105,7 +105,7 @@ class SharedChannel {
    * Set lastPushHash
    *
    * @param string $lastPushHash
-   * @return Screen
+   * @return SharedChannel
    */
   public function setLastPushHash($lastPushHash) {
     $this->lastPushHash = $lastPushHash;
@@ -127,7 +127,7 @@ class SharedChannel {
    * Set lastPushScreens
    *
    * @param string $lastPushScreens
-   * @return Screen
+   * @return SharedChannel
    */
   public function setLastPushScreens($lastPushScreens) {
     $this->lastPushScreens = $lastPushScreens;
@@ -148,7 +148,7 @@ class SharedChannel {
    * Set lastPushTime
    *
    * @param integer $lastPushTime
-   * @return Screen
+   * @return SharedChannel
    */
   public function setLastPushTime($lastPushTime) {
     $this->lastPushTime = $lastPushTime;
@@ -169,9 +169,13 @@ class SharedChannel {
    * Set uniqueId
    *
    * @param string $uniqueId
+   *
+   * @return SharedChannel
    */
   public function setUniqueId($uniqueId) {
     $this->uniqueId = $uniqueId;
+
+    return $this;
   }
 
   /**
@@ -188,9 +192,13 @@ class SharedChannel {
    * Set index
    *
    * @param string $index
+   *
+   * @return SharedChannel
    */
   public function setIndex($index) {
     $this->index = $index;
+
+    return $this;
   }
 
   /**
@@ -206,7 +214,8 @@ class SharedChannel {
    * Set createdAt
    *
    * @param integer $createdAt
-   * @return Channel
+   *
+   * @return SharedChannel
    */
   public function setCreatedAt($createdAt) {
     $this->createdAt = $createdAt;
@@ -227,7 +236,8 @@ class SharedChannel {
    * Set modifiedAt
    *
    * @param integer $modifiedAt
-   * @return Channel
+   *
+   * @return SharedChannel
    */
   public function setModifiedAt($modifiedAt) {
     $this->modifiedAt = $modifiedAt;
@@ -248,7 +258,8 @@ class SharedChannel {
    * Set content
    *
    * @param string $content
-   * @return Channel
+   *
+   * @return SharedChannel
    */
   public function setContent($content) {
     $this->content = $content;
@@ -266,7 +277,7 @@ class SharedChannel {
   }
 
   /**
-   * Get channel content.
+   * Get sharedChannel screens.
    *
    * @return \array
    *
@@ -287,7 +298,7 @@ class SharedChannel {
   /**
    * Get regions.
    *
-   * @return \array
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("regions")
@@ -297,17 +308,17 @@ class SharedChannel {
     $regions = array();
     foreach ($this->getChannelScreenRegions() as $region) {
       $regions[] = array(
-        "screen" => $region->getScreen()->getId(),
-        "region" => $region->getRegion()
+        'screen' => $region->getScreen()->getId(),
+        'region' => $region->getRegion()
       );
     }
     return $regions;
   }
 
   /**
-   * Get channel content.
+   * Get sharedChannel content.
    *
-   * @return \array
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("data")
@@ -321,9 +332,9 @@ class SharedChannel {
   }
 
   /**
-   * Get channel id.
+   * Get sharedChannel id.
    *
-   * @return \array
+   * @return string
    *
    * @VirtualProperty
    * @SerializedName("id")
@@ -337,7 +348,7 @@ class SharedChannel {
    * Add channelScreenRegion
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
-   * @return Screen
+   * @return SharedChannel
    */
   public function addChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
     $this->channelScreenRegions[] = $channelScreenRegion;
@@ -365,6 +376,8 @@ class SharedChannel {
 
   /**
    * Get screens
+   *
+   * @return array
    */
   public function getScreens() {
     $screens = array();
