@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Channel model.
+ * Contains the Channel model.
  */
 
 namespace Indholdskanalen\MainBundle\Entity;
@@ -14,7 +14,6 @@ use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\MaxDepth;
-
 
 /**
  * Channel entity.
@@ -156,7 +155,7 @@ class Channel {
    * Set lastPushHash
    *
    * @param string $lastPushHash
-   * @return Screen
+   * @return Channel
    */
   public function setLastPushHash($lastPushHash) {
     $this->lastPushHash = $lastPushHash;
@@ -178,7 +177,7 @@ class Channel {
    * Set lastPushScreens
    *
    * @param string $lastPushScreens
-   * @return Screen
+   * @return Channel
    */
   public function setLastPushScreens($lastPushScreens) {
     $this->lastPushScreens = $lastPushScreens;
@@ -220,9 +219,13 @@ class Channel {
    * Set title
    *
    * @param string $title
+   *
+   * @return Channel
    */
   public function setTitle($title) {
     $this->title = $title;
+
+    return $this;
   }
 
   /**
@@ -238,9 +241,13 @@ class Channel {
    * Set uniqueId
    *
    * @param string $uniqueId
+   *
+   * @return Channel
    */
   public function setUniqueId($uniqueId) {
     $this->uniqueId = $uniqueId;
+
+    return $this;
   }
 
   /**
@@ -257,9 +264,13 @@ class Channel {
    * Set orientation
    *
    * @param \int $orientation
+   *
+   * @return Channel
    */
   public function setOrientation($orientation) {
     $this->orientation = $orientation;
+
+    return $this;
   }
 
   /**
@@ -322,7 +333,6 @@ class Channel {
     return $this->channelSlideOrders;
   }
 
-
   /**
    * Get all slides
    *
@@ -334,9 +344,9 @@ class Channel {
    */
   public function getAllSlides() {
     $result = new ArrayCollection();
-    $slideorders = $this->getChannelSlideOrders();
-    foreach ($slideorders as $slideorder) {
-      $result->add($slideorder->getSlide());
+    $slideOrders = $this->getChannelSlideOrders();
+    foreach ($slideOrders as $slideOrder) {
+      $result->add($slideOrder->getSlide());
     }
     return $result;
   }
@@ -355,9 +365,9 @@ class Channel {
     $criteria = Criteria::create()
       ->orderBy(array("sortOrder" => Criteria::ASC));
 
-    $slideorders = $this->getChannelSlideOrders()->matching($criteria);
-    foreach ($slideorders as $slideorder) {
-      $slide = $slideorder->getSlide();
+    $slideOrders = $this->getChannelSlideOrders()->matching($criteria);
+    foreach ($slideOrders as $slideOrder) {
+      $slide = $slideOrder->getSlide();
       if ($slide->isSlideActive()) {
         $result->add($slide);
       }
@@ -369,7 +379,7 @@ class Channel {
   /**
    * Get channel content.
    *
-   * @return \array
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("data")
@@ -385,7 +395,7 @@ class Channel {
   /**
    * Get channel content.
    *
-   * @return \array
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("screens")
@@ -404,7 +414,7 @@ class Channel {
   /**
    * Get regions.
    *
-   * @return \array
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("regions")
@@ -414,8 +424,8 @@ class Channel {
     $regions = array();
     foreach ($this->getChannelScreenRegions() as $region) {
       $regions[] = array(
-        "screen" => $region->getScreen()->getId(),
-        "region" => $region->getRegion()
+        'screen' => $region->getScreen()->getId(),
+        'region' => $region->getRegion()
       );
     }
     return $regions;
@@ -500,7 +510,7 @@ class Channel {
    * Add channelScreenRegion
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
-   * @return Screen
+   * @return Channel
    */
   public function addChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
     $this->channelScreenRegions[] = $channelScreenRegion;
@@ -528,11 +538,13 @@ class Channel {
 
   /**
    * Get screens
+   *
+   * @return array
    */
   public function getScreens() {
     $screens = array();
 
-    foreach($this->getChannelScreenRegions() as $region) {
+    foreach ($this->getChannelScreenRegions() as $region) {
       $screens[] = $region->getScreen();
     }
 
