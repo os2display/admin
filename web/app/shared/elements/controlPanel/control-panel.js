@@ -58,6 +58,15 @@
             scope.selectedTab = tab;
           };
 
+          /**
+           * Click a channel type.
+           * @param channel type
+           *   Name of the channel type to display and which channel type to show active.
+           */
+          scope.toggleChannelType = function toggleChannelType(type) {
+            scope.channelType = type;
+          };
+
           // Register event listener for destroy.
           // Remove scroll lock.
           scope.$on('$destroy', function() {

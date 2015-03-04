@@ -1,5 +1,5 @@
 <div class="cpw--selected-channels">
-  <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
+  <input type="search" class="cpw--selected-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
   <div class="cpw--selected-channels-list">
     <div class="cpw--selected-channels-item" data-ng-repeat="csr in screen.channel_screen_regions | filter: {shared_channel: '!', channel: getSearch(), region: region}">
       <div class="cpw--selected-channels-item-image">

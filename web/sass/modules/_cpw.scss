@@ -182,6 +182,10 @@
   &-search[type="search"] { // Override default search form.
     @extend %cpw--text;
     @extend %cpw--search;
+
+    @include breakpoint($breakpoint-bigscreen) {
+      width: 50%; // Position search next to shared channels filter.
+    }
   }
 
   &-item {
@@ -217,6 +221,71 @@
       @extend %button--action;
 
       padding: .3rem;
+    }
+  }
+
+  &-type {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1em;
+
+    @include breakpoint($breakpoint-bigscreen) {
+      position: absolute;  // Position search next to shared channels filter.
+      right: 1.5em;
+      width: auto;
+    }
+  }
+
+  &-type-items {
+    @extend %itk--tabs; // Use the ITK tabs component.
+  }
+
+  &-type-item {
+    @extend %itk--tabs-item; // Use the ITK tabs component.
+    width: 50%;
+
+    @include breakpoint($breakpoint-bigscreen) {
+      width: auto;  // Position search next to shared channels filter.
+    }
+
+    &.is-active {
+      font-weight: bold;
+    }
+  }
+
+  &-select-index {
+    margin-bottom: 2em;
+    position: relative;
+  }
+
+  &-select-index-button {
+    @extend %button--default;
+
+    z-index: 2;
+  }
+
+  &-select-index-items {
+    background: $white;
+    box-sizing: border-box;
+    border-left: 1px solid $gray-dark;
+    border-right: 1px solid $gray-dark;
+    border-bottom: 1px solid $gray-dark;
+    padding: .3em 0;
+    position: absolute;
+    width: 100%;
+    top: 1.9em;
+    z-index: 1;
+
+    @include border-bottom-radius(.3em);
+  }
+
+  &-select-index-item {
+    background: $white;
+    cursor: pointer;
+    padding: 0 1em;
+
+    &:hover {
+      background: $gray-lighter;
     }
   }
 }
