@@ -276,7 +276,7 @@ class Channel {
   /**
    * Get orientation
    *
-   * @return \string
+   * @return string
    */
   public function getOrientation() {
     return $this->orientation;
