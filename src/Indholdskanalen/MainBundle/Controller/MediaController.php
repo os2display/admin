@@ -25,7 +25,7 @@ class MediaController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function MediaUploadAction(Request $request) {
+  public function mediaUploadAction(Request $request) {
     $title = $request->request->get('title');
 
     $uploadedItems = array();
@@ -35,7 +35,8 @@ class MediaController extends Controller {
 
       if (isset($title) && $title !== '') {
         $media->setName($title);
-      } else {
+      }
+      else {
         $path_parts = pathinfo($file->getClientOriginalName());
         $media->setName($path_parts['filename']);
       }
@@ -55,7 +56,8 @@ class MediaController extends Controller {
           $isLogo = $request->request->get('logo');
           if (isset($isLogo) && $isLogo === 'true') {
             $media->setMediaType('logo');
-          } else {
+          }
+          else {
             $media->setMediaType('image');
           }
 
@@ -68,11 +70,11 @@ class MediaController extends Controller {
       $media->setBinaryContent($file->getPathname());
       $media->setContext('default');
 
-	    // Set creator.
-	    $userEntity = $this->get('security.context')->getToken()->getUser();
-	    $media->setUser($userEntity->getId());
+      // Set creator.
+      $userEntity = $this->get('security.context')->getToken()->getUser();
+      $media->setUser($userEntity->getId());
 
-      $mediaManager = $this->get("sonata.media.manager.media");
+      $mediaManager = $this->get('sonata.media.manager.media');
 
       $mediaManager->save($media);
 
@@ -94,7 +96,7 @@ class MediaController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function MediaListAction() {
+  public function mediaListAction() {
     $em = $this->getDoctrine()->getManager();
     $qb = $em->createQueryBuilder();
 
@@ -108,7 +110,8 @@ class MediaController extends Controller {
     $response = new Response();
 
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($results, 'json', SerializationContext::create()->setGroups(array('api')));
+    $jsonContent = $serializer->serialize($results, 'json', SerializationContext::create()
+        ->setGroups(array('api')));
 
     $response->setContent($jsonContent);
     // JSON header.
@@ -127,7 +130,7 @@ class MediaController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function MediaGetBulkAction(Request $request) {
+  public function mediaGetBulkAction(Request $request) {
     $ids = $request->query->get('ids');
 
     $response = new Response();
@@ -157,7 +160,8 @@ class MediaController extends Controller {
 
       $serializer = $this->get('jms_serializer');
       $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))));
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()
+            ->setGroups(array('api'))));
     }
     else {
       $response->setContent(json_encode(array()));
@@ -176,8 +180,9 @@ class MediaController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function MediaGetAction($id) {
-    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
+  public function mediaGetAction($id) {
+    $media = $this->getDoctrine()
+      ->getRepository('ApplicationSonataMediaBundle:Media')
       ->findOneById($id);
 
     // Create response.
@@ -186,7 +191,8 @@ class MediaController extends Controller {
 
     if ($media) {
       $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()->setGroups(array('api')));
+      $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()
+          ->setGroups(array('api')));
 
       $response->setContent($jsonContent);
     }
@@ -207,9 +213,11 @@ class MediaController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function MediaDeleteAction($id) {
+  public function mediaDeleteAction($id) {
     $em = $this->getDoctrine()->getManager();
-    $media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')->findOneById($id);
+    $media = $this->getDoctrine()
+      ->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findOneById($id);
 
     // Create response.
     $response = new Response();

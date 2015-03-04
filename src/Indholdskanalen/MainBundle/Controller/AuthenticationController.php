@@ -39,7 +39,7 @@ class AuthenticationController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SearchAuthGetAction($prefix, $reauth = '') {
+  public function searchAuthGetAction($prefix, $reauth = '') {
     $response = new Response();
     $authenticationService = $this->container->get('indholdskanalen.authentication_service');
 

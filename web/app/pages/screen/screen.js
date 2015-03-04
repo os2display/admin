@@ -7,7 +7,7 @@
  * Screen controller. Controls the screen creation process.
  */
 angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
-  function($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration) {
+  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration) {
     $scope.sharingEnabled = configuration.sharingService.enabled;
     $scope.screen = {};
     $scope.toolbarTemplate = null;
@@ -28,13 +28,17 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
         } else {
           // Get the screen from the backend.
           screenFactory.getEditScreen($routeParams.id).then(
-            function(data) {
+            function (data) {
               $scope.screen = data;
 
               // Decode the shared channels.
-              $scope.screen.channel_screen_regions.forEach(function(csr) {
+              $scope.screen.channel_screen_regions.forEach(function (csr) {
                 if (csr.shared_channel) {
+                  // Parse the content of the shared channel
+                  //   Set title and slides of the shared_channel.
                   csr.shared_channel.content = JSON.parse(csr.shared_channel.content);
+                  csr.shared_channel.title = csr.shared_channel.content.title;
+                  csr.shared_channel.slides = csr.shared_channel.content.slides;
                 }
               });
 
@@ -43,13 +47,14 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
               }
             },
             // Error getting
-            function(reason) {
+            function (reason) {
               console.log(reason);
             }
           );
         }
       }
     }
+
     init();
 
     /**
@@ -57,13 +62,12 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      */
     $scope.saveScreen = function saveScreen() {
       screenFactory.saveScreen().then(
-        function() {
+        function () {
           $scope.displayToolbar = false;
           $scope.region = null;
         },
-        function(reason) {
+        function () {
           // @TODO: Handle error.
-          console.log(reason);
         }
       );
     };

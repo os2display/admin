@@ -32,7 +32,7 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelSaveAction(Request $request) {
+  public function channelSaveAction(Request $request) {
     // Get posted channel information from the request.
     $post = json_decode($request->getContent());
 
@@ -57,9 +57,9 @@ class ChannelController extends Controller {
       $channel = new Channel();
       $channel->setCreatedAt(time());
 
-	    // Set creator.
-	    $userEntity = $this->get('security.context')->getToken()->getUser();
-	    $channel->setUser($userEntity->getId());
+      // Set creator.
+      $userEntity = $this->get('security.context')->getToken()->getUser();
+      $channel->setUser($userEntity->getId());
     }
 
     // Update fields.
@@ -88,8 +88,8 @@ class ChannelController extends Controller {
 
     // Add slides and update sort order.
     $sort_order = 0;
-	  $slideRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Slide');
-	  $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
+    $slideRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Slide');
+    $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
 
     foreach ($post_slide_ids as $slide_id) {
       $slide = $slideRepository->findOneById($slide_id);
@@ -132,7 +132,7 @@ class ChannelController extends Controller {
 
     // Create response.
     $response = new Response();
-		$response->setStatusCode(200);
+    $response->setStatusCode(200);
 
     return $response;
   }
@@ -155,16 +155,17 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelShareAction(Request $request) {
+  public function channelShareAction(Request $request) {
     $post = json_decode($request->getContent());
 
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getManager();
 
-    $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')->findOneById($post->id);
+    $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findOneById($post->id);
 
     // Set the sharing id, if it is not set.
-    if ($channel->getUniqueId() === null || $channel->getUniqueId() === '0') {
+    if ($channel->getUniqueId() === NULL || $channel->getUniqueId() === '0') {
       $index = $this->container->getParameter('sharing_apikey');
       $id = sha1($index . $channel->getId());
       $channel->setUniqueId($id);
@@ -193,7 +194,8 @@ class ChannelController extends Controller {
 
       // Add sharing indexes.
       foreach ($post_sharing_indexes_ids as $sharingIndexId) {
-        $sharingIndex = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')->findOneById($sharingIndexId);
+        $sharingIndex = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')
+          ->findOneById($sharingIndexId);
         if ($sharingIndex) {
           if (!$channel->getSharingIndexes()->contains($sharingIndex)) {
             $channel->addSharingIndex($sharingIndex);
@@ -229,8 +231,9 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelGetAction($id) {
-    $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+  public function channelGetAction($id) {
+    $channel = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
     $serializer = $this->get('jms_serializer');
@@ -239,7 +242,9 @@ class ChannelController extends Controller {
     $response = new Response();
     if ($channel) {
       $response->headers->set('Content-Type', 'application/json');
-      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()
+          ->setGroups(array('api'))
+          ->enableMaxDepthChecks());
       $response->setContent($json_content);
     }
     else {
@@ -260,8 +265,9 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelDeleteAction($id) {
-    $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+  public function channelDeleteAction($id) {
+    $channel = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
     $dispatcher = $this->get('event_dispatcher');

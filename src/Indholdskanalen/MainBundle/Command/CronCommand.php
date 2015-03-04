@@ -27,7 +27,7 @@ class CronCommand extends ContainerAwareCommand {
   protected function configure() {
     $this
       ->setName('ik:cron')
-      ->setDescription("Cron");
+      ->setDescription('Cron');
   }
 
   /**
@@ -40,14 +40,16 @@ class CronCommand extends ContainerAwareCommand {
   protected function execute(InputInterface $input, OutputInterface $output) {
     // Update shared channels.
     if ($this->getContainer()->getParameter('sharing_enabled')) {
-      $sharingService = $this->getContainer()->get('indholdskanalen.sharing_service');
+      $sharingService = $this->getContainer()
+        ->get('indholdskanalen.sharing_service');
       $sharingService->updateAllSharedChannels();
     }
 
     // Push content to screens.
-    $middlewareCommunication = $this->getContainer()->get('indholdskanalen.middleware.communication');
+    $middlewareCommunication = $this->getContainer()
+      ->get('indholdskanalen.middleware.communication');
     $middlewareCommunication->pushToScreens();
 
-    $output->writeln("Content pushed to screens.");
+    $output->writeln('Content pushed to screens.');
   }
 }

@@ -1,7 +1,7 @@
 <div class="cpw--selected-channels">
   <input type="search" class="cpw--selected-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
   <div class="cpw--selected-channels-list">
-    <div class="cpw--selected-channels-item" data-ng-repeat="csr in screen.channel_screen_regions | filter:{channel:'!!'} | filter: {channel: getSearch(), region: region}" data-ng-if="channelSelected(csr.channel)">
+    <div class="cpw--selected-channels-item" data-ng-repeat="csr in screen.channel_screen_regions | filter: {shared_channel: '!', channel: getSearch(), region: region}">
       <div class="cpw--selected-channels-item-image">
         <ik-channel class="overview--channel-container" ik-channel="csr.channel" ik-width="{{channel.orientation == 'portrait' ? 112.5 : 200 }}" ik-single-slide="false" ik-clickable="false"></ik-channel>
       </div>
@@ -11,7 +11,7 @@
         <a data-ng-click="removeChannel(csr.channel)" class="cpw--selected-channels-item-action">Fjern</a>
       </div>
     </div>
-    <div class="cpw--selected-channels-item" data-ng-repeat="csr in screen.channel_screen_regions | filter: {shared_channel:'!!'} | filter: {shared_channel: getSearch(), region: region}"  data-ng-if="channelSelected(csr.shared_channel)">
+    <div class="cpw--selected-channels-item" data-ng-repeat="csr in screen.channel_screen_regions | filter: {channel: '!', shared_channel: getSearch(), region: region}">
       <div class="cpw--selected-channels-item-image">
         <ik-shared-channel class="overview--channel-container" ik-sharing-index="" ik-channel="csr.shared_channel" ik-width="{{channel.orientation == 'portrait' ? 112.5 : 200 }}" ik-single-slide="false" ik-clickable="false"></ik-shared-channel>
       </div>
