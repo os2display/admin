@@ -19,6 +19,7 @@ $pager--valid: $beige;
 
 .pager {
   margin-bottom: 3em;
+  margin-top: 2em;
   padding: 2em 0;
   text-align: center;
 
@@ -89,7 +90,7 @@ $pager--valid: $beige;
   /* Pager for the search result pages.
      ========================================================================== */
 
-  &--search{
+  &--search {
     margin-bottom: 2em;
     text-align: center;
   }

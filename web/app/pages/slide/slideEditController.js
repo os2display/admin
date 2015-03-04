@@ -35,12 +35,12 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      toggleTextEditorResponsive: function() {
+      toggleHeaderEditorResponsive: function() {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/text-editor-responsive.html';
+          $scope.editorURL = 'app/shared/elements/slide/editors/header-editor-responsive.html';
         } else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';

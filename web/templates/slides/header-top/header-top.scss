@@ -7,36 +7,54 @@
   font-family: Arial, sans-serif;
 
   @include background-size(cover);
+
+
+  &--edit-box-settings {
+    @extend %slide--edit-box-settings;
+  }
+
+  &--edit-image-settings  {
+    @extend %slide--edit-image-settings;
+  }
 }
 
 .header-top--inner {
   height: 100%;
-
   overflow: hidden;
 }
 
-.header-top--header-wrapper {
-  background-color: #379f40;
-}
-
 .header-top--header {
+  border: 0;
   font-size: 100%;
   margin: 0;
+  overflow: hidden;
   padding: 2vw;
   font-weight: bold;
+  outline: none;
+  resize: none;
+
+  &:focus {
+    border: 0;
+  }
 }
 
 .header-top--content {
   font-size: 50%;
+  margin: .5em;
   padding: 2vw;
+
+  &-text {
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    margin: 1em;
+    outline:none;
+    resize: none;
+
+    &:focus {
+      border: 0;
+    }
+  }
 }
 
 
-.header-top--edit-box-settings {
-  @extend %slide--edit-box-settings;
-}
 
-
-.header-top--edit-image-settings  {
-  @extend %slide--edit-image-settings;
-}

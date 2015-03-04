@@ -2036,6 +2036,8 @@ html.is-locked body {
     height: 100%;
     width: 100%;
     position: relative; }
+  .edit-menu--background-input {
+    margin-bottom: 2em; }
   .edit-menu--content-page, .edit-menu--background-page {
     width: 100%;
     height: 100%;
@@ -3116,6 +3118,7 @@ html.is-locked body {
    ========================================================================== */
 .pager {
   margin-bottom: 3em;
+  margin-top: 2em;
   padding: 2em 0;
   text-align: center;
   /* Pager for the search result pages.

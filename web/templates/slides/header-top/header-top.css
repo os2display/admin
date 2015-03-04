@@ -320,15 +320,27 @@ table {
   height: 100%;
   overflow: hidden; }
 
-.header-top--header-wrapper {
-  background-color: #379f40; }
-
 .header-top--header {
+  border: 0;
   font-size: 100%;
   margin: 0;
+  overflow: hidden;
   padding: 2vw;
-  font-weight: bold; }
+  font-weight: bold;
+  outline: none;
+  resize: none; }
+  .header-top--header:focus {
+    border: 0; }
 
 .header-top--content {
   font-size: 50%;
+  margin: .5em;
   padding: 2vw; }
+  .header-top--content-text {
+    background-color: transparent;
+    border: 0;
+    margin: 1em;
+    outline: none;
+    resize: none; }
+    .header-top--content-text:focus {
+      border: 0; }
