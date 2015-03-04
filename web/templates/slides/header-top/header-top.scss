@@ -16,6 +16,10 @@
   &--edit-image-settings  {
     @extend %slide--edit-image-settings;
   }
+
+  pre {
+    font-family: inherit;
+  }
 }
 
 .header-top--inner {

@@ -279,6 +279,36 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
+.event-calendar--edit-box-settings {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: url('/../../../images/icons-se731c6030f.png');
+  -moz-background-size: 64px 894px;
+  -o-background-size: 64px 894px;
+  -webkit-background-size: 64px 894px;
+  background-size: 64px 894px;
+  width: 50px;
+  height: 50px;
+  background-position: 0 -341px; }
+  .event-calendar--edit-box-settings:hover {
+    cursor: pointer; }
+
+.event-calendar--edit-image-settings {
+  bottom: 15%;
+  position: absolute;
+  right: 15%;
+  background: url('/../../../images/icons-se731c6030f.png');
+  -moz-background-size: 128px 1788px;
+  -o-background-size: 128px 1788px;
+  -webkit-background-size: 128px 1788px;
+  background-size: 128px 1788px;
+  width: 51px;
+  height: 51px;
+  background-position: 0 -802px; }
+  .event-calendar--edit-image-settings:hover {
+    cursor: pointer; }
+
 /* Placeholders related to this document
    ========================================================================== */
 .event-calendar--title, .event-calendar--title-header, .event-calendar--place, .event-calendar--place-header, .event-calendar--time, .event-calendar--time-header {
@@ -371,3 +401,5 @@ table {
     border-color: inherit; }
     .event-calendar--title:last-child, .event-calendar--place:last-child, .event-calendar--time:last-child {
       border: 0px; }
+  .event-calendar--edit-box-settings {
+    z-index: 1; }

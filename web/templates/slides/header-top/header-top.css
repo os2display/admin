@@ -315,6 +315,8 @@ table {
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover; }
+  .header-top pre {
+    font-family: inherit; }
 
 .header-top--inner {
   height: 100%;
