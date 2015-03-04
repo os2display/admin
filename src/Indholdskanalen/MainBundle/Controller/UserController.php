@@ -21,7 +21,7 @@ class UserController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function UserAction() {
+  public function userAction() {
 	  $user = $this->get('security.context')->getToken()->getUser();
 
 	  $serializer = $this->get('jms_serializer');

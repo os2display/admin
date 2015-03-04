@@ -23,7 +23,7 @@ class ZencoderController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function CallbackAction(Request $request) {
+  public function callbackAction(Request $request) {
     // Get posted channel information from the request.
     $post = json_decode($request->getContent());
 
@@ -96,7 +96,7 @@ class ZencoderController extends Controller {
       $local_media->setAuthorName(NULL);
       $local_media->setProviderStatus(MediaInterface::STATUS_OK);
 
-      $media_manager = $this->get("sonata.media.manager.media");
+      $media_manager = $this->get('sonata.media.manager.media');
       $media_manager->save($local_media);
 
       $status = TRUE;

@@ -92,7 +92,7 @@ class SharingIndex {
   /**
    * Set enabled
    *
-   * @param string $enabled
+   * @param boolean $enabled
    */
   public function setEnabled($enabled) {
     $this->enabled = $enabled;
@@ -101,7 +101,7 @@ class SharingIndex {
   /**
    * Get enabled
    *
-   * @return string
+   * @return boolean
    */
   public function getEnabled() {
     return $this->enabled;
