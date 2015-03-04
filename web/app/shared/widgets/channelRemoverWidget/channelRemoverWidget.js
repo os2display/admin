@@ -43,30 +43,6 @@
           };
 
           /**
-           * Returns true if channel is in channel array with region.
-           *
-           * @param channel
-           * @returns {boolean}
-           */
-          scope.channelSelected = function channelSelected(channel) {
-            if (channel === undefined) {
-              return false;
-            }
-
-            var element;
-            for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
-              element = scope.screen.channel_screen_regions[i];
-              if (element.channel && element.channel.id === channel.id && element.region === scope.region) {
-                return true;
-              }
-              else if (element.shared_channel && channel.unique_id && element.shared_channel.unique_id === channel.unique_id && element.region === scope.region) {
-                return true;
-              }
-            }
-            return false;
-          };
-
-          /**
            * Removing a channel from a screen region.
            * @param channel
            *   Channel to remove from the screen region.

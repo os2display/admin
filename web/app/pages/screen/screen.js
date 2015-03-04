@@ -34,7 +34,11 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
               // Decode the shared channels.
               $scope.screen.channel_screen_regions.forEach(function(csr) {
                 if (csr.shared_channel) {
+                  // Parse the content of the shared channel
+                  //   Set title and slides of the shared_channel.
                   csr.shared_channel.content = JSON.parse(csr.shared_channel.content);
+                  csr.shared_channel.title = csr.shared_channel.content.title;
+                  csr.shared_channel.slides = csr.shared_channel.content.slides;
                 }
               });
 
@@ -63,7 +67,6 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
         },
         function(reason) {
           // @TODO: Handle error.
-          console.log(reason);
         }
       );
     };

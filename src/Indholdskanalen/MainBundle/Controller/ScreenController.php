@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\Controller;
 
 use Indholdskanalen\MainBundle\Entity\ChannelScreenRegion;
+use Proxies\__CG__\Indholdskanalen\MainBundle\Entity\SharedChannel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Screen;
 use JMS\Serializer\SerializationContext;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * ScreenController.
@@ -35,8 +37,7 @@ class ScreenController extends Controller {
       $screen = $this->getDoctrine()
         ->getRepository('IndholdskanalenMainBundle:Screen')
         ->findByActivationCode($code);
-    }
-    while ($screen != NULL);
+    } while ($screen != NULL);
 
     return $code;
   }
@@ -108,7 +109,9 @@ class ScreenController extends Controller {
 
     // Change the template if it is set.
     if (isset($post->template)) {
-      $template = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findOneById($post->template->id);
+      $template = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:ScreenTemplate')
+        ->findOneById($post->template->id);
 
       if ($template) {
         $screen->setTemplate($template);
@@ -117,7 +120,10 @@ class ScreenController extends Controller {
 
     // Set selected channels.
     if (isset($post->channel_screen_regions)) {
-      $channelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel');
+      $channelRepository = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:Channel');
+      $sharedChannelRepository = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:SharedChannel');
 
       // Gather channel screen region ids.
       $ids = array();
@@ -134,21 +140,72 @@ class ScreenController extends Controller {
         }
       }
 
+      $sharingService = $this->get('indholdskanalen.sharing_service');
+
       // Add new ChannelScreenRegions.
       foreach ($post->channel_screen_regions as $channelScreenRegion) {
         if (!isset($channelScreenRegion->id)) {
-          // Get channel.
-          $channel = $channelRepository->findOneById($channelScreenRegion->channel->id);
+          // If ChannelScreenRegion is with Channel
+          if (isset($channelScreenRegion->channel)) {
+            // Get channel.
+            $channel = $channelRepository->findOneById($channelScreenRegion->channel->id);
 
-          // If the channel exists, create new ChannelScreenRegion.
-          if ($channel) {
-            $newChannelScreenRegion = new ChannelScreenRegion();
-            $newChannelScreenRegion->setChannel($channel);
-            $newChannelScreenRegion->setRegion($channelScreenRegion->region);
-            $newChannelScreenRegion->setScreen($screen);
-            $newChannelScreenRegion->setSortOrder(1);
+            // If the channel exists, create new ChannelScreenRegion.
+            if ($channel) {
+              $newChannelScreenRegion = new ChannelScreenRegion();
+              $newChannelScreenRegion->setChannel($channel);
+              $newChannelScreenRegion->setRegion($channelScreenRegion->region);
+              $newChannelScreenRegion->setScreen($screen);
+              $newChannelScreenRegion->setSortOrder(1);
 
-            $em->persist($newChannelScreenRegion);
+              $em->persist($newChannelScreenRegion);
+            }
+          }
+          // If ChannelScreenRegion is with SharedChannel
+          else {
+            if (isset($channelScreenRegion->shared_channel)) {
+              // Get shared channel.
+              $sharedChannel = $sharedChannelRepository->findOneByUniqueId($channelScreenRegion->shared_channel->unique_id);
+
+              // Get channel from sharing service.
+              $result = $sharingService->getChannelFromIndex($channelScreenRegion->shared_channel->unique_id, $channelScreenRegion->shared_channel->index);
+
+              if ($result['status'] !== 200) {
+                throw new NotFoundHttpException();
+              }
+
+              $channelFromSharing = json_decode($result['content']);
+
+              // No hits founds, or too many.
+              if (!$channelFromSharing || $channelFromSharing->hits > 1 || $channelFromSharing->hits < 1) {
+                throw new NotFoundHttpException();
+              }
+
+              // Encode channel as json.
+              $channelFromSharing = $channelFromSharing->results[0];
+
+              if (!$sharedChannel) {
+                $sharedChannel = new SharedChannel();
+                $sharedChannel->setCreatedAt(time());
+                $sharedChannel->setUniqueId($channelScreenRegion->shared_channel->unique_id);
+                $sharedChannel->setIndex($channelScreenRegion->shared_channel->index);
+              }
+
+              $sharedChannel->setContent(json_encode($channelFromSharing));
+              $sharedChannel->setModifiedAt(time());
+              $em->persist($sharedChannel);
+
+              // If the channel exists, create new ChannelScreenRegion.
+              if ($sharedChannel) {
+                $newChannelScreenRegion = new ChannelScreenRegion();
+                $newChannelScreenRegion->setSharedChannel($sharedChannel);
+                $newChannelScreenRegion->setRegion($channelScreenRegion->region);
+                $newChannelScreenRegion->setScreen($screen);
+                $newChannelScreenRegion->setSortOrder(1);
+
+                $em->persist($newChannelScreenRegion);
+              }
+            }
           }
         }
       }
@@ -188,8 +245,8 @@ class ScreenController extends Controller {
       $serializer = $this->get('jms_serializer');
       $response->headers->set('Content-Type', 'application/json');
       $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()
-          ->setGroups(array('api'))
-          ->enableMaxDepthChecks());
+        ->setGroups(array('api'))
+        ->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }
     else {
@@ -235,7 +292,8 @@ class ScreenController extends Controller {
       'id' => $screen->getId(),
       'title' => $screen->getTitle(),
       'options' => $screen->getOptions(),
-      "template" => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()->setGroups(array('middleware'))))
+      "template" => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()
+            ->setGroups(array('middleware'))))
     );
 
     // Return the json response.
@@ -285,7 +343,8 @@ class ScreenController extends Controller {
       "id" => $screen->getId(),
       "title" => $screen->getTitle(),
       "options" => $screen->getOptions(),
-      "template" => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()->setGroups(array('middleware'))))
+      "template" => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()
+            ->setGroups(array('middleware'))))
     )), 200);
   }
 

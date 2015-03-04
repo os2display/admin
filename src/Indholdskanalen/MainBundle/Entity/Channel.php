@@ -128,6 +128,13 @@ class Channel {
   private $lastPushScreens;
 
   /**
+   * When was the last time it was pushed?
+   *
+   * @ORM\Column(name="last_push_time", type="integer", nullable=true)
+   */
+  private $lastPushTime;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -186,6 +193,27 @@ class Channel {
    */
   public function getLastPushScreens() {
     return $this->lastPushScreens;
+  }
+
+  /**
+   * Set lastPushTime
+   *
+   * @param integer $lastPushTime
+   * @return Screen
+   */
+  public function setLastPushTime($lastPushTime) {
+    $this->lastPushTime = $lastPushTime;
+
+    return $this;
+  }
+
+  /**
+   * Get lastPushTime
+   *
+   * @return integer
+   */
+  public function getLastPushTime() {
+    return $this->lastPushTime;
   }
 
   /**
@@ -348,13 +376,9 @@ class Channel {
    * @Groups({"middleware"})
    */
   public function getData() {
-    $slides = array();
-    foreach ($this->getPublishedSlides() as $slide) {
-      $slides[] = $slide;
-    }
     return array(
       'id' => $this->getId(),
-      'slides' => $slides
+      'slides' => $this->getPublishedSlides()->toArray()
     );
   }
 
@@ -368,13 +392,13 @@ class Channel {
    * @Groups({"middleware"})
    */
   public function getMiddlewareScreens() {
-    $slides = array();
+    $screens = array();
     foreach ($this->getChannelScreenRegions() as $region) {
-      if (!in_array($region->getScreen()->getId(), $slides)) {
-        $slides[] = $region->getScreen()->getId();
+      if (!in_array($region->getScreen()->getId(), $screens)) {
+        $screens[] = $region->getScreen()->getId();
       }
     }
-    return $slides;
+    return $screens;
   }
 
   /**

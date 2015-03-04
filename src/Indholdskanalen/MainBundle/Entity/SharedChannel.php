@@ -15,7 +15,6 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\MaxDepth;
 
-
 /**
  * Shared Channel - Channel that is loaded from another installation.
  *
@@ -27,7 +26,7 @@ class SharedChannel {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "api-bulk", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "sharing"})
    */
   private $id;
 
@@ -78,6 +77,13 @@ class SharedChannel {
    * @ORM\Column(name="last_push_screens", type="json_array", nullable=true)
    */
   private $lastPushScreens;
+
+  /**
+   * When was the last time it was pushed?
+   *
+   * @ORM\Column(name="last_push_time", type="integer", nullable=true)
+   */
+  private $lastPushTime;
 
   /**
    * Constructor
@@ -136,6 +142,27 @@ class SharedChannel {
    */
   public function getLastPushScreens() {
     return $this->lastPushScreens;
+  }
+
+  /**
+   * Set lastPushTime
+   *
+   * @param integer $lastPushTime
+   * @return Screen
+   */
+  public function setLastPushTime($lastPushTime) {
+    $this->lastPushTime = $lastPushTime;
+
+    return $this;
+  }
+
+  /**
+   * Get lastPushTime
+   *
+   * @return integer
+   */
+  public function getLastPushTime() {
+    return $this->lastPushTime;
   }
 
   /**
@@ -258,6 +285,26 @@ class SharedChannel {
   }
 
   /**
+   * Get regions.
+   *
+   * @return \array
+   *
+   * @VirtualProperty
+   * @SerializedName("regions")
+   * @Groups({"middleware"})
+   */
+  public function getMiddlewareChannelScreenRegions() {
+    $regions = array();
+    foreach ($this->getChannelScreenRegions() as $region) {
+      $regions[] = array(
+        "screen" => $region->getScreen()->getId(),
+        "region" => $region->getRegion()
+      );
+    }
+    return $regions;
+  }
+
+  /**
    * Get channel content.
    *
    * @return \array
@@ -273,6 +320,18 @@ class SharedChannel {
     );
   }
 
+  /**
+   * Get channel id.
+   *
+   * @return \array
+   *
+   * @VirtualProperty
+   * @SerializedName("id")
+   * @Groups({"middleware"})
+   */
+  public function getMiddlewareId() {
+    return $this->uniqueId;
+  }
 
   /**
    * Add channelScreenRegion

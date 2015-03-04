@@ -120,7 +120,7 @@
             var element;
             for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
               element = scope.screen.channel_screen_regions[i];
-              if (element.shared_channel && element.shared_channel.id === channel.id && element.region === scope.region) {
+              if (element.shared_channel && element.shared_channel.unique_id === channel.unique_id && element.region === scope.region) {
                 return true;
               }
             }
@@ -133,6 +133,10 @@
            *   Channel to add to the screen region.
            */
           scope.addChannel = function addChannel(channel) {
+            if (channel.index === undefined || channel.index === null) {
+              channel.index = scope.index.index;
+            }
+
             scope.screen.channel_screen_regions.push({
               "id": null,
               "screen_id": scope.screen.id,
@@ -150,7 +154,7 @@
             var element;
             for (var i = 0; i < scope.screen.channel_screen_regions.length; i++) {
               element = scope.screen.channel_screen_regions[i];
-              if (element.shared_channel && element.shared_channel.id === channel.id && element.region === scope.region) {
+              if (element.shared_channel && element.shared_channel.unique_id === channel.unique_id && element.region === scope.region) {
                 scope.screen.channel_screen_regions.splice(i, 1);
               }
             }
