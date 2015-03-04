@@ -22,7 +22,7 @@ class ScreensController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ScreensGetAction() {
+  public function screensGetAction() {
     // Screen entities
     $screen_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
       ->findAll();
@@ -47,7 +47,7 @@ class ScreensController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ScreensGetBulkAction(Request $request) {
+  public function screensGetBulkAction(Request $request) {
     $ids = $request->query->get('ids');
 
     $response = new Response();

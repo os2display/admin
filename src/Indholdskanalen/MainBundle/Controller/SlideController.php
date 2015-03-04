@@ -31,7 +31,7 @@ class SlideController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlideSaveAction(Request $request) {
+  public function slideSaveAction(Request $request) {
     // Get posted slide information from the request.
     $post = json_decode($request->getContent(), TRUE);
 
@@ -240,7 +240,7 @@ class SlideController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlideGetAction($id) {
+  public function slideGetAction($id) {
     $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
@@ -273,7 +273,7 @@ class SlideController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlideDeleteAction($id) {
+  public function slideDeleteAction($id) {
     $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 

@@ -26,7 +26,7 @@ class TemplatesController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function TemplatesGetSlidesAction() {
+  public function templatesGetSlidesAction() {
     $templateService = $this->container->get('indholdskanalen.template_service');
     $templates = $templateService->getSlideTemplates();
 
@@ -46,7 +46,7 @@ class TemplatesController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function TemplatesGetScreensAction() {
+  public function templatesGetScreensAction() {
     $templateService = $this->container->get('indholdskanalen.template_service');
     $templates = $templateService->getScreenTemplates();
     $serializer = $this->container->get('jms_serializer');
