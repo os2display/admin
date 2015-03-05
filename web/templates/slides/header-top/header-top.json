@@ -3,9 +3,9 @@
   "icon": "header-top.png",
   "type": "responsive",
   "paths": {
-    "live": "header-top.html",
+    "live": "header-top-live.html",
     "edit": "header-top-edit.html",
-    "preview": "header-top.html",
+    "preview": "header-top-preview.html",
     "css": "header-top.css"
   },
   "orientation": "landscape",
@@ -22,6 +22,7 @@
     "textcolor": "rgba(0,0,0,1)",
     "headline": "",
     "text": "",
+    "responsive_fontsize": "6",
     "defaultImage": "header-top.png"
   }
 }
