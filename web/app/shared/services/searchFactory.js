@@ -157,8 +157,5 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
 
       return deferred.promise;
     };
-
-    // Connect to the search.
-    connect();
   }
 ]);
