@@ -34,7 +34,6 @@ twig:
     sharing_enabled: %sharing_enabled%
     search_host: %search_host%
     search_index: %search_index%
-    logo: %logo%
     site_title: %site_title%
     templates_slides_enabled: %templates_slides_enabled%
     templates_slides_directory: %templates_slides_directory%

@@ -15,7 +15,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     $scope.subMenuItems = [];
     $scope.showMobileMainMenu = false;
     $scope.showSharingOptions = configuration.sharingService.enabled;
-    $scope.logo = configuration.logo;
+    $scope.siteTitle = configuration.site_title;
 
     userFactory.getCurrentUser().then(
       function (data) {
