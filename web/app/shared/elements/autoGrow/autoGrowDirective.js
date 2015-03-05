@@ -15,14 +15,14 @@ angular.module('ikApp').directive('autoGrow', function() {
     scope: {
       fontSize: '@'
     },
-    link: function(scope, element, attr) {
+    link: function(scope, element) {
       var el = $(element);
 
       var resizeTextArea = function resizeTextArea(el) {
-        el.css("height", "0px");
-        var sh = el.prop("scrollHeight");
-        var minh = el.css("min-height").replace("px", "");
-        el.css("height", Math.max(sh, minh) + "px");
+        el.css('height', '0px');
+        var sh = el.prop('scrollHeight');
+        var minh = el.css('min-height').replace('px', '');
+        el.css('height', Math.max(sh, minh) + 'px');
       };
 
       element.bind('keyup', function() {
@@ -39,5 +39,5 @@ angular.module('ikApp').directive('autoGrow', function() {
         resizeTextArea(el);
       }, 100);
     }
-  }
+  };
 });
