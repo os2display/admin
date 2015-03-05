@@ -15,6 +15,8 @@
  *   leave out show all media.
  */
 angular.module('ikApp').directive('ikMediaOverview', function() {
+  'use strict';
+
   return {
     restrict: 'E',
     scope: {

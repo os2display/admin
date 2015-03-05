@@ -6,7 +6,9 @@
 /**
  * Setup the module.
  */
-(function() {
+(function () {
+  'use strict';
+
   var app;
   app = angular.module("itkTextAreaWidget", []);
 
@@ -18,7 +20,7 @@
    *   placeholderText (string): The placeholder text to display.
    */
   app.directive('textAreaWidget',
-    function() {
+    function () {
       return {
         restrict: 'E',
         scope: {

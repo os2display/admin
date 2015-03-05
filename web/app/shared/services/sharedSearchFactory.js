@@ -9,7 +9,9 @@
  * The communication is based on web-sockets via socket.io library.
  */
 angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', '$http',
-  function($q, $rootScope, configuration, $http) {
+  function ($q, $rootScope, configuration, $http) {
+    'use strict';
+
     var socket;
     var self = this;
     var token = null;
@@ -28,7 +30,7 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
         deferred.reject(reason);
       });
 
-      socket.on('connect', function(data) {
+      socket.on('connect', function (data) {
         self.connected = true;
         deferred.resolve('Connected to the server.');
       });
@@ -60,16 +62,16 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
         }
         else {
           $http.get('api/auth/sharing')
-            .success(function(data) {
+            .success(function (data) {
               token = data;
-              getSocket().then(function() {
-                deferred.resolve("Connected");
-              },
-              function(reason) {
-                deferred.reject(reason);
-              });
+              getSocket().then(function () {
+                  deferred.resolve("Connected");
+                },
+                function (reason) {
+                  deferred.reject(reason);
+                });
             })
-            .error(function(data, status) {
+            .error(function (data, status) {
               deferred.reject(status);
             });
         }
@@ -110,7 +112,7 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
      *   When data is received from the backend. If no data found an empty JSON
      *   object is returned.
      */
-    this.search = function(search, index) {
+    this.search = function (search, index) {
       var deferred = $q.defer();
 
       // Build default match all search query.
@@ -118,7 +120,7 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
         "index": index,
         "type": search.type,
         "query": {
-          "match_all": { }
+          "match_all": {}
         }
       };
 

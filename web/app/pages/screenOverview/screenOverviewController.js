@@ -8,7 +8,7 @@
  */
 angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory',
   function($scope, screenFactory, userFactory) {
-    "use strict";
+    'use strict';
 
     $scope.loading = false;
 

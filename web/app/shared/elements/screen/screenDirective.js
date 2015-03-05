@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').directive('ikScreen', [
   function () {
+    'use strict';
+
     return {
       restrict: 'E',
       scope: {

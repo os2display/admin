@@ -7,7 +7,9 @@
  * Shared Channel factory. Main entry point for accessing shared channels.
  */
 angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedSearchFactory',
-  function($http, $q, sharedSearchFactory) {
+  function ($http, $q, sharedSearchFactory) {
+    'use strict';
+
     var factory = {};
 
     var availableIndexes = null;
@@ -18,7 +20,7 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
      * @param indexName
      * @returns {*|Number}
      */
-    factory.searchChannels = function(search, indexName) {
+    factory.searchChannels = function (search, indexName) {
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
       return sharedSearchFactory.search(search, indexName);
     };
@@ -32,10 +34,10 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
       var defer = $q.defer();
 
       $http.get('/api/sharing/channel/' + id + '/' + index)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -51,10 +53,10 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
       var defer = $q.defer();
 
       $http.post('/api/sharing/channel', channel)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -65,7 +67,7 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
      * Get available indexes from sharing service
      * @returns {*}
      */
-    factory.getAvailableIndexes = function() {
+    factory.getAvailableIndexes = function () {
       var defer = $q.defer();
 
       if (availableIndexes !== null) {
@@ -73,11 +75,11 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
       }
       else {
         $http.get('/api/sharing/available_indexes')
-          .success(function(data) {
+          .success(function (data) {
             availableIndexes = data;
             defer.resolve(data);
           })
-          .error(function(data, status) {
+          .error(function (data, status) {
             defer.reject(status);
           });
       }
@@ -90,14 +92,14 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
      * @param indexes
      * @returns {*}
      */
-    factory.saveSharingIndexes = function(indexes) {
+    factory.saveSharingIndexes = function (indexes) {
       var defer = $q.defer();
 
       $http.post('/api/sharing/indexes', indexes)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -108,14 +110,14 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
      * Get the available sharing indexes.
      * @returns array of sharing indexes.
      */
-    factory.getSharingIndexes = function() {
+    factory.getSharingIndexes = function () {
       var defer = $q.defer();
 
       $http.get('/api/sharing/indexes')
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 

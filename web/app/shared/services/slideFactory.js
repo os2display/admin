@@ -7,7 +7,9 @@
  * Slide factory. Main entry point for slides.
  */
 angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
-  function($http, $q, searchFactory) {
+  function ($http, $q, searchFactory) {
+    'use strict';
+
     var factory = {};
 
     // Currently open slide.
@@ -19,7 +21,7 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
      * @param search
      * @returns {*|Number}
      */
-    factory.searchSlides = function(search) {
+    factory.searchSlides = function (search) {
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
       return searchFactory.search(search);
     };
@@ -31,10 +33,10 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
       var defer = $q.defer();
 
       $http.get('/api/slides')
-        .success(function(data, status) {
+        .success(function (data, status) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -60,10 +62,10 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
 
       // Load bulk.
       $http.get('/api/slides/bulk' + queryString)
-        .success(function(data, status) {
+        .success(function (data, status) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status)
         });
 
@@ -93,11 +95,11 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
         }
         else {
           $http.get('/api/slide/' + id)
-            .success(function(data, status) {
+            .success(function (data, status) {
               currentSlide = data;
               defer.resolve(currentSlide);
             })
-            .error(function(data, status) {
+            .error(function (data, status) {
               defer.reject(status);
             });
         }
@@ -110,14 +112,14 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
      * Find the slide with @id
      * @param id
      */
-    factory.getSlide = function(id) {
+    factory.getSlide = function (id) {
       var defer = $q.defer();
 
       $http.get('/api/slide/' + id)
-        .success(function(data, status) {
+        .success(function (data, status) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -127,15 +129,15 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
     /**
      * Saves slide to slides.
      */
-    factory.saveSlide = function() {
+    factory.saveSlide = function () {
       var defer = $q.defer();
 
       $http.post('/api/slide', currentSlide)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
           currentSlide = null;
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -146,7 +148,7 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
      * Returns an empty slide.
      * @returns slide (empty)
      */
-    factory.emptySlide = function() {
+    factory.emptySlide = function () {
       currentSlide = {
         "id": null,
         "published": true,

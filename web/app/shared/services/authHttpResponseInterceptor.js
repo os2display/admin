@@ -12,6 +12,8 @@
  */
 angular.module('ikApp').factory('authHttpResponseInterceptor', ['$q', '$location', '$window',
   function ($q, $location, $window) {
+    'use strict';
+
     return {
       responseError: function (rejection) {
         if (rejection.status === 401) {
@@ -27,5 +29,7 @@ angular.module('ikApp').factory('authHttpResponseInterceptor', ['$q', '$location
  * Register the event interceptor.
  */
 angular.module('ikApp').config(['$httpProvider', function ($httpProvider) {
+  'use strict';
+
   $httpProvider.interceptors.push('authHttpResponseInterceptor');
 }]);

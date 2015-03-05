@@ -8,6 +8,7 @@
  */
 angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory',
   function($scope, $location, $routeParams, $timeout, mediaFactory) {
+    'use strict';
 
     // Get the selected media
     mediaFactory.getMedia($routeParams.id).then(function(data) {

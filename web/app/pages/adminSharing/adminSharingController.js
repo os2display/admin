@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedChannelFactory',
   function ($scope, sharedChannelFactory) {
+    'use strict';
+
     $scope.saving = false;
 
     $scope.availableIndexes = [];

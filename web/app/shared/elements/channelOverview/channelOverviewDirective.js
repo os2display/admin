@@ -8,7 +8,7 @@
  */
 angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration', '$timeout',
   function(channelFactory, userFactory, configuration, $timeout) {
-    "use strict";
+    'use strict';
 
     return {
       restrict: 'E',

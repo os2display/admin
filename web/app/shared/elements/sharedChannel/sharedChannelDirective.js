@@ -10,6 +10,8 @@
  */
 angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
   function($interval, $location, cssInjector) {
+    'use strict';
+
     return {
       restrict: 'E',
       scope: {

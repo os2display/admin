@@ -6,8 +6,8 @@
 /**
  * Setup the module.
  */
-(function() {
-  "use strict";
+(function () {
+  'use strict';
 
   var app;
   app = angular.module("itkChannelPickerWidget", []);
@@ -20,7 +20,7 @@
    *   region (integer): The region of the screen to modify.
    */
   app.directive('channelPickerWidget', ['configuration', 'userFactory', 'channelFactory',
-    function(configuration, userFactory, channelFactory) {
+    function (configuration, userFactory, channelFactory) {
       return {
         restrict: 'E',
         replace: true,
@@ -29,17 +29,17 @@
           screen: '=',
           region: '='
         },
-        link: function(scope) {
+        link: function (scope) {
           scope.sharingEnabled = configuration.sharingService.enabled;
           scope.loading = false;
 
           // Set default orientation and sort.
           scope.orientation = 'landscape';
           scope.showFromUser = 'all';
-          scope.sort = { "created_at": "desc" };
+          scope.sort = {"created_at": "desc"};
 
           userFactory.getCurrentUser().then(
-            function(data) {
+            function (data) {
               scope.currentUser = data;
             }
           );
@@ -62,13 +62,13 @@
               "bool": {
                 "must": {
                   "term": {
-                    "orientation":  scope.orientation
+                    "orientation": scope.orientation
                   }
                 }
               }
             },
             "sort": {
-              "created_at" : {
+              "created_at": {
                 "order": "desc"
               }
             },
@@ -85,7 +85,7 @@
             scope.loading = true;
 
             channelFactory.searchChannels(search).then(
-              function(data) {
+              function (data) {
                 // Total hits.
                 scope.hits = data.hits;
 

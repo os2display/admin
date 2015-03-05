@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory',
   function($scope, $location, $routeParams, $timeout, screenFactory, sharedChannelFactory) {
+    'use strict';
+
     $scope.steps = 1;
     $scope.step = 1;
     $scope.channel = {};

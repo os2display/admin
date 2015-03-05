@@ -8,7 +8,7 @@
  *
  */
 angular.module('ikApp').directive('ikChecklist', function() {
-  "use strict";
+  'use strict';
 
   return {
     restrict: 'E',

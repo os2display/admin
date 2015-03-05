@@ -7,7 +7,9 @@
  * Template factory. Main entry point for templates.
  */
 angular.module('ikApp').factory('templateFactory', ['$q', '$http',
-  function($q, $http) {
+  function ($q, $http) {
+    'use strict';
+
     var factory = {};
     var slideTemplates = null;
     var screenTemplates = null;
@@ -17,7 +19,7 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
      *
      * @returns {templates|*}
      */
-    factory.getSlideTemplates = function() {
+    factory.getSlideTemplates = function () {
       var defer = $q.defer();
 
       if (slideTemplates !== null) {
@@ -25,11 +27,11 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
       }
       else {
         $http.get('/api/templates/slides')
-          .success(function(data) {
+          .success(function (data) {
             slideTemplates = data;
             defer.resolve(slideTemplates);
           })
-          .error(function(data, status) {
+          .error(function (data, status) {
             defer.reject(status);
           });
       }
@@ -43,7 +45,7 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
      * @param id
      * @returns {*}
      */
-    factory.getSlideTemplate = function(id) {
+    factory.getSlideTemplate = function (id) {
       var defer = $q.defer();
 
       if (slideTemplates !== null) {
@@ -51,10 +53,10 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
       }
       else {
         factory.getSlideTemplates().then(
-          function(data) {
+          function (data) {
             defer.resolve(data[id]);
           },
-          function(reason) {
+          function (reason) {
             defer.reject(reason);
           }
         );
@@ -68,7 +70,7 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
      *
      * @returns {templates|*}
      */
-    factory.getScreenTemplates = function() {
+    factory.getScreenTemplates = function () {
       var defer = $q.defer();
 
       if (screenTemplates !== null) {
@@ -76,11 +78,11 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
       }
       else {
         $http.get('/api/templates/screens')
-          .success(function(data) {
+          .success(function (data) {
             screenTemplates = data;
             defer.resolve(screenTemplates);
           })
-          .error(function(data, status) {
+          .error(function (data, status) {
             defer.reject(status);
           });
       }
@@ -94,7 +96,7 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
      * @param id
      * @returns {*}
      */
-    factory.getScreenTemplate = function(id) {
+    factory.getScreenTemplate = function (id) {
       var defer = $q.defer();
 
       if (screenTemplates !== null) {
@@ -102,10 +104,10 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
       }
       else {
         factory.getScreenTemplates().then(
-          function(data) {
+          function (data) {
             defer.resolve(data[id]);
           },
-          function(reason) {
+          function (reason) {
             defer.reject(reason);
           }
         );

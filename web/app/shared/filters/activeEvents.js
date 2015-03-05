@@ -7,10 +7,12 @@
 /**
  * Add an active events filter to eventlist.
  */
-angular.module('ikApp').filter('activeEvents', function() {
-  return function(items) {
+angular.module('ikApp').filter('activeEvents', function () {
+  'use strict';
+
+  return function (items) {
     // Return if event array empty.
-    if (!angular.isArray(items)){
+    if (!angular.isArray(items)) {
       return false
     }
 

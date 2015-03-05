@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
   function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration) {
+    'use strict';
+
     $scope.sharingEnabled = configuration.sharingService.enabled;
     $scope.screen = {};
     $scope.toolbarTemplate = null;

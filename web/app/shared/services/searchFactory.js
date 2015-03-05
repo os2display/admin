@@ -10,6 +10,8 @@
  */
 angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configuration', '$http',
   function ($q, $rootScope, configuration, $http) {
+    'use strict';
+
     var socket;
     var self = this;
     var token = null;
