@@ -177,17 +177,16 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
               "bool": {
                 "must": []
               }
-            }
+            };
           }
 
+          var term = {};
           if (scope.orientation !== 'all') {
-            var term = {};
             term.term = {orientation : scope.orientation};
             search.filter.bool.must.push(term);
           }
 
           if (scope.showFromUser !== 'all') {
-            var term = {};
             term.term = {user : scope.currentUser.id};
             search.filter.bool.must.push(term);
           }
