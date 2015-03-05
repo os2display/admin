@@ -6,13 +6,7 @@
         <textarea auto-grow class="event-calendar--header-input has-placeholder" data-ng-trim="false" placeholder="Tilføj en overskrift" data-ng-model="ikSlide.options.headline" spellcheck="false" data-ng-style="{'color': ikSlide.options.headertextcolor, 'background-color': ikSlide.options.headerbgcolor}">
         </textarea>
       </div>
-      <div class="event-calendar--day">
-        <div class="event-calendar--day-inner">
-          <div class="event-calendar--week-day">Tor</div>
-          <div class="event-calendar--date">12</div>
-          <div class="event-calendar--month">Feb</div>
-        </div>
-      </div>
+      <date-component></date-component>
     </div>
     <div class="event-calendar--content" data-ng-style="{'border-color': ikSlide.options.textcolor, 'color': ikSlide.options.textcolor}">
       <span class="event-calendar--event">
