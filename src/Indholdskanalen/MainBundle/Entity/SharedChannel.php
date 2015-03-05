@@ -89,7 +89,6 @@ class SharedChannel {
    * Constructor
    */
   public function __construct() {
-    $this->screens = new ArrayCollection();
   }
 
   /**
@@ -270,7 +269,7 @@ class SharedChannel {
   /**
    * Get content
    *
-   * @return integer
+   * @return string
    */
   public function getContent() {
     return $this->content;
@@ -279,7 +278,7 @@ class SharedChannel {
   /**
    * Get sharedChannel screens.
    *
-   * @return \array
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("screens")

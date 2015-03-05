@@ -110,7 +110,6 @@ class Screen {
    * Constructor
    */
   public function __construct() {
-    $this->sharedChannels = new ArrayCollection();
     $this->channelScreenRegions = new ArrayCollection();
   }
 
@@ -322,38 +321,6 @@ class Screen {
    */
   public function getCreatedAt() {
     return $this->createdAt;
-  }
-
-  /**
-   * Add sharedChannel
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel
-   * @return Screen
-   */
-  public function addSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel) {
-    $sharedChannel->addScreen($this);
-    $this->sharedChannels[] = $sharedChannel;
-
-    return $this;
-  }
-
-  /**
-   * Remove sharedChannel
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel
-   */
-  public function removeSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel) {
-    $sharedChannel->removeScreen($this);
-    $this->sharedChannels->removeElement($sharedChannel);
-  }
-
-  /**
-   * Get sharedChannels
-   *
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getSharedChannels() {
-    return $this->sharedChannels;
   }
 
   /**

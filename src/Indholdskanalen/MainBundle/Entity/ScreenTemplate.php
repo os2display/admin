@@ -118,7 +118,7 @@ class ScreenTemplate {
   /**
    * Get id
    *
-   * @return integer
+   * @return string
    */
   public function getId() {
     return $this->id;

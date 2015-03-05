@@ -137,9 +137,9 @@ class Channel {
    * Constructor
    */
   public function __construct() {
-    $this->screens = new ArrayCollection();
     $this->channelSlideOrders = new ArrayCollection();
     $this->sharingIndexes = new ArrayCollection();
+    $this->lastPushScreens = json_encode(array());
   }
 
   /**
@@ -263,7 +263,7 @@ class Channel {
   /**
    * Set orientation
    *
-   * @param \int $orientation
+   * @param string $orientation
    *
    * @return Channel
    */
@@ -363,7 +363,7 @@ class Channel {
   public function getPublishedSlides() {
     $result = new ArrayCollection();
     $criteria = Criteria::create()
-      ->orderBy(array("sortOrder" => Criteria::ASC));
+      ->orderBy(array('sortOrder' => Criteria::ASC));
 
     $slideOrders = $this->getChannelSlideOrders()->matching($criteria);
     foreach ($slideOrders as $slideOrder) {
