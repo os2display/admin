@@ -330,18 +330,27 @@ table {
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  /* Header - Date styles */
+  /* Event styles - display of events content */
+  /* Edit icons */ }
   .event-calendar--inner {
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.85);
     overflow: hidden; }
   .event-calendar--header {
-    background-color: #379f40;
-    position: relative;
     overflow: hidden; }
+    .event-calendar--header-input {
+      border: 0;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      resize: none; }
+      .event-calendar--header-input:focus {
+        border: 0; }
   .event-calendar--title-wrapper {
     box-sizing: border-box;
-    float: left;
+    display: inline-block;
+    font-weight: bold;
     width: 85%; }
   .event-calendar--day-inner, .event-calendar--header-title {
     background-color: #379f40;
@@ -352,14 +361,19 @@ table {
   .event-calendar--day {
     background: rgba(0, 0, 0, 0.2);
     font-size: 100%;
-    float: left;
     text-align: center;
-    width: 15%;
-    height: 20vw;
-    position: absolute;
-    right: 0; }
+    display: inline-block;
+    vertical-align: top;
+    padding-top: .5em;
+    position: relative;
+    width: 15%; }
   .event-calendar--day-inner {
-    background: transparent; }
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    margin: 0;
+    position: absolute;
+    height: 20em;
+    width: 100%; }
   .event-calendar--week-day {
     color: rgba(255, 255, 255, 0.75);
     font-size: 40%;
@@ -403,3 +417,5 @@ table {
       border: 0px; }
   .event-calendar--edit-box-settings {
     z-index: 1; }
+  .event-calendar pre {
+    font-family: inherit; }
