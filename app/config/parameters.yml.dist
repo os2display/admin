@@ -54,5 +54,5 @@ parameters:
     templates_screens_directory: templates/screens/
     templates_screens_enabled:
 
-
-    logo: images/logo_default.png
+    logo: images/logo_indholdskanalen.png
+    site_title: Indholdskanalen
