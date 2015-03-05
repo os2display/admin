@@ -34,24 +34,34 @@
 
   &--inner {
     height: 100%;
-
-    background-color: rgba(255, 255, 255, .85);
-
     overflow: hidden;
   }
 
   &--header{
-    background-color: #379f40;
-    position: relative;
     overflow: hidden;
+
+    &-input {
+      border: 0;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      resize: none;
+
+      &:focus {
+        border: 0;
+      }
+    }
   }
 
   &--title-wrapper {
     box-sizing: border-box;
-    float: left;
+    display: inline-block;
+    font-weight: bold;
     width: 85%;
   }
 
+  
+  /* Header - Date styles */
 
   &--day-inner,
   &--header-title {
@@ -63,19 +73,24 @@
   }
 
   &--day {
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, 0.2);
     font-size: 100%;
-    float: left;
     text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: .5em;
+    position: relative;
     width: 15%;
-    height: 20vw;
-    position: absolute;
-    right: 0;
   }
 
 
   &--day-inner {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    margin: 0;
+    position: absolute;
+    height: 20em;
+    width: 100%;
   }
 
   &--week-day {
@@ -98,6 +113,9 @@
   &--content {
     font-size: 40%;
   }
+
+
+  /* Event styles - display of events content */
 
   &--events {
     font-size: 70%;
@@ -162,6 +180,8 @@
     }
   }
 
+  /* Edit icons */
+
   &--edit-box-settings {
     @extend %slide--edit-box-settings;
     z-index: 1;
@@ -169,5 +189,10 @@
 
   &--edit-image-settings  {
     @extend %slide--edit-image-settings;
+  }
+
+  // Maintain font.
+  pre {
+    font-family: inherit;
   }
 }

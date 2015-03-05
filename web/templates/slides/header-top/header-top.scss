@@ -5,6 +5,7 @@
   height: 100%;
   color: #000;
   font-family: Arial, sans-serif;
+  text-align: left;
 
   @include background-size(cover);
 
@@ -32,7 +33,7 @@
   font-size: 100%;
   margin: 0;
   overflow: hidden;
-  padding: 2vw;
+  padding: .8em;
   font-weight: bold;
   outline: none;
   resize: none;
@@ -45,7 +46,7 @@
 .header-top--content {
   font-size: 50%;
   margin: .5em;
-  padding: 2vw;
+  padding: .8em;
 
   &-text {
     background-color: rgba(0,0,0,0);
