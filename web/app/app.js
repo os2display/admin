@@ -28,7 +28,8 @@ angular.module('ikApp', [
     'itkChannelPickerWidget',
     'itkSharedChannelPickerWidget',
     'itkChannelRemoverWidget',
-    'itkRegionPreviewWidget'
+    'itkRegionPreviewWidget',
+    'itkDateComponent'
   ],
   function() {}
 );

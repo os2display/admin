@@ -8,7 +8,7 @@
  */
 angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
   function(sharedChannelFactory, userFactory, configuration, $timeout) {
-    "use strict";
+    'use strict';
 
     return {
       restrict: 'E',
@@ -43,7 +43,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
 
         // Default pager values.
         scope.pager = {
-          "size": 9,
+          "size": 8,
           "page": 0
         };
         scope.hits = 0;

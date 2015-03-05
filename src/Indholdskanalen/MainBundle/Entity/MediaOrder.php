@@ -57,7 +57,7 @@ class MediaOrder {
    * Set sortOrder
    *
    * @param integer $sortOrder
-   * @return ChannelSlideOrder
+   * @return MediaOrder
    */
   public function setSortOrder($sortOrder) {
     $this->sortOrder = $sortOrder;
@@ -77,7 +77,7 @@ class MediaOrder {
   /**
    * Set slide
    *
-   * @param \Indholdskanalen\MainBundle\Entity\Slide $slide
+   * @param null|\Indholdskanalen\MainBundle\Entity\Slide $slide
    * @return MediaOrder
    */
   public function setSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide = NULL) {
@@ -89,7 +89,7 @@ class MediaOrder {
   /**
    * Get slide
    *
-   * @return \Indholdskanalen\MainBundle\Entity\Slide
+   * @return null|\Indholdskanalen\MainBundle\Entity\Slide
    */
   public function getSlide() {
     return $this->slide;
@@ -98,7 +98,7 @@ class MediaOrder {
   /**
    * Set media
    *
-   * @param \Application\Sonata\MediaBundle\Entity\Media $media
+   * @param null|\Application\Sonata\MediaBundle\Entity\Media $media
    * @return MediaOrder
    */
   public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = NULL) {
@@ -110,7 +110,7 @@ class MediaOrder {
   /**
    * Get media
    *
-   * @return \Application\Sonata\MediaBundle\Entity\Media
+   * @return null|\Application\Sonata\MediaBundle\Entity\Media
    */
   public function getMedia() {
     return $this->media;

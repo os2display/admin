@@ -7,20 +7,22 @@
  * Media factory. Main entry to media.
  */
 angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
-  function($http, $q, searchFactory) {
+  function ($http, $q, searchFactory) {
+    'use strict';
+
     var factory = {};
 
     /**
      * Get all media.
      */
-    factory.getAllMedia = function() {
+    factory.getAllMedia = function () {
       var defer = $q.defer();
 
       $http.get('/api/media')
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function() {
+        .error(function () {
           defer.reject();
         });
 
@@ -31,7 +33,7 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
      * Search for media defined by search parameter.
      * @param search
      */
-    factory.searchMedia = function(search) {
+    factory.searchMedia = function (search) {
       search.type = 'Application\\Sonata\\MediaBundle\\Entity\\Media';
       return searchFactory.search(search);
     };
@@ -55,10 +57,10 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
 
       // Load bulk.
       $http.get('/api/media/bulk' + queryString)
-        .success(function(data, status) {
+        .success(function (data, status) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status)
         });
 
@@ -69,14 +71,14 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
      * Find the media with @id
      * @param id
      */
-    factory.getMedia = function(id) {
+    factory.getMedia = function (id) {
       var defer = $q.defer();
 
       $http.get('/api/media/' + id)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -88,14 +90,14 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
      * @param id
      */
 
-    factory.deleteMedia = function(id) {
+    factory.deleteMedia = function (id) {
       var defer = $q.defer();
 
       $http.delete('/api/media/' + id)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 

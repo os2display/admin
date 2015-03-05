@@ -8,7 +8,7 @@
  */
 angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration', '$timeout',
   function(channelFactory, userFactory, configuration, $timeout) {
-    "use strict";
+    'use strict';
 
     return {
       restrict: 'E',
@@ -35,7 +35,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
         // Default pager values.
         scope.pager = {
-          "size": 9,
+          "size": 8,
           "page": 0
         };
         scope.hits = 0;

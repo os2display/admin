@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').controller('SlideOverviewController', ['$scope', '$location',
   function($scope, $location) {
+    'use strict';
+
     // Register event listener for the click slide event.
     $scope.$on('slideOverview.clickSlide', function(event, slide) {
       $location.path('/slide/' + slide.id);

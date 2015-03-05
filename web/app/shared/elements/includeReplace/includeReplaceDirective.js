@@ -7,6 +7,8 @@
  * HTML attribute to replace the ng-include div.
  */
 angular.module('ikApp').directive('includeReplace', function () {
+  'use strict';
+
   return {
     require: 'ngInclude',
     restrict: 'A',

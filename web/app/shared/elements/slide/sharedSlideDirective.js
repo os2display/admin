@@ -8,43 +8,47 @@
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSharedSlide', ['cssInjector', function(cssInjector) {
-  return {
-    restrict: 'E',
-    scope: {
-      ikWidth: '@',
-      ikSlide: '='
-    },
-    link: function(scope, element, attrs) {
-      scope.templateURL = '/app/shared/elements/slide/slide-loading.html';
+angular.module('ikApp').directive('ikSharedSlide', ['cssInjector',
+  function (cssInjector) {
+    'use strict';
 
-      // Observe for changes to the ik-slide attribute. Setup slide when ik-slide is set.
-      attrs.$observe('ikSlide', function(val) {
-        if (!val) {
-          return;
-        }
+    return {
+      restrict: 'E',
+      scope: {
+        ikWidth: '@',
+        ikSlide: '='
+      },
+      link: function (scope, element, attrs) {
+        scope.templateURL = '/app/shared/elements/slide/slide-loading.html';
 
-        cssInjector.add(scope.ikSlide.css_path);
+        // Observe for changes to the ik-slide attribute. Setup slide when ik-slide is set.
+        attrs.$observe('ikSlide', function (val) {
+          if (!val) {
+            return;
+          }
 
-        if (scope.ikSlide.media_thumbs && scope.ikSlide.media_thumbs.length > 0) {
-          scope.ikSlide.currentImage = scope.ikSlide.media_thumbs[0];
-        }
+          cssInjector.add(scope.ikSlide.css_path);
 
-        scope.ikSlide.currentLogo = scope.ikSlide.logo;
+          if (scope.ikSlide.media_thumbs && scope.ikSlide.media_thumbs.length > 0) {
+            scope.ikSlide.currentImage = scope.ikSlide.media_thumbs[0];
+          }
 
-        scope.templateURL = scope.ikSlide.preview_path;
+          scope.ikSlide.currentLogo = scope.ikSlide.logo;
 
-        scope.theStyle = {
-          width: "" + scope.ikWidth + "px",
-          height: "" + parseFloat(1080.0 * parseFloat(scope.ikWidth / 1920.0)) + "px"
-        };
+          scope.templateURL = scope.ikSlide.preview_path;
 
-        if (scope.ikSlide.options.fontsize) {
-          scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / 1920)) + "px"
-        }
-      });
-    },
-    template: '<div class="preview--slide" data-ng-include="" src="templateURL"></div>'
+          scope.theStyle = {
+            width: "" + scope.ikWidth + "px",
+            height: "" + parseFloat(1080.0 * parseFloat(scope.ikWidth / 1920.0)) + "px"
+          };
+
+          if (scope.ikSlide.options.fontsize) {
+            scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / 1920)) + "px"
+          }
+        });
+      },
+      template: '<div class="preview--slide" data-ng-include="" src="templateURL"></div>'
+    }
   }
-}]);
+]);
 

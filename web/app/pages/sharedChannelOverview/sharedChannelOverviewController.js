@@ -8,6 +8,7 @@
  */
 angular.module('ikApp').controller('SharedChannelOverviewController', ['$scope', 'configuration',
   function($scope, configuration) {
+    'use strict';
 
   }
 ]);

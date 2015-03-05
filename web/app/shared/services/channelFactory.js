@@ -7,7 +7,9 @@
  * Channel factory. Main entry point for accessing channels.
  */
 angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory',
-  function($http, $q, searchFactory) {
+  function ($http, $q, searchFactory) {
+    'use strict';
+
     var factory = {};
 
     // Current open channel.
@@ -19,7 +21,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
      * @param search
      * @returns {*|Number}
      */
-    factory.searchChannels = function(search) {
+    factory.searchChannels = function (search) {
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
       return searchFactory.search(search);
     };
@@ -27,14 +29,14 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
     /**
      * Get all channels.
      */
-    factory.getChannels = function() {
+    factory.getChannels = function () {
       var defer = $q.defer();
 
       $http.get('/api/channels')
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function() {
+        .error(function () {
           defer.reject();
         });
 
@@ -60,10 +62,10 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
 
       // Load bulk.
       $http.get('/api/channels/bulk' + queryString)
-        .success(function(data, status) {
+        .success(function (data, status) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status)
         });
 
@@ -74,18 +76,18 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
      * Find slide to edit. If id is not set return current slide, else load from backend.
      * @param id
      */
-    factory.getEditChannel = function(id) {
+    factory.getEditChannel = function (id) {
       var defer = $q.defer();
 
       if (id === null || id === undefined || id === '') {
         defer.resolve(currentChannel);
       } else {
         $http.get('/api/channel/' + id)
-          .success(function(data) {
+          .success(function (data) {
             currentChannel = data;
             defer.resolve(currentChannel);
           })
-          .error(function() {
+          .error(function () {
             defer.reject();
           });
       }
@@ -97,14 +99,14 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
      * Find the channel with @id
      * @param id
      */
-    factory.getChannel = function(id) {
+    factory.getChannel = function (id) {
       var defer = $q.defer();
 
       $http.get('/api/channel/' + id)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function() {
+        .error(function () {
           defer.reject();
         });
 
@@ -114,7 +116,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
     /**
      * Returns an empty channel.
      */
-    factory.emptyChannel = function() {
+    factory.emptyChannel = function () {
       currentChannel = {
         id: null,
         title: '',
@@ -131,15 +133,15 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
     /**
      * Saves channel to channels. Assigns an id, if it is not set.
      */
-    factory.saveChannel = function() {
+    factory.saveChannel = function () {
       var defer = $q.defer();
 
       $http.post('/api/channel', currentChannel)
-        .success(function() {
+        .success(function () {
           defer.resolve("success");
           currentChannel = null;
         })
-        .error(function() {
+        .error(function () {
           defer.reject("error");
         });
 
@@ -151,14 +153,14 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
      * @param channel
      * @returns {*}
      */
-    factory.channelShare = function(channel) {
+    factory.channelShare = function (channel) {
       var defer = $q.defer();
 
       $http.post('/api/channel/share', channel)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 

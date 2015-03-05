@@ -7,7 +7,9 @@
  * Menu controller. Controls the menues.
  */
 angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', 'userFactory', 'configuration',
-  function($scope, $rootScope, $location, userFactory, configuration) {
+  function ($scope, $rootScope, $location, userFactory, configuration) {
+    'use strict';
+
     $scope.url = $location.url();
     $scope.navMenuOpen = null;
     $scope.subMenuItems = [];
@@ -16,7 +18,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     $scope.logo = configuration.logo;
 
     userFactory.getCurrentUser().then(
-      function(data) {
+      function (data) {
         $scope.currentUser = data;
       }
     );
@@ -24,7 +26,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     /**
      * Set the submenu items according to what the url starts with.
      */
-    var updateSubMenu = function() {
+    var updateSubMenu = function () {
       if ($scope.url.indexOf('/channel') === 0 || $scope.url.indexOf('/shared-channel') === 0) {
         $scope.subMenuItems = [
           {
@@ -117,7 +119,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
      * @param pattern
      * @returns {boolean}
      */
-    $scope.pathStartsWith = function(str, pattern) {
+    $scope.pathStartsWith = function (str, pattern) {
       var split = str.split('/');
 
       if (split.length >= 2) {
@@ -136,7 +138,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     /**
      * Open/Close navigation menu.
      */
-    $scope.toggleNavMenu = function(){
+    $scope.toggleNavMenu = function () {
       if ($scope.navMenuOpen === null) {
         $scope.navMenuOpen = false;
       }
@@ -147,7 +149,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     /**
      * Setup listener for when the url changes.
      */
-    $rootScope.$on('$locationChangeSuccess', function(){
+    $rootScope.$on('$locationChangeSuccess', function () {
       $scope.url = $location.url();
       $scope.navMenuOpen = false;
       updateSubMenu();
@@ -156,7 +158,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     /**
      * Show/hide mobile main menu.
      */
-    $scope.mobileMainMenuVisible = function() {
+    $scope.mobileMainMenuVisible = function () {
       return $scope.url.indexOf('/channel') == 0 && $scope.url.indexOf('/slide') == 0 && $scope.url.indexOf('/screen') == 0 && $scope.url.indexOf('/media') == 0;
     }
   }

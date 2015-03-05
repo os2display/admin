@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory',
   function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory) {
+    'use strict';
+
     $scope.steps = 3;
     $scope.slides = [];
     $scope.channel = {};

@@ -7,7 +7,8 @@
  * Paging directive.
  */
 angular.module('ikApp').directive('ikPager', function() {
-  "use strict";
+  'use strict';
+
   return {
     restrict: 'E',
     replace: true,

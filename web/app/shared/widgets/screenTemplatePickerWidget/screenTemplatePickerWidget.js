@@ -6,7 +6,9 @@
 /**
  * Setup the module.
  */
-(function() {
+(function () {
+  'use strict';
+
   var app;
   app = angular.module("itkScreenTemplatePickerWidget", []);
 
@@ -17,16 +19,16 @@
    *   screen (object): the screen to modify.
    */
   app.directive('screenTemplatePickerWidget', ['templateFactory',
-    function(templateFactory) {
+    function (templateFactory) {
       return {
         restrict: 'E',
         scope: {
           screen: '='
         },
         replace: true,
-        link: function(scope, element, attrs) {
+        link: function (scope, element, attrs) {
           scope.templates = [];
-          templateFactory.getScreenTemplates().then(function(data) {
+          templateFactory.getScreenTemplates().then(function (data) {
             scope.templates = data;
           });
 

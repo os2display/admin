@@ -129,7 +129,7 @@ class SharingIndex {
    * Add channel
    *
    * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
-   * @return Screen
+   * @return SharingIndex
    */
   public function addChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel) {
     $this->channels[] = $channel;

@@ -6,8 +6,8 @@
 /**
  * Setup the module.
  */
-(function() {
-  "use strict";
+(function () {
+  'use strict';
 
   var app;
   app = angular.module("itkSharedChannelPickerWidget", []);
@@ -20,7 +20,7 @@
    *   region (integer): The region of the screen to modify.
    */
   app.directive('sharedChannelPickerWidget', ['sharedChannelFactory',
-    function(sharedChannelFactory) {
+    function (sharedChannelFactory) {
       return {
         restrict: 'E',
         replace: true,
@@ -29,7 +29,7 @@
           screen: '=',
           region: '='
         },
-        link: function(scope, element, attrs) {
+        link: function (scope, element, attrs) {
           scope.index = null;
           scope.loading = false;
           scope.pickIndexDialog = false;
@@ -42,7 +42,7 @@
           // Set default orientation and sort.
           scope.orientation = 'landscape';
           scope.showFromUser = 'all';
-          scope.sort = { "created_at": "desc" };
+          scope.sort = {"created_at": "desc"};
 
           // Default pager values.
           scope.pager = {
@@ -62,13 +62,13 @@
               "bool": {
                 "must": {
                   "term": {
-                    "orientation":  scope.orientation
+                    "orientation": scope.orientation
                   }
                 }
               }
             },
             "sort": {
-              "created_at" : {
+              "created_at": {
                 "order": "desc"
               }
             },
@@ -88,7 +88,7 @@
 
             scope.loading = true;
             sharedChannelFactory.searchChannels(search, scope.index.index).then(
-              function(data) {
+              function (data) {
                 scope.loading = false;
                 scope.hits = data.hits;
                 scope.channels = data.results;

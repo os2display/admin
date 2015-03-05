@@ -12,6 +12,8 @@
  *   Catch this event to handle when the upload is complete.
  */
 angular.module('ikApp').directive('ikMediaUpload', function() {
+  'use strict';
+
   return {
     restrict: 'E',
     scope: {

@@ -6,7 +6,9 @@
 /**
  * Routing.
  */
-angular.module('ikApp').config(function($routeProvider) {
+angular.module('ikApp').config(function ($routeProvider) {
+  'use strict';
+
   $routeProvider
     // Frontpage, set to channel overview.
     .when('/', {

@@ -15,6 +15,8 @@
  *   leave out show all media.
  */
 angular.module('ikApp').directive('ikMediaOverview', function() {
+  'use strict';
+
   return {
     restrict: 'E',
     scope: {
@@ -46,7 +48,7 @@ angular.module('ikApp').directive('ikMediaOverview', function() {
 
       // Default pager values.
       $scope.pager = {
-        "size": 9,
+        "size": 8,
         "page": 0
       };
       $scope.hits = 0;

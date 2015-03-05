@@ -133,7 +133,7 @@ class ChannelScreenRegion {
   /**
    * Set screen
    *
-   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+   * @param null|\Indholdskanalen\MainBundle\Entity\Screen $screen
    * @return ChannelScreenRegion
    */
   public function setScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen = NULL) {
@@ -145,7 +145,7 @@ class ChannelScreenRegion {
   /**
    * Get screen
    *
-   * @return \Indholdskanalen\MainBundle\Entity\Screen
+   * @return null|\Indholdskanalen\MainBundle\Entity\Screen
    */
   public function getScreen() {
     return $this->screen;
@@ -154,7 +154,7 @@ class ChannelScreenRegion {
   /**
    * Set channel
    *
-   * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
+   * @param null|\Indholdskanalen\MainBundle\Entity\Channel $channel
    * @return ChannelScreenRegion
    */
   public function setChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel = NULL) {
@@ -166,7 +166,7 @@ class ChannelScreenRegion {
   /**
    * Get channel
    *
-   * @return \Indholdskanalen\MainBundle\Entity\Channel
+   * @return null|\Indholdskanalen\MainBundle\Entity\Channel
    */
   public function getChannel() {
     return $this->channel;
@@ -175,7 +175,7 @@ class ChannelScreenRegion {
   /**
    * Set sharedChannel
    *
-   * @param \Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel
+   * @param null|\Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel
    * @return ChannelScreenRegion
    */
   public function setSharedChannel(\Indholdskanalen\MainBundle\Entity\SharedChannel $sharedChannel = NULL) {
@@ -187,7 +187,7 @@ class ChannelScreenRegion {
   /**
    * Get sharedChannel
    *
-   * @return \Indholdskanalen\MainBundle\Entity\SharedChannel
+   * @return null|\Indholdskanalen\MainBundle\Entity\SharedChannel
    */
   public function getSharedChannel() {
     return $this->sharedChannel;

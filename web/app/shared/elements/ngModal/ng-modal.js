@@ -7,6 +7,8 @@
  * Setup the module.
  */
 (function() {
+  'use strict';
+
   var app;
 
   app = angular.module("ngModal", []);

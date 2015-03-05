@@ -10,6 +10,8 @@
  */
 angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
   function($interval, $location) {
+    'use strict';
+
     return {
       restrict: 'E',
       scope: {

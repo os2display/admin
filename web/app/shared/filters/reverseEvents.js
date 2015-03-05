@@ -6,9 +6,11 @@
 /**
  * Add a reverse filter to eventlist.
  */
-angular.module('ikApp').filter('reverseEvents', function() {
-  return function(items) {
-    if (!angular.isArray(items)){
+angular.module('ikApp').filter('reverseEvents', function () {
+  'use strict';
+
+  return function (items) {
+    if (!angular.isArray(items)) {
       return false
     }
 

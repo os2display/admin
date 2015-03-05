@@ -1,4 +1,4 @@
-<header class="header" role="banner" ng-controller="MenuController">
+<header class="header" role="banner" data-ng-controller="MenuController">
   <a class="nav--overlay" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen}" data-ng-click="toggleNavMenu()"></a>
   <nav class="nav" data-ng-show="navMenuOpen" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
    <div class="nav--toggle-icon" data-ng-click="toggleNavMenu()">X</div>
@@ -25,26 +25,26 @@
       </div>
       <nav class="header--main-menu">
         <ul class="header--main-menu-items">
-          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/channel') == 0 || url.indexOf('shared-channel') === 0}">
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channel-overview">
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/channel') == 0 || url.indexOf('shared-channel') === 0}">
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channel-overview">
               <span class="header--main-menu-item-image-channels"></span>
               <span class="header--main-menu-item-text">Kanaler</span>
             </a>
           </li>
-          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/slide') == 0}">
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/slide') == 0}" href="/#/slide-overview">
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/slide') == 0}">
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/slide') == 0}" href="/#/slide-overview">
               <span class="header--main-menu-item-image-slides"></span>
               <span class="header--main-menu-item-text">Slides</span>
             </a>
           </li>
-          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/screen') == 0}" >
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/screen') == 0}" href="/#/screen-overview">
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/screen') == 0}" >
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/screen') == 0}" href="/#/screen-overview">
               <span class="header--main-menu-item-image-screens"></span>
               <span class="header--main-menu-item-text">Skærme</span>
             </a>
           </li>
-          <li class="header--main-menu-item" ng-class="{'is-active': url.indexOf('/media') == 0}" >
-            <a class="header--main-menu-item-link" ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media-overview">
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/media') == 0}" >
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media-overview">
               <span class="header--main-menu-item-image-templates"></span>
               <span class="header--main-menu-item-text">Medier</span>
             </a>
@@ -70,8 +70,8 @@
     <div class="header--sub-inner">
       <nav class="header--sub-menu" data-ng-class="{'is-hidden': mobileMainMenuVisible()}">
         <ul class="header--sub-menu-items">
-          <li class="header--sub-menu-item" ng-repeat="item in subMenuItems">
-            <a class="header--sub-menu-item-link" href="/#/{{item.path}}" ng-class="{'is-active': pathStartsWith(url, '{{item.path}}')}">
+          <li class="header--sub-menu-item" data-ng-repeat="item in subMenuItems">
+            <a class="header--sub-menu-item-link" href="/#/{{item.path}}" data-ng-class="{'is-active': pathStartsWith(url, '{{item.path}}')}">
               <span class="header--sub-menu-item-text">{{item.title}}</span>
             </a>
           </li>

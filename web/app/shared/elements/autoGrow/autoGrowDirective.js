@@ -8,6 +8,8 @@
  * Uses jQuery.
  */
 angular.module('ikApp').directive('autoGrow', function() {
+  'use strict';
+
   return {
     restrict: 'A',
     scope: {

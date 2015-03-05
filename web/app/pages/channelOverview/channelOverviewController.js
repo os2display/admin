@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'configuration',
   function($scope, sharedChannelFactory, channelFactory, configuration) {
+    'use strict';
+
     $scope.shareDialogShow = false;
     $scope.shareDialogChannel = null;
 

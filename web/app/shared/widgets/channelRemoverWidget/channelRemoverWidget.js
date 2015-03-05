@@ -6,8 +6,8 @@
 /**
  * Setup the module.
  */
-(function() {
-  "use strict";
+(function () {
+  'use strict';
 
   var app;
   app = angular.module("itkChannelRemoverWidget", []);
@@ -20,7 +20,7 @@
    *   region (integer): the region of the screen to modify.
    */
   app.directive('channelRemoverWidget', [
-    function() {
+    function () {
       return {
         restrict: 'E',
         replace: true,
@@ -29,7 +29,7 @@
           screen: '=',
           region: '='
         },
-        link: function(scope) {
+        link: function (scope) {
           scope.search_text = '';
 
           /**

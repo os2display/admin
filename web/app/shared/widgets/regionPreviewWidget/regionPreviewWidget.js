@@ -6,7 +6,9 @@
 /**
  * Setup the module.
  */
-(function() {
+(function () {
+  'use strict';
+
   var app;
   app = angular.module("itkRegionPreviewWidget", []);
 
@@ -18,7 +20,7 @@
    *   screen (object): The screen to modify.
    */
   app.directive('regionPreviewWidget',
-    function() {
+    function () {
       return {
         restrict: 'E',
         scope: {
@@ -28,7 +30,7 @@
         },
         replace: false,
         templateUrl: 'app/shared/widgets/regionPreviewWidget/region-preview-widget.html',
-        link: function(scope) {
+        link: function (scope) {
           scope.getNumberOfChannels = function getNumberOfChannels() {
             var n = 0;
 

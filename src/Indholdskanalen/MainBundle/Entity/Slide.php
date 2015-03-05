@@ -158,7 +158,7 @@ class Slide {
   /**
    * Set orientation
    *
-   * @param \int $orientation
+   * @param string $orientation
    */
   public function setOrientation($orientation) {
     $this->orientation = $orientation;
@@ -167,7 +167,7 @@ class Slide {
   /**
    * Get orientation
    *
-   * @return \string
+   * @return string
    */
   public function getOrientation() {
     return $this->orientation;

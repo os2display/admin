@@ -7,7 +7,9 @@
  * Screen factory. Main entry point for screens and screen groups.
  */
 angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory',
-  function($http, $q, searchFactory) {
+  function ($http, $q, searchFactory) {
+    'use strict';
+
     var factory = {};
     var currentScreen = null;
 
@@ -16,7 +18,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * @param search
      * @returns {*|Number}
      */
-    factory.searchScreens = function(search) {
+    factory.searchScreens = function (search) {
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
       return searchFactory.search(search);
     };
@@ -26,14 +28,14 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      *
      * @returns {Array}
      */
-    factory.getScreens = function() {
+    factory.getScreens = function () {
       var defer = $q.defer();
 
       $http.get('/api/screens')
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -59,10 +61,10 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
 
       // Load bulk.
       $http.get('/api/screens/bulk' + queryString)
-        .success(function(data, status) {
+        .success(function (data, status) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status)
         });
 
@@ -74,18 +76,18 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * @param id
      * @returns {promiseAndHandler.promise|*|Promise._progressUnchecked.promise|promise|exports.exports.Reduction.promise|PromiseResolver.promise}
      */
-    factory.getEditScreen = function(id) {
+    factory.getEditScreen = function (id) {
       var defer = $q.defer();
 
       if (id === null || id === undefined || id === '') {
         defer.resolve(currentScreen);
       } else {
         $http.get('/api/screen/' + id)
-          .success(function(data) {
+          .success(function (data) {
             currentScreen = data;
             defer.resolve(currentScreen);
           })
-          .error(function(data, status) {
+          .error(function (data, status) {
             defer.reject(status);
           });
       }
@@ -98,14 +100,14 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * @param id
      * @returns screen or null
      */
-    factory.getScreen = function(id) {
+    factory.getScreen = function (id) {
       var defer = $q.defer();
 
       $http.get('/api/screen/' + id)
-        .success(function(data) {
+        .success(function (data) {
           defer.resolve(data);
         })
-        .error(function(data, status) {
+        .error(function (data, status) {
           defer.reject(status);
         });
 
@@ -115,7 +117,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
     /**
      * Saves screen.
      */
-    factory.saveScreen = function() {
+    factory.saveScreen = function () {
       var defer = $q.defer();
 
       if (currentScreen === null) {
@@ -128,10 +130,10 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
         }
 
         $http.post('/api/screen', currentScreen)
-          .success(function(data) {
+          .success(function (data) {
             defer.resolve(data);
           })
-          .error(function(data, status) {
+          .error(function (data, status) {
             defer.reject(status);
           });
       }
@@ -143,7 +145,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * Returns an empty screen.
      * @returns screen (empty)
      */
-    factory.emptyScreen = function() {
+    factory.emptyScreen = function () {
       currentScreen = {
         id: null,
         template: 'full-screen',

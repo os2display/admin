@@ -6,8 +6,8 @@
 /**
  * Setup the module.
  */
-(function() {
-  "use strict";
+(function () {
+  'use strict';
 
   var app;
   app = angular.module("itkNumberWidget", []);
@@ -20,7 +20,7 @@
    *   placeholderText (string): The placeholder text to display.
    */
   app.directive('numberWidget',
-    function() {
+    function () {
       return {
         restrict: 'E',
         scope: {

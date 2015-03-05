@@ -8,6 +8,8 @@
  */
 angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory',
   function($scope, $http, $filter, mediaFactory, slideFactory) {
+    'use strict';
+
     $scope.step = 'background-picker';
     $scope.addevent = {
       "title": null,
