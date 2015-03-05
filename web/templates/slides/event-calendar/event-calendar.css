@@ -378,6 +378,8 @@ table {
     padding-top: .6vw;
     position: relative;
     width: 15%; }
+    .event-calendar--day.is-preview {
+      padding-top: .8em; }
   .event-calendar--day-inner {
     background: rgba(0, 0, 0, 0.2);
     font-size: 100%;

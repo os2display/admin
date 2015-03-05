@@ -88,6 +88,10 @@
     padding-top: .6vw;
     position: relative;
     width: 15%;
+
+    &.is-preview {
+      padding-top: .8em;
+    }
   }
 
   // The header height is dynamic depending on title. Hence we don't know the height of the day wrapper contained within the header. (Kinda hackish)
