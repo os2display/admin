@@ -1,5 +1,17 @@
 /**
  *
+ * Header top template styles. (Responsive)
+ *
+ * A note on responsive templates:
+ * We use viewport width for base fontsize in client.
+ * We use viewport width for padding and margin, so the padding depends on the full width of the screen rather than the width of each section within a 5 split screen.
+ * When displaying editor or preview we add state classes and fall back to em for margin/padding.
+ *
+ */
+/* Imports.
+   ========================================================================== */
+/**
+ *
  * Shared base.
  *
  * Contains shared placeholder classes and variables to be used when creating new templates.
@@ -307,6 +319,16 @@ table {
   .header-top--edit-image-settings:hover {
     cursor: pointer; }
 
+.header-top--header-input {
+  border: 0;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  resize: none; }
+
+/* Styles
+   ========================================================================== */
 .header-top {
   height: 100%;
   color: #000;
@@ -323,26 +345,25 @@ table {
   height: 100%;
   overflow: hidden; }
 
-.header-top--header {
-  border: 0;
+.header-top--header-input {
   font-size: 100%;
-  margin: 0;
-  overflow: hidden;
-  padding: .8em;
   font-weight: bold;
-  outline: none;
-  resize: none; }
-  .header-top--header:focus {
+  margin: 0;
+  padding: 1.1vw; }
+  .header-top--header-input:focus {
     border: 0; }
+  .header-top--header-input.is-editor, .header-top--header-input.is-preview {
+    padding: 1em; }
 
 .header-top--content {
-  font-size: 50%;
-  margin: .5em;
-  padding: .8em; }
+  font-size: 80%;
+  padding: 1.1vw; }
+  .header-top--content.is-editor, .header-top--content.is-preview {
+    padding: 1em; }
   .header-top--content-text {
     background-color: transparent;
     border: 0;
-    margin: 1em;
+    padding: 0;
     outline: none;
     resize: none; }
     .header-top--content-text:focus {

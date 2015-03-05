@@ -1,3 +1,13 @@
+/**
+ *
+ * Header top template styles. (Responsive)
+ *
+ * A note on responsive templates:
+ * We use viewport width for base fontsize in client.
+ * We use viewport width for padding and margin, so the padding depends on the full width of the screen rather than the width of each section within a 5 split screen.
+ * When displaying editor or preview we add state classes and fall back to em for margin/padding.
+ *
+ */
 /* Imports.
    ========================================================================== */
 /**
@@ -309,13 +319,21 @@ table {
   .event-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
+.event-calendar--header-input {
+  border: 0;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  resize: none; }
+
 /* Placeholders related to this document
    ========================================================================== */
 .event-calendar--title, .event-calendar--title-header, .event-calendar--place, .event-calendar--place-header, .event-calendar--time, .event-calendar--time-header {
   box-sizing: border-box;
   display: block;
   float: left;
-  padding: .5em;
+  padding: 0.4vw;
   vertical-align: middle;
   text-align: left; }
 
@@ -323,10 +341,7 @@ table {
    ========================================================================== */
 .event-calendar {
   height: 100%;
-  background: url(event-calendar-background.png) no-repeat;
-  color: #000;
   font-family: Arial, sans-serif;
-  font-size: 6vw;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
@@ -340,21 +355,17 @@ table {
   .event-calendar--header {
     overflow: hidden; }
     .event-calendar--header-input {
-      border: 0;
-      position: relative;
-      overflow: hidden;
-      outline: none;
-      resize: none; }
+      padding: 0; }
       .event-calendar--header-input:focus {
         border: 0; }
   .event-calendar--title-wrapper {
     box-sizing: border-box;
     display: inline-block;
-    font-weight: bold;
+    padding: 1.1vw;
     width: 85%; }
+    .event-calendar--title-wrapper.is-preview {
+      padding: 1em; }
   .event-calendar--day-inner, .event-calendar--header-title {
-    background-color: #379f40;
-    color: #fff;
     font-weight: bold;
     font-size: 100%;
     margin: 0; }
@@ -364,7 +375,7 @@ table {
     text-align: center;
     display: inline-block;
     vertical-align: top;
-    padding-top: .5em;
+    padding-top: .6vw;
     position: relative;
     width: 15%; }
   .event-calendar--day-inner {
@@ -383,9 +394,12 @@ table {
     font-size: 60%;
     line-height: 1em; }
   .event-calendar--date {
+    color: white;
     line-height: 1em; }
   .event-calendar--content {
-    font-size: 40%; }
+    padding: 1.1vw; }
+    .event-calendar--content.is-preview {
+      padding: 1em; }
   .event-calendar--events {
     font-size: 70%;
     overflow: hidden;
@@ -398,8 +412,7 @@ table {
     width: 100%;
     display: block; }
     .event-calendar--event:first-child {
-      border-bottom: 0;
-      padding-bottom: 1%; }
+      border-bottom: 0; }
     .event-calendar--event:last-child {
       border-bottom: 0; }
   .event-calendar--title, .event-calendar--title-header {
@@ -415,7 +428,15 @@ table {
     border-color: inherit; }
     .event-calendar--title:last-child, .event-calendar--place:last-child, .event-calendar--time:last-child {
       border: 0px; }
+  .event-calendar .is-preview .event-calendar--title-header,
+  .event-calendar .is-preview .event-calendar--place-header,
+  .event-calendar .is-preview .event-calendar--time-header,
+  .event-calendar .is-preview .event-calendar--title,
+  .event-calendar .is-preview .event-calendar--place,
+  .event-calendar .is-preview .event-calendar--time {
+    padding: .2em; }
   .event-calendar--edit-box-settings {
     z-index: 1; }
   .event-calendar pre {
-    font-family: inherit; }
+    font-family: inherit;
+    margin: 0; }

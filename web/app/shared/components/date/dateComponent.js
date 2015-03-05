@@ -29,10 +29,10 @@
         scope: {
         },
         link: function (scope) {
-          // Setup danish localization.
+         /* // Setup danish localization.
           moment.locale('da', {
             weekdays : [
-              "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag", "Mandag"
+              "Tir", "Ons", "Tors", "Fre", "Lør", "Søn", "Man"
             ],
             months: [
               "Januar", "Februar", "Marts", "April", "Maj", "Juni",
@@ -42,10 +42,13 @@
 
           // Get current datetime.
           scope.date = moment();
+*/
+          scope.thisDate = new Date();
 
           $interval(function() {
             // Update current datetime.
-            scope.date = moment();
+           // scope.date = moment();
+            scope.thisDate = new Date();
           }, 10000);
         }
       };

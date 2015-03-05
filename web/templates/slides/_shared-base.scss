@@ -120,3 +120,13 @@ $gray-color:          #999;
   border: 0;
   resize: none;
 }
+
+// Responsive header for 5 split screen templates
+%responsive-header {
+  border: 0;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  resize: none;
+}
