@@ -52,8 +52,8 @@ angular.module('ikApp').directive('ikThumb', ['$window', function ($window) {
       }
 
       function onLoadImage() {
-        var width = params.width || this.width / this.height * params.height;
-        var height = params.height || this.height / this.width * params.width;
+        var width = params.width ? params.width : this.width / this.height * params.height;
+        var height = params.height ? params.height : this.height / this.width * params.width;
         canvas.attr({width: width, height: height});
         canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
       }
