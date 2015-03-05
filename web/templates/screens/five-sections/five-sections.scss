@@ -31,5 +31,7 @@
 
   &--region-content {
     @extend %presentation--item-inner;
+
+    position: relative;
   }
 }

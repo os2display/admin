@@ -1,10 +1,8 @@
-<div class="header-top" data-ng-style="{'font-size': theStyle.responsiveFontsize, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+<div class="header-top" data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
   <div class="header-top--inner" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
-    <div class="header-top--header-wrapper">
-      <pre class="header-top--header">{{ikSlide.options.headline}}</pre>
+    <div class="header-top--header-wrapper" data-ng-style="{'background-color': ikSlide.options.headerbgcolor}">
+      <pre class="header-top--header-input" data-ng-style="{'color': ikSlide.options.headertextcolor}">{{ikSlide.options.headline}}</pre>
     </div>
-    <pre class="header-top--content">
-      {{ikSlide.options.text}}
-    </pre>
+    <pre class="header-top--content" data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.options.text}}</pre>
   </div>
 </div>

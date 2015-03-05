@@ -2,9 +2,9 @@
   "id": "event-calendar",
   "icon": "event-calendar.png",
   "paths": {
-    "live": "event-calendar.html",
+    "live": "event-calendar-live.html",
     "edit": "event-calendar-edit.html",
-    "preview": "event-calendar.html",
+    "preview": "event-calendar-preview.html",
     "css": "event-calendar.css"
   },
   "orientation": "landscape",
@@ -15,6 +15,7 @@
   },
   "emptyoptions": {
     "fontsize": "50",
+    "responsive_fontsize": "3",
     "headerbgcolor": "#379f40",
     "headertextcolor": "rgba(255,255,255,1)",
     "bgcolor": "rgba(255,255,255,0.90)",

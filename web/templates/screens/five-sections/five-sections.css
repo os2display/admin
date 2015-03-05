@@ -313,3 +313,5 @@ table {
   display: block; }
   .five-sections--region-vertical:last-child {
     border: 0; }
+.five-sections--region-content {
+  position: relative; }

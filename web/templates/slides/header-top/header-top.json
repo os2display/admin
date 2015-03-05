@@ -15,14 +15,14 @@
     "height": "1080"
   },
   "emptyoptions": {
-    "fontsize": "70",
+    "fontsize": "60",
     "headerbgcolor": "#379f40",
     "headertextcolor": "rgba(255,255,255,1)",
     "bgcolor": "rgba(255,255,255,0.90)",
     "textcolor": "rgba(0,0,0,1)",
     "headline": "",
     "text": "",
-    "responsive_fontsize": "6",
+    "responsive_fontsize": "3",
     "defaultImage": "header-top.png"
   }
 }
