@@ -58,7 +58,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           },
           "sort": {
             "created_at" : {
-              "order": "desc"
+              "order": 'desc'
             }
           },
           'pager': scope.pager
