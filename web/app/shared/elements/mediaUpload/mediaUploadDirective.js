@@ -45,7 +45,7 @@ angular.module('ikApp').directive('ikMediaUpload', function() {
         queueLimit: 1,
         filters: [{
           name: 'mediaFilter',
-          fn: function(item /*{File|FileLikeObject}*/, options) {
+          fn: function(item /*{File|FileLikeObject}*/) {
             var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1);
             return acceptedMediatypes.indexOf(type) !== -1;
           }
@@ -86,7 +86,7 @@ angular.module('ikApp').directive('ikMediaUpload', function() {
       $scope.upload = function upload() {
         $scope.uploadInProgress = true;
         $scope.uploader.uploadAll();
-      }
+      };
 
       /**
        * Checks whether the item is an image.
@@ -110,7 +110,7 @@ angular.module('ikApp').directive('ikMediaUpload', function() {
         if ($scope.uploadInProgress && $scope.uploader.progress > 5) {
           return $scope.uploader.progress - 5;
         } else {
-          return $scope.uploader.progress
+          return $scope.uploader.progress;
         }
       };
 
@@ -132,7 +132,6 @@ angular.module('ikApp').directive('ikMediaUpload', function() {
 
       /**
        * After adding all files, increase current step.
-       * @param item
        */
       $scope.uploader.onAfterAddingAll = function() {
         $scope.currentStep++;
@@ -143,9 +142,8 @@ angular.module('ikApp').directive('ikMediaUpload', function() {
        * @param item
        * @param response
        * @param status
-       * @param headers
        */
-      $scope.uploader.onErrorItem = function(item, response, status, headers) {
+      $scope.uploader.onErrorItem = function(item, response, status) {
         $scope.uploadErrors = true;
         $scope.uploadInProgress = false;
 
@@ -168,10 +166,8 @@ angular.module('ikApp').directive('ikMediaUpload', function() {
        * When an item has been uploaded successfully.
        * @param item
        * @param response
-       * @param status
-       * @param headers
        */
-      $scope.uploader.onSuccessItem = function(item, response, status, headers) {
+      $scope.uploader.onSuccessItem = function(item, response) {
         $scope.$emit('mediaUpload.uploadSuccess', {
           image: item,
           id: response[0],
@@ -179,8 +175,7 @@ angular.module('ikApp').directive('ikMediaUpload', function() {
         });
       };
     },
-    link: function(scope, element, attrs) {
-    },
+    link: function() {},
     templateUrl: '/app/shared/elements/mediaUpload/media-upload-directive.html'
   };
 });

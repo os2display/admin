@@ -11,7 +11,7 @@
 
   var app;
 
-  app = angular.module("ngModal", []);
+  app = angular.module('ngModal', []);
 
   /**
    * modal-dialog directive.
@@ -33,20 +33,20 @@
         transclude: true,
         link: function(scope) {
           scope.hideModal = function() {
-            return scope.show = false;
+            scope.show = false;
           };
           scope.$watch('show', function(newVal, oldVal) {
             if (newVal && !oldVal) {
-              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              document.getElementsByTagName('body')[0].style.overflow = 'hidden';
             } else {
-              document.getElementsByTagName("body")[0].style.overflow = "";
+              document.getElementsByTagName('body')[0].style.overflow = '';
             }
-            if ((!newVal && oldVal) && (scope.onClose != null)) {
+            if ((!newVal && oldVal) && (scope.onClose !== null)) {
               return scope.onClose();
             }
           });
         },
-        templateUrl: "app/shared/elements/ngModal/ng-modal.html"
+        templateUrl: 'app/shared/elements/ngModal/ng-modal.html'
       };
     }
   ]);
