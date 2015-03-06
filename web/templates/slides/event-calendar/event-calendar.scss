@@ -216,6 +216,12 @@
     @extend %slide--edit-image-settings;
   }
 
+
+  &--edit-content-settings {
+    @extend %slide--edit-content-settings;
+  }
+
+
   // Maintain font.
   pre {
     font-family: inherit;

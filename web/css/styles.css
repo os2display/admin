@@ -539,7 +539,7 @@
   max-width: 1024px;
   padding: 1.5em; }
 
-.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four, .create-channel--content--channel-five {
+.create-slide--content--slide-two, .create-slide--content--slide-three, .create-slide--content--slide-four, .create-slide--content--slide-five, .create-slide--content--slide-six, .create-channel--content--channel-two, .create-channel--content--channel-three, .create-channel--content--channel-four {
   margin: 0 auto;
   text-align: center;
   width: 100%; }
@@ -1542,8 +1542,6 @@ html.is-locked body {
   /* Create channel - slide selection (Page 3)
    ========================================================================== */
   /* Create channel - slide order (Page 4)
-   ========================================================================== */
-  /* Create channel - screen selection (Page 5)
    ========================================================================== */ }
   .create-channel--button {
     display: block;
@@ -1744,36 +1742,6 @@ html.is-locked body {
     width: 1.5em;
     vertical-align: middle;
     margin-top: -2px; }
-  .create-channel--select-screens {
-    margin-bottom: 3em; }
-  .create-channel--screen {
-    border-bottom: 1px solid #b3b3b3;
-    margin: 0 auto;
-    width: 50%; }
-    .create-channel--screen:first-child {
-      border-top: 1px solid #b3b3b3; }
-  .create-channel--screen-element {
-    height: 1.5em;
-    padding: 1em; }
-    .create-channel--screen-element:hover {
-      background: #f0f0e1; }
-  .create-channel--screen-element-check {
-    display: inline-block;
-    position: absolute;
-    left: 0; }
-    .create-channel--screen-element-check.is-selected {
-      background: url('/../images/icons-se731c6030f.png');
-      -moz-background-size: 26px 358px;
-      -o-background-size: 26px 358px;
-      -webkit-background-size: 26px 358px;
-      background-size: 26px 358px;
-      width: 26px;
-      height: 21px;
-      background-position: 0 -67px; }
-  .create-channel--screen-element-title {
-    display: inline-block;
-    position: absolute;
-    left: 3em; }
 
 /**
  *
@@ -2084,6 +2052,8 @@ html.is-locked body {
     margin-bottom: 2em; }
     .edit-menu--background-size select, .edit-menu--background-location select {
       width: 15em; }
+  .edit-menu--content-description {
+    margin-bottom: 2em; }
   .edit-menu--calendar-date-template {
     border-bottom: 2px solid #b3b3b3;
     margin-bottom: 1em;
@@ -3712,6 +3682,43 @@ html.is-locked body {
     margin-bottom: 2rem; }
   .cpw--selected-channels-item-action {
     padding: .3rem; }
+
+/**
+ *
+ * List
+ * Display a select list with check icons.
+ *
+ */
+/* Styles
+ ========================================================================== */
+.list {
+  margin: 0 auto;
+  position: relative;
+  width: 40em; }
+  .list--element {
+    border-bottom: 1px solid;
+    cursor: pointer;
+    height: 1.5em;
+    padding: 1em; }
+    .list--element:hover {
+      background: #e6e6e6; }
+  .list--element-check {
+    display: inline-block;
+    position: absolute;
+    left: 0; }
+    .list--element-check.is-selected {
+      background: url('/../images/icons-se731c6030f.png');
+      -moz-background-size: 26px 358px;
+      -o-background-size: 26px 358px;
+      -webkit-background-size: 26px 358px;
+      background-size: 26px 358px;
+      width: 26px;
+      height: 21px;
+      background-position: 0 -67px; }
+  .list--element-title {
+    display: inline-block;
+    position: absolute;
+    left: 3em; }
 
 /* Animations
  *

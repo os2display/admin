@@ -96,6 +96,17 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         $scope.sortEvents();
         $scope.validateEvents();
       },
+      toggleEventCalendarEditor: function() {
+        $('html').toggleClass('is-locked');
+
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'app/shared/elements/slide/editors/event-calendar-editor.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
+      },
       toggleSourceEditor: function() {
         $('html').toggleClass('is-locked');
 

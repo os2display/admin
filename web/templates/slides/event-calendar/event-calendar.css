@@ -319,6 +319,25 @@ table {
   .event-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
+.event-calendar--edit-content-settings {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: url('/../../../images/icons-se731c6030f.png');
+  -moz-background-size: 96px 1341px;
+  -o-background-size: 96px 1341px;
+  -webkit-background-size: 96px 1341px;
+  background-size: 96px 1341px;
+  width: 48px;
+  height: 48px;
+  background-position: 0 -946px; }
+  .event-calendar--edit-content-settings:hover {
+    cursor: pointer; }
+
 .event-calendar--header-input {
   border: 0;
   font-weight: bold;
