@@ -152,6 +152,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     $rootScope.$on('$locationChangeSuccess', function () {
       $scope.url = $location.url();
       $scope.navMenuOpen = false;
+      $('html').removeClass('is-locked');
       updateSubMenu();
     });
 
