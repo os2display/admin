@@ -21,7 +21,7 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
         ikSharingIndex: '=',
         ikClickable: '='
       },
-      link: function(scope, element, attrs) {
+      link: function(scope) {
         scope.slideIndex = 0;
         scope.playText = '';
 
@@ -85,6 +85,6 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
         });
       },
       templateUrl: 'app/shared/elements/sharedChannel/shared-channel-template.html'
-    }
+    };
   }
 ]);
