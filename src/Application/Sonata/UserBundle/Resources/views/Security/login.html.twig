@@ -1,7 +1,7 @@
 
 {% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
 
-{% block title %}Login - Indholdskanalen{% endblock %}
+{% block title %}{{ site_title }}{% endblock %}
 
 {% block body %}
   {% block content %}
@@ -9,7 +9,7 @@
       <header class="header" role="banner">
         <div class="header--main-anonymous">
           <div class="header--logo-anonymous">
-            <img src="{{ logo }}"/>
+            {{ site_title }}
           </div>
         </div>
       </header>

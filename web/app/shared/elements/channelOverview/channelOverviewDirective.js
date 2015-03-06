@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel overview.
  */
-angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration', '$timeout',
-  function(channelFactory, userFactory, configuration, $timeout) {
+angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration',
+  function(channelFactory, userFactory, configuration) {
     'use strict';
 
     return {
@@ -18,7 +18,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         ikFilter: '@',
         ikOverlay: '@'
       },
-      link: function(scope, element, attrs) {
+      link: function(scope) {
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.loading = false;
 
@@ -58,7 +58,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           },
           "sort": {
             "created_at" : {
-              "order": "desc"
+              "order": 'desc'
             }
           },
           'pager': scope.pager
@@ -91,7 +91,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
                   scope.loading = false;
                 },
-                function (reason) {
+                function () {
                   scope.loading = false;
                 }
               );
@@ -102,7 +102,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         /**
          * Update search result on channel deletion.
          */
-        scope.$on('channel-deleted', function(data) {
+        scope.$on('channel-deleted', function() {
           scope.updateSearch();
         });
 
@@ -119,8 +119,8 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
           var res = false;
 
-          scope.ikSelectedChannels.forEach(function(element, index) {
-            if (element.id == channel.id) {
+          scope.ikSelectedChannels.forEach(function(element) {
+            if (element.id === channel.id) {
               res = true;
             }
           });
@@ -177,17 +177,16 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
               "bool": {
                 "must": []
               }
-            }
+            };
           }
 
+          var term = {};
           if (scope.orientation !== 'all') {
-            var term = {};
             term.term = {orientation : scope.orientation};
             search.filter.bool.must.push(term);
           }
 
           if (scope.showFromUser !== 'all') {
-            var term = {};
             term.term = {user : scope.currentUser.id};
             search.filter.bool.must.push(term);
           }
@@ -198,22 +197,22 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         /**
          * Changes the sort order and updated the channels.
          *
-         * @param sort_field
+         * @param sortField
          *   Field to sort on.
-         * @param sort_order
+         * @param sortOrder
          *   The order to sort in 'desc' or 'asc'.
          */
-        scope.setSort = function setSort(sort_field, sort_order) {
+        scope.setSort = function setSort(sortField, sortOrder) {
           // Only update search if sort have changed.
-          if (scope.sort[sort_field] === undefined || scope.sort[sort_field] !== sort_order) {
+          if (scope.sort[sortField] === undefined || scope.sort[sortField] !== sortOrder) {
             // Update the store sort order.
             scope.sort = { };
-            scope.sort[sort_field] = sort_order;
+            scope.sort[sortField] = sortOrder;
 
             // Update the search variable.
             search.sort = { };
-            search.sort[sort_field] = {
-              "order": sort_order
+            search.sort[sortField] = {
+              "order": sortOrder
             };
 
             scope.updateSearch();

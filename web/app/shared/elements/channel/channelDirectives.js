@@ -64,7 +64,7 @@ angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
          */
         scope.redirectToChannel = function() {
           if (scope.ikClickable) {
-            $location.path("/channel/" + scope.ikChannel.id);
+            $location.path('/channel/' + scope.ikChannel.id);
           }
         };
 
@@ -78,6 +78,6 @@ angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
         });
       },
       templateUrl: 'app/shared/elements/channel/channel-template.html'
-    }
+    };
   }
 ]);

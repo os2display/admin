@@ -105,7 +105,7 @@ angular.module('ikApp').directive('ikMediaOverview', function() {
 
                 $scope.loading = false;
               },
-              function (reason) {
+              function () {
                 $scope.loading = false;
               }
             );
@@ -126,8 +126,8 @@ angular.module('ikApp').directive('ikMediaOverview', function() {
 
         var res = false;
 
-        $scope.ikSelectedMedia.forEach(function(element, index) {
-          if (element.id == media.id) {
+        $scope.ikSelectedMedia.forEach(function(element) {
+          if (element.id === media.id) {
             res = true;
           }
         });
