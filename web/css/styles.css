@@ -2218,6 +2218,24 @@ html.is-locked body {
         -ms-transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%); } }
+    .header--logo-link {
+      font-size: 1.8em; }
+      .header--logo-link:link {
+        color: #fff;
+        outline: 0;
+        text-decoration: none; }
+      .header--logo-link:visited {
+        color: #fff;
+        outline: 0;
+        text-decoration: none; }
+      .header--logo-link:hover {
+        color: #fff;
+        outline: 0;
+        text-decoration: none; }
+      .header--logo-link:focus {
+        color: #fff;
+        outline: 0;
+        text-decoration: none; }
   .header .header--logo-image,
   .header .header--arrow-image {
     position: absolute;
@@ -2228,6 +2246,7 @@ html.is-locked body {
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
   .header--logo-anonymous {
+    font-size: 1.8em;
     position: relative;
     text-align: center;
     top: 50%;
