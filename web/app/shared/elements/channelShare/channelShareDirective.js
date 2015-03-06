@@ -20,12 +20,12 @@ angular.module('ikApp').directive('ikChannelShare',
       scope: {
         ikChannel: '='
       },
-      link: function(scope, element, attrs) {
+      link: function(scope) {
         scope.clickShare = function() {
           scope.$emit('ikChannelShare.clickShare', scope.ikChannel);
-        }
+        };
       },
       templateUrl: 'app/shared/elements/channelShare/channel-share.html'
-    }
+    };
   }
 );

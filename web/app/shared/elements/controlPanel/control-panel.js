@@ -10,7 +10,7 @@
   'use strict';
 
   var app;
-  app = angular.module("itkControlPanel", []);
+  app = angular.module('itkControlPanel', []);
 
   /**
    * control-panel directive.
@@ -35,12 +35,12 @@
           options: '='
         },
         replace: true,
-        link: function(scope, element, attrs) {
+        link: function(scope) {
           // Which control panel tab is selected?
           scope.selectedTab = null;
 
           // Lock scrolling on page.
-          document.getElementsByTagName("body")[0].style.overflow = "hidden";
+          document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 
           /**
            * Get the template for the control panel.
@@ -62,7 +62,7 @@
 
           /**
            * Click a channel type.
-           * @param channel type
+           * @param type
            *   Name of the channel type to display and which channel type to show active.
            */
           scope.toggleChannelType = function toggleChannelType(type) {
@@ -72,7 +72,7 @@
           // Register event listener for destroy.
           // Remove scroll lock.
           scope.$on('$destroy', function() {
-            document.getElementsByTagName("body")[0].style.overflow = "";
+            document.getElementsByTagName('body')[0].style.overflow = '';
           });
         },
         template: '<div data-ng-include="getContent()"></div>'

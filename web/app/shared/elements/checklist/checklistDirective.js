@@ -18,7 +18,7 @@ angular.module('ikApp').directive('ikChecklist', function() {
       selected: '=',
       identity: '='
     },
-    link: function(scope, element, attrs) {
+    link: function(scope) {
       scope.toggleElement = function toggleElement(el) {
         if (!scope.selected) {
           return;
