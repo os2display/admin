@@ -177,7 +177,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
               "bool": {
                 "must": []
               }
-            }
+            };
           }
 
           var term = {};

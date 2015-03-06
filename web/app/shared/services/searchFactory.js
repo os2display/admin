@@ -24,15 +24,14 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
      */
     function getSocket(deferred) {
       // Get connected to the server.
-      socket = io.connect(configuration.search.address);
+      socket = io.connect(configuration.search.address, {'force new connection': true, query: 'token=' + token});
 
       // Handle error events.
       socket.on('error', function (reason) {
         deferred.reject(reason);
       });
 
-      socket.on('connect', function (data) {
-        self.connected = true;
+      socket.on('connect', function () {
         deferred.resolve('Connected to the server.');
       });
 
@@ -62,7 +61,7 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
         else {
           $http.get('api/auth/search')
             .success(function (data) {
-              token = data;
+              token = data.token;
               getSocket(deferred);
             })
             .error(function (data, status) {
@@ -83,17 +82,17 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
      * The default search should have this form:
      *
      * {
-   *   "fields": 'title',
-   *     "text": '',
-   *     "sort": [
-   *      {
-   *       "created_at.raw" : {
-   *         "order": "desc"
-   *       }
-   *     }
-   *     ],
-   *     "filter": [ ]
-   *   }
+     *   "fields": 'title',
+     *     "text": '',
+     *     "sort": [
+     *      {
+     *       "created_at.raw" : {
+     *         "order": "desc"
+     *       }
+     *     }
+     *     ],
+     *     "filter": [ ]
+     *   }
      * }
      *
      * @param search
