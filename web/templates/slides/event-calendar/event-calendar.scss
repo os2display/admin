@@ -88,6 +88,10 @@
     padding-top: .6vw;
     position: relative;
     width: 15%;
+
+    &.is-preview {
+      padding-top: .8em;
+    }
   }
 
   // The header height is dynamic depending on title. Hence we don't know the height of the day wrapper contained within the header. (Kinda hackish)
@@ -101,20 +105,21 @@
   }
 
   &--week-day {
-    color: rgba(255, 255, 255, .75);
     font-size: 40%;
+    line-height: 1em;
+
+    @include opacity(.75);
+  }
+
+  &--date {
     line-height: 1em;
   }
 
   &--month {
-    color: rgba(255, 255, 255, .75);
     font-size: 60%;
     line-height: 1em;
-  }
 
-  &--date {
-    color: rgba(255, 255, 255, 1);
-    line-height: 1em;
+    @include opacity(.75);
   }
 
 
@@ -184,6 +189,9 @@
   &--time {
     border-right: 1px solid;
     border-color: inherit;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     &:last-child {
       border: 0px;
@@ -212,9 +220,16 @@
     @extend %slide--edit-image-settings;
   }
 
+
+  &--edit-content-settings {
+    @extend %slide--edit-content-settings;
+  }
+
+
   // Maintain font.
   pre {
     font-family: inherit;
     margin: 0;
+    text-align: left;
   }
 }

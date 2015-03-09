@@ -76,6 +76,12 @@ $header--sub-text:      #222;
 
       @include translateY(-50%);
     }
+
+    &-link {
+      @include strip-link-styles($white);
+
+      font-size: 1.8em;
+    }
   }
 
   .header--logo-image,
@@ -88,6 +94,7 @@ $header--sub-text:      #222;
   }
 
   &--logo-anonymous {
+    font-size: 1.8em;
     position: relative;
     text-align: center;
     top: 50%;

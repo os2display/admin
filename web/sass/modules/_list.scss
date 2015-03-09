@@ -1,0 +1,42 @@
+/**
+ *
+ * List
+ * Display a select list with check icons.
+ *
+ */
+
+/* Styles
+ ========================================================================== */
+.list {
+  margin: 0 auto;
+  position: relative;
+  width: 40em;
+
+  &--element {
+    border-bottom: 1px solid;
+    cursor: pointer;
+    height: 1.5em;
+    padding: 1em;
+
+    &:hover {
+      background: $gray-lighter;
+    }
+  }
+
+  &--element-check {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+
+    &.is-selected {
+      @include generate-sprite-image($dashboard-sprites, 'check-icon', 20);
+    }
+  }
+
+  &--element-title {
+    display: inline-block;
+    position: absolute;
+    left: 3em;
+  }
+}
+
