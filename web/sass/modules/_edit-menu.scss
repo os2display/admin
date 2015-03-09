@@ -332,4 +332,20 @@
       display: block;
     }
   }
+
+  /* Iframe
+   ========================================================================== */
+
+  &--iframe-header {
+    font-size: 2em;
+    margin: 0 auto 2em;
+    width: 40%;
+  }
+
+  &--iframe-content {
+    font-size: 1em;
+    margin: 0 auto 2em;
+    text-align: left;
+    width: 60%;
+  }
 }

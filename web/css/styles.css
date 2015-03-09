@@ -1920,7 +1920,9 @@ html.is-locked body {
   /* Background and edit content full page
      ========================================================================== */
   /* Add/edit events for calendar template
-     ========================================================================== */ }
+     ========================================================================== */
+  /* Iframe
+   ========================================================================== */ }
   .edit-menu--inner {
     height: 100%;
     font-size: .6em;
@@ -2101,6 +2103,15 @@ html.is-locked body {
     font-weight: bold; }
     .edit-menu--calendar-remove-date-notice.is-outdated {
       display: block; }
+  .edit-menu--iframe-header {
+    font-size: 2em;
+    margin: 0 auto 2em;
+    width: 40%; }
+  .edit-menu--iframe-content {
+    font-size: 1em;
+    margin: 0 auto 2em;
+    text-align: left;
+    width: 60%; }
 
 /**
  *

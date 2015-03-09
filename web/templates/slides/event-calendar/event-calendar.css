@@ -407,16 +407,17 @@ table {
     height: 20em;
     width: 100%; }
   .event-calendar--week-day {
-    color: rgba(255, 255, 255, 0.75);
     font-size: 40%;
+    line-height: 1em;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+    opacity: 0.75; }
+  .event-calendar--date {
     line-height: 1em; }
   .event-calendar--month {
-    color: rgba(255, 255, 255, 0.75);
     font-size: 60%;
-    line-height: 1em; }
-  .event-calendar--date {
-    color: white;
-    line-height: 1em; }
+    line-height: 1em;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+    opacity: 0.75; }
   .event-calendar--content {
     padding: 1.1vw; }
     .event-calendar--content.is-preview {
@@ -446,7 +447,10 @@ table {
     font-weight: bold; }
   .event-calendar--title, .event-calendar--place, .event-calendar--time {
     border-right: 1px solid;
-    border-color: inherit; }
+    border-color: inherit;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
     .event-calendar--title:last-child, .event-calendar--place:last-child, .event-calendar--time:last-child {
       border: 0px; }
   .event-calendar .is-preview .event-calendar--title-header,
@@ -460,4 +464,5 @@ table {
     z-index: 1; }
   .event-calendar pre {
     font-family: inherit;
-    margin: 0; }
+    margin: 0;
+    text-align: left; }

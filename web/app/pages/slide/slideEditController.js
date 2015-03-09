@@ -216,6 +216,51 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       }
     };
 
+    /**
+     * Add booking events from source (for event calendar.)
+     */
+    $scope.addBookingEvents = function addBookingEvents() {
+      // Dummy content for event calendar.
+      $scope.slide.options.bookingEvents = [
+        {
+          title:    "Dysfagi til smiletsa testing length wohooo 3 2 1 123 testing testing",
+          place:    "Konferencelokalet",
+          from:     "08:00",
+          to:       "11:00"
+        },
+        {
+          title:    "Kunst, kultur og historie",
+          place:    "Hjørnestuen",
+          from:     "09:00",
+          to:       "11:00"
+        },
+        {
+          title:    "Undervisning",
+          place:    "Hjørnestuen",
+          from:     "10:00",
+          to:       "13:00"
+        },
+        {
+          title:    "Administrationen",
+          place:    "Konferencelokalet",
+          from:     "11:00",
+          to:       "13:00"
+        },
+        {
+          title:    "Jubilæum",
+          place:    "Mødelokale 1",
+          from:     "13:00",
+          to:       "15:00"
+        },
+        {
+          title:    "A 6th element",
+          place:    "should not be displayed due to limit in template",
+          from:     "13:00",
+          to:       "15:00"
+        }
+      ];
+    };
+
     // Register event listener for select media.
     $scope.$on('mediaOverview.selectMedia', function(event, media) {
       if (media.media_type === 'logo') {

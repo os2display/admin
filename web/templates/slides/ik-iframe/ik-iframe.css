@@ -293,9 +293,23 @@ table {
     cursor: pointer; }
 
 .ik-iframe {
-  width: 100%;
+  background-color: #cccccc;
+  display: block;
   height: 100%;
-  background-color: #cccccc; }
+  padding-top: 2em;
+  text-align: center;
+  width: 100%; }
+  .ik-iframe.is-preview {
+    padding-top: 0; }
   .ik-iframe--iframe {
     width: 100%;
     height: 100%; }
+  .ik-iframe--inner {
+    background: #fff;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    margin: 0 auto;
+    min-height: 5em; }
+    .ik-iframe--inner.is-preview {
+      height: 100%;
+      box-sizing: border-box; }

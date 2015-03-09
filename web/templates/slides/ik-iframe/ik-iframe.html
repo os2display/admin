@@ -1,3 +1,3 @@
-<div class="ik-iframe">
-  <iframe sandbox="allow-same-origin allow-scripts" class="ik-iframe--iframe" data-ng-src="{{ikSlide.getRefreshedSource()}}" frameborder="0"></iframe>
+<div class="ik-iframe" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
+  <iframe sandbox="allow-same-origin allow-scripts" class="ik-iframe--iframe" data-ng-src="{{ikSlide.getRefreshedSource()}}" frameborder="0" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': ikSlide.options.framewidth}"></iframe>
 </div>
