@@ -145,7 +145,7 @@ class MiddlewareCommunication extends ContainerAware {
 
     foreach ($channels as $channel) {
       $data = $serializer->serialize($channel, 'json', SerializationContext::create()
-          ->setGroups(array('middleware')));
+        ->setGroups(array('middleware')));
 
       $this->pushChannel($channel, $data, $channel->getId(), $force);
     }
@@ -156,7 +156,7 @@ class MiddlewareCommunication extends ContainerAware {
 
     foreach ($sharedChannels as $sharedChannel) {
       $data = $serializer->serialize($sharedChannel, 'json', SerializationContext::create()
-          ->setGroups(array('middleware')));
+        ->setGroups(array('middleware')));
 
       // Hack to get slides encoded correctly
       //   Issue with how the slides array is encoded in jms_serializer.
@@ -170,5 +170,37 @@ class MiddlewareCommunication extends ContainerAware {
 
       $this->pushChannel($sharedChannel, $data, $sharedChannel->getUniqueId(), $force);
     }
+  }
+
+  /**
+   * Push screen update.
+   *
+   * Pushes an update regarding a screen to the middleware.
+   *
+   * @param $screen
+   *   The screen to update
+   */
+  public function pushScreenUpdate($screen) {
+    $middlewarePath = $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path");
+    $serializer = $this->container->get('jms_serializer');
+
+    $data = json_encode(
+      array(
+        'id' => $screen->getId(),
+        'title' => $screen->getTitle(),
+        'options' => $screen->getOptions(),
+        'template' => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()
+          ->setGroups(array('middleware'))))
+      )
+    );
+
+    $this->utilityService->curl(
+      $middlewarePath . "/screen/" . $screen->getId(),
+      'PUT',
+      $data,
+      'middleware'
+    );
+
+    // @TODO: Handle issue when change has not been delivered to the middleware.
   }
 }
