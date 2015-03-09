@@ -4,6 +4,13 @@
 .portrait-text-top {
   background-size: cover;
   background-position: center;
+
+  // Maintain font.
+  pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left;
+  }
 }
 
 
@@ -71,11 +78,4 @@
   position: absolute;
   width: 10%;
   padding: 2%;
-}
-
-// Maintain font.
-pre {
-  font-family: inherit;
-  margin: 0;
-  text-align: left;
 }

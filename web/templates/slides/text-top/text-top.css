@@ -342,6 +342,10 @@ table {
 .text-top {
   background-size: cover;
   background-position: center; }
+  .text-top pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left; }
 
 .text-top--text-wrapper {
   position: absolute;
