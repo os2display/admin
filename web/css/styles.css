@@ -1935,6 +1935,7 @@ html.is-locked body {
     z-index: 99;
     padding-right: 3em;
     padding-left: 3em;
+    padding-top: 4em;
     width: 35em;
     background: #fff;
     -moz-box-sizing: border-box;
