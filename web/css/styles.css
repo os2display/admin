@@ -2995,6 +2995,7 @@ html.is-locked body {
   .overview--screen-wrapper {
     margin: 0;
     background: #fafafa;
+    background-position: center;
     border: 3px solid #b3b3b3;
     box-sizing: border-box;
     color: #595959;
