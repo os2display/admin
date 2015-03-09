@@ -90,6 +90,7 @@
   @include strip-link-styles($white);
 
   background-color: $button-default-background;
+  border: 0;
   color: $white;
   display: block;
   box-sizing: border-box;
@@ -111,6 +112,7 @@
   @include strip-link-styles($white);
 
   background-color: $button-default-warning;
+  border: 0;
   color: $white;
   display: block;
   box-sizing: border-box;

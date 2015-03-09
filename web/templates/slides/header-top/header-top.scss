@@ -32,6 +32,8 @@
 
   &--edit-box-settings {
     @extend %slide--edit-box-settings;
+
+    z-index: 1;
   }
 
   &--edit-image-settings  {

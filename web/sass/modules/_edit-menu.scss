@@ -348,4 +348,13 @@
     text-align: left;
     width: 60%;
   }
+
+  &--button {
+    @extend %button--action;
+
+    height: 2em;
+    margin: 0 auto;
+    margin-top: 2em;
+    width: 12em;
+  }
 }

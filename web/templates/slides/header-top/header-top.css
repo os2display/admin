@@ -338,6 +338,8 @@ table {
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover; }
+  .header-top--edit-box-settings {
+    z-index: 1; }
   .header-top pre {
     font-family: inherit; }
 
