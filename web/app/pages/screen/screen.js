@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration',
-  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory',
+  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory) {
     'use strict';
 
     $scope.sharingEnabled = configuration.sharingService.enabled;
@@ -22,8 +22,17 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      */
     function init() {
       if (!$routeParams.id) {
-        // If the ID is not set, get an empty slide.
-        $scope.screen = screenFactory.emptyScreen();
+        templateFactory.getScreenTemplates().then(
+          function (data) {
+            // If the ID is not set, get an empty slide.
+            $scope.screen = screenFactory.emptyScreen();
+
+            $scope.screen.template = data[0];
+          },
+          function (reason) {
+            console.log(reason);
+          }
+        );
       } else {
         if ($routeParams.id === null || $routeParams.id === undefined || $routeParams.id === '') {
           $location.path('/screen-overview');
