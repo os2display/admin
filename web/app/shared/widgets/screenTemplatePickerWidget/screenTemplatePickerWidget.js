@@ -26,7 +26,7 @@
           screen: '='
         },
         replace: true,
-        link: function (scope, element, attrs) {
+        link: function (scope) {
           scope.templates = [];
           templateFactory.getScreenTemplates().then(function (data) {
             scope.templates = data;

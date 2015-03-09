@@ -105,7 +105,13 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
       else {
         factory.getScreenTemplates().then(
           function (data) {
-            defer.resolve(data[id]);
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].id === id) {
+                defer.resolve(data[i]);
+                return;
+              }
+            }
+            defer.reject(404);
           },
           function (reason) {
             defer.reject(reason);
