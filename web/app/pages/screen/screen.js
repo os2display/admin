@@ -22,15 +22,25 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      */
     function init() {
       if (!$routeParams.id) {
-        templateFactory.getScreenTemplates().then(
-          function (data) {
-            // If the ID is not set, get an empty slide.
-            $scope.screen = screenFactory.emptyScreen();
+        // If the ID is not set, get an empty slide.
+        $scope.screen = screenFactory.emptyScreen();
 
-            $scope.screen.template = data[0];
+        // Default to full-screen template if it exists, else pick the first available.
+        templateFactory.getScreenTemplate('full-screen').then(
+          function (data) {
+            $scope.screen.template = data;
           },
           function (reason) {
-            console.log(reason);
+            if (reason === 404) {
+              templateFactory.getScreenTemplates().then(
+                function (data) {
+                  $scope.screen.template = data[0];
+                },
+                function (reason) {
+                  // @TODO: Handle error!!
+                }
+              )
+            }
           }
         );
       } else {
