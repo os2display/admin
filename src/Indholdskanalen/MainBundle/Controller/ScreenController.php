@@ -211,6 +211,12 @@ class ScreenController extends Controller {
       }
     }
 
+    // If this is an update of a screen, push update to middleware.
+    if ($screen->getId() !== null) {
+      $middlewareService = $this->get('indholdskanalen.middleware.communication');
+      $middlewareService->pushScreenUpdate($screen);
+    }
+
     // Save the entity.
     $em->persist($screen);
     $em->flush();
