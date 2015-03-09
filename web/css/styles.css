@@ -3287,18 +3287,20 @@ html.is-locked body {
  */
 /* Styles
    ========================================================================== */
-.admin-sharing--content {
-  position: relative; }
-.admin-sharing--list {
-  display: block;
-  margin-bottom: 1em; }
-.admin-sharing--button {
-  display: block;
-  margin: 0 auto 1em; }
-.admin-sharing--spinner {
-  bottom: .5em;
-  right: 3em;
-  top: auto; }
+.admin-sharing {
+  padding-top: 2em; }
+  .admin-sharing--content {
+    position: relative; }
+  .admin-sharing--list {
+    display: block;
+    margin-bottom: 1em; }
+  .admin-sharing--button {
+    display: block;
+    margin: 0 auto 1em; }
+  .admin-sharing--spinner {
+    bottom: .5em;
+    right: 3em;
+    top: auto; }
 
 /**
  *
