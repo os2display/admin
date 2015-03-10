@@ -368,6 +368,9 @@
   &--media-image {
     max-height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
     max-width: 300px;
+    background-image: url('../../images/squares.jpg');
+    background-repeat: repeat;
+    min-width: 200px;
   }
 
 

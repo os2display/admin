@@ -3051,7 +3051,10 @@ html.is-locked body {
       -webkit-animation-timing-function: linear; }
   .overview--media-image {
     max-height: 10rem;
-    max-width: 300px; }
+    max-width: 300px;
+    background-image: url("../../images/squares.jpg");
+    background-repeat: repeat;
+    min-width: 200px; }
   .overview--media-overlay-inner {
     padding: .5em;
     text-align: left; }
