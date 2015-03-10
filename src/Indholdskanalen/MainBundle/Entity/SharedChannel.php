@@ -15,9 +15,8 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\MaxDepth;
 
-
 /**
- * Extra
+ * Shared Channel - Channel that is loaded from another installation.
  *
  * @ORM\Table(name="ik_shared_channel")
  * @ORM\Entity
@@ -27,7 +26,7 @@ class SharedChannel {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "api-bulk", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "sharing"})
    */
   private $id;
 
@@ -47,19 +46,21 @@ class SharedChannel {
    * @ORM\Column(name="created_at", type="integer", nullable=false)
    * @Groups({"api", "api-bulk", "search", "sharing"})
    */
-  private $created_at;
+  private $createdAt;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Screen", inversedBy="shared_channels")
-   * @ORM\JoinTable(name="ik_screens_shared_channels")
+   * Mappings between channel and screens/regions.
+   *
+   * @ORM\OneToMany(targetEntity="ChannelScreenRegion", mappedBy="sharedChannel", orphanRemoval=true)
+   * @ORM\OrderBy({"sortOrder" = "ASC"})
    * @Groups({"api"})
    */
-  private $screens;
+  private $channelScreenRegions;
 
   /**
    * @ORM\Column(name="modified_at", type="integer", nullable=false)
    */
-  private $modified_at;
+  private $modifiedAt;
 
   /**
    * @ORM\Column(name="content", type="text", nullable=true)
@@ -78,10 +79,16 @@ class SharedChannel {
   private $lastPushScreens;
 
   /**
+   * When was the last time it was pushed?
+   *
+   * @ORM\Column(name="last_push_time", type="integer", nullable=true)
+   */
+  private $lastPushTime;
+
+  /**
    * Constructor
    */
   public function __construct() {
-    $this->screens = new ArrayCollection();
   }
 
   /**
@@ -97,7 +104,7 @@ class SharedChannel {
    * Set lastPushHash
    *
    * @param string $lastPushHash
-   * @return Screen
+   * @return SharedChannel
    */
   public function setLastPushHash($lastPushHash) {
     $this->lastPushHash = $lastPushHash;
@@ -119,7 +126,7 @@ class SharedChannel {
    * Set lastPushScreens
    *
    * @param string $lastPushScreens
-   * @return Screen
+   * @return SharedChannel
    */
   public function setLastPushScreens($lastPushScreens) {
     $this->lastPushScreens = $lastPushScreens;
@@ -137,12 +144,37 @@ class SharedChannel {
   }
 
   /**
+   * Set lastPushTime
+   *
+   * @param integer $lastPushTime
+   * @return SharedChannel
+   */
+  public function setLastPushTime($lastPushTime) {
+    $this->lastPushTime = $lastPushTime;
+
+    return $this;
+  }
+
+  /**
+   * Get lastPushTime
+   *
+   * @return integer
+   */
+  public function getLastPushTime() {
+    return $this->lastPushTime;
+  }
+
+  /**
    * Set uniqueId
    *
    * @param string $uniqueId
+   *
+   * @return SharedChannel
    */
   public function setUniqueId($uniqueId) {
     $this->uniqueId = $uniqueId;
+
+    return $this;
   }
 
   /**
@@ -159,9 +191,13 @@ class SharedChannel {
    * Set index
    *
    * @param string $index
+   *
+   * @return SharedChannel
    */
   public function setIndex($index) {
     $this->index = $index;
+
+    return $this;
   }
 
   /**
@@ -174,82 +210,55 @@ class SharedChannel {
   }
 
   /**
-   * Set created_at
+   * Set createdAt
    *
    * @param integer $createdAt
-   * @return Channel
+   *
+   * @return SharedChannel
    */
   public function setCreatedAt($createdAt) {
-    $this->created_at = $createdAt;
+    $this->createdAt = $createdAt;
 
     return $this;
   }
 
   /**
-   * Get created_at
+   * Get createdAt
    *
    * @return integer
    */
   public function getCreatedAt() {
-    return $this->created_at;
+    return $this->createdAt;
   }
 
   /**
-   * Add screen
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
-   * @return Channel
-   */
-  public function addScreen(Screen $screen) {
-    $this->screens[] = $screen;
-
-    return $this;
-  }
-
-  /**
-   * Remove screen
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
-   */
-  public function removeScreen(Screen $screen) {
-    $this->screens->removeElement($screen);
-  }
-
-  /**
-   * Get screens
-   *
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getScreens() {
-    return $this->screens;
-  }
-
-  /**
-   * Set modified_at
+   * Set modifiedAt
    *
    * @param integer $modifiedAt
-   * @return Channel
+   *
+   * @return SharedChannel
    */
   public function setModifiedAt($modifiedAt) {
-    $this->modified_at = $modifiedAt;
+    $this->modifiedAt = $modifiedAt;
 
     return $this;
   }
 
   /**
-   * Get modified_at
+   * Get modifiedAt
    *
    * @return integer
    */
   public function getModifiedAt() {
-    return $this->modified_at;
+    return $this->modifiedAt;
   }
 
   /**
    * Set content
    *
    * @param string $content
-   * @return Channel
+   *
+   * @return SharedChannel
    */
   public function setContent($content) {
     $this->content = $content;
@@ -260,16 +269,16 @@ class SharedChannel {
   /**
    * Get content
    *
-   * @return integer
+   * @return string
    */
   public function getContent() {
     return $this->content;
   }
 
   /**
-   * Get screens
+   * Get sharedChannel screens.
    *
-   * @return \array
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("screens")
@@ -277,16 +286,38 @@ class SharedChannel {
    */
   public function getMiddlewareScreens() {
     $slides = array();
-    foreach($this->getScreens() as $screen) {
-      $slides[] = $screen->getId();
+    foreach ($this->getChannelScreenRegions() as $region) {
+      if (!in_array($region->getScreen()->getId(), $slides)) {
+        $slides[] = $region->getScreen()->getId();
+      }
     }
     return $slides;
   }
 
   /**
-   * Get channel content.
+   * Get regions.
    *
-   * @return \array
+   * @return array
+   *
+   * @VirtualProperty
+   * @SerializedName("regions")
+   * @Groups({"middleware"})
+   */
+  public function getMiddlewareChannelScreenRegions() {
+    $regions = array();
+    foreach ($this->getChannelScreenRegions() as $region) {
+      $regions[] = array(
+        'screen' => $region->getScreen()->getId(),
+        'region' => $region->getRegion()
+      );
+    }
+    return $regions;
+  }
+
+  /**
+   * Get sharedChannel content.
+   *
+   * @return array
    *
    * @VirtualProperty
    * @SerializedName("data")
@@ -297,5 +328,63 @@ class SharedChannel {
       'id' => $this->getUniqueId(),
       'slides' => json_encode(json_decode($this->content)->slides)
     );
+  }
+
+  /**
+   * Get sharedChannel id.
+   *
+   * @return string
+   *
+   * @VirtualProperty
+   * @SerializedName("id")
+   * @Groups({"middleware"})
+   */
+  public function getMiddlewareId() {
+    return $this->uniqueId;
+  }
+
+  /**
+   * Add channelScreenRegion
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   * @return SharedChannel
+   */
+  public function addChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
+    $this->channelScreenRegions[] = $channelScreenRegion;
+
+    return $this;
+  }
+
+  /**
+   * Remove channelScreenRegion
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   */
+  public function removeChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
+    $this->channelScreenRegions->removeElement($channelScreenRegion);
+  }
+
+  /**
+   * Get channelScreenRegion
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getChannelScreenRegions() {
+    return $this->channelScreenRegions;
+  }
+
+  /**
+   * Get screens
+   *
+   * @return array
+   */
+  public function getScreens() {
+    $screens = array();
+
+    foreach($this->getChannelScreenRegions() as $region) {
+      $screens[] = $region->getScreen();
+    }
+
+    return $screens;
   }
 }

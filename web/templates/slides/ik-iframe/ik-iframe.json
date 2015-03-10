@@ -14,6 +14,8 @@
     "height": "1080"
   },
   "emptyoptions": {
-    "source": ""
+    "source": "",
+    "framewidth": "100%",
+    "bgcolor": "#ccc"
   }
 }

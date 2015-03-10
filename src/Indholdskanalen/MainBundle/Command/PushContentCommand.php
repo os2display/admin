@@ -27,10 +27,10 @@ class PushContentCommand extends ContainerAwareCommand {
   protected function configure() {
     $this
       ->setName('ik:push')
-      ->setDescription("Push content to the screens")
+      ->setDescription('Push content to the screens')
       ->addOption(
         'force',
-        null,
+        NULL,
         InputOption::VALUE_NONE,
         'If set the push will be forced, even though the content has already been pushed.'
       );
@@ -46,9 +46,10 @@ class PushContentCommand extends ContainerAwareCommand {
   protected function execute(InputInterface $input, OutputInterface $output) {
     $force = $input->getOption('force');
 
-    $middlewareCommunication = $this->getContainer()->get('indholdskanalen.middleware.communication');
+    $middlewareCommunication = $this->getContainer()
+      ->get('indholdskanalen.middleware.communication');
     $middlewareCommunication->pushToScreens($force);
 
-    $output->writeln("Content pushed to screens.");
+    $output->writeln('Content pushed to screens.');
   }
 }

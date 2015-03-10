@@ -49,7 +49,7 @@ tools:
 filter:
     excluded_paths:
         - 'app/*'
-        - 'web/*/js/lib/*'
+        - 'web/assets/libs/*'
 
 checks:
     php:

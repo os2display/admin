@@ -35,11 +35,11 @@ class AuthenticationService extends ContainerAware {
    *
    * @param $host
    * @param $apiKey
-   * @return bool
+   * @return array
    */
   private function authenticate($host, $apiKey) {
     // Build query.
-    $ch = curl_init($host . "/authenticate");
+    $ch = curl_init($host . '/authenticate');
 
     // SSL fix (self signed).
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -81,7 +81,7 @@ class AuthenticationService extends ContainerAware {
    *   Whether or not to delete the token before authentication.
    *   Default: false
    *
-   * @return \Symfony\Component\HttpFoundation\Response
+   * @return array
    */
   public function getAuthentication($prefix, $reAuthenticate = false) {
     $session = new Session();

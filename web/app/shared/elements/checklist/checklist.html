@@ -1,0 +1,6 @@
+<div class="list" data-ng-repeat="el in elements" data-ng-click="toggleElement(el)">
+  <div class="list--element">
+    <div class="list--element-check" data-ng-class="{'is-selected' : elementSelected(el)}"></div>
+    <div class="list--element-title">{{el.name}}</div>
+  </div>
+</div>

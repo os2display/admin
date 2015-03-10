@@ -41,6 +41,7 @@ parameters:
     templates_slides_directory: templates/slides/
     templates_slides_enabled:
       - ik-iframe
+      - header-top
       - manual-calendar
       - only-image
       - only-video
@@ -53,5 +54,4 @@ parameters:
     templates_screens_directory: templates/screens/
     templates_screens_enabled:
 
-
-    logo: images/logo_default.png
+    site_title: Indholdskanalen

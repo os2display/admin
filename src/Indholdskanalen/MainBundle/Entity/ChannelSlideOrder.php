@@ -56,10 +56,10 @@ class ChannelSlideOrder {
   /**
    * Set slide
    *
-   * @param \Indholdskanalen\MainBundle\Entity\Slide $slide
+   * @param null|\Indholdskanalen\MainBundle\Entity\Slide $slide
    * @return ChannelSlideOrder
    */
-  public function setSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide = null) {
+  public function setSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide = NULL) {
     $this->slide = $slide;
 
     return $this;
@@ -68,7 +68,7 @@ class ChannelSlideOrder {
   /**
    * Get slide
    *
-   * @return \Indholdskanalen\MainBundle\Entity\Slide
+   * @return null|\Indholdskanalen\MainBundle\Entity\Slide
    */
   public function getSlide() {
     return $this->slide;
@@ -77,10 +77,10 @@ class ChannelSlideOrder {
   /**
    * Set channel
    *
-   * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
+   * @param null|\Indholdskanalen\MainBundle\Entity\Channel $channel
    * @return ChannelSlideOrder
    */
-  public function setChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel = null) {
+  public function setChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel = NULL) {
     $this->channel = $channel;
 
     return $this;
@@ -89,7 +89,7 @@ class ChannelSlideOrder {
   /**
    * Get channel
    *
-   * @return \Indholdskanalen\MainBundle\Entity\Channel
+   * @return null|\Indholdskanalen\MainBundle\Entity\Channel
    */
   public function getChannel() {
     return $this->channel;
@@ -101,8 +101,7 @@ class ChannelSlideOrder {
    * @param integer $sortOrder
    * @return ChannelSlideOrder
    */
-  public function setSortOrder($sortOrder)
-  {
+  public function setSortOrder($sortOrder) {
     $this->sortOrder = $sortOrder;
 
     return $this;
@@ -113,8 +112,7 @@ class ChannelSlideOrder {
    *
    * @return integer
    */
-  public function getSortOrder()
-  {
+  public function getSortOrder() {
     return $this->sortOrder;
   }
 }

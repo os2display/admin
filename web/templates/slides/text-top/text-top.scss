@@ -1,11 +1,18 @@
 @import "compass/css3";
-@import "../_imports.scss";
+@import "../_shared-base.scss";
+
 
 .text-top {
   background-size: cover;
   background-position: center;
-}
 
+  // Maintain font.
+  pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left;
+  }
+}
 
 .text-top--text-wrapper {
   position: absolute;
@@ -18,7 +25,7 @@
 .text-top--text-inner {
   background: rgba(0,0,0,0.7);
   box-sizing: border-box;
-  color: #fff;
+  color: $white;
   margin: 3% auto;
   padding: 4%;
   text-align: left;
@@ -27,7 +34,6 @@
 
   @include border-radius(.5em);
 }
-
 
 .text-top--header {
   @extend %inline-textarea;
@@ -38,7 +44,6 @@
 
   font-size: 100%;
 }
-
 
 .text-top--description {
   @extend %inline-textarea;

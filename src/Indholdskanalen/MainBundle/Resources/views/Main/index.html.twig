@@ -1,7 +1,7 @@
 {% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
 
 {% block body %}
-  <div data-ng-include="'/partials/menu.html'"></div>
+  <div data-ng-include="'/app/shared/menu/menu.html'"></div>
 
   {% block content %}
     <div class="layout-wrapper view-container">
@@ -14,31 +14,27 @@
 
 
 {% block scripts %}
-  <!-- Script imports -->
-  <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/lib/angular.min.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-animate.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-route.js') }}"></script>
-
-  <!-- Add ins -->
-  <script src="{{ asset('js/lib/moment.min.js') }}"></script>
-  <script src="{{ asset('js/lib/es5-shim.min.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-file-upload.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-checklist-model.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-bootstrap-colorpicker.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-placeholder.js') }}"></script>
-  <script src="{{ asset('js/lib/angular-css-injector.js') }}"></script>
-
-  <!-- Modules -->
-  <script src="{{ asset('js/modules/datetime-picker/jquery.datetimepicker.js') }}"></script>
-  <script src="{{ asset('js/modules/datetime-picker/datetime-picker.js') }}"></script>
-  <script src="{{ asset('js/modules/locale/da.js') }}"></script>
+  <!-- Imports -->
+  <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-animate.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-route.js') }}"></script>
+  <script src="{{ asset('assets/libs/moment.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/es5-shim.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-file-upload.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-checklist-model.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-bootstrap-colorpicker.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-placeholder.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-css-injector.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker.jquery.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker.js') }}"></script>
+  <script src="{{ asset('assets/libs/locale_da.js') }}"></script>
 
   <!-- Socket io from the search node, to get right version -->
   <script src="/proxy/socket.io/socket.io.js"></script>
 
-  <!-- Base -->
-  <script src="{{ asset('js/app.js') }}"></script>
+  <!-- Main app -->
+  <script src="{{ asset('app/app.js') }}"></script>
 
   <!-- Configuration -->
   <script type="text/javascript">
@@ -51,62 +47,80 @@
         "enabled": "{{ sharing_enabled }}",
         "address": "{{ sharing_host }}"
       },
-      "logo": "{{ logo }}"
+      "siteTitle": "{{ site_title }}"
     });
   </script>
-  <script src="{{ asset('js/routing.js') }}"></script>
+
+  <!-- Routing -->
+  <script src="{{ asset('app/routing.js') }}"></script>
 
   <!-- Filters -->
-  <script src="{{ asset('js/filters/activeEvents.js') }}"></script>
-  <script src="{{ asset('js/filters/reverseEvents.js') }}"></script>
-
-  <!-- Directives -->
-  <script src="{{ asset('js/directives/helperDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/pagerDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/slideDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/channelDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/screenDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/mediaUploadDirectives.js') }}"></script>
-  <script src="{{ asset('js/directives/slideOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/channelOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/mediaOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/deleteDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/channelShareDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/checklistDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/channelSharingOverviewDirective.js') }}"></script>
-  <script src="{{ asset('js/directives/sharedChannelDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/filters/activeEvents.js') }}"></script>
+  <script src="{{ asset('app/shared/filters/reverseEvents.js') }}"></script>
 
   <!-- Services -->
-  <script src="{{ asset('js/services/mediaFactory.js') }}"></script>
-  <script src="{{ asset('js/services/templateFactory.js') }}"></script>
-  <script src="{{ asset('js/services/slideFactory.js') }}"></script>
-  <script src="{{ asset('js/services/screenFactory.js') }}"></script>
-  <script src="{{ asset('js/services/channelFactory.js') }}"></script>
-  <script src="{{ asset('js/services/userFactory.js') }}"></script>
-  <script src="{{ asset('js/services/searchFactory.js') }}"></script>
-  <script src="{{ asset('js/services/sharedSearchFactory.js') }}"></script>
-  <script src="{{ asset('js/services/sharedChannelFactory.js') }}"></script>
-  <script src="{{ asset('js/services/authHttpResponseInterceptor.js') }}"></script>
+  <script src="{{ asset('app/shared/services/mediaFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/templateFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/slideFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/screenFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/channelFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/userFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/searchFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/sharedSearchFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/sharedChannelFactory.js') }}"></script>
+  <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js') }}"></script>
 
-  <!-- Controllers -->
-  <script src="{{ asset('js/controllers/slideOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/screenOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/channelOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/mediaOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/indexController.js') }}"></script>
-  <script src="{{ asset('js/controllers/menuController.js') }}"></script>
-  <script src="{{ asset('js/controllers/slideController.js') }}"></script>
-  <script src="{{ asset('js/controllers/slideEditController.js') }}"></script>
-  <script src="{{ asset('js/controllers/screenController.js') }}"></script>
-  <script src="{{ asset('js/controllers/channelController.js') }}"></script>
-  <script src="{{ asset('js/controllers/mediaUploadController.js') }}"></script>
-  <script src="{{ asset('js/controllers/mediaEditController.js') }}"></script>
-  <script src="{{ asset('js/controllers/channelSharingOverviewController.js') }}"></script>
-  <script src="{{ asset('js/controllers/sharedChannelController.js') }}"></script>
-  <script src="{{ asset('js/controllers/adminSharingController.js') }}"></script>
+  <!-- Menu -->
+  <script src="{{ asset('app/shared/menu/menuController.js') }}"></script>
+
+  <!-- Pages -->
+  <script src="{{ asset('app/pages/screen/screen.js') }}"></script>
+  <script src="{{ asset('app/pages/sharedChannel/sharedChannelController.js') }}"></script>
+  <script src="{{ asset('app/pages/sharedChannelOverview/sharedChannelOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/adminSharing/adminSharingController.js') }}"></script>
+  <script src="{{ asset('app/pages/channel/channelController.js') }}"></script>
+  <script src="{{ asset('app/pages/channelOverview/channelOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/mediaOverview/mediaOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/screenOverview/screenOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/mediaEdit/mediaEditController.js') }}"></script>
+  <script src="{{ asset('app/pages/mediaUpload/mediaUploadController.js') }}"></script>
+  <script src="{{ asset('app/pages/slideOverview/slideOverviewController.js') }}"></script>
+  <script src="{{ asset('app/pages/slide/slideController.js') }}"></script>
+  <script src="{{ asset('app/pages/slide/slideEditController.js') }}"></script>
+
+  <!-- Elements -->
+  <script src="{{ asset('app/shared/elements/sharedChannel/sharedChannelDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/sharedChannelOverview/sharedChannelOverview.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/channel/channelDirectives.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/channelOverview/channelOverviewDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/pager/pagerDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/delete/deleteDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/channelShare/channelShareDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/checklist/checklistDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/screen/screenDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slideOverview/slideOverviewDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/slideDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/slideEditableDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/sharedSlideDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/mediaOverview/mediaOverviewDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/mediaUpload/mediaUploadDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/thumb/thumbDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/autoGrow/autoGrowDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/includeReplace/includeReplaceDirective.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/controlPanel/control-panel.js') }}"></script>
+  <script src="{{ asset('app/shared/elements/ngModal/ng-modal.js') }}"></script>
+
+  <!-- Widgets -->
+  <script src="{{ asset('app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js') }}"></script>
+  <script src="{{ asset('app/shared/widgets/textWidget/textWidget.js') }}"></script>
+  <script src="{{ asset('app/shared/widgets/textAreaWidget/textAreaWidget.js') }}"></script>
+  <script src="{{ asset('app/shared/widgets/numberWidget/numberWidget.js') }}"></script>
+  <script src="{{ asset('app/shared/widgets/channelPickerWidget/channelPickerWidget.js') }}"></script>
+  <script src="{{ asset('app/shared/widgets/sharedChannelPickerWidget/sharedChannelPickerWidget.js') }}"></script>
+  <script src="{{ asset('app/shared/widgets/channelRemoverWidget/channelRemoverWidget.js') }}"></script>
+  <script src="{{ asset('app/shared/widgets/regionPreviewWidget/regionPreviewWidget.js') }}"></script>
 
   <!-- Components -->
-  <script src="{{ asset('components/ngModal/ng-modal.js') }}"></script>
-
+  <script src="{{ asset('app/shared/components/date/dateComponent.js') }}"></script>
 {% endblock %}
 

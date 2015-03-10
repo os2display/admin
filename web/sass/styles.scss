@@ -37,6 +37,11 @@
 @import "layout/_layout";
 
 
+// ITK components.
+@import "components/_itk-menu";
+@import "components/_itk-tabs";
+
+
 // Modules
 @import "modules/_create-slide";
 @import "modules/_create-screen";
@@ -54,7 +59,10 @@
 @import "modules/_delete";
 @import "modules/_share";
 @import "modules/_admin-sharing";
-
+@import "modules/_presentation";
+@import "modules/_control-panel";
+@import "modules/_cpw";
+@import "modules/_list";
 
 // Animations
 @import "animations/_animation";

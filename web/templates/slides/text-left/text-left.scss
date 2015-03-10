@@ -1,9 +1,16 @@
 @import "compass/css3";
-@import "../_imports.scss";
+@import "../_shared-base.scss";
 
 .text-left {
   background-size: cover;
   background-position: center;
+
+  // Maintain font.
+  pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left;
+  }
 }
 
 
@@ -20,7 +27,7 @@
 .text-left--text-inner {
   background: rgba(0,0,0,0.7);
   box-sizing: border-box;
-  color: #fff;
+  color: $white;
   margin: 5.5% auto;
   padding: 6%;
   text-align: left;

@@ -22,6 +22,7 @@
   &--section {
     margin: 0 auto;
     max-width: 100em;
+    padding-top: 2em;
     text-align: center;
   }
 
@@ -104,7 +105,7 @@
 
   &--slides-container,
   &--channel-container {
-    display: block;
+    display: inline-block;
   }
 
   &--channel-empty {
@@ -239,6 +240,7 @@
     border: 1px solid $gray-lighter;
     box-sizing: border-box;
     border-right: 0;
+    color: $gray-darker;
     cursor: pointer;
     display: inline-block;
     margin-left: $grid-markup-fix;
@@ -259,7 +261,8 @@
     }
 
     &.is-active {
-      background: $beige;
+      background: $gray-lighter;
+      font-weight: bold;
     }
   }
 
@@ -293,6 +296,7 @@
   &--screen-wrapper {
     margin: 0;
     background: $gray-lightest;
+    background-position: center;
     border: 3px solid $gray;
     box-sizing: border-box;
     color: $gray-darker;
@@ -364,6 +368,9 @@
   &--media-image {
     max-height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
     max-width: 300px;
+    background-image: url('../../images/squares.jpg');
+    background-repeat: repeat;
+    min-width: 200px;
   }
 
 

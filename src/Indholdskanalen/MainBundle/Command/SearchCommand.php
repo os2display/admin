@@ -31,7 +31,7 @@ class SearchCommand extends ContainerAwareCommand {
    */
   protected function configure() {
     $this->setName('ik:reindex')
-      ->setDescription("Re-index all in the search backend.");
+      ->setDescription('Re-index all in the search backend.');
   }
 
   /**
@@ -47,7 +47,10 @@ class SearchCommand extends ContainerAwareCommand {
     $this->output = $output;
 
     // Find all media elements.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('ApplicationSonataMediaBundle:Media')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findAll();
 
     // Loop over the elements to add real urls.
     foreach ($entities as &$media) {
@@ -67,15 +70,24 @@ class SearchCommand extends ContainerAwareCommand {
     $this->indexEnities('Media elements', $entities);
 
     // Find all slides.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('IndholdskanalenMainBundle:Slide')
+      ->findAll();
     $this->indexEnities('Slides', $entities);
 
     // Find all Channels.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findAll();
     $this->indexEnities('Channels', $entities);
 
     // Find all slides.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findAll();
     $this->indexEnities('Screens', $entities);
   }
 
@@ -129,7 +141,7 @@ class SearchCommand extends ContainerAwareCommand {
    * @param $method
    *   The type of operation to preform.
    *
-   * @return bool
+   * @return array
    */
   private function sendEvent($entity, $method) {
     // Build parameters to send to the search backend.
@@ -161,7 +173,7 @@ class SearchCommand extends ContainerAwareCommand {
   private function buildQuery($url, $method, $data, $token) {
     // Build query.
     $ch = curl_init($url);
-    
+
     // SSL fix (self signed).
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -174,7 +186,7 @@ class SearchCommand extends ContainerAwareCommand {
       'Authorization: Bearer ' . $token
     ));
     // Receive server response.
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
     return $ch;
   }
@@ -193,13 +205,15 @@ class SearchCommand extends ContainerAwareCommand {
    *
    * @return array
    */
-  private function curl($url, $method = 'POST', $params) {
-    $authenticationService = $this->getContainer()->get('indholdskanalen.authentication_service');
+  private function curl($url, $method = 'POST', $params = array()) {
+    $authenticationService = $this->getContainer()
+      ->get('indholdskanalen.authentication_service');
 
     // Get the authentication token.
     $auth = $authenticationService->getAuthentication('search');
 
-    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()
+        ->setGroups(array('search')));
 
     // Build query.
     $ch = $this->buildQuery($url, $method, $data, $auth['token']);
@@ -211,7 +225,7 @@ class SearchCommand extends ContainerAwareCommand {
 
     // If unauthenticated, reauthenticate and retry.
     if ($http_status === 401) {
-      $auth = $authenticationService->getAuthentication('search', true);
+      $auth = $authenticationService->getAuthentication('search', TRUE);
 
       $ch = $this->buildQuery($url, $method, $data, $auth['token']);
       $content = curl_exec($ch);

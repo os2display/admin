@@ -33,7 +33,7 @@ class SharingController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SharedChannelGetAction($id, $index) {
+  public function sharedChannelGetAction($id, $index) {
     $response = new Response();
     $sharingService = $this->container->get('indholdskanalen.sharing_service');
     $doctrine = $this->container->get('doctrine');
@@ -53,12 +53,12 @@ class SharingController extends Controller {
     // No hits founds, or too many.
     if (!$channelFromSharing) {
       $response->setStatusCode(500);
-      $response->setContent("Error: Could not retrieve channel from sharing service.");
+      $response->setContent('Error: Could not retrieve channel from sharing service.');
       return $response;
     }
     else if ($channelFromSharing->hits > 1) {
       $response->setStatusCode(500);
-      $response->setContent("Error: More than one entry with that id found.");
+      $response->setContent('Error: More than one entry with that id found.');
       return $response;
     }
     else if ($channelFromSharing->hits < 1) {
@@ -108,7 +108,7 @@ class SharingController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SharedChannelSaveAction(Request $request) {
+  public function sharedChannelSaveAction(Request $request) {
     $post = json_decode($request->getContent());
 
     $doctrine = $this->getDoctrine();
@@ -163,7 +163,7 @@ class SharingController extends Controller {
    *
    * @return Response
    */
-  public function AvailableSharingIndexesGetAction() {
+  public function availableSharingIndexesGetAction() {
     $sharingService = $this->container->get('indholdskanalen.sharing_service');
     $availableSharingIndexes = $sharingService->getAvailableSharingIndexes();
 
@@ -184,7 +184,7 @@ class SharingController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SharingIndexesGetAction() {
+  public function sharingIndexesGetAction() {
     $sharingService = $this->container->get('indholdskanalen.sharing_service');
     $sharingIndexes = $sharingService->getSharingIndexes();
 
@@ -210,7 +210,7 @@ class SharingController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SharingIndexesSaveAction(Request $request) {
+  public function sharingIndexesSaveAction(Request $request) {
     $post = json_decode($request->getContent());
 
     $doctrine = $this->getDoctrine();
