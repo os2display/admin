@@ -1,5 +1,5 @@
 <div class="cpw--screen-sections">
-  <div class="cpw--screen-sections-item" data-ng-repeat="template in templates" data-ng-if="template.orientation === screen.orientation">
+  <div class="cpw--screen-sections-item" data-ng-repeat="template in templates" data-ng-if="getOrientation(screen) === template.orientation">
     <label class="cpw--screen-sections-label">{{template.name}}</label>
     <a data-ng-click="pickTemplate(template)" class="cpw--screen-sections-link" data-ng-class="{'is-active': template.id === screen.template.id}">
       <img class="cpw--screen-sections-icon" data-ng-src="{{template.paths.icon}}"/>

@@ -38,12 +38,14 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
                 },
                 function (reason) {
                   // @TODO: Handle error!!
+                  console.log(reason);
                 }
-              )
+              );
             }
           }
         );
-      } else {
+      }
+      else {
         if ($routeParams.id === null || $routeParams.id === undefined || $routeParams.id === '') {
           $location.path('/screen-overview');
         } else {
@@ -102,6 +104,6 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.toolbarTemplate = 'app/shared/toolbars/' + tool.name + '.html';
       $scope.region = tool.region;
       $scope.displayToolbar = true;
-    }
+    };
   }
 ]);

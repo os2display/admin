@@ -32,6 +32,15 @@
             scope.templates = data;
           });
 
+          scope.getOrientation = function getOrientation(screen) {
+            if (screen.width > screen.height) {
+              return 'landscape';
+            }
+            else {
+              return 'portrait';
+            }
+          };
+
           /**
            * Set the template for the screen.
            * @param template

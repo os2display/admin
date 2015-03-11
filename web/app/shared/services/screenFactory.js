@@ -151,8 +151,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
         template: null,
         description: '',
         title: '',
-        orientation: '',
-        channels: [],
+        orientation: 'landscape',
         width: 1920,
         height: 1080,
         channel_screen_regions: []
