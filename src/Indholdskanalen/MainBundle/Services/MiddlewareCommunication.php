@@ -65,12 +65,12 @@ class MiddlewareCommunication extends ContainerAware {
     // Get time of last push for the channel.
     $lastPushTime = $channel->getLastPushTime();
 
-    $middlewarePath = $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path");
+    $middlewarePath = $this->container->getParameter('middleware_host') . $this->container->getParameter('middleware_path');
 
     // Check if the channel should be pushed.
     if ($force || $sha1 !== $channel->getLastPushHash() || $lastPushTime === NULL || $time - $lastPushTime > $this->forcePushInterval) {
       $curlResult = $this->utilityService->curl(
-        $middlewarePath . "/channel/" . $id,
+        $middlewarePath . '/channel/' . $id,
         'POST',
         $data,
         'middleware'
@@ -95,7 +95,7 @@ class MiddlewareCommunication extends ContainerAware {
         foreach (json_decode($lastPushScreens) as $lastPushScreenId) {
           if (!in_array($lastPushScreenId, $screenIds)) {
             $curlResult = $this->utilityService->curl(
-              $middlewarePath . "/channel/" . $id . "/screen/" . $lastPushScreenId,
+              $middlewarePath . '/channel/' . $id . '/screen/' . $lastPushScreenId,
               'DELETE',
               json_encode(array()),
               'middleware'
@@ -181,7 +181,7 @@ class MiddlewareCommunication extends ContainerAware {
    *   The screen to update
    */
   public function pushScreenUpdate($screen) {
-    $middlewarePath = $this->container->getParameter("middleware_host") . $this->container->getParameter("middleware_path");
+    $middlewarePath = $this->container->getParameter('middleware_host') . $this->container->getParameter('middleware_path');
     $serializer = $this->container->get('jms_serializer');
 
     $data = json_encode(
@@ -195,7 +195,7 @@ class MiddlewareCommunication extends ContainerAware {
     );
 
     $this->utilityService->curl(
-      $middlewarePath . "/screen/" . $screen->getId(),
+      $middlewarePath . '/screen/' . $screen->getId(),
       'PUT',
       $data,
       'middleware'
