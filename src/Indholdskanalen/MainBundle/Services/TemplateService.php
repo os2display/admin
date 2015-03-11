@@ -33,7 +33,10 @@ class TemplateService extends ContainerAware {
   }
 
   /**
-   * Gets all slide templates from the "templates_slides_directory" defined in parameters.yml.
+   * Gets all slide templates from the 'templates_slides_directory' defined in parameters.yml.
+   *
+   * @return array
+   *   array of slideTemplates.
    */
   public function getSlideTemplates() {
     if ($this->slideTemplates) {
@@ -41,21 +44,21 @@ class TemplateService extends ContainerAware {
     }
 
     $this->slideTemplates = array();
-    $enabledTemplates = $this->container->getParameter("templates_slides_enabled");
+    $enabledTemplates = $this->container->getParameter('templates_slides_enabled');
 
-    $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter("templates_slides_directory");
-    $serverAddress = $this->container->getParameter("absolute_path_to_server") . "/" . $this->container->getParameter("templates_slides_directory");;
+    $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('templates_slides_directory');
+    $serverAddress = $this->container->getParameter('absolute_path_to_server') . '/' . $this->container->getParameter('templates_slides_directory');
 
     // Iterate through templates directory (configurable).
     if ($handle = opendir($path)) {
       while (false !== ($entry = readdir($handle))) {
-        if (is_dir($path . "/" . $entry) && $entry !== '.' && $entry !== '..') {
+        if (is_dir($path . '/' . $entry) && $entry !== '.' && $entry !== '..') {
           if (!in_array($entry, $enabledTemplates)) {
             continue;
           }
 
           // Read config.json for template
-          $str = file_get_contents($path . $entry . '/' . $entry . ".json");
+          $str = file_get_contents($path . $entry . '/' . $entry . '.json');
           $obj = json_decode($str);
 
           $obj->icon = $serverAddress . $entry . '/' . $obj->icon;
@@ -76,46 +79,9 @@ class TemplateService extends ContainerAware {
   }
 
   /**
-   * Gets all screen templates from the "templates_screens_directory" defined in parameters.yml.
+   * Gets all screen templates from the 'templates_screens_directory' defined in parameters.yml.
    */
   public function getScreenTemplates() {
     return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findAll();
   }
-    /*if ($this->screenTemplates) {
-      return $this->screenTemplates;
-    }
-
-    $this->screenTemplates = array();
-    $enabledTemplates = $this->container->getParameter("templates_screens_enabled");
-
-    $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter("templates_screens_directory");
-    $serverAddress = $this->container->getParameter("absolute_path_to_server") . "/" . $this->container->getParameter("templates_screens_directory");;
-
-    // Iterate through templates directory (configurable).
-    if ($handle = opendir($path)) {
-      while (false !== ($entry = readdir($handle))) {
-        if (is_dir($path . "/" . $entry) && $entry !== '.' && $entry !== '..') {
-          if (!in_array($entry, $enabledTemplates)) {
-            continue;
-          }
-
-          // Read config.json for template
-          $str = file_get_contents($path . $entry . '/' . $entry . ".json");
-          $obj = json_decode($str);
-
-          $obj->icon = $serverAddress . $entry . '/' . $obj->icon;
-          $obj->paths->live = $serverAddress . $entry . '/' . $obj->paths->live;
-          $obj->paths->edit = $serverAddress . $entry . '/' . $obj->paths->edit;
-          $obj->paths->preview = $serverAddress . $entry . '/' . $obj->paths->preview;
-          $obj->paths->css = $serverAddress . $entry . '/' . $obj->paths->css;
-
-          $this->screenTemplates[$entry] = $obj;
-        }
-      }
-
-      closedir($handle);
-    }
-
-    return $this->screenTemplates;
-  }*/
 }
