@@ -1170,34 +1170,34 @@ html.is-locked body {
    ========================================================================== */
 @-moz-keyframes toggle-nav-open {
   0% {
-    right: -100%; }
+    right: -30%; }
   100% {
     right: 0; } }
 @-webkit-keyframes toggle-nav-open {
   0% {
-    right: -100%; }
+    right: -30%; }
   100% {
     right: 0; } }
 @keyframes toggle-nav-open {
   0% {
-    right: -100%; }
+    right: -30%; }
   100% {
     right: 0; } }
 @-moz-keyframes toggle-nav-close {
   0% {
     right: 0; }
   100% {
-    right: -100%; } }
+    right: -30%; } }
 @-webkit-keyframes toggle-nav-close {
   0% {
     right: 0; }
   100% {
-    right: -100%; } }
+    right: -30%; } }
 @keyframes toggle-nav-close {
   0% {
     right: 0; }
   100% {
-    right: -100%; } }
+    right: -30%; } }
 @-moz-keyframes toggle-nav-overlay {
   0% {
     background-color: transparent; }
@@ -1220,10 +1220,10 @@ html.is-locked body {
   height: 100%;
   overflow-y: auto;
   position: fixed;
-  right: -100%;
+  right: -30%;
   z-index: 99;
   max-width: 90%;
-  width: 100%;
+  width: 30%;
   background: #fff;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -1233,13 +1233,13 @@ html.is-locked body {
   box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.25);
   /* States */ }
   .is-visible.control-panel--tool {
-    -moz-animation: toggle-nav-open 0.75s ease 1 forwards;
-    -webkit-animation: toggle-nav-open 0.75s ease 1 forwards;
-    animation: toggle-nav-open 0.75s ease 1 forwards; }
+    -moz-animation: toggle-nav-open 0.15s linear 1 forwards;
+    -webkit-animation: toggle-nav-open 0.15s linear 1 forwards;
+    animation: toggle-nav-open 0.15s linear 1 forwards; }
   .is-hidden.control-panel--tool {
-    -moz-animation: toggle-nav-close 0.75s ease 1 forwards;
-    -webkit-animation: toggle-nav-close 0.75s ease 1 forwards;
-    animation: toggle-nav-close 0.75s ease 1 forwards; }
+    -moz-animation: toggle-nav-close 0.15s linear 1 forwards;
+    -webkit-animation: toggle-nav-close 0.15s linear 1 forwards;
+    animation: toggle-nav-close 0.15s linear 1 forwards; }
 
 /* Invisible close element that allows the user to close the menu by clicking outside it */
 /* Make sure the user can't scroll when overlays are active */

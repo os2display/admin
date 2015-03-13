@@ -1,5 +1,5 @@
 <!-- Channel picker tool -->
-<div class="control-panel--tool" data-ng-class="{'is-visible': display}">
+<div class="control-panel--tool" data-ng-class="{'is-visible': display,'is-hidden': !display}">
   <!-- @TODO: Fix this arrow -->
   <a href="#" class="control-panel--main-toggle">
     <img class="control-panel--toggle-image" src="./images/arrow-right-icon.png"/>
@@ -30,7 +30,7 @@
   </div>
   <div class="control-panel--actions">
     <div class="control-panel--actions-inner">
-      <a class="control-panel--actions-close" data-ng-click="saveAction()">Gem skærm</a>
+      <a class="control-panel--actions-close" data-ng-click="saveAction()">Gem og luk</a>
     </div>
   </div>
 </div>
