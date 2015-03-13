@@ -92,17 +92,22 @@ class MiddlewareCommunication extends ContainerAware {
         // Push deletes to the middleware if a channel has been on a screen previously,
         //   but now has been removed.
         $deleteSuccess = TRUE;
-        foreach (json_decode($lastPushScreens) as $lastPushScreenId) {
-          if (!in_array($lastPushScreenId, $screenIds)) {
-            $curlResult = $this->utilityService->curl(
-              $middlewarePath . '/channel/' . $id . '/screen/' . $lastPushScreenId,
-              'DELETE',
-              json_encode(array()),
-              'middleware'
-            );
 
-            if ($curlResult['status'] !== 200) {
-              $deleteSuccess = FALSE;
+        if (is_string($lastPushScreens)) {
+          $lastPushScreensArray = json_decode($lastPushScreens);
+
+          foreach ($lastPushScreensArray as $lastPushScreenId) {
+            if (!in_array($lastPushScreenId, $screenIds)) {
+              $curlResult = $this->utilityService->curl(
+                $middlewarePath . '/channel/' . $id . '/screen/' . $lastPushScreenId,
+                'DELETE',
+                json_encode(array()),
+                'middleware'
+              );
+
+              if ($curlResult['status'] !== 200) {
+                $deleteSuccess = FALSE;
+              }
             }
           }
         }
