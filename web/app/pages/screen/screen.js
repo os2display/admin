@@ -84,10 +84,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      * Save the screen.
      */
     $scope.saveScreen = function saveScreen() {
+      $scope.displayToolbar = false;
+      $scope.region = null;
       screenFactory.saveScreen().then(
         function () {
-          $scope.displayToolbar = false;
-          $scope.region = null;
         },
         function () {
           // @TODO: Handle error.
