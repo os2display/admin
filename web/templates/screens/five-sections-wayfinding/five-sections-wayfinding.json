@@ -1,0 +1,16 @@
+{
+  "id": "five-sections-wayfinding",
+  "name": "Femdelt wayfinding",
+  "icon": "five-sections-wayfinding.png",
+  "paths": {
+    "live": "five-sections-wayfinding-live.html",
+    "edit": "five-sections-wayfinding-edit.html",
+    "preview": "five-sections-wayfinding.html",
+    "css": "five-sections-wayfinding.css"
+  },
+  "orientation": "landscape",
+  "idealdimensions": {
+    "width": "1080",
+    "height": "1920"
+  }
+}

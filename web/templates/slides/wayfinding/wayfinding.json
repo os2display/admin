@@ -1,0 +1,19 @@
+{
+  "id": "wayfinding",
+  "icon": "wayfinding.png",
+  "paths": {
+    "live": "wayfinding.html",
+    "edit": "wayfinding-edit.html",
+    "preview": "wayfinding.html",
+    "css": "wayfinding.css"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "bgcolor": "#ccc"
+  }
+}
