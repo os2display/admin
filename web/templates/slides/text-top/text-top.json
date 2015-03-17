@@ -1,5 +1,6 @@
 {
   "id": "text-top",
+  "name": "Tekst i toppen",
   "icon": "text-top.png",
   "paths": {
     "live": "text-top.html",

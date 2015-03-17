@@ -1,5 +1,6 @@
 {
   "id": "portrait-text-top",
+  "name": "Tekst i toppen (vertikal)",
   "icon": "portrait-text-top.png",
   "paths": {
     "live": "portrait-text-top.html",

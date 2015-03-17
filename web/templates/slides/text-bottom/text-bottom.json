@@ -1,5 +1,6 @@
 {
   "id": "text-bottom",
+  "name": "Tekst i bunden",
   "icon": "text-bottom.png",
   "paths": {
     "live": "text-bottom.html",

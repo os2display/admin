@@ -1,5 +1,6 @@
 {
   "id": "manual-calendar",
+  "name": "Manuel kalender",
   "icon": "manual-calendar.png",
   "paths": {
     "live": "manual-calendar.html",

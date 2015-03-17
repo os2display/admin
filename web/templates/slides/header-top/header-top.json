@@ -1,5 +1,6 @@
 {
   "id": "header-top",
+  "name": "Header i toppen",
   "icon": "header-top.png",
   "type": "responsive",
   "paths": {

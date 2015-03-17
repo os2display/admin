@@ -1,5 +1,6 @@
 {
   "id": "text-right",
+  "name": "Tekst til højre",
   "icon": "text-right.png",
   "paths": {
     "live": "text-right.html",

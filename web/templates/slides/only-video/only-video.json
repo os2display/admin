@@ -1,5 +1,6 @@
 {
   "id": "only-video",
+  "name": "Kun video",
   "icon": "only-video.png",
   "paths": {
     "live": "only-video.html",

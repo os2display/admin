@@ -1,5 +1,6 @@
 {
   "id": "wayfinding",
+  "name": "Wayfinding",
   "icon": "wayfinding.png",
   "paths": {
     "live": "wayfinding.html",

@@ -1,5 +1,6 @@
 {
   "id": "only-image",
+  "name": "Kun billede",
   "icon": "only-image.png",
   "paths": {
     "live": "only-image.html",

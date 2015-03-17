@@ -1,5 +1,6 @@
 {
   "id": "event-calendar",
+  "name": "Begivenhedskalender",
   "icon": "event-calendar.png",
   "paths": {
     "live": "event-calendar-live.html",

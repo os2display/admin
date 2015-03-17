@@ -1,5 +1,6 @@
 {
   "id": "ik-iframe",
+  "name": "iFrame",
   "icon": "ik-iframe.png",
   "paths": {
     "live": "ik-iframe.html",

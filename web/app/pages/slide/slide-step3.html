@@ -10,6 +10,7 @@
           </span>
           <img data-ng-src="{{template.icon}}"/>
         </div>
+        <div>{{ template.name }}</div>
       </div>
     </div>
     <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.templateSet()}" data-ng-disabled="!validation.templateSet()" value="Fortsæt" data-ng-click="submitStep()">
