@@ -24,7 +24,11 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
      */
     function getSocket(deferred) {
       // Get connected to the server.
-      socket = io.connect(configuration.search.address, {'force new connection': true, query: 'token=' + token});
+      socket = io.connect(configuration.search.address, {
+        'query': 'token=' + token,
+        'force new connection': true,
+        'max reconnection attempts': Infinity
+      });
 
       // Handle error events.
       socket.on('error', function (reason) {
