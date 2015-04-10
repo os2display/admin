@@ -16,7 +16,9 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
     templateFactory.getSlideTemplates().then(
       function(data) {
         for (var key in data) {
-          $scope.templates.push(data[key]);
+          if (data.hasOwnProperty(key)) {
+            $scope.templates.push(data[key]);
+          }
         }
       }
     );
@@ -61,7 +63,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         loadStep(1);
       }
       else {
-        if ($routeParams.id == null || $routeParams.id == undefined || $routeParams.id == '') {
+        if ($routeParams.id === null || $routeParams.id === undefined || $routeParams.id === '') {
           $location.path('/slide');
         }
         else {
@@ -92,11 +94,11 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      * Submit a step in the installation process.
      */
     $scope.submitStep = function() {
-      if ($scope.step == $scope.steps) {
+      if ($scope.step === $scope.steps) {
         $scope.disableSubmitButton = true;
 
         // Set default duration if none is set.
-        if ($scope.slide.duration == '') {
+        if ($scope.slide.duration === '') {
           $scope.slide.duration = 15;
         }
 
@@ -104,7 +106,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
           function() {
             $timeout(function() {
               $location.path('/slide-overview');
-            }, 1000)
+            }, 1000);
           },
           function() {
             $scope.disableSubmitButton = false;
@@ -191,13 +193,13 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
 
       // Update options field.
       angular.forEach(template.emptyoptions, function(value, key)  {
-        if ($scope.slide.options[key] == undefined) {
+        if ($scope.slide.options[key] === undefined) {
           $scope.slide.options[key] = value;
         }
       });
 
       // Set the headline equal to the title, if it is empty.
-      if ($scope.slide.options.headline == '') {
+      if ($scope.slide.options.headline === '') {
         $scope.slide.options.headline = $scope.slide.title;
       }
 
@@ -223,7 +225,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       var res = false;
 
       $scope.slide.channels.forEach(function(slideChannel) {
-        if (channel.id == slideChannel.id) {
+        if (channel.id === slideChannel.id) {
           res = true;
         }
       });
@@ -240,7 +242,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       var res = false;
 
       $scope.slide.channels.forEach(function(element) {
-        if (channel.id == element.id) {
+        if (channel.id === element.id) {
           res = true;
         }
       });
@@ -255,7 +257,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       var index = null;
 
       $scope.slide.channels.forEach(function(slideChannel, channelIndex) {
-        if (channel.id == slideChannel.id) {
+        if (channel.id === slideChannel.id) {
           index = channelIndex;
         }
       });
@@ -266,6 +268,6 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       else {
         $scope.slide.channels.push(channel);
       }
-    }
+    };
   }
 ]);

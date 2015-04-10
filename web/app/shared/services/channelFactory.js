@@ -56,7 +56,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
       for (var i = 0; i < ids.length; i++) {
         queryString = queryString + "ids[]=" + ids[i];
         if (i < ids.length - 1) {
-          queryString = queryString + "&"
+          queryString = queryString + "&";
         }
       }
 
@@ -66,7 +66,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
           defer.resolve(data);
         })
         .error(function (data, status) {
-          defer.reject(status)
+          defer.reject(status);
         });
 
       return defer.promise;

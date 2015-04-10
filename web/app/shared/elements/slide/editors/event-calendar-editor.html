@@ -14,17 +14,7 @@
         <h2 class="edit-menu--content-header">Vælg lokale(r)</h2>
         <div class="edit-menu--content-description">Angiv hvilket lokales daglige begivenheder skal vises.</div>
         <div class="edit-menu--event-calendar">
-          <!--@todo add <ik-checklist elements="sharingIndexes" selected="shareDialogChannel.sharing_indexes" identity="'id'"></ik-checklist>-->
-          <div class="list">
-            <div class="list--element">
-              <div class="list--element-check is-selected" data-ng-class="{'is-selected' : elementSelected(el)}"></div>
-              <div class="list--element-title ng-binding">ITK Dev Share</div>
-            </div>
-            <div class="list--element">
-              <div class="list--element-check is-selected" data-ng-class="{'is-selected' : elementSelected(el)}"></div>
-              <div class="list--element-title ng-binding">Biblioteks Share</div>
-            </div>
-          </div>
+          <ik-checklist elements="availableResources" selected="ikSlide.options.resources" identity="'mail'"></ik-checklist>
         </div>
         <button class="edit-menu--button" data-ng-click="addBookingEvents(); editor.toggleEventCalendarEditor()">Hent begivenheder</button>
       </div>

@@ -8,16 +8,8 @@
     </div>
     <div class="event-calendar--content is-preview" data-ng-style="{'border-color': ikSlide.options.textcolor, 'color': ikSlide.options.textcolor}">
       <div class="event-calendar--events is-preview">
-        <span class="event-calendar--event">
-          <span class="event-calendar--title-header"><span class="event-calendar--attribute-inner">Hvad</span></span>
-          <span class="event-calendar--place-header"><span class="event-calendar--attribute-inner">Hvor</span></span>
-          <span class="event-calendar--time-header"><span class="event-calendar--attribute-inner">Tidspunkt</span></span>
-        </span>
-        <span class="event-calendar--event" data-ng-repeat="event in ikSlide.options.bookingEvents | limitTo : 5">
-          <span class="event-calendar--title ng-binding"><span class="event-calendar--attribute-inner">{{event.title}}</span></span>
-          <span class="event-calendar--place ng-binding"><span class="event-calendar--attribute-inner">{{event.place}}</span></span>
-          <span class="event-calendar--time"><span class="event-calendar--attribute-inner">{{event.from}} - {{event.to}}</span></span>
-        </span>
+        <div>Begivenheder for</div>
+        <span data-ng-repeat="resource in ikSlide.options.resources">{{resource.name}}, </span>
       </div>
     </div>
   </div>

@@ -23,7 +23,9 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory',
 
         // Watch for changes to ikSlide.
         scope.$watch('ikSlide', function (newVal, oldVal) {
-          if (!newVal) return;
+          if (!newVal) {
+            return;
+          }
 
           if (scope.ikSlide.media_type === 'image') {
             if (scope.ikSlide.media.length > 0) {
@@ -95,6 +97,6 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory',
         }, true);
       },
       templateUrl: '/app/shared/elements/slide/slide-edit.html'
-    }
+    };
   }
 ]);

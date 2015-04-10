@@ -6,8 +6,8 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory',
-  function($scope, $http, $filter, mediaFactory, slideFactory) {
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory',
+  function($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory) {
     'use strict';
 
     $scope.step = 'background-picker';
@@ -98,6 +98,12 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       },
       toggleEventCalendarEditor: function() {
         $('html').toggleClass('is-locked');
+
+        kobaFactory.getResources().then(
+          function(data) {
+            $scope.availableResources = data;
+          }
+        );
 
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
@@ -220,45 +226,38 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * Add booking events from source (for event calendar.)
      */
     $scope.addBookingEvents = function addBookingEvents() {
-      // Dummy content for event calendar.
-      $scope.slide.options.bookingEvents = [
-        {
-          title:    "Dysfagi til smiletsa testing length wohooo 3 2 1 123 testing testing",
-          place:    "Konferencelokalet",
-          from:     "08:00",
-          to:       "11:00"
-        },
-        {
-          title:    "Kunst, kultur og historie",
-          place:    "Hjørnestuen",
-          from:     "09:00",
-          to:       "11:00"
-        },
-        {
-          title:    "Undervisning",
-          place:    "Hjørnestuen",
-          from:     "10:00",
-          to:       "13:00"
-        },
-        {
-          title:    "Administrationen",
-          place:    "Konferencelokalet",
-          from:     "11:00",
-          to:       "13:00"
-        },
-        {
-          title:    "Jubilæum",
-          place:    "Mødelokale 1",
-          from:     "13:00",
-          to:       "15:00"
-        },
-        {
-          title:    "A 6th element",
-          place:    "should not be displayed due to limit in template",
-          from:     "13:00",
-          to:       "15:00"
+      var arr = [];
+
+      // Process bookings for each resource.
+      var addResourceBookings = function (data) {
+        for (var i = 0; i < data.length; i++) {
+          var event = data[i];
+          var start = new Date(event.start_time * 1000);
+          var end = new Date(event.end_time * 1000);
+
+          // Only display events for today
+          if ((new Date(event.start_time * 1000)).setHours(0,0,0,0) === (new Date()).setHours(0,0,0,0)) {
+            arr.push(
+              {
+                "title": event.event_name,
+                "place": event.room_id,
+                "from": start,
+                "to": end
+              }
+            );
+          }
         }
-      ];
+      };
+
+      // Get bookings for each resource.
+      for (var i = 0; i < $scope.slide.options.resources.length; i++) {
+        var resource = $scope.slide.options.resources[i];
+        kobaFactory.getBookingsForResource(resource.mail).then(
+          addResourceBookings
+        );
+      }
+
+      $scope.slide.options.bookingEvents = arr;
     };
 
     // Register event listener for select media.

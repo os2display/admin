@@ -33,6 +33,10 @@ services:
     calls:
       - [ setContainer,[ @service_container ] ]
 
+  indholdskanalen.koba_service:
+    class: Indholdskanalen\MainBundle\Services\KobaService
+    arguments: [%koba_path%, %koba_apikey%, @service_container]
+
   indholdskanalen.authentication_service:
     class: Indholdskanalen\MainBundle\Services\AuthenticationService
     arguments: [@service_container]
