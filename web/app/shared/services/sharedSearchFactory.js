@@ -161,6 +161,14 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
         socket.on('result', function (hits) {
           deferred.resolve(hits);
         });
+
+        // Catch search errors.
+        socket.on('searchError', function (error) {
+          deferred.reject(error.message);
+          alert(error.message);
+        });
+
+        // Send search query.
         socket.emit('search', query);
       });
 
