@@ -55,3 +55,6 @@ parameters:
     templates_screens_enabled:
 
     site_title: Indholdskanalen
+
+    koba_apikey: 12345
+    koba_path: http://192.168.50.21
