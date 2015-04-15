@@ -26,10 +26,10 @@ angular.module('ikApp').factory('kobaFactory', ['$http', '$q',
       return defer.promise;
     };
 
-    factory.getBookingsForResource = function getBookingsForResource(resourceMail) {
+    factory.getBookingsForResource = function getBookingsForResource(resourceMail, from, to) {
       var defer = $q.defer();
 
-      $http.get('/api/resources/' + resourceMail)
+      $http.get('/api/resources/' + resourceMail + '/from/' + from + '/to/' + to)
         .success(function (data) {
           defer.resolve(data);
         })

@@ -13,11 +13,27 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\MaxDepth;
 
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\InheritanceType;
+
+use JMS\Serializer\Annotation as JMS;
+
 /**
  * Extra
  *
  * @ORM\Table(name="ik_slide")
  * @ORM\Entity
+ * @InheritanceType("SINGLE_TABLE")
+ * @DiscriminatorColumn(name="discr", type="string")
+ * @DiscriminatorMap({
+ *    "slide" = "Slide",
+ *    "calendar" = "CalendarSlide",
+ * })
+ * @JMS\Discriminator(field = "_discr", map = {
+ *    "slide" = "Indholdskanalen\MainBundle\Entity\Slide",
+ *    "calendar" = "Indholdskanalen\MainBundle\Entity\CalendarSlide",
+ * })
  */
 class Slide {
   /**
@@ -118,7 +134,6 @@ class Slide {
    * @ORM\Column(name="modified_at", type="integer", nullable=false)
    */
   private $modifiedAt;
-
 
   /**
    * Constructor

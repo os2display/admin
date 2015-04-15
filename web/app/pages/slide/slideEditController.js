@@ -208,12 +208,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
             var fromDate = new Date(item.from * 1000);
             var toDate = new Date(item.to * 1000);
 
-            if (fromDate.getDate() === toDate.getDate()) {
-              item.dailyEvent = true;
-            }
-            else {
-              item.dailyEvent = false;
-            }
+            return fromDate.getDate() === toDate.getDate();
           }
 
           // Save new event item with duration.
@@ -235,24 +230,25 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           var start = new Date(event.start_time * 1000);
           var end = new Date(event.end_time * 1000);
 
-          // Only display events for today
-          if ((new Date(event.start_time * 1000)).setHours(0,0,0,0) === (new Date()).setHours(0,0,0,0)) {
-            arr.push(
-              {
-                "title": event.event_name,
-                "place": event.room_id,
-                "from": start,
-                "to": end
-              }
-            );
-          }
+          arr.push(
+            {
+              "title": event.event_name,
+              "place": event.room_id,
+              "from": start,
+              "to": end
+            }
+          );
         }
       };
 
       // Get bookings for each resource.
       for (var i = 0; i < $scope.slide.options.resources.length; i++) {
         var resource = $scope.slide.options.resources[i];
-        kobaFactory.getBookingsForResource(resource.mail).then(
+        var now = new Date();
+        var todayStart = (new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 1000;
+        var todayEnd = todayStart + 86400;
+
+        kobaFactory.getBookingsForResource(resource.mail, todayStart, todayEnd).then(
           addResourceBookings
         );
       }

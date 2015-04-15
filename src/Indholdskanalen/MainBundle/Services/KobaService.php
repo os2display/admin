@@ -6,6 +6,7 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -15,10 +16,12 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class KobaService {
   private $apiKey;
   private $kobaPath;
+  private $container;
 
-  public function __construct($kobaPath, $apiKey) {
+  public function __construct($kobaPath, $apiKey, $container) {
     $this->kobaPath = $kobaPath;
     $this->apiKey = $apiKey;
+    $this->container = $container;
   }
 
   public function getResources($group = 'DEFAULT') {
@@ -47,8 +50,8 @@ class KobaService {
     }
   }
 
-  public function getBookingsForResource($resourceMail, $group = 'DEFAULT') {
-    $url = $this->kobaPath . '/api/resources/' . $resourceMail . '/group/' . $group . '/bookings?apikey=' . $this->apiKey;
+  public function getBookingsForResource($resourceMail, $group = 'DEFAULT', $from, $to) {
+    $url = $this->kobaPath . '/api/resources/' . $resourceMail . '/group/' . $group . '/bookings/from/' . $from . '/to/' . $to . '?apikey=' . $this->apiKey;
 
     // Build query.
     $ch = curl_init($url);
@@ -70,6 +73,35 @@ class KobaService {
     }
     else {
       throw new HttpException($http_status);
+    }
+  }
+
+  public function updateCalendarSlides() {
+    // For each calendar slide
+    $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:CalendarSlide')->findAll();
+    $todayStart = mktime(0, 0, 0, date('n'), date('j'));
+    $tomorrowStart = mktime(0, 0, 0, date('n'), date('j') + 1);
+
+    $bookings = array();
+
+    // Get data for interest period
+    foreach ($slides as $slide) {
+      $options = $slide->getOptions();
+
+      foreach ($options['resources'] as $resource) {
+        try {
+          $booking = $this->getBookingsForResource($resource['mail'], 'DEFAULT', $todayStart, $tomorrowStart);
+          array_push($bookings, $booking);
+        }
+        catch (Exception $e) {
+          // ignore.
+        }
+      }
+
+      // Sort bookings by start time.
+
+      // Save in calendarEvents field
+      $slide->setCalendarEvents($bookings);
     }
   }
 }
