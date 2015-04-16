@@ -186,6 +186,9 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         return;
       }
 
+      // Set calendar type
+      $scope.slide.slide_type = template.slide_type;
+
       // Make sure the options field has been set.
       if (!$scope.slide.options) {
         $scope.slide.options = {};

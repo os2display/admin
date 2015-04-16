@@ -16,7 +16,7 @@
           <span class="event-calendar--place-header"><span class="event-calendar--attribute-inner">Hvor</span></span>
           <span class="event-calendar--time-header"><span class="event-calendar--attribute-inner">Tidspunkt</span></span>
         </span>
-        <span class="event-calendar--event" data-ng-repeat="event in ikSlide.options.bookingEvents | limitTo : 5 | orderBy: 'from' : true">
+        <span class="event-calendar--event" data-ng-repeat="event in ikSlide.bookingEvents | limitTo : 5 | orderBy: 'from' : true">
           <span class="event-calendar--title ng-binding"><span class="event-calendar--attribute-inner">{{event.title}}</span></span>
           <span class="event-calendar--place ng-binding"><span class="event-calendar--attribute-inner">{{event.place}}</span></span>
           <span class="event-calendar--time"><span class="event-calendar--attribute-inner">{{event.from | date:'HH:mm'}} - {{event.to | date:'HH:mm'}}</span></span>

@@ -13,10 +13,10 @@
           <span class="event-calendar--place-header"><span class="event-calendar--attribute-inner">Hvor</span></span>
           <span class="event-calendar--time-header"><span class="event-calendar--attribute-inner">Tidspunkt</span></span>
         </span>
-        <span class="event-calendar--event" data-ng-repeat="event in ikSlide.options.bookingEvents | limitTo : 5">
-          <span class="event-calendar--title ng-binding"><span class="event-calendar--attribute-inner">{{event.title}}</span></span>
-          <span class="event-calendar--place ng-binding"><span class="event-calendar--attribute-inner">{{event.place}}</span></span>
-          <span class="event-calendar--time"><span class="event-calendar--attribute-inner">{{event.from}} - {{event.to}}</span></span>
+        <span class="event-calendar--event" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 5">
+          <span class="event-calendar--title ng-binding"><span class="event-calendar--attribute-inner">{{event.event_name}}</span></span>
+          <span class="event-calendar--place ng-binding"><span class="event-calendar--attribute-inner">{{event.resource_id}}</span></span>
+          <span class="event-calendar--time"><span class="event-calendar--attribute-inner">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</span></span>
         </span>
       </div>
     </div>

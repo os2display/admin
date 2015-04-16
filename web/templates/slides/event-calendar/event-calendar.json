@@ -2,6 +2,7 @@
   "id": "event-calendar",
   "name": "Begivenhedskalender",
   "icon": "event-calendar.png",
+  "slide_type": "calendar",
   "paths": {
     "live": "event-calendar-live.html",
     "edit": "event-calendar-edit.html",

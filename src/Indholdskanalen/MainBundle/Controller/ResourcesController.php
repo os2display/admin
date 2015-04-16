@@ -31,6 +31,6 @@ class ResourcesController extends Controller {
    * @return JsonResponse
    */
   public function getBookingsForResource($resourceMail, $from, $to) {
-    return new JsonResponse($this->get('indholdskanalen.koba_service')->getBookingsForResource($resourceMail, 'DEFAULT', $from, $to));
+    return new JsonResponse($this->get('indholdskanalen.koba_service')->getBookingsForResource($resourceMail, 'default', $from, $to));
   }
 }

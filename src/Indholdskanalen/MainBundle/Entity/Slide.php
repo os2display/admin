@@ -24,16 +24,6 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @ORM\Table(name="ik_slide")
  * @ORM\Entity
- * @InheritanceType("SINGLE_TABLE")
- * @DiscriminatorColumn(name="discr", type="string")
- * @DiscriminatorMap({
- *    "slide" = "Slide",
- *    "calendar" = "CalendarSlide",
- * })
- * @JMS\Discriminator(field = "_discr", map = {
- *    "slide" = "Indholdskanalen\MainBundle\Entity\Slide",
- *    "calendar" = "Indholdskanalen\MainBundle\Entity\CalendarSlide",
- * })
  */
 class Slide {
   /**
@@ -136,6 +126,26 @@ class Slide {
   private $modifiedAt;
 
   /**
+   * @ORM\Column(name="slide_type", type="string", nullable=true)
+   */
+  private $slideType;
+
+  /**
+   * @Groups({"middleware"})
+   *
+   * @JMS\Type("array<array>")
+   * @ORM\Column(name="calendar_events", type="json_array", nullable=true)
+   */
+  protected $calendarEvents;
+
+  /**
+   * @ORM\Column(name="interest_period", type="string", nullable=true)
+   *
+   * Possible options: "day" (null), "week", "month", "all"
+   */
+  protected $calendarInterestPeriod;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -150,6 +160,60 @@ class Slide {
    */
   public function getId() {
     return $this->id;
+  }
+
+  /**
+   * Get calendarEvents.
+   *
+   * @return mixed
+   */
+  public function getCalendarEvents() {
+    return $this->calendarEvents;
+  }
+
+  /**
+   * Set calendarEvents.
+   *
+   * @param $calendarEvents
+   */
+  public function setCalendarEvents($calendarEvents) {
+    $this->calendarEvents = $calendarEvents;
+  }
+
+  /**
+   * Get calendarInterestPeriod.
+   *
+   * @return mixed
+   */
+  public function getCalendarInterestPeriod() {
+    return $this->calendarInterestPeriod;
+  }
+
+  /**
+   * Set calendarInterestPeriod.
+   *
+   * @param $calendarInterestPeriod
+   */
+  public function setCalendarInterestPeriod($calendarInterestPeriod) {
+    $this->calendarInterestPeriod = $calendarInterestPeriod;
+  }
+
+  /**
+   * Set slideType
+   *
+   * @param string $slideType
+   */
+  public function setSlideType($slideType) {
+    $this->slideType = $slideType;
+  }
+
+  /**
+   * Get slideType
+   *
+   * @return string
+   */
+  public function getSlideType() {
+    return $this->slideType;
   }
 
   /**

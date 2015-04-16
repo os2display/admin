@@ -12,6 +12,10 @@ angular.module('ikApp').factory('kobaFactory', ['$http', '$q',
 
     var factory = {};
 
+    /**
+     * Get available resources.
+     * @returns {*}
+     */
     factory.getResources = function getResources() {
       var defer = $q.defer();
 
@@ -26,6 +30,17 @@ angular.module('ikApp').factory('kobaFactory', ['$http', '$q',
       return defer.promise;
     };
 
+    /**
+     * Get Bookings for resource for interval between from and to.
+     *
+     * @param resourceMail
+     *   Resource mail.
+     * @param from
+     *   Unix timestamp
+     * @param to
+     *   Unix timestamp
+     * @returns {*}
+     */
     factory.getBookingsForResource = function getBookingsForResource(resourceMail, from, to) {
       var defer = $q.defer();
 

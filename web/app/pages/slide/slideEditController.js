@@ -233,7 +233,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           arr.push(
             {
               "title": event.event_name,
-              "place": event.room_id,
+              "place": event.resource_id,
               "from": start,
               "to": end
             }
@@ -253,7 +253,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         );
       }
 
-      $scope.slide.options.bookingEvents = arr;
+      $scope.slide.bookingEvents = arr;
     };
 
     // Register event listener for select media.

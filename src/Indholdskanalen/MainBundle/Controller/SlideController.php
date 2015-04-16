@@ -63,6 +63,9 @@ class SlideController extends Controller {
     }
 
     // Update fields from post.
+    if (isset($post['slide_type'])) {
+      $slide->setSlideType($post['slide_type']);
+    }
     if (isset($post['title'])) {
       $slide->setTitle($post['title']);
     }
@@ -89,6 +92,9 @@ class SlideController extends Controller {
     }
     if (isset($post['media_type'])) {
       $slide->setMediaType($post['media_type']);
+    }
+    if (isset($post['calendar_interest_period'])) {
+      $slide->setCalendarInterestPeriod($post['calendar_interest_period']);
     }
     $slide->setModifiedAt(time());
 
