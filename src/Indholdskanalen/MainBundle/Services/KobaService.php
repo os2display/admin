@@ -111,8 +111,8 @@ class KobaService {
   public function updateCalendarSlides() {
     // For each calendar slide
     $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('calendar');
-    $todayStart = mktime(0, 0, 0, date('n'), date('j'));
-    $tomorrowStart = mktime(0, 0, 0, date('n'), date('j') + 1);
+    $todayStart = mktime(0, 0, 0);
+    $todayEnd = mktime(23, 59, 59);
 
     // Get data for interest period
     foreach ($slides as $slide) {
@@ -122,7 +122,7 @@ class KobaService {
 
       foreach ($options['resources'] as $resource) {
         try {
-          $resourceBookings = $this->getBookingsForResource($resource['mail'], 'default', $todayStart, $tomorrowStart);
+          $resourceBookings = $this->getBookingsForResource($resource['mail'], 'default', $todayStart, $todayEnd);
 
           if (count($resourceBookings) > 0) {
             $bookings = array_merge($bookings, $resourceBookings);
@@ -140,8 +140,6 @@ class KobaService {
 
       // Save in calendarEvents field
       $slide->setCalendarEvents($bookings);
-
-      print_r($bookings);
 
       $this->container->get('doctrine')->getManager()->flush();
     }
