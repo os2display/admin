@@ -24,13 +24,13 @@ class ResourcesController extends Controller {
   /**
    * The bookings of a resource.
    *
-   * @Route("/{resourceMail}/from/{from}/to/{to}")
+   * @Route("/{resourceMail}/bookings/from/{from}/to/{to}")
    *
    * @param $resourceMail
    *
    * @return JsonResponse
    */
-  public function getBookingsForResource($resourceMail, $from, $to) {
-    return new JsonResponse($this->get('indholdskanalen.koba_service')->getBookingsForResource($resourceMail, 'default', $from, $to));
+  public function getResourceBookings($resourceMail, $from, $to) {
+    return new JsonResponse($this->get('indholdskanalen.koba_service')->getResourceBookings($resourceMail, 'default', $from, $to));
   }
 }

@@ -76,7 +76,7 @@ class KobaService {
    * @return array
    *   json array.
    */
-  public function getBookingsForResource($resourceMail, $group, $from, $to) {
+  public function getResourceBookings($resourceMail, $group, $from, $to) {
     $url = $this->kobaPath . '/api/resources/' . $resourceMail . '/group/' . $group . '/bookings/from/' . $from . '/to/' . $to . '?apikey=' . $this->apiKey;
 
     // Build query.
@@ -121,15 +121,10 @@ class KobaService {
       $options = $slide->getOptions();
 
       foreach ($options['resources'] as $resource) {
-        try {
-          $resourceBookings = $this->getBookingsForResource($resource['mail'], 'default', $todayStart, $todayEnd);
+        $resourceBookings = $this->getResourceBookings($resource['mail'], 'default', $todayStart, $todayEnd);
 
-          if (count($resourceBookings) > 0) {
-            $bookings = array_merge($bookings, $resourceBookings);
-          }
-        }
-        catch (Exception $e) {
-          // ignore.
+        if (count($resourceBookings) > 0) {
+          $bookings = array_merge($bookings, $resourceBookings);
         }
       }
 
