@@ -17,7 +17,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
         ikOverlay: '@',
         ikSingleSlide: '='
       },
-      link: function(scope, element, attrs) {
+      link: function(scope) {
         scope.index = {};
         scope.loading = false;
         scope.pickIndexDialog = false;
@@ -32,8 +32,11 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
         scope.sort = { "created_at": "desc" };
 
         userFactory.getCurrentUser().then(
-          function(data) {
+          function success(data) {
             scope.currentUser = data;
+          },
+          function error(reason) {
+            // @TODO: Handle error.
           }
         );
 
@@ -74,13 +77,15 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
 
           scope.loading = true;
           sharedChannelFactory.searchChannels(search, scope.index.index).then(
-            function(data) {
+            function success(data) {
               scope.loading = false;
               scope.hits = data.hits;
               scope.channels = data.results;
             },
-            function (reason) {
+            function error(reason) {
               scope.loading = false;
+
+              // @TODO: Handle error.
             }
           );
         };
