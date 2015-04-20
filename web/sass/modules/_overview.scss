@@ -311,16 +311,19 @@
     }
   }
 
+  &--screen-text {
+    padding: .5em;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    height: 90%;
+    overflow: hidden;
+  }
+
   &--screen-header {
     font-weight: bold;
-    text-align: center;
   }
 
   &--screen--description {
-    position: relative;
-    top:50%;
-
-    @include translateY(-50%);
   }
 
   &--screen-all,

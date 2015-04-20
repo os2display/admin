@@ -81,6 +81,19 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
 
     init();
 
+    $scope.saveScreenAndClose = function saveScreenAndClose() {
+      $scope.displayToolbar = false;
+      $scope.region = null;
+      screenFactory.saveScreen().then(
+        function () {
+          $location.path('/screen-overview');
+        },
+        function () {
+          // @TODO: Handle error.
+        }
+      );
+    };
+
     /**
      * Save the screen.
      */

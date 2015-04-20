@@ -3010,16 +3010,14 @@ html.is-locked body {
     @media only screen and (min-width: 481px) {
       .overview--screen-wrapper {
         margin: 0 1em 1em 0; } }
+  .overview--screen-text {
+    padding: .5em;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    height: 90%;
+    overflow: hidden; }
   .overview--screen-header {
-    font-weight: bold;
-    text-align: center; }
-  .overview--screen--description {
-    position: relative;
-    top: 50%;
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%); }
+    font-weight: bold; }
   .overview--screen-all, .overview--screen-horisontal, .overview--screen-vertical {
     width: 33.3%; }
   .overview--media-single {
