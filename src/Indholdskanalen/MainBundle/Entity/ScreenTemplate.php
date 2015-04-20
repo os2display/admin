@@ -61,21 +61,9 @@ class ScreenTemplate {
 
   /**
    * @ORM\Column(name="orientation", type="string")
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   protected $orientation;
-
-  /**
-   * @ORM\Column(name="width", type="integer")
-   * @Groups({"api"})
-   */
-  protected $width;
-
-  /**
-   * @ORM\Column(name="height", type="integer")
-   * @Groups({"api"})
-   */
-  protected $height;
 
   /**
    * @ORM\OneToMany(targetEntity="Screen", mappedBy="template")
@@ -269,47 +257,5 @@ class ScreenTemplate {
    */
   public function getOrientation() {
     return $this->orientation;
-  }
-
-  /**
-   * Set width
-   *
-   * @param integer $width
-   * @return ScreenTemplate
-   */
-  public function setWidth($width) {
-    $this->width = $width;
-
-    return $this;
-  }
-
-  /**
-   * Get width
-   *
-   * @return integer
-   */
-  public function getWidth() {
-    return $this->width;
-  }
-
-  /**
-   * Set height
-   *
-   * @param integer $height
-   * @return ScreenTemplate
-   */
-  public function setHeight($height) {
-    $this->height = $height;
-
-    return $this;
-  }
-
-  /**
-   * Get height
-   *
-   * @return integer
-   */
-  public function getHeight() {
-    return $this->height;
   }
 }
