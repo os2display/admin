@@ -14,8 +14,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
       restrict: 'E',
       scope: {
         ikSelectedChannels: '=',
-        ikHideFilters: '=',
-        ikFilter: '@',
         ikOverlay: '@',
         ikSingleSlide: '='
       },
@@ -30,8 +28,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           scope.sharingIndexes = data;
         });
 
-        // Set default orientation and sort.
-        scope.orientation = 'landscape';
         scope.showFromUser = 'all';
         scope.sort = { "created_at": "desc" };
 
@@ -58,9 +54,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           "filter": {
             "bool": {
               "must": {
-                "term": {
-                  "orientation":  scope.orientation
-                }
               }
             }
           },
@@ -139,25 +132,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           scope.index = index;
           scope.pickIndexDialog = false;
 
-          $timeout(
-            function() {
-              scope.updateSearch();
-            }
-          , 10);
-        };
-
-        /**
-         * Changes orientation and updated the channels.
-         *
-         * @param orientation
-         *   This should either be 'landscape' or 'portrait'.
-         */
-        scope.setOrientation = function setOrientation(orientation) {
-          if (scope.orientation !== orientation) {
-            scope.orientation = orientation;
-
-            scope.updateSearch();
-          }
+          scope.updateSearch();
         };
 
         /**
@@ -174,7 +149,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           }
         };
 
-
         /**
          * Updates the search filter based on current orientation and user
          */
@@ -182,18 +156,12 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           // Update orientation for the search.
           delete search.filter;
 
-          if(scope.orientation !== 'all' || scope.showFromUser !== 'all') {
+          if(scope.showFromUser !== 'all') {
             search.filter = {
               "bool": {
                 "must": []
               }
             }
-          }
-
-          if (scope.orientation !== 'all') {
-            var term = {};
-            term.term = {orientation : scope.orientation};
-            search.filter.bool.must.push(term);
           }
 
           if (scope.showFromUser !== 'all') {
@@ -229,11 +197,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
             scope.updateSearch();
           }
         };
-
-        // Set filter if parameter ikFilter is set.
-        if (scope.ikFilter) {
-          scope.setOrientation(scope.ikFilter);
-        }
       },
       templateUrl: '/app/shared/elements/sharedChannelOverview/shared-channel-overview.html'
     };

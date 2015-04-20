@@ -1,16 +1,11 @@
 <section class="overview--section">
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
-    <form class="overview--form" accept-charset="UTF-8" data-ng-class="{'full-width': ikHideFilters}">
+    <form class="overview--form full-width" accept-charset="UTF-8">
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
     </form>
     <div class="overview--filter-owner">
       <div class="overview--filter-owner-button" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
-    </div>
-    <div class="overview--filter-orientation" data-ng-show="!ikHideFilters">
-      <span data-ng-class="{'is-active': orientation == 'all'}" class="overview--filter-threesplit-left" data-ng-click="setOrientation('all')">Alle</span>
-      <span data-ng-class="{'is-active': orientation == 'landscape'}" class="overview--filter-threesplit-middle" data-ng-click="setOrientation('landscape')">Horisontal</span>
-      <span data-ng-class="{'is-active': orientation == 'portrait'}" class="overview--filter-threesplit-right" data-ng-model="search.text" data-ng-click="setOrientation('portrait')">Vertikal</span>
     </div>
   </div>
   <div class="overview--sorting">
@@ -25,7 +20,7 @@
   <div class="overview--channels">
     <div class="spinner overview--spinner" data-ng-show="loading"></div>
     <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="!ikOverlay && !loading">
-      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}" ik-clickable="true"></ik-shared-channel>
+      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="300" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}" ik-clickable="true"></ik-shared-channel>
       <div>{{channel.title}}</div>
     </div>
     <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="ikOverlay && !loading">
@@ -34,7 +29,7 @@
           <span class="overview--link-check"></span>
         </span>
       </div>
-      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 168.75 : 300 }}" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
+      <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="300" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
       <div>{{channel.title}}</div>
     </div>
   </div>
