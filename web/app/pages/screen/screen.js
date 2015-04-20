@@ -86,8 +86,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function (id) {
-          screen.id = id;
+        function () {
           $location.path('/screen-overview');
         },
         function () {
@@ -103,8 +102,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function (id) {
-          screen.id = id;
+        function () {
         },
         function () {
           // @TODO: Handle error.

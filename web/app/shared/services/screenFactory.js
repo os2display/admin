@@ -123,14 +123,9 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
       if (currentScreen === null) {
         defer.reject(404);
       } else {
-        if (parseInt(currentScreen.width) > parseInt(currentScreen.height)) {
-          currentScreen.orientation = 'landscape';
-        } else {
-          currentScreen.orientation = 'portrait';
-        }
-
         $http.post('/api/screen', currentScreen)
           .success(function (data) {
+            currentScreen.id = data;
             defer.resolve(data);
           })
           .error(function (data, status) {
