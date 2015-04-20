@@ -1,25 +1,50 @@
-<section id="create-channel-two" class="create-channel--section">
-  <div class="create-channel--content--channel-two">
+<section id="create-channel-four" class="create-channel--section">
+  <div class="create-channel--content--channel-four">
     <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
-    <p class="create-channel--header-description">Vælg hvilken type skærme du du vil vise kanalen på - er de brede eller høje?</p>
-    <div class="create-channel--screens">
-      <div class="create-channel--screen-landscape" data-ng-click="setOrientation('landscape')">
-        <div class="create-channel--screen-link" data-ng-class="{'is-selected': channel!==null && channel.orientation=='landscape'}">
-          <span class="create-channel--overlay">
-            <span class="create-channel--link-check"></span>
-          </span>
-          <img src="/images/outlines/landscape-outline.png"/>
-        </div>
-      </div>
-      <div class="create-channel--screen-portrait" data-ng-click="setOrientation('portrait')">
-        <div class="create-channel--screen-link" data-ng-class="{'is-selected': channel!==null && channel.orientation=='portrait'}">
-          <span class="create-channel--overlay">
-            <span class="create-channel--link-check"></span>
-          </span>
-          <img src="/images/outlines/portrait-outline.png" />
+    <p class="create-channel--header-description">Tryk på tilføj slides for at tilføje eksisterende slides. Brug pilene til at vælge i hvilken rækkefølge dine slides skal vises.</p>
+    <div class="create-channel--add-slide-button" data-ng-click="editor.toggleSlideOverviewEditor()">Tilføj slides</div>
+    <div class="create-channel--slides">
+      <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
+        <div class="create-channel--slide-order-link">
+          <div data-ng-if="slide.published == true">
+            <div class="create-channel--slide-published-icon" title="Dette slide er publiseret."></div>
+          </div>
+          <div data-ng-if="slide.published == false || outOfSchedule(slide)">
+            <div class="create-channel--slide-unpublished-overlay"></div>
+            <div class="create-channel--slide-unpublished-icon" title="Dette slide er ikke publiseret."></div>
+          </div>
+          <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img class="create-channel--arrow-left-image" src="images/arrow-backward.png"></span>
+          <span class="create-channel--slide-order-number">{{$index + 1}}</span>
+          <div class="create-channel--slide-remove" data-ng-click="toggleSlide(slide)"></div>
+          <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
+          <span class="create-channel--slide-order-label">{{slide.title}}</span>
+          <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><img class="create-channel--arrow-right-image" src="images/arrow-forward.png"></span>
         </div>
       </div>
     </div>
-    <input type="submit" class="create-channel--button" value="Fortsæt" data-ng-disabled="!validation.orientationSet()" data-ng-class="{'is-inactive': !validation.orientationSet()}" data-ng-click="submitStep()">
+    <div class="create-channel--finish-button">
+      <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
+      <input type="submit" data-ng-disabled="disableSubmitButton" class="create-channel--button" value="Gem kanal" data-ng-click="submitStep()">
+    </div>
   </div>
 </section>
+
+<!-- Select slide editor -->
+<div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.slideOverviewEditor, 'is-hidden': !editor.slideOverviewEditor}" >
+  <div class="edit-menu--content-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleSlideOverviewEditor()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--content-page-inner">
+      <h2 class="edit-menu--content-header">Vælg slides</h2>
+      <div class="edit-menu--background-content">
+        <ik-slide-overview ik-selected-slides="channel.slides" ik-hide-filters="true" ik-overlay="true"></ik-slide-overview>
+      </div>
+    </div>
+  </div>
+</div>

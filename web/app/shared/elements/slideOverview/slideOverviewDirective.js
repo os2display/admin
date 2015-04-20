@@ -13,8 +13,6 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
     restrict: 'E',
     scope: {
       ikSelectedSlides: '=',
-      ikHideFilters: '=',
-      ikFilter: '@',
       ikOverlay: '@'
     },
     controller: function($scope, slideFactory, userFactory) {
@@ -117,7 +115,7 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
         // Update orientation for the search.
         delete search.filter;
 
-        if($scope.orientation !== 'all' || $scope.showFromUser !== 'all') {
+        if($scope.showFromUser !== 'all') {
           search.filter = {
             "bool": {
               "must": []

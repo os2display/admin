@@ -2863,6 +2863,8 @@ html.is-locked body {
     margin: 0 auto;
     position: relative;
     width: 100%; }
+  .overview--filter-field {
+    height: 3.1em; }
   .overview--filter-owner, .overview--filter-orientation {
     margin-bottom: 1em;
     position: relative;
@@ -2874,10 +2876,10 @@ html.is-locked body {
     @media only screen and (min-width: 1024px) {
       .overview--filter-owner, .overview--filter-orientation {
         width: 35%;
-        display: inline-block; } }
+        display: inline-block;
+        vertical-align: top; } }
   @media only screen and (min-width: 1024px) {
     .overview--filter-owner {
-      padding-right: 1em;
       width: 25%; } }
   .overview--filter-owner-button {
     background: #fafafa;

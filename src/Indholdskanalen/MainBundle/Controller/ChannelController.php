@@ -66,9 +66,6 @@ class ChannelController extends Controller {
     if (isset($post->title)) {
       $channel->setTitle($post->title);
     }
-    if (isset($post->orientation)) {
-      $channel->setOrientation($post->orientation);
-    }
     $channel->setModifiedAt(time());
 
     // Get all slide ids from POST.

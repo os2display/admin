@@ -146,6 +146,10 @@
     width: 100%;
   }
 
+  &--filter-field {
+    height: 3.1em;
+  }
+
   &--filter-owner,
   &--filter-orientation {
     margin-bottom: 1em;
@@ -159,12 +163,12 @@
     @include breakpoint($breakpoint-desk) {
       width: 35%;
       display: inline-block;
+      vertical-align: top;
     }
   }
 
   &--filter-owner {
     @include breakpoint($breakpoint-desk) {
-      padding-right: 1em;
       width: 25%;
     }
   }
