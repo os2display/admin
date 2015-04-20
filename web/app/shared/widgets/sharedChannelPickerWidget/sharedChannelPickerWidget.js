@@ -39,8 +39,6 @@
             scope.sharingIndexes = data;
           });
 
-          // Set default orientation and sort.
-          scope.orientation = 'landscape';
           scope.showFromUser = 'all';
           scope.sort = {"created_at": "desc"};
 
@@ -61,9 +59,6 @@
             "filter": {
               "bool": {
                 "must": {
-                  "term": {
-                    "orientation": scope.orientation
-                  }
                 }
               }
             },
@@ -165,9 +160,6 @@
            */
           attrs.$observe('screen', function (val) {
             if (!val) return;
-
-            // Set the orientation.
-            scope.orientation = scope.screen.orientation;
 
             // Update the search.
             scope.updateSearch();

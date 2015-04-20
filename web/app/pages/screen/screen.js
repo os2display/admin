@@ -35,6 +35,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
               templateFactory.getScreenTemplates().then(
                 function (data) {
                   $scope.screen.template = data[0];
+                  $scope.screen.orientation = data[0].orientation;
                 },
                 function (reason) {
                   // @TODO: Handle error.
@@ -85,7 +86,8 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function () {
+        function (id) {
+          screen.id = id;
           $location.path('/screen-overview');
         },
         function () {
@@ -101,7 +103,8 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function () {
+        function (id) {
+          screen.id = id;
         },
         function () {
           // @TODO: Handle error.

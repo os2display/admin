@@ -213,7 +213,7 @@ class ScreenController extends Controller {
     $em->flush();
 
     // Send the json response back to client.
-    $response = new Response();
+    $response = new Response($screen->getId());
     $response->setStatusCode(200);
 
     return $response;
