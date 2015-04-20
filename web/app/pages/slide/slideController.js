@@ -7,14 +7,14 @@
  * Slide controller. Controls the slide creation/edit process.
  */
 angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory',
-  function($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory) {
+  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory) {
     'use strict';
 
-    $scope.steps = 6;
+    $scope.steps = 5;
     $scope.slide = {};
     $scope.templates = [];
     templateFactory.getSlideTemplates().then(
-      function(data) {
+      function (data) {
         for (var key in data) {
           if (data.hasOwnProperty(key)) {
             $scope.templates.push(data[key]);
@@ -27,14 +27,14 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
     // Setup the editor.
     $scope.editor = {
       channelOverviewEditor: false,
-      toggleChannelOverviewEditor: function() {
+      toggleChannelOverviewEditor: function () {
         $('html').toggleClass('is-locked');
         $scope.editor.channelOverviewEditor = !$scope.editor.channelOverviewEditor;
       }
     };
 
     // Register event listener for clickSlide.
-    $scope.$on('channelOverview.clickChannel', function(event, channel) {
+    $scope.$on('channelOverview.clickChannel', function (event, channel) {
       $scope.toggleChannel(channel);
     });
 
@@ -52,7 +52,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      */
     function init() {
       // Get all channels for step 6
-      channelFactory.getChannels().then(function(data) {
+      channelFactory.getChannels().then(function (data) {
         $scope.channels = data;
       });
 
@@ -72,28 +72,30 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
 
           // Get the slide from the backend.
           slideFactory.getEditSlide($routeParams.id).then(
-            function(data) {
+            function (data) {
               $scope.slide = data;
               $scope.slide.status = 'edit-slide';
               if ($scope.slide === {}) {
                 $location.path('/slide');
               }
 
-              loadStep(4);
+              // Go to step 3 (edit content)
+              loadStep(3);
             },
-            function(reason) {
+            function (reason) {
               $location.path('/slide-overview');
             }
           );
         }
       }
     }
+
     init();
 
     /**
      * Submit a step in the installation process.
      */
-    $scope.submitStep = function() {
+    $scope.submitStep = function () {
       if ($scope.step === $scope.steps) {
         $scope.disableSubmitButton = true;
 
@@ -103,12 +105,12 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         }
 
         slideFactory.saveSlide().then(
-          function() {
-            $timeout(function() {
+          function () {
+            $timeout(function () {
               $location.path('/slide-overview');
             }, 1000);
           },
-          function() {
+          function () {
             $scope.disableSubmitButton = false;
           }
         );
@@ -132,13 +134,10 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      * Handles the validation of the data in the slide.
      */
     $scope.validation = {
-      titleSet: function() {
+      titleSet: function () {
         return validateNotEmpty('title');
       },
-      orientationSet: function() {
-        return validateNotEmpty('orientation');
-      },
-      templateSet: function() {
+      templateSet: function () {
         return validateNotEmpty('template');
       }
     };
@@ -147,15 +146,12 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      * Go the given step in the creation process, if the requirements have been met to be at that step.
      * @param step
      */
-    $scope.goToStep = function(step) {
+    $scope.goToStep = function (step) {
       var s = 1;
       if ($scope.validation.titleSet()) {
         s++;
-        if ($scope.validation.orientationSet()) {
-          s++;
-          if ($scope.validation.templateSet()) {
-            s = s + 3;
-          }
+        if ($scope.validation.templateSet()) {
+          s = s + 3;
         }
       }
       if (step <= s) {
@@ -169,13 +165,13 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      *
      * @param id
      */
-    $scope.selectTemplate = function(id) {
+    $scope.selectTemplate = function (id) {
       // Set name of template.
       $scope.slide.template = id;
 
       // Find selected template.
       var template = null;
-      $scope.templates.forEach(function(element) {
+      $scope.templates.forEach(function (element) {
         if (element.id === id) {
           template = element;
         }
@@ -194,8 +190,11 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         $scope.slide.options = {};
       }
 
+      // Set orientation.
+      $scope.slide.orientation = template.orientation;
+
       // Update options field.
-      angular.forEach(template.emptyoptions, function(value, key)  {
+      angular.forEach(template.emptyoptions, function (value, key) {
         if ($scope.slide.options[key] === undefined) {
           $scope.slide.options[key] = value;
         }
@@ -211,23 +210,14 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
     };
 
     /**
-     * Set the orientation of the slide.
-     * @param orientation
-     */
-    $scope.selectOrientation = function(orientation) {
-      $scope.slide.orientation = orientation;
-      $scope.slide.template = '';
-    };
-
-    /**
      * Is the channel selected?
      * @param channel
      * @returns {boolean}
      */
-    $scope.channelSelected = function(channel) {
+    $scope.channelSelected = function (channel) {
       var res = false;
 
-      $scope.slide.channels.forEach(function(slideChannel) {
+      $scope.slide.channels.forEach(function (slideChannel) {
         if (channel.id === slideChannel.id) {
           res = true;
         }
@@ -244,7 +234,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
     $scope.hasChannel = function hasChannel(channel) {
       var res = false;
 
-      $scope.slide.channels.forEach(function(element) {
+      $scope.slide.channels.forEach(function (element) {
         if (channel.id === element.id) {
           res = true;
         }
@@ -256,10 +246,10 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      * Add remove a channel.
      * @param channel
      */
-    $scope.toggleChannel = function(channel) {
+    $scope.toggleChannel = function (channel) {
       var index = null;
 
-      $scope.slide.channels.forEach(function(slideChannel, channelIndex) {
+      $scope.slide.channels.forEach(function (slideChannel, channelIndex) {
         if (channel.id === slideChannel.id) {
           index = channelIndex;
         }

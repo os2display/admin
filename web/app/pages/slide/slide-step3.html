@@ -1,18 +1,12 @@
-<section id="create-slide-three" class="create-slide--section">
-  <div class="create-slide--content--slide-three">
+<section id="create-slide-four" class="create-slide--section">
+  <div class="create-slide--content--slide-four">
     <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
-    <p class="create-slide--header-description">Vælg template - du kan altid ændre dit valg senere.</p>
-    <div class="create-slide--templates">
-      <div class="create-slide--template" data-ng-repeat="template in templates | filter:{ orientation: slide.orientation }" data-ng-click="selectTemplate(template.id)">
-        <div class="create-slide--template-link" data-ng-class="{'is-selected': slide.template == template.id}">
-          <span class="create-slide--overlay">
-            <span class="create-slide--link-check"></span>
-          </span>
-          <img data-ng-src="{{template.icon}}"/>
-        </div>
-        <div>{{ template.name }}</div>
+    <p class="create-slide--header-description">Tilføj indhold.</p>
+    <div class="create-slide--content-wrapper">
+      <div class="create-slide--content-inner" data-ng-style="{'width': '{{slide.orientation == 'portrait' ? 540 : 960}}px'}">
+        <ik-slide-editable ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 540 : 960}}"></ik-slide-editable>
       </div>
     </div>
-    <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.templateSet()}" data-ng-disabled="!validation.templateSet()" value="Fortsæt" data-ng-click="submitStep()">
+    <input type="submit" class="create-slide--button" value="Fortsæt" data-ng-click="submitStep()">
   </div>
 </section>
