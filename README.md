@@ -22,6 +22,11 @@ To clear cache
 php app/console cache:clear
 </pre>
 
+To brute force clear cache
+<pre>
+rm -rf app/cache/*
+</pre>
+
 To generate a bundle
 <pre>
 php app/console generate:bundle
