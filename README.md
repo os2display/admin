@@ -32,6 +32,10 @@ To make a super-user
 $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword] --super-admin
 </pre>
 
+##When working with Indholdskanalen locally with the vagrant
+You have to visit indholdskanalen.vm, search.indholdskanalen.vm, middleware.indholdskanalen.vm, service.indholdskanalen.vm and
+accept the fake certificate.
+
 
 ##Installation instructions
 
