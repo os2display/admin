@@ -37,7 +37,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
                   $scope.screen.template = data[0];
                 },
                 function (reason) {
-                  // @TODO: Handle error!!
+                  // @TODO: Handle error.
                   console.log(reason);
                 }
               );
@@ -71,6 +71,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             },
             // Error getting
             function (reason) {
+              // @TODO: Handle error.
               console.log(reason);
             }
           );

@@ -8,7 +8,7 @@
     "preview": "five-sections-wayfinding.html",
     "css": "five-sections-wayfinding.css"
   },
-  "orientation": "landscape",
+  "orientation": "portrait",
   "idealdimensions": {
     "width": "1080",
     "height": "1920"
