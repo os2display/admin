@@ -48,9 +48,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           "filter": {
             "bool": {
               "must": {
-                "term": {
-                  "orientation":  scope.orientation
-                }
               }
             }
           },
