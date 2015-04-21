@@ -17,4 +17,3 @@ config.codekit
 composer.phar
 web/uploads/
 /bin
-/app/bootstrap.php.cache

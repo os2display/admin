@@ -71,6 +71,12 @@ class ScreenTemplate {
   protected $screens;
 
   /**
+   * @ORM\Column(name="enabled", type="boolean")
+   * @Groups({"api", "api-bulk"})
+   */
+  protected $enabled;
+
+  /**
    * Get the paths virtual property.
    *
    * @return array
@@ -122,6 +128,20 @@ class ScreenTemplate {
     $this->name = $name;
 
     return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getEnabled() {
+    return $this->enabled;
+  }
+
+  /**
+   * @param mixed $enabled
+   */
+  public function setEnabled($enabled) {
+    $this->enabled = $enabled;
   }
 
   /**
