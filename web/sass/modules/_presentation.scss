@@ -11,7 +11,9 @@
 
 %presentation--item {
   box-sizing: border-box;
-  padding: 2px 1px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
 }
 
 %presentation--item-inner {
@@ -95,7 +97,8 @@
     @extend %button--default;
 
     font-size: .9em;
-    margin: .8em auto;
+    margin: 0 auto;
+    max-width: 85%;
     width: 9em;
   }
 }

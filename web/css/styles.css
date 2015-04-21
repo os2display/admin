@@ -3320,7 +3320,9 @@ html.is-locked body {
    ========================================================================== */
 .presentation--region-horizontal, .presentation--region-vertical {
   box-sizing: border-box;
-  padding: 2px 1px; }
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px; }
 
 .presentation--region-content {
   background: #fafafa;
@@ -3376,7 +3378,8 @@ html.is-locked body {
   color: #b3b3b3; }
 .presentation--region-content-button {
   font-size: .9em;
-  margin: .8em auto;
+  margin: 0 auto;
+  max-width: 85%;
   width: 9em; }
 
 /**
@@ -3555,7 +3558,8 @@ html.is-locked body {
   text-align: center; }
   .cpw--screen-sections-item {
     display: inline-block;
-    margin: 1em .5em; }
+    margin: 1em .5em;
+    max-width: 30%; }
   .cpw--screen-sections-link {
     border: 1px solid #fff;
     display: block; }
