@@ -13,13 +13,15 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
     $scope.loading = false;
 
     // Set default values.
-    $scope.orientation = 'all';
     $scope.showFromUser = 'all';
     $scope.sort = { "created_at": "desc" };
 
     userFactory.getCurrentUser().then(
-      function(data) {
+      function success(data) {
         $scope.currentUser = data;
+      },
+      function error(reason) {
+        // @TODO: Handle error.
       }
     );
 
@@ -83,28 +85,12 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
     /**
      * Update search result on screen deletion.
      */
-    $scope.$on('screen-deleted', function(data) {
+    $scope.$on('screen-deleted', function() {
       $scope.updateSearch();
     });
 
     // Send the default search query.
     $scope.updateSearch();
-
-    /**
-     * Changes orientation and updated the screens.
-     *
-     * @param orientation
-     *   This should either be 'landscape' or 'portrait'.
-     */
-    $scope.setOrientation = function(orientation) {
-      if ($scope.orientation !== orientation) {
-       $scope.orientation = orientation;
-
-        $scope.setSearchFilters();
-
-        $scope.updateSearch();
-      }
-    };
 
     /**
      * Changes if all slides are shown or only slides belonging to current user
@@ -136,20 +122,13 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
         }
       }
 
-      if ($scope.orientation !== 'all') {
-        var term = new Object();
-        term.term = {orientation : $scope.orientation};
-        search.filter.bool.must.push(term);
-      }
-
       if ($scope.showFromUser !== 'all') {
-        var term = new Object();
+        var term = {};
         term.term = {user : $scope.currentUser.id};
         search.filter.bool.must.push(term);
       }
 
       $scope.updateSearch();
-
     };
 
     /**

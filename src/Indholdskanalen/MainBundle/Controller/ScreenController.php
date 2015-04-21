@@ -87,15 +87,6 @@ class ScreenController extends Controller {
     if (isset($post->title)) {
       $screen->setTitle($post->title);
     }
-    if (isset($post->orientation)) {
-      $screen->setOrientation($post->orientation);
-    }
-    if (isset($post->width)) {
-      $screen->setWidth($post->width);
-    }
-    if (isset($post->height)) {
-      $screen->setHeight($post->height);
-    }
     if (isset($post->description)) {
       $screen->setDescription($post->description);
     }
@@ -222,7 +213,7 @@ class ScreenController extends Controller {
     $em->flush();
 
     // Send the json response back to client.
-    $response = new Response();
+    $response = new Response($screen->getId());
     $response->setStatusCode(200);
 
     return $response;

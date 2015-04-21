@@ -1,37 +1,44 @@
 <section id="create-slide-five" class="create-slide--section">
-  <div class="create-slide--content--slide-five">
+  <div class="create-slide--content--slide-six">
     <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
-    <p class="create-slide--header-description">Angiv yderligere indstillinger for din slide.</p>
-    <div class="create-slide--content-wrapper">
-      <div class="create-slide--duration" data-ng-show="slide.media_type === 'image'">
-        <label class="create-slide--duration-label">Varighed</label>
-        <div class="create-slide--duration-text"><input type="text" placeholder="f.eks. 15" data-ng-model="slide.duration" class="create-slide--duration-input"><span class="create-slide--duration-suffix">sekunder.</span></div>
-        <div class="create-slide--duration-description">Angiv hvor længe din slide skal vises i sekunder</div>
-      </div>
-      <div class="create-slide--duration" data-ng-show="slide.media_type === 'video'">
-        <label class="create-slide--duration-label">Varighed</label>
-        <div class="create-slide--duration-text"><input type="text" data-ng-model="slide.media[0].length" class="create-slide--duration-input" data-ng-disabled="slide.media.media_type = 'video'"><span class="create-slide--duration-suffix">sekunder.</span></div>
-        <div class="create-slide--duration-description">(Den valgte videos længde i sekunder)</div>
-      </div>
-      <div class="create-slide--publishing">
-        <label class="create-slide--schedule-label">Udgivelse</label>
-        <div class="create-slide--published">
-          <input class="create-slide--published-checkbox" type="checkbox" data-ng-model="slide.published"><span class="create-slide--published-checkbox-text">Udgiv.</span>
-          <div class="create-slide--published-description">Angiv om din slide skal kunne udgives.</div>
+    <p class="create-slide--header-description">Vælg hvilke kanaler din skærm skal vises på.</p>
+    <div class="create-channel--add-slide-button" data-ng-click="editor.toggleChannelOverviewEditor()">Tilføj til kanaler</div>
+    <div class="overview--channels">
+      <div class="overview--channel" data-ng-repeat="channel in slide.channels">
+        <div class="create-screen--channel-link" data-ng-class="{'is-selected': hasChannel(channel)}">
+          <span class="create-screen--overlay">
+            <span class="create-screen--link-check"></span>
+          </span>
+          <div class="overview--channel-remove" data-ng-click="toggleChannel(channel)"></div>
+          <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 150 : 300 }}" ik-single-slide="true"></ik-channel>
         </div>
-        <div class="create-slide--schedule">
-          <div class="create-slide--schedule-from">
-            <label class="create-slide--from-label">Fra</label>
-            <input type="text" data-ng-model="slide.schedule_from" datetime-picker="">
-          </div>
-          <div class="create-slide--schedule-to">
-            <label class="create-slide--to-label">Til</label>
-            <input type="text" data-ng-model="slide.schedule_to" datetime-picker="">
-          </div>
-          <div class="create-slide--schedule-description">Angiv eventuelt udgivelsesinterval.</div>
-        </div>
+        <div class="overview--channel-label">{{channel.title}}</div>
+        <span class="overview--channel-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
       </div>
     </div>
-    <input type="submit" class="create-slide--button" value="Fortsæt" data-ng-click="submitStep()">
+    <div class="create-slide--finish-button">
+      <div class="create-slide--spinner" data-ng-show="disableSubmitButton"></div>
+      <input type="submit" class="create-slide--button" data-ng-disabled="disableSubmitButton" value="Gem slide" data-ng-click="submitStep()">
+    </div>
   </div>
 </section>
+
+<!-- Select channel editor -->
+<div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.channelOverviewEditor, 'is-hidden': !editor.channelOverviewEditor}" >
+  <div class="edit-menu--content-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleChannelOverviewEditor()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--content-page-inner">
+      <h2 class="edit-menu--content-header">Vælg kanaler</h2>
+      <div class="edit-menu--background-content">
+        <ik-channel-overview ik-selected-channels="slide.channels" ik-hide-filters="true" ik-filter="{{slide.orientation}}" ik-overlay="true"></ik-channel-overview>
+      </div>
+    </div>
+  </div>
+</div>

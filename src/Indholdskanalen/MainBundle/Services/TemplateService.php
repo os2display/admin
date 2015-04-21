@@ -11,6 +11,7 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Indholdskanalen\MainBundle\Entity\ScreenTemplate;
 
 /**
  * Class TemplateService
@@ -83,5 +84,52 @@ class TemplateService extends ContainerAware {
    */
   public function getScreenTemplates() {
     return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findAll();
+  }
+
+  /**
+   * Load templates into database.
+   */
+  public function loadTemplates() {
+    // Get database hooks.
+    $doctrine = $this->container->get('doctrine');
+    $templateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ScreenTemplate');
+    $entityManager = $doctrine->getManager();
+
+    // Get parameters.
+    $enabledTemplates = $this->container->getParameter('templates_screens_enabled');
+    $path = $this->container->get('kernel')
+        ->getRootDir() . '/../web/' . $this->container->getParameter('templates_screens_directory');
+    $serverAddress = $this->container->getParameter('absolute_path_to_server') . '/' . $this->container->getParameter('templates_screens_directory');
+
+    // Loop over enable templates from the configuration.
+    foreach($enabledTemplates as $entry) {
+      // Read .json for template
+      $str = file_get_contents($path . $entry . '/' . $entry . '.json');
+      $obj = json_decode($str);
+
+      // Try to load the template.
+      $template = $templateRepository->findOneById($obj->id);
+
+      // Check if the template was loaded, if not create a new template entity.
+      if (!$template) {
+        $template = new ScreenTemplate();
+        $template->setId($obj->id);
+        $template->setName($obj->name);
+      }
+
+      // Set the template values on the entity.
+      $template->setPathIcon($serverAddress . $entry . '/' . $obj->icon);
+      $template->setPathLive($serverAddress . $entry . '/' . $obj->paths->live);
+      $template->setPathEdit($serverAddress . $entry . '/' . $obj->paths->edit);
+      $template->setPathPreview($serverAddress . $entry . '/' . $obj->paths->preview);
+      $template->setPathCss($serverAddress . $entry . '/' . $obj->paths->css);
+      $template->setOrientation($obj->orientation);
+
+      // Ensure that the entity is managed.
+      $entityManager->persist($template);
+    }
+
+    // Make it stick in the database.
+    $entityManager->flush();
   }
 }

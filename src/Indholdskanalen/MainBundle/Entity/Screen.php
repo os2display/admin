@@ -35,24 +35,6 @@ class Screen {
   private $title;
 
   /**
-   * @ORM\Column(name="orientation", type="string", nullable=false)
-   * @Groups({"api", "api-bulk", "search"})
-   */
-  private $orientation;
-
-  /**
-   * @ORM\Column(name="width", type="integer", nullable=false)
-   * @Groups({"api", "api-bulk"})
-   */
-  private $width;
-
-  /**
-   * @ORM\Column(name="height", type="integer", nullable=false)
-   * @Groups({"api", "api-bulk"})
-   */
-  private $height;
-
-  /**
    * @ORM\Column(name="created_at", type="integer", nullable=false)
    * @Groups({"api", "api-bulk", "search"})
    */
@@ -180,69 +162,6 @@ class Screen {
    */
   public function getDescription() {
     return $this->description;
-  }
-
-  /**
-   * Set orientation
-   *
-   * @param string $orientation
-   * @return Screen
-   */
-  public function setOrientation($orientation) {
-    $this->orientation = $orientation;
-
-    return $this;
-  }
-
-  /**
-   * Get orientation
-   *
-   * @return string
-   */
-  public function getOrientation() {
-    return $this->orientation;
-  }
-
-  /**
-   * Set width
-   *
-   * @param integer $width
-   * @return Screen
-   */
-  public function setWidth($width) {
-    $this->width = $width;
-
-    return $this;
-  }
-
-  /**
-   * Get width
-   *
-   * @return integer
-   */
-  public function getWidth() {
-    return $this->width;
-  }
-
-  /**
-   * Set height
-   *
-   * @param integer $height
-   * @return Screen
-   */
-  public function setHeight($height) {
-    $this->height = $height;
-
-    return $this;
-  }
-
-  /**
-   * Get height
-   *
-   * @return integer
-   */
-  public function getHeight() {
-    return $this->height;
   }
 
   /**
