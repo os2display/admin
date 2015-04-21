@@ -3555,7 +3555,8 @@ html.is-locked body {
   text-align: center; }
   .cpw--screen-sections-item {
     display: inline-block;
-    margin: 1em .5em; }
+    margin: 1em .5em;
+    max-width: 30%; }
   .cpw--screen-sections-link {
     border: 1px solid #fff;
     display: block; }
