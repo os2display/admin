@@ -10,7 +10,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
   function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory) {
     'use strict';
 
-    $scope.steps = 3;
+    $scope.steps = 2;
     $scope.slides = [];
     $scope.channel = {};
 
@@ -63,7 +63,8 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
               $location.path('/channel');
             }
 
-            loadStep(3);
+            // Go to add slides page.
+            loadStep(2);
           });
         }
       }

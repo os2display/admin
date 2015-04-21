@@ -13,15 +13,11 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
     restrict: 'E',
     scope: {
       ikSelectedSlides: '=',
-      ikHideFilters: '=',
-      ikFilter: '@',
       ikOverlay: '@'
     },
     controller: function($scope, slideFactory, userFactory) {
       $scope.loading = false;
 
-      // Set default orientation and sort.
-      $scope.orientation = 'all';
       $scope.showFromUser = 'all';
       $scope.sort = {"created_at": "desc"};
 
@@ -75,13 +71,15 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
 
             // Load slides bulk.
             slideFactory.loadSlidesBulk(ids).then(
-              function (data) {
+              function success(data) {
                 $scope.slides = data;
 
                 $scope.loading = false;
               },
-              function (reason) {
+              function error(reason) {
                 $scope.loading = false;
+
+                // @TODO: Handle error!
               }
             );
           }
@@ -94,21 +92,6 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
       $scope.$on('slide-deleted', function(data) {
         $scope.updateSearch();
       });
-
-      /**
-       * Changes orientation and updated the slides.
-       *
-       * @param orientation
-       *   This should either be 'landscape' or 'portrait'.
-       */
-      $scope.setOrientation = function setOrientation(orientation) {
-        if ($scope.orientation !== orientation) {
-          $scope.orientation = orientation;
-
-          $scope.setSearchFilters();
-          $scope.updateSearch();
-        }
-      };
 
       /**
        * Changes if all slides are shown or only slides belonging to current user
@@ -132,7 +115,7 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
         // Update orientation for the search.
         delete search.filter;
 
-        if($scope.orientation !== 'all' || $scope.showFromUser !== 'all') {
+        if($scope.showFromUser !== 'all') {
           search.filter = {
             "bool": {
               "must": []
@@ -140,20 +123,13 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
           }
         }
 
-        if ($scope.orientation !== 'all') {
-          var term = new Object();
-          term.term = {orientation : $scope.orientation};
-          search.filter.bool.must.push(term);
-        }
-
         if ($scope.showFromUser !== 'all') {
-          var term = new Object();
+          var term = {};
           term.term = {user : $scope.currentUser.id};
           search.filter.bool.must.push(term);
         }
 
         $scope.updateSearch();
-
       };
 
       /**
@@ -234,13 +210,8 @@ angular.module('ikApp').directive('ikSlideOverview', function() {
         $scope.$emit('slideOverview.clickSlide', slide);
       };
 
-      // Set filter if parameter ikFilter is set.
-      if ($scope.ikFilter) {
-        $scope.setOrientation($scope.ikFilter);
-      } else {
-        // Send the default search query.
-        $scope.updateSearch();
-      }
+      // Send the default search query.
+      $scope.updateSearch();
     },
     templateUrl: '/app/shared/elements/slideOverview/slide-overview-directive.html'
   };

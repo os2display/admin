@@ -14,12 +14,10 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
       restrict: 'E',
       scope: {
         ikSelectedChannels: '=',
-        ikHideFilters: '=',
-        ikFilter: '@',
         ikOverlay: '@',
         ikSingleSlide: '='
       },
-      link: function(scope, element, attrs) {
+      link: function(scope) {
         scope.index = {};
         scope.loading = false;
         scope.pickIndexDialog = false;
@@ -30,14 +28,15 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           scope.sharingIndexes = data;
         });
 
-        // Set default orientation and sort.
-        scope.orientation = 'landscape';
         scope.showFromUser = 'all';
         scope.sort = { "created_at": "desc" };
 
         userFactory.getCurrentUser().then(
-          function(data) {
+          function success(data) {
             scope.currentUser = data;
+          },
+          function error(reason) {
+            // @TODO: Handle error.
           }
         );
 
@@ -58,9 +57,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           "filter": {
             "bool": {
               "must": {
-                "term": {
-                  "orientation":  scope.orientation
-                }
               }
             }
           },
@@ -81,13 +77,15 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
 
           scope.loading = true;
           sharedChannelFactory.searchChannels(search, scope.index.index).then(
-            function(data) {
+            function success(data) {
               scope.loading = false;
               scope.hits = data.hits;
               scope.channels = data.results;
             },
-            function (reason) {
+            function error(reason) {
               scope.loading = false;
+
+              // @TODO: Handle error.
             }
           );
         };
@@ -139,25 +137,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           scope.index = index;
           scope.pickIndexDialog = false;
 
-          $timeout(
-            function() {
-              scope.updateSearch();
-            }
-          , 10);
-        };
-
-        /**
-         * Changes orientation and updated the channels.
-         *
-         * @param orientation
-         *   This should either be 'landscape' or 'portrait'.
-         */
-        scope.setOrientation = function setOrientation(orientation) {
-          if (scope.orientation !== orientation) {
-            scope.orientation = orientation;
-
-            scope.updateSearch();
-          }
+          scope.updateSearch();
         };
 
         /**
@@ -174,7 +154,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           }
         };
 
-
         /**
          * Updates the search filter based on current orientation and user
          */
@@ -182,18 +161,12 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           // Update orientation for the search.
           delete search.filter;
 
-          if(scope.orientation !== 'all' || scope.showFromUser !== 'all') {
+          if(scope.showFromUser !== 'all') {
             search.filter = {
               "bool": {
                 "must": []
               }
             }
-          }
-
-          if (scope.orientation !== 'all') {
-            var term = {};
-            term.term = {orientation : scope.orientation};
-            search.filter.bool.must.push(term);
           }
 
           if (scope.showFromUser !== 'all') {
@@ -229,11 +202,6 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
             scope.updateSearch();
           }
         };
-
-        // Set filter if parameter ikFilter is set.
-        if (scope.ikFilter) {
-          scope.setOrientation(scope.ikFilter);
-        }
       },
       templateUrl: '/app/shared/elements/sharedChannelOverview/shared-channel-overview.html'
     };

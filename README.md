@@ -22,6 +22,11 @@ To clear cache
 php app/console cache:clear
 </pre>
 
+To brute force clear cache
+<pre>
+rm -rf app/cache/*
+</pre>
+
 To generate a bundle
 <pre>
 php app/console generate:bundle
@@ -31,6 +36,10 @@ To make a super-user
 <pre>
 $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword] --super-admin
 </pre>
+
+##When working with Indholdskanalen locally with the vagrant
+You have to visit indholdskanalen.vm, search.indholdskanalen.vm, middleware.indholdskanalen.vm, service.indholdskanalen.vm and
+accept the fake certificate.
 
 
 ##Installation instructions

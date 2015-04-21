@@ -14,8 +14,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
       restrict: 'E',
       scope: {
         ikSelectedChannels: '=',
-        ikHideFilters: '=',
-        ikFilter: '@',
         ikOverlay: '@'
       },
       link: function(scope) {
@@ -50,9 +48,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           "filter": {
             "bool": {
               "must": {
-                "term": {
-                  "orientation":  scope.orientation
-                }
               }
             }
           },
@@ -138,20 +133,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         };
 
         /**
-         * Changes orientation and updated the channels.
-         *
-         * @param orientation
-         *   This should either be 'landscape' or 'portrait'.
-         */
-        scope.setOrientation = function setOrientation(orientation) {
-          if (scope.orientation !== orientation) {
-            scope.orientation = orientation;
-
-            scope.setSearchFilters();
-          }
-        };
-
-        /**
          * Changes if all slides are shown or only slides belonging to current user
          *
          * @param user
@@ -172,7 +153,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           // Update orientation for the search.
           delete search.filter;
 
-          if(scope.orientation !== 'all' || scope.showFromUser !== 'all') {
+          if(scope.showFromUser !== 'all') {
             search.filter = {
               "bool": {
                 "must": []
@@ -181,10 +162,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           }
 
           var term = {};
-          if (scope.orientation !== 'all') {
-            term.term = {orientation : scope.orientation};
-            search.filter.bool.must.push(term);
-          }
 
           if (scope.showFromUser !== 'all') {
             term.term = {user : scope.currentUser.id};
@@ -218,11 +195,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
             scope.updateSearch();
           }
         };
-
-        // Set filter if parameter ikFilter is set.
-        if (scope.ikFilter) {
-          scope.setOrientation(scope.ikFilter);
-        }
 
         scope.updateSearch();
       },

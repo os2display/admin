@@ -1,10 +1,35 @@
-<section id="create-slide-four" class="create-slide--section">
-  <div class="create-slide--content--slide-four">
+<section id="create-slide-five" class="create-slide--section">
+  <div class="create-slide--content--slide-five">
     <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
-    <p class="create-slide--header-description">Tilføj indhold.</p>
+    <p class="create-slide--header-description">Angiv yderligere indstillinger for din slide.</p>
     <div class="create-slide--content-wrapper">
-      <div class="create-slide--content-inner" data-ng-style="{'width': '{{slide.orientation == 'portrait' ? 540 : 960}}px'}">
-        <ik-slide-editable ik-slide="slide" ik-width="{{slide.orientation == 'portrait' ? 540 : 960}}"></ik-slide-editable>
+      <div class="create-slide--duration" data-ng-show="slide.media_type === 'image'">
+        <label class="create-slide--duration-label">Varighed</label>
+        <div class="create-slide--duration-text"><input type="text" placeholder="f.eks. 15" data-ng-model="slide.duration" class="create-slide--duration-input"><span class="create-slide--duration-suffix">sekunder.</span></div>
+        <div class="create-slide--duration-description">Angiv hvor længe din slide skal vises i sekunder</div>
+      </div>
+      <div class="create-slide--duration" data-ng-show="slide.media_type === 'video'">
+        <label class="create-slide--duration-label">Varighed</label>
+        <div class="create-slide--duration-text"><input type="text" data-ng-model="slide.media[0].length" class="create-slide--duration-input" data-ng-disabled="slide.media.media_type = 'video'"><span class="create-slide--duration-suffix">sekunder.</span></div>
+        <div class="create-slide--duration-description">(Den valgte videos længde i sekunder)</div>
+      </div>
+      <div class="create-slide--publishing">
+        <label class="create-slide--schedule-label">Udgivelse</label>
+        <div class="create-slide--published">
+          <input class="create-slide--published-checkbox" type="checkbox" data-ng-model="slide.published"><span class="create-slide--published-checkbox-text">Udgiv.</span>
+          <div class="create-slide--published-description">Angiv om din slide skal kunne udgives.</div>
+        </div>
+        <div class="create-slide--schedule">
+          <div class="create-slide--schedule-from">
+            <label class="create-slide--from-label">Fra</label>
+            <input type="text" data-ng-model="slide.schedule_from" datetime-picker="">
+          </div>
+          <div class="create-slide--schedule-to">
+            <label class="create-slide--to-label">Til</label>
+            <input type="text" data-ng-model="slide.schedule_to" datetime-picker="">
+          </div>
+          <div class="create-slide--schedule-description">Angiv eventuelt udgivelsesinterval.</div>
+        </div>
       </div>
     </div>
     <input type="submit" class="create-slide--button" value="Fortsæt" data-ng-click="submitStep()">

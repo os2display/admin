@@ -43,16 +43,6 @@ class Channel {
   private $title;
 
   /**
-   * Orientation.
-   *
-   * landscape or portrait?
-   *
-   * @ORM\Column(name="orientation", type="string", nullable=true)
-   * @Groups({"api", "api-bulk", "search", "sharing"})
-   */
-  private $orientation;
-
-  /**
    * Creation timestamp.
    *
    * @ORM\Column(name="created_at", type="integer", nullable=false)
@@ -257,29 +247,6 @@ class Channel {
    */
   public function getUniqueId() {
     return $this->uniqueId;
-  }
-
-
-  /**
-   * Set orientation
-   *
-   * @param string $orientation
-   *
-   * @return Channel
-   */
-  public function setOrientation($orientation) {
-    $this->orientation = $orientation;
-
-    return $this;
-  }
-
-  /**
-   * Get orientation
-   *
-   * @return string
-   */
-  public function getOrientation() {
-    return $this->orientation;
   }
 
   /**

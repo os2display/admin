@@ -13,8 +13,7 @@ angular.module('ikApp').directive('ikScreen', [
     return {
       restrict: 'E',
       scope: {
-        ikScreen: '=',
-        ikWidth: '@'
+        ikScreen: '='
       },
       link: function (scope, element, attrs) {
         // Observe for changes to the ikScreen attribute.
@@ -24,7 +23,7 @@ angular.module('ikApp').directive('ikScreen', [
           }
 
           // Set the style of the screen.
-          if (scope.ikScreen.width > scope.ikScreen.height) {
+          if (scope.ikScreen.template.orientation === 'landscape') {
             scope.style = {
               "width": "300px",
               "height": "168.5px"
