@@ -6,8 +6,8 @@
 /**
  * Menu controller. Controls the menues.
  */
-angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', 'userFactory', 'configuration',
-  function ($scope, $rootScope, $location, userFactory, configuration) {
+angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'configuration',
+  function ($scope, $rootScope, $location, $http, userFactory, configuration) {
     'use strict';
 
     $scope.url = $location.url();
@@ -161,7 +161,21 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
      */
     $scope.mobileMainMenuVisible = function () {
       return $scope.url.indexOf('/channel') == 0 && $scope.url.indexOf('/slide') == 0 && $scope.url.indexOf('/screen') == 0 && $scope.url.indexOf('/media') == 0;
-    }
+    };
+
+    /**
+     * Update templates.
+     */
+    $scope.updateTemplates = function updateTemplates() {
+      $http.get('/api/command/update_templates');
+    };
+
+    /**
+     * Reindex search.
+     */
+    $scope.reindex = function reindex() {
+      $http.get('/api/command/reindex');
+    };
   }
 ]);
 
