@@ -3378,7 +3378,7 @@ html.is-locked body {
   color: #b3b3b3; }
 .presentation--region-content-button {
   font-size: .9em;
-  margin: .8em auto;
+  margin: 0 auto;
   max-width: 85%;
   width: 9em; }
 
