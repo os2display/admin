@@ -3,7 +3,7 @@
   "name": "Fuld skærm vertikal",
   "icon": "full-screen-portrait.png",
   "paths": {
-    "live": "full-screen-portrait.html",
+    "live": "full-screen-portrait-live.html",
     "edit": "full-screen-portrait-edit.html",
     "preview": "full-screen-portrait.html",
     "css": "full-screen-portrait.css"
