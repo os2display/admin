@@ -3320,7 +3320,9 @@ html.is-locked body {
    ========================================================================== */
 .presentation--region-horizontal, .presentation--region-vertical {
   box-sizing: border-box;
-  padding: 2px 1px; }
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px; }
 
 .presentation--region-content {
   background: #fafafa;
@@ -3377,6 +3379,7 @@ html.is-locked body {
 .presentation--region-content-button {
   font-size: .9em;
   margin: .8em auto;
+  max-width: 85%;
   width: 9em; }
 
 /**
