@@ -83,7 +83,7 @@ class TemplateService extends ContainerAware {
    * Gets all screen templates from the 'templates_screens_directory' defined in parameters.yml.
    */
   public function getScreenTemplates() {
-    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findAll();
+    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findByEnabled(TRUE);
   }
 
   /**
@@ -94,6 +94,8 @@ class TemplateService extends ContainerAware {
     $doctrine = $this->container->get('doctrine');
     $templateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ScreenTemplate');
     $entityManager = $doctrine->getManager();
+
+    $existingTemplates = $templateRepository->findAll();
 
     // Get parameters.
     $enabledTemplates = $this->container->getParameter('templates_screens_enabled');
@@ -125,8 +127,17 @@ class TemplateService extends ContainerAware {
       $template->setPathCss($serverAddress . $entry . '/' . $obj->paths->css);
       $template->setOrientation($obj->orientation);
 
+      $template->setEnabled(true);
+
       // Ensure that the entity is managed.
       $entityManager->persist($template);
+    }
+
+    // Remove templates that are not in parameters and the disk.
+    foreach ($existingTemplates as $existingTemplate) {
+      if (!in_array($existingTemplate->getId(), $enabledTemplates)) {
+        $existingTemplate->setEnabled(false);
+      }
     }
 
     // Make it stick in the database.
