@@ -290,28 +290,5 @@ table {
    ========================================================================== */
 /* Silent classes related to this document
    ========================================================================== */
-.five-sections-wayfinding--region-content {
-  font-size: 1rem;
-  height: 100%;
-  overflow: hidden; }
-
 /* Styles
    ========================================================================== */
-.five-sections-wayfinding--inner {
-  font-size: 0;
-  margin: 0 auto; }
-.five-sections-wayfinding--region-horizontal {
-  border-right: 1px solid #fff;
-  box-sizing: border-box;
-  display: inline-block;
-  vertical-align: top; }
-  .five-sections-wayfinding--region-horizontal:last-child {
-    border: 0; }
-.five-sections-wayfinding--region-vertical {
-  border-bottom: 1px solid #fff;
-  box-sizing: border-box;
-  display: block; }
-  .five-sections-wayfinding--region-vertical:last-child {
-    border: 0; }
-.five-sections-wayfinding--region-content {
-  position: relative; }

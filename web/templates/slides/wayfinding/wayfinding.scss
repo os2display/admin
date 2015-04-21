@@ -2,19 +2,11 @@
 @import "../_shared-base.scss";
 
 .wayfinding {
-  background-size: cover;
-  background-position: center;
-
-  &--inner {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-  }
-
   &--edit-image-settings {
-    @extend %slide--edit-image-settings;
+    padding-top: 27px;
+
+    color: $link-color;
+    cursor: pointer;
+    text-decoration: underline;
   }
 }

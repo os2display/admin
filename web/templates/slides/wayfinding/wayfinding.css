@@ -273,32 +273,14 @@ table {
 
 /* Variables
    ========================================================================== */
+/* Link colors
+   ================================================================================================================== */
 /* Mixins
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
 .wayfinding--edit-image-settings {
-  bottom: 15%;
-  position: absolute;
-  right: 15%;
-  background: url('/../../../images/icons-se731c6030f.png');
-  -moz-background-size: 128px 1788px;
-  -o-background-size: 128px 1788px;
-  -webkit-background-size: 128px 1788px;
-  background-size: 128px 1788px;
-  width: 51px;
-  height: 51px;
-  background-position: 0 -802px; }
-  .wayfinding--edit-image-settings:hover {
-    cursor: pointer; }
-
-.wayfinding {
-  background-size: cover;
-  background-position: center; }
-  .wayfinding--inner {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; }
+  padding-top: 27px;
+  color: #2c79d3;
+  cursor: pointer;
+  text-decoration: underline; }

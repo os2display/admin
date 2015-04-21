@@ -53,6 +53,7 @@ parameters:
 
     templates_screens_directory: templates/screens/
     templates_screens_enabled:
+      - full-screen
 
     site_title: Indholdskanalen
 
