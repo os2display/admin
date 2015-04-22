@@ -71,7 +71,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             },
             // Error getting
             function (reason) {
-              itkLogFactory.error("Skærmen med id = " + $routeParams.id + " blev ikke fundet", reason);
+              itkLogFactory.error("Skærmen med id: " + $routeParams.id + " blev ikke fundet", reason);
             }
           );
         }
