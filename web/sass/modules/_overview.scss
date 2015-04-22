@@ -301,7 +301,6 @@
     margin: 0;
     background: $gray-lightest;
     background-position: center;
-    border: 3px solid $gray;
     box-sizing: border-box;
     color: $gray-darker;
     text-align: center;
@@ -317,13 +316,6 @@
     word-wrap: break-word;
     height: 90%;
     overflow: hidden;
-  }
-
-  &--screen-header {
-    font-weight: bold;
-  }
-
-  &--screen--description {
   }
 
   &--screen-all,

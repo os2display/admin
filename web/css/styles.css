@@ -3002,7 +3002,6 @@ html.is-locked body {
     margin: 0;
     background: #fafafa;
     background-position: center;
-    border: 3px solid #b3b3b3;
     box-sizing: border-box;
     color: #595959;
     text-align: center; }
@@ -3015,8 +3014,6 @@ html.is-locked body {
     word-wrap: break-word;
     height: 90%;
     overflow: hidden; }
-  .overview--screen-header {
-    font-weight: bold; }
   .overview--screen-all, .overview--screen-horisontal, .overview--screen-vertical {
     width: 33.3%; }
   .overview--media-single {
