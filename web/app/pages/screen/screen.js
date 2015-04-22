@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory',
-  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory', 'itkLogFactory',
+  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory, itkLogFactory) {
     'use strict';
 
     $scope.sharingEnabled = configuration.sharingService.enabled;
@@ -38,8 +38,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
                   $scope.screen.orientation = data[0].orientation;
                 },
                 function (reason) {
-                  // @TODO: Handle error.
-                  console.log(reason);
+                  itkLogFactory.error("Skabelonernen blev ikke loaded", reason);
                 }
               );
             }
@@ -72,8 +71,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             },
             // Error getting
             function (reason) {
-              // @TODO: Handle error.
-              console.log(reason);
+              itkLogFactory.error("Skærmen med id: " + $routeParams.id + " blev ikke fundet", reason);
             }
           );
         }
@@ -82,15 +80,20 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
 
     init();
 
+    /**
+     * Save the screen and close.
+     */
     $scope.saveScreenAndClose = function saveScreenAndClose() {
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
         function () {
+          itkLogFactory.log("Skærmen er gemt", 5000);
+          // Redirect to overview.
           $location.path('/screen-overview');
         },
-        function () {
-          // @TODO: Handle error.
+        function (reason) {
+          itkLogFactory.error("Skærmen blev ikke gemt", reason);
         }
       );
     };
@@ -103,9 +106,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.region = null;
       screenFactory.saveScreen().then(
         function () {
+          itkLogFactory.log("Skærmen er gemt", 5000);
         },
-        function () {
-          // @TODO: Handle error.
+        function (reason) {
+          itkLogFactory.error("Skærmen blev ikke gemt", reason);
         }
       );
     };

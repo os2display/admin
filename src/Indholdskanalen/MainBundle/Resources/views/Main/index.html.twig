@@ -14,9 +14,6 @@
 
 
 {% block scripts %}
-  <!-- load sentry/raven -->
-  <script src="//cdn.ravenjs.com/1.1.15/jquery,native/raven.min.js"></script>
-
   <!-- Imports -->
   <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/libs/angular.min.js') }}"></script>
@@ -32,9 +29,12 @@
   <script src="{{ asset('assets/libs/datetimepicker.jquery.js') }}"></script>
   <script src="{{ asset('assets/libs/datetimepicker.js') }}"></script>
   <script src="{{ asset('assets/libs/locale_da.js') }}"></script>
+  <script src="{{ asset('assets/libs/stacktrace.min.js') }}"></script>
 
   <!-- Socket io from the search node, to get right version -->
   <script src="/proxy/socket.io/socket.io.js"></script>
+
+  <script src="{{ asset('app/shared/log/logModule.js') }}"></script>
 
   <!-- Main app -->
   <script src="{{ asset('app/app.js') }}"></script>
