@@ -1,0 +1,6 @@
+<div class="wayfinding" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'width': '540px', 'height': '160px', 'margin-left': 'auto', 'margin-right': 'auto'}">
+  <img src="{{ikSlide.currentImage}}" width="540" height="80" data-ng-show="ikSlide.currentImage">
+  <div class="wayfinding--edit-image-settings" data-ng-click="editor.toggleBackgroundEditor()" data-ng-show="!ikSlide.currentImage">Vælg billede</div>
+</div>
+<div class="wayfinding--edit-image-settings" data-ng-click="editor.toggleBackgroundEditor()" data-ng-show="ikSlide.currentImage">Vælg et andet billede</div>
+
