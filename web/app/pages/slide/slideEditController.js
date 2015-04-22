@@ -245,10 +245,10 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       for (var i = 0; i < $scope.slide.options.resources.length; i++) {
         var resource = $scope.slide.options.resources[i];
         var now = new Date();
-        var todayStart = (new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 1000;
+        var todayStart = (new Date(now.getFullYear(), now.getMonth(), now.getDate())).getTime() / 1000;
         var todayEnd = todayStart + 86400;
 
-        kobaFactory.getBookingsForResource(resource.mail, now, todayEnd).then(
+        kobaFactory.getBookingsForResource(resource.mail, now.getTime() - 3600, todayEnd).then(
           addResourceBookings
         );
       }
