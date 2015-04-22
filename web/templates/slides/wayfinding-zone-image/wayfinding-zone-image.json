@@ -3,7 +3,7 @@
   "name": "Wayfinding Zone billede (1080x320)",
   "icon": "wayfinding-zone-image.png",
   "paths": {
-    "live": "wayfinding-zone-image.html",
+    "live": "wayfinding-zone-image-live.html",
     "edit": "wayfinding-zone-image-edit.html",
     "preview": "wayfinding-zone-image-live.html",
     "css": "wayfinding-zone-image.css"
