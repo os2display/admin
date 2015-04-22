@@ -1,0 +1,16 @@
+{
+  "id": "wayfinding-six-rows",
+  "name": "Wayfinding - 6 rækker",
+  "icon": "wayfinding-six-rows.png",
+  "paths": {
+    "live": "wayfinding-six-rows-live.html",
+    "edit": "wayfinding-six-rows-edit.html",
+    "preview": "TODO: Remove",
+    "css": "wayfinding-six-rows.css"
+  },
+  "orientation": "portrait",
+  "idealdimensions": {
+    "width": "1080",
+    "height": "1920"
+  }
+}
