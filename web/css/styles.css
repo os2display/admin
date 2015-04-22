@@ -2850,9 +2850,8 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  .overview--channel-label, .overview--slide-label {
-    display: inline-block;
-    font-size: .9em; }
+  .overview--channel-label, .overview--slide-label, .overview--media-label {
+    text-align: center; }
   .overview--channel-date, .overview--slide-date {
     color: #b3b3b3;
     font-size: .9em; }
@@ -3003,7 +3002,6 @@ html.is-locked body {
     margin: 0;
     background: #fafafa;
     background-position: center;
-    border: 3px solid #b3b3b3;
     box-sizing: border-box;
     color: #595959;
     text-align: center; }
@@ -3016,15 +3014,11 @@ html.is-locked body {
     word-wrap: break-word;
     height: 90%;
     overflow: hidden; }
-  .overview--screen-header {
-    font-weight: bold; }
   .overview--screen-all, .overview--screen-horisontal, .overview--screen-vertical {
     width: 33.3%; }
   .overview--media-single {
     position: relative;
-    cursor: pointer;
-    font-size: 0;
-    overflow: hidden; }
+    cursor: pointer; }
   .overview--media-video-icon {
     right: .5rem;
     position: absolute;
@@ -3047,12 +3041,6 @@ html.is-locked body {
     right: 0;
     bottom: -30%;
     height: 30%; }
-    .overview--media-overlay.is-hovering {
-      -moz-animation: toggle-media-overlay 0.15s ease 1 forwards;
-      -webkit-animation: toggle-media-overlay 0.15s ease 1 forwards;
-      animation: toggle-media-overlay 0.15s ease 1 forwards;
-      animation-timing-function: linear;
-      -webkit-animation-timing-function: linear; }
   .overview--media-image {
     max-height: 10rem;
     max-width: 300px;
@@ -3060,10 +3048,8 @@ html.is-locked body {
     background-repeat: repeat;
     min-width: 200px; }
   .overview--media-overlay-inner {
-    padding: .5em;
-    text-align: left; }
+    padding: .5em; }
   .overview--media-text {
-    float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis; }
@@ -3320,7 +3306,9 @@ html.is-locked body {
    ========================================================================== */
 .presentation--region-horizontal, .presentation--region-vertical {
   box-sizing: border-box;
-  padding: 2px 1px; }
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px; }
 
 .presentation--region-content {
   background: #fafafa;
@@ -3376,7 +3364,8 @@ html.is-locked body {
   color: #b3b3b3; }
 .presentation--region-content-button {
   font-size: .9em;
-  margin: .8em auto;
+  margin: 0 auto;
+  max-width: 85%;
   width: 9em; }
 
 /**
@@ -3555,7 +3544,8 @@ html.is-locked body {
   text-align: center; }
   .cpw--screen-sections-item {
     display: inline-block;
-    margin: 1em .5em; }
+    margin: 1em .5em;
+    max-width: 30%; }
   .cpw--screen-sections-link {
     border: 1px solid #fff;
     display: block; }
