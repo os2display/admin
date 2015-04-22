@@ -64,7 +64,7 @@
     box-sizing: border-box;
     display: inline-block;
     padding: 1.1vw;  // Padding used depends on view width.
-    width: 85%;
+    width: 93%;
 
     &.is-preview {
       padding: 1em;
@@ -85,9 +85,9 @@
     text-align: center;
     display: inline-block;
     vertical-align: top;
-    padding-top: .6vw;
+    padding-top: .8vw;
     position: relative;
-    width: 15%;
+    width: 7%;
 
     &.is-preview {
       padding-top: .8em;
@@ -96,27 +96,35 @@
 
   // The header height is dynamic depending on title. Hence we don't know the height of the day wrapper contained within the header. (Kinda hackish)
   &--day-inner {
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 100%;
-    margin: 0;
     position: absolute;
+
+    margin: 0;
     height: 20em; // We set a static padding: 0;height imitating a 100% height within the header but hiding most of the container.
     width: 100%;
+
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    text-transform: uppercase;
   }
 
   &--week-day {
-    font-size: 40%;
+    margin-bottom: .1em;
+
+    font-size: 30%;
     line-height: 1em;
 
     @include opacity(.75);
   }
 
   &--date {
+    margin-bottom: .1em;
+
+    font-size: 60%;
     line-height: 1em;
   }
 
   &--month {
-    font-size: 60%;
+    font-size: 30%;
     line-height: 1em;
 
     @include opacity(.75);
