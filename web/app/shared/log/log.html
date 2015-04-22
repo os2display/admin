@@ -1,0 +1,14 @@
+<div class="log--container" data-ng-if="message = getLogMessage()" data-ng-class="{'is-log': message.type === 'log', 'is-error': message.type === 'error'}">
+  <div class="log--close" data-ng-click="clearLog()">Luk</div>
+  <div class="log--error" data-ng-if="message.type === 'error'">
+    <div class="log--description">{{message.message}}</div>
+    <div data-ng-click="toggleExpanded()">(udvid)</div>
+    <div class="log--expanded" data-ng-if="expanded">
+      <div class="log--cause">Cause: {{message.cause}}</div>
+      <div class="log--stacktrace">Stacktrace: {{message.stacktrace}}</div>
+    </div>
+  </div>
+  <div class="log--error" data-ng-if="message.type === 'log'">
+    {{message.message}}
+  </div>
+</div>

@@ -20,6 +20,8 @@ angular.module('ikApp', [
     'ngModal',
     'angular.css.injector',
 
+    'itkLog',
+
     'itkControlPanel',
     'itkScreenTemplatePickerWidget',
     'itkTextWidget',
@@ -31,24 +33,17 @@ angular.module('ikApp', [
     'itkRegionPreviewWidget',
     'itkDateComponent'
   ],
-  function() {}
-).config(function($provide) {
-    'use strict';
+  function () {
+  }
+).config(function ($provide) {
+    "use strict";
 
-    // Install raven.
-    Raven.config('https://de9fc538a66e44c4a793fed8e5d39878@app.getsentry.com/41300', {
-      // pass along the version of your application
-      release: '3.0.0-aplha'
-
-      // we highly recommend restricting exceptions to a domain in order to filter out clutter
-      //whitelistUrls: ['example.com/scripts/']
-    }).install();
-
-
-    $provide.decorator("$exceptionHandler", ['$delegate', function ($delegate) {
+    $provide.decorator("$exceptionHandler", ['$delegate', '$injector', function ($delegate, $injector) {
       return function (exception, cause) {
         $delegate(exception, cause);
-        Raven.captureException(exception);
+
+        $injector.get('itkLogFactory').error(exception, cause);
       };
     }]);
-  });
+  }
+);
