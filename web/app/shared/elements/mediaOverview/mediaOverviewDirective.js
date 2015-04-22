@@ -65,20 +65,6 @@ angular.module('ikApp').directive('ikMediaOverview', function() {
         'pager': $scope.pager
       };
 
-      // Mouse hover on image.
-      $scope.hovering = false;
-
-      /**
-       * Adds hover overlay on media elements.
-       */
-      $scope.mouseHover = function mouseHover(state) {
-        if(state > 0) {
-          $scope.hovering = state;
-        } else {
-          $scope.hovering = false;
-        }
-      };
-
       /**
        * Updates the images array by sending a search request.
        */

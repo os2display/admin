@@ -2850,9 +2850,8 @@ html.is-locked body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  .overview--channel-label, .overview--slide-label {
-    display: inline-block;
-    font-size: .9em; }
+  .overview--channel-label, .overview--slide-label, .overview--media-label {
+    text-align: center; }
   .overview--channel-date, .overview--slide-date {
     color: #b3b3b3;
     font-size: .9em; }
@@ -3022,9 +3021,7 @@ html.is-locked body {
     width: 33.3%; }
   .overview--media-single {
     position: relative;
-    cursor: pointer;
-    font-size: 0;
-    overflow: hidden; }
+    cursor: pointer; }
   .overview--media-video-icon {
     right: .5rem;
     position: absolute;
@@ -3047,12 +3044,6 @@ html.is-locked body {
     right: 0;
     bottom: -30%;
     height: 30%; }
-    .overview--media-overlay.is-hovering {
-      -moz-animation: toggle-media-overlay 0.15s ease 1 forwards;
-      -webkit-animation: toggle-media-overlay 0.15s ease 1 forwards;
-      animation: toggle-media-overlay 0.15s ease 1 forwards;
-      animation-timing-function: linear;
-      -webkit-animation-timing-function: linear; }
   .overview--media-image {
     max-height: 10rem;
     max-width: 300px;
@@ -3060,10 +3051,8 @@ html.is-locked body {
     background-repeat: repeat;
     min-width: 200px; }
   .overview--media-overlay-inner {
-    padding: .5em;
-    text-align: left; }
+    padding: .5em; }
   .overview--media-text {
-    float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis; }

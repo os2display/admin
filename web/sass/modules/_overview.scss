@@ -125,9 +125,9 @@
   }
 
   &--channel-label,
-  &--slide-label {
-    display: inline-block;
-    font-size: .9em;
+  &--slide-label,
+  &--media-label {
+    text-align: center;
   }
 
   &--channel-date,
@@ -337,9 +337,8 @@
 ========================================================================== */
   &--media-single {
     position: relative;
+
     cursor: pointer;
-    font-size: 0; // To counter inline-block.
-    overflow: hidden;
   }
 
 
@@ -362,13 +361,6 @@
     right: 0;
     bottom: -30%;
     height: 30%;
-
-    &.is-hovering {
-      @include animation(toggle-media-overlay .15s ease 1 forwards);
-
-      animation-timing-function: linear;
-      -webkit-animation-timing-function: linear;
-    }
   }
 
 
@@ -383,12 +375,10 @@
 
   &--media-overlay-inner {
     padding: .5em;
-    text-align: left;
   }
 
 
   &--media-text {
-    float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;
