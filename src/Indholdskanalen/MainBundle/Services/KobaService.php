@@ -111,7 +111,7 @@ class KobaService {
   public function updateCalendarSlides() {
     // For each calendar slide
     $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('calendar');
-    $todayStart = mktime(0, 0, 0);
+    $todayStart = time() - 3600;
     $todayEnd = mktime(23, 59, 59);
 
     // Get data for interest period
