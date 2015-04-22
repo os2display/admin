@@ -248,7 +248,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         var todayStart = (new Date(now.getFullYear(), now.getMonth(), now.getDate())).getTime() / 1000;
         var todayEnd = todayStart + 86400;
 
-        kobaFactory.getBookingsForResource(resource.mail, now.getTime() - 3600, todayEnd).then(
+        kobaFactory.getBookingsForResource(resource.mail, (now.getTime() / 1000) - 3600, todayEnd).then(
           addResourceBookings
         );
       }
