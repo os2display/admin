@@ -6,8 +6,8 @@
 /**
  * Screens controller handles the display and selection of screens.
  */
-angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory',
-  function($scope, screenFactory, userFactory) {
+angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory', 'itkLogFactory',
+  function($scope, screenFactory, userFactory, itkLogFactory) {
     'use strict';
 
     $scope.loading = false;
@@ -21,7 +21,7 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
         $scope.currentUser = data;
       },
       function error(reason) {
-        // @TODO: Handle error.
+        itkLogFactory.error('Kunne ikke hente bruger.', reason);
       }
     );
 
@@ -75,6 +75,7 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
               $scope.loading = false;
             },
             function (reason) {
+              itkLogFactory.error('Kunne ikke hente søgeresultater.', reason);
               $scope.loading = false;
             }
           );
@@ -114,7 +115,7 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
       // Update orientation for the search.
       delete search.filter;
 
-      if($scope.orientation !== 'all' || $scope.showFromUser !== 'all') {
+      if($scope.showFromUser !== 'all') {
         search.filter = {
           "bool": {
             "must": []

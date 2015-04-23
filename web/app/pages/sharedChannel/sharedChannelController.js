@@ -6,8 +6,8 @@
 /**
  * Shared channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory',
-  function($scope, $location, $routeParams, $timeout, screenFactory, sharedChannelFactory) {
+angular.module('ikApp').controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory', 'itkLogFactory',
+  function ($scope, $location, $routeParams, $timeout, screenFactory, sharedChannelFactory, itkLogFactory) {
     'use strict';
 
     $scope.steps = 1;
@@ -17,9 +17,14 @@ angular.module('ikApp').controller('SharedChannelController', ['$scope', '$locat
     $scope.status = 'edit';
 
     // Get all screens.
-    screenFactory.getScreens().then(function (data) {
-      $scope.screens = data;
-    });
+    screenFactory.getScreens().then(
+      function success(data) {
+        $scope.screens = data;
+      },
+      function error(reason) {
+        itkLogFactory.error('Kunne ikke hente bruger.', reason);
+      }
+    );
 
     /**
      * Loads a given step.
@@ -37,23 +42,29 @@ angular.module('ikApp').controller('SharedChannelController', ['$scope', '$locat
       if (!$routeParams.id || !$routeParams.index) {
         $location.path('/channel-sharing-overview');
       } else {
-        sharedChannelFactory.getSharedChannel($routeParams.id, $routeParams.index).then(function(data) {
-          $scope.channel = JSON.parse(data.content);
+        sharedChannelFactory.getSharedChannel($routeParams.id, $routeParams.index).then(
+          function success(data) {
+            $scope.channel = JSON.parse(data.content);
 
-          if ($scope.channel === {}) {
-            $location.path('/channel-sharing-overview');
+            if ($scope.channel === {}) {
+              $location.path('/channel-sharing-overview');
+            }
+
+            loadStep(1);
+          },
+          function error(reason) {
+            itkLogFactory.error("Delt kanal kunne ikke hentes.", reason);
           }
-
-          loadStep(1);
-        });
+        );
       }
     }
+
     init();
 
     /**
      * Submit a step in the installation process.
      */
-    $scope.submitStep = function() {
+    $scope.submitStep = function () {
       $location.path('/channel-sharing-overview');
     };
 
@@ -61,7 +72,7 @@ angular.module('ikApp').controller('SharedChannelController', ['$scope', '$locat
      * Change channel creation step.
      * @param step
      */
-    $scope.goToStep = function(step) {
+    $scope.goToStep = function (step) {
       loadStep(step);
     };
   }

@@ -6,27 +6,32 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory',
-  function($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory) {
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLogFactory',
+  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLogFactory) {
     'use strict';
 
     $scope.step = 'background-picker';
     $scope.addevent = {
       "title": null,
-      "place" : null,
-      "from" : null,
-      "to" : null
+      "place": null,
+      "from": null,
+      "to": null
     };
 
     // Get the slide from the backend.
-    slideFactory.getEditSlide(null).then(function(data) {
-      $scope.slide = data;
-    });
+    slideFactory.getEditSlide(null).then(
+      function success(data) {
+        $scope.slide = data;
+      },
+      function error(reason) {
+        itkLogFactory.error("Kunne ikke hente slide.", reason);
+      }
+    );
 
     // Setup editor states and functions.
     $scope.editor = {
       editorOpen: false,
-      toggleTextEditor: function() {
+      toggleTextEditor: function () {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
@@ -37,7 +42,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      toggleHeaderEditorResponsive: function() {
+      toggleHeaderEditorResponsive: function () {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
@@ -48,7 +53,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      toggleBackgroundEditorTransparent: function() {
+      toggleBackgroundEditorTransparent: function () {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
@@ -59,7 +64,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      toggleBackgroundEditor: function() {
+      toggleBackgroundEditor: function () {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
@@ -70,7 +75,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      toggleLogoEditor: function() {
+      toggleLogoEditor: function () {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
@@ -81,7 +86,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      toggleManualCalendarEditor: function() {
+      toggleManualCalendarEditor: function () {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
@@ -96,11 +101,11 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         $scope.sortEvents();
         $scope.validateEvents();
       },
-      toggleEventCalendarEditor: function() {
+      toggleEventCalendarEditor: function () {
         $('html').toggleClass('is-locked');
 
         kobaFactory.getResources().then(
-          function(data) {
+          function (data) {
             $scope.availableResources = data;
           }
         );
@@ -113,7 +118,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      toggleSourceEditor: function() {
+      toggleSourceEditor: function () {
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
@@ -124,7 +129,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
-      hideAllEditors: function() {
+      hideAllEditors: function () {
         $('html').removeClass('is-locked');
 
         $scope.editor.editorOpen = false;
@@ -149,9 +154,9 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     $scope.addEventItem = function addEventItem() {
       var event = {
         "title": $scope.addevent.title,
-        "place" : $scope.addevent.place,
-        "from" : $scope.addevent.from,
-        "to" : $scope.addevent.to
+        "place": $scope.addevent.place,
+        "from": $scope.addevent.from,
+        "to": $scope.addevent.to
       };
 
       // Add event data to slide array.
@@ -175,7 +180,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * Sort events for slide.
      */
     $scope.sortEvents = function sortEvents() {
-      if($scope.slide.options.eventitems.length > 0) {
+      if ($scope.slide.options.eventitems.length > 0) {
         // Sort the events by from date.
         $scope.slide.options.eventitems = $filter('orderBy')($scope.slide.options.eventitems, "from")
       }
@@ -196,7 +201,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * Validate events related to the slide.
      */
     $scope.validateEvents = function validateEvents() {
-      if($scope.slide.options.eventitems.length > 0) {
+      if ($scope.slide.options.eventitems.length > 0) {
         // Run through all events.
         for (var i = 0; i < $scope.slide.options.eventitems.length; i++) {
           var item = $scope.slide.options.eventitems[i];
@@ -249,7 +254,10 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         var todayEnd = todayStart + 86400;
 
         kobaFactory.getBookingsForResource(resource.mail, (now.getTime() / 1000) - 3600, todayEnd).then(
-          addResourceBookings
+          addResourceBookings,
+          function error(reason) {
+            itkLogFactory.error("Kunne ikke hente bookings for ressource", reason);
+          }
         );
       }
 
@@ -257,7 +265,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     };
 
     // Register event listener for select media.
-    $scope.$on('mediaOverview.selectMedia', function(event, media) {
+    $scope.$on('mediaOverview.selectMedia', function (event, media) {
       if (media.media_type === 'logo') {
         $scope.slide.logo = media;
 
@@ -266,7 +274,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       else {
         var containsMedia = false;
 
-        $scope.slide.media.forEach(function(element) {
+        $scope.slide.media.forEach(function (element) {
           if (element.id === media.id) {
             containsMedia = true;
           }
@@ -286,7 +294,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     });
 
     // Register event listener for media upload success.
-    $scope.$on('mediaUpload.uploadSuccess', function(event, data) {
+    $scope.$on('mediaUpload.uploadSuccess', function (event, data) {
       var allSuccess = true;
 
       for (var i = 0; i < data.queue.length; i++) {
@@ -300,20 +308,25 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
       // If all the data items were uploaded correctly.
       if (allSuccess) {
-        mediaFactory.getMedia(data.id).then(function(media) {
-          if (media.media_type === 'logo') {
-            $scope.slide.logo = media;
+        mediaFactory.getMedia(data.id).then(
+          function success(media) {
+            if (media.media_type === 'logo') {
+              $scope.slide.logo = media;
 
-            $scope.logoStep = 'logo-picker';
-          }
-          else {
-            $scope.slide.media.length = 0;
-            $scope.slide.media.push(media);
+              $scope.logoStep = 'logo-picker';
+            }
+            else {
+              $scope.slide.media.length = 0;
+              $scope.slide.media.push(media);
 
-            // Hide editors.
-            $scope.editor.hideAllEditors();
+              // Hide editors.
+              $scope.editor.hideAllEditors();
+            }
+          },
+          function error(reason) {
+            itkLogFactory.error("Kunne ikke tilføje media.", reason);
           }
-        });
+        );
       }
     });
 
@@ -366,6 +379,9 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       $scope.logoStep = 'pick-logo-from-computer';
     };
 
+    /**
+     * Available logo positions.
+     */
     $scope.logoPositions = [
       {
         value: {
@@ -405,6 +421,9 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       }
     ];
 
+    /**
+     * Available logo sizes.
+     */
     $scope.logoSizes = [
       {
         value: "5%",

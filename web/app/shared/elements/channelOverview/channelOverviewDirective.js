@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel overview.
  */
-angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration',
-  function(channelFactory, userFactory, configuration) {
+angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration', 'itkLogFactory',
+  function(channelFactory, userFactory, configuration, itkLogFactory) {
     'use strict';
 
     return {
@@ -45,8 +45,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           "text": '',
           "filter": {
             "bool": {
-              "must": {
-              }
+              "must": []
             }
           },
           "sort": {
@@ -67,7 +66,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           scope.loading = true;
 
           channelFactory.searchChannels(search).then(
-            function(data) {
+            function success(data) {
               // Total hits.
               scope.hits = data.hits;
 
@@ -79,12 +78,13 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
               // Load slides bulk.
               channelFactory.loadChannelsBulk(ids).then(
-                function (data) {
+                function success(data) {
                   scope.channels = data;
 
                   scope.loading = false;
                 },
-                function () {
+                function error(reason) {
+                  itkLogFactory.error("Kunne ikke loade søgeresultatet.", reason);
                   scope.loading = false;
                 }
               );
@@ -154,7 +154,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           if(scope.showFromUser !== 'all') {
             search.filter = {
               "bool": {
-                "must": {}
+                "must": []
               }
             };
           }

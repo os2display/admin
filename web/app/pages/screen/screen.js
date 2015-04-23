@@ -33,11 +33,11 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
           function (reason) {
             if (reason === 404) {
               templateFactory.getScreenTemplates().then(
-                function (data) {
+                function success(data) {
                   $scope.screen.template = data[0];
                   $scope.screen.orientation = data[0].orientation;
                 },
-                function (reason) {
+                function error(reason) {
                   itkLogFactory.error("Skabelonernen blev ikke loaded", reason);
                 }
               );
@@ -51,7 +51,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
         } else {
           // Get the screen from the backend.
           screenFactory.getEditScreen($routeParams.id).then(
-            function (data) {
+            function success(data) {
               $scope.screen = data;
 
               // Decode the shared channels.
@@ -70,7 +70,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
               }
             },
             // Error getting
-            function (reason) {
+            function error(reason) {
               itkLogFactory.error("Skærmen med id: " + $routeParams.id + " blev ikke fundet", reason);
             }
           );
@@ -87,12 +87,12 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function () {
-          itkLogFactory.log("Skærmen er gemt", 5000);
+        function success() {
+          itkLogFactory.info("Skærmen er gemt", 3000);
           // Redirect to overview.
           $location.path('/screen-overview');
         },
-        function (reason) {
+        function error(reason) {
           itkLogFactory.error("Skærmen blev ikke gemt", reason);
         }
       );
@@ -105,10 +105,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function () {
-          itkLogFactory.log("Skærmen er gemt", 5000);
+        function success() {
+          itkLogFactory.info("Skærmen er gemt", 3000);
         },
-        function (reason) {
+        function error(reason) {
           itkLogFactory.error("Skærmen blev ikke gemt", reason);
         }
       );
