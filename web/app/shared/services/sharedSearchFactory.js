@@ -8,8 +8,8 @@
  *
  * The communication is based on web-sockets via socket.io library.
  */
-angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', '$http',
-  function ($q, $rootScope, configuration, $http) {
+angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'configuration', '$http', 'itkLogFactory',
+  function ($q, $rootScope, configuration, $http, itkLogFactory) {
     'use strict';
 
     var socket;
@@ -28,6 +28,7 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
 
       // Handle error events.
       socket.on('error', function (reason) {
+        itkLogFactory.error(error.message, 'Search socket error.');
         deferred.reject(reason);
       });
 
@@ -65,6 +66,7 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
               getSocket(deferred);
             })
             .error(function (data, status) {
+              itkLogFactory.error(data, 'Authentication (sharing) to search node failed (' + status + ')');
               deferred.reject(status);
             });
         }
@@ -158,8 +160,8 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
 
         // Catch search errors.
         socket.on('searchError', function (error) {
+          itkLogFactory.error('Search error', error.message);
           deferred.reject(error.message);
-          alert(error.message);
         });
       });
 

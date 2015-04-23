@@ -42,7 +42,7 @@ angular.module('ikApp', [
       return function (exception, cause) {
         $delegate(exception, cause);
 
-        $injector.get('itkLogFactory').error(exception, cause);
+        $injector.get('itkLogFactory').error("" + exception, "" + cause);
       };
     }]);
   }
