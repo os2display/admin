@@ -285,6 +285,8 @@ table {
 
 /* Variables
    ========================================================================== */
+/* Link colors
+   ================================================================================================================== */
 /* Mixins
    ========================================================================== */
 /* Placeholders
@@ -381,7 +383,7 @@ table {
     box-sizing: border-box;
     display: inline-block;
     padding: 1.1vw;
-    width: 85%; }
+    width: 93%; }
     .event-calendar--title-wrapper.is-preview {
       padding: 1em; }
   .event-calendar--day-inner, .event-calendar--header-title {
@@ -394,27 +396,31 @@ table {
     text-align: center;
     display: inline-block;
     vertical-align: top;
-    padding-top: .6vw;
+    padding-top: .8vw;
     position: relative;
-    width: 15%; }
+    width: 7%; }
     .event-calendar--day.is-preview {
       padding-top: .8em; }
   .event-calendar--day-inner {
+    position: absolute;
+    margin: 0;
+    height: 20em;
+    width: 100%;
     background: rgba(0, 0, 0, 0.2);
     font-size: 100%;
-    margin: 0;
-    position: absolute;
-    height: 20em;
-    width: 100%; }
+    text-transform: uppercase; }
   .event-calendar--week-day {
-    font-size: 40%;
+    margin-bottom: .1em;
+    font-size: 30%;
     line-height: 1em;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
     opacity: 0.75; }
   .event-calendar--date {
+    margin-bottom: .1em;
+    font-size: 60%;
     line-height: 1em; }
   .event-calendar--month {
-    font-size: 60%;
+    font-size: 30%;
     line-height: 1em;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
     opacity: 0.75; }
