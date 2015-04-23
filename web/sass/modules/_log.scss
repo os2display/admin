@@ -1,0 +1,12 @@
+.log {
+  @extend .itk-message;
+
+  &--wrapper {
+    padding: 1em;
+    max-width: 75%;
+  }
+
+  &--inner {
+    @extend .itk-message--inner;
+  }
+}

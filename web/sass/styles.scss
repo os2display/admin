@@ -37,9 +37,10 @@
 @import "layout/_layout";
 
 
-// ITK components.
+// ITK components
 @import "components/_itk-menu";
 @import "components/_itk-tabs";
+@import "components/_itk-messages";
 
 
 // Modules
@@ -63,6 +64,7 @@
 @import "modules/_control-panel";
 @import "modules/_cpw";
 @import "modules/_list";
+@import "modules/_log";
 
 // Animations
 @import "animations/_animation";
