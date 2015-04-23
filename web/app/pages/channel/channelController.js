@@ -6,8 +6,8 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory',
-  function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory) {
+angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'itkLogFactory',
+  function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, itkLogFactory) {
     'use strict';
 
     $scope.steps = 2;
@@ -15,9 +15,14 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     $scope.channel = {};
 
     // Get all slides.
-    slideFactory.getSlides().then(function (data) {
-      $scope.slides = data;
-    });
+    slideFactory.getSlides().then(
+      function (data) {
+        $scope.slides = data;
+      },
+      function error(reason) {
+        itkLogFactory.error("Hentning af slides fejlede", reason);
+      }
+    );
 
     // Setup the editor.
     $scope.editor = {
@@ -55,17 +60,23 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
           $location.path('/channel');
         }
         else {
-          channelFactory.getEditChannel($routeParams.id).then(function (data) {
-            $scope.channel = data;
-            $scope.channel.status = 'edit-channel';
+          channelFactory.getEditChannel($routeParams.id).then(
+            function (data) {
+              $scope.channel = data;
+              $scope.channel.status = 'edit-channel';
 
-            if ($scope.channel === {}) {
-              $location.path('/channel');
+              if ($scope.channel === {}) {
+                $location.path('/channel');
+              }
+
+              // Go to add slides page.
+              loadStep(2);
+            },
+            function error(reason) {
+              $location.path('/channel-overview');
+              itkLogFactory.error("Hentning af valgt kanal med id:" + $routeParams.id + " fejlede", reason);
             }
-
-            // Go to add slides page.
-            loadStep(2);
-          });
+          );
         }
       }
     }
@@ -80,12 +91,14 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
         $scope.disableSubmitButton = true;
 
         channelFactory.saveChannel().then(
-          function () {
+          function success() {
+            itkLogFactory.info("Kanal gemt.", 3000);
             $timeout(function () {
               $location.path('/channel-overview');
             }, 1000);
           },
-          function () {
+          function error(reason) {
+            itkLogFactory.error("Gem af kanal fejlede.", reason);
             $scope.disableSubmitButton = false;
           }
         );
@@ -98,7 +111,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * Set the orientation of the channel.
      * @param orientation
      */
-    $scope.setOrientation = function (orientation) {
+    $scope.setOrientation = function setOrientation(orientation) {
       $scope.channel.orientation = orientation;
     };
 
@@ -107,7 +120,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * @param id
      * @returns {boolean}
      */
-    $scope.slideSelected = function (id) {
+    $scope.slideSelected = function slideSelected(id) {
       var res = false;
 
       $scope.channel.slides.forEach(function (element) {

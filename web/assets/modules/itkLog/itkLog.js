@@ -35,7 +35,7 @@ app.factory('itkLogFactory', ['$http', '$timeout', '$log',
         var error = {
           "type": "error",
           "date": new Date(),
-          "message": message,
+          "message": "" + message,
           "cause": cause,
           "stacktrace": printStackTrace()
         };
@@ -63,6 +63,30 @@ app.factory('itkLogFactory', ['$http', '$timeout', '$log',
         };
 
         $log.log(message);
+
+        if (timeout) {
+          $timeout(function() {
+            factory.message = null;
+          }, timeout);
+        }
+      };
+
+      /**
+       * Info message.
+       *
+       * @param message
+       *   Info message.
+       * @param timeout
+       *   Clear log after timeout, if set.
+       */
+      factory.info = function log(message, timeout) {
+        factory.message = {
+          "type": "info",
+          "date": new Date(),
+          "message": message
+        };
+
+        $log.info(message);
 
         if (timeout) {
           $timeout(function() {

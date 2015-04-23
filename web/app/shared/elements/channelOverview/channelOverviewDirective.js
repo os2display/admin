@@ -154,7 +154,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           if(scope.showFromUser !== 'all') {
             search.filter = {
               "bool": {
-                "must": {}
+                "must": []
               }
             };
           }

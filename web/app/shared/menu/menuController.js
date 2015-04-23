@@ -6,8 +6,8 @@
 /**
  * Menu controller. Controls the menues.
  */
-angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'configuration',
-  function ($scope, $rootScope, $location, $http, userFactory, configuration) {
+angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'configuration', 'itkLogFactory',
+  function ($scope, $rootScope, $location, $http, userFactory, configuration, itkLogFactory) {
     'use strict';
 
     $scope.url = $location.url();
@@ -18,8 +18,11 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     $scope.siteTitle = configuration.siteTitle;
 
     userFactory.getCurrentUser().then(
-      function (data) {
+      function success(data) {
         $scope.currentUser = data;
+      },
+      function error(reason) {
+        itkLogFactory.error("Hentning af bruger fejlede.", reason);
       }
     );
 
@@ -146,6 +149,14 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
       $('html').toggleClass('is-locked');
     };
 
+    var closeNavMenu = function() {
+      if ($scope.navMenuOpen === null) {
+        $scope.navMenuOpen = false;
+      }
+      $scope.navMenuOpen = false;
+      $('html').removeClass('is-locked');
+    };
+
     /**
      * Setup listener for when the url changes.
      */
@@ -167,14 +178,28 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
      * Update templates.
      */
     $scope.updateTemplates = function updateTemplates() {
-      $http.get('/api/command/update_templates');
+      $http.get('/api/command/update_templates')
+        .success(function(data, status, headers, config) {
+          itkLogFactory.info("Templates opdateret.", 3000);
+        })
+        .error(function(data, status, headers, config) {
+          itkLogFactory.error("Update af templates fejlede.", status);
+        });
+      closeNavMenu();
     };
 
     /**
      * Reindex search.
      */
     $scope.reindex = function reindex() {
-      $http.get('/api/command/reindex');
+      $http.get('/api/command/reindex')
+        .success(function(data, status, headers, config) {
+          itkLogFactory.info("Reindex gennemført.", 3000);
+        })
+        .error(function(data, status, headers, config) {
+          itkLogFactory.error("Reindex fejlede.", status);
+        });
+      closeNavMenu();
     };
   }
 ]);

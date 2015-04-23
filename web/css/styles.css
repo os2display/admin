@@ -1317,6 +1317,41 @@ html.is-locked body {
 
 /**
  *
+ * ITK messages
+ *
+ * A component for displaying messages
+ *
+ */
+/* Variables
+   ========================================================================== */
+/* Styles
+   ========================================================================== */
+.itk-message, .log {
+  margin-bottom: 1em; }
+
+.itk-message--inner, .log--inner {
+  -moz-border-radius: 0.75em;
+  -webkit-border-radius: 0.75em;
+  border-radius: 0.75em;
+  padding: 1em;
+  background-color: #f1f1f1;
+  border: 1px solid #b1b1b1;
+  color: #717171; }
+  .itk-message--inner.is-info, .is-info.log--inner {
+    background-color: #dff2bf;
+    border: 1px solid #aadc55;
+    color: #68941e; }
+  .itk-message--inner.is-warning, .is-warning.log--inner {
+    background-color: #feefb3;
+    border: 1px solid #fcd535;
+    color: #b08d02; }
+  .itk-message--inner.is-error, .is-error.log--inner {
+    background-color: #ffbaba;
+    border: 1px solid #ff3b3b;
+    color: #ba0000; }
+
+/**
+ *
  * Create slides
  *
  */
@@ -3739,6 +3774,23 @@ html.is-locked body {
     display: inline-block;
     position: absolute;
     left: 3em; }
+
+.log--wrapper {
+  padding: 1em;
+  text-align: center; }
+  .log--wrapper-inner {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 75em; }
+.log--text {
+  margin-bottom: 1em; }
+.log--show-error {
+  text-decoration: underline;
+  cursor: pointer; }
+  .log--show-error.is-expanded {
+    margin-bottom: 1em; }
+.log--cause, .log--stacktrace {
+  color: #404040; }
 
 /* Animations
  *

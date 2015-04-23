@@ -6,20 +6,23 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory',
-  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory) {
+angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'itkLogFactory',
+  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, itkLogFactory) {
     'use strict';
 
     $scope.steps = 5;
     $scope.slide = {};
     $scope.templates = [];
     templateFactory.getSlideTemplates().then(
-      function (data) {
+      function success(data) {
         for (var key in data) {
           if (data.hasOwnProperty(key)) {
             $scope.templates.push(data[key]);
           }
         }
+      },
+      function error(reason) {
+        itkLogFactory.error("Kunne ikke hente slide templates.", reason);
       }
     );
     $scope.channels = [];
@@ -72,7 +75,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
 
           // Get the slide from the backend.
           slideFactory.getEditSlide($routeParams.id).then(
-            function (data) {
+            function success(data) {
               $scope.slide = data;
               $scope.slide.status = 'edit-slide';
               if ($scope.slide === {}) {
@@ -82,7 +85,8 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
               // Go to step 3 (edit content)
               loadStep(3);
             },
-            function (reason) {
+            function error(reason) {
+              itkLogFactory.error("Kunne ikke hente slide med id: " + $routeParams.id, reason);
               $location.path('/slide-overview');
             }
           );
@@ -105,12 +109,15 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         }
 
         slideFactory.saveSlide().then(
-          function () {
+          function success() {
+            itkLogFactory.info("Slide gemt.", 3000);
+
             $timeout(function () {
               $location.path('/slide-overview');
             }, 1000);
           },
-          function () {
+          function error(reason) {
+            itkLogFactory.error("Kunne ikke gemme slide.", reason);
             $scope.disableSubmitButton = false;
           }
         );
