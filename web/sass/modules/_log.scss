@@ -3,7 +3,14 @@
 
   &--wrapper {
     padding: 1em;
-    max-width: 75%;
+
+    text-align: center;
+
+    &-inner {
+      margin-right: auto;
+      margin-left: auto;
+      max-width: $layout-max-width;
+    }
   }
 
   &--inner {

@@ -3777,7 +3777,11 @@ html.is-locked body {
 
 .log--wrapper {
   padding: 1em;
-  max-width: 75%; }
+  text-align: center; }
+  .log--wrapper-inner {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 75em; }
 
 /* Animations
  *
