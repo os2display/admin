@@ -3782,6 +3782,15 @@ html.is-locked body {
     margin-right: auto;
     margin-left: auto;
     max-width: 75em; }
+.log--text {
+  margin-bottom: 1em; }
+.log--show-error {
+  text-decoration: underline;
+  cursor: pointer; }
+  .log--show-error.is-expanded {
+    margin-bottom: 1em; }
+.log--cause, .log--stacktrace {
+  color: #404040; }
 
 /* Animations
  *
