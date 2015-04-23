@@ -20,8 +20,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         scope.displaySharingOption = configuration.sharingService.enabled;
         scope.loading = false;
 
-        // Set default orientation and sort.
-        scope.orientation = 'landscape';
         scope.showFromUser = 'all';
         scope.sort = { "created_at": "desc" };
 
@@ -156,7 +154,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           if(scope.showFromUser !== 'all') {
             search.filter = {
               "bool": {
-                "must": []
+                "must": {}
               }
             };
           }

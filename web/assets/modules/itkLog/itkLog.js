@@ -8,14 +8,14 @@
  *
  * Consists of
  *   itkLogFactory that is used to log messages.
- *   itkLog directive that is used to display log messages.
+ *   itk-log (itkLog) directive that is used to display log messages.
  *
  * requires stacktrace.js - http://www.stacktracejs.com/
  *   tested with v0.6.4
  */
 var app = angular.module('itkLog', []);
-app.factory('itkLogFactory', ['$http', '$timeout',
-    function ($http, $timeout) {
+app.factory('itkLogFactory', ['$http', '$timeout', '$log',
+    function ($http, $timeout, $log) {
       'use strict';
 
       var factory = {};
@@ -34,12 +34,15 @@ app.factory('itkLogFactory', ['$http', '$timeout',
       factory.error = function error(message, cause) {
         var error = {
           "type": "error",
+          "date": new Date(),
           "message": message,
           "cause": cause,
           "stacktrace": printStackTrace()
         };
 
         factory.message = error;
+
+        $log.error(error);
 
         $http.post('api/error', error);
       };
@@ -55,8 +58,11 @@ app.factory('itkLogFactory', ['$http', '$timeout',
       factory.log = function log(message, timeout) {
         factory.message = {
           "type": "log",
+          "date": new Date(),
           "message": message
         };
+
+        $log.log(message);
 
         if (timeout) {
           $timeout(function() {
@@ -78,14 +84,16 @@ app.factory('itkLogFactory', ['$http', '$timeout',
 );
 
 /**
+ * itk-log directive.
  *
+ * Displays the current message from itkLogFactory.
  */
 app.directive('itkLog', ['itkLogFactory', function (itkLogFactory) {
     'use strict';
 
     return {
       restrict: 'E',
-      templateUrl: 'app/shared/log/log.html',
+      templateUrl: 'assets/modules/itkLog/log.html',
       link: function (scope) {
         scope.expanded = false;
 
