@@ -2787,13 +2787,22 @@ html.is-locked body {
   .overview--spinner {
     margin: 0 auto; }
   .overview--screens, .overview--media, .overview--channels, .overview--slides {
-    text-align: center; }
+    border: 1px solid #e6e6e6;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    margin-left: auto;
+    max-width: 75em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-align: left;
+    -moz-border-radius: 0.4em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
   .overview--channel {
-    display: inline-block;
-    margin: 0 0 36px; }
-    @media only screen and (min-width: 481px) {
-      .overview--channel {
-        margin: 0 18px 36px 18px; } }
+    display: inline-block; }
     .overview--channel:link {
       color: inherit;
       outline: 0;
@@ -2811,13 +2820,13 @@ html.is-locked body {
       outline: 0;
       text-decoration: none; }
   .overview--screen, .overview--media-single, .overview--slide, .overview--channel {
-    display: inline-block;
-    margin: 0 0 36px;
     position: relative;
-    vertical-align: middle; }
-    @media only screen and (min-width: 481px) {
-      .overview--screen, .overview--media-single, .overview--slide, .overview--channel {
-        margin: 0 18px 36px 18px; } }
+    display: inline-block;
+    margin-bottom: 1em;
+    margin-left: -4px;
+    width: 33.3333%;
+    text-align: center;
+    vertical-align: top; }
   .overview--slide-unpublished-overlay {
     background: #fff;
     height: 100%;
@@ -2853,22 +2862,34 @@ html.is-locked body {
     width: 20px;
     height: 20px;
     background-position: 0 -47px; }
-  .overview--slide-link:link, .overview--channel-link:link {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
-  .overview--slide-link:visited, .overview--channel-link:visited {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
-  .overview--slide-link:hover, .overview--channel-link:hover {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
-  .overview--slide-link:focus, .overview--channel-link:focus {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
+  .overview--slide-link, .overview--channel-link {
+    border: 1px solid #e6e6e6;
+    margin-bottom: .5em;
+    margin-left: 1em;
+    min-height: 15em;
+    padding: 1em;
+    -moz-border-radius: 0.4em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+    .overview--slide-link:link, .overview--channel-link:link {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .overview--slide-link:visited, .overview--channel-link:visited {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .overview--slide-link:hover, .overview--channel-link:hover {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .overview--slide-link:focus, .overview--channel-link:focus {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
   .overview--slides-container, .overview--channel-container {
     display: inline-block; }
   .overview--channel-empty {
@@ -2893,7 +2914,7 @@ html.is-locked body {
   .overview--filter {
     border-bottom: 0;
     display: inline-block;
-    max-width: 1024px;
+    max-width: 75em;
     margin: 0 auto;
     position: relative;
     width: 100%; }
@@ -2956,10 +2977,10 @@ html.is-locked body {
   .overview--sorting {
     display: inline-block;
     margin: 0 0 1em 0;
+    max-width: 75em;
     width: 100%; }
     @media only screen and (min-width: 1024px) {
       .overview--sorting {
-        max-width: 1024px;
         margin: 0 auto 1em; } }
   .overview--filter-label, .overview--sort-label {
     font-weight: bold;

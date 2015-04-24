@@ -7,13 +7,14 @@ $breakpoint-bigscreen:    1700px;
 
 $layout-max-width:    75em;
 $border-radius:       .4em;
+$grid-markup-fix:     -4px;
 
 // We need to handle the inline-block spacing
 %grid-markup-fix {
-  margin-right: -4px;
+  margin-right: $grid-markup-fix;
 }
 
-$grid-markup-fix: -4px;
+
 
 /* Colors
    ================================================================================================================== */
