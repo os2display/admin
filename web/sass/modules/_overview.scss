@@ -110,6 +110,8 @@
 
   &--slide-link,
   &--channel-link {
+    position: relative;
+    
     border: 1px solid $border-color;
     margin-bottom: .5em;
     margin-left: 1em;
