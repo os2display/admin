@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory', 'itkLogFactory',
-  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory, itkLogFactory) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory', 'itkLogFactory', '$timeout',
+  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory, itkLogFactory, $timeout) {
     'use strict';
 
     $scope.sharingEnabled = configuration.sharingService.enabled;
@@ -89,8 +89,11 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       screenFactory.saveScreen().then(
         function success() {
           itkLogFactory.info("Skærmen er gemt", 3000);
+
           // Redirect to overview.
-          $location.path('/screen-overview');
+          $timeout(function () {
+            $location.path('/screen-overview');
+          }, 1000);
         },
         function error(reason) {
           itkLogFactory.error("Skærmen blev ikke gemt", reason);
