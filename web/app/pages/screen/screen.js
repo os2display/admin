@@ -10,6 +10,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
   function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory, itkLogFactory, $timeout) {
     'use strict';
 
+    $scope.loading = true;
     $scope.sharingEnabled = configuration.sharingService.enabled;
     $scope.screen = {};
     $scope.toolbarTemplate = null;
@@ -29,6 +30,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
         templateFactory.getScreenTemplate('full-screen').then(
           function (data) {
             $scope.screen.template = data;
+            $scope.loading = false;
           },
           function (reason) {
             if (reason === 404) {
@@ -36,6 +38,8 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
                 function success(data) {
                   $scope.screen.template = data[0];
                   $scope.screen.orientation = data[0].orientation;
+
+                  $scope.loading = false;
                 },
                 function error(reason) {
                   itkLogFactory.error("Skabelonernen blev ikke loaded", reason);
@@ -52,6 +56,8 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
           // Get the screen from the backend.
           screenFactory.getEditScreen($routeParams.id).then(
             function success(data) {
+              $scope.loading = false;
+
               $scope.screen = data;
 
               // Decode the shared channels.
