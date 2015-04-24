@@ -165,6 +165,9 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
       $scope.navMenuOpen = false;
       $('html').removeClass('is-locked');
       updateSubMenu();
+
+      // Clear log
+      itkLogFactory.clear();
     });
 
     /**
