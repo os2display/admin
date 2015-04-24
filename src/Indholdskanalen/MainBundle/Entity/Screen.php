@@ -56,6 +56,7 @@ class Screen {
    * @ORM\OneToMany(targetEntity="ChannelScreenRegion", mappedBy="screen", orphanRemoval=true)
    * @ORM\OrderBy({"sortOrder" = "ASC"})
    * @Groups({"api"})
+   * @MaxDepth(8)
    */
   private $channelScreenRegions;
 
