@@ -41,15 +41,24 @@
   &--media,
   &--channels,
   &--slides {
-    text-align: center;
+    border: 1px solid $border-color;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    margin-left: auto;
+    max-width: $layout-max-width;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    text-align: left;
+
+    @include border-radius($border-radius);
+    @include box-sizing(border-box);
   }
 
   &--channel {
     display: inline-block;
-    margin: 0 0 $gutter;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
     }
 
     @include strip-link-styles();
@@ -59,14 +68,15 @@
   &--media-single,
   &--slide,
   &--channel {
-    display: inline-block;
-    margin: 0 0 $gutter;
     position: relative;
-    vertical-align: middle;
 
-    @include breakpoint($breakpoint-lap) {
-      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
-    }
+    display: inline-block;
+    margin-bottom: 1em;
+    margin-left: $grid-markup-fix;
+    width: 33.3333%;
+
+    text-align: center;
+    vertical-align: top;
   }
 
   &--slide-unpublished-overlay {
@@ -100,6 +110,14 @@
 
   &--slide-link,
   &--channel-link {
+    border: 1px solid $border-color;
+    margin-bottom: .5em;
+    margin-left: 1em;
+    min-height: 15em;
+    padding: 1em;
+
+    @include border-radius($border-radius);
+    @include box-sizing(border-box);
     @include strip-link-styles();
   }
 
@@ -140,7 +158,7 @@
   &--filter {
     border-bottom: 0;
     display: inline-block;
-    max-width: $breakpoint-desk;
+    max-width: $layout-max-width;
     margin: 0 auto;
     position: relative;
     width: 100%;
@@ -206,10 +224,10 @@
   &--sorting {
     display: inline-block;
     margin: 0 0 1em 0;
+    max-width: $layout-max-width;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
-      max-width: $breakpoint-desk;
       margin: 0 auto 1em;
     }
   }
