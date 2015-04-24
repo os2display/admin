@@ -557,7 +557,7 @@
 .create-channel--slide-remove, .overview--channel-remove {
   cursor: pointer;
   position: absolute;
-  right: 2.5em;
+  right: -.5em;
   top: -.5em;
   z-index: 1;
   background: url('/../images/icons-se731c6030f.png');
