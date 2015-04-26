@@ -20,7 +20,7 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
      */
     function getSocket(deferred) {
       // Get connected to the server.
-      socket = io.connect(configuration.search.address, {
+      socket = io.connect(configuration.sharingService.address, {
         'query': 'token=' + token,
         'force new connection': true,
         'max reconnection attempts': Infinity

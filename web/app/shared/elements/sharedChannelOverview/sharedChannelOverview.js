@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout',
-  function(sharedChannelFactory, userFactory, configuration, $timeout) {
+angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout', 'itkLogFactory',
+  function(sharedChannelFactory, userFactory, configuration, $timeout, itkLogFactory) {
     'use strict';
 
     return {
@@ -36,7 +36,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
             scope.currentUser = data;
           },
           function error(reason) {
-            // @TODO: Handle error.
+            itkLogFactory.error("Kunne ikke loade bruger", reason);
           }
         );
 
@@ -85,7 +85,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
             function error(reason) {
               scope.loading = false;
 
-              // @TODO: Handle error.
+              itkLogFactory.error("Hentning af søgeresultater fejlede.", reason);
             }
           );
         };

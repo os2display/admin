@@ -8,8 +8,8 @@
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
-  function (slideFactory, templateFactory) {
+angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory', 'itkLogFactory',
+  function (slideFactory, templateFactory, itkLogFactory) {
     'use strict';
 
     return {
@@ -54,7 +54,7 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
 
           // Get the template.
           templateFactory.getSlideTemplate(scope.ikSlide.template).then(
-            function (data) {
+            function success(data) {
               scope.template = data;
               scope.templateURL = scope.template.paths.preview;
 
@@ -66,6 +66,9 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
               if (scope.ikSlide.options.fontsize) {
                 scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
               }
+            },
+            function error(reason) {
+              itkLogFactory.error("Hentning af templates fejlede.", reason);
             }
           );
         });

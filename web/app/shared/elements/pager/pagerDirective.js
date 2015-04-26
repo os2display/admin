@@ -6,14 +6,14 @@
 /**
  * Paging directive.
  */
-angular.module('ikApp').directive('ikPager', function() {
+angular.module('ikApp').directive('ikPager', function () {
   'use strict';
 
   return {
     restrict: 'E',
     replace: true,
     scope: true,
-    controller: function($scope) {
+    controller: function ($scope) {
 
       /**
        * Click handler to change page.
@@ -40,12 +40,12 @@ angular.module('ikApp').directive('ikPager', function() {
       };
 
       // Keep an any on changes in number of hits.
-      $scope.$watch('hits', function(hits) {
+      $scope.$watch('hits', function (hits) {
           var pages = [];
           $scope.pager.max = 0;
           if (hits > $scope.pager.size) {
             $scope.pager.max = Math.ceil(hits / $scope.pager.size);
-            for (var i=0; i < $scope.pager.max; i++) {
+            for (var i = 0; i < $scope.pager.max; i++) {
               pages.push(i);
             }
           }
