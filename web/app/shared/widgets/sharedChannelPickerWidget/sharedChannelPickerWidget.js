@@ -19,8 +19,8 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('sharedChannelPickerWidget', ['sharedChannelFactory',
-    function (sharedChannelFactory) {
+  app.directive('sharedChannelPickerWidget', ['sharedChannelFactory', 'itkLogFactory',
+    function (sharedChannelFactory, itkLogFactory) {
       return {
         restrict: 'E',
         replace: true,
@@ -35,9 +35,14 @@
           scope.pickIndexDialog = false;
 
           scope.sharingIndexes = [];
-          sharedChannelFactory.getSharingIndexes().then(function (data) {
-            scope.sharingIndexes = data;
-          });
+          sharedChannelFactory.getSharingIndexes().then(
+            function success(data) {
+              scope.sharingIndexes = data;
+            },
+            function error(reason) {
+              itkLogFactory.error("Kunne ikke hente delingsindeks", reason);
+            }
+          );
 
           scope.showFromUser = 'all';
           scope.sort = {"created_at": "desc"};
@@ -58,8 +63,7 @@
             "text": '',
             "filter": {
               "bool": {
-                "must": {
-                }
+                "must": []
               }
             },
             "sort": {
@@ -83,12 +87,13 @@
 
             scope.loading = true;
             sharedChannelFactory.searchChannels(search, scope.index.index).then(
-              function (data) {
+              function success(data) {
                 scope.loading = false;
                 scope.hits = data.hits;
                 scope.channels = data.results;
               },
-              function () {
+              function error(reason) {
+                itkLogFactory.error("Kunne ikke hente søgeresultater", reason);
                 scope.loading = false;
               }
             );

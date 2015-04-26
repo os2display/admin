@@ -18,8 +18,8 @@
    * html-parameters:
    *   screen (object): the screen to modify.
    */
-  app.directive('screenTemplatePickerWidget', ['templateFactory',
-    function (templateFactory) {
+  app.directive('screenTemplatePickerWidget', ['templateFactory', 'itkLogFactory',
+    function (templateFactory, itkLogFactory) {
       return {
         restrict: 'E',
         scope: {
@@ -28,9 +28,14 @@
         replace: true,
         link: function (scope) {
           scope.templates = [];
-          templateFactory.getScreenTemplates().then(function (data) {
-            scope.templates = data;
-          });
+          templateFactory.getScreenTemplates().then(
+            function success(data) {
+              scope.templates = data;
+            },
+            function error(reason) {
+              itkLogFactory.error("Kunne ikke loade templates", reason);
+            }
+          );
 
           /**
            * Set the template for the screen.

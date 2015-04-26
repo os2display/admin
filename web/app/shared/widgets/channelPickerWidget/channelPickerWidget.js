@@ -19,8 +19,8 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('channelPickerWidget', ['configuration', 'userFactory', 'channelFactory',
-    function (configuration, userFactory, channelFactory) {
+  app.directive('channelPickerWidget', ['configuration', 'userFactory', 'channelFactory', 'itkLogFactory',
+    function (configuration, userFactory, channelFactory, itkLogFactory) {
       return {
         restrict: 'E',
         replace: true,
@@ -37,8 +37,11 @@
           scope.sort = {"created_at": "desc"};
 
           userFactory.getCurrentUser().then(
-            function (data) {
+            function success(data) {
               scope.currentUser = data;
+            },
+            function error(reason) {
+              itkLogFactory.error("Kunne ikke hente bruger", reason);
             }
           );
 
@@ -58,8 +61,7 @@
             "text": '',
             "filter": {
               "bool": {
-                "must": {
-                }
+                "must": []
               }
             },
             "sort": {
@@ -92,12 +94,13 @@
 
                 // Load slides bulk.
                 channelFactory.loadChannelsBulk(ids).then(
-                  function (data) {
+                  function success(data) {
                     scope.channels = data;
 
                     scope.loading = false;
                   },
-                  function (reason) {
+                  function error(reason) {
+                    itkLogFactory.error("Kunne ikke hente søgeresultater", reason);
                     scope.loading = false;
                   }
                 );
