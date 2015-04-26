@@ -31,7 +31,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
         // Default pager values.
         scope.pager = {
-          "size": 8,
+          "size": 6,
           "page": 0
         };
         scope.hits = 0;

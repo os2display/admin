@@ -30,7 +30,7 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLogFactory',
 
         // Default pager values.
         $scope.pager = {
-          "size": 8,
+          "size": 6,
           "page": 0
         };
         $scope.hits = 0;

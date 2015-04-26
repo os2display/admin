@@ -27,7 +27,7 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
 
     // Default pager values.
     $scope.pager = {
-      "size": 9,
+      "size": 6,
       "page": 0
     };
     $scope.hits = 0;
