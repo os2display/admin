@@ -162,10 +162,10 @@ class ChannelController extends Controller {
       ->findOneById($post->id);
 
     // Set the sharing id, if it is not set.
-    if ($channel->getUniqueId() === NULL || $channel->getUniqueId() === '0') {
-      $index = $this->container->getParameter('sharing_apikey');
-      $id = sha1($index . $channel->getId());
-      $channel->setUniqueId($id);
+    if ($channel->getUniqueId() === NULL || $channel->getUniqueId() === '' || $channel->getUniqueId() === '0') {
+      $apikey = $this->container->getParameter('search_apikey');
+      $secret = $this->container->getParameter('secret');
+      $channel->setUniqueId(sha1($apikey . $secret .  $channel->getId()));
     }
 
     // Test for existance of sharingIndexes in post
