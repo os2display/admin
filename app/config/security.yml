@@ -60,6 +60,12 @@ security:
         failure_path: null
       logout:       true
       anonymous:    true
+      remember_me:
+        key:      "%secret%"
+        lifetime: 604800 # a week
+        path:     /
+        domain:   ~
+        user_provider: fos_userbundle
 
   access_control:
     - { path: ^/api/screen/activate$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
