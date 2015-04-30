@@ -107,8 +107,7 @@ class SharingService extends ContainerAware {
     $params = array(
       'index' => $index->getIndex(),
       'type' => 'Indholdskanalen\MainBundle\Entity\Channel',
-      'id' => $channel->getUniqueId(),
-      'data' => $channel,
+      'id' => $channel->getUniqueId()
     );
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('sharing')));
