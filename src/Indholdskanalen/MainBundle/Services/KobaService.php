@@ -112,6 +112,9 @@ class KobaService {
     // For each calendar slide
     $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('calendar');
     $todayStart = time() - 3600;
+    // Round down to nearest hour
+    $todayStart = $todayStart - ($todayStart % 3600);
+
     $todayEnd = mktime(23, 59, 59);
 
     // Get data for interest period
