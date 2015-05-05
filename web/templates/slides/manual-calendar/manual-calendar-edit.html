@@ -12,14 +12,14 @@
           {{event.place}}
         </td>
         <td class="manual-calendar--time">
-          <span data-ng-if="event.dailyEvent === true">
+          <span data-ng-if="event.dailyEvent">
             <span class="manual-calendar--from">
               {{event.from * 1000 | date:'dd. MMM'}}
             </span>  |
             <span class="manual-calendar--to" data-ng-if="event.from && event.to">{{event.from * 1000 | date:'HH:mm'}}-{{event.to * 1000 | date:'HH:mm'}} </span>
             <span class="manual-calendar--to" data-ng-if="event.from && !event.to">{{event.from * 1000 | date:'HH:mm'}}</span>
           </span>
-          <span data-ng-if="event.dailyEvent === false">
+          <span data-ng-if="!event.dailyEvent">
             <span class="manual-calendar--from">{{event.from * 1000 | date:'dd. MMM'}} - {{event.to * 1000 | date:'dd. MMM'}}</span>  |  <span class="manual-calendar--to">{{event.from * 1000 | date:'HH:mm'}}</span>
           </span>
         </td>

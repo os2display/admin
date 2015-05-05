@@ -90,6 +90,12 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         $('html').toggleClass('is-locked');
 
         if (!$scope.editor.editorOpen) {
+          // Reset input fields.
+          $scope.addevent.title = null;
+          $scope.addevent.place = null;
+          $scope.addevent.from = null;
+          $scope.addevent.to = null;
+
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/manual-calendar-editor.html';
         } else {
@@ -167,6 +173,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       $scope.addevent.place = null;
       $scope.addevent.from = null;
       $scope.addevent.to = null;
+
+      event = null;
     };
 
     /**
