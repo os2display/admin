@@ -240,17 +240,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       var addResourceBookings = function (data) {
         for (var i = 0; i < data.length; i++) {
           var event = data[i];
-          var start = new Date(event.start_time * 1000);
-          var end = new Date(event.end_time * 1000);
-
-          arr.push(
-            {
-              "title": event.event_name,
-              "place": event.resource_id,
-              "from": start,
-              "to": end
-            }
-          );
+          arr.push(event);
         }
       };
 
