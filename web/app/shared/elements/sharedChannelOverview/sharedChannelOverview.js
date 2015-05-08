@@ -75,6 +75,11 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           // Get search text from scope.
           search.text = scope.search_text;
 
+          if (angular.isUndefined(scope.index.index)) {
+            itkLogFactory.info("Du skal vælge et indeks først", 3000);
+            return;
+          }
+
           scope.loading = true;
           sharedChannelFactory.searchChannels(search, scope.index.index).then(
             function success(data) {
