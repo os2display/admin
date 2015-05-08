@@ -40,7 +40,7 @@
           scope.selectedTab = null;
 
           // Lock scrolling on page.
-          document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+          $('html').addClass('is-locked');
 
           /**
            * Get the template for the control panel.
