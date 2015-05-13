@@ -5,7 +5,6 @@
   "paths": {
     "live": "wayfinding-four-rows-live.html",
     "edit": "wayfinding-four-rows-edit.html",
-    "preview": "wayfinding-four-rows.html",
     "css": "wayfinding-four-rows.css"
   },
   "orientation": "portrait",

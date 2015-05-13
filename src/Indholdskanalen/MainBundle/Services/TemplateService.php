@@ -123,8 +123,8 @@ class TemplateService extends ContainerAware {
       $template->setPathIcon($serverAddress . $entry . '/' . $obj->icon);
       $template->setPathLive($serverAddress . $entry . '/' . $obj->paths->live);
       $template->setPathEdit($serverAddress . $entry . '/' . $obj->paths->edit);
-      $template->setPathPreview($serverAddress . $entry . '/' . $obj->paths->preview);
       $template->setPathCss($serverAddress . $entry . '/' . $obj->paths->css);
+      $template->setPath($serverAddress . $entry . '/');
       $template->setOrientation($obj->orientation);
 
       $template->setEnabled(true);
@@ -142,5 +142,14 @@ class TemplateService extends ContainerAware {
 
     // Make it stick in the database.
     $entityManager->flush();
+
+    // Get all templates from the database, and push update to screens.
+    $existingTemplates = $templateRepository->findAll();
+    $middlewareService = $this->container->get('indholdskanalen.middleware.communication');
+    foreach ($existingTemplates as $template) {
+      foreach ($template->getScreens() as $screen) {
+        $middlewareService->pushScreenUpdate($screen);
+      }
+    }
   }
 }

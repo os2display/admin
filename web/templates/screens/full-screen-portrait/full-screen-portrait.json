@@ -5,7 +5,6 @@
   "paths": {
     "live": "full-screen-portrait-live.html",
     "edit": "full-screen-portrait-edit.html",
-    "preview": "full-screen-portrait.html",
     "css": "full-screen-portrait.css"
   },
   "orientation": "portrait",

@@ -5,7 +5,6 @@
   "paths": {
     "live": "full-screen.html",
     "edit": "full-screen-edit.html",
-    "preview": "full-screen.html",
     "css": "full-screen.css"
   },
   "orientation": "landscape",

@@ -149,7 +149,8 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
         orientation: 'landscape',
         width: 1920,
         height: 1080,
-        channel_screen_regions: []
+        channel_screen_regions: [],
+        options: {}
       };
 
       return currentScreen;
