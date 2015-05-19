@@ -1,0 +1,38 @@
+<section class="create-channel--section">
+  <div class="create-channel--content--channel-four">
+    <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
+    <div class="create-channel--publishing">
+      <label class="create-channel--schedule-label">Planlægning</label>
+      <div class="create-channel--published">
+        <input class="create-channel--published-checkbox" type="checkbox" data-ng-model="channel.published">
+        <span class="create-channel--published-checkbox-text">Udgivelse.</span>
+        <div class="create-channel--published-description">Angiv om kanalen kun skal vises i nedenstående interval.</div>
+      </div>
+      <div class="create-channel--schedule">
+        <div class="create-channel--schedule-from">
+          <label class="create-channel--from-label">Udgivelse fra</label>
+          <input type="text" data-ng-model="channel.schedule_from" datetime-picker="">
+        </div>
+        <div class="create-channel--schedule-to">
+          <label class="create-channel--to-label">Udgivelse til</label>
+          <input type="text" data-ng-model="channel.schedule_to" datetime-picker="">
+        </div>
+        <div class="create-channel--schedule-to">
+          <label class="create-channel--repeat-label">Gentag</label>
+          <div class="create-channel--repeat-option" data-ng-click="channel.schedule_repeat = null" data-ng-class="{'is-selected': !channel.schedule_repeat}">Ingen</div>
+          <div class="create-channel--repeat-option" data-ng-click="channel.schedule_repeat = 'day'" data-ng-class="{'is-selected': channel.schedule_repeat === 'day'}">Hver dag</div>
+          <div class="create-channel--repeat-option" data-ng-click="channel.schedule_repeat = 'week'" data-ng-class="{'is-selected': channel.schedule_repeat === 'week'}">Hver uge</div>
+          <div class="create-channel--repeat-option" data-ng-click="channel.schedule_repeat = 'second_week'" data-ng-class="{'is-selected': channel.schedule_repeat === 'second_week'}">Hver 2. uge</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="create-channel--finish-button">
+    <div class="create-channel--spinner"
+         data-ng-show="disableSubmitButton"></div>
+    <input type="submit" data-ng-disabled="disableSubmitButton"
+           class="create-channel--button" value="Gem kanal"
+           data-ng-click="submitStep()">
+  </div>
+</section>

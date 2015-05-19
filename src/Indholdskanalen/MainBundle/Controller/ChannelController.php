@@ -66,6 +66,18 @@ class ChannelController extends Controller {
     if (isset($post->title)) {
       $channel->setTitle($post->title);
     }
+    // Update fields.
+    if (isset($post->schedule_from)) {
+      $channel->setScheduleFrom($post->schedule_from);
+    }
+    // Update fields.
+    if (isset($post->schedule_to)) {
+      $channel->setScheduleTo($post->schedule_to);
+    }
+    // Update fields.
+    if (isset($post->schedule_repeat)) {
+      $channel->setScheduleRepeat($post->schedule_repeat);
+    }
     $channel->setModifiedAt(time());
 
     // Get all slide ids from POST.

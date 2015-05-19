@@ -124,6 +124,24 @@ class Channel {
   private $lastPushTime;
 
   /**
+   * @ORM\Column(name="schedule_from", type="integer", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $scheduleFrom;
+
+  /**
+   * @ORM\Column(name="schedule_to", type="integer", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $scheduleTo;
+
+  /**
+   * @ORM\Column(name="schedule_repeat", type="string", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $scheduleRepeat;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -516,5 +534,47 @@ class Channel {
     }
 
     return $screens;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getScheduleFrom() {
+    return $this->scheduleFrom;
+  }
+
+  /**
+   * @param mixed $scheduleFrom
+   */
+  public function setScheduleFrom($scheduleFrom) {
+    $this->scheduleFrom = $scheduleFrom;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getScheduleRepeat() {
+    return $this->scheduleRepeat;
+  }
+
+  /**
+   * @param mixed $scheduleRepeat
+   */
+  public function setScheduleRepeat($scheduleRepeat) {
+    $this->scheduleRepeat = $scheduleRepeat;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getScheduleTo() {
+    return $this->scheduleTo;
+  }
+
+  /**
+   * @param mixed $scheduleTo
+   */
+  public function setScheduleTo($scheduleTo) {
+    $this->scheduleTo = $scheduleTo;
   }
 }
