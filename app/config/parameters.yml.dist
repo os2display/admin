@@ -10,7 +10,7 @@ parameters:
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
-    mailer_from_email: webmaster@ik3.indholdskanalen.dk
+    mailer_from_email: webmaster@ik3.indholdskanalen.vm
     mailer_from_name: Webmaster Indholdskanalen
 
     locale:            en
@@ -20,13 +20,42 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
 
-    middleware_host: http://127.0.0.1:3020
     absolute_path_to_server: http://service.indholdskanalen.vm
 
     zencoder_api: API_KEY_HERE
 
+    sharing_host: http://127.0.0.1:3010
+    sharing_path: /api
+    sharing_apikey: 1234567890
+    sharing_enabled: true
+
     search_host: http://127.0.0.1:3010
     search_path: /api
-    search_customer_id: e7df7cd2ca07f4f1ab415d457a6e1c13
+    search_apikey: 1234567890
+    search_index: e7df7cd2ca07f4f1ab415d457a6e1c13
 
-    templates_directory: ik-templates/
+    middleware_host: http://127.0.0.1:3020
+    middleware_path: /api
+    middleware_apikey: 1234567890
+
+    templates_slides_directory: templates/slides/
+    templates_slides_enabled:
+      - ik-iframe
+      - header-top
+      - manual-calendar
+      - only-image
+      - only-video
+      - portrait-text-top
+      - text-bottom
+      - text-left
+      - text-right
+      - text-top
+
+    templates_screens_directory: templates/screens/
+    templates_screens_enabled:
+      - full-screen
+
+    site_title: Indholdskanalen
+
+    koba_apikey: 12345
+    koba_path: http://192.168.50.21

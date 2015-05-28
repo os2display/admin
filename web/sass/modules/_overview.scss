@@ -22,6 +22,7 @@
   &--section {
     margin: 0 auto;
     max-width: 100em;
+    padding-top: 2em;
     text-align: center;
   }
 
@@ -32,19 +33,32 @@
     text-align: center;
   }
 
+  &--spinner {
+    margin: 0 auto;
+  }
+
   &--screens,
   &--media,
   &--channels,
   &--slides {
-    text-align: center;
+    border: 1px solid $border-color;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    margin-left: auto;
+    max-width: $layout-max-width;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    text-align: left;
+
+    @include border-radius($border-radius);
+    @include box-sizing(border-box);
   }
 
   &--channel {
     display: inline-block;
-    margin: 0 0 $gutter;
 
     @include breakpoint($breakpoint-lap) {
-      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
     }
 
     @include strip-link-styles();
@@ -54,14 +68,15 @@
   &--media-single,
   &--slide,
   &--channel {
-    display: inline-block;
-    margin: 0 0 $gutter;
     position: relative;
-    vertical-align: middle;
 
-    @include breakpoint($breakpoint-lap) {
-      margin: 0 ($gutter * .5) $gutter ($gutter * .5);
-    }
+    display: inline-block;
+    margin-bottom: 1em;
+    margin-left: $grid-markup-fix;
+    width: 33.3333%;
+
+    text-align: center;
+    vertical-align: top;
   }
 
   &--slide-unpublished-overlay {
@@ -95,12 +110,22 @@
 
   &--slide-link,
   &--channel-link {
+    position: relative;
+    
+    border: 1px solid $border-color;
+    margin-bottom: .5em;
+    margin-left: 1em;
+    min-height: 15em;
+    padding: 1em;
+
+    @include border-radius($border-radius);
+    @include box-sizing(border-box);
     @include strip-link-styles();
   }
 
   &--slides-container,
   &--channel-container {
-    display: block;
+    display: inline-block;
   }
 
   &--channel-empty {
@@ -120,9 +145,9 @@
   }
 
   &--channel-label,
-  &--slide-label {
-    display: inline-block;
-    font-size: .9em;
+  &--slide-label,
+  &--media-label {
+    text-align: center;
   }
 
   &--channel-date,
@@ -135,10 +160,14 @@
   &--filter {
     border-bottom: 0;
     display: inline-block;
-    max-width: $breakpoint-desk;
+    max-width: $layout-max-width;
     margin: 0 auto;
     position: relative;
     width: 100%;
+  }
+
+  &--filter-field {
+    height: 3.1em;
   }
 
   &--filter-owner,
@@ -154,16 +183,27 @@
     @include breakpoint($breakpoint-desk) {
       width: 35%;
       display: inline-block;
+      vertical-align: top;
     }
   }
 
   &--filter-owner {
     @include breakpoint($breakpoint-desk) {
-      padding-right: 1em;
       width: 25%;
     }
   }
 
+  &--filter-owner-button {
+    background: $gray-lightest;
+    border: 1px solid $gray-lighter;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0.75em 0;
+    width: 100%;
+
+    @include border-radius(.5em);
+    @include strip-link-styles($gray-darker);
+  }
 
   &--form {
     margin: 0 0 1em 0;
@@ -186,10 +226,10 @@
   &--sorting {
     display: inline-block;
     margin: 0 0 1em 0;
+    max-width: $layout-max-width;
     width: 100%;
 
     @include breakpoint($breakpoint-desk) {
-      max-width: $breakpoint-desk;
       margin: 0 auto 1em;
     }
   }
@@ -224,6 +264,7 @@
     border: 1px solid $gray-lighter;
     box-sizing: border-box;
     border-right: 0;
+    color: $gray-darker;
     cursor: pointer;
     display: inline-block;
     margin-left: $grid-markup-fix;
@@ -244,7 +285,8 @@
     }
 
     &.is-active {
-      background: $beige;
+      background: $gray-lighter;
+      font-weight: bold;
     }
   }
 
@@ -278,7 +320,7 @@
   &--screen-wrapper {
     margin: 0;
     background: $gray-lightest;
-    border: 3px solid $gray;
+    background-position: center;
     box-sizing: border-box;
     color: $gray-darker;
     text-align: center;
@@ -288,16 +330,12 @@
     }
   }
 
-  &--screen-header {
-    font-weight: bold;
-    text-align: center;
-  }
-
-  &--screen--description {
-    position: relative;
-    top:50%;
-
-    @include translateY(-50%);
+  &--screen-text {
+    padding: .5em;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    height: 90%;
+    overflow: hidden;
   }
 
   &--screen-all,
@@ -311,9 +349,8 @@
 ========================================================================== */
   &--media-single {
     position: relative;
+
     cursor: pointer;
-    font-size: 0; // To counter inline-block.
-    overflow: hidden;
   }
 
 
@@ -336,30 +373,24 @@
     right: 0;
     bottom: -30%;
     height: 30%;
-
-    &.is-hovering {
-      @include animation(toggle-media-overlay .15s ease 1 forwards);
-
-      animation-timing-function: linear;
-      -webkit-animation-timing-function: linear;
-    }
   }
 
 
   &--media-image {
     max-height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
     max-width: 300px;
+    background-image: url('../../images/squares.jpg');
+    background-repeat: repeat;
+    min-width: 200px;
   }
 
 
   &--media-overlay-inner {
     padding: .5em;
-    text-align: left;
   }
 
 
   &--media-text {
-    float: left;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;

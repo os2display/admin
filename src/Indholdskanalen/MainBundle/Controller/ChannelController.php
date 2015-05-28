@@ -2,15 +2,21 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use JMS\Serializer\SerializationContext;
-
+use Indholdskanalen\MainBundle\Entity\SharingIndex;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvents;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/channel")
@@ -26,12 +32,12 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelSaveAction(Request $request) {
+  public function channelSaveAction(Request $request) {
     // Get posted channel information from the request.
     $post = json_decode($request->getContent());
 
     $doctrine = $this->getDoctrine();
-    $em = $this->getDoctrine()->getManager();
+    $em = $doctrine->getManager();
 
     if ($post->id) {
       // Load current slide.
@@ -51,38 +57,16 @@ class ChannelController extends Controller {
       $channel = new Channel();
       $channel->setCreatedAt(time());
 
-	    // Set creator.
-	    $userEntity = $this->get('security.context')->getToken()->getUser();
-	    $channel->setUser($userEntity->getId());
+      // Set creator.
+      $userEntity = $this->get('security.context')->getToken()->getUser();
+      $channel->setUser($userEntity->getId());
     }
 
     // Update fields.
     if (isset($post->title)) {
       $channel->setTitle($post->title);
     }
-    if (isset($post->orientation)) {
-      $channel->setOrientation($post->orientation);
-    }
     $channel->setModifiedAt(time());
-
-
-    // Remove screens.
-    foreach ($channel->getScreens() as $screen) {
-      if (!in_array($screen, $post->screens)) {
-        $channel->removeScreen($screen);
-      }
-    }
-
-    // Add screens.
-    foreach ($post->screens as $screen) {
-      $screen = $doctrine->getRepository('IndholdskanalenMainBundle:Screen')
-        ->findOneById($screen->id);
-      if ($screen) {
-        if (!$channel->getScreens()->contains($screen)) {
-          $channel->addScreen($screen);
-        }
-      }
-    }
 
     // Get all slide ids from POST.
     $post_slide_ids = array();
@@ -101,8 +85,8 @@ class ChannelController extends Controller {
 
     // Add slides and update sort order.
     $sort_order = 0;
-	  $slideRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Slide');
-	  $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
+    $slideRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Slide');
+    $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
 
     foreach ($post_slide_ids as $slide_id) {
       $slide = $slideRepository->findOneById($slide_id);
@@ -130,12 +114,104 @@ class ChannelController extends Controller {
 
     // Save the entity.
     $em->persist($channel);
+
+    $dispatcher = $this->get('event_dispatcher');
+
+    // Add sharing indexes.
+    foreach ($channel->getSharingIndexes() as $sharingIndex) {
+      // Send event to sharingService to update channel in index.
+      $event = new SharingServiceEvent($channel, $sharingIndex);
+      $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
+    }
+
+    // Flush updates
     $em->flush();
 
     // Create response.
     $response = new Response();
-		$response->setStatusCode(200);
+    $response->setStatusCode(200);
 
+    return $response;
+  }
+
+  /**
+   * Update which indexes a channel is shared to.
+   *
+   * @Route("/share")
+   * @Method("POST")
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   {
+   *     channel {
+   *       id: *
+   *     },
+   *     sharingIndexes: [
+   *       *
+   *     ]
+   *   }
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function channelShareAction(Request $request) {
+    $post = json_decode($request->getContent());
+
+    $doctrine = $this->getDoctrine();
+    $em = $doctrine->getManager();
+
+    $channel = $doctrine->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findOneById($post->id);
+
+    // Set the sharing id.
+    $apikey = $this->container->getParameter('search_apikey');
+    $secret = $this->container->getParameter('secret');
+    $channel->setUniqueId(sha1($apikey . $secret .  $channel->getId()));
+
+    // Test for existance of sharingIndexes in post
+    if (isset($post->sharing_indexes)) {
+      $dispatcher = $this->get('event_dispatcher');
+
+      // Get all sharing_indexes ids from POST.
+      $post_sharing_indexes_ids = array();
+      foreach ($post->sharing_indexes as $ind) {
+        $post_sharing_indexes_ids[] = $ind->id;
+      }
+
+      // Remove sharing indexes.
+      foreach ($channel->getSharingIndexes() as $sharingIndex) {
+        if (!in_array($sharingIndex->getId(), $post_sharing_indexes_ids)) {
+          $channel->removeSharingIndex($sharingIndex);
+
+          // Send event to sharingService to delete channel from index.
+          $event = new SharingServiceEvent($channel, $sharingIndex);
+          $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
+        }
+      }
+
+      // Add sharing indexes.
+      foreach ($post_sharing_indexes_ids as $sharingIndexId) {
+        $sharingIndex = $doctrine->getRepository('IndholdskanalenMainBundle:SharingIndex')
+          ->findOneById($sharingIndexId);
+        if ($sharingIndex) {
+          if (!$channel->getSharingIndexes()->contains($sharingIndex)) {
+            $channel->addSharingIndex($sharingIndex);
+
+            // Send event to sharingService to add channel to index.
+            $event = new SharingServiceEvent($channel, $sharingIndex);
+            $dispatcher->dispatch(SharingServiceEvents::ADD_CHANNEL_TO_INDEX, $event);
+          }
+          else {
+            // Send event to sharingService to add channel to index.
+            $event = new SharingServiceEvent($channel, $sharingIndex);
+            $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
+          }
+        }
+      }
+    }
+
+    $em->flush();
+
+    $response = new Response();
+    $response->setStatusCode(200);
     return $response;
   }
 
@@ -150,8 +226,9 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelGetAction($id) {
-    $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+  public function channelGetAction($id) {
+    $channel = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
     $serializer = $this->get('jms_serializer');
@@ -160,7 +237,9 @@ class ChannelController extends Controller {
     $response = new Response();
     if ($channel) {
       $response->headers->set('Content-Type', 'application/json');
-      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+      $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()
+          ->setGroups(array('api'))
+          ->enableMaxDepthChecks());
       $response->setContent($json_content);
     }
     else {
@@ -181,9 +260,19 @@ class ChannelController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelDeleteAction($id) {
-    $channel = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+  public function channelDeleteAction($id) {
+    $channel = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
+
+    $dispatcher = $this->get('event_dispatcher');
+
+    // Remove from sharing indexes.
+    foreach ($channel->getSharingIndexes() as $sharingIndex) {
+      // Send event to sharingService to update channel in index.
+      $event = new SharingServiceEvent($channel, $sharingIndex);
+      $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
+    }
 
     // Create response.
     $response = new Response();

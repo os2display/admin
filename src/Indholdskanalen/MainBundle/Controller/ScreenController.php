@@ -1,7 +1,13 @@
 <?php
+/**
+ * @file
+ * Screen controller.
+ */
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Indholdskanalen\MainBundle\Entity\ChannelScreenRegion;
+use Proxies\__CG__\Indholdskanalen\MainBundle\Entity\SharedChannel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -9,25 +15,29 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Screen;
 use JMS\Serializer\SerializationContext;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
+ * ScreenController.
+ *
  * @Route("/api/screen")
  */
 class ScreenController extends Controller {
   /**
-   * Generates a new unique activation code in the interval between 100000 and 999999.
+   * Generates a new unique activation code in the interval between 100000000 and 999999999.
    *
    * @return int
    */
-  protected function getNewActivationCode()
-  {
+  protected function getNewActivationCode() {
     do {
       // Pick a random activation code between 100000000 and 999999999.
       $code = rand(100000000, 999999999);
 
       // Test if the activation code already exists in the db.
-      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findByActivationCode($code);
-    } while ($screen != null);
+      $screen = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:Screen')
+        ->findByActivationCode($code);
+    } while ($screen != NULL);
 
     return $code;
   }
@@ -42,15 +52,20 @@ class ScreenController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ScreenSaveAction(Request $request) {
+  public function screenSaveAction(Request $request) {
     // Get posted screen information from the request.
     $post = json_decode($request->getContent());
 
+    // Get the entity manager.
+    $em = $this->getDoctrine()->getManager();
+
     if ($post->id) {
       // Load current slide.
-      $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+      $screen = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:Screen')
         ->findOneById($post->id);
 
+      // Throw error if screen does not exist.
       if (!$screen) {
         $response = new Response();
         $response->setStatusCode(404);
@@ -63,65 +78,143 @@ class ScreenController extends Controller {
       $screen = new Screen();
       $screen->setCreatedAt(time());
 
-	    // Set creator.
-	    $userEntity = $this->get('security.context')->getToken()->getUser();
-	    $screen->setUser($userEntity->getId());
+      // Set creator.
+      $userEntity = $this->get('security.context')->getToken()->getUser();
+      $screen->setUser($userEntity->getId());
     }
 
     // Update fields.
     if (isset($post->title)) {
       $screen->setTitle($post->title);
     }
-    if (isset($post->orientation)) {
-      $screen->setOrientation($post->orientation);
-    }
-    if (isset($post->width)) {
-      $screen->setWidth($post->width);
-    }
-    if (isset($post->height)) {
-      $screen->setHeight($post->height);
+    if (isset($post->description)) {
+      $screen->setDescription($post->description);
     }
     $screen->setModifiedAt(time());
 
     // Set an activation code and empty token for new screens.
-    if ($screen->getActivationCode() == null) {
+    if ($screen->getActivationCode() == NULL) {
       $screen->setActivationCode($this->getNewActivationCode());
-      $screen->setToken("");
+      $screen->setToken('');
     }
 
-    // Get channel ids.
-    $postChannelIds = array();
-    foreach($post->channels as $channel) {
-      $postChannelIds[] = $channel->id;
-    }
+    // Change the template if it is set.
+    if (isset($post->template)) {
+      $template = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:ScreenTemplate')
+        ->findOneById($post->template->id);
 
-    // Remove channels.
-    foreach($screen->getChannels() as $channel) {
-      if (!in_array($channel->getId(), $postChannelIds)) {
-        $screen->removeChannel($channel);
+      if ($template) {
+        $screen->setTemplate($template);
       }
     }
 
-    // Add channels.
-	  $channelRepository = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel');
+    // Set selected channels.
+    if (isset($post->channel_screen_regions)) {
+      $channelRepository = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:Channel');
+      $sharedChannelRepository = $this->getDoctrine()
+        ->getRepository('IndholdskanalenMainBundle:SharedChannel');
 
-    foreach($post->channels as $channel) {
-      $channel = $channelRepository->findOneById($channel->id);
-      if ($channel) {
-        if (!$screen->getChannels()->contains($channel)) {
-          $screen->addChannel($channel);
+      // Gather channel screen region ids.
+      $ids = array();
+      foreach ($post->channel_screen_regions as $channelScreenRegion) {
+        if (isset($channelScreenRegion->id)) {
+          $ids[] = $channelScreenRegion->id;
+        }
+      }
+
+      // Remove ChannelScreenRegions no longer present in Screen.
+      foreach ($screen->getChannelScreenRegions() as $channelScreenRegion) {
+        if (!in_array($channelScreenRegion->getId(), $ids)) {
+          $screen->removeChannelScreenRegion($channelScreenRegion);
+        }
+      }
+
+      $sharingService = $this->get('indholdskanalen.sharing_service');
+
+      // Add new ChannelScreenRegions.
+      foreach ($post->channel_screen_regions as $channelScreenRegion) {
+        if (!isset($channelScreenRegion->id)) {
+          // If ChannelScreenRegion is with Channel
+          if (isset($channelScreenRegion->channel)) {
+            // Get channel.
+            $channel = $channelRepository->findOneById($channelScreenRegion->channel->id);
+
+            // If the channel exists, create new ChannelScreenRegion.
+            if ($channel) {
+              $newChannelScreenRegion = new ChannelScreenRegion();
+              $newChannelScreenRegion->setChannel($channel);
+              $newChannelScreenRegion->setRegion($channelScreenRegion->region);
+              $newChannelScreenRegion->setScreen($screen);
+              $newChannelScreenRegion->setSortOrder(1);
+
+              $em->persist($newChannelScreenRegion);
+            }
+          }
+          // If ChannelScreenRegion is with SharedChannel
+          else {
+            if (isset($channelScreenRegion->shared_channel)) {
+              // Get shared channel.
+              $sharedChannel = $sharedChannelRepository->findOneByUniqueId($channelScreenRegion->shared_channel->unique_id);
+
+              // Get channel from sharing service.
+              $result = $sharingService->getChannelFromIndex($channelScreenRegion->shared_channel->unique_id, $channelScreenRegion->shared_channel->index);
+
+              if ($result['status'] !== 200) {
+                throw new NotFoundHttpException();
+              }
+
+              $channelFromSharing = json_decode($result['content']);
+
+              // No hits founds, or too many.
+              if (!$channelFromSharing || $channelFromSharing->hits > 1 || $channelFromSharing->hits < 1) {
+                throw new NotFoundHttpException();
+              }
+
+              // Encode channel as json.
+              $channelFromSharing = $channelFromSharing->results[0];
+
+              if (!$sharedChannel) {
+                $sharedChannel = new SharedChannel();
+                $sharedChannel->setCreatedAt(time());
+                $sharedChannel->setUniqueId($channelScreenRegion->shared_channel->unique_id);
+                $sharedChannel->setIndex($channelScreenRegion->shared_channel->index);
+              }
+
+              $sharedChannel->setContent(json_encode($channelFromSharing));
+              $sharedChannel->setModifiedAt(time());
+              $em->persist($sharedChannel);
+
+              // If the channel exists, create new ChannelScreenRegion.
+              if ($sharedChannel) {
+                $newChannelScreenRegion = new ChannelScreenRegion();
+                $newChannelScreenRegion->setSharedChannel($sharedChannel);
+                $newChannelScreenRegion->setRegion($channelScreenRegion->region);
+                $newChannelScreenRegion->setScreen($screen);
+                $newChannelScreenRegion->setSortOrder(1);
+
+                $em->persist($newChannelScreenRegion);
+              }
+            }
+          }
         }
       }
     }
 
+    // If this is an update of a screen, push update to middleware.
+    if ($screen->getId() !== null) {
+      $middlewareService = $this->get('indholdskanalen.middleware.communication');
+      $middlewareService->pushScreenUpdate($screen);
+    }
+
     // Save the entity.
-    $em = $this->getDoctrine()->getManager();
     $em->persist($screen);
     $em->flush();
 
     // Send the json response back to client.
-    $response = new Response();
-	  $response->setStatusCode(200);
+    $response = new Response($screen->getId());
+    $response->setStatusCode(200);
 
     return $response;
   }
@@ -137,8 +230,10 @@ class ScreenController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ScreenGetAction($id) {
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneById($id);
+  public function screenGetAction($id) {
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneById($id);
 
     // Create response.
     $response = new Response();
@@ -146,11 +241,13 @@ class ScreenController extends Controller {
     if ($screen) {
       $serializer = $this->get('jms_serializer');
       $response->headers->set('Content-Type', 'application/json');
-      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+      $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()
+        ->setGroups(array('api'))
+        ->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }
     else {
-      $response->setContent(json_encode(array()));
+      throw new NotFoundHttpException("Screen not found.");
     }
 
     return $response;
@@ -166,33 +263,34 @@ class ScreenController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ScreenGetPostAction() {
+  public function screenGetPostAction() {
     $request = Request::createFromGlobals();
     $body = json_decode($request->getContent());
 
     // Test for valid request parameters.
-    if (!isset($body->token)) {
-      return new Response("", 403);
+    if (!isset($body->id)) {
+      return new Response('', 403);
     }
 
     // Get the screen entity with the given token.
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneByToken($body->token);
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneById($body->id);
 
     // Test for valid screen.
     if (!isset($screen)) {
-      return new Response("", 404);
+      return new Response('', 404);
     }
 
-    // Set group id of screen.
-    $groups = array();
-    $groups[] = "group" . $screen->getId();
+    $serializer = $this->get('jms_serializer');
 
     // Generate the response.
     $response_data = array(
-      'statusCode' => 200,
       'id' => $screen->getId(),
-      'name' => $screen->getTitle(),
-      'groups' => $groups,
+      'title' => $screen->getTitle(),
+      'options' => $screen->getOptions(),
+      'template' => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()
+        ->setGroups(array('middleware'))))
     );
 
     // Return the json response.
@@ -211,32 +309,40 @@ class ScreenController extends Controller {
    *
    * @return Response
    */
-  public function screenActivateAction(Request $request)
-  {
+  public function screenActivateAction(Request $request) {
     // Get request body as array.
     $body = json_decode($request->getContent());
 
     // Test for valid request parameters.
-    if (!isset($body->token) || !isset($body->activationCode)) {
-      return new Response("", 403);
+    if (!isset($body->activationCode)) {
+      return new Response('', 403);
     }
 
     // Get the screen entity på activationCode.
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')->findOneByActivationCode($body->activationCode);
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneByActivationCode($body->activationCode);
 
     // Test for valid screen.
     if (!isset($screen)) {
-      return new Response("", 403);
+      return new Response('', 403);
     }
 
     // Set token in screen and persist the screen to the db.
-    $screen->setToken($body->token);
     $manager = $this->getDoctrine()->getManager();
     $manager->persist($screen);
     $manager->flush();
 
+    $serializer = $this->get('jms_serializer');
+
     // Generate the response.
-    return new Response("", 200);
+    return new Response(json_encode(array(
+      'id' => $screen->getId(),
+      'title' => $screen->getTitle(),
+      'options' => $screen->getOptions(),
+      'template' => json_decode($serializer->serialize($screen->getTemplate(), 'json', SerializationContext::create()
+        ->setGroups(array('middleware'))))
+    )), 200);
   }
 
   /**
@@ -250,8 +356,9 @@ class ScreenController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ScreenDeleteAction($id) {
-    $screen = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+  public function screenDeleteAction($id) {
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
 
     // Create response.

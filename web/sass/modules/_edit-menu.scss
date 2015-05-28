@@ -54,7 +54,6 @@
   width: 100%;
   z-index: 1;
 
-
   &--inner {
     height: 100%;
     font-size: .6em;
@@ -66,6 +65,7 @@
 
     padding-right: 3em;
     padding-left: 3em;
+    padding-top: 4em;
     width: 35em;
 
     background: $white;
@@ -187,6 +187,10 @@
     position: relative;
   }
 
+  &--background-input {
+    margin-bottom: 2em;
+  }
+
   &--content-page,
   &--background-page {
     width: 100%;
@@ -245,6 +249,29 @@
     text-align: center;
   }
 
+  &--background-label {
+    color: $gray-darker;
+    font-size: 1.2em;
+    text-align: lefT;
+  }
+
+  &--background-settings {
+    width: 15em;
+    margin: 0 auto;
+  }
+
+  &--background-size,
+  &--background-location {
+    margin-bottom: 2em;
+
+    select {
+      width: 15em;
+    }
+  }
+
+  &--content-description {
+    margin-bottom: 2em;
+  }
 
 
 /* Add/edit events for calendar template
@@ -305,5 +332,30 @@
     &.is-outdated {
       display: block;
     }
+  }
+
+  /* Iframe
+   ========================================================================== */
+
+  &--iframe-header {
+    font-size: 2em;
+    margin: 0 auto 2em;
+    width: 40%;
+  }
+
+  &--iframe-content {
+    font-size: 1em;
+    margin: 0 auto 2em;
+    text-align: left;
+    width: 60%;
+  }
+
+  &--button {
+    @extend %button--action;
+
+    height: 2em;
+    margin: 0 auto;
+    margin-top: 2em;
+    width: 12em;
   }
 }

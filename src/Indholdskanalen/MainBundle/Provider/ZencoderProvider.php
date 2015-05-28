@@ -1,4 +1,9 @@
 <?php
+/**
+ * @file
+ * Contains the ZencoderProvider.
+ */
+
 namespace Indholdskanalen\MainBundle\Provider;
 
 use Sonata\MediaBundle\Provider\BaseProvider;
@@ -13,10 +18,14 @@ use Sonata\MediaBundle\CDN\CDNInterface;
 use Sonata\MediaBundle\Generator\GeneratorInterface;
 use Sonata\MediaBundle\Thumbnail\ThumbnailInterface;
 
+/**
+ * Class ZencoderProvider
+ * @package Indholdskanalen\MainBundle\Provider
+ */
 class ZencoderProvider extends BaseProvider {
   protected $name;
   protected $hostname;
-  protected $api_key;
+  protected $apiKey;
 
   /**
    * Setup the provider with correct hostname and API key.
@@ -27,16 +36,16 @@ class ZencoderProvider extends BaseProvider {
    * @param string $name
    * @param Filesystem $filesystem
    * @param CDNInterface $cdn
-   * @param GeneratorInterface $path_generator
+   * @param GeneratorInterface $pathGenerator
    * @param ThumbnailInterface $thumbnail
    * @param $hostname
-   * @param $api_key
+   * @param $apiKey
    */
-  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $path_generator, ThumbnailInterface $thumbnail, $hostname, $api_key) {
-    parent::__construct($name, $filesystem, $cdn, $path_generator, $thumbnail);
+  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $apiKey) {
+    parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
     $this->name = $name;
     $this->hostname = $hostname;
-    $this->api_key = $api_key;
+    $this->apiKey = $apiKey;
   }
 
   /**
@@ -46,7 +55,8 @@ class ZencoderProvider extends BaseProvider {
    */
   protected function postVideoZencoder(MediaInterface $media) {
     // Generate URL to file.
-    $url = $this->getCdn()->getPath($this->generatePath($media), FALSE) . '/' . $media->getProviderReference();
+    $url = $this->getCdn()
+        ->getPath($this->generatePath($media), FALSE) . '/' . $media->getProviderReference();
 
     // Setup formats.
     $mp4 = new \stdClass();
@@ -65,7 +75,7 @@ class ZencoderProvider extends BaseProvider {
       ),
     );
 
-    $ogv = new \stdClass();;
+    $ogv = new \stdClass();
     $ogv->format = 'ogv';
     $ogv->label = 'ogv';
     $ogv->thumbnails = array(
@@ -81,7 +91,7 @@ class ZencoderProvider extends BaseProvider {
       ),
     );
 
-    $webm = new \stdClass();;
+    $webm = new \stdClass();
     $webm->format = 'webm';
     $webm->label = 'webm';
     $webm->thumbnails = array(
@@ -98,9 +108,9 @@ class ZencoderProvider extends BaseProvider {
     );
 
     // Setup Zencoder call.
-    $api = new \stdClass();;
+    $api = new \stdClass();
     $api->input = $url;
-    $api->api_key = $this->api_key;
+    $api->api_key = $this->apiKey;
     $api->region = 'europe';
     $api->notifications = $this->hostname . '/zencoder/callback';
     $api->outputs = array(
@@ -118,7 +128,8 @@ class ZencoderProvider extends BaseProvider {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
-        'Content-Length: ' . strlen($json))
+        'Content-Length: ' . strlen($json)
+      )
     );
 
     // Send data to Zencoder.
@@ -212,7 +223,7 @@ class ZencoderProvider extends BaseProvider {
    * @param MediaInterface $media
    * @param bool $force
    */
-  public function updateMetadata(MediaInterface $media, $force = false) {
+  public function updateMetadata(MediaInterface $media, $force = FALSE) {
   }
 
   /**
@@ -295,15 +306,16 @@ class ZencoderProvider extends BaseProvider {
    *
    * @param \Sonata\MediaBundle\Model\MediaInterface $media
    *
-   * @param string $contents
+   * @param string|null $contents
    *   Path to contents, defaults to MediaInterface BinaryContent.
    *
    * @return void
    */
   protected function setFileContents(MediaInterface $media, $contents = NULL) {
-    $file = $this->getFilesystem()->get(sprintf('%s/%s', $this->generatePath($media), $media->getProviderReference()), TRUE);
+    $file = $this->getFilesystem()
+      ->get(sprintf('%s/%s', $this->generatePath($media), $media->getProviderReference()), TRUE);
 
-    if (!$contents) {
+    if ($contents === null) {
       $contents = $media->getBinaryContent();
     }
 
@@ -344,12 +356,16 @@ class ZencoderProvider extends BaseProvider {
    */
   protected function fixFilename(MediaInterface $media) {
     if ($media->getBinaryContent() instanceof UploadedFile) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()->getClientOriginalName());
-      $media->setMetadataValue('filename', $media->getBinaryContent()->getClientOriginalName());
+      $media->setName($media->getName() ?: $media->getBinaryContent()
+          ->getClientOriginalName());
+      $media->setMetadataValue('filename', $media->getBinaryContent()
+          ->getClientOriginalName());
     }
     elseif ($media->getBinaryContent() instanceof File) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()->getBasename());
-      $media->setMetadataValue('filename', $media->getBinaryContent()->getBasename());
+      $media->setName($media->getName() ?: $media->getBinaryContent()
+          ->getBasename());
+      $media->setMetadataValue('filename', $media->getBinaryContent()
+          ->getBasename());
     }
 
     // This is the original name.
@@ -366,7 +382,8 @@ class ZencoderProvider extends BaseProvider {
    * @return string
    */
   protected function generateReferenceName(MediaInterface $media) {
-    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()->guessExtension();
+    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()
+      ->guessExtension();
   }
 
   /**
@@ -413,20 +430,18 @@ class ZencoderProvider extends BaseProvider {
   public function getHelperProperties(MediaInterface $media, $format, $options = array()) {
     $defaults = array(
       // (optional) Enable full screen capability. Defaults to true.
-      'fullscreen' => true,
-
+      'fullscreen' => TRUE,
       // (optional) Show the byline on the video. Defaults to true.
-      'title' => true,
-
+      'title' => TRUE,
       // (optional) Show the user's portrait on the video. Defaults to true.
-      'portrait' => true,
+      'portrait' => TRUE,
     );
 
-    $player_parameters =  array_merge($defaults, isset($options['player_parameters']) ? $options['player_parameters'] : array());
+    $player_parameters = array_merge($defaults, isset($options['player_parameters']) ? $options['player_parameters'] : array());
 
     $params = array(
       'src' => http_build_query($player_parameters),
-      'width' => isset($options['width']) ? $options['width']  : $media->getWidth(),
+      'width' => isset($options['width']) ? $options['width'] : $media->getWidth(),
       'height' => isset($options['height']) ? $options['height'] : $media->getHeight(),
     );
 

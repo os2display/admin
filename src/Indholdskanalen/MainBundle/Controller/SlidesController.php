@@ -23,7 +23,7 @@ class SlidesController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlidesGetAction() {
+  public function slidesGetAction() {
     // Slide entities
     $slide_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findAll();
@@ -49,7 +49,7 @@ class SlidesController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlidesGetBulkAction(Request $request) {
+  public function slidesGetBulkAction(Request $request) {
     $ids = $request->query->get('ids');
 
     $response = new Response();

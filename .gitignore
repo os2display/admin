@@ -2,6 +2,7 @@
 /web/config.rb
 /web/config.codekit
 /web/js/configuration.js
+/web/images/logo.png
 /app/bootstrap*
 /app/cache/*
 /app/logs/*

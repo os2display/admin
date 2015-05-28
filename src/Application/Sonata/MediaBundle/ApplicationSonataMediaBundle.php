@@ -20,13 +20,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @author <yourname> <youremail>
  */
-class ApplicationSonataMediaBundle extends Bundle
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return 'SonataMediaBundle';
-    }
+class ApplicationSonataMediaBundle extends Bundle {
+  /**
+   * {@inheritdoc}
+   */
+  public function getParent() {
+    return 'SonataMediaBundle';
+  }
 }

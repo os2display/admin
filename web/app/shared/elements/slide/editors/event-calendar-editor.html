@@ -1,0 +1,23 @@
+<!-- Manual calendar editor -->
+<div class="edit-menu--content-calendar is-visible" role="banner">
+  <div class="edit-menu--content-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleEventCalendarEditor()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--content-page">
+      <div class="edit-menu--content-page-inner">
+        <h2 class="edit-menu--content-header">Vælg lokale(r)</h2>
+        <div class="edit-menu--content-description">Angiv hvilket lokales daglige begivenheder skal vises.</div>
+        <div class="edit-menu--event-calendar">
+          <ik-checklist elements="availableResources" selected="ikSlide.options.resources" identity="'mail'"></ik-checklist>
+        </div>
+        <button class="edit-menu--button" data-ng-click="addBookingEvents(); editor.toggleEventCalendarEditor()">Hent begivenheder</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,148 +5,69 @@
  */
 
 
-
-/* Silent classes related to this document
-   ========================================================================== */
-
-
 /* Styles
    ========================================================================== */
+.screen--layout {
+  @extend %grid;
 
-.create-screen {
+  // The content container is fixed to full height below the header. Elements below handle the scrolling individually.
+  margin: 0;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  padding-top: 9.2em;
+  top: 0;
+  box-sizing: border-box;
 
-  /* Global settings
-   ========================================================================== */
-  &--section {
-    @extend %create-element--section-default;
+  &-inner {
+    background: $gray-lightest;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include breakpoint($breakpoint-desk) {
+      position: relative;
+      height: 100%;
+      overflow-y: hidden;
+    }
   }
 
-
-  &--header {
-    @extend %create-element--header-default;
-  }
-
-
-  &--header-description {
-    @extend %create-element--header-description-default;
-  }
-
-
-  // Default check circled icon.
-  &--link-check {
-    @extend %image-check-icon--placeholder;
-  }
-
-
-  &--button {
-    @extend .button;
-
-    display: block;
-    margin: 0 auto 1em;
-  }
-
-
-  &--finish-button {
-    @extend %create-element--finish-button-wrapper;
-  }
-
-
-  &--spinner {
-    @extend %create-element--submit-spinner;
-  }
-
-
-  /* Create screen - set name (Page 1)
-   ========================================================================== */
-  &--form {
-    @extend %create-element--form;
-  }
-
-
-  &--content--screen-one {
+  &-content {
     @extend %grid__item;
-    @extend %grid-markup-fix;
     @extend %palm--one-whole;
     @extend %lap--one-whole;
-    @extend %desk--one-half;
-
-    @extend %create-element--page-name-default ;
-  }
-
-
-  &--text[type="text"] {
-    @extend %create-element--page-name-input-default;
-  }
-
-
-  /* Create screen - select screen (Page 2)
-   ========================================================================== */
-  &--content--screen-two {
-    @extend %grid;
-
-    @extend %create-element--layout-default;
-  }
-
-
-  &--screens {
-    max-width: 65em;
-    margin: 0 auto 3em;
-  }
-
-
-  &--screen-landscape {
-    @extend %grid__item;
+    @extend %portable--one-whole;
+    @extend %two-thirds;
     @extend %grid-markup-fix;
-    @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
 
-    margin-bottom: 2em;
-    padding-left: 0;
+    box-sizing: border-box;
+    padding: 2em;
 
-    @include breakpoint($breakpoint-lap) {
-      padding-left: $gutter;
+    @include breakpoint($breakpoint-desk) {
+      position: relative;
+      height: 100%;
     }
   }
 
-
-  &--screen-portrait {
+  &-control-panel {
     @extend %grid__item;
-    @extend %grid-markup-fix;
+    @extend %lap--one-whole;
+    @extend %one-third;
     @extend %palm--one-whole;
-    @extend %lap--one-half;
-    @extend %desk--one-half;
+    @extend %grid-markup-fix;
 
-    padding-left: 0;
-
-    @include breakpoint($breakpoint-lap) {
-      padding-left: $gutter;
-    }
-  }
-
-
-
-  /* Create screen - select screen (Page 3)
-   ========================================================================== */
-  &--content-screen-three {
-    @extend %grid;
-
-    @extend %create-element--layout-default;
-  }
-
-  &--channel-link {
-    cursor: pointer;
-    display: block;
+    bottom: 0;
+    height: 100%;
     position: relative;
+    top: 0;
+    right: 0;
+    padding: 0;
+    z-index: 0;
 
-    @include add-overlay(create-screen);
-  }
-
-
-  &--add-slide-button {
-    @extend %buttons--default; // Needs refactoring (We shouldn't extend on classes from other documents but rather silent classes)
-
-    margin-bottom: 2em;
-    width: 10em;
+    @include breakpoint($breakpoint-desk) {
+      display: inline-block;
+      max-width: 100%;
+    }
   }
 }

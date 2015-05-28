@@ -22,17 +22,20 @@ class ChannelsController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelsGetAction() {
+  public function channelsGetAction() {
     // Get all channel entities.
-    $channel_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Channel')
+    $channel_entities = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findAll();
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
-	  $serializer = $this->get('jms_serializer');
-	  $response->setContent($serializer->serialize($channel_entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
+    $serializer = $this->get('jms_serializer');
+    $response->setContent($serializer->serialize($channel_entities, 'json', SerializationContext::create()
+          ->setGroups(array('api-bulk'))
+          ->enableMaxDepthChecks()));
 
     return $response;
   }
@@ -47,7 +50,7 @@ class ChannelsController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function ChannelsGetBulkAction(Request $request) {
+  public function channelsGetBulkAction(Request $request) {
     $ids = $request->query->get('ids');
 
     $response = new Response();
@@ -77,8 +80,10 @@ class ChannelsController extends Controller {
       }
 
       $serializer = $this->get('jms_serializer');
-	    $response->headers->set('Content-Type', 'application/json');
-      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
+      $response->headers->set('Content-Type', 'application/json');
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()
+            ->setGroups(array('api-bulk'))
+            ->enableMaxDepthChecks()));
     }
     else {
       $response->setContent(json_encode(array()));

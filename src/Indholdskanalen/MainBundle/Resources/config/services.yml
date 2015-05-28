@@ -4,17 +4,17 @@ parameters:
 services:
   indholdskanalen_main.listener:
     class: Indholdskanalen\MainBundle\EventListener\SearchIndexer
-    arguments: [@jms_serializer, @service_container]
+    arguments: [@jms_serializer, @service_container, @indholdskanalen.utility_service]
     tags:
       - { name: doctrine.event_listener, event: postPersist }
       - { name: doctrine.event_listener, event: preUpdate }
       - { name: doctrine.event_listener, event: preRemove }
 
-  indholdskanalen_middleware.listener:
-    class: Indholdskanalen\MainBundle\EventListener\MiddlewareListener
-    arguments: [@indholdskanalen.middleware.communication]
-    tags:
-      - { name: doctrine.event_listener, event: postUpdate }
+#  indholdskanalen_middleware.listener:
+#    class: Indholdskanalen\MainBundle\EventListener\MiddlewareListener
+#    arguments: [@indholdskanalen.middleware.communication]
+#    tags:
+#      - { name: doctrine.event_listener, event: postUpdate }
 
   indholdskanalen_main.serialization_listener:
     class: Indholdskanalen\MainBundle\EventListener\SerializationListener
@@ -22,19 +22,40 @@ services:
     tags:
       - { name: jms_serializer.event_subscriber}
 
-  indholdskanalen.command.pushchannels:
-    class: Indholdskanalen\MainBundle\Command\PushChannelsCommand
+  indholdskanalen.command.pushcontent:
+    class: Indholdskanalen\MainBundle\Command\PushContentCommand
     tags:
       -  { name: console.command }
 
   indholdskanalen.template_service:
     class: Indholdskanalen\MainBundle\Services\TemplateService
+    arguments: [@service_container]
     calls:
       - [ setContainer,[ @service_container ] ]
 
+  indholdskanalen.koba_service:
+    class: Indholdskanalen\MainBundle\Services\KobaService
+    arguments: [%koba_path%, %koba_apikey%, @service_container]
+
+  indholdskanalen.authentication_service:
+    class: Indholdskanalen\MainBundle\Services\AuthenticationService
+    arguments: [@service_container]
+
+  indholdskanalen.sharing_service:
+    class: Indholdskanalen\MainBundle\Services\SharingService
+    arguments: [@jms_serializer, @service_container, @indholdskanalen.utility_service]
+    tags:
+      - { name: kernel.event_listener, event: indholdskanalen_sharing_service.add_channel_to_index, method: onAddChannelToIndex }
+      - { name: kernel.event_listener, event: indholdskanalen_sharing_service.remove_channel_from_index, method: onRemoveChannelFromIndex }
+      - { name: kernel.event_listener, event: indholdskanalen_sharing_service.update_channel, method: onUpdateChannel }
+
+  indholdskanalen.utility_service:
+    class: Indholdskanalen\MainBundle\Services\UtilityService
+    arguments: [@indholdskanalen.authentication_service]
+
   indholdskanalen.middleware.communication:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
-    arguments: [@indholdskanalen.template_service]
+    arguments: [@indholdskanalen.template_service, @indholdskanalen.utility_service]
     calls:
       - [ setContainer,[ @service_container ] ]
 

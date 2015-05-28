@@ -61,7 +61,7 @@ class User extends BaseUser
 		$result = false;
 
 		foreach($this->getRoles() as $role){
-			if($role == "ROLE_SUPER_ADMIN"){
+			if($role == 'ROLE_SUPER_ADMIN'){
 				$result = true;
 			}
 		}

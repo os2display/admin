@@ -1,0 +1,104 @@
+/**
+ *
+ * Presentation display.
+ *
+ */
+
+
+
+/* Silent classes related to this document
+   ========================================================================== */
+
+%presentation--item {
+  box-sizing: border-box;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+
+%presentation--item-inner {
+  background: $gray-lightest;
+  box-sizing: border-box;
+  border: 1px solid $gray;
+  cursor: pointer;
+  font-size: 1rem;
+  height: 100%;
+
+  &:hover {
+    border-color: $orange;
+  }
+
+  &.is-active {
+    border-color: $orange;
+    border-width: 3px;
+  }
+}
+
+/* Styles
+   ========================================================================== */
+
+
+// Additional wrapper for styling border wrapping the actual presentation.
+.presentation--border {
+  background: $white;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 1.5em;
+
+  @include border-radius(30px);
+}
+
+
+.presentation {
+  width: 100%;
+  overflow-x: auto;
+
+  &--inner {
+    font-size: 0; // inline-block fix.
+    margin: 0 auto;
+  }
+}
+
+
+.presentation--region-horizontal {
+  @extend %presentation--item;
+
+  display: inline-block;
+  vertical-align: top;
+}
+
+.presentation--region-vertical {
+  @extend %presentation--item;
+
+  display: block;
+}
+
+.presentation--region-content {
+  @extend %presentation--item-inner;
+
+  &-inner {
+    display: block;
+    left: 0;
+    right: 0;
+    position: relative;
+    top: 50%;
+    text-align: center;
+
+    @include transform(translateY(-50%));
+  }
+
+  &-text {
+    font-size: 1.2em;
+    color: $gray;
+  }
+
+
+  &-button {
+    @extend %button--default;
+
+    font-size: .9em;
+    margin: 0 auto;
+    max-width: 85%;
+    width: 9em;
+  }
+}

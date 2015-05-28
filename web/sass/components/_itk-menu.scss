@@ -1,0 +1,126 @@
+/**
+ *
+ * Itk tabs
+ *
+ * A component for displaying an expanding side menu.
+ *
+ */
+
+
+/* Imports, placeholder classes, mixins and variables related to this document.
+   ========================================================================== */
+
+/* Variables used within this document. */
+$itk--menu-width:                 30%;   // The width of the menu (The stylesheet contains a max width attribute at 90%).
+$itk--menu-background:            $white; // The background color of the menu.
+$itk--menu-color:                 $gray-darker; // The default text color in the menu.
+$itk--menu-animation-speed:       .15s;   // The time it takes for the menu to expand.
+$itk--menu-overlay-color:         $black; // Color of overlay.
+$itk--menu-overlay-transparency:  .35;    // Transparency of the overlay.
+$itk--menu-shadow-color:          $black; // The shadow color on the edge of the menu.
+
+$itk--menu-position:              right;  // Positions the menu let or right.
+
+/* Menu positioning */
+$itk--menu-position-inverted:     auto;   // Inverted variable must be defined.
+
+// If menu position switches, also switch the inverted positioning.
+@if $itk--menu-position == "right" {
+  $itk--menu-position-inverted: left;
+} @else if $itk--menu-position == "left" {
+  $itk--menu-position-inverted: right;
+}
+
+
+/* Animations related to this document.
+   ========================================================================== */
+
+// Navigation animations.
+@include keyframes(toggle-nav-open) {
+  0% {
+    #{$itk--menu-position}: -$itk--menu-width;
+  }
+
+  100% {
+    #{$itk--menu-position}: 0;
+  }
+}
+
+@include keyframes(toggle-nav-close) {
+  0% {
+    #{$itk--menu-position}: 0;
+  }
+
+  100% {
+    #{$itk--menu-position}: -$itk--menu-width;
+  }
+}
+
+@include keyframes(toggle-nav-overlay) {
+  0% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: transparentize($itk--menu-overlay-color, $itk--menu-overlay-transparency);
+  }
+}
+
+
+/* Styles
+   ========================================================================== */
+
+%itk--menu {
+  color: $itk--menu-color;
+  height: 100%; // Menu should go from top to bottom.
+  overflow-y: auto; // We want a menu scroll when expanding beyond page.
+  position: fixed;
+  #{$itk--menu-position}: -$itk--menu-width;
+  z-index: 99;  // On top of everything else.
+
+  max-width: 90%; // To avoid breaking width on narrow devices.
+  width: $itk--menu-width;
+
+  background: $itk--menu-background;
+
+  @include box-sizing(border-box);
+  @include box-shadow(-5px 0px 10px transparentize($black, .75)); // Using a fairly static shadow.
+
+
+  /* States */
+
+  &.is-visible {
+    @include animation(toggle-nav-open $itk--menu-animation-speed linear 1 forwards);
+  }
+
+  &.is-hidden {
+    @include animation(toggle-nav-close $itk--menu-animation-speed linear 1 forwards);
+  }
+}
+
+
+/* Invisible close element that allows the user to close the menu by clicking outside it */
+%itk--menu-nav-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  #{$itk--menu-position-inverted}: 0;
+  z-index: 98;  // Just below menu.
+
+  cursor: pointer;
+
+  &.is-visible {
+    width: 100%;
+
+    @include animation(toggle-nav-overlay .75s linear 1 forwards);
+  }
+}
+
+
+/* Make sure the user can't scroll when overlays are active */
+html.is-locked,
+html.is-locked  body {
+  overflow: hidden;
+
+  height: 100%;
+}

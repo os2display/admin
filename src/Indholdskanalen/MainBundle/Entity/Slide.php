@@ -13,10 +13,16 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\MaxDepth;
 
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\InheritanceType;
+
+use JMS\Serializer\Annotation as JMS;
+
 /**
  * Extra
  *
- * @ORM\Table(name="slide")
+ * @ORM\Table(name="ik_slide")
  * @ORM\Entity
  */
 class Slide {
@@ -42,7 +48,7 @@ class Slide {
 
   /**
    * @ORM\Column(name="template", type="string", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $template;
 
@@ -50,7 +56,7 @@ class Slide {
    * @ORM\Column(name="created_at", type="integer", nullable=false)
    * @Groups({"api", "api-bulk", "search", "sharing"})
    */
-  private $created_at;
+  private $createdAt;
 
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
@@ -66,25 +72,25 @@ class Slide {
 
   /**
    * @ORM\Column(name="duration", type="integer", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
   private $duration;
 
   /**
    * @ORM\Column(name="schedule_from", type="integer", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
-  private $schedule_from;
+  private $scheduleFrom;
 
   /**
    * @ORM\Column(name="schedule_to", type="integer", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
-  private $schedule_to;
+  private $scheduleTo;
 
   /**
    * @ORM\Column(name="published", type="boolean", nullable=true)
-   * @Groups({"api", "middleware"})
+   * @Groups({"api", "middleware", "sharing"})
    */
   private $published;
 
@@ -103,22 +109,41 @@ class Slide {
   /**
    * @ORM\Column(name="media_type", type="string", nullable=true)
    *   "video" or "image".
-   * @Groups({"api", "api-bulk", "middleware"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $mediaType;
 
   /**
    * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="logoSlides")
    * @ORM\JoinColumn(name="logo_id", referencedColumnName="id")
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   private $logo;
 
   /**
    * @ORM\Column(name="modified_at", type="integer", nullable=false)
    */
-  private $modified_at;
+  private $modifiedAt;
 
+  /**
+   * @ORM\Column(name="slide_type", type="string", nullable=true)
+   */
+  private $slideType;
+
+  /**
+   * @Groups({"middleware"})
+   *
+   * @JMS\Type("array<array>")
+   * @ORM\Column(name="calendar_events", type="json_array", nullable=true)
+   */
+  protected $calendarEvents;
+
+  /**
+   * @ORM\Column(name="interest_period", type="string", nullable=true)
+   *
+   * Possible options: "day" (null), "week", "month", "all"
+   */
+  protected $calendarInterestPeriod;
 
   /**
    * Constructor
@@ -135,6 +160,60 @@ class Slide {
    */
   public function getId() {
     return $this->id;
+  }
+
+  /**
+   * Get calendarEvents.
+   *
+   * @return mixed
+   */
+  public function getCalendarEvents() {
+    return $this->calendarEvents;
+  }
+
+  /**
+   * Set calendarEvents.
+   *
+   * @param $calendarEvents
+   */
+  public function setCalendarEvents($calendarEvents) {
+    $this->calendarEvents = $calendarEvents;
+  }
+
+  /**
+   * Get calendarInterestPeriod.
+   *
+   * @return mixed
+   */
+  public function getCalendarInterestPeriod() {
+    return $this->calendarInterestPeriod;
+  }
+
+  /**
+   * Set calendarInterestPeriod.
+   *
+   * @param $calendarInterestPeriod
+   */
+  public function setCalendarInterestPeriod($calendarInterestPeriod) {
+    $this->calendarInterestPeriod = $calendarInterestPeriod;
+  }
+
+  /**
+   * Set slideType
+   *
+   * @param string $slideType
+   */
+  public function setSlideType($slideType) {
+    $this->slideType = $slideType;
+  }
+
+  /**
+   * Get slideType
+   *
+   * @return string
+   */
+  public function getSlideType() {
+    return $this->slideType;
   }
 
   /**
@@ -158,7 +237,7 @@ class Slide {
   /**
    * Set orientation
    *
-   * @param \int $orientation
+   * @param string $orientation
    */
   public function setOrientation($orientation) {
     $this->orientation = $orientation;
@@ -167,7 +246,7 @@ class Slide {
   /**
    * Get orientation
    *
-   * @return \string
+   * @return string
    */
   public function getOrientation() {
     return $this->orientation;
@@ -235,24 +314,24 @@ class Slide {
   }
 
   /**
-   * Set created_at
+   * Set createdAt
    *
    * @param integer $createdAt
    * @return Slide
    */
   public function setCreatedAt($createdAt) {
-    $this->created_at = $createdAt;
+    $this->createdAt = $createdAt;
 
     return $this;
   }
 
   /**
-   * Get created_at
+   * Get createdAt
    *
    * @return integer
    */
   public function getCreatedAt() {
-    return $this->created_at;
+    return $this->createdAt;
   }
 
   /**
@@ -328,45 +407,45 @@ class Slide {
   }
 
   /**
-   * Set schedule_from
+   * Set scheduleFrom
    *
    * @param integer $scheduleFrom
    * @return Slide
    */
   public function setScheduleFrom($scheduleFrom) {
-    $this->schedule_from = $scheduleFrom;
+    $this->scheduleFrom = $scheduleFrom;
 
     return $this;
   }
 
   /**
-   * Get schedule_from
+   * Get scheduleFrom
    *
    * @return integer
    */
   public function getScheduleFrom() {
-    return $this->schedule_from;
+    return $this->scheduleFrom;
   }
 
   /**
-   * Set schedule_to
+   * Set scheduleTo
    *
    * @param integer $scheduleTo
    * @return Slide
    */
   public function setScheduleTo($scheduleTo) {
-    $this->schedule_to = $scheduleTo;
+    $this->scheduleTo = $scheduleTo;
 
     return $this;
   }
 
   /**
-   * Get schedule_to
+   * Get scheduleTo
    *
    * @return integer
    */
   public function getScheduleTo() {
-    return $this->schedule_to;
+    return $this->scheduleTo;
   }
 
   /**
@@ -432,47 +511,47 @@ class Slide {
    */
   public function getMedia() {
     $result = new ArrayCollection();
-    foreach($this->getMediaOrders() as $mediaorder) {
+    foreach ($this->getMediaOrders() as $mediaorder) {
       $result->add($mediaorder->getMedia());
     }
     return $result;
   }
 
-	/**
-	 * Is all media ready
-	 *
-	 * @return boolean
-	 */
-	public function isMediaReady() {
-		foreach($this->getMediaOrders() as $mediaorder) {
-			$media = $mediaorder->getMedia();
-			if($media->getProviderStatus() !== 1) {
-				return false;
-			}
+  /**
+   * Is all media ready
+   *
+   * @return boolean
+   */
+  public function isMediaReady() {
+    foreach ($this->getMediaOrders() as $mediaorder) {
+      $media = $mediaorder->getMedia();
+      if ($media->getProviderStatus() !== 1) {
+        return FALSE;
+      }
 
-		}
-		return true;
-	}
+    }
+    return TRUE;
+  }
 
-	/**
-	 * Is the Slide currently scheduled to be shown
-	 *
-	 * @return boolean
-	 */
-	public function isSlideInSchedule() {
+  /**
+   * Is the Slide currently scheduled to be shown
+   *
+   * @return boolean
+   */
+  public function isSlideInSchedule() {
     $to = $this->getScheduleTo();
 
-		return empty($to) || $to > time();
-	}
+    return empty($to) || $to > time();
+  }
 
-	/**
-	 * Is the Slide ready and active
-	 *
-	 * @return boolean
-	 */
-	public function isSlideActive() {
-		return $this->getPublished() && $this->isSlideInSchedule() && $this->isMediaReady();
-	}
+  /**
+   * Is the Slide ready and active
+   *
+   * @return boolean
+   */
+  public function isSlideActive() {
+    return $this->getPublished() && $this->isSlideInSchedule() && $this->isMediaReady();
+  }
 
   /**
    * Get channels
@@ -486,7 +565,7 @@ class Slide {
    */
   public function getChannels() {
     $result = new ArrayCollection();
-    foreach($this->getChannelSlideOrders() as $channelorder) {
+    foreach ($this->getChannelSlideOrders() as $channelorder) {
       $result->add($channelorder->getChannel());
     }
     return $result;
@@ -514,23 +593,23 @@ class Slide {
   }
 
   /**
-   * Set modified_at
+   * Set modifiedAt
    *
    * @param integer $modifiedAt
    * @return Slide
    */
   public function setModifiedAt($modifiedAt) {
-    $this->modified_at = $modifiedAt;
+    $this->modifiedAt = $modifiedAt;
 
     return $this;
   }
 
   /**
-   * Get modified_at
+   * Get modifiedAt
    *
    * @return integer
    */
   public function getModifiedAt() {
-    return $this->modified_at;
+    return $this->modifiedAt;
   }
 }

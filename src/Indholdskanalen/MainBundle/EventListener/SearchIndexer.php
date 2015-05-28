@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Indholdskanalen\MainBundle\Services\UtilityService;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\Container;
@@ -20,16 +21,19 @@ use Symfony\Component\DependencyInjection\Container;
 class SearchIndexer {
   protected $container;
   protected $serializer;
+  protected $utilityService;
 
   /**
-   * Default constructor.
+   * Constructor
    *
    * @param Serializer $serializer
    * @param Container $container
+   * @param UtilityService $utilityService
    */
-  function __construct(Serializer $serializer, Container $container) {
+  public function __construct(Serializer $serializer, Container $container, UtilityService $utilityService) {
     $this->serializer = $serializer;
     $this->container = $container;
+    $this->utilityService = $utilityService;
   }
 
   /**
@@ -67,7 +71,7 @@ class SearchIndexer {
    * @param $method
    *   The type of operation to preform.
    *
-   * @return bool
+   * @return boolean
    */
   protected function sendEvent(LifecycleEventArgs $args, $method) {
     // Get the current entity.
@@ -78,14 +82,17 @@ class SearchIndexer {
     // Ignore ChannelSlideOrders and MediaOrders as well.
     if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
         $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
-        $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder') {
+        $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\SharingIndex' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\ScreenTemplate' ||
+        $type === 'Indholdskanalen\MainBundle\Entity\ChannelScreenRegion') {
       return FALSE;
     }
 
     // Build parameters to send to the search backend.
-    $customer_id = $this->container->getParameter('search_customer_id');
+    $index = $this->container->getParameter('search_index');
     $params = array(
-      'customer_id' => $customer_id,
+      'index' => $index,
       'type' => $type,
       'id' => $entity->getId(),
       'data' => $entity,
@@ -95,52 +102,15 @@ class SearchIndexer {
     $url = $this->container->getParameter('search_host');
     $path = $this->container->getParameter('search_path');
 
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
+
     // Send the request.
-    $data = $this->curl($url . $path, $method, $params);
+    $result = $this->utilityService->curl($url . $path, $method, $data, 'search');
 
-    // @TODO: Do some error handling based on the $data variable.
-  }
+    if ($result['status'] !== 200) {
+      // TODO: Handle !
+    }
 
-  /**
-   * Communication function.
-   *
-   * Wrapper function for curl to send data to ES.
-   *
-   * @param $url
-   *   URL to connect to.
-   * @param string $method
-   *   Method to send/get data "POST" or "PUT".
-   * @param array $params
-   *   The data to send.
-   *
-   * @return array
-   */
-  protected function curl($url, $method = 'POST', $params = array()) {
-    // Build query.
-    $ch = curl_init($url);
-
-    curl_setopt($ch, CURLOPT_POST, TRUE);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-
-    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
-
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
-
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json'
-    ));
-
-    // Receive server response.
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $content = curl_exec($ch);
-    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-    // Close connection.
-    curl_close($ch);
-
-    return array(
-      'status' => $http_status,
-      'content' => $content,
-    );
+    return $result['status'] === 200;
   }
 }

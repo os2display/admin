@@ -6,20 +6,25 @@ This project consists of the backend for Indholdskanalen. The backend is a symfo
 ###Helpful commands
 We have defined a couple of commands for Indholdskanalen.
 
-To push channels
+To push content
 <pre>
-php app/console indholdskanalen:pushchannels
+php app/console ik:push
 </pre>
 
 To reindex search
 <pre>
-php app/console indholdskanalen:reindex
+php app/console ik:reindex
 </pre>
 This does not include delete of records that are removed from symfony but not search.
 
 To clear cache
 <pre>
 php app/console cache:clear
+</pre>
+
+To brute force clear cache
+<pre>
+rm -rf app/cache/*
 </pre>
 
 To generate a bundle
@@ -31,6 +36,10 @@ To make a super-user
 <pre>
 $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword] --super-admin
 </pre>
+
+##When working with Indholdskanalen locally with the vagrant
+You have to visit indholdskanalen.vm, search.indholdskanalen.vm, middleware.indholdskanalen.vm, service.indholdskanalen.vm and
+accept the fake certificate.
 
 
 ##Installation instructions
@@ -205,5 +214,62 @@ With these changes it is possible to get ZenCoder to work.
 Access the site through slight-gopher-8311.vagrantshare.com, upload the media.
 
 After this revert to the setup from before.
+
+###Setup CRONTAB for updates
+To setup the pushcontent as a crontab. On the server:
+
+<pre>
+$ crontab -e
+</pre>
+
+Add the following line:
+
+<pre>
+*/1 * * * * php path_to_backend/app/console ik:cron
+</pre>
+
+This command will fetch the latest content from the providers and push to the screens if necessary.
+
+Disable the push-on-changes feature in the src/Indholdskanalen/MainBundle/Resources/config/services.yml by commenting out the middleware listener.
+
+<pre>
+#  indholdskanalen_middleware.listener:
+#    class: Indholdskanalen\MainBundle\EventListener\MiddlewareListener
+#    arguments: [@indholdskanalen.middleware.communication]
+#    tags:
+#      - { name: doctrine.event_listener, event: postUpdate }
+</pre>
+
+###Templates (slides)
+The templates are placed in the web/templates/slides/ directory.
+To enable a template from the templates folder, add the name to parameters.yml, e.g.:
+
+<pre>
+  templates_slides_enabled:
+    - ik-iframe
+    - manual-calender
+    - only-image
+</pre>
+
+###Templates (screens)
+To import the templates from the template directory:
+<pre>
+$ app/console ik:templates:load
+</pre>
+
+
+###Logo
+To set a custom logo: 
+
+1. Add logo.png to web/images/logo.png
+
+2. Change the logo parameter in parameters.yml to 
+
+<pre>
+  logo: images/logo.png
+</pre>
+
+### Activate indexes
+Before you can used te system you need to go into the search node administration and activate the different indexes needed.
 
 ###Ready to go!

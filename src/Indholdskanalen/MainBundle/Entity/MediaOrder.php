@@ -15,7 +15,7 @@ use Application\Sonata\MediaBundle\Entity\Media as Media;
  * Media Order.
  * Represents an ordered media element.
  *
- * @ORM\Table(name="media_order")
+ * @ORM\Table(name="ik_media_order")
  * @ORM\Entity
  */
 class MediaOrder {
@@ -57,10 +57,9 @@ class MediaOrder {
    * Set sortOrder
    *
    * @param integer $sortOrder
-   * @return ChannelSlideOrder
+   * @return MediaOrder
    */
-  public function setSortOrder($sortOrder)
-  {
+  public function setSortOrder($sortOrder) {
     $this->sortOrder = $sortOrder;
 
     return $this;
@@ -71,19 +70,17 @@ class MediaOrder {
    *
    * @return integer
    */
-  public function getSortOrder()
-  {
+  public function getSortOrder() {
     return $this->sortOrder;
   }
 
   /**
    * Set slide
    *
-   * @param \Indholdskanalen\MainBundle\Entity\Slide $slide
+   * @param null|\Indholdskanalen\MainBundle\Entity\Slide $slide
    * @return MediaOrder
    */
-  public function setSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide = null)
-  {
+  public function setSlide(\Indholdskanalen\MainBundle\Entity\Slide $slide = NULL) {
     $this->slide = $slide;
 
     return $this;
@@ -92,21 +89,19 @@ class MediaOrder {
   /**
    * Get slide
    *
-   * @return \Indholdskanalen\MainBundle\Entity\Slide
+   * @return null|\Indholdskanalen\MainBundle\Entity\Slide
    */
-  public function getSlide()
-  {
+  public function getSlide() {
     return $this->slide;
   }
 
   /**
    * Set media
    *
-   * @param \Application\Sonata\MediaBundle\Entity\Media $media
+   * @param null|\Application\Sonata\MediaBundle\Entity\Media $media
    * @return MediaOrder
    */
-  public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = null)
-  {
+  public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = NULL) {
     $this->media = $media;
 
     return $this;
@@ -115,10 +110,9 @@ class MediaOrder {
   /**
    * Get media
    *
-   * @return \Application\Sonata\MediaBundle\Entity\Media
+   * @return null|\Application\Sonata\MediaBundle\Entity\Media
    */
-  public function getMedia()
-  {
+  public function getMedia() {
     return $this->media;
   }
 }

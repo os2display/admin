@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Contains the SerializationListener.
+ */
 
 namespace Indholdskanalen\MainBundle\EventListener;
 
@@ -9,17 +13,16 @@ use Sonata\MediaBundle\Provider\Pool;
 use Symfony\Component\DependencyInjection\Container;
 
 
-class SerializationListener implements EventSubscriberInterface
-{
+class SerializationListener implements EventSubscriberInterface {
   /**
    * @var \Sonata\MediaBundle\Provider\Pool
    */
   protected $mediaService;
 
-	/**
-	 * @var \Symfony\Component\DependencyInjection\Container
-	 */
-	protected $container;
+  /**
+   * @var \Symfony\Component\DependencyInjection\Container
+   */
+  protected $container;
 
   /**
    * @var TemplateService
@@ -31,21 +34,27 @@ class SerializationListener implements EventSubscriberInterface
    * @param Container $container
    * @param TemplateService $templateService
    */
-  public function __construct(Pool $mediaService, Container $container, TemplateService $templateService)
-  {
+  public function __construct(Pool $mediaService, Container $container, TemplateService $templateService) {
     $this->mediaService = $mediaService;
-	  $this->container = $container;
+    $this->container = $container;
     $this->templateService = $templateService;
   }
 
   /**
    * @inheritdoc
    */
-  static public function getSubscribedEvents()
-  {
+  public static function getSubscribedEvents() {
     return array(
-      array('event' => 'serializer.post_serialize', 'class' => 'Application\Sonata\MediaBundle\Entity\Media', 'method' => 'onPostMediaSerialize'),
-      array('event' => 'serializer.post_serialize', 'class' => 'Indholdskanalen\MainBundle\Entity\Slide', 'method' => 'onPostSlideSerialize'),
+      array(
+        'event' => 'serializer.post_serialize',
+        'class' => 'Application\Sonata\MediaBundle\Entity\Media',
+        'method' => 'onPostMediaSerialize'
+      ),
+      array(
+        'event' => 'serializer.post_serialize',
+        'class' => 'Indholdskanalen\MainBundle\Entity\Slide',
+        'method' => 'onPostSlideSerialize'
+      ),
     );
   }
 
@@ -54,11 +63,10 @@ class SerializationListener implements EventSubscriberInterface
    *
    * @param ObjectEvent $event
    */
-  public function onPostMediaSerialize(ObjectEvent $event)
-  {
+  public function onPostMediaSerialize(ObjectEvent $event) {
     $context = $event->getContext();
     $context->attributes->get('groups')->map(
-      function(array $groups) use ($event) {
+      function (array $groups) use ($event) {
 
         // API, Search Serialization
         if (in_array('api', $groups) || in_array('api-bulk', $groups)) {
@@ -82,43 +90,48 @@ class SerializationListener implements EventSubscriberInterface
    *
    * @param ObjectEvent $event
    */
-	public function onPostSlideSerialize(ObjectEvent $event)
-	{
-		$context = $event->getContext();
-		$context->attributes->get('groups')->map(
-			function(array $groups) use ($event) {
-				// Middleware Serialization
-				if (in_array('middleware', $groups)) {
+  public function onPostSlideSerialize(ObjectEvent $event) {
+    $context = $event->getContext();
+    $context->attributes->get('groups')->map(
+      function (array $groups) use ($event) {
+        // Middleware Serialization
+        if (in_array('middleware', $groups)) {
           $urls = array();
 
           // Set media paths
           $slide = $event->getObject();
-					foreach($slide->getMedia() as $media) {
-						$providerName = $media->getProviderName();
+          foreach ($slide->getMedia() as $media) {
+            $providerName = $media->getProviderName();
 
-						// Video
-						if($providerName === 'sonata.media.provider.zencoder') {
-							$pathToServer = $this->container->getParameter("absolute_path_to_server");
-							$metadata = $media->getProviderMetadata();
-							foreach($metadata as $data) {
-								$urls[$data['label']] = $data['reference'];
-							}
-						}
+            // Video
+            if ($providerName === 'sonata.media.provider.zencoder') {
+              $metadata = $media->getProviderMetadata();
 
-						// Image
-						else if($providerName === 'sonata.media.provider.image') {
-							$provider = $this->mediaService->getProvider($providerName);
-							$urls[] = $provider->generatePublicUrl($media, 'reference');
-						}
-					}
+              $mediaUrls = array();
+
+              foreach ($metadata as $data) {
+                $mediaUrls[$data['label']] = $data['reference'];
+              }
+
+              $urls[] = $mediaUrls;
+            }
+
+            // Image
+            else {
+              if ($providerName === 'sonata.media.provider.image') {
+                $provider = $this->mediaService->getProvider($providerName);
+                $urls[] = array('image' => $provider->generatePublicUrl($media, 'reference'));
+              }
+            }
+          }
           $event->getVisitor()->addData('media', $urls);
 
           // Set logo path
-          $logoPath = "";
+          $logoPath = '';
           $logo = $slide->getLogo();
           if ($logo) {
             $providerName = $logo->getProviderName();
-            if($providerName === 'sonata.media.provider.image') {
+            if ($providerName === 'sonata.media.provider.image') {
               $provider = $this->mediaService->getProvider($providerName);
               $logoPath = $provider->generatePublicUrl($logo, 'reference');
             }
@@ -126,11 +139,69 @@ class SerializationListener implements EventSubscriberInterface
           $event->getVisitor()->addData('logo', $logoPath);
 
           // Set template paths
-          $templates = $this->templateService->getTemplates();
-          $event->getVisitor()->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
-          $event->getVisitor()->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
-				}
-			}
-		);
-	}
+          $templates = $this->templateService->getSlideTemplates();
+          $event->getVisitor()
+            ->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
+          $event->getVisitor()
+            ->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
+        }
+        else {
+          if (in_array('sharing', $groups)) {
+            $urls = array();
+            $thumbs = array();
+
+            // Set media paths
+            $slide = $event->getObject();
+            foreach ($slide->getMedia() as $media) {
+              $providerName = $media->getProviderName();
+
+              // Video
+              if ($providerName === 'sonata.media.provider.zencoder') {
+                $metadata = $media->getProviderMetadata();
+                $mediaUrls = array();
+
+                foreach ($metadata as $data) {
+                  $mediaUrls[$data['label']] = $data['reference'];
+                }
+
+                $thumbs[] = $metadata[0]['thumbnails'][1]['reference'];
+                $urls[] = $mediaUrls;
+              }
+              // Image
+              else {
+                if ($providerName === 'sonata.media.provider.image') {
+                  $provider = $this->mediaService->getProvider($providerName);
+                  $urls[] = array('image' => $provider->generatePublicUrl($media, 'reference'));
+                  $thumbs[] = $provider->generatePublicUrl($media, 'default_landscape');
+                }
+              }
+            }
+            $event->getVisitor()->addData('media', $urls);
+            $event->getVisitor()->addData('media_thumbs', $thumbs);
+
+            // Set logo path
+            $logoPath = '';
+            $logo = $slide->getLogo();
+            if ($logo) {
+              $providerName = $logo->getProviderName();
+              if ($providerName === 'sonata.media.provider.image') {
+                $provider = $this->mediaService->getProvider($providerName);
+                $logoPath = $provider->generatePublicUrl($logo, 'reference');
+              }
+            }
+            $event->getVisitor()->addData('logo', $logoPath);
+
+            // Set template paths
+            $templates = $this->templateService->getSlideTemplates();
+            $event->getVisitor()
+              ->addData('preview_path', $templates[$slide->getTemplate()]->paths->preview);
+            $event->getVisitor()
+              ->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
+            $event->getVisitor()
+              ->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
+          }
+        }
+      }
+    );
+  }
 }

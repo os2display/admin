@@ -2,8 +2,8 @@
 {% block body %}
   <header class="header" role="banner">
     <div class="header--main-anonymous">
-      <div class="header--logo-anonymous">
-        <a href="/"><img src="/images/logo.png"/></a>
+      <div class="header--logo">
+        <a href="#" class="header--logo-link" data-ng-class="{'is-visible': mobileMainMenuVisible(),'is-front': url === '/'}">{{site_title}}</a>
       </div>
     </div>
   </header>

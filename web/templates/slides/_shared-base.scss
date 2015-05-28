@@ -1,0 +1,140 @@
+/**
+ *
+ * Shared base.
+ *
+ * Contains shared placeholder classes and variables to be used when creating new templates.
+ *
+ */
+
+
+/* Default imports (Used in all templates!)
+   ========================================================================== */
+@import "../../sass/base/_normalize";
+@import "../../sass/mixins/_mixins";
+
+/* Variables
+   ========================================================================== */
+
+$black:                #000;
+$white:                #fff;
+
+$gray-lightest:       lighten($black, 98%);
+$gray-lighter:        lighten($black, 90%);
+$gray-light:          lighten($black, 80%);
+$gray:                lighten($black, 70%);
+$gray-dark:           lighten($black, 45%);
+$gray-darker:         lighten($black, 35%);
+$gray-darkest:        lighten($black, 25%);
+
+$gray-background:     #f2f2f2;
+$gray-color:          #999;
+
+
+/* Link colors
+   ================================================================================================================== */
+
+$link-color:       #2c79d3;
+
+
+
+/* Mixins
+   ========================================================================== */
+
+
+/* Placeholders
+   ========================================================================== */
+
+// Display gear icon (edit)
+%slide--edit-box-settings {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// Display background icon (edit)
+%slide--edit-image-settings {
+  bottom: 15%;
+  position: absolute;
+  right: 15%;
+
+  @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// Display logo text (edit)
+%slide--edit-logo-settings {
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  cursor: pointer;
+  font-size: 0.6em;
+  color: $white;
+  padding: .3em .8em;
+  background: rgba(0,0,0,0.5);
+
+  @include border-radius(1em);
+}
+
+// Display add content icon (edit)
+%slide--edit-content-settings {
+  position: absolute;
+  right: 0;
+  top: 50%;
+
+  @include transform(translateY(-50%));
+  @include generate-sprite-image($dashboard-sprites, 'plus-icon', 75);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+// Show the placeholder text (edit)
+%show-placeholder-text {
+  &:focus {
+    outline:none;
+  }
+  &:empty:before {
+    content: attr(placeholder);
+    color: $gray;
+  }
+  &:empty:focus:before {
+    background-color: #b3d4fd;
+    color: #000;
+  }
+}
+
+// Alter textarea styles. (edit)
+%inline-textarea {
+  &:focus {
+    outline:none;
+    border: 0;
+  }
+
+  overflow: hidden;
+  padding: 0;
+
+  background-color: transparent;
+  border: 0;
+  resize: none;
+}
+
+// Responsive header for 5 split screen templates
+%responsive-header {
+  border: 0;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  resize: none;
+}

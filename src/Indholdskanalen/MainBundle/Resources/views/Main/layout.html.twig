@@ -2,7 +2,7 @@
 
 {% block html %}data-ng-app="ikApp"{% endblock %}
 
-{% block title %}Indholdskanalen{% endblock %}
+{% block title %}{{ site_title }}{% endblock %}
 
 {% block meta %}
     <meta charset="utf-8">
@@ -15,7 +15,15 @@
     <link rel="stylesheet" href="{{ asset('css/colorpicker.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link data-ng-include="" src="'./ik-templates/imports.html'" include-replace>
+
+  {# Import css files for templates. #}
+  {% for template in templates_slides_enabled %}
+    <link rel="stylesheet" href="{{ templates_slides_directory }}{{ template }}/{{ template }}.css">
+  {% endfor %}
+
+  {% for template in templates_screens_enabled %}
+    <link rel="stylesheet" href="{{ templates_screens_directory }}{{ template }}/{{ template }}.css">
+  {% endfor  %}
 {% endblock %}
 
 {% block scripts %}{% endblock %}

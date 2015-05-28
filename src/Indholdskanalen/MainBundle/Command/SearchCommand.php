@@ -30,8 +30,8 @@ class SearchCommand extends ContainerAwareCommand {
    * Configure the command
    */
   protected function configure() {
-    $this->setName('indholdskanalen:reindex')
-      ->setDescription("Re-index all in the search backend.");
+    $this->setName('ik:reindex')
+      ->setDescription('Re-index all in the search backend.');
   }
 
   /**
@@ -47,7 +47,10 @@ class SearchCommand extends ContainerAwareCommand {
     $this->output = $output;
 
     // Find all media elements.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('ApplicationSonataMediaBundle:Media')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('ApplicationSonataMediaBundle:Media')
+      ->findAll();
 
     // Loop over the elements to add real urls.
     foreach ($entities as &$media) {
@@ -67,15 +70,24 @@ class SearchCommand extends ContainerAwareCommand {
     $this->indexEnities('Media elements', $entities);
 
     // Find all slides.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('IndholdskanalenMainBundle:Slide')
+      ->findAll();
     $this->indexEnities('Slides', $entities);
 
     // Find all Channels.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('IndholdskanalenMainBundle:Channel')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findAll();
     $this->indexEnities('Channels', $entities);
 
     // Find all slides.
-    $entities = $this->getContainer()->get('doctrine')->getRepository('IndholdskanalenMainBundle:Screen')->findAll();
+    $entities = $this->getContainer()
+      ->get('doctrine')
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findAll();
     $this->indexEnities('Screens', $entities);
   }
 
@@ -129,13 +141,13 @@ class SearchCommand extends ContainerAwareCommand {
    * @param $method
    *   The type of operation to preform.
    *
-   * @return bool
+   * @return array
    */
   private function sendEvent($entity, $method) {
     // Build parameters to send to the search backend.
-    $customer_id = $this->getContainer()->getParameter('search_customer_id');
+    $index = $this->getContainer()->getParameter('search_index');
     $params = array(
-      'customer_id' => $customer_id,
+      'index' => $index,
       'type' => get_class($entity),
       'id' => $entity->getId(),
       'data' => $entity,
@@ -147,6 +159,36 @@ class SearchCommand extends ContainerAwareCommand {
 
     // Send the request.
     return $this->curl($url . $path, $method, $params);
+  }
+
+  /**
+   * Builds the curl query.
+   *
+   * @param $url
+   * @param $method
+   * @param $data
+   * @param $token
+   * @return resource
+   */
+  private function buildQuery($url, $method, $data, $token) {
+    // Build query.
+    $ch = curl_init($url);
+
+    // SSL fix (self signed).
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $token
+    ));
+    // Receive server response.
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+    return $ch;
   }
 
   /**
@@ -163,27 +205,34 @@ class SearchCommand extends ContainerAwareCommand {
    *
    * @return array
    */
-  private function curl($url, $method = 'POST', $params) {
+  private function curl($url, $method = 'POST', $params = array()) {
+    $authenticationService = $this->getContainer()
+      ->get('indholdskanalen.authentication_service');
+
+    // Get the authentication token.
+    $auth = $authenticationService->getAuthentication('search');
+
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()
+        ->setGroups(array('search')));
+
     // Build query.
-    $ch = curl_init($url);
-
-    curl_setopt($ch, CURLOPT_POST, TRUE);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-
-    $jsonContent = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
-
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonContent);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json'
-    ));
-
-    // Receive server response.
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $ch = $this->buildQuery($url, $method, $data, $auth['token']);
     $content = curl_exec($ch);
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     // Close connection.
     curl_close($ch);
+
+    // If unauthenticated, reauthenticate and retry.
+    if ($http_status === 401) {
+      $auth = $authenticationService->getAuthentication('search', TRUE);
+
+      $ch = $this->buildQuery($url, $method, $data, $auth['token']);
+      $content = curl_exec($ch);
+      $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+      // Close connection.
+      curl_close($ch);
+    }
 
     return (object) array(
       'status' => $http_status,

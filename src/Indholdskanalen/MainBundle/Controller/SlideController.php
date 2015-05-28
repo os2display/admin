@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\Serializer\SerializationContext;
 use Indholdskanalen\MainBundle\Entity\Slide;
+use Indholdskanalen\MainBundle\Entity\SharingIndex;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
+use Indholdskanalen\MainBundle\Events\SharingServiceEvents;
 
 
 /**
@@ -28,7 +31,7 @@ class SlideController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlideSaveAction(Request $request) {
+  public function slideSaveAction(Request $request) {
     // Get posted slide information from the request.
     $post = json_decode($request->getContent(), TRUE);
 
@@ -60,6 +63,9 @@ class SlideController extends Controller {
     }
 
     // Update fields from post.
+    if (isset($post['slide_type'])) {
+      $slide->setSlideType($post['slide_type']);
+    }
     if (isset($post['title'])) {
       $slide->setTitle($post['title']);
     }
@@ -86,6 +92,9 @@ class SlideController extends Controller {
     }
     if (isset($post['media_type'])) {
       $slide->setMediaType($post['media_type']);
+    }
+    if (isset($post['calendar_interest_period'])) {
+      $slide->setCalendarInterestPeriod($post['calendar_interest_period']);
     }
     $slide->setModifiedAt(time());
 
@@ -204,6 +213,16 @@ class SlideController extends Controller {
       }
     }
 
+    // Update shared channels
+    $dispatcher = $this->get('event_dispatcher');
+    foreach ($slide->getChannels() as $channel) {
+      foreach ($channel->getSharingIndexes() as $sharingIndex) {
+        // Send event to sharingService to add channel to index.
+        $event = new SharingServiceEvent($channel, $sharingIndex);
+        $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
+      }
+    }
+
     // Save the slide.
     $em->persist($slide);
 
@@ -227,7 +246,7 @@ class SlideController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlideGetAction($id) {
+  public function slideGetAction($id) {
     $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
@@ -260,7 +279,7 @@ class SlideController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function SlideDeleteAction($id) {
+  public function slideDeleteAction($id) {
     $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
