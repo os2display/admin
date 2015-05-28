@@ -1,0 +1,16 @@
+{
+  "id": "wayfinding-eleven-rows",
+  "name": "Wayfinding - 11 rækker",
+  "icon": "wayfinding-eleven-rows.png",
+  "paths": {
+    "live": "wayfinding-eleven-rows-live.html",
+    "edit": "wayfinding-eleven-rows-edit.html",
+    "preview": "TODO: Remove",
+    "css": "wayfinding-eleven-rows.css"
+  },
+  "orientation": "portrait",
+  "idealdimensions": {
+    "width": "1080",
+    "height": "1920"
+  }
+}
