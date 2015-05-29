@@ -58,22 +58,8 @@
       line-height: 120%;
     }
 
-    .template--header-inner:after {
-      position: relative;
-      top: 1vmin;
-      left: 3vmin;
-
-      display: inline-block;
-      border-radius: 50%;
-      width: 8vmin;
-      height: 8vmin;
-
-      background-color: rgba(75, 174, 40, .75);
-      content: "";
-    }
-
     .template--content {
-      top: 40vmin;
+      top: 34vmin;
     }
 
     .template--now,
@@ -82,7 +68,22 @@
       overflow: hidden;
 
       border-left: 1vmin solid rgba(255, 255, 255, .6);
+      margin-left: .5vmin;
       padding-left: 5vmin;
+
+      line-height: 120%;
+    }
+
+    .template--available {
+      display: inline-block;
+      margin-top: 2vmin;
+      margin-bottom: 10vmin;
+      max-height: 17vmin;
+      padding: 0 3vmin .25vmin;
+
+      background-color: rgba(75, 174, 40, .75);
+      font-family: 'Gibson Light';
+      font-size: 5vmin;
     }
 
     .template--now {
@@ -90,14 +91,13 @@
       max-height: 24vmin;
 
       font-size: 8vmin;
-      line-height: 120%;
     }
 
     .template--next {
+      margin-bottom: 10vmin;
       max-height: 17vmin;
 
       font-size: 5vmin;
-      line-height: 120%;
     }
 
     .template--meta {
@@ -111,15 +111,22 @@
 <body>
 <div class="template">
   <div class="template--header">
-    <span class="template--header-inner">Mødelokale 1</span><br>
+    Mødelokale 1<br>
     <div class="template--meta">
       Etage 2
     </div>
   </div>
   <div class="template--content">
-    <div class="template--now">
-      <div class="template--meta">10.00 - 13.00</div>
-      Ledigt
+    <div class="template--available" style="display: block;">
+      Lokalet er ledigt til 10.00<br>
+    </div>
+    <div class="template--now" style="display: none;">
+      <div class="template--meta">10.00 - 11.00</div>
+      Spændende møde!
+    </div>
+    <div class="template--next">
+      <div class="template--meta">10.00 - 11.00</div>
+      Spændende møde!
     </div>
     <div class="template--next">
       <div class="template--meta">13.00 - 14.00</div>
