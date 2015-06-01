@@ -5,7 +5,6 @@
   "paths": {
     "live": "five-sections-live.html",
     "edit": "five-sections-edit.html",
-    "preview": "five-sections.html",
     "css": "five-sections.css"
   },
   "orientation": "landscape",

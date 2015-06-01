@@ -5,7 +5,6 @@
   "paths": {
     "live": "wayfinding-six-rows-live.html",
     "edit": "wayfinding-six-rows-edit.html",
-    "preview": "TODO: Remove",
     "css": "wayfinding-six-rows.css"
   },
   "orientation": "portrait",
