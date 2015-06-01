@@ -1,0 +1,26 @@
+{
+  "id": "dokk1-info",
+  "name": "Dokk1 info",
+  "icon": "dokk1-info.png",
+  "type": "responsive",
+  "paths": {
+    "live": "dokk1-info-live.html",
+    "edit": "dokk1-info-edit.html",
+    "preview": "dokk1-info-preview.html",
+    "css": "dokk1-info.css"
+  },
+  "orientation": "landscape",
+  "mediatype": "image",
+  "idealdimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "emptyoptions": {
+    "fontsize": "60",
+    "bgcolor": "rgb(210, 65, 30)",
+    "headline": "",
+    "text": "",
+    "responsive_fontsize": "3",
+    "defaultImage": "dokk1-info.png"
+  }
+}

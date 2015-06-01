@@ -1,0 +1,129 @@
+/**
+ *
+ * Dokk1 info template. (Responsive)
+ *
+ * A note on responsive templates:
+ * We use viewport width for base fontsize in client.
+ * We use viewport width for padding and margin, so the padding depends on the full width of the screen rather than the width of each section within a 5 split screen.
+ * When displaying editor or preview we add state classes and fall back to em for margin/padding.
+ *
+ */
+
+
+
+/* Imports.
+   ========================================================================== */
+
+@import "compass/css3";
+@import "../_shared-base.scss";
+
+
+@font-face {
+  font-family: 'Gibson SemiBold';
+  src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Regular';
+  src: url("fonts/Gibson-Regular-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Light';
+  src: url("fonts/Gibson-Light-webfont.woff") format("woff");
+}
+
+
+.dokk1-info {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-color: $white;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  color: #fff;
+  font: 1em/1.5 'Gibson Light', sans-serif;
+
+  &--meta,
+  &--header {
+    position: absolute;
+    left: 6vmin;
+    right: 6vmin;
+
+    &.is-editor,
+    &.is-preview {
+      left: 5%;
+      text-align: left;
+    }
+  }
+
+  &--meta {
+    top: 6vmin;
+    font-size: 3vmin;
+    line-height: 150%;
+
+    &.is-editor,
+    &.is-preview {
+      top: 5%;
+      font-size: 82%;  // Fits the client font size in respect to textarea size for meta text.
+      width: 80%;   // 73% Fits with the view point width in client. This way we ensure that a new line in preview is a new line in client.
+    }
+
+    &.is-preview {
+      font-size: 7px;
+    }
+  }
+
+  &--header {
+    bottom: 6vmin;
+    right: 3vmin;
+    font-family: 'Gibson SemiBold';
+    font-size: 9vmin;
+    line-height: 120%;
+    letter-spacing: .15vmin;
+
+    &.is-editor,
+    &.is-preview {
+      left: 5%;
+      bottom: 5%;
+      font-size: 300%;
+      letter-spacing: .2em;
+      width: 80%;
+    }
+
+    &.is-preview {
+      font-size: 150%;
+      letter-spacing: 0;
+    }
+  }
+
+  // Edit styles.
+  &--meta-input,
+  &--header-input {
+    @extend %responsive-header;
+
+    background: rgba($white, 0);
+    color: $white;
+    padding: 0;
+
+    // Override form styles.
+    &:focus {
+      border: 0;
+      color: $white;
+    }
+  }
+
+  &--header-input {
+    line-height: 1em;
+    vertical-align: bottom;
+  }
+
+  &--edit-image-settings  {
+    @extend %slide--edit-image-settings;
+
+    // Avoid overlap with textboxes.
+    top: 50%;
+    right: 5%;
+  }
+}
+
+
