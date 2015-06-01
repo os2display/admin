@@ -273,6 +273,16 @@
     margin-bottom: 2em;
   }
 
+  &--static-color-items {
+    margin: 0 auto;
+    text-align: left;
+    width: 11em;
+  }
+
+  &--static-color-item {
+    margin-right: .5em;
+  }
+
 
 /* Add/edit events for calendar template
    ========================================================================== */
