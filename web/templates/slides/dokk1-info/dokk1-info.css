@@ -334,6 +334,7 @@ table {
   color: #fff;
   font: 1em/1.5 'Gibson Light', sans-serif; }
   .dokk1-info--meta, .dokk1-info--header {
+    font-family: 'Gibson Light', sans-serif;
     position: absolute;
     left: 6vmin;
     right: 6vmin; }
