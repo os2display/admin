@@ -1,0 +1,22 @@
+{
+  "id": "mso-iframe",
+  "name": "MSO iFrame",
+  "icon": "mso-iframe.png",
+  "paths": {
+    "live": "mso-iframe.html",
+    "edit": "mso-iframe-edit.html",
+    "preview": "mso-iframe-preview.html",
+    "css": "mso-iframe.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "source": "",
+    "framewidth": "100%",
+    "bgcolor": "#ccc"
+  }
+}

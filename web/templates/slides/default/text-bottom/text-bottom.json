@@ -1,0 +1,32 @@
+{
+  "id": "text-bottom",
+  "name": "Tekst i bunden",
+  "icon": "text-bottom.png",
+  "paths": {
+    "live": "text-bottom.html",
+    "edit": "text-bottom-edit.html",
+    "preview": "text-bottom.html",
+    "css": "text-bottom.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": "",
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
+  }
+}

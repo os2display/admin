@@ -12,6 +12,7 @@ namespace Indholdskanalen\MainBundle\Services;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Indholdskanalen\MainBundle\Entity\ScreenTemplate;
+use Indholdskanalen\MainBundle\Entity\SlideTemplate;
 
 /**
  * Class TemplateService
@@ -37,106 +38,128 @@ class TemplateService extends ContainerAware {
    * Gets all slide templates from the 'templates_slides_directory' defined in parameters.yml.
    *
    * @return array
-   *   array of slideTemplates.
+   *   Slide Templates.
    */
   public function getSlideTemplates() {
-    if ($this->slideTemplates) {
-      return $this->slideTemplates;
-    }
-
-    $this->slideTemplates = array();
-    $enabledTemplates = $this->container->getParameter('templates_slides_enabled');
-
-    $path = $this->container->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('templates_slides_directory');
-    $serverAddress = $this->container->getParameter('absolute_path_to_server') . '/' . $this->container->getParameter('templates_slides_directory');
-
-    // Iterate through templates directory (configurable).
-    if ($handle = opendir($path)) {
-      while (false !== ($entry = readdir($handle))) {
-        if (is_dir($path . '/' . $entry) && $entry !== '.' && $entry !== '..') {
-          if (!in_array($entry, $enabledTemplates)) {
-            continue;
-          }
-
-          // Read config.json for template
-          $str = file_get_contents($path . $entry . '/' . $entry . '.json');
-          $obj = json_decode($str);
-
-          $obj->icon = $serverAddress . $entry . '/' . $obj->icon;
-
-          $obj->paths->live = $serverAddress . $entry . '/' . $obj->paths->live;
-          $obj->paths->edit = $serverAddress . $entry . '/' . $obj->paths->edit;
-          $obj->paths->preview = $serverAddress . $entry . '/' . $obj->paths->preview;
-          $obj->paths->css = $serverAddress . $entry . '/' . $obj->paths->css;
-
-          $this->slideTemplates[$entry] = $obj;
-        }
-      }
-
-      closedir($handle);
-    }
-
-    return $this->slideTemplates;
+    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findByEnabled(TRUE);
   }
 
   /**
    * Gets all screen templates from the 'templates_screens_directory' defined in parameters.yml.
+   *
+   * @return array
+   *   array of screen templates.
    */
   public function getScreenTemplates() {
     return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findByEnabled(TRUE);
   }
 
   /**
-   * Load templates into database.
+   * Load the slide templates from the disc to the database.
    */
-  public function loadTemplates() {
+  private function loadSlideTemplates() {
+    // Get database hooks.
+    $doctrine = $this->container->get('doctrine');
+    $templateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:SlideTemplate');
+    $entityManager = $doctrine->getManager();
+
+    // Get parameters.
+    $path = $this->container->get('kernel')->getRootDir() . '/../web/templates/slides';
+    $serverAddress = $this->container->getParameter('absolute_path_to_server') . '/templates/slides';
+
+    $it = new \RecursiveDirectoryIterator($path);
+    foreach (new \RecursiveIteratorIterator($it) as $file)  {
+      $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+      $dir = explode('/../web/templates/slides', pathinfo($file, PATHINFO_DIRNAME));
+      $dir = $dir[1];
+
+      if ($ext === 'json') {
+        // Read config.json for template
+        $str = file_get_contents($file);
+        $obj = json_decode($str);
+
+        // Try to load the template.
+        $template = $templateRepository->findOneById($obj->id);
+
+        // Check if the template was loaded, if not create a new template entity.
+        if (!$template) {
+          $template = new SlideTemplate();
+          $template->setId($obj->id);
+          $template->setName($obj->name);
+          $template->setEnabled(false);
+        }
+
+        // Set the template values on the entity.
+        $template->setPathIcon($serverAddress . $dir . '/' . $obj->icon);
+        $template->setPathLive($serverAddress . $dir . '/' . $obj->paths->live);
+        $template->setPathEdit($serverAddress . $dir . '/' . $obj->paths->edit);
+        $template->setPathCss($serverAddress . $dir . '/' . $obj->paths->css);
+        $template->setPathPreview($serverAddress . $dir . '/' . $obj->paths->preview);
+        $template->setPath($serverAddress . $dir . '/');
+        $template->setOrientation($obj->orientation);
+        $template->setEmptyOptions($obj->empty_options);
+        $template->setIdealDimensions($obj->ideal_dimensions);
+        $template->setMediaType($obj->media_type);
+        if (isset($obj->slide_type)) {
+          $template->setSlideType($obj->slide_type);
+        }
+
+        // Ensure that the entity is managed.
+        $entityManager->persist($template);
+      }
+    }
+
+    // Make it stick in the database.
+    $entityManager->flush();
+  }
+
+  /**
+   * Load the screen templates from the disc to the database.
+   */
+  private function loadScreenTemplates() {
     // Get database hooks.
     $doctrine = $this->container->get('doctrine');
     $templateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ScreenTemplate');
     $entityManager = $doctrine->getManager();
 
-    $existingTemplates = $templateRepository->findAll();
-
     // Get parameters.
-    $enabledTemplates = $this->container->getParameter('templates_screens_enabled');
-    $path = $this->container->get('kernel')
-        ->getRootDir() . '/../web/' . $this->container->getParameter('templates_screens_directory');
-    $serverAddress = $this->container->getParameter('absolute_path_to_server') . '/' . $this->container->getParameter('templates_screens_directory');
+    $path = $this->container->get('kernel')->getRootDir() . '/../web/templates/screens';
+    $serverAddress = $this->container->getParameter('absolute_path_to_server') . '/templates/screens';
 
-    // Loop over enable templates from the configuration.
-    foreach($enabledTemplates as $entry) {
-      // Read .json for template
-      $str = file_get_contents($path . $entry . '/' . $entry . '.json');
-      $obj = json_decode($str);
+    $it = new \RecursiveDirectoryIterator($path);
+    foreach (new \RecursiveIteratorIterator($it) as $file)  {
+      $ext = pathinfo($file, PATHINFO_EXTENSION);
 
-      // Try to load the template.
-      $template = $templateRepository->findOneById($obj->id);
+      $dir = explode('/../web/templates/screens', pathinfo($file, PATHINFO_DIRNAME));
+      $dir = $dir[1];
 
-      // Check if the template was loaded, if not create a new template entity.
-      if (!$template) {
-        $template = new ScreenTemplate();
-        $template->setId($obj->id);
-        $template->setName($obj->name);
-      }
+      if ($ext === 'json') {
+        // Read config.json for template
+        $str = file_get_contents($file);
+        $obj = json_decode($str);
 
-      // Set the template values on the entity.
-      $template->setPathIcon($serverAddress . $entry . '/' . $obj->icon);
-      $template->setPathLive($serverAddress . $entry . '/' . $obj->paths->live);
-      $template->setPathEdit($serverAddress . $entry . '/' . $obj->paths->edit);
-      $template->setPathCss($serverAddress . $entry . '/' . $obj->paths->css);
-      $template->setPath($serverAddress . $entry . '/');
-      $template->setOrientation($obj->orientation);
+        // Try to load the template.
+        $template = $templateRepository->findOneById($obj->id);
 
-      $template->setEnabled(true);
+        // Check if the template was loaded, if not create a new template entity.
+        if (!$template) {
+          $template = new ScreenTemplate();
+          $template->setId($obj->id);
+          $template->setName($obj->name);
+          $template->setEnabled(false);
+        }
 
-      // Ensure that the entity is managed.
-      $entityManager->persist($template);
-    }
+        // Set the template values on the entity.
+        $template->setPathIcon($serverAddress . $dir . '/' . $obj->icon);
+        $template->setPathLive($serverAddress . $dir . '/' . $obj->paths->live);
+        $template->setPathEdit($serverAddress . $dir . '/' . $obj->paths->edit);
+        $template->setPathCss($serverAddress . $dir . '/' . $obj->paths->css);
+        $template->setPath($serverAddress . '/' . $dir);
+        $template->setOrientation($obj->orientation);
 
-    // Remove templates that are not in parameters and the disk.
-    foreach ($existingTemplates as $existingTemplate) {
-      if (!in_array($existingTemplate->getId(), $enabledTemplates)) {
-        $existingTemplate->setEnabled(false);
+        // Ensure that the entity is managed.
+        $entityManager->persist($template);
       }
     }
 
@@ -151,5 +174,13 @@ class TemplateService extends ContainerAware {
         $middlewareService->pushScreenUpdate($screen);
       }
     }
+  }
+
+  /**
+   * Load templates into database.
+   */
+  public function loadTemplates() {
+    $this->loadScreenTemplates();
+    $this->loadSlideTemplates();
   }
 }

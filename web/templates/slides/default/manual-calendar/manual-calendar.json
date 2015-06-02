@@ -1,0 +1,34 @@
+{
+  "id": "manual-calendar",
+  "name": "Manuel kalender",
+  "icon": "manual-calendar.png",
+  "paths": {
+    "live": "manual-calendar.html",
+    "edit": "manual-calendar-edit.html",
+    "preview": "manual-calendar.html",
+    "css": "manual-calendar.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": "",
+    "displayitems": "7",
+    "eventitems": [],
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
+  }
+}

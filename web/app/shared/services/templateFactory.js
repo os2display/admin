@@ -48,19 +48,20 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
     factory.getSlideTemplate = function (id) {
       var defer = $q.defer();
 
-      if (slideTemplates !== null) {
-        defer.resolve(slideTemplates[id]);
-      }
-      else {
-        factory.getSlideTemplates().then(
-          function (data) {
-            defer.resolve(data[id]);
-          },
-          function (reason) {
-            defer.reject(reason);
+      factory.getSlideTemplates().then(
+        function (data) {
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].id === id) {
+              defer.resolve(data[i]);
+              return;
+            }
           }
-        );
-      }
+          defer.reject(404);
+        },
+        function (reason) {
+          defer.reject(reason);
+        }
+      );
 
       return defer.promise;
     };

@@ -29,11 +29,11 @@ class TemplatesController extends Controller {
   public function templatesGetSlidesAction() {
     $templateService = $this->container->get('indholdskanalen.template_service');
     $templates = $templateService->getSlideTemplates();
+    $serializer = $this->container->get('jms_serializer');
 
     // Create response.
-	  $response = new Response();
-	  $response->headers->set('Content-Type', 'application/json');
-    $response->setContent(json_encode($templates));
+    $response = new JsonResponse();
+    $response->setContent($serializer->serialize($templates, 'json', SerializationContext::create()->setGroups(array('api'))));
 
     return $response;
   }
