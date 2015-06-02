@@ -102,3 +102,40 @@
     width: 9em;
   }
 }
+
+.presentation--header,
+.presentation--footer {
+  @extend %presentation--item;
+
+  height: 3em;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  &-inner {
+    @extend %presentation--item-inner;
+  }
+}
+
+
+.presentation--header-text {
+  color: $gray;
+  margin: 0 0 0 1em;
+  text-align: left;
+  width: 50%;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.presentation--footer-text {
+  color: #b3b3b3;
+  margin: 0 1em 0 0;
+  width: 50%;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  padding-left: 48%;
+}
