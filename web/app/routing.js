@@ -19,6 +19,10 @@ angular.module('ikApp').config(function ($routeProvider) {
       controller: 'AdminSharingController',
       templateUrl: 'app/pages/adminSharing/admin-sharing.html'
     })
+    .when('/admin-templates', {
+      controller: 'AdminTemplatesController',
+      templateUrl: 'app/pages/adminTemplates/admin-templates.html'
+    })
 
     // Overviews
     .when('/channel-overview', {

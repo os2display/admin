@@ -35,13 +35,33 @@ class TemplateService extends ContainerAware {
   }
 
   /**
+   * Gets all enabled slide templates.
+   *
+   * @return array
+   *   Slide Templates.
+   */
+  public function getEnabledSlideTemplates() {
+    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findByEnabled(TRUE);
+  }
+
+  /**
+   * Gets all enabled screen templates.
+   *
+   * @return array
+   *   array of screen templates.
+   */
+  public function getEnabledScreenTemplates() {
+    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findByEnabled(TRUE);
+  }
+
+  /**
    * Gets all slide templates from the 'templates_slides_directory' defined in parameters.yml.
    *
    * @return array
    *   Slide Templates.
    */
-  public function getSlideTemplates() {
-    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findByEnabled(TRUE);
+  public function getAllSlideTemplates() {
+    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findAll();
   }
 
   /**
@@ -50,8 +70,60 @@ class TemplateService extends ContainerAware {
    * @return array
    *   array of screen templates.
    */
-  public function getScreenTemplates() {
-    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findByEnabled(TRUE);
+  public function getAllScreenTemplates() {
+    return $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:ScreenTemplate')->findAll();
+  }
+
+  /**
+   * Enable screen templates.
+   * @param $enabledTemplates
+   */
+  public function enableScreenTemplates($enabledTemplates) {
+    $doctrine = $this->container->get('doctrine');
+    $templateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ScreenTemplate');
+    $templates = $templateRepository->findAll();
+    $entityManager = $doctrine->getManager();
+
+    foreach ($templates as $template) {
+      $en = FALSE;
+
+      foreach ($enabledTemplates as $enabled) {
+        if ($enabled->id === $template->getId()) {
+          $en = TRUE;
+          break;
+        }
+      }
+
+      $template->setEnabled($en);
+    }
+
+    $entityManager->flush();
+  }
+
+  /**
+   * Enable slide templates.
+   * @param $enabledTemplates
+   */
+  public function enableSlideTemplates($enabledTemplates) {
+    $doctrine = $this->container->get('doctrine');
+    $templateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:SlideTemplate');
+    $templates = $templateRepository->findAll();
+    $entityManager = $doctrine->getManager();
+
+    foreach ($templates as $template) {
+      $en = FALSE;
+
+      foreach ($enabledTemplates as $enabled) {
+        if ($enabled->id === $template->getId()) {
+          $en = TRUE;
+          break;
+        }
+      }
+
+      $template->setEnabled($en);
+    }
+
+    $entityManager->flush();
   }
 
   /**

@@ -26,7 +26,7 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
         defer.resolve(slideTemplates);
       }
       else {
-        $http.get('/api/templates/slides')
+        $http.get('/api/templates/slides/enabled')
           .success(function (data) {
             slideTemplates = data;
             defer.resolve(slideTemplates);
@@ -78,7 +78,7 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
         defer.resolve(screenTemplates);
       }
       else {
-        $http.get('/api/templates/screens')
+        $http.get('/api/templates/screens/enabled')
           .success(function (data) {
             screenTemplates = data;
             defer.resolve(screenTemplates);
@@ -119,6 +119,82 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
           }
         );
       }
+
+      return defer.promise;
+    };
+
+    /**
+     * Save which templates are enabled.
+     *
+     * @param enabledScreenTemplates
+     * @param enabledSlideTemplates
+     */
+    factory.saveEnabledTemplates = function (enabledScreenTemplates, enabledSlideTemplates) {
+      var defer = $q.defer();
+
+      $http.post('/api/templates/save/enabled', {
+        "screens": enabledScreenTemplates,
+        "slides": enabledSlideTemplates
+      })
+        .success(function (data, status) {
+          $http.get('/api/templates/slides/enabled')
+            .success(function (data) {
+              slideTemplates = data;
+            })
+            .error(function (data, status) {
+              // @TODO: Handle this.
+            });
+          $http.get('/api/templates/screen/enabled')
+            .success(function (data) {
+              screenTemplates = data;
+            })
+            .error(function (data, status) {
+              // @TODO: Handle this.
+            });
+
+          defer.resolve(status);
+        })
+        .error(function (data, status) {
+          defer.reject(status);
+        });
+
+      return defer.promise;
+    };
+
+    /**
+     * Get all slide templates.
+     * @returns {*}
+     */
+    factory.getAllSlideTemplates = function () {
+      var defer = $q.defer();
+
+      $http.get('/api/templates/slides/all')
+        .success(function (data) {
+          slideTemplates = data;
+          defer.resolve(slideTemplates);
+        })
+        .error(function (data, status) {
+          defer.reject(status);
+        });
+
+      return defer.promise;
+    };
+
+    /**
+     * Get all screen templates.
+     * @returns {*}
+     */
+    factory.getAllScreenTemplates = function () {
+      var defer = $q.defer();
+
+      $http.get('/api/templates/screens/all')
+        .success(function (data) {
+          slideTemplates = data;
+          defer.resolve(slideTemplates);
+        })
+        .error(function (data, status) {
+          defer.reject(status);
+        });
 
       return defer.promise;
     };

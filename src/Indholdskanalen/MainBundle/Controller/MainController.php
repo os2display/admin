@@ -16,11 +16,11 @@ class MainController extends Controller {
   public function indexAction() {
     // Add paths to css files for activated templates.
     $templates = array();
-    $slideTemplates = $this->container->get('indholdskanalen.template_service')->getSlideTemplates();
+    $slideTemplates = $this->container->get('indholdskanalen.template_service')->getEnabledSlideTemplates();
     foreach ($slideTemplates as $template) {
       $templates[] = $template->getPathCss();
     }
-    $screenTemplates = $this->container->get('indholdskanalen.template_service')->getScreenTemplates();
+    $screenTemplates = $this->container->get('indholdskanalen.template_service')->getEnabledScreenTemplates();
     foreach ($screenTemplates as $template) {
       $templates[] = $template->getPathCss();
     }
