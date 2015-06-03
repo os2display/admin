@@ -114,9 +114,12 @@ class ScreenTemplate {
 
   /**
    * @param mixed $path
+   * @return ScreenTemplate
    */
   public function setPath($path) {
     $this->path = $path;
+
+    return $this;
   }
 
   /**
@@ -162,9 +165,12 @@ class ScreenTemplate {
 
   /**
    * @param mixed $enabled
+   * @return ScreenTemplate
    */
   public function setEnabled($enabled) {
     $this->enabled = $enabled;
+
+    return $this;
   }
 
   /**
@@ -298,9 +304,12 @@ class ScreenTemplate {
    * Remove screen
    *
    * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+   * @return ScreenTemplate
    */
   public function removeScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
     $this->screens->removeElement($screen);
+
+    return $this;
   }
 
   /**

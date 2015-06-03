@@ -359,9 +359,12 @@ class SharedChannel {
    * Remove channelScreenRegion
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   * @return SharedChannel
    */
   public function removeChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
     $this->channelScreenRegions->removeElement($channelScreenRegion);
+
+    return $this;
   }
 
   /**

@@ -282,6 +282,8 @@ table {
 
 /* Variables
    ========================================================================== */
+/* Link colors
+   ================================================================================================================== */
 /* Mixins
    ========================================================================== */
 /* Placeholders
@@ -315,3 +317,57 @@ table {
     border: 0; }
 .five-sections--region-content {
   position: relative; }
+.five-sections--header {
+  background: #fff;
+  position: relative; }
+  .five-sections--header-content {
+    color: #000;
+    padding-left: 1.1vw;
+    position: relative;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
+  .five-sections--header-text {
+    font-size: 2em;
+    margin: 0; }
+.five-sections--footer {
+  background: #fff;
+  position: relative; }
+.five-sections--clock {
+  color: #000;
+  font-size: 2em;
+  font-weight: bold;
+  left: 0;
+  right: 0;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  z-index: 1;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+.five-sections--logo {
+  position: absolute;
+  top: 0;
+  right: 0; }
+.five-sections--aarhus-logo {
+  left: 1.1vw;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+.five-sections--address {
+  color: #737373;
+  margin: 0;
+  position: absolute;
+  right: 1.1vw;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
