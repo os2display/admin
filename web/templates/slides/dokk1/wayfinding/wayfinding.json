@@ -1,0 +1,20 @@
+{
+  "id": "wayfinding",
+  "name": "Wayfinding billede (1080x160)",
+  "icon": "wayfinding.png",
+  "paths": {
+    "live": "wayfinding.html",
+    "edit": "wayfinding-edit.html",
+    "preview": "wayfinding.html",
+    "css": "wayfinding.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "160"
+  },
+  "empty_options": {
+    "bgcolor": "#ccc"
+  }
+}

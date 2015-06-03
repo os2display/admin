@@ -201,7 +201,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       $scope.slide.orientation = template.orientation;
 
       // Update options field.
-      angular.forEach(template.emptyoptions, function (value, key) {
+      angular.forEach(template.empty_options, function (value, key) {
         if ($scope.slide.options[key] === undefined) {
           $scope.slide.options[key] = value;
         }
@@ -213,7 +213,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       }
 
       // Get the media type from the template.
-      $scope.slide.media_type = template.mediatype;
+      $scope.slide.media_type = template.media_type;
     };
 
     /**

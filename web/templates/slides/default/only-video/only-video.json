@@ -1,0 +1,26 @@
+{
+  "id": "only-video",
+  "name": "Kun video",
+  "icon": "only-video.png",
+  "paths": {
+    "live": "only-video.html",
+    "edit": "only-video-edit.html",
+    "preview": "only-video-preview.html",
+    "css": "only-video.css"
+  },
+  "media_type": "video",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
+  }
+}

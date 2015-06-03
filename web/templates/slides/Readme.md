@@ -12,7 +12,9 @@ Organisation: this-library
 This results in the template name: this-library-my-template
 </pre>
 
-* make a new folder with the template name, in web/templates/slides/
+* make a new folder with the organization name, in web/templates/slides/
+
+* make a folder in the organization folder with the template name.
 
 * include the html, css, png and json files needed (see list below).
 

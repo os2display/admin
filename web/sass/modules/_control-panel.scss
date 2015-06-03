@@ -25,15 +25,18 @@
 }
 
 %control-panel--tab {
-  position: absolute;
-  margin-top: 6em;
   margin-bottom: 7em;
   overflow-y: auto;
+  position: absolute;
   width: 100%;
   padding: 2em;
   box-sizing: border-box;
   bottom: 0;
   top: 0;
+
+  &.has-menu {
+    margin-top: 6em;
+  }
 }
 
 

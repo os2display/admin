@@ -175,9 +175,12 @@ class Slide {
    * Set calendarEvents.
    *
    * @param $calendarEvents
+   * @return Slide
    */
   public function setCalendarEvents($calendarEvents) {
     $this->calendarEvents = $calendarEvents;
+
+    return $this;
   }
 
   /**
@@ -193,18 +196,24 @@ class Slide {
    * Set calendarInterestPeriod.
    *
    * @param $calendarInterestPeriod
+   * @return Slide
    */
   public function setCalendarInterestPeriod($calendarInterestPeriod) {
     $this->calendarInterestPeriod = $calendarInterestPeriod;
+
+    return $this;
   }
 
   /**
    * Set slideType
    *
    * @param string $slideType
+   * @return Slide
    */
   public function setSlideType($slideType) {
     $this->slideType = $slideType;
+
+    return $this;
   }
 
   /**
@@ -220,9 +229,12 @@ class Slide {
    * Set title
    *
    * @param string $title
+   * @return Slide
    */
   public function setTitle($title) {
     $this->title = $title;
+
+    return $this;
   }
 
   /**
@@ -238,9 +250,12 @@ class Slide {
    * Set orientation
    *
    * @param string $orientation
+   * @return Slide
    */
   public function setOrientation($orientation) {
     $this->orientation = $orientation;
+
+    return $this;
   }
 
   /**
@@ -256,9 +271,12 @@ class Slide {
    * Set template
    *
    * @param \string $template
+   * @return Slide
    */
   public function setTemplate($template) {
     $this->template = $template;
+
+    return $this;
   }
 
   /**
@@ -278,9 +296,12 @@ class Slide {
    * Set user
    *
    * @param string $user
+   * @return Slide
    */
   public function setUser($user) {
     $this->user = $user;
+
+    return $this;
   }
 
   /**
@@ -296,9 +317,12 @@ class Slide {
    * Set options
    *
    * @param string $options
+   * @return Slide
    */
   public function setOptions($options) {
     $this->options = $options;
+
+    return $this;
   }
 
   /**
@@ -371,9 +395,12 @@ class Slide {
    * Remove channelSlideOrder
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
+   * @return Slide
    */
   public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder) {
     $this->channelSlideOrders->removeElement($channelSlideOrder);
+
+    return $this;
   }
 
   /**
@@ -464,9 +491,12 @@ class Slide {
    * Remove mediaOrder
    *
    * @param \Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder
+   * @return Slide
    */
   public function removeMediaOrder(\Indholdskanalen\MainBundle\Entity\MediaOrder $mediaOrder) {
     $this->mediaOrders->removeElement($mediaOrder);
+
+    return $this;
   }
 
   /**

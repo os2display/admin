@@ -1,0 +1,11 @@
+{
+  "id": "full-screen-portrait",
+  "name": "Fuld skærm vertikal",
+  "icon": "full-screen-portrait.png",
+  "paths": {
+    "live": "full-screen-portrait-live.html",
+    "edit": "full-screen-portrait-edit.html",
+    "css": "full-screen-portrait.css"
+  },
+  "orientation": "portrait"
+}

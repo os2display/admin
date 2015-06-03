@@ -42,7 +42,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
                   $scope.loading = false;
                 },
                 function error(reason) {
-                  itkLogFactory.error("Skabelonernen blev ikke loaded", reason);
+                  itkLogFactory.error("Skabelonerne blev ikke loaded", reason);
                 }
               );
             }

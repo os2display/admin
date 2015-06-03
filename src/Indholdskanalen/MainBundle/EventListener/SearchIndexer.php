@@ -81,11 +81,14 @@ class SearchIndexer {
     // We will not send user data to ES.
     // Ignore ChannelSlideOrders and MediaOrders as well.
     if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
-        $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
-        $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder' ||
-        $type === 'Indholdskanalen\MainBundle\Entity\SharingIndex' ||
-        $type === 'Indholdskanalen\MainBundle\Entity\ScreenTemplate' ||
-        $type === 'Indholdskanalen\MainBundle\Entity\ChannelScreenRegion') {
+      $type === 'Indholdskanalen\MainBundle\Entity\ChannelScreenRegion' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\ScreenTemplate' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\SharedChannel' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\SharingIndex' ||
+      $type === 'Indholdskanalen\MainBundle\Entity\SlideTemplate'
+    ) {
       return FALSE;
     }
 
@@ -102,7 +105,8 @@ class SearchIndexer {
     $url = $this->container->getParameter('search_host');
     $path = $this->container->getParameter('search_path');
 
-    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()->setGroups(array('search')));
+    $data = $this->serializer->serialize($params, 'json', SerializationContext::create()
+        ->setGroups(array('search')));
 
     // Send the request.
     $result = $this->utilityService->curl($url . $path, $method, $data, 'search');

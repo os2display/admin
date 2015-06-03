@@ -49,15 +49,16 @@ class ScreenTemplate {
   protected $pathEdit;
 
   /**
-   * @ORM\Column(name="path_preview", type="string")
-   */
-  protected $pathPreview;
-
-  /**
    * @ORM\Column(name="path_css", type="string")
    * @Groups({"middleware"})
    */
   protected $pathCss;
+
+  /**
+   * @ORM\Column(name="path", type="string")
+   * @Groups({"middleware"})
+   */
+  protected $path;
 
   /**
    * @ORM\Column(name="orientation", type="string")
@@ -76,6 +77,14 @@ class ScreenTemplate {
    */
   protected $enabled;
 
+
+  /**
+   * Constructor
+   */
+  public function __construct() {
+    $this->screens = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
   /**
    * Get the paths virtual property.
    *
@@ -90,10 +99,27 @@ class ScreenTemplate {
       'icon' => $this->getPathIcon(),
       'live' => $this->getPathLive(),
       'edit' => $this->getPathEdit(),
-      'preview' => $this->getPathPreview(),
-      'css' => $this->getPathCss()
+      'css' => $this->getPathCss(),
+      'path' => $this->getPath(),
     );
     return $result;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPath() {
+    return $this->path;
+  }
+
+  /**
+   * @param mixed $path
+   * @return ScreenTemplate
+   */
+  public function setPath($path) {
+    $this->path = $path;
+
+    return $this;
   }
 
   /**
@@ -139,9 +165,12 @@ class ScreenTemplate {
 
   /**
    * @param mixed $enabled
+   * @return ScreenTemplate
    */
   public function setEnabled($enabled) {
     $this->enabled = $enabled;
+
+    return $this;
   }
 
   /**
@@ -217,27 +246,6 @@ class ScreenTemplate {
   }
 
   /**
-   * Set pathPreview
-   *
-   * @param string $pathPreview
-   * @return ScreenTemplate
-   */
-  public function setPathPreview($pathPreview) {
-    $this->pathPreview = $pathPreview;
-
-    return $this;
-  }
-
-  /**
-   * Get pathPreview
-   *
-   * @return string
-   */
-  public function getPathPreview() {
-    return $this->pathPreview;
-  }
-
-  /**
    * Set pathCss
    *
    * @param string $pathCss
@@ -278,4 +286,39 @@ class ScreenTemplate {
   public function getOrientation() {
     return $this->orientation;
   }
+
+
+  /**
+   * Add screen
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+   * @return ScreenTemplate
+   */
+  public function addScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
+    $this->screens[] = $screen;
+
+    return $this;
+  }
+
+  /**
+   * Remove screen
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+   * @return ScreenTemplate
+   */
+  public function removeScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
+    $this->screens->removeElement($screen);
+
+    return $this;
+  }
+
+  /**
+   * Get screens
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getScreens() {
+    return $this->screens;
+  }
+
 }

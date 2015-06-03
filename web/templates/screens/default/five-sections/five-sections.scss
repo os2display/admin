@@ -1,0 +1,37 @@
+@import "compass/css3";
+@import "../../_shared-base-screens.scss";
+
+
+.five-sections {
+  &--inner {
+    font-size: 0; // inline-block fix.
+    margin: 0 auto;
+  }
+
+  &--region-horizontal {
+    border-right: 1px solid $white;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &--region-vertical {
+    border-bottom: 1px solid $white;
+    box-sizing: border-box;
+    display: block;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &--region-content {
+    @extend %presentation--item-inner;
+
+    position: relative;
+  }
+}

@@ -304,9 +304,12 @@ class Channel {
    * Remove channelSlideOrder
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
+   * @return Channel
    */
   public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder) {
     $this->channelSlideOrders->removeElement($channelSlideOrder);
+
+    return $this;
   }
 
   /**
@@ -475,10 +478,13 @@ class Channel {
    * Remove SharingIndex
    *
    * @param \Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex
+   * @return Channel
    */
   public function removeSharingIndex(\Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex) {
     $sharingIndex->removeChannel($this);
     $this->sharingIndexes->removeElement($sharingIndex);
+
+    return $this;
   }
 
   /**
@@ -507,9 +513,12 @@ class Channel {
    * Remove channelScreenRegion
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   * @return Channel
    */
   public function removeChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
     $this->channelScreenRegions->removeElement($channelScreenRegion);
+
+    return $this;
   }
 
   /**

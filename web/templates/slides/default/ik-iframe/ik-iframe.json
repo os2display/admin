@@ -1,0 +1,22 @@
+{
+  "id": "ik-iframe",
+  "name": "iFrame",
+  "icon": "ik-iframe.png",
+  "paths": {
+    "live": "ik-iframe.html",
+    "edit": "ik-iframe-edit.html",
+    "preview": "ik-iframe-preview.html",
+    "css": "ik-iframe.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "source": "",
+    "framewidth": "100%",
+    "bgcolor": "#ccc"
+  }
+}

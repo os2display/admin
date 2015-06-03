@@ -74,9 +74,12 @@ class SharingIndex {
    * Set name
    *
    * @param string $name
+   * @return SharingIndex
    */
   public function setName($name) {
     $this->name = $name;
+
+    return $this;
   }
 
   /**
@@ -93,9 +96,12 @@ class SharingIndex {
    * Set enabled
    *
    * @param boolean $enabled
+   * @return SharingIndex
    */
   public function setEnabled($enabled) {
     $this->enabled = $enabled;
+
+    return $this;
   }
 
   /**
@@ -111,9 +117,12 @@ class SharingIndex {
    * Set index
    *
    * @param string $index
+   * @return SharingIndex
    */
   public function setIndex($index) {
     $this->index = $index;
+
+    return $this;
   }
 
   /**
@@ -141,9 +150,12 @@ class SharingIndex {
    * Remove channel
    *
    * @param \Indholdskanalen\MainBundle\Entity\Channel $channel
+   * @return SharingIndex
    */
   public function removeChannel(\Indholdskanalen\MainBundle\Entity\Channel $channel) {
     $this->channels->removeElement($channel);
+
+    return $this;
   }
 
   /**
