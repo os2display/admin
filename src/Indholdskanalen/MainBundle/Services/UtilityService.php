@@ -83,7 +83,7 @@ class UtilityService extends ContainerAware {
 
     // If unauthenticated, reauthenticate and retry.
     if ($http_status === 401) {
-      $auth = $token = $this->authenticationService->getAuthentication($prefix, true);
+      $auth = $this->authenticationService->getAuthentication($prefix, true);
 
       // Execute.
       $ch = $this->buildQuery($url, $method, $auth['token'], $data);

@@ -101,10 +101,6 @@ class KobaService {
     throw new HttpException($http_status);
   }
 
-  function bookingsCmp($a, $b) {
-    return strcmp($a["start_time"], $b["start_time"]);
-  }
-
   /**
    * Update the calendar events for calendar slides.
    */
