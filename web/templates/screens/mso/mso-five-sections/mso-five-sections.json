@@ -7,5 +7,8 @@
     "edit": "mso-five-sections-edit.html",
     "css": "mso-five-sections.css"
   },
+  "tools": {
+    "header-footer": "tools/mso-header-footer-tool.html"
+  },
   "orientation": "landscape"
 }
