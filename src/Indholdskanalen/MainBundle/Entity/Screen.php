@@ -130,9 +130,12 @@ class Screen {
    * Set options
    *
    * @param string $options
+   * @return Screen
    */
   public function setOptions($options) {
     $this->options = $options;
+
+    return $this;
   }
 
   /**
@@ -199,9 +202,12 @@ class Screen {
    * Set token
    *
    * @param $token
+   * @return Screen
    */
   public function setToken($token) {
     $this->token = $token;
+
+    return $this;
   }
 
   /**
@@ -217,9 +223,12 @@ class Screen {
    * Set activation code
    *
    * @param $activationCode
+   * @return Screen
    */
   public function setActivationCode($activationCode) {
     $this->activationCode = $activationCode;
+
+    return $this;
   }
 
   /**
@@ -302,9 +311,12 @@ class Screen {
    * Remove channelScreenRegion
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   * @return Screen
    */
   public function removeChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
     $this->channelScreenRegions->removeElement($channelScreenRegion);
+
+    return $this;
   }
 
   /**
