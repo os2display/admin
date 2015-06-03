@@ -163,7 +163,7 @@ class TemplateService extends ContainerAware {
           $template->setEnabled(false);
         }
 
-        // Set the template values on the entity. The css, live, edit, preview files need to be prefixed with their last
+        // Set the template values on the entity. The css, live, edit and preview files need to be prefixed with their last
         // modified timestamp to ensure they are load by the screen clients.
         $template->setPathIcon($serverAddress . $dir . '/' . $obj->icon);
         $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->live));
@@ -186,25 +186,6 @@ class TemplateService extends ContainerAware {
 
     // Make it stick in the database.
     $entityManager->flush();
-  }
-
-  /**
-   * Build template file paths.
-   *
-   * @param $serverAddress
-   *   The http address of this server.
-   * @param $path
-   *   Base file path on the server.
-   * @param $dir
-   *   Relative "web" directory on the server-
-   * @param $file
-   *   The filename.
-   *
-   * @return string
-   *   URL to the file with it's modified timestamp prefixed.
-   */
-  private function buildFilePath($serverAddress, $path, $dir, $file) {
-    return $serverAddress . $dir . '/' . $file . '?' . filemtime($path . '/' . $dir . '/' . $file);
   }
 
   /**
@@ -243,11 +224,12 @@ class TemplateService extends ContainerAware {
           $template->setEnabled(false);
         }
 
-        // Set the template values on the entity.
+        // Set the template values on the entity. The css, live and edit files need to be prefixed with their last
+        // modified timestamp to ensure they are load by the screen clients.
         $template->setPathIcon($serverAddress . $dir . '/' . $obj->icon);
-        $template->setPathLive($serverAddress . $dir . '/' . $obj->paths->live);
-        $template->setPathEdit($serverAddress . $dir . '/' . $obj->paths->edit);
-        $template->setPathCss($serverAddress . $dir . '/' . $obj->paths->css);
+        $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->live));
+        $template->setPathEdit($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->edit));
+        $template->setPathCss($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->css));
         $template->setPath($serverAddress . '/' . $dir);
         $template->setOrientation($obj->orientation);
 
@@ -267,6 +249,25 @@ class TemplateService extends ContainerAware {
         $middlewareService->pushScreenUpdate($screen);
       }
     }
+  }
+
+  /**
+   * Build template file paths.
+   *
+   * @param $serverAddress
+   *   The http address of this server.
+   * @param $path
+   *   Base file path on the server.
+   * @param $dir
+   *   Relative "web" directory on the server-
+   * @param $file
+   *   The filename.
+   *
+   * @return string
+   *   URL to the file with it's modified timestamp prefixed.
+   */
+  private function buildFilePath($serverAddress, $path, $dir, $file) {
+    return $serverAddress . $dir . '/' . $file . '?' . filemtime($path . '/' . $dir . '/' . $file);
   }
 
   /**
