@@ -1,0 +1,30 @@
+{
+  "id": "header-top",
+  "name": "Header i toppen",
+  "icon": "header-top.png",
+  "type": "responsive",
+  "paths": {
+    "live": "header-top-live.html",
+    "edit": "header-top-edit.html",
+    "preview": "header-top-preview.html",
+    "css": "header-top.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": "60",
+    "headerbgcolor": "#379f40",
+    "headertextcolor": "rgba(255,255,255,1)",
+    "bgcolor": "rgba(255,255,255,0.90)",
+    "textcolor": "rgba(0,0,0,1)",
+    "headline": "",
+    "text": "",
+    "responsive_fontsize": "3",
+    "defaultImage": "header-top.png"
+  }
+}
+

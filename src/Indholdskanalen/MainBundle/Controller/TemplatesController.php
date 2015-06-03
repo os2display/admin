@@ -21,34 +21,14 @@ class TemplatesController extends Controller {
   /**
    * Get available slide templates.
    *
-   * @Route("/slides")
+   * @Route("/slides/enabled")
    * @Method("GET")
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function templatesGetSlidesAction() {
     $templateService = $this->container->get('indholdskanalen.template_service');
-    $templates = $templateService->getSlideTemplates();
-
-    // Create response.
-	  $response = new Response();
-	  $response->headers->set('Content-Type', 'application/json');
-    $response->setContent(json_encode($templates));
-
-    return $response;
-  }
-
-  /**
-   * Get available screen templates.
-   *
-   * @Route("/screens")
-   * @Method("GET")
-   *
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function templatesGetScreensAction() {
-    $templateService = $this->container->get('indholdskanalen.template_service');
-    $templates = $templateService->getScreenTemplates();
+    $templates = $templateService->getEnabledSlideTemplates();
     $serializer = $this->container->get('jms_serializer');
 
     // Create response.
@@ -56,5 +36,85 @@ class TemplatesController extends Controller {
     $response->setContent($serializer->serialize($templates, 'json', SerializationContext::create()->setGroups(array('api'))));
 
     return $response;
+  }
+
+  /**
+   * Get available screen templates.
+   *
+   * @Route("/screens/enabled")
+   * @Method("GET")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function templatesGetScreensAction() {
+    $templateService = $this->container->get('indholdskanalen.template_service');
+    $templates = $templateService->getEnabledScreenTemplates();
+    $serializer = $this->container->get('jms_serializer');
+
+    // Create response.
+    $response = new JsonResponse();
+    $response->setContent($serializer->serialize($templates, 'json', SerializationContext::create()->setGroups(array('api'))));
+
+    return $response;
+  }
+
+  /**
+   * Get all screen templates.
+   *
+   * @Route("/screens/all")
+   * @Method("GET")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function templatesGetAllScreens() {
+    $templateService = $this->container->get('indholdskanalen.template_service');
+    $templates = $templateService->getAllScreenTemplates();
+    $serializer = $this->container->get('jms_serializer');
+
+    // Create response.
+    $response = new JsonResponse();
+    $response->setContent($serializer->serialize($templates, 'json', SerializationContext::create()->setGroups(array('api'))));
+
+    return $response;
+  }
+
+  /**
+   * Get all slide templates.
+   *
+   * @Route("/slides/all")
+   * @Method("GET")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function templatesGetAllSlides() {
+    $templateService = $this->container->get('indholdskanalen.template_service');
+    $templates = $templateService->getAllSlideTemplates();
+    $serializer = $this->container->get('jms_serializer');
+
+    // Create response.
+    $response = new JsonResponse();
+    $response->setContent($serializer->serialize($templates, 'json', SerializationContext::create()->setGroups(array('api'))));
+
+    return $response;
+  }
+
+  /**
+   * Get all slide templates.
+   *
+   * @Route("/save/enabled")
+   * @Method("POST")
+   *
+   * @param Request $request
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function templatesPostEnabled(Request $request) {
+    $body = json_decode($request->getContent());
+
+    $templateService = $this->container->get('indholdskanalen.template_service');
+    $templateService->enableScreenTemplates($body->screens);
+    $templateService->enableSlideTemplates($body->slides);
+
+    return new JsonResponse();
   }
 }

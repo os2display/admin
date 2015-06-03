@@ -135,6 +135,17 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
+      toggleStaticBackgroundColorEditor: function () {
+        $('html').toggleClass('is-locked');
+
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'app/shared/elements/slide/editors/background-editor-static-colors.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
+      },
       hideAllEditors: function () {
         $('html').removeClass('is-locked');
 

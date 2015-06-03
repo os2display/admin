@@ -14,6 +14,19 @@ class MainController extends Controller {
    * @Route("/")
    */
   public function indexAction() {
-    return $this->render('IndholdskanalenMainBundle:Main:index.html.twig');
+    // Add paths to css files for activated templates.
+    $templates = array();
+    $slideTemplates = $this->container->get('indholdskanalen.template_service')->getEnabledSlideTemplates();
+    foreach ($slideTemplates as $template) {
+      $templates[] = $template->getPathCss();
+    }
+    $screenTemplates = $this->container->get('indholdskanalen.template_service')->getEnabledScreenTemplates();
+    foreach ($screenTemplates as $template) {
+      $templates[] = $template->getPathCss();
+    }
+
+    return $this->render('IndholdskanalenMainBundle:Main:index.html.twig', array(
+      'templates' => $templates,
+    ));
   }
 }
