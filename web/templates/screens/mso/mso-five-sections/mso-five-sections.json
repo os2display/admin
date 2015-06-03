@@ -1,0 +1,11 @@
+{
+  "id": "mso-five-sections",
+  "name": "MSO femdelt",
+  "icon": "mso-five-sections.png",
+  "paths": {
+    "live": "mso-five-sections-live.html",
+    "edit": "mso-five-sections-edit.html",
+    "css": "mso-five-sections.css"
+  },
+  "orientation": "landscape"
+}

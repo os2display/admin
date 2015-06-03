@@ -139,11 +139,9 @@ class SerializationListener implements EventSubscriberInterface {
           $event->getVisitor()->addData('logo', $logoPath);
 
           // Set template paths
-          $templates = $this->templateService->getSlideTemplates();
-          $event->getVisitor()
-            ->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
-          $event->getVisitor()
-            ->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
+          $template = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findOneById($slide->getTemplate());
+          $event->getVisitor()->addData('template_path', $template->getPathLive());
+          $event->getVisitor()->addData('css_path', $template->getPathCss());
         }
         else {
           if (in_array('sharing', $groups)) {
@@ -192,13 +190,15 @@ class SerializationListener implements EventSubscriberInterface {
             $event->getVisitor()->addData('logo', $logoPath);
 
             // Set template paths
-            $templates = $this->templateService->getSlideTemplates();
+            print_r($slide->getTemplate());
+
+            $template = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findOneById($slide->getTemplate());
             $event->getVisitor()
-              ->addData('preview_path', $templates[$slide->getTemplate()]->paths->preview);
+              ->addData('preview_path', $template->getPathPreview());
             $event->getVisitor()
-              ->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
+              ->addData('template_path', $template->getPathLive());
             $event->getVisitor()
-              ->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
+              ->addData('css_path', $template->getPathCss());
           }
         }
       }

@@ -17,13 +17,10 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
   {# Import css files for templates. #}
-  {% for template in templates_slides_enabled %}
-    <link rel="stylesheet" href="{{ templates_slides_directory }}{{ template }}/{{ template }}.css">
+  {% for template in templates %}
+    <link rel="stylesheet" href="{{ template }}">
   {% endfor %}
 
-  {% for template in templates_screens_enabled %}
-    <link rel="stylesheet" href="{{ templates_screens_directory }}{{ template }}/{{ template }}.css">
-  {% endfor  %}
 {% endblock %}
 
 {% block scripts %}{% endblock %}

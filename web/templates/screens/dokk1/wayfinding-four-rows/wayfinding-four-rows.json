@@ -1,0 +1,11 @@
+{
+  "id": "wayfinding-four-rows",
+  "name": "Wayfinding - 4 rækker",
+  "icon": "wayfinding-four-rows.png",
+  "paths": {
+    "live": "wayfinding-four-rows-live.html",
+    "edit": "wayfinding-four-rows-edit.html",
+    "css": "wayfinding-four-rows.css"
+  },
+  "orientation": "portrait"
+}
