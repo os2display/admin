@@ -332,7 +332,7 @@ class ScreenTemplate {
    * @return ScreenTemplate
    */
   public function setTools(array $tools) {
-    $this->orientation = serialize($tools);
+    $this->tools = serialize($tools);
 
     return $this;
   }
@@ -343,6 +343,6 @@ class ScreenTemplate {
    * @return array
    */
   public function getTools() {
-    return unserialize($this->orientation);
+    return unserialize($this->tools);
   }
 }
