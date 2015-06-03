@@ -2106,6 +2106,12 @@ html.is-locked body {
       width: 15em; }
   .edit-menu--content-description {
     margin-bottom: 2em; }
+  .edit-menu--static-color-items {
+    margin: 0 auto;
+    text-align: left;
+    width: 11em; }
+  .edit-menu--static-color-item {
+    margin-right: .5em; }
   .edit-menu--calendar-date-template {
     border-bottom: 2px solid #b3b3b3;
     margin-bottom: 1em;
