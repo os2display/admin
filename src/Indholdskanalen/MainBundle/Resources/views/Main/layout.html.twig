@@ -17,9 +17,11 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
   {# Import css files for templates. #}
-  {% for template in templates %}
-    <link rel="stylesheet" href="{{ template }}">
-  {% endfor %}
+  {% if templates is defined %}
+    {% for template in templates %}
+      <link rel="stylesheet" href="{{ template }}">
+    {% endfor %}
+  {% endif %}
 
 {% endblock %}
 
