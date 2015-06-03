@@ -13,6 +13,8 @@ use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\MaxDepth;
 
+use JMS\Serializer\Annotation as JMS;
+
 /**
  * Extra
  *
@@ -86,6 +88,7 @@ class Screen {
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
    * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
+   * @JMS\Type("array<string, string>")
    */
   private $options;
 
