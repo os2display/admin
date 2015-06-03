@@ -129,7 +129,14 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      *   The tool and region to trigger.
      */
     $scope.triggerTool = function triggerTool(tool) {
-      $scope.toolbarTemplate = $scope.screen.template.tools[tool.name];
+      //Check if the current screen template provides the tool.
+      if ($scope.screen.template.tools.hasOwnProperty(tool.name)) {
+        $scope.toolbarTemplate = $scope.screen.template.tools[tool.name];
+      }
+      else {
+        // Fallback to default tools.
+        $scope.toolbarTemplate = 'app/shared/toolbars/' + tool.name + '.html';
+      }
       $scope.region = tool.region;
       $scope.displayToolbar = true;
     };
