@@ -459,7 +459,7 @@ class ZencoderProvider extends BaseProvider {
    * @param FormMapper $formMapper
    */
   public function buildCreateForm(FormMapper $formMapper) {
-    $formMapper->add('binaryContent', array(), array('type' => 'string'));
+    $formMapper->add('binaryContent', NULL, array('type' => 'string'));
   }
 
   /**
@@ -472,6 +472,6 @@ class ZencoderProvider extends BaseProvider {
     $formMapper->add('cdnIsFlushable');
     $formMapper->add('description');
     $formMapper->add('copyright');
-    $formMapper->add('binaryContent', array(), array('type' => 'string'));
+    $formMapper->add('binaryContent', NULL, array('type' => 'string'));
   }
 }

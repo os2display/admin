@@ -130,9 +130,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $emptyOptions
+   *
+   * @return SlideTemplate
    */
   public function setEmptyOptions($emptyOptions) {
     $this->emptyOptions = $emptyOptions;
+
+    return $this;
   }
 
   /**
@@ -144,9 +148,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $idealDimensions
+   *
+   * @return SlideTemplate
    */
   public function setIdealDimensions($idealDimensions) {
     $this->idealDimensions = $idealDimensions;
+
+    return $this;
   }
 
   /**
@@ -158,9 +166,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $mediaType
+   *
+   * @return SlideTemplate
    */
   public function setMediaType($mediaType) {
     $this->mediaType = $mediaType;
+
+    return $this;
   }
 
   /**
@@ -172,9 +184,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $orientation
+   *
+   * @return SlideTemplate
    */
   public function setOrientation($orientation) {
     $this->orientation = $orientation;
+
+    return $this;
   }
 
   /**
@@ -186,9 +202,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $pathPreview
+   *
+   * @return SlideTemplate
    */
   public function setPathPreview($pathPreview) {
     $this->pathPreview = $pathPreview;
+
+    return $this;
   }
 
   /**
@@ -200,9 +220,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $slideType
+   *
+   * @return SlideTemplate
    */
   public function setSlideType($slideType) {
     $this->slideType = $slideType;
+
+    return $this;
   }
 
   /**
@@ -214,9 +238,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $path
+   *
+   * @return SlideTemplate
    */
   public function setPath($path) {
     $this->path = $path;
+
+    return $this;
   }
 
   /**
@@ -228,9 +256,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $pathCss
+   *
+   * @return SlideTemplate
    */
   public function setPathCss($pathCss) {
     $this->pathCss = $pathCss;
+
+    return $this;
   }
 
   /**
@@ -242,9 +274,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $pathEdit
+   *
+   * @return SlideTemplate
    */
   public function setPathEdit($pathEdit) {
     $this->pathEdit = $pathEdit;
+
+    return $this;
   }
 
   /**
@@ -256,9 +292,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $pathIcon
+   *
+   * @return SlideTemplate
    */
   public function setPathIcon($pathIcon) {
     $this->pathIcon = $pathIcon;
+
+    return $this;
   }
 
   /**
@@ -270,9 +310,13 @@ class SlideTemplate {
 
   /**
    * @param mixed $pathLive
+   *
+   * @return SlideTemplate
    */
   public function setPathLive($pathLive) {
     $this->pathLive = $pathLive;
+
+    return $this;
   }
 
   /**
@@ -280,7 +324,7 @@ class SlideTemplate {
    *
    * @param string $id
    *
-   * @return ScreenTemplate
+   * @return SlideTemplate
    */
   public function setId($id) {
     $this->id = $id;
@@ -301,7 +345,7 @@ class SlideTemplate {
    * Set name
    *
    * @param string $name
-   * @return ScreenTemplate
+   * @return SlideTemplate
    */
   public function setName($name) {
     $this->name = $name;
@@ -327,8 +371,12 @@ class SlideTemplate {
 
   /**
    * @param mixed $enabled
+   *
+   * @return SlideTemplate
    */
   public function setEnabled($enabled) {
     $this->enabled = $enabled;
+
+    return $this;
   }
 }
