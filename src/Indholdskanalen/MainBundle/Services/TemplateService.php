@@ -159,9 +159,9 @@ class TemplateService extends ContainerAware {
         if (!$template) {
           $template = new SlideTemplate();
           $template->setId($obj->id);
-          $template->setName($obj->name);
           $template->setEnabled(false);
         }
+        $template->setName($obj->name);
 
         // Set the template values on the entity. The css, live, edit and preview files need to be prefixed with their last
         // modified timestamp to ensure they are load by the screen clients.
@@ -220,9 +220,9 @@ class TemplateService extends ContainerAware {
         if (!$template) {
           $template = new ScreenTemplate();
           $template->setId($obj->id);
-          $template->setName($obj->name);
           $template->setEnabled(false);
         }
+        $template->setName($obj->name);
 
         // Set the template values on the entity. The css, live and edit files need to be prefixed with their last
         // modified timestamp to ensure they are load by the screen clients.
