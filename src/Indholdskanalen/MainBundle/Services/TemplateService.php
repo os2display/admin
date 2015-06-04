@@ -233,6 +233,18 @@ class TemplateService extends ContainerAware {
         $template->setPath($serverAddress . '/' . $dir);
         $template->setOrientation($obj->orientation);
 
+        // Check if the template comes with any tools.
+        $template->setTools(array());
+        if (!empty($obj->tools)) {
+          // Ensure path is correct.
+          foreach ($obj->tools as &$tool) {
+            $tool = '/templates/screens' . $dir . '/' . $tool;
+          }
+
+          // Add the tools to the template.
+          $template->setTools((array) $obj->tools);
+        }
+
         // Ensure that the entity is managed.
         $entityManager->persist($template);
       }

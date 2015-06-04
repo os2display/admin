@@ -55,6 +55,11 @@ class SerializationListener implements EventSubscriberInterface {
         'class' => 'Indholdskanalen\MainBundle\Entity\Slide',
         'method' => 'onPostSlideSerialize'
       ),
+      array(
+        'event' => 'serializer.post_serialize',
+        'class' => 'Indholdskanalen\MainBundle\Entity\ScreenTemplate',
+        'method' => 'onPostScreenTemplateSerialize'
+      ),
     );
   }
 
@@ -80,6 +85,25 @@ class SerializationListener implements EventSubscriberInterface {
           }
 
           $event->getVisitor()->addData('urls', $urls);
+        }
+      }
+    );
+  }
+
+  /**
+   * Add fields when serializing screen templates.
+   *
+   * @param ObjectEvent $event
+   */
+  public function onPostScreenTemplateSerialize(ObjectEvent $event) {
+    $context = $event->getContext();
+    $context->attributes->get('groups')->map(
+      function (array $groups) use ($event) {
+        // API, Search Serialization
+        if (in_array('api', $groups) || in_array('api-bulk', $groups)) {
+          // Get tools as an array and add them to the output.
+          $tools = $event->getObject()->getTools();
+          $event->getVisitor()->addData('tools', $tools);
         }
       }
     );
