@@ -143,10 +143,11 @@ class TemplateService extends ContainerAware {
     foreach (new \RecursiveIteratorIterator($it) as $file)  {
       $ext = pathinfo($file, PATHINFO_EXTENSION);
 
-      $dir = explode('/../web/templates/slides', pathinfo($file, PATHINFO_DIRNAME));
-      $dir = $dir[1];
-
       if ($ext === 'json') {
+        // Get relative path.
+        $dir = explode('/../web/templates/slides', pathinfo($file, PATHINFO_DIRNAME));
+        $dir = $dir[1];
+
         // Read config.json for template
         $str = file_get_contents($file);
         $obj = json_decode($str);
@@ -158,16 +159,17 @@ class TemplateService extends ContainerAware {
         if (!$template) {
           $template = new SlideTemplate();
           $template->setId($obj->id);
-          $template->setName($obj->name);
           $template->setEnabled(false);
         }
+        $template->setName($obj->name);
 
-        // Set the template values on the entity.
+        // Set the template values on the entity. The css, live, edit and preview files need to be prefixed with their last
+        // modified timestamp to ensure they are load by the screen clients.
         $template->setPathIcon($serverAddress . $dir . '/' . $obj->icon);
-        $template->setPathLive($serverAddress . $dir . '/' . $obj->paths->live);
-        $template->setPathEdit($serverAddress . $dir . '/' . $obj->paths->edit);
-        $template->setPathCss($serverAddress . $dir . '/' . $obj->paths->css);
-        $template->setPathPreview($serverAddress . $dir . '/' . $obj->paths->preview);
+        $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->live));
+        $template->setPathEdit($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->edit));
+        $template->setPathCss($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->css));
+        $template->setPathPreview($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->preview));
         $template->setPath($serverAddress . $dir . '/');
         $template->setOrientation($obj->orientation);
         $template->setEmptyOptions($obj->empty_options);
@@ -218,17 +220,30 @@ class TemplateService extends ContainerAware {
         if (!$template) {
           $template = new ScreenTemplate();
           $template->setId($obj->id);
-          $template->setName($obj->name);
           $template->setEnabled(false);
         }
+        $template->setName($obj->name);
 
-        // Set the template values on the entity.
+        // Set the template values on the entity. The css, live and edit files need to be prefixed with their last
+        // modified timestamp to ensure they are load by the screen clients.
         $template->setPathIcon($serverAddress . $dir . '/' . $obj->icon);
-        $template->setPathLive($serverAddress . $dir . '/' . $obj->paths->live);
-        $template->setPathEdit($serverAddress . $dir . '/' . $obj->paths->edit);
-        $template->setPathCss($serverAddress . $dir . '/' . $obj->paths->css);
+        $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->live));
+        $template->setPathEdit($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->edit));
+        $template->setPathCss($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->css));
         $template->setPath($serverAddress . '/' . $dir);
         $template->setOrientation($obj->orientation);
+
+        // Check if the template comes with any tools.
+        $template->setTools(array());
+        if (!empty($obj->tools)) {
+          // Ensure path is correct.
+          foreach ($obj->tools as &$tool) {
+            $tool = '/templates/screens' . $dir . '/' . $tool;
+          }
+
+          // Add the tools to the template.
+          $template->setTools((array) $obj->tools);
+        }
 
         // Ensure that the entity is managed.
         $entityManager->persist($template);
@@ -246,6 +261,25 @@ class TemplateService extends ContainerAware {
         $middlewareService->pushScreenUpdate($screen);
       }
     }
+  }
+
+  /**
+   * Build template file paths.
+   *
+   * @param $serverAddress
+   *   The http address of this server.
+   * @param $path
+   *   Base file path on the server.
+   * @param $dir
+   *   Relative "web" directory on the server-
+   * @param $file
+   *   The filename.
+   *
+   * @return string
+   *   URL to the file with it's modified timestamp prefixed.
+   */
+  private function buildFilePath($serverAddress, $path, $dir, $file) {
+    return $serverAddress . $dir . '/' . $file . '?' . filemtime($path . '/' . $dir . '/' . $file);
   }
 
   /**
