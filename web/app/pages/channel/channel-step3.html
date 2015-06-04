@@ -22,6 +22,8 @@
       </div>
 
       <div data-ng-if="channel.schedule_repeat">
+        <input type="text" data-ng-model="channel.schedule_repeat_from" time-picker="">
+        <input type="text" data-ng-model="channel.schedule_repeat_to" time-picker="">
         <ik-checklist elements="days" selected="channel.schedule_repeat_days" identity="'id'" class="create-channel--checklist-days"></ik-checklist>
       </div>
     </div>

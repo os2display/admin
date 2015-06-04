@@ -14,6 +14,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     $scope.slides = [];
     $scope.channel = {};
 
+    // Days, for use with schedule day checklist
     $scope.days = [
       {"id": 1, "name": "Mandag"},
       {"id": 2, "name": "Tirsdag"},

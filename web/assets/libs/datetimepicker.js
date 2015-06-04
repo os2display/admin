@@ -8,7 +8,7 @@
  * Only a one way binding atm.
  */
 angular.module('datetimePicker', [])
-.directive('datetimePicker', function() {
+.directive('datetimePicker', function () {
   return {
     restrict: 'A',
     require: '^ngModel',
@@ -33,3 +33,19 @@ angular.module('datetimePicker', [])
     }
   }
 });
+
+angular.module('datetimePicker')
+.directive('timePicker',
+  function () {
+    return {
+      restrict: 'A',
+      require: '^ngModel',
+      link: function (scope, el) {
+        el.datetimepicker({
+          datepicker:false,
+          format:'H:i'
+        });
+      }
+    }
+  }
+);

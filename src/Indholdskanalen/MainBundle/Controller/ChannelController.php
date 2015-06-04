@@ -67,16 +67,28 @@ class ChannelController extends Controller {
       $channel->setTitle($post->title);
     }
     // Update fields.
-    if (isset($post->schedule_from)) {
-      $channel->setScheduleFrom($post->schedule_from);
+    if (isset($post->publish_from)) {
+      $channel->setPublishFrom($post->publish_from);
     }
     // Update fields.
-    if (isset($post->schedule_to)) {
-      $channel->setScheduleTo($post->schedule_to);
+    if (isset($post->publish_to)) {
+      $channel->setPublishTo($post->publish_to);
     }
     // Update fields.
     if (isset($post->schedule_repeat)) {
       $channel->setScheduleRepeat($post->schedule_repeat);
+    }
+    // Update fields.
+    if (isset($post->schedule_repeat_days)) {
+      $channel->setScheduleRepeatDays($post->schedule_repeat_days);
+    }
+    // Update fields.
+    if (isset($post->schedule_repeat_from)) {
+      $channel->setScheduleRepeatFrom($post->schedule_repeat_from);
+    }
+    // Update fields.
+    if (isset($post->schedule_repeat_to)) {
+      $channel->setScheduleRepeatTo($post->schedule_repeat_to);
     }
     $channel->setModifiedAt(time());
 
