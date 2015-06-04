@@ -14,6 +14,16 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     $scope.slides = [];
     $scope.channel = {};
 
+    $scope.days = [
+      {"id": 1, "name": "Mandag"},
+      {"id": 2, "name": "Tirsdag"},
+      {"id": 3, "name": "Onsdag"},
+      {"id": 4, "name": "Torsdag"},
+      {"id": 5, "name": "Fredag"},
+      {"id": 6, "name": "Lørdag"},
+      {"id": 0, "name": "Søndag"}
+    ];
+
     // Get all slides.
     slideFactory.getSlides().then(
       function (data) {

@@ -16,11 +16,14 @@
 
       <label class="create-channel--schedule-label">Planlægning</label>
       <div class="create-channel--published">
+        <span class="create-channel--published-checkbox-text">Planlægning aktiv?</span>
         <input class="create-channel--published-checkbox" type="checkbox" data-ng-model="channel.schedule_repeat">
-        <span class="create-channel--published-checkbox-text">.</span>
         <div class="create-channel--published-description">Angiv om kanalen kun skal vises i nedenstående interval.</div>
       </div>
 
+      <div data-ng-if="channel.schedule_repeat">
+        <ik-checklist elements="days" selected="channel.schedule_repeat_days" identity="'id'" class="create-channel--checklist-days"></ik-checklist>
+      </div>
     </div>
   </div>
 
