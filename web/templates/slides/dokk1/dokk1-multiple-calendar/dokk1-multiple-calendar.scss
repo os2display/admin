@@ -17,6 +17,18 @@
 @import "compass/css3";
 @import "../../_shared-base.scss";
 
+@font-face {
+  font-family: 'Gibson SemiBold';
+  src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Regular';
+  src: url("fonts/Gibson-Regular-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Light';
+  src: url("fonts/Gibson-Light-webfont.woff") format("woff");
+}
 
 
 /* Placeholders related to this document
@@ -31,213 +43,194 @@
 }
 
 
-
 /* Styles
    ========================================================================== */
+
 .dokk1-multiple-calendar {
-  height: 100%;
-  font-family: Arial, sans-serif;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  color: #fff;
+  font: 1em/1.5 'Gibson Light', sans-serif;
+  text-align: left;
 
-  @include background-size(cover);
+  position: relative;
+  min-height: 100%;
+  width: 100%;
 
-
-  &--inner {
-    height: 100%;
-    overflow: hidden;
-  }
-
-  &--header{
-    overflow: hidden;
-
-    &-input {
-      @extend %responsive-header;
-
-      padding: 0;
-
-      &:focus {
-        border: 0;
-      }
-    }
-  }
-
-  &--title-wrapper {
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 1.1vw;  // Padding used depends on view width.
-    width: 93%;
-
-    &.is-preview {
-      padding: 1em;
-    }
-  }
-
-   /* Header - Date styles */
-  &--day-inner,
-  &--header-title {
-    font-weight: bold;
-    font-size: 100%;
-    margin: 0;
-  }
-
-  &--day {
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 100%;
-    text-align: center;
-    display: inline-block;
-    vertical-align: top;
-    padding-top: .8vw;
-    position: relative;
-    width: 7%;
-
-    &.is-preview {
-      padding-top: .8em;
-    }
-  }
-
-  // The header height is dynamic depending on title. Hence we don't know the height of the day wrapper contained within the header. (Kinda hackish)
-  &--day-inner {
+  &--header,
+  &--calendar {
     position: absolute;
+    right: 6vmin;
+    left: 6vmin;
 
-    margin: 0;
-    height: 20em; // We set a static padding: 0;height imitating a 100% height within the header but hiding most of the container.
-    width: 100%;
+    font-family: 'Gibson SemiBold';
+    letter-spacing: .15vmin;
 
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 100%;
-    text-transform: uppercase;
-  }
-
-  &--week-day {
-    margin-bottom: .1em;
-
-    font-size: 30%;
-    line-height: 1em;
-
-    @include opacity(.75);
-  }
-
-  &--date {
-    margin-bottom: .1em;
-
-    font-size: 60%;
-    line-height: 1em;
-  }
-
-  &--month {
-    font-size: 30%;
-    line-height: 1em;
-
-    @include opacity(.75);
-  }
-
-
-  &--content {
-    padding: 1.1vw;
-
+    &.is-editor,
     &.is-preview {
-      padding: 1em;
+      padding: 0 1em;
+      right: 0;
+      left: 0;
+      letter-spacing: 0;
     }
   }
 
+  &--header {
+    top: 11vmin;
+    display: flex;
+    -webkit-display: flex;
 
-
-  /* Event styles - display of events content */
-  &--events {
-    font-size: 70%;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  &--event {
-    border-color: inherit;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    overflow: hidden;
-    width: 100%;
-    display: block;
-
-    &:first-child {
-      border-bottom: 0;
-    }
-
-    &:last-child {
-      border-bottom: 0;
+    &.is-editor,
+    &.is-preview {
+      top: 1.5em;
+      padding: 0 1em;
     }
   }
 
   &--title,
-  &--title-header {
-    @extend %event-attribute;
+  &--time-date {
+    font-size: 7vmin;
 
-    width: 40%;
-  }
-
-  &--place,
-  &--place-header {
-    @extend %event-attribute;
-
-    width: 40%;
-  }
-
-  &--time,
-  &--time-header {
-    @extend %event-attribute;
-
-    width: 20%;
-  }
-
-  &--title-header,
-  &--place-header,
-  &--time-header {
-    font-weight: bold; 
-  }
-
-  &--title,
-  &--place,
-  &--time {
-    border-right: 1px solid;
-    border-color: inherit;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    &:last-child {
-      border: 0px;
+    &.is-editor,
+    &.is-preview {
+      font-size: 1.5em;
     }
   }
 
-  // Nesting once for previews, rather than adding state class to each element.
-  .is-preview {
-    .event-calendar--title-header,
-    .event-calendar--place-header,
-    .event-calendar--time-header,
-    .event-calendar--title,
-    .event-calendar--place,
-    .event-calendar--time {
-      padding: .2em;
+  &--time-date {
+    position: relative;
+    top: -9vmin;
+
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    align-self: flex-end;
+    -webkit-align-self: flex-end;
+
+    color: rgba(255, 255, 255, .75);
+    font-size: 4vmin;
+    text-align: right;
+
+    &.is-editor,
+    &.is-preview {
+      font-size: .8em;
+      top: -1em;
     }
   }
 
-  /* Edit icons */
-  &--edit-box-settings {
-    @extend %slide--edit-box-settings;
-    z-index: 1;
+  &--calendar {
+    top: 28vmin;
+
+    &.is-editor,
+    &.is-preview {
+      top: 4em;
+    }
+  }
+
+  &--calendar-row {
+    display: flex;
+    -webkit-display: flex;
+  }
+
+  &--calendar-header {
+    padding-bottom: 1.5vmin;
+    font-size: 3vmin;
+  }
+
+
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-header,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-header {
+    padding-bottom: 1em;
+    font-size: .6em;
+  }
+
+  &--calendar-header,
+  &--calendar-column {
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    flex-basis: 0;
+    -webkit-flex-basis: 0;
+
+    border-right: .1vmin solid rgba(255, 255, 255, .5);
+    border-bottom: .1vmin solid rgba(255, 255, 255, .5);
+    padding-right: 4vmin;
+    padding-left: 4vmin;
+  }
+
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-header,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-header,
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-column,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-column {
+    border-right: 1px solid rgba(255, 255, 255, .5);
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    padding-right: 1em;
+    padding-left: 1em;
+
+    &:nth-child(1) {
+      padding-left: 0;
+    }
+
+    &:nth-child(3) {
+      border-right: 0;
+    }
+  }
+
+  &--calendar-header:nth-child(1),
+  &--calendar-column:nth-child(1) {
+    padding-left: 0;
+  }
+
+  &--calendar-header:nth-child(3),
+  &--calendar-column:nth-child(3) {
+    border-right: 0;
+  }
+
+  &--calendar-column {
+    padding-top: 1.1vmin;
+    padding-bottom: 1.25vmin;
+
+    font-family: 'Gibson Light';
+    font-size: 2vmin;
+  }
+
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-column,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-column {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: .6em;
+  }
+
+  .is-first {
+    order: 1;
+    -webkit-order: 1;
+  }
+
+  .is-second {
+    order: 2;
+    -webkit-order: 2;
+  }
+
+  .is-third {
+    order: 3;
+    -webkit-order: 3;
   }
 
   &--edit-image-settings  {
     @extend %slide--edit-image-settings;
+
+    // Avoid overlap with textboxes.
+    top: 50%;
+    right: 5%;
   }
 
 
   &--edit-content-settings {
     @extend %slide--edit-content-settings;
-  }
 
-
-  // Maintain font.
-  pre {
-    font-family: inherit;
-    margin: 0;
-    text-align: left;
+    top: 15%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
 }
