@@ -306,7 +306,7 @@ table {
   border-radius: 1em; }
 
 .only-video {
-  background: #b3b3b3;
+  background: #000;
   background-size: cover;
   overflow: hidden;
   height: 100%;
