@@ -1,0 +1,243 @@
+/**
+ *
+ * Header top template styles. (Responsive)
+ *
+ * A note on responsive templates:
+ * We use viewport width for base fontsize in client.
+ * We use viewport width for padding and margin, so the padding depends on the full width of the screen rather than the width of each section within a 5 split screen.
+ * When displaying editor or preview we add state classes and fall back to em for margin/padding.
+ *
+ */
+
+
+
+/* Imports.
+   ========================================================================== */
+
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+
+
+/* Placeholders related to this document
+   ========================================================================== */
+%event-attribute {
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  padding: 0.4vw;
+  vertical-align: middle;
+  text-align: left;
+}
+
+
+
+/* Styles
+   ========================================================================== */
+.dokk1-single-calendar {
+  height: 100%;
+  font-family: Arial, sans-serif;
+
+  @include background-size(cover);
+
+
+  &--inner {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &--header{
+    overflow: hidden;
+
+    &-input {
+      @extend %responsive-header;
+
+      padding: 0;
+
+      &:focus {
+        border: 0;
+      }
+    }
+  }
+
+  &--title-wrapper {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 1.1vw;  // Padding used depends on view width.
+    width: 93%;
+
+    &.is-preview {
+      padding: 1em;
+    }
+  }
+
+   /* Header - Date styles */
+  &--day-inner,
+  &--header-title {
+    font-weight: bold;
+    font-size: 100%;
+    margin: 0;
+  }
+
+  &--day {
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: .8vw;
+    position: relative;
+    width: 7%;
+
+    &.is-preview {
+      padding-top: .8em;
+    }
+  }
+
+  // The header height is dynamic depending on title. Hence we don't know the height of the day wrapper contained within the header. (Kinda hackish)
+  &--day-inner {
+    position: absolute;
+
+    margin: 0;
+    height: 20em; // We set a static padding: 0;height imitating a 100% height within the header but hiding most of the container.
+    width: 100%;
+
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    text-transform: uppercase;
+  }
+
+  &--week-day {
+    margin-bottom: .1em;
+
+    font-size: 30%;
+    line-height: 1em;
+
+    @include opacity(.75);
+  }
+
+  &--date {
+    margin-bottom: .1em;
+
+    font-size: 60%;
+    line-height: 1em;
+  }
+
+  &--month {
+    font-size: 30%;
+    line-height: 1em;
+
+    @include opacity(.75);
+  }
+
+
+  &--content {
+    padding: 1.1vw;
+
+    &.is-preview {
+      padding: 1em;
+    }
+  }
+
+
+
+  /* Event styles - display of events content */
+  &--events {
+    font-size: 70%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &--event {
+    border-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+
+    &:first-child {
+      border-bottom: 0;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &--title,
+  &--title-header {
+    @extend %event-attribute;
+
+    width: 40%;
+  }
+
+  &--place,
+  &--place-header {
+    @extend %event-attribute;
+
+    width: 40%;
+  }
+
+  &--time,
+  &--time-header {
+    @extend %event-attribute;
+
+    width: 20%;
+  }
+
+  &--title-header,
+  &--place-header,
+  &--time-header {
+    font-weight: bold; 
+  }
+
+  &--title,
+  &--place,
+  &--time {
+    border-right: 1px solid;
+    border-color: inherit;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:last-child {
+      border: 0px;
+    }
+  }
+
+  // Nesting once for previews, rather than adding state class to each element.
+  .is-preview {
+    .event-calendar--title-header,
+    .event-calendar--place-header,
+    .event-calendar--time-header,
+    .event-calendar--title,
+    .event-calendar--place,
+    .event-calendar--time {
+      padding: .2em;
+    }
+  }
+
+  /* Edit icons */
+  &--edit-box-settings {
+    @extend %slide--edit-box-settings;
+    z-index: 1;
+  }
+
+  &--edit-image-settings  {
+    @extend %slide--edit-image-settings;
+  }
+
+
+  &--edit-content-settings {
+    @extend %slide--edit-content-settings;
+  }
+
+
+  // Maintain font.
+  pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left;
+  }
+}
