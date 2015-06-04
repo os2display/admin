@@ -1,9 +1,10 @@
 <div class="dokk1-multiple-calendar" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}">
   <div class="dokk1-multiple-calendar--header is-editor">
     <div class="dokk1-multiple-calendar--title is-editor">Det sker i dag</div>
-    <div class="dokk1-multiple-calendar--time-date is-editor">Tir. 2. juni 16:22</div>
+    <div class="dokk1-multiple-calendar--time-date is-editor"><date-component></date-component></div>
   </div>
   <div class="dokk1-multiple-calendar--calendar is-editor">
+    <div class="dokk1-multiple-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
     <div class="dokk1-multiple-calendar--calendar-row">
       <div class="dokk1-multiple-calendar--calendar-header is-first">Hvad</div>
       <div class="dokk1-multiple-calendar--calendar-header is-second">Hvornår</div>
@@ -29,7 +30,6 @@
       <div class="dokk1-multiple-calendar--calendar-column is-second">14:00 - 16:00</div>
       <div class="dokk1-multiple-calendar--calendar-column is-third">Trappen</div>
     </div>
-    <div class="dokk1-multiple-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
   </div>
   <div class="dokk1-multiple-calendar--edit-image-settings" data-ng-click="editor.toggleStaticBackgroundColorEditor()"></div>
 </div>

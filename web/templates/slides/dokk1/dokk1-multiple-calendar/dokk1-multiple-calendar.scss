@@ -103,6 +103,7 @@
     position: relative;
     top: -9vmin;
 
+    font-family: 'Gibson Light';
     flex-grow: 1;
     -webkit-flex-grow: 1;
     align-self: flex-end;
@@ -116,6 +117,14 @@
     &.is-preview {
       font-size: .8em;
       top: -1em;
+    }
+
+    // Inherited html from date widget, so we nest.
+
+    & .event-calendar--week-day,
+    & .event-calendar--date,
+    & .event-calendar--month {
+      display: inline-block;
     }
   }
 
@@ -131,6 +140,10 @@
   &--calendar-row {
     display: flex;
     -webkit-display: flex;
+
+    &:last-child .dokk1-multiple-calendar--calendar-column {
+      border-bottom: 0!important; // To override a nesting.
+    }
   }
 
   &--calendar-header {

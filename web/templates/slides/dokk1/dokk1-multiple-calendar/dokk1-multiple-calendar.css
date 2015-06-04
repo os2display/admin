@@ -374,6 +374,7 @@ table {
   .dokk1-multiple-calendar--time-date {
     position: relative;
     top: -9vmin;
+    font-family: 'Gibson Light';
     flex-grow: 1;
     -webkit-flex-grow: 1;
     align-self: flex-end;
@@ -384,6 +385,8 @@ table {
     .dokk1-multiple-calendar--time-date.is-editor, .dokk1-multiple-calendar--time-date.is-preview {
       font-size: .8em;
       top: -1em; }
+    .dokk1-multiple-calendar--time-date .event-calendar--week-day, .dokk1-multiple-calendar--time-date .event-calendar--date, .dokk1-multiple-calendar--time-date .event-calendar--month {
+      display: inline-block; }
   .dokk1-multiple-calendar--calendar {
     top: 28vmin; }
     .dokk1-multiple-calendar--calendar.is-editor, .dokk1-multiple-calendar--calendar.is-preview {
@@ -391,6 +394,8 @@ table {
   .dokk1-multiple-calendar--calendar-row {
     display: flex;
     -webkit-display: flex; }
+    .dokk1-multiple-calendar--calendar-row:last-child .dokk1-multiple-calendar--calendar-column {
+      border-bottom: 0 !important; }
   .dokk1-multiple-calendar--calendar-header {
     padding-bottom: 1.5vmin;
     font-size: 3vmin; }
