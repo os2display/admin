@@ -28,7 +28,7 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', 'con
 
       // Handle error events.
       socket.on('error', function (reason) {
-        itkLogFactory.error(error.message, 'Search socket error.');
+        itkLogFactory.error(reason, 'Search socket error.');
         deferred.reject(reason);
       });
 

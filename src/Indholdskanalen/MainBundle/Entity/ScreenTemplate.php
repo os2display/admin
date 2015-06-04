@@ -61,6 +61,11 @@ class ScreenTemplate {
   protected $path;
 
   /**
+   * @ORM\Column(name="tools", type="string")
+   */
+  protected $tools;
+
+  /**
    * @ORM\Column(name="orientation", type="string")
    * @Groups({"api", "api-bulk"})
    */
@@ -287,7 +292,6 @@ class ScreenTemplate {
     return $this->orientation;
   }
 
-
   /**
    * Add screen
    *
@@ -321,4 +325,24 @@ class ScreenTemplate {
     return $this->screens;
   }
 
+  /**
+   * Set tools
+   *
+   * @param array $tools
+   * @return ScreenTemplate
+   */
+  public function setTools(array $tools) {
+    $this->tools = serialize($tools);
+
+    return $this;
+  }
+
+  /**
+   * Get tools
+   *
+   * @return array
+   */
+  public function getTools() {
+    return unserialize($this->tools);
+  }
 }
