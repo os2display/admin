@@ -394,7 +394,13 @@ class Channel {
   public function getData() {
     return array(
       'id' => $this->getId(),
-      'slides' => $this->getPublishedSlides()->toArray()
+      'slides' => $this->getPublishedSlides()->toArray(),
+      'publish_from' => $this->getPublishFrom(),
+      'publish_to' => $this->getPublishTo(),
+      'schedule_repeat' => $this->getScheduleRepeat(),
+      'schedule_repeat_from' => $this->getScheduleRepeatFrom(),
+      'schedule_repeat_to' => $this->getScheduleRepeatTo(),
+      'schedule_repeat_days' => $this->getScheduleRepeatDays(),
     );
   }
 

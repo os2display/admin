@@ -15,6 +15,8 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     $scope.channel = {};
 
     // Days, for use with schedule day checklist
+    // Follows the javascript  Date.getDay()  numbers for days.
+    // http://www.w3schools.com/jsref/jsref_getday.asp
     $scope.days = [
       {"id": 1, "name": "Mandag"},
       {"id": 2, "name": "Tirsdag"},
