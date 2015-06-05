@@ -1,6 +1,6 @@
 {
   "id": "dokk1-single-calendar",
-  "name": "Dokk1 - Enkelt begivenhed",
+  "name": "Dokk1 - Enkelt lokale",
   "icon": "dokk1-single-calendar.png",
   "slide_type": "calendar",
   "paths": {

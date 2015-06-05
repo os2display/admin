@@ -291,21 +291,6 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
-.dokk1-single-calendar--edit-box-settings {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: url('/../../../../images/icons-se731c6030f.png');
-  -moz-background-size: 64px 894px;
-  -o-background-size: 64px 894px;
-  -webkit-background-size: 64px 894px;
-  background-size: 64px 894px;
-  width: 50px;
-  height: 50px;
-  background-position: 0 -341px; }
-  .dokk1-single-calendar--edit-box-settings:hover {
-    cursor: pointer; }
-
 .dokk1-single-calendar--edit-image-settings {
   bottom: 15%;
   position: absolute;
@@ -321,26 +306,7 @@ table {
   .dokk1-single-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
-.dokk1-single-calendar--edit-content-settings {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  background: url('/../../../../images/icons-se731c6030f.png');
-  -moz-background-size: 96px 1341px;
-  -o-background-size: 96px 1341px;
-  -webkit-background-size: 96px 1341px;
-  background-size: 96px 1341px;
-  width: 48px;
-  height: 48px;
-  background-position: 0 -946px; }
-  .dokk1-single-calendar--edit-content-settings:hover {
-    cursor: pointer; }
-
-.dokk1-single-calendar--header-input {
+.dokk1-single-calendar--meta-input {
   border: 0;
   font-weight: bold;
   position: relative;
@@ -348,127 +314,173 @@ table {
   outline: none;
   resize: none; }
 
-/* Placeholders related to this document
-   ========================================================================== */
-.dokk1-single-calendar--title, .dokk1-single-calendar--title-header, .dokk1-single-calendar--place, .dokk1-single-calendar--place-header, .dokk1-single-calendar--time, .dokk1-single-calendar--time-header {
-  box-sizing: border-box;
-  display: block;
-  float: left;
-  padding: 0.4vw;
-  vertical-align: middle;
-  text-align: left; }
-
+@font-face {
+  font-family: 'Gibson SemiBold';
+  src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff"); }
+@font-face {
+  font-family: 'Gibson Regular';
+  src: url("fonts/Gibson-Regular-webfont.woff") format("woff"); }
+@font-face {
+  font-family: 'Gibson Light';
+  src: url("fonts/Gibson-Light-webfont.woff") format("woff"); }
 /* Styles
    ========================================================================== */
 .dokk1-single-calendar {
-  height: 100%;
-  font-family: Arial, sans-serif;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -webkit-background-size: cover;
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  background: #fff;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply, luminosity;
   background-size: cover;
-  /* Header - Date styles */
-  /* Event styles - display of events content */
-  /* Edit icons */ }
-  .dokk1-single-calendar--inner {
-    height: 100%;
-    overflow: hidden; }
-  .dokk1-single-calendar--header {
-    overflow: hidden; }
-    .dokk1-single-calendar--header-input {
-      padding: 0; }
-      .dokk1-single-calendar--header-input:focus {
-        border: 0; }
-  .dokk1-single-calendar--title-wrapper {
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 1.1vw;
-    width: 93%; }
-    .dokk1-single-calendar--title-wrapper.is-preview {
-      padding: 1em; }
-  .dokk1-single-calendar--day-inner, .dokk1-single-calendar--header-title {
-    font-weight: bold;
-    font-size: 100%;
-    margin: 0; }
-  .dokk1-single-calendar--day {
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 100%;
-    text-align: center;
-    display: inline-block;
-    vertical-align: top;
-    padding-top: .8vw;
-    position: relative;
-    width: 7%; }
-    .dokk1-single-calendar--day.is-preview {
-      padding-top: .8em; }
-  .dokk1-single-calendar--day-inner {
+  color: white;
+  text-align: left; }
+  .dokk1-single-calendar--header, .dokk1-single-calendar--content {
     position: absolute;
-    margin: 0;
-    height: 20em;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 100%;
-    text-transform: uppercase; }
-  .dokk1-single-calendar--week-day {
-    margin-bottom: .1em;
-    font-size: 30%;
-    line-height: 1em;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
-    opacity: 0.75; }
-  .dokk1-single-calendar--date {
-    margin-bottom: .1em;
-    font-size: 60%;
-    line-height: 1em; }
-  .dokk1-single-calendar--month {
-    font-size: 30%;
-    line-height: 1em;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
-    opacity: 0.75; }
-  .dokk1-single-calendar--content {
-    padding: 1.1vw; }
-    .dokk1-single-calendar--content.is-preview {
-      padding: 1em; }
-  .dokk1-single-calendar--events {
-    font-size: 70%;
-    overflow: hidden;
+    left: 6vmin;
+    font-family: 'Gibson Light';
+    letter-spacing: .15vmin; }
+    .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview, .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
+      left: 1em; }
+  .dokk1-single-calendar--header {
+    top: 11vmin;
+    font-size: 9vmin;
+    line-height: 120%;
     width: 100%; }
-  .dokk1-single-calendar--event {
-    border-color: inherit;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
+    .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview {
+      font-size: 1.5em;
+      top: 1em; }
+  .dokk1-single-calendar--content {
+    top: 34vmin; }
+    .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
+      left: 1.5em;
+      top: 5em; }
+  .dokk1-single-calendar--now, .dokk1-single-calendar--next {
+    margin-right: 5vmin;
     overflow: hidden;
-    width: 100%;
-    display: block; }
-    .dokk1-single-calendar--event:first-child {
-      border-bottom: 0; }
-    .dokk1-single-calendar--event:last-child {
-      border-bottom: 0; }
-  .dokk1-single-calendar--title, .dokk1-single-calendar--title-header {
-    width: 40%; }
-  .dokk1-single-calendar--place, .dokk1-single-calendar--place-header {
-    width: 40%; }
-  .dokk1-single-calendar--time, .dokk1-single-calendar--time-header {
-    width: 20%; }
-  .dokk1-single-calendar--title-header, .dokk1-single-calendar--place-header, .dokk1-single-calendar--time-header {
-    font-weight: bold; }
-  .dokk1-single-calendar--title, .dokk1-single-calendar--place, .dokk1-single-calendar--time {
-    border-right: 1px solid;
-    border-color: inherit;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
-    .dokk1-single-calendar--title:last-child, .dokk1-single-calendar--place:last-child, .dokk1-single-calendar--time:last-child {
-      border: 0px; }
-  .dokk1-single-calendar .is-preview .event-calendar--title-header,
-  .dokk1-single-calendar .is-preview .event-calendar--place-header,
-  .dokk1-single-calendar .is-preview .event-calendar--time-header,
-  .dokk1-single-calendar .is-preview .event-calendar--title,
-  .dokk1-single-calendar .is-preview .event-calendar--place,
-  .dokk1-single-calendar .is-preview .event-calendar--time {
-    padding: .2em; }
-  .dokk1-single-calendar--edit-box-settings {
-    z-index: 1; }
-  .dokk1-single-calendar pre {
-    font-family: inherit;
-    margin: 0;
-    text-align: left; }
+    border-left: 1vmin solid rgba(255, 255, 255, 0.6);
+    margin-left: .5vmin;
+    padding-left: 5vmin;
+    line-height: 120%; }
+    .dokk1-single-calendar--now.is-editor, .dokk1-single-calendar--now.is-preview, .dokk1-single-calendar--next.is-editor, .dokk1-single-calendar--next.is-preview {
+      border-left: 1px solid rgba(255, 255, 255, 0.6);
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 1em; }
+  .dokk1-single-calendar--available {
+    display: inline-block;
+    margin-top: 2vmin;
+    margin-bottom: 10vmin;
+    max-height: 17vmin;
+    padding: 0 3vmin .25vmin;
+    background-color: rgba(75, 174, 40, 0.75);
+    font-family: 'Gibson Light';
+    font-size: 5vmin; }
+    .dokk1-single-calendar--available.is-editor, .dokk1-single-calendar--available.is-preview {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      max-height: 2em;
+      max-width: 100%;
+      padding: 0 1em .1em;
+      font-size: 1em; }
+  .dokk1-single-calendar--now {
+    margin-bottom: 10vmin;
+    max-height: 24vmin;
+    font-size: 8vmin; }
+    .dokk1-single-calendar--now.is-editor, .dokk1-single-calendar--now.is-preview {
+      margin-bottom: 1.5em;
+      max-height: 2em;
+      font-size: 1.5em; }
+  .dokk1-single-calendar--next {
+    margin-bottom: 10vmin;
+    max-height: 17vmin;
+    font-size: 5vmin; }
+    .dokk1-single-calendar--next.is-editor, .dokk1-single-calendar--next.is-preview {
+      margin-bottom: 2em;
+      max-height: 2em;
+      font-size: 1em; }
+  .dokk1-single-calendar--meta {
+    font-family: 'Gibson Light';
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 3vmin;
+    line-height: 150%; }
+    .dokk1-single-calendar--meta-input {
+      background: rgba(255, 255, 255, 0);
+      color: #b3b3b3;
+      padding: 0; }
+      .dokk1-single-calendar--meta-input:focus {
+        border: 0;
+        color: #b3b3b3; }
+    .dokk1-single-calendar--meta.is-editor, .dokk1-single-calendar--meta.is-preview {
+      font-size: .5em; }
+  .dokk1-single-calendar--edit-image-settings {
+    top: 50%;
+    right: 5%; }
+
+/* Half split.
+   ========================================================================== */
+.half-split .dokk1-single-calendar--header, .half-split .dokk1-single-calendar--content {
+  left: calc(6vmin / 2);
+  letter-spacing: calc(.15vmin / 2); }
+.half-split .dokk1-single-calendar--header {
+  top: calc(11vmin / 2);
+  font-size: calc(9vmin / 2); }
+.half-split .dokk1-single-calendar--content {
+  top: calc(34vmin / 2); }
+.half-split .dokk1-single-calendar--now, .half-split .dokk1-single-calendar--next {
+  margin-right: calc(5vmin / 2);
+  border-left: 1vmin solid rgba(255, 255, 255, 0.6);
+  margin-left: calc(.5vmin / 2);
+  padding-left: calc(5vmin / 2);
+  border-width: calc(1vmin / 2); }
+.half-split .dokk1-single-calendar--available {
+  margin-top: calc(2vmin / 2);
+  margin-bottom: calc(10vmin / 2);
+  max-height: calc(17vmin / 2);
+  font-size: calc(5vmin / 2);
+  padding-right: calc(3vmin / 2);
+  padding-left: calc(.25vmin / 2); }
+.half-split .dokk1-single-calendar--now {
+  margin-bottom: calc(10vmin / 2);
+  max-height: calc(24vmin / 2);
+  font-size: calc(8vmin / 2); }
+.half-split .dokk1-single-calendar--next {
+  margin-bottom: calc(10vmin / 2);
+  max-height: calc(17vmin / 2);
+  font-size: calc(5vmin / 2); }
+.half-split .dokk1-single-calendar--meta {
+  font-size: calc(3vmin / 2); }
+
+/* Three split.
+   ========================================================================== */
+.three-split .dokk1-single-calendar--header, .three-split .dokk1-single-calendar--content {
+  left: calc(6vmin / 3);
+  letter-spacing: calc(.15vmin / 3); }
+.three-split .dokk1-single-calendar--header {
+  top: calc(11vmin / 3);
+  font-size: calc(9vmin / 3); }
+.three-split .dokk1-single-calendar--content {
+  top: calc(34vmin / 3); }
+.three-split .dokk1-single-calendar--now, .three-split .dokk1-single-calendar--next {
+  margin-right: calc(5vmin / 3);
+  border-left: 1vmin solid rgba(255, 255, 255, 0.6);
+  margin-left: calc(.5vmin / 3);
+  padding-left: calc(5vmin / 3);
+  border-width: calc(1vmin / 3); }
+.three-split .dokk1-single-calendar--available {
+  margin-top: calc(2vmin / 3);
+  margin-bottom: calc(10vmin / 3);
+  max-height: calc(17vmin / 3);
+  font-size: calc(5vmin / 3);
+  padding-right: calc(3vmin / 3);
+  padding-left: calc(.25vmin / 3); }
+.three-split .dokk1-single-calendar--now {
+  margin-bottom: calc(10vmin / 3);
+  max-height: calc(24vmin / 3);
+  font-size: calc(8vmin / 3); }
+.three-split .dokk1-single-calendar--next {
+  margin-bottom: calc(10vmin / 3);
+  max-height: calc(17vmin / 3);
+  font-size: calc(5vmin / 3); }
+.three-split .dokk1-single-calendar--meta {
+  font-size: calc(3vmin / 3 ); }

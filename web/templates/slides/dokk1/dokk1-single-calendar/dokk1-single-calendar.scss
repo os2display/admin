@@ -17,227 +17,296 @@
 @import "compass/css3";
 @import "../../_shared-base.scss";
 
-
-
-/* Placeholders related to this document
-   ========================================================================== */
-%event-attribute {
-  box-sizing: border-box;
-  display: block;
-  float: left;
-  padding: 0.4vw;
-  vertical-align: middle;
-  text-align: left;
+@font-face {
+  font-family: 'Gibson SemiBold';
+  src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Regular';
+  src: url("fonts/Gibson-Regular-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Light';
+  src: url("fonts/Gibson-Light-webfont.woff") format("woff");
 }
 
+@mixin calc-split($selector-namespace) {
 
+}
 
 /* Styles
    ========================================================================== */
 .dokk1-single-calendar {
-  height: 100%;
-  font-family: Arial, sans-serif;
+  position: relative;
 
-  @include background-size(cover);
+  min-height: 100%;
+  width: 100%;
+
+  background: $white;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  color: white;
+  text-align: left;
+
+  &--header,
+  &--content {
+    position: absolute;
+    left: 6vmin;
+
+    font-family: 'Gibson Light';
+    letter-spacing: .15vmin;
 
 
-  &--inner {
-    height: 100%;
-    overflow: hidden;
+    &.is-editor,
+    &.is-preview {
+      left: 1em;
+    }
   }
 
-  &--header{
+  &--header {
+    top: 11vmin;
+
+    font-size: 9vmin;
+    line-height: 120%;
+    width: 100%;
+
+    &.is-editor,
+    &.is-preview {
+      font-size: 1.5em;
+      top: 1em;
+    }
+  }
+
+  &--content {
+    top: 34vmin;
+
+    &.is-editor,
+    &.is-preview {
+      left: 1.5em;
+      top: 5em;
+    }
+  }
+
+  &--now,
+  &--next {
+    margin-right: 5vmin;
     overflow: hidden;
+
+    border-left: 1vmin solid rgba(255, 255, 255, .6);
+    margin-left: .5vmin;
+    padding-left: 5vmin;
+
+    line-height: 120%;
+
+    &.is-editor,
+    &.is-preview {
+      border-left: 1px solid rgba(255, 255, 255, .6);
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 1em;
+    }
+  }
+
+  &--available {
+    display: inline-block;
+    margin-top: 2vmin;
+    margin-bottom: 10vmin;
+    max-height: 17vmin;
+    padding: 0 3vmin .25vmin;
+
+    background-color: rgba(75, 174, 40, .75);
+    font-family: 'Gibson Light';
+    font-size: 5vmin;
+
+    &.is-editor,
+    &.is-preview {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      max-height: 2em;
+      max-width: 100%;
+      padding: 0 1em .1em;
+      font-size: 1em;
+    }
+  }
+
+  &--now {
+    margin-bottom: 10vmin;
+    max-height: 24vmin;
+
+    font-size: 8vmin;
+
+    &.is-editor,
+    &.is-preview {
+      margin-bottom: 1.5em;
+      max-height: 2em;
+      font-size: 1.5em;
+    }
+  }
+
+  &--next {
+    margin-bottom: 10vmin;
+    max-height: 17vmin;
+
+    font-size: 5vmin;
+
+    &.is-editor,
+    &.is-preview {
+      margin-bottom: 2em;
+      max-height: 2em;
+
+      font-size: 1em;
+    }
+  }
+
+  &--meta {
+    font-family: 'Gibson Light';
+    color: rgba(255, 255, 255, .6);
+    font-size: 3vmin;
+    line-height: 150%;
 
     &-input {
       @extend %responsive-header;
 
+      background: rgba($white, 0);
+      color: $gray;
       padding: 0;
 
+      // Override form styles.
       &:focus {
         border: 0;
+        color: $gray;
       }
     }
-  }
 
-  &--title-wrapper {
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 1.1vw;  // Padding used depends on view width.
-    width: 93%;
-
+    &.is-editor,
     &.is-preview {
-      padding: 1em;
+      font-size: .5em;
     }
   }
 
-   /* Header - Date styles */
-  &--day-inner,
-  &--header-title {
-    font-weight: bold;
-    font-size: 100%;
-    margin: 0;
-  }
-
-  &--day {
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 100%;
-    text-align: center;
-    display: inline-block;
-    vertical-align: top;
-    padding-top: .8vw;
-    position: relative;
-    width: 7%;
-
-    &.is-preview {
-      padding-top: .8em;
-    }
-  }
-
-  // The header height is dynamic depending on title. Hence we don't know the height of the day wrapper contained within the header. (Kinda hackish)
-  &--day-inner {
-    position: absolute;
-
-    margin: 0;
-    height: 20em; // We set a static padding: 0;height imitating a 100% height within the header but hiding most of the container.
-    width: 100%;
-
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 100%;
-    text-transform: uppercase;
-  }
-
-  &--week-day {
-    margin-bottom: .1em;
-
-    font-size: 30%;
-    line-height: 1em;
-
-    @include opacity(.75);
-  }
-
-  &--date {
-    margin-bottom: .1em;
-
-    font-size: 60%;
-    line-height: 1em;
-  }
-
-  &--month {
-    font-size: 30%;
-    line-height: 1em;
-
-    @include opacity(.75);
-  }
-
-
-  &--content {
-    padding: 1.1vw;
-
-    &.is-preview {
-      padding: 1em;
-    }
-  }
-
-
-
-  /* Event styles - display of events content */
-  &--events {
-    font-size: 70%;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  &--event {
-    border-color: inherit;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    overflow: hidden;
-    width: 100%;
-    display: block;
-
-    &:first-child {
-      border-bottom: 0;
-    }
-
-    &:last-child {
-      border-bottom: 0;
-    }
-  }
-
-  &--title,
-  &--title-header {
-    @extend %event-attribute;
-
-    width: 40%;
-  }
-
-  &--place,
-  &--place-header {
-    @extend %event-attribute;
-
-    width: 40%;
-  }
-
-  &--time,
-  &--time-header {
-    @extend %event-attribute;
-
-    width: 20%;
-  }
-
-  &--title-header,
-  &--place-header,
-  &--time-header {
-    font-weight: bold; 
-  }
-
-  &--title,
-  &--place,
-  &--time {
-    border-right: 1px solid;
-    border-color: inherit;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    &:last-child {
-      border: 0px;
-    }
-  }
-
-  // Nesting once for previews, rather than adding state class to each element.
-  .is-preview {
-    .event-calendar--title-header,
-    .event-calendar--place-header,
-    .event-calendar--time-header,
-    .event-calendar--title,
-    .event-calendar--place,
-    .event-calendar--time {
-      padding: .2em;
-    }
-  }
-
-  /* Edit icons */
-  &--edit-box-settings {
-    @extend %slide--edit-box-settings;
-    z-index: 1;
-  }
 
   &--edit-image-settings  {
     @extend %slide--edit-image-settings;
+
+    // Avoid overlap with textboxes.
+    top: 50%;
+    right: 5%;
   }
+}
 
 
-  &--edit-content-settings {
-    @extend %slide--edit-content-settings;
+
+/* Half split.
+   ========================================================================== */
+.half-split {
+  .dokk1-single-calendar {
+
+    &--header,
+    &--content {
+      left: calc(6vmin / 2);
+      letter-spacing: calc(.15vmin / 2);
+    }
+
+    &--header {
+      top: calc(11vmin / 2);
+      font-size: calc(9vmin / 2);
+    }
+
+    &--content {
+      top: calc(34vmin / 2);
+    }
+
+    &--now,
+    &--next {
+      margin-right: calc(5vmin / 2);
+      border-left: 1vmin solid rgba(255, 255, 255, .6);
+      margin-left: calc(.5vmin / 2);
+      padding-left: calc(5vmin / 2);
+      border-width: calc(1vmin / 2);
+    }
+
+    &--available {
+      margin-top: calc(2vmin / 2);
+      margin-bottom: calc(10vmin / 2);
+      max-height: calc(17vmin / 2);
+      font-size: calc(5vmin / 2);
+      padding-right: calc(3vmin / 2);
+      padding-left: calc(.25vmin / 2);
+    }
+
+    &--now {
+      margin-bottom: calc(10vmin / 2);
+      max-height: calc(24vmin / 2);
+      font-size: calc(8vmin / 2);
+    }
+
+    &--next {
+      margin-bottom: calc(10vmin / 2);
+      max-height: calc(17vmin / 2);
+      font-size: calc(5vmin / 2);
+    }
+
+    &--meta {
+      font-size: calc(3vmin / 2);
+    }
   }
+}
 
 
-  // Maintain font.
-  pre {
-    font-family: inherit;
-    margin: 0;
-    text-align: left;
+
+/* Three split.
+   ========================================================================== */
+.three-split {
+  .dokk1-single-calendar {
+
+    &--header,
+    &--content {
+      left: calc(6vmin / 3);
+      letter-spacing: calc(.15vmin / 3);
+    }
+
+    &--header {
+      top: calc(11vmin / 3);
+      font-size: calc(9vmin / 3);
+    }
+
+    &--content {
+      top: calc(34vmin / 3);
+    }
+
+    &--now,
+    &--next {
+      margin-right: calc(5vmin / 3);
+      border-left: 1vmin solid rgba(255, 255, 255, .6);
+      margin-left: calc(.5vmin / 3);
+      padding-left: calc(5vmin / 3);
+      border-width: calc(1vmin / 3);
+    }
+
+    &--available {
+      margin-top: calc(2vmin / 3);
+      margin-bottom: calc(10vmin / 3);
+      max-height: calc(17vmin / 3);
+      font-size: calc(5vmin / 3);
+      padding-right: calc(3vmin / 3);
+      padding-left: calc(.25vmin / 3);
+    }
+
+    &--now {
+      margin-bottom: calc(10vmin / 3);
+      max-height: calc(24vmin / 3);
+      font-size: calc(8vmin / 3);
+    }
+
+    &--next {
+      margin-bottom: calc(10vmin / 3);
+      max-height: calc(17vmin / 3);
+      font-size: calc(5vmin / 3);
+    }
+
+    &--meta {
+      font-size: calc(3vmin / 3 );
+    }
   }
 }

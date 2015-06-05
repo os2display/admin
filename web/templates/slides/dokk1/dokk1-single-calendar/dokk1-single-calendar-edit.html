@@ -1,28 +1,28 @@
-<div class="dokk1-single-calendar" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
-  <div class="dokk1-single-calendar--inner" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
-    <div class="dokk1-single-calendar--header" data-ng-style="{'background-color': ikSlide.options.headerbgcolor}">
-      <div class="dokk1-single-calendar--edit-box-settings" data-ng-click="editor.toggleHeaderEditorResponsive()"></div>
-      <div class="dokk1-single-calendar--title-wrapper is-editor" data-ng-style="{'background-color': ikSlide.options.headerbgcolor}">
-        <textarea auto-grow class="dokk1-single-calendar--header-input has-placeholder" data-ng-trim="false" placeholder="Tilføj en overskrift" data-ng-model="ikSlide.options.headline" spellcheck="false" data-ng-style="{'color': ikSlide.options.headertextcolor, 'background-color': ikSlide.options.headerbgcolor}">
-        </textarea>
-      </div><!-- Inline block fix
-      --><date-component data-ng-style="{'color': ikSlide.options.headertextcolor}"></date-component>
-    </div>
-    <div class="dokk1-single-calendar--content is-editor" data-ng-style="{'border-color': ikSlide.options.textcolor, 'color': ikSlide.options.textcolor}">
-      <div class="dokk1-single-calendar--events is-editor">
-        <div class="dokk1-single-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
-        <span class="dokk1-single-calendar--event">
-          <span class="dokk1-single-calendar--title-header"><span class="dokk1-single-calendar--attribute-inner">Hvad</span></span>
-          <span class="dokk1-single-calendar--place-header"><span class="dokk1-single-calendar--attribute-inner">Hvor</span></span>
-          <span class="dokk1-single-calendar--time-header"><span class="dokk1-single-calendar--attribute-inner">Tidspunkt</span></span>
-        </span>
-        <span class="dokk1-single-calendar--event" data-ng-repeat="event in ikSlide.bookingEvents | limitTo : 5 | orderBy: 'start_time'">
-          <span class="dokk1-single-calendar--title ng-binding"><span class="dokk1-single-calendar--attribute-inner">{{event.event_name ? event.event_name : 'Optaget'}}</span></span>
-          <span class="dokk1-single-calendar--place ng-binding"><span class="dokk1-single-calendar--attribute-inner">{{event.resource_id}}</span></span>
-          <span class="dokk1-single-calendar--time"><span class="dokk1-single-calendar--attribute-inner">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</span></span>
-        </span>
-      </div>
+<div class="dokk1-single-calendar is-editor" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}">
+  <div class="dokk1-single-calendar--header is-editor">
+    Mødelokale 1<br>
+    <div class="dokk1-single-calendar--meta is-editor">
+      <textarea auto-grow class="dokk1-single-calendar--meta-input has-placeholder" data-ng-trim="false" placeholder="Tilføj meta text" data-ng-model="ikSlide.options.meta" spellcheck="false">
+      </textarea>
     </div>
   </div>
-  <div class="dokk1-single-calendar--edit-image-settings" data-ng-click="editor.toggleBackgroundEditorTransparent()"></div>
+  <div class="dokk1-multiple-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
+  <div class="dokk1-single-calendar--content is-editor">
+    <div class="dokk1-single-calendar--available is-editor" style="display: none;">
+      Lokalet er ledigt til 10.00<br>
+    </div>
+    <div class="dokk1-single-calendar--now is-editor" style="display: block;">
+      <div class="dokk1-single-calendar--meta is-editor">10.00 - 11.00</div>
+      Spændende møde!
+    </div>
+    <div class="dokk1-single-calendar--next is-editor">
+      <div class="dokk1-single-calendar--meta is-editor">10.00 - 11.00</div>
+      Spændende møde!
+    </div>
+    <div class="dokk1-single-calendar--next is-editor">
+      <div class="dokk1-single-calendar--meta is-editor">13.00 - 14.00</div>
+      FOA møde
+    </div>
+  </div>
+  <div class="dokk1-multiple-calendar--edit-image-settings" data-ng-click="editor.toggleStaticBackgroundColorEditor()"></div>
 </div>
