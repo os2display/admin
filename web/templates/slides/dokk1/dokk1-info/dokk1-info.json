@@ -1,6 +1,6 @@
 {
   "id": "dokk1-info",
-  "name": "Dokk1 info",
+  "name": "Dokk1 - Info",
   "icon": "dokk1-info.png",
   "type": "responsive",
   "paths": {
@@ -21,6 +21,5 @@
     "headline": "",
     "text": "",
     "responsive_fontsize": "3",
-    "defaultImage": "dokk1-info.png"
   }
 }

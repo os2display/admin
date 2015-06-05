@@ -1,0 +1,29 @@
+{
+  "id": "dokk1-single-calendar",
+  "name": "Dokk1 - Enkelt lokale",
+  "icon": "dokk1-single-calendar.png",
+  "slide_type": "calendar",
+  "paths": {
+    "live": "dokk1-single-calendar-live.html",
+    "edit": "dokk1-single-calendar-edit.html",
+    "preview": "dokk1-single-calendar-preview.html",
+    "css": "dokk1-single-calendar.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": "60",
+    "responsive_fontsize": "3",
+    "headerbgcolor": "#379f40",
+    "headertextcolor": "rgba(255,255,255,1)",
+    "bgcolor": "rgba(255,255,255,0.90)",
+    "textcolor": "rgba(0,0,0,1)",
+    "headline": "",
+    "text": "",
+    "resources": []
+  }
+}
