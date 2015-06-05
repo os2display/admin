@@ -9,11 +9,11 @@
     <div class="dokk1-single-calendar--available" style="display: block;">
       Lokalet er ledigt til 10.00<br>
     </div>
-    <div class="dokk1-single-calendar--now" style="display: none;" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 1">
+    <div class="dokk1-single-calendar--now" style="display: none;" data-ng-repeat="event in ikSlide.calendar_events | limitTo :1:1">
       <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
       {{event.event_name ? event.event_name : 'Optaget'}}
     </div>
-    <div data-ng-repeat="event in ikSlide.calendar_events | limitTo : 2">
+    <div data-ng-repeat="event in ikSlide.calendar_events | limitTo :2:2">
       <div class="dokk1-single-calendar--next">
         <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
         {{event.event_name ? event.event_name : 'Optaget'}}
