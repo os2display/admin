@@ -9,17 +9,15 @@
     <div class="dokk1-single-calendar--available" style="display: block;">
       Lokalet er ledigt til 10.00<br>
     </div>
-    <div class="dokk1-single-calendar--now" style="display: none;">
-      <div class="dokk1-single-calendar--meta">10.00 - 11.00</div>
-      Spændende møde!
+    <div class="dokk1-single-calendar--now" style="display: none;" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 1">
+      <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+      {{event.event_name ? event.event_name : 'Optaget'}}
     </div>
-    <div class="dokk1-single-calendar--next">
-      <div class="dokk1-single-calendar--meta">10.00 - 11.00</div>
-      Spændende møde!
-    </div>
-    <div class="dokk1-single-calendar--next">
-      <div class="dokk1-single-calendar--meta">13.00 - 14.00</div>
-      FOA møde
+    <div data-ng-repeat="event in ikSlide.calendar_events | limitTo : 2">
+      <div class="dokk1-single-calendar--next">
+        <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+        {{event.event_name ? event.event_name : 'Optaget'}}
+      </div>
     </div>
   </div>
 </div>

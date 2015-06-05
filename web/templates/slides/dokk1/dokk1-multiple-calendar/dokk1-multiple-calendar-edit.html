@@ -10,25 +10,10 @@
       <div class="dokk1-multiple-calendar--calendar-header is-second">Hvornår</div>
       <div class="dokk1-multiple-calendar--calendar-header is-third">Hvor</div>
     </div>
-    <div class="dokk1-multiple-calendar--calendar-row">
-      <div class="dokk1-multiple-calendar--calendar-column is-first">Chuck Norris demonstrerer håndkantslag</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-second">12:00 - 14:00</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-third">Multisalen Syd</div>
-    </div>
-    <div class="dokk1-multiple-calendar--calendar-row">
-      <div class="dokk1-multiple-calendar--calendar-column is-first">Admin Jensen på besøg</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-second">13:00 - 14:00</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-third">Multisalen Nord</div>
-    </div>
-    <div class="dokk1-multiple-calendar--calendar-row">
-      <div class="dokk1-multiple-calendar--calendar-column is-first">Lær at arbejde med Wordpress</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-second">09:00 - 12:00</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-third">Lille sal</div>
-    </div>
-    <div class="dokk1-multiple-calendar--calendar-row">
-      <div class="dokk1-multiple-calendar--calendar-column is-first">Høj mand fra Ceylon fortæller anekdoter fra det virkelige liv</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-second">14:00 - 16:00</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-third">Trappen</div>
+    <div class="dokk1-multiple-calendar--calendar-row" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 5">
+      <div class="dokk1-multiple-calendar--calendar-column is-first">{{event.event_name ? event.event_name : 'Optaget'}}</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-second">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-third">{{event.resource_id}}</div>
     </div>
   </div>
   <div class="dokk1-multiple-calendar--edit-image-settings" data-ng-click="editor.toggleStaticBackgroundColorEditor()"></div>
