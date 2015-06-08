@@ -79,6 +79,7 @@
 
     &-input {
       @extend %responsive-header;
+      @extend %placeholder-color;
 
       background: rgba($white, 0);
       color: $white;
