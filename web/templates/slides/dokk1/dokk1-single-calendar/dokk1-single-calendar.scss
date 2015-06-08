@@ -54,7 +54,7 @@
     position: absolute;
     left: 6vmin;
 
-    font-family: 'Gibson Light';
+    font-family: 'Gibson Semibold';
     letter-spacing: .15vmin;
 
 
@@ -191,7 +191,7 @@
     &-input {
       @extend %responsive-header;
       @extend %placeholder-color;
-      
+
       background: rgba($white, 0);
       color: $gray;
       padding: 0;

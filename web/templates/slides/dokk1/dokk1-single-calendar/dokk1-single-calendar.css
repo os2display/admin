@@ -346,7 +346,7 @@ table {
   .dokk1-single-calendar--header, .dokk1-single-calendar--content {
     position: absolute;
     left: 6vmin;
-    font-family: 'Gibson Light';
+    font-family: 'Gibson Semibold';
     letter-spacing: .15vmin; }
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview, .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
       left: 1em; }
