@@ -5,7 +5,7 @@
 * sharing channels with sharingService
 
 #v3.1.0
-* Added new screen templates (two and three regions side by side)
+* Added new screen templates (two and three regions vertical)
 * Added configuration for activating screen and slide templates
 * Added check if trying to activate a screen that is already activated
 * Added schedueling for channels
