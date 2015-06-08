@@ -306,12 +306,12 @@ table {
   .dokk1-single-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
-.dokk1-single-calendar--header-input::-webkit-input-placeholder {
+.dokk1-single-calendar--header-input::-webkit-input-placeholder, .dokk1-single-calendar--meta-input::-webkit-input-placeholder {
   color: #fff; }
-.dokk1-single-calendar--header-input::-moz-placeholder {
+.dokk1-single-calendar--header-input::-moz-placeholder, .dokk1-single-calendar--meta-input::-moz-placeholder {
   /* Firefox 19+ */
   color: #fff; }
-.dokk1-single-calendar--header-input:-ms-input-placeholder {
+.dokk1-single-calendar--header-input:-ms-input-placeholder, .dokk1-single-calendar--meta-input:-ms-input-placeholder {
   color: #fff; }
 
 .dokk1-single-calendar--header-input, .dokk1-single-calendar--meta-input {
