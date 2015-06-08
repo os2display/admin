@@ -245,6 +245,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * Add booking events from source (for event calendar.)
      */
     $scope.addBookingEvents = function addBookingEvents() {
+
       var arr = [];
 
       // Process bookings for each resource.

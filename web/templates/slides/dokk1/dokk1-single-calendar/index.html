@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="da">
+  <meta charset="UTF-8">
+  <title>Dokk1 basic template test</title>
+  <style>
+    @font-face {
+      font-family: 'Gibson SemiBold';
+      src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff");
+    }
+    @font-face {
+      font-family: 'Gibson Regular';
+      src: url("fonts/Gibson-Regular-webfont.woff") format("woff");
+    }
+    @font-face {
+      font-family: 'Gibson Light';
+      src: url("fonts/Gibson-Light-webfont.woff") format("woff");
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      color: #fff;
+      font: 1em/1.5 'Gibson Light', sans-serif;
+    }
+
+    .template {
+      position: relative;
+
+      min-height: 100%;
+      width: 100%;
+
+      background-image: url('image.jpg');
+      background-repeat: no-repeat;
+      background-color: rgb(35, 85, 135);
+      background-blend-mode: multiply;
+      background-size: cover;
+    }
+
+    .template--header,
+    .template--content {
+      position: absolute;
+      left: 6vmin;
+
+      font-family: 'Gibson SemiBold';
+      letter-spacing: .15vmin;
+    }
+
+    .template--header {
+      top: 11vmin;
+
+      font-size: 9vmin;
+      line-height: 120%;
+    }
+
+    .template--content {
+      top: 34vmin;
+    }
+
+    .template--now,
+    .template--next {
+      margin-right: 5vmin;
+      overflow: hidden;
+
+      border-left: 1vmin solid rgba(255, 255, 255, .6);
+      margin-left: .5vmin;
+      padding-left: 5vmin;
+
+      line-height: 120%;
+    }
+
+    .template--available {
+      display: inline-block;
+      margin-top: 2vmin;
+      margin-bottom: 10vmin;
+      max-height: 17vmin;
+      padding: 0 3vmin .25vmin;
+
+      background-color: rgba(75, 174, 40, .75);
+      font-family: 'Gibson Light';
+      font-size: 5vmin;
+    }
+
+    .template--now {
+      margin-bottom: 10vmin;
+      max-height: 24vmin;
+
+      font-size: 8vmin;
+    }
+
+    .template--next {
+      margin-bottom: 10vmin;
+      max-height: 17vmin;
+
+      font-size: 5vmin;
+    }
+
+    .template--meta {
+      font-family: 'Gibson Light';
+      color: rgba(255, 255, 255, .6);
+      font-size: 3vmin;
+      line-height: 150%;
+    }
+  </style>
+</head>
+<body>
+<div class="template">
+  <div class="template--header">
+    Mødelokale 1<br>
+    <div class="template--meta">
+      Etage 2
+    </div>
+  </div>
+  <div class="template--content">
+    <div class="template--available" style="display: block;">
+      Lokalet er ledigt til 10.00<br>
+    </div>
+    <div class="template--now" style="display: none;">
+      <div class="template--meta">10.00 - 11.00</div>
+      Spændende møde!
+    </div>
+    <div class="template--next">
+      <div class="template--meta">10.00 - 11.00</div>
+      Spændende møde!
+    </div>
+    <div class="template--next">
+      <div class="template--meta">13.00 - 14.00</div>
+      FOA møde
+    </div>
+  </div>
+</div>
+</body>
+</html>

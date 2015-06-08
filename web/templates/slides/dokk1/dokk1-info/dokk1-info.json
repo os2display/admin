@@ -1,6 +1,6 @@
 {
   "id": "dokk1-info",
-  "name": "Dokk1 info",
+  "name": "Dokk1 - Info",
   "icon": "dokk1-info.png",
   "type": "responsive",
   "paths": {
@@ -17,10 +17,9 @@
   },
   "empty_options": {
     "fontsize": "60",
-    "bgcolor": "rgb(210, 65, 30)",
+    "bgcolor": "rgb(188, 188, 188)",
     "headline": "",
     "text": "",
-    "responsive_fontsize": "3",
-    "defaultImage": "dokk1-info.png"
+    "responsive_fontsize": "3"
   }
 }
