@@ -33,7 +33,7 @@
           var interval = $interval(function() {
             // Update current datetime.
             scope.thisDate = new Date();
-          }, 10000);
+          }, 60000);
 
           // Register event listener for destroy.
           //   Cleanup interval.
