@@ -204,6 +204,20 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
         });
       closeNavMenu();
     };
+
+    /**
+     * Force push.
+     */
+    $scope.forcePush = function reindex() {
+      $http.get('/api/command/forcepush')
+        .success(function(data, status, headers, config) {
+          itkLogFactory.info("Force push gennemført.", 3000);
+        })
+        .error(function(data, status, headers, config) {
+          itkLogFactory.error("Force push fejlede.", status);
+        });
+      closeNavMenu();
+    };
   }
 ]);
 

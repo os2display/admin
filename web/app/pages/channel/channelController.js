@@ -10,9 +10,22 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
   function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, itkLogFactory) {
     'use strict';
 
-    $scope.steps = 2;
+    $scope.steps = 3;
     $scope.slides = [];
     $scope.channel = {};
+
+    // Days, for use with schedule day checklist
+    // Follows the javascript  Date.getDay()  numbers for days.
+    // http://www.w3schools.com/jsref/jsref_getday.asp
+    $scope.days = [
+      {"id": 1, "name": "Mandag"},
+      {"id": 2, "name": "Tirsdag"},
+      {"id": 3, "name": "Onsdag"},
+      {"id": 4, "name": "Torsdag"},
+      {"id": 5, "name": "Fredag"},
+      {"id": 6, "name": "Lørdag"},
+      {"id": 0, "name": "Søndag"}
+    ];
 
     // Get all slides.
     slideFactory.getSlides().then(
