@@ -14,11 +14,9 @@
       {{event.event_name ? event.event_name : 'Optaget'}}
     </div>
     <div class="dokk1-single-calendar--next-wrapper">
-      <div data-ng-repeat="event in ikSlide.calendar_events | limitTo : 3">
-        <div class="dokk1-single-calendar--next">
-          <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
-          {{event.event_name ? event.event_name : 'Optaget'}}
-        </div>
+      <div class="dokk1-single-calendar--next" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 3">
+        <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+        {{event.event_name ? event.event_name : 'Optaget'}}
       </div>
     </div>
   </div>

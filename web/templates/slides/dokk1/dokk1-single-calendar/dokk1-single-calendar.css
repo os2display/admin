@@ -344,7 +344,7 @@ table {
   color: white;
   text-align: left; }
   .dokk1-single-calendar--header, .dokk1-single-calendar--content {
-    position: absolute;
+    position: relative;
     left: 6vmin;
     font-family: 'Gibson Light';
     letter-spacing: .15vmin; }
