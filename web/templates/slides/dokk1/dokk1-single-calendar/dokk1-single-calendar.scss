@@ -54,7 +54,7 @@
     position: absolute;
     left: 6vmin;
 
-    font-family: 'Gibson Semibold';
+    font-family: 'Gibson Light';
     letter-spacing: .15vmin;
 
 
@@ -65,6 +65,7 @@
   }
 
   &--header {
+    font-family: 'Gibson SemiBold';
     top: 11vmin;
 
     font-size: 9vmin;

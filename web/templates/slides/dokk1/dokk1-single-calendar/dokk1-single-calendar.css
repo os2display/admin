@@ -346,11 +346,12 @@ table {
   .dokk1-single-calendar--header, .dokk1-single-calendar--content {
     position: absolute;
     left: 6vmin;
-    font-family: 'Gibson Semibold';
+    font-family: 'Gibson Light';
     letter-spacing: .15vmin; }
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview, .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
       left: 1em; }
   .dokk1-single-calendar--header {
+    font-family: 'Gibson SemiBold';
     top: 11vmin;
     font-size: 9vmin;
     line-height: 120%;
