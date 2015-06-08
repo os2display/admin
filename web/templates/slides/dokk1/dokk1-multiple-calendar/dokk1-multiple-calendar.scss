@@ -87,6 +87,35 @@
       top: 1.5em;
       padding: 0 1em;
     }
+
+    &-input {
+      @extend %responsive-header;
+
+      background: rgba($white, 0);
+      color: $white;
+      font-family: 'Gibson SemiBold';
+      font-size: 1em;
+      padding: 0;
+      max-width: 75%;
+
+      // Override form styles.
+      &:focus {
+        border: 0;
+        color: $white;
+      }
+
+      &::-webkit-input-placeholder {
+        color: $white;
+      }
+
+      &::-moz-placeholder {  /* Firefox 19+ */
+        color: $white;
+      }
+
+      &:-ms-input-placeholder {
+        color: $white;
+      }
+    }
   }
 
   &--title,

@@ -20,7 +20,7 @@
     "responsive_fontsize": "3",
     "headerbgcolor": "#379f40",
     "headertextcolor": "rgba(255,255,255,1)",
-    "bgcolor": "rgba(255,255,255,0.90)",
+    "bgcolor": "rgb(188, 188, 188)",
     "textcolor": "rgba(0,0,0,1)",
     "headline": "",
     "text": "",

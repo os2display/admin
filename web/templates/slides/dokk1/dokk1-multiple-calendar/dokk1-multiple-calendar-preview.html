@@ -9,10 +9,30 @@
       <div class="dokk1-multiple-calendar--calendar-header is-second">Hvornår</div>
       <div class="dokk1-multiple-calendar--calendar-header is-third">Hvor</div>
     </div>
-    <div class="dokk1-multiple-calendar--calendar-row" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 5">
-      <div class="dokk1-multiple-calendar--calendar-column is-first">{{event.event_name ? event.event_name : 'Optaget'}}</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-second">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
-      <div class="dokk1-multiple-calendar--calendar-column is-third">{{event.resource_id}}</div>
+    <div class="dokk1-multiple-calendar--calendar-row">
+      <div class="dokk1-multiple-calendar--calendar-column is-first">Eksmpel begivenhed 1</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-second">10.00 - 11.00</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-third">Eksempel lokale A</div>
+    </div>
+    <div class="dokk1-multiple-calendar--calendar-row">
+      <div class="dokk1-multiple-calendar--calendar-column is-first">Eksmpel begivenhed 2</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-second">10.00 - 12.00</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-third">Eksempel lokale B</div>
+    </div>
+    <div class="dokk1-multiple-calendar--calendar-row">
+      <div class="dokk1-multiple-calendar--calendar-column is-first">Eksmpel begivenhed 3</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-second">11.00 - 14.00</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-third">Eksempel lokale A</div>
+    </div>
+    <div class="dokk1-multiple-calendar--calendar-row">
+      <div class="dokk1-multiple-calendar--calendar-column is-first">Eksmpel begivenhed 4</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-second">11.30 - 15.00</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-third">Eksempel lokale C</div>
+    </div>
+    <div class="dokk1-multiple-calendar--calendar-row">
+      <div class="dokk1-multiple-calendar--calendar-column is-first">Eksmpel begivenhed 5</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-second">12.00 - 13.00</div>
+      <div class="dokk1-multiple-calendar--calendar-column is-third">Eksempel lokale B</div>
     </div>
   </div>
 </div>

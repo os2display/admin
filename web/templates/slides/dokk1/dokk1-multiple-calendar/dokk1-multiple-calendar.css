@@ -325,6 +325,14 @@ table {
   .dokk1-multiple-calendar--edit-content-settings:hover {
     cursor: pointer; }
 
+.dokk1-multiple-calendar--header-input {
+  border: 0;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  resize: none; }
+
 @font-face {
   font-family: 'Gibson SemiBold';
   src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff"); }
@@ -367,6 +375,23 @@ table {
     .dokk1-multiple-calendar--header.is-editor, .dokk1-multiple-calendar--header.is-preview {
       top: 1.5em;
       padding: 0 1em; }
+    .dokk1-multiple-calendar--header-input {
+      background: rgba(255, 255, 255, 0);
+      color: #fff;
+      font-family: 'Gibson SemiBold';
+      font-size: 1em;
+      padding: 0;
+      max-width: 75%; }
+      .dokk1-multiple-calendar--header-input:focus {
+        border: 0;
+        color: #fff; }
+      .dokk1-multiple-calendar--header-input::-webkit-input-placeholder {
+        color: #fff; }
+      .dokk1-multiple-calendar--header-input::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #fff; }
+      .dokk1-multiple-calendar--header-input:-ms-input-placeholder {
+        color: #fff; }
   .dokk1-multiple-calendar--title, .dokk1-multiple-calendar--time-date {
     font-size: 7vmin; }
     .dokk1-multiple-calendar--title.is-editor, .dokk1-multiple-calendar--title.is-preview, .dokk1-multiple-calendar--time-date.is-editor, .dokk1-multiple-calendar--time-date.is-preview {

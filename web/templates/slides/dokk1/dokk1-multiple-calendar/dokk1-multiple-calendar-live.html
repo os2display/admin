@@ -1,6 +1,6 @@
 <div class="dokk1-multiple-calendar" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}">
   <div class="dokk1-multiple-calendar--header">
-    <div class="dokk1-multiple-calendar--title">Det sker i dag</div>
+    <div class="dokk1-multiple-calendar--title">{{ikSlide.options.header}}</div>
     <div class="dokk1-multiple-calendar--time-date">Tir. 2. juni 16:22</div>
   </div>
   <div class="dokk1-multiple-calendar--calendar">
@@ -9,7 +9,7 @@
       <div class="dokk1-multiple-calendar--calendar-header is-second">Hvornår</div>
       <div class="dokk1-multiple-calendar--calendar-header is-third">Hvor</div>
     </div>
-    <div class="dokk1-multiple-calendar--calendar-row" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 5">
+    <div class="dokk1-multiple-calendar--calendar-row" data-ng-repeat="event in ikSlide.bookingEvents | limitTo : 5">
       <div class="dokk1-multiple-calendar--calendar-column is-first">{{event.event_name ? event.event_name : 'Optaget'}}</div>
       <div class="dokk1-multiple-calendar--calendar-column is-second">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
       <div class="dokk1-multiple-calendar--calendar-column is-third">{{event.resource_id}}</div>
