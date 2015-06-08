@@ -242,10 +242,9 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     };
 
     /**
-     * Add booking events from source (for event calendar.)
+     * Add calendar events from source (for event calendar.)
      */
-    $scope.addBookingEvents = function addBookingEvents() {
-
+    $scope.addCalendarEvents = function addCalendarEvents() {
       var arr = [];
 
       // Process bookings for each resource.
@@ -271,7 +270,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         );
       }
 
-      $scope.slide.bookingEvents = arr;
+      $scope.slide.calendar_events = arr;
     };
 
     // Register event listener for select media.
