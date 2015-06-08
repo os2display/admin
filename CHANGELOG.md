@@ -11,7 +11,7 @@
 * Added schedueling for channels
 * Added Dokk1 multiple calendar template (available in Dokk1 installations)
 * Added Dokk1 single calendar template (available in Dokk1 installations)
-* Removed logout.html and replaced it with CTRL + L
+* Removed logout.html and replaced it with keyboard shortcut CTRL + L
 * Added MSO template with header and footer regions (available in MSO installations)
 * Fixed an error in the 7 split wayfinding template (region had wrong id)
 * Added repeat functionality for channels
