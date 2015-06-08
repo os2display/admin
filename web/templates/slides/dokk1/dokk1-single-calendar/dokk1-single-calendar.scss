@@ -68,9 +68,10 @@
     font-family: 'Gibson SemiBold';
     top: 11vmin;
 
+
     font-size: 9vmin;
     line-height: 120%;
-    width: 100%;
+    width: 90%;
 
     &.is-editor,
     &.is-preview {
@@ -97,6 +98,7 @@
   }
 
   &--content {
+    position: relative;
     top: 34vmin;
 
     &.is-editor,

@@ -355,7 +355,7 @@ table {
     top: 11vmin;
     font-size: 9vmin;
     line-height: 120%;
-    width: 100%; }
+    width: 90%; }
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview {
       font-size: 1.5em;
       top: 1em; }
@@ -369,6 +369,7 @@ table {
         border: 0;
         color: #fff; }
   .dokk1-single-calendar--content {
+    position: relative;
     top: 34vmin; }
     .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
       left: 1.5em;
