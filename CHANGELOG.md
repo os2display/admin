@@ -5,6 +5,8 @@
 * sharing channels with sharingService
 
 #v3.1.0
+* Added new screen templates (two and three regions vertical)
+* Added configuration for activating screen and slide templates
 * Added check if trying to activate a screen that is already activated
 * Added schedueling for channels
 * Added Dokk1 multiple calendar template (available in Dokk1 installations)
@@ -27,6 +29,6 @@
 * Manual calendar
 
 #v0.0.3
-* Added video.
-* Fixed text-input areas in slide creation.
-* Fixed empty channel preview in channel overview.
+* Added video
+* Fixed text-input areas in slide creation
+* Fixed empty channel preview in channel overview
