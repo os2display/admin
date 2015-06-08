@@ -76,6 +76,22 @@
       font-size: 1.5em;
       top: 1em;
     }
+
+    &-input {
+      @extend %responsive-header;
+
+      background: rgba($white, 0);
+      color: $white;
+      font-family: 'Gibson SemiBold';
+      font-size: 1em;
+      padding: 0;
+
+      // Override form styles.
+      &:focus {
+        border: 0;
+        color: $white;
+      }
+    }
   }
 
   &--content {
@@ -141,21 +157,27 @@
       margin-bottom: 1.5em;
       max-height: 2em;
       font-size: 1.5em;
+      padding-left: .5em;
     }
   }
 
   &--next {
+    font-size: 5vmin;
     margin-bottom: 10vmin;
     max-height: 17vmin;
 
-    font-size: 5vmin;
 
     &.is-editor,
     &.is-preview {
+      font-size: 1em;
       margin-bottom: 2em;
       max-height: 2em;
+    }
 
-      font-size: 1em;
+    &.is-editor {
+      &:first-child {
+        display: none;  // Don't show the first event.
+      }
     }
   }
 

@@ -245,6 +245,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * Add booking events from source (for event calendar.)
      */
     $scope.addBookingEvents = function addBookingEvents() {
+
       var arr = [];
 
       // Process bookings for each resource.
@@ -271,6 +272,29 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       }
 
       $scope.slide.bookingEvents = arr;
+
+      $scope.slide.bookingEvents =  [
+        {
+          'event_name' : 'Dokk1 flytning',
+          'start_time' : 1433752948,
+          'end_time' : 1433762948,
+          'resource_id' : 'dokk1_lokale_1'
+        },
+        {
+          'event_name' : 'Dronningen kigger ind',
+          'start_time' : 1433772948,
+          'end_time' : 1433782948,
+          'resource_id' : 'dokk1_lokale_1'
+        },
+        {
+          'event_name' : 'Fællesmøde',
+          'start_time' : 1433783948,
+          'end_time' : 1433799948,
+          'resource_id' : 'dokk1_lokale_1'
+        }
+      ];
+
+      console.log($scope);
     };
 
     // Register event listener for select media.

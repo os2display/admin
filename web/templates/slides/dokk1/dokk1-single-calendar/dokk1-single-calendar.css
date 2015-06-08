@@ -306,7 +306,7 @@ table {
   .dokk1-single-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
-.dokk1-single-calendar--meta-input {
+.dokk1-single-calendar--header-input, .dokk1-single-calendar--meta-input {
   border: 0;
   font-weight: bold;
   position: relative;
@@ -350,6 +350,15 @@ table {
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview {
       font-size: 1.5em;
       top: 1em; }
+    .dokk1-single-calendar--header-input {
+      background: rgba(255, 255, 255, 0);
+      color: #fff;
+      font-family: 'Gibson SemiBold';
+      font-size: 1em;
+      padding: 0; }
+      .dokk1-single-calendar--header-input:focus {
+        border: 0;
+        color: #fff; }
   .dokk1-single-calendar--content {
     top: 34vmin; }
     .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
@@ -390,15 +399,18 @@ table {
     .dokk1-single-calendar--now.is-editor, .dokk1-single-calendar--now.is-preview {
       margin-bottom: 1.5em;
       max-height: 2em;
-      font-size: 1.5em; }
+      font-size: 1.5em;
+      padding-left: .5em; }
   .dokk1-single-calendar--next {
+    font-size: 5vmin;
     margin-bottom: 10vmin;
-    max-height: 17vmin;
-    font-size: 5vmin; }
+    max-height: 17vmin; }
     .dokk1-single-calendar--next.is-editor, .dokk1-single-calendar--next.is-preview {
+      font-size: 1em;
       margin-bottom: 2em;
-      max-height: 2em;
-      font-size: 1em; }
+      max-height: 2em; }
+    .dokk1-single-calendar--next.is-editor:first-child {
+      display: none; }
   .dokk1-single-calendar--meta {
     font-family: 'Gibson Light';
     color: rgba(255, 255, 255, 0.6);

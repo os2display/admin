@@ -1,6 +1,7 @@
 <div class="dokk1-multiple-calendar" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}">
   <div class="dokk1-multiple-calendar--header is-editor">
-    <div class="dokk1-multiple-calendar--title is-editor">Det sker i dag</div>
+    <textarea auto-grow class="dokk1-multiple-calendar--title is-editor" data-ng-trim="false" placeholder="Tilføj en overskrift" data-ng-model="ikSlide.options.headline" spellcheck="false">
+    </textarea>
     <div class="dokk1-multiple-calendar--time-date is-editor"><date-component></date-component></div>
   </div>
   <div class="dokk1-multiple-calendar--calendar is-editor">
