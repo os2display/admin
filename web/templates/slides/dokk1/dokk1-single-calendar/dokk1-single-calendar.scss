@@ -176,10 +176,8 @@
       max-height: 2em;
     }
 
-    &.is-editor {
-      &:first-child {
+    &:first-child {
         display: none;  // Don't show the first event.
-      }
     }
   }
 

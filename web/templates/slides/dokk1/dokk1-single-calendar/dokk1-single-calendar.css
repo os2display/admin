@@ -418,7 +418,7 @@ table {
       font-size: 1em;
       margin-bottom: 2em;
       max-height: 2em; }
-    .dokk1-single-calendar--next.is-editor:first-child {
+    .dokk1-single-calendar--next:first-child {
       display: none; }
   .dokk1-single-calendar--meta {
     font-family: 'Gibson Light';
