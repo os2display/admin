@@ -1682,6 +1682,25 @@ html.is-locked body {
       color: inherit;
       outline: 0;
       text-decoration: none; }
+  .create-channel--publishing {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+    max-width: 40em; }
+  .create-channel--schedule-label {
+    font-size: 1.5em; }
+  .create-channel--schedule, .create-channel--published {
+    margin-bottom: 4em;
+    margin-left: .3em; }
+  .create-channel--publishing input {
+    width: 45%;
+    display: inline-block;
+    max-width: 12em;
+    text-align: right; }
+  .create-channel--checklist-days {
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 2em; }
   .create-channel--slide-unpublished-overlay {
     background: #fff;
     height: 168.75px;
