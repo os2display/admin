@@ -30,10 +30,19 @@
           scope.thisDate = new Date();
 
           // Update current date every minute.
-          $interval(function() {
+          var interval = $interval(function() {
             // Update current datetime.
             scope.thisDate = new Date();
-          }, 60000);
+          }, 10000);
+
+          // Register event listener for destroy.
+          //   Cleanup interval.
+          scope.$on('$destroy', function() {
+            if (angular.isDefined(interval)) {
+              $interval.cancel(interval);
+              interval = undefined;
+            }
+          });
         }
       };
     }
