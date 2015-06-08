@@ -325,6 +325,14 @@ table {
   .dokk1-multiple-calendar--edit-content-settings:hover {
     cursor: pointer; }
 
+.dokk1-multiple-calendar--header-input::-webkit-input-placeholder {
+  color: #fff; }
+.dokk1-multiple-calendar--header-input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #fff; }
+.dokk1-multiple-calendar--header-input:-ms-input-placeholder {
+  color: #fff; }
+
 .dokk1-multiple-calendar--header-input {
   border: 0;
   font-weight: bold;
@@ -384,13 +392,6 @@ table {
       max-width: 75%; }
       .dokk1-multiple-calendar--header-input:focus {
         border: 0;
-        color: #fff; }
-      .dokk1-multiple-calendar--header-input::-webkit-input-placeholder {
-        color: #fff; }
-      .dokk1-multiple-calendar--header-input::-moz-placeholder {
-        /* Firefox 19+ */
-        color: #fff; }
-      .dokk1-multiple-calendar--header-input:-ms-input-placeholder {
         color: #fff; }
   .dokk1-multiple-calendar--title, .dokk1-multiple-calendar--time-date {
     font-size: 7vmin; }

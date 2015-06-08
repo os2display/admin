@@ -129,6 +129,20 @@ $link-color:       #2c79d3;
   resize: none;
 }
 
+%placeholder-color {
+  &::-webkit-input-placeholder {
+    color: $white;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+    color: $white;
+  }
+
+  &:-ms-input-placeholder {
+    color: $white;
+  }
+}
+
 // Responsive header for 5 split screen templates
 %responsive-header {
   border: 0;

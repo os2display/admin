@@ -90,6 +90,7 @@
 
     &-input {
       @extend %responsive-header;
+      @extend %placeholder-color;
 
       background: rgba($white, 0);
       color: $white;
@@ -101,18 +102,6 @@
       // Override form styles.
       &:focus {
         border: 0;
-        color: $white;
-      }
-
-      &::-webkit-input-placeholder {
-        color: $white;
-      }
-
-      &::-moz-placeholder {  /* Firefox 19+ */
-        color: $white;
-      }
-
-      &:-ms-input-placeholder {
         color: $white;
       }
     }
