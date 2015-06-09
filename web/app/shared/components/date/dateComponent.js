@@ -24,7 +24,7 @@
         replace: true,
         templateUrl: 'app/shared/components/date/date.html',
         scope: {
-          theme: '='
+          theme: '@'
         },
         link: function (scope) {
           scope.thisDate = new Date();
