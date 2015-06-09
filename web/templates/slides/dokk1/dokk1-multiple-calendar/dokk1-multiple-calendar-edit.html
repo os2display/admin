@@ -2,7 +2,9 @@
   <div class="dokk1-multiple-calendar--header is-editor">
     <textarea auto-grow class="dokk1-multiple-calendar--header-input has-placeholder is-editor" data-ng-trim="false" placeholder="Tilføj header text" data-ng-model="ikSlide.options.header" spellcheck="false">
     </textarea>
-    <div class="dokk1-multiple-calendar--time-date is-editor">Tir. 2. juni 16:22</div>
+    <div class="dokk1-multiple-calendar--time-date is-editor">
+      <date-component theme="dokk1-multiple-calendar"></date-component>
+    </div>
   </div>
   <div class="dokk1-multiple-calendar--calendar is-editor">
     <div class="dokk1-multiple-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
