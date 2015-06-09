@@ -219,6 +219,37 @@ $breakpoint-arrow-switch : 693px;
     @include strip-link-styles();
   }
 
+  &--publishing {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+    max-width: 40em;
+  }
+
+  &--schedule-label {
+    font-size: 1.5em;
+  }
+
+  &--schedule,
+  &--published {
+    margin-bottom: 4em;
+    margin-left: .3em;
+  }
+
+  &--publishing input{
+      width: 45%;
+      display: inline-block;
+      max-width: 12em;
+      text-align: right;
+  }
+
+
+  &--checklist-days {
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
   &--slide-unpublished-overlay {
     background: $white;
     height: 168.75px; // Static since we are working within a static div anyway.

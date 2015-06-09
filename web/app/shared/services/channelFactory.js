@@ -124,7 +124,8 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
         created_at: parseInt((new Date().getTime()) / 1000),
         slides: [],
         screens: [],
-        sharing_indexes: []
+        sharing_indexes: [],
+        schedule_repeat_days: []
       };
 
       return currentChannel;
