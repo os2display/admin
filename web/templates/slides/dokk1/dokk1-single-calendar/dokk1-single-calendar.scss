@@ -51,7 +51,7 @@
 
   &--header,
   &--content {
-    position: absolute;
+    position: relative;
     left: 6vmin;
 
     font-family: 'Gibson Light';
@@ -65,11 +65,13 @@
   }
 
   &--header {
+    font-family: 'Gibson SemiBold';
     top: 11vmin;
+
 
     font-size: 9vmin;
     line-height: 120%;
-    width: 100%;
+    width: 90%;
 
     &.is-editor,
     &.is-preview {
@@ -96,6 +98,7 @@
   }
 
   &--content {
+    position: relative;
     top: 34vmin;
 
     &.is-editor,
@@ -175,10 +178,8 @@
       max-height: 2em;
     }
 
-    &.is-editor {
-      &:first-child {
+    &:first-child {
         display: none;  // Don't show the first event.
-      }
     }
   }
 
@@ -191,7 +192,7 @@
     &-input {
       @extend %responsive-header;
       @extend %placeholder-color;
-      
+
       background: rgba($white, 0);
       color: $gray;
       padding: 0;

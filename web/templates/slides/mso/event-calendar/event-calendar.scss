@@ -47,6 +47,7 @@
   }
 
   &--header{
+    max-height: 2em;
     overflow: hidden;
 
     &-input {
@@ -85,7 +86,6 @@
     text-align: center;
     display: inline-block;
     vertical-align: top;
-    padding-top: .8vw;
     position: relative;
     width: 7%;
 
@@ -96,6 +96,7 @@
 
   // The header height is dynamic depending on title. Hence we don't know the height of the day wrapper contained within the header. (Kinda hackish)
   &--day-inner {
+    padding-top: .8vw;
     position: absolute;
 
     margin: 0;

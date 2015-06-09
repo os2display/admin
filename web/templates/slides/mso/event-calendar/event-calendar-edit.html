@@ -6,7 +6,7 @@
         <textarea auto-grow class="event-calendar--header-input has-placeholder" data-ng-trim="false" placeholder="Tilføj en overskrift" data-ng-model="ikSlide.options.headline" spellcheck="false" data-ng-style="{'color': ikSlide.options.headertextcolor, 'background-color': ikSlide.options.headerbgcolor}">
         </textarea>
       </div><!-- Inline block fix
-      --><date-component data-ng-style="{'color': ikSlide.options.headertextcolor}"></date-component>
+      --><date-component class="event-calendar--day" data-ng-style="{'color': ikSlide.options.headertextcolor}"></date-component>
     </div>
     <div class="event-calendar--content is-editor" data-ng-style="{'border-color': ikSlide.options.textcolor, 'color': ikSlide.options.textcolor}">
       <div class="event-calendar--events is-editor">
@@ -16,7 +16,7 @@
           <span class="event-calendar--place-header"><span class="event-calendar--attribute-inner">Hvor</span></span>
           <span class="event-calendar--time-header"><span class="event-calendar--attribute-inner">Tidspunkt</span></span>
         </span>
-        <span class="event-calendar--event" data-ng-repeat="event in ikSlide.bookingEvents | limitTo : 5 | orderBy: 'start_time'">
+        <span class="event-calendar--event" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 5 | orderBy: 'start_time'">
           <span class="event-calendar--title ng-binding"><span class="event-calendar--attribute-inner">{{event.event_name ? event.event_name : 'Optaget'}}</span></span>
           <span class="event-calendar--place ng-binding"><span class="event-calendar--attribute-inner">{{event.resource_id}}</span></span>
           <span class="event-calendar--time"><span class="event-calendar--attribute-inner">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</span></span>

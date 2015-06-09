@@ -2,7 +2,9 @@
   <div class="dokk1-multiple-calendar--header is-editor">
     <textarea auto-grow class="dokk1-multiple-calendar--header-input has-placeholder is-editor" data-ng-trim="false" placeholder="Tilføj header text" data-ng-model="ikSlide.options.header" spellcheck="false">
     </textarea>
-    <div class="dokk1-multiple-calendar--time-date is-editor">Tir. 2. juni 16:22</div>
+    <div class="dokk1-multiple-calendar--time-date is-editor">
+      <date-component theme="dokk1-multiple-calendar"></date-component>
+    </div>
   </div>
   <div class="dokk1-multiple-calendar--calendar is-editor">
     <div class="dokk1-multiple-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
@@ -11,7 +13,7 @@
       <div class="dokk1-multiple-calendar--calendar-header is-second">Hvornår</div>
       <div class="dokk1-multiple-calendar--calendar-header is-third">Hvor</div>
     </div>
-    <div class="dokk1-multiple-calendar--calendar-row" data-ng-repeat="event in ikSlide.bookingEvents | limitTo : 5">
+    <div class="dokk1-multiple-calendar--calendar-row" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 5">
       <div class="dokk1-multiple-calendar--calendar-column is-first">{{event.event_name ? event.event_name : 'Optaget'}}</div>
       <div class="dokk1-multiple-calendar--calendar-column is-second">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
       <div class="dokk1-multiple-calendar--calendar-column is-third">{{event.resource_id}}</div>

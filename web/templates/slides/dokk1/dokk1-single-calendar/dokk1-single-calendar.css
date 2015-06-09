@@ -344,17 +344,18 @@ table {
   color: white;
   text-align: left; }
   .dokk1-single-calendar--header, .dokk1-single-calendar--content {
-    position: absolute;
+    position: relative;
     left: 6vmin;
     font-family: 'Gibson Light';
     letter-spacing: .15vmin; }
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview, .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
       left: 1em; }
   .dokk1-single-calendar--header {
+    font-family: 'Gibson SemiBold';
     top: 11vmin;
     font-size: 9vmin;
     line-height: 120%;
-    width: 100%; }
+    width: 90%; }
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview {
       font-size: 1.5em;
       top: 1em; }
@@ -368,6 +369,7 @@ table {
         border: 0;
         color: #fff; }
   .dokk1-single-calendar--content {
+    position: relative;
     top: 34vmin; }
     .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
       left: 1.5em;
@@ -417,7 +419,7 @@ table {
       font-size: 1em;
       margin-bottom: 2em;
       max-height: 2em; }
-    .dokk1-single-calendar--next.is-editor:first-child {
+    .dokk1-single-calendar--next:first-child {
       display: none; }
   .dokk1-single-calendar--meta {
     font-family: 'Gibson Light';
