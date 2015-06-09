@@ -136,15 +136,16 @@
       font-size: .8em;
       top: -1em;
     }
-
-    // Inherited html from date widget, so we nest.
-
-    & .event-calendar--week-day,
-    & .event-calendar--date,
-    & .event-calendar--month {
-      display: inline-block;
-    }
   }
+
+
+  // Date widget html.
+
+  &--date,
+  &--day {
+    text-transform: capitalize;
+  }
+
 
   &--calendar {
     top: 28vmin;

@@ -411,8 +411,8 @@ table {
     .dokk1-multiple-calendar--time-date.is-editor, .dokk1-multiple-calendar--time-date.is-preview {
       font-size: .8em;
       top: -1em; }
-    .dokk1-multiple-calendar--time-date .event-calendar--week-day, .dokk1-multiple-calendar--time-date .event-calendar--date, .dokk1-multiple-calendar--time-date .event-calendar--month {
-      display: inline-block; }
+  .dokk1-multiple-calendar--date, .dokk1-multiple-calendar--day {
+    text-transform: capitalize; }
   .dokk1-multiple-calendar--calendar {
     top: 28vmin; }
     .dokk1-multiple-calendar--calendar.is-editor, .dokk1-multiple-calendar--calendar.is-preview {

@@ -280,7 +280,7 @@ table {
  *
  */
 .icons-sprite {
-  background-image: url('/../../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../../images/icons-s15e2aefe08.png');
   background-repeat: no-repeat; }
 
 /* Variables
@@ -295,7 +295,7 @@ table {
   position: absolute;
   right: 10px;
   top: 10px;
-  background: url('/../../../images/icons-se731c6030f.png');
+  background: url('/../../../../images/icons-se731c6030f.png');
   -moz-background-size: 64px 894px;
   -o-background-size: 64px 894px;
   -webkit-background-size: 64px 894px;
@@ -310,7 +310,7 @@ table {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/../../../images/icons-se731c6030f.png');
+  background: url('/../../../../images/icons-se731c6030f.png');
   -moz-background-size: 128px 1788px;
   -o-background-size: 128px 1788px;
   -webkit-background-size: 128px 1788px;
@@ -329,7 +329,7 @@ table {
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url('/../../../images/icons-se731c6030f.png');
+  background: url('/../../../../images/icons-se731c6030f.png');
   -moz-background-size: 96px 1341px;
   -o-background-size: 96px 1341px;
   -webkit-background-size: 96px 1341px;
@@ -374,6 +374,7 @@ table {
     height: 100%;
     overflow: hidden; }
   .event-calendar--header {
+    max-height: 2em;
     overflow: hidden; }
     .event-calendar--header-input {
       padding: 0; }
@@ -396,12 +397,12 @@ table {
     text-align: center;
     display: inline-block;
     vertical-align: top;
-    padding-top: .8vw;
     position: relative;
     width: 7%; }
     .event-calendar--day.is-preview {
       padding-top: .8em; }
   .event-calendar--day-inner {
+    padding-top: .8vw;
     position: absolute;
     margin: 0;
     height: 20em;

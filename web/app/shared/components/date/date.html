@@ -1,4 +1,7 @@
 <div class="date-component">
+  <div class="dokk1-multiple-calendar--date-display" data-ng-if="theme === 'dokk1-multiple-calendar'">
+    <span class="dokk1-multiple-calendar--day">{{thisDate | date:'EEE'}}</span> {{thisDate | date:'d'}}. <span>{{thisDate | date:'MMMM'}}</span> <span>{{thisDate | date:'HH:mm'}}</span>
+  </div>
   <div class="event-calendar" data-ng-if="!theme">
     <div class="event-calendar--day-inner">
       <div class="event-calendar--week-day">{{thisDate | date:'EEE'}}</div>
