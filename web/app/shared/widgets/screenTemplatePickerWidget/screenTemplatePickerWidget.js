@@ -18,8 +18,8 @@
    * html-parameters:
    *   screen (object): the screen to modify.
    */
-  app.directive('screenTemplatePickerWidget', ['templateFactory', 'itkLogFactory',
-    function (templateFactory, itkLogFactory) {
+  app.directive('screenTemplatePickerWidget', ['templateFactory', 'itkLogFactory', 'configuration',
+    function (templateFactory, itkLogFactory, configuration) {
       return {
         restrict: 'E',
         scope: {
@@ -46,7 +46,7 @@
             scope.screen.template = template;
           };
         },
-        templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html'
+        templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html?' + configuration.version
       };
     }
   ]);

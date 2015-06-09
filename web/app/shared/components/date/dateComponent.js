@@ -17,12 +17,12 @@
    *
    * html parameters:
    */
-  app.directive('dateComponent', ['$interval',
-    function ($interval) {
+  app.directive('dateComponent', ['$interval', 'configuration',
+    function ($interval, configuration) {
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/components/date/date.html',
+        templateUrl: 'app/shared/components/date/date.html?' + configuration.version,
         scope: {
           theme: '@'
         },

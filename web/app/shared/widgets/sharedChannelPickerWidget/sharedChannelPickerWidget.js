@@ -19,12 +19,12 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('sharedChannelPickerWidget', ['sharedChannelFactory', 'itkLogFactory',
-    function (sharedChannelFactory, itkLogFactory) {
+  app.directive('sharedChannelPickerWidget', ['sharedChannelFactory', 'itkLogFactory', 'configuration',
+    function (sharedChannelFactory, itkLogFactory, configuration) {
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/widgets/sharedChannelPickerWidget/shared-channel-picker-widget.html',
+        templateUrl: 'app/shared/widgets/sharedChannelPickerWidget/shared-channel-picker-widget.html?' + configuration.version,
         scope: {
           screen: '=',
           region: '='

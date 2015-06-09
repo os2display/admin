@@ -14,8 +14,8 @@
  *   which media type should be shown, "image" or "video",
  *   leave out show all media.
  */
-angular.module('ikApp').directive('ikMediaOverview', ['itkLogFactory',
-  function (itkLogFactory) {
+angular.module('ikApp').directive('ikMediaOverview', ['itkLogFactory', 'configuration',
+  function (itkLogFactory, configuration) {
     'use strict';
 
     return {
@@ -248,7 +248,7 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLogFactory',
           }
         })
       },
-      templateUrl: '/app/shared/elements/mediaOverview/media-overview-directive.html'
+      templateUrl: '/app/shared/elements/mediaOverview/media-overview-directive.html?' + configuration.version
     };
   }
 ]);

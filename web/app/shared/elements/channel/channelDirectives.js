@@ -8,8 +8,8 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
-  function($interval, $location) {
+angular.module('ikApp').directive('ikChannel', ['$interval', '$location', 'configuration',
+  function($interval, $location, configuration) {
     'use strict';
 
     return {
@@ -32,10 +32,10 @@ angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
 
           // If channel is empty, display empty channel.
           if (scope.ikChannel.slides.length <= 0) {
-            scope.templateURL = 'app/shared/elements/channel/empty.html';
+            scope.templateURL = 'app/shared/elements/channel/empty.html?' + configuration.version;
           }
           else {
-            scope.templateURL = 'app/shared/elements/channel/non-empty.html';
+            scope.templateURL = 'app/shared/elements/channel/non-empty.html?' + configuration.version;
 
             scope.buttonState = 'play';
           }
@@ -77,7 +77,7 @@ angular.module('ikApp').directive('ikChannel', ['$interval', '$location',
           }
         });
       },
-      templateUrl: 'app/shared/elements/channel/channel-template.html'
+      templateUrl: 'app/shared/elements/channel/channel-template.html?' + configuration.version
     };
   }
 ]);

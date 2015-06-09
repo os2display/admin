@@ -35,6 +35,7 @@ twig:
     search_host: %search_host%
     search_index: %search_index%
     site_title: %site_title%
+    version: dev
 
 # Assetic Configuration
 assetic:

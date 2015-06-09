@@ -6,8 +6,8 @@
 /**
  * Directive to show the slide overview.
  */
-angular.module('ikApp').directive('ikSlideOverview', ['itkLogFactory',
-  function (itkLogFactory) {
+angular.module('ikApp').directive('ikSlideOverview', ['itkLogFactory', 'configuration',
+  function (itkLogFactory, configuration) {
     'use strict';
 
     return {
@@ -214,7 +214,7 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLogFactory',
         // Send the default search query.
         $scope.updateSearch();
       },
-      templateUrl: '/app/shared/elements/slideOverview/slide-overview-directive.html'
+      templateUrl: '/app/shared/elements/slideOverview/slide-overview-directive.html?' + configuration.version
     };
   }
 ]);

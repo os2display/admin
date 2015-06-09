@@ -111,13 +111,15 @@ app.factory('itkLogFactory', ['$http', '$timeout', '$log',
  * itk-log directive.
  *
  * Displays the current message from itkLogFactory.
+ *
+ * Version: 1.0
  */
 app.directive('itkLog', ['itkLogFactory', function (itkLogFactory) {
     'use strict';
 
     return {
       restrict: 'E',
-      templateUrl: 'assets/modules/itkLog/log.html',
+      templateUrl: 'assets/modules/itkLog/log.html?1',
       link: function (scope) {
         scope.expanded = false;
 

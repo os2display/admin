@@ -8,8 +8,8 @@
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSharedSlide', ['cssInjector',
-  function (cssInjector) {
+angular.module('ikApp').directive('ikSharedSlide', ['cssInjector', 'configuration',
+  function (cssInjector, configuration) {
     'use strict';
 
     return {
@@ -19,7 +19,7 @@ angular.module('ikApp').directive('ikSharedSlide', ['cssInjector',
         ikSlide: '='
       },
       link: function (scope, element, attrs) {
-        scope.templateURL = '/app/shared/elements/slide/slide-loading.html';
+        scope.templateURL = '/app/shared/elements/slide/slide-loading.html?' + configuration.version;
 
         // Observe for changes to the ik-slide attribute. Setup slide when ik-slide is set.
         attrs.$observe('ikSlide', function (val) {

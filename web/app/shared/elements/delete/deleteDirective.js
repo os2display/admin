@@ -8,7 +8,8 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-angular.module('ikApp').directive('ikDelete', ['$http', '$rootScope', 'itkLogFactory', function($http, $rootScope, itkLogFactory) {
+angular.module('ikApp').directive('ikDelete', ['$http', '$rootScope', 'itkLogFactory', 'configuration',
+  function($http, $rootScope, itkLogFactory, configuration) {
   'use strict';
 
   return {
@@ -34,6 +35,6 @@ angular.module('ikApp').directive('ikDelete', ['$http', '$rootScope', 'itkLogFac
         }
       };
     },
-    templateUrl: 'app/shared/elements/delete/delete.html'
+    templateUrl: 'app/shared/elements/delete/delete.html?' + configuration.version
   };
 }]);
