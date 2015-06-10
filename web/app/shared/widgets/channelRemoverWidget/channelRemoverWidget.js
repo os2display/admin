@@ -19,12 +19,12 @@
    *   screen (object): the screen to modify.
    *   region (integer): the region of the screen to modify.
    */
-  app.directive('channelRemoverWidget', ['configuration',
-    function (configuration) {
+  app.directive('channelRemoverWidget', [
+    function () {
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/widgets/channelRemoverWidget/channel-remover-widget.html?' + configuration.version,
+        templateUrl: 'app/shared/widgets/channelRemoverWidget/channel-remover-widget.html?' + window.config.version,
         scope: {
           screen: '=',
           region: '='

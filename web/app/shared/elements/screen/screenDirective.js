@@ -6,8 +6,8 @@
 /**
  * Directive to insert a screen.
  */
-angular.module('ikApp').directive('ikScreen', ['configuration',
-  function (configuration) {
+angular.module('ikApp').directive('ikScreen', [
+  function () {
     'use strict';
 
     return {
@@ -37,7 +37,7 @@ angular.module('ikApp').directive('ikScreen', ['configuration',
           }
         });
       },
-      templateUrl: 'app/shared/elements/screen/screen-template.html?' + configuration.version
+      templateUrl: 'app/shared/elements/screen/screen-template.html?' + window.config.version
     };
   }
 ]);

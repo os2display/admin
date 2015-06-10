@@ -196,7 +196,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
         scope.updateSearch();
       },
-      templateUrl: '/app/shared/elements/channelOverview/channel-overview-directive.html?' + configuration.version
+      templateUrl: '/app/shared/elements/channelOverview/channel-overview-directive.html?' + window.config.version
     };
   }
 ]);

@@ -11,8 +11,8 @@
  * Emits the 'mediaUpload.uploadComplete' event for a parent controller to catch.
  *   Catch this event to handle when the upload is complete.
  */
-angular.module('ikApp').directive('ikMediaUpload', ['configuration',
-  function (configuration) {
+angular.module('ikApp').directive('ikMediaUpload', [
+  function () {
     'use strict';
 
     return {
@@ -178,7 +178,7 @@ angular.module('ikApp').directive('ikMediaUpload', ['configuration',
       },
       link: function () {
       },
-      templateUrl: '/app/shared/elements/mediaUpload/media-upload-directive.html?' + configuration.version
+      templateUrl: '/app/shared/elements/mediaUpload/media-upload-directive.html?' + window.config.version
     };
   }
 ]);

@@ -7,8 +7,8 @@
  * Checklist directive.
  *
  */
-angular.module('ikApp').directive('ikChecklist', ['configuration',
-  function (configuration) {
+angular.module('ikApp').directive('ikChecklist', [
+  function () {
     'use strict';
 
     return {
@@ -55,7 +55,7 @@ angular.module('ikApp').directive('ikChecklist', ['configuration',
           return false;
         };
       },
-      templateUrl: 'app/shared/elements/checklist/checklist.html?' + configuration.version
+      templateUrl: 'app/shared/elements/checklist/checklist.html?' + window.config.version
     };
   }
 ]);

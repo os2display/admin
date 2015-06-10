@@ -6,8 +6,8 @@
 /**
  * Paging directive.
  */
-angular.module('ikApp').directive('ikPager', ['configuration',
-  function (configuration) {
+angular.module('ikApp').directive('ikPager', [
+  function () {
     'use strict';
 
     return {
@@ -54,7 +54,7 @@ angular.module('ikApp').directive('ikPager', ['configuration',
           }
         );
       },
-      templateUrl: '/app/shared/elements/pager/pager-directive.html?' + configuration.version
+      templateUrl: '/app/shared/elements/pager/pager-directive.html?' + window.config.version
     };
   }
 ]);

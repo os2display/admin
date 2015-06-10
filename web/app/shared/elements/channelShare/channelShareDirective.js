@@ -11,8 +11,8 @@
  * html-parameters
  *   ikChannel (object): Channel to share.
  */
-angular.module('ikApp').directive('ikChannelShare', ['configuration',
-  function (configuration) {
+angular.module('ikApp').directive('ikChannelShare', [
+  function () {
     'use strict';
 
     return {
@@ -25,7 +25,7 @@ angular.module('ikApp').directive('ikChannelShare', ['configuration',
           scope.$emit('ikChannelShare.clickShare', scope.ikChannel);
         };
       },
-      templateUrl: 'app/shared/elements/channelShare/channel-share.html?' + configuration.version
+      templateUrl: 'app/shared/elements/channelShare/channel-share.html?' + window.config.version
     };
   }
 ]);

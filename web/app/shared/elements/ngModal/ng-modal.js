@@ -22,8 +22,8 @@
    *   show (boolean): should the modal be visible?
    *   onClose (function): function to call on close action.
    */
-  app.directive('modalDialog', ['configuration',
-    function (configuration) {
+  app.directive('modalDialog', [
+    function () {
       return {
         restrict: 'E',
         scope: {
@@ -47,7 +47,7 @@
             }
           });
         },
-        templateUrl: 'app/shared/elements/ngModal/ng-modal.html?' + configuration.version
+        templateUrl: 'app/shared/elements/ngModal/ng-modal.html?' + window.config.version
       };
     }
   ]);

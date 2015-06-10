@@ -208,7 +208,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           }
         };
       },
-      templateUrl: '/app/shared/elements/sharedChannelOverview/shared-channel-overview.html?' + configuration.version
+      templateUrl: '/app/shared/elements/sharedChannelOverview/shared-channel-overview.html?' + window.config.version
     };
   }
 ]);

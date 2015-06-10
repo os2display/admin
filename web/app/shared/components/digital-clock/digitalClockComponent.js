@@ -17,12 +17,12 @@
    *
    * html parameters:
    */
-  app.directive('digitalClockComponent', ['$interval', 'configuration',
-    function ($interval, configuration) {
+  app.directive('digitalClockComponent', ['$interval',
+    function ($interval) {
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/components/digital-clock/digital-clock.html?' + configuration.version,
+        templateUrl: 'app/shared/components/digital-clock/digital-clock.html?' + window.config.version,
         scope: {
         },
         link: function (scope) {
