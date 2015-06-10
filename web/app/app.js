@@ -12,7 +12,6 @@ angular.module('ikApp', [
     'ngRoute',
     'ngAnimate',
     'angularFileUpload',
-    'checklist-model',
     'colorpicker.module',
     'datetimePicker',
     'ngLocale',
