@@ -19,8 +19,8 @@
    *   region (integer): The region to modify.
    *   screen (object): The screen to modify.
    */
-  app.directive('regionPreviewWidget',
-    function () {
+  app.directive('regionPreviewWidget', ['configuration',
+    function (configuration) {
       return {
         restrict: 'E',
         scope: {
@@ -29,7 +29,7 @@
           width: '='
         },
         replace: false,
-        templateUrl: 'app/shared/widgets/regionPreviewWidget/region-preview-widget.html',
+        templateUrl: 'app/shared/widgets/regionPreviewWidget/region-preview-widget.html?' + configuration.version,
         link: function (scope) {
           scope.getNumberOfChannels = function getNumberOfChannels() {
             var n = 0;
@@ -45,5 +45,5 @@
         }
       };
     }
-  );
+  ]);
 }).call(this);

@@ -24,7 +24,7 @@
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/widgets/sharedChannelPickerWidget/shared-channel-picker-widget.html',
+        templateUrl: 'app/shared/widgets/sharedChannelPickerWidget/shared-channel-picker-widget.html?' + window.config.version,
         scope: {
           screen: '=',
           region: '='

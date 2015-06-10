@@ -46,7 +46,7 @@
             scope.screen.template = template;
           };
         },
-        templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html'
+        templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html?' + window.config.version
       };
     }
   ]);

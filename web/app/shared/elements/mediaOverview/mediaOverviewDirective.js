@@ -248,7 +248,7 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
           }
         })
       },
-      templateUrl: '/app/shared/elements/mediaOverview/media-overview-directive.html'
+      templateUrl: '/app/shared/elements/mediaOverview/media-overview-directive.html?' + window.config.version
     };
   }
 ]);

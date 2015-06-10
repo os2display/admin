@@ -214,7 +214,7 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
         // Send the default search query.
         $scope.updateSearch();
       },
-      templateUrl: '/app/shared/elements/slideOverview/slide-overview-directive.html'
+      templateUrl: '/app/shared/elements/slideOverview/slide-overview-directive.html?' + window.config.version
     };
   }
 ]);
