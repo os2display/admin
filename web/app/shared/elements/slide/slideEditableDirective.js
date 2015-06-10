@@ -8,8 +8,8 @@
  * @param ik-slide: the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLogFactory',
-  function (templateFactory, itkLogFactory) {
+angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog',
+  function (templateFactory, itkLog) {
     'use strict';
 
     return {
@@ -19,7 +19,7 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
         ikSlide: '='
       },
       link: function (scope, element, attrs) {
-        scope.templateURL = '/app/shared/elements/slide/slide-loading.html';
+        scope.templateURL = '/app/shared/elements/slide/slide-loading.html?' + window.config.version;
 
         // Watch for changes to ikSlide.
         scope.$watch('ikSlide', function (newVal, oldVal) {
@@ -77,7 +77,6 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
           if (!scope.template || newVal.template !== oldVal.template) {
             templateFactory.getSlideTemplate(scope.ikSlide.template).then(
               function success(data) {
-                console.log(data);
                 scope.template = data;
                 scope.templateURL = scope.template.paths.edit;
 
@@ -89,7 +88,7 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
                 };
               },
               function error(reason) {
-                itkLogFactory.error("Hentning af template fejlede.", reason);
+                itkLog.error("Hentning af template fejlede.", reason);
               }
             );
           }
@@ -100,7 +99,7 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
           }
         }, true);
       },
-      templateUrl: '/app/shared/elements/slide/slide-edit.html'
+      templateUrl: '/app/shared/elements/slide/slide-edit.html?' + window.config.version
     };
   }
 ]);

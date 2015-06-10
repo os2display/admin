@@ -6,15 +6,15 @@
 /**
  * Channels controller handles the display and selection of channels.
  */
-angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'configuration', 'itkLogFactory',
-  function($scope, sharedChannelFactory, channelFactory, configuration, itkLogFactory) {
+angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'itkLog',
+  function($scope, sharedChannelFactory, channelFactory, itkLog) {
     'use strict';
 
     $scope.shareDialogShow = false;
     $scope.shareDialogChannel = null;
 
     // If the sharingService is enabled.
-    if (configuration.sharingService.enabled) {
+    if (window.config.sharingService.enabled) {
       $scope.$on('ikChannelShare.clickShare', function(event, channel) {
         $scope.shareDialogShow = true;
         $scope.shareDialogChannel = channel;
@@ -27,7 +27,7 @@ angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'shar
             }
           },
           function error(reason) {
-            itkLogFactory.error('Hentning af kanal fejlede', reason);
+            itkLog.error('Hentning af kanal fejlede', reason);
           }
         );
       });
@@ -38,17 +38,17 @@ angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'shar
           $scope.sharingIndexes = data;
         },
         function error(reason) {
-          itkLogFactory.error('Hentning af delingsindeks fejlede.', reason);
+          itkLog.error('Hentning af delingsindeks fejlede.', reason);
         }
       );
 
       $scope.saveSharingChannel = function saveSharingChannel() {
         channelFactory.channelShare($scope.shareDialogChannel).then(
           function() {
-            itkLogFactory.info('Delingskonfiguration af kanal lykkedes.', 3000);
+            itkLog.info('Delingskonfiguration af kanal lykkedes.', 3000);
           },
           function(reason) {
-            itkLogFactory.error('Deling af kanal fejlede.', reason);
+            itkLog.error('Deling af kanal fejlede.', reason);
           }
         );
       };

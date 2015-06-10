@@ -6,23 +6,23 @@
 /**
  * Menu controller. Controls the menues.
  */
-angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'configuration', 'itkLogFactory',
-  function ($scope, $rootScope, $location, $http, userFactory, configuration, itkLogFactory) {
+angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'itkLog',
+  function ($scope, $rootScope, $location, $http, userFactory, itkLog) {
     'use strict';
 
     $scope.url = $location.url();
     $scope.navMenuOpen = null;
     $scope.subMenuItems = [];
     $scope.showMobileMainMenu = false;
-    $scope.showSharingOptions = configuration.sharingService.enabled;
-    $scope.siteTitle = configuration.siteTitle;
+    $scope.showSharingOptions = window.config.sharingService.enabled;
+    $scope.siteTitle = window.config.siteTitle;
 
     userFactory.getCurrentUser().then(
       function success(data) {
         $scope.currentUser = data;
       },
       function error(reason) {
-        itkLogFactory.error("Hentning af bruger fejlede.", reason);
+        itkLog.error("Hentning af bruger fejlede.", reason);
       }
     );
 
@@ -167,7 +167,7 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
       updateSubMenu();
 
       // Clear log
-      itkLogFactory.clear();
+      itkLog.clear();
     });
 
     /**
@@ -183,10 +183,10 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     $scope.updateTemplates = function updateTemplates() {
       $http.get('/api/command/update_templates')
         .success(function(data, status, headers, config) {
-          itkLogFactory.info("Templates opdateret.", 3000);
+          itkLog.info("Templates opdateret.", 3000);
         })
         .error(function(data, status, headers, config) {
-          itkLogFactory.error("Update af templates fejlede.", status);
+          itkLog.error("Update af templates fejlede.", status);
         });
       closeNavMenu();
     };
@@ -197,10 +197,10 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     $scope.reindex = function reindex() {
       $http.get('/api/command/reindex')
         .success(function(data, status, headers, config) {
-          itkLogFactory.info("Reindex gennemført.", 3000);
+          itkLog.info("Reindex gennemført.", 3000);
         })
         .error(function(data, status, headers, config) {
-          itkLogFactory.error("Reindex fejlede.", status);
+          itkLog.error("Reindex fejlede.", status);
         });
       closeNavMenu();
     };
@@ -211,10 +211,10 @@ angular.module('ikApp').controller('MenuController', ['$scope', '$rootScope', '$
     $scope.forcePush = function reindex() {
       $http.get('/api/command/forcepush')
         .success(function(data, status, headers, config) {
-          itkLogFactory.info("Force push gennemført.", 3000);
+          itkLog.info("Force push gennemført.", 3000);
         })
         .error(function(data, status, headers, config) {
-          itkLogFactory.error("Force push fejlede.", status);
+          itkLog.error("Force push fejlede.", status);
         });
       closeNavMenu();
     };

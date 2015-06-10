@@ -5,6 +5,7 @@
 
 /**
  * Angular wrapper for jquery.datetimepicker.js.
+ * For v2.3.4
  * Only a one way binding atm.
  */
 angular.module('datetimePicker', [])

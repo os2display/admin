@@ -8,8 +8,8 @@
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory', 'itkLogFactory',
-  function (slideFactory, templateFactory, itkLogFactory) {
+angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory', 'itkLog',
+  function (slideFactory, templateFactory, itkLog) {
     'use strict';
 
     return {
@@ -19,7 +19,7 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
         ikSlide: '='
       },
       link: function (scope, element, attrs) {
-        scope.templateURL = '/app/shared/elements/slide/slide-loading.html';
+        scope.templateURL = '/app/shared/elements/slide/slide-loading.html?' + window.config.version;
 
         // Observe for changes to the ik-slide attribute. Setup slide when ik-slide is set.
         attrs.$observe('ikSlide', function (val) {
@@ -68,7 +68,7 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
               }
             },
             function error(reason) {
-              itkLogFactory.error("Hentning af templates fejlede.", reason);
+              itkLog.error("Hentning af templates fejlede.", reason);
             }
           );
         });

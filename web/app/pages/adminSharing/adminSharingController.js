@@ -6,8 +6,8 @@
 /**
  * Admin sharing controller.
  */
-angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedChannelFactory', 'itkLogFactory',
-  function ($scope, sharedChannelFactory, itkLogFactory) {
+angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedChannelFactory', 'itkLog',
+  function ($scope, sharedChannelFactory, itkLog) {
     'use strict';
 
     $scope.saving = false;
@@ -23,7 +23,7 @@ angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedC
         });
       },
       function error(reason) {
-        itkLogFactory.error('Hentning af tilgængelige delingsindeks fejlede.', reason);
+        itkLog.error('Hentning af tilgængelige delingsindeks fejlede.', reason);
       }
     );
     $scope.chosenIndexes = [];
@@ -32,7 +32,7 @@ angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedC
         $scope.chosenIndexes = data;
       },
       function error(reason) {
-        itkLogFactory.error('Hentning af valgte delingsindeks fejlede.', reason);
+        itkLog.error('Hentning af valgte delingsindeks fejlede.', reason);
       }
     );
 
@@ -40,11 +40,11 @@ angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedC
       $scope.saving = true;
       sharedChannelFactory.saveSharingIndexes($scope.chosenIndexes).then(
         function success() {
-          itkLogFactory.info('Delingsindeks gemt', 3000);
+          itkLog.info('Delingsindeks gemt', 3000);
           $scope.saving = false;
         },
         function error(reason) {
-          itkLogFactory.error('Delingsindeks blev ikke gemt', reason);
+          itkLog.error('Delingsindeks blev ikke gemt', reason);
           $scope.saving = false;
         }
       );

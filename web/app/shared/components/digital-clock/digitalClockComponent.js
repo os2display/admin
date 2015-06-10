@@ -22,7 +22,7 @@
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/components/digital-clock/digital-clock.html',
+        templateUrl: 'app/shared/components/digital-clock/digital-clock.html?' + window.config.version,
         scope: {
         },
         link: function (scope) {

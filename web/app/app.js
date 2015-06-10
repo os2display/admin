@@ -12,7 +12,6 @@ angular.module('ikApp', [
     'ngRoute',
     'ngAnimate',
     'angularFileUpload',
-    'checklist-model',
     'colorpicker.module',
     'datetimePicker',
     'ngLocale',
@@ -52,12 +51,13 @@ angular.module('ikApp', [
   .config(function ($provide) {
     "use strict";
 
-    $provide.decorator("$exceptionHandler", ['$delegate', '$injector', function ($delegate, $injector) {
-      return function (exception, cause) {
-        $delegate(exception, cause);
+    $provide.decorator("$exceptionHandler", ['$delegate', '$injector',
+      function ($delegate, $injector) {
+        return function (exception, cause) {
+          $delegate(exception, cause);
 
-        $injector.get('itkLogFactory').error("" + exception, "" + cause);
-      };
-    }]);
-  }
-);
+          $injector.get('itkLog').error(exception, cause);
+        };
+      }
+    ]);
+  });

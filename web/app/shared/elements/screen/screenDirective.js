@@ -37,7 +37,7 @@ angular.module('ikApp').directive('ikScreen', [
           }
         });
       },
-      templateUrl: 'app/shared/elements/screen/screen-template.html'
+      templateUrl: 'app/shared/elements/screen/screen-template.html?' + window.config.version
     };
   }
 ]);
