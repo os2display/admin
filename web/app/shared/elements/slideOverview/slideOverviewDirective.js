@@ -6,8 +6,8 @@
 /**
  * Directive to show the slide overview.
  */
-angular.module('ikApp').directive('ikSlideOverview', ['itkLogFactory',
-  function (itkLogFactory) {
+angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
+  function (itkLog) {
     'use strict';
 
     return {
@@ -80,7 +80,7 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLogFactory',
                 function error(reason) {
                   $scope.loading = false;
 
-                  itkLogFactory.error("Hentning af søgeresultater fejlede.", reason);
+                  itkLog.error("Hentning af søgeresultater fejlede.", reason);
                 }
               );
             }

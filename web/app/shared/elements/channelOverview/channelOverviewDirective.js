@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel overview.
  */
-angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'configuration', 'itkLogFactory',
-  function(channelFactory, userFactory, configuration, itkLogFactory) {
+angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'itkLog',
+  function(channelFactory, userFactory, itkLog) {
     'use strict';
 
     return {
@@ -17,7 +17,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         ikOverlay: '@'
       },
       link: function(scope) {
-        scope.displaySharingOption = configuration.sharingService.enabled;
+        scope.displaySharingOption = window.config.sharingService.enabled;
         scope.loading = false;
 
         scope.showFromUser = 'all';
@@ -84,7 +84,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
                   scope.loading = false;
                 },
                 function error(reason) {
-                  itkLogFactory.error("Kunne ikke loade søgeresultatet.", reason);
+                  itkLog.error("Kunne ikke loade søgeresultatet.", reason);
                   scope.loading = false;
                 }
               );

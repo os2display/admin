@@ -34,15 +34,12 @@
   <!-- Socket io from the search node, to get right version -->
   <script src="/proxy/socket.io/socket.io.js"></script>
 
-  <!-- Modules -->
-  <script src="{{ asset('assets/modules/itkLog/itkLog.js') }}"></script>
-
   <!-- Main app -->
   <script src="{{ asset('app/app.js') }}"></script>
 
   <!-- Configuration -->
   <script type="text/javascript">
-    angular.module('ikApp').value('configuration', {
+    window.config = {
       "search": {
         "address": "{{ search_host }}",
         "index": "{{ search_index }}"
@@ -51,9 +48,18 @@
         "enabled": "{{ sharing_enabled }}",
         "address": "{{ sharing_host }}"
       },
-      "siteTitle": "{{ site_title }}"
-    });
+      "siteTitle": "{{ site_title }}",
+      "itkLog": {
+        "version": "1",
+        "errorCallback": "/api/error",
+        "logToConsole": true,
+        "logLevel": "all"
+      }
+    }
   </script>
+
+  <!-- Modules -->
+  <script src="{{ asset('assets/modules/itkLog/itkLog.js') }}"></script>
 
   <!-- Routing -->
   <script src="{{ asset('app/routing.js') }}"></script>

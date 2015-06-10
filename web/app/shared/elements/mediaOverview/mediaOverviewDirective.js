@@ -14,8 +14,8 @@
  *   which media type should be shown, "image" or "video",
  *   leave out show all media.
  */
-angular.module('ikApp').directive('ikMediaOverview', ['itkLogFactory',
-  function (itkLogFactory) {
+angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
+  function (itkLog) {
     'use strict';
 
     return {
@@ -93,7 +93,7 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLogFactory',
                   $scope.loading = false;
                 },
                 function error(reason) {
-                  itkLogFactory.error("Hentning af søgeresultater fejlede.", reason);
+                  itkLog.error("Hentning af søgeresultater fejlede.", reason);
                   $scope.loading = false;
                 }
               );
