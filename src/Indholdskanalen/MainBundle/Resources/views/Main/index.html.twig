@@ -27,10 +27,10 @@
       },
       "siteTitle": "{{ site_title }}",
       "itkLog": {
-        "version": "1",
-        "errorCallback": "/api/error",
-        "logToConsole": true,
-        "logLevel": "all"
+        "version": "{{ itk_log_version }}",
+        "errorCallback": "{{ itk_log_error_callback }}",
+        "logToConsole": {{ itk_log_log_to_console }},
+        "logLevel": "{{ itk_log_log_level }}"
       },
       "version": "{{ version }}"
     };

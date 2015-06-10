@@ -44,3 +44,8 @@ parameters:
     koba_path: http://192.168.50.21
 
     version: dev
+
+    itk_log_version: 1
+    itk_log_error_callback: /api/error
+    itk_log_log_to_console: true
+    itk_log_log_level: all
