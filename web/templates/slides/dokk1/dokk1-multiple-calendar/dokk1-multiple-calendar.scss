@@ -1,0 +1,268 @@
+/**
+ *
+ * Header top template styles. (Responsive)
+ *
+ * A note on responsive templates:
+ * We use viewport width for base fontsize in client.
+ * We use viewport width for padding and margin, so the padding depends on the full width of the screen rather than the width of each section within a 5 split screen.
+ * When displaying editor or preview we add state classes and fall back to em for margin/padding.
+ *
+ */
+
+
+
+/* Imports.
+   ========================================================================== */
+
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+@font-face {
+  font-family: 'Gibson SemiBold';
+  src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Regular';
+  src: url("fonts/Gibson-Regular-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Light';
+  src: url("fonts/Gibson-Light-webfont.woff") format("woff");
+}
+
+
+/* Placeholders related to this document
+   ========================================================================== */
+%event-attribute {
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  padding: 0.4vw;
+  vertical-align: middle;
+  text-align: left;
+}
+
+
+/* Styles
+   ========================================================================== */
+
+.dokk1-multiple-calendar {
+  background-repeat: no-repeat;
+  background-color: white;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  color: #fff;
+  font: 1em/1.5 'Gibson Light', sans-serif;
+  text-align: left;
+
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+
+  &--header,
+  &--calendar {
+    position: absolute;
+    right: 6vmin;
+    left: 6vmin;
+
+    font-family: 'Gibson SemiBold';
+    letter-spacing: .15vmin;
+
+    &.is-editor,
+    &.is-preview {
+      padding: 0 1em;
+      right: 0;
+      left: 0;
+      letter-spacing: 0;
+    }
+  }
+
+  &--header {
+    top: 11vmin;
+    display: flex;
+    -webkit-display: flex;
+
+    &.is-editor,
+    &.is-preview {
+      top: 1.5em;
+      padding: 0 1em;
+    }
+
+    &-input {
+      @extend %responsive-header;
+      @extend %placeholder-color;
+
+      background: rgba($white, 0);
+      color: $white;
+      font-family: 'Gibson SemiBold';
+      font-size: 1em;
+      padding: 0;
+      max-width: 75%;
+
+      // Override form styles.
+      &:focus {
+        border: 0;
+        color: $white;
+      }
+    }
+  }
+
+  &--title,
+  &--time-date {
+    font-size: 7vmin;
+
+    &.is-editor,
+    &.is-preview {
+      font-size: 1.5em;
+    }
+  }
+
+  &--time-date {
+    position: relative;
+    top: -9vmin;
+
+    font-family: 'Gibson Light';
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    align-self: flex-end;
+    -webkit-align-self: flex-end;
+
+    color: rgba(255, 255, 255, .75);
+    font-size: 4vmin;
+    text-align: right;
+
+    &.is-editor,
+    &.is-preview {
+      font-size: .8em;
+      top: -1em;
+    }
+  }
+
+
+  // Date widget html.
+
+  &--date,
+  &--day {
+    text-transform: capitalize;
+  }
+
+
+  &--calendar {
+    top: 28vmin;
+
+    &.is-editor,
+    &.is-preview {
+      top: 4em;
+    }
+  }
+
+  &--calendar-row {
+    display: flex;
+    -webkit-display: flex;
+
+    &:last-child .dokk1-multiple-calendar--calendar-column {
+      border-bottom: 0!important; // To override a nesting.
+    }
+  }
+
+  &--calendar-header {
+    padding-bottom: 1.5vmin;
+    font-size: 3vmin;
+  }
+
+
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-header,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-header {
+    padding-bottom: 1em;
+    font-size: .6em;
+  }
+
+  &--calendar-header,
+  &--calendar-column {
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    flex-basis: 0;
+    -webkit-flex-basis: 0;
+
+    border-right: .1vmin solid rgba(255, 255, 255, .5);
+    border-bottom: .1vmin solid rgba(255, 255, 255, .5);
+    padding-right: 4vmin;
+    padding-left: 4vmin;
+  }
+
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-header,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-header,
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-column,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-column {
+    border-right: 1px solid rgba(255, 255, 255, .5);
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    padding-right: 1em;
+    padding-left: 1em;
+
+    &:nth-child(1) {
+      padding-left: 0;
+    }
+
+    &:nth-child(3) {
+      border-right: 0;
+    }
+  }
+
+  &--calendar-header:nth-child(1),
+  &--calendar-column:nth-child(1) {
+    padding-left: 0;
+  }
+
+  &--calendar-header:nth-child(3),
+  &--calendar-column:nth-child(3) {
+    border-right: 0;
+  }
+
+  &--calendar-column {
+    padding-top: 1.1vmin;
+    padding-bottom: 1.25vmin;
+
+    font-family: 'Gibson Light';
+    font-size: 2vmin;
+  }
+
+  &--calendar.is-editor .dokk1-multiple-calendar--calendar-column,
+  &--calendar.is-preview .dokk1-multiple-calendar--calendar-column {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: .6em;
+  }
+
+  .is-first {
+    order: 1;
+    -webkit-order: 1;
+  }
+
+  .is-second {
+    order: 2;
+    -webkit-order: 2;
+  }
+
+  .is-third {
+    order: 3;
+    -webkit-order: 3;
+  }
+
+  &--edit-image-settings  {
+    @extend %slide--edit-image-settings;
+
+    // Avoid overlap with textboxes.
+    top: 50%;
+    right: 5%;
+  }
+
+
+  &--edit-content-settings {
+    @extend %slide--edit-content-settings;
+
+    top: 15%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}

@@ -19,18 +19,18 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('channelPickerWidget', ['configuration', 'userFactory', 'channelFactory', 'itkLogFactory',
-    function (configuration, userFactory, channelFactory, itkLogFactory) {
+  app.directive('channelPickerWidget', ['userFactory', 'channelFactory', 'itkLog',
+    function (userFactory, channelFactory, itkLog) {
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/widgets/channelPickerWidget/channel-picker-widget.html',
+        templateUrl: 'app/shared/widgets/channelPickerWidget/channel-picker-widget.html?' + window.config.version,
         scope: {
           screen: '=',
           region: '='
         },
         link: function (scope) {
-          scope.sharingEnabled = configuration.sharingService.enabled;
+          scope.sharingEnabled = window.config.sharingService.enabled;
           scope.loading = false;
 
           scope.showFromUser = 'all';
@@ -41,7 +41,7 @@
               scope.currentUser = data;
             },
             function error(reason) {
-              itkLogFactory.error("Kunne ikke hente bruger", reason);
+              itkLog.error("Kunne ikke hente bruger", reason);
             }
           );
 
@@ -100,7 +100,7 @@
                     scope.loading = false;
                   },
                   function error(reason) {
-                    itkLogFactory.error("Kunne ikke hente søgeresultater", reason);
+                    itkLog.error("Kunne ikke hente søgeresultater", reason);
                     scope.loading = false;
                   }
                 );

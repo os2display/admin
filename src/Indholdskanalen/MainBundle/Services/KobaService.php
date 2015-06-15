@@ -101,10 +101,6 @@ class KobaService {
     throw new HttpException($http_status);
   }
 
-  function bookingsCmp($a, $b) {
-    return strcmp($a["start_time"], $b["start_time"]);
-  }
-
   /**
    * Update the calendar events for calendar slides.
    */
@@ -124,10 +120,15 @@ class KobaService {
       $options = $slide->getOptions();
 
       foreach ($options['resources'] as $resource) {
-        $resourceBookings = $this->getResourceBookings($resource['mail'], 'default', $todayStart, $todayEnd);
+        try{
+          $resourceBookings = $this->getResourceBookings($resource['mail'], 'default', $todayStart, $todayEnd);
 
-        if (count($resourceBookings) > 0) {
-          $bookings = array_merge($bookings, $resourceBookings);
+          if (count($resourceBookings) > 0) {
+            $bookings = array_merge($bookings, $resourceBookings);
+          }
+        }
+        catch (HttpException $e) {
+          // Ignore exceptions. The show must keep running, even though we have no connection to koba.
         }
       }
 

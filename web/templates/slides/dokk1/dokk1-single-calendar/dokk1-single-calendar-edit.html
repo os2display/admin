@@ -1,0 +1,29 @@
+<div class="dokk1-single-calendar is-editor" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}">
+  <div class="dokk1-single-calendar--header is-editor">
+    <textarea auto-grow class="dokk1-single-calendar--header-input has-placeholder is-editor" data-ng-trim="false" placeholder="Tilføj header text" data-ng-model="ikSlide.options.header" spellcheck="false">
+    </textarea>
+    <div class="dokk1-single-calendar--meta is-editor">
+      <textarea auto-grow class="dokk1-single-calendar--meta-input has-placeholder" data-ng-trim="false" placeholder="Tilføj meta text" data-ng-model="ikSlide.options.meta" spellcheck="false">
+      </textarea>
+    </div>
+  </div>
+  <div class="dokk1-multiple-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
+  <div class="dokk1-single-calendar--content is-editor">
+    <div class="dokk1-single-calendar--available is-editor" style="display: none;">
+      Lokalet er ledigt til 10.00<br>
+    </div>
+    <div data-ng-repeat="event in ikSlide.calendar_events | limitTo : 1">
+      <div class="dokk1-single-calendar--now is-editor" style="display: block;">
+        <div class="dokk1-single-calendar--meta is-editor">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+        {{event.event_name ? event.event_name : 'Optaget'}}
+      </div>
+    </div>
+    <div class="dokk1-single-calendar--next-wrapper">
+      <div class="dokk1-single-calendar--next is-editor" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 3">
+        <div class="dokk1-single-calendar--meta is-editor">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+        {{event.event_name ? event.event_name : 'Optaget'}}
+      </div>
+    </div>
+  </div>
+  <div class="dokk1-multiple-calendar--edit-image-settings" data-ng-click="editor.toggleStaticBackgroundColorEditor()"></div>
+</div>

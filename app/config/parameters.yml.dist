@@ -38,24 +38,14 @@ parameters:
     middleware_path: /api
     middleware_apikey: 1234567890
 
-    templates_slides_directory: templates/slides/
-    templates_slides_enabled:
-      - ik-iframe
-      - header-top
-      - manual-calendar
-      - only-image
-      - only-video
-      - portrait-text-top
-      - text-bottom
-      - text-left
-      - text-right
-      - text-top
-
-    templates_screens_directory: templates/screens/
-    templates_screens_enabled:
-      - full-screen
-
     site_title: Indholdskanalen
 
     koba_apikey: 12345
     koba_path: http://192.168.50.21
+
+    version: dev
+
+    itk_log_version: 1
+    itk_log_error_callback: /api/error
+    itk_log_log_to_console: true
+    itk_log_log_level: all

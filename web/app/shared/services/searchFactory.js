@@ -8,8 +8,8 @@
  *
  * The communication is based on web-sockets via socket.io library.
  */
-angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configuration', '$http', 'itkLogFactory',
-  function ($q, $rootScope, configuration, $http, itkLogFactory) {
+angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', '$http', 'itkLog',
+  function ($q, $rootScope, $http, itkLog) {
     'use strict';
 
     var socket;
@@ -23,7 +23,7 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
      */
     function getSocket(deferred) {
       // Get connected to the server.
-      socket = io.connect(configuration.search.address, {
+      socket = io.connect(window.config.search.address, {
         'query': 'token=' + token,
         'force new connection': true,
         'max reconnection attempts': Infinity
@@ -31,7 +31,7 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
 
       // Handle error events.
       socket.on('error', function (reason) {
-        itkLogFactory.error(error.message, 'Search socket error.');
+        itkLog.error(reason, 'Search socket error.');
         deferred.reject(reason);
       });
 
@@ -69,7 +69,7 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
               getSocket(deferred);
             })
             .error(function (data, status) {
-              itkLogFactory.error(data, 'Authentication (search) to search node failed (' + status + ')');
+              itkLog.error(data, 'Authentication (search) to search node failed (' + status + ')');
               deferred.reject(status);
             });
         }
@@ -112,7 +112,7 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
 
       // Build default match all search query.
       var query = {
-        "index": configuration.search.index,
+        "index": window.config.search.index,
         "type": search.type,
         "query": {
           "match_all": {}
@@ -160,7 +160,7 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', 'configura
 
         // Catch search errors.
         socket.on('searchError', function (error) {
-          itkLogFactory.error('Search error', error.message);
+          itkLog.error('Search error', error.message);
           deferred.reject(error.message);
         });
       });

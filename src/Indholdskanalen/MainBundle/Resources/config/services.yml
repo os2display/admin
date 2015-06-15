@@ -1,5 +1,4 @@
 parameters:
-#    indholdskanalen_main.example.class: Indholdskanalen\MainBundle\Example
 
 services:
   indholdskanalen_main.listener:
@@ -9,12 +8,6 @@ services:
       - { name: doctrine.event_listener, event: postPersist }
       - { name: doctrine.event_listener, event: preUpdate }
       - { name: doctrine.event_listener, event: preRemove }
-
-#  indholdskanalen_middleware.listener:
-#    class: Indholdskanalen\MainBundle\EventListener\MiddlewareListener
-#    arguments: [@indholdskanalen.middleware.communication]
-#    tags:
-#      - { name: doctrine.event_listener, event: postUpdate }
 
   indholdskanalen_main.serialization_listener:
     class: Indholdskanalen\MainBundle\EventListener\SerializationListener

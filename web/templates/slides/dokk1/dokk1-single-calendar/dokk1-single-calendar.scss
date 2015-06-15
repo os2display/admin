@@ -1,0 +1,337 @@
+/**
+ *
+ * Header top template styles. (Responsive)
+ *
+ * A note on responsive templates:
+ * We use viewport width for base fontsize in client.
+ * We use viewport width for padding and margin, so the padding depends on the full width of the screen rather than the width of each section within a 5 split screen.
+ * When displaying editor or preview we add state classes and fall back to em for margin/padding.
+ *
+ */
+
+
+
+/* Imports.
+   ========================================================================== */
+
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+@font-face {
+  font-family: 'Gibson SemiBold';
+  src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Regular';
+  src: url("fonts/Gibson-Regular-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Light';
+  src: url("fonts/Gibson-Light-webfont.woff") format("woff");
+}
+
+@mixin calc-split($selector-namespace) {
+
+}
+
+/* Styles
+   ========================================================================== */
+.dokk1-single-calendar {
+  position: relative;
+
+  min-height: 100%;
+  width: 100%;
+
+  background: $white;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  color: white;
+  text-align: left;
+
+  &--header,
+  &--content {
+    position: relative;
+    left: 6vmin;
+
+    font-family: 'Gibson Light';
+    letter-spacing: .15vmin;
+
+
+    &.is-editor,
+    &.is-preview {
+      left: 1em;
+    }
+  }
+
+  &--header {
+    font-family: 'Gibson SemiBold';
+    top: 11vmin;
+
+
+    font-size: 9vmin;
+    line-height: 120%;
+    width: 90%;
+
+    &.is-editor,
+    &.is-preview {
+      font-size: 1.5em;
+      top: 1em;
+    }
+
+    &-input {
+      @extend %responsive-header;
+      @extend %placeholder-color;
+
+      background: rgba($white, 0);
+      color: $white;
+      font-family: 'Gibson SemiBold';
+      font-size: 1em;
+      padding: 0;
+
+      // Override form styles.
+      &:focus {
+        border: 0;
+        color: $white;
+      }
+    }
+  }
+
+  &--content {
+    position: relative;
+    top: 34vmin;
+
+    &.is-editor,
+    &.is-preview {
+      left: 1.5em;
+      top: 5em;
+    }
+  }
+
+  &--now,
+  &--next {
+    margin-right: 5vmin;
+    overflow: hidden;
+
+    border-left: 1vmin solid rgba(255, 255, 255, .6);
+    margin-left: .5vmin;
+    padding-left: 5vmin;
+
+    line-height: 120%;
+
+    &.is-editor,
+    &.is-preview {
+      border-left: 1px solid rgba(255, 255, 255, .6);
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 1em;
+    }
+  }
+
+  &--available {
+    display: inline-block;
+    margin-top: 2vmin;
+    margin-bottom: 10vmin;
+    max-height: 17vmin;
+    padding: 0 3vmin .25vmin;
+
+    background-color: rgba(75, 174, 40, .75);
+    font-family: 'Gibson Light';
+    font-size: 5vmin;
+
+    &.is-editor,
+    &.is-preview {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      max-height: 2em;
+      max-width: 100%;
+      padding: 0 1em .1em;
+      font-size: 1em;
+    }
+  }
+
+  &--now {
+    margin-bottom: 10vmin;
+    max-height: 24vmin;
+
+    font-size: 8vmin;
+
+    &.is-editor,
+    &.is-preview {
+      margin-bottom: 1.5em;
+      max-height: 2em;
+      font-size: 1.5em;
+      padding-left: .5em;
+    }
+  }
+
+  &--next {
+    font-size: 5vmin;
+    margin-bottom: 10vmin;
+    max-height: 17vmin;
+
+
+    &.is-editor,
+    &.is-preview {
+      font-size: 1em;
+      margin-bottom: 2em;
+      max-height: 2em;
+    }
+
+    &:first-child {
+        display: none;  // Don't show the first event.
+    }
+  }
+
+  &--meta {
+    font-family: 'Gibson Light';
+    color: rgba(255, 255, 255, .6);
+    font-size: 3vmin;
+    line-height: 150%;
+
+    &-input {
+      @extend %responsive-header;
+      @extend %placeholder-color;
+
+      background: rgba($white, 0);
+      color: $gray;
+      padding: 0;
+
+      // Override form styles.
+      &:focus {
+        border: 0;
+        color: $gray;
+      }
+    }
+
+    &.is-editor,
+    &.is-preview {
+      font-size: .5em;
+    }
+  }
+
+
+  &--edit-image-settings  {
+    @extend %slide--edit-image-settings;
+
+    // Avoid overlap with textboxes.
+    top: 50%;
+    right: 5%;
+  }
+}
+
+
+
+/* Half split.
+   ========================================================================== */
+.half-split {
+  .dokk1-single-calendar {
+
+    &--header,
+    &--content {
+      left: calc(6vmin / 2);
+      letter-spacing: calc(.15vmin / 2);
+    }
+
+    &--header {
+      top: calc(11vmin / 2);
+      font-size: calc(9vmin / 2);
+    }
+
+    &--content {
+      top: calc(34vmin / 2);
+    }
+
+    &--now,
+    &--next {
+      margin-right: calc(5vmin / 2);
+      border-left: 1vmin solid rgba(255, 255, 255, .6);
+      margin-left: calc(.5vmin / 2);
+      padding-left: calc(5vmin / 2);
+      border-width: calc(1vmin / 2);
+    }
+
+    &--available {
+      margin-top: calc(2vmin / 2);
+      margin-bottom: calc(10vmin / 2);
+      max-height: calc(17vmin / 2);
+      font-size: calc(5vmin / 2);
+      padding-right: calc(3vmin / 2);
+      padding-left: calc(.25vmin / 2);
+    }
+
+    &--now {
+      margin-bottom: calc(10vmin / 2);
+      max-height: calc(24vmin / 2);
+      font-size: calc(8vmin / 2);
+    }
+
+    &--next {
+      margin-bottom: calc(10vmin / 2);
+      max-height: calc(17vmin / 2);
+      font-size: calc(5vmin / 2);
+    }
+
+    &--meta {
+      font-size: calc(3vmin / 2);
+    }
+  }
+}
+
+
+
+/* Three split.
+   ========================================================================== */
+.three-split {
+  .dokk1-single-calendar {
+
+    &--header,
+    &--content {
+      left: calc(6vmin / 3);
+      letter-spacing: calc(.15vmin / 3);
+    }
+
+    &--header {
+      top: calc(11vmin / 3);
+      font-size: calc(9vmin / 3);
+    }
+
+    &--content {
+      top: calc(34vmin / 3);
+    }
+
+    &--now,
+    &--next {
+      margin-right: calc(5vmin / 3);
+      border-left: 1vmin solid rgba(255, 255, 255, .6);
+      margin-left: calc(.5vmin / 3);
+      padding-left: calc(5vmin / 3);
+      border-width: calc(1vmin / 3);
+    }
+
+    &--available {
+      margin-top: calc(2vmin / 3);
+      margin-bottom: calc(10vmin / 3);
+      max-height: calc(17vmin / 3);
+      font-size: calc(5vmin / 3);
+      padding-right: calc(3vmin / 3);
+      padding-left: calc(.25vmin / 3);
+    }
+
+    &--now {
+      margin-bottom: calc(10vmin / 3);
+      max-height: calc(24vmin / 3);
+      font-size: calc(8vmin / 3);
+    }
+
+    &--next {
+      margin-bottom: calc(10vmin / 3);
+      max-height: calc(17vmin / 3);
+      font-size: calc(5vmin / 3);
+    }
+
+    &--meta {
+      font-size: calc(3vmin / 3 );
+    }
+  }
+}

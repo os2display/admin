@@ -22,17 +22,27 @@
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/components/date/date.html',
+        templateUrl: 'app/shared/components/date/date.html?' + window.config.version,
         scope: {
+          theme: '@'
         },
         link: function (scope) {
           scope.thisDate = new Date();
 
           // Update current date every minute.
-          $interval(function() {
+          var interval = $interval(function() {
             // Update current datetime.
             scope.thisDate = new Date();
           }, 60000);
+
+          // Register event listener for destroy.
+          //   Cleanup interval.
+          scope.$on('$destroy', function() {
+            if (angular.isDefined(interval)) {
+              $interval.cancel(interval);
+              interval = undefined;
+            }
+          });
         }
       };
     }

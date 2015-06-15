@@ -6,12 +6,12 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'configuration', 'templateFactory', 'itkLogFactory', '$timeout',
-  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, configuration, templateFactory, itkLogFactory, $timeout) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'itkLog', '$timeout',
+  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, templateFactory, itkLog, $timeout) {
     'use strict';
 
     $scope.loading = true;
-    $scope.sharingEnabled = configuration.sharingService.enabled;
+    $scope.sharingEnabled = window.config.sharingService.enabled;
     $scope.screen = {};
     $scope.toolbarTemplate = null;
     $scope.display = false;
@@ -42,7 +42,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
                   $scope.loading = false;
                 },
                 function error(reason) {
-                  itkLogFactory.error("Skabelonernen blev ikke loaded", reason);
+                  itkLog.error("Skabelonerne blev ikke loaded", reason);
                 }
               );
             }
@@ -77,7 +77,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             },
             // Error getting
             function error(reason) {
-              itkLogFactory.error("Skærmen med id: " + $routeParams.id + " blev ikke fundet", reason);
+              itkLog.error("Skærmen med id: " + $routeParams.id + " blev ikke fundet", reason);
             }
           );
         }
@@ -94,7 +94,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.region = null;
       screenFactory.saveScreen().then(
         function success() {
-          itkLogFactory.info("Skærmen er gemt", 3000);
+          itkLog.info("Skærmen er gemt", 3000);
 
           // Redirect to overview.
           $timeout(function () {
@@ -102,7 +102,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
           }, 1000);
         },
         function error(reason) {
-          itkLogFactory.error("Skærmen blev ikke gemt", reason);
+          itkLog.error("Skærmen blev ikke gemt", reason);
         }
       );
     };
@@ -115,10 +115,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.region = null;
       screenFactory.saveScreen().then(
         function success() {
-          itkLogFactory.info("Skærmen er gemt", 3000);
+          itkLog.info("Skærmen er gemt", 3000);
         },
         function error(reason) {
-          itkLogFactory.error("Skærmen blev ikke gemt", reason);
+          itkLog.error("Skærmen blev ikke gemt", reason);
         }
       );
     };
@@ -129,7 +129,14 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
      *   The tool and region to trigger.
      */
     $scope.triggerTool = function triggerTool(tool) {
-      $scope.toolbarTemplate = 'app/shared/toolbars/' + tool.name + '.html';
+      //Check if the current screen template provides the tool.
+      if ($scope.screen.template.tools.hasOwnProperty(tool.name)) {
+        $scope.toolbarTemplate = $scope.screen.template.tools[tool.name];
+      }
+      else {
+        // Fallback to default tools.
+        $scope.toolbarTemplate = 'app/shared/toolbars/' + tool.name + '.html';
+      }
       $scope.region = tool.region;
       $scope.displayToolbar = true;
     };

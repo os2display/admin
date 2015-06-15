@@ -6,8 +6,8 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLogFactory',
-  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLogFactory) {
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLog',
+  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLog) {
     'use strict';
 
     $scope.step = 'background-picker';
@@ -24,7 +24,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         $scope.slide = data;
       },
       function error(reason) {
-        itkLogFactory.error("Kunne ikke hente slide.", reason);
+        itkLog.error("Kunne ikke hente slide.", reason);
       }
     );
 
@@ -135,6 +135,17 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.editorURL = '';
         }
       },
+      toggleStaticBackgroundColorEditor: function () {
+        $('html').toggleClass('is-locked');
+
+        if (!$scope.editor.editorOpen) {
+          $scope.editor.editorOpen = true;
+          $scope.editorURL = 'app/shared/elements/slide/editors/background-editor-static-colors.html';
+        } else {
+          $scope.editor.editorOpen = false;
+          $scope.editorURL = '';
+        }
+      },
       hideAllEditors: function () {
         $('html').removeClass('is-locked');
 
@@ -231,9 +242,9 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     };
 
     /**
-     * Add booking events from source (for event calendar.)
+     * Add calendar events from source (for event calendar.)
      */
-    $scope.addBookingEvents = function addBookingEvents() {
+    $scope.addCalendarEvents = function addCalendarEvents() {
       var arr = [];
 
       // Process bookings for each resource.
@@ -254,12 +265,12 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         kobaFactory.getBookingsForResource(resource.mail, todayStart, todayEnd).then(
           addResourceBookings,
           function error(reason) {
-            itkLogFactory.error("Kunne ikke hente bookings for ressource", reason);
+            itkLog.error("Kunne ikke hente bookings for ressource", reason);
           }
         );
       }
 
-      $scope.slide.bookingEvents = arr;
+      $scope.slide.calendar_events = arr;
     };
 
     // Register event listener for select media.
@@ -322,7 +333,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
             }
           },
           function error(reason) {
-            itkLogFactory.error("Kunne ikke tilføje media.", reason);
+            itkLog.error("Kunne ikke tilføje media.", reason);
           }
         );
       }

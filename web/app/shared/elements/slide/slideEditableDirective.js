@@ -8,8 +8,8 @@
  * @param ik-slide: the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLogFactory',
-  function (templateFactory, itkLogFactory) {
+angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog',
+  function (templateFactory, itkLog) {
     'use strict';
 
     return {
@@ -19,7 +19,7 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
         ikSlide: '='
       },
       link: function (scope, element, attrs) {
-        scope.templateURL = '/app/shared/elements/slide/slide-loading.html';
+        scope.templateURL = '/app/shared/elements/slide/slide-loading.html?' + window.config.version;
 
         // Watch for changes to ikSlide.
         scope.$watch('ikSlide', function (newVal, oldVal) {
@@ -83,23 +83,23 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
                 // Setup the inline styling
                 scope.theStyle = {
                   width: "" + scope.ikWidth + "px",
-                  height: "" + parseFloat(scope.template.idealdimensions.height * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px",
-                  fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px"
+                  height: "" + parseFloat(scope.template.ideal_dimensions.height * parseFloat(scope.ikWidth / scope.template.ideal_dimensions.width)) + "px",
+                  fontsize: "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.ideal_dimensions.width)) + "px"
                 };
               },
               function error(reason) {
-                itkLogFactory.error("Hentning af template fejlede.", reason);
+                itkLog.error("Hentning af template fejlede.", reason);
               }
             );
           }
 
           if (scope.theStyle) {
             // Update fontsize
-            scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.idealdimensions.width)) + "px";
+            scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.ideal_dimensions.width)) + "px";
           }
         }, true);
       },
-      templateUrl: '/app/shared/elements/slide/slide-edit.html'
+      templateUrl: '/app/shared/elements/slide/slide-edit.html?' + window.config.version
     };
   }
 ]);

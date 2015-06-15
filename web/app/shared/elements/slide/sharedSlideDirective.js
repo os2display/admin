@@ -19,7 +19,7 @@ angular.module('ikApp').directive('ikSharedSlide', ['cssInjector',
         ikSlide: '='
       },
       link: function (scope, element, attrs) {
-        scope.templateURL = '/app/shared/elements/slide/slide-loading.html';
+        scope.templateURL = '/app/shared/elements/slide/slide-loading.html?' + window.config.version;
 
         // Observe for changes to the ik-slide attribute. Setup slide when ik-slide is set.
         attrs.$observe('ikSlide', function (val) {

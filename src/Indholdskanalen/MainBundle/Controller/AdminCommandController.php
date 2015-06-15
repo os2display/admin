@@ -6,6 +6,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Indholdskanalen\MainBundle\Command\PushContentCommand;
 use Indholdskanalen\MainBundle\Command\SearchCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -47,6 +48,26 @@ class AdminCommandController extends Controller {
     $command = new SearchCommand();
     $command->setContainer($this->container);
     $input = new ArrayInput(array());
+    $output = new NullOutput();
+    $command->run($input, $output);
+
+    // @TODO: Handle errors.
+
+    return new Response();
+  }
+
+
+  /**
+   * Force push.
+   *
+   * @Route("/forcepush")
+   * @Method("GET")
+   */
+  public function forcePush() {
+    // Run the reindex command.
+    $command = new PushContentCommand();
+    $command->setContainer($this->container);
+    $input = new ArrayInput(array('--force' => true));
     $output = new NullOutput();
     $command->run($input, $output);
 

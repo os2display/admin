@@ -6,8 +6,8 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'itkLogFactory',
-  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, itkLogFactory) {
+angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'itkLog',
+  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, itkLog) {
     'use strict';
 
     $scope.steps = 5;
@@ -22,7 +22,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         }
       },
       function error(reason) {
-        itkLogFactory.error("Kunne ikke hente slide templates.", reason);
+        itkLog.error("Kunne ikke hente slide templates.", reason);
       }
     );
     $scope.channels = [];
@@ -86,7 +86,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
               loadStep(3);
             },
             function error(reason) {
-              itkLogFactory.error("Kunne ikke hente slide med id: " + $routeParams.id, reason);
+              itkLog.error("Kunne ikke hente slide med id: " + $routeParams.id, reason);
               $location.path('/slide-overview');
             }
           );
@@ -110,14 +110,14 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
 
         slideFactory.saveSlide().then(
           function success() {
-            itkLogFactory.info("Slide gemt.", 3000);
+            itkLog.info("Slide gemt.", 3000);
 
             $timeout(function () {
               $location.path('/slide-overview');
             }, 1000);
           },
           function error(reason) {
-            itkLogFactory.error("Kunne ikke gemme slide.", reason);
+            itkLog.error("Kunne ikke gemme slide.", reason);
             $scope.disableSubmitButton = false;
           }
         );
@@ -201,7 +201,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       $scope.slide.orientation = template.orientation;
 
       // Update options field.
-      angular.forEach(template.emptyoptions, function (value, key) {
+      angular.forEach(template.empty_options, function (value, key) {
         if ($scope.slide.options[key] === undefined) {
           $scope.slide.options[key] = value;
         }
@@ -213,7 +213,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       }
 
       // Get the media type from the template.
-      $scope.slide.media_type = template.mediatype;
+      $scope.slide.media_type = template.media_type;
     };
 
     /**

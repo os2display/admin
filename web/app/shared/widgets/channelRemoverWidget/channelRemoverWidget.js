@@ -24,7 +24,7 @@
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/widgets/channelRemoverWidget/channel-remover-widget.html',
+        templateUrl: 'app/shared/widgets/channelRemoverWidget/channel-remover-widget.html?' + window.config.version,
         scope: {
           screen: '=',
           region: '='

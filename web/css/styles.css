@@ -1682,6 +1682,25 @@ html.is-locked body {
       color: inherit;
       outline: 0;
       text-decoration: none; }
+  .create-channel--publishing {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+    max-width: 40em; }
+  .create-channel--schedule-label {
+    font-size: 1.5em; }
+  .create-channel--schedule, .create-channel--published {
+    margin-bottom: 4em;
+    margin-left: .3em; }
+  .create-channel--publishing input {
+    width: 45%;
+    display: inline-block;
+    max-width: 12em;
+    text-align: right; }
+  .create-channel--checklist-days {
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 2em; }
   .create-channel--slide-unpublished-overlay {
     background: #fff;
     height: 168.75px;
@@ -2106,6 +2125,12 @@ html.is-locked body {
       width: 15em; }
   .edit-menu--content-description {
     margin-bottom: 2em; }
+  .edit-menu--static-color-items {
+    margin: 0 auto;
+    text-align: left;
+    width: 11em; }
+  .edit-menu--static-color-item {
+    margin-right: .5em; }
   .edit-menu--calendar-date-template {
     border-bottom: 2px solid #b3b3b3;
     margin-bottom: 1em;
@@ -3375,22 +3400,26 @@ html.is-locked body {
  */
 /* Silent classes related to this document
    ========================================================================== */
-.presentation--region-horizontal, .presentation--region-vertical {
+.presentation--region-horizontal, .presentation--region-vertical, .presentation--header,
+.presentation--footer {
   box-sizing: border-box;
   padding-right: 2px;
   padding-bottom: 2px;
   padding-left: 2px; }
 
-.presentation--region-content {
+.presentation--region-content, .presentation--header-inner,
+.presentation--footer-inner {
   background: #fafafa;
   box-sizing: border-box;
   border: 1px solid #b3b3b3;
   cursor: pointer;
   font-size: 1rem;
   height: 100%; }
-  .presentation--region-content:hover {
+  .presentation--region-content:hover, .presentation--header-inner:hover,
+  .presentation--footer-inner:hover {
     border-color: #FF8600; }
-  .is-active.presentation--region-content {
+  .is-active.presentation--region-content, .is-active.presentation--header-inner,
+  .is-active.presentation--footer-inner {
     border-color: #FF8600;
     border-width: 3px; }
 
@@ -3439,6 +3468,33 @@ html.is-locked body {
   max-width: 85%;
   width: 9em; }
 
+.presentation--header,
+.presentation--footer {
+  height: 3em;
+  padding-left: 5px;
+  padding-right: 5px; }
+
+.presentation--header-text {
+  color: #b3b3b3;
+  margin: 0 0 0 1em;
+  text-align: left;
+  width: 50%;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.presentation--footer-text {
+  color: #b3b3b3;
+  margin: 0 1em 0 0;
+  width: 50%;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  padding-left: 48%; }
+
 /**
  *
  * Control panel.
@@ -3460,15 +3516,17 @@ html.is-locked body {
 
 .control-panel--tool-tab,
 .control-panel--tab {
-  position: absolute;
-  margin-top: 6em;
   margin-bottom: 7em;
   overflow-y: auto;
+  position: absolute;
   width: 100%;
   padding: 2em;
   box-sizing: border-box;
   bottom: 0;
   top: 0; }
+  .has-menu.control-panel--tool-tab,
+  .has-menu.control-panel--tab {
+    margin-top: 6em; }
 
 /* Styles
    ========================================================================== */

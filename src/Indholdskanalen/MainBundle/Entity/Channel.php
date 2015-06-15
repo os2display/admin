@@ -124,6 +124,42 @@ class Channel {
   private $lastPushTime;
 
   /**
+   * @ORM\Column(name="publish_from", type="integer", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $publishFrom;
+
+  /**
+   * @ORM\Column(name="publish_to", type="integer", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $publishTo;
+
+  /**
+   * @ORM\Column(name="schedule_repeat", type="boolean", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $scheduleRepeat;
+
+  /**
+   * @ORM\Column(name="schedule_repeat_from", type="integer", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $scheduleRepeatFrom;
+
+  /**
+   * @ORM\Column(name="schedule_repeat_to", type="integer", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $scheduleRepeatTo;
+
+  /**
+   * @ORM\Column(name="schedule_repeat_days", type="json_array", nullable=true)
+   * @Groups({"api", "middleware", "sharing"})
+   */
+  private $scheduleRepeatDays;
+
+  /**
    * Constructor
    */
   public function __construct() {
@@ -286,9 +322,12 @@ class Channel {
    * Remove channelSlideOrder
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder
+   * @return Channel
    */
   public function removeChannelSlideOrder(\Indholdskanalen\MainBundle\Entity\ChannelSlideOrder $channelSlideOrder) {
     $this->channelSlideOrders->removeElement($channelSlideOrder);
+
+    return $this;
   }
 
   /**
@@ -355,7 +394,13 @@ class Channel {
   public function getData() {
     return array(
       'id' => $this->getId(),
-      'slides' => $this->getPublishedSlides()->toArray()
+      'slides' => $this->getPublishedSlides()->toArray(),
+      'publish_from' => $this->getPublishFrom(),
+      'publish_to' => $this->getPublishTo(),
+      'schedule_repeat' => $this->getScheduleRepeat(),
+      'schedule_repeat_from' => $this->getScheduleRepeatFrom(),
+      'schedule_repeat_to' => $this->getScheduleRepeatTo(),
+      'schedule_repeat_days' => $this->getScheduleRepeatDays(),
     );
   }
 
@@ -457,10 +502,13 @@ class Channel {
    * Remove SharingIndex
    *
    * @param \Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex
+   * @return Channel
    */
   public function removeSharingIndex(\Indholdskanalen\MainBundle\Entity\SharingIndex $sharingIndex) {
     $sharingIndex->removeChannel($this);
     $this->sharingIndexes->removeElement($sharingIndex);
+
+    return $this;
   }
 
   /**
@@ -489,9 +537,12 @@ class Channel {
    * Remove channelScreenRegion
    *
    * @param \Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion
+   * @return Channel
    */
   public function removeChannelScreenRegion(\Indholdskanalen\MainBundle\Entity\ChannelScreenRegion $channelScreenRegion) {
     $this->channelScreenRegions->removeElement($channelScreenRegion);
+
+    return $this;
   }
 
   /**
@@ -516,5 +567,113 @@ class Channel {
     }
 
     return $screens;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPublishFrom() {
+    return $this->publishFrom;
+  }
+
+  /**
+   * @param mixed $publishFrom
+   *
+   * @return Channel
+   */
+  public function setPublishFrom($publishFrom) {
+    $this->publishFrom = $publishFrom;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPublishTo() {
+    return $this->publishTo;
+  }
+
+  /**
+   * @param mixed $publishTo
+   *
+   * @return Channel
+   */
+  public function setPublishTo($publishTo) {
+    $this->publishTo = $publishTo;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getScheduleRepeat() {
+    return $this->scheduleRepeat;
+  }
+
+  /**
+   * @param mixed $scheduleRepeat
+   *
+   * @return Channel
+   */
+  public function setScheduleRepeat($scheduleRepeat) {
+    $this->scheduleRepeat = $scheduleRepeat;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getScheduleRepeatDays() {
+    return $this->scheduleRepeatDays;
+  }
+
+  /**
+   * @param mixed $scheduleRepeatDays
+   *
+   * @return Channel
+   */
+  public function setScheduleRepeatDays($scheduleRepeatDays) {
+    $this->scheduleRepeatDays = $scheduleRepeatDays;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getScheduleRepeatFrom() {
+    return $this->scheduleRepeatFrom;
+  }
+
+  /**
+   * @param mixed $scheduleRepeatFrom
+   *
+   * @return Channel
+   */
+  public function setScheduleRepeatFrom($scheduleRepeatFrom) {
+    $this->scheduleRepeatFrom = $scheduleRepeatFrom;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getScheduleRepeatTo() {
+    return $this->scheduleRepeatTo;
+  }
+
+  /**
+   * @param mixed $scheduleRepeatTo
+   *
+   * @return Channel
+   */
+  public function setScheduleRepeatTo($scheduleRepeatTo) {
+    $this->scheduleRepeatTo = $scheduleRepeatTo;
+
+    return $this;
   }
 }

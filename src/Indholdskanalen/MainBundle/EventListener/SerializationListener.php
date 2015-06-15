@@ -55,6 +55,11 @@ class SerializationListener implements EventSubscriberInterface {
         'class' => 'Indholdskanalen\MainBundle\Entity\Slide',
         'method' => 'onPostSlideSerialize'
       ),
+      array(
+        'event' => 'serializer.post_serialize',
+        'class' => 'Indholdskanalen\MainBundle\Entity\ScreenTemplate',
+        'method' => 'onPostScreenTemplateSerialize'
+      ),
     );
   }
 
@@ -80,6 +85,25 @@ class SerializationListener implements EventSubscriberInterface {
           }
 
           $event->getVisitor()->addData('urls', $urls);
+        }
+      }
+    );
+  }
+
+  /**
+   * Add fields when serializing screen templates.
+   *
+   * @param ObjectEvent $event
+   */
+  public function onPostScreenTemplateSerialize(ObjectEvent $event) {
+    $context = $event->getContext();
+    $context->attributes->get('groups')->map(
+      function (array $groups) use ($event) {
+        // API, Search Serialization
+        if (in_array('api', $groups) || in_array('api-bulk', $groups)) {
+          // Get tools as an array and add them to the output.
+          $tools = $event->getObject()->getTools();
+          $event->getVisitor()->addData('tools', $tools);
         }
       }
     );
@@ -139,11 +163,9 @@ class SerializationListener implements EventSubscriberInterface {
           $event->getVisitor()->addData('logo', $logoPath);
 
           // Set template paths
-          $templates = $this->templateService->getSlideTemplates();
-          $event->getVisitor()
-            ->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
-          $event->getVisitor()
-            ->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
+          $template = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findOneById($slide->getTemplate());
+          $event->getVisitor()->addData('template_path', $template->getPathLive());
+          $event->getVisitor()->addData('css_path', $template->getPathCss());
         }
         else {
           if (in_array('sharing', $groups)) {
@@ -192,13 +214,15 @@ class SerializationListener implements EventSubscriberInterface {
             $event->getVisitor()->addData('logo', $logoPath);
 
             // Set template paths
-            $templates = $this->templateService->getSlideTemplates();
+            print_r($slide->getTemplate());
+
+            $template = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findOneById($slide->getTemplate());
             $event->getVisitor()
-              ->addData('preview_path', $templates[$slide->getTemplate()]->paths->preview);
+              ->addData('preview_path', $template->getPathPreview());
             $event->getVisitor()
-              ->addData('template_path', $templates[$slide->getTemplate()]->paths->live);
+              ->addData('template_path', $template->getPathLive());
             $event->getVisitor()
-              ->addData('css_path', $templates[$slide->getTemplate()]->paths->css);
+              ->addData('css_path', $template->getPathCss());
           }
         }
       }
