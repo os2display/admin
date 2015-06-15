@@ -6,8 +6,8 @@
 /**
  * Media controller. Controls media editing functions.
  */
-angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'itkLogFactory',
-  function ($scope, $location, $routeParams, $timeout, mediaFactory, itkLogFactory) {
+angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'itkLog',
+  function ($scope, $location, $routeParams, $timeout, mediaFactory, itkLog) {
     'use strict';
 
     // Get the selected media
@@ -20,7 +20,7 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
         }
       },
       function error(reason) {
-        itkLogFactory.error("Kunne ikke hente media med id: " + $routeParams.id, reason);
+        itkLog.error("Kunne ikke hente media med id: " + $routeParams.id, reason);
         $location.path('/media-overview');
       }
     );
@@ -31,13 +31,13 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
     $scope.delete = function () {
       mediaFactory.deleteMedia($scope.media.id).then(
         function success() {
-          itkLogFactory.info("Media slettet.", 3000);
+          itkLog.info("Media slettet.", 3000);
           $timeout(function () {
             $location.path('/media-overview');
           }, 500);
         },
         function error(reason) {
-          itkLogFactory.error("Sletning af media fejlede.", reason);
+          itkLog.error("Sletning af media fejlede.", reason);
         }
       );
     };

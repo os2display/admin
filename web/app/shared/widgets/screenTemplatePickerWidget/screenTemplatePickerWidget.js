@@ -18,8 +18,8 @@
    * html-parameters:
    *   screen (object): the screen to modify.
    */
-  app.directive('screenTemplatePickerWidget', ['templateFactory', 'itkLogFactory',
-    function (templateFactory, itkLogFactory) {
+  app.directive('screenTemplatePickerWidget', ['templateFactory', 'itkLog',
+    function (templateFactory, itkLog) {
       return {
         restrict: 'E',
         scope: {
@@ -33,7 +33,7 @@
               scope.templates = data;
             },
             function error(reason) {
-              itkLogFactory.error("Kunne ikke loade templates", reason);
+              itkLog.error("Kunne ikke loade templates", reason);
             }
           );
 
@@ -46,7 +46,7 @@
             scope.screen.template = template;
           };
         },
-        templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html'
+        templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html?' + window.config.version
       };
     }
   ]);

@@ -280,11 +280,13 @@ table {
  *
  */
 .icons-sprite {
-  background-image: url('/../../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../../images/icons-s15e2aefe08.png');
   background-repeat: no-repeat; }
 
 /* Variables
    ========================================================================== */
+/* Link colors
+   ================================================================================================================== */
 /* Mixins
    ========================================================================== */
 /* Placeholders
@@ -293,7 +295,7 @@ table {
   position: absolute;
   right: 10px;
   top: 10px;
-  background: url('/../../../images/icons-se731c6030f.png');
+  background: url('/../../../../images/icons-se731c6030f.png');
   -moz-background-size: 64px 894px;
   -o-background-size: 64px 894px;
   -webkit-background-size: 64px 894px;
@@ -308,7 +310,7 @@ table {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/../../../images/icons-se731c6030f.png');
+  background: url('/../../../../images/icons-se731c6030f.png');
   -moz-background-size: 128px 1788px;
   -o-background-size: 128px 1788px;
   -webkit-background-size: 128px 1788px;
@@ -370,3 +372,17 @@ table {
     resize: none; }
     .header-top--content-text:focus {
       border: 0; }
+
+/* Split screen correction (When using a split screen template we need headers to align)
+   ========================================================================== */
+.is-split-screen .header-top--header-wrapper {
+  height: 6vmin; }
+.is-split-screen .header-top--header-input {
+  font-size: 2vmin;
+  padding-top: 0;
+  padding-bottom: 0;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }

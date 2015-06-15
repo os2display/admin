@@ -3,23 +3,33 @@
  * Contains the log Module.
  */
 
+// Check that window.config.itkLog exists.
+if (!window.config || !window.config.itkLog) {
+  throw "itkLog Exception: window.config.itkLog does not exist";
+}
+
 /**
  * itkLog module.
  *
  * Consists of
- *   itkLogFactory that is used to log messages.
+ *   itkLog that is used to log messages.
  *   itk-log (itkLog) directive that is used to display log messages.
  *
  * requires stacktrace.js - http://www.stacktracejs.com/
  *   tested with v0.6.4
  */
 var app = angular.module('itkLog', []);
-app.factory('itkLogFactory', ['$http', '$timeout', '$log',
+
+/**
+ * itkLog
+ */
+app.factory('itkLog', ['$http', '$timeout', '$log',
     function ($http, $timeout, $log) {
       'use strict';
 
-      var factory = {};
+      var config = window.config.itkLog;
 
+      var factory = {};
       factory.message = null;
 
       /**
@@ -32,19 +42,25 @@ app.factory('itkLogFactory', ['$http', '$timeout', '$log',
        *   Cause of error.
        */
       factory.error = function error(message, cause) {
-        var error = {
-          "type": "error",
-          "date": new Date(),
-          "message": "" + message,
-          "cause": cause,
-          "stacktrace": printStackTrace()
-        };
+        if (config.logLevel !== 'none') {
+          var error = {
+            "type": "error",
+            "date": new Date(),
+            "message": "" + message,
+            "cause": cause,
+            "stacktrace": printStackTrace()
+          };
 
-        factory.message = error;
+          factory.message = error;
 
-        $log.error(error);
+          if (config.logToConsole) {
+            $log.error(error);
+          }
 
-        $http.post('api/error', error);
+          if (config.errorCallback) {
+            $http.post(config.errorCallback, error);
+          }
+        }
       };
 
       /**
@@ -56,18 +72,22 @@ app.factory('itkLogFactory', ['$http', '$timeout', '$log',
        *   Clear log after timeout, if set.
        */
       factory.log = function log(message, timeout) {
-        factory.message = {
-          "type": "log",
-          "date": new Date(),
-          "message": message
-        };
+        if (config.logLevel === 'all') {
+          factory.message = {
+            "type": "log",
+            "date": new Date(),
+            "message": message
+          };
 
-        $log.log(message);
+          if (config.logToConsole) {
+            $log.log(message);
+          }
 
-        if (timeout) {
-          $timeout(function() {
-            factory.message = null;
-          }, timeout);
+          if (timeout) {
+            $timeout(function () {
+              factory.message = null;
+            }, timeout);
+          }
         }
       };
 
@@ -80,18 +100,50 @@ app.factory('itkLogFactory', ['$http', '$timeout', '$log',
        *   Clear log after timeout, if set.
        */
       factory.info = function log(message, timeout) {
-        factory.message = {
-          "type": "info",
-          "date": new Date(),
-          "message": message
-        };
+        if (config.logLevel === 'all') {
+          factory.message = {
+            "type": "info",
+            "date": new Date(),
+            "message": message
+          };
 
-        $log.info(message);
+          if (config.logToConsole) {
+            $log.info(message);
+          }
 
-        if (timeout) {
-          $timeout(function() {
-            factory.message = null;
-          }, timeout);
+          if (timeout) {
+            $timeout(function () {
+              factory.message = null;
+            }, timeout);
+          }
+        }
+      };
+
+      /**
+       * Warn message.
+       *
+       * @param message
+       *   Warn message.
+       * @param timeout
+       *   Clear log after timeout, if set.
+       */
+      factory.warn = function warn(message, timeout) {
+        if (config.logLevel === 'all') {
+          factory.message = {
+            "type": "warn",
+            "date": new Date(),
+            "message": message
+          };
+
+          if (config.logToConsole) {
+            $log.warn(message);
+          }
+
+          if (timeout) {
+            $timeout(function () {
+              factory.message = null;
+            }, timeout);
+          }
         }
       };
 
@@ -110,38 +162,41 @@ app.factory('itkLogFactory', ['$http', '$timeout', '$log',
 /**
  * itk-log directive.
  *
- * Displays the current message from itkLogFactory.
+ * Displays the current message from itkLog.
  */
-app.directive('itkLog', ['itkLogFactory', function (itkLogFactory) {
-    'use strict';
+app.directive('itkLog', ['itkLog',
+    function (itkLog) {
+      'use strict';
 
-    return {
-      restrict: 'E',
-      templateUrl: 'assets/modules/itkLog/log.html',
-      link: function (scope) {
-        scope.expanded = false;
+      var config = window.config.itkLog;
 
-        /**
-         * Expand/Collapse extra info.
-         */
-        scope.toggleExpanded = function toggleExpanded() {
-          scope.expanded = !scope.expanded;
-        };
+      return {
+        restrict: 'E',
+        templateUrl: 'assets/modules/itkLog/log.html?' + config.version,
+        link: function (scope) {
+          scope.expanded = false;
 
-        /**
-         * Clear log.
-         */
-        scope.clearLog = function clearLog() {
-          itkLogFactory.clear();
-        };
+          /**
+           * Expand/Collapse extra info.
+           */
+          scope.toggleExpanded = function toggleExpanded() {
+            scope.expanded = !scope.expanded;
+          };
 
-        /**
-         * Get exception.
-         */
-        scope.getLogMessage = function getLogMessage() {
-          return itkLogFactory.message;
-        };
-      }
-    };
-  }]
-);
+          /**
+           * Clear log.
+           */
+          scope.clearLog = function clearLog() {
+            itkLog.clear();
+          };
+
+          /**
+           * Get exception.
+           */
+          scope.getLogMessage = function getLogMessage() {
+            return itkLog.message;
+          };
+        }
+      };
+    }
+  ]);

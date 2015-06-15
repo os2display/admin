@@ -7,7 +7,7 @@
       <div class="log--show-error" data-ng-click="toggleExpanded()" data-ng-class="{'is-expanded': expanded}" data-ng-if="message.type === 'error'">
         Vis fejlbesked
       </div>
-      <div class="log--expanded" data-ng-if="expanded" data-ng-if="message.type === 'error'">
+      <div class="log--expanded" data-ng-if="expanded && message.type === 'error'">
         <div class="log--cause">
           <strong>Cause:</strong> {{message.cause}}</div>
         <div class="log--stacktrace"><strong>Stacktrace:</strong> {{message.stacktrace}}</div>

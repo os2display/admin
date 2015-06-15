@@ -6,8 +6,8 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLogFactory',
-  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLogFactory) {
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLog',
+  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLog) {
     'use strict';
 
     $scope.step = 'background-picker';
@@ -24,7 +24,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         $scope.slide = data;
       },
       function error(reason) {
-        itkLogFactory.error("Kunne ikke hente slide.", reason);
+        itkLog.error("Kunne ikke hente slide.", reason);
       }
     );
 
@@ -265,7 +265,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         kobaFactory.getBookingsForResource(resource.mail, todayStart, todayEnd).then(
           addResourceBookings,
           function error(reason) {
-            itkLogFactory.error("Kunne ikke hente bookings for ressource", reason);
+            itkLog.error("Kunne ikke hente bookings for ressource", reason);
           }
         );
       }
@@ -333,7 +333,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
             }
           },
           function error(reason) {
-            itkLogFactory.error("Kunne ikke tilføje media.", reason);
+            itkLog.error("Kunne ikke tilføje media.", reason);
           }
         );
       }

@@ -6,8 +6,8 @@
 /**
  * Admin sharing controller.
  */
-angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templateFactory', 'itkLogFactory',
-  function ($scope, templateFactory, itkLogFactory) {
+angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templateFactory', 'itkLog',
+  function ($scope, templateFactory, itkLog) {
     'use strict';
 
     $scope.saving = false;
@@ -29,7 +29,7 @@ angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templ
         $scope.enabledScreenTemplates = arr;
       },
       function error(reason) {
-        itkLogFactory.error('Hentning af tilgængelige templates fejlede.', reason);
+        itkLog.error('Hentning af tilgængelige templates fejlede.', reason);
       }
     );
     templateFactory.getAllSlideTemplates().then(
@@ -45,7 +45,7 @@ angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templ
         $scope.enabledSlideTemplates = arr;
       },
       function error(reason) {
-        itkLogFactory.error('Hentning af tilgængelige templates fejlede.', reason);
+        itkLog.error('Hentning af tilgængelige templates fejlede.', reason);
       }
     );
 
@@ -53,11 +53,11 @@ angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templ
       $scope.saving = true;
       templateFactory.saveEnabledTemplates($scope.enabledScreenTemplates, $scope.enabledSlideTemplates).then(
         function success() {
-          itkLogFactory.info('Template valg gemt', 3000);
+          itkLog.info('Template valg gemt', 3000);
           $scope.saving = false;
         },
         function error(reason) {
-          itkLogFactory.error('Template valg blev ikke gemt', reason);
+          itkLog.error('Template valg blev ikke gemt', reason);
           $scope.saving = false;
         }
       );

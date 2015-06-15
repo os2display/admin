@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', 'configuration', '$timeout', 'itkLogFactory',
-  function(sharedChannelFactory, userFactory, configuration, $timeout, itkLogFactory) {
+angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', '$timeout', 'itkLog',
+  function(sharedChannelFactory, userFactory, $timeout, itkLog) {
     'use strict';
 
     return {
@@ -22,7 +22,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
         scope.loading = false;
         scope.pickIndexDialog = false;
 
-        scope.displaySharingOption = configuration.sharingService.enabled;
+        scope.displaySharingOption = window.config.sharingService.enabled;
         scope.sharingIndexes = [];
         sharedChannelFactory.getSharingIndexes().then(function(data) {
           scope.sharingIndexes = data;
@@ -36,7 +36,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
             scope.currentUser = data;
           },
           function error(reason) {
-            itkLogFactory.error("Kunne ikke loade bruger", reason);
+            itkLog.error("Kunne ikke loade bruger", reason);
           }
         );
 
@@ -76,7 +76,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           search.text = scope.search_text;
 
           if (angular.isUndefined(scope.index.index)) {
-            itkLogFactory.info("Du skal vælge et indeks først", 3000);
+            itkLog.info("Du skal vælge et indeks først", 3000);
             return;
           }
 
@@ -90,7 +90,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
             function error(reason) {
               scope.loading = false;
 
-              itkLogFactory.error("Hentning af søgeresultater fejlede.", reason);
+              itkLog.error("Hentning af søgeresultater fejlede.", reason);
             }
           );
         };
@@ -208,7 +208,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           }
         };
       },
-      templateUrl: '/app/shared/elements/sharedChannelOverview/shared-channel-overview.html'
+      templateUrl: '/app/shared/elements/sharedChannelOverview/shared-channel-overview.html?' + window.config.version
     };
   }
 ]);

@@ -22,7 +22,7 @@
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/shared/components/date/date.html',
+        templateUrl: 'app/shared/components/date/date.html?' + window.config.version,
         scope: {
           theme: '@'
         },

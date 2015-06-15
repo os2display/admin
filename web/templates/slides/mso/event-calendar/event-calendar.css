@@ -473,3 +473,37 @@ table {
     font-family: inherit;
     margin: 0;
     text-align: left; }
+
+/* Split screen correction (When using a split screen template we need headers to align)
+   ========================================================================== */
+.is-split-screen .event-calendar--header {
+  height: 6vmin;
+  max-height: 100%;
+  position: relative; }
+.is-split-screen .event-calendar--title-wrapper {
+  font-size: 2vmin;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+.is-split-screen .event-calendar--day {
+  height: 100%;
+  position: absolute;
+  font-size: 2vmin;
+  padding-top: 0;
+  padding-bottom: 0;
+  right: 0;
+  top: 0; }
+  .is-split-screen .event-calendar--day-inner {
+    background: none;
+    height: auto;
+    padding-top: 0;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }

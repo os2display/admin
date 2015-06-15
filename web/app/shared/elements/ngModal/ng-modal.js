@@ -6,7 +6,7 @@
 /**
  * Setup the module.
  */
-(function() {
+(function () {
   'use strict';
 
   var app;
@@ -22,7 +22,8 @@
    *   show (boolean): should the modal be visible?
    *   onClose (function): function to call on close action.
    */
-  app.directive('modalDialog', [function() {
+  app.directive('modalDialog', [
+    function () {
       return {
         restrict: 'E',
         scope: {
@@ -31,11 +32,11 @@
         },
         replace: true,
         transclude: true,
-        link: function(scope) {
-          scope.hideModal = function() {
+        link: function (scope) {
+          scope.hideModal = function () {
             scope.show = false;
           };
-          scope.$watch('show', function(newVal, oldVal) {
+          scope.$watch('show', function (newVal, oldVal) {
             if (newVal && !oldVal) {
               document.getElementsByTagName('body')[0].style.overflow = 'hidden';
             } else {
@@ -46,7 +47,7 @@
             }
           });
         },
-        templateUrl: 'app/shared/elements/ngModal/ng-modal.html'
+        templateUrl: 'app/shared/elements/ngModal/ng-modal.html?' + window.config.version
       };
     }
   ]);
