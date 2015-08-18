@@ -18,7 +18,7 @@
         </span>
         <span class="event-calendar--event" data-ng-repeat="event in ikSlide.calendar_events | limitTo : 5 | orderBy: 'start_time'">
           <span class="event-calendar--title ng-binding"><span class="event-calendar--attribute-inner">{{event.event_name ? event.event_name : 'Optaget'}}</span></span>
-          <span class="event-calendar--place ng-binding"><span class="event-calendar--attribute-inner">{{event.resource_id}}</span></span>
+          <span class="event-calendar--place ng-binding"><span class="event-calendar--attribute-inner">{{event.resource_alias ? event.resource_alias : event.resource_id}}</span></span>
           <span class="event-calendar--time"><span class="event-calendar--attribute-inner">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</span></span>
         </span>
       </div>
