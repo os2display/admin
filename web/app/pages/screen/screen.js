@@ -36,7 +36,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             if (reason === 404) {
               templateFactory.getScreenTemplates().then(
                 function success(data) {
-                  $scope.screen.template = data[0];
+                  $scope.screen.template = angular.copy(data[0]);
                   $scope.screen.orientation = data[0].orientation;
 
                   $scope.loading = false;
