@@ -154,12 +154,12 @@ angular.module('ikApp').service('searchFactory', ['$q', '$rootScope', '$http', '
 
       connect().then(function () {
         socket.emit('search', query);
-        socket.on('result', function (hits) {
+        socket.once('result', function (hits) {
           deferred.resolve(hits);
         });
 
         // Catch search errors.
-        socket.on('searchError', function (error) {
+        socket.once('searchError', function (error) {
           itkLog.error('Search error', error.message);
           deferred.reject(error.message);
         });
