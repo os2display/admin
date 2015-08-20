@@ -100,25 +100,20 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
     factory.getScreenTemplate = function (id) {
       var defer = $q.defer();
 
-      if (screenTemplates !== null) {
-        defer.resolve(screenTemplates[id]);
-      }
-      else {
-        factory.getScreenTemplates().then(
-          function (data) {
-            for (var i = 0; i < data.length; i++) {
-              if (data[i].id === id) {
-                defer.resolve(data[i]);
-                return;
-              }
+      factory.getScreenTemplates().then(
+        function (data) {
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].id === id) {
+              defer.resolve(data[i]);
+              return;
             }
-            defer.reject(404);
-          },
-          function (reason) {
-            defer.reject(reason);
           }
-        );
-      }
+          defer.reject(404);
+        },
+        function (reason) {
+          defer.reject(reason);
+        }
+      );
 
       return defer.promise;
     };

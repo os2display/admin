@@ -203,7 +203,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       // Update options field.
       angular.forEach(template.empty_options, function (value, key) {
         if ($scope.slide.options[key] === undefined) {
-          $scope.slide.options[key] = value;
+          $scope.slide.options[key] = angular.copy(value);
         }
       });
 

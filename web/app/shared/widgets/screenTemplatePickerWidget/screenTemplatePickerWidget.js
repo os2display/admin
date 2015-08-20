@@ -43,7 +43,7 @@
            *   The template.
            */
           scope.pickTemplate = function pickTemplate(template) {
-            scope.screen.template = template;
+            scope.screen.template = angular.copy(template);
           };
         },
         templateUrl: 'app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.html?' + window.config.version
