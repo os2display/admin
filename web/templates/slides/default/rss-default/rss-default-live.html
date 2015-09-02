@@ -1,0 +1,12 @@
+<div class="rss-default" data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+  <div class="rss-default--text-wrapper">
+    <div class="rss-default--headline" data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.rss.feed.title}}</div>
+    <div class="rss-default--content" data-ng-repeat="entry in ikSlide.rss.feed.entries track by $index" data-ng-show="ikSlide.rss.rssEntry === $index">
+      <div class="rss-default--header" data-ng-style="{'color': ikSlide.options.textcolor}">{{entry.title}}</div>
+      <div class="rss-default--date" data-ng-style="{'color': ikSlide.options.textcolor}">{{entry.date | date:'EEE. d/M y kl. HH:mm'}}</div>
+      <div class="rss-default--description" data-ng-style="{'color': ikSlide.options.textcolor}" ng-bind-html="entry.description"></div>
+    </div>
+  </div>
+
+  <img class="rss-default--logo" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="{{ikSlide.currentLogo}}" />
+</div>

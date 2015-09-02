@@ -1,17 +1,20 @@
 @import "compass/css3";
 @import "../../_shared-base.scss";
 
-.rss-default {
+.rss-aarhus {
   background-size: cover;
   background-position: center;
   overflow: hidden;
   height: 100%;
-  position: relative;
 
   &--logo {
     position: absolute;
-    width: 10%;
     padding: 3%;
+    left: auto;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: 20%;
   }
 
   &--text-wrapper {
@@ -29,7 +32,7 @@
 
   &--headline {
     font-size: 100%;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
   }
 
   &--header {
@@ -39,7 +42,7 @@
   &--date {
     font-size: 40%;
     font-style: italic;
-    margin-bottom: 2em;
+    margin-bottom: .5em;
   }
 
   &--description {
@@ -74,9 +77,5 @@
 
     font-size: .6em;
     z-index: 2;
-  }
-
-  &--edit-logo-settings {
-    @extend %slide--edit-logo-settings;
   }
 }

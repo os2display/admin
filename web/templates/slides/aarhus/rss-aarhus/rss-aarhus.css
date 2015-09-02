@@ -294,7 +294,7 @@ table {
   .rss-default--settings:hover {
     cursor: pointer; }
 
-.rss-default--edit-rss-settings, .rss-default--edit-logo-settings {
+.rss-default--edit-rss-settings {
   bottom: 5%;
   position: absolute;
   left: 5%;
@@ -311,16 +311,19 @@ table {
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  height: 100%;
-  position: relative; }
+  height: 100%; }
   .rss-default--logo {
     position: absolute;
-    width: 10%;
-    padding: 3%; }
+    padding: 2%;
+    left: auto;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: 10%; }
   .rss-default--text-wrapper {
     position: absolute;
     text-align: left;
-    padding: 3%; }
+    padding: 1em; }
   .rss-default--text-inner {
     text-align: left;
     position: relative;
