@@ -22,7 +22,7 @@ angular.module('ikApp').directive('ikActionReloadScreen', ['$http', 'itkLog',
         scope.reloadScreen = function () {
           var result = window.confirm('Er du sikker på at du vil genindlæse skærmen?');
           if (result === true) {
-            $http.post('/api/screen/reload/' + scope.id)
+            $http.post('/api/screen/' + scope.id + '/reload')
               .success(function () {
                 itkLog.info('Genindlæsning lykkedes.');
               })

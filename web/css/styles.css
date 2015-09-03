@@ -1355,6 +1355,10 @@ html.is-locked body {
   color: #2c79d3; }
 
 .actions-menu {
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
   position: absolute;
   border: 1px solid transparent;
   top: 0;
@@ -1363,7 +1367,7 @@ html.is-locked body {
   -moz-border-radius: 0.4em;
   -webkit-border-radius: 0.4em;
   border-radius: 0.4em; }
-  .actions-menu ul {
+  .actions-menu ul, .actions-menu li {
     list-style: none;
     margin: 0;
     padding: 0;
