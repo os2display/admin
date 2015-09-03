@@ -28,6 +28,10 @@
           <div class="edit-menu--iframe-label">Vælg antal nyheder der skal vises</div>
           <input type="number" data-ng-model="ikSlide.options.news_number">
         </div>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Responsive fontsize</div>
+          <input type="number" data-ng-model="ikSlide.options.responsive_fontsize" data-ng-change="ikSlide.options.fontsize = ikSlide.options.responsive_fontsize * 15">
+        </div>
       </div>
     </div>
   </div>

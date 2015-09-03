@@ -16,8 +16,8 @@
     "height": "1080"
   },
   "empty_options": {
-    "fontsize": "75",
-    "responsive_fontsize": "4",
+    "fontsize": 60,
+    "responsive_fontsize": 4,
     "bgcolor": "#555",
     "textcolor": "#fff",
     "news_number": 5,

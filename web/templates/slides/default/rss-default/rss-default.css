@@ -338,6 +338,9 @@ table {
     font-size: 60%;
     line-height: 1.4em;
     padding-right: 1em; }
+    .rss-default--description a, .rss-default--description a:link, .rss-default--description a:visited, .rss-default--description a:hover, .rss-default--description a:focus, .rss-default--description a:active {
+      text-decoration: none;
+      color: white; }
     .rss-default--description img {
       max-width: 25%;
       float: left;

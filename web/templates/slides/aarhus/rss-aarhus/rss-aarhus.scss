@@ -50,6 +50,11 @@
     line-height: 1.4em;
     padding-right: 1em;
 
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: white;
+    }
+
     img {
       max-width: 25%;
       float: left;
