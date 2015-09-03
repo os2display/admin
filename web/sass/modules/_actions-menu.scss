@@ -1,0 +1,36 @@
+.actions-menu {
+  position: absolute;
+  border: 1px solid transparent;
+  top: 0;
+  right: 4em;
+  left: auto;
+  @include border-radius($border-radius);
+
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+  }
+
+  &--toggle {
+    position: absolute;
+    left: auto;
+    right: .1em;
+    top: .1em;
+    @include generate-sprite-image($dashboard-sprites, 'gear-black-icon', 20);
+  }
+
+  &.is-active {
+    background-color: white;
+    border: 1px solid $gray-light;
+    min-height: 80px;
+    min-width: 140px;
+  }
+
+  &--content {
+    margin-top: 1.5em;
+    padding: .5em;
+  }
+}
