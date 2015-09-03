@@ -1,0 +1,27 @@
+{
+  "id": "rss-aarhus",
+  "name": "RSS (Aarhus)",
+  "icon": "rss-aarhus.png",
+  "paths": {
+    "live": "rss-aarhus-live.html",
+    "edit": "rss-aarhus-edit.html",
+    "preview": "rss-aarhus-preview.html",
+    "css": "rss-aarhus.css"
+  },
+  "slide_type": "rss",
+  "media_type": "image",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": 60,
+    "responsive_fontsize": 4,
+    "bgcolor": "#0050b3",
+    "textcolor": "#fff",
+    "news_number": 5,
+    "news_duration": 15,
+    "source": "https://www.aarhus.dk/da/Global/RSSfeeds/Nyheder-Aarhus-kommune.aspx"
+  }
+}

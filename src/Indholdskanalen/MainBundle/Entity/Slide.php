@@ -127,6 +127,7 @@ class Slide {
 
   /**
    * @ORM\Column(name="slide_type", type="string", nullable=true)
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $slideType;
 

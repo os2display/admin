@@ -1,0 +1,38 @@
+<!-- Logo editor -->
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleSourceEditor()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--content-page">
+      <div class="edit-menu--content-page-inner">
+        <h2 class="edit-menu--iframe-header">Indstillinger</h2>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Vælg sti</div>
+          <input type="text" data-ng-model="ikSlide.options.source">
+        </div>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Vælg tekstfarve</div>
+          <input colorpicker="rgba" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textcolor" data-ng-style="{'background-color': ikSlide.options.textcolor}">
+        </div>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Vælg varighed for hver nyhed (s)</div>
+          <input type="number" data-ng-model="ikSlide.options.news_duration">
+        </div>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Vælg antal nyheder der skal vises</div>
+          <input type="number" data-ng-model="ikSlide.options.news_number">
+        </div>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Responsive fontsize</div>
+          <input type="number" data-ng-model="ikSlide.options.responsive_fontsize" data-ng-change="ikSlide.options.fontsize = ikSlide.options.responsive_fontsize * 15">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

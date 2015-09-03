@@ -1,0 +1,86 @@
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+.rss-aarhus {
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  height: 100%;
+
+  &--logo {
+    position: absolute;
+    padding: 3%;
+    left: auto;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: 20%;
+  }
+
+  &--text-wrapper {
+    position: absolute;
+    text-align: left;
+
+    padding: 3%;
+  }
+
+  &--text-inner {
+    text-align: left;
+    position:relative;
+    width: 95%;
+  }
+
+  &--headline {
+    font-size: 100%;
+    margin-bottom: 1em;
+  }
+
+  &--header {
+    font-size: 80%;
+  }
+
+  &--date {
+    font-size: 40%;
+    font-style: italic;
+    margin-bottom: .5em;
+  }
+
+  &--description {
+    font-size: 60%;
+    line-height: 1.4em;
+    padding-right: 1em;
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: white;
+    }
+
+    img {
+      max-width: 25%;
+      float: left;
+      padding-right: 1em;
+      padding-bottom: 1em;
+    }
+  }
+
+  &--settings {
+    @extend %slide--edit-image-settings;
+    bottom: 2.5em;
+    left: auto;
+    right: 1em;
+
+    z-index: 2;
+  }
+
+  &--edit-rss-settings {
+    @extend %slide--edit-logo-settings;
+    bottom: 1em;
+    left: auto;
+    right: 1em;
+
+    width: 4em;
+
+    font-size: .6em;
+    z-index: 2;
+  }
+}

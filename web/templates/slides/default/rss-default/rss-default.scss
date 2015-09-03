@@ -1,0 +1,87 @@
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+.rss-default {
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+
+  &--logo {
+    position: absolute;
+    width: 10%;
+    padding: 3%;
+  }
+
+  &--text-wrapper {
+    position: absolute;
+    text-align: left;
+
+    padding: 3%;
+  }
+
+  &--text-inner {
+    text-align: left;
+    position:relative;
+    width: 95%;
+  }
+
+  &--headline {
+    font-size: 100%;
+    margin-bottom: 2em;
+  }
+
+  &--header {
+    font-size: 80%;
+  }
+
+  &--date {
+    font-size: 40%;
+    font-style: italic;
+    margin-bottom: 2em;
+  }
+
+  &--description {
+    font-size: 60%;
+    line-height: 1.4em;
+    padding-right: 1em;
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: white;
+    }
+
+    img {
+      max-width: 25%;
+      float: left;
+      padding-right: 1em;
+      padding-bottom: 1em;
+    }
+  }
+
+  &--settings {
+    @extend %slide--edit-image-settings;
+    bottom: 2.5em;
+    left: auto;
+    right: 1em;
+
+    z-index: 2;
+  }
+
+  &--edit-rss-settings {
+    @extend %slide--edit-logo-settings;
+    bottom: 1em;
+    left: auto;
+    right: 1em;
+
+    width: 4em;
+
+    font-size: .6em;
+    z-index: 2;
+  }
+
+  &--edit-logo-settings {
+    @extend %slide--edit-logo-settings;
+  }
+}
