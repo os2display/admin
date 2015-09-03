@@ -383,4 +383,41 @@ class ScreenController extends Controller {
 
     return $response;
   }
+
+  /**
+   * Force reload of screen.
+   *
+   * @Route("/{id}/reload")
+   * @Method("POST")
+   *
+   * @param int $id
+   *   Screen id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function screenReloadAction($id) {
+    $screen = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findOneById($id);
+
+    // Create response.
+    $response = new Response();
+
+    if ($screen) {
+      if ($this->get('indholdskanalen.middleware.communication')
+        ->reloadScreen($screen)) {
+        // Element reloaded.
+        $response->setStatusCode(200);
+      }
+      else {
+        $response->setStatusCode(500);
+      }
+    }
+    else {
+      // Not found.
+      $response->setStatusCode(404);
+    }
+
+    return $response;
+  }
 }
