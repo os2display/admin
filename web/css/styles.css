@@ -3328,6 +3328,10 @@ html.is-locked body {
       color: inherit;
       outline: 0;
       text-decoration: none; }
+    .overview--channel.channel-remove {
+      width: 300px;
+      margin-left: 1.5em;
+      margin-right: 1.5em; }
   .overview--screen, .overview--media-single, .overview--slide, .overview--channel {
     position: relative;
     display: inline-block;
@@ -3900,7 +3904,7 @@ html.is-locked body {
 .preview--channel,
 .preview--channel-display {
   display: block;
-  margin: 0;
+  margin: 0 auto;
   position: relative;
   overflow: hidden; }
 

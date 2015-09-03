@@ -6,15 +6,15 @@
   background-position: center;
   overflow: hidden;
   height: 100%;
+  position: relative;
 
   &--logo {
     position: absolute;
-    padding: 3%;
     left: auto;
     right: 0;
-    top: 0;
-    bottom: auto;
-    width: 20%;
+
+    width: 10%;
+    padding: 3%;
   }
 
   &--text-wrapper {
@@ -31,18 +31,28 @@
   }
 
   &--headline {
-    font-size: 100%;
-    margin-bottom: 1em;
+    font-size: 60%;
+    margin-bottom: 1.5em;
+    margin-top: .6em;
+    opacity: .75;
   }
 
   &--header {
+    border-bottom: 2px solid transparentize($white, .25);
+    margin-bottom: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+
     font-size: 80%;
+    font-weight: bold;
   }
 
   &--date {
+    font-style: normal !important;
     font-size: 40%;
-    font-style: italic;
-    margin-bottom: .5em;
+    margin-bottom: 2em;
+    opacity: .75;
+    text-transform: capitalize;
   }
 
   &--description {
@@ -82,5 +92,24 @@
 
     font-size: .6em;
     z-index: 2;
+  }
+
+  &--edit-logo-settings {
+    @extend %slide--edit-logo-settings;
+
+    z-index: 2;
+  }
+
+  &--overlay {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+
+    &.preview {
+      z-index: 1;
+    }
   }
 }

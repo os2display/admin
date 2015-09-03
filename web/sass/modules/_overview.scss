@@ -75,6 +75,12 @@
     }
 
     @include strip-link-styles();
+
+    &.channel-remove {
+      width: 300px;
+      margin-left: 1.5em;
+      margin-right: 1.5em;
+    }
   }
 
   &--screen,

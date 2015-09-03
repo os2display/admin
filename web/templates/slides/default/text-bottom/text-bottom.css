@@ -268,11 +268,13 @@ table {
  *
  */
 .icons-sprite {
-  background-image: url('/../../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../../images/icons-scab1b556a9.png');
   background-repeat: no-repeat; }
 
 /* Variables
    ========================================================================== */
+/* Link colors
+   ================================================================================================================== */
 /* Mixins
    ========================================================================== */
 /* Placeholders
@@ -281,14 +283,14 @@ table {
   position: absolute;
   right: 10px;
   top: 10px;
-  background: url('/../../../images/icons-se731c6030f.png');
-  -moz-background-size: 64px 894px;
-  -o-background-size: 64px 894px;
-  -webkit-background-size: 64px 894px;
-  background-size: 64px 894px;
+  background: url('/../../../../images/icons-s5235da7d76.png');
+  -moz-background-size: 64px 968px;
+  -o-background-size: 64px 968px;
+  -webkit-background-size: 64px 968px;
+  background-size: 64px 968px;
   width: 50px;
   height: 50px;
-  background-position: 0 -341px; }
+  background-position: 0 -415px; }
   .text-bottom--edit-box-settings:hover {
     cursor: pointer; }
 
@@ -296,14 +298,14 @@ table {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/../../../images/icons-se731c6030f.png');
-  -moz-background-size: 128px 1788px;
-  -o-background-size: 128px 1788px;
-  -webkit-background-size: 128px 1788px;
-  background-size: 128px 1788px;
+  background: url('/../../../../images/icons-s5235da7d76.png');
+  -moz-background-size: 128px 1936px;
+  -o-background-size: 128px 1936px;
+  -webkit-background-size: 128px 1936px;
+  background-size: 128px 1936px;
   width: 51px;
   height: 51px;
-  background-position: 0 -802px; }
+  background-position: 0 -950px; }
   .text-bottom--edit-image-settings:hover {
     cursor: pointer; }
 

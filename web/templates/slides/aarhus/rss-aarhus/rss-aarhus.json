@@ -18,7 +18,7 @@
   "empty_options": {
     "fontsize": 60,
     "responsive_fontsize": 4,
-    "bgcolor": "#0050b3",
+    "bgcolor": "#009cdd",
     "textcolor": "#fff",
     "news_number": 5,
     "news_duration": 15,

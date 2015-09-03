@@ -280,7 +280,7 @@ table {
  *
  */
 .icons-sprite {
-  background-image: url('/../../../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../../images/icons-scab1b556a9.png');
   background-repeat: no-repeat; }
 
 /* Variables
@@ -295,14 +295,14 @@ table {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/../../../../images/icons-se731c6030f.png');
-  -moz-background-size: 128px 1788px;
-  -o-background-size: 128px 1788px;
-  -webkit-background-size: 128px 1788px;
-  background-size: 128px 1788px;
+  background: url('/../../../../images/icons-s5235da7d76.png');
+  -moz-background-size: 128px 1936px;
+  -o-background-size: 128px 1936px;
+  -webkit-background-size: 128px 1936px;
+  background-size: 128px 1936px;
   width: 51px;
   height: 51px;
-  background-position: 0 -802px; }
+  background-position: 0 -950px; }
   .dokk1-multiple-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
@@ -314,14 +314,14 @@ table {
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url('/../../../../images/icons-se731c6030f.png');
-  -moz-background-size: 96px 1341px;
-  -o-background-size: 96px 1341px;
-  -webkit-background-size: 96px 1341px;
-  background-size: 96px 1341px;
+  background: url('/../../../../images/icons-s5235da7d76.png');
+  -moz-background-size: 96px 1452px;
+  -o-background-size: 96px 1452px;
+  -webkit-background-size: 96px 1452px;
+  background-size: 96px 1452px;
   width: 48px;
   height: 48px;
-  background-position: 0 -946px; }
+  background-position: 0 -1057px; }
   .dokk1-multiple-calendar--edit-content-settings:hover {
     cursor: pointer; }
 
