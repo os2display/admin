@@ -360,17 +360,13 @@ table {
   .rss-aarhus--settings {
     bottom: 2.5em;
     left: auto;
-    right: 1em;
-    z-index: 2; }
+    right: 1em; }
   .rss-aarhus--edit-rss-settings {
     bottom: 1em;
     left: auto;
     right: 1em;
     width: 4em;
-    font-size: .6em;
-    z-index: 2; }
-  .rss-aarhus--edit-logo-settings {
-    z-index: 2; }
+    font-size: .6em; }
   .rss-aarhus--overlay {
     position: absolute;
     top: 50%;
@@ -379,4 +375,4 @@ table {
     bottom: 0;
     z-index: 99; }
     .rss-aarhus--overlay.preview {
-      z-index: 1; }
+      display: none; }

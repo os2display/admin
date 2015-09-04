@@ -75,8 +75,6 @@
     bottom: 2.5em;
     left: auto;
     right: 1em;
-
-    z-index: 2;
   }
 
   &--edit-rss-settings {
@@ -88,13 +86,10 @@
     width: 4em;
 
     font-size: .6em;
-    z-index: 2;
   }
 
   &--edit-logo-settings {
     @extend %slide--edit-logo-settings;
-
-    z-index: 2;
   }
 
   &--overlay {
@@ -104,9 +99,9 @@
     left: 0;
     bottom: 0;
     z-index: 99;
+  }
 
-    &.preview {
-      z-index: 1;
-    }
+  &.preview {
+    display: none;
   }
 }

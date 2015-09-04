@@ -358,17 +358,13 @@ table {
   .rss-default--settings {
     bottom: 2.5em;
     left: auto;
-    right: 1em;
-    z-index: 2; }
+    right: 1em; }
   .rss-default--edit-rss-settings {
     bottom: 1em;
     left: auto;
     right: 1em;
     width: 4em;
-    font-size: .6em;
-    z-index: 2; }
-  .rss-default--edit-logo-settings {
-    z-index: 2; }
+    font-size: .6em; }
   .rss-default--overlay {
     position: absolute;
     top: 50%;
@@ -376,5 +372,5 @@ table {
     left: 0;
     bottom: 0;
     z-index: 99; }
-    .rss-default--overlay.preview {
-      z-index: 1; }
+  .rss-default.preview {
+    display: none; }
