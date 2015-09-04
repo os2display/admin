@@ -20,8 +20,8 @@
     "responsive_fontsize": 4,
     "bgcolor": "#009cdd",
     "textcolor": "#fff",
-    "news_number": 5,
-    "news_duration": 15,
+    "rss_number": 5,
+    "rss_duration": 15,
     "source": "https://www.aarhus.dk/da/Global/RSSfeeds/Nyheder-Aarhus-kommune.aspx"
   }
 }
