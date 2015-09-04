@@ -53,11 +53,28 @@ class User extends BaseUser
 
 
 	/**
-	 * Is user administrator
+	 * Is the user administrator
 	 *
 	 * @return boolean
 	 */
 	public function isAdmin() {
+		$result = false;
+
+		foreach($this->getRoles() as $role){
+			if($role == 'ROLE_ADMIN' || $role === 'ROLE_SUPER_ADMIN'){
+				$result = true;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Is the user a super administrator
+	 *
+	 * @return boolean
+	 */
+	public function isSuperAdmin() {
 		$result = false;
 
 		foreach($this->getRoles() as $role){
@@ -70,14 +87,13 @@ class User extends BaseUser
 	}
 
 
-
 	/**
 	 * Add groups
 	 *
 	 * @param \Application\Sonata\UserBundle\Entity\Group $groups
 	 * @return User
 	 */
-	public function addGroup(\FOS\UserBundle\Model\GroupInterface  $groups)
+	public function addGroup(\FOS\UserBundle\Model\GroupInterface $groups)
 	{
 		$this->groups[] = $groups;
 

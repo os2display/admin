@@ -9,13 +9,13 @@
       <a href="/#/screen-overview" class="nav--item">Skærme</a>
       <a href="/#/media-overview" class="nav--item">Medier</a>
     </div>
-    <div class="nav--item-wrapper" data-ng-show="currentUser.is_admin">
-      <a href="/admin" class="nav--item">Brugere</a>
-      <a href="/#/admin-sharing" class="nav--item">Delingsindstillinger</a>
-      <a href="/#/admin-templates" class="nav--item">Vælg templates</a>
-      <a href="" class="nav--item" data-ng-click="updateTemplates()">Update templates</a>
-      <a href="" class="nav--item" data-ng-click="reindex()">Reindex search</a>
-      <a href="" class="nav--item" data-ng-click="forcePush()">Force push content</a>
+    <div class="nav--item-wrapper" data-ng-if="currentUser.is_admin">
+      <a href="/admin" class="nav--item" data-ng-if="currentUser.is_super_admin">Brugere</a>
+      <a href="/#/admin-sharing" class="nav--item" data-ng-if="currentUser.is_super_admin">Delingsindstillinger</a>
+      <a href="/#/admin-templates" class="nav--item">Vælg skabeloner</a>
+      <a href="" class="nav--item" data-ng-click="updateTemplates()">Opdater skabeloner</a>
+      <a href="" class="nav--item" data-ng-click="reindex()">Reindekser søgemaskinen</a>
+      <a href="" class="nav--item" data-ng-click="forcePush()">Gensend al indhold til skærmene</a>
     </div>
     <div class="nav--item-wrapper">
       <a href="/logout" class="nav--item">Log ud</a>
