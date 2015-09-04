@@ -21,7 +21,9 @@ angular.module('datetimePicker', [])
       });
 
       ctrl.$formatters.unshift(function (modelValue) {
-        if (!modelValue) return "";
+        if (!modelValue) {
+          return "";
+        }
 
         return moment(modelValue * 1000).format(dateFormat);
       });
