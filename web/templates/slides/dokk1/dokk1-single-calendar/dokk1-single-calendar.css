@@ -280,7 +280,7 @@ table {
  *
  */
 .icons-sprite {
-  background-image: url('/../../../../images/icons-s15e2aefe08.png');
+  background-image: url('/../../../../images/icons-scab1b556a9.png');
   background-repeat: no-repeat; }
 
 /* Variables
@@ -295,14 +295,14 @@ table {
   bottom: 15%;
   position: absolute;
   right: 15%;
-  background: url('/../../../../images/icons-se731c6030f.png');
-  -moz-background-size: 128px 1788px;
-  -o-background-size: 128px 1788px;
-  -webkit-background-size: 128px 1788px;
-  background-size: 128px 1788px;
+  background: url('/../../../../images/icons-s5235da7d76.png');
+  -moz-background-size: 128px 1936px;
+  -o-background-size: 128px 1936px;
+  -webkit-background-size: 128px 1936px;
+  background-size: 128px 1936px;
   width: 51px;
   height: 51px;
-  background-position: 0 -802px; }
+  background-position: 0 -950px; }
   .dokk1-single-calendar--edit-image-settings:hover {
     cursor: pointer; }
 
@@ -344,18 +344,18 @@ table {
   color: white;
   text-align: left; }
   .dokk1-single-calendar--header, .dokk1-single-calendar--content {
-    position: relative;
     left: 6vmin;
     font-family: 'Gibson Light';
     letter-spacing: .15vmin; }
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview, .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
       left: 1em; }
   .dokk1-single-calendar--header {
-    font-family: 'Gibson SemiBold';
+    position: relative;
     top: 11vmin;
+    width: 90%;
     font-size: 9vmin;
-    line-height: 120%;
-    width: 90%; }
+    font-family: 'Gibson SemiBold';
+    line-height: 120%; }
     .dokk1-single-calendar--header.is-editor, .dokk1-single-calendar--header.is-preview {
       font-size: 1.5em;
       top: 1em; }
@@ -369,7 +369,7 @@ table {
         border: 0;
         color: #fff; }
   .dokk1-single-calendar--content {
-    position: relative;
+    position: absolute;
     top: 34vmin; }
     .dokk1-single-calendar--content.is-editor, .dokk1-single-calendar--content.is-preview {
       left: 1.5em;

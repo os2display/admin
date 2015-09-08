@@ -45,6 +45,7 @@ class CronCommand extends ContainerAwareCommand {
       $sharingService->updateAllSharedChannels();
     }
 
+    // Update calendar slides
     $kobaService = $this->getContainer()->get('indholdskanalen.koba_service');
     $kobaService->updateCalendarSlides();
 

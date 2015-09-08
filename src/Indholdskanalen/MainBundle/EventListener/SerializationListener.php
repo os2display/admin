@@ -165,6 +165,7 @@ class SerializationListener implements EventSubscriberInterface {
           // Set template paths
           $template = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findOneById($slide->getTemplate());
           $event->getVisitor()->addData('template_path', $template->getPathLive());
+          $event->getVisitor()->addData('path', $template->getPath());
           $event->getVisitor()->addData('css_path', $template->getPathCss());
         }
         else {
@@ -221,6 +222,7 @@ class SerializationListener implements EventSubscriberInterface {
               ->addData('preview_path', $template->getPathPreview());
             $event->getVisitor()
               ->addData('template_path', $template->getPathLive());
+            $event->getVisitor()->addData('path', $template->getPath());
             $event->getVisitor()
               ->addData('css_path', $template->getPathCss());
           }

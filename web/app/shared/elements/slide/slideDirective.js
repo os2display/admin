@@ -73,7 +73,7 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
           );
         });
       },
-      template: '<div class="preview--slide" data-ng-include="" src="templateURL"></div>'
+      template: '<div class="preview--slide" data-ng-style="{\'width\': theStyle.width}" data-ng-include="" src="templateURL"></div>'
     }
   }
 ]);

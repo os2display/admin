@@ -167,7 +167,7 @@
  * 4. Full-width unless told to behave otherwise.
  * 5. Required to combine fluid widths and fixed gutters.
  */
-.screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+.admin-sharing--content, .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
   display: inline-block;
   /* [1] */
   padding-left: 36px;
@@ -257,7 +257,7 @@
   /**
    * Whole
    */
-  .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+  .admin-sharing--content, .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
     width: 100%; }
 
   /**
@@ -288,7 +288,7 @@
   /**
    * Whole
    */
-  .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+  .admin-sharing--content, .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
     width: 100%; }
 
   /**
@@ -359,7 +359,7 @@
   /**
    * Halves
    */
-  .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-beta, .frontpage--layout-gamma, .admin-sharing--content {
+  .admin-sharing--content, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-beta, .frontpage--layout-gamma {
     width: 50%; }
 
   /**
@@ -429,12 +429,12 @@
  *
  */
 .icons-sprite {
-  background-image: url('/../images/icons-s15e2aefe08.png');
+  background-image: url('/../images/icons-scab1b556a9.png');
   background-repeat: no-repeat; }
 
 /* Layout
    ================================================================================================================== */
-.screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta, .admin-sharing--content {
+.admin-sharing--content, .screen--layout-content, .screen--layout-control-panel, .create-channel--content--channel-one, .create-channel--screen-landscape, .create-channel--screen-portrait, .frontpage--layout-alfa, .frontpage--layout-beta, .frontpage--layout-gamma, .frontpage--layout-delta {
   margin-right: -4px; }
 
 /* Colors
@@ -465,31 +465,31 @@
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url('/../images/icons-se731c6030f.png');
-  -moz-background-size: 103px 1431px;
-  -o-background-size: 103px 1431px;
-  -webkit-background-size: 103px 1431px;
-  background-size: 103px 1431px;
+  background: url('/../images/icons-s5235da7d76.png');
+  -moz-background-size: 103px 1549px;
+  -o-background-size: 103px 1549px;
+  -webkit-background-size: 103px 1549px;
+  background-size: 103px 1549px;
   width: 60px;
   height: 60px;
   background-position: 0 -191px; }
   @media only screen and (min-width: 481px) {
     .create-slide--link-check, .create-channel--link-check, .overview--link-check {
-      background: url('/../images/icons-se731c6030f.png');
-      -moz-background-size: 64px 894px;
-      -o-background-size: 64px 894px;
-      -webkit-background-size: 64px 894px;
-      background-size: 64px 894px;
+      background: url('/../images/icons-s5235da7d76.png');
+      -moz-background-size: 64px 968px;
+      -o-background-size: 64px 968px;
+      -webkit-background-size: 64px 968px;
+      background-size: 64px 968px;
       width: 37px;
       height: 37px;
       background-position: 0 -119px; } }
   @media only screen and (min-width: 600px) {
     .create-slide--link-check, .create-channel--link-check, .overview--link-check {
-      background: url('/../images/icons-se731c6030f.png');
-      -moz-background-size: 103px 1431px;
-      -o-background-size: 103px 1431px;
-      -webkit-background-size: 103px 1431px;
-      background-size: 103px 1431px;
+      background: url('/../images/icons-s5235da7d76.png');
+      -moz-background-size: 103px 1549px;
+      -o-background-size: 103px 1549px;
+      -webkit-background-size: 103px 1549px;
+      background-size: 103px 1549px;
       width: 60px;
       height: 60px;
       background-position: 0 -191px; } }
@@ -508,7 +508,7 @@
   display: block;
   padding-bottom: 1em; }
 
-.create-slide--header, .create-channel--header, .create-media--header, .admin-sharing--header {
+.admin-sharing--header, .create-slide--header, .create-channel--header, .create-media--header {
   border-bottom: 1px solid #e6e6e6;
   display: inline-block;
   font-weight: bold;
@@ -516,13 +516,13 @@
   padding-bottom: 1em;
   text-align: center; }
 
-.create-slide--header-description, .create-channel--header-description, .create-media--header-description, .admin-sharing--header-description {
+.admin-sharing--header-description, .create-slide--header-description, .create-channel--header-description, .create-media--header-description {
   color: #404040;
   font-weight: lighter;
   margin: 0 0 4em;
   text-align: center; }
 
-.create-slide--content--slide-one, .create-channel--content--channel-one, .create-media--content, .admin-sharing--content {
+.admin-sharing--content, .create-slide--content--slide-one, .create-channel--content--channel-one, .create-media--content {
   display: block;
   margin: 0 auto;
   text-align: center;
@@ -544,12 +544,12 @@
   text-align: center;
   width: 100%; }
 
-.create-slide--spinner, .create-channel--spinner, .admin-sharing--spinner {
+.admin-sharing--spinner, .create-slide--spinner, .create-channel--spinner {
   position: absolute;
   right: 1em;
   top: 25%; }
 
-.create-slide--finish-button, .create-channel--finish-button, .admin-sharing--finish-button {
+.admin-sharing--finish-button, .create-slide--finish-button, .create-channel--finish-button {
   position: relative;
   width: 21em;
   margin: 0 auto; }
@@ -560,11 +560,11 @@
   right: -.5em;
   top: -.5em;
   z-index: 1;
-  background: url('/../images/icons-se731c6030f.png');
-  -moz-background-size: 39px 537px;
-  -o-background-size: 39px 537px;
-  -webkit-background-size: 39px 537px;
-  background-size: 39px 537px;
+  background: url('/../images/icons-s5235da7d76.png');
+  -moz-background-size: 39px 581px;
+  -o-background-size: 39px 581px;
+  -webkit-background-size: 39px 581px;
+  background-size: 39px 581px;
   width: 20px;
   height: 20px;
   background-position: 0 -10px; }
@@ -995,7 +995,7 @@ label {
  * This is an example file
  *
  */
-.button, .create-channel--add-slide-button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button, .presentation--region-content-button, .control-panel--actions-close, .cpw--add-channels-select-index-button, .edit-menu--button, .cpw--add-channels-item-action, .cpw--selected-channels-item-action {
+.button, .create-channel--add-slide-button, .admin-sharing--button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .control-panel--actions-close, .cpw--add-channels-select-index-button, .presentation--region-content-button, .cpw--add-channels-item-action, .edit-menu--button, .cpw--selected-channels-item-action {
   display: inline-block;
   font-size: 125%;
   font-weight: lighter;
@@ -1007,28 +1007,28 @@ label {
   -moz-border-radius: 0.4em;
   -webkit-border-radius: 0.4em;
   border-radius: 0.4em; }
-  .button:focus, .create-channel--add-slide-button:focus, .create-slide--button:focus, .create-channel--button:focus, .create-media--button:focus, .edit-menu--content-button:focus, .edit-menu--background-button:focus, .login--submit:focus, .admin-sharing--button:focus, .presentation--region-content-button:focus, .control-panel--actions-close:focus, .cpw--add-channels-select-index-button:focus, .edit-menu--button:focus, .cpw--add-channels-item-action:focus, .cpw--selected-channels-item-action:focus, .button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover, .presentation--region-content-button:hover, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover, .edit-menu--button:hover, .cpw--add-channels-item-action:hover, .cpw--selected-channels-item-action:hover, .button:active, .create-channel--add-slide-button:active, .create-slide--button:active, .create-channel--button:active, .create-media--button:active, .edit-menu--content-button:active, .edit-menu--background-button:active, .login--submit:active, .admin-sharing--button:active, .presentation--region-content-button:active, .control-panel--actions-close:active, .cpw--add-channels-select-index-button:active, .edit-menu--button:active, .cpw--add-channels-item-action:active, .cpw--selected-channels-item-action:active {
+  .button:focus, .create-channel--add-slide-button:focus, .admin-sharing--button:focus, .create-slide--button:focus, .create-channel--button:focus, .create-media--button:focus, .edit-menu--content-button:focus, .edit-menu--background-button:focus, .login--submit:focus, .control-panel--actions-close:focus, .cpw--add-channels-select-index-button:focus, .presentation--region-content-button:focus, .cpw--add-channels-item-action:focus, .edit-menu--button:focus, .cpw--selected-channels-item-action:focus, .button:hover, .create-channel--add-slide-button:hover, .admin-sharing--button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover, .presentation--region-content-button:hover, .cpw--add-channels-item-action:hover, .edit-menu--button:hover, .cpw--selected-channels-item-action:hover, .button:active, .create-channel--add-slide-button:active, .admin-sharing--button:active, .create-slide--button:active, .create-channel--button:active, .create-media--button:active, .edit-menu--content-button:active, .edit-menu--background-button:active, .login--submit:active, .control-panel--actions-close:active, .cpw--add-channels-select-index-button:active, .presentation--region-content-button:active, .cpw--add-channels-item-action:active, .edit-menu--button:active, .cpw--selected-channels-item-action:active {
     text-decoration: none; }
 
-.button, .create-channel--add-slide-button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit, .admin-sharing--button {
+.button, .create-channel--add-slide-button, .admin-sharing--button, .create-slide--button, .create-channel--button, .create-media--button, .edit-menu--content-button, .edit-menu--background-button, .login--submit {
   background-color: #357fd1;
   border: 0;
   color: #fff; }
-  .button:link, .create-channel--add-slide-button:link, .create-slide--button:link, .create-channel--button:link, .create-media--button:link, .edit-menu--content-button:link, .edit-menu--background-button:link, .login--submit:link, .admin-sharing--button:link, .button:visited, .create-channel--add-slide-button:visited, .create-slide--button:visited, .create-channel--button:visited, .create-media--button:visited, .edit-menu--content-button:visited, .edit-menu--background-button:visited, .login--submit:visited, .admin-sharing--button:visited, .button:hover, .create-channel--add-slide-button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover, .admin-sharing--button:hover {
+  .button:link, .create-channel--add-slide-button:link, .admin-sharing--button:link, .create-slide--button:link, .create-channel--button:link, .create-media--button:link, .edit-menu--content-button:link, .edit-menu--background-button:link, .login--submit:link, .button:visited, .create-channel--add-slide-button:visited, .admin-sharing--button:visited, .create-slide--button:visited, .create-channel--button:visited, .create-media--button:visited, .edit-menu--content-button:visited, .edit-menu--background-button:visited, .login--submit:visited, .button:hover, .create-channel--add-slide-button:hover, .admin-sharing--button:hover, .create-slide--button:hover, .create-channel--button:hover, .create-media--button:hover, .edit-menu--content-button:hover, .edit-menu--background-button:hover, .login--submit:hover {
     background-color: #2361a9;
     color: #fff;
     text-decoration: none; }
-  .button.is-inactive, .is-inactive.create-channel--add-slide-button, .is-inactive.create-slide--button, .is-inactive.create-channel--button, .is-inactive.create-media--button, .is-inactive.edit-menu--content-button, .is-inactive.edit-menu--background-button, .is-inactive.login--submit, .is-inactive.admin-sharing--button {
+  .button.is-inactive, .is-inactive.create-channel--add-slide-button, .is-inactive.admin-sharing--button, .is-inactive.create-slide--button, .is-inactive.create-channel--button, .is-inactive.create-media--button, .is-inactive.edit-menu--content-button, .is-inactive.edit-menu--background-button, .is-inactive.login--submit {
     background-color: #b8b8b8;
     border: 0;
     color: #fff;
     cursor: not-allowed; }
-    .button.is-inactive:link, .is-inactive.create-channel--add-slide-button:link, .is-inactive.create-slide--button:link, .is-inactive.create-channel--button:link, .is-inactive.create-media--button:link, .is-inactive.edit-menu--content-button:link, .is-inactive.edit-menu--background-button:link, .is-inactive.login--submit:link, .is-inactive.admin-sharing--button:link, .button.is-inactive:visited, .is-inactive.create-channel--add-slide-button:visited, .is-inactive.create-slide--button:visited, .is-inactive.create-channel--button:visited, .is-inactive.create-media--button:visited, .is-inactive.edit-menu--content-button:visited, .is-inactive.edit-menu--background-button:visited, .is-inactive.login--submit:visited, .is-inactive.admin-sharing--button:visited, .button.is-inactive:hover, .is-inactive.create-channel--add-slide-button:hover, .is-inactive.create-slide--button:hover, .is-inactive.create-channel--button:hover, .is-inactive.create-media--button:hover, .is-inactive.edit-menu--content-button:hover, .is-inactive.edit-menu--background-button:hover, .is-inactive.login--submit:hover, .is-inactive.admin-sharing--button:hover {
+    .button.is-inactive:link, .is-inactive.create-channel--add-slide-button:link, .is-inactive.admin-sharing--button:link, .is-inactive.create-slide--button:link, .is-inactive.create-channel--button:link, .is-inactive.create-media--button:link, .is-inactive.edit-menu--content-button:link, .is-inactive.edit-menu--background-button:link, .is-inactive.login--submit:link, .button.is-inactive:visited, .is-inactive.create-channel--add-slide-button:visited, .is-inactive.admin-sharing--button:visited, .is-inactive.create-slide--button:visited, .is-inactive.create-channel--button:visited, .is-inactive.create-media--button:visited, .is-inactive.edit-menu--content-button:visited, .is-inactive.edit-menu--background-button:visited, .is-inactive.login--submit:visited, .button.is-inactive:hover, .is-inactive.create-channel--add-slide-button:hover, .is-inactive.admin-sharing--button:hover, .is-inactive.create-slide--button:hover, .is-inactive.create-channel--button:hover, .is-inactive.create-media--button:hover, .is-inactive.edit-menu--content-button:hover, .is-inactive.edit-menu--background-button:hover, .is-inactive.login--submit:hover {
       background-color: #b8b8b8;
       color: #fff;
       text-decoration: none; }
 
-.presentation--region-content-button, .control-panel--actions-close, .cpw--add-channels-select-index-button {
+.control-panel--actions-close, .cpw--add-channels-select-index-button, .presentation--region-content-button {
   background-color: #737373;
   color: #fff;
   display: block;
@@ -1038,26 +1038,26 @@ label {
   text-align: center;
   padding: .3em;
   width: 100%; }
-  .presentation--region-content-button:link, .control-panel--actions-close:link, .cpw--add-channels-select-index-button:link {
+  .control-panel--actions-close:link, .cpw--add-channels-select-index-button:link, .presentation--region-content-button:link {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:visited, .control-panel--actions-close:visited, .cpw--add-channels-select-index-button:visited {
+  .control-panel--actions-close:visited, .cpw--add-channels-select-index-button:visited, .presentation--region-content-button:visited {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:hover, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover {
+  .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover, .presentation--region-content-button:hover {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:focus, .control-panel--actions-close:focus, .cpw--add-channels-select-index-button:focus {
+  .control-panel--actions-close:focus, .cpw--add-channels-select-index-button:focus, .presentation--region-content-button:focus {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .presentation--region-content-button:visited, .control-panel--actions-close:visited, .cpw--add-channels-select-index-button:visited, .presentation--region-content-button:hover, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover {
+  .control-panel--actions-close:visited, .cpw--add-channels-select-index-button:visited, .presentation--region-content-button:visited, .control-panel--actions-close:hover, .cpw--add-channels-select-index-button:hover, .presentation--region-content-button:hover {
     background-color: #595959; }
 
-.edit-menu--button, .cpw--add-channels-item-action {
+.cpw--add-channels-item-action, .edit-menu--button {
   background-color: #357fd1;
   border: 0;
   color: #fff;
@@ -1068,23 +1068,23 @@ label {
   text-align: center;
   padding: .3em;
   width: 100%; }
-  .edit-menu--button:link, .cpw--add-channels-item-action:link {
+  .cpw--add-channels-item-action:link, .edit-menu--button:link {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .edit-menu--button:visited, .cpw--add-channels-item-action:visited {
+  .cpw--add-channels-item-action:visited, .edit-menu--button:visited {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .edit-menu--button:hover, .cpw--add-channels-item-action:hover {
+  .cpw--add-channels-item-action:hover, .edit-menu--button:hover {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .edit-menu--button:focus, .cpw--add-channels-item-action:focus {
+  .cpw--add-channels-item-action:focus, .edit-menu--button:focus {
     color: #fff;
     outline: 0;
     text-decoration: none; }
-  .edit-menu--button:visited, .cpw--add-channels-item-action:visited, .edit-menu--button:hover, .cpw--add-channels-item-action:hover {
+  .cpw--add-channels-item-action:visited, .edit-menu--button:visited, .cpw--add-channels-item-action:hover, .edit-menu--button:hover {
     background-color: #2361a9; }
 
 .cpw--selected-channels-item-action {
@@ -1336,7 +1336,7 @@ html.is-locked body {
   padding: 1em;
   background-color: #f1f1f1;
   border: 1px solid #b1b1b1;
-  color: #717171; }
+  color: #727272; }
   .itk-message--inner.is-info, .is-info.log--inner {
     background-color: #dff2bf;
     border: 1px solid #aadc55;
@@ -1349,6 +1349,415 @@ html.is-locked body {
     background-color: #ffbaba;
     border: 1px solid #ff3b3b;
     color: #ba0000; }
+
+.action--button {
+  cursor: pointer;
+  color: #2c79d3; }
+
+.actions-menu {
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  position: absolute;
+  border: 1px solid transparent;
+  top: 0;
+  right: 4em;
+  left: auto;
+  -moz-border-radius: 0.4em;
+  -webkit-border-radius: 0.4em;
+  border-radius: 0.4em; }
+  .actions-menu ul, .actions-menu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline; }
+  .actions-menu--toggle {
+    position: absolute;
+    left: auto;
+    right: .1em;
+    top: .1em;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 26px 388px;
+    -o-background-size: 26px 388px;
+    -webkit-background-size: 26px 388px;
+    background-size: 26px 388px;
+    width: 23px;
+    height: 26px;
+    background-position: 0 -137px; }
+  .actions-menu.is-active {
+    background-color: white;
+    border: 1px solid #cccccc;
+    min-height: 80px;
+    min-width: 140px; }
+  .actions-menu--content {
+    margin-top: 1.5em;
+    padding: .5em; }
+
+/**
+ *
+ * Admin sharing
+ *
+ */
+/* Styles
+   ========================================================================== */
+.admin-sharing {
+  padding-top: 2em; }
+  .admin-sharing--content {
+    position: relative; }
+  .admin-sharing--list {
+    display: block;
+    margin-bottom: 1em; }
+  .admin-sharing--button {
+    display: block;
+    margin: 0 auto 1em; }
+  .admin-sharing--spinner {
+    bottom: .5em;
+    right: 3em;
+    top: auto; }
+
+.colorpicker {
+  background-color: #fff;
+  border: 1px solid #b3b3b3;
+  padding: .5em; }
+
+/**
+ *
+ * Control panel.
+ *
+ * Wrapper for controlling the presentation.
+ * For specific widget styles see _control-panel-widgets.scss
+ *
+ */
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+.control-panel--main, .control-panel--tool {
+  border-left: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: visible;
+  background: #fff;
+  width: 100%;
+  color: #595959; }
+
+.control-panel--tool-tab,
+.control-panel--tab {
+  margin-bottom: 7em;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+  padding: 2em;
+  box-sizing: border-box;
+  bottom: 0;
+  top: 0; }
+  .has-menu.control-panel--tool-tab,
+  .has-menu.control-panel--tab {
+    margin-top: 6em; }
+
+/* Styles
+   ========================================================================== */
+.control-panel {
+  height: auto; }
+  @media only screen and (min-width: 1024px) {
+    .control-panel {
+      height: 100%; } }
+
+/* The default control panel. */
+/* Toggle for mobile devices. (Disabled) */
+.control-panel--main-toggle {
+  display: none;
+  border: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  position: absolute;
+  margin-left: -4.5em;
+  height: 3em;
+  width: 3em;
+  background: white;
+  line-height: 3em;
+  text-align: center;
+  -moz-border-radius-topleft: 0.4em;
+  -webkit-border-top-left-radius: 0.4em;
+  border-top-left-radius: 0.4em;
+  -moz-border-radius-bottomleft: 0.4em;
+  -webkit-border-bottom-left-radius: 0.4em;
+  border-bottom-left-radius: 0.4em; }
+  .control-panel--main-toggle:link {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle:visited {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle:hover {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle:focus {
+    color: inherit;
+    outline: 0;
+    text-decoration: none; }
+  .control-panel--main-toggle-image {
+    vertical-align: middle; }
+
+/* The overlay control panels. */
+.control-panel--tool {
+  position: absolute;
+  max-width: 100%;
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  top: 0; }
+
+/* Display navigation in the control panel */
+.control-panel--nav-wrapper {
+  height: 3em;
+  margin: 2em 0;
+  padding: 0 2em;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  left: 0;
+  top: 0; }
+
+.control-panel--nav-item.is-active {
+  font-weight: bold; }
+
+/* Bottom actions for control panel. */
+.control-panel--actions {
+  background: #fff;
+  height: 7em;
+  position: absolute;
+  width: 100%;
+  bottom: 0; }
+  .control-panel--actions-inner {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 3em;
+    padding: 1em 0;
+    text-align: center; }
+  .control-panel--actions-close {
+    font-size: 110%;
+    max-width: 15em;
+    margin: 0 auto; }
+
+/**
+ *
+ * CPW - Control panel widgets
+ *
+ * For displaying widgets inside the control panel.
+ *
+ */
+/* Silent classes, mixins and variables related to this document
+   ========================================================================== */
+/* A simple wrapper for grouping widgets. */
+.cpw--wrapper, .cpw--screen-sections, .cpw--screen-templates {
+  border: 1px solid #cccccc;
+  margin-bottom: 2em;
+  padding: 2em;
+  -moz-border-radius: 0.4em;
+  -webkit-border-radius: 0.4em;
+  border-radius: 0.4em; }
+
+.cpw--text-label, .cpw--textarea-label, .cpw--screen-sections-label, .cpw--screen-templates-label {
+  color: #595959;
+  margin-bottom: 1em; }
+
+.cpw--text, .cpw--textarea, .cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
+  margin-bottom: 2em; }
+  .cpw--text:last-child, .cpw--textarea:last-child, .cpw--add-channels-search[type="search"]:last-child, .cpw--selected-channels-search[type="search"]:last-child {
+    margin-bottom: 0; }
+
+.cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
+  box-sizing: border-box;
+  background: url("../../images/filter-icon.png") no-repeat 1em 50%;
+  padding-left: 3em; }
+
+.cpw--add-channels-item, .cpw--selected-channels-item {
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  font-size: 0;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  -moz-border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  border-radius: 0.4rem; }
+  .cpw--add-channels-item:last-child, .cpw--selected-channels-item:last-child {
+    margin: 0; }
+
+/* Styles
+   ========================================================================== */
+/* A simple wrapper for grouping widgets. */
+/* Text widget */
+/* Text widget */
+.cpw--textarea-input {
+  max-width: 100%; }
+
+/* Screen sections widget */
+.cpw--screen-sections {
+  text-align: center; }
+  .cpw--screen-sections-item {
+    display: inline-block;
+    margin: 1em .5em;
+    max-width: 30%; }
+  .cpw--screen-sections-link {
+    border: 1px solid #fff;
+    display: block; }
+    .cpw--screen-sections-link:link {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link:visited {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link:hover {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link:focus {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-sections-link.is-active .cpw--screen-sections-icon {
+      border-color: #FF8600; }
+    .cpw--screen-sections-link:hover {
+      border-color: #FF8600; }
+      .cpw--screen-sections-link:hover.is-active {
+        border-color: #fff; }
+  .cpw--screen-sections-icon {
+    border: 3px solid #fff;
+    box-sizing: border-box; }
+
+/* Screen tamplates widget */
+.cpw--screen-templates {
+  text-align: center; }
+  .cpw--screen-templates-item {
+    display: inline-block;
+    margin: 1em .5em; }
+  .cpw--screen-templates-link {
+    border: 1px solid #fff;
+    display: block; }
+    .cpw--screen-templates-link:link {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link:visited {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link:hover {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link:focus {
+      color: inherit;
+      outline: 0;
+      text-decoration: none; }
+    .cpw--screen-templates-link.is-active .cpw--screen-templates-icon {
+      border-color: #FF8600; }
+    .cpw--screen-templates-link:hover {
+      border-color: #FF8600; }
+      .cpw--screen-templates-link:hover.is-active {
+        border-color: #fff; }
+  .cpw--screen-templates-icon {
+    border: 3px solid #fff;
+    box-sizing: border-box; }
+
+/* Add channels widget */
+.cpw--add-channels {
+  margin-bottom: 2em; }
+  @media only screen and (min-width: 1700px) {
+    .cpw--add-channels-search[type="search"] {
+      width: 50%; } }
+  .cpw--add-channels-item-image {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: .9rem;
+    padding-right: 1rem;
+    vertical-align: top;
+    width: 50%; }
+    .cpw--add-channels-item-image ik-channel {
+      display: block;
+      text-align: center;
+      width: 100%; }
+  .cpw--add-channels-item-content {
+    display: inline-block;
+    font-size: .9rem;
+    width: 50%; }
+  .cpw--add-channels-item-meta {
+    margin-bottom: 2rem; }
+  .cpw--add-channels-item-action {
+    padding: .3rem; }
+  .cpw--add-channels-type {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1em; }
+    @media only screen and (min-width: 1700px) {
+      .cpw--add-channels-type {
+        position: absolute;
+        right: 1.5em;
+        width: auto; } }
+  .cpw--add-channels-type-item {
+    width: 50%; }
+    @media only screen and (min-width: 1700px) {
+      .cpw--add-channels-type-item {
+        width: auto; } }
+    .cpw--add-channels-type-item.is-active {
+      font-weight: bold; }
+  .cpw--add-channels-select-index {
+    margin-bottom: 2em;
+    position: relative; }
+  .cpw--add-channels-select-index-button {
+    z-index: 2; }
+  .cpw--add-channels-select-index-items {
+    background: #fff;
+    box-sizing: border-box;
+    border-left: 1px solid #737373;
+    border-right: 1px solid #737373;
+    border-bottom: 1px solid #737373;
+    padding: .3em 0;
+    position: absolute;
+    width: 100%;
+    top: 1.9em;
+    z-index: 1;
+    -moz-border-radius-bottomleft: 0.3em;
+    -webkit-border-bottom-left-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+    -moz-border-radius-bottomright: 0.3em;
+    -webkit-border-bottom-right-radius: 0.3em;
+    border-bottom-right-radius: 0.3em; }
+  .cpw--add-channels-select-index-item {
+    background: #fff;
+    cursor: pointer;
+    padding: 0 1em; }
+    .cpw--add-channels-select-index-item:hover {
+      background: #e6e6e6; }
+
+/* Selected channels widget */
+.cpw--selected-channels {
+  margin-bottom: 2em; }
+  .cpw--selected-channels-item-image {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: .9rem;
+    padding-right: 1rem;
+    vertical-align: top;
+    width: 50%; }
+    .cpw--selected-channels-item-image ik-channel {
+      display: block;
+      text-align: center;
+      width: 100%; }
+  .cpw--selected-channels-item-content {
+    display: inline-block;
+    font-size: .9rem;
+    width: 50%; }
+  .cpw--selected-channels-item-meta {
+    margin-bottom: 2rem; }
+  .cpw--selected-channels-item-action {
+    padding: .3rem; }
 
 /**
  *
@@ -1715,11 +2124,11 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 39px 537px;
-    -o-background-size: 39px 537px;
-    -webkit-background-size: 39px 537px;
-    background-size: 39px 537px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 39px 581px;
+    -o-background-size: 39px 581px;
+    -webkit-background-size: 39px 581px;
+    background-size: 39px 581px;
     width: 20px;
     height: 20px;
     background-position: 0 -180px; }
@@ -1728,11 +2137,11 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 39px 537px;
-    -o-background-size: 39px 537px;
-    -webkit-background-size: 39px 537px;
-    background-size: 39px 537px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 39px 581px;
+    -o-background-size: 39px 581px;
+    -webkit-background-size: 39px 581px;
+    background-size: 39px 581px;
     width: 20px;
     height: 20px;
     background-position: 0 -47px; }
@@ -1838,14 +2247,14 @@ html.is-locked body {
     width: 100%;
     background-color: #fafafa; }
   .create-media--upload-icon {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 75px;
     height: 80px;
-    background-position: 0 -1586px;
+    background-position: 0 -1734px;
     display: inline-block;
     vertical-align: middle;
     margin: 2em auto; }
@@ -1879,11 +2288,11 @@ html.is-locked body {
   .create-media--text-icon {
     display: inline-block;
     margin-right: 1em;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 39px 537px;
-    -o-background-size: 39px 537px;
-    -webkit-background-size: 39px 537px;
-    background-size: 39px 537px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 39px 581px;
+    -o-background-size: 39px 581px;
+    -webkit-background-size: 39px 581px;
+    background-size: 39px 581px;
     width: 20px;
     height: 20px;
     background-position: 0 -47px; }
@@ -1941,6 +2350,10 @@ html.is-locked body {
     vertical-align: middle;
     width: 15em;
     margin: 0 auto 1em; }
+
+.delete--button {
+  cursor: pointer;
+  color: #2c79d3; }
 
 /**
  *
@@ -2147,14 +2560,14 @@ html.is-locked body {
   .edit-menu--calendar-add-date {
     cursor: pointer;
     margin-top: 1.5em;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 71px 984px;
-    -o-background-size: 71px 984px;
-    -webkit-background-size: 71px 984px;
-    background-size: 71px 984px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 71px 1065px;
+    -o-background-size: 71px 1065px;
+    -webkit-background-size: 71px 1065px;
+    background-size: 71px 1065px;
     width: 36px;
     height: 36px;
-    background-position: 0 -694px; }
+    background-position: 0 -775px; }
   .edit-menu--calendar-date-events {
     display: block;
     height: 60%;
@@ -2164,14 +2577,14 @@ html.is-locked body {
   .edit-menu--calendar-remove-date {
     cursor: pointer;
     float: left;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 71px 984px;
-    -o-background-size: 71px 984px;
-    -webkit-background-size: 71px 984px;
-    background-size: 71px 984px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 71px 1065px;
+    -o-background-size: 71px 1065px;
+    -webkit-background-size: 71px 1065px;
+    background-size: 71px 1065px;
     width: 36px;
     height: 36px;
-    background-position: 0 -537px; }
+    background-position: 0 -619px; }
   .edit-menu--calendar-remove-date-notice {
     display: none;
     line-height: 36px;
@@ -2383,41 +2796,41 @@ html.is-locked body {
         .header--main-menu-item-link:hover {
           cursor: pointer; } }
   .header--main-menu-item-image-channels {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 21px;
     height: 17px;
     background-position: 0 -117px; }
   .header--main-menu-item-image-slides {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 26px;
     height: 21px;
-    background-position: 0 -1381px; }
+    background-position: 0 -1529px; }
   .header--main-menu-item-image-screens {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 21px;
     height: 16px;
-    background-position: 0 -1345px; }
+    background-position: 0 -1493px; }
   .header--main-menu-item-image-templates {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 21px;
     height: 15px;
-    background-position: 0 -873px; }
+    background-position: 0 -1021px; }
   .header--main-menu-item-text {
     display: block;
     margin-top: .5em; }
@@ -2497,14 +2910,14 @@ html.is-locked body {
       outline: 0;
       text-decoration: none; }
   .header--nav-menu-label-image {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 48px;
     height: 48px;
-    background-position: 0 -908px;
+    background-position: 0 -1056px;
     display: inline-block;
     margin: 0 .5em 0 0;
     vertical-align: middle; }
@@ -2553,23 +2966,23 @@ html.is-locked body {
     .header--sub-menu-item-link.is-active {
       border-bottom: 2px solid black; }
   .header--sub-menu-item-image-overview {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 13px;
     height: 13px;
-    background-position: 0 -1060px;
+    background-position: 0 -1208px;
     display: inline-block;
     margin: 0 .5em 0 0;
     vertical-align: middle; }
   .header--sub-menu-item-image-create-channel {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 13px;
     height: 13px;
     background-position: 0 0;
@@ -2620,43 +3033,97 @@ html.is-locked body {
     .header--main-menu-item-link--mobile.is-active {
       border-bottom: 2px solid black; }
   .header--main-menu-item-image-channels--mobile {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 21px;
     height: 17px;
     background-position: 0 -117px; }
   .header--main-menu-item-image-slides--mobile {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 26px;
     height: 21px;
-    background-position: 0 -1381px; }
+    background-position: 0 -1529px; }
   .header--main-menu-item-image-screens--mobile {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 21px;
     height: 16px;
-    background-position: 0 -1345px; }
+    background-position: 0 -1493px; }
   .header--main-menu-item-image-templates--mobile {
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 128px 1788px;
-    -o-background-size: 128px 1788px;
-    -webkit-background-size: 128px 1788px;
-    background-size: 128px 1788px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 128px 1936px;
+    -o-background-size: 128px 1936px;
+    -webkit-background-size: 128px 1936px;
+    background-size: 128px 1936px;
     width: 21px;
     height: 15px;
-    background-position: 0 -873px; }
+    background-position: 0 -1021px; }
   .header--main-menu-item-text--mobile {
     display: block; }
+
+/**
+ *
+ * List
+ * Display a select list with check icons.
+ *
+ */
+/* Styles
+ ========================================================================== */
+.list {
+  margin: 0 auto;
+  position: relative;
+  width: 40em; }
+  .list--element {
+    border-bottom: 1px solid;
+    cursor: pointer;
+    height: 1.5em;
+    padding: 1em; }
+    .list--element:hover {
+      background: #e6e6e6; }
+  .list--element-check {
+    display: inline-block;
+    position: absolute;
+    left: 0; }
+    .list--element-check.is-selected {
+      background: url('/../images/icons-s5235da7d76.png');
+      -moz-background-size: 26px 388px;
+      -o-background-size: 26px 388px;
+      -webkit-background-size: 26px 388px;
+      background-size: 26px 388px;
+      width: 26px;
+      height: 21px;
+      background-position: 0 -67px; }
+  .list--element-title {
+    display: inline-block;
+    position: absolute;
+    left: 3em; }
+
+.log--wrapper {
+  padding: 1em;
+  text-align: center; }
+  .log--wrapper-inner {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 75em; }
+.log--text {
+  margin-bottom: 1em; }
+.log--show-error {
+  text-decoration: underline;
+  cursor: pointer; }
+  .log--show-error.is-expanded {
+    margin-bottom: 1em; }
+.log--cause, .log--stacktrace {
+  color: #404040; }
 
 .login--section {
   margin: 5em 36px 0;
@@ -2819,6 +3286,15 @@ html.is-locked body {
     text-align: center; }
   .overview--spinner {
     margin: 0 auto; }
+  .overview--header {
+    width: 100%;
+    text-align: left;
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-bottom: .5em; }
+    .overview--header--actions-menu {
+      right: 3em;
+      left: auto; }
   .overview--screens, .overview--media, .overview--channels, .overview--slides {
     border: 1px solid #e6e6e6;
     margin-right: auto;
@@ -2852,6 +3328,10 @@ html.is-locked body {
       color: inherit;
       outline: 0;
       text-decoration: none; }
+    .overview--channel.channel-remove {
+      width: 300px;
+      margin-left: 1.5em;
+      margin-right: 1.5em; }
   .overview--screen, .overview--media-single, .overview--slide, .overview--channel {
     position: relative;
     display: inline-block;
@@ -2874,11 +3354,11 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 39px 537px;
-    -o-background-size: 39px 537px;
-    -webkit-background-size: 39px 537px;
-    background-size: 39px 537px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 39px 581px;
+    -o-background-size: 39px 581px;
+    -webkit-background-size: 39px 581px;
+    background-size: 39px 581px;
     width: 20px;
     height: 20px;
     background-position: 0 -180px; }
@@ -2887,11 +3367,11 @@ html.is-locked body {
     top: 5px;
     left: 5px;
     z-index: 1;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 39px 537px;
-    -o-background-size: 39px 537px;
-    -webkit-background-size: 39px 537px;
-    background-size: 39px 537px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 39px 581px;
+    -o-background-size: 39px 581px;
+    -webkit-background-size: 39px 581px;
+    background-size: 39px 581px;
     width: 20px;
     height: 20px;
     background-position: 0 -47px; }
@@ -3114,14 +3594,14 @@ html.is-locked body {
     position: absolute;
     top: .5rem;
     background: #fff;
-    background: url('/../images/icons-se731c6030f.png');
-    -moz-background-size: 29px 394px;
-    -o-background-size: 29px 394px;
-    -webkit-background-size: 29px 394px;
-    background-size: 29px 394px;
+    background: url('/../images/icons-s5235da7d76.png');
+    -moz-background-size: 29px 426px;
+    -o-background-size: 29px 426px;
+    -webkit-background-size: 29px 426px;
+    background-size: 29px 426px;
     width: 29px;
     height: 23px;
-    background-position: 0 -371px; }
+    background-position: 0 -404px; }
   .overview--media-overlay {
     background-color: rgba(255, 255, 255, 0.65);
     color: #000;
@@ -3299,102 +3779,6 @@ html.is-locked body {
 
 /**
  *
- * Preview
- *
- */
-/* Silent classes related to this document
-   ========================================================================== */
-.preview--channel-play, .preview--channel-pause {
-  cursor: pointer;
-  margin: 0 auto;
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 50%;
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%); }
-
-/* Styles
-   ========================================================================== */
-.preview--slide,
-.preview--channel,
-.preview--channel-display {
-  display: block;
-  margin: 0;
-  position: relative;
-  overflow: hidden; }
-
-.preview--channel-display,
-.preview--slide-display,
-.preview--channel-display {
-  cursor: pointer; }
-  .preview--channel-display.is-empty,
-  .preview--slide-display.is-empty,
-  .preview--channel-display.is-empty {
-    cursor: default; }
-
-.preview--channel-display {
-  display: inline-block; }
-
-.preview--channel-play {
-  background: url('/../images/icons-se731c6030f.png');
-  -moz-background-size: 84px 1163px;
-  -o-background-size: 84px 1163px;
-  -webkit-background-size: 84px 1163px;
-  background-size: 84px 1163px;
-  width: 42px;
-  height: 42px;
-  background-position: 0 -766px; }
-
-.preview--channel-pause {
-  background: url('/../images/icons-se731c6030f.png');
-  -moz-background-size: 84px 1163px;
-  -o-background-size: 84px 1163px;
-  -webkit-background-size: 84px 1163px;
-  background-size: 84px 1163px;
-  width: 42px;
-  height: 42px;
-  background-position: 0 -711px; }
-
-.colorpicker {
-  background-color: #fff;
-  border: 1px solid #b3b3b3;
-  padding: .5em; }
-
-.delete--button {
-  cursor: pointer;
-  color: #2c79d3; }
-
-.share--button {
-  cursor: pointer;
-  color: #2c79d3; }
-
-/**
- *
- * Admin sharing
- *
- */
-/* Styles
-   ========================================================================== */
-.admin-sharing {
-  padding-top: 2em; }
-  .admin-sharing--content {
-    position: relative; }
-  .admin-sharing--list {
-    display: block;
-    margin-bottom: 1em; }
-  .admin-sharing--button {
-    display: block;
-    margin: 0 auto 1em; }
-  .admin-sharing--spinner {
-    bottom: .5em;
-    right: 3em;
-    top: auto; }
-
-/**
- *
  * Presentation display.
  *
  */
@@ -3497,394 +3881,68 @@ html.is-locked body {
 
 /**
  *
- * Control panel.
- *
- * Wrapper for controlling the presentation.
- * For specific widget styles see _control-panel-widgets.scss
+ * Preview
  *
  */
-/* Silent classes, mixins and variables related to this document
+/* Silent classes related to this document
    ========================================================================== */
-.control-panel--main, .control-panel--tool {
-  border-left: 1px solid #e6e6e6;
-  box-sizing: border-box;
-  height: 100%;
-  overflow: visible;
-  background: #fff;
-  width: 100%;
-  color: #595959; }
-
-.control-panel--tool-tab,
-.control-panel--tab {
-  margin-bottom: 7em;
-  overflow-y: auto;
+.preview--channel-play, .preview--channel-pause {
+  cursor: pointer;
+  margin: 0 auto;
   position: absolute;
-  width: 100%;
-  padding: 2em;
-  box-sizing: border-box;
-  bottom: 0;
-  top: 0; }
-  .has-menu.control-panel--tool-tab,
-  .has-menu.control-panel--tab {
-    margin-top: 6em; }
-
-/* Styles
-   ========================================================================== */
-.control-panel {
-  height: auto; }
-  @media only screen and (min-width: 1024px) {
-    .control-panel {
-      height: 100%; } }
-
-/* The default control panel. */
-/* Toggle for mobile devices. (Disabled) */
-.control-panel--main-toggle {
-  display: none;
-  border: 1px solid #e6e6e6;
-  box-sizing: border-box;
-  position: absolute;
-  margin-left: -4.5em;
-  height: 3em;
-  width: 3em;
-  background: white;
-  line-height: 3em;
-  text-align: center;
-  -moz-border-radius-topleft: 0.4em;
-  -webkit-border-top-left-radius: 0.4em;
-  border-top-left-radius: 0.4em;
-  -moz-border-radius-bottomleft: 0.4em;
-  -webkit-border-bottom-left-radius: 0.4em;
-  border-bottom-left-radius: 0.4em; }
-  .control-panel--main-toggle:link {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
-  .control-panel--main-toggle:visited {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
-  .control-panel--main-toggle:hover {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
-  .control-panel--main-toggle:focus {
-    color: inherit;
-    outline: 0;
-    text-decoration: none; }
-  .control-panel--main-toggle-image {
-    vertical-align: middle; }
-
-/* The overlay control panels. */
-.control-panel--tool {
-  position: absolute;
-  max-width: 100%;
-  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-  top: 0; }
-
-/* Display navigation in the control panel */
-.control-panel--nav-wrapper {
-  height: 3em;
-  margin: 2em 0;
-  padding: 0 2em;
-  position: absolute;
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
+  right: 0;
   left: 0;
-  top: 0; }
-
-.control-panel--nav-item.is-active {
-  font-weight: bold; }
-
-/* Bottom actions for control panel. */
-.control-panel--actions {
-  background: #fff;
-  height: 7em;
-  position: absolute;
-  width: 100%;
-  bottom: 0; }
-  .control-panel--actions-inner {
-    border-top: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
-    margin-bottom: 3em;
-    padding: 1em 0;
-    text-align: center; }
-  .control-panel--actions-close {
-    font-size: 110%;
-    max-width: 15em;
-    margin: 0 auto; }
-
-/**
- *
- * CPW - Control panel widgets
- *
- * For displaying widgets inside the control panel.
- *
- */
-/* Silent classes, mixins and variables related to this document
-   ========================================================================== */
-/* A simple wrapper for grouping widgets. */
-.cpw--wrapper, .cpw--screen-sections, .cpw--screen-templates {
-  border: 1px solid #cccccc;
-  margin-bottom: 2em;
-  padding: 2em;
-  -moz-border-radius: 0.4em;
-  -webkit-border-radius: 0.4em;
-  border-radius: 0.4em; }
-
-.cpw--text-label, .cpw--textarea-label, .cpw--screen-sections-label, .cpw--screen-templates-label {
-  color: #595959;
-  margin-bottom: 1em; }
-
-.cpw--text, .cpw--textarea, .cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
-  margin-bottom: 2em; }
-  .cpw--text:last-child, .cpw--textarea:last-child, .cpw--add-channels-search[type="search"]:last-child, .cpw--selected-channels-search[type="search"]:last-child {
-    margin-bottom: 0; }
-
-.cpw--add-channels-search[type="search"], .cpw--selected-channels-search[type="search"] {
-  box-sizing: border-box;
-  background: url("../../images/filter-icon.png") no-repeat 1em 50%;
-  padding-left: 3em; }
-
-.cpw--add-channels-item, .cpw--selected-channels-item {
-  box-sizing: border-box;
-  border: 1px solid #cccccc;
-  font-size: 0;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  -moz-border-radius: 0.4rem;
-  -webkit-border-radius: 0.4rem;
-  border-radius: 0.4rem; }
-  .cpw--add-channels-item:last-child, .cpw--selected-channels-item:last-child {
-    margin: 0; }
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
 
 /* Styles
    ========================================================================== */
-/* A simple wrapper for grouping widgets. */
-/* Text widget */
-/* Text widget */
-.cpw--textarea-input {
-  max-width: 100%; }
-
-/* Screen sections widget */
-.cpw--screen-sections {
-  text-align: center; }
-  .cpw--screen-sections-item {
-    display: inline-block;
-    margin: 1em .5em;
-    max-width: 30%; }
-  .cpw--screen-sections-link {
-    border: 1px solid #fff;
-    display: block; }
-    .cpw--screen-sections-link:link {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-sections-link:visited {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-sections-link:hover {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-sections-link:focus {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-sections-link.is-active .cpw--screen-sections-icon {
-      border-color: #FF8600; }
-    .cpw--screen-sections-link:hover {
-      border-color: #FF8600; }
-      .cpw--screen-sections-link:hover.is-active {
-        border-color: #fff; }
-  .cpw--screen-sections-icon {
-    border: 3px solid #fff;
-    box-sizing: border-box; }
-
-/* Screen tamplates widget */
-.cpw--screen-templates {
-  text-align: center; }
-  .cpw--screen-templates-item {
-    display: inline-block;
-    margin: 1em .5em; }
-  .cpw--screen-templates-link {
-    border: 1px solid #fff;
-    display: block; }
-    .cpw--screen-templates-link:link {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-templates-link:visited {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-templates-link:hover {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-templates-link:focus {
-      color: inherit;
-      outline: 0;
-      text-decoration: none; }
-    .cpw--screen-templates-link.is-active .cpw--screen-templates-icon {
-      border-color: #FF8600; }
-    .cpw--screen-templates-link:hover {
-      border-color: #FF8600; }
-      .cpw--screen-templates-link:hover.is-active {
-        border-color: #fff; }
-  .cpw--screen-templates-icon {
-    border: 3px solid #fff;
-    box-sizing: border-box; }
-
-/* Add channels widget */
-.cpw--add-channels {
-  margin-bottom: 2em; }
-  @media only screen and (min-width: 1700px) {
-    .cpw--add-channels-search[type="search"] {
-      width: 50%; } }
-  .cpw--add-channels-item-image {
-    box-sizing: border-box;
-    display: inline-block;
-    font-size: .9rem;
-    padding-right: 1rem;
-    vertical-align: top;
-    width: 50%; }
-    .cpw--add-channels-item-image ik-channel {
-      display: block;
-      text-align: center;
-      width: 100%; }
-  .cpw--add-channels-item-content {
-    display: inline-block;
-    font-size: .9rem;
-    width: 50%; }
-  .cpw--add-channels-item-meta {
-    margin-bottom: 2rem; }
-  .cpw--add-channels-item-action {
-    padding: .3rem; }
-  .cpw--add-channels-type {
-    position: relative;
-    width: 100%;
-    margin-bottom: 1em; }
-    @media only screen and (min-width: 1700px) {
-      .cpw--add-channels-type {
-        position: absolute;
-        right: 1.5em;
-        width: auto; } }
-  .cpw--add-channels-type-item {
-    width: 50%; }
-    @media only screen and (min-width: 1700px) {
-      .cpw--add-channels-type-item {
-        width: auto; } }
-    .cpw--add-channels-type-item.is-active {
-      font-weight: bold; }
-  .cpw--add-channels-select-index {
-    margin-bottom: 2em;
-    position: relative; }
-  .cpw--add-channels-select-index-button {
-    z-index: 2; }
-  .cpw--add-channels-select-index-items {
-    background: #fff;
-    box-sizing: border-box;
-    border-left: 1px solid #737373;
-    border-right: 1px solid #737373;
-    border-bottom: 1px solid #737373;
-    padding: .3em 0;
-    position: absolute;
-    width: 100%;
-    top: 1.9em;
-    z-index: 1;
-    -moz-border-radius-bottomleft: 0.3em;
-    -webkit-border-bottom-left-radius: 0.3em;
-    border-bottom-left-radius: 0.3em;
-    -moz-border-radius-bottomright: 0.3em;
-    -webkit-border-bottom-right-radius: 0.3em;
-    border-bottom-right-radius: 0.3em; }
-  .cpw--add-channels-select-index-item {
-    background: #fff;
-    cursor: pointer;
-    padding: 0 1em; }
-    .cpw--add-channels-select-index-item:hover {
-      background: #e6e6e6; }
-
-/* Selected channels widget */
-.cpw--selected-channels {
-  margin-bottom: 2em; }
-  .cpw--selected-channels-item-image {
-    box-sizing: border-box;
-    display: inline-block;
-    font-size: .9rem;
-    padding-right: 1rem;
-    vertical-align: top;
-    width: 50%; }
-    .cpw--selected-channels-item-image ik-channel {
-      display: block;
-      text-align: center;
-      width: 100%; }
-  .cpw--selected-channels-item-content {
-    display: inline-block;
-    font-size: .9rem;
-    width: 50%; }
-  .cpw--selected-channels-item-meta {
-    margin-bottom: 2rem; }
-  .cpw--selected-channels-item-action {
-    padding: .3rem; }
-
-/**
- *
- * List
- * Display a select list with check icons.
- *
- */
-/* Styles
- ========================================================================== */
-.list {
+.preview--slide,
+.preview--channel,
+.preview--channel-display {
+  display: block;
   margin: 0 auto;
   position: relative;
-  width: 40em; }
-  .list--element {
-    border-bottom: 1px solid;
-    cursor: pointer;
-    height: 1.5em;
-    padding: 1em; }
-    .list--element:hover {
-      background: #e6e6e6; }
-  .list--element-check {
-    display: inline-block;
-    position: absolute;
-    left: 0; }
-    .list--element-check.is-selected {
-      background: url('/../images/icons-se731c6030f.png');
-      -moz-background-size: 26px 358px;
-      -o-background-size: 26px 358px;
-      -webkit-background-size: 26px 358px;
-      background-size: 26px 358px;
-      width: 26px;
-      height: 21px;
-      background-position: 0 -67px; }
-  .list--element-title {
-    display: inline-block;
-    position: absolute;
-    left: 3em; }
+  overflow: hidden; }
 
-.log--wrapper {
-  padding: 1em;
-  text-align: center; }
-  .log--wrapper-inner {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 75em; }
-.log--text {
-  margin-bottom: 1em; }
-.log--show-error {
-  text-decoration: underline;
+.preview--channel-display,
+.preview--slide-display,
+.preview--channel-display {
   cursor: pointer; }
-  .log--show-error.is-expanded {
-    margin-bottom: 1em; }
-.log--cause, .log--stacktrace {
-  color: #404040; }
+  .preview--channel-display.is-empty,
+  .preview--slide-display.is-empty,
+  .preview--channel-display.is-empty {
+    cursor: default; }
+
+.preview--channel-display {
+  display: inline-block; }
+
+.preview--channel-play {
+  background: url('/../images/icons-s5235da7d76.png');
+  -moz-background-size: 84px 1259px;
+  -o-background-size: 84px 1259px;
+  -webkit-background-size: 84px 1259px;
+  background-size: 84px 1259px;
+  width: 42px;
+  height: 42px;
+  background-position: 0 -862px; }
+
+.preview--channel-pause {
+  background: url('/../images/icons-s5235da7d76.png');
+  -moz-background-size: 84px 1259px;
+  -o-background-size: 84px 1259px;
+  -webkit-background-size: 84px 1259px;
+  background-size: 84px 1259px;
+  width: 42px;
+  height: 42px;
+  background-position: 0 -807px; }
+
+.share--button {
+  cursor: pointer;
+  color: #2c79d3; }
 
 /* Animations
  *
@@ -3987,15 +4045,15 @@ html.is-locked body {
     bottom: 0; } }
 /* Animation calls (If not related to a module)
  * ========================================================================== */
-.spinner, .create-slide--spinner, .create-channel--spinner, .admin-sharing--spinner {
-  background: url('/../images/icons-se731c6030f.png');
-  -moz-background-size: 77px 1073px;
-  -o-background-size: 77px 1073px;
-  -webkit-background-size: 77px 1073px;
-  background-size: 77px 1073px;
+.spinner, .admin-sharing--spinner, .create-slide--spinner, .create-channel--spinner {
+  background: url('/../images/icons-s5235da7d76.png');
+  -moz-background-size: 77px 1162px;
+  -o-background-size: 77px 1162px;
+  -webkit-background-size: 77px 1162px;
+  background-size: 77px 1162px;
   width: 29px;
   height: 29px;
-  background-position: 0 -854px;
+  background-position: 0 -942px;
   -moz-animation: spinner 1.5s infinite;
   -webkit-animation: spinner 1.5s infinite;
   animation: spinner 1.5s infinite;

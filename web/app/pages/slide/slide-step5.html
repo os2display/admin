@@ -4,7 +4,7 @@
     <p class="create-slide--header-description">Vælg hvilke kanaler din skærm skal vises på.</p>
     <div class="create-channel--add-slide-button" data-ng-click="editor.toggleChannelOverviewEditor()">Tilføj til kanaler</div>
     <div class="overview--channels">
-      <div class="overview--channel" data-ng-repeat="channel in slide.channels">
+      <div class="overview--channel channel-remove" data-ng-repeat="channel in slide.channels">
         <div class="create-screen--channel-link" data-ng-class="{'is-selected': hasChannel(channel)}">
           <span class="create-screen--overlay">
             <span class="create-screen--link-check"></span>

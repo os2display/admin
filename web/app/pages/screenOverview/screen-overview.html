@@ -21,12 +21,18 @@
   <div class="overview--screens">
     <div class="spinner overview--spinner" data-ng-show="loading"></div>
     <div data-ng-repeat="screen in screens" class="overview--screen" data-ng-show="!loading">
+      <div class="overview--header">
+        <div class="overview--title">{{screen.title}}</div>
+        <ik-actions-menu class="overview--header-actions-menu" data-ng-if="currentUser.is_admin">
+          <ul>
+            <li><ik-delete id="{{ screen.id }}" type="screen"></ik-delete></li>
+            <li><ik-action-reload-screen id="{{ screen.id }}"></ik-action-reload-screen></li>
+          </ul>
+        </ik-actions-menu>
+      </div>
       <a href="/#/screen/{{screen.id}}" class="overview--screen-link">
         <ik-screen ik-screen="screen"></ik-screen>
       </a>
-      <div>
-        {{screen.title}} - <ik-delete id="{{ screen.id }}" type="screen" />
-      </div>
     </div>
   </div>
   <ik-pager></ik-pager>

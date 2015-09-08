@@ -208,4 +208,25 @@ class MiddlewareCommunication extends ContainerAware {
 
     // @TODO: Handle issue when change has not been delivered to the middleware.
   }
+
+  /**
+   * Reload screen
+   *
+   * @param $screen
+   *   The screen to reload.
+   * @return bool
+   *   Did it succeed?
+   */
+  public function reloadScreen($screen) {
+    $middlewarePath = $this->container->getParameter('middleware_host') . $this->container->getParameter('middleware_path');
+
+    $curlResult = $this->utilityService->curl(
+      $middlewarePath . '/screen/' . $screen->getId() . '/reload',
+      'POST',
+      json_encode(array("id" => $screen->getId())),
+      'middleware'
+    );
+
+    return $curlResult['status'] === 200;
+  }
 }
