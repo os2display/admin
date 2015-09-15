@@ -28,7 +28,11 @@
   </div>
   <img class="manual-calendar--logo" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="{{ikSlide.currentLogo}}" />
 
-  <div class="manual-calendar--edit-content-settings" data-ng-click="editor.toggleManualCalendarEditor()"></div>
-  <div class="manual-calendar--edit-image-settings" data-ng-click="editor.toggleBackgroundEditor()"></div>
+  <div class="manual-calendar--edit-content-settings" data-ng-click="editor.toggleManualCalendarEditor()">
+    <img src="/images/icons/plus-icon.png">
+  </div>
+  <div class="manual-calendar--edit-image-settings" data-ng-click="editor.toggleBackgroundEditor()">
+    <img src="/images/icons/landscape-icon.png">
+  </div>
   <div class="manual-calendar--edit-logo-settings" data-ng-click="editor.toggleLogoEditor()">Tilføj/rediger logo</div>
 </div>

@@ -50,7 +50,10 @@ $link-color:       #2c79d3;
   right: 10px;
   top: 10px;
 
-  @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+  img {
+    width: 40px;
+    height: 40px;
+  }
 
   &:hover {
     cursor: pointer;
@@ -63,7 +66,10 @@ $link-color:       #2c79d3;
   position: absolute;
   right: 15%;
 
-  @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+  img {
+    width: 40px;
+    height: 40px;
+  }
 
   &:hover {
     cursor: pointer;
@@ -86,12 +92,19 @@ $link-color:       #2c79d3;
 
 // Display add content icon (edit)
 %slide--edit-content-settings {
-  position: absolute;
+  top: 15%;
   right: 0;
-  top: 50%;
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 40px;
+    height: 40px;
+  }
 
   @include transform(translateY(-50%));
-  @include generate-sprite-image($dashboard-sprites, 'plus-icon', 75);
 
   &:hover {
     cursor: pointer;

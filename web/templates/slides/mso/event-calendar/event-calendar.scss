@@ -227,11 +227,13 @@
 
   &--edit-image-settings  {
     @extend %slide--edit-image-settings;
+    z-index: 1;
   }
 
 
   &--edit-content-settings {
     @extend %slide--edit-content-settings;
+    z-index: 1;
   }
 
 

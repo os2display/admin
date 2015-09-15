@@ -82,7 +82,7 @@
 
 // Turn a spinner icon.
 .spinner {
-  @include generate-sprite-image($dashboard-sprites, 'spinner-icon', 60);
+  @include get-icon('spinner-icon', 50px, 50px);
   @include animation(spinner 1.5s infinite);
 
   animation-timing-function: linear;

@@ -7,7 +7,9 @@
     </div>
   </div>
   <div class="dokk1-multiple-calendar--calendar is-editor">
-    <div class="dokk1-multiple-calendar--edit-content-settings" data-ng-click="editor.toggleEventCalendarEditor()"></div>
+    <div class="dokk1-multiple-calendar--edit-content-settings">
+      <img src="/images/icons/plus-icon.png" data-ng-click="editor.toggleEventCalendarEditor()">
+    </div>
     <div class="dokk1-multiple-calendar--calendar-row">
       <div class="dokk1-multiple-calendar--calendar-header is-first">Hvad</div>
       <div class="dokk1-multiple-calendar--calendar-header is-second">Hvornår</div>
@@ -19,5 +21,7 @@
       <div class="dokk1-multiple-calendar--calendar-column is-third">{{event.resource_alias ? event.resource_alias : event.resource_id}}</div>
     </div>
   </div>
-  <div class="dokk1-multiple-calendar--edit-image-settings" data-ng-click="editor.toggleStaticBackgroundColorEditor()"></div>
+  <div class="dokk1-multiple-calendar--edit-image-settings">
+    <img src="/images/icons/landscape-icon.png" data-ng-click="editor.toggleStaticBackgroundColorEditor()">
+  </div>
 </div>

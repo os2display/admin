@@ -252,8 +252,8 @@
     @extend %slide--edit-image-settings;
 
     // Avoid overlap with textboxes.
-    top: 50%;
     right: 5%;
+    top: 50%;
   }
 
 
@@ -261,8 +261,6 @@
     @extend %slide--edit-content-settings;
 
     top: 15%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    width: 100%;
   }
 }
