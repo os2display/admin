@@ -9,8 +9,7 @@
 
 /* Default imports (Used in all templates!)
    ========================================================================== */
-@import "../../sass/base/_normalize";
-@import "../../sass/mixins/_mixins";
+@import "_normalize";
 
 /* Variables
    ========================================================================== */
@@ -43,74 +42,6 @@ $link-color:       #2c79d3;
 
 /* Placeholders
    ========================================================================== */
-
-// Display gear icon (edit)
-%slide--edit-box-settings {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-
-  img {
-    width: 40px;
-    height: 40px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-// Display background icon (edit)
-%slide--edit-image-settings {
-  bottom: 15%;
-  position: absolute;
-  right: 15%;
-
-  img {
-    width: 40px;
-    height: 40px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-// Display logo text (edit)
-%slide--edit-logo-settings {
-  bottom: 5%;
-  position: absolute;
-  left: 5%;
-  cursor: pointer;
-  font-size: 0.6em;
-  color: $white;
-  padding: .3em .8em;
-  background: rgba(0,0,0,0.5);
-
-  @include border-radius(1em);
-}
-
-// Display add content icon (edit)
-%slide--edit-content-settings {
-  top: 15%;
-  right: 0;
-
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    width: 40px;
-    height: 40px;
-  }
-
-  @include transform(translateY(-50%));
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 
 // Show the placeholder text (edit)
 %show-placeholder-text {
