@@ -5,14 +5,6 @@
   background-size: cover;
   background-position: center;
 
-  &--edit-image-settings {
-    @extend %slide--edit-image-settings;
-  }
-
-  &--edit-logo-settings {
-    @extend %slide--edit-logo-settings;
-  }
-
   &--logo {
     position: absolute;
     width: 10%;

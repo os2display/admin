@@ -70,28 +70,6 @@
     }
   }
 
-  &--settings {
-    @extend %slide--edit-image-settings;
-    bottom: 2.5em;
-    left: auto;
-    right: 1em;
-  }
-
-  &--edit-rss-settings {
-    @extend %slide--edit-logo-settings;
-    bottom: 1em;
-    left: auto;
-    right: 1em;
-
-    width: 4em;
-
-    font-size: .6em;
-  }
-
-  &--edit-logo-settings {
-    @extend %slide--edit-logo-settings;
-  }
-
   &--overlay {
     position: absolute;
     top: 50%;

@@ -40,6 +40,8 @@ var adminJsAssets = [
 var adminBuildDir = './web/assets/build';
 var sassPath = './web/sass/*.scss';
 
+var sassWatchPath = './web/sass/**/*.scss';
+
 /**
  * Run Javascript through JSHint.
  */
@@ -86,6 +88,14 @@ gulp.task('sass', function () {
       ]
     }).on('error', sass.logError))
     .pipe(gulp.dest(adminBuildDir));
+});
+
+/**
+ * Watch files for changes and run tasks.
+ */
+gulp.task('watch', function() {
+  gulp.watch(adminJsPath, ['adminAppJs']);
+  gulp.watch(sassWatchPath, ['sass']);
 });
 
 var templatesPath = './web/templates/';

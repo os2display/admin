@@ -22,5 +22,15 @@
       "right":"auto"
     },
     "logosize": "10%"
-  }
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
+  ]
 }

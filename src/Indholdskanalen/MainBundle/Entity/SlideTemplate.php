@@ -101,6 +101,12 @@ class SlideTemplate {
   protected $emptyOptions;
 
   /**
+   * @ORM\Column(name="tools", type="json_array")
+   * @Groups({"api", "api-bulk"})
+   */
+  protected $tools;
+
+  /**
    * Get the paths virtual property.
    *
    * @return array
@@ -135,6 +141,24 @@ class SlideTemplate {
    */
   public function setEmptyOptions($emptyOptions) {
     $this->emptyOptions = $emptyOptions;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getTools() {
+    return $this->tools;
+  }
+
+  /**
+   * @param mixed $tools
+   *
+   * @return SlideTemplate
+   */
+  public function setTools($tools) {
+    $this->tools = $tools;
 
     return $this;
   }

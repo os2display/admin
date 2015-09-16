@@ -23,5 +23,15 @@
     "rss_number": 5,
     "rss_duration": 15,
     "source": "https://www.aarhus.dk/da/Global/RSSfeeds/Nyheder-Aarhus-kommune.aspx"
-  }
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "RSS",
+      "id": "rss-editor"
+    }
+  ]
 }

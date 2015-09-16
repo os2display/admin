@@ -13,14 +13,12 @@
   }
 }
 
-
 .portrait-text-top--text-wrapper {
   position: absolute;
   width: 100%;
 
   @include border-radius(.5em);
 }
-
 
 .portrait-text-top--text-inner {
   background: rgba(0,0,0,0.7);
@@ -35,7 +33,6 @@
   @include border-radius(.5em);
 }
 
-
 .portrait-text-top--header {
   @extend %inline-textarea;
 
@@ -46,7 +43,6 @@
   font-size: 100%;
 }
 
-
 .portrait-text-top--description {
   @extend %inline-textarea;
 
@@ -55,23 +51,6 @@
   }
 
   font-size: 70%;
-}
-
-
-.portrait-text-top--edit-box-settings {
-  @extend %slide--edit-box-settings;
-
-  right: -15px;
-  top: -15px;
-}
-
-
-.portrait-text-top--edit-image-settings {
-  @extend %slide--edit-image-settings;
-}
-
-.portrait-text-top--edit-logo-settings {
-  @extend %slide--edit-logo-settings;
 }
 
 .portrait-text-top--logo {

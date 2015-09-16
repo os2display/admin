@@ -55,22 +55,6 @@
   font-size: 70%;
 }
 
-
-.text-top--edit-box-settings {
-  @extend %slide--edit-box-settings;
-}
-
-
-.text-top--edit-image-settings  {
-  @extend %slide--edit-image-settings;
-}
-
-
-.text-top--edit-logo-settings {
-  @extend %slide--edit-logo-settings;
-}
-
-
 .text-top--logo {
   position: absolute;
   width: 10%;

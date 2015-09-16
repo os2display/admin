@@ -60,23 +60,6 @@
   font-size: 70%;
 }
 
-
-.text-left--edit-box-settings {
-  @extend %slide--edit-box-settings;
-}
-
-
-.text-left--edit-image-settings {
-  @extend %slide--edit-image-settings;
-}
-
-.text-left--edit-logo-settings {
-  @extend %slide--edit-logo-settings;
-
-  left: auto;
-  right: 5%;
-}
-
 .text-left--logo {
   position: absolute;
   width: 10%;
