@@ -219,24 +219,6 @@
     }
   }
 
-  /* Edit icons */
-  &--edit-box-settings {
-    @extend %slide--edit-box-settings;
-    z-index: 1;
-  }
-
-  &--edit-image-settings  {
-    @extend %slide--edit-image-settings;
-    z-index: 1;
-  }
-
-
-  &--edit-content-settings {
-    @extend %slide--edit-content-settings;
-    z-index: 1;
-  }
-
-
   // Maintain font.
   pre {
     font-family: inherit;

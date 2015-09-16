@@ -25,6 +25,15 @@
     "text": "",
     "responsive_fontsize": "3",
     "defaultImage": "header-top.png"
-  }
+  },
+  "tools": [
+    {
+      "name": "Header",
+      "id": "header-editor-responsive"
+    },
+    {
+      "name": "Baggrund",
+      "id": "background-editor-transparent"
+    }
+  ]
 }
-

@@ -16,5 +16,11 @@
   },
   "empty_options": {
     "bgcolor": "#ccc"
-  }
+  },
+  "tools": [
+    {
+      "name": "Billede",
+      "id": "background-editor"
+    }
+  ]
 }

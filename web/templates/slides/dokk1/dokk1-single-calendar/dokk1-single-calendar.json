@@ -25,5 +25,15 @@
     "headline": "",
     "text": "",
     "resources": []
-  }
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor-static-colors"
+    },
+    {
+      "name": "Kalender",
+      "id": "event-calendar-editor"
+    }
+  ]
 }

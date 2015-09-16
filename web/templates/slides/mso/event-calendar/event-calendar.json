@@ -25,5 +25,19 @@
     "headline": "",
     "text": "",
     "resources": []
-  }
+  },
+  "tools": [
+    {
+      "name": "Header",
+      "id": "header-editor-responsive"
+    },
+    {
+      "name": "Kalender",
+      "id": "event-calendar-editor"
+    },
+    {
+      "name": "Baggrund",
+      "id": "background-editor-transparent"
+    }
+  ]
 }

@@ -21,5 +21,11 @@
     "headline": "",
     "text": "",
     "responsive_fontsize": "3"
-  }
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor-static-colors"
+    }
+  ]
 }

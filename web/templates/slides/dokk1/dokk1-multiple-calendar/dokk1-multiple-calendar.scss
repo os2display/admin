@@ -247,20 +247,4 @@
     order: 3;
     -webkit-order: 3;
   }
-
-  &--edit-image-settings  {
-    @extend %slide--edit-image-settings;
-
-    // Avoid overlap with textboxes.
-    right: 5%;
-    top: 50%;
-  }
-
-
-  &--edit-content-settings {
-    @extend %slide--edit-content-settings;
-
-    top: 15%;
-    width: 100%;
-  }
 }

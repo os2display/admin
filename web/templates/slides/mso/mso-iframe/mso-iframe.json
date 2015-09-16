@@ -18,5 +18,11 @@
     "source": "",
     "framewidth": "100%",
     "bgcolor": "#ccc"
-  }
+  },
+  "tools": [
+    {
+      "name": "IFrame",
+      "id": "source-editor"
+    }
+  ]
 }

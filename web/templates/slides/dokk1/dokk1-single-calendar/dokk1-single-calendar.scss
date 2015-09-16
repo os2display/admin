@@ -209,15 +209,6 @@
       font-size: .5em;
     }
   }
-
-
-  &--edit-image-settings  {
-    @extend %slide--edit-image-settings;
-
-    // Avoid overlap with textboxes.
-    top: 50%;
-    right: 5%;
-  }
 }
 
 
