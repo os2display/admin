@@ -1,14 +1,34 @@
 
 <div data-ng-hide="pager.max == 0" class="pager--search">
+  <div data-ng-click="prevLine()" ng-class="{ 'is-disabled': pager.page < pagesPerLine }" class="pager--search-item">
+    <span class="pager--search-item-inner">&#10094;&#10094;</span>
+  </div>
   <div data-ng-click="prevPage()" ng-class="{ 'is-disabled': pager.page == 0 }" class="pager--search-item">
     <span class="pager--search-item-inner">&#10094;</span>
   </div>
 
-  <div data-ng-repeat="i in pager.pages" data-ng-click="changePage(i)" ng-class="{ 'is-active': pager.page == i }"  class="pager--search-item">
+  <div data-ng-click="changePage(0)" ng-class="{ 'is-active': pager.page == 0 }"  class="pager--search-item" data-ng-if="pagesFrom > 0">
+    <span class="pager--search-item-inner">1</span>
+  </div>
+  <div class="pager--search-item" data-ng-if="pagesFrom > 0">
+    <span class="pager--search-item-inner">...</span>
+  </div>
+
+  <div data-ng-repeat="i in pager.pages" data-ng-click="changePage(i)" ng-class="{ 'is-active': pager.page == i }"  class="pager--search-item" data-ng-if="i >= pagesFrom && i < pagesFrom + pagesPerLine">
     <span class="pager--search-item-inner">{{ $index + 1 }}</span>
+  </div>
+
+  <div class="pager--search-item" data-ng-if="pagesFrom < pager.max && pager.max > pagesFrom + pagesPerLine && pagesFrom + pagesPerLine + 1 < pager.max">
+    <span class="pager--search-item-inner">...</span>
+  </div>
+  <div data-ng-click="changePage(pager.max - 1)" ng-class="{ 'is-active': pager.page == pager.max - 1 }"  class="pager--search-item" data-ng-if="pagesFrom < pager.max && pager.max > pagesFrom + pagesPerLine">
+    <span class="pager--search-item-inner">{{ pager.max }}</span>
   </div>
 
   <div data-ng-click="nextPage()" ng-class="{ 'is-disabled': pager.page == pager.max - 1 }" class="pager--search-item">
     <span class="pager--search-item-inner">&#10095;</span>
+  </div>
+  <div data-ng-click="nextLine()" ng-class="{ 'is-disabled': pager.page >= pager.max - 1 }" class="pager--search-item">
+    <span class="pager--search-item-inner">&#10095;&#10095;</span>
   </div>
 </div>
