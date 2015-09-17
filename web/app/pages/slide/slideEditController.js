@@ -221,7 +221,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         }
 
         // Hide editors.
-        $scope.editor.hideAllEditors();
+        $scope.editor.hideEditors();
       }
     });
 
@@ -252,7 +252,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
               $scope.slide.media.push(media);
 
               // Hide editors.
-              $scope.editor.hideAllEditors();
+              $scope.editor.hideEditors();
             }
           },
           function error(reason) {

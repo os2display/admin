@@ -25,10 +25,6 @@ var banner = ['/**',
 
 // We only want to process our own non-processed JavaScript files.
 var adminJsPath = [
-  './web/app/*.js',
-  './web/app/**/*.js',
-  './web/app/**/**/*.js',
-  './web/app/**/**/**/*.js',
   './web/app/**/**/**/**/*.js'
 ];
 var adminJsAssets = [
@@ -54,11 +50,11 @@ gulp.task('jshint', function() {
 /**
  * Build single app.js file.
  */
-gulp.task('adminAppJs', function () {
+gulp.task('js', function () {
   gulp.src(adminJsPath)
     .pipe(concat('app.js'))
     .pipe(ngAnnotate())
-    .pipe(uglify())
+    .pipe(gulpif(argv.production, uglify()))
     .pipe(rename({extname: ".min.js"}))
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest(adminBuildDir))
@@ -67,11 +63,11 @@ gulp.task('adminAppJs', function () {
 /**
  * Build single app.js file.
  */
-gulp.task('adminAssetsJs', function () {
+gulp.task('assets', function () {
   gulp.src(adminJsAssets)
     .pipe(concat('assets.js'))
     .pipe(ngAnnotate())
-    .pipe(uglify())
+    .pipe(gulpif(argv.production, uglify()))
     .pipe(rename({extname: ".min.js"}))
     .pipe(gulp.dest(adminBuildDir))
 });
@@ -83,6 +79,7 @@ gulp.task('sass', function () {
   gulp.src(sassPath)
     .pipe(sass({
       outputStyle: 'compressed',
+      //@TODO: Include this from the sass instead
       includePaths: [
         './web/sass/compass-mixins/lib'
       ]
@@ -94,15 +91,16 @@ gulp.task('sass', function () {
  * Watch files for changes and run tasks.
  */
 gulp.task('watch', function() {
-  gulp.watch(adminJsPath, ['adminAppJs']);
+  gulp.watch(adminJsPath, ['js']);
   gulp.watch(sassWatchPath, ['sass']);
 });
 
 var templatesPath = './web/templates/';
 
+// @TODO: Discover this structure automatically
 var templates = {
   'screens': {
-    'default': ['five-sections', 'three-columns', 'two-columns'], // ignore full-screen and full-screen-portrait, since they have no .scss files.
+    'default': ['five-sections', 'three-columns', 'two-columns'],
     'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows'],
     'mso': ['mso-five-sections']
   },
@@ -130,6 +128,7 @@ gulp.task('sassTemplates', function () {
               .pipe(sass({
                 outputStyle: 'compressed',
                 includePaths: [
+                  //@TODO: Include this from the sass instead
                   './web/sass/compass-mixins/lib'
                 ]
               }).on('error', sass.logError))
