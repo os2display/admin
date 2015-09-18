@@ -2,14 +2,15 @@
   "id": "dokk1-single-calendar",
   "name": "Dokk1 - Enkelt lokale",
   "icon": "dokk1-single-calendar.png",
-  "slide_type": "calendar",
   "paths": {
     "live": "dokk1-single-calendar-live.html",
     "edit": "dokk1-single-calendar-edit.html",
     "preview": "dokk1-single-calendar-preview.html",
-    "css": "dokk1-single-calendar.css"
+    "css": "dokk1-single-calendar.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "calendar",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

@@ -6,9 +6,11 @@
     "live": "mso-iframe.html",
     "edit": "mso-iframe-edit.html",
     "preview": "mso-iframe-preview.html",
-    "css": "mso-iframe.css"
+    "css": "mso-iframe.css",
+    "js": "../js/iframeSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "iframe",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

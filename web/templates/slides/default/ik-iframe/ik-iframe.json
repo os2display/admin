@@ -6,9 +6,11 @@
     "live": "ik-iframe.html",
     "edit": "ik-iframe-edit.html",
     "preview": "ik-iframe-preview.html",
-    "css": "ik-iframe.css"
+    "css": "ik-iframe.css",
+    "js": "../js/iframeSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "iframe",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

@@ -3,8 +3,8 @@
  */
 
 // Register the function, if it does not already exist.
-if (!window.slideFunctions['base']) {
-  window.slideFunctions['base'] = {
+if (!window.slideFunctions['iframe']) {
+  window.slideFunctions['iframe'] = {
     /**
      * Setup the slide for rendering.
      * @param slide
@@ -12,26 +12,25 @@ if (!window.slideFunctions['base']) {
      * @param scope
      *   The slide scope.
      */
-    setup: function setupBaseSlide(slide, scope) {
-      // Only show first image in array.
-      if (slide.media_type === 'image' && slide.media.length > 0) {
-        slide.currentImage = slide.media[0].image;
-      }
+    setup: function setupIframeSlide(slide, scope) {
+      // Last time the slide was refreshed.
+      slide.lastRefresh = 0;
 
-      // Set currentLogo.
-      slide.currentLogo = slide.logo;
+      // Return af new refreshed source, with a 30 seconds interval.
+      slide.getRefreshedSource = function() {
+        var date = (new Date()).getTime();
+        if (date - slide.lastRefresh > 30000) {
+          slide.lastRefresh = date;
+        }
 
-      // Setup the inline styling
-      scope.theStyle = {
-        width: "100%",
-        height: "100%",
-        fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0)+ "px"
+        // Make sure path parameters are not overridden.
+        if (slide.options.source.indexOf('?') > 0) {
+          return slide.options.source + "&ikrefresh=" + slide.lastRefresh;
+        }
+        else {
+          return slide.options.source + "?ikrefresh=" + slide.lastRefresh;
+        }
       };
-
-      // Set the responsive fontsize if it is needed.
-      if (slide.options.responsive_fontsize) {
-        scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0)+ "vw";
-      }
     },
 
     /**
@@ -56,8 +55,8 @@ if (!window.slideFunctions['base']) {
      * @param fadeTime
      *   The fade time
      */
-    run: function runBaseSlide(slide, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
-      itkLog.info("Running base slide: " + slide.title);
+    run: function runIframeSlide(slide, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+      itkLog.info("Running iframe slide: " + slide.title);
 
       var dur = slide.duration ? slide.duration : 5;
 

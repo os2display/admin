@@ -55,6 +55,8 @@ if (!window.slideFunctions['rss']) {
      *   The fade time.
      */
     run: function runRssSlide(slide, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+      itkLog.info("Running rss slide: " + slide.title);
+
       /**
        * Go to next rss news.
        */

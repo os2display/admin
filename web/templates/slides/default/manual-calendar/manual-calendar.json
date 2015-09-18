@@ -6,9 +6,11 @@
     "live": "manual-calendar.html",
     "edit": "manual-calendar-edit.html",
     "preview": "manual-calendar.html",
-    "css": "manual-calendar.css"
+    "css": "manual-calendar.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

@@ -7,9 +7,11 @@
     "live": "header-top-live.html",
     "edit": "header-top-edit.html",
     "preview": "header-top-preview.html",
-    "css": "header-top.css"
+    "css": "header-top.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

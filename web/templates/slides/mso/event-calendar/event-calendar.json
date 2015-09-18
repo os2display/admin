@@ -2,14 +2,15 @@
   "id": "event-calendar",
   "name": "Begivenhedskalender",
   "icon": "event-calendar.png",
-  "slide_type": "calendar",
   "paths": {
     "live": "event-calendar-live.html",
     "edit": "event-calendar-edit.html",
     "preview": "event-calendar-preview.html",
-    "css": "event-calendar.css"
+    "css": "event-calendar.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "calendar",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

@@ -6,9 +6,11 @@
     "live": "text-left.html",
     "edit": "text-left-edit.html",
     "preview": "text-left.html",
-    "css": "text-left.css"
+    "css": "text-left.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

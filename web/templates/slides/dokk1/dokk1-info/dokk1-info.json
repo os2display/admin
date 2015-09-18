@@ -7,9 +7,11 @@
     "live": "dokk1-info-live.html",
     "edit": "dokk1-info-edit.html",
     "preview": "dokk1-info-preview.html",
-    "css": "dokk1-info.css"
+    "css": "dokk1-info.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1920",

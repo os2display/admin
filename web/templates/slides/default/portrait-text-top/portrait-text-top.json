@@ -6,9 +6,11 @@
     "live": "portrait-text-top.html",
     "edit": "portrait-text-top-edit.html",
     "preview": "portrait-text-top.html",
-    "css": "portrait-text-top.css"
+    "css": "portrait-text-top.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "portrait",
+  "slide_type": "base",
   "media_type": "image",
   "ideal_dimensions": {
     "width": "1080",
