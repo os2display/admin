@@ -12,6 +12,7 @@
   "orientation": "portrait",
   "slide_type": "base",
   "media_type": "image",
+  "script_id": "base",
   "ideal_dimensions": {
     "width": "1080",
     "height": "1920"

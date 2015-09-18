@@ -12,6 +12,7 @@
   "orientation": "landscape",
   "slide_type": "calendar",
   "media_type": "image",
+  "script_id": "base",
   "ideal_dimensions": {
     "width": "1920",
     "height": "1080"

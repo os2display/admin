@@ -77,6 +77,12 @@ class SlideTemplate {
   protected $path;
 
   /**
+   * @ORM\Column(name="script_id", type="string")
+   * @Groups({"middleware"})
+   */
+  protected $scriptId;
+
+  /**
    * @ORM\Column(name="orientation", type="string")
    * @Groups({"api", "api-bulk"})
    */
@@ -343,6 +349,24 @@ class SlideTemplate {
     return $this;
   }
 
+
+  /**
+   * @return mixed
+   */
+  public function getScriptId() {
+    return $this->scriptId;
+  }
+
+  /**
+   * @param mixed $scriptId
+   *
+   * @return SlideTemplate
+   */
+  public function setScriptId($scriptId) {
+    $this->scriptId = $scriptId;
+
+    return $this;
+  }
 
   /**
    * Set id

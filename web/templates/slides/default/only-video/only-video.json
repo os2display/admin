@@ -11,6 +11,7 @@
   },
   "slide_type": "video",
   "media_type": "video",
+  "script_id": "video",
   "orientation": "landscape",
   "ideal_dimensions": {
     "width": "1920",

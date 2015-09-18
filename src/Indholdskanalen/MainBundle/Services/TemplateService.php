@@ -181,6 +181,7 @@ class TemplateService extends ContainerAware {
         if (isset($obj->paths->js)) {
           $template->setPathJs($serverAddress . '/' . $obj->paths->js);
         }
+        $template->setScriptId($obj->script_id);
 
         // Ensure that the entity is managed.
         $entityManager->persist($template);
