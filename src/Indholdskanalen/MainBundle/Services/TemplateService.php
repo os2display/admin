@@ -178,6 +178,9 @@ class TemplateService extends ContainerAware {
         if (isset($obj->slide_type)) {
           $template->setSlideType($obj->slide_type);
         }
+        if (isset($obj->paths->js)) {
+          $template->setPathJs($serverAddress . '/' . $obj->paths->js);
+        }
 
         // Ensure that the entity is managed.
         $entityManager->persist($template);

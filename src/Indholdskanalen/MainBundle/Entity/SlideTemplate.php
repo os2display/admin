@@ -65,6 +65,12 @@ class SlideTemplate {
   protected $pathCss;
 
   /**
+   * @ORM\Column(name="path_js", type="string")
+   * @Groups({"middleware"})
+   */
+  protected $pathJs;
+
+  /**
    * @ORM\Column(name="path", type="string")
    * @Groups({"middleware"})
    */
@@ -318,6 +324,25 @@ class SlideTemplate {
 
     return $this;
   }
+
+  /**
+   * @return mixed
+   */
+  public function getPathJs() {
+    return $this->pathJs;
+  }
+
+  /**
+   * @param mixed $pathJs
+   *
+   * @return SlideTemplate
+   */
+  public function setPathJs($pathJs) {
+    $this->pathJs = $pathJs;
+
+    return $this;
+  }
+
 
   /**
    * Set id

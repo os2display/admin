@@ -6,7 +6,8 @@
     "live": "rss-default-live.html",
     "edit": "rss-default-edit.html",
     "preview": "rss-default-preview.html",
-    "css": "rss-default.css"
+    "css": "rss-default.css",
+    "js": "../js/rssSlide.js"
   },
   "slide_type": "rss",
   "media_type": "image",
