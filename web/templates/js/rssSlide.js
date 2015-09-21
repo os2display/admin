@@ -14,7 +14,9 @@ if (!window.slideFunctions['rss']) {
      */
     setup: function setupRssSlide(slide, scope) {
       // Only show first image in array.
-      slide.currentImage = slide.media[0].image;
+      if (slide.media_type === 'image' && slide.media.length > 0) {
+        slide.currentImage = slide.media[0].image;
+      }
 
       // Set currentLogo.
       slide.currentLogo = slide.logo;
@@ -86,7 +88,7 @@ if (!window.slideFunctions['rss']) {
             }
             else {
               // Go to next slide.
-              $timeout(nextSlide, 5000);
+              $timeout(callback, 5000);
             }
             return;
           }
