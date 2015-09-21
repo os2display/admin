@@ -65,10 +65,22 @@ class SlideTemplate {
   protected $pathCss;
 
   /**
+   * @ORM\Column(name="path_js", type="string")
+   * @Groups({"middleware"})
+   */
+  protected $pathJs;
+
+  /**
    * @ORM\Column(name="path", type="string")
    * @Groups({"middleware"})
    */
   protected $path;
+
+  /**
+   * @ORM\Column(name="script_id", type="string")
+   * @Groups({"middleware"})
+   */
+  protected $scriptId;
 
   /**
    * @ORM\Column(name="orientation", type="string")
@@ -339,6 +351,43 @@ class SlideTemplate {
    */
   public function setPathLive($pathLive) {
     $this->pathLive = $pathLive;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPathJs() {
+    return $this->pathJs;
+  }
+
+  /**
+   * @param mixed $pathJs
+   *
+   * @return SlideTemplate
+   */
+  public function setPathJs($pathJs) {
+    $this->pathJs = $pathJs;
+
+    return $this;
+  }
+
+
+  /**
+   * @return mixed
+   */
+  public function getScriptId() {
+    return $this->scriptId;
+  }
+
+  /**
+   * @param mixed $scriptId
+   *
+   * @return SlideTemplate
+   */
+  public function setScriptId($scriptId) {
+    $this->scriptId = $scriptId;
 
     return $this;
   }

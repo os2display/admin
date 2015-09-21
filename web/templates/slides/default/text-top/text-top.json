@@ -6,10 +6,13 @@
     "live": "text-top.html",
     "edit": "text-top-edit.html",
     "preview": "text-top.html",
-    "css": "text-top.css"
+    "css": "text-top.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
+  "script_id": "base",
   "ideal_dimensions": {
     "width": "1920",
     "height": "1080"

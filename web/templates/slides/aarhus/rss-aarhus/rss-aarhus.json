@@ -6,10 +6,12 @@
     "live": "rss-aarhus-live.html",
     "edit": "rss-aarhus-edit.html",
     "preview": "rss-aarhus-preview.html",
-    "css": "rss-aarhus.css"
+    "css": "rss-aarhus.css",
+    "js": "../js/rssSlide.js"
   },
   "slide_type": "rss",
   "media_type": "image",
+  "script_id": "rss",
   "orientation": "landscape",
   "ideal_dimensions": {
     "width": "1920",

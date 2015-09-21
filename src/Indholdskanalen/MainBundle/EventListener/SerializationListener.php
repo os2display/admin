@@ -167,6 +167,8 @@ class SerializationListener implements EventSubscriberInterface {
           $event->getVisitor()->addData('template_path', $template->getPathLive());
           $event->getVisitor()->addData('path', $template->getPath());
           $event->getVisitor()->addData('css_path', $template->getPathCss());
+          $event->getVisitor()->addData('js_path', $template->getPathJs());
+          $event->getVisitor()->addData('js_script_id', $template->getScriptId());
         }
         else {
           if (in_array('sharing', $groups)) {
@@ -215,8 +217,6 @@ class SerializationListener implements EventSubscriberInterface {
             $event->getVisitor()->addData('logo', $logoPath);
 
             // Set template paths
-            print_r($slide->getTemplate());
-
             $template = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:SlideTemplate')->findOneById($slide->getTemplate());
             $event->getVisitor()
               ->addData('preview_path', $template->getPathPreview());
@@ -225,6 +225,8 @@ class SerializationListener implements EventSubscriberInterface {
             $event->getVisitor()->addData('path', $template->getPath());
             $event->getVisitor()
               ->addData('css_path', $template->getPathCss());
+            $event->getVisitor()->addData('js_path', $template->getPathJs());
+            $event->getVisitor()->addData('js_script_id', $template->getScriptId());
           }
         }
       }
