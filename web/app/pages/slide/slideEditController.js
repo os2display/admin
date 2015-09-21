@@ -75,6 +75,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     $scope.editor = {
       editorOpen: false,
       hideEditors: function hideEditors() {
+        $('html').removeClass('is-locked');
         $scope.editor.editorOpen = false;
         $scope.editorURL = '';
       }

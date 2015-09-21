@@ -61,7 +61,7 @@ gulp.task('js', function () {
 });
 
 /**
- * Build single app.js file.
+ * Build single assets.js file.
  */
 gulp.task('assets', function () {
   gulp.src(adminJsAssets)
@@ -91,7 +91,7 @@ gulp.task('sass', function () {
  * Watch files for changes and run tasks.
  */
 gulp.task('watch', function() {
-  gulp.watch(adminJsPath, ['js']);
+  gulp.watch(adminJsPath, ['jshint']);
   gulp.watch(sassWatchPath, ['sass']);
 });
 
