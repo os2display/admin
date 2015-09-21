@@ -28,6 +28,8 @@ if (!window.slideFunctions['video']) {
      *
      * @param slide
      *   The slide.
+     * @param scope
+     *   The region scope
      * @param callback
      *   The callback to call when the slide has been executed.
      * @param $http
@@ -45,7 +47,7 @@ if (!window.slideFunctions['video']) {
      * @param fadeTime
      *   The fade time.
      */
-    run: function runVideoSlide(slide, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+    run: function runVideoSlide(slide, scope, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
       itkLog.info("Running video slide: " + slide.title);
 
       /**

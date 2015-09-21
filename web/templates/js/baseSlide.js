@@ -39,6 +39,8 @@ if (!window.slideFunctions['base']) {
      *
      * @param slide
      *   The slide.
+     * @param scope
+     *   The region scope
      * @param callback
      *   The callback to call when the slide has been executed.
      * @param $http
@@ -56,7 +58,7 @@ if (!window.slideFunctions['base']) {
      * @param fadeTime
      *   The fade time
      */
-    run: function runBaseSlide(slide, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+    run: function runBaseSlide(slide, scope, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
       itkLog.info("Running base slide: " + slide.title);
 
       var dur = slide.duration ? slide.duration : 5;
