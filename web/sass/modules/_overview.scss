@@ -180,6 +180,11 @@
   &--filter-owner {
     @include breakpoint($breakpoint-desk) {
       width: 25%;
+
+      &-foursplit {
+        width: 24%;
+        margin-right: .5em;
+      }
     }
   }
 
@@ -290,7 +295,6 @@
   &--filter-foursplit-right {
     width: 25%;
   }
-
 
   &--horisontal,
   &--vertical {
