@@ -1,0 +1,26 @@
+<!-- MSO header footer tool -->
+<div class="control-panel--tool"
+     data-ng-class="{'is-visible': display,'is-hidden': !display}">
+  <!-- @TODO: Fix this arrow -->
+  <a href="#" class="control-panel--main-toggle">
+    <img class="control-panel--toggle-image"
+         src="./images/arrow-right-icon.png"/>
+  </a>
+
+  <div class="control-panel--tool-tab">
+    <form class="cpw--wrapper">
+      <div class="cpw--textarea">
+        <label class="cpw--textarea-label">Footer besked</label>
+        <text-area-widget rows="6" field="data.options.mso_address"
+                          placeholder-text="F.eks. Find vej"></text-area-widget>
+      </div>
+    </form>
+  </div>
+
+  <div class="control-panel--actions">
+    <div class="control-panel--actions-inner">
+      <a class="control-panel--actions-close" data-ng-click="saveAction()">Gem
+        og luk</a>
+    </div>
+  </div>
+</div>

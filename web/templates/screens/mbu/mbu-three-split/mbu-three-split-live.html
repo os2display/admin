@@ -1,0 +1,39 @@
+<div class="mbu-three-split is-split-screen">
+  <div class="mbu-three-split--header" style="width: auto; height: 100px;">
+    <img class="mbu-three-split--logo" data-ng-src="{{templateDirectory + '/images/m_logos.png'}}" />
+    <digital-clock-component class="mbu-three-split--clock"></digital-clock-component>
+  </div>
+  <div class="mbu-three-split--inner">
+    <div class="mbu-three-split--region-vertical">
+      <div class="mbu-three-split--region-horizontal">
+        <div class="mbu-three-split--region-content">
+          <div class="slide">
+            <region region-id="1" show-progress="true" scale="1"></region>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mbu-three-split--region-vertical">
+      <div class="mbu-three-split--region-horizontal">
+        <div class="mbu-three-split--region-content">
+          <div class="slide">
+            <region region-id="2" show-progress="true" scale="1"></region>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mbu-three-split--region-vertical">
+      <div class="mbu-three-split--region-horizontal">
+        <div class="mbu-three-split--region-content">
+          <div class="slide">
+            <region region-id="3" show-progress="true" scale="1"></region>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mbu-three-split--footer">
+    <img class="mbu-three-split--aarhus-logo" data-ng-src="{{templateDirectory + '/images/qr.png'}}" />
+    <h2 class="mbu-three-split--address">{{options.mso_address}}</h2>
+  </div>
+</div>
