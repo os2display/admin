@@ -10,5 +10,5 @@
   "tools": {
     "footer": "tools/mbu-header-footer-tool.html"
   },
-  "orientation": "landscape"
+  "orientation": "portrait"
 }
