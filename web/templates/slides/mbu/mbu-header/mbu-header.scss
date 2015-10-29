@@ -1,0 +1,47 @@
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+.mbu-header {
+  position: relative;
+  padding: 0;
+
+  // Maintain font.
+  pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left;
+  }
+
+  &--image-wrapper {
+    position: absolute;
+    left: 0;
+
+    height: 100%;
+
+    display: inline-block;
+  }
+
+  &--image {
+    display: inline-block;
+    height: 100px;
+    margin: 15px;
+  }
+
+  &--clock {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    right: 0;
+
+    padding: 10px;
+
+    text-align: right;
+    color: $white;
+    font-size: 2em;
+    font-weight: bold;
+
+    @include transform(translateY(-50%));
+  }
+
+}

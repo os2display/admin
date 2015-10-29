@@ -2,7 +2,7 @@
  *
  * Shared base.
  *
- * Contains shared placeholder classes and variables to be used when creating new screens.
+ * Contains shared placeholder classes and variables to be used when creating new templates.
  *
  */
 /* Default imports (Used in all templates!)
@@ -264,15 +264,6 @@ table {
 
 /**
  *
- * Shared base.
- *
- * Contains shared placeholder classes and variables to be used when creating new templates.
- *
- */
-/* Default imports (Used in all templates!)
-   ========================================================================== */
-/**
- *
  * Mixins
  *
  */
@@ -288,87 +279,49 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
-/* Variables
-   ========================================================================== */
-/* Silent classes related to this document
-   ========================================================================== */
-.mbu-three-split--region-content {
-  font-size: 1rem;
-  height: 100%;
-  overflow: hidden; }
+.mbu-footer--text.has-placeholder:focus {
+  outline: none; }
+.mbu-footer--text.has-placeholder:empty:before {
+  content: attr(placeholder);
+  color: #b3b3b3; }
+.mbu-footer--text.has-placeholder:empty:focus:before {
+  background-color: #b3d4fd;
+  color: #000; }
 
-/* Styles
-   ========================================================================== */
-.mbu-three-split--inner {
-  position: absolute;
-  top: 130px;
-  bottom: 90px;
-  width: 100%; }
-.mbu-three-split--region-horizontal {
-  vertical-align: top;
-  box-sizing: border-box;
-  height: 100%; }
-  .mbu-three-split--region-horizontal:last-child {
+.mbu-footer--text {
+  overflow: hidden;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  resize: none; }
+  .mbu-footer--text:focus {
+    outline: none;
     border: 0; }
-.mbu-three-split--region-vertical {
-  display: block;
-  height: 33%;
-  box-sizing: border-box; }
-  .mbu-three-split--region-vertical:last-child {
-    border: 0; }
-.mbu-three-split--region-content {
-  position: relative; }
-.mbu-three-split--header {
+
+.mbu-footer {
   position: relative;
-  background: #9c9c9c; }
-  .mbu-three-split--header-content {
+  padding: 0; }
+  .mbu-footer pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left; }
+  .mbu-footer--image-wrapper {
     position: relative;
+    display: inline-block;
+    height: 100%;
+    margin-right: 2em; }
+  .mbu-footer--text-wrapper {
+    position: absolute;
     top: 50%;
-    padding-left: 1.1vw;
+    display: inline-block;
+    width: 80%;
+    font-size: 1.2em;
     color: #fff;
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
-  .mbu-three-split--header-text {
-    margin: 0;
-    font-size: 1.5em; }
-.mbu-three-split--footer {
-  position: absolute;
-  bottom: 0;
-  height: 90px;
-  width: 100%;
-  background: #9c9c9c; }
-.mbu-three-split--clock {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  text-align: right;
-  color: #fff;
-  font-size: 2em;
-  font-weight: bold;
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%); }
-.mbu-three-split--logo {
-  position: absolute;
-  left: 0;
-  padding: 10px;
-  height: 80px; }
-.mbu-three-split--aarhus-logo {
-  display: inline-block;
-  height: 50px;
-  width: 50px;
-  padding: 10px; }
-.mbu-three-split--footer-text {
-  position: absolute;
-  top: 8px;
-  left: 80px;
-  display: inline-block;
-  height: 70px;
-  font-size: 1.2em;
-  color: #fff; }
+  .mbu-footer--image {
+    display: inline-block;
+    height: 70px;
+    margin: 10px; }

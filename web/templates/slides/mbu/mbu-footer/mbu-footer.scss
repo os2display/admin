@@ -1,0 +1,50 @@
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+.mbu-footer {
+  position: relative;
+  padding: 0;
+
+  // Maintain font.
+  pre {
+    font-family: inherit;
+    margin: 0;
+    text-align: left;
+  }
+
+  &--image-wrapper {
+    position: relative;
+
+    display: inline-block;
+    height: 100%;
+    margin-right: 2em;
+  }
+
+  &--text-wrapper {
+    position: absolute;
+    top: 50%;
+
+    display: inline-block;
+    width: 80%;
+
+    font-size: 1.2em;
+    color: $white;
+
+    @include transform(translateY(-50%));
+  }
+
+
+  &--text {
+    @extend %inline-textarea;
+
+    &.has-placeholder {
+      @extend %show-placeholder-text;
+    }
+  }
+
+  &--image {
+    display: inline-block;
+    height: 70px;
+    margin: 10px;
+  }
+}

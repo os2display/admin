@@ -1,0 +1,22 @@
+{
+  "id": "mbu-header",
+  "name": "MBU header",
+  "icon": "mbu-header.png",
+  "paths": {
+    "live": "mbu-header.html",
+    "edit": "mbu-header-edit.html",
+    "preview": "mbu-header.html",
+    "css": "mbu-header.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "90"
+  },
+  "empty_options": {
+    "fontsize": "50",
+    "bgcolor": "#9c9c9c",
+    "text": ""
+  }
+}

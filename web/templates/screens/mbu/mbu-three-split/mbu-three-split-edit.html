@@ -1,21 +1,13 @@
 <div class="presentation--border" style="max-width: 390px;">
-  <div class="presentation--header" data-ng-click="triggerTool({name: 'header-footer', region: 0})">
-    <div class="presentation--header-inner" data-ng-class="{'is-active': region === 0}">
+  <div class="presentation--header" data-ng-click="triggerTool({name: 'channel-picker-tool', region: 1})">
+    <div class="presentation--header-inner" data-ng-class="{'is-active': region === 1}">
       <div class="presentation--region-content-inner">
-        <div class="presentation--region-content-button" ng-show="screen.options.mso_area == ''">Tilføj</div>
-        <div class="presentation--header-text" ng-show="screen.options.mso_area != undefined">{{ screen.options.mso_area }}</div>
+        <region-preview-widget region="1" screen="screen"></region-preview-widget>
       </div>
     </div>
   </div>
   <div class="presentation breakpoint-50">
     <div class="presentation--inner" style="width: 340px;height:700px;">
-      <div class="presentation--region-vertical" style="width: 100%; height:33.3%;">
-        <div class="presentation--region-horizontal" style="width: 100%; height:100%;" data-ng-click="triggerTool({name: 'channel-picker-tool', region: 1})">
-          <div class="presentation--region-content" data-ng-class="{'is-active': region === 1}">
-            <region-preview-widget region="1" screen="screen" class="presentation--region-content-inner"></region-preview-widget>
-          </div>
-        </div>
-      </div>
       <div class="presentation--region-vertical" style="width: 100%; height:33.3%;">
         <div class="presentation--region-horizontal" style="width: 100%; height:100%;" data-ng-click="triggerTool({name: 'channel-picker-tool', region: 2})">
           <div class="presentation--region-content" data-ng-class="{'is-active': region === 2}">
@@ -30,13 +22,19 @@
           </div>
         </div>
       </div>
+      <div class="presentation--region-vertical" style="width: 100%; height:33.3%;">
+        <div class="presentation--region-horizontal" style="width: 100%; height:100%;" data-ng-click="triggerTool({name: 'channel-picker-tool', region: 4})">
+          <div class="presentation--region-content" data-ng-class="{'is-active': region === 4}">
+            <region-preview-widget region="4" screen="screen" class="presentation--region-content-inner"></region-preview-widget>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="presentation--footer" data-ng-click="triggerTool({name: 'header-footer', region: 0})">
-    <div class="presentation--footer-inner" data-ng-class="{'is-active': region === 0}">
+  <div class="presentation--footer" data-ng-click="triggerTool({name: 'channel-picker-tool', region: 5})">
+    <div class="presentation--footer-inner" data-ng-class="{'is-active': region === 5}">
       <div class="presentation--region-content-inner">
-        <div class="presentation--region-content-button" ng-show="screen.options.mso_address == ''">Tilføj</div>
-        <div class="presentation--footer-text" ng-show="screen.options.mso_address != undefined">{{ screen.options.mso_address }}</div>
+        <region-preview-widget region="5" screen="screen"></region-preview-widget>
       </div>
     </div>
   </div>
