@@ -3,12 +3,17 @@
 
 .mbu-header {
   position: relative;
+
   padding: 0;
+
+  text-align: left;
+  color: $white;
 
   // Maintain font.
   pre {
-    font-family: inherit;
     margin: 0;
+
+    font-family: inherit;
     text-align: left;
   }
 
@@ -44,4 +49,32 @@
     @include transform(translateY(-50%));
   }
 
+  &--edit-logo-settings {
+    @extend %slide--edit-logo-settings;
+
+    left: auto;
+    right: 5%;
+  }
+
+  &.edit {
+    .mbu-header {
+      &--image {
+        height: 90%;
+        margin: 5px;
+      }
+    }
+  }
+}
+
+.preview--slide {
+  .mbu-header {
+    &--image {
+      height: 90%;
+      margin: 0;
+    }
+
+    &--clock {
+      font-size: .5em;
+    }
+  }
 }

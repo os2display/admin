@@ -279,6 +279,19 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
+.mbu-footer--edit-logo-settings {
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  cursor: pointer;
+  font-size: 0.6em;
+  color: #fff;
+  padding: .3em .8em;
+  background: rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em; }
+
 .mbu-footer--text.has-placeholder:focus {
   outline: none; }
 .mbu-footer--text.has-placeholder:empty:before {
@@ -300,11 +313,14 @@ table {
 
 .mbu-footer {
   position: relative;
-  padding: 0; }
-  .mbu-footer pre {
-    font-family: inherit;
+  padding: 0;
+  text-align: left;
+  color: #fff; }
+  .mbu-footer pre, .mbu-footer textarea {
     margin: 0;
-    text-align: left; }
+    font-family: inherit;
+    text-align: left;
+    color: #fff; }
   .mbu-footer--image-wrapper {
     position: relative;
     display: inline-block;
@@ -314,7 +330,7 @@ table {
     position: absolute;
     top: 50%;
     display: inline-block;
-    width: 80%;
+    max-width: 80%;
     font-size: 1.2em;
     color: #fff;
     -moz-transform: translateY(-50%);
@@ -325,3 +341,17 @@ table {
     display: inline-block;
     height: 70px;
     margin: 10px; }
+  .mbu-footer--edit-logo-settings {
+    left: auto;
+    right: 5%; }
+  .mbu-footer.edit .mbu-footer--image {
+    height: 80%;
+    margin: 10%; }
+
+.preview--slide .mbu-footer--image {
+  height: 80%;
+  margin: 10%; }
+.preview--slide .mbu-footer--text-wrapper {
+  font-size: .3em; }
+.preview--slide .mbu-footer--image-wrapper {
+  margin-right: .5em; }
