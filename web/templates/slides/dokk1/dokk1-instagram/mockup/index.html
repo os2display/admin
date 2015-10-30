@@ -22,12 +22,27 @@
     }
 
     body {
+      overflow: hidden;
+      position: relative;
+
       margin: 0;
       padding: 0;
 
       background-color: rgb(35, 85, 135);
       color: #fff;
       font: 1em/1.5 'Gibson Light', sans-serif;
+    }
+
+    body .fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      padding: 15vmin 0;
+
+      /* "transparent" only works here because == rgba(0,0,0,0) */
+      background-image: linear-gradient(to bottom, transparent, rgb(35, 85, 135));
     }
 
     img {
@@ -48,33 +63,35 @@
       margin-right: auto;
       margin-left: auto;
       max-width: 100vmin;
-      padding: 3vmin;
+      padding: 5vmin;
     }
 
     header {
-      font-size: 5vmin;
+      font-size: 8vmin;
       text-align: center;
     }
 
     .amount {
-      border-bottom: 1px solid rgba(255, 255, 255, .15);
-      margin-bottom: 2.5vmin;
-      padding-bottom: 2vmin;
+      margin-bottom: 5vmin;
 
+      font-size: 4vmin;
       text-align: center;
     }
 
     .content {
       display: flex;
       flex-basis: 65%;
+      flex-direction: column;
       flex-shrink: 0;
 
-      font-size: 3vmin;
+      font-size: 5vmin;
     }
 
     .image {
+      margin-bottom: 5vmin;
+
       order: 1;
-      flex-basis: 35%;
+      flex-basis: 100%;
       flex-shrink: 0;
     }
 
@@ -86,7 +103,10 @@
 
     .user {
       display: flex;
+
       align-items: center;
+
+      font-size: 4vmin;
     }
 
     .user strong {
@@ -96,10 +116,38 @@
     .user img {
       border-radius: 50%;
       height: 75px;
-      margin-right: 1.5vmin;
+      margin-right: 3vmin;
       width: 75px;
 
       order: 1;
+    }
+
+    @media only screen and (min-width: 1080px) {
+      header {
+        font-size: 5vmin;
+      }
+
+      .amount {
+        border-bottom: 1px solid rgba(255, 255, 255, .15);
+        padding-bottom: 3vmin;
+
+        font-size: 2vmin;
+      }
+
+      .content {
+        flex-direction: row;
+
+        font-size: 3vmin;
+      }
+
+      .image {
+        margin-bottom: 0;
+        flex-basis: 35%;
+      }
+
+      .user img {
+        margin-right: 2vmin;
+      }
     }
   </style>
 </head>
@@ -108,7 +156,7 @@
   <header>#dokk1</header>
   <div class="amount">5.145 posts</div>
   <div class="content">
-    <div class="image"><img src="https://unsplash.it/500/500?random"></div>
+    <div class="image"><img src="https://unsplash.it/1500/2000?random"></div>
     <div class="post">
       <div class="user">
         <img src="https://scontent-ams3-1.cdninstagram.com/hphotos-xfa1/t51.2885-19/11377955_1633935323517925_1102789875_a.jpg">
@@ -121,5 +169,6 @@
     </div>
   </div>
 </div>
+<div class="fade"></div>
 </body>
 </html>
