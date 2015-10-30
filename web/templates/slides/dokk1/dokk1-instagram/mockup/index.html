@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="da">
+  <meta charset="UTF-8">
+  <title>Dokk1 Instagram template</title>
+  <style>
+    @font-face {
+      font-family: 'Gibson SemiBold';
+      src: url("../fonts/Gibson-SemiBold-webfont.woff") format("woff");
+    }
+    @font-face {
+      font-family: 'Gibson Regular';
+      src: url("../fonts/Gibson-Regular-webfont.woff") format("woff");
+    }
+    @font-face {
+      font-family: 'Gibson Light';
+      src: url("../fonts/Gibson-Light-webfont.woff") format("woff");
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      background-color: rgb(35, 85, 135);
+      color: #fff;
+      font: 1em/1.5 'Gibson Light', sans-serif;
+    }
+
+    img {
+      display: inline;
+      height: auto;
+      max-width: 100%;
+      vertical-align: bottom;
+    }
+
+    strong {
+      font-family: 'Gibson Regular';
+    }
+
+    .template {
+      position: relative;
+
+      box-sizing: border-box;
+      margin-right: auto;
+      margin-left: auto;
+      max-width: 100vmin;
+      padding: 3vmin;
+    }
+
+    header {
+      font-size: 5vmin;
+      text-align: center;
+    }
+
+    .amount {
+      border-bottom: 1px solid rgba(255, 255, 255, .15);
+      margin-bottom: 2.5vmin;
+      padding-bottom: 2vmin;
+
+      text-align: center;
+    }
+
+    .content {
+      display: flex;
+      flex-basis: 65%;
+      flex-shrink: 0;
+
+      font-size: 3vmin;
+    }
+
+    .image {
+      order: 1;
+      flex-basis: 35%;
+      flex-shrink: 0;
+    }
+
+    .post {
+      padding-left: 2vmin;
+
+      order: 2;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+    }
+
+    .user strong {
+      order: 2;
+    }
+
+    .user img {
+      border-radius: 50%;
+      height: 75px;
+      margin-right: 1.5vmin;
+      width: 75px;
+
+      order: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="template">
+  <header>#dokk1</header>
+  <div class="amount">5.145 posts</div>
+  <div class="content">
+    <div class="image"><img src="https://unsplash.it/500/500?random"></div>
+    <div class="post">
+      <div class="user">
+        <img src="https://scontent-ams3-1.cdninstagram.com/hphotos-xfa1/t51.2885-19/11377955_1633935323517925_1102789875_a.jpg">
+        <strong>kathrinebredlund</strong>
+      </div>
+      <p>
+        It has been raining all morning so I am staying at home listening to the radio program 'Mads og Monopolet' and
+        baking cake Later I will be paying our new library in Aarhus #dokk1 a visit.
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
