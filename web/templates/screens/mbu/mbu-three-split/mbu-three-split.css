@@ -321,3 +321,9 @@ table {
 .mbu-three-split--header {
   position: relative;
   background: #9c9c9c; }
+.mbu-three-split--footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  background: #9c9c9c; }
