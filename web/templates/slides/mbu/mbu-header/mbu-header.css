@@ -312,7 +312,6 @@ table {
     margin: 15px; }
   .mbu-header--clock {
     position: absolute;
-    z-index: 1;
     top: 50%;
     left: 0;
     right: 0;
