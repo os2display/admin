@@ -15,7 +15,7 @@
    ========================================================================== */
 
 @import "compass/css3";
-@import "../../_shared-base.scss";
+@import "../../../_shared-base.scss";
 
 
 
@@ -218,22 +218,6 @@
       padding: .2em;
     }
   }
-
-  /* Edit icons */
-  &--edit-box-settings {
-    @extend %slide--edit-box-settings;
-    z-index: 1;
-  }
-
-  &--edit-image-settings  {
-    @extend %slide--edit-image-settings;
-  }
-
-
-  &--edit-content-settings {
-    @extend %slide--edit-content-settings;
-  }
-
 
   // Maintain font.
   pre {

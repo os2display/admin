@@ -1,5 +1,5 @@
 @import "compass/css3";
-@import "../../_shared-base.scss";
+@import "../../../_shared-base.scss";
 
 .text-right {
   background-size: cover;
@@ -58,24 +58,6 @@
   }
 
   font-size: 70%;
-}
-
-
-.text-right--edit-box-settings {
-  @extend %slide--edit-box-settings;
-}
-
-
-.text-right--edit-image-settings {
-  @extend %slide--edit-image-settings;
-
-  right: auto;
-  left: 15%;
-}
-
-
-.text-right--edit-logo-settings {
-  @extend %slide--edit-logo-settings;
 }
 
 

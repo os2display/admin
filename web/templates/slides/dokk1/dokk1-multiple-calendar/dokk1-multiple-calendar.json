@@ -2,15 +2,17 @@
   "id": "dokk1-multiple-calendar",
   "name": "Dokk1 - Begivenhedskalender",
   "icon": "dokk1-multiple-calendar.png",
-  "slide_type": "calendar",
   "paths": {
     "live": "dokk1-multiple-calendar-live.html",
     "edit": "dokk1-multiple-calendar-edit.html",
     "preview": "dokk1-multiple-calendar-preview.html",
-    "css": "dokk1-multiple-calendar.css"
+    "css": "dokk1-multiple-calendar.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "calendar",
   "media_type": "image",
+  "script_id": "base",
   "ideal_dimensions": {
     "width": "1920",
     "height": "1080"
@@ -23,5 +25,15 @@
     "headline": "",
     "text": "",
     "resources": []
-  }
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor-static-colors"
+    },
+    {
+      "name": "Kalender",
+      "id": "event-calendar-editor"
+    }
+  ]
 }

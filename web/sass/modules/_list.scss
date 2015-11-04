@@ -27,10 +27,11 @@
     display: inline-block;
     position: absolute;
     left: 0;
+  }
 
-    &.is-selected {
-      @include generate-sprite-image($dashboard-sprites, 'check-icon', 20);
-    }
+  &--element-selected {
+    height: 20px;
+    width: 20px;
   }
 
   &--element-title {

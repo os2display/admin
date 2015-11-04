@@ -6,16 +6,18 @@
     <div class="create-channel--slides">
       <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
         <div class="create-channel--slide-order-link">
-          <div data-ng-if="slide.published == true">
-            <div class="create-channel--slide-published-icon" title="Dette slide er publiseret."></div>
+          <!--
+          <div data-ng-if="slide.published">
+            <img class="create-channel--slide-published-icon" src="/images/icons/check-circle-full-icon.png" title="Dette slide er publiseret.">
           </div>
-          <div data-ng-if="slide.published == false || outOfSchedule(slide)">
+          <div data-ng-if="!slide.published">
             <div class="create-channel--slide-unpublished-overlay"></div>
-            <div class="create-channel--slide-unpublished-icon" title="Dette slide er ikke publiseret."></div>
+            <img class="create-channel--slide-unpublished-icon" title="Dette slide er ikke publiseret." src="/images/icons/exclamation-icon.png">
           </div>
+          -->
           <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img class="create-channel--arrow-left-image" src="images/arrow-backward.png"></span>
           <span class="create-channel--slide-order-number">{{$index + 1}}</span>
-          <div class="create-channel--slide-remove" data-ng-click="toggleSlide(slide)"></div>
+          <img class="overview--channel-remove" data-ng-click="toggleSlide(slide)" src="/images/icons/cancel-icon.png">
           <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
           <span class="create-channel--slide-order-label">{{slide.title}}</span>
           <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><img class="create-channel--arrow-right-image" src="images/arrow-forward.png"></span>

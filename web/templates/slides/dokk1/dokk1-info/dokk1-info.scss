@@ -15,7 +15,7 @@
    ========================================================================== */
 
 @import "compass/css3";
-@import "../../_shared-base.scss";
+@import "../../../_shared-base.scss";
 
 
 @font-face {
@@ -117,14 +117,6 @@
   &--header-input {
     line-height: 1em;
     vertical-align: bottom;
-  }
-
-  &--edit-image-settings  {
-    @extend %slide--edit-image-settings;
-
-    // Avoid overlap with textboxes.
-    top: 50%;
-    right: 5%;
   }
 }
 

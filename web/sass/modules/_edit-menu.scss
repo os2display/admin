@@ -311,7 +311,7 @@
     cursor: pointer;
     margin-top: 1.5em;
 
-    @include generate-sprite-image($dashboard-sprites, 'plus-icon', 55);
+    @include get-icon('plus-icon', 55%);
   }
 
   &--calendar-date-events {
@@ -331,7 +331,7 @@
     cursor: pointer;
     float: left;
 
-    @include generate-sprite-image($dashboard-sprites, 'minus-icon', 55);
+    @include get-icon('minus-icon', 55%);
   }
 
   &--calendar-remove-date-notice {

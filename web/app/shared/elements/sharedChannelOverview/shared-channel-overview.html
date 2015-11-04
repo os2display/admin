@@ -36,7 +36,7 @@
   <ik-pager></ik-pager>
 </section>
 
-<modal-dialog show="pickIndexDialog">
+<modal-dialog show="pickIndexDialog" on-close="">
   <h2 class="edit-menu--content-header">Vælg indeks</h2>
   <p class="edit-menu--content-description">Vælg hvilket indeks du vil søge i</p>
   <div class="create-channel--screen" data-ng-repeat="index in sharingIndexes" data-ng-click="setIndex(index)">

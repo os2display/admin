@@ -6,10 +6,13 @@
     "live": "mbu-header.html",
     "edit": "mbu-header-edit.html",
     "preview": "mbu-header.html",
-    "css": "mbu-header.css"
+    "css": "mbu-header.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
+  "script_id": "base",
   "ideal_dimensions": {
     "width": "1080",
     "height": "90"
@@ -18,5 +21,11 @@
     "fontsize": "50",
     "bgcolor": "#9c9c9c",
     "text": ""
-  }
+  },
+  "tools": [
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
+  ]
 }

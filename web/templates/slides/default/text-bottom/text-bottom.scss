@@ -1,5 +1,5 @@
 @import "compass/css3";
-@import "../../_shared-base.scss";
+@import "../../../_shared-base.scss";
 
 .text-bottom {
   background-size: cover;
@@ -57,28 +57,6 @@
 
   font-size: 70%;
 }
-
-
-.text-bottom--edit-box-settings {
-  @extend %slide--edit-box-settings;
-}
-
-
-.text-bottom--edit-image-settings {
-  @extend %slide--edit-image-settings;
-
-  bottom: auto;
-  top: 15%;
-}
-
-
-.text-bottom--edit-logo-settings {
-  @extend %slide--edit-logo-settings;
-
-  bottom: auto;
-  top: 5%;
-}
-
 
 .text-bottom--logo {
   position: absolute;

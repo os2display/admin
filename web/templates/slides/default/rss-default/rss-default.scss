@@ -1,5 +1,5 @@
 @import "compass/css3";
-@import "../../_shared-base.scss";
+@import "../../../_shared-base.scss";
 
 .rss-default {
   background-size: cover;
@@ -68,28 +68,6 @@
       padding-right: 1em;
       padding-bottom: 1em;
     }
-  }
-
-  &--settings {
-    @extend %slide--edit-image-settings;
-    bottom: 2.5em;
-    left: auto;
-    right: 1em;
-  }
-
-  &--edit-rss-settings {
-    @extend %slide--edit-logo-settings;
-    bottom: 1em;
-    left: auto;
-    right: 1em;
-
-    width: 4em;
-
-    font-size: .6em;
-  }
-
-  &--edit-logo-settings {
-    @extend %slide--edit-logo-settings;
   }
 
   &--overlay {

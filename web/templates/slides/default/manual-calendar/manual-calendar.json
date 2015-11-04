@@ -6,10 +6,13 @@
     "live": "manual-calendar.html",
     "edit": "manual-calendar-edit.html",
     "preview": "manual-calendar.html",
-    "css": "manual-calendar.css"
+    "css": "manual-calendar.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
+  "script_id": "base",
   "ideal_dimensions": {
     "width": "1920",
     "height": "1080"
@@ -30,5 +33,19 @@
       "right":"auto"
     },
     "logosize": "10%"
-  }
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    },
+    {
+      "name": "Kalender",
+      "id": "manual-calendar-editor"
+    }
+  ]
 }
