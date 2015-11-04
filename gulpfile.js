@@ -78,13 +78,23 @@ gulp.task('assets', function () {
 gulp.task('sass', function () {
   gulp.src(sassPath)
     .pipe(sass({
-      outputStyle: 'compressed',
       //@TODO: Include this from the sass instead
       includePaths: [
         './web/sass/compass-mixins/lib'
       ]
     }).on('error', sass.logError))
     .pipe(gulp.dest(adminBuildDir));
+
+  gulp.src(sassPath)
+    .pipe(gulpif(argv.production, sass({
+      outputStyle: 'compressed',
+      //@TODO: Include this from the sass instead
+      includePaths: [
+        './web/sass/compass-mixins/lib'
+      ]
+    }).on('error', sass.logError)))
+    .pipe(gulpif(argv.production, rename({extname: ".min.css"})))
+    .pipe(gulpif(argv.production, gulp.dest(adminBuildDir)));
 });
 
 /**
