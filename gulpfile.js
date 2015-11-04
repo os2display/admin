@@ -102,13 +102,15 @@ var templates = {
   'screens': {
     'default': ['five-sections', 'three-columns', 'two-columns'],
     'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows'],
-    'mso': ['mso-five-sections']
+    'mso': ['mso-five-sections'],
+    'mbu': ['mbu-three-split']
   },
   'slides': {
     'aarhus': ['rss-aarhus'],
     'default': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top'],
     'dokk1': ['dokk1-info', 'dokk1-multiple-calendar', 'dokk1-single-calendar', 'wayfinding'],
-    'mso': ['event-calendar', 'header-top', 'mso-iframe']
+    'mso': ['event-calendar', 'header-top', 'mso-iframe'],
+    'mbu': ['mbu-header', 'mbu-footer']
   }
 };
 
