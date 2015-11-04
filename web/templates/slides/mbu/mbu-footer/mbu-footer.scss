@@ -1,0 +1,89 @@
+@import "compass/css3";
+@import "../../_shared-base.scss";
+
+.mbu-footer {
+  position: relative;
+
+  padding: 0;
+
+  text-align: left;
+  color: $white;
+
+  // Maintain font.
+  pre, textarea {
+    margin: 0;
+
+    font-family: inherit;
+    text-align: left;
+    color: $white;
+  }
+
+  &--image-wrapper {
+    position: relative;
+
+    display: inline-block;
+    height: 100%;
+    margin-right: 2em;
+  }
+
+  &--text-wrapper {
+    position: absolute;
+    top: 50%;
+
+    display: inline-block;
+    width: 80%;
+
+    font-size: 1.2em;
+    color: $white;
+
+    @include transform(translateY(-50%));
+  }
+
+
+  &--text {
+    @extend %inline-textarea;
+
+    &.has-placeholder {
+      @extend %show-placeholder-text;
+    }
+  }
+
+  &--image {
+    display: inline-block;
+    height: 70px;
+    margin: 10px;
+  }
+
+  &--edit-logo-settings {
+    @extend %slide--edit-logo-settings;
+
+    left: auto;
+    right: 5%;
+  }
+
+  &.edit {
+    .mbu-footer {
+      &--image {
+        height: 80%;
+        margin: 10%;
+      }
+    }
+  }
+}
+
+.preview--slide {
+  .mbu-footer {
+    &--image {
+      height: 80%;
+      margin: 10%;
+    }
+
+    &--text-wrapper {
+      font-size: .3em;
+    }
+
+    &--image-wrapper {
+      margin-right: .5em;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import "compass/css3";
+@import "../../_shared-base-screens.scss";
+
+
+.mbu-three-split {
+  &--inner {
+    position: absolute;
+    top: 130px;
+    bottom: 90px;
+
+    width: 100%;
+  }
+
+  &--region-horizontal {
+    vertical-align: top;
+
+    box-sizing: border-box;
+    height: 100%;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &--region-vertical {
+    display: block;
+    height: 33%;
+
+    box-sizing: border-box;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &--region-content {
+    @extend %presentation--item-inner;
+
+    position: relative;
+  }
+
+  &--header {
+    position: relative;
+
+    background: #9c9c9c;
+  }
+
+  &--footer {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 90px;
+
+    background: #9c9c9c;
+  }
+}
