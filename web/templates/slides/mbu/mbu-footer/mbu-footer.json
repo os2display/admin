@@ -1,0 +1,22 @@
+{
+  "id": "mbu-footer",
+  "name": "MBU footer",
+  "icon": "mbu-footer.png",
+  "paths": {
+    "live": "mbu-footer.html",
+    "edit": "mbu-footer-edit.html",
+    "preview": "mbu-footer.html",
+    "css": "mbu-footer.css"
+  },
+  "orientation": "landscape",
+  "media_type": "image",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "90"
+  },
+  "empty_options": {
+    "fontsize": "50",
+    "bgcolor": "#9c9c9c",
+    "text": ""
+  }
+}

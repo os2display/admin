@@ -1,0 +1,14 @@
+{
+  "id": "mbu-three-split",
+  "name": "MBU tredelt vertikal",
+  "icon": "mbu-three-split.png",
+  "paths": {
+    "live": "mbu-three-split-live.html",
+    "edit": "mbu-three-split-edit.html",
+    "css": "mbu-three-split.css"
+  },
+  "tools": {
+    "footer": "tools/mbu-header-footer-tool.html"
+  },
+  "orientation": "portrait"
+}
