@@ -45,7 +45,13 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       $('html').toggleClass('is-locked');
       if (!$scope.editor.editorOpen) {
         $scope.editor.editorOpen = true;
-        $scope.editorURL = 'templates/editors/' + tool.id + '.html';
+
+        if (tool.path) {
+          $scope.editorURL = tool.path;
+        }
+        else {
+          $scope.editorURL = 'templates/editors/' + tool.id + '.html';
+        }
 
         if (tool.id === 'manual-calendar-editor') {
           // Reset input fields.
