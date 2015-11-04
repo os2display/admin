@@ -1,6 +1,6 @@
 /**
  *
- * Dokk1 info template. (Responsive)
+ * Dokk1 instagram template. (Responsive)
  *
  * A note on responsive templates:
  * We use viewport width for base fontsize in client.
@@ -291,37 +291,6 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
-.dokk1-info--edit-image-settings {
-  bottom: 15%;
-  position: absolute;
-  right: 15%;
-  background: url('/../../../../images/icons-s5235da7d76.png');
-  -moz-background-size: 128px 1936px;
-  -o-background-size: 128px 1936px;
-  -webkit-background-size: 128px 1936px;
-  background-size: 128px 1936px;
-  width: 51px;
-  height: 51px;
-  background-position: 0 -950px; }
-  .dokk1-info--edit-image-settings:hover {
-    cursor: pointer; }
-
-.dokk1-info--meta-input::-webkit-input-placeholder, .dokk1-info--header-input::-webkit-input-placeholder {
-  color: #fff; }
-.dokk1-info--meta-input::-moz-placeholder, .dokk1-info--header-input::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #fff; }
-.dokk1-info--meta-input:-ms-input-placeholder, .dokk1-info--header-input:-ms-input-placeholder {
-  color: #fff; }
-
-.dokk1-info--meta-input, .dokk1-info--header-input {
-  border: 0;
-  font-weight: bold;
-  position: relative;
-  overflow: hidden;
-  outline: none;
-  resize: none; }
-
 @font-face {
   font-family: 'Gibson SemiBold';
   src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff"); }
@@ -331,60 +300,83 @@ table {
 @font-face {
   font-family: 'Gibson Light';
   src: url("fonts/Gibson-Light-webfont.woff") format("woff"); }
-.dokk1-info {
+.dokk1-instagram {
   position: relative;
+  box-sizing: border-box;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
   min-height: 100%;
-  width: 100%;
+  padding: 4vmin;
   background-repeat: no-repeat;
-  background-color: #fff;
-  background-blend-mode: multiply, luminosity;
-  background-size: cover;
-  color: #fff;
-  font: 1em/1.5 'Gibson Light', sans-serif; }
-  .dokk1-info--meta, .dokk1-info--header {
-    font-family: 'Gibson Light', sans-serif;
-    position: absolute;
-    left: 6vmin;
-    right: 6vmin; }
-    .dokk1-info--meta.is-editor, .dokk1-info--meta.is-preview, .dokk1-info--header.is-editor, .dokk1-info--header.is-preview {
-      left: 5%;
-      text-align: left; }
-  .dokk1-info--meta {
-    top: 6vmin;
-    font-size: 3vmin;
-    line-height: 150%; }
-    .dokk1-info--meta.is-editor, .dokk1-info--meta.is-preview {
-      top: 5%;
-      font-size: 82%;
-      width: 80%; }
-    .dokk1-info--meta.is-preview {
-      font-size: 7px; }
-  .dokk1-info--header {
-    bottom: 6vmin;
-    right: 3vmin;
-    font-family: 'Gibson SemiBold';
-    font-size: 9vmin;
-    line-height: 120%;
-    letter-spacing: .15vmin; }
-    .dokk1-info--header.is-editor, .dokk1-info--header.is-preview {
-      left: 5%;
-      bottom: 5%;
-      font-size: 300%;
-      letter-spacing: .2em;
-      width: 80%; }
-    .dokk1-info--header.is-preview {
-      font-size: 150%;
-      letter-spacing: 0; }
-  .dokk1-info--meta-input, .dokk1-info--header-input {
-    background: rgba(255, 255, 255, 0);
-    color: #fff;
-    padding: 0; }
-    .dokk1-info--meta-input:focus, .dokk1-info--header-input:focus {
-      border: 0;
-      color: #fff; }
-  .dokk1-info--header-input {
-    line-height: 1em;
+  background-blend-mode: multiply;
+  background-size: cover; }
+  .dokk1-instagram img {
+    display: inline;
+    height: auto;
+    max-width: 100%;
     vertical-align: bottom; }
-  .dokk1-info--edit-image-settings {
-    top: 50%;
-    right: 5%; }
+  .dokk1-instagram strong {
+    font-family: 'Gibson Regular'; }
+  .dokk1-instagram .hashtag {
+    font-size: 8vmin;
+    line-height: 7.5vmin; }
+  .dokk1-instagram .amount {
+    margin-bottom: 3.5vmin;
+    font-size: 3vmin; }
+  .dokk1-instagram .content {
+    display: flex;
+    flex-basis: 100%;
+    align-items: stretch;
+    flex-direction: column;
+    flex-shrink: 0;
+    font-size: 5vmin; }
+  .dokk1-instagram .image {
+    margin-bottom: 5vmin;
+    order: 1;
+    flex-basis: 100%;
+    flex-shrink: 0; }
+  .dokk1-instagram .image img {
+    width: 100%; }
+  .dokk1-instagram .post {
+    order: 2; }
+  .dokk1-instagram .description {
+    margin-bottom: 2vmin; }
+  .dokk1-instagram .user {
+    display: flex;
+    align-items: center;
+    font-size: 4vmin; }
+  .dokk1-instagram .user strong {
+    order: 2; }
+  .dokk1-instagram .user img {
+    border-radius: 50%;
+    height: 75px;
+    margin-right: 3vmin;
+    width: 75px;
+    order: 1; }
+  @media only screen and (min-width: 1080px) {
+    .dokk1-instagram body .fade {
+      display: none; }
+    .dokk1-instagram .hashtag {
+      margin-bottom: .25vmin;
+      font-size: 4vmin;
+      line-height: 4vmin; }
+    .dokk1-instagram .amount {
+      margin-bottom: .5vmin;
+      padding-bottom: 1vmin;
+      padding-left: .25vmin;
+      font-size: 1vmin; }
+    .dokk1-instagram .content {
+      flex-direction: row;
+      font-size: 3vmin; }
+    .dokk1-instagram .image {
+      margin-bottom: 0;
+      flex-basis: 49%; }
+    .dokk1-instagram .post {
+      padding-left: 3vmin; }
+    .dokk1-instagram .user {
+      margin-bottom: 1vmin;
+      font-size: 2.5vmin; }
+    .dokk1-instagram .user img {
+      margin-right: 1.5vmin; } }

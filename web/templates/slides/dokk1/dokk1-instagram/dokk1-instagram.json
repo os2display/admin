@@ -1,13 +1,12 @@
 {
-  "id": "dokk1-info",
-  "name": "Dokk1 - Info",
-  "icon": "dokk1-info.png",
-  "type": "responsive",
+  "id": "dokk1-instagram",
+  "name": "Dokk1 - Instagram",
+  "icon": "dokk1-instagram.png",
   "paths": {
-    "live": "dokk1-info-live.html",
-    "edit": "dokk1-info-edit.html",
-    "preview": "dokk1-info-preview.html",
-    "css": "dokk1-info.css"
+    "live": "dokk1-instagram-live.html",
+    "edit": "dokk1-instagram-edit.html",
+    "preview": "dokk1-instagram-preview.html",
+    "css": "dokk1-instagram.css"
   },
   "orientation": "landscape",
   "media_type": "image",
