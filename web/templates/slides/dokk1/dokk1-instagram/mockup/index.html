@@ -60,11 +60,12 @@
       position: relative;
 
       box-sizing: border-box;
+      display: flex;
       margin-right: auto;
       margin-left: auto;
       max-width: 100%;
       min-height: 100%;
-      padding: 5vmin;
+      padding: 4vmin;
 
       background-image: url('image.jpg');
       background-repeat: no-repeat;
@@ -86,6 +87,10 @@
 
     .content {
       display: flex;
+
+      flex-basis: 100%;
+
+      align-items: stretch;
       flex-direction: column;
       flex-shrink: 0;
 
@@ -98,6 +103,10 @@
       order: 1;
       flex-basis: 100%;
       flex-shrink: 0;
+    }
+
+    .image img {
+      width: 100%;
     }
 
     .post {
@@ -130,6 +139,10 @@
     }
 
     @media only screen and (min-width: 1080px) {
+      body .fade {
+        display: none;
+      }
+
       .hashtag {
         margin-bottom: .25vmin;
 
@@ -153,7 +166,7 @@
 
       .image {
         margin-bottom: 0;
-        flex-basis: 55%;
+        flex-basis: 49%;
       }
 
       .post {
@@ -175,7 +188,7 @@
 <body>
 <div class="template">
   <div class="content">
-    <div class="image"><img src="https://unsplash.it/1500/2000?random"></div>
+    <div class="image"><img src="https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e35/11357493_827391644040816_1971200107_n.jpg"></div>
     <div class="post">
       <header class="hashtag">#dokk1</header>
       <div class="amount">5.145 posts</div>
