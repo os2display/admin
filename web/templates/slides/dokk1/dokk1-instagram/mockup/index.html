@@ -62,25 +62,30 @@
       box-sizing: border-box;
       margin-right: auto;
       margin-left: auto;
-      max-width: 100vmin;
+      max-width: 100%;
+      min-height: 100%;
       padding: 5vmin;
+
+      background-image: url('image.jpg');
+      background-repeat: no-repeat;
+      background-color: rgb(35, 85, 135);
+      background-blend-mode: multiply;
+      background-size: cover;
     }
 
-    header {
+    .hashtag {
       font-size: 8vmin;
-      text-align: center;
+      line-height: 7.5vmin;
     }
 
     .amount {
-      margin-bottom: 5vmin;
+      margin-bottom: 3.5vmin;
 
-      font-size: 4vmin;
-      text-align: center;
+      font-size: 3vmin;
     }
 
     .content {
       display: flex;
-      flex-basis: 65%;
       flex-direction: column;
       flex-shrink: 0;
 
@@ -96,9 +101,11 @@
     }
 
     .post {
-      padding-left: 2vmin;
-
       order: 2;
+    }
+
+    .description {
+      margin-bottom: 2vmin;
     }
 
     .user {
@@ -123,15 +130,19 @@
     }
 
     @media only screen and (min-width: 1080px) {
-      header {
-        font-size: 5vmin;
+      .hashtag {
+        margin-bottom: .25vmin;
+
+        font-size: 4vmin;
+        line-height: 4vmin;
       }
 
       .amount {
-        border-bottom: 1px solid rgba(255, 255, 255, .15);
-        padding-bottom: 3vmin;
+        margin-bottom: .5vmin;
+        padding-bottom: 1vmin;
+        padding-left: .25vmin;
 
-        font-size: 2vmin;
+        font-size: 1vmin;
       }
 
       .content {
@@ -142,30 +153,40 @@
 
       .image {
         margin-bottom: 0;
-        flex-basis: 35%;
+        flex-basis: 55%;
+      }
+
+      .post {
+        padding-left: 3vmin;
+      }
+
+      .user {
+        margin-bottom: 1vmin;
+
+        font-size: 2.5vmin;
       }
 
       .user img {
-        margin-right: 2vmin;
+        margin-right: 1.5vmin;
       }
     }
   </style>
 </head>
 <body>
 <div class="template">
-  <header>#dokk1</header>
-  <div class="amount">5.145 posts</div>
   <div class="content">
     <div class="image"><img src="https://unsplash.it/1500/2000?random"></div>
     <div class="post">
+      <header class="hashtag">#dokk1</header>
+      <div class="amount">5.145 posts</div>
+      <div class="description">
+        It has been raining all morning so I am staying at home listening to the radio program 'Mads og Monopolet' and
+        baking cake Later I will be paying our new library in Aarhus #dokk1 a visit.
+      </div>
       <div class="user">
         <img src="https://scontent-ams3-1.cdninstagram.com/hphotos-xfa1/t51.2885-19/11377955_1633935323517925_1102789875_a.jpg">
         <strong>kathrinebredlund</strong>
       </div>
-      <p>
-        It has been raining all morning so I am staying at home listening to the radio program 'Mads og Monopolet' and
-        baking cake Later I will be paying our new library in Aarhus #dokk1 a visit.
-      </p>
     </div>
   </div>
 </div>
