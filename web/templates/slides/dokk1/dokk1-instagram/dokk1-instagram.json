@@ -21,12 +21,10 @@
   "empty_options": {
     "fontsize": "60",
     "bgcolor": "rgb(188, 188, 188)",
-    "headline": "",
-    "text": "",
     "responsive_fontsize": "3",
     "instagram_number": 20,
     "instagram_duration": 10,
-    "source": ""
+    "instagram_hashtag": ""
   },
   "tools": [
     {
