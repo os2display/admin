@@ -47,6 +47,8 @@
   background-blend-mode: multiply;
   background-size: cover;
   font: 1em/1.5 'Gibson Light', sans-serif;
+  color: $white;
+  text-align: left;
 
   img {
     display: inline;
@@ -166,3 +168,196 @@
 }
 
 
+.dokk1-instagram-editor {
+  position: relative;
+
+  box-sizing: border-box;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  min-height: 100%;
+  padding: 2%;
+
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  background-size: cover;
+  color: $white;
+  text-align: left;
+  font: 12px 'Gibson Light', sans-serif;
+
+  &--image {
+    width: 54%;
+  }
+
+  img {
+    display: inline;
+    height: auto;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  strong {
+    font-family: 'Gibson Regular';
+  }
+
+  &--hashtag {
+    font-size: 32px;
+  }
+
+  &--amount {
+    margin-bottom: 10px;
+
+    font-size: 12px;
+  }
+
+  &--content {
+    display: flex;
+
+    flex-basis: 100%;
+
+    align-items: stretch;
+    flex-direction: row;
+    flex-shrink: 0;
+
+    font-size: 20px;
+  }
+
+  &--image {
+    margin-right: 10px;
+
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  &--image img {
+    width: 100%;
+  }
+
+  &--post {
+    order: 2;
+  }
+
+  &--description {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  &--user {
+    display: flex;
+
+    align-items: center;
+
+    font-size: 14px;
+  }
+
+  &--user strong {
+    order: 2;
+  }
+
+  &--user img {
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 10px;
+    width: 40px;
+
+    order: 1;
+  }
+}
+
+
+.dokk1-instagram-preview {
+  position: relative;
+
+  box-sizing: border-box;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  min-height: 100%;
+  padding: 2%;
+
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  background-size: cover;
+  color: $white;
+  text-align: left;
+  font: 6px 'Gibson Light', sans-serif;
+
+  &--image {
+    width: 54%;
+  }
+
+  img {
+    display: inline;
+    height: auto;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  strong {
+    font-family: 'Gibson Regular';
+  }
+
+  &--hashtag {
+    font-size: 16px;
+  }
+
+  &--amount {
+    margin-bottom: 3px;
+    font-size: 4px;
+  }
+
+  &--content {
+    display: flex;
+
+    flex-basis: 100%;
+
+    align-items: stretch;
+    flex-direction: row;
+    flex-shrink: 0;
+
+    font-size: 7px;
+  }
+
+  &--image {
+    margin-right: 5px;
+
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  &--image img {
+    width: 100%;
+  }
+
+  &--post {
+    order: 2;
+  }
+
+  &--description {
+    font-size: 7px;
+    margin-bottom: 5px;
+  }
+
+  &--user {
+    display: flex;
+
+    align-items: center;
+
+    font-size: 7px;
+  }
+
+  &--user strong {
+    order: 2;
+  }
+
+  &--user img {
+    border-radius: 50%;
+    height: 10px;
+    margin-right: 2px;
+    width: 10px;
+
+    order: 1;
+  }
+}
