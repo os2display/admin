@@ -62,14 +62,15 @@
   }
 
   &--hashtag {
-    font-size: 8vmin;
-    line-height: 7.5vmin;
+    font-size: 16vmin;
+    line-height: 15vmin;
+    font-family: 'Gibson Regular';
   }
 
   &--amount {
-    margin-bottom: 3.5vmin;
+    margin-bottom: 7vmin;
 
-    font-size: 3vmin;
+    font-size: 4vmin;
   }
 
   &--content {
@@ -81,11 +82,11 @@
     flex-direction: column;
     flex-shrink: 0;
 
-    font-size: 5vmin;
+    font-size: 10vmin;
   }
 
   &--image {
-    margin-bottom: 5vmin;
+    margin-bottom: 10vmin;
 
     order: 1;
     flex-shrink: 0;
@@ -101,6 +102,10 @@
 
   &--description {
     margin-bottom: 2vmin;
+    max-height: 70%;
+    overflow-y: hidden;
+
+    font-size: 4vmin;
   }
 
   &--user {
@@ -108,7 +113,7 @@
 
     align-items: center;
 
-    font-size: 4vmin;
+    font-size: 3vmin;
   }
 
   &--user strong {
@@ -128,22 +133,22 @@
     &--hashtag {
       margin-bottom: .25vmin;
 
-      font-size: 4vmin;
-      line-height: 4vmin;
+      font-size: 8vmin;
+      line-height: 8vmin;
     }
 
     &--amount {
-      margin-bottom: .5vmin;
-      padding-bottom: 1vmin;
-      padding-left: .25vmin;
+      margin-bottom: 1vmin;
+      padding-bottom: 2vmin;
+      padding-left: .5vmin;
 
-      font-size: 1vmin;
+      font-size: 2vmin;
     }
 
     &--content {
       flex-direction: row;
 
-      font-size: 3vmin;
+      font-size: 6vmin;
     }
 
     &--image {
@@ -152,17 +157,15 @@
     }
 
     &--post {
-      padding-left: 3vmin;
+      padding-left: 6vmin;
     }
 
     &--user {
-      margin-bottom: 1vmin;
-
-      font-size: 2.5vmin;
+      margin-bottom: 2vmin;
     }
 
     &--user img {
-      margin-right: 1.5vmin;
+      margin-right: 3vmin;
     }
   }
 }
@@ -203,6 +206,7 @@
 
   &--hashtag {
     font-size: 32px;
+    font-family: 'Gibson Regular';
   }
 
   &--amount {
@@ -317,7 +321,7 @@
     flex-direction: row;
     flex-shrink: 0;
 
-    font-size: 7px;
+    font-size: 6px;
   }
 
   &--image {
