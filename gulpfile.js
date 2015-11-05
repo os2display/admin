@@ -118,7 +118,7 @@ var templates = {
   'slides': {
     'aarhus': ['rss-aarhus'],
     'default': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top'],
-    'dokk1': ['dokk1-info', 'dokk1-multiple-calendar', 'dokk1-single-calendar', 'wayfinding'],
+    'dokk1': ['dokk1-info', 'dokk1-multiple-calendar', 'dokk1-single-calendar', 'wayfinding', 'dokk1-instagram'],
     'mso': ['event-calendar', 'header-top', 'mso-iframe'],
     'mbu': ['mbu-header', 'mbu-footer']
   }

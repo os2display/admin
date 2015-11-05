@@ -25,12 +25,12 @@ if (!window.slideFunctions['instagram']) {
       scope.theStyle = {
         width: "100%",
         height: "100%",
-        fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0)+ "px"
+        fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0) + "px"
       };
 
       // Set the responsive fontsize if it is needed.
       if (slide.options.responsive_fontsize) {
-        scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0)+ "vw";
+        scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0) + "vw";
       }
     },
 
@@ -64,7 +64,7 @@ if (!window.slideFunctions['instagram']) {
       /**
        * Go to next instagram news.
        */
-      var instagramTimeout = function () {
+      var instagramTimeout = function (slide) {
         $timeout(function () {
           if (slide.instagram.instagramEntry + 1 >= slide.options.instagram_number) {
             callback();
@@ -78,40 +78,30 @@ if (!window.slideFunctions['instagram']) {
 
       // Get the feed
       $http.jsonp(
-        '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + slide.options.instagram_number + '&callback=JSON_CALLBACK&output=xml&q=' +
-        encodeURIComponent(slide.options.source))
+        "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=6dd7e66940864efebcfe9a09a920ad8d&count=" + slide.options.instagram_number)
         .success(function (data) {
-          // Make sure we do not have an error result from googleapis
-          if (data.responseStatus !== 200) {
-            itkLog.error(data.responseDetails, data.responseStatus);
-            if (slide.instagram && slide.instagram.feed && slide.instagram.feed.entries && slide.instagram.feed.entries.length > 0) {
-              slide.instagram.instagramEntry = 0;
-              instagramTimeout(slide);
-            }
-            else {
-              // Go to next slide.
-              $timeout(callback, 5000);
-            }
-            return;
+
+          if (!slide.instagram) {
+            slide.instagram = {
+              feed: []
+            };
           }
 
-          var xmlString = data.responseData.xmlString;
-          slide.instagram = {feed: {entries: []}};
-          slide.instagram.instagramEntry = 0;
+          data.data.forEach(function(entry) {
+            var element = {};
 
-          slide.instagram.feed.title = $sce.trustAsHtml($(xmlString).find('channel > title').text());
+            element.text = entry.caption.text;
+            element.user = {
+              username: entry.user.username,
+              image: entry.user.profile_picture
+            };
 
-          $(xmlString).find('channel > item').each(function () {
-            var entry = $(this);
+            element.image = entry.images.standard_resolution.url.replace("/s640x640", "");
 
-            var news = {};
-
-            news.title = $sce.trustAsHtml(entry.find('title').text());
-            news.description = $sce.trustAsHtml(entry.find('description').text());
-            news.date = new Date(entry.find('pubDate').text());
-
-            slide.instagram.feed.entries.push(news);
+            slide.instagram.feed.push(element);
           });
+
+          slide.instagram.instagramEntry = 0;
 
           instagramTimeout(slide);
 
@@ -121,7 +111,7 @@ if (!window.slideFunctions['instagram']) {
         })
         .error(function (message) {
           itkLog.error(message);
-          if (slide.instagram.feed && slide.instagram.feed.entries && slide.instagram.feed.entries.length > 0) {
+          if (slide.instagram.feed && slide.instagram.feed.length > 0) {
             slide.instagram.instagramEntry = 0;
             instagramTimeout(slide);
           }
