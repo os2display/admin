@@ -47,6 +47,7 @@
     @include breakpoint($breakpoint-desk) {
       position: relative;
       height: 100%;
+      overflow: scroll;
     }
   }
 
