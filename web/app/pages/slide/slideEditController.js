@@ -37,7 +37,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/text-editor.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -48,7 +49,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/header-editor-responsive.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -59,7 +61,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/background-editor-transparent.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -70,7 +73,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/background-editor.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -81,7 +85,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/logo-editor.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -98,7 +103,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
 
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/manual-calendar-editor.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -110,16 +116,46 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       toggleEventCalendarEditor: function () {
         $('html').toggleClass('is-locked');
 
-        kobaFactory.getResources().then(
-          function (data) {
-            $scope.availableResources = data;
-          }
-        );
-
         if (!$scope.editor.editorOpen) {
+          // Get resources for the calendar.
+          kobaFactory.getResources().then(
+            function (data) {
+              // Store data in the scope.
+              $scope.availableResources = data;
+
+              // Filter the current slides options based on the resources
+              // available.
+              if ($scope.slide.options.hasOwnProperty('resources')) {
+                var selected = [];
+                var len = $scope.slide.options.resources.length;
+                for (var i = 0; i < len; i++) {
+                  var found = false;
+                  for (var j = 0; j < data.length; j++) {
+                    if (data[j].mail === $scope.slide.options.resources[i].mail) {
+                      found = true;
+                      break;
+                    }
+                  }
+
+                  if (found) {
+                    // Item is found, so add it to the list.
+                    selected.push($scope.slide.options.resources[i]);
+                  }
+                }
+              }
+
+              $scope.slide.options.resources = selected;
+            },
+            function error(reason) {
+              itkLog.error("Kunne ikke hente bookings for ressource", reason);
+            }
+          );
+
+          // Open the editor.
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/event-calendar-editor.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -130,7 +166,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/source-editor.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -141,7 +178,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/background-editor-static-colors.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -152,7 +190,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         if (!$scope.editor.editorOpen) {
           $scope.editor.editorOpen = true;
           $scope.editorURL = 'app/shared/elements/slide/editors/rss-editor.html';
-        } else {
+        }
+        else {
           $scope.editor.editorOpen = false;
           $scope.editorURL = '';
         }
@@ -259,7 +298,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       var arr = [];
 
       // Process bookings for each resource.
-      var addResourceBookings = function (data) {
+      var addResourceBookings = function addResourceBookings(data) {
         for (var i = 0; i < data.length; i++) {
           var event = data[i];
           arr.push(event);
@@ -349,7 +388,6 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         );
       }
     });
-
 
     $scope.step = 'background-picker';
 

@@ -28,50 +28,39 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
           }
 
           if (scope.ikSlide.media_type === 'image') {
+            scope.ikSlide.currentImage = '';
             if (scope.ikSlide.media.length > 0) {
               scope.ikSlide.currentImage = scope.ikSlide.media[0].urls.default_landscape;
             }
-            else {
-              scope.ikSlide.currentImage = '';
-            }
           }
           else if (scope.ikSlide.media_type === 'video') {
-            if (scope.ikSlide.media.length > 0) {
-              if (scope.ikSlide.media[0] === undefined) {
-                scope.ikSlide.currentVideo = {"mp4": "", "ogg": "", "webm": ""};
-              }
-              else {
-                if (scope.ikSlide.media.length > 0 && scope.ikSlide.media[0].provider_metadata.length > 0) {
-                  // Set current video variable to path to video files.
-                  scope.ikSlide.currentVideo = {};
-                  if (scope.ikSlide.media[0].provider_metadata[0]) {
-                    scope.ikSlide.currentVideo.mp4 = scope.ikSlide.media[0].provider_metadata[0].reference;
-                  }
-                  if (scope.ikSlide.media[0].provider_metadata[1]) {
-                    scope.ikSlide.currentVideo.ogg = scope.ikSlide.media[0].provider_metadata[1].reference;
-                  }
-                  if (scope.ikSlide.media[0].provider_metadata[2]) {
-                    scope.ikSlide.currentVideo.webm = scope.ikSlide.media[0].provider_metadata[2].reference;
-                  }
+            scope.ikSlide.currentVideo = {"mp4": "", "ogg": "", "webm": ""};
+            if (scope.ikSlide.media.length > 0 && scope.ikSlide.media[0] !== undefined) {
+              if (scope.ikSlide.media.length > 0 && scope.ikSlide.media[0].provider_metadata.length > 0) {
+                // Set current video variable to path to video files.
+                scope.ikSlide.currentVideo = {};
+                if (scope.ikSlide.media[0].provider_metadata[0]) {
+                  scope.ikSlide.currentVideo.mp4 = scope.ikSlide.media[0].provider_metadata[0].reference;
                 }
-
-                // Reload video player.
-                setTimeout(function () {
-                  element.find('#videoPlayer').load();
-                }, 1000);
+                if (scope.ikSlide.media[0].provider_metadata[1]) {
+                  scope.ikSlide.currentVideo.ogg = scope.ikSlide.media[0].provider_metadata[1].reference;
+                }
+                if (scope.ikSlide.media[0].provider_metadata[2]) {
+                  scope.ikSlide.currentVideo.webm = scope.ikSlide.media[0].provider_metadata[2].reference;
+                }
               }
-            }
-            else {
-              scope.ikSlide.currentVideo = {"mp4": "", "ogg": "", "webm": ""};
+
+              // Reload video player.
+              setTimeout(function () {
+                element.find('#videoPlayer').load();
+              }, 1000);
             }
           }
 
           // Set the currentLogo variable.
+          scope.ikSlide.currentLogo = '';
           if (scope.ikSlide.logo !== undefined && scope.ikSlide.logo !== null) {
             scope.ikSlide.currentLogo = scope.ikSlide.logo.urls.default_landscape;
-          }
-          else {
-            scope.ikSlide.currentLogo = '';
           }
 
           if (!scope.template || newVal.template !== oldVal.template) {
@@ -94,7 +83,7 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
           }
 
           if (scope.theStyle) {
-            // Update fontsize
+            // Update font size
             scope.theStyle.fontsize = "" + parseFloat(scope.ikSlide.options.fontsize * parseFloat(scope.ikWidth / scope.template.ideal_dimensions.width)) + "px";
           }
         }, true);
