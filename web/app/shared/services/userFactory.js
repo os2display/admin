@@ -11,6 +11,7 @@ angular.module('ikApp').factory('userFactory', ['$http', '$q',
     'use strict';
 
     var factory = {};
+    var cache;
 
     /**
      * Get current user.
@@ -18,13 +19,19 @@ angular.module('ikApp').factory('userFactory', ['$http', '$q',
     factory.getCurrentUser = function () {
       var defer = $q.defer();
 
-      $http.get('/api/user')
-        .success(function (data) {
-          defer.resolve(data);
-        })
-        .error(function () {
-          defer.reject();
-        });
+      if (cache === undefined) {
+        $http.get('/api/user')
+          .success(function (data) {
+            cache = data;
+            defer.resolve(data);
+          })
+          .error(function () {
+            defer.reject();
+          });
+      }
+      else {
+        defer.resolve(cache);
+      }
 
       return defer.promise;
     };
