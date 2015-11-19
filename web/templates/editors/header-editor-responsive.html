@@ -1,0 +1,13 @@
+<div class="edit-menu" role="banner">
+  <a class="edit-menu--overlay is-visible" data-ng-click="editor.hideEditors()"></a>
+  <div class="edit-menu--inner is-visible">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.hideEditors()">X</div>
+    <h2 class="edit-menu--header">Redigér tekst</h2>
+    <form class="edit-menu--form">
+      <label class="edit-menu--label">Baggrundsfarve</label>
+      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.headerbgcolor" data-ng-style="{'background-color': ikSlide.options.headerbgcolor}">
+      <label class="edit-menu--label">Tekstfarve</label>
+      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="ikSlide.options.headertextcolor" data-ng-style="{'background-color': ikSlide.options.headertextcolor}">
+    </form>
+  </div>
+</div>
