@@ -7,7 +7,6 @@ var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var sass = require('gulp-sass');
 
-var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
@@ -26,13 +25,15 @@ var banner = ['/**',
 // We only want to process our own non-processed JavaScript files.
 var adminJsPath = [
   './web/app/**/**/**/**/*.js'
-];
+]
+
 var adminJsAssets = [
   './web/assets/libs/jquery-*.min.js',
   './web/assets/libs/angular-1.2.16.min.js',
   './web/assets/libs/*.js',
   './web/assets/modules/**/*.js'
 ];
+
 var adminBuildDir = './web/assets/build';
 var sassPath = './web/sass/*.scss';
 
@@ -77,18 +78,16 @@ gulp.task('assets', function () {
  */
 gulp.task('sass', function () {
   gulp.src(sassPath)
-    .pipe(sass({
-      //@TODO: Include this from the sass instead
+    .pipe(gulpif(!argv.production, sass({
       includePaths: [
         './web/sass/compass-mixins/lib'
       ]
-    }).on('error', sass.logError))
-    .pipe(gulp.dest(adminBuildDir));
+    }).on('error', sass.logError)))
+    .pipe(gulpif(!argv.production, gulp.dest(adminBuildDir)));
 
   gulp.src(sassPath)
     .pipe(gulpif(argv.production, sass({
       outputStyle: 'compressed',
-      //@TODO: Include this from the sass instead
       includePaths: [
         './web/sass/compass-mixins/lib'
       ]
@@ -140,7 +139,6 @@ gulp.task('sassTemplates', function () {
               .pipe(sass({
                 outputStyle: 'compressed',
                 includePaths: [
-                  //@TODO: Include this from the sass instead
                   './web/sass/compass-mixins/lib'
                 ]
               }).on('error', sass.logError))
