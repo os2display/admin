@@ -20,7 +20,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         scope.displaySharingOption = window.config.sharingService.enabled;
         scope.loading = false;
 
-        scope.showFromUser = 'all';
+        scope.showFromUser = 'mine';
         scope.sort = { "created_at": "desc" };
 
         userFactory.getCurrentUser().then(

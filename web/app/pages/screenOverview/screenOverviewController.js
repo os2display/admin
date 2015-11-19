@@ -13,7 +13,7 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
     $scope.loading = false;
 
     // Set default values.
-    $scope.showFromUser = 'all';
+    $scope.showFromUser = 'mine';
     $scope.sort = { "created_at": "desc" };
 
     userFactory.getCurrentUser().then(

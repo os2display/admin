@@ -29,7 +29,7 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
       controller: function ($scope, mediaFactory, userFactory) {
         // Set default orientation and sort.
         $scope.sort = {"created_at": "desc"};
-        $scope.showFromUser = 'all';
+        $scope.showFromUser = 'mine';
         $scope.loading = false;
 
         userFactory.getCurrentUser().then(

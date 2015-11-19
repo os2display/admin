@@ -19,7 +19,7 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
       controller: function ($scope, slideFactory, userFactory) {
         $scope.loading = false;
 
-        $scope.showFromUser = 'all';
+        $scope.showFromUser = 'mine';
         $scope.sort = {"created_at": "desc"};
 
         userFactory.getCurrentUser().then(
