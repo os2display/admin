@@ -1,6 +1,6 @@
 var argv = require('yargs').argv;
 
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'));
 
 // Plugins.
 var jshint = require('gulp-jshint');
@@ -25,7 +25,7 @@ var banner = ['/**',
 // We only want to process our own non-processed JavaScript files.
 var adminJsPath = [
   './web/app/**/**/**/**/*.js'
-]
+];
 
 var adminJsAssets = [
   './web/assets/libs/jquery-*.min.js',
@@ -42,7 +42,7 @@ var sassWatchPath = './web/sass/**/*.scss';
 /**
  * Run Javascript through JSHint.
  */
-gulp.task('jshint', function() {
+gulp.task('jshint', 'Runs JSHint on js', function () {
   return gulp.src(adminJsPath)
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
@@ -51,20 +51,21 @@ gulp.task('jshint', function() {
 /**
  * Build single app.js file.
  */
-gulp.task('js', function () {
-  gulp.src(adminJsPath)
-    .pipe(concat('app.js'))
-    .pipe(ngAnnotate())
-    .pipe(gulpif(argv.production, uglify()))
-    .pipe(rename({extname: ".min.js"}))
-    .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest(adminBuildDir))
-});
+gulp.task('js', 'Build all custom js files into one js file. If --production is set minify the js as well.', function () {
+    gulp.src(adminJsPath)
+      .pipe(concat('app.js'))
+      .pipe(ngAnnotate())
+      .pipe(gulpif(argv.production, uglify()))
+      .pipe(rename({extname: ".min.js"}))
+      .pipe(header(banner, {pkg: pkg}))
+      .pipe(gulp.dest(adminBuildDir))
+  }
+);
 
 /**
  * Build single assets.js file.
  */
-gulp.task('assets', function () {
+gulp.task('assets', 'Build all asset js files into one js file. If --production is set minify the js as well.', function () {
   gulp.src(adminJsAssets)
     .pipe(concat('assets.js'))
     .pipe(ngAnnotate())
@@ -76,7 +77,8 @@ gulp.task('assets', function () {
 /**
  * Process SCSS using libsass
  */
-gulp.task('sass', function () {
+gulp.task('sass', 'Compile sass into css. If --production is set, minify the css as well.', function () {
+  // If not run in production mode, compile the sass into a non-minified css file.
   gulp.src(sassPath)
     .pipe(gulpif(!argv.production, sass({
       includePaths: [
@@ -85,6 +87,7 @@ gulp.task('sass', function () {
     }).on('error', sass.logError)))
     .pipe(gulpif(!argv.production, gulp.dest(adminBuildDir)));
 
+  // If run in production mode, compile and minify the css.
   gulp.src(sassPath)
     .pipe(gulpif(argv.production, sass({
       outputStyle: 'compressed',
@@ -99,10 +102,11 @@ gulp.task('sass', function () {
 /**
  * Watch files for changes and run tasks.
  */
-gulp.task('watch', function() {
+gulp.task('watch', 'Starts a watch to compile sass and js. For use in development.', function () {
   gulp.watch(adminJsPath, ['jshint']);
   gulp.watch(sassWatchPath, ['sass']);
 });
+
 
 var templatesPath = './web/templates/';
 
@@ -126,7 +130,7 @@ var templates = {
 /**
  * Process SCSS using libsass
  */
-gulp.task('sassTemplates', function () {
+gulp.task('sassTemplates', 'Compile the sass for each templates into minified css files.', function () {
   // Iterates through the screen and slide templates defined in templates variable, and compresses each one.
   for (var templateType in templates) {
     if (templates.hasOwnProperty(templateType)) {
