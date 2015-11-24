@@ -98,35 +98,6 @@
     vertical-align: top;
   }
 
-  &--slide-unpublished-overlay {
-    background: $white;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-
-    @include opacity(.7);
-  }
-
-  &--slide-unpublished-icon {
-    position: absolute;
-    top: 5px; // Static since we are working within a static div anyway.
-    left: 5px;
-    z-index: 1;
-
-    @include generate-sprite-image($dashboard-sprites, 'exclamation-icon', 30);
-  }
-
-  &--slide-published-icon {
-    position: absolute;
-    top: 5px; // Static since we are working within a static div anyway.
-    left: 5px;
-    z-index: 1;
-
-    @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
-  }
-
   &--slide-link,
   &--channel-link {
     position: relative;
@@ -209,6 +180,11 @@
   &--filter-owner {
     @include breakpoint($breakpoint-desk) {
       width: 25%;
+
+      &-foursplit {
+        width: 24%;
+        margin-right: .5em;
+      }
     }
   }
 
@@ -320,7 +296,6 @@
     width: 25%;
   }
 
-
   &--horisontal,
   &--vertical {
     width: 50%;
@@ -371,17 +346,6 @@
 
     cursor: pointer;
   }
-
-
-  &--media-video-icon {
-    right: .5rem;
-    position: absolute;
-    top: .5rem;
-    background: $white;
-
-    @include generate-sprite-image($dashboard-sprites, 'video-icon', 22);
-  }
-
 
   &--media-overlay {
     background-color: transparentize($white, .35);
@@ -449,7 +413,15 @@
   }
 
   &--channel-remove {
-    @extend %create-element--remove-element;
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    left: auto;
+
+    width: 20px;
+    height: 20px;
+
+    z-index: 1;
   }
 
   &--channel-overlay {

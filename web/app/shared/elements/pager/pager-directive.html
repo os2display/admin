@@ -1,6 +1,6 @@
 
 <div data-ng-hide="pager.max == 0" class="pager--search">
-  <div data-ng-click="prevLine()" ng-class="{ 'is-disabled': pager.page < pagesPerLine }" class="pager--search-item">
+  <div data-ng-click="prevLine()" ng-class="{ 'is-disabled': pager.page == 0 }" class="pager--search-item">
     <span class="pager--search-item-inner">&#10094;&#10094;</span>
   </div>
   <div data-ng-click="prevPage()" ng-class="{ 'is-disabled': pager.page == 0 }" class="pager--search-item">

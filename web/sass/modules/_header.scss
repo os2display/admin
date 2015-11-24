@@ -190,29 +190,21 @@ $header--sub-text:      #222;
  ========================================================================== */
 
   &--main-menu-item-image-channels{
-    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-slides{
-    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-screens{
-    @include generate-sprite-image($dashboard-sprites, 'screens-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-templates{
-    @include generate-sprite-image($dashboard-sprites, 'media-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
@@ -304,8 +296,6 @@ $header--sub-text:      #222;
 
 
   &--nav-menu-label-image {
-    @include generate-sprite-image($dashboard-sprites, 'menu-icon', 100);
-
     display: inline-block;
     margin: 0 .5em 0 0;
     vertical-align: middle;
@@ -366,25 +356,6 @@ $header--sub-text:      #222;
     }
   }
 
-
-  &--sub-menu-item-image-overview {
-    @include generate-sprite-image($dashboard-sprites, 'overview-small-icon');
-
-    display: inline-block;
-    margin: 0 .5em 0 0;
-    vertical-align: middle;
-  }
-
-
-  &--sub-menu-item-image-create-channel {
-    @include generate-sprite-image($dashboard-sprites, 'add-small-icon');
-
-    display: inline-block;
-    margin: 0 .5em 0 0;
-    vertical-align: middle;
-  }
-
-
   /* Header main menu mobile. (Display of main menu on pages WITHOUT subpages on narrow screens).
  ========================================================================== */
 
@@ -436,29 +407,21 @@ $header--sub-text:      #222;
 
 
   &--main-menu-item-image-channels--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'channels-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-slides--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'slides-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-screens--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'screens-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
   }
 
 
   &--main-menu-item-image-templates--mobile{
-    @include generate-sprite-image($dashboard-sprites, 'media-icon', 100);
-
     @extend %header--main-menu-item--selector; // We modify the result of the mixin.
 
   }

@@ -65,10 +65,22 @@ class SlideTemplate {
   protected $pathCss;
 
   /**
+   * @ORM\Column(name="path_js", type="string")
+   * @Groups({"middleware"})
+   */
+  protected $pathJs;
+
+  /**
    * @ORM\Column(name="path", type="string")
    * @Groups({"middleware"})
    */
   protected $path;
+
+  /**
+   * @ORM\Column(name="script_id", type="string")
+   * @Groups({"middleware"})
+   */
+  protected $scriptId;
 
   /**
    * @ORM\Column(name="orientation", type="string")
@@ -99,6 +111,12 @@ class SlideTemplate {
    * @Groups({"api", "api-bulk"})
    */
   protected $emptyOptions;
+
+  /**
+   * @ORM\Column(name="tools", type="json_array")
+   * @Groups({"api", "api-bulk"})
+   */
+  protected $tools;
 
   /**
    * Get the paths virtual property.
@@ -135,6 +153,24 @@ class SlideTemplate {
    */
   public function setEmptyOptions($emptyOptions) {
     $this->emptyOptions = $emptyOptions;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getTools() {
+    return $this->tools;
+  }
+
+  /**
+   * @param mixed $tools
+   *
+   * @return SlideTemplate
+   */
+  public function setTools($tools) {
+    $this->tools = $tools;
 
     return $this;
   }
@@ -315,6 +351,43 @@ class SlideTemplate {
    */
   public function setPathLive($pathLive) {
     $this->pathLive = $pathLive;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPathJs() {
+    return $this->pathJs;
+  }
+
+  /**
+   * @param mixed $pathJs
+   *
+   * @return SlideTemplate
+   */
+  public function setPathJs($pathJs) {
+    $this->pathJs = $pathJs;
+
+    return $this;
+  }
+
+
+  /**
+   * @return mixed
+   */
+  public function getScriptId() {
+    return $this->scriptId;
+  }
+
+  /**
+   * @param mixed $scriptId
+   *
+   * @return SlideTemplate
+   */
+  public function setScriptId($scriptId) {
+    $this->scriptId = $scriptId;
 
     return $this;
   }

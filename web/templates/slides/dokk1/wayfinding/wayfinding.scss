@@ -1,12 +1,5 @@
 @import "compass/css3";
-@import "../../_shared-base.scss";
+@import "../../../_shared-base.scss";
 
 .wayfinding {
-  &--edit-image-settings {
-    padding-top: 27px;
-
-    color: $link-color;
-    cursor: pointer;
-    text-decoration: underline;
-  }
 }

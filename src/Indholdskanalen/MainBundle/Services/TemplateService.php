@@ -175,9 +175,16 @@ class TemplateService extends ContainerAware {
         $template->setEmptyOptions($obj->empty_options);
         $template->setIdealDimensions($obj->ideal_dimensions);
         $template->setMediaType($obj->media_type);
+        if (isset($obj->tools)) {
+          $template->setTools($obj->tools);
+        }
         if (isset($obj->slide_type)) {
           $template->setSlideType($obj->slide_type);
         }
+        if (isset($obj->paths->js)) {
+          $template->setPathJs($serverAddress . '/' . $obj->paths->js);
+        }
+        $template->setScriptId($obj->script_id);
 
         // Ensure that the entity is managed.
         $entityManager->persist($template);

@@ -64,7 +64,7 @@
 
 
   &--upload-icon {
-    @include generate-sprite-image($dashboard-sprites, 'upload-file-icon');
+    @include get-icon('upload-file-icon', 100px, 100px);
 
     display: inline-block;
     vertical-align: middle;
@@ -137,7 +137,8 @@
     display: inline-block;
     margin-right: 1em;
 
-    @include generate-sprite-image($dashboard-sprites, 'check-circle-full-icon', 30);
+    width: 20px;
+    height: 20px;
   }
 
   &--text {

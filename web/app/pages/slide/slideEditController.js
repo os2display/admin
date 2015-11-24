@@ -6,8 +6,8 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLog',
-  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLog) {
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLog', 'templateFactory',
+  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLog, templateFactory) {
     'use strict';
 
     $scope.step = 'background-picker';
@@ -22,107 +22,47 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     slideFactory.getEditSlide(null).then(
       function success(data) {
         $scope.slide = data;
+
+        templateFactory.getSlideTemplate(data.template).then(
+          function success(data) {
+            $scope.template = data;
+          },
+          function error(reason) {
+            itkLog.error('Kunne ikke loade værktøjer til slidet.', reason);
+          }
+        );
       },
       function error(reason) {
         itkLog.error("Kunne ikke hente slide.", reason);
       }
     );
 
-    // Setup editor states and functions.
-    $scope.editor = {
-      editorOpen: false,
-      toggleTextEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/text-editor.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      toggleHeaderEditorResponsive: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/header-editor-responsive.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      toggleBackgroundEditorTransparent: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/background-editor-transparent.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      toggleBackgroundEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/background-editor.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      toggleLogoEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/logo-editor.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      toggleManualCalendarEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
+    /**
+     * Open the selected tool.
+     * @param tool
+     */
+    $scope.openTool = function openTool(tool) {
+      $('html').toggleClass('is-locked');
+      if (!$scope.editor.editorOpen) {
+        if (tool.id === 'manual-calendar-editor') {
           // Reset input fields.
           $scope.addevent.title = null;
           $scope.addevent.place = null;
           $scope.addevent.from = null;
           $scope.addevent.to = null;
-
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/manual-calendar-editor.html';
+          // Run sorting of events.
+          $scope.sortEvents();
+          $scope.validateEvents();
         }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
+        else if (tool.id === 'event-calendar-editor') {
+          // Reset resources.
+          $scope.availableResources = [];
 
-        // Run sorting of events.
-        $scope.sortEvents();
-        $scope.validateEvents();
-      },
-      toggleEventCalendarEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
           // Get resources for the calendar.
           kobaFactory.getResources().then(
             function (data) {
               // Store data in the scope.
               $scope.availableResources = data;
-
               // Filter the current slides options based on the resources
               // available.
               if ($scope.slide.options.hasOwnProperty('resources')) {
@@ -150,62 +90,31 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
               itkLog.error("Kunne ikke hente bookings for ressource", reason);
             }
           );
+        }
 
-          // Open the editor.
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/event-calendar-editor.html';
+        // Open the tool.
+        $scope.editor.editorOpen = true;
+        if (tool.path) {
+          $scope.editorURL = tool.path;
         }
         else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
+          $scope.editorURL = 'templates/editors/' + tool.id + '.html';
         }
-      },
-      toggleSourceEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/source-editor.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      toggleStaticBackgroundColorEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/background-editor-static-colors.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      toggleRssEditor: function () {
-        $('html').toggleClass('is-locked');
-
-        if (!$scope.editor.editorOpen) {
-          $scope.editor.editorOpen = true;
-          $scope.editorURL = 'app/shared/elements/slide/editors/rss-editor.html';
-        }
-        else {
-          $scope.editor.editorOpen = false;
-          $scope.editorURL = '';
-        }
-      },
-      hideAllEditors: function () {
-        $('html').removeClass('is-locked');
-
+      } else {
         $scope.editor.editorOpen = false;
-        $scope.step = 'background-picker';
-        $scope.logoStep = 'logo-picker';
         $scope.editorURL = '';
       }
     };
 
+    // Setup editor states and functions.
+    $scope.editor = {
+      editorOpen: false,
+      hideEditors: function hideEditors() {
+        $('html').removeClass('is-locked');
+        $scope.editor.editorOpen = false;
+        $scope.editorURL = '';
+      }
+    };
 
     /**
      * When clicking the background color button,
@@ -348,7 +257,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         }
 
         // Hide editors.
-        $scope.editor.hideAllEditors();
+        $scope.editor.hideEditors();
       }
     });
 
@@ -379,7 +288,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
               $scope.slide.media.push(media);
 
               // Hide editors.
-              $scope.editor.hideAllEditors();
+              $scope.editor.hideEditors();
             }
           },
           function error(reason) {
