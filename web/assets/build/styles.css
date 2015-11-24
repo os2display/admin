@@ -9352,7 +9352,8 @@ html.is-locked body {
     @media only screen and (min-width: 1024px) {
       .screen--layout-content {
         position: relative;
-        height: 100%; } }
+        height: 100%;
+        overflow: scroll; } }
   .screen--layout-control-panel {
     bottom: 0;
     height: 100%;
