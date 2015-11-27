@@ -78,7 +78,7 @@ if (!window.slideFunctions['instagram']) {
 
       // Get the feed
       $http.jsonp(
-        "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=28763f048a704605bcb11246bfba0a27&count=" + slide.options.instagram_number)
+        "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=6dd7e66940864efebcfe9a09a920ad8d&count=" + slide.options.instagram_number)
         .success(function (data) {
 
           if (!slide.instagram) {
