@@ -31,7 +31,7 @@ angular.module('ikApp').controller('SharedChannelController', ['$scope', '$locat
      */
     function loadStep(step) {
       $scope.step = step;
-      $scope.templatePath = '/app/pages/sharedChannel/shared-channel-step' + $scope.step + '.html';
+      $scope.templatePath = '/app/pages/sharedChannel/shared-channel-step' + $scope.step + '.html?' + window.config.version;
     }
 
     /**
