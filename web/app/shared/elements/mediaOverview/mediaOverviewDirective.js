@@ -183,7 +183,6 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
             $scope.showFromUser = user;
 
             $scope.setSearchFilters();
-            $scope.updateSearch();
           }
         };
 
