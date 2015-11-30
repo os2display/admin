@@ -23,12 +23,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         scope.showFromUser = 'mine';
         scope.sort = { "created_at": "desc" };
 
-        userFactory.getCurrentUser().then(
-          function(data) {
-            scope.currentUser = data;
-          }
-        );
-
         // Default pager values.
         scope.pager = {
           "size": 6,
@@ -194,7 +188,16 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           }
         };
 
-        scope.updateSearch();
+        // Load current user (need to activate "mine" tab as default).
+        userFactory.getCurrentUser().then(
+          function (data) {
+            scope.currentUser = data;
+
+            // Updated search filters (build "mine" filter with user id). It
+            // will trigger an search update.
+            scope.setSearchFilters();
+          }
+        );
       },
       templateUrl: '/app/shared/elements/channelOverview/channel-overview-directive.html?' + window.config.version
     };

@@ -16,15 +16,6 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
     $scope.showFromUser = 'mine';
     $scope.sort = { "created_at": "desc" };
 
-    userFactory.getCurrentUser().then(
-      function success(data) {
-        $scope.currentUser = data;
-      },
-      function error(reason) {
-        itkLog.error('Kunne ikke hente bruger.', reason);
-      }
-    );
-
     // Default pager values.
     $scope.pager = {
       "size": 6,
@@ -90,9 +81,6 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
       $scope.updateSearch();
     });
 
-    // Send the default search query.
-    $scope.updateSearch();
-
     /**
      * Changes if all slides are shown or only slides belonging to current user
      *
@@ -104,7 +92,6 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
         $scope.showFromUser = user;
 
         $scope.setSearchFilters();
-        $scope.updateSearch();
       }
     };
 
@@ -157,5 +144,16 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
         $scope.updateSearch();
       }
     };
+
+    // Load current user (need to activate "mine" tab as default).
+    userFactory.getCurrentUser().then(
+      function (data) {
+        $scope.currentUser = data;
+
+        // Updated search filters (build "mine" filter with user id). It
+        // will trigger an search update.
+        $scope.setSearchFilters();
+      }
+    );
   }
 ]);

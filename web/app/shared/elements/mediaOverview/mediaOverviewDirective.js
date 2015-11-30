@@ -32,12 +32,6 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
         $scope.showFromUser = 'mine';
         $scope.loading = false;
 
-        userFactory.getCurrentUser().then(
-          function (data) {
-            $scope.currentUser = data;
-          }
-        );
-
         // Set default search text.
         $scope.search_text = '';
 
@@ -141,34 +135,41 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
          * Updates the search filter based on current orientation and user
          */
         $scope.setSearchFilters = function setSearchFilters() {
-          // Update orientation for the search.
-          delete search.filter;
+          // Ensures that current user is available before building filters.
+          userFactory.getCurrentUser().then(
+            function (data) {
+              $scope.currentUser = data;
 
-          if ($scope.media_type !== 'all' || $scope.showFromUser !== 'all') {
-            search.filter = {
-              "bool": {
-                "must": []
+              // Update orientation for the search.
+              delete search.filter;
+
+              if ($scope.media_type !== 'all' || $scope.showFromUser !== 'all') {
+                search.filter = {
+                  "bool": {
+                    "must": []
+                  }
+                }
               }
+
+              if ($scope.media_type !== 'all') {
+                var term = {};
+                term.term = {
+                  media_type: $scope.media_type
+                };
+                search.filter.bool.must.push(term);
+              }
+
+              if ($scope.showFromUser !== 'all') {
+                var term = {};
+                term.term = {
+                  user: $scope.currentUser.id
+                };
+                search.filter.bool.must.push(term);
+              }
+
+              $scope.updateSearch();
             }
-          }
-
-          if ($scope.media_type !== 'all') {
-            var term = {};
-            term.term = {
-              media_type: $scope.media_type
-            };
-            search.filter.bool.must.push(term);
-          }
-
-          if ($scope.showFromUser !== 'all') {
-            var term = {};
-            term.term = {
-              user: $scope.currentUser.id
-            };
-            search.filter.bool.must.push(term);
-          }
-
-          $scope.updateSearch();
+          );
         };
 
         /**
@@ -244,7 +245,7 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
         attrs.$observe('ikAutoSearch', function (val) {
           // Send the default search query.
           if (scope.ikAutoSearch === "true") {
-            scope.updateSearch();
+            scope.setSearchFilters();
           }
         })
       },

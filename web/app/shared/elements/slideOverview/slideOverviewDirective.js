@@ -22,12 +22,6 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
         $scope.showFromUser = 'mine';
         $scope.sort = {"created_at": "desc"};
 
-        userFactory.getCurrentUser().then(
-          function (data) {
-            $scope.currentUser = data;
-          }
-        );
-
         // Default pager values.
         $scope.pager = {
           "size": 6,
@@ -105,7 +99,6 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
             $scope.showFromUser = user;
 
             $scope.setSearchFilters();
-            $scope.updateSearch();
           }
         };
 
@@ -211,8 +204,16 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
           $scope.$emit('slideOverview.clickSlide', slide);
         };
 
-        // Send the default search query.
-        $scope.updateSearch();
+        // Load current user (need to activate "mine" tab as default).
+        userFactory.getCurrentUser().then(
+          function (data) {
+            $scope.currentUser = data;
+
+            // Updated search filters (build "mine" filter with user id). It
+            // will trigger an search update.
+            $scope.setSearchFilters();
+          }
+        );
       },
       templateUrl: '/app/shared/elements/slideOverview/slide-overview-directive.html?' + window.config.version
     };
