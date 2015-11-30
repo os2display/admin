@@ -76,7 +76,9 @@ class TemplateService extends ContainerAware {
 
   /**
    * Enable screen templates.
-   * @param $enabledTemplates
+   *
+   * @param array $enabledTemplates
+   *   Templates object for the templates to enable.
    */
   public function enableScreenTemplates($enabledTemplates) {
     $doctrine = $this->container->get('doctrine');
@@ -102,7 +104,9 @@ class TemplateService extends ContainerAware {
 
   /**
    * Enable slide templates.
-   * @param $enabledTemplates
+   *
+   * @param array $enabledTemplates
+   *   Templates object for the templates to enable.
    */
   public function enableSlideTemplates($enabledTemplates) {
     $doctrine = $this->container->get('doctrine');
@@ -150,41 +154,41 @@ class TemplateService extends ContainerAware {
 
         // Read config.json for template
         $str = file_get_contents($file);
-        $obj = json_decode($str);
+        $config = json_decode($str);
 
         // Try to load the template.
-        $template = $templateRepository->findOneById($obj->id);
+        $template = $templateRepository->findOneById($config->id);
 
         // Check if the template was loaded, if not create a new template entity.
         if (!$template) {
           $template = new SlideTemplate();
-          $template->setId($obj->id);
+          $template->setId($config->id);
           $template->setEnabled(false);
         }
-        $template->setName($obj->name);
+        $template->setName($config->name);
 
         // Set the template values on the entity. The css, live, edit and preview files need to be prefixed with their last
         // modified timestamp to ensure they are load by the screen clients.
-        $template->setPathIcon($serverAddress . $dir . '/' . $obj->icon);
-        $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->live));
-        $template->setPathEdit($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->edit));
-        $template->setPathCss($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->css));
-        $template->setPathPreview($this->buildFilePath($serverAddress, $path, $dir, $obj->paths->preview));
+        $template->setPathIcon($serverAddress . $dir . '/' . $config->icon);
+        $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $config->paths->live));
+        $template->setPathEdit($this->buildFilePath($serverAddress, $path, $dir, $config->paths->edit));
+        $template->setPathCss($this->buildFilePath($serverAddress, $path, $dir, $config->paths->css));
+        $template->setPathPreview($this->buildFilePath($serverAddress, $path, $dir, $config->paths->preview));
         $template->setPath($serverAddress . $dir . '/');
-        $template->setOrientation($obj->orientation);
-        $template->setEmptyOptions($obj->empty_options);
-        $template->setIdealDimensions($obj->ideal_dimensions);
-        $template->setMediaType($obj->media_type);
-        if (isset($obj->tools)) {
-          $template->setTools($obj->tools);
+        $template->setOrientation($config->orientation);
+        $template->setEmptyOptions($config->empty_options);
+        $template->setIdealDimensions($config->ideal_dimensions);
+        $template->setMediaType($config->media_type);
+        if (isset($config->tools)) {
+          $template->setTools($config->tools);
         }
-        if (isset($obj->slide_type)) {
-          $template->setSlideType($obj->slide_type);
+        if (isset($config->slide_type)) {
+          $template->setSlideType($config->slide_type);
         }
-        if (isset($obj->paths->js)) {
-          $template->setPathJs($serverAddress . '/' . $obj->paths->js);
+        if (isset($config->paths->js)) {
+          $template->setPathJs($serverAddress . '/' . $config->paths->js);
         }
-        $template->setScriptId($obj->script_id);
+        $template->setScriptId($config->script_id);
 
         // Ensure that the entity is managed.
         $entityManager->persist($template);

@@ -81,16 +81,16 @@ if (!window.slideFunctions['instagram']) {
         "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=6dd7e66940864efebcfe9a09a920ad8d&count=" + slide.options.instagram_number)
         .success(function (data) {
 
-          if (!slide.instagram) {
+          if (!slide.hasOwnProperty('instagram')) {
             slide.instagram = {
               feed: []
             };
           }
 
-          data.data.forEach(function(entry) {
+          data.data.forEach(function (entry, index, data) {
             var element = {};
-
-            element.text = entry.caption.text;
+            // Check if the instagram entry has a caption.
+            element.text = entry.caption !== null ? entry.caption.text : '';
             element.user = {
               username: entry.user.username,
               image: entry.user.profile_picture
