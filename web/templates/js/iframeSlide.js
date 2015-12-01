@@ -40,8 +40,8 @@ if (!window.slideFunctions['iframe']) {
      *   The slide.
      * @param scope
      *   The region scope
-     * @param callback
-     *   The callback to call when the slide has been executed.
+     * @param region
+     *   The region to call when the slide has been executed.
      * @param $http
      *   Access to $http
      * @param $timeout
@@ -52,12 +52,12 @@ if (!window.slideFunctions['iframe']) {
      *   Access to $sce
      * @param itkLog
      *   Access to itkLog
-     * @param startProgressBar
-     *   Function to start the progress bar
+     * @param progressBar
+     *   ProgressBar object.
      * @param fadeTime
      *   The fade time
      */
-    run: function runIframeSlide(slide, scope, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+    run: function runIframeSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
       itkLog.info("Running iframe slide: " + slide.title);
 
       var dur = slide.duration ? slide.duration : 5;
@@ -65,12 +65,12 @@ if (!window.slideFunctions['iframe']) {
       // Wait fadeTime before start to account for fade in.
       $timeout(function () {
         // Set the progress bar animation.
-        startProgressBar(dur);
+        progressBar.start(dur);
 
         // Wait for slide duration, then show next slide.
         // + fadeTime to account for fade out.
         $timeout(function () {
-          callback();
+          region.nextSlide();
         }, dur * 1000 + fadeTime);
       }, fadeTime);
     }

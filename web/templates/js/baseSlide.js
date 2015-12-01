@@ -22,13 +22,15 @@ if (!window.slideFunctions['base']) {
       slide.currentLogo = slide.logo;
 
       // Setup the inline styling
+      // @TODO: Is there and remove function that cleans up the scope? Memory
+      //        leak style?
       scope.theStyle = {
         width: "100%",
         height: "100%",
         fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0)+ "px"
       };
 
-      // Set the responsive fontsize if it is needed.
+      // Set the responsive font size if it is needed.
       if (slide.options.responsive_fontsize) {
         scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0)+ "vw";
       }
@@ -40,9 +42,9 @@ if (!window.slideFunctions['base']) {
      * @param slide
      *   The slide.
      * @param scope
-     *   The region scope
-     * @param callback
-     *   The callback to call when the slide has been executed.
+     *   The region scope.
+     * @param region
+     *   The region to call when the slide has been executed.
      * @param $http
      *   Access to $http
      * @param $timeout
@@ -53,26 +55,27 @@ if (!window.slideFunctions['base']) {
      *   Access to $sce
      * @param itkLog
      *   Access to itkLog
-     * @param startProgressBar
-     *   Function to start the progress bar
+     * @param progressBar
+     *   ProgressBar object.
      * @param fadeTime
      *   The fade time
      */
-    run: function runBaseSlide(slide, scope, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+    run: function runBaseSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
       itkLog.info("Running base slide: " + slide.title);
 
-      var dur = slide.duration ? slide.duration : 5;
+      // @TODO: Don't all slide default to 15 sek in the backend?
+      var duration = slide.duration ? slide.duration : 5;
 
       // Wait fadeTime before start to account for fade in.
       $timeout(function () {
         // Set the progress bar animation.
-        startProgressBar(dur);
+        progressBar.start(duration);
 
         // Wait for slide duration, then show next slide.
         // + fadeTime to account for fade out.
         $timeout(function () {
-          callback();
-        }, dur * 1000 + fadeTime);
+          region.nextSlide();
+        }, duration * 1000 + fadeTime);
       }, fadeTime);
     }
   };

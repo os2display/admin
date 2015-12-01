@@ -22,6 +22,8 @@ if (!window.slideFunctions['rss']) {
       slide.currentLogo = slide.logo;
 
       // Setup the inline styling
+      // @TODO: Is there and remove function that cleans up the scope? Memory
+      //        leak style?
       scope.theStyle = {
         width: "100%",
         height: "100%",
@@ -41,8 +43,8 @@ if (!window.slideFunctions['rss']) {
      *   The slide.
      * @param scope
      *   The region scope
-     * @param callback
-     *   The callback to call when the slide has been executed.
+     * @param region
+     *   The region to call when the slide has been executed.
      * @param $http
      *   Access to $http
      * @param $timeout
@@ -53,12 +55,12 @@ if (!window.slideFunctions['rss']) {
      *   Access to $sce
      * @param itkLog
      *   Access to itkLog
-     * @param startProgressBar
-     *   Function to start the progress bar.
+     * @param progressBar
+     *   ProgressBar object.
      * @param fadeTime
      *   The fade time.
      */
-    run: function runRssSlide(slide, scope, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+    run: function runRssSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
       itkLog.info("Running rss slide: " + slide.title);
 
       /**
@@ -67,7 +69,7 @@ if (!window.slideFunctions['rss']) {
       var rssTimeout = function () {
         $timeout(function () {
           if (slide.rss.rssEntry + 1 >= slide.options.rss_number) {
-            callback();
+            region.nextSlide();
           }
           else {
             slide.rss.rssEntry++;
@@ -90,7 +92,7 @@ if (!window.slideFunctions['rss']) {
             }
             else {
               // Go to next slide.
-              $timeout(callback, 5000);
+              $timeout(region.nextSlide, 5000);
             }
             return;
           }
@@ -117,7 +119,7 @@ if (!window.slideFunctions['rss']) {
 
           // Set the progress bar animation.
           var dur = slide.options.rss_duration * slide.options.rss_number - 1;
-          startProgressBar(dur);
+          progressBar.start(dur);
         })
         .error(function (message) {
           itkLog.error(message);
@@ -127,7 +129,8 @@ if (!window.slideFunctions['rss']) {
           }
           else {
             // Go to next slide.
-            $timeout(callback, 5000);
+            // @TODO: If slide error why wait 5 sec?
+            $timeout(region.nextSlide, 5000);
           }
         });
     }

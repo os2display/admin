@@ -22,6 +22,8 @@ if (!window.slideFunctions['instagram']) {
       slide.currentLogo = slide.logo;
 
       // Setup the inline styling
+      // @TODO: Is there and remove function that cleans up the scope? Memory
+      //        leak style?
       scope.theStyle = {
         width: "100%",
         height: "100%",
@@ -41,8 +43,8 @@ if (!window.slideFunctions['instagram']) {
      *   The slide.
      * @param scope
      *   The region scope
-     * @param callback
-     *   The callback to call when the slide has been executed.
+     * @param region
+     *   The region to call when the slide has been executed.
      * @param $http
      *   Access to $http
      * @param $timeout
@@ -53,12 +55,12 @@ if (!window.slideFunctions['instagram']) {
      *   Access to $sce
      * @param itkLog
      *   Access to itkLog
-     * @param startProgressBar
-     *   Function to start the progress bar.
+     * @param progressBar
+     *   ProgressBar object.
      * @param fadeTime
      *   The fade time.
      */
-    run: function runInstagramSlide(slide, scope, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+    run: function runInstagramSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
       itkLog.info("Running instagram slide: " + slide.title);
 
       /**
@@ -67,7 +69,7 @@ if (!window.slideFunctions['instagram']) {
       var instagramTimeout = function (slide) {
         $timeout(function () {
           if (slide.instagram.instagramEntry + 1 >= slide.options.instagram_number) {
-            callback();
+            region.nextSlide();
           }
           else {
             slide.instagram.instagramEntry++;
@@ -107,7 +109,7 @@ if (!window.slideFunctions['instagram']) {
 
           // Set the progress bar animation.
           var dur = slide.options.instagram_duration * slide.options.instagram_number - 1;
-          startProgressBar(dur);
+          progressBar.start(dur);
         })
         .error(function (message) {
           itkLog.error(message);
@@ -117,7 +119,8 @@ if (!window.slideFunctions['instagram']) {
           }
           else {
             // Go to next slide.
-            $timeout(callback, 5000);
+            // @TODO: If slide error why wait 5 sec?
+            $timeout(region.nextSlide, 5000);
           }
         });
     }

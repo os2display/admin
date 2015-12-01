@@ -30,8 +30,8 @@ if (!window.slideFunctions['video']) {
      *   The slide.
      * @param scope
      *   The region scope
-     * @param callback
-     *   The callback to call when the slide has been executed.
+     * @param region
+     *   The region to call when the slide has been executed.
      * @param $http
      *   Access to $http
      * @param $timeout
@@ -42,12 +42,12 @@ if (!window.slideFunctions['video']) {
      *   Access to $sce
      * @param itkLog
      *   Access to itkLog
-     * @param startProgressBar
-     *   Function to start the progress bar.
+     * @param progressBar
+     *   ProgressBar object.
      * @param fadeTime
      *   The fade time.
      */
-    run: function runVideoSlide(slide, scope, callback, $http, $timeout, $interval, $sce, itkLog, startProgressBar, fadeTime) {
+    run: function runVideoSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
       itkLog.info("Running video slide: " + slide.title);
 
       /**
@@ -94,12 +94,12 @@ if (!window.slideFunctions['video']) {
         Offline.off('down');
 
         // Go to the next slide.
-        callback();
+        region.nextSlide();
       };
 
       // If media is empty go to the next slide.
       if (slide.media.length <= 0) {
-        callback();
+        region.nextSlide();
       }
 
       // Check if there is an internet connection.
@@ -139,7 +139,7 @@ if (!window.slideFunctions['video']) {
         var interval = $interval(function () {
           if (video.readyState > 0) {
             var duration = Math.round(video.duration);
-            startProgressBar(duration);
+            progressBar.start(duration);
 
             // Metadata/duration found stop the interval.
             $interval.cancel(interval);
@@ -159,7 +159,7 @@ if (!window.slideFunctions['video']) {
                 updateVideoSources(video, true);
 
                 // Go to the next slide.
-                callback();
+                region.nextSlide();
               });
             },
             1000);
