@@ -41,42 +41,26 @@ if (!window.slideFunctions['base']) {
      *
      * @param slide
      *   The slide.
-     * @param scope
-     *   The region scope.
      * @param region
-     *   The region to call when the slide has been executed.
-     * @param $http
-     *   Access to $http
-     * @param $timeout
-     *   Access to $timeout
-     * @param $interval
-     *   Access to $interval
-     * @param $sce
-     *   Access to $sce
-     * @param itkLog
-     *   Access to itkLog
-     * @param progressBar
-     *   ProgressBar object.
-     * @param fadeTime
-     *   The fade time
+     *   The region object.
      */
-    run: function runBaseSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
-      itkLog.info("Running base slide: " + slide.title);
+    run: function runBaseSlide(slide, region) {
+      region.itkLog.info("Running base slide: " + slide.title);
 
       // @TODO: Don't all slide default to 15 sek in the backend?
       var duration = slide.duration ? slide.duration : 5;
 
       // Wait fadeTime before start to account for fade in.
-      $timeout(function () {
+      region.$timeout(function () {
         // Set the progress bar animation.
-        progressBar.start(duration);
+        region.progressBar.start(duration);
 
         // Wait for slide duration, then show next slide.
         // + fadeTime to account for fade out.
-        $timeout(function () {
+        region.$timeout(function () {
           region.nextSlide();
-        }, duration * 1000 + fadeTime);
-      }, fadeTime);
+        }, duration * 1000 + region.fadeTime);
+      }, region.fadeTime);
     }
   };
 }

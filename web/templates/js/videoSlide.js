@@ -28,27 +28,11 @@ if (!window.slideFunctions['video']) {
      *
      * @param slide
      *   The slide.
-     * @param scope
-     *   The region scope
      * @param region
      *   The region to call when the slide has been executed.
-     * @param $http
-     *   Access to $http
-     * @param $timeout
-     *   Access to $timeout
-     * @param $interval
-     *   Access to $interval
-     * @param $sce
-     *   Access to $sce
-     * @param itkLog
-     *   Access to itkLog
-     * @param progressBar
-     *   ProgressBar object.
-     * @param fadeTime
-     *   The fade time.
      */
-    run: function runVideoSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
-      itkLog.info("Running video slide: " + slide.title);
+    run: function runVideoSlide(slide, region) {
+      region.itkLog.info("Running video slide: " + slide.title);
 
       /**
        * Helper function to update source for video.
@@ -86,7 +70,7 @@ if (!window.slideFunctions['video']) {
         if (event !== undefined) {
           // Normal javascript error event.
           event.target.removeEventListener(event.type, videoErrorHandling);
-          itkLog.error('Network connection.', event);
+          region.itkLog.error('Network connection.', event);
         }
         else {
           itkLog.error('Unknown video network connection error.');
@@ -127,29 +111,30 @@ if (!window.slideFunctions['video']) {
         video.currentTime = 0;
       }
       catch (error) {
-        itkLog.info('Video content might not be loaded, so reset current time not possible');
+        region.itkLog.info('Video content might not be loaded, so reset current time not possible');
 
         // Use the error handling to get next slide.
         videoErrorHandling(undefined);
       }
 
       // Fade timeout to ensure video don't start before it's displayed.
-      $timeout(function () {
-        // Create interval to get video duration (ready state larger than one is meta-data loaded).
-        var interval = $interval(function () {
+      region.$timeout(function () {
+        // Create interval to get video duration (ready state larger than one is
+        // meta-data loaded).
+        var interval = region.$interval(function () {
           if (video.readyState > 0) {
             var duration = Math.round(video.duration);
-            progressBar.start(duration);
+            region.progressBar.start(duration);
 
             // Metadata/duration found stop the interval.
-            $interval.cancel(interval);
+            region.$interval.cancel(interval);
           }
         }, 500);
 
         // Go to the next slide when video playback has ended.
         video.onended = function ended(event) {
-          itkLog.info("Video playback ended.", event);
-          $timeout(function () {
+          region.itkLog.info("Video playback ended.", event);
+          region.$timeout(function () {
               scope.$apply(function () {
                 // Remove error handling.
                 video.removeEventListener('error', videoErrorHandling);
@@ -167,7 +152,7 @@ if (!window.slideFunctions['video']) {
 
         // Play the video.
         video.play();
-      }, fadeTime);
+      }, region.fadeTime);
     }
   };
 }

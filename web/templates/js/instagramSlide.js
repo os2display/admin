@@ -41,33 +41,17 @@ if (!window.slideFunctions['instagram']) {
      *
      * @param slide
      *   The slide.
-     * @param scope
-     *   The region scope
      * @param region
      *   The region to call when the slide has been executed.
-     * @param $http
-     *   Access to $http
-     * @param $timeout
-     *   Access to $timeout
-     * @param $interval
-     *   Access to $interval
-     * @param $sce
-     *   Access to $sce
-     * @param itkLog
-     *   Access to itkLog
-     * @param progressBar
-     *   ProgressBar object.
-     * @param fadeTime
-     *   The fade time.
      */
-    run: function runInstagramSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
-      itkLog.info("Running instagram slide: " + slide.title);
+    run: function runInstagramSlide(slide, region) {
+      region.itkLog.info("Running instagram slide: " + slide.title);
 
       /**
        * Go to next instagram news.
        */
       var instagramTimeout = function (slide) {
-        $timeout(function () {
+        region.$timeout(function () {
           if (slide.instagram.instagramEntry + 1 >= slide.options.instagram_number) {
             region.nextSlide();
           }
@@ -79,7 +63,7 @@ if (!window.slideFunctions['instagram']) {
       };
 
       // Get the feed
-      $http.jsonp(
+      region.$http.jsonp(
         "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=6dd7e66940864efebcfe9a09a920ad8d&count=" + slide.options.instagram_number)
         .success(function (data) {
 
@@ -109,10 +93,10 @@ if (!window.slideFunctions['instagram']) {
 
           // Set the progress bar animation.
           var dur = slide.options.instagram_duration * slide.options.instagram_number - 1;
-          progressBar.start(dur);
+          region.progressBar.start(dur);
         })
         .error(function (message) {
-          itkLog.error(message);
+          region.itkLog.error(message);
           if (slide.instagram.feed && slide.instagram.feed.length > 0) {
             slide.instagram.instagramEntry = 0;
             instagramTimeout(slide);
@@ -120,7 +104,7 @@ if (!window.slideFunctions['instagram']) {
           else {
             // Go to next slide.
             // @TODO: If slide error why wait 5 sec?
-            $timeout(region.nextSlide, 5000);
+            region.$timeout(region.nextSlide, 5000);
           }
         });
     }

@@ -41,33 +41,17 @@ if (!window.slideFunctions['rss']) {
      *
      * @param slide
      *   The slide.
-     * @param scope
-     *   The region scope
      * @param region
      *   The region to call when the slide has been executed.
-     * @param $http
-     *   Access to $http
-     * @param $timeout
-     *   Access to $timeout
-     * @param $interval
-     *   Access to $interval
-     * @param $sce
-     *   Access to $sce
-     * @param itkLog
-     *   Access to itkLog
-     * @param progressBar
-     *   ProgressBar object.
-     * @param fadeTime
-     *   The fade time.
      */
-    run: function runRssSlide(slide, scope, region, $http, $timeout, $interval, $sce, itkLog, progressBar, fadeTime) {
-      itkLog.info("Running rss slide: " + slide.title);
+    run: function runRssSlide(slide, region) {
+      region.itkLog.info("Running rss slide: " + slide.title);
 
       /**
        * Go to next rss news.
        */
       var rssTimeout = function () {
-        $timeout(function () {
+        region.$timeout(function () {
           if (slide.rss.rssEntry + 1 >= slide.options.rss_number) {
             region.nextSlide();
           }
@@ -79,20 +63,21 @@ if (!window.slideFunctions['rss']) {
       };
 
       // Get the feed
-      $http.jsonp(
+      region.$http.jsonp(
         '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + slide.options.rss_number + '&callback=JSON_CALLBACK&output=xml&q=' +
         encodeURIComponent(slide.options.source))
         .success(function (data) {
           // Make sure we do not have an error result from googleapis
           if (data.responseStatus !== 200) {
-            itkLog.error(data.responseDetails, data.responseStatus);
+            region.itkLog.error(data.responseDetails, data.responseStatus);
             if (slide.rss && slide.rss.feed && slide.rss.feed.entries && slide.rss.feed.entries.length > 0) {
               slide.rss.rssEntry = 0;
               rssTimeout(slide);
             }
             else {
               // Go to next slide.
-              $timeout(region.nextSlide, 5000);
+              // @TODO: Hardcode magic 5 sec timeout?
+              region.$timeout(region.nextSlide, 5000);
             }
             return;
           }
@@ -118,11 +103,11 @@ if (!window.slideFunctions['rss']) {
           rssTimeout(slide);
 
           // Set the progress bar animation.
-          var dur = slide.options.rss_duration * slide.options.rss_number - 1;
-          progressBar.start(dur);
+          var duration = slide.options.rss_duration * slide.options.rss_number - 1;
+          region.progressBar.start(duration);
         })
         .error(function (message) {
-          itkLog.error(message);
+          region.itkLog.error(message);
           if (slide.rss.feed && slide.rss.feed.entries && slide.rss.feed.entries.length > 0) {
             slide.rss.rssEntry = 0;
             rssTimeout(slide);
@@ -130,7 +115,7 @@ if (!window.slideFunctions['rss']) {
           else {
             // Go to next slide.
             // @TODO: If slide error why wait 5 sec?
-            $timeout(region.nextSlide, 5000);
+            region.$timeout(region.nextSlide, 5000);
           }
         });
     }
