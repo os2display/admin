@@ -73,7 +73,7 @@ if (!window.slideFunctions['video']) {
           region.itkLog.error('Network connection.', event);
         }
         else {
-          itkLog.error('Unknown video network connection error.');
+          region.itkLog.error('Unknown video network connection error.');
         }
         Offline.off('down');
 
