@@ -113,6 +113,7 @@ if (!window.slideFunctions['video']) {
         video.currentTime = 0;
       }
       catch (error) {
+        console.log(error);
         region.itkLog.info('Video content might not be loaded, so reset current time not possible');
 
         // Use the error handling to get next slide.
