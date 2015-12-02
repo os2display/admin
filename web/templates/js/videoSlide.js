@@ -36,7 +36,6 @@ if (!window.slideFunctions['video']) {
 
       // Get hold of the video element and update.
       var video = document.getElementById('videoPlayer-' + slide.uniqueId);
-      console.log(video);
 
       /**
        * Helper function to update source for video.
@@ -61,7 +60,6 @@ if (!window.slideFunctions['video']) {
           else {
             sources[i].setAttribute('src', sources[i].getAttribute('data-src'));
           }
-          console.log(sources[i].getAttribute('data-src'));
         }
       };
 
@@ -110,10 +108,8 @@ if (!window.slideFunctions['video']) {
         // Load video to ensure playback after possible errors from last playback. If not called
         // the video will not play.
         video.load();
-        //video.currentTime = 0;
       }
       catch (error) {
-        console.log(error);
         region.itkLog.info('Video content might not be loaded, so reset current time not possible');
 
         // Use the error handling to get next slide.
@@ -125,7 +121,6 @@ if (!window.slideFunctions['video']) {
         // Create interval to get video duration (ready state larger than one is
         // meta-data loaded).
         var interval = region.$interval(function () {
-          console.log('State' + video.readyState);
           if (video.readyState > 0) {
             var duration = Math.round(video.duration);
             region.progressBar.start(duration);
@@ -139,7 +134,7 @@ if (!window.slideFunctions['video']) {
         video.onended = function ended(event) {
           region.itkLog.info("Video playback ended.", event);
           region.$timeout(function () {
-              scope.$apply(function () {
+              region.scope.$apply(function () {
                 // Remove error handling.
                 video.removeEventListener('error', videoErrorHandling);
                 Offline.off('down');
