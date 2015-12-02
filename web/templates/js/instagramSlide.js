@@ -7,12 +7,12 @@ if (!window.slideFunctions['instagram']) {
   window.slideFunctions['instagram'] = {
     /**
      * Setup the slide for rendering.
-     * @param slide
-     *   The slide.
      * @param scope
      *   The slide scope.
      */
-    setup: function setupInstagramSlide(slide, scope) {
+    setup: function setupInstagramSlide(scope) {
+      var slide = scope.ikSlide;
+
       // Only show first image in array.
       if (slide.media_type === 'image' && slide.media.length > 0) {
         slide.currentImage = slide.media[0].image;

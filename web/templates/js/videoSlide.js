@@ -7,12 +7,12 @@ if (!window.slideFunctions['video']) {
   window.slideFunctions['video'] = {
     /**
      * Setup the slide for rendering.
-     * @param slide
-     *   The slide.
      * @param scope
      *   The slide scope.
      */
-    setup: function setupVideoSlide(slide, scope) {
+    setup: function setupVideoSlide(scope) {
+      var slide = scope.ikSlide;
+
       if (slide.media_type === 'video' && slide.media.length > 0) {
         // Set current video variable to path to video files.
         slide.currentVideo = {

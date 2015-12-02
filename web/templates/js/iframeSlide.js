@@ -7,12 +7,12 @@ if (!window.slideFunctions['iframe']) {
   window.slideFunctions['iframe'] = {
     /**
      * Setup the slide for rendering.
-     * @param slide
-     *   The slide.
      * @param scope
      *   The slide scope.
      */
-    setup: function setupIframeSlide(slide, scope) {
+    setup: function setupIframeSlide(scope) {
+      var slide = scope.ikSlide;
+
       // Last time the slide was refreshed.
       slide.lastRefresh = 0;
 

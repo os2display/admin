@@ -7,12 +7,12 @@ if (!window.slideFunctions['base']) {
   window.slideFunctions['base'] = {
     /**
      * Setup the slide for rendering.
-     * @param slide
-     *   The slide.
      * @param scope
      *   The slide scope.
      */
-    setup: function setupBaseSlide(slide, scope) {
+    setup: function setupBaseSlide(scope) {
+      var slide = scope.ikSlide;
+
       // Only show first image in array.
       if (slide.media_type === 'image' && slide.media.length > 0) {
         slide.currentImage = slide.media[0].image;

@@ -7,12 +7,12 @@ if (!window.slideFunctions['rss']) {
   window.slideFunctions['rss'] = {
     /**
      * Setup the slide for rendering.
-     * @param slide
-     *   The slide.
      * @param scope
      *   The slide scope.
      */
-    setup: function setupRssSlide(slide, scope) {
+    setup: function setupRssSlide(scope) {
+      var slide = scope.ikSlide;
+
       // Only show first image in array.
       if (slide.media_type === 'image' && slide.media.length > 0) {
         slide.currentImage = slide.media[0].image;
