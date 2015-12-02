@@ -34,6 +34,10 @@ if (!window.slideFunctions['video']) {
     run: function runVideoSlide(slide, region) {
       region.itkLog.info("Running video slide: " + slide.title);
 
+      // Get hold of the video element and update.
+      var video = document.getElementById('videoPlayer-' + slide.uniqueId);
+      console.log(video);
+
       /**
        * Helper function to update source for video.
        *
@@ -94,9 +98,6 @@ if (!window.slideFunctions['video']) {
         videoErrorHandling(undefined);
         return;
       }
-
-      // Get hold of the video element.
-      var video = document.getElementById('videoPlayer-' + slide.uniqueId);
 
       // Update video.
       updateVideoSources(video, false);
