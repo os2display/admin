@@ -110,7 +110,7 @@ if (!window.slideFunctions['video']) {
         // Load video to ensure playback after possible errors from last playback. If not called
         // the video will not play.
         video.load();
-        video.currentTime = 0;
+        //video.currentTime = 0;
       }
       catch (error) {
         console.log(error);
