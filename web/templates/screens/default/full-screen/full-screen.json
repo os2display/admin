@@ -3,7 +3,7 @@
   "name": "Fuld skærm",
   "icon": "full-screen.png",
   "paths": {
-    "live": "full-screen.html",
+    "live": "full-screen-live.html",
     "edit": "full-screen-edit.html",
     "css": "full-screen.css"
   },
