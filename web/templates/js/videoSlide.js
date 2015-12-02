@@ -57,6 +57,7 @@ if (!window.slideFunctions['video']) {
           else {
             sources[i].setAttribute('src', sources[i].getAttribute('data-src'));
           }
+          console.log(sources[i].getAttribute('data-src'));
         }
       };
 
