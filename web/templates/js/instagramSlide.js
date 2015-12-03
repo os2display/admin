@@ -63,8 +63,6 @@ if (!window.slideFunctions['instagram']) {
       };
 
       var getFeed = function getFeed(slide) {
-        console.log("get feed");
-
         // Get the feed
         region.$http.jsonp(
           "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=" + slide.clientId + "&count=" + slide.options.instagram_number)
