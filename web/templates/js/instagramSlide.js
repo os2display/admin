@@ -50,7 +50,7 @@ if (!window.slideFunctions['instagram']) {
       /**
        * Go to next instagram news.
        */
-      var instagramTimeout = function (slide) {
+      var instagramTimeout = function instagramTimeout(slide) {
         region.$timeout(function () {
           if (slide.instagram.instagramEntry + 1 >= slide.options.instagram_number) {
             region.nextSlide();
@@ -62,51 +62,71 @@ if (!window.slideFunctions['instagram']) {
         }, slide.options.instagram_duration * 1000);
       };
 
-      // Get the feed
-      region.$http.jsonp(
-        "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=6dd7e66940864efebcfe9a09a920ad8d&count=" + slide.options.instagram_number)
-        .success(function (data) {
+      var getFeed = function getFeed(slide) {
+        console.log("get feed");
 
-          if (!slide.hasOwnProperty('instagram')) {
-            slide.instagram = {
-              feed: []
-            };
-          }
+        // Get the feed
+        region.$http.jsonp(
+          "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=" + slide.clientId + "&count=" + slide.options.instagram_number)
+          .success(function (data) {
 
-          data.data.forEach(function (entry, index, data) {
-            var element = {};
-            // Check if the instagram entry has a caption.
-            element.text = entry.caption !== null ? entry.caption.text : '';
-            element.user = {
-              username: entry.user.username,
-              image: entry.user.profile_picture
-            };
+            if (!slide.hasOwnProperty('instagram')) {
+              slide.instagram = {
+                feed: []
+              };
+            }
 
-            element.image = entry.images.standard_resolution.url.replace("/s640x640", "");
+            data.data.forEach(function (entry, index, data) {
+              var element = {};
+              // Check if the instagram entry has a caption.
+              element.text = entry.caption !== null ? entry.caption.text : '';
+              element.user = {
+                username: entry.user.username,
+                image: entry.user.profile_picture
+              };
 
-            slide.instagram.feed.push(element);
-          });
+              element.image = entry.images.standard_resolution.url.replace("/s640x640", "");
 
-          slide.instagram.instagramEntry = 0;
+              slide.instagram.feed.push(element);
+            });
 
-          instagramTimeout(slide);
-
-          // Set the progress bar animation.
-          var dur = slide.options.instagram_duration * slide.options.instagram_number - 1;
-          region.progressBar.start(dur);
-        })
-        .error(function (message) {
-          region.itkLog.error(message);
-          if (slide.instagram.feed && slide.instagram.feed.length > 0) {
             slide.instagram.instagramEntry = 0;
+
             instagramTimeout(slide);
-          }
-          else {
-            // Go to next slide.
-            // @TODO: If slide error why wait 5 sec?
-            region.$timeout(region.nextSlide, 5000);
-          }
-        });
+
+            // Set the progress bar animation.
+            var dur = slide.options.instagram_duration * slide.options.instagram_number - 1;
+            region.progressBar.start(dur);
+          })
+          .error(function (message) {
+            region.itkLog.error(message);
+            if (slide.instagram.feed && slide.instagram.feed.length > 0) {
+              slide.instagram.instagramEntry = 0;
+              instagramTimeout(slide);
+            }
+            else {
+              // Go to next slide.
+              // @TODO: If slide error why wait 5 sec?
+              region.$timeout(region.nextSlide, 5000);
+            }
+          });
+      };
+
+      // If client id has already been loaded, just run the feed.
+      if (slide.hasOwnProperty('clientId')) {
+        getFeed(slide);
+      }
+      else {
+        region.$http.get(slide.server_path + '/client/keys/instagram')
+          .success(function (data) {
+            slide.clientId = data.instagram;
+            getFeed(slide);
+          })
+          .error(function (data) {
+            region.itkLog.error(data);
+            region.nextSlide();
+          });
+      }
     }
   }
 }

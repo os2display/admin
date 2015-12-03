@@ -49,3 +49,6 @@ parameters:
     itk_log_error_callback: /api/error
     itk_log_log_to_console: true
     itk_log_log_level: all
+
+    keys:
+      instagram: 1234567
