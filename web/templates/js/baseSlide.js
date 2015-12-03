@@ -22,8 +22,6 @@ if (!window.slideFunctions['base']) {
       slide.currentLogo = slide.logo;
 
       // Setup the inline styling
-      // @TODO: Is there and remove function that cleans up the scope? Memory
-      //        leak style?
       scope.theStyle = {
         width: "100%",
         height: "100%",
@@ -47,8 +45,7 @@ if (!window.slideFunctions['base']) {
     run: function runBaseSlide(slide, region) {
       region.itkLog.info("Running base slide: " + slide.title);
 
-      // @TODO: Don't all slide default to 15 sek in the backend?
-      var duration = slide.duration ? slide.duration : 5;
+      var duration = slide.duration ? slide.duration : 15;
 
       // Wait fadeTime before start to account for fade in.
       region.$timeout(function () {

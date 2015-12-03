@@ -22,8 +22,6 @@ if (!window.slideFunctions['rss']) {
       slide.currentLogo = slide.logo;
 
       // Setup the inline styling
-      // @TODO: Is there and remove function that cleans up the scope? Memory
-      //        leak style?
       scope.theStyle = {
         width: "100%",
         height: "100%",
@@ -114,8 +112,7 @@ if (!window.slideFunctions['rss']) {
           }
           else {
             // Go to next slide.
-            // @TODO: If slide error why wait 5 sec?
-            region.$timeout(region.nextSlide, 5000);
+            region.nextSlide();
           }
         });
     }
