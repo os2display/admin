@@ -34,6 +34,9 @@ if (!window.slideFunctions['video']) {
     run: function runVideoSlide(slide, region) {
       region.itkLog.info("Running video slide: " + slide.title);
 
+      // Get hold of the video element and update.
+      var video = document.getElementById('videoPlayer-' + slide.uniqueId);
+
       /**
        * Helper function to update source for video.
        *
@@ -94,9 +97,6 @@ if (!window.slideFunctions['video']) {
         return;
       }
 
-      // Get hold of the video element.
-      var video = document.getElementById('videoPlayer-' + slide.uniqueId);
-
       // Update video.
       updateVideoSources(video, false);
 
@@ -108,7 +108,6 @@ if (!window.slideFunctions['video']) {
         // Load video to ensure playback after possible errors from last playback. If not called
         // the video will not play.
         video.load();
-        video.currentTime = 0;
       }
       catch (error) {
         region.itkLog.info('Video content might not be loaded, so reset current time not possible');
@@ -135,7 +134,7 @@ if (!window.slideFunctions['video']) {
         video.onended = function ended(event) {
           region.itkLog.info("Video playback ended.", event);
           region.$timeout(function () {
-              scope.$apply(function () {
+              region.scope.$apply(function () {
                 // Remove error handling.
                 video.removeEventListener('error', videoErrorHandling);
                 Offline.off('down');
