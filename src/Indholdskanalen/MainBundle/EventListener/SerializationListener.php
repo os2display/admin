@@ -169,6 +169,7 @@ class SerializationListener implements EventSubscriberInterface {
           $event->getVisitor()->addData('css_path', $template->getPathCss());
           $event->getVisitor()->addData('js_path', $template->getPathJs());
           $event->getVisitor()->addData('js_script_id', $template->getScriptId());
+          $event->getVisitor()->addData('server_path', $this->container->getParameter('absolute_path_to_server'));
         }
         else {
           if (in_array('sharing', $groups)) {
@@ -227,6 +228,7 @@ class SerializationListener implements EventSubscriberInterface {
               ->addData('css_path', $template->getPathCss());
             $event->getVisitor()->addData('js_path', $template->getPathJs());
             $event->getVisitor()->addData('js_script_id', $template->getScriptId());
+            $event->getVisitor()->addData('server_path', $this->container->getParameter('absolute_path_to_server'));
           }
         }
       }
