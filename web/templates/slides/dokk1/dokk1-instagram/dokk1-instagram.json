@@ -19,6 +19,7 @@
     "height": "1080"
   },
   "empty_options": {
+    "textcolor": "#000",
     "fontsize": "60",
     "bgcolor": "rgb(188, 188, 188)",
     "responsive_fontsize": "3",
@@ -29,7 +30,7 @@
   "tools": [
     {
       "name": "Baggrund",
-      "id": "background-editor-static-colors"
+      "id": "background-editor-static-colors-instagram"
     },
     {
       "name": "Instagram",

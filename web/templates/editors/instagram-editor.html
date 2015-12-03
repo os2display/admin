@@ -24,6 +24,10 @@
           <div class="edit-menu--iframe-label">Vælg antal billeder der skal vises</div>
           <input type="number" data-ng-model="ikSlide.options.instagram_number">
         </div>
+        <div class="edit-menu--iframe-content">
+          <label class="edit-menu--iframe-label">Tekstfarve</label>
+          <input colorpicker="rgba" type="text" placeholder="e.g. #000" data-ng-model="ikSlide.options.textcolor" data-ng-style="{'background-color': ikSlide.options.textcolor}">
+        </div>
       </div>
     </div>
   </div>

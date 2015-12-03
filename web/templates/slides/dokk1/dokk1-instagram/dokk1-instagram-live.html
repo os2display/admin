@@ -5,7 +5,7 @@
   }">
   <div class="dokk1-instagram--content">
     <div class="dokk1-instagram--image"><img data-ng-src="{{ ikSlide.instagram.feed[ikSlide.instagram.instagramEntry].image }}"></div>
-    <div class="dokk1-instagram--post">
+    <div class="dokk1-instagram--post" data-ng-style="{'color': (ikSlide.options.textcolor ? ikSlide.options.textcolor : '#fff')}">
       <header class="dokk1-instagram--hashtag">#{{ ikSlide.options.instagram_hashtag }}</header>
       <div class="dokk1-instagram--amount">{{ ikSlide.instagram.instagramEntry + 1 }}/{{ ikSlide.options.instagram_number }}</div>
       <div class="dokk1-instagram--description">
