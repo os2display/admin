@@ -13,6 +13,13 @@ if (!window.slideFunctions['instagram']) {
     setup: function setupInstagramSlide(scope) {
       var slide = scope.ikSlide;
 
+      // Setup basic instagram setup.
+      if (!slide.hasOwnProperty('instagram')) {
+        slide.instagram = {
+          feed: []
+        };
+      }
+
       // Only show first image in array.
       if (slide.media_type === 'image' && slide.media.length > 0) {
         slide.currentImage = slide.media[0].image;
@@ -50,7 +57,7 @@ if (!window.slideFunctions['instagram']) {
        */
       var instagramTimeout = function instagramTimeout(slide) {
         region.$timeout(function () {
-          if (slide.instagram.instagramEntry + 1 >= slide.options.instagram_number) {
+          if (slide.instagram.instagramEntry + 1 >= slide.instagram.feed.length) {
             region.nextSlide();
           }
           else {
