@@ -68,6 +68,13 @@ if (!window.slideFunctions['instagram']) {
       };
 
       instagramTimeout();
+
+      // Wait fadeTime before start to account for fade in.
+      region.$timeout(function () {
+        // Set the progress bar animation.
+        var duration = slide.options.instagram_duration * slide.external_data.length;
+        region.progressBar.start(duration);
+      }, region.fadeTime);
     }
   }
 }
