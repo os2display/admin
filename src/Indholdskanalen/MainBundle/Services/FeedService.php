@@ -39,6 +39,7 @@ class FeedService {
 
       $md5Source = md5($source);
 
+      // Check for previouslyDownloaded feed.
       if (array_key_exists($md5Source, $cache)) {
         // Save in externalData field
         $slide->setExternalData($cache[]);
