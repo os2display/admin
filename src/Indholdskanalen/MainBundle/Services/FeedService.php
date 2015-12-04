@@ -14,6 +14,8 @@ use Debril\RssAtomBundle\Exception\RssAtomException;
  */
 class FeedService {
   private $container;
+  private $entityManager;
+  private $slideRepo;
 
   /**
    * Constructor.
@@ -22,6 +24,8 @@ class FeedService {
    */
   public function __construct($container) {
     $this->container = $container;
+    $this->entityManager = $this->container->get('doctrine')->getManager();
+    $this->slideRepo = $container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide');
   }
 
   /**
@@ -30,7 +34,7 @@ class FeedService {
   public function updateFeedSlides() {
     $cache = array();
 
-    $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('rss');
+    $slides = $this->slideRepo->findBySlideType('rss');
 
     foreach ($slides as $slide) {
       $options = $slide->getOptions();
@@ -42,7 +46,9 @@ class FeedService {
       // Check for previouslyDownloaded feed.
       if (array_key_exists($md5Source, $cache)) {
         // Save in externalData field
-        $slide->setExternalData($cache[]);
+        $slide->setExternalData($cache[$md5Source]);
+
+        $this->entityManager->flush();
       }
       else {
         // Fetch the FeedReader
@@ -74,6 +80,8 @@ class FeedService {
 
           // Save in externalData field
           $slide->setExternalData($res);
+
+          $this->entityManager->flush();
         }
         catch (RssAtomException $e) {
           $logger = $this->container->get('logger');
@@ -84,7 +92,5 @@ class FeedService {
         }
       }
     }
-
-    $this->container->get('doctrine')->getManager()->flush();
   }
 }
