@@ -30,7 +30,9 @@
             <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" placeholder="15/05/2020 - 12.00" data-ng-model="addevent.to">
           </div>
           <div class="edit-menu--calendar-form-element-wrapper-link">
-            <div class="edit-menu--calendar-add-date" data-ng-click="addEventItem()" data-ng-disabled="addevent.from > addevent.to" data-ng-class="{'is-inactive': addevent.from > addevent.to}"></div>
+            <div class="edit-menu--calendar-add-date" data-ng-click="addEventItem()" data-ng-disabled="addevent.from > addevent.to" data-ng-class="{'is-inactive': addevent.from > addevent.to}">
+              <img src="images/icons/plus-icon.png">
+            </div>
           </div>
         </div>
         <div class="edit-menu--calendar-date-events">
