@@ -24,9 +24,6 @@ class MiddlewareCommunication extends ContainerAware {
   protected $templateService;
   protected $utilityService;
 
-  // With what interval should the push be forced through?
-  private $forcePushInterval = 3600;
-
   /**
    * Constructor.
    *
@@ -38,6 +35,28 @@ class MiddlewareCommunication extends ContainerAware {
   public function __construct(TemplateService $templateService, UtilityService $utilityService) {
     $this->templateService = $templateService;
     $this->utilityService = $utilityService;
+  }
+
+  /**
+   * Find Id's of the screen using a channel.
+   *
+   * @param Channel|SharedChannel $channel
+   *   The Channel or SharedChannel to push.
+   *
+   * @return array
+   *   Id's of the screens that uses the channel.
+   */
+  private function getScreenIdsOnChannel($channel) {
+    // Get screen ids.
+    $regions = $channel->getChannelScreenRegions();
+    $screenIds = array();
+    foreach ($regions as $region) {
+      if (!in_array($region->getScreen()->getId(), $screenIds)) {
+        $screenIds[] = $region->getScreen()->getId();
+      }
+    }
+
+    return $screenIds;
   }
 
   /**
@@ -59,41 +78,33 @@ class MiddlewareCommunication extends ContainerAware {
     // Calculate hash of content, used to avoid unnecessary push.
     $sha1 = sha1($data);
 
-    // Get current time.
-    $time = time();
-
-    // Get time of last push for the channel.
-    $lastPushTime = $channel->getLastPushTime();
-
     $middlewarePath = $this->container->getParameter('middleware_host') . $this->container->getParameter('middleware_path');
 
     // Check if the channel should be pushed.
-    if ($force || $sha1 !== $channel->getLastPushHash() || $lastPushTime === NULL || $time - $lastPushTime > $this->forcePushInterval) {
-      $curlResult = $this->utilityService->curl(
-        $middlewarePath . '/channel/' . $id,
-        'POST',
-        $data,
-        'middleware'
-      );
+    if ($force || $sha1 !== $channel->getLastPushHash()) {
 
-      // If the result was delivered, update the last hash.
-      if ($curlResult['status'] === 200) {
-        $lastPushScreens = $channel->getLastPushScreens();
+      // Get screen ids.
+      $screenIds = $this->getScreenIdsOnChannel($channel);
 
-        // Get screen ids.
-        $regions = $channel->getChannelScreenRegions();
-        $screenIds = array();
-        foreach ($regions as $region) {
-          if (!in_array($region->getScreen()->getId(), $screenIds)) {
-            $screenIds[] = $region->getScreen()->getId();
-          }
-        }
+      // Only push channel if it's attached to a least one screen. If no screen
+      // is attached then channel will be deleted from the middleware and
+      // $lastPushTime will be reset later on in this function.
+      if (count($screenIds) > 0) {
+        $curlResult = $this->utilityService->curl(
+          $middlewarePath . '/channel/' . $id,
+          'POST',
+          $data,
+          'middleware'
+        );
 
-        // Push deletes to the middleware if a channel has been on a screen previously,
-        //   but now has been removed.
-        $deleteSuccess = TRUE;
+        // If the result was delivered, update the last hash.
+        if ($curlResult['status'] === 200) {
+          $lastPushScreens = $channel->getLastPushScreens();
 
-        if (is_string($lastPushScreens)) {
+          // Push deletes to the middleware if a channel has been on a screen previously,
+          // but now has been removed.
+          $updatedScreensFailed = FALSE;
+
           $lastPushScreensArray = json_decode($lastPushScreens);
 
           foreach ($lastPushScreensArray as $lastPushScreenId) {
@@ -106,28 +117,52 @@ class MiddlewareCommunication extends ContainerAware {
               );
 
               if ($curlResult['status'] !== 200) {
-                $deleteSuccess = FALSE;
+                $updatedScreensFailed = TRUE;
               }
             }
           }
-        }
 
-        // If the delete process was successful, update last push information.
-        //   else set values to NULL to ensure new push.
-        if ($deleteSuccess) {
-          $channel->setLastPushScreens(json_encode($screenIds));
-          $channel->setLastPushHash($sha1);
-          $channel->setLastPushTime($time);
+          // If the delete process was successful, update last push information.
+          // else set values to NULL to ensure new push.
+          if (!$updatedScreensFailed) {
+            $channel->setLastPushScreens(json_encode($screenIds));
+            $channel->setLastPushHash($sha1);
+          }
+          else {
+            // Removing channel from some screens have failed, hence mark the
+            // channel for re-push.
+            $channel->setLastPushHash(NULL);
+          }
         }
         else {
+          // Channel push failed for this channel mark it for re-push.
           $channel->setLastPushHash(NULL);
-          $channel->setLastPushTime(NULL);
         }
       }
       else {
-        $channel->setLastPushHash(NULL);
-        $channel->setLastPushTime(NULL);
+        // Channel don't have any screens, so delete from the middleware. This
+        // will automatically remove it from any screen connected to the
+        // middleware that displays is currently.
+        $curlResult = $this->utilityService->curl(
+          $middlewarePath . '/channel/' . $id,
+          'DELETE',
+          json_encode(array()),
+          'middleware'
+        );
+
+        if ($curlResult['status'] !== 200) {
+          // Delete did't not work, so mark the channel for re-push.
+          $channel->setLastPushHash(NULL);
+        }
+        else {
+          // Channel delete push'ed, so set meta-data about screens to empty
+          // array, which is the current screen array.
+          $channel->setLastPushScreens(json_encode($screenIds));
+        }
       }
+
+      // Channel will have been update in all execution paths, so save the
+      // channel to the database.
       $em->flush();
     }
   }
