@@ -49,6 +49,10 @@ class CronCommand extends ContainerAwareCommand {
     $kobaService = $this->getContainer()->get('indholdskanalen.koba_service');
     $kobaService->updateCalendarSlides();
 
+    // Update feed slides
+    $feedService = $this->getContainer()->get('indholdskanalen.feed_service');
+    $feedService->updateFeedSlides();
+
     // Push content to screens.
     $middlewareCommunication = $this->getContainer()
       ->get('indholdskanalen.middleware.communication');

@@ -25,7 +25,7 @@ security:
       pattern: ^/api/screen/get
       security: false
 
-    api_client:
+    api_client_keys:
       pattern: ^/client/keys/(.*)
       security: false
 
