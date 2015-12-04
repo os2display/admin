@@ -5,9 +5,8 @@
  */
 
 namespace Indholdskanalen\MainBundle\Services;
-
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Debril\RssAtomBundle\Exception\FeedException;
+use Debril\RssAtomBundle\Exception\RssAtomException;
 
 /**
  * Class FeedService
@@ -26,46 +25,61 @@ class FeedService {
   }
 
   /**
-   * Update the calendar events for calendar slides.
+   * Update the externalData for feed slides.
    */
   public function updateFeedSlides() {
-    // @TODO: Cache results.
+    $cache = array();
 
     $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('rss');
 
     foreach ($slides as $slide) {
-      $data = array();
-
       $options = $slide->getOptions();
 
       $source = $options['source'];
 
-      // fetch the FeedReader
-      $reader = $this->container->get('debril.reader');
+      $md5Source = md5($source);
 
-      // now fetch its (fresh) content
-      $feed = $reader->getFeedContent($source);
-
-      $res = array(
-        "feed" => array(),
-        "title" => $feed->getTitle(),
-      );
-
-      // the $content object contains as many Item instances as you have fresh articles in the feed
-      $items = $feed->getItems();
-
-      foreach ($items as $item) {
-        $res["feed"][] = (object) array(
-          "title" => $item->getTitle(),
-          "date" => $item->getUpdated()->format('U'),
-          "description" => $item->getDescription(),
-        );
+      if (array_key_exists($md5Source, $cache)) {
+        // Save in externalData field
+        $slide->setExternalData($cache[]);
       }
+      else {
+        // Fetch the FeedReader
+        $reader = $this->container->get('debril.reader');
 
-      // Save in externalData field
-      $slide->setExternalData($res);
+        try {
+          // Fetch content
+          $feed = $reader->getFeedContent($source);
 
-      $this->container->get('doctrine')->getManager()->flush();
+          // Setup return array.
+          $res = array(
+            "feed" => array(),
+            "title" => $feed->getTitle(),
+          );
+
+          // Get all items.
+          $items = $feed->getItems();
+
+          foreach ($items as $item) {
+            $res["feed"][] = (object) array(
+              "title" => $item->getTitle(),
+              "date" => $item->getUpdated()->format('U'),
+              "description" => $item->getDescription(),
+            );
+          }
+
+          // Cache the result for next iteration.
+          $cache[$md5Source] = $res;
+
+          // Save in externalData field
+          $slide->setExternalData($res);
+        }
+        catch (RssAtomException $e) {
+          // Ignore exceptions, and just leave the content that has already been stored.
+        }
+      }
     }
+
+    $this->container->get('doctrine')->getManager()->flush();
   }
 }
