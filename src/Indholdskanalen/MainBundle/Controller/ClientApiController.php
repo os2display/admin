@@ -11,11 +11,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ClientApiController
  *
- * @Route("/client/keys")
+ * @Route("/client")
  *
  * @package Indholdskanalen\MainBundle\Controller
  */
@@ -23,7 +24,7 @@ class ClientApiController extends Controller {
   /**
    * Load templates.
    *
-   * @Route("/{id}")
+   * @Route("/keys/{id}")
    * @Method("GET")
    */
   public function getKey($id) {

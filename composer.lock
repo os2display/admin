@@ -1,11 +1,62 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "74f365c952523ab88ea7d0f019fc939c",
+    "hash": "854fe7a9c408dbd9ccb86f141f0c288b",
     "packages": [
+        {
+            "name": "debril/rss-atom-bundle",
+            "version": "v2.2.0",
+            "target-dir": "Debril/RssAtomBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdebril/rss-atom-bundle.git",
+                "reference": "936a8afa48a0a1b41ba5a2176c6576b1d6d56e74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdebril/rss-atom-bundle/zipball/936a8afa48a0a1b41ba5a2176c6576b1d6d56e74",
+                "reference": "936a8afa48a0a1b41ba5a2176c6576b1d6d56e74",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/config": "~2.6"
+            },
+            "require-dev": {
+                "doctrine/common": "~2.3",
+                "doctrine/doctrine-bundle": "~1.2",
+                "phpunit/phpunit": "~4.7",
+                "symfony/browser-kit": "~2.6",
+                "symfony/finder": "~2.6",
+                "symfony/form": "~2.6",
+                "symfony/framework-bundle": "~2.6",
+                "symfony/validator": "~2.6"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Debril\\RssAtomBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "description": "RSS and Atom support for Symfony 2",
+            "keywords": [
+                "atom",
+                "rss"
+            ],
+            "time": "2015-06-13 14:37:38"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.4",
@@ -2176,7 +2227,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/cdd9f8322b3673aa27d6e45a7f3addebb7bfeaf8",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/3ddf12e3a2a714267e100dc0489fb40961884de7",
                 "reference": "cdd9f8322b3673aa27d6e45a7f3addebb7bfeaf8",
                 "shasum": ""
             },
@@ -2380,7 +2431,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/a52613c338cc2e024bb2343be10b6a348cb9cd82",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/eaf3812f24cf4291da104640c9887715e2c7ace5",
                 "reference": "a52613c338cc2e024bb2343be10b6a348cb9cd82",
                 "shasum": ""
             },
@@ -2442,7 +2493,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/dba166c6c52591f1bfafa8514b848a3bae23a557",
+                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/5f7106a80c318e209612fffac8c41d571e0c8770",
                 "reference": "dba166c6c52591f1bfafa8514b848a3bae23a557",
                 "shasum": ""
             },
@@ -2542,7 +2593,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/422f8a56e7a3b5c1d3d63d120718d64f3af41b0f",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/9c01064847ca8978fb0e23c83e8d0085628c8609",
                 "reference": "422f8a56e7a3b5c1d3d63d120718d64f3af41b0f",
                 "shasum": ""
             },
@@ -2999,7 +3050,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/0e615bf13fc8a786aca904dd6f7b083bc089d0d9",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/c6aeda90aa3fcd23ab9abd10e11ac2b6c5caa296",
                 "reference": "0e615bf13fc8a786aca904dd6f7b083bc089d0d9",
                 "shasum": ""
             },
@@ -3119,12 +3170,12 @@
             "target-dir": "Symfony/Bundle/AsseticBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/AsseticBundle.git",
+                "url": "https://github.com/symfony/assetic-bundle.git",
                 "reference": "146dd3cb46b302bd471560471c6aaa930483dac1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/146dd3cb46b302bd471560471c6aaa930483dac1",
+                "url": "https://api.github.com/repos/symfony/assetic-bundle/zipball/146dd3cb46b302bd471560471c6aaa930483dac1",
                 "reference": "146dd3cb46b302bd471560471c6aaa930483dac1",
                 "shasum": ""
             },
@@ -3181,12 +3232,12 @@
             "version": "v2.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/MonologBundle.git",
+                "url": "https://github.com/symfony/monolog-bundle.git",
                 "reference": "227bbeefe30f2d95e3fe5fbd1ccda414287a957a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/MonologBundle/zipball/227bbeefe30f2d95e3fe5fbd1ccda414287a957a",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/227bbeefe30f2d95e3fe5fbd1ccda414287a957a",
                 "reference": "227bbeefe30f2d95e3fe5fbd1ccda414287a957a",
                 "shasum": ""
             },
@@ -3241,12 +3292,12 @@
             "target-dir": "Symfony/Bundle/SwiftmailerBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/SwiftmailerBundle.git",
+                "url": "https://github.com/symfony/swiftmailer-bundle.git",
                 "reference": "e98defd402f72e8b54a029ba4d3ac4cb51dc3577"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/e98defd402f72e8b54a029ba4d3ac4cb51dc3577",
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/e98defd402f72e8b54a029ba4d3ac4cb51dc3577",
                 "reference": "e98defd402f72e8b54a029ba4d3ac4cb51dc3577",
                 "shasum": ""
             },
@@ -3419,12 +3470,12 @@
             "version": "v1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/Twig-extensions.git",
+                "url": "https://github.com/twigphp/Twig-extensions.git",
                 "reference": "c0ab818595338dd5569369bfce2552d02cec5d50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/c0ab818595338dd5569369bfce2552d02cec5d50",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/c0ab818595338dd5569369bfce2552d02cec5d50",
                 "reference": "c0ab818595338dd5569369bfce2552d02cec5d50",
                 "shasum": ""
             },
@@ -3617,12 +3668,12 @@
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Icu.git",
+                "url": "https://github.com/symfony/icu.git",
                 "reference": "fdba214b1e087c149843bde976263c53ac10c975"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/fdba214b1e087c149843bde976263c53ac10c975",
+                "url": "https://api.github.com/repos/symfony/icu/zipball/fdba214b1e087c149843bde976263c53ac10c975",
                 "reference": "fdba214b1e087c149843bde976263c53ac10c975",
                 "shasum": ""
             },

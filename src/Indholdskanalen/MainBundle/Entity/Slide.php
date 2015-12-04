@@ -134,10 +134,10 @@ class Slide {
   /**
    * @Groups({"middleware"})
    *
-   * @JMS\Type("array<array>")
-   * @ORM\Column(name="calendar_events", type="json_array", nullable=true)
+   * @JMS\Type("array")
+   * @ORM\Column(name="external_data", type="json_array", nullable=true)
    */
-  protected $calendarEvents;
+  protected $externalData;
 
   /**
    * @ORM\Column(name="interest_period", type="string", nullable=true)
@@ -164,22 +164,22 @@ class Slide {
   }
 
   /**
-   * Get calendarEvents.
+   * Get externalData.
    *
    * @return mixed
    */
-  public function getCalendarEvents() {
-    return $this->calendarEvents;
+  public function getExternalData() {
+    return $this->externalData;
   }
 
   /**
-   * Set calendarEvents.
+   * Set externalData.
    *
-   * @param $calendarEvents
+   * @param $externalData
    * @return Slide
    */
-  public function setCalendarEvents($calendarEvents) {
-    $this->calendarEvents = $calendarEvents;
+  public function setExternalData($externalData) {
+    $this->externalData = $externalData;
 
     return $this;
   }

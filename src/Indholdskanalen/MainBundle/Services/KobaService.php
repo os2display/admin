@@ -137,8 +137,8 @@ class KobaService {
         return strcmp($a->start_time, $b->start_time);
       });
 
-      // Save in calendarEvents field
-      $slide->setCalendarEvents($bookings);
+      // Save in externalData field
+      $slide->setExternalData($bookings);
 
       $this->container->get('doctrine')->getManager()->flush();
     }

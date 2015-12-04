@@ -40,6 +40,7 @@ class AppKernel extends Kernel
 
             // Serializing.
             new JMS\SerializerBundle\JMSSerializerBundle(),
+          new Debril\RssAtomBundle\DebrilRssAtomBundle(),
 
             new Indholdskanalen\MainBundle\IndholdskanalenMainBundle(),
         );
