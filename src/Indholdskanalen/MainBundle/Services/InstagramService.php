@@ -6,6 +6,8 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
+use Guzzle\Http\Exception\BadResponseException;
+
 /**
  * Class InstagramService
  * @package Indholdskanalen\MainBundle\Services
@@ -47,33 +49,41 @@ class InstagramService {
 
         $numberOfItems = $options['instagram_number'];
 
-        $response = $client->get('https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?client_id=' . $this->clientId . '&count=' . $numberOfItems)->send();
+        try {
+          $response = $client->get('https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?client_id=' . $this->clientId . '&count=' . $numberOfItems)
+            ->send();
 
-        // @TODO: Handle errors!
+          $data = json_decode($response->getBody());
 
-        $data = json_decode($response->getBody());
+          $res = array();
 
-        $res = array();
+          foreach($data->data as $item) {
+            $imageUrl = $item->images->standard_resolution->url;
+            $imageUrl = preg_replace('/s(\d+)x(\d+)/', '', $imageUrl);
 
-        foreach($data->data as $item) {
-          $imageUrl = $item->images->standard_resolution->url;
-          $imageUrl = preg_replace('/s(\d+)x(\d+)/', '', $imageUrl);
+            $res[] = (object) array(
+              'text' => $item->caption->text,
+              'user' => (object) array(
+                'username' => $item->user->username,
+                'profile_picture' => $item->user->profile_picture,
+              ),
+              'image' => $imageUrl,
+            );
+          }
 
-          $res[] = (object) array(
-            'text' => $item->caption->text,
-            'user' => (object) array(
-              'username' => $item->user->username,
-              'profile_picture' => $item->user->profile_picture,
-            ),
-            'image' => $imageUrl,
-          );
+          // Cache the result for next iteration.
+          $cache[$hashtag] = $res;
+
+          // Save in externalData field
+          $slide->setExternalData($res);
         }
+        catch (BadResponseException $e) {
+          $logger = $this->container->get('logger');
+          $logger->warning('InstagramService: Unable to download ' . $hashtag);
+          $logger->warning($e);
 
-        // Cache the result for next iteration.
-        $cache[$hashtag] = $res;
-
-        // Save in externalData field
-        $slide->setExternalData($res);
+          // Ignore exceptions, and just leave the content that has already been stored.
+        }
       }
     }
 
