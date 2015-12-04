@@ -54,7 +54,7 @@ if (!window.slideFunctions['rss']) {
 
       // Allow html in description
       slide.external_data.feed.forEach(function(element) {
-        element.description = region.$sce.trustAsHtml(element.description);
+        element.safe_description = region.$sce.trustAsHtml(element.description);
       });
 
       /**
