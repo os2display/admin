@@ -75,6 +75,10 @@ class FeedService {
           $slide->setExternalData($res);
         }
         catch (RssAtomException $e) {
+          $logger = $this->container->get('logger');
+          $logger->warning('FeedService: Unable to download feed from ' . $source);
+          $logger->warning($e);
+
           // Ignore exceptions, and just leave the content that has already been stored.
         }
       }
