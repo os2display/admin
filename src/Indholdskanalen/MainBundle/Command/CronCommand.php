@@ -38,6 +38,11 @@ class CronCommand extends ContainerAwareCommand {
    * @return int|null|void
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
+    // Push content to screens.
+    $middlewareCommunication = $this->getContainer()
+      ->get('indholdskanalen.middleware.communication');
+    $middlewareCommunication->pushToScreens();
+
     // Update shared channels.
     if ($this->getContainer()->getParameter('sharing_enabled')) {
       $sharingService = $this->getContainer()
@@ -53,10 +58,9 @@ class CronCommand extends ContainerAwareCommand {
     $feedService = $this->getContainer()->get('indholdskanalen.feed_service');
     $feedService->updateFeedSlides();
 
-    // Push content to screens.
-    $middlewareCommunication = $this->getContainer()
-      ->get('indholdskanalen.middleware.communication');
-    $middlewareCommunication->pushToScreens();
+    // Update instagram slides
+    $instagramService = $this->getContainer()->get('indholdskanalen.instagram_service');
+    $instagramService->updateInstagramSlides();
 
     $output->writeln('Content pushed to screens.');
   }
