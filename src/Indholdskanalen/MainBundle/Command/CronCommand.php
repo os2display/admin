@@ -53,6 +53,10 @@ class CronCommand extends ContainerAwareCommand {
     $feedService = $this->getContainer()->get('indholdskanalen.feed_service');
     $feedService->updateFeedSlides();
 
+    // Update instagram slides
+    $instagramService = $this->getContainer()->get('indholdskanalen.instagram_service');
+    $instagramService->updateInstagramSlides();
+
     // Push content to screens.
     $middlewareCommunication = $this->getContainer()
       ->get('indholdskanalen.middleware.communication');

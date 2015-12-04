@@ -50,5 +50,4 @@ parameters:
     itk_log_log_to_console: true
     itk_log_log_level: all
 
-    keys:
-      instagram: 1234567
+    instagram_client_id: 1234567

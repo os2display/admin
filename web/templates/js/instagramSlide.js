@@ -16,7 +16,7 @@ if (!window.slideFunctions['instagram']) {
       // Setup basic instagram setup.
       if (!slide.hasOwnProperty('instagram')) {
         slide.instagram = {
-          feed: []
+          instagramEntry: 0
         };
       }
 
@@ -55,9 +55,9 @@ if (!window.slideFunctions['instagram']) {
       /**
        * Go to next instagram news.
        */
-      var instagramTimeout = function instagramTimeout(slide) {
+      var instagramTimeout = function instagramTimeout() {
         region.$timeout(function () {
-          if (slide.instagram.instagramEntry + 1 >= slide.instagram.feed.length) {
+          if (slide.instagram.instagramEntry + 1 >= slide.external_data.length) {
             region.nextSlide();
           }
           else {
@@ -67,68 +67,7 @@ if (!window.slideFunctions['instagram']) {
         }, slide.options.instagram_duration * 1000);
       };
 
-      var getFeed = function getFeed(slide) {
-        // Get the feed
-        region.$http.jsonp(
-          "https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=" + slide.clientId + "&count=" + slide.options.instagram_number)
-          .success(function (data) {
-
-            if (!slide.hasOwnProperty('instagram')) {
-              slide.instagram = {
-                feed: []
-              };
-            }
-
-            data.data.forEach(function (entry, index, data) {
-              var element = {};
-              // Check if the instagram entry has a caption.
-              element.text = entry.caption !== null ? entry.caption.text : '';
-              element.user = {
-                username: entry.user.username,
-                image: entry.user.profile_picture
-              };
-
-              element.image = entry.images.standard_resolution.url.replace("/s640x640", "");
-
-              slide.instagram.feed.push(element);
-            });
-
-            slide.instagram.instagramEntry = 0;
-
-            instagramTimeout(slide);
-
-            // Set the progress bar animation.
-            var dur = slide.options.instagram_duration * slide.options.instagram_number - 1;
-            region.progressBar.start(dur);
-          })
-          .error(function (message) {
-            region.itkLog.error(message);
-            if (slide.instagram.feed && slide.instagram.feed.length > 0) {
-              slide.instagram.instagramEntry = 0;
-              instagramTimeout(slide);
-            }
-            else {
-              // Go to next slide.
-              region.nextSlide();
-            }
-          });
-      };
-
-      // If client id has already been loaded, just run the feed.
-      if (slide.hasOwnProperty('clientId')) {
-        getFeed(slide);
-      }
-      else {
-        region.$http.get(slide.server_path + '/client/keys/instagram')
-          .success(function (data) {
-            slide.clientId = data.instagram;
-            getFeed(slide);
-          })
-          .error(function (data) {
-            region.itkLog.error(data);
-            region.nextSlide();
-          });
-      }
+      instagramTimeout();
     }
   }
 }

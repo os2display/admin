@@ -12,6 +12,7 @@ namespace Indholdskanalen\MainBundle\Services;
  */
 class InstagramService {
   private $container;
+  private $clientId;
 
   /**
    * Constructor.
@@ -20,6 +21,8 @@ class InstagramService {
    */
   public function __construct($container) {
     $this->container = $container;
+
+    $this->clientId = $container->getParameter('instagram_client_id');
   }
 
   /**
@@ -37,14 +40,41 @@ class InstagramService {
 
       if (array_key_exists($hashtag, $cache)) {
         // Save in externalData field
-        $slide->setExternalData($cache[]);
+        $slide->setExternalData($cache[$hashtag]);
       }
       else {
+        $client = $this->container->get('guzzle.client');
 
+        $numberOfItems = $options['instagram_number'];
+
+        $response = $client->get('https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?client_id=' . $this->clientId . '&count=' . $numberOfItems)->send();
+
+        // @TODO: Handle errors!
+
+        $data = json_decode($response->getBody());
+
+        $res = array();
+
+        foreach($data->data as $item) {
+          $imageUrl = $item->images->standard_resolution->url;
+          $imageUrl = preg_replace('/s(\d+)x(\d+)/', '', $imageUrl);
+
+          $res[] = (object) array(
+            'text' => $item->caption->text,
+            'user' => (object) array(
+              'username' => $item->user->username,
+              'profile_picture' => $item->user->profile_picture,
+            ),
+            'image' => $imageUrl,
+          );
+        }
+
+        // Cache the result for next iteration.
+        $cache[$hashtag] = $res;
+
+        // Save in externalData field
+        $slide->setExternalData($res);
       }
-
-      //"https://api.instagram.com/v1/tags/" + slide.options.instagram_hashtag + "/media/recent?callback=JSON_CALLBACK&client_id=" + slide.clientId + "&count=" + slide.options.instagram_number)
-
     }
 
     $this->container->get('doctrine')->getManager()->flush();
