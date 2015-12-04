@@ -117,13 +117,6 @@ class Channel {
   private $lastPushScreens;
 
   /**
-   * When was the last time it was pushed?
-   *
-   * @ORM\Column(name="last_push_time", type="integer", nullable=true)
-   */
-  private $lastPushTime;
-
-  /**
    * @ORM\Column(name="publish_from", type="integer", nullable=true)
    * @Groups({"api", "middleware", "sharing"})
    */
