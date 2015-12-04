@@ -15,6 +15,8 @@ use Guzzle\Http\Exception\BadResponseException;
 class InstagramService {
   private $container;
   private $clientId;
+  private $entityManager;
+  private $slideRepo;
 
   /**
    * Constructor.
@@ -23,7 +25,8 @@ class InstagramService {
    */
   public function __construct($container) {
     $this->container = $container;
-
+    $this->entityManager = $this->container->get('doctrine')->getManager();
+    $this->slideRepo = $container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide');
     $this->clientId = $container->getParameter('instagram_client_id');
   }
 
@@ -33,7 +36,7 @@ class InstagramService {
   public function updateInstagramSlides() {
     $cache = array();
 
-    $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('instagram');
+    $slides = $this->slideRepo->findBySlideType('instagram');
 
     foreach ($slides as $slide) {
       $options = $slide->getOptions();
@@ -43,6 +46,8 @@ class InstagramService {
       if (array_key_exists($hashtag, $cache)) {
         // Save in externalData field
         $slide->setExternalData($cache[$hashtag]);
+
+        $this->entityManager->flush();
       }
       else {
         $client = $this->container->get('guzzle.client');
@@ -53,6 +58,7 @@ class InstagramService {
           $response = $client->get('https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?client_id=' . $this->clientId . '&count=' . $numberOfItems)
             ->send();
 
+          // Decode response from instagram.
           $data = json_decode($response->getBody());
 
           $res = array();
@@ -76,6 +82,8 @@ class InstagramService {
 
           // Save in externalData field
           $slide->setExternalData($res);
+
+          $this->entityManager->flush();
         }
         catch (BadResponseException $e) {
           $logger = $this->container->get('logger');
@@ -86,7 +94,5 @@ class InstagramService {
         }
       }
     }
-
-    $this->container->get('doctrine')->getManager()->flush();
   }
 }
