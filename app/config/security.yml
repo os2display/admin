@@ -25,10 +25,6 @@ security:
       pattern: ^/api/screen/get
       security: false
 
-    api_client_keys:
-      pattern: ^/client/keys/(.*)
-      security: false
-
     api:
       pattern: ^/api(.*)
       context: user
@@ -72,7 +68,6 @@ security:
         user_provider: fos_userbundle
 
   access_control:
-    - { path: ^/client/keys$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
     - { path: ^/api/screen/activate$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
     - { path: ^/api/screen/get$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
 
