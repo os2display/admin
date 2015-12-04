@@ -54,7 +54,9 @@ if (!window.slideFunctions['rss']) {
 
       // Allow html in description
       slide.external_data.feed.forEach(function(element) {
-        element.safe_description = region.$sce.trustAsHtml(element.description);
+        if (!element.hasOwnProperty('safe_description')) {
+          element.safe_description = region.$sce.trustAsHtml(element.description);
+        }
       });
 
       /**
