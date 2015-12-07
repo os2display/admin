@@ -229,7 +229,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         );
       }
 
-      $scope.slide.calendar_events = arr;
+      $scope.slide.external_data = arr;
     };
 
     // Register event listener for select media.

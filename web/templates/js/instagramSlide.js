@@ -52,6 +52,13 @@ if (!window.slideFunctions['instagram']) {
     run: function runInstagramSlide(slide, region) {
       region.itkLog.info("Running instagram slide: " + slide.title);
 
+      // Check that external_data exists.
+      if (!slide.external_data) {
+        region.nextSlide();
+
+        return;
+      }
+
       /**
        * Go to next instagram news.
        */

@@ -18,12 +18,14 @@ if (!window.slideFunctions['rss']) {
         slide.currentImage = slide.media[0].image;
       }
 
-      slide.rss = {
-        rssEntry: 0,
-        numberOfSlidesToShow: slide.options.rss_number < slide.external_data.feed.length ?
-          slide.options.rss_number :
-          slide.external_data.feed.length
-      };
+      if (slide.external_data && slide.external_data.feed) {
+        slide.rss = {
+          rssEntry: 0,
+          numberOfSlidesToShow: slide.options.rss_number < slide.external_data.feed.length ?
+            slide.options.rss_number :
+            slide.external_data.feed.length
+        };
+      }
 
       // Set currentLogo.
       slide.currentLogo = slide.logo;
@@ -51,6 +53,13 @@ if (!window.slideFunctions['rss']) {
      */
     run: function runRssSlide(slide, region) {
       region.itkLog.info("Running rss slide: " + slide.title);
+
+      // Check that external_data exists.
+      if (!slide.external_data || !slide.external_data.feed || slide.external_data.feed.length <= 0) {
+        region.nextSlide();
+
+        return;
+      }
 
       // Allow html in description
       slide.external_data.feed.forEach(function(element) {
