@@ -52,6 +52,11 @@ if (!window.slideFunctions['instagram']) {
     run: function runInstagramSlide(slide, region) {
       region.itkLog.info("Running instagram slide: " + slide.title);
 
+      if (!slide.external_data) {
+        region.nextSlide();
+        return;
+      }
+
       /**
        * Go to next instagram news.
        */
