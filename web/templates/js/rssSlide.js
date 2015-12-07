@@ -18,7 +18,7 @@ if (!window.slideFunctions['rss']) {
         slide.currentImage = slide.media[0].image;
       }
 
-      if (slide.external_data) {
+      if (slide.external_data && slide.external_data.feed) {
         slide.rss = {
           rssEntry: 0,
           numberOfSlidesToShow: slide.options.rss_number < slide.external_data.feed.length ?
@@ -54,8 +54,10 @@ if (!window.slideFunctions['rss']) {
     run: function runRssSlide(slide, region) {
       region.itkLog.info("Running rss slide: " + slide.title);
 
-      if (!slide.external_data) {
+      // Check that external_data exists.
+      if (!slide.external_data || !slide.external_data.feed) {
         region.nextSlide();
+
         return;
       }
 
