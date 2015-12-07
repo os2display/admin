@@ -55,7 +55,7 @@ if (!window.slideFunctions['rss']) {
       region.itkLog.info("Running rss slide: " + slide.title);
 
       // Check that external_data exists.
-      if (!slide.external_data || !slide.external_data.feed) {
+      if (!slide.external_data || !slide.external_data.feed || slide.external_data.feed.length <= 0) {
         region.nextSlide();
 
         return;

@@ -41,6 +41,10 @@ class FeedService {
 
       $source = $options['source'];
 
+      if (empty($source)) {
+        continue;
+      }
+
       $md5Source = md5($source);
 
       // Check for previouslyDownloaded feed.
