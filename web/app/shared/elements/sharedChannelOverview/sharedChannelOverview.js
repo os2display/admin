@@ -28,7 +28,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           scope.sharingIndexes = data;
         });
 
-        scope.showFromUser = 'all';
+        scope.showFromUser = 'mine';
         scope.sort = { "created_at": "desc" };
 
         userFactory.getCurrentUser().then(

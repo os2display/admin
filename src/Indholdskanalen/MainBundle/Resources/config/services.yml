@@ -30,6 +30,14 @@ services:
     class: Indholdskanalen\MainBundle\Services\KobaService
     arguments: [%koba_path%, %koba_apikey%, @service_container]
 
+  indholdskanalen.feed_service:
+    class: Indholdskanalen\MainBundle\Services\FeedService
+    arguments: [@service_container]
+
+  indholdskanalen.instagram_service:
+    class: Indholdskanalen\MainBundle\Services\InstagramService
+    arguments: [@service_container]
+
   indholdskanalen.authentication_service:
     class: Indholdskanalen\MainBundle\Services\AuthenticationService
     arguments: [@service_container]
