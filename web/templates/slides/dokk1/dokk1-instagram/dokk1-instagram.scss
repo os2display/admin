@@ -1,0 +1,374 @@
+/**
+ *
+ * Dokk1 instagram template. (Responsive)
+ *
+ * A note on responsive templates:
+ * We use viewport width for base fontsize in client.
+ * We use viewport width for padding and margin, so the padding depends on the full width of the screen rather than the width of each section within a 5 split screen.
+ * When displaying editor or preview we add state classes and fall back to em for margin/padding.
+ *
+ */
+
+
+
+/* Imports.
+   ========================================================================== */
+
+@import "compass/css3";
+@import "../../../_shared-base.scss";
+
+
+@font-face {
+  font-family: 'Gibson SemiBold';
+  src: url("fonts/Gibson-SemiBold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Regular';
+  src: url("fonts/Gibson-Regular-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'Gibson Light';
+  src: url("fonts/Gibson-Light-webfont.woff") format("woff");
+}
+
+
+.dokk1-instagram {
+  position: relative;
+
+  box-sizing: border-box;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 100%;
+  padding: 4vmin;
+
+  background-color: $white;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  font: 1em/1.5 'Gibson Light', sans-serif;
+  color: $white;
+  text-align: left;
+
+  img {
+    display: inline;
+    height: auto;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  strong {
+    font-family: 'Gibson Regular';
+  }
+
+  &--hashtag {
+    font-size: 8vmin;
+    line-height: 8vmin;
+    font-family: 'Gibson Regular';
+  }
+
+  &--amount {
+    margin-bottom: 2vmin;
+
+    font-size: 2vmin;
+  }
+
+  &--content {
+    display: flex;
+
+    flex-basis: 100%;
+
+    align-items: stretch;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    font-size: 10vmin;
+  }
+
+  &--image {
+    margin-bottom: 3vmin;
+
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  &--image img {
+    width: 100%;
+  }
+
+  &--post {
+    order: 2;
+  }
+
+  &--description {
+    margin-bottom: 2vmin;
+    max-height: 25%;
+    overflow-y: hidden;
+
+    font-size: 4.5vmin;
+  }
+
+  &--user {
+    display: flex;
+
+    align-items: center;
+
+    font-size: 3.5vmin;
+  }
+
+  &--user strong {
+    order: 2;
+  }
+
+  &--user img {
+    border-radius: 50%;
+    height: 75px;
+    margin-right: 3vmin;
+    width: 75px;
+
+    order: 1;
+  }
+
+  @media only screen and (min-width: 1081px) {
+    &--hashtag {
+      margin-bottom: .25vmin;
+
+      font-size: 10vmin;
+      line-height: 10vmin;
+    }
+
+    &--amount {
+      margin-bottom: 1vmin;
+      padding-bottom: 2vmin;
+      padding-left: .5vmin;
+
+      font-size: 2.5vmin;
+    }
+
+    &--content {
+      flex-direction: row;
+
+      font-size: 6vmin;
+    }
+
+    &--description {
+      max-height: 60%;
+    }
+
+    &--image {
+      margin-bottom: 0;
+      flex-basis: 54%;
+    }
+
+    &--post {
+      padding-left: 6vmin;
+    }
+
+    &--user {
+      margin-bottom: 2vmin;
+    }
+
+    &--user img {
+      margin-right: 3vmin;
+    }
+  }
+}
+
+
+.dokk1-instagram-editor {
+  position: relative;
+
+  box-sizing: border-box;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  min-height: 100%;
+  padding: 2%;
+
+  background-color: $white;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  color: $white;
+  text-align: left;
+  font: 12px 'Gibson Light', sans-serif;
+
+  &--image {
+    width: 54%;
+  }
+
+  img {
+    display: inline;
+    height: auto;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  strong {
+    font-family: 'Gibson Regular';
+  }
+
+  &--hashtag {
+    font-size: 32px;
+    font-family: 'Gibson Regular';
+  }
+
+  &--amount {
+    margin-bottom: 10px;
+
+    font-size: 12px;
+  }
+
+  &--content {
+    display: flex;
+
+    flex-basis: 100%;
+
+    align-items: stretch;
+    flex-direction: row;
+    flex-shrink: 0;
+
+    font-size: 20px;
+  }
+
+  &--image {
+    margin-right: 10px;
+
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  &--image img {
+    width: 100%;
+  }
+
+  &--post {
+    order: 2;
+  }
+
+  &--description {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  &--user {
+    display: flex;
+
+    align-items: center;
+
+    font-size: 14px;
+  }
+
+  &--user strong {
+    order: 2;
+  }
+
+  &--user img {
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 10px;
+    width: 40px;
+
+    order: 1;
+  }
+}
+
+
+.dokk1-instagram-preview {
+  position: relative;
+
+  box-sizing: border-box;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  min-height: 100%;
+  padding: 2%;
+
+  background-color: $white;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+  color: $white;
+  text-align: left;
+  font: 6px 'Gibson Light', sans-serif;
+
+  &--image {
+    width: 54%;
+  }
+
+  img {
+    display: inline;
+    height: auto;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  strong {
+    font-family: 'Gibson Regular';
+  }
+
+  &--hashtag {
+    font-size: 16px;
+  }
+
+  &--amount {
+    margin-bottom: 3px;
+    font-size: 4px;
+  }
+
+  &--content {
+    display: flex;
+
+    flex-basis: 100%;
+
+    align-items: stretch;
+    flex-direction: row;
+    flex-shrink: 0;
+
+    font-size: 6px;
+  }
+
+  &--image {
+    margin-right: 5px;
+
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  &--image img {
+    width: 100%;
+  }
+
+  &--post {
+    order: 2;
+  }
+
+  &--description {
+    font-size: 7px;
+    margin-bottom: 5px;
+  }
+
+  &--user {
+    display: flex;
+
+    align-items: center;
+
+    font-size: 7px;
+  }
+
+  &--user strong {
+    order: 2;
+  }
+
+  &--user img {
+    border-radius: 50%;
+    height: 10px;
+    margin-right: 2px;
+    width: 10px;
+
+    order: 1;
+  }
+}

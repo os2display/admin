@@ -135,7 +135,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       }
       else {
         // Fallback to default tools.
-        $scope.toolbarTemplate = 'app/shared/toolbars/' + tool.name + '.html';
+        $scope.toolbarTemplate = 'app/shared/toolbars/' + tool.name + '.html?' + window.config.version;
       }
       $scope.region = tool.region;
       $scope.displayToolbar = true;

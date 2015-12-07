@@ -14,7 +14,12 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/colorpicker.css?' ~ version) }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css?' ~ version) }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css?' ~ version) }}">
+
+    {% if app.environment == 'dev' %}
+      <link rel="stylesheet" href="{{ asset('assets/build/styles.css?' ~ version) }}">
+    {% else %}
+      <link rel="stylesheet" href="{{ asset('assets/build/styles.min.css?' ~ version) }}">
+    {% endif %}
 
   {# Import css files for templates. #}
   {% if templates is defined %}

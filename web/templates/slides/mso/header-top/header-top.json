@@ -7,10 +7,13 @@
     "live": "header-top-live.html",
     "edit": "header-top-edit.html",
     "preview": "header-top-preview.html",
-    "css": "header-top.css"
+    "css": "header-top.css",
+    "js": "../js/baseSlide.js"
   },
   "orientation": "landscape",
+  "slide_type": "base",
   "media_type": "image",
+  "script_id": "base",
   "ideal_dimensions": {
     "width": "1920",
     "height": "1080"
@@ -25,6 +28,15 @@
     "text": "",
     "responsive_fontsize": "3",
     "defaultImage": "header-top.png"
-  }
+  },
+  "tools": [
+    {
+      "name": "Header",
+      "id": "header-editor-responsive"
+    },
+    {
+      "name": "Baggrund",
+      "id": "background-editor-transparent"
+    }
+  ]
 }
-

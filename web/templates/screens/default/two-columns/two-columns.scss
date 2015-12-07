@@ -1,11 +1,10 @@
 @import "compass/css3";
-@import "../../_shared-base-screens.scss";
+@import "../../../_shared-base.scss";
 
 
 .two-columns {
   &--inner {
-    font-size: 0; // inline-block fix.
-    margin: 0 auto;
+    font-size: 0;
   }
 
   &--region-horizontal {
@@ -13,6 +12,9 @@
     box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
+
+    // The -4 is an inline-block fix.
+    //margin: 0 auto 0 -4px;
 
     &:last-child {
       border: 0;
@@ -32,6 +34,9 @@
   &--region-content {
     @extend %presentation--item-inner;
 
+    font-size: 1rem;
     position: relative;
+    height: 100%;
+    width: 100%;
   }
 }

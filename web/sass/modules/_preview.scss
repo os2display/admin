@@ -48,7 +48,7 @@
 .preview--channel-play {
   @extend %preview--play-pause-positioning;
 
-  @include generate-sprite-image($dashboard-sprites, 'play-icon', 65);
+  width: 50px;
 }
 
 
@@ -56,5 +56,5 @@
 .preview--channel-pause {
   @extend %preview--play-pause-positioning;
 
-  @include generate-sprite-image($dashboard-sprites, 'pause-icon', 65);
+  width: 50px;
 }

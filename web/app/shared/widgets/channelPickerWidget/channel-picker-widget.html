@@ -1,5 +1,5 @@
 <div class="cpw--add-channels">
-  <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
+  <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text" data-ng-model-options="{debounce: 500}">
   <div class="cpw--add-channels-list">
     <div class="cpw--add-channels-item" data-ng-repeat="channel in channels" data-ng-if="!channelSelected(channel)">
       <div class="cpw--add-channels-item-image">

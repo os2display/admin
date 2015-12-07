@@ -6,10 +6,12 @@
     "live": "rss-default-live.html",
     "edit": "rss-default-edit.html",
     "preview": "rss-default-preview.html",
-    "css": "rss-default.css"
+    "css": "rss-default.css",
+    "js": "../js/rssSlide.js"
   },
   "slide_type": "rss",
   "media_type": "image",
+  "script_id": "rss",
   "orientation": "landscape",
   "ideal_dimensions": {
     "width": "1920",
@@ -30,5 +32,19 @@
       "right":"auto"
     },
     "logosize": "10%"
-  }
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "RSS",
+      "id": "rss-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
+  ]
 }

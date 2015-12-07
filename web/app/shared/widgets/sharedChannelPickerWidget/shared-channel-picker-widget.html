@@ -1,5 +1,5 @@
 <div class="cpw--add-channels">
-  <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
+  <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text" data-ng-model-options="{debounce: 500}">
   <div class="cpw--add-channels-select-index">
     <div class="cpw--add-channels-select-index-button" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
     <div class="cpw--add-channels-select-index-items" data-ng-show="pickIndexDialog">

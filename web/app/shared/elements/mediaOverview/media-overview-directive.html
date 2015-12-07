@@ -2,9 +2,9 @@
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
     <form class="overview--form" accept-charset="UTF-8" data-ng-class="{'full-width': ikHideFilters}">
-      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-change="updateSearch()">
+      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-model-options="{debounce: 500}" data-ng-change="updateSearch()">
     </form>
-    <div class="overview--filter-owner">
+    <div class="overview--filter-owner overview--filter-owner-foursplit">
       <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all')">Alle</span>
       <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine')">Mine</span>
     </div>
@@ -35,12 +35,11 @@
           <a class="overview--media-link">
             <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
           </a>
-          <div class="overview--media-label">{{mediaElement.name}} (image)</div>
+          <div class="overview--media-label">{{mediaElement.name}} (billede)</div>
         </div>
         <div data-ng-switch-when="logo">
           <a class="overview--media-link">
             <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
-            <div class="overview--media-overlay"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{mediaElement.name}} (logo)</span></div></div>
           </a>
           <div class="overview--media-label">{{mediaElement.name}} (logo)</div>
         </div>
@@ -52,7 +51,6 @@
             <div data-ng-if="!mediaElement.provider_metadata[0].thumbnails[1].reference">
               <div class="overview--no-video">Video ikke klar</div>
             </div>
-            <div class="overview--media-overlay"><div class="overview--media-overlay-inner"><span class="overview--media-text">{{mediaElement.name}} (video)</span></div></div>
           </a>
           <div class="overview--media-label">{{mediaElement.name}} (video)</div>
         </div>

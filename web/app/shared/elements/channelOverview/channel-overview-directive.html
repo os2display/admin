@@ -2,7 +2,7 @@
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
     <form class="overview--form full-width" accept-charset="UTF-8">
-      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
+      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text" data-ng-model-options="{debounce: 500}">
     </form>
     <div class="overview--filter-owner">
       <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all')">Alle</span>

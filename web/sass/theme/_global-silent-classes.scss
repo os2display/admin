@@ -17,19 +17,19 @@
   top: 50%;
 
   @include translateY(-50%);
-  @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
+  @include get-icon('check-circle-icon', 80%);
 
   @include breakpoint($breakpoint-lap) {
-    @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 50);
+    @include get-icon('check-circle-icon', 50%);
   }
   @include breakpoint(600px) {
-    @include generate-sprite-image($dashboard-sprites, 'check-circle-icon', 80);
+    @include get-icon('check-circle-icon', 80%);
   }
 }
 
 
 %validation-default {
-  background: url('../images/icons/check-circle-icon.png') $gray-lightest;
+  background: url('../../images/icons/check-circle-icon.png') $gray-lightest;
   background-size:2em 2em;
   background-repeat:no-repeat;
   background-position: right 1.25em top 1.25em;
@@ -114,17 +114,6 @@
   margin: 0 auto;
 }
 
-// Remove element from list icon (Used on "Channel order list" and "Screen channel select list").
-%create-element--remove-element {
-  cursor: pointer;
-  position:absolute;
-  right: -.5em;
-  top: -.5em;
-  z-index: 1;
-
-  @include generate-sprite-image($dashboard-sprites, 'cancel-icon', 30);
-}
-
 /* Slide configuration elements - Used for displaying edit links on templates in create slide process.
    ================================================================================================================== */
 
@@ -133,7 +122,7 @@
   right: 10px;
   top: 10px;
 
-  @include generate-sprite-image($dashboard-sprites, 'gear-icon', 50);
+  @include get-icon('gear-icon', 50px, 50px);
 
   &:hover {
     cursor: pointer;
@@ -146,7 +135,7 @@
   position: absolute;
   right: 15%;
 
-  @include generate-sprite-image($dashboard-sprites, 'landscape-icon');
+  @include get-icon('landscape-icon', 50px, 50px);
 
   &:hover {
     cursor: pointer;
@@ -174,7 +163,7 @@
   top: 50%;
 
   @include transform(translateY(-50%));
-  @include generate-sprite-image($dashboard-sprites, 'plus-icon', 75);
+  @include get-icon('plus-icon', 50px, 50px);
 
   &:hover {
     cursor: pointer;

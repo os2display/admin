@@ -2,7 +2,7 @@
   <div class="overview--filter">
     <label class="overview--filter-label">Filtrér på:</label>
     <form class="overview--form full-width" accept-charset="UTF-8">
-      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text">
+      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text" data-ng-model-options="{debounce: 500}">
     </form>
     <div class="overview--filter-owner">
       <div class="overview--filter-owner-button" data-ng-click="pickIndexDialog = true">{{index.index ? index.name : "Vælg indeks"}}</div>
@@ -36,7 +36,7 @@
   <ik-pager></ik-pager>
 </section>
 
-<modal-dialog show="pickIndexDialog">
+<modal-dialog show="pickIndexDialog" on-close="">
   <h2 class="edit-menu--content-header">Vælg indeks</h2>
   <p class="edit-menu--content-description">Vælg hvilket indeks du vil søge i</p>
   <div class="create-channel--screen" data-ng-repeat="index in sharingIndexes" data-ng-click="setIndex(index)">

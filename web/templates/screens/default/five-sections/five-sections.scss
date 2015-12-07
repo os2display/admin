@@ -1,11 +1,10 @@
 @import "compass/css3";
-@import "../../_shared-base-screens.scss";
+@import "../../../_shared-base.scss";
 
 
 .five-sections {
   &--inner {
-    font-size: 0; // inline-block fix.
-    margin: 0 auto;
+    font-size: 0;
   }
 
   &--region-horizontal {
@@ -32,6 +31,9 @@
   &--region-content {
     @extend %presentation--item-inner;
 
+    font-size: 1rem;
     position: relative;
+    height: 100%;
+    width: 100%;
   }
 }

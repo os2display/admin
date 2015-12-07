@@ -1,11 +1,11 @@
 @import "compass/css3";
-@import "../../_shared-base.scss";
+@import "../../../_shared-base.scss";
 
 .ik-iframe {
   background-color: $gray-light;
   display: block;
   height: 100%;
-  padding-top: 0em;
+  padding-top: 0;
   text-align: center;
   width: 100%;
 
