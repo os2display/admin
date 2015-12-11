@@ -375,12 +375,13 @@ class ScreenController extends Controller {
 
       // Element deleted.
       $response->setStatusCode(200);
+
+      $this->get('indholdskanalen.middleware.communication')->removeScreenById($id);
     }
     else {
       // Not found.
       $response->setStatusCode(404);
     }
-
     return $response;
   }
 
