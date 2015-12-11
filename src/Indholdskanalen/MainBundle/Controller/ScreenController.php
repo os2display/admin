@@ -369,14 +369,15 @@ class ScreenController extends Controller {
     $response = new Response();
 
     if ($screen) {
+      // Remove the screen from the middleware.
+      $this->get('indholdskanalen.middleware.communication')->removeScreen($screen);
+
       $em = $this->getDoctrine()->getManager();
       $em->remove($screen);
       $em->flush();
 
       // Element deleted.
       $response->setStatusCode(200);
-
-      $this->get('indholdskanalen.middleware.communication')->removeScreenById($id);
     }
     else {
       // Not found.
