@@ -74,6 +74,8 @@ if (!window.slideFunctions['instagram']) {
         }, slide.options.instagram_duration * 1000);
       };
 
+      slide.instagram.instagramEntry = 0;
+
       instagramTimeout();
 
       // Wait fadeTime before start to account for fade in.
