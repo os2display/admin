@@ -28,12 +28,14 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           scope.sharingIndexes = data;
         });
 
-        scope.showFromUser = 'mine';
         scope.sort = { "created_at": "desc" };
 
         userFactory.getCurrentUser().then(
           function success(data) {
             scope.currentUser = data;
+
+            // Set search filter default
+            scope.showFromUser = scope.currentUser.search_filter_default;
           },
           function error(reason) {
             itkLog.error("Kunne ikke loade bruger", reason);

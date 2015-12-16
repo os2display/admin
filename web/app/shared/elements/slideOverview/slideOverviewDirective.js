@@ -19,7 +19,6 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
       controller: function ($scope, slideFactory, userFactory) {
         $scope.loading = false;
 
-        $scope.showFromUser = 'mine';
         $scope.sort = {"created_at": "desc"};
 
         // Default pager values.
@@ -208,6 +207,9 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
         userFactory.getCurrentUser().then(
           function (data) {
             $scope.currentUser = data;
+
+            // Set search filter default
+            $scope.showFromUser = $scope.currentUser.search_filter_default;
 
             // Updated search filters (build "mine" filter with user id). It
             // will trigger an search update.
