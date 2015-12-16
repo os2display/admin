@@ -86,7 +86,6 @@ class User extends BaseUser
 		return $result;
 	}
 
-
 	/**
 	 * Add groups
 	 *

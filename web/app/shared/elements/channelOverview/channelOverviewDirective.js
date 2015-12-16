@@ -20,7 +20,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         scope.displaySharingOption = window.config.sharingService.enabled;
         scope.loading = false;
 
-        scope.showFromUser = 'mine';
         scope.sort = { "created_at": "desc" };
 
         // Default pager values.
@@ -192,6 +191,8 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
         userFactory.getCurrentUser().then(
           function (data) {
             scope.currentUser = data;
+
+            scope.showFromUser = scope.currentUser.search_filter_default;
 
             // Updated search filters (build "mine" filter with user id). It
             // will trigger an search update.
