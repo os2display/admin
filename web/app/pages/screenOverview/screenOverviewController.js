@@ -13,7 +13,6 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
     $scope.loading = false;
 
     // Set default values.
-    $scope.showFromUser = 'mine';
     $scope.sort = { "created_at": "desc" };
 
     // Default pager values.
@@ -145,10 +144,12 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
       }
     };
 
-    // Load current user (need to activate "mine" tab as default).
     userFactory.getCurrentUser().then(
       function (data) {
         $scope.currentUser = data;
+
+        // Set search filter default
+        $scope.showFromUser = $scope.currentUser.search_filter_default;
 
         // Updated search filters (build "mine" filter with user id). It
         // will trigger an search update.
