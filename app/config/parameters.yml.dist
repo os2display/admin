@@ -51,3 +51,5 @@ parameters:
     itk_log_log_level: all
 
     instagram_client_id: 1234567
+
+    search_filter_default: all

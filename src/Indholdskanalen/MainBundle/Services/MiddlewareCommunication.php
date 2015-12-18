@@ -264,4 +264,26 @@ class MiddlewareCommunication extends ContainerAware {
 
     return $curlResult['status'] === 200;
   }
+
+
+  /**
+   * Remove screen
+   *
+   * @param $screen
+   *   The screen to remove.
+   * @return bool
+   *   Did it succeed?
+   */
+  public function removeScreen($screen) {
+    $middlewarePath = $this->container->getParameter('middleware_host') . $this->container->getParameter('middleware_path');
+
+    $curlResult = $this->utilityService->curl(
+      $middlewarePath . '/screen/' . $screen->getId() . '/' . $screen->getActivationCode(),
+      'DELETE',
+      json_encode(array("id" => $screen->getId())),
+      'middleware'
+    );
+
+    return $curlResult['status'] === 200;
+  }
 }
