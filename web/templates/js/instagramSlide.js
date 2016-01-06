@@ -74,8 +74,15 @@ if (!window.slideFunctions['instagram']) {
         }, slide.options.instagram_duration * 1000);
       };
 
+      // Setup basic instagram setup.
+      if (!slide.hasOwnProperty('instagram')) {
+        slide.instagram = {};
+      }
+
+      // Reset instagram show.
       slide.instagram.instagramEntry = 0;
 
+      // Start the show
       instagramTimeout();
 
       // Wait fadeTime before start to account for fade in.
