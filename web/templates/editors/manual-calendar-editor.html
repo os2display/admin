@@ -50,7 +50,10 @@
               <input class="edit-menu--calendar-form-element-date" datetime-picker="" type="text" data-ng-model="event.to">
             </div>
             <div class="edit-menu--calendar-form-element-wrapper-link">
-              <div class="edit-menu--calendar-remove-date" data-ng-click="removeEventItem(event)"></div><span class="edit-menu--calendar-remove-date-notice" data-ng-class="{'is-outdated': eventIsOutdated(event)}">Forældet!</span>
+              <div class="edit-menu--calendar-remove-date" data-ng-click="removeEventItem(event)">
+                <img src="images/icons/minus-icon.png">
+              </div>
+              <span class="edit-menu--calendar-remove-date-notice" data-ng-class="{'is-outdated': eventIsOutdated(event)}">Forældet!</span>
             </div>
           </div>
         </div>
