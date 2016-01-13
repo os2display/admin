@@ -1,4 +1,7 @@
 <div class="date-component">
+  <div class="mso-four-sections--date-display" data-ng-if="theme === 'mso'">
+    <span class="mso-four-sections--day">{{thisDate | date:'d. MMMM yyyy'}}</span>
+  </div>
   <div class="dokk1-multiple-calendar--date-display" data-ng-if="theme === 'dokk1-multiple-calendar'">
     <span class="dokk1-multiple-calendar--day">{{thisDate | date:'EEE'}}</span> {{thisDate | date:'d'}}. <span>{{thisDate | date:'MMMM'}}</span> <span>{{thisDate | date:'HH:mm'}}</span>
   </div>

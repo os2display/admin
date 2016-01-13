@@ -13,13 +13,6 @@ if (!window.slideFunctions['instagram']) {
     setup: function setupInstagramSlide(scope) {
       var slide = scope.ikSlide;
 
-      // Setup basic instagram setup.
-      if (!slide.hasOwnProperty('instagram')) {
-        slide.instagram = {
-          instagramEntry: 0
-        };
-      }
-
       // Only show first image in array.
       if (slide.media_type === 'image' && slide.media.length > 0) {
         slide.currentImage = slide.media[0].image;
@@ -50,6 +43,9 @@ if (!window.slideFunctions['instagram']) {
      *   The region to call when the slide has been executed.
      */
     run: function runInstagramSlide(slide, region) {
+      // Reset instagram show.
+      slide.instagramEntry = 0;
+
       region.itkLog.info("Running instagram slide: " + slide.title);
 
       // Check that external_data exists.
@@ -64,18 +60,17 @@ if (!window.slideFunctions['instagram']) {
        */
       var instagramTimeout = function instagramTimeout() {
         region.$timeout(function () {
-          if (slide.instagram.instagramEntry + 1 >= slide.external_data.length) {
+          if (slide.instagramEntry + 1 >= slide.external_data.length) {
             region.nextSlide();
           }
           else {
-            slide.instagram.instagramEntry++;
+            slide.instagramEntry++;
             instagramTimeout(slide);
           }
         }, slide.options.instagram_duration * 1000);
       };
 
-      slide.instagram.instagramEntry = 0;
-
+      // Start the show
       instagramTimeout();
 
       // Wait fadeTime before start to account for fade in.

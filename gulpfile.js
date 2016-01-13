@@ -115,7 +115,7 @@ var templates = {
   'screens': {
     'default': ['five-sections', 'three-columns', 'two-columns'],
     'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows'],
-    'mso': ['mso-five-sections'],
+    'mso': ['mso-five-sections', 'mso-four-sections'],
     'mbu': ['mbu-three-split']
   },
   'slides': {

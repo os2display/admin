@@ -50,9 +50,9 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
           $scope.addevent.place = null;
           $scope.addevent.from = null;
           $scope.addevent.to = null;
+
           // Run sorting of events.
           $scope.sortEvents();
-          $scope.validateEvents();
         }
         else if (tool.id === 'event-calendar-editor') {
           // Reset resources.
@@ -173,31 +173,6 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       var now = Date.now() / 1000;
 
       return (to && now > to) || (!to && now > from);
-    };
-
-    /**
-     * Validate events related to the slide.
-     */
-    $scope.validateEvents = function validateEvents() {
-      if ($scope.slide.options.eventitems.length > 0) {
-        // Run through all events.
-        for (var i = 0; i < $scope.slide.options.eventitems.length; i++) {
-          var item = $scope.slide.options.eventitems[i];
-
-          if (item.from && !item.to) {
-            item.dailyEvent = true;
-          }
-          else {
-            var fromDate = new Date(item.from * 1000);
-            var toDate = new Date(item.to * 1000);
-
-            return fromDate.getDate() === toDate.getDate();
-          }
-
-          // Save new event item with duration.
-          $scope.slide.options.eventitems[i] = item;
-        }
-      }
     };
 
     /**
