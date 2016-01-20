@@ -211,3 +211,128 @@
     font-size: 1.5vmin;
   }
 }
+
+.dokk1-coming-events-editor {
+  position: relative;
+  text-align: left;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100%;
+  width: 100%;
+
+  background-repeat: no-repeat;
+  background-color: rgb(0, 55, 100);
+  background-blend-mode: multiply;
+  background-size: cover;
+  font: 16px/1.5 'Gibson Light', sans-serif;
+  color: #fff;
+
+  &--header,
+  &--group-header {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+
+    font-family: 'Gibson SemiBold';
+    text-transform: capitalize;
+  }
+
+  &--header,
+  &--group-header,
+  &--group-item {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    letter-spacing: .15vmin;
+    line-height: 120%;
+  }
+
+  &--header {
+    background-color: rgba(0, 0, 0, .5);
+    font-size: 2em;
+  }
+
+  &--content {
+    flex-grow: 1;
+  }
+
+  &--group-header {
+    background-color: rgba(0, 0, 0, .25);
+    font-size: 1.5em;
+  }
+
+  &--group-item {
+    height: 40px;
+
+    display: flex;
+    flex-flow: column wrap;
+
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 5%;
+
+    font-size: 1em;
+
+    &.is-preview {
+      height: 20px;
+    }
+  }
+
+  &--group-item > :nth-child(1) {
+    height: 100%;
+    width: 22%;
+  }
+
+  &--group-item > :nth-child(2),
+  &--group-item > :nth-child(3) {
+    height: 50%;
+    width: 70%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &--group-item > :nth-child(3) {
+    color: rgba(255, 255, 255, .75);
+    line-height: 1.5em;
+  }
+
+  &--group-item:nth-child(odd) {
+    background-color: rgba(255, 255, 255, .025);
+  }
+
+  &--footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    display: flex;
+    align-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 10%;
+
+    font-size: 1em;
+    text-align: center;
+
+    &-text {
+      background-color: rgba(0, 0, 0, .5);
+      width: 100%;
+      height: 80%;
+
+      display: flex;
+      align-content: flex-end;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &.is-preview {
+    font-size: 6px;
+  }
+}
