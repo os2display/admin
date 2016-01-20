@@ -1,0 +1,41 @@
+{
+  "id": "dokk1-coming-events",
+  "name": "Dokk1 - Kommende begivender",
+  "icon": "dokk1-coming-events.png",
+  "paths": {
+    "live": "dokk1-coming-events-live.html",
+    "edit": "dokk1-coming-events-edit.html",
+    "preview": "dokk1-coming-events-preview.html",
+    "css": "dokk1-coming-events.css",
+    "js": "dokk1/dokk1-coming-events/dokk1-coming-events.js"
+  },
+  "orientation": "portrait",
+  "slide_type": "calendar",
+  "media_type": "image",
+  "script_id": "dokk1-coming-events",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "1920"
+  },
+  "empty_options": {
+    "bgcolor": "rgb(0, 55, 100)",
+    "headline": "",
+    "footer_text": "Se mere på dokk1.dk/arrangementer",
+    "resources": []
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "Kalender",
+      "id": "event-calendar-editor"
+    },
+    {
+      "name": "Tekst",
+      "id": "dokk1-coming-events-text-editor",
+      "path": "templates/slides/dokk1/dokk1-coming-events/editors/text-editor.html"
+    }
+  ]
+}
