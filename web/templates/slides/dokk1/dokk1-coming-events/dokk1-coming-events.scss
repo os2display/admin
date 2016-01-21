@@ -53,7 +53,6 @@
   padding-left: 4vmin;
 
   font-family: 'Gibson SemiBold';
-  text-transform: capitalize;
 }
 
 .dokk1-coming-events--header,
@@ -78,6 +77,10 @@
 .dokk1-coming-events--group-header {
   background-color: rgba(0, 0, 0, .25);
   font-size: 3vmin;
+}
+
+.dokk1-coming-events--group-header::first-letter {
+  text-transform: capitalize;
 }
 
 .dokk1-coming-events--group-item {
