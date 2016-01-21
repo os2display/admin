@@ -11,7 +11,7 @@
     </div>
     <div class="edit-menu--content-page">
       <div class="edit-menu--content-page-inner">
-        <h2 class="edit-menu--iframe-header">Redigér tekster</h2>
+        <h2 class="edit-menu--iframe-header">Redigér slide</h2>
         <div class="edit-menu--iframe-content">
           <div class="edit-menu--iframe-label">Titel</div>
           <input type="text"
@@ -23,6 +23,10 @@
           <input type="text"
                  placeholder="e.g. Min titel"
                  data-ng-model="ikSlide.options.footer_text">
+        </div>
+        <div class="edit-menu--iframe-content">
+          <label class="edit-menu--iframe-label">Vælg en baggrundsfarve</label>
+          <input colorpicker="hex" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
         </div>
       </div>
     </div>

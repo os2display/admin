@@ -25,17 +25,13 @@
   },
   "tools": [
     {
-      "name": "Baggrund",
-      "id": "background-editor"
+      "name": "Tekst / Farve",
+      "id": "dokk1-coming-events-content-editor",
+      "path": "templates/slides/dokk1/dokk1-coming-events/editors/content-editor.html"
     },
     {
       "name": "Kalender",
       "id": "event-calendar-editor"
-    },
-    {
-      "name": "Tekst",
-      "id": "dokk1-coming-events-text-editor",
-      "path": "templates/slides/dokk1/dokk1-coming-events/editors/text-editor.html"
     }
   ]
 }
