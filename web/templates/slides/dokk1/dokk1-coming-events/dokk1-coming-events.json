@@ -31,7 +31,8 @@
     },
     {
       "name": "Kalender",
-      "id": "event-calendar-editor"
+      "id": "event-calendar-editor",
+      "path": "templates/slides/dokk1/dokk1-coming-events/editors/calendar-editor.html"
     }
   ]
 }
