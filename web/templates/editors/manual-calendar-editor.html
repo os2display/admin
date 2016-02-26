@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="edit-menu--calendar-date-events">
-          <div class="edit-menu--calendar-date-event" data-ng-repeat="event in slide.options.eventitems | reverseEvents" data-ng-class="{'is-outdated': eventIsOutdated(event)}">
+          <div class="edit-menu--calendar-date-event" data-ng-repeat="event in slide.options.eventitems | orderBy: 'from'" data-ng-class="{'is-outdated': eventIsOutdated(event)}">
             <div class="edit-menu--calendar-form-element-wrapper">
               <input class="edit-menu--calendar-form-element" type="text" data-ng-model="event.title">
             </div>
