@@ -30,7 +30,7 @@ if (!window.slideFunctions['dokk1-coming-events']) {
     run: function runBaseSlide(slide, region) {
       region.itkLog.info("Running dokk1-coming-events slide: " + slide.title);
 
-      var duration = slide.duration ? slide.duration : 15;
+      var duration = slide.duration !== null ? slide.duration : 15;
 
       slide.eventDays = {};
 
