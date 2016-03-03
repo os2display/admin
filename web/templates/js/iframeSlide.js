@@ -44,18 +44,18 @@ if (!window.slideFunctions['iframe']) {
     run: function runIframeSlide(slide, region) {
       region.itkLog.info("Running iframe slide: " + slide.title);
 
-      var dur = slide.duration ? slide.duration : 5;
+      var duration = slide.duration !== null ? slide.duration : 15;
 
       // Wait fadeTime before start to account for fade in.
       region.$timeout(function () {
         // Set the progress bar animation.
-        region.progressBar.start(dur);
+        region.progressBar.start(duration);
 
         // Wait for slide duration, then show next slide.
         // + fadeTime to account for fade out.
         region.$timeout(function () {
           region.nextSlide();
-        }, dur * 1000 + region.fadeTime);
+        }, duration * 1000 + region.fadeTime);
       }, region.fadeTime);
     }
   };

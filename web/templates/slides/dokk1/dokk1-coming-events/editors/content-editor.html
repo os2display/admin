@@ -1,0 +1,34 @@
+<!-- Titel editor -->
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.hideEditors()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png"/>
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--content-page">
+      <div class="edit-menu--content-page-inner">
+        <h2 class="edit-menu--iframe-header">Redigér slide</h2>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Titel</div>
+          <input type="text"
+                 placeholder="e.g. Min titel"
+                 data-ng-model="ikSlide.options.headline">
+        </div>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Footer tekst</div>
+          <input type="text"
+                 placeholder="e.g. Min titel"
+                 data-ng-model="ikSlide.options.footer_text">
+        </div>
+        <div class="edit-menu--iframe-content">
+          <label class="edit-menu--iframe-label">Vælg en baggrundsfarve</label>
+          <input colorpicker="hex" type="text" placeholder="e.g. #000" ng-model="ikSlide.options.bgcolor" data-ng-style="{'background-color': ikSlide.options.bgcolor}">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

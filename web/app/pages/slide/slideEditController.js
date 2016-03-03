@@ -95,7 +95,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         // Open the tool.
         $scope.editor.editorOpen = true;
         if (tool.path) {
-          $scope.editorURL = tool.path;
+          $scope.editorURL = tool.path + '?' + window.config.version;
         }
         else {
           $scope.editorURL = 'templates/editors/' + tool.id + '.html?' + window.config.version;

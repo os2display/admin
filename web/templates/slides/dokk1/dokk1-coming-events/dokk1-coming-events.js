@@ -1,10 +1,10 @@
 /**
- * Base slide, that just displays for slide.duration, then calls the callback.
+ * Dokk1-coming-events slide.
  */
 
 // Register the function, if it does not already exist.
-if (!window.slideFunctions['base']) {
-  window.slideFunctions['base'] = {
+if (!window.slideFunctions['dokk1-coming-events']) {
+  window.slideFunctions['dokk1-coming-events'] = {
     /**
      * Setup the slide for rendering.
      * @param scope
@@ -17,21 +17,6 @@ if (!window.slideFunctions['base']) {
       if (slide.media_type === 'image' && slide.media.length > 0) {
         slide.currentImage = slide.media[0].image;
       }
-
-      // Set currentLogo.
-      slide.currentLogo = slide.logo;
-
-      // Setup the inline styling
-      scope.theStyle = {
-        width: "100%",
-        height: "100%",
-        fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0)+ "px"
-      };
-
-      // Set the responsive font size if it is needed.
-      if (slide.options.responsive_fontsize) {
-        scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0)+ "vw";
-      }
     },
 
     /**
@@ -43,9 +28,21 @@ if (!window.slideFunctions['base']) {
      *   The region object.
      */
     run: function runBaseSlide(slide, region) {
-      region.itkLog.info("Running base slide: " + slide.title);
+      region.itkLog.info("Running dokk1-coming-events slide: " + slide.title);
 
       var duration = slide.duration !== null ? slide.duration : 15;
+
+      slide.eventDays = {};
+
+      slide.external_data.forEach(function (element) {
+        var day = region.$filter('date')(new Date(element.start_time * 1000), 'EEEE d. MMMM');
+
+        if (!slide.eventDays.hasOwnProperty(day)) {
+          slide.eventDays[day] = [];
+        }
+
+        slide.eventDays[day].push(element);
+      });
 
       // Wait fadeTime before start to account for fade in.
       region.$timeout(function () {
