@@ -20,7 +20,7 @@
   "empty_options": {
     "bgcolor": "rgb(0, 55, 100)",
     "headline": "",
-    "footer_text": "Se mere på dokk1.dk/arrangementer",
+    "footer_text": "Se mere på dokk1.dk/events",
     "resources": []
   },
   "tools": [
@@ -31,7 +31,8 @@
     },
     {
       "name": "Kalender",
-      "id": "event-calendar-editor"
+      "id": "event-calendar-editor",
+      "path": "templates/slides/dokk1/dokk1-coming-events/editors/calendar-editor.html"
     }
   ]
 }

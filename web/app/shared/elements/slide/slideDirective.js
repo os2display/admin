@@ -36,7 +36,11 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
             }
           }
           else {
-            if (scope.ikSlide.media.length > 0 && scope.ikSlide.media[0].provider_metadata.length > 0) {
+            if (scope.ikSlide.media.length > 0 &&
+                scope.ikSlide.media[0].provider_metadata.length > 0 &&
+                scope.ikSlide.media[0].provider_metadata[0].thumbnails &&
+                scope.ikSlide.media[0].provider_metadata[0].thumbnails.length > 0
+            ) {
               scope.ikSlide.currentImage = scope.ikSlide.media[0].provider_metadata[0].thumbnails[1].reference;
             }
             else {

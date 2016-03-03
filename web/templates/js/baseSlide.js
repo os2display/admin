@@ -45,7 +45,7 @@ if (!window.slideFunctions['base']) {
     run: function runBaseSlide(slide, region) {
       region.itkLog.info("Running base slide: " + slide.title);
 
-      var duration = slide.duration ? slide.duration : 15;
+      var duration = slide.duration !== null ? slide.duration : 15;
 
       // Wait fadeTime before start to account for fade in.
       region.$timeout(function () {

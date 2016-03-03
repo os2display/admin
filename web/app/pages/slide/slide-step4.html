@@ -3,7 +3,7 @@
     <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
     <p class="create-slide--header-description">Angiv yderligere indstillinger for din slide.</p>
     <div class="create-slide--content-wrapper">
-      <div class="create-slide--duration" data-ng-if="slide.media_type === 'image' && slide.slide_type === 'base'">
+      <div class="create-slide--duration" data-ng-if="slide.media_type !== 'video' && slide.slide_type !== 'rss' && slide.slide_type !== 'instagram'">
         <label class="create-slide--duration-label">Varighed</label>
         <div class="create-slide--duration-text"><input type="text" placeholder="f.eks. 15" data-ng-model="slide.duration" class="create-slide--duration-input"><span class="create-slide--duration-suffix">sekunder.</span></div>
         <div class="create-slide--duration-description">Angiv hvor længe din slide skal vises i sekunder</div>
