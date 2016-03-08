@@ -43,6 +43,7 @@ class ZencoderProvider extends BaseProvider {
    */
   public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $apiKey) {
     parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
+
     $this->name = $name;
     $this->hostname = $hostname;
     $this->apiKey = $apiKey;
@@ -162,10 +163,6 @@ class ZencoderProvider extends BaseProvider {
     }
 
     $media->setProviderStatus(MediaInterface::STATUS_PENDING);
-
-    // Send video to Zencoder.
-    $this->postVideoZencoder($media);
-
   }
 
   /**
@@ -298,7 +295,6 @@ class ZencoderProvider extends BaseProvider {
     }
 
     $this->setFileContents($media);
-
   }
 
   /**
@@ -321,6 +317,9 @@ class ZencoderProvider extends BaseProvider {
 
     $metadata = $this->getMetadata($media);
     $file->setContent(file_get_contents($contents), $metadata);
+
+    // Send video to Zencoder.
+    $this->postVideoZencoder($media);
   }
 
   /**
@@ -356,16 +355,12 @@ class ZencoderProvider extends BaseProvider {
    */
   protected function fixFilename(MediaInterface $media) {
     if ($media->getBinaryContent() instanceof UploadedFile) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()
-          ->getClientOriginalName());
-      $media->setMetadataValue('filename', $media->getBinaryContent()
-          ->getClientOriginalName());
+      $media->setName($media->getName() ?: $media->getBinaryContent()->getClientOriginalName());
+      $media->setMetadataValue('filename', $media->getBinaryContent()->getClientOriginalName());
     }
     elseif ($media->getBinaryContent() instanceof File) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()
-          ->getBasename());
-      $media->setMetadataValue('filename', $media->getBinaryContent()
-          ->getBasename());
+      $media->setName($media->getName() ?: $media->getBinaryContent()->getBasename());
+      $media->setMetadataValue('filename', $media->getBinaryContent()->getBasename());
     }
 
     // This is the original name.
@@ -382,8 +377,7 @@ class ZencoderProvider extends BaseProvider {
    * @return string
    */
   protected function generateReferenceName(MediaInterface $media) {
-    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()
-      ->guessExtension();
+    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()->guessExtension();
   }
 
   /**
