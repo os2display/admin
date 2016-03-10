@@ -17,6 +17,7 @@ use Gaufrette\Filesystem;
 use Sonata\MediaBundle\CDN\CDNInterface;
 use Sonata\MediaBundle\Generator\GeneratorInterface;
 use Sonata\MediaBundle\Thumbnail\ThumbnailInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class ZencoderProvider
@@ -26,6 +27,7 @@ class ZencoderProvider extends BaseProvider {
   protected $name;
   protected $hostname;
   protected $apiKey;
+  protected $logger;
 
   /**
    * Setup the provider with correct hostname and API key.
@@ -40,12 +42,16 @@ class ZencoderProvider extends BaseProvider {
    * @param ThumbnailInterface $thumbnail
    * @param $hostname
    * @param $apiKey
+   * @param $logger
+   *   Logger interface to write message to system logs.
    */
-  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $apiKey) {
+  public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, $hostname, $apiKey, LoggerInterface $logger) {
     parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
+
     $this->name = $name;
     $this->hostname = $hostname;
     $this->apiKey = $apiKey;
+    $this->logger = $logger;
   }
 
   /**
@@ -119,6 +125,9 @@ class ZencoderProvider extends BaseProvider {
       $webm,
     );
 
+    // Set custom ID on the encoding job.
+    $api->pass_through = $media->getId();
+
     $json = json_encode($api);
 
     // Build CURL.
@@ -136,8 +145,8 @@ class ZencoderProvider extends BaseProvider {
     $result = json_decode(curl_exec($ch));
 
     // Save zencoder ID for callback usage.
-    if (isset($result->id)) {
-      $media->setAuthorName($result->id);
+    if (isset($result->errors)) {
+      $this->logger->error('Zencoder API: ' . reset($result->errors));
     }
   }
 
@@ -162,10 +171,6 @@ class ZencoderProvider extends BaseProvider {
     }
 
     $media->setProviderStatus(MediaInterface::STATUS_PENDING);
-
-    // Send video to Zencoder.
-    $this->postVideoZencoder($media);
-
   }
 
   /**
@@ -298,7 +303,6 @@ class ZencoderProvider extends BaseProvider {
     }
 
     $this->setFileContents($media);
-
   }
 
   /**
@@ -321,6 +325,9 @@ class ZencoderProvider extends BaseProvider {
 
     $metadata = $this->getMetadata($media);
     $file->setContent(file_get_contents($contents), $metadata);
+
+    // Send video to Zencoder.
+    $this->postVideoZencoder($media);
   }
 
   /**
@@ -356,16 +363,12 @@ class ZencoderProvider extends BaseProvider {
    */
   protected function fixFilename(MediaInterface $media) {
     if ($media->getBinaryContent() instanceof UploadedFile) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()
-          ->getClientOriginalName());
-      $media->setMetadataValue('filename', $media->getBinaryContent()
-          ->getClientOriginalName());
+      $media->setName($media->getName() ?: $media->getBinaryContent()->getClientOriginalName());
+      $media->setMetadataValue('filename', $media->getBinaryContent()->getClientOriginalName());
     }
     elseif ($media->getBinaryContent() instanceof File) {
-      $media->setName($media->getName() ?: $media->getBinaryContent()
-          ->getBasename());
-      $media->setMetadataValue('filename', $media->getBinaryContent()
-          ->getBasename());
+      $media->setName($media->getName() ?: $media->getBinaryContent()->getBasename());
+      $media->setMetadataValue('filename', $media->getBinaryContent()->getBasename());
     }
 
     // This is the original name.
@@ -382,8 +385,7 @@ class ZencoderProvider extends BaseProvider {
    * @return string
    */
   protected function generateReferenceName(MediaInterface $media) {
-    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()
-      ->guessExtension();
+    return sha1($media->getName() . rand(11111, 99999)) . '.' . $media->getBinaryContent()->guessExtension();
   }
 
   /**

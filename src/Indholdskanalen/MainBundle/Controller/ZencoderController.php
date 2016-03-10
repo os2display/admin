@@ -24,14 +24,20 @@ class ZencoderController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function callbackAction(Request $request) {
+    $logger = $this->get('logger');
+
     // Get posted channel information from the request.
-    $post = json_decode($request->getContent());
+    $json = $request->getContent();
+    $post = json_decode($json);
+
+    // Log that data have been return form zencoder.
+    $logger->info('Zencoder API: ' . $json);
 
     $status = FALSE;
 
     // Find the correct media.
-    $local_media = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')
-      ->findOneByAuthorName($post->job->id);
+    $media_manager = $this->get('sonata.media.manager.media');
+    $local_media = $media_manager->findOneBy(array('id' => $post->job->pass_through));
 
     if ($local_media) {
       $cdn = $this->get('sonata.media.cdn.server');
@@ -96,10 +102,12 @@ class ZencoderController extends Controller {
       $local_media->setAuthorName(NULL);
       $local_media->setProviderStatus(MediaInterface::STATUS_OK);
 
-      $media_manager = $this->get('sonata.media.manager.media');
       $media_manager->save($local_media);
 
       $status = TRUE;
+    }
+    else {
+      $logger->error('Zencoder API: Callback call for media not found in DB');
     }
 
     $response = new Response(json_encode(array($status)));
