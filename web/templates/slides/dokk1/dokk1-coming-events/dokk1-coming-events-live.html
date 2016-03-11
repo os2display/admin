@@ -3,7 +3,7 @@
   <main class="dokk1-coming-events--content">
     <section class="dokk1-coming-events--group" data-ng-repeat="(key, events) in ikSlide.eventDays" data-ng-if="$index < 5">
       <h3 class="dokk1-coming-events--group-header">{{ key }}</h3>
-      <article class="dokk1-coming-events--group-item" data-ng-repeat="event in events">
+      <article class="dokk1-coming-events--group-item" data-ng-repeat="event in events" data-ng-if="event.event_name.toLowerCase().indexOf('(usynlig)') == -1">
         <div>{{ event.start_time * 1000 | date:'HH:mm' }} - {{ event.end_time * 1000 | date:'HH:mm' }}</div>
         <div>{{ event.event_name }}</div>
         <div>{{ event.resource_alias ? event.resource_alias : event.resource_id }}</div>
