@@ -76,8 +76,6 @@ if (!window.slideFunctions['calendar-single-day']) {
 
       var duration = slide.duration !== null ? slide.duration : 15;
 
-      slide.eventDays = {};
-
       if (slide.external_data) {
         var now = new Date();
         now = now.getTime();

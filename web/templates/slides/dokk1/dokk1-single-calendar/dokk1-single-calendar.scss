@@ -100,6 +100,7 @@
   &--content {
     position: absolute;
     top: 34vmin;
+    width: 95%;
 
     &.is-editor,
     &.is-preview {
@@ -111,8 +112,6 @@
   &--now,
   &--next {
     margin-right: 5vmin;
-
-    max-width: 56%;
 
     overflow: hidden;
     text-overflow: ellipsis;
