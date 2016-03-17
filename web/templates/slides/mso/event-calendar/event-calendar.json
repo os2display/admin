@@ -7,12 +7,12 @@
     "edit": "event-calendar-edit.html",
     "preview": "event-calendar-preview.html",
     "css": "event-calendar.css",
-    "js": "../js/baseSlide.js"
+    "js": "../js/calendarSingleDay.js"
   },
   "orientation": "landscape",
   "slide_type": "calendar",
   "media_type": "image",
-  "script_id": "base",
+  "script_id": "calendar-single-day",
   "ideal_dimensions": {
     "width": "1920",
     "height": "1080"

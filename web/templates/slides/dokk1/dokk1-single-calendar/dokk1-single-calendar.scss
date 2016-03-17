@@ -111,7 +111,12 @@
   &--now,
   &--next {
     margin-right: 5vmin;
+
+    max-width: 56%;
+
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     border-left: 1vmin solid rgba(255, 255, 255, .6);
     margin-left: .5vmin;
