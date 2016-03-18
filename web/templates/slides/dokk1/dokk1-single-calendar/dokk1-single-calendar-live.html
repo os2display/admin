@@ -6,14 +6,14 @@
     </div>
   </div>
   <div class="dokk1-single-calendar--content">
-    <div class="dokk1-single-calendar--available" data-ng-if="ikSlide.external_data.length === 0">
+    <div class="dokk1-single-calendar--available" data-ng-if="ikSlide.selected_data.length === 0">
       Lokalet er ledigt
     </div>
-    <div class="dokk1-single-calendar--now" data-ng-repeat="event in ikSlide.external_data | limitTo : 1">
+    <div class="dokk1-single-calendar--now" data-ng-repeat="event in ikSlide.selected_data" data-ng-if="$index === 0">
       <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
       {{event.event_name ? event.event_name : 'Optaget'}}
     </div>
-    <div class="dokk1-single-calendar--next" data-ng-repeat="event in ikSlide.external_data track by $index | limitTo : 3" data-ng-if="$index > 0">
+    <div class="dokk1-single-calendar--next" data-ng-repeat="event in ikSlide.selected_data track by $index" data-ng-if="$index > 0 && $index < 3">
       <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
       {{event.event_name ? event.event_name : 'Optaget'}}
     </div>

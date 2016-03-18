@@ -35,6 +35,10 @@ if (!window.slideFunctions['dokk1-coming-events']) {
       slide.eventDays = {};
 
       slide.external_data.forEach(function (element) {
+        if (element.end_time * 1000 < Date.now()) {
+          return;
+        }
+
         var day = region.$filter('date')(new Date(element.start_time * 1000), 'EEEE d. MMMM');
 
         if (!slide.eventDays.hasOwnProperty(day)) {
