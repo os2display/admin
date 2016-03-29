@@ -1,0 +1,4 @@
+parameters:
+  apps:
+    fisk:
+      name: FISK!
