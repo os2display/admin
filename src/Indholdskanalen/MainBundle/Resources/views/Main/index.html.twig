@@ -53,7 +53,7 @@
   {% if app.environment == 'dev' %}
     <!-- Imports -->
     <script src="{{ asset('assets/libs/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-1.4.6.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/angular-1.5.3.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-animate-1.4.6.min.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-route-1.4.6.min.js') }}"></script>
     <script src="{{ asset('assets/libs/moment-2.8.3.min.js') }}"></script>
@@ -173,8 +173,8 @@
      * When the document is ready bootstrap the two applications.
      */
     angular.element(document).ready(function ready() {
+      "use strict";
       {% for key, app in apps %}
-
         var {{ key }} = document.getElementById('{{ key }}');
         if ({{ key }}) {
           angular.bootstrap({{ key }}, ['{{ key }}']);

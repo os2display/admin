@@ -18,12 +18,11 @@ if (!window.config || !window.config.itkLog) {
  * requires stacktrace.js - http://www.stacktracejs.com/
  *   tested with v0.6.4
  */
-var app = angular.module('logApp', []);
 
 /**
  * itkLog
  */
-app.factory('itkLog', ['$http', '$timeout', '$log',
+angular.module('logApp').factory('itkLog', ['$http', '$timeout', '$log',
     function ($http, $timeout, $log) {
       'use strict';
 
@@ -164,7 +163,7 @@ app.factory('itkLog', ['$http', '$timeout', '$log',
  *
  * Displays the current message from itkLog.
  */
-app.directive('itkLog', ['itkLog',
+angular.module('logApp').directive('itkLog', ['itkLog',
     function (itkLog) {
       'use strict';
 

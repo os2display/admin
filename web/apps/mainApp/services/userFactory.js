@@ -6,8 +6,8 @@
 /**
  * User factory.
  */
-angular.module('mainApp').factory('userFactory', ['$http', '$q',
-  function ($http, $q) {
+angular.module('mainApp').factory('userFactory', ['busService', '$http', '$q',
+  function (busService, $http, $q) {
     'use strict';
 
     var factory = {};
