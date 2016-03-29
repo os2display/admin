@@ -1,4 +1,22 @@
 parameters:
   apps:
-    fisk:
-      name: FISK!
+    mainApp:
+      files:
+        - /apps/mainApp/mainController.js
+        - /apps/mainApp/services/userFactory.js
+      dependencies:
+        - busService
+
+#    logApp:
+#      files:
+#        - /apps/logApp/logApp.js
+#      dependencies:
+#        - busService
+
+#    menuApp:
+#      files:
+#        - /apps/menuApp/menuController.js
+#      template: /apps/menuApp/menu.html
+#      dependencies:
+#        - busService
+#        - userFactory

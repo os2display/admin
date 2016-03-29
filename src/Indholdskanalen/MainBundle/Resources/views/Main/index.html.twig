@@ -1,17 +1,31 @@
-{% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block body %}
-  <div data-ng-include="'/app/shared/menu/menu.html?{{ version }}'"></div>
+{% block title %}{{ site_title }}{% endblock %}
 
-  {% block content %}
-    <div class="layout-wrapper view-container">
-      <div data-ng-view="" class="view-frame">
-      </div>
-    </div>
-  {% endblock %}
-
+{% block meta %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 {% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/colorpicker.css?' ~ version) }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css?' ~ version) }}">
+
+  {% if app.environment == 'dev' %}
+    <link rel="stylesheet" href="{{ asset('assets/build/styles.css?' ~ version) }}">
+  {% else %}
+    <link rel="stylesheet" href="{{ asset('assets/build/styles.min.css?' ~ version) }}">
+  {% endif %}
+
+  {# Import css files for templates. #}
+  {% if templates is defined %}
+    {% for template in templates %}
+      <link rel="stylesheet" href="{{ template }}">
+    {% endfor %}
+  {% endif %}
+{% endblock %}
 
 {% block scripts %}
   <!-- Configuration -->
@@ -145,4 +159,60 @@
     <script src="{{ asset('assets/build/app.min.js') }}"></script>
   {% endif %}
 
+  <!-- Bootstrap the Angular applications. -->
+  <script type="text/javascript">
+    /**
+     * Define the Angular applications. They needs to be defined before
+     * loading the files using the applications.
+     */
+    {% for key, app in apps %}
+      angular.module('{{ key }}', [ {% for dependency in app.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    {% endfor %}
+
+    /**
+     * When the document is ready bootstrap the two applications.
+     */
+    angular.element(document).ready(function ready() {
+      {% for key, app in apps %}
+
+        var {{ key }} = document.getElementById('{{ key }}');
+        if ({{ key }}) {
+          angular.bootstrap({{ key }}, ['{{ key }}']);
+        }
+        else {
+          console.error('Unable to bootstrap {{ key }}. Missing HTML tag with id "{{ key }}"');
+        }
+      {% endfor %}
+    });
+  </script>
+
+  <!-- New angular applications -->
+  <script type="text/javascript" src="{{ asset('/apps/busApp/busModule.js?' ~ version) }}"></script>
+  {% for key, app in apps %}
+    {% for file in app.files %}
+      <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
+    {% endfor %}
+  {% endfor %}
+
+{% endblock %}
+
+{% block body %}
+  <!-- Define applications HTML tags -->
+  {% for key, app in apps %}
+    <div id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} >
+    </div>
+  {% endfor %}
+
+  <!-- Legacy app
+  <div data-ng-app="ikApp">
+    <div data-ng-include="'/app/shared/menu/menu.html?{{ version }}'"></div>
+
+    {% block content %}
+      <div class="layout-wrapper view-container">
+        <div data-ng-view="" class="view-frame">
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+  -->
 {% endblock %}

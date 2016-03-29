@@ -1,0 +1,123 @@
+<header class="header" role="banner" data-ng-controller="MenuController">
+  <a class="nav--overlay" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen}" data-ng-click="toggleNavMenu()"></a>
+  <nav class="nav" data-ng-show="navMenuOpen" data-ng-class="{'is-visible': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+   <div class="nav--toggle-icon" data-ng-click="toggleNavMenu()">X</div>
+    <h2 class="nav--header">Navigation</h2>
+    <div class="nav--item-wrapper">
+      <a href="/#/channel-overview" class="nav--item">Kanaler</a>
+      <a href="/#/slide-overview" class="nav--item">Slides</a>
+      <a href="/#/screen-overview" class="nav--item">Skærme</a>
+      <a href="/#/media-overview" class="nav--item">Medier</a>
+    </div>
+    <div class="nav--item-wrapper" data-ng-if="currentUser.is_admin">
+      <a href="/admin" class="nav--item" data-ng-if="currentUser.is_super_admin">Brugere</a>
+      <a href="/#/admin-sharing" class="nav--item" data-ng-if="currentUser.is_super_admin">Delingsindstillinger</a>
+      <a href="/#/admin-templates" class="nav--item">Vælg skabeloner</a>
+      <a href="" class="nav--item" data-ng-click="updateTemplates()">Opdater skabeloner</a>
+      <a href="" class="nav--item" data-ng-click="reindex()">Reindekser søgemaskinen</a>
+      <a href="" class="nav--item" data-ng-click="forcePush()">Gensend al indhold til skærmene</a>
+    </div>
+    <div class="nav--item-wrapper">
+      <a href="/logout" class="nav--item">Log ud</a>
+    </div>
+  </nav>
+  <div class="header--inner">
+    <div class="header--main">
+      <a href="/#/channel-overview" class="header--arrow"><img class="header--arrow-image" src="/images/arrow-back-icon.png"/></a>
+      <div class="header--logo">
+        <a href="/#/channel-overview" class="header--logo-link" data-ng-class="{'is-visible': mobileMainMenuVisible(),'is-front': url === '/'}">{{siteTitle}}</a>
+      </div>
+      <nav class="header--main-menu">
+        <ul class="header--main-menu-items">
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/channel') == 0 || url.indexOf('shared-channel') === 0}">
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channel-overview">
+              <img class="header--main-menu-item-image-channels" src="/images/icons/channels-icon.png">
+              <span class="header--main-menu-item-text">Kanaler</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/slide') == 0}">
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/slide') == 0}" href="/#/slide-overview">
+              <img class="header--main-menu-item-image-slides" src="/images/icons/slides-icon.png">
+              <span class="header--main-menu-item-text">Slides</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/screen') == 0}" >
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/screen') == 0}" href="/#/screen-overview">
+              <img class="header--main-menu-item-image-screens" src="/images/icons/screens-icon.png">
+              <span class="header--main-menu-item-text">Skærme</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item" data-ng-class="{'is-active': url.indexOf('/media') == 0}" >
+            <a class="header--main-menu-item-link" data-ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media-overview">
+              <img class="header--main-menu-item-image-templates" src="/images/icons/media-icon.png">
+              <span class="header--main-menu-item-text">Medier</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header--secondary-menus">
+        <div class="header--secondary-menus-inner">
+          <div class="header--nav-menu">
+            <div class="header--nav-menu-label">
+              <span class="header--nav-menu-link" data-ng-click="toggleNavMenu()">
+                <img class="header--nav-menu-label-image" src="/images/icons/menu-icon.png">
+              </span>
+            </div>
+            <nav class="header--nav-menu-links">
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header--sub">
+    <div class="header--sub-inner">
+      <nav class="header--sub-menu" data-ng-class="{'is-hidden': mobileMainMenuVisible()}">
+        <ul class="header--sub-menu-items">
+          <li class="header--sub-menu-item" data-ng-repeat="item in subMenuItems">
+            <a class="header--sub-menu-item-link" href="/#/{{item.path}}" data-ng-class="{'is-active': pathStartsWith(url, '{{item.path}}')}">
+              <span class="header--sub-menu-item-text">{{item.title}}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <nav class="header--main-menu--mobile" data-ng-class="{'is-hidden': !mobileMainMenuVisible()}">
+        <ul class="header--main-menu-items--mobile">
+          <li class="header--main-menu-item--mobile">
+            <a class="header--main-menu-item-link--mobile" href="/#/channel-overview">
+              <img class="header--main-menu-item-image-channels--mobile" src="/images/icons/channels-icon.png">
+              <span class="header--main-menu-item-text--mobile">Kanaler</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item--mobile">
+            <a class="header--main-menu-item-link--mobile" href="/#/slide-overview">
+              <img class="header--main-menu-item-image-slides--mobile" src="/images/icons/slides-icon.png">
+              <span class="header--main-menu-item-text--mobile">Slides</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item--mobile">
+            <a class="header--main-menu-item-link--mobile" href="/#/screen-overview">
+              <img class="header--main-menu-item-image-screens--mobile" src="/images/icons/screens-icon.png">
+              <span class="header--main-menu-item-text--mobile">Skærme</span>
+            </a>
+          </li>
+          <li class="header--main-menu-item--mobile">
+            <a class="header--main-menu-item-link--mobile" href="/#/media-overview">
+              <img class="header--main-menu-item-image-templates--mobile" src="/images/icons/media-icon.png">
+              <span class="header--main-menu-item-text--mobile">Medier</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--
+  @TODO: Remove this when overview pages, slides and channel creation pages is updated to new layout
+  Don't show the log on create screen page because it uses the new layout
+-->
+<div class="log--wrapper">
+  <div class="log--wrapper-inner">
+    <itk-log data-ng-if="url.indexOf('/screen') !== 0 || url.indexOf('/screen-overview') === 0"></itk-log>
+  </div>
+</div>

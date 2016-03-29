@@ -1,7 +1,5 @@
 {% extends '::base.html.twig' %}
 
-{% block html %}data-ng-app="ikApp"{% endblock %}
-
 {% block title %}{{ site_title }}{% endblock %}
 
 {% block meta %}
@@ -12,9 +10,6 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/colorpicker.css?' ~ version) }}">
-    <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css?' ~ version) }}">
-
     {% if app.environment == 'dev' %}
       <link rel="stylesheet" href="{{ asset('assets/build/styles.css?' ~ version) }}">
     {% else %}
@@ -27,7 +22,4 @@
       <link rel="stylesheet" href="{{ template }}">
     {% endfor %}
   {% endif %}
-
 {% endblock %}
-
-{% block scripts %}{% endblock %}
