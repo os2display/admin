@@ -25,7 +25,7 @@ angular.module('busModule')
      */
     this.$emit = function emit(name, args) {
        angular.forEach($window.rootScopes, function(scope) {
-        scope.$emit(name, args);
+         scope.$emit(name, args);
       });
     };
 

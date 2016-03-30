@@ -2,7 +2,6 @@ parameters:
   apps:
     mainApp:
       files:
-        - /apps/mainApp/mainController.js
         - /apps/mainApp/services/userFactory.js
       dependencies:
         - busModule

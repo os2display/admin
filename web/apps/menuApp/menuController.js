@@ -184,7 +184,7 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
       $http.get('/api/command/update_templates')
         .success(function(data, status, headers, config) {
           busService.$emit('log.info', {
-            'msg': 'Skærmen blev ikke gemt',
+            'msg': 'Templates opdateret.',
             'timeout': 3000
           });
         })
