@@ -6,8 +6,8 @@
 /**
  * Admin sharing controller.
  */
-angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templateFactory', 'itkLog',
-  function ($scope, templateFactory, itkLog) {
+angular.module('ikApp').controller('AdminTemplatesController', ['busService', 'templateFactory', '$scope',
+  function (busService, templateFactory, $scope) {
     'use strict';
 
     $scope.saving = false;

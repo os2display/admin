@@ -6,8 +6,8 @@
 /**
  * Admin sharing controller.
  */
-angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedChannelFactory', 'itkLog',
-  function ($scope, sharedChannelFactory, itkLog) {
+angular.module('ikApp').controller('AdminSharingController', ['busService', 'sharedChannelFactory', '$scope',
+  function (busService, sharedChannelFactory, $scope) {
     'use strict';
 
     $scope.saving = false;
@@ -23,7 +23,10 @@ angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedC
         });
       },
       function error(reason) {
-        itkLog.error('Hentning af tilgængelige delingsindeks fejlede.', reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Hentning af tilgængelige delingsindeks fejlede.'
+        });
       }
     );
     $scope.chosenIndexes = [];
@@ -32,7 +35,10 @@ angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedC
         $scope.chosenIndexes = data;
       },
       function error(reason) {
-        itkLog.error('Hentning af valgte delingsindeks fejlede.', reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Hentning af valgte delingsindeks fejlede.'
+        });
       }
     );
 
@@ -40,11 +46,18 @@ angular.module('ikApp').controller('AdminSharingController', ['$scope', 'sharedC
       $scope.saving = true;
       sharedChannelFactory.saveSharingIndexes($scope.chosenIndexes).then(
         function success() {
-          itkLog.info('Delingsindeks gemt', 3000);
+          busService.$emit('log.info', {
+            'cause': reason,
+            'msg': 'Delingsindeks gemt',
+            'timeout': 3000
+          });
           $scope.saving = false;
         },
         function error(reason) {
-          itkLog.error('Delingsindeks blev ikke gemt', reason);
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Delingsindeks blev ikke gemt.'
+          });
           $scope.saving = false;
         }
       );

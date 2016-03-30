@@ -27,7 +27,7 @@ angular.module('logModule')
            * @param args
            *   The message object send.
            */
-          busService.$on('logApp.message', function message(event, message) {
+          busService.$on('log.message', function message(event, message) {
             scope.messages.push(message);
           });
 

@@ -31,6 +31,8 @@ angular.module('logModule')
        *
        * @param type
        *   The type of log event (error, log, info, etc.)
+       * @param timeout
+       *   The timeout to show the message.
        * @param cause
        *   What caused the message to happen.
        * @param msg
@@ -38,7 +40,7 @@ angular.module('logModule')
        *
        * @returns {{type: *, date: Date, message: *, cause: *, stacktrace: *}}
        */
-      function buildMessage(type, cause, msg) {
+      function buildMessage(type, timeout, cause, msg) {
         return {
           "type": type,
           "date": new Date(),
@@ -58,12 +60,12 @@ angular.module('logModule')
        * @param args
        *   JSON args that contains the cause and message.
        */
-      busService.$on('logApp.error', function error(event, args) {
+      busService.$on('log.error', function error(event, args) {
         if (config.logLevel !== 'none') {
-          var error = buildMessage('error', args.cause, args.msg);
+          var error = buildMessage('error', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('logApp.message', error);
+          busService.$emit('log.message', error);
 
           if (config.logToConsole) {
             $log.error(error);
@@ -85,12 +87,12 @@ angular.module('logModule')
        * @param args
        *   JSON args that contains the cause and message.
        */
-      busService.$on('logApp.log', function log(event, args) {
+      busService.$on('log.log', function log(event, args) {
         if (config.logLevel === 'all') {
-          var message = buildMessage('error', args.cause, args.msg);
+          var message = buildMessage('log', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('logApp.message', message);
+          busService.$emit('log.message', message);
 
           if (config.logToConsole) {
             $log.log(message);
@@ -108,12 +110,12 @@ angular.module('logModule')
        * @param args
        *   JSON args that contains the cause and message.
        */
-      busService.$on('logApp.info', function info(event, args) {
+      busService.$on('log.info', function info(event, args) {
         if (config.logLevel === 'all') {
-          var info = buildMessage('error', args.cause, args.msg);
+          var info = buildMessage('info', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('logApp.message', info);
+          busService.$emit('log.message', info);
 
           if (config.logToConsole) {
             $log.info(info);
@@ -131,12 +133,12 @@ angular.module('logModule')
        * @param args
        *   JSON args that contains the cause and message.
        */
-      busService.$on('logApp.warn', function warn(event, args) {
+      busService.$on('log.warn', function warn(event, args) {
         if (config.logLevel === 'all') {
-          var warn = buildMessage('error', args.cause, args.msg);
+          var warn = buildMessage('warn', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('logApp.message', warn);
+          busService.$emit('log.message', warn);
 
           if (config.logToConsole) {
             $log.warn(warn);
