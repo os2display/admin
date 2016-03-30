@@ -13,5 +13,5 @@ parameters:
       template: /apps/menuApp/menu.html
       dependencies:
         - busModule
-        - logModule
+        - logModule # To get the directive, should it be moved.
         - mainApp

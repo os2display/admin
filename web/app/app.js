@@ -20,6 +20,7 @@ angular.module('ikApp', [
     'angular.css.injector',
 
     'busModule',
+    'logModule',
 
     'itkControlPanel',
     'itkScreenTemplatePickerWidget',
