@@ -18,8 +18,8 @@
    * html-parameters:
    *   screen (object): the screen to modify.
    */
-  app.directive('screenTemplatePickerWidget', ['templateFactory', 'itkLog',
-    function (templateFactory, itkLog) {
+  app.directive('screenTemplatePickerWidget', ['templateFactory', 'busService',
+    function (templateFactory, busService) {
       return {
         restrict: 'E',
         scope: {
@@ -33,7 +33,10 @@
               scope.templates = data;
             },
             function error(reason) {
-              itkLog.error("Kunne ikke loade templates", reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Kunne ikke loade templates.'
+              });
             }
           );
 

@@ -14,8 +14,8 @@
  *   which media type should be shown, "image" or "video",
  *   leave out show all media.
  */
-angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
-  function (itkLog) {
+angular.module('ikApp').directive('ikMediaOverview', ['busService',
+  function (busService) {
     'use strict';
 
     return {
@@ -86,7 +86,10 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
                   $scope.loading = false;
                 },
                 function error(reason) {
-                  itkLog.error("Hentning af søgeresultater fejlede.", reason);
+                  busService.$emit('log.error', {
+                    'cause': reason,
+                    'msg': 'Hentning af søgeresultater fejlede.'
+                  });
                   $scope.loading = false;
                 }
               );

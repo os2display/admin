@@ -47,7 +47,6 @@ angular.module('ikApp').controller('AdminSharingController', ['busService', 'sha
       sharedChannelFactory.saveSharingIndexes($scope.chosenIndexes).then(
         function success() {
           busService.$emit('log.info', {
-            'cause': reason,
             'msg': 'Delingsindeks gemt',
             'timeout': 3000
           });

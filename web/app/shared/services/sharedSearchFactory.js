@@ -8,8 +8,8 @@
  *
  * The communication is based on web-sockets via socket.io library.
  */
-angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$http', 'itkLog',
-  function ($q, $rootScope, $http, itkLog) {
+angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$http', 'busService',
+  function ($q, $rootScope, $http, busService) {
     'use strict';
 
     var socket;
@@ -28,7 +28,10 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
 
       // Handle error events.
       socket.on('error', function (reason) {
-        itkLog.error(reason, 'Search socket error.');
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Search socket error.'
+        });
         deferred.reject(reason);
       });
 
@@ -66,7 +69,10 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
               getSocket(deferred);
             })
             .error(function (data, status) {
-              itkLog.error(data, 'Authentication (sharing) to search node failed (' + status + ')');
+              busService.$emit('log.error', {
+                'cause': status,
+                'msg': 'Authentication (sharing) to search node failed (' + status + ')'
+              });
               deferred.reject(status);
             });
         }
@@ -160,7 +166,10 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
 
         // Catch search errors.
         socket.once('searchError', function (error) {
-          itkLog.error('Search error', error.message);
+          busService.$emit('log.error', {
+            'cause': error.message,
+            'msg': 'Search error'
+          });
           deferred.reject(error.message);
         });
       });

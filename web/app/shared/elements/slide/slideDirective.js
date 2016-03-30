@@ -8,8 +8,8 @@
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory', 'itkLog',
-  function (slideFactory, templateFactory, itkLog) {
+angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory', 'busService',
+  function (slideFactory, templateFactory, busService) {
     'use strict';
 
     return {
@@ -72,7 +72,10 @@ angular.module('ikApp').directive('ikSlide', ['slideFactory', 'templateFactory',
               }
             },
             function error(reason) {
-              itkLog.error("Hentning af templates fejlede.", reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Hentning af templates fejlede.'
+              });
             }
           );
         });

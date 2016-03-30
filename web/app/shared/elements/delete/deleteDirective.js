@@ -8,8 +8,8 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-angular.module('ikApp').directive('ikDelete', ['$http', '$rootScope', 'itkLog',
-  function ($http, $rootScope, itkLog) {
+angular.module('ikApp').directive('ikDelete', ['$http', '$rootScope', 'busService',
+  function ($http, $rootScope, busService) {
     'use strict';
 
     return {
@@ -26,11 +26,17 @@ angular.module('ikApp').directive('ikDelete', ['$http', '$rootScope', 'itkLog',
           if (result === true) {
             $http.delete('/api/' + scope.type + '/' + scope.id)
               .success(function () {
-                itkLog.info('Sletning lykkedes.');
+                busService.$emit('log.info', {
+                  'msg': 'Sletning lykkes.',
+                  'timeout': 3000
+                });
                 $rootScope.$broadcast(scope.type + '-deleted', {});
               })
               .error(function (reason) {
-                itkLog.error('Sletning lykkes ikke!', reason);
+                busService.$emit('log.error', {
+                  'cause': reason,
+                  'msg': 'Sletning lykkes ikke!'
+                });
               });
           }
         };

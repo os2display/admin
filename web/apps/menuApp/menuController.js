@@ -6,8 +6,8 @@
 /**
  * Menu controller. Controls the menues.
  */
-angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'logService',
-  function ($scope, $rootScope, $location, $http, userFactory, logService) {
+angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'busService',
+  function ($scope, $rootScope, $location, $http, userFactory, busService) {
     'use strict';
 
     $scope.url = $location.url();
@@ -22,7 +22,10 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
         $scope.currentUser = data;
       },
       function error(reason) {
-        logService.error("Hentning af bruger fejlede.", reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Hentning af bruger fejlede.'
+        });
       }
     );
 
@@ -165,9 +168,6 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
       $scope.navMenuOpen = false;
       $('html').removeClass('is-locked');
       updateSubMenu();
-
-      // Clear log
-      logService.clear();
     });
 
     /**
@@ -183,10 +183,16 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.updateTemplates = function updateTemplates() {
       $http.get('/api/command/update_templates')
         .success(function(data, status, headers, config) {
-          logService.info("Templates opdateret.", 3000);
+          busService.$emit('log.info', {
+            'msg': 'Skærmen blev ikke gemt',
+            'timeout': 3000
+          });
         })
         .error(function(data, status, headers, config) {
-          logService.error("Update af templates fejlede.", status);
+          busService.$emit('log.error', {
+            'cause': status,
+            'msg': 'Update af templates fejlede.'
+          });
         });
       closeNavMenu();
     };
@@ -197,10 +203,16 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.reindex = function reindex() {
       $http.get('/api/command/reindex')
         .success(function(data, status, headers, config) {
-          logService.info("Reindex gennemført.", 3000);
+          busService.$emit('log.info', {
+            'msg': 'Reindex gennemført.',
+            'timeout': 3000
+          });
         })
         .error(function(data, status, headers, config) {
-          logService.error("Reindex fejlede.", status);
+          busService.$emit('log.error', {
+            'cause': status,
+            'msg': 'Reindex fejlede.'
+          });
         });
       closeNavMenu();
     };
@@ -211,10 +223,16 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.forcePush = function reindex() {
       $http.get('/api/command/forcepush')
         .success(function(data, status, headers, config) {
-          logService.info("Force push gennemført.", 3000);
+          busService.$emit('log.info', {
+            'msg': 'Force push gennemført.',
+            'timeout': 3000
+          });
         })
         .error(function(data, status, headers, config) {
-          logService.error("Force push fejlede.", status);
+          busService.$emit('log.error', {
+            'cause': status,
+            'msg': 'Force push fejlede.'
+          });
         });
       closeNavMenu();
     };

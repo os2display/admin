@@ -6,8 +6,8 @@
 /**
  * Media controller. Controls media editing functions.
  */
-angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'itkLog',
-  function ($scope, $location, $routeParams, $timeout, mediaFactory, itkLog) {
+angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'busService',
+  function ($scope, $location, $routeParams, $timeout, mediaFactory, busService) {
     'use strict';
 
     // Get the selected media
@@ -20,7 +20,10 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
         }
       },
       function error(reason) {
-        itkLog.error("Kunne ikke hente media med id: " + $routeParams.id, reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Kunne ikke hente media med id: ' + $routeParams.id
+        });
         $location.path('/media-overview');
       }
     );
@@ -31,13 +34,19 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
     $scope.delete = function () {
       mediaFactory.deleteMedia($scope.media.id).then(
         function success() {
-          itkLog.info("Media slettet.", 3000);
+          busService.$emit('log.info', {
+            'msg': 'Media slettet.',
+            'timeout': 3000
+          });
           $timeout(function () {
             $location.path('/media-overview');
           }, 500);
         },
         function error(reason) {
-          itkLog.error("Sletning af media fejlede.", reason);
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Sletning af media fejlede.'
+          });
         }
       );
     };

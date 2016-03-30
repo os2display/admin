@@ -6,8 +6,8 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'itkLog', 'templateFactory',
-  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, itkLog, templateFactory) {
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'busService', 'templateFactory',
+  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, busService, templateFactory) {
     'use strict';
 
     $scope.step = 'background-picker';
@@ -28,12 +28,18 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
             $scope.template = data;
           },
           function error(reason) {
-            itkLog.error('Kunne ikke loade værktøjer til slidet.', reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Kunne ikke loade værktøjer til slidet.'
+            });
           }
         );
       },
       function error(reason) {
-        itkLog.error("Kunne ikke hente slide.", reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Kunne ikke hente slide.'
+        });
       }
     );
 
@@ -87,7 +93,10 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
               $scope.slide.options.resources = selected;
             },
             function error(reason) {
-              itkLog.error("Kunne ikke hente bookings for ressource", reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Kunne ikke hente bookings for ressource.'
+              });
             }
           );
         }
@@ -199,7 +208,10 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         kobaFactory.getBookingsForResource(resource.mail, todayStart, todayEnd).then(
           addResourceBookings,
           function error(reason) {
-            itkLog.error("Kunne ikke hente bookings for ressource", reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Kunne ikke hente bookings for ressource.'
+            });
           }
         );
       }
@@ -267,7 +279,10 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
             }
           },
           function error(reason) {
-            itkLog.error("Kunne ikke tilføje media.", reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Kunne ikke tilføje media.'
+            });
           }
         );
       }

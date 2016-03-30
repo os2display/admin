@@ -6,8 +6,8 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'itkLog',
-  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, itkLog) {
+angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'busService',
+  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, busService) {
     'use strict';
 
     $scope.steps = 5;
@@ -22,7 +22,10 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         }
       },
       function error(reason) {
-        itkLog.error("Kunne ikke hente slide templates.", reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Kunne ikke hente slide templates.'
+        });
       }
     );
     $scope.channels = [];
@@ -86,7 +89,10 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
               loadStep(3);
             },
             function error(reason) {
-              itkLog.error("Kunne ikke hente slide med id: " + $routeParams.id, reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Kunne ikke hente slide med id: ' + $routeParams.id
+              });
               $location.path('/slide-overview');
             }
           );
@@ -110,14 +116,20 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
 
         slideFactory.saveSlide().then(
           function success() {
-            itkLog.info("Slide gemt.", 3000);
+            busService.$emit('log.info', {
+              'msg': 'Kunne ikke gemme slide.',
+              'timeout': 3000
+            });
 
             $timeout(function () {
               $location.path('/slide-overview');
             }, 1000);
           },
           function error(reason) {
-            itkLog.error("Kunne ikke gemme slide.", reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Kunne ikke gemme slide.'
+            });
             $scope.disableSubmitButton = false;
           }
         );

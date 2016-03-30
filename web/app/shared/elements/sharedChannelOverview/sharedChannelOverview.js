@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', '$timeout', 'itkLog',
-  function(sharedChannelFactory, userFactory, $timeout, itkLog) {
+angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', '$timeout', 'busService',
+  function(sharedChannelFactory, userFactory, $timeout, busService) {
     'use strict';
 
     return {
@@ -38,7 +38,10 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
             scope.showFromUser = scope.currentUser.search_filter_default;
           },
           function error(reason) {
-            itkLog.error("Kunne ikke loade bruger", reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Kunne ikke loade bruger'
+            });
           }
         );
 
@@ -78,7 +81,10 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           search.text = scope.search_text;
 
           if (angular.isUndefined(scope.index.index)) {
-            itkLog.info("Du skal vælge et indeks først", 3000);
+            busService.$emit('log.info', {
+              'msg': 'Du skal vælge et indeks først.',
+              'timeout': 3000
+            });
             return;
           }
 
@@ -90,9 +96,11 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
               scope.channels = data.results;
             },
             function error(reason) {
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Hentning af søgeresultater fejlede.'
+              });
               scope.loading = false;
-
-              itkLog.error("Hentning af søgeresultater fejlede.", reason);
             }
           );
         };
