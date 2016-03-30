@@ -1,0 +1,13 @@
+parameters:
+  modules:
+    busModule:
+      files:
+        - /apps/busModule/busModule.js
+      dependencies:
+
+    logModule:
+      files:
+        - /apps/logModule/logService.js
+        - /apps/logModule/logDirective.js
+      dependencies:
+        - busModule

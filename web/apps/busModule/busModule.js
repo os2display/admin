@@ -7,7 +7,7 @@
  * "id" or/and "sequence" number to identify the async answer on the bus.
  */
 
-angular.module('busApp', [])
+angular.module('busModule')
   .service('busService', function($rootScope, $window){
     'use strict';
 

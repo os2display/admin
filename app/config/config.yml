@@ -2,6 +2,7 @@ imports:
   - { resource: parameters.yml }
   - { resource: security.yml }
   - { resource: apps.yml }
+  - { resource: modules.yml }
 
 framework:
   #esi:             ~
@@ -42,6 +43,7 @@ twig:
     itk_log_log_to_console: %itk_log_log_to_console%
     itk_log_log_level: %itk_log_log_level%
     apps: %apps%
+    modules: %modules%
 
 
 # Assetic Configuration

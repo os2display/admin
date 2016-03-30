@@ -1,5 +1,5 @@
-<div class="log--container" data-ng-if="message = getLogMessage()">
-  <div class="log">
+<div class="log--container" data-ng-if="messages.length">
+  <div class="log" data-ng-repeat="message in messages">
     <div class="log--inner" data-ng-class="{'is-log': message.type === 'log', 'is-error': message.type === 'error', 'is-info': message.type === 'info'}">
       <div class="log--text">{{message.message}}</div>
 

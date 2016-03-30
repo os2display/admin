@@ -5,19 +5,13 @@ parameters:
         - /apps/mainApp/mainController.js
         - /apps/mainApp/services/userFactory.js
       dependencies:
-        - busApp
-
-    logApp:
-      files:
-        - /apps/logApp/logModule.js
-      dependencies:
-        - busApp
+        - busModule
 
     menuApp:
       files:
         - /apps/menuApp/menuController.js
       template: /apps/menuApp/menu.html
       dependencies:
-        - busApp
+        - busModule
+        - logModule
         - mainApp
-        - logApp

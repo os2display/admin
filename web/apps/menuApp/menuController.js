@@ -6,8 +6,8 @@
 /**
  * Menu controller. Controls the menues.
  */
-angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'itkLog',
-  function ($scope, $rootScope, $location, $http, userFactory, itkLog) {
+angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'logService',
+  function ($scope, $rootScope, $location, $http, userFactory, logService) {
     'use strict';
 
     $scope.url = $location.url();
@@ -22,7 +22,7 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
         $scope.currentUser = data;
       },
       function error(reason) {
-        itkLog.error("Hentning af bruger fejlede.", reason);
+        logService.error("Hentning af bruger fejlede.", reason);
       }
     );
 
@@ -167,7 +167,7 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
       updateSubMenu();
 
       // Clear log
-      itkLog.clear();
+      logService.clear();
     });
 
     /**
@@ -183,10 +183,10 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.updateTemplates = function updateTemplates() {
       $http.get('/api/command/update_templates')
         .success(function(data, status, headers, config) {
-          itkLog.info("Templates opdateret.", 3000);
+          logService.info("Templates opdateret.", 3000);
         })
         .error(function(data, status, headers, config) {
-          itkLog.error("Update af templates fejlede.", status);
+          logService.error("Update af templates fejlede.", status);
         });
       closeNavMenu();
     };
@@ -197,10 +197,10 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.reindex = function reindex() {
       $http.get('/api/command/reindex')
         .success(function(data, status, headers, config) {
-          itkLog.info("Reindex gennemført.", 3000);
+          logService.info("Reindex gennemført.", 3000);
         })
         .error(function(data, status, headers, config) {
-          itkLog.error("Reindex fejlede.", status);
+          logService.error("Reindex fejlede.", status);
         });
       closeNavMenu();
     };
@@ -211,10 +211,10 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.forcePush = function reindex() {
       $http.get('/api/command/forcepush')
         .success(function(data, status, headers, config) {
-          itkLog.info("Force push gennemført.", 3000);
+          logService.info("Force push gennemført.", 3000);
         })
         .error(function(data, status, headers, config) {
-          itkLog.error("Force push fejlede.", status);
+          logService.error("Force push fejlede.", status);
         });
       closeNavMenu();
     };
