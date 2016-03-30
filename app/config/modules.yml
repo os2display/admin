@@ -11,3 +11,6 @@ parameters:
         - /apps/logModule/directive/logDirective.js
       dependencies:
         - busModule
+
+  bootstrap:
+    - logService

@@ -1,8 +1,6 @@
 /**
  * @file
  * Contains the log Module.
- *
- * @Note: That this service is automatically initialized by calling run() and should NEVER be used as an dependency.
  */
 
 // Check that window.config.itkLog exists.
@@ -10,15 +8,6 @@
 if (!window.config || !window.config.itkLog) {
   throw "itkLog Exception: window.config.itkLog does not exist";
 }
-
-/**
- * Used to prevent the service from being load twice.
- *
- * @TODO: Figure out why this happens.
- *
- * @type {boolean}
- */
-var logServiceLoaded = false;
 
 /**
  * itkLog module.
@@ -35,14 +24,7 @@ angular.module('logModule')
     function (busService, $http, $timeout, $log) {
       'use strict';
 
-      // @see the logServiceLoaded declaration.
-      if (logServiceLoaded) {
-        return;
-      }
-      logServiceLoaded = true;
-
       var config = window.config.itkLog;
-
 
       /**
        * Build generic log message object.
@@ -165,4 +147,4 @@ angular.module('logModule')
       });
     }
   ]
-).run(['logService', angular.noop]);
+);

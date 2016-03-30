@@ -44,6 +44,7 @@ twig:
     itk_log_log_level: %itk_log_log_level%
     apps: %apps%
     modules: %modules%
+    bootstrap: %bootstrap%
 
 
 # Assetic Configuration

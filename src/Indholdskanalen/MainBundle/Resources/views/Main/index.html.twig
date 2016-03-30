@@ -159,12 +159,13 @@
      * Define the Angular applications. They needs to be defined before
      * loading the files using the applications.
      */
-    {% for key, app in apps %}
-      angular.module('{{ key }}', [ {% for dependency in app.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
-    {% endfor %}
 
     {% for key, module in modules %}
       angular.module('{{ key }}', [ {% for dependency in module.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    {% endfor %}
+
+    {% for key, app in apps %}
+      angular.module('{{ key }}', [ {% for dependency in app.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
     {% endfor %}
 
     /**
@@ -197,6 +198,11 @@
       <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
     {% endfor %}
   {% endfor %}
+
+  <!-- Bootstrap bus only services -->
+  <script type="text/javascript">
+    angular.module('ikApp').run([ {% for service in bootstrap %}'{{ service }}',{% endfor %} angular.noop]);
+  </script>
 
 {% endblock %}
 
