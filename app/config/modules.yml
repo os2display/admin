@@ -7,7 +7,7 @@ parameters:
 
     logModule:
       files:
-        - /apps/logModule/logService.js
-        - /apps/logModule/logDirective.js
+        - /apps/logModule/services/logService.js
+        - /apps/logModule/directive/logDirective.js
       dependencies:
         - busModule

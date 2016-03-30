@@ -54,8 +54,8 @@
     <!-- Imports -->
     <script src="{{ asset('assets/libs/jquery-1.11.1.min.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-1.5.3.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-animate-1.4.6.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-route-1.4.6.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/angular-animate-1.5.3.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/angular-route-1.5.3.min.js') }}"></script>
     <script src="{{ asset('assets/libs/moment-2.8.3.min.js') }}"></script>
     <script src="{{ asset('assets/libs/es5-shim-4.0.2.min.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-file-upload-2.1.4.min.js') }}"></script>
@@ -96,9 +96,6 @@
     <script src="{{ asset('app/shared/services/sharedChannelFactory.js?' ~ version) }}"></script>
     <script src="{{ asset('app/shared/services/kobaFactory.js?' ~ version) }}"></script>
     <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js?' ~ version) }}"></script>
-
-    <!-- Menu -->
-    <script src="{{ asset('app/shared/menu/menuController.js?' ~ version) }}"></script>
 
     <!-- Pages -->
     <script src="{{ asset('app/pages/screen/screen.js?' ~ version) }}"></script>
@@ -213,10 +210,7 @@
     </div>
   {% endfor %}
 
-  <!-- Legacy app
   <div data-ng-app="ikApp">
-    <div data-ng-include="'/app/shared/menu/menu.html?{{ version }}'"></div>
-
     {% block content %}
       <div class="layout-wrapper view-container">
         <div data-ng-view="" class="view-frame">
@@ -224,5 +218,4 @@
       </div>
     {% endblock %}
   </div>
-  -->
 {% endblock %}

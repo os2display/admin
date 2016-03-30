@@ -12,7 +12,7 @@ angular.module('logModule')
 
       return {
         restrict: 'E',
-        templateUrl: '/apps/logApp/log.html?' + config.version,
+        templateUrl: '/apps/logApp/directive/log.html?' + config.version,
         link: function (scope) {
           scope.expanded = false;
           scope.messages = [];
