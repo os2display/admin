@@ -200,8 +200,13 @@
   {% endfor %}
 
   <!-- Bootstrap bus only services -->
+  <span id="bootstrap" style="display:none"></span>
   <script type="text/javascript">
-    angular.module('ikApp').run([ {% for service in bootstrap %}'{{ service }}',{% endfor %} angular.noop]);
+    angular.module('bootstrap', [ {% for module in bootstrap.modules %}'{{ module }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    angular.module('bootstrap').run([ {% for service in bootstrap.services %}'{{ service }}',{% endfor %} angular.noop]);
+    angular.element(document).ready(function ready() {
+      angular.bootstrap(document.getElementById('bootstrap'), ['bootstrap']);
+    });
   </script>
 
 {% endblock %}

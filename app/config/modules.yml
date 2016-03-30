@@ -13,4 +13,7 @@ parameters:
         - busModule
 
   bootstrap:
-    - logService
+    modules:
+      - logModule
+    services:
+      - logService
