@@ -6,8 +6,8 @@
 /**
  * Menu controller. Controls the menues.
  */
-angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'userFactory', 'busService',
-  function ($scope, $rootScope, $location, $http, userFactory, busService) {
+angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', '$location', '$http', 'busService',
+  function ($scope, $rootScope, $location, $http, busService) {
     'use strict';
 
     $scope.url = $location.url();
@@ -18,17 +18,13 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.siteTitle = window.config.siteTitle;
     $scope.mainMenuItems = [];
 
-    userFactory.getCurrentUser().then(
-      function success(data) {
-        $scope.currentUser = data;
-      },
-      function error(reason) {
-        busService.$emit('log.error', {
-          'cause': reason,
-          'msg': 'Hentning af bruger fejlede.'
-        });
-      }
-    );
+    // Listen for Main menu items.
+    busService.$on('mainApp.returnUser', function returnMainMenuItems(event, user) {
+      $scope.currentUser = user;
+    });
+
+    // Request user
+    busService.$emit('main.requestUser', {});
 
     // Listen for Main menu items.
     busService.$on('menuApp.returnMainMenuItems', function returnMainMenuItems(event, items) {
@@ -36,7 +32,7 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
       items.forEach(function(element) {
         $scope.mainMenuItems.push(element);
       });
-      
+
       // Sort by weight.
       $scope.mainMenuItems.sort(function(a, b) {
         return parseInt(a.weight) - parseInt(b.weight);
