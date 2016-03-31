@@ -33,6 +33,9 @@ angular.module('messageApp')
             });
           });
 
+          /**
+           * Clear displayed message.
+           */
           busService.$on('log.clear', function clear(event, args) {
             scope.clear();
           });
