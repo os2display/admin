@@ -11,10 +11,17 @@ parameters:
       dependencies:
         - busModule
 
+    mainModule:
+      files:
+        - /apps/mainModule/services/userFactory.js
+        - /apps/mainModule/services/menuItemService.js
+      dependencies:
+
   bootstrap:
     modules:
       - logModule
-      - mainApp
+      - mainModule
     services:
       - logService
+      - userFactory
       - menuItemService

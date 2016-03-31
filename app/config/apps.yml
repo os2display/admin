@@ -1,19 +1,12 @@
 parameters:
   apps:
-    mainApp:
-      files:
-        - /apps/mainApp/services/userFactory.js
-        - /apps/mainApp/services/menuItemService.js
-      dependencies:
-        - logModule
-
     menuApp:
       files:
         - /apps/menuApp/menuController.js
       template: /apps/menuApp/menu.html
       dependencies:
         - busModule
-        - mainApp
+        - mainModule
 
     messageApp:
       files:
@@ -21,3 +14,4 @@ parameters:
       template: /apps/messageApp/message.html
       dependencies:
         - busModule
+        - mainModule
