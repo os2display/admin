@@ -6,7 +6,7 @@
 /**
  * MenuItemService.
  */
-angular.module('mainApp').service('menuItemService', ['busService',
+angular.module('mainModule').service('menuItemService', ['busService',
   function (busService) {
     'use strict';
 

@@ -3,8 +3,8 @@
  *
  * Displays the current message from itkLog.
  */
-angular.module('logModule')
-  .directive('log', ['busService',
+angular.module('messageApp')
+  .directive('messages', ['busService',
     function (busService) {
       'use strict';
 
@@ -12,12 +12,10 @@ angular.module('logModule')
 
       return {
         restrict: 'E',
-        templateUrl: '/apps/logModule/directive/log.html?' + config.version,
+        templateUrl: '/apps/messageApp/directive/messages.html?' + config.version,
         link: function (scope) {
           scope.expanded = false;
           scope.messages = [];
-
-          console.log('test');
 
           /**
            * Listen for messages.
@@ -30,7 +28,9 @@ angular.module('logModule')
            *   The message object send.
            */
           busService.$on('log.message', function message(event, message) {
-            scope.messages.push(message);
+            scope.$apply(function() {
+              scope.messages.push(message);
+            });
           });
 
           /**

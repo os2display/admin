@@ -1,17 +1,17 @@
 parameters:
   apps:
-    mainApp:
-      files:
-        - /apps/mainApp/services/userFactory.js
-        - /apps/mainApp/services/menuItemService.js
-      dependencies:
-        - logModule
-
     menuApp:
       files:
         - /apps/menuApp/menuController.js
       template: /apps/menuApp/menu.html
       dependencies:
         - busModule
-        - logModule # To get the directive, should it be moved.
-        - mainApp
+        - mainModule
+
+    messageApp:
+      files:
+        - /apps/messageApp/directive/messagesDirective.js
+      template: /apps/messageApp/message.html
+      dependencies:
+        - busModule
+        - mainModule
