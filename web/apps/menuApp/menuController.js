@@ -178,6 +178,8 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
       $scope.navMenuOpen = false;
       $('html').removeClass('is-locked');
       updateSubMenu();
+
+      busService.$emit('log.clear');
     });
 
     /**
