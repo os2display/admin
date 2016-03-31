@@ -16,6 +16,7 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.showMobileMainMenu = false;
     $scope.showSharingOptions = window.config.sharingService.enabled;
     $scope.siteTitle = window.config.siteTitle;
+    $scope.mainMenuItems = [];
 
     userFactory.getCurrentUser().then(
       function success(data) {
@@ -28,6 +29,15 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
         });
       }
     );
+
+    busService.$on('menuApp.returnMainMenuItems', function returnMainMenuItems(event, items) {
+      items.forEach(function(element) {
+        $scope.mainMenuItems.push(element);
+      });
+    });
+
+    // Request menu items
+    busService.$emit('menuApp.requestMainMenuItems', null);
 
     /**
      * Set the submenu items according to what the url starts with.
