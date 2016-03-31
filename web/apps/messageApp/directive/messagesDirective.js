@@ -34,6 +34,13 @@ angular.module('messageApp')
           });
 
           /**
+           * Clear displayed message.
+           */
+          busService.$on('log.clear', function clear(event, args) {
+            scope.clear();
+          });
+
+          /**
            * Expand/Collapse extra info.
            */
           scope.toggleExpanded = function toggleExpanded() {
@@ -43,7 +50,7 @@ angular.module('messageApp')
           /**
            * Clear log.
            */
-          scope.clearLog = function clearLog() {
+          scope.clear = function clear() {
             scope.messages = [];
           };
         }
