@@ -30,14 +30,21 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
       }
     );
 
+    // Listen for Main menu items.
     busService.$on('menuApp.returnMainMenuItems', function returnMainMenuItems(event, items) {
+      // Add items received.
       items.forEach(function(element) {
         $scope.mainMenuItems.push(element);
       });
+      
+      // Sort by weight.
+      $scope.mainMenuItems.sort(function(a, b) {
+        return parseInt(a.weight) - parseInt(b.weight);
+      });
     });
 
-    // Request menu items
-    busService.$emit('menuApp.requestMainMenuItems', null);
+    // Request Main menu items
+    busService.$emit('menuApp.requestMainMenuItems', {});
 
     /**
      * Set the submenu items according to what the url starts with.

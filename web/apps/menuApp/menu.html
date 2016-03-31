@@ -3,22 +3,9 @@
   <div class="header--inner">
     <a href="/" class="logo js-logo" title="Aroskanalen"><span>Aroskanalen</span></a>
     <nav class="nav js-nav">
-      <a class="nav--link" data-ng-repeat="item in mainMenuItems" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" data-ng-href="/#{{item.route}}">
+      <a class="nav--link" data-ng-repeat="item in mainMenuItems | orderBy:item.weight" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" data-ng-href="/#{{item.route}}">
         <i class="material-icons">{{item.icon}}</i>{{item.title}}
       </a>
-<!--
-      <a class="nav--link"  data-ng-class="{'is-active': url.indexOf('/slide') == 0}" href="/#/slide-overview">
-        <i class="material-icons">add_to_queue</i>Slides
-      </a>
-      <a class="nav--link" data-ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channel-overview">
-        <i class="material-icons">dvr</i>Kanaler
-      </a>
-      <a class="nav--link" data-ng-class="{'is-active': url.indexOf('/screen') == 0}" href="/#/screen-overview">
-        <i class="material-icons">tv</i>Skærme
-      </a>
-      <a class="nav--link" data-ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media-overview">
-        <i class="material-icons">picture_in_picture</i>Medier
-      </a>-->
     </nav>
   </div>
 </header>
