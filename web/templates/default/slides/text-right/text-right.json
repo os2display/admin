@@ -1,0 +1,50 @@
+{
+  "id": "text-right",
+  "type": "slide",
+  "name": "Tekst til højre",
+  "icon": "text-right.png",
+  "paths": {
+    "live": "text-right.html",
+    "edit": "text-right-edit.html",
+    "preview": "text-right.html",
+    "css": "text-right.css",
+    "js": "../../../js/baseSlide.js"
+  },
+  "orientation": "landscape",
+  "slide_type": "base",
+  "media_type": "image",
+  "script_id": "base",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": "50",
+    "bgcolor": "#ccc",
+    "textcolor": "#fff",
+    "textbgcolor": "rgba(0, 0, 0, 0.7)",
+    "headline": "",
+    "text": "",
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    },
+    {
+      "name": "Tekst",
+      "id": "text-editor"
+    }
+  ]
+}
