@@ -1,0 +1,32 @@
+{
+  "id": "mbu-footer",
+  "type": "slide",
+  "name": "MBU footer",
+  "icon": "mbu-footer.png",
+  "paths": {
+    "live": "mbu-footer.html",
+    "edit": "mbu-footer-edit.html",
+    "preview": "mbu-footer.html",
+    "css": "mbu-footer.css",
+    "js": "../../../js/baseSlide.js"
+  },
+  "orientation": "landscape",
+  "slide_type": "base",
+  "media_type": "image",
+  "script_id": "base",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "90"
+  },
+  "empty_options": {
+    "fontsize": "50",
+    "bgcolor": "#9c9c9c",
+    "text": ""
+  },
+  "tools": [
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
+  ]
+}
