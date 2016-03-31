@@ -14,5 +14,7 @@ parameters:
   bootstrap:
     modules:
       - logModule
+      - mainApp
     services:
       - logService
+      - menuItemService

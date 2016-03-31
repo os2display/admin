@@ -3,6 +3,7 @@ parameters:
     mainApp:
       files:
         - /apps/mainApp/services/userFactory.js
+        - /apps/mainApp/services/menuItemService.js
       dependencies:
         - logModule
 

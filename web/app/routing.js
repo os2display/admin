@@ -90,5 +90,5 @@ angular.module('ikApp').config(function ($routeProvider) {
       templateUrl: 'app/pages/mediaEdit/media-edit.html?' + window.config.version
     })
 
-    .otherwise({redirectTo: '/'});
+    .otherwise({template: ""});
 });

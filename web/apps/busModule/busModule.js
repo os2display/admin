@@ -8,7 +8,7 @@
  */
 
 angular.module('busModule')
-  .service('busService', function($rootScope, $window){
+  .service('busService', function ($rootScope, $window) {
     'use strict';
 
     // Store rootScopes for each service user.
@@ -24,8 +24,8 @@ angular.module('busModule')
      *   Event arguments.
      */
     this.$emit = function emit(name, args) {
-       angular.forEach($window.rootScopes, function(scope) {
-         scope.$emit(name, args);
+      angular.forEach($window.rootScopes, function (scope) {
+        scope.$emit(name, args);
       });
     };
 
