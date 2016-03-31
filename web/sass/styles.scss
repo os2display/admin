@@ -16,6 +16,8 @@
 @import "base/_grid";
 
 
+// Include assets
+@import "assets/flexbox";
 
 // Include mixins
 @import "mixins/_mixins";
@@ -57,11 +59,9 @@
 @import "modules/_delete";
 @import "modules/_edit-menu";
 @import "modules/_frontpage";
-@import "modules/_header";
 @import "modules/_list";
 @import "modules/_log";
 @import "modules/_login";
-@import "modules/_nav";
 @import "modules/_overview";
 @import "modules/_pager";
 @import "modules/_presentation";
