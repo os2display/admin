@@ -14,6 +14,23 @@
   {{ parent() }}
 {% endblock %}
 
+{% block body %}
+  <!-- Define applications HTML tags -->
+  {% for key, app in apps %}
+    <div id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} {% if app.controller is defined %}data-ng-controller="{{ app.controller }}"{% endif %} >
+    </div>
+  {% endfor %}
+
+  <div data-ng-app="ikApp">
+    {% block content %}
+      <div class="layout-wrapper view-container">
+        <div data-ng-view="" class="view-frame">
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock %}
+
 {% block scripts %}
   <!-- Configuration -->
   <script type="text/javascript">
@@ -140,6 +157,16 @@
     <script src="{{ asset('assets/build/app.min.js') }}"></script>
   {% endif %}
 
+  <!-- Bootstrap bus only services -->
+  <span id="bootstrap" style="display:none"></span>
+  <script type="text/javascript">
+    angular.module('bootstrap', [ {% for module in bootstrap.modules %}'{{ module }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    angular.module('bootstrap').run([ {% for service in bootstrap.services %}'{{ service }}',{% endfor %} angular.noop]);
+    angular.element(document).ready(function ready() {
+      angular.bootstrap(document.getElementById('bootstrap'), ['bootstrap']);
+    });
+  </script>
+
   <!-- Bootstrap the Angular applications. -->
   <script type="text/javascript">
     /**
@@ -185,32 +212,4 @@
       <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
     {% endfor %}
   {% endfor %}
-
-  <!-- Bootstrap bus only services -->
-  <span id="bootstrap" style="display:none"></span>
-  <script type="text/javascript">
-    angular.module('bootstrap', [ {% for module in bootstrap.modules %}'{{ module }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
-    angular.module('bootstrap').run([ {% for service in bootstrap.services %}'{{ service }}',{% endfor %} angular.noop]);
-    angular.element(document).ready(function ready() {
-      angular.bootstrap(document.getElementById('bootstrap'), ['bootstrap']);
-    });
-  </script>
-
-{% endblock %}
-
-{% block body %}
-  <!-- Define applications HTML tags -->
-  {% for key, app in apps %}
-    <div id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} >
-    </div>
-  {% endfor %}
-
-  <div data-ng-app="ikApp">
-    {% block content %}
-      <div class="layout-wrapper view-container">
-        <div data-ng-view="" class="view-frame">
-        </div>
-      </div>
-    {% endblock %}
-  </div>
 {% endblock %}

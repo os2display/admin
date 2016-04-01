@@ -13,7 +13,7 @@ parameters:
 
     mainModule:
       files:
-        - /apps/mainModule/services/userFactory.js
+        - /apps/mainModule/services/userService.js
         - /apps/mainModule/services/menuItemService.js
       dependencies:
 
@@ -23,5 +23,5 @@ parameters:
       - mainModule
     services:
       - logService
-      - userFactory
+      - userService
       - menuItemService

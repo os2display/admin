@@ -4,6 +4,7 @@ parameters:
       files:
         - /apps/menuApp/menuController.js
       template: /apps/menuApp/menu.html
+      controller: MenuController
       dependencies:
         - busModule
         - mainModule

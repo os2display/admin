@@ -1,26 +1,20 @@
+<!-- @TODO: Move inline styling to design -->
+
 <header class="header" style="position:relative;">
   <!-- Main menu -->
   <div class="header--inner">
-    <a href="/" class="logo js-logo" title="Aroskanalen"><span>Aroskanalen</span></a>
+    <a href="/" class="logo js-logo" title="{{siteTitle}}"><span>{{siteTitle}}</span></a>
     <nav class="nav js-nav">
-      <a class="nav--link"  data-ng-class="{'is-active': url.indexOf('/slide') == 0}" href="/#/slide-overview">
-        <i class="material-icons">add_to_queue</i>Slides
-      </a>
-      <a class="nav--link" data-ng-class="{'is-active': url.indexOf('/channel') == 0}" href="/#/channel-overview">
-        <i class="material-icons">dvr</i>Kanaler
-      </a>
-      <a class="nav--link" data-ng-class="{'is-active': url.indexOf('/screen') == 0}" href="/#/screen-overview">
-        <i class="material-icons">tv</i>Skærme
-      </a>
-      <a class="nav--link" data-ng-class="{'is-active': url.indexOf('/media') == 0}" href="/#/media-overview">
-        <i class="material-icons">picture_in_picture</i>Medier
+      <a class="nav--link" data-ng-repeat="item in mainMenuItems | orderBy:item.weight" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" href="{{item.route}}">
+        <i class="material-icons">{{item.icon}}</i>{{item.title}}
       </a>
     </nav>
   </div>
 </header>
 <!-- Main menu end -->
 <!-- Open/Close hamburger menu icon -->
-<div class="nav-toggle js-menu-toggle" style="z-index:1;" data-ng-click="toggleNavMenu()" data-ng-class="{'open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+<div class="nav-toggle js-menu-toggle" style="z-index:3;" data-ng-click="toggleNavMenu()" data-ng-class="{'open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+  <!-- @TODO: Why the 4 spans? -->
   <span></span>
   <span></span>
   <span></span>
@@ -28,63 +22,19 @@
 </div>
 <!-- Open/Close hamburger menu end -->
 <!-- Hamburger menu -->
-<nav class="hamburger-menu" data-ng-show="navMenuOpen" data-ng-class="{'is-open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+<nav class="hamburger-menu" style="z-index: 2;" data-ng-show="navMenuOpen" data-ng-class="{'is-open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
   <div class="hamburger-menu--inner">
     <div class="hamburger-menu--links">
-      <div class="hamburger-menu--group">
-        <a href="#" class="hamburger-menu--link">
-          Kanaler
-        </a>
-        <a class="hamburger-menu--link is-sub is active" href="#">
-          Oversigt
-        </a>
-        <a class="hamburger-menu--link is-sub is-active" href="#">
-          Opret kanal
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="#" class="hamburger-menu--link">
-          Slides
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Oversigt
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Opret kanal
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="#" class="hamburger-menu--link">
-          Skærme
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Oversigt
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Opret kanal
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="#" class="hamburger-menu--link">
-          Administration
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Deling
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Templates
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Søgning og indhold
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="/aroskanalen/style-guide" class="hamburger-menu--link">
-          Style guide
+      <div class="hamburger-menu--group" data-ng-repeat="group in hamburgerMenuItems">
+        <!-- @TODO: Make into a div in the design -->
+        <div class="hamburger-menu--link">
+          {{group.title}}
+        </div>
+        <a class="hamburger-menu--link is-sub" data-ng-repeat="item in group.items" href="{{item.route}}">
+          {{item.title}}
         </a>
       </div>
     </div>
   </div>
-<<<<<<< HEAD
 </nav>
 <!-- Hamburger menu end -->

@@ -10,15 +10,12 @@
 {% endblock %}
 
 {% block stylesheets %}
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   {% if app.environment == 'dev' %}
-    <link rel="stylesheet"
-          href="{{ asset('assets/build/styles.css?' ~ version) }}">
+    <link rel="stylesheet" href="{{ asset('assets/build/styles.css?' ~ version) }}">
   {% else %}
-    <link rel="stylesheet"
-          href="{{ asset('assets/build/styles.min.css?' ~ version) }}">
+    <link rel="stylesheet" href="{{ asset('assets/build/styles.min.css?' ~ version) }}">
   {% endif %}
 
   <!-- Css from design (Scss files not found in this project) -->
