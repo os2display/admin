@@ -3,6 +3,8 @@ parameters:
     menuApp:
       files:
         - /apps/menuApp/menuController.js
+        - /apps/menuApp/directive/mainMenuDirective.js
+        - /apps/menuApp/directive/hamburgerMenuDirective.js
       template: /apps/menuApp/menu.html
       controller: MenuController
       dependencies:

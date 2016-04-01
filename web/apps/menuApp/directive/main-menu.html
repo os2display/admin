@@ -1,0 +1,12 @@
+<!-- @TODO: Move inline styling to design -->
+<header class="header" style="position:relative;">
+  <!-- Main menu -->
+  <div class="header--inner">
+    <a href="/" class="logo js-logo" title="{{siteTitle}}"><span>{{siteTitle}}</span></a>
+    <nav class="nav js-nav">
+      <a class="nav--link" data-ng-repeat="item in mainMenuItems | orderBy:item.weight" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" href="{{item.route}}">
+        <i class="material-icons">{{item.icon}}</i>{{item.title}}
+      </a>
+    </nav>
+  </div>
+</header>
