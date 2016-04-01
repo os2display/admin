@@ -1,0 +1,41 @@
+{
+  "id": "only-image",
+  "type": "slide",
+  "name": "Kun billede",
+  "icon": "only-image.png",
+  "paths": {
+    "live": "only-image.html",
+    "edit": "only-image-edit.html",
+    "preview": "only-image.html",
+    "css": "only-image.css",
+    "js": "../../../js/baseSlide.js"
+  },
+  "orientation": "landscape",
+  "slide_type": "base",
+  "media_type": "image",
+  "script_id": "base",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "bgcolor": "#ccc",
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
+  ]
+}

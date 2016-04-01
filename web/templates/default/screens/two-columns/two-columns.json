@@ -1,0 +1,12 @@
+{
+  "id": "two-columns",
+  "type": "screen",
+  "name": "To kolonner",
+  "icon": "two-columns.png",
+  "paths": {
+    "live": "two-columns-live.html",
+    "edit": "two-columns-edit.html",
+    "css": "two-columns.css"
+  },
+  "orientation": "landscape"
+}

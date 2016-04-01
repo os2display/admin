@@ -1,0 +1,12 @@
+{
+  "id": "five-sections",
+  "type": "screen",
+  "name": "Femdelt",
+  "icon": "five-sections.png",
+  "paths": {
+    "live": "five-sections-live.html",
+    "edit": "five-sections-edit.html",
+    "css": "five-sections.css"
+  },
+  "orientation": "landscape"
+}
