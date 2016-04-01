@@ -1,7 +1,7 @@
-<header class="header" style="position:relative;">
+<header class="header" style="position:relative;"><!-- @TODO: Is this inline styling a good idea? -->
   <!-- Main menu -->
   <div class="header--inner">
-    <a href="/" class="logo js-logo" title="Aroskanalen"><span>Aroskanalen</span></a>
+    <a href="/" class="logo js-logo" title="{{siteTitle}}"><span>{{siteTitle}}</span></a>
     <nav class="nav js-nav">
       <a class="nav--link" data-ng-repeat="item in mainMenuItems | orderBy:item.weight" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" href="{{item.route}}">
         <i class="material-icons">{{item.icon}}</i>{{item.title}}
@@ -12,6 +12,7 @@
 <!-- Main menu end -->
 <!-- Open/Close hamburger menu icon -->
 <div class="nav-toggle js-menu-toggle" style="z-index:1;" data-ng-click="toggleNavMenu()" data-ng-class="{'open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+  <!-- @TODO: Why the 4 spans? -->
   <span></span>
   <span></span>
   <span></span>
