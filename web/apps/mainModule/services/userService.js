@@ -1,10 +1,5 @@
 /**
- * @file
- * Contains the user factory.
- */
-
-/**
- * User factory.
+ * User service.
  */
 angular.module('mainModule').service('userService', ['busService', '$http',
   function (busService, $http) {

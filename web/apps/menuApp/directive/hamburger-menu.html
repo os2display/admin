@@ -1,0 +1,28 @@
+<!-- @TODO: Move inline styling to design -->
+
+<!-- Open/Close hamburger menu icon -->
+<div class="nav-toggle js-menu-toggle" style="z-index:3;" data-ng-click="toggleMenu()" data-ng-class="{'open': menuOpen, 'is-hidden': !menuOpen}">
+  <!-- @TODO: Why the 4 spans? -->
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<!-- Open/Close hamburger menu end -->
+<!-- Hamburger menu -->
+<nav class="hamburger-menu" style="z-index: 2;" data-ng-show="menuOpen" data-ng-class="{'is-open': menuOpen, 'is-hidden': !menuOpen}">
+  <div class="hamburger-menu--inner">
+    <div class="hamburger-menu--links">
+      <div class="hamburger-menu--group" data-ng-repeat="group in hamburgerMenuItems">
+        <!-- @TODO: Make into a div in the design -->
+        <div class="hamburger-menu--link">
+          {{group.title}}
+        </div>
+        <a class="hamburger-menu--link is-sub" data-ng-repeat="item in group.items" href="{{item.route}}">
+          {{item.title}}
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Hamburger menu end -->
