@@ -3,7 +3,7 @@
   <div class="header--inner">
     <a href="/" class="logo js-logo" title="Aroskanalen"><span>Aroskanalen</span></a>
     <nav class="nav js-nav">
-      <a class="nav--link" data-ng-repeat="item in mainMenuItems | orderBy:item.weight" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" data-ng-href="/#{{item.route}}">
+      <a class="nav--link" data-ng-repeat="item in mainMenuItems | orderBy:item.weight" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" href="{{item.route}}">
         <i class="material-icons">{{item.icon}}</i>{{item.title}}
       </a>
     </nav>
@@ -22,51 +22,12 @@
 <nav class="hamburger-menu" data-ng-show="navMenuOpen" data-ng-class="{'is-open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
   <div class="hamburger-menu--inner">
     <div class="hamburger-menu--links">
-      <div class="hamburger-menu--group">
+      <div class="hamburger-menu--group" data-ng-repeat="group in hamburgerMenuItems">
         <a href="#" class="hamburger-menu--link">
-          Kanaler
+          {{group.title}}
         </a>
-        <a class="hamburger-menu--link is-sub is active" href="#">
-          Oversigt
-        </a>
-        <a class="hamburger-menu--link is-sub is-active" href="#">
-          Opret kanal
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="#" class="hamburger-menu--link">
-          Slides
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Oversigt
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Opret kanal
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="#" class="hamburger-menu--link">
-          Skærme
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Oversigt
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Opret kanal
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="#" class="hamburger-menu--link">
-          Administration
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Deling
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Templates
-        </a>
-        <a class="hamburger-menu--link is-sub" href="#">
-          Søgning og indhold
+        <a class="hamburger-menu--link is-sub" data-ng-repeat="item in group.items" href="{{item.route}}">
+          {{item.title}}
         </a>
       </div>
       <div class="hamburger-menu--group">

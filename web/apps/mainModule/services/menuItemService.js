@@ -15,33 +15,122 @@ angular.module('mainModule').service('menuItemService', ['busService',
       busService.$emit('menuApp.returnMainMenuItems', [
         {
           title: 'Kanaler',
-          route: '/channel-overview',
+          route: '/#/channel-overview',
           activeFilter: '/channel',
           icon: 'add_to_queue',
           weight: 1
         },
         {
           title: 'Skærme',
-          route: '/screen-overview',
+          route: '/#/screen-overview',
           activeFilter: '/screen',
           icon: 'tv',
           weight: 3
         },
         {
           title: 'Slides',
-          route: '/slide-overview',
+          route: '/#/slide-overview',
           activeFilter: '/slide',
           icon: 'dvr',
           weight: 2
         },
         {
           title: "Medier",
-          route: '/media-overview',
+          route: '/#/media-overview',
           activeFilter: '/media',
           icon: 'picture_in_picture',
           weight: 4
         }
       ]);
-    })
+    });
+
+    busService.$on('menuApp.requestHamburgerMenuItems', function requestHamburgerMenuItems(event, args) {
+      busService.$emit('menuApp.returnHamburgerMenuItems', [
+        {
+          title: 'Kanaler',
+          weight: 1,
+          items: [
+            {
+              title: 'Oversigt',
+              route: '/#/channel-overview',
+              activeFilter: '/channel-overview',
+              weight: 1
+            },
+            {
+              title: 'Opret kanal',
+              route: '/#/channel',
+              activeFilter: '/channel',
+              weight: 2
+            }
+          ]
+        },
+        {
+          title: 'Slides',
+          weight: 2,
+          items: [
+            {
+              title: 'Oversigt',
+              route: '/#/slide-overview',
+              activeFilter: '/slide-overview',
+              weight: 1
+            },
+            {
+              title: 'Opret slide',
+              route: '/#/slide',
+              activeFilter: '/slide',
+              weight: 2
+            }
+          ]
+        },
+        {
+          title: 'Skærme',
+          weight: 3,
+          items: [
+            {
+              title: 'Oversigt',
+              route: '/#/screen-overview',
+              activeFilter: '/screen-overview',
+              weight: 1
+            },
+            {
+              title: 'Opret skærm',
+              route: '/#/screen',
+              activeFilter: '/screen',
+              weight: 2
+            }
+          ]
+        },
+        {
+          title: 'Administration',
+          weight: 3,
+          permission: 'admin',
+          items: [
+            {
+              title: 'Brugere',
+              route: '/admin',
+              weight: 1
+            },
+            {
+              title: 'Deling',
+              route: '/#/admin-sharing',
+              activeFilter: '/admin-sharing',
+              weight: 2
+            },
+            {
+              title: 'Skabeloner',
+              route: '/#/admin-templates',
+              activeFilter: '/admin-sharing',
+              weight: 3
+            },
+            {
+              title: 'Kommandoer',
+              route: '/#/commands',
+              activeFilter: '/commands',
+              weight: 3
+            }
+          ]
+        }
+      ]);
+    });
   }
 ]);

@@ -17,6 +17,7 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
     $scope.showSharingOptions = window.config.sharingService.enabled;
     $scope.siteTitle = window.config.siteTitle;
     $scope.mainMenuItems = [];
+    $scope.hamburgerMenuItems = [];
 
     // Listen for Main menu items.
     busService.$on('mainApp.returnUser', function returnMainMenuItems(event, user) {
@@ -41,6 +42,22 @@ angular.module('menuApp').controller('MenuController', ['$scope', '$rootScope', 
 
     // Request Main menu items
     busService.$emit('menuApp.requestMainMenuItems', {});
+
+    // Listen for Hamburger menu items.
+    busService.$on('menuApp.returnHamburgerMenuItems', function returnHamburgerMenuItems(event, items) {
+      // Add items received.
+      items.forEach(function(element) {
+        $scope.hamburgerMenuItems.push(element);
+      });
+
+      // Sort by weight.
+      $scope.hamburgerMenuItems.sort(function(a, b) {
+        return parseInt(a.weight) - parseInt(b.weight);
+      });
+    });
+
+    // Request Hamburger menu items
+    busService.$emit('menuApp.requestHamburgerMenuItems', {});
 
     /**
      * Set the submenu items according to what the url starts with.
