@@ -129,6 +129,17 @@ angular.module('mainModule').service('menuItemService', ['busService',
               weight: 3
             }
           ]
+        },
+        {
+          title: 'Information',
+          weight: 4,
+          items: [
+            {
+              title: 'Style guide',
+              route: '/aroskanalen/style-guide',
+              weight: 1
+            }
+          ]
         }
       ]);
     });

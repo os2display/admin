@@ -1,4 +1,6 @@
-<header class="header" style="position:relative;"><!-- @TODO: Is this inline styling a good idea? -->
+<!-- @TODO: Move inline styling to design -->
+
+<header class="header" style="position:relative;">
   <!-- Main menu -->
   <div class="header--inner">
     <a href="/" class="logo js-logo" title="{{siteTitle}}"><span>{{siteTitle}}</span></a>
@@ -11,7 +13,7 @@
 </header>
 <!-- Main menu end -->
 <!-- Open/Close hamburger menu icon -->
-<div class="nav-toggle js-menu-toggle" style="z-index:1;" data-ng-click="toggleNavMenu()" data-ng-class="{'open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+<div class="nav-toggle js-menu-toggle" style="z-index:3;" data-ng-click="toggleNavMenu()" data-ng-class="{'open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
   <!-- @TODO: Why the 4 spans? -->
   <span></span>
   <span></span>
@@ -20,20 +22,16 @@
 </div>
 <!-- Open/Close hamburger menu end -->
 <!-- Hamburger menu -->
-<nav class="hamburger-menu" data-ng-show="navMenuOpen" data-ng-class="{'is-open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
+<nav class="hamburger-menu" style="z-index: 2;" data-ng-show="navMenuOpen" data-ng-class="{'is-open': navMenuOpen !== null && navMenuOpen, 'is-hidden': navMenuOpen !== null && !navMenuOpen}">
   <div class="hamburger-menu--inner">
     <div class="hamburger-menu--links">
       <div class="hamburger-menu--group" data-ng-repeat="group in hamburgerMenuItems">
-        <a href="#" class="hamburger-menu--link">
+        <!-- @TODO: Make into a div in the design -->
+        <div class="hamburger-menu--link">
           {{group.title}}
-        </a>
+        </div>
         <a class="hamburger-menu--link is-sub" data-ng-repeat="item in group.items" href="{{item.route}}">
           {{item.title}}
-        </a>
-      </div>
-      <div class="hamburger-menu--group">
-        <a href="/aroskanalen/style-guide" class="hamburger-menu--link">
-          Style guide
         </a>
       </div>
     </div>
