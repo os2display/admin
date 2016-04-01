@@ -1,6 +1,7 @@
 /**
  * @file
  * This is a TEMPORARY menu item provider.
+ * @TODO: Remove this, when the routes are provided by modules!
  */
 
 /**

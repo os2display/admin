@@ -1,5 +1,5 @@
 /**
- * Main menu directive.
+ * Sub menu directive.
  */
 angular.module('menuApp')
   .directive('subMenu', ['$location', 'busService',
@@ -29,6 +29,8 @@ angular.module('menuApp')
 
           /**
            * Set the submenu items according to what the url starts with.
+           *
+           * @TODO: Make this event based!
            */
           var updateSubMenu = function () {
             if (url.indexOf('/channel') === 0 || url.indexOf('/shared-channel') === 0) {
