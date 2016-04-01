@@ -13,12 +13,12 @@
 <nav class="hamburger-menu" style="z-index: 2;" data-ng-show="menuOpen" data-ng-class="{'is-open': menuOpen, 'is-hidden': !menuOpen}">
   <div class="hamburger-menu--inner">
     <div class="hamburger-menu--links">
-      <div class="hamburger-menu--group" data-ng-repeat="group in hamburgerMenuItems">
+      <div class="hamburger-menu--group" data-ng-repeat="group in hamburgerMenuItems" data-ng-if="userHasPermission(group.permission)">
         <!-- @TODO: Make into a div in the design -->
         <div class="hamburger-menu--link">
           {{group.title}}
         </div>
-        <a class="hamburger-menu--link is-sub" data-ng-repeat="item in group.items" href="{{item.route}}">
+        <a class="hamburger-menu--link is-sub" data-ng-repeat="item in group.items" data-ng-if="userHasPermission(item.permission)" href="{{item.route}}">
           {{item.title}}
         </a>
       </div>

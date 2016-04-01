@@ -16,12 +16,14 @@ angular.module('menuApp')
           scope.currentUser = null;
 
           // Listen for Main menu items.
-          busService.$on('mainApp.returnUser', function returnMainMenuItems(event, user) {
-            scope.currentUser = user;
+          busService.$on('userService.returnUser', function returnUser(event, user) {
+            scope.$apply(function () {
+              scope.currentUser = user;
+            });
           });
 
           // Request user
-          busService.$emit('main.requestUser', {});
+          busService.$emit('userService.requestUser', {});
 
           // Listen for Hamburger menu items.
           busService.$on('menuApp.returnHamburgerMenuItems', function returnHamburgerMenuItems(event, items) {
@@ -46,6 +48,19 @@ angular.module('menuApp')
             scope.menuOpen = !scope.menuOpen;
             $('html').toggleClass('is-locked');
           };
+
+          scope.userHasPermission = function userHasPermission(permission) {
+            if (!permission) {
+              return true;
+            }
+            if (permission === 'super-admin' && scope.currentUser && scope.currentUser.is_super_admin) {
+              return true;
+            }
+            else if (permission === 'admin' && scope.currentUser && scope.currentUser.is_admin) {
+              return true;
+            }
+            return false;
+          }
         }
       };
     }
