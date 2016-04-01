@@ -124,13 +124,6 @@ angular.module('mainModule').service('menuItemService', ['busService',
               activeFilter: '/admin-sharing',
               permission: 'super-admin',
               weight: 3
-            },
-            {
-              title: 'Kommandoer',
-              route: '/#/commands',
-              activeFilter: '/commands',
-              permission: 'super-admin',
-              weight: 3
             }
           ]
         },

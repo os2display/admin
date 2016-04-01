@@ -2,11 +2,10 @@ parameters:
   apps:
     menuApp:
       files:
-        - /apps/menuApp/menuController.js
         - /apps/menuApp/directive/mainMenuDirective.js
         - /apps/menuApp/directive/hamburgerMenuDirective.js
+        - /apps/menuApp/directive/subMenuDirective.js
       template: /apps/menuApp/menu.html
-      controller: MenuController
       dependencies:
         - busModule
         - mainModule
