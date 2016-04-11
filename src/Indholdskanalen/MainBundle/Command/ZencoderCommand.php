@@ -9,8 +9,7 @@
 
 namespace Indholdskanalen\MainBundle\Command;
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\RequestException;
+use GuzzleHttp;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -59,7 +58,7 @@ class ZencoderCommand extends ContainerAwareCommand {
     $local_media = $media_manager->findOneBy(array('id' => $post->job->pass_through));
 
     if ($local_media) {
-      if (TRUE || $local_media->getProviderStatus() == MediaInterface::STATUS_PENDING) {
+      if ($local_media->getProviderStatus() == MediaInterface::STATUS_PENDING) {
         $cdn = $this->getContainer()->get('sonata.media.cdn.server');
         $zencoder = $this->getContainer()->get('sonata.media.provider.zencoder');
         $root = $this->getContainer()->get('kernel')->getRootDir() . '/../web';
@@ -77,9 +76,8 @@ class ZencoderCommand extends ContainerAwareCommand {
           // Try to download remote video file.
           try {
             $resource = fopen($path . '/' . $video_filename, 'w');
-            $client = new Client();
-            $client->get($file_metadata ->url, ['sink' => $resource])->send();
-            fclose($resource);
+            $client = new GuzzleHttp\Client();
+            $client->request('GET', $file_metadata->url, ['sink' => $resource]);
           }
           catch (\ErrorException $exception) {
             $msg = 'Error exception (video file handling): ' . $exception->getMessage();
@@ -87,7 +85,7 @@ class ZencoderCommand extends ContainerAwareCommand {
             $output->writeln($msg);
             return -1;
           }
-          catch (RequestException $exception) {
+          catch (GuzzleHttp\Exception\RequestException $exception) {
             $msg = 'Request exception (video download): ' . $exception->getMessage();
             $logger->error($msg);
             $output->writeln($msg);
@@ -99,13 +97,13 @@ class ZencoderCommand extends ContainerAwareCommand {
           foreach ($file_metadata->thumbnails as $remote_thumbnail) {
             $image = array_shift($remote_thumbnail->images);
             $thumb_filename = basename(substr($image->url, 0, strpos($image->url, '?')));
+            $thumb_filename = '/' .  $post->job->id . $remote_thumbnail->label . $thumb_filename;
 
             // Try to download remote image file.
             try {
-              $thumb_filename = '/' .  $post->job->id . $remote_thumbnail->label . $thumb_filename;
               $resource = fopen($path . $thumb_filename, 'w');
-              $client = new Client();
-              $client->get($image->url, ['sink' => $resource])->send();
+              $client = new GuzzleHttp\Client();
+              $client->request('GET', $image->url, ['sink' => $resource]);
               fclose($resource);
             }
             catch (\ErrorException $exception) {
@@ -115,7 +113,7 @@ class ZencoderCommand extends ContainerAwareCommand {
 
               return -1;
             }
-            catch (RequestException $exception) {
+            catch (GuzzleHttp\Exception\RequestException $exception) {
               fclose($resource);
               $msg = 'Request exception (image download): ' . $exception->getMessage();
               $logger->error($msg);
@@ -180,7 +178,7 @@ class ZencoderCommand extends ContainerAwareCommand {
     }
 
     $msg = 'Video and thumbnails download completed (mediaId: ' . $post->job->pass_through . ', jobId: ' . $post->job->id .')';
-    $logger->error($msg);
+    $logger->info($msg);
     $output->writeln($msg);
   }
 }
