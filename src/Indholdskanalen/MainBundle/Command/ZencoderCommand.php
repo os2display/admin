@@ -71,14 +71,14 @@ class ZencoderCommand extends ContainerAwareCommand {
 
         // Handle all the trans-coded video files. There should be mp4, ogv and
         // webm encoded video files.
-        foreach ($post->outputs as $output_data) {
-          $video_filename = basename(substr($output_data->url, 0, strpos($output_data->url, '?')));
+        foreach ($post->outputs as $file_metadata) {
+          $video_filename = basename(substr($file_metadata->url, 0, strpos($file_metadata->url, '?')));
 
           // Try to download remote video file.
           try {
             $resource = fopen($path . '/' . $video_filename, 'w');
             $client = new Client();
-            $client->get($output_data ->url, ['sink' => $resource])->send();
+            $client->get($file_metadata ->url, ['sink' => $resource])->send();
             fclose($resource);
           }
           catch (\ErrorException $exception) {
@@ -96,7 +96,7 @@ class ZencoderCommand extends ContainerAwareCommand {
 
           // Thumbnails. We save the first thumbnail per output.
           $thumbnails = array();
-          foreach ($output_data->thumbnails as $remote_thumbnail) {
+          foreach ($file_metadata->thumbnails as $remote_thumbnail) {
             $image = array_shift($remote_thumbnail->images);
             $thumb_filename = basename(substr($image->url, 0, strpos($image->url, '?')));
 
@@ -135,20 +135,20 @@ class ZencoderCommand extends ContainerAwareCommand {
           // Metadata including everything Zencoder sends us.
           $metadata[] = array(
             'reference' => $cdn->getPath($zencoder->generatePath($local_media), FALSE) . '/' . $video_filename,
-            'label' => $output->label,
-            'format' => $output->format,
-            'frame_rate' => $output->frame_rate,
-            'length' => $output->duration_in_ms / 1000,
-            'audio_sample_rate' => $output->audio_sample_rate,
-            'audio_bitrate_in_kbps' => $output->audio_bitrate_in_kbps,
-            'audio_codec' => $output->audio_codec,
-            'height' => $output->height,
-            'width' => $output->width,
-            'file_size_in_bytes' => $output->file_size_in_bytes,
-            'video_codec' => $output->video_codec,
-            'total_bitrate_in_kbps' => $output->total_bitrate_in_kbps,
-            'channels' => $output->channels,
-            'video_bitrate_in_kbps' => $output->video_bitrate_in_kbps,
+            'label' => $file_metadata->label,
+            'format' => $file_metadata->format,
+            'frame_rate' => $file_metadata->frame_rate,
+            'length' => $file_metadata->duration_in_ms / 1000,
+            'audio_sample_rate' => $file_metadata->audio_sample_rate,
+            'audio_bitrate_in_kbps' => $file_metadata->audio_bitrate_in_kbps,
+            'audio_codec' => $file_metadata->audio_codec,
+            'height' => $file_metadata->height,
+            'width' => $file_metadata->width,
+            'file_size_in_bytes' => $file_metadata->file_size_in_bytes,
+            'video_codec' => $file_metadata->video_codec,
+            'total_bitrate_in_kbps' => $file_metadata->total_bitrate_in_kbps,
+            'channels' => $file_metadata->channels,
+            'video_bitrate_in_kbps' => $file_metadata->video_bitrate_in_kbps,
             'thumbnails' => $thumbnails,
           );
         }
