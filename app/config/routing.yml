@@ -41,3 +41,8 @@ media:
 indholdskanalen_main:
   resource: "@IndholdskanalenMainBundle/Resources/config/routing.yml"
   prefix:   /
+
+JMSJobQueueBundle:
+    resource: "@JMSJobQueueBundle/Controller/"
+    type: annotation
+    prefix: /jobs
