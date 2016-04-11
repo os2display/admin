@@ -45,4 +45,4 @@ indholdskanalen_main:
 JMSJobQueueBundle:
     resource: "@JMSJobQueueBundle/Controller/"
     type: annotation
-    prefix: /jobs
+    prefix: /admin/jobs

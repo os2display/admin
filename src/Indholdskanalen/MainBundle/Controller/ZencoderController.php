@@ -3,7 +3,6 @@
 namespace Indholdskanalen\MainBundle\Controller;
 
 use JMS\JobQueueBundle\Entity\Job;
-use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
