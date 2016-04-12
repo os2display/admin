@@ -29,7 +29,10 @@
         "jms/serializer-bundle": "~0.13",
         "jms/di-extra-bundle": "1.4.*@dev",
         "debril/rss-atom-bundle": "2.2",
-        "misd/guzzle-bundle": "~1.0"
+        "misd/guzzle-bundle": "~1.0",
+        "jms/job-queue-bundle": "dev-master",
+        "pagerfanta/pagerfanta": "^1.0",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
