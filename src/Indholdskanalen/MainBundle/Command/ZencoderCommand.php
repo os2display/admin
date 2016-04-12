@@ -78,6 +78,7 @@ class ZencoderCommand extends ContainerAwareCommand {
             $resource = fopen($path . '/' . $video_filename, 'w');
             $client = new GuzzleHttp\Client();
             $client->request('GET', $file_metadata->url, ['sink' => $resource]);
+            $output->writeln('Video ' . $video_filename . 'downloaded (' . $file_metadata->file_size_in_bytes .  'Bytes)');
           }
           catch (\ErrorException $exception) {
             $msg = 'Error exception (video file handling): ' . $exception->getMessage();
