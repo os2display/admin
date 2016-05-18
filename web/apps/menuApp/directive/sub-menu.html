@@ -1,5 +1,5 @@
 <ul>
-  <li data-ng-repeat="item in subMenuItems">
+  <li data-ng-repeat="item in subMenuItems track by $index">
     <a href="{{item.path}}">
       <span>{{item.title}}</span>
     </a>

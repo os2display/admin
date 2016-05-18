@@ -12,14 +12,18 @@ angular.module('menuApp')
         scope: {},
         link: function (scope) {
           var url = $location.url();
+          scope.subMenus = [];
           scope.subMenuItems = [];
 
           // Listen for Main menu items.
           busService.$on('menuApp.returnSubMenuItems', function returnSubMenuItems(event, items) {
-            // Add items received.
-            items.forEach(function(element) {
-              scope.subMenuItems.push(element);
-            });
+            if (!scope.subMenus.hasOwnProperty(items.mainMenuItem)) {
+              scope.subMenus[items.mainMenuItem] = [];
+            }
+
+            for (var i = 0; i < items.items.length; i++) {
+              scope.subMenus[items.mainMenuItem].push(items[i]);
+            }
 
             // Sort by weight.
             scope.subMenuItems.sort(function(a, b) {
@@ -76,14 +80,23 @@ angular.module('menuApp')
                 {
                   title: 'Oversigt',
                   path: '/#/screen-overview',
-                  classSuffix: 'overview'
+                  classSuffix: 'overview',
+                  position: 'left'
                 },
                 {
                   title: 'Opret skærm',
                   path: '/#/screen',
-                  classSuffix: 'create-channel'
+                  classSuffix: 'create-channel',
+                  position: 'left'
+                },
+                {
+                  title: 'Timeline',
+                  path: '/#/screen-timeline',
+                  classSuffix: 'screen-timeline',
+                  position: 'right',
+                  icon: 'fisk'
                 }
-              ];
+              ]
             }
             else if (url.indexOf('/template') === 0) {
               scope.subMenuItems = [

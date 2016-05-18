@@ -11,6 +11,35 @@ angular.module('mainModule').service('menuItemService', ['busService',
   function (busService) {
     'use strict';
 
+    // Listen for location change
+    busService.$on('menuApp.requestSubMenuItems', function (event, data) {
+      busService.$emit('menuApp.returnSubMenuItems', {
+          mainMenuItem: 'screen',
+          items: [
+            {
+              title: 'Oversigt',
+              path: '/#/screen-overview',
+              classSuffix: 'overview',
+              position: 'left'
+            },
+            {
+              title: 'Opret skærm',
+              path: '/#/screen',
+              classSuffix: 'create-channel',
+              position: 'left'
+            },
+            {
+              title: 'Timeline',
+              path: '/#/screen-timeline',
+              classSuffix: 'screen-timeline',
+              position: 'right',
+              icon: 'fisk'
+            }
+          ]
+        }
+      );
+    });
+
     // Register listener for requests for Main Menu items
     busService.$on('menuApp.requestMainMenuItems', function requestMainMenuItems(event, args) {
       busService.$emit('menuApp.returnMainMenuItems', [
@@ -142,4 +171,5 @@ angular.module('mainModule').service('menuItemService', ['busService',
       ]);
     });
   }
-]);
+])
+;
