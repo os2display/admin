@@ -125,7 +125,7 @@ angular.module('menuApp')
             updateSubMenu();
           });
 
-          // Request Main menu items
+          // Request Sub menu items
           busService.$emit('menuApp.requestSubMenuItems');
         }
       };

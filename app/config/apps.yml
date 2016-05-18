@@ -17,3 +17,15 @@ parameters:
       dependencies:
         - busModule
         - mainModule
+
+    timelineApp:
+      files:
+        - /apps/timelineApp/timelineApp.js
+        - /apps/timelineApp/assets/vis/dist/vis.min.js
+        - /apps/timelineApp/assets/vis/dist/vis.min.css
+        - /apps/timelineApp/directive/timelineDirective.js
+      template: /apps/timelineApp/timeline.html
+      dependencies:
+        - busModule
+        - mainModule
+        - ngRoute

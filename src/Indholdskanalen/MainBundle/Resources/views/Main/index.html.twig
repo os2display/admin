@@ -209,7 +209,11 @@
   <!-- New angular applications -->
   {% for key, app in apps %}
     {% for file in app.files %}
+      {% if file matches '{^.*\.js$}' %}
       <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
+      {% elseif file matches '{^.*\.css$}' %}
+        <link rel="stylesheet" href="{{ asset(file ~ '?' ~ version) }}">
+      {% endif %}
     {% endfor %}
   {% endfor %}
 {% endblock %}
