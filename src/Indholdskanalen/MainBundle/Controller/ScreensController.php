@@ -77,7 +77,7 @@ class ScreensController extends Controller {
       }
 
       $serializer = $this->get('jms_serializer');
-      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
+      $response->setContent($serializer->serialize($entities, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks()));
     }
     else {
       $response->setContent(json_encode(array()));
