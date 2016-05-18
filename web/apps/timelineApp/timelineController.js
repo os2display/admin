@@ -1,5 +1,5 @@
 /**
- * @TODO: Change to use search function 
+ * @TODO: Change to use search function
  */
 angular.module('timelineApp').controller('TimelineController', ['busService', '$scope', '$http',
   function (busService, $scope, $http) {
@@ -17,38 +17,47 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
     // Load bulk.
     $http.get('/api/screens/bulk' + queryString)
       .success(function (data, status) {
-        console.log(data);
-
         var d = [];
 
         for (var screen in data) {
           var c = [];
+          var regions = [];
           var screen = data[screen];
 
           for (var channel in screen.channel_screen_regions) {
-            var channel = screen.channel_screen_regions[channel].channel;
+            var csr = screen.channel_screen_regions[channel];
+            var channel = csr.channel;
 
             var start = channel.publish_from ? channel.publish_from * 1000 : 0;
             var end   = channel.publish_to ? channel.publish_to * 1000 : 10000000000000;
 
             c.push({
-              id: channel.id,
+              id: csr.id + "_" + channel.id,
               content: channel.title,
               start: start,
-              end: end
+              end: end,
+              group: csr.region
             });
+
+            if (regions.indexOf(csr.region) == -1) {
+              regions.push(csr.region);
+            }
+          }
+
+          var r = [];
+          for (var i = 0; i < regions.length; i++) {
+            r.push({id: regions[i], content: "Region " + regions[i]});
           }
 
           d.push({
             id: screen.id,
             title: screen.title,
-            channels: c
+            channels: c,
+            regions: r
           });
         }
 
         $scope.data = d;
-
-        console.log(d);
       })
       .error(function (data, status) {
       });

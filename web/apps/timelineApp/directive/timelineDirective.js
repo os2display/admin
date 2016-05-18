@@ -28,10 +28,6 @@ angular.module('timelineApp')
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
-            timeAxis: {
-              scale: 'hour',
-              step: 12
-            },
             zoomable: false,
             zoomMin: 1000 * 60 * 60 * 24,              // one day in milliseconds
             zoomMax: 1000 * 60 * 60 * 24 * 31 * 3      // about 3 months in milliseconds
@@ -39,6 +35,9 @@ angular.module('timelineApp')
 
           scope.$watch('id', function(oldVal, newVal) {
             if (newVal !== null) {
+
+              console.log(scope.data);
+              
               // DOM element where the Timeline will be attached
               var container = document.getElementById(scope.id);
 
@@ -46,7 +45,7 @@ angular.module('timelineApp')
               var items = new vis.DataSet(scope.data.channels);
 
               // Create a Timeline
-              timeline = new vis.Timeline(container, items, options);
+              timeline = new vis.Timeline(container, items, scope.data.regions, options);
 
               // Set starting window
               timeline.setWindow(1463474027000, 1463474027000 + 1000 * 24 * 60 * 60 * 7);
