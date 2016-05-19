@@ -20,7 +20,7 @@ parameters:
 
     timelineApp:
       files:
-        - /apps/timelineApp/routing.js
+        - /apps/timelineApp/timelineApp.js
         - /apps/timelineApp/assets/vis/dist/vis.min.js
         - /apps/timelineApp/assets/vis/dist/vis.min.css
         - /apps/timelineApp/directive/timelineDirective.js

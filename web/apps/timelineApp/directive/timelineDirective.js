@@ -14,30 +14,47 @@ angular.module('timelineApp')
           data: '='
         },
         link: function (scope) {
-          var timeline;
+          var timeline, date, startOfWeek, endOfWeek;
+
+          /**
+           * Calculate the timeline window.
+           * @param date
+           */
+          var calculateWindow = function calculateWindow(date) {
+            // Calculate current window timestamps (current week)
+            startOfWeek = date.getTime();
+            startOfWeek = startOfWeek
+              - (startOfWeek % (24 * 60 * 60 * 1000)                // Start of day
+              - date.getTimezoneOffset() * 60 * 1000)               // Apply time zone   @TODO: Fix this to apply differently for each time the interval is changed.
+              - ((date.getDay() + 6) % 7) * 24 * 60 * 60 * 1000;    // Go back to monday
+            endOfWeek = startOfWeek + 7 * 24 * 60 * 60 * 1000;  // Monday + 7 days
+
+            scope.start = new Date(startOfWeek);
+            scope.end = new Date(endOfWeek);
+          };
+          calculateWindow(date = new Date());
+
           // Configuration for the Timeline
           var options = {
-            locale: 'da',                              // set language to danish, requires moment-with-locales.min.js
-            editable: {                                // make items editable, only update time
+            locale: 'da',                               // set language to danish, requires moment-with-locales.min.js
+            editable: {                                 // make items editable, only update time
               add: false,
               updateTime: true,
               updateGroup: false,
               remove: false
             },
-            snap: function (date, scale, step) {       // snap to hour
+            snap: function (date, scale, step) {        // snap to hour
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
-            zoomable: false,
-            zoomMin: 1000 * 60 * 60 * 24,              // one day in milliseconds
-            zoomMax: 1000 * 60 * 60 * 24 * 31          // about 1 months in milliseconds
+            start: startOfWeek,                         // initial start of timeline
+            end: endOfWeek,                             // initial end of timeline
+            minHeight: 300                              // minimum height in pixels
           };
 
-          scope.$watch('id', function(oldVal, newVal) {
+          // Listen for when scope is ready.
+          scope.$watch('id', function (oldVal, newVal) {
             if (newVal !== null) {
-
-              console.log(scope.data);
-              
               // DOM element where the Timeline will be attached
               var container = document.getElementById(scope.id);
 
@@ -46,30 +63,25 @@ angular.module('timelineApp')
 
               // Create a Timeline
               timeline = new vis.Timeline(container, items, scope.data.regions, options);
-
-              // Set starting window
-              timeline.setWindow(1463474027000, 1463474027000 + 1000 * 24 * 60 * 60 * 7);
             }
           });
 
-          scope.move = function move(percentage)
-          {
-            var range = timeline.getWindow();
-            var interval = range.end - range.start;
+          /**
+           * Move window @days number of days.
+           * @param days
+           */
+          scope.moveDays = function moveDays(days) {
+            var displacement = days * 24 * 60 * 60 * 1000;
 
+            date = new Date(date.getTime() + displacement);
+
+            calculateWindow(date);
+
+            // Set new window
             timeline.setWindow({
-              start: range.start.valueOf() - interval * percentage,
-              end: range.end.valueOf() - interval * percentage
-            });
-          };
-
-          scope.zoom = function zoom(percentage) {
-            var range = timeline.getWindow();
-            var interval = range.end - range.start;
-
-            timeline.setWindow({
-              start: range.start.valueOf() - interval * percentage,
-              end: range.end.valueOf() + interval * percentage
+              start: startOfWeek,
+              end: endOfWeek,
+              animation: false
             });
           };
         }

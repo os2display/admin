@@ -30,13 +30,6 @@ angular.module('mainModule').service('menuItemService', ['busService',
                 classes: 'create-channel',
                 group: 'left',
                 weight: 2
-              },
-              {
-                title: 'Timeline',
-                path: '/#/screen-timeline',
-                classes: 'screen-timeline',
-                group: 'right',
-                weight: 3
               }
             ]
           },

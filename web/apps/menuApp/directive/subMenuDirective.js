@@ -19,23 +19,30 @@ angular.module('menuApp')
           // Add all not already added menu items.
           busService.$on('menuApp.returnSubMenuItems', function returnSubMenuItems(event, data) {
             for (var i = 0; i < data.length; i++) {
-              if (subMenus.indexOf(data[i].mainMenuItem) === -1) {
-                subMenus[data[i].mainMenuItem] = [];
+              var mainMenuItem = data[i].mainMenuItem;
+              var items = data[i].items;
+
+              // If mainMenuItem is not already there create it
+              if (!subMenus.hasOwnProperty(mainMenuItem)) {
+                subMenus[mainMenuItem] = [];
               }
 
-              for (var j = 0; j < data[i].items.length; j++) {
-                var item = data[i].items[j];
+              // Iterate each item.
+              // Make sure they have not already been added to sub menu,
+              //   else add it.
+              for (var j = 0; j < items.length; j++) {
+                var item = items[j];
 
                 var add = true;
-                for (var k = 0; k < subMenus[data[i].mainMenuItem].length; k++) {
-                  if (subMenus[data[i].mainMenuItem][k].title === item.title) {
+                for (var k = 0; k < subMenus[mainMenuItem].length; k++) {
+                  if (subMenus[mainMenuItem][k].title === item.title) {
                     add = false;
                     break;
                   }
                 }
 
                 if (add) {
-                  subMenus[data[i].mainMenuItem].push(item);
+                  subMenus[mainMenuItem].push(item);
                 }
               }
             }
@@ -47,6 +54,7 @@ angular.module('menuApp')
               });
             }
 
+            // Update what submenu is displayed.
             updateSubMenu();
           });
 

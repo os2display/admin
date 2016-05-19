@@ -29,9 +29,18 @@ var adminJsPath = [
 
 var adminJsAssets = [
   './web/assets/libs/jquery-*.min.js',
-  './web/assets/libs/angular-1.2.16.min.js',
-  './web/assets/libs/*.js',
-  './web/assets/modules/**/*.js'
+  './web/assets/libs/angular-1.*.min.js',
+  './web/assets/libs/angular-animate-1.*.min.js',
+  './web/assets/libs/angular-route-1.*.min.js',
+  './web/assets/libs/angular-route-1.*.min.js',
+  './web/assets/libs/angular-bootstrap-colorpicker*.js',
+  './web/assets/libs/angular-css-injector*.js',
+  './web/assets/libs/angular-file-upload*.js',
+  './web/assets/libs/datetimepicker*.js',
+  './web/assets/libs/es5-shim*.js',
+  './web/assets/libs/locale_da*.js',
+  './web/assets/libs/moment*.js',
+  './web/assets/libs/stacktrace*.js'
 ];
 
 var adminBuildDir = './web/assets/build';
