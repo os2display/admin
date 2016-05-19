@@ -45,7 +45,6 @@ var adminJsAssets = [
 
 var adminBuildDir = './web/assets/build';
 var sassPath = './web/sass/*.scss';
-
 var sassWatchPath = './web/sass/**/*.scss';
 
 /**

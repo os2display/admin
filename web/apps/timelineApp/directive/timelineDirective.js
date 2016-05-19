@@ -14,7 +14,10 @@ angular.module('timelineApp')
           data: '='
         },
         link: function (scope) {
-          var timeline, date, startOfWeek, endOfWeek;
+          var timeline;
+          var date;
+          var startOfWeek = null;
+          var endOfWeek = null;
 
           /**
            * Calculate the timeline window.
@@ -25,9 +28,9 @@ angular.module('timelineApp')
             startOfWeek = date.getTime();
             startOfWeek = startOfWeek
               - (startOfWeek % (24 * 60 * 60 * 1000)                // Start of day
-              - date.getTimezoneOffset() * 60 * 1000)               // Apply time zone   @TODO: Fix this to apply differently for each time the interval is changed.
+              - date.getTimezoneOffset() * 60 * 1000)               // Apply time zone
               - ((date.getDay() + 6) % 7) * 24 * 60 * 60 * 1000;    // Go back to monday
-            endOfWeek = startOfWeek + 7 * 24 * 60 * 60 * 1000;  // Monday + 7 days
+            endOfWeek = startOfWeek + 7 * 24 * 60 * 60 * 1000;      // Monday + 7 days
 
             scope.start = new Date(startOfWeek);
             scope.end = new Date(endOfWeek);
@@ -43,10 +46,11 @@ angular.module('timelineApp')
               updateGroup: false,
               remove: false
             },
-            snap: function (date, scale, step) {        // snap to hour
+            snap: function (date) {                     // snap to hour
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
+            zoomable: false,
             start: startOfWeek,                         // initial start of timeline
             end: endOfWeek,                             // initial end of timeline
             minHeight: 300                              // minimum height in pixels
@@ -83,6 +87,8 @@ angular.module('timelineApp')
               end: endOfWeek,
               animation: false
             });
+
+            // @TODO: Request and set data for current window.
           };
         }
       };
