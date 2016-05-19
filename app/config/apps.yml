@@ -22,7 +22,6 @@ parameters:
       files:
         - /apps/timelineApp/routing.js
         - /apps/timelineApp/assets/vis/dist/vis.min.js
-        - /apps/timelineApp/assets/vis/dist/vis.min.css
         - /apps/timelineApp/directive/timelineDirective.js
         - /apps/timelineApp/timelineController.js
       controller: TimelineController
