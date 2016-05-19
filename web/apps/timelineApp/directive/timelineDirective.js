@@ -30,7 +30,7 @@ angular.module('timelineApp')
             },
             zoomable: false,
             zoomMin: 1000 * 60 * 60 * 24,              // one day in milliseconds
-            zoomMax: 1000 * 60 * 60 * 24 * 31 * 3      // about 3 months in milliseconds
+            zoomMax: 1000 * 60 * 60 * 24 * 31          // about 1 months in milliseconds
           };
 
           scope.$watch('id', function(oldVal, newVal) {
