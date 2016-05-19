@@ -15,10 +15,29 @@ angular.module('menuApp')
           var subMenus = [];
           scope.subMenuItems = [];
 
-          // Listen for Main menu items.
+          // Listen for Sub menu items.
+          // Add all not already added menu items.
           busService.$on('menuApp.returnSubMenuItems', function returnSubMenuItems(event, data) {
             for (var i = 0; i < data.length; i++) {
-              subMenus[data[i].mainMenuItem] = data[i].items;
+              if (subMenus.indexOf(data[i].mainMenuItem) === -1) {
+                subMenus[data[i].mainMenuItem] = [];
+              }
+
+              for (var j = 0; j < data[i].items.length; j++) {
+                var item = data[i].items[j];
+
+                var add = true;
+                for (var k = 0; k < subMenus[data[i].mainMenuItem].length; k++) {
+                  if (subMenus[data[i].mainMenuItem][k].title === item.title) {
+                    add = false;
+                    break;
+                  }
+                }
+
+                if (add) {
+                  subMenus[data[i].mainMenuItem].push(item);
+                }
+              }
             }
 
             // Sort by weight.
