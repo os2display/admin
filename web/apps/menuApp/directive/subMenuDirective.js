@@ -12,125 +12,72 @@ angular.module('menuApp')
         scope: {},
         link: function (scope) {
           var url = $location.url();
-          scope.subMenus = [];
+          var subMenus = [];
           scope.subMenuItems = [];
 
-          // Listen for Main menu items.
-          busService.$on('menuApp.returnSubMenuItems', function returnSubMenuItems(event, items) {
-            if (!scope.subMenus.hasOwnProperty(items.mainMenuItem)) {
-              scope.subMenus[items.mainMenuItem] = [];
-            }
+          // Listen for Sub menu items.
+          // Add all not already added menu items.
+          busService.$on('menuApp.returnSubMenuItems', function returnSubMenuItems(event, data) {
+            for (var i = 0; i < data.length; i++) {
+              var mainMenuItem = data[i].mainMenuItem;
+              var items = data[i].items;
 
-            for (var i = 0; i < items.items.length; i++) {
-              scope.subMenus[items.mainMenuItem].push(items[i]);
+              // If mainMenuItem is not already there create it
+              if (!subMenus.hasOwnProperty(mainMenuItem)) {
+                subMenus[mainMenuItem] = [];
+              }
+
+              // Iterate each item.
+              // Make sure they have not already been added to sub menu,
+              //   else add it.
+              for (var j = 0; j < items.length; j++) {
+                var item = items[j];
+
+                var add = true;
+                for (var k = 0; k < subMenus[mainMenuItem].length; k++) {
+                  if (subMenus[mainMenuItem][k].title === item.title) {
+                    add = false;
+                    break;
+                  }
+                }
+
+                if (add) {
+                  subMenus[mainMenuItem].push(item);
+                }
+              }
             }
 
             // Sort by weight.
-            scope.subMenuItems.sort(function(a, b) {
-              return parseInt(a.weight) - parseInt(b.weight);
-            });
+            for (var key in subMenus) {
+              subMenus[key].sort(function(a, b) {
+                return parseInt(a.weight) - parseInt(b.weight);
+              });
+            }
+
+            // Update what submenu is displayed.
+            updateSubMenu();
           });
 
           /**
            * Set the submenu items according to what the url starts with.
-           *
-           * @TODO: Make this event based!
            */
           var updateSubMenu = function () {
             if (url.indexOf('/channel') === 0 || url.indexOf('/shared-channel') === 0) {
-              scope.subMenuItems = [
-                {
-                  title: 'Oversigt',
-                  path: '/#/channel-overview',
-                  classSuffix: 'overview'
-                },
-                {
-                  title: 'Opret kanal',
-                  path: '/#/channel',
-                  classSuffix: 'create-channel'
-                }
-              ];
-
-              if (window.config.sharingService.enabled) {
-                scope.subMenuItems.push(
-                  {
-                    title: 'Delte kanaler',
-                    path: '/#/shared-channel-overview',
-                    classSuffix: 'overview'
-                  }
-                );
-              }
+              scope.subMenuItems = subMenus['channel'];
             }
             else if (url.indexOf('/slide') === 0) {
-              scope.subMenuItems = [
-                {
-                  title: 'Oversigt',
-                  path: '/#/slide-overview',
-                  classSuffix: 'overview'
-                },
-                {
-                  title: 'Opret slide',
-                  path: '/#/slide',
-                  classSuffix: 'create-channel'
-                }
-              ];
+              scope.subMenuItems = subMenus['slide'];
             }
             else if (url.indexOf('/screen') === 0) {
-              scope.subMenuItems = [
-                {
-                  title: 'Oversigt',
-                  path: '/#/screen-overview',
-                  classSuffix: 'overview',
-                  position: 'left'
-                },
-                {
-                  title: 'Opret skærm',
-                  path: '/#/screen',
-                  classSuffix: 'create-channel',
-                  position: 'left'
-                },
-                {
-                  title: 'Timeline',
-                  path: '/#/screen-timeline',
-                  classSuffix: 'screen-timeline',
-                  position: 'right',
-                  icon: 'fisk'
-                }
-              ]
-            }
-            else if (url.indexOf('/template') === 0) {
-              scope.subMenuItems = [
-                {
-                  title: 'Oversigt',
-                  path: '/#/template-overview',
-                  classSuffix: 'overview'
-                },
-                {
-                  title: 'Opret skabelon',
-                  path: '/#/template',
-                  classSuffix: 'create-channel'
-                }
-              ];
+              scope.subMenuItems = subMenus['screen'];
             }
             else if (url.indexOf('/media') === 0) {
-              scope.subMenuItems = [
-                {
-                  title: 'Oversigt',
-                  path: '/#/media-overview',
-                  classSuffix: 'overview'
-                },
-                {
-                  title: 'Upload medie',
-                  path: '/#/media/upload',
-                  classSuffix: 'create-media'
-                }
-              ];
+              scope.subMenuItems = subMenus['media'];
             }
             else {
               scope.subMenuItems = [];
             }
           };
-          updateSubMenu();
 
           // Listen for location change
           busService.$on('$locationChangeSuccess', function () {

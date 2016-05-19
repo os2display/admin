@@ -13,30 +13,77 @@ angular.module('mainModule').service('menuItemService', ['busService',
 
     // Listen for location change
     busService.$on('menuApp.requestSubMenuItems', function (event, data) {
-      busService.$emit('menuApp.returnSubMenuItems', {
-          mainMenuItem: 'screen',
-          items: [
-            {
-              title: 'Oversigt',
-              path: '/#/screen-overview',
-              classSuffix: 'overview',
-              position: 'left'
-            },
-            {
-              title: 'Opret skærm',
-              path: '/#/screen',
-              classSuffix: 'create-channel',
-              position: 'left'
-            },
-            {
-              title: 'Timeline',
-              path: '/#/screen-timeline',
-              classSuffix: 'screen-timeline',
-              position: 'right',
-              icon: 'fisk'
-            }
-          ]
-        }
+      busService.$emit('menuApp.returnSubMenuItems', [
+          {
+            mainMenuItem: 'screen',
+            items: [
+              {
+                title: 'Oversigt',
+                path: '/#/screen-overview',
+                classes: 'overview',
+                group: 'left',
+                weight: 1
+              },
+              {
+                title: 'Opret skærm',
+                path: '/#/screen',
+                classes: 'create-channel',
+                group: 'left',
+                weight: 2
+              }
+            ]
+          },
+          {
+            mainMenuItem: 'channel',
+            items: [
+              {
+                title: 'Oversigt',
+                path: '/#/channel-overview',
+                classSuffix: 'overview'
+              },
+              {
+                title: 'Opret kanal',
+                path: '/#/channel',
+                classSuffix: 'create-channel'
+              },
+              {
+                title: 'Delte kanaler',
+                path: '/#/shared-channel-overview',
+                classSuffix: 'overview'
+              }
+            ]
+          },
+          {
+            mainMenuItem: 'slide',
+            items: [
+              {
+                title: 'Oversigt',
+                path: '/#/slide-overview',
+                classSuffix: 'overview'
+              },
+              {
+                title: 'Opret slide',
+                path: '/#/slide',
+                classSuffix: 'create-channel'
+              }
+            ]
+          },
+          {
+            mainMenuItem: 'media',
+            items: [
+              {
+                title: 'Oversigt',
+                path: '/#/media-overview',
+                classSuffix: 'overview'
+              },
+              {
+                title: 'Upload medie',
+                path: '/#/media/upload',
+                classSuffix: 'create-media'
+              }
+            ]
+          }
+        ]
       );
     });
 
@@ -171,5 +218,4 @@ angular.module('mainModule').service('menuItemService', ['busService',
       ]);
     });
   }
-])
-;
+]);

@@ -1,10 +1,9 @@
 <div>
   <div>{{data.title}}</div>
   <div>
-    <input type="button" data-ng-click="zoom(-0.2)" value="Zoom in" />
-    <input type="button" data-ng-click="zoom( 0.2)" value="Zoom out" />
-    <input type="button" data-ng-click="move( 0.2)" value="Move left" />
-    <input type="button" data-ng-click="move(-0.2)" value="Move right" />
+    <input type="button" data-ng-click="moveDays(-7)" value="<" />
+    {{ start | date:'shortDate' }} - {{end | date:'shortDate' }}
+    <input type="button" data-ng-click="moveDays(7)"  value=">" />
   </div>
   <div id="id"></div>
 </div>

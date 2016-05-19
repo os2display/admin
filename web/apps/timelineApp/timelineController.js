@@ -29,7 +29,7 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
             var channel = csr.channel;
 
             var start = channel.publish_from ? channel.publish_from * 1000 : 0;
-            var end   = channel.publish_to ? channel.publish_to * 1000 : 10000000000000;
+            var end   = channel.publish_to ? channel.publish_to * 1000 : 20000000000000;
 
             c.push({
               id: csr.id + "_" + channel.id,
