@@ -694,12 +694,12 @@ textarea {
  */
 /* Styles
    ========================================================================== */
-.vis-timeline-wrapper {
+.vis--timeline-wrapper {
   background: #fff;
   border: 1px solid #bfbfbf;
   padding: 1em; }
 
-.vis-timeline-header {
+.vis--header {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-flex;
@@ -718,6 +718,18 @@ textarea {
   margin-bottom: 1em;
   padding: .75em 0; }
 
+.vis--item-header {
+  font-weight: bold; }
+
+.vis--date-picker {
+  -webkit-align-self: center;
+  -moz-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  margin: auto; }
+
+/* Vis styling (we haven't changed the html of elements)
+   =========================================================== */
 .vis-timeline {
   position: relative;
   background: #fff;
@@ -760,6 +772,9 @@ textarea {
   margin: 0; }
   .vis-panel.vis-center, .vis-panel.vis-left, .vis-panel.vis-right {
     overflow: hidden; }
+  .vis-panel.vis-left {
+    box-sizing: border-box;
+    padding: 0 1em; }
 
 /* Vis label
    =========================================================== */
