@@ -1,4 +1,8 @@
-<div class="dokk1-info" data-ng-style="{'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}">
+<div class="dokk1-info"
+  data-ng-style="
+  ikSlide.options.bgcolor !== ''
+  ? {'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}
+  : {'background-image': 'url(' + ikSlide.currentImage + ')'}">
   <pre class="dokk1-info--meta">{{ikSlide.options.meta}}</pre>
   <pre class="dokk1-info--header">{{ikSlide.options.header}}</pre>
 </div>
