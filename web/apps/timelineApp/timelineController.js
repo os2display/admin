@@ -15,28 +15,30 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
     }
 
     // Load bulk.
-    $http.get('/api/screens/bulk' + queryString)
+    $http.get('/api/screens/channel-bulk' + queryString)
       .success(function (data, status) {
         var d = [];
 
-        for (var screen in data) {
+        // Format the data to match what timeline expects
+        for (var screenKey in data) {
           var c = [];
           var regions = [];
-          var screen = data[screen];
+          var screen = data[screenKey];
 
-          for (var channel in screen.channel_screen_regions) {
-            var csr = screen.channel_screen_regions[channel];
+          for (var channelKey in screen.channel_screen_regions) {
+            var csr = screen.channel_screen_regions[channelKey];
             var channel = csr.channel;
-
-            var start = channel.publish_from ? channel.publish_from * 1000 : 0;
-            var end   = channel.publish_to ? channel.publish_to * 1000 : 20000000000000;
 
             c.push({
               id: csr.id + "_" + channel.id,
-              content: channel.title,
-              start: start,
-              end: end,
-              group: csr.region
+              title: channel.title,
+              group: csr.region,
+              start: channel.publish_from * 1000,
+              end: channel.publish_to * 1000,
+              schedule_repeat: channel.schedule_repeat,
+              schedule_repeat_days: channel.schedule_repeat_days,
+              schedule_repeat_from: channel.schedule_repeat_from,
+              schedule_repeat_to: channel.schedule_repeat_to
             });
 
             if (regions.indexOf(csr.region) == -1) {
