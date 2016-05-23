@@ -1,4 +1,8 @@
-<div class="dokk1-multiple-calendar" data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}">
+<div class="dokk1-multiple-calendar"
+     data-ng-style="
+  ikSlide.options.bgcolor !== ''
+  ? {'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}
+  : {'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
   <div class="dokk1-multiple-calendar--header is-preview">
     <div class="dokk1-multiple-calendar--title is-preview">{{ikSlide.options.header}}</div>
     <div class="dokk1-multiple-calendar--time-date is-preview"><date-component theme="dokk1-multiple-calendar"></date-component></div>
