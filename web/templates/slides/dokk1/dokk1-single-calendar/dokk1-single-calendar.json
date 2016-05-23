@@ -7,12 +7,12 @@
     "edit": "dokk1-single-calendar-edit.html",
     "preview": "dokk1-single-calendar-preview.html",
     "css": "dokk1-single-calendar.css",
-    "js": "../js/calendarSingleDay.js"
+    "js": "../js/calendarSingleDayDokk1.js"
   },
   "orientation": "landscape",
   "slide_type": "calendar",
   "media_type": "image",
-  "script_id": "calendar-single-day",
+  "script_id": "calendar-single-day-dokk1",
   "ideal_dimensions": {
     "width": "1920",
     "height": "1080"
