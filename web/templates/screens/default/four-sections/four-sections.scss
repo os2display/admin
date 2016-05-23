@@ -1,0 +1,44 @@
+@import "compass/css3";
+@import "../../../_shared-base.scss";
+
+
+.four-sections {
+  &--inner {
+    font-size: 0; // inline-block fix.
+    margin: 0 auto;
+  }
+
+  &--region-horizontal {
+    width: 50%;
+    height:100%;
+
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &--region-vertical {
+    width: 100%;
+    height: 50%;
+
+    box-sizing: border-box;
+    display: block;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &--region-content {
+    @extend %presentation--item-inner;
+
+    font-size: 1rem;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+}
