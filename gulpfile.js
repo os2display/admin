@@ -113,7 +113,7 @@ var templatesPath = './web/templates/';
 // @TODO: Discover this structure automatically
 var templates = {
   'screens': {
-    'default': ['five-sections', 'three-columns', 'two-columns'],
+    'default': ['five-sections', 'three-columns', 'two-columns', 'four-sections'],
     'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows'],
     'mso': ['mso-five-sections', 'mso-four-sections'],
     'mbu': ['mbu-three-split']
