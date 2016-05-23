@@ -38,6 +38,10 @@ class AppKernel extends Kernel {
       new JMS\SerializerBundle\JMSSerializerBundle(),
       // Indholdskanalen
       new Indholdskanalen\MainBundle\IndholdskanalenMainBundle(),
+      // Zencoder job queues.
+      new JMS\JobQueueBundle\JMSJobQueueBundle(),
+      new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+      new JMS\AopBundle\JMSAopBundle(),
     );
 
     if (in_array($this->getEnvironment(), array('dev', 'test'))) {
