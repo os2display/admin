@@ -39,6 +39,10 @@ if (!window.slideFunctions['dokk1-coming-events']) {
           return;
         }
 
+        if (element.event_name.toLowerCase().indexOf('(usynlig)') === -1) {
+          return;
+        }
+
         var day = region.$filter('date')(new Date(element.start_time * 1000), 'EEEE d. MMMM');
 
         if (!slide.eventDays.hasOwnProperty(day)) {
