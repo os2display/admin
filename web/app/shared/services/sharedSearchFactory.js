@@ -126,6 +126,8 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
         query.query = {
           "multi_match": {
             "query": search.text,
+            "type": "best_fields",
+            "operator": "or",
             "fields": search.fields,
             "analyzer": 'string_search'
           }
@@ -152,14 +154,24 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
         query.from = search.pager.page * search.pager.size;
       }
 
+      // Use an MD5 hash to make a unique callback/message in the socket
+      // connection. This is needed to ensure that more that one search query
+      // can be fired into the connection a the right response ends up with
+      // the component that send the request.
+      query.uuid = CryptoJS.MD5(JSON.stringify(query)).toString();
+      query.callbacks = {
+        'hits': 'hits-' + query.uuid,
+        'error': 'error-' + query.uuid
+      };
+
       connect().then(function () {
         socket.emit('search', query);
-        socket.once('result', function (hits) {
+        socket.once(query.callbacks['hits'], function (hits) {
           deferred.resolve(hits);
         });
 
         // Catch search errors.
-        socket.once('searchError', function (error) {
+        socket.once(query.callbacks['error'], function (error) {
           itkLog.error('Search error', error.message);
           deferred.reject(error.message);
         });
