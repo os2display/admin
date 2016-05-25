@@ -39,7 +39,7 @@ if (!window.slideFunctions['dokk1-coming-events']) {
           return;
         }
 
-        if (element.event_name.toLowerCase().indexOf('(usynlig)') === -1) {
+        if (element.event_name.toLowerCase().indexOf('(usynlig)') !== -1) {
           return;
         }
 
