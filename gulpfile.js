@@ -114,9 +114,10 @@ var templatesPath = './web/templates/';
 var templates = {
   'screens': {
     'default': ['five-sections', 'three-columns', 'two-columns'],
-    'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows'],
+    'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows', 'itk-three-split'],
     'mso': ['mso-five-sections', 'mso-four-sections'],
-    'mbu': ['mbu-three-split']
+    'mbu': ['mbu-three-split'],
+    'itk': ['itk-three-split']
   },
   'slides': {
     'aarhus': ['rss-aarhus'],
@@ -139,14 +140,14 @@ gulp.task('sassTemplates', 'Compile the sass for each templates into minified cs
           var arr = templates[templateType][folder];
 
           arr.forEach(function (element) {
-            gulp.src(templatesPath + '/' + templateType + '/' + folder + '/' + element + '/' + element + '.scss')
+            gulp.src(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/' + element + '.scss')
               .pipe(sass({
                 outputStyle: 'compressed',
                 includePaths: [
                   './web/sass/compass-mixins/lib'
                 ]
               }).on('error', sass.logError))
-              .pipe(gulp.dest(templatesPath + '/' + templateType + '/' + folder + '/' + element + '/'));
+              .pipe(gulp.dest(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/'));
           });
         }
       }

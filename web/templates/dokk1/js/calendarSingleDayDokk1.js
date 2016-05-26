@@ -1,10 +1,10 @@
 /**
- * Calendar slide.
+ * Calendar slide Dokk1.
  */
 
 // Register the function, if it does not already exist.
-if (!window.slideFunctions['calendar-single-day']) {
-  window.slideFunctions['calendar-single-day'] = {
+if (!window.slideFunctions['calendar-single-day-dokk1']) {
+  window.slideFunctions['calendar-single-day-dokk1'] = {
     /**
      * Setup the slide for rendering.
      * @param scope
@@ -43,9 +43,11 @@ if (!window.slideFunctions['calendar-single-day']) {
      *   The region object.
      */
     run: function runCalendarSingleDaySlide(slide, region) {
-      region.itkLog.info("Running calendar-single-day slide: " + slide.title);
+      region.itkLog.info("Running calendar-single-day-dokk1 slide: " + slide.title);
 
       var duration = slide.duration !== null ? slide.duration : 15;
+
+      var ignoreTextRegex = new RegExp(/\(usynlig\)/, 'gi' );
 
       if (slide.external_data) {
         var now = new Date();
@@ -68,6 +70,9 @@ if (!window.slideFunctions['calendar-single-day']) {
             if (booking.end_time * 1000 > end) {
               booking.end_time = parseInt(end / 1000);
             }
+
+            // Dokk1 hack to remove the (usynlig) text from calendar meetings.
+            booking.event_name = booking.event_name.replace(ignoreTextRegex, '');
 
             arr.push(booking);
           }
