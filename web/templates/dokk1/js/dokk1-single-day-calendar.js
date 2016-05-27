@@ -47,7 +47,7 @@ if (!window.slideFunctions['calendar-single-day-dokk1']) {
 
       var duration = slide.duration !== null ? slide.duration : 15;
 
-      var ignoreTextRegex = new RegExp(/\(usynlig\)/, 'gi' );
+      var bookedRegex = /\(optaget\)/i;
 
       if (slide.external_data) {
         var now = new Date();
@@ -63,7 +63,7 @@ if (!window.slideFunctions['calendar-single-day-dokk1']) {
 
         for (var i = 0; i < slide.external_data.length; i++) {
           if (slide.external_data[i].end_time * 1000 > now && slide.external_data[i].start_time * 1000 <= end) {
-            var booking = slide.external_data[i];
+            var booking = angular.copy(slide.external_data[i]);
             if (booking.start_time * 1000 < start) {
               booking.start_time = parseInt(start / 1000);
             }
@@ -71,8 +71,13 @@ if (!window.slideFunctions['calendar-single-day-dokk1']) {
               booking.end_time = parseInt(end / 1000);
             }
 
-            // Dokk1 hack to remove the (usynlig) text from calendar meetings.
-            booking.event_name = booking.event_name.replace(ignoreTextRegex, '');
+            // Remove all (list) from the event_name
+            booking.event_name = booking.event_name.split('(list)').join('');
+
+            // Replace the event_name with Optaget if it contains the (optaget)
+            if (bookedRegex.test(booking.event_name)) {
+              booking.event_name = 'Optaget';
+            }
 
             arr.push(booking);
           }
