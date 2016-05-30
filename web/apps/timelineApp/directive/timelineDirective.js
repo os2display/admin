@@ -16,62 +16,99 @@ angular.module('timelineApp')
         link: function (scope) {
           var timeline;
           var date;
-          var startOfWeek = null;
-          var endOfWeek = null;
+
+          scope.start = null;
+          scope.end = null;
 
           /**
            * Calculate the timeline window.
            * @param date
            */
-          var calculateWindow = function calculateWindow(date) {
+          var calculateWeekWindow = function calculateWeekWindow(date) {
             // Calculate current window timestamps (current week)
-            startOfWeek = date.getTime();
+            var startOfWeek = date.getTime();
             startOfWeek = startOfWeek
               - (startOfWeek % (24 * 60 * 60 * 1000)                // Start of day
               - date.getTimezoneOffset() * 60 * 1000)               // Apply time zone
               - ((date.getDay() + 6) % 7) * 24 * 60 * 60 * 1000;    // Go back to monday
-            endOfWeek = startOfWeek + 7 * 24 * 60 * 60 * 1000;      // Monday + 7 days
+            var endOfWeek = startOfWeek + 7 * 24 * 60 * 60 * 1000;      // Monday + 7 days
 
             scope.start = new Date(startOfWeek);
             scope.end = new Date(endOfWeek);
+
+            if (timeline) {
+              // Set new window
+              timeline.setWindow({
+                start: startOfWeek,
+                end: endOfWeek,
+                animation: false
+              });
+            }
           };
-          calculateWindow(date = new Date());
+
+          // Calculate window for current week.
+          calculateWeekWindow(date = new Date());
 
           var calculateData = function calculateData() {
             var items = [];
 
             for (var i = 0; i < scope.data.channels.length; i++) {
               var channel = scope.data.channels[i];
+              var item;
 
-              if (channel.start < scope.end.getTime() && channel.end > scope.start.getTime()) {
+              if ((!channel.start || channel.start < scope.end.getTime()) &&
+                  (!channel.end   || channel.end > scope.start.getTime())) {
                 if (!channel.schedule_repeat) {
-                  var item = angular.copy(channel);
+                  item = angular.copy(channel);
                   if (!item.start) {
-                    item.start = startOfWeek;
+                    item.start = scope.start.getTime();
                   }
 
                   if (!item.end) {
-                    item.end = endOfWeek;
+                    item.end = scope.end.getTime();
                   }
 
-                  items.push(angular.copy(item));
+                  item.content = item.title;
+
+                  items.push(item);
                 }
                 else {
                   if (channel.schedule_repeat_days) {
-                    var selectedDate = new Date(scope.start);
-/*
-                    while (selectedDate.getTime() < scope.end.getTime()) {
+                    // Calculate current window timestamps (current week)
+                    var weekStart = new Date(scope.start);
 
+                    for (var j = 0; j < channel.schedule_repeat_days.length; j++) {
+                      var scheduleDay = (channel.schedule_repeat_days[j].id + 6) % 7;
+
+                      var currentDay = new Date(weekStart);
+                      currentDay.setDate(currentDay.getDate() + scheduleDay);
+
+                      item = angular.copy(channel);
+                      item.start = new Date(currentDay);
+                      item.start.setHours(channel.schedule_repeat_from ? channel.schedule_repeat_from : 0);
+                      item.start = item.start.getTime();
+                      item.end = new Date(currentDay);
+                      item.end.setHours(channel.schedule_repeat_to ? channel.schedule_repeat_to : 23);
+                      item.end.setMinutes(channel.schedule_repeat_to ? 0 : 59);
+                      item.end.setSeconds(channel.schedule_repeat_to ? 0 : 59);
+                      item.end = item.end.getTime();
+
+                      // @TODO: Handle item.end item.start overflowing channel.start and channel.end
+
+                      item.id = item.id + "_" + j;
+
+                      item.content = item.title;
+
+                      items.push(item);
                     }
-                    */
                   }
-
-                  //items.push(angular.copy(channel));
                 }
               }
             }
 
             timeline.setItems(items);
+
+            console.log(items);
           };
 
           // Configuration for the Timeline
@@ -88,8 +125,8 @@ angular.module('timelineApp')
               return Math.round(date / hour) * hour;
             },
             zoomable: false,                            // remove zoomable
-            start: startOfWeek,                         // initial start of timeline
-            end: endOfWeek,                             // initial end of timeline
+            start: scope.start,                         // initial start of timeline
+            end: scope.end,                             // initial end of timeline
             minHeight: 300                              // minimum height in pixels
           };
 
@@ -106,6 +143,14 @@ angular.module('timelineApp')
               // Create a Timeline
               timeline = new vis.Timeline(container, items, scope.data.regions, options);
 
+              // Register listeners.
+              timeline.on('rangechanged', function (properties) {
+                scope.start = new Date(properties.start);
+                scope.end = new Date(properties.end);
+
+                calculateData();
+              });
+
               calculateData();
             }
           });
@@ -119,18 +164,21 @@ angular.module('timelineApp')
 
             date = new Date(date.getTime() + displacement);
 
-            calculateWindow(date);
-            calculateData();
-
-            // Set new window
-            timeline.setWindow({
-              start: startOfWeek,
-              end: endOfWeek,
-              animation: false
-            });
-
-            // @TODO: Request and set data for current window.
+            calculateWeekWindow(date);
           };
+
+          scope.today = function today() {
+            date = new Date();
+
+            calculateWeekWindow(date);
+          };
+
+          // Register event listener for destroy.
+          scope.$on('$destroy', function() {
+            if (timeline) {
+              timeline.off();
+            }
+          });
         }
       };
     }

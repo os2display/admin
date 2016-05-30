@@ -1,6 +1,7 @@
 parameters:
   apps:
     menuApp:
+      class: menu-app
       files:
         - /apps/menuApp/directive/mainMenuDirective.js
         - /apps/menuApp/directive/hamburgerMenuDirective.js
