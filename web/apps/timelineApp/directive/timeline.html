@@ -1,12 +1,11 @@
 <div class="vis--timeline-wrapper">
   <header class="vis--header">
-    <div class="vis--item-header">{{data.title}}</div>
-    <div class="vis--date-picker">
-      <input type="button" data-ng-click="moveDays(-7)" value="<" />
-      {{ start | date:'shortDate' }} - {{end | date:'shortDate' }}
-      <input type="button" data-ng-click="moveDays(7)"  value=">" />
-
-      <input type="button" data-ng-click="today()" value="I dag" />
+    <div class="vis--date-header">{{ start | date:'shortDate' }} - {{end | date:'shortDate' }}</div>
+    <h3 class="vis--item-header">{{data.title}}</h3>
+    <div class="vis--date-controls">
+      <input type="button" data-ng-click="moveDays(-7)" class="vis--button button is-small" value="Forrige uge" />
+      <input type="button" data-ng-click="today()" class="vis--button button is-small" value="I dag" />
+      <input type="button" data-ng-click="moveDays(7)" class="vis--button button is-small" value="Næste uge" />
     </div>
   </header>
   <div id="{{'timeline_' + data.id}} "></div>
