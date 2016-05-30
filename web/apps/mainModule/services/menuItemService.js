@@ -21,6 +21,7 @@ angular.module('mainModule').service('menuItemService', ['busService',
                 title: 'Oversigt',
                 path: '/#/screen-overview',
                 classes: 'overview',
+                activeFilter: '/screen-overview',
                 group: 'left',
                 weight: 1
               },
@@ -28,8 +29,18 @@ angular.module('mainModule').service('menuItemService', ['busService',
                 title: 'Opret skærm',
                 path: '/#/screen',
                 classes: 'create-channel',
+                activeFilter: '/screen',
                 group: 'left',
                 weight: 2
+              },
+              {
+                title: 'Oversigt sub',
+                path: '/#/screen-overview',
+                classes: 'overview-right',
+                activeFilter: '/screen-overview',
+                group: 'right',
+                icon: 'apps',
+                weight: 3
               }
             ]
           },

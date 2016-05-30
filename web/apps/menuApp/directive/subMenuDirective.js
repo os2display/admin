@@ -11,7 +11,7 @@ angular.module('menuApp')
         templateUrl: '/apps/menuApp/directive/sub-menu.html?' + config.version,
         scope: {},
         link: function (scope) {
-          var url = $location.url();
+          scope.url = $location.url();
           var subMenus = [];
           scope.subMenuItems = [];
 
@@ -62,16 +62,16 @@ angular.module('menuApp')
            * Set the submenu items according to what the url starts with.
            */
           var updateSubMenu = function () {
-            if (url.indexOf('/channel') === 0 || url.indexOf('/shared-channel') === 0) {
+            if (scope.url.indexOf('/channel') === 0 || scope.url.indexOf('/shared-channel') === 0) {
               scope.subMenuItems = subMenus['channel'];
             }
-            else if (url.indexOf('/slide') === 0) {
+            else if (scope.url.indexOf('/slide') === 0) {
               scope.subMenuItems = subMenus['slide'];
             }
-            else if (url.indexOf('/screen') === 0) {
+            else if (scope.url.indexOf('/screen') === 0) {
               scope.subMenuItems = subMenus['screen'];
             }
-            else if (url.indexOf('/media') === 0) {
+            else if (scope.url.indexOf('/media') === 0) {
               scope.subMenuItems = subMenus['media'];
             }
             else {
@@ -81,7 +81,7 @@ angular.module('menuApp')
 
           // Listen for location change
           busService.$on('$locationChangeSuccess', function () {
-            url = $location.url();
+            scope.url = $location.url();
             updateSubMenu();
           });
 

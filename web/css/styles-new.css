@@ -353,6 +353,41 @@ textarea {
 
 /**
  *
+ * Icons
+ *
+ */
+i {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: 100%; }
+  i.is-small {
+    height: 24px;
+    width: 24px; }
+  i.is-medium {
+    height: 36px;
+    width: 36px; }
+  i.is-large {
+    height: 48px;
+    width: 48px; }
+  i[data-icon*="apps"] {
+    background-image: url("../icons/apps.svg"); }
+    i[data-icon*="apps"].is-inverted {
+      background-image: url("../icons/apps-alt.svg"); }
+  i[data-icon*="search"] {
+    background-image: url("../icons/search.svg"); }
+    i[data-icon*="search"].is-inverted {
+      background-image: url("../icons/search-alt.svg"); }
+  i[data-icon*="event-note"] {
+    background-image: url("../icons/event-note.svg"); }
+    i[data-icon*="event-note"].is-inverted {
+      background-image: url("../icons/event-note-alt.svg"); }
+  i[data-icon*="tune"] {
+    background-image: url("../icons/tune.svg"); }
+    i[data-icon*="tune"].is-inverted {
+      background-image: url("../icons/tune-alt.svg"); }
+
+/**
+ *
  * ITK messages
  *
  * A component for displaying messages
@@ -690,6 +725,7 @@ textarea {
 .submenu {
   position: absolute;
   top: 5.5em;
+  z-index: 5;
   display: block;
   width: 100%;
   background-color: #fff;

@@ -34,7 +34,9 @@ angular.module('timelineApp').service('timelineAppSetup', ['busService',
                 path: '/#/screen-timeline',
                 classes: 'screen-timeline',
                 group: 'right',
-                weight: 3
+                icon: 'event-note',
+                weight: 4,
+                activeFilter: '/screen-timeline'
               }
             ]
           }
