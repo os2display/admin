@@ -39,8 +39,8 @@
           // Which control panel tab is selected?
           scope.selectedTab = null;
 
-          // Lock scrolling on page.
-          $('html').addClass('is-locked');
+          // Lock scrolling on page. (Deprecated)
+          //$('html').addClass('is-locked');
 
           /**
            * Get the template for the control panel.
