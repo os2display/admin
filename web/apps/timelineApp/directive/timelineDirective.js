@@ -16,6 +16,7 @@ angular.module('timelineApp')
         link: function (scope) {
           var timeline;
           var date;
+          var items;
 
           scope.start = null;
           scope.end = null;
@@ -44,7 +45,7 @@ angular.module('timelineApp')
            * Calculate calendar data for the current range between scope.start and scope.end
            */
           var calculateData = function calculateData() {
-            var items = [];
+            items = [];
 
             for (var i = 0; i < scope.data.channels.length; i++) {
               var channel = scope.data.channels[i];
@@ -61,8 +62,6 @@ angular.module('timelineApp')
                   if (!item.end) {
                     item.end = scope.end.getTime();
                   }
-
-                  item.content = item.title;
 
                   items.push(item);
                 }
@@ -90,8 +89,6 @@ angular.module('timelineApp')
 
                       item.id = item.id + "_" + j;
 
-                      item.content = item.title;
-
                       items.push(item);
                     }
                   }
@@ -105,12 +102,7 @@ angular.module('timelineApp')
           // Configuration for the Timeline
           var options = {
             locale: 'da',                               // set language to danish, requires moment-with-locales.min.js
-            editable: {                                 // make items editable, only update time
-              add: false,
-              updateTime: true,
-              updateGroup: false,
-              remove: false
-            },
+            editable: false,
             snap: function (date) {                     // snap to hour
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
@@ -126,10 +118,10 @@ angular.module('timelineApp')
 
               // Create a DataSet (allows two way data-binding)
               //var items = new vis.DataSet(scope.data.channels);
-              var items = new vis.DataSet();
+              var emptyItems = new vis.DataSet();
 
               // Create a Timeline
-              timeline = new vis.Timeline(container, items, scope.data.regions, options);
+              timeline = new vis.Timeline(container, emptyItems, scope.data.regions, options);
 
               // Register listeners.
               timeline.on('rangechanged', function (properties) {
@@ -141,6 +133,16 @@ angular.module('timelineApp')
 
                   calculateData();
                 });
+              });
+
+              timeline.on('select', function (properties) {
+                // Find item.
+                for (var item in items) {
+                  item = items[item];
+                  if (item.id == properties.items[0]) {
+                    console.log("Channel: " + item.channel_id);
+                  }
+                }
               });
 
               // Initialize window.
