@@ -2,8 +2,8 @@
  * Timeline directive.
  */
 angular.module('timelineApp')
-  .directive('timeline', ['busService',
-    function (busService) {
+  .directive('timeline', ['busService', '$timeout',
+    function (busService, $timeout) {
       'use strict';
 
       return {
@@ -33,21 +33,12 @@ angular.module('timelineApp')
               - ((date.getDay() + 6) % 7) * 24 * 60 * 60 * 1000;        // Go back to monday
             var endOfWeek = startOfWeek + 7 * 24 * 60 * 60 * 1000;      // Monday + 7 days
 
-            scope.start = new Date(startOfWeek);
-            scope.end = new Date(endOfWeek);
-
-            if (timeline) {
-              // Set new window
-              timeline.setWindow({
-                start: startOfWeek,
-                end: endOfWeek,
-                animation: false
-              });
-            }
+            timeline.setWindow({
+              start: startOfWeek,
+              end: endOfWeek,
+              animation: false
+            });
           };
-
-          // Calculate window for current week.
-          calculateWeekWindow(date = new Date());
 
           /**
            * Calculate calendar data for the current range between scope.start and scope.end
@@ -124,9 +115,7 @@ angular.module('timelineApp')
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
-            zoomable: false,                            // remove zoomable
-            start: scope.start,                         // initial start of timeline
-            end: scope.end
+            zoomable: false                             // remove zoomable
           };
 
           // Listen for when scope is ready.
@@ -144,7 +133,9 @@ angular.module('timelineApp')
 
               // Register listeners.
               timeline.on('rangechanged', function (properties) {
-                scope.$apply(function() {
+                // Update window and recalculate data.
+                //   Timeout to avoid digest errors, since timeline events are outside angular.
+                $timeout(function() {
                   scope.start = new Date(properties.start);
                   scope.end = new Date(properties.end);
 
@@ -152,7 +143,10 @@ angular.module('timelineApp')
                 });
               });
 
-              calculateData();
+              // Initialize window.
+              //   Triggers rangechanged listener.
+              date = new Date();
+              calculateWeekWindow(date);
             }
           });
 
