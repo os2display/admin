@@ -608,7 +608,7 @@ i {
   flex: 0 0 100%;
   font-weight: bold;
   margin-bottom: .5em;
-  text-align: center; }
+  text-align: right; }
 
 .vis--item-header {
   font-weight: bold;
@@ -682,6 +682,8 @@ i {
     box-sizing: border-box;
     padding: 0 .8em 0 0;
     border-right: 1px solid #d9d9d9; }
+  .vis-panel.vis-vertical {
+    overflow-x: hidden; }
 
 /* Vis label
    =========================================================== */
@@ -738,6 +740,7 @@ i {
   padding: 3px;
   overflow: hidden;
   box-sizing: border-box;
+  text-transform: capitalize;
   white-space: nowrap; }
   .vis-text.vis-measure {
     position: absolute;
