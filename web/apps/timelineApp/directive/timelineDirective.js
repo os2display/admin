@@ -10,7 +10,7 @@ angular.module('timelineApp')
         restrict: 'E',
         templateUrl: '/apps/timelineApp/directive/timeline.html?' + window.config.version,
         scope: {
-          id: '@',
+          tid: '@',
           data: '='
         },
         link: function (scope) {
@@ -28,9 +28,9 @@ angular.module('timelineApp')
             // Calculate current window timestamps (current week)
             var startOfWeek = date.getTime();
             startOfWeek = startOfWeek
-              - (startOfWeek % (24 * 60 * 60 * 1000)                // Start of day
-              - date.getTimezoneOffset() * 60 * 1000)               // Apply time zone
-              - ((date.getDay() + 6) % 7) * 24 * 60 * 60 * 1000;    // Go back to monday
+              - (startOfWeek % (24 * 60 * 60 * 1000)                    // Start of day
+              - date.getTimezoneOffset() * 60 * 1000)                   // Apply time zone
+              - ((date.getDay() + 6) % 7) * 24 * 60 * 60 * 1000;        // Go back to monday
             var endOfWeek = startOfWeek + 7 * 24 * 60 * 60 * 1000;      // Monday + 7 days
 
             scope.start = new Date(startOfWeek);
@@ -49,6 +49,9 @@ angular.module('timelineApp')
           // Calculate window for current week.
           calculateWeekWindow(date = new Date());
 
+          /**
+           * Calculate calendar data for the current range between scope.start and scope.end
+           */
           var calculateData = function calculateData() {
             var items = [];
 
@@ -74,11 +77,10 @@ angular.module('timelineApp')
                 }
                 else {
                   if (channel.schedule_repeat_days) {
-                    // Calculate current window timestamps (current week)
                     var weekStart = new Date(scope.start);
 
                     for (var j = 0; j < channel.schedule_repeat_days.length; j++) {
-                      var scheduleDay = (channel.schedule_repeat_days[j].id + 6) % 7;
+                      var scheduleDay = (channel.schedule_repeat_days[j].id + 6 - ((weekStart.getDay() + 6) % 7)) % 7;
 
                       var currentDay = new Date(weekStart);
                       currentDay.setDate(currentDay.getDate() + scheduleDay);
@@ -134,7 +136,7 @@ angular.module('timelineApp')
           scope.$watch('data', function (oldVal, newVal) {
             if (newVal !== null) {
               // DOM element where the Timeline will be attached
-              var container = document.getElementById(scope.id);
+              var container = document.getElementById("timeline_" + scope.data.id);
 
               // Create a DataSet (allows two way data-binding)
               //var items = new vis.DataSet(scope.data.channels);
@@ -145,10 +147,12 @@ angular.module('timelineApp')
 
               // Register listeners.
               timeline.on('rangechanged', function (properties) {
-                scope.start = new Date(properties.start);
-                scope.end = new Date(properties.end);
+                scope.$apply(function() {
+                  scope.start = new Date(properties.start);
+                  scope.end = new Date(properties.end);
 
-                calculateData();
+                  calculateData();
+                });
               });
 
               calculateData();
