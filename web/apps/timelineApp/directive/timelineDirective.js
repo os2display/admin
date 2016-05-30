@@ -109,8 +109,6 @@ angular.module('timelineApp')
             }
 
             timeline.setItems(items);
-
-            console.log(items);
           };
 
           // Configuration for the Timeline
@@ -128,8 +126,7 @@ angular.module('timelineApp')
             },
             zoomable: false,                            // remove zoomable
             start: scope.start,                         // initial start of timeline
-            end: scope.end,                             // initial end of timeline
-            minHeight: 300                              // minimum height in pixels
+            end: scope.end
           };
 
           // Listen for when scope is ready.
