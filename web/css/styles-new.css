@@ -686,6 +686,7 @@ i {
 /* Vis label
    =========================================================== */
 .vis-label {
+  box-sizing: border-box;
   font-size: .8em;
   padding-top: 5px; }
 
@@ -698,7 +699,9 @@ i {
   color: #fff;
   font-size: .8em;
   background-color: #157bb3;
-  display: inline-block; }
+  display: inline-block;
+  overflow-x: hidden;
+  white-space: nowrap; }
   .vis-item.vis-box {
     text-align: center; }
   .vis-item.vis-point {
@@ -743,6 +746,8 @@ i {
     margin-left: 0;
     margin-right: 0;
     visibility: hidden; }
+  .vis-text.vis-major {
+    font-weight: bold; }
 
 /* Current time line
    =========================================================== */
