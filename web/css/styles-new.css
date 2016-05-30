@@ -577,6 +577,7 @@ i {
 .vis--timeline-wrapper {
   background: #fff;
   border: 1px solid #bfbfbf;
+  margin: 2em 0;
   padding: 1em; }
 
 .vis--header {
@@ -1322,7 +1323,7 @@ i {
 
 .is-page .content {
   position: relative;
-  top: 12em; }
+  margin-top: 12em; }
   .is-page .content--inner {
     margin-right: auto;
     margin-bottom: 16em;
@@ -1336,3 +1337,6 @@ i {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto; }
+
+.is-page.is-screen .content--inner {
+  max-width: 100%; }
