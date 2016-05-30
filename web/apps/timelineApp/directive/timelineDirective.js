@@ -100,6 +100,7 @@ angular.module('timelineApp')
           };
 
           // Configuration for the Timeline
+          // Configuration for the Timeline
           var options = {
             locale: 'da',                               // set language to danish, requires moment-with-locales.min.js
             editable: false,
@@ -107,6 +108,7 @@ angular.module('timelineApp')
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
+            stack: false,
             zoomable: false                             // remove zoomable
           };
 
