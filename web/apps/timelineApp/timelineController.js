@@ -30,9 +30,11 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
             var channel = csr.channel;
 
             c.push({
+              channel_id: channel.id,
               id: csr.id + "_" + channel.id,
-              title: channel.title,
+              content: channel.title,
               group: csr.region,
+              subgroup: csr.id + "_" + channel.id,
               start: channel.publish_from * 1000,
               end: channel.publish_to * 1000,
               schedule_repeat: channel.schedule_repeat,
