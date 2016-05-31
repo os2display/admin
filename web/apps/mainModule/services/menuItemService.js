@@ -18,14 +18,6 @@ angular.module('mainModule').service('menuItemService', ['busService',
             mainMenuItem: 'screen',
             items: [
               {
-                title: 'Oversigt',
-                path: '/#/screen-overview',
-                classes: 'overview',
-                activeFilter: '/screen-overview',
-                group: 'left',
-                weight: 1
-              },
-              {
                 title: 'Opret skærm',
                 path: '/#/screen',
                 classes: 'create-channel',
@@ -50,17 +42,22 @@ angular.module('mainModule').service('menuItemService', ['busService',
               {
                 title: 'Oversigt',
                 path: '/#/channel-overview',
-                classSuffix: 'overview'
+                classes: 'overview-right',
+                activeFilter: '/channel-overview',
+                group: 'right',
+                icon: 'apps'
               },
               {
                 title: 'Opret kanal',
                 path: '/#/channel',
-                classSuffix: 'create-channel'
+                classSuffix: 'create-channel',
+                group: 'left'
               },
               {
                 title: 'Delte kanaler',
                 path: '/#/shared-channel-overview',
-                classSuffix: 'overview'
+                classSuffix: 'overview',
+                group: 'left',
               }
             ]
           },
@@ -70,12 +67,16 @@ angular.module('mainModule').service('menuItemService', ['busService',
               {
                 title: 'Oversigt',
                 path: '/#/slide-overview',
-                classSuffix: 'overview'
+                classes: 'overview-right',
+                activeFilter: '/slide-overview',
+                group: 'right',
+                icon: 'apps'
               },
               {
                 title: 'Opret slide',
                 path: '/#/slide',
-                classSuffix: 'create-channel'
+                classSuffix: 'create-channel',
+                group: 'left'
               }
             ]
           },
@@ -85,12 +86,16 @@ angular.module('mainModule').service('menuItemService', ['busService',
               {
                 title: 'Oversigt',
                 path: '/#/media-overview',
-                classSuffix: 'overview'
+                classes: 'overview-right',
+                activeFilter: '/media-overview',
+                group: 'right',
+                icon: 'apps'
               },
               {
                 title: 'Upload medie',
                 path: '/#/media/upload',
-                classSuffix: 'create-media'
+                classSuffix: 'create-media',
+                group: 'left'
               }
             ]
           }
