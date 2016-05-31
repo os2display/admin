@@ -20,7 +20,7 @@
 /* Styles
    ========================================================================== */
 /* Invisible overlay that appears when dialog opens and contains the dialog window */
-.modal, .hamburger-menu--overlay {
+.modal, .hamburger-menu--wrapper {
   background-color: rgba(0, 0, 0, 0.85);
   opacity: 0;
   position: fixed;
@@ -31,11 +31,121 @@
   overflow-y: auto;
   z-index: -1;
   transition: opacity .2s, z-index .2s; }
-  .is-visible.modal, .is-visible.hamburger-menu--overlay {
+  .is-visible.modal, .is-visible.hamburger-menu--wrapper {
     z-index: 10;
     opacity: 1; }
 
 /* Mixin for defining modal-dialog */
+/**
+ *
+ * Itk tabs
+ *
+ * A component for displaying tabs as rounded corners.
+ *
+ */
+/* Imports, placeholder classes, mixins and variables related to this document
+   ========================================================================== */
+/* Variables used within this document. */
+/* ==== Tab color mixin ==== */
+/* ==== Tabs count support ==== */
+div[data-tabs-count*="1"] > * {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 calc(100% / 1);
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 calc(100% / 1);
+  -ms-flex: 1 1 calc(100% / 1);
+  flex: 1 1 calc(100% / 1); }
+
+div[data-tabs-count*="2"] > * {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 calc(100% / 2);
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 calc(100% / 2);
+  -ms-flex: 1 1 calc(100% / 2);
+  flex: 1 1 calc(100% / 2); }
+
+div[data-tabs-count*="3"] > * {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 calc(100% / 3);
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 calc(100% / 3);
+  -ms-flex: 1 1 calc(100% / 3);
+  flex: 1 1 calc(100% / 3); }
+
+div[data-tabs-count*="4"] > * {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 calc(100% / 4);
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 calc(100% / 4);
+  -ms-flex: 1 1 calc(100% / 4);
+  flex: 1 1 calc(100% / 4); }
+
+div[data-tabs-count*="5"] > * {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 calc(100% / 5);
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 calc(100% / 5);
+  -ms-flex: 1 1 calc(100% / 5);
+  flex: 1 1 calc(100% / 5); }
+
+/* Styles
+   ========================================================================== */
+.tabs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  .is-left.tabs {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    justify-content: flex-start; }
+  .is-center.tabs {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
+  .is-right.tabs {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    -webkit-justify-content: flex-end;
+    -moz-justify-content: flex-end;
+    justify-content: flex-end; }
+
+.tabs--item {
+  border: 1px solid #bfbfbf;
+  border-right: 0;
+  cursor: pointer;
+  padding: 0.5em 0.75em;
+  text-align: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto; }
+  .tabs--item:first-child {
+    border-radius: 0.4em 0 0 0.4em; }
+  .tabs--item:last-child {
+    border: 1px solid #bfbfbf;
+    border-radius: 0 0.4em 0.4em 0; }
+  .tabs--item:link {
+    color: inherit;
+    text-decoration: none; }
+  .tabs--item:visited {
+    color: inherit;
+    text-decoration: none; }
+  .tabs--item:hover {
+    color: inherit;
+    background: #f2f2f2;
+    text-decoration: none; }
+  .tabs--item:focus {
+    color: inherit;
+    text-decoration: none; }
+
 /**
  *
  * Variables
@@ -49,7 +159,7 @@
    ================================================================================================================== */
 /* Layout
    ================================================================================================================== */
-/* Elements
+/* Global classes
    ================================================================================================================== */
 /* Colors
    ================================================================================================================== */
@@ -362,35 +472,47 @@ textarea {
  * Icons
  *
  */
-i {
+[data-icon] {
   display: block;
   background-repeat: no-repeat;
   background-size: 100%; }
-  i.is-small {
+  [data-icon].is-tiny {
+    height: 18px;
+    width: 18px; }
+  [data-icon].is-small {
     height: 24px;
     width: 24px; }
-  i.is-medium {
+  [data-icon].is-medium {
     height: 36px;
     width: 36px; }
-  i.is-large {
+  [data-icon].is-large {
     height: 48px;
     width: 48px; }
-  i[data-icon*="apps"] {
-    background-image: url("../icons/apps.svg"); }
-    i[data-icon*="apps"].is-inverted {
-      background-image: url("../icons/apps-alt.svg"); }
-  i[data-icon*="search"] {
-    background-image: url("../icons/search.svg"); }
-    i[data-icon*="search"].is-inverted {
-      background-image: url("../icons/search-alt.svg"); }
-  i[data-icon*="event-note"] {
-    background-image: url("../icons/event-note.svg"); }
-    i[data-icon*="event-note"].is-inverted {
-      background-image: url("../icons/event-note-alt.svg"); }
-  i[data-icon*="tune"] {
-    background-image: url("../icons/tune.svg"); }
-    i[data-icon*="tune"].is-inverted {
-      background-image: url("../icons/tune-alt.svg"); }
+
+[data-icon*="apps"] {
+  background-image: url("../icons/apps.svg"); }
+  [data-icon*="apps"].is-inverted {
+    background-image: url("../icons/apps-alt.svg"); }
+
+[data-icon*="search"] {
+  background-image: url("../icons/search.svg"); }
+  [data-icon*="search"].is-inverted {
+    background-image: url("../icons/search-alt.svg"); }
+
+[data-icon*="event-note"] {
+  background-image: url("../icons/event-note.svg"); }
+  [data-icon*="event-note"].is-inverted {
+    background-image: url("../icons/event-note-alt.svg"); }
+
+[data-icon*="tune"] {
+  background-image: url("../icons/tune.svg"); }
+  [data-icon*="tune"].is-inverted {
+    background-image: url("../icons/tune-alt.svg"); }
+
+[data-icon*="check-circle"] {
+  background-image: url("../icons/check-circle.svg"); }
+  [data-icon*="check-circle"].is-inverted {
+    background-image: url("../icons/check-circle-alt.svg"); }
 
 /**
  *
@@ -516,7 +638,13 @@ i {
  *
  */
 .search {
-  margin-left: 1em; }
+  margin-left: 1em;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto; }
   @media only screen and (min-width: 1201px) {
     .search {
       margin-right: auto;
@@ -542,9 +670,11 @@ i {
       position: absolute;
       top: .4em;
       left: .75em;
+      margin: 2px;
       width: 36px;
       height: 36px;
-      background: url("../design/assets/icons/ic_search_36px.svg") no-repeat;
+      background: url("../icons/search.svg") no-repeat;
+      background-position: center center;
       content: "";
       opacity: .25; }
     .search--input input[type="search"] {
@@ -566,6 +696,46 @@ i {
     margin-top: .25em;
     margin-right: 1em;
     margin-left: 1em; }
+
+/**
+ *
+ * Itk tabs
+ *
+ * A component for displaying tabs as rounded corners.
+ *
+ */
+/* Styles
+   ========================================================================== */
+.tabs {
+  margin: 1em;
+  min-width: 22em;
+  font-size: .9em; }
+
+.tabs--item {
+  background: #fff;
+  color: gray; }
+  .tabs--item.is-active {
+    background: #157bb3;
+    color: #fff; }
+  .tabs--item.has-flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
+    .tabs--item.has-flex [data-icon] {
+      margin: 2px 0.7em 2px 2px;
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 18px;
+      -moz-box-flex: 0;
+      -moz-flex: 0 0 18px;
+      -ms-flex: 0 0 18px;
+      flex: 0 0 18px; }
 
 /**
  *
@@ -792,11 +962,7 @@ i {
       .submenu--inner {
         margin-right: auto;
         margin-left: auto;
-        max-width: 1200px;
-        padding-left: 1em; } }
-    @media only screen and (min-width: 1700px) {
-      .submenu--inner {
-        padding-left: 0; } }
+        max-width: 1200px; } }
   .submenu--links {
     display: -webkit-box;
     display: -webkit-flex;
@@ -866,79 +1032,6 @@ i {
       text-decoration: none; }
     .submenu--icon-link.is-active {
       background-color: #157bb3; }
-
-/**
- *
- * Search planning
- *
- */
-.search-planning {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-basis: 100%;
-  -moz-flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  border-top: 1px solid #bfbfbf;
-  margin-top: 2em;
-  padding-top: 2em; }
-  .search-planning--item {
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    border: 1px solid #bfbfbf;
-    background-color: #fff; }
-  .search-planning header {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    align-items: center;
-    -webkit-align-content: center;
-    -moz-align-content: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    border-bottom: 1px solid #bfbfbf;
-    padding: .75em; }
-  .search-planning--item-header {
-    font-weight: bold; }
-  .search-planning--date-picker {
-    -webkit-align-self: center;
-    -moz-align-self: center;
-    -ms-flex-item-align: center;
-    align-self: center;
-    margin: auto; }
-  .search-planning--channels {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap; }
-  .search-planning--channel {
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    position: relative;
-    margin-top: .5em; }
-    .search-planning--channel-inner {
-      position: relative;
-      padding: .25em .75em;
-      background-color: #157bb3;
-      color: #fff; }
 
 /**
  *
@@ -1028,7 +1121,7 @@ i {
  */
 /* Hamburger menu styles
    ========================================================================== */
-.hamburger-menu--overlay {
+.hamburger-menu--wrapper {
   cursor: pointer; }
 
 .hamburger-menu {
@@ -1313,7 +1406,7 @@ i {
     margin: auto;
     height: 100%;
     max-width: 100%; }
-    @media only screen and (min-width: 1023px) {
+    @media only screen and (min-width: 720px) {
       .is-frontpage .content--inner {
         height: auto;
         max-width: 75%; } }
@@ -1348,3 +1441,114 @@ i {
 
 .is-page.is-screen .content--inner {
   max-width: 100%; }
+
+/**
+ *
+ * Container.
+ *
+ */
+/* Default use
+   ========================================================================== */
+.container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
+  .container.has-wrap {
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+  .container--inner {
+    -webkit-flex-basis: 100%;
+    -moz-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    background-color: #fff;
+    padding-top: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    padding-left: 2em; }
+    @media only screen and (min-width: 720px) {
+      .container--inner {
+        border-radius: 6px; } }
+
+/* Specific use on the login page.
+   ========================================================================== */
+.container-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  @media only screen and (min-width: 1024px) {
+    .container-wrapper {
+      -webkit-box-direction: normal;
+      -webkit-box-orient: horizontal;
+      -webkit-flex-direction: row;
+      -moz-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row; } }
+  .container-wrapper.is-login-page .container {
+    overflow: hidden; }
+    @media only screen and (min-width: 720px) {
+      .container-wrapper.is-login-page .container--inner {
+        border-radius: 0; } }
+    .container-wrapper.is-login-page .container:nth-child(1) {
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 auto;
+      -moz-box-flex: 0;
+      -moz-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      background-image: url("../design/assets/images/structure.jpg");
+      background-size: cover; }
+      @media only screen and (min-width: 720px) {
+        .container-wrapper.is-login-page .container:nth-child(1) {
+          border-radius: 6px 0 0 6px; } }
+      @media only screen and (min-width: 1024px) {
+        .container-wrapper.is-login-page .container:nth-child(1) {
+          -webkit-box-flex: 0;
+          -webkit-flex: 0 0 35%;
+          -moz-box-flex: 0;
+          -moz-flex: 0 0 35%;
+          -ms-flex: 0 0 35%;
+          flex: 0 0 35%; } }
+      .container-wrapper.is-login-page .container:nth-child(1) .container--inner {
+        background-color: rgba(21, 123, 179, 0.9); }
+    .container-wrapper.is-login-page .container:nth-child(2) {
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 100%;
+      -moz-box-flex: 0;
+      -moz-flex: 0 0 100%;
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%; }
+      @media only screen and (min-width: 720px) {
+        .container-wrapper.is-login-page .container:nth-child(2) {
+          border-radius: 0 6px 6px 0; } }
+      @media only screen and (min-width: 1024px) {
+        .container-wrapper.is-login-page .container:nth-child(2) {
+          -webkit-box-flex: 0;
+          -webkit-flex: 0 0 65%;
+          -moz-box-flex: 0;
+          -moz-flex: 0 0 65%;
+          -ms-flex: 0 0 65%;
+          flex: 0 0 65%; } }
