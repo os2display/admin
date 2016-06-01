@@ -28,6 +28,11 @@ angular.module('timelineApp')
           var calculateWeekWindow = function calculateWeekWindow(date) {
             // Calculate current window timestamps (current week)
             // @TODO: is this always correct?
+
+            // @REVIEW:
+            // @See http://locutus.io/php/datetime/mktime/ or http://locutus.io/php/datetime/strtotime/
+            // Inlucde web/assets/libs/locutus.io.js to use functions strtotime and mktime.
+
             var startOfWeek = date.getTime();
             startOfWeek = startOfWeek
               - (startOfWeek % (24 * 60 * 60 * 1000)                    // Start of day
