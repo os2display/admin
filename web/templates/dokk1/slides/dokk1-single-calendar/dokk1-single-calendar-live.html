@@ -1,0 +1,25 @@
+<div class="dokk1-single-calendar"
+     data-ng-style="
+  ikSlide.options.bgcolor !== ''
+  ? {'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'linear-gradient(0deg,' + ikSlide.options.bgcolor + ', ' + ikSlide.options.bgcolor + '), url(' + ikSlide.currentImage + ')'}
+  : {'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+  <div class="dokk1-single-calendar--header">
+    {{ikSlide.options.header}}<br>
+    <div class="dokk1-single-calendar--meta">
+      {{ikSlide.options.meta}}
+    </div>
+  </div>
+  <div class="dokk1-single-calendar--content">
+    <div class="dokk1-single-calendar--available" data-ng-if="ikSlide.selected_data.length === 0">
+      Lokalet er ledigt
+    </div>
+    <div class="dokk1-single-calendar--now" data-ng-repeat="event in ikSlide.selected_data" data-ng-if="$index === 0">
+      <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+      {{event.event_name ? event.event_name : 'Optaget'}}
+    </div>
+    <div class="dokk1-single-calendar--next" data-ng-repeat="event in ikSlide.selected_data track by $index" data-ng-if="$index > 0 && $index < 3">
+      <div class="dokk1-single-calendar--meta">{{event.start_time * 1000 | date:'HH:mm'}} - {{event.end_time * 1000 | date:'HH:mm'}}</div>
+      {{event.event_name ? event.event_name : 'Optaget'}}
+    </div>
+  </div>
+</div>

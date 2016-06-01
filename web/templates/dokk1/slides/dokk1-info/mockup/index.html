@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="da">
+  <meta charset="UTF-8">
+  <title>Dokk1 basic template test</title>
+  <style>
+    @font-face {
+      font-family: 'Gibson SemiBold';
+      src: url("../fonts/Gibson-SemiBold-webfont.woff") format("woff");
+    }
+    @font-face {
+      font-family: 'Gibson Regular';
+      src: url("../fonts/Gibson-Regular-webfont.woff") format("woff");
+    }
+    @font-face {
+      font-family: 'Gibson Light';
+      src: url("../fonts/Gibson-Light-webfont.woff") format("woff");
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      color: #fff;
+      font: 1em/1.5 'Gibson Light', sans-serif;
+    }
+
+    .template {
+      position: relative;
+
+      min-height: 100%;
+      width: 100%;
+
+      background-image: url('image.jpg');
+      background-repeat: no-repeat;
+      background-color: rgb(35, 85, 135);
+      background-blend-mode: multiply;
+      background-size: cover;
+    }
+
+    .template--meta,
+    .template--header {
+      position: absolute;
+      left: 6vmin;
+    }
+    
+    .template--meta {
+      top: 6vmin;
+
+      font-size: 3vmin;
+      line-height: 150%;
+    }
+
+    .template--header {
+      bottom: 6vmin;
+      right: 3vmin;
+
+      font-family: 'Gibson SemiBold';
+      font-size: 9vmin;
+      line-height: 120%;
+      letter-spacing: .15vmin;
+    }
+  </style>
+</head>
+<body>
+<div class="template">
+  <div class="template--meta">
+    <div>Hovedbiblioteket / Lille scene</div>
+    <div>Torsdag 27. november 16.00-17.30</div>
+  </div>
+  <div class="template--header">
+    Hvor er vi på vej hen?<br>
+    Kom og hør om Dokk1
+  </div>
+</div>
+</body>
+</html>

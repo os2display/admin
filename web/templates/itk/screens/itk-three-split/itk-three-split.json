@@ -1,0 +1,12 @@
+{
+  "id": "itk-three-split",
+  "type": "screen",
+  "name": "ITK tredelt",
+  "icon": "itk-three-split.png",
+  "paths": {
+    "live": "itk-three-split-live.html",
+    "edit": "itk-three-split-edit.html",
+    "css": "itk-three-split.css"
+  },
+  "orientation": "landscape"
+}
