@@ -37,7 +37,7 @@ angular.module('timelineApp')
           for (var screenKey in response.data) {
             var items = [];
             var regions = [];
-            var screen = data[screenKey];
+            var screen = response.data[screenKey];
 
             for (var channelKey in screen.channel_screen_regions) {
               var csr = screen.channel_screen_regions[channelKey];
