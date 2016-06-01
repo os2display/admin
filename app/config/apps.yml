@@ -24,6 +24,7 @@ parameters:
         - /apps/timelineApp/timelineApp.js
         - /apps/timelineApp/assets/vis/dist/vis.min.js
         - /apps/timelineApp/directive/timelineDirective.js
+        - /apps/timelineApp/services/timelineService.js
         - /apps/timelineApp/timelineController.js
       controller: TimelineController
       template: /apps/timelineApp/timeline.html

@@ -7,20 +7,24 @@ angular.module('timelineApp')
   .service('timelineService', ['$q', '$http', function ($q, $http) {
     'use strict';
 
+     // Build query string.
+    // @TODO: Replace with search
+    var queryString = "?";
+    for (var i = 0; i < 10; i++) {
+      queryString = queryString + "ids[]=" + i;
+      if (i < 9) {
+        queryString = queryString + "&"
+      }
+    }
 
+    /**
+     * Get time line information.
+     *
+     * @returns {*|Deferred}
+     */
     this.fetchData = function fetchData() {
 
       var deferred = $q.defer();
-
-      // Build query string.
-      // @TODO: Replace with search
-      var queryString = "?";
-      for (var i = 0; i < 10; i++) {
-        queryString = queryString + "ids[]=" + i;
-        if (i < 9) {
-          queryString = queryString + "&"
-        }
-      }
 
       // Load bulk.
       // @TODO: Move data processing to a timeline service!
@@ -83,7 +87,10 @@ angular.module('timelineApp')
         function error(response) {
           deferred.reject(response.status);
         }
-      )
+      );
+
+      return deferred.promise;
     };
+
   }]);
 
