@@ -374,7 +374,7 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 textarea {
-  border: 0;
+  border: 1px solid transparent;
   display: block;
   min-height: 3.25em;
   padding: .85em 1.25em;
@@ -681,7 +681,6 @@ textarea {
  *
  */
 .search {
-  margin-left: 1em;
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 auto;
   -moz-box-flex: 1;
@@ -692,11 +691,7 @@ textarea {
     .search {
       margin-right: auto;
       margin-left: auto;
-      max-width: 1200px;
-      padding-left: 1em; } }
-  @media only screen and (min-width: 1700px) {
-    .search {
-      padding-left: 0; } }
+      max-width: 1200px; } }
   .search--elements {
     display: -webkit-box;
     display: -webkit-flex;
@@ -736,9 +731,23 @@ textarea {
     -moz-flex-grow: 0;
     -ms-flex-positive: 0;
     flex-grow: 0;
+    cursor: pointer;
+    z-index: 1;
     margin-top: .25em;
-    margin-right: 1em;
     margin-left: 1em; }
+  .search--field-wrapper {
+    background-color: #f2f2f2; }
+  .search--filters-wrapper {
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s;
+    transition-timing-function: ease-in-out; }
+    .search--filters-wrapper.is-open {
+      max-height: 120px; }
+      @media only screen and (min-width: 440px) {
+        .search--filters-wrapper.is-open {
+          max-height: 70px; } }
 
 /**
  *
@@ -825,12 +834,24 @@ textarea {
 
 .vis--item-header {
   font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
+  -webkit-flex: 1 1 100%;
   -moz-box-flex: 1;
-  -moz-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto; }
+  -moz-flex: 1 1 100%;
+  -ms-flex: 1 1 100%;
+  flex: 1 1 100%; }
+  @media only screen and (min-width: 600px) {
+    .vis--item-header {
+      margin-bottom: 0;
+      text-align: left;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 auto;
+      -moz-box-flex: 1;
+      -moz-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto; } }
 
 .vis--date-controls {
   -webkit-box-flex: 1;
@@ -876,6 +897,8 @@ textarea {
 
 .vis-foreground .vis-group {
   position: relative; }
+  .vis-foreground .vis-group:nth-child(even) {
+    background: #efefef; }
 
 .vis-foreground .vis-group:last-child {
   border-bottom: none; }
@@ -893,7 +916,6 @@ textarea {
     overflow: hidden; }
   .vis-panel.vis-left {
     box-sizing: border-box;
-    padding: 0 .8em 0 0;
     border-right: 1px solid #d9d9d9; }
   .vis-panel.vis-vertical {
     overflow-x: hidden; }
@@ -901,9 +923,23 @@ textarea {
 /* Vis label
    =========================================================== */
 .vis-label {
-  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  box-sizing: content-box;
+  display: flex;
   font-size: .8em;
-  padding-top: 5px; }
+  padding: 0 .8em; }
+  .vis-label:nth-child(even) {
+    background: #efefef; }
 
 /* Vis item
    =========================================================== */
@@ -981,6 +1017,9 @@ textarea {
   position: absolute;
   top: 5.5em;
   z-index: 5;
+  padding-left: 1em;
+  padding-right: 1em;
+  box-sizing: border-box;
   display: block;
   width: 100%;
   background-color: #fff;
@@ -999,8 +1038,7 @@ textarea {
     -ms-flex-pack: start;
     -webkit-justify-content: flex-start;
     -moz-justify-content: flex-start;
-    justify-content: flex-start;
-    margin-left: 1em; }
+    justify-content: flex-start; }
     @media only screen and (min-width: 1201px) {
       .submenu--inner {
         margin-right: auto;
@@ -1241,7 +1279,7 @@ textarea {
 .hamburger-menu-toggle {
   position: absolute;
   top: 1.6em;
-  right: 2em;
+  right: 1em;
   z-index: 11;
   height: 36px;
   width: 40px;
@@ -1473,6 +1511,8 @@ textarea {
     margin-bottom: 16em;
     margin-left: auto;
     max-width: 1200px;
+    padding-left: 1em;
+    padding-right: 1em;
     overflow-wrap: break-word;
     word-wrap: break-word;
     -ms-word-break: break-all;
