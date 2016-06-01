@@ -93,7 +93,14 @@ angular.module('timelineApp')
                           // Create unique id for the subItem.
                           subItem.id = item.id + "_" + j;
 
-                          // @TODO: Handle subItem.end subItem.start overflowing item.start and item.end, should be bound the interval.
+                          // Make sure we have not overlapped the item.end by the subItem
+                          if (subItem.start > item.end) {
+                            continue;
+                          }
+                          // Make sure the subItem.end does not overlap item.end
+                          if (subItem.end > item.end) {
+                            subItem.end = item.end;
+                          }
 
                           items.push(subItem);
                         }
