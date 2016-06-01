@@ -187,6 +187,49 @@ div[data-tabs-count*="5"] > * {
 ================================================================================================================== */
 /**
  *
+ * Fonts
+ *
+ * http://www.456bereastreet.com/archive/201012/font-face_tip_define_font-weight_and_font-style_to_keep_your_css_simple/
+ * http://stackoverflow.com/questions/28279989/multiple-font-weights-one-font-face-query
+ */
+@font-face {
+  font-family: 'AlegreyaSans';
+  src: url("../../fonts/AlegreyaSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'AlegreyaSans';
+  src: url("../../fonts/AlegreyaSans-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'AlegreyaSans';
+  src: url("../../fonts/AlegreyaSans-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'AlegreyaSans';
+  src: url("../../fonts/AlegreyaSans-BoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'AlegreyaSans';
+  src: url("../../fonts/AlegreyaSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'AlegreyaSans';
+  src: url("../../fonts/AlegreyaSans-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic; }
+
+/**
+ *
  * Patterns
  *
  */
@@ -235,7 +278,7 @@ body {
   width: 100%;
   background-color: #f2f2f2;
   color: #666666;
-  font: 1em/1.5 "Alegreya Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font: 1em/1.5 "AlegreyaSans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 html.is-locked,
 body.is-locked {
@@ -318,7 +361,7 @@ img {
    ================================================================================================================== */
 input,
 textarea {
-  font: 1em/1.5 "Alegreya Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font: 1em/1.5 "AlegreyaSans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 input[type="text"],
 input[type="password"],
