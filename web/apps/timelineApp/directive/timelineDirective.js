@@ -2,8 +2,8 @@
  * Timeline directive.
  */
 angular.module('timelineApp')
-  .directive('timeline', ['busService', '$timeout',
-    function (busService, $timeout) {
+  .directive('timeline', ['busService', '$timeout', '$location',
+    function (busService, $timeout, $location) {
       'use strict';
 
       return {
@@ -27,6 +27,12 @@ angular.module('timelineApp')
            */
           var calculateWeekWindow = function calculateWeekWindow(date) {
             // Calculate current window timestamps (current week)
+            // @TODO: is this always correct?
+
+            // @REVIEW:
+            // @See http://locutus.io/php/datetime/mktime/ or http://locutus.io/php/datetime/strtotime/
+            // Inlucde web/assets/libs/locutus.io.js to use functions strtotime and mktime.
+
             var startOfWeek = date.getTime();
             startOfWeek = startOfWeek
               - (startOfWeek % (24 * 60 * 60 * 1000)                    // Start of day
@@ -47,14 +53,12 @@ angular.module('timelineApp')
           var calculateData = function calculateData() {
             items = [];
 
-            for (var i = 0; i < scope.data.channels.length; i++) {
-              var channel = scope.data.channels[i];
-              var item;
+            for (var i = 0; i < scope.data.items.length; i++) {
+              var item = angular.copy(scope.data.items[i]);
 
-              if ((!channel.start || channel.start < scope.end.getTime()) &&
-                  (!channel.end   || channel.end > scope.start.getTime())) {
-                if (!channel.schedule_repeat) {
-                  item = angular.copy(channel);
+              if ((!item.start || item.start < scope.end.getTime()) &&
+                  (!item.end   || item.end > scope.start.getTime())) {
+                if (!item.schedule_repeat) {
                   if (!item.start) {
                     item.start = scope.start.getTime();
                   }
@@ -66,30 +70,32 @@ angular.module('timelineApp')
                   items.push(item);
                 }
                 else {
-                  if (channel.schedule_repeat_days) {
+                  if (item.schedule_repeat_days) {
                     var weekStart = new Date(scope.start);
 
-                    for (var j = 0; j < channel.schedule_repeat_days.length; j++) {
-                      var scheduleDay = (channel.schedule_repeat_days[j].id + 6 - ((weekStart.getDay() + 6) % 7)) % 7;
+                    // @TODO: Change this to handle the interval between scope.start - scope.end instead of assuming a week (make it able to handle zoom and day view).
+                    for (var j = 0; j < item.schedule_repeat_days.length; j++) {
+                      var scheduleDay = (item.schedule_repeat_days[j].id + 6 - ((weekStart.getDay() + 6) % 7)) % 7;
 
                       var currentDay = new Date(weekStart);
                       currentDay.setDate(currentDay.getDate() + scheduleDay);
 
-                      item = angular.copy(channel);
-                      item.start = new Date(currentDay);
-                      item.start.setHours(channel.schedule_repeat_from ? channel.schedule_repeat_from : 0);
-                      item.start = item.start.getTime();
-                      item.end = new Date(currentDay);
-                      item.end.setHours(channel.schedule_repeat_to ? channel.schedule_repeat_to : 23);
-                      item.end.setMinutes(channel.schedule_repeat_to ? 0 : 59);
-                      item.end.setSeconds(channel.schedule_repeat_to ? 0 : 59);
-                      item.end = item.end.getTime();
+                      var subItem = angular.copy(item);
+                      subItem.start = new Date(currentDay);
+                      subItem.start.setHours(item.schedule_repeat_from ? item.schedule_repeat_from : 0);
+                      subItem.start = subItem.start.getTime();
+                      subItem.end = new Date(currentDay);
+                      subItem.end.setHours(item.schedule_repeat_to ? item.schedule_repeat_to : 23);
+                      subItem.end.setMinutes(item.schedule_repeat_to ? 0 : 59);
+                      subItem.end.setSeconds(item.schedule_repeat_to ? 0 : 59);
+                      subItem.end = subItem.end.getTime();
 
-                      // @TODO: Handle item.end item.start overflowing channel.start and channel.end
+                      // @TODO: Handle subItem.end subItem.start overflowing item.start and item.end, should be bound the interval.
 
-                      item.id = item.id + "_" + j;
+                      // Create unique id for the subItem.
+                      subItem.id = item.id + "_" + j;
 
-                      items.push(item);
+                      items.push(subItem);
                     }
                   }
                 }
@@ -100,15 +106,14 @@ angular.module('timelineApp')
           };
 
           // Configuration for the Timeline
-          // Configuration for the Timeline
           var options = {
             locale: 'da',                               // set language to danish, requires moment-with-locales.min.js
-            editable: false,
+            editable: false,                            // disable editing
             snap: function (date) {                     // snap to hour
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
-            stack: false,
+            stack: false,                               // disable stacking to allow subgroups to share a line in the timeline
             zoomable: false                             // remove zoomable
           };
 
@@ -118,14 +123,11 @@ angular.module('timelineApp')
               // DOM element where the Timeline will be attached
               var container = document.getElementById("timeline_" + scope.data.id);
 
-              // Create a DataSet (allows two way data-binding)
-              //var items = new vis.DataSet(scope.data.channels);
-              var emptyItems = new vis.DataSet();
-
               // Create a Timeline
-              timeline = new vis.Timeline(container, emptyItems, scope.data.regions, options);
+              timeline = new vis.Timeline(container, [], scope.data.groups, options);
 
-              // Register listeners.
+              // Register listener for 'rangechanged'.
+              //   This should trigger a data reload.
               timeline.on('rangechanged', function (properties) {
                 // Update window and recalculate data.
                 //   Timeout to avoid digest errors, since timeline events are outside angular.
@@ -137,12 +139,17 @@ angular.module('timelineApp')
                 });
               });
 
-              timeline.on('select', function (properties) {
+              // Register double click listener
+              //   Redirects to item.redirect_url
+              timeline.on('doubleClick', function (properties) {
                 // Find item.
                 for (var item in items) {
                   item = items[item];
-                  if (item.id == properties.items[0]) {
-                    console.log("Channel: " + item.channel_id);
+                  if (item.id == properties.item) {
+                    scope.$apply(function() {
+                      $location.path(item.redirect_url);
+                    });
+                    return;
                   }
                 }
               });
@@ -166,6 +173,9 @@ angular.module('timelineApp')
             calculateWeekWindow(date);
           };
 
+          /**
+           * Move window to today. Loads week.
+           */
           scope.today = function today() {
             date = new Date();
 

@@ -8,7 +8,7 @@
  */
 
 angular.module('busModule')
-  .service('busService', function ($rootScope, $window) {
+  .service('busService', ['$rootScope', '$window', function ($rootScope, $window) {
     'use strict';
 
     // Store rootScopes for each service user.
@@ -42,4 +42,4 @@ angular.module('busModule')
         listener.apply($rootScope, [event, message]);
       });
     };
-  });
+  }]);
