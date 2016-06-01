@@ -33,10 +33,10 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
             var channel = csr.channel;
 
             items.push({
-              id: csr.id + "_" + channel.id,
-              content: channel.title,
-              group: csr.region,
-              subgroup: csr.id + "_" + channel.id,
+              id: csr.id + "_" + channel.id,                            // Ensure unique id: ChannelScreenRegion + channel id
+              content: channel.title,                                   // Text displayed in timeline item
+              group: csr.region,                                        // Which group should the item belong to?
+              subgroup: csr.id + "_" + channel.id,                      // Subgroup is used to make sure channel items with different unique ids are gathered on the same line in the timeline.
               start: channel.publish_from * 1000,
               end: channel.publish_to * 1000,
               schedule_repeat: channel.schedule_repeat,

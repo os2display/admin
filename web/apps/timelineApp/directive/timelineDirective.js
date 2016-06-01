@@ -44,8 +44,6 @@ angular.module('timelineApp')
 
           /**
            * Calculate calendar data for the current range between scope.start and scope.end
-           *
-           * @TODO: Change from "channel" to common data structure.
            */
           var calculateData = function calculateData() {
             items = [];
@@ -167,6 +165,9 @@ angular.module('timelineApp')
             calculateWeekWindow(date);
           };
 
+          /**
+           * Move window to today. Loads week.
+           */
           scope.today = function today() {
             date = new Date();
 
