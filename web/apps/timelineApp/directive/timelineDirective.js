@@ -71,31 +71,36 @@ angular.module('timelineApp')
                 }
                 else {
                   if (item.schedule_repeat_days) {
-                    var weekStart = new Date(scope.start);
+                    var currentDay = new Date(scope.start);
 
-                    // @TODO: Change this to handle the interval between scope.start - scope.end instead of assuming a week (make it able to handle zoom and day view).
-                    for (var j = 0; j < item.schedule_repeat_days.length; j++) {
-                      var scheduleDay = (item.schedule_repeat_days[j].id + 6 - ((weekStart.getDay() + 6) % 7)) % 7;
+                    var j = 0;
 
-                      var currentDay = new Date(weekStart);
-                      currentDay.setDate(currentDay.getDate() + scheduleDay);
+                    while (currentDay < scope.end) {
+                      for (var k = 0; k < item.schedule_repeat_days.length; k++) {
+                        if (currentDay.getDay() === item.schedule_repeat_days[k].id) {
+                          var subItem = angular.copy(item);
+                          subItem.start = new Date(currentDay);
+                          subItem.start.setHours(item.schedule_repeat_from ? item.schedule_repeat_from : 0);
+                          subItem.start.setMinutes(0);
+                          subItem.start.setSeconds(0);
+                          subItem.start = subItem.start.getTime();
+                          subItem.end = new Date(currentDay);
+                          subItem.end.setHours(item.schedule_repeat_to ? item.schedule_repeat_to : 23);
+                          subItem.end.setMinutes(item.schedule_repeat_to ? 0 : 59);
+                          subItem.end.setSeconds(item.schedule_repeat_to ? 0 : 59);
+                          subItem.end = subItem.end.getTime();
 
-                      var subItem = angular.copy(item);
-                      subItem.start = new Date(currentDay);
-                      subItem.start.setHours(item.schedule_repeat_from ? item.schedule_repeat_from : 0);
-                      subItem.start = subItem.start.getTime();
-                      subItem.end = new Date(currentDay);
-                      subItem.end.setHours(item.schedule_repeat_to ? item.schedule_repeat_to : 23);
-                      subItem.end.setMinutes(item.schedule_repeat_to ? 0 : 59);
-                      subItem.end.setSeconds(item.schedule_repeat_to ? 0 : 59);
-                      subItem.end = subItem.end.getTime();
+                          // Create unique id for the subItem.
+                          subItem.id = item.id + "_" + j;
 
-                      // @TODO: Handle subItem.end subItem.start overflowing item.start and item.end, should be bound the interval.
+                          // @TODO: Handle subItem.end subItem.start overflowing item.start and item.end, should be bound the interval.
 
-                      // Create unique id for the subItem.
-                      subItem.id = item.id + "_" + j;
+                          items.push(subItem);
+                        }
+                      }
 
-                      items.push(subItem);
+                      currentDay.setDate(currentDay.getDate() + 1);
+                      j++;
                     }
                   }
                 }
@@ -113,8 +118,11 @@ angular.module('timelineApp')
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
+
+            zoomMin: 1000 * 60 * 60 * 24,               // one day in milliseconds
+            zoomMax: 1000 * 60 * 60 * 24 * 31,          // about one month in milliseconds
             stack: false,                               // disable stacking to allow subgroups to share a line in the timeline
-            zoomable: false                             // remove zoomable
+            zoomable: true                              // remove zoomable
           };
 
           // Listen for when scope is ready.
