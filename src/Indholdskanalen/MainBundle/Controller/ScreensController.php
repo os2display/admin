@@ -40,6 +40,9 @@ class ScreensController extends Controller {
   /**
    * Get a bulk of screens.
    *
+   * The order in which the screen id's is set in the query string is the same
+   * order in which they are returned.
+   *
    * @Route("/bulk")
    * @Method("GET")
    *
@@ -52,15 +55,14 @@ class ScreensController extends Controller {
 
     $response = new Response();
 
-    // Check if slide exists, to update, else create new slide.
     if (isset($ids)) {
       $em = $this->getDoctrine()->getManager();
 
       // Create query to load the entities.
       $qb = $em->createQueryBuilder();
-      $qb->select('m');
-      $qb->from('IndholdskanalenMainBundle:Screen', 'm');
-      $qb->where($qb->expr()->in('m.id', $ids));
+      $qb->select('s');
+      $qb->from('IndholdskanalenMainBundle:Screen', 's');
+      $qb->where($qb->expr()->in('s.id', $ids));
       $results = $qb->getQuery()->getResult();
 
       // Sort the entities based on the order of the ids given in the

@@ -1,5 +1,7 @@
 /**
- * @TODO: Change to use search function
+ * @file
+ * @TODO: Change to use search function.
+ * @TODO: Move all this search logic into a service on the BUS.
  */
 angular.module('timelineApp').controller('TimelineController', ['busService', 'timelineService', '$scope',
   function (busService, timelineService, $scope) {

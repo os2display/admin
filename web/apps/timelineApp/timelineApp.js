@@ -19,6 +19,10 @@ angular.module('timelineApp').config(function ($routeProvider) {
 
 // Setup the app.
 //  - submenu items.
+// @REVIEW: Should this be location in a service file.
+// @REVIEW: Are we always sure that menuApp is loaded later or before this to
+//          ensure messages on the bus. Should the bus have a buffer if no one
+//          is listing?
 angular.module('timelineApp').service('timelineAppSetup', ['busService',
   function (busService) {
     'use strict';
@@ -45,5 +49,6 @@ angular.module('timelineApp').service('timelineAppSetup', ['busService',
     });
   }
 ]);
+
 // Start the service.
 angular.module('timelineApp').run(['timelineAppSetup', angular.noop]);

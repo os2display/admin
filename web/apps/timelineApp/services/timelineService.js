@@ -27,11 +27,10 @@ angular.module('timelineApp')
       var deferred = $q.defer();
 
       // Load bulk.
-      // @TODO: Move data processing to a timeline service!
       // @TODO: Decide on timeline data structure, to be shared between screen and channel timelines.
       $http.get('/api/timeline/screens-bulk' + queryString).then(
         function (response) {
-          var d = [];
+          var data = [];
 
           // Format the data to match what time-line expects
           for (var screenKey in response.data) {
@@ -63,7 +62,7 @@ angular.module('timelineApp')
               });
 
               // Add region if not already.
-              if (regions.indexOf(csr.region) == -1) {
+              if (regions.indexOf(csr.region) === -1) {
                 regions.push(csr.region);
               }
             }
@@ -74,7 +73,7 @@ angular.module('timelineApp')
               groups.push({id: regions[i], content: "Region " + regions[i]});
             }
 
-            d.push({
+            data.push({
               id: screen.id,
               title: screen.title,
               items: items,
@@ -82,7 +81,7 @@ angular.module('timelineApp')
             });
           }
 
-          deferred.resolve(d);
+          deferred.resolve(data);
         },
         function error(response) {
           deferred.reject(response.status);
