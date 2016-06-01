@@ -121,7 +121,8 @@ angular.module('timelineApp')
               // Create a Timeline
               timeline = new vis.Timeline(container, [], scope.data.groups, options);
 
-              // Register listeners.
+              // Register listener for 'rangechanged'.
+              //   This should trigger a data reload.
               timeline.on('rangechanged', function (properties) {
                 // Update window and recalculate data.
                 //   Timeout to avoid digest errors, since timeline events are outside angular.
@@ -133,6 +134,8 @@ angular.module('timelineApp')
                 });
               });
 
+              // Register double click listener
+              //   Redirects to item.redirect_url
               timeline.on('doubleClick', function (properties) {
                 // Find item.
                 for (var item in items) {
