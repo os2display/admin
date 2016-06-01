@@ -4,7 +4,7 @@
       <input type="search" placeholder="Søg...">
     </div>
   </form>
-  <i data-icon="tune" class="search--toggle-filter is-large" ng-click="toggleFilters = !toggleFilters"></i>
+  <i data-icon="tune" class="search--toggle-filter is-large"  ng-class="toggleFilters ? 'is-inverted' : ''" ng-click="toggleFilters = !toggleFilters"></i>
 </div>
 <div class="container has-wrap search--filters-wrapper" ng-class="toggleFilters ? 'is-open' : 'is-closed'">
   <div class="tabs is-center" data-tabs-count="2">

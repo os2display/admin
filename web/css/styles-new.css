@@ -557,6 +557,11 @@ textarea {
   [data-icon*="check-circle"].is-inverted {
     background-image: url("../icons/check-circle-alt.svg"); }
 
+[data-icon*="filter-none"] {
+  background-image: url("../icons/filter-none.svg"); }
+  [data-icon*="filter-none"].is-inverted {
+    background-image: url("../icons/filter-none-alt.svg"); }
+
 /**
  *
  * ITK messages
@@ -745,7 +750,7 @@ textarea {
     transition-timing-function: ease-in-out; }
     .search--filters-wrapper.is-open {
       max-height: 120px; }
-      @media only screen and (min-width: 440px) {
+      @media only screen and (min-width: 740px) {
         .search--filters-wrapper.is-open {
           max-height: 70px; } }
 
@@ -759,9 +764,13 @@ textarea {
 /* Styles
    ========================================================================== */
 .tabs {
-  margin: 1em;
-  min-width: 22em;
+  margin: 1em 0;
+  min-width: 100%;
   font-size: .9em; }
+  @media only screen and (min-width: 740px) {
+    .tabs {
+      margin: 1em;
+      min-width: 22em; } }
 
 .tabs--item {
   background: #fff;
@@ -1384,6 +1393,8 @@ textarea {
   -moz-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row; }
+  .logo--icon {
+    margin-right: 10px; }
 
 .is-page .logo,
 .is-page .logo.is-sticky {
