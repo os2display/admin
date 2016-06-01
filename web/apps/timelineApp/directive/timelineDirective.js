@@ -48,7 +48,9 @@ angular.module('timelineApp')
           };
 
           /**
-           * Calculate calendar data for the current range between scope.start and scope.end
+           * Calculates calendar data for the current range between scope.start and scope.end
+           *
+           * @TODO: Move out of directive to service.
            */
           var calculateData = function calculateData() {
             items = [];
@@ -56,13 +58,17 @@ angular.module('timelineApp')
             for (var i = 0; i < scope.data.items.length; i++) {
               var item = angular.copy(scope.data.items[i]);
 
+              // If item is to be shown within the current range.
               if ((!item.start || item.start < scope.end.getTime()) &&
                   (!item.end   || item.end > scope.start.getTime())) {
+                // If the item does not have a schedule_repeat field or set to false
                 if (!item.schedule_repeat) {
+                  // If item.start has not been set. Set it to the start of the current range
                   if (!item.start) {
                     item.start = scope.start.getTime();
                   }
 
+                  // If item.end has not been set. Set it to the end of the current range
                   if (!item.end) {
                     item.end = scope.end.getTime();
                   }
@@ -79,19 +85,20 @@ angular.module('timelineApp')
                       for (var k = 0; k < item.schedule_repeat_days.length; k++) {
                         if (currentDay.getDay() === item.schedule_repeat_days[k].id) {
                           var subItem = angular.copy(item);
+
+                          // Set subItem.start
                           subItem.start = new Date(currentDay);
                           subItem.start.setHours(item.schedule_repeat_from ? item.schedule_repeat_from : 0);
                           subItem.start.setMinutes(0);
                           subItem.start.setSeconds(0);
                           subItem.start = subItem.start.getTime();
+
+                          // Set subItem.end
                           subItem.end = new Date(currentDay);
                           subItem.end.setHours(item.schedule_repeat_to ? item.schedule_repeat_to : 23);
                           subItem.end.setMinutes(item.schedule_repeat_to ? 0 : 59);
                           subItem.end.setSeconds(item.schedule_repeat_to ? 0 : 59);
                           subItem.end = subItem.end.getTime();
-
-                          // Create unique id for the subItem.
-                          subItem.id = item.id + "_" + j;
 
                           // Make sure we have not overlapped the item.end by the subItem
                           if (subItem.start > item.end) {
@@ -101,6 +108,9 @@ angular.module('timelineApp')
                           if (subItem.end > item.end) {
                             subItem.end = item.end;
                           }
+
+                          // Create unique id for the subItem.
+                          subItem.id = item.id + "_" + j;
 
                           items.push(subItem);
                         }
