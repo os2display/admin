@@ -6,6 +6,7 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
     'use strict';
 
     // Build query string.
+    // @TODO: Replace with search
     var queryString = "?";
     for (var i = 0; i < 10; i++) {
       queryString = queryString + "ids[]=" + i;
@@ -15,13 +16,15 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
     }
 
     // Load bulk.
-    $http.get('/api/screens/channel-bulk' + queryString)
+    // @TODO: Move data processing to a timeline service!
+    // @TODO: Decide on timeline data structure, to be shared between screen and channel timelines.
+    $http.get('/api/timeline/screens-bulk' + queryString)
       .success(function (data, status) {
         var d = [];
 
         // Format the data to match what timeline expects
         for (var screenKey in data) {
-          var c = [];
+          var items = [];
           var regions = [];
           var screen = data[screenKey];
 
@@ -29,8 +32,7 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
             var csr = screen.channel_screen_regions[channelKey];
             var channel = csr.channel;
 
-            c.push({
-              channel_id: channel.id,
+            items.push({
               id: csr.id + "_" + channel.id,
               content: channel.title,
               group: csr.region,
@@ -40,24 +42,27 @@ angular.module('timelineApp').controller('TimelineController', ['busService', '$
               schedule_repeat: channel.schedule_repeat,
               schedule_repeat_days: channel.schedule_repeat_days,
               schedule_repeat_from: channel.schedule_repeat_from,
-              schedule_repeat_to: channel.schedule_repeat_to
+              schedule_repeat_to: channel.schedule_repeat_to,
+              redirect_url: '/channel/' + channel.id
             });
 
+            // Add region if not already.
             if (regions.indexOf(csr.region) == -1) {
               regions.push(csr.region);
             }
           }
 
-          var r = [];
+          // Format groups
+          var groups = [];
           for (var i = 0; i < regions.length; i++) {
-            r.push({id: regions[i], content: "Region " + regions[i]});
+            groups.push({id: regions[i], content: "Region " + regions[i]});
           }
 
           d.push({
             id: screen.id,
             title: screen.title,
-            channels: c,
-            regions: r
+            items: items,
+            groups: groups
           });
         }
 
