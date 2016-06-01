@@ -77,15 +77,8 @@ doctrine:
       json: Sonata\Doctrine\Types\JsonType
 
   orm:
-    entity_managers:
-      default:
-        mappings:
-          FOSUserBundle: ~
-          ApplicationSonataUserBundle: ~
-          SonataUserBundle: ~
-          ApplicationSonataMediaBundle: ~
-          SonataMediaBundle: ~
-          IndholdskanalenMainBundle: ~
+      auto_generate_proxy_classes: %kernel.debug%
+      auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:

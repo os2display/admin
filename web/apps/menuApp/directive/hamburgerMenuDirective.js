@@ -52,8 +52,7 @@ angular.module('menuApp')
            */
           scope.toggleMenu = function () {
             scope.menuOpen = !scope.menuOpen;
-            // Deprecated
-            //$('html').toggleClass('is-locked');
+            $('body').toggleClass('is-locked');
           };
 
           scope.userHasPermission = function userHasPermission(permission) {

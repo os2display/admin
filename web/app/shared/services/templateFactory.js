@@ -139,7 +139,7 @@ angular.module('ikApp').factory('templateFactory', ['$q', '$http',
             .error(function (data, status) {
               // @TODO: Handle this.
             });
-          $http.get('/api/templates/screen/enabled')
+          $http.get('/api/templates/screens/enabled')
             .success(function (data) {
               screenTemplates = data;
             })

@@ -1,0 +1,32 @@
+<!-- MSO header footer tool -->
+<div class="control-panel--tool"
+     data-ng-class="{'is-visible': display,'is-hidden': !display}">
+  <!-- @TODO: Fix this arrow -->
+  <a href="#" class="control-panel--main-toggle">
+    <img class="control-panel--toggle-image"
+         src="./images/arrow-right-icon.png"/>
+  </a>
+
+  <div class="control-panel--tool-tab">
+    <form class="cpw--wrapper">
+      <div class="cpw--text">
+        <label class="cpw--text-label">Område - Header</label>
+        <text-widget field="data.options.mso_area"
+                     placeholder-text="F.eks. Område Marselisborg"></text-widget>
+      </div>
+
+      <div class="cpw--textarea">
+        <label class="cpw--textarea-label">Adresse - Footer</label>
+        <text-area-widget rows="6" field="data.options.mso_address"
+                          placeholder-text="F.eks. Sundheds- og Kulturcenter Frederiksbjerg og Langenæs | Ankersgade 21 | 8000 Aarhus C"></text-area-widget>
+      </div>
+    </form>
+  </div>
+
+  <div class="control-panel--actions">
+    <div class="control-panel--actions-inner">
+      <a class="control-panel--actions-close" data-ng-click="saveAction()">Gem
+        og luk</a>
+    </div>
+  </div>
+</div>
