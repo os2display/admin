@@ -118,7 +118,7 @@ angular.module('timelineApp')
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
-
+            min: new Date(2016, 0, 1),                  // minimum date shown in timeline: January 1. 2016
             zoomMin: 1000 * 60 * 60 * 24,               // one day in milliseconds
             zoomMax: 1000 * 60 * 60 * 24 * 31,          // about one month in milliseconds
             stack: false,                               // disable stacking to allow subgroups to share a line in the timeline
