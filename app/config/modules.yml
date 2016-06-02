@@ -25,4 +25,5 @@ parameters:
     services:
       - logService
       - userService
+      - searchService
       - menuItemService

@@ -52,7 +52,8 @@ angular.module('busModule')
      *   The listener to call on event.
      */
     this.$once = function once(name, listener) {
-      $rootScope.$once(name, function (event, message) {
+      var deregister = $rootScope.$on(name, function (event, message) {
+        deregister();
         listener.apply($rootScope, [event, message]);
       });
     };

@@ -24,6 +24,7 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
 
     // Setup default search options.
     var search = {
+      "type": "Indholdskanalen\\MainBundle\\Entity\\Screen",
       "fields": [ 'title' ],
       "text": '',
       "sort": {
@@ -47,10 +48,12 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
 
       $scope.loading = true;
 
-      busService.$emit('')
+      var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
+      search.callbacks.hits = 'searchService.hits-' + uuid;
+      search.callbacks.error = 'searchService.error-' + uuid;
 
-      busService.$once(screenFactory.searchScreens(search).then(
-        function(data) {
+      busService.$once(search.callbacks.hits, function(event, data) {
+          console.log(data);
           // Total hits.
           $scope.hits = data.hits;
 
@@ -75,6 +78,12 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
           );
         }
       );
+
+      busService.$once(search.callbacks.error, function(event, args) {
+        console.log(args);
+      });
+
+      busService.$emit('searchService.request', search);
     };
 
     /**

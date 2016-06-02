@@ -94,7 +94,7 @@ angular.module('mainModule').service('searchService', ['$q', '$http', 'busServic
      *   When data is received from the backend. If no data found an empty JSON
      *   object is returned.
      */
-    busService.$on('searchService.request', function (message) {
+    busService.$on('searchService.request', function (event, message) {
       // Build default match all search query.
       var query = {
         "index": window.config.search.index,
@@ -149,9 +149,8 @@ angular.module('mainModule').service('searchService', ['$q', '$http', 'busServic
       };
 
       connect().then(function () {
-        socket.emit('search', query);
         socket.once(query.callbacks.hits, function (hits) {
-          busService.$emit('searchService.' + message.callbacks.hits, hits);
+          busService.$emit(message.callbacks.hits, hits);
         });
 
         // Catch search errors.
@@ -161,8 +160,10 @@ angular.module('mainModule').service('searchService', ['$q', '$http', 'busServic
             'msg': 'Search error.'
           });
 
-          busService.$emit('searchService.' + message.callbacks.error, error.message);
+          busService.$emit(message.callbacks.error, error.message);
         });
+        
+        socket.emit('search', query);
       });
     });
   }
