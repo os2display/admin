@@ -42,4 +42,18 @@ angular.module('busModule')
         listener.apply($rootScope, [event, message]);
       });
     };
+
+    /**
+     * Wrapper to attach "once" event listeners to the current root scope.
+     *
+     * @param name
+     *   Event name.
+     * @param listener
+     *   The listener to call on event.
+     */
+    this.$once = function once(name, listener) {
+      $rootScope.$once(name, function (event, message) {
+        listener.apply($rootScope, [event, message]);
+      });
+    };
   }]);

@@ -10,9 +10,11 @@ angular.module('timelineApp').config(function ($routeProvider) {
   // Register routes
   $routeProvider
     .when('/screen-timeline', {
+      controller: 'TimelineScreenController',
       templateUrl: 'apps/timelineApp/screen-timeline.html?' + window.config.version
     })
     .when('/channel-timeline', {
+      controller: 'TimelineChannelController',
       templateUrl: 'apps/timelineApp/channel-timeline.html?' + window.config.version
     });
 });
