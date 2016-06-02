@@ -61,7 +61,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
       }
 
       // Load bulk.
-      $http.get('/api/channels/bulk' + queryString)
+      $http.get('/api/bulk/channel/api-bulk' + queryString)
         .success(function (data, status) {
           defer.resolve(data);
         })

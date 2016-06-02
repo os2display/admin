@@ -56,7 +56,7 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
       }
 
       // Load bulk.
-      $http.get('/api/media/bulk' + queryString)
+      $http.get('/api/bulk/media/api' + queryString)
         .success(function (data, status) {
           defer.resolve(data);
         })

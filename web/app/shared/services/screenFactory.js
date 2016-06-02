@@ -60,7 +60,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
       }
 
       // Load bulk.
-      $http.get('/api/screens/bulk' + queryString)
+      $http.get('/api/bulk/screen/api' + queryString)
         .success(function (data, status) {
           defer.resolve(data);
         })

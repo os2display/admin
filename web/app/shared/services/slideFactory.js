@@ -61,7 +61,7 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
       }
 
       // Load bulk.
-      $http.get('/api/slides/bulk' + queryString)
+      $http.get('/api/bulk/slide/api-bulk' + queryString)
         .success(function (data, status) {
           defer.resolve(data);
         })
