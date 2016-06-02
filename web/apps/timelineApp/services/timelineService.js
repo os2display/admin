@@ -28,7 +28,7 @@ angular.module('timelineApp')
 
       // Load bulk.
       // @TODO: Decide on timeline data structure, to be shared between screen and channel timelines.
-      $http.get('/api/timeline/screens-bulk' + queryString).then(
+      $http.get('/api/screens/bulk' + queryString).then(
         function (response) {
           var data = [];
 
