@@ -16,6 +16,7 @@ angular.module('timelineApp')
         link: function (scope) {
           var timeline;
           var items;
+          var focusDate;
 
           scope.start = null;
           scope.end = null;
@@ -212,16 +213,17 @@ angular.module('timelineApp')
           scope.moveDays = function moveDays(days) {
             var displacement = days * 24 * 60 * 60 * 1000;
 
-            var window = timeline.getWindow();
+            focusDate = new Date(focusDate.getTime() + displacement);
 
-            calculateWeekWindow(new Date(window.start.getTime() + displacement));
+            calculateWeekWindow(focusDate);
           };
 
           /**
            * Move window to today. Loads week.
            */
           scope.today = function today() {
-            calculateWeekWindow(new Date());
+            focusDate = new Date();
+            calculateWeekWindow(focusDate);
           };
 
           // Register event listener for destroy.
