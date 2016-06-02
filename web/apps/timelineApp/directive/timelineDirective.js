@@ -212,7 +212,9 @@ angular.module('timelineApp')
           scope.moveDays = function moveDays(days) {
             var displacement = days * 24 * 60 * 60 * 1000;
 
-            calculateWeekWindow(new Date(date.getTime() + displacement));
+            var window = timeline.getWindow();
+
+            calculateWeekWindow(new Date(window.start.getTime() + displacement));
           };
 
           /**
