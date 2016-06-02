@@ -89,7 +89,7 @@ class MediaController extends Controller {
   }
 
   /**
-   * Sends all uploaded media.
+   * Get all uploaded media.
    *
    * @Route("")
    * @Method("GET")
