@@ -32,3 +32,4 @@ parameters:
         - busModule
         - mainModule
         - ngRoute
+        - bw.paging

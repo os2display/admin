@@ -2,7 +2,7 @@
 <div class="container has-wrap">
   <form class="search">
     <div class="search--input">
-      <input type="search" placeholder="Søg...">
+      <input type="search" placeholder="Søg..." data-ng-model="search_text" data-ng-change="search()">
     </div>
   </form>
   <i data-icon="tune" class="search--toggle-filter is-large" data-ng-class="toggleFilters ? 'is-inverted' : ''" data-ng-click="toggleFilters = !toggleFilters"></i>
@@ -23,17 +23,39 @@
 
   <div class="tabs is-center" data-tabs-count="3">
     <span class="tabs--item is-active has-flex" data-ng-class="{'is-active': sort.created_at === 'desc'}" data-ng-click="setSort('created_at', 'desc')">
-      <i data-icon="check-circle" class="is-tiny"></i>
+      <i data-ng-if="sort.created_at === 'desc'" data-icon="check-circle" class="is-tiny"></i>
       <span class="tabs--text">Nyeste</span>
     </span>
     <span class="tabs--item has-flex" data-ng-class="{'is-active': sort.created_at === 'asc'}" data-ng-click="setSort('created_at', 'asc')">
+      <i data-ng-if="sort.created_at === 'asc'" data-icon="check-circle" class="is-tiny"></i>
       <span class="tabs--text">Ældste</span>
     </span>
-    <span class="tabs--item" data-ng-class="{'is-active': sort.title}"  data-ng-click="setSort('title', 'asc')">
+    <span class="tabs--item has-flex" data-ng-class="{'is-active': sort.title}"  data-ng-click="setSort('title', 'asc')">
+      <i data-ng-if="sort.title" data-icon="check-circle" class="is-tiny"></i>
       <span class="tabs--text">A-Å</span>
     </span>
   </div>
 </div>
 
 <!-- The loaded time-lines -->
+<div class="spinner overview--spinner" data-ng-show="loading"></div>
 <timeline data="screen" data-ng-repeat="screen in data" />
+
+<!-- Pager -->
+<div class="pager--search">
+  <paging wrap.class="pager--search"
+       active-class="is-active"
+       page="pager.page + 1"
+       page-size="pager.size"
+       total="hits"
+       paging-action="changePage(page - 1)"
+       hide-if-empty="true"
+       show-prev-next="true"
+       show-first-last="true"
+       text-first="❮❮"
+       text-last="❯❯"
+       text-next="❯"
+       text-prev="❮"
+  >
+  </paging>
+</div>
