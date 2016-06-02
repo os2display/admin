@@ -53,7 +53,6 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
       search.callbacks.error = 'searchService.error-' + uuid;
 
       busService.$once(search.callbacks.hits, function(event, data) {
-          console.log(data);
           // Total hits.
           $scope.hits = data.hits;
 
@@ -67,11 +66,12 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
           timelineService.fetchData(ids).then(
             function success(data) {
               $scope.data = data;
+              $scope.loading = false;
             },
             function error(reason) {
               busService.$emit('log.error', {
                 'cause': reason,
-                  'msg': 'Kunne ikke hente søgeresultater.'
+                  'msg': 'Kunne ikke load skærme fra databasen.'
               });
               $scope.loading = false;
             }
@@ -80,10 +80,23 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
       );
 
       busService.$once(search.callbacks.error, function(event, args) {
-        console.log(args);
+        busService.$emit('log.error', {
+          'cause': args,
+          'msg': 'Kunne ikke hente søgeresultater.'
+        });
       });
 
       busService.$emit('searchService.request', search);
+    };
+
+    /**
+     * Update search result with pager reset.
+     */
+    $scope.search = function search() {
+      // Reset pager.
+      $scope.pager.page = 0;
+
+      $scope.updateSearch();
     };
 
     /**
@@ -121,7 +134,7 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
         search.filter.bool.must.push(term);
       }
 
-      $scope.updateSearch();
+      $scope.search();
     };
 
     /**
@@ -150,6 +163,19 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
       }
     };
 
+    /**
+     * Click handler to change page.
+     *
+     * @param page
+     */
+    $scope.changePage = function changePage(page) {
+      $scope.pager.page = page;
+      $scope.updateSearch();
+    };
+
+    /**
+     * Load current user.
+     */
     busService.$on('userService.returnUser', function returnUser(event, user) {
         $scope.currentUser = user;
 
