@@ -15,7 +15,6 @@ angular.module('timelineApp')
         },
         link: function (scope) {
           var timeline;
-          var date;
           var items;
 
           scope.start = null;
@@ -43,66 +42,100 @@ angular.module('timelineApp')
             timeline.setWindow({
               start: startOfWeek,
               end: endOfWeek,
-              animation: false
+              animation: true
             });
           };
 
           /**
-           * Calculate calendar data for the current range between scope.start and scope.end
+           * Calculates calendar data for the current range between scope.start and scope.end
+           *
+           * @TODO: Move out of directive to service.
            */
           var calculateData = function calculateData() {
-            items = [];
+            var items = [];
 
+            // Iterate all items, and evaluate if/how they should be added to the timeline.
             for (var i = 0; i < scope.data.items.length; i++) {
               var item = angular.copy(scope.data.items[i]);
 
+              // If item is to be shown within the current range.
               if ((!item.start || item.start < scope.end.getTime()) &&
                   (!item.end   || item.end > scope.start.getTime())) {
+
+                // If item.start has not been set, set it to the start of the current range (representing infinite)
+                if (!item.start) {
+                  item.start = scope.start.getTime();
+                }
+
+                // If item.end has not been set, set it to the end of the current range (representing infinite)
+                if (!item.end) {
+                  item.end = scope.end.getTime();
+                }
+
+                // If the item does not have a schedule_repeat field or it is false
                 if (!item.schedule_repeat) {
-                  if (!item.start) {
-                    item.start = scope.start.getTime();
-                  }
-
-                  if (!item.end) {
-                    item.end = scope.end.getTime();
-                  }
-
                   items.push(item);
                 }
                 else {
+                  // Only add to the scheduled days, in the given interval.
                   if (item.schedule_repeat_days) {
-                    var weekStart = new Date(scope.start);
+                    var currentDay = new Date(scope.start);
 
-                    // @TODO: Change this to handle the interval between scope.start - scope.end instead of assuming a week (make it able to handle zoom and day view).
-                    for (var j = 0; j < item.schedule_repeat_days.length; j++) {
-                      var scheduleDay = (item.schedule_repeat_days[j].id + 6 - ((weekStart.getDay() + 6) % 7)) % 7;
+                    var j = 0;
 
-                      var currentDay = new Date(weekStart);
-                      currentDay.setDate(currentDay.getDate() + scheduleDay);
+                    while (currentDay < scope.end) {
+                      for (var k = 0; k < item.schedule_repeat_days.length; k++) {
+                        if (currentDay.getDay() === item.schedule_repeat_days[k].id) {
+                          var subItem = angular.copy(item);
 
-                      var subItem = angular.copy(item);
-                      subItem.start = new Date(currentDay);
-                      subItem.start.setHours(item.schedule_repeat_from ? item.schedule_repeat_from : 0);
-                      subItem.start = subItem.start.getTime();
-                      subItem.end = new Date(currentDay);
-                      subItem.end.setHours(item.schedule_repeat_to ? item.schedule_repeat_to : 23);
-                      subItem.end.setMinutes(item.schedule_repeat_to ? 0 : 59);
-                      subItem.end.setSeconds(item.schedule_repeat_to ? 0 : 59);
-                      subItem.end = subItem.end.getTime();
+                          // Set subItem.start
+                          subItem.start = new Date(currentDay);
+                          subItem.start.setHours(item.schedule_repeat_from ? item.schedule_repeat_from : 0);
+                          subItem.start.setMinutes(0);
+                          subItem.start.setSeconds(0);
+                          subItem.start = subItem.start.getTime();
 
-                      // @TODO: Handle subItem.end subItem.start overflowing item.start and item.end, should be bound the interval.
+                          // Set subItem.end
+                          subItem.end = new Date(currentDay);
+                          subItem.end.setHours(item.schedule_repeat_to ? item.schedule_repeat_to : 23);
+                          subItem.end.setMinutes(item.schedule_repeat_to ? 0 : 59);
+                          subItem.end.setSeconds(item.schedule_repeat_to ? 0 : 59);
+                          subItem.end = subItem.end.getTime();
 
-                      // Create unique id for the subItem.
-                      subItem.id = item.id + "_" + j;
+                          // Make sure we have not overlapped the item.start by the subItem
+                          if (subItem.end < item.start) {
+                            return;
+                          }
 
-                      items.push(subItem);
+                          // Make sure we have not overlapped the item.end by the subItem
+                          if (subItem.start > item.end) {
+                            continue;
+                          }
+
+                          if (subItem.start < item.start) {
+                            subItem.start = item.start;
+                          }
+                          // Make sure the subItem.end does not overlap item.end
+                          if (subItem.end > item.end) {
+                            subItem.end = item.end;
+                          }
+
+                          // Create unique id for the subItem.
+                          subItem.id = item.id + "_" + j;
+
+                          items.push(subItem);
+                        }
+                      }
+
+                      currentDay.setDate(currentDay.getDate() + 1);
+                      j++;
                     }
                   }
                 }
               }
             }
 
-            timeline.setItems(items);
+            return items;
           };
 
           // Configuration for the Timeline
@@ -113,8 +146,11 @@ angular.module('timelineApp')
               var hour = 60 * 60 * 1000;
               return Math.round(date / hour) * hour;
             },
+            min: new Date(2016, 0, 1),                  // minimum date shown in timeline: January 1. 2016
+            zoomMin: 1000 * 60 * 60 * 24,               // one day in milliseconds
+            zoomMax: 1000 * 60 * 60 * 24 * 31,          // about one month in milliseconds
             stack: false,                               // disable stacking to allow subgroups to share a line in the timeline
-            zoomable: false                             // remove zoomable
+            zoomable: true                              // remove zoomable
           };
 
           // Listen for when scope is ready.
@@ -126,8 +162,20 @@ angular.module('timelineApp')
               // Create a Timeline
               timeline = new vis.Timeline(container, [], scope.data.groups, options);
 
+              // Initialize window to week window surrounding today.
+              scope.today();
+
+              // Set scope.start and scope.end
+              var window = timeline.getWindow();
+              scope.start = new Date(window.start);
+              scope.end = new Date(window.end);
+
+              // Load initial timeline data.
+              items = calculateData();
+              timeline.setItems(items);
+
               // Register listener for 'rangechanged'.
-              //   This should trigger a data reload.
+              //   This triggers a data reload.
               timeline.on('rangechanged', function (properties) {
                 // Update window and recalculate data.
                 //   Timeout to avoid digest errors, since timeline events are outside angular.
@@ -135,7 +183,8 @@ angular.module('timelineApp')
                   scope.start = new Date(properties.start);
                   scope.end = new Date(properties.end);
 
-                  calculateData();
+                  items = calculateData();
+                  timeline.setItems(items);
                 });
               });
 
@@ -153,11 +202,6 @@ angular.module('timelineApp')
                   }
                 }
               });
-
-              // Initialize window.
-              //   Triggers rangechanged listener.
-              date = new Date();
-              calculateWeekWindow(date);
             }
           });
 
@@ -168,18 +212,14 @@ angular.module('timelineApp')
           scope.moveDays = function moveDays(days) {
             var displacement = days * 24 * 60 * 60 * 1000;
 
-            date = new Date(date.getTime() + displacement);
-
-            calculateWeekWindow(date);
+            calculateWeekWindow(new Date(date.getTime() + displacement));
           };
 
           /**
            * Move window to today. Loads week.
            */
           scope.today = function today() {
-            date = new Date();
-
-            calculateWeekWindow(date);
+            calculateWeekWindow(new Date());
           };
 
           // Register event listener for destroy.
