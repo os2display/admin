@@ -28,11 +28,28 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
 
       // Handle error events.
       socket.on('error', function (reason) {
-        busService.$emit('log.error', {
-          'cause': reason,
-          'msg': 'Search socket error.'
-        });
-        deferred.reject(reason);
+        if (reason === 'Not authorized') {
+          // Try reauth
+          $http.get('api/auth/sharing/reauth')
+            .success(function (data) {
+              token = data.token;
+              getSocket(deferred);
+            })
+            .error(function (data, status) {
+              busService.$emit('log.error', {
+                'cause': status,
+                'msg': 'Search socket error. Could not reauthorize.'
+              });
+              deferred.reject(status);
+            });
+        }
+        else {
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Search socket error.'
+          });
+          deferred.reject(reason);
+        }
       });
 
       socket.on('connect', function () {

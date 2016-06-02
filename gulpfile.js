@@ -24,6 +24,7 @@ var banner = ['/**',
 
 // We only want to process our own non-processed JavaScript files.
 var adminJsPath = [
+  './web/app/app.js',
   './web/app/**/**/**/**/*.js'
 ];
 
@@ -31,7 +32,6 @@ var adminJsAssets = [
   './web/assets/libs/jquery-*.min.js',
   './web/assets/libs/angular-1.*.min.js',
   './web/assets/libs/angular-animate-1.*.min.js',
-  './web/assets/libs/angular-route-1.*.min.js',
   './web/assets/libs/angular-route-1.*.min.js',
   './web/assets/libs/angular-bootstrap-colorpicker*.js',
   './web/assets/libs/angular-css-injector*.js',
