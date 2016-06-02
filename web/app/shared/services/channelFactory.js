@@ -52,13 +52,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
       var defer = $q.defer();
 
       // Build query string.
-      var queryString = "?";
-      for (var i = 0; i < ids.length; i++) {
-        queryString = queryString + "ids[]=" + ids[i];
-        if (i < ids.length - 1) {
-          queryString = queryString + "&";
-        }
-      }
+      var queryString = "?ids[]=" + (ids.join('&ids[]='));
 
       // Load bulk.
       $http.get('/api/bulk/channel/api-bulk' + queryString)

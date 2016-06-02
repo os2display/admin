@@ -17,21 +17,13 @@ angular.module('timelineApp')
         var deferred = $q.defer();
 
         // Build query string.
-        var queryString = "?";
-        for (var i = 0; i < ids.length; i++) {
-          queryString = queryString + "ids[]=" + ids[i];
-          if (i < ids.length - 1) {
-            queryString = queryString + "&"
-          }
-        }
+        var queryString = "?ids[]=" + (ids.join('&ids[]='));
 
         // Load bulk.
-        //
         // @TODO: Screens should be load through a mainModule screenService,
         //        that uses the busService.
         // @TODO: Decide on time-line data structure, to be shared between
         //        screen and channel time-lines.
-        // Load bulk.
         // @TODO: Decide on timeline data structure, to be shared between screen and channel timelines.
         $http.get('/api/bulk/screen/api' + queryString).then(
           function (response) {
