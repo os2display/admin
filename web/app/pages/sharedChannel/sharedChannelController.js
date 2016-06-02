@@ -24,7 +24,7 @@ angular.module('ikApp').controller('SharedChannelController', ['$scope', '$locat
       function error(reason) {
         busService.$emit('log.error', {
           'cause': reason,
-          'msg': 'Kunne ikke hente bruger.'
+          'msg': 'Kunne ikke hente skærme.'
         });
       }
     );

@@ -32,7 +32,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'searchFactory
     factory.getChannels = function () {
       var defer = $q.defer();
 
-      $http.get('/api/channels')
+      $http.get('/api/channel')
         .success(function (data) {
           defer.resolve(data);
         })

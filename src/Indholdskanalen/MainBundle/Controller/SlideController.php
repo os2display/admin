@@ -301,4 +301,28 @@ class SlideController extends Controller {
 
     return $response;
   }
+  
+  /**
+   * Get a list of all slides.
+   *
+   * @Route("")
+   * @Method("GET")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function slidesGetAction() {
+    // Slide entities
+    $slide_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
+      ->findAll();
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    $serializer = $this->get('jms_serializer');
+    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks());
+    $response->setContent($jsonContent);
+
+    return $response;
+  }
 }

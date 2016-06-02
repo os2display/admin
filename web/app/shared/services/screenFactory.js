@@ -31,7 +31,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
     factory.getScreens = function () {
       var defer = $q.defer();
 
-      $http.get('/api/screens')
+      $http.get('/api/screen')
         .success(function (data) {
           defer.resolve(data);
         })

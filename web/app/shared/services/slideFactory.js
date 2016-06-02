@@ -32,7 +32,7 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
     factory.getSlides = function getSlides() {
       var defer = $q.defer();
 
-      $http.get('/api/slides')
+      $http.get('/api/slide')
         .success(function (data, status) {
           defer.resolve(data);
         })
