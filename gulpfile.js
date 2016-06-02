@@ -39,7 +39,8 @@ var adminJsAssets = [
   './web/assets/libs/datetimepicker*.js',
   './web/assets/libs/es5-shim*.js',
   './web/assets/libs/locale_da*.js',
-  './web/assets/libs/moment*.js',
+  './web/assets/libs/moment.min.js',
+  './web/assets/libs/moment_da_locale.js',
   './web/assets/libs/stacktrace*.js'
 ];
 

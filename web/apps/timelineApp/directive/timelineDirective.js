@@ -141,6 +141,12 @@ angular.module('timelineApp')
 
           // Configuration for the Timeline
           var options = {
+            locales: {
+              da: {
+                current: 'nuværende',
+                time: 'tid'
+              }
+            },
             locale: 'da',                               // set language to danish, requires moment-with-locales.min.js
             editable: false,                            // disable editing
             snap: function (date) {                     // snap to hour
