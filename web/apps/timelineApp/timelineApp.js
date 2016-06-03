@@ -11,11 +11,11 @@ angular.module('timelineApp').config(function ($routeProvider) {
   $routeProvider
     .when('/screen-timeline', {
       controller: 'TimelineScreenController',
-      templateUrl: 'apps/timelineApp/screen-timeline.html?' + window.config.version
+      templateUrl: 'apps/timelineApp/timeline-page.html?' + window.config.version
     })
     .when('/channel-timeline', {
       controller: 'TimelineChannelController',
-      templateUrl: 'apps/timelineApp/channel-timeline.html?' + window.config.version
+      templateUrl: 'apps/timelineApp/timeline-page.html?' + window.config.version
     });
 });
 
@@ -43,6 +43,20 @@ angular.module('timelineApp').service('timelineAppSetup', ['busService',
                 icon: 'event-note',
                 weight: 4,
                 activeFilter: '/screen-timeline'
+              }
+            ]
+          },
+          {
+            mainMenuItem: 'channel',
+            items: [
+              {
+                title: 'Timeline',
+                path: '/#/channel-timeline',
+                classes: 'channel-timeline',
+                group: 'right',
+                icon: 'event-note',
+                weight: 4,
+                activeFilter: '/channel-timeline'
               }
             ]
           }

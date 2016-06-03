@@ -16,6 +16,12 @@ angular.module('timelineApp')
       this.fetchData = function fetchData(ids) {
         var deferred = $q.defer();
 
+        // If no ids are requested, return empty array.
+        if (!ids) {
+          deferred.resolve([]);
+          return deferred.promise;
+        }
+
         // Build query string.
         var queryString = "?ids[]=" + (ids.join('&ids[]='));
 
@@ -24,7 +30,6 @@ angular.module('timelineApp')
         //        that uses the busService.
         // @TODO: Decide on time-line data structure, to be shared between
         //        screen and channel time-lines.
-        // @TODO: Decide on timeline data structure, to be shared between screen and channel timelines.
         $http.get('/api/bulk/screen/api' + queryString).then(
           function (response) {
             var data = [];
