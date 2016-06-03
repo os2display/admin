@@ -6,8 +6,8 @@
 /**
  * Slide factory. Main entry point for slides.
  */
-angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
-  function ($http, $q, searchFactory) {
+angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'busService',
+  function ($http, $q, busService) {
     'use strict';
 
     var factory = {};
@@ -22,9 +22,31 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'searchFactory',
      * @returns {*|Number}
      */
     factory.searchSlides = function (search) {
+      var deferred = $q.defer();
+
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
-      return searchFactory.search(search);
-    };
+
+      var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
+      search.callbacks = {
+        'hits': 'searchService.hits-' + uuid,
+        'error': 'searchService.error-' + uuid
+      };
+
+      busService.$once(search.callbacks.hits, function(event, data) {
+        deferred.resolve(data);
+      });
+
+      busService.$once(search.callbacks.error, function(event, args) {
+        busService.$emit('log.error', {
+          'cause': args,
+          'msg': 'Kunne ikke hente søgeresultater.'
+        });
+        deferred.reject(args);
+      });
+
+      busService.$emit('searchService.request', search);
+
+      return deferred.promise;    };
 
     /**
      * Get all slides.
