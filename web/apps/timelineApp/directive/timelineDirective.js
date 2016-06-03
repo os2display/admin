@@ -232,6 +232,20 @@ angular.module('timelineApp')
             calculateWeekWindow(focusDate);
           };
 
+          /**
+           * Zoom the timeline a given percentage in or out
+           * @param {Number} percentage   For example 0.1 (zoom out) or -0.1 (zoom in)
+           */
+          scope.zoom = function(percentage) {
+            var range = timeline.getWindow();
+            var interval = range.end - range.start;
+
+            timeline.setWindow({
+              start: range.start.valueOf() - interval * percentage,
+              end:   range.end.valueOf()   + interval * percentage
+            });
+          };
+
           // Register event listener for destroy.
           scope.$on('$destroy', function() {
             if (timeline) {
