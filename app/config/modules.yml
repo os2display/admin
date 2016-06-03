@@ -13,6 +13,7 @@ parameters:
 
     mainModule:
       files:
+        - /apps/mainModule/services/bodyService.js
         - /apps/mainModule/services/userService.js
         - /apps/mainModule/services/menuItemService.js
         - /apps/mainModule/services/searchService.js
@@ -27,3 +28,4 @@ parameters:
       - userService
       - searchService
       - menuItemService
+      - bodyService
