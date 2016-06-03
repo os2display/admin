@@ -157,7 +157,7 @@ angular.module('timelineApp')
             zoomMin: 1000 * 60 * 60 * 24,               // one day in milliseconds
             zoomMax: 1000 * 60 * 60 * 24 * 31,          // about one month in milliseconds
             stack: false,                               // disable stacking to allow subgroups to share a line in the timeline
-            zoomable: true                              // remove zoomable
+            zoomable: false                             // remove zoomable
           };
 
           // Listen for when scope is ready.
