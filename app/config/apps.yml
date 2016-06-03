@@ -25,6 +25,7 @@ parameters:
         - /apps/timelineApp/timelineApp.js
         - /apps/timelineApp/directive/timelineDirective.js
         - /apps/timelineApp/services/timelineService.js
+        - /apps/timelineApp/timelineBaseController.js
         - /apps/timelineApp/timelineScreenController.js
         - /apps/timelineApp/timelineChannelController.js
       template: /apps/timelineApp/timeline.html
