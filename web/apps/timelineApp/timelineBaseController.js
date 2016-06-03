@@ -63,7 +63,7 @@ angular.module('timelineApp').controller('TimelineBaseController', ['busService'
           }
 
           // Load slides bulk.
-          timelineService.fetchData(ids).then(
+          timelineService.fetchData(ids, $scope.searchType).then(
             function success(data) {
               $scope.data = data;
               $scope.loading = false;
