@@ -1,5 +1,7 @@
 /**
  * Timeline directive.
+ *
+ * Built from http://visjs.org/
  */
 angular.module('timelineApp')
   .directive('timeline', ['busService', '$timeout', '$location',
@@ -43,7 +45,7 @@ angular.module('timelineApp')
             timeline.setWindow({
               start: startOfWeek,
               end: endOfWeek,
-              animation: true
+              animation: false
             });
           };
 
@@ -242,7 +244,8 @@ angular.module('timelineApp')
 
             timeline.setWindow({
               start: range.start.valueOf() - interval * percentage,
-              end:   range.end.valueOf()   + interval * percentage
+              end:   range.end.valueOf()   + interval * percentage,
+              animation: false
             });
           };
 
