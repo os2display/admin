@@ -13,23 +13,29 @@ use JMS\Serializer\SerializationContext;
  * @Route("/api/bulk")
  */
 class BulkLoadController extends Controller {
+
+  /**
+   * Parse the type to full data type.
+   *
+   * @param $type
+   * @return string
+   */
   private function parseType($type) {
     $typeToLower = strtolower($type);
 
     switch ($typeToLower) {
       case 'slide':
-        return 'Slide';
+        return 'IndholdskanalenMainBundle:Slide';
       case 'channel':
-        return 'Channel';
+        return 'IndholdskanalenMainBundle:Channel';
       case 'screen':
-        return 'Screen';
+        return 'IndholdskanalenMainBundle:Screen';
       case 'media':
-        return 'Media';
+        return 'ApplicationSonataMediaBundle:Media';
       default:
-        return $type;
+        return 'IndholdskanalenMainBundle:' . $type;
     }
   }
-
 
   /**
    * Get a bulk of screens.
@@ -57,7 +63,7 @@ class BulkLoadController extends Controller {
       // Create query to load the entities.
       $qb = $em->createQueryBuilder();
       $qb->select('i');
-      $qb->from('IndholdskanalenMainBundle:' . $this->parseType($type), 'i');
+      $qb->from($this->parseType($type), 'i');
       $qb->where($qb->expr()->in('i.id', $ids));
       $results = $qb->getQuery()->getResult();
 
