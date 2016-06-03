@@ -105,7 +105,7 @@ angular.module('timelineApp')
 
                           // Make sure we have not overlapped the item.start by the subItem
                           if (subItem.end < item.start) {
-                            return;
+                            continue;
                           }
 
                           // Make sure we have not overlapped the item.end by the subItem
