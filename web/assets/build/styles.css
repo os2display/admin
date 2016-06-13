@@ -8103,7 +8103,6 @@ h5,
 h6 {
   margin-top: 0;
   margin-bottom: .5em;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   /* This fixes huge spaces when a heading wraps onto two lines */
   line-height: 1.2;
@@ -10075,6 +10074,7 @@ html.is-locked body {
       right: 3em;
       left: auto; }
   .overview--screens, .overview--media, .overview--channels, .overview--slides {
+    background-color: #fff;
     border: 1px solid #e6e6e6;
     margin-right: auto;
     margin-bottom: 1.5em;
