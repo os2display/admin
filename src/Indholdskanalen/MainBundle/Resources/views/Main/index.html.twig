@@ -17,13 +17,24 @@
 {% block body %}
   <!-- Define applications HTML tags -->
   {% for key, app in apps %}
-    <div {% if app.class is defined %}class="{{ app.class }}"{% endif %} id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} {% if app.controller is defined %}data-ng-controller="{{ app.controller }}"{% endif %} >
-    </div>
+    {% if app.container is not defined or not app.container %}
+      <div {% if app.class is defined %}class="{{ app.class }}"{% endif %} id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} {% if app.controller is defined %}data-ng-controller="{{ app.controller }}"{% endif %} >
+      </div>
+    {%  endif %}
   {% endfor %}
 
-  <div data-ng-app="ikApp">
     <div class="content view-container">
-      <div data-ng-view="" class="content--inner">
+      <div  class="content--inner">
+        {% for key, app in apps %}
+          {% if app.container is defined and app.container %}
+            <div data-ng-view="" {% if app.class is defined %}class="{{ app.class }}"{% endif %} id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} {% if app.controller is defined %}data-ng-controller="{{ app.controller }}"{% endif %} >
+            </div>
+          {%  endif %}
+        {% endfor %}
+
+        <!-- Load legacy app -->
+        <div data-ng-view="" data-ng-app="ikApp">
+        </div>
       </div>
     </div>
   </div>
