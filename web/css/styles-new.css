@@ -932,23 +932,14 @@ textarea {
 /* Vis label
    =========================================================== */
 .vis-label {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -moz-box-flex: 1;
-  -moz-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  align-items: center;
   box-sizing: content-box;
   display: flex;
   font-size: .8em;
   padding: 0 .8em; }
   .vis-label:nth-child(even) {
     background: #efefef; }
+  .vis-label .vis-inner {
+    margin-top: .2em; }
 
 /* Vis item
    =========================================================== */
@@ -1263,27 +1254,23 @@ textarea {
     display: list-item;
     margin-bottom: .25em;
     color: #666666;
+    cursor: pointer;
     font-size: 1.2em;
     list-style: none;
+    font-weight: bold;
     text-decoration: none; }
-    .hamburger-menu--link.is-active {
-      padding-top: .75em;
-      padding-bottom: .75em;
-      background-color: #157bb3;
-      -webkit-clip-path: polygon(100% 0, 100% 100%, 0 90%, 0 0);
-      clip-path: polygon(100% 0, 100% 100%, 0 90%, 0 0); }
-      .hamburger-menu--link.is-active:link {
-        color: #fff;
-        text-decoration: none; }
-      .hamburger-menu--link.is-active:visited {
-        color: #fff;
-        text-decoration: none; }
-      .hamburger-menu--link.is-active:hover {
-        color: #fff;
-        text-decoration: none; }
-      .hamburger-menu--link.is-active:focus {
-        color: #fff;
-        text-decoration: none; }
+    .hamburger-menu--link.is-active:link {
+      color: #157bb3;
+      text-decoration: none; }
+    .hamburger-menu--link.is-active:visited {
+      color: #157bb3;
+      text-decoration: none; }
+    .hamburger-menu--link.is-active:hover {
+      color: #157bb3;
+      text-decoration: none; }
+    .hamburger-menu--link.is-active:focus {
+      color: #157bb3;
+      text-decoration: none; }
 
 .hamburger-menu-toggle {
   position: absolute;
@@ -1396,8 +1383,8 @@ textarea {
   .logo--icon {
     margin-right: 10px; }
 
-.is-page .logo,
-.is-page .logo.is-sticky {
+.logo,
+.logo.is-sticky {
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-align-items: center;
@@ -1409,35 +1396,35 @@ textarea {
   font-size: 1.25em;
   font-weight: 300;
   line-height: 1em; }
-  .is-page .logo:link,
-  .is-page .logo.is-sticky:link {
+  .logo:link,
+  .logo.is-sticky:link {
     color: #fff;
     text-decoration: none; }
-  .is-page .logo:visited,
-  .is-page .logo.is-sticky:visited {
+  .logo:visited,
+  .logo.is-sticky:visited {
     color: #fff;
     text-decoration: none; }
-  .is-page .logo:hover,
-  .is-page .logo.is-sticky:hover {
+  .logo:hover,
+  .logo.is-sticky:hover {
     color: #fff;
     text-decoration: none; }
-  .is-page .logo:focus,
-  .is-page .logo.is-sticky:focus {
+  .logo:focus,
+  .logo.is-sticky:focus {
     color: #fff;
     text-decoration: none; }
-  .is-page .logo .material-icons,
-  .is-page .logo.is-sticky .material-icons {
+  .logo .material-icons,
+  .logo.is-sticky .material-icons {
     margin-right: .25em;
     font-size: 38px; }
   @media only screen and (min-width: 1201px) {
-    .is-page .logo,
-    .is-page .logo.is-sticky {
+    .logo,
+    .logo.is-sticky {
       margin-right: auto;
       margin-left: auto;
       max-width: 1200px;
       font-size: 1.75em; } }
-  .is-page .logo span,
-  .is-page .logo.is-sticky span {
+  .logo span,
+  .logo.is-sticky span {
     box-sizing: border-box;
     font-weight: 400;
     white-space: nowrap; }
