@@ -1,6 +1,7 @@
 parameters:
   apps:
     menuApp:
+      container: false
       class: menu-app
       files:
         - /apps/menuApp/directive/mainMenuDirective.js
@@ -12,6 +13,7 @@ parameters:
         - mainModule
 
     messageApp:
+      container: true
       files:
         - /apps/messageApp/directive/messagesDirective.js
       template: /apps/messageApp/message.html
@@ -20,6 +22,7 @@ parameters:
         - mainModule
 
     timelineApp:
+      container: true
       files:
         - /apps/timelineApp/assets/vis/dist/vis.min.js
         - /apps/timelineApp/timelineApp.js
@@ -28,7 +31,6 @@ parameters:
         - /apps/timelineApp/timelineBaseController.js
         - /apps/timelineApp/timelineScreenController.js
         - /apps/timelineApp/timelineChannelController.js
-      template: /apps/timelineApp/timeline.html
       dependencies:
         - busModule
         - mainModule
