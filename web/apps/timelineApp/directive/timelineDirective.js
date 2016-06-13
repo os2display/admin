@@ -199,7 +199,7 @@ angular.module('timelineApp')
 
               // Register double click listener
               //   Redirects to item.redirect_url
-              timeline.on('doubleClick', function (properties) {
+              timeline.on('click', function (properties) {
                 // Find item.
                 for (var item in items) {
                   item = items[item];
