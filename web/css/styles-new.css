@@ -1382,6 +1382,8 @@ textarea {
   flex-direction: row; }
   .logo--icon {
     margin-right: 10px; }
+  .logo.is-anonymous {
+    margin: 0 auto; }
 
 .logo,
 .logo.is-sticky {
