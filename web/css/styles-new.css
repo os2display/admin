@@ -592,6 +592,22 @@ form--checkbox,
 
 /**
  *
+ * Forms
+ *
+ */
+/* Basic styling
+   ================================================================================================================== */
+.has-spinner:after {
+  background: url("../icons/spinner.svg");
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50%; }
+
+/**
+ *
  * ITK messages
  *
  * A component for displaying messages
