@@ -457,7 +457,7 @@ form.is-inverted textarea,
 .form.is-inverted input[type="time"],
 .form.is-inverted input[type="url"],
 .form.is-inverted textarea {
-  color: #fff;
+  color: #1f1f1f;
   background-color: #f2f2f2; }
 
 form--group,
