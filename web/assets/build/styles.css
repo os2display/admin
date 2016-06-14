@@ -8773,6 +8773,19 @@ html.is-locked body {
       height: 100%; } }
 
 /* The default control panel. */
+.control-panel--main input[type="text"],
+.control-panel--main input[type="password"],
+.control-panel--main input[type="date"],
+.control-panel--main input[type="datetime"],
+.control-panel--main input[type="email"],
+.control-panel--main input[type="number"],
+.control-panel--main input[type="search"],
+.control-panel--main input[type="tel"],
+.control-panel--main input[type="time"],
+.control-panel--main input[type="url"],
+.control-panel--main textarea {
+  background: #e6e6e6; }
+
 /* Toggle for mobile devices. (Disabled) */
 .control-panel--main-toggle {
   display: none;
@@ -9683,6 +9696,8 @@ html.is-locked body {
   @media only screen and (min-width: 481px) {
     .edit-menu--content-calendar, .edit-menu--content, .edit-menu--background {
       padding: 4em; } }
+  .edit-menu--content-calendar input[type="text"], .edit-menu--content input[type="text"], .edit-menu--background input[type="text"], .edit-menu--content-calendar input[type="password"], .edit-menu--content input[type="password"], .edit-menu--background input[type="password"], .edit-menu--content-calendar input[type="date"], .edit-menu--content input[type="date"], .edit-menu--background input[type="date"], .edit-menu--content-calendar input[type="datetime"], .edit-menu--content input[type="datetime"], .edit-menu--background input[type="datetime"], .edit-menu--content-calendar input[type="email"], .edit-menu--content input[type="email"], .edit-menu--background input[type="email"], .edit-menu--content-calendar input[type="number"], .edit-menu--content input[type="number"], .edit-menu--background input[type="number"], .edit-menu--content-calendar input[type="search"], .edit-menu--content input[type="search"], .edit-menu--background input[type="search"], .edit-menu--content-calendar input[type="tel"], .edit-menu--content input[type="tel"], .edit-menu--background input[type="tel"], .edit-menu--content-calendar input[type="time"], .edit-menu--content input[type="time"], .edit-menu--background input[type="time"], .edit-menu--content-calendar input[type="url"], .edit-menu--content input[type="url"], .edit-menu--background input[type="url"], .edit-menu--content-calendar textarea, .edit-menu--content textarea, .edit-menu--background textarea {
+    background: #e6e6e6; }
   .is-hidden.edit-menu--content-calendar, .is-hidden.edit-menu--content, .is-hidden.edit-menu--background {
     display: none;
     opacity: 0; }
