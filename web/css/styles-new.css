@@ -422,50 +422,49 @@ textarea {
 
 /* Form
    ================================================================================================================== */
-form,
-.form {
+form.is-inverted input[type="text"],
+form.is-inverted input[type="password"],
+form.is-inverted input[type="date"],
+form.is-inverted input[type="datetime"],
+form.is-inverted input[type="email"],
+form.is-inverted input[type="number"],
+form.is-inverted input[type="search"],
+form.is-inverted input[type="tel"],
+form.is-inverted input[type="time"],
+form.is-inverted input[type="url"],
+form.is-inverted textarea,
+.form.is-inverted input[type="text"],
+.form.is-inverted input[type="password"],
+.form.is-inverted input[type="date"],
+.form.is-inverted input[type="datetime"],
+.form.is-inverted input[type="email"],
+.form.is-inverted input[type="number"],
+.form.is-inverted input[type="search"],
+.form.is-inverted input[type="tel"],
+.form.is-inverted input[type="time"],
+.form.is-inverted input[type="url"],
+.form.is-inverted textarea {
+  color: #fff;
+  background-color: #f2f2f2; }
+
+form--group,
+.form--group {
   margin-top: 1.25em; }
-  form.is-inverted input[type="text"],
-  form.is-inverted input[type="password"],
-  form.is-inverted input[type="date"],
-  form.is-inverted input[type="datetime"],
-  form.is-inverted input[type="email"],
-  form.is-inverted input[type="number"],
-  form.is-inverted input[type="search"],
-  form.is-inverted input[type="tel"],
-  form.is-inverted input[type="time"],
-  form.is-inverted input[type="url"],
-  form.is-inverted textarea,
-  .form.is-inverted input[type="text"],
-  .form.is-inverted input[type="password"],
-  .form.is-inverted input[type="date"],
-  .form.is-inverted input[type="datetime"],
-  .form.is-inverted input[type="email"],
-  .form.is-inverted input[type="number"],
-  .form.is-inverted input[type="search"],
-  .form.is-inverted input[type="tel"],
-  .form.is-inverted input[type="time"],
-  .form.is-inverted input[type="url"],
-  .form.is-inverted textarea {
-    color: #fff;
-    background-color: #f2f2f2; }
-  form--group,
-  .form--group {
-    margin-top: 1.25em; }
-    form--group label,
-    .form--group label {
-      color: #666666;
-      font-weight: 600; }
-  form--checkbox,
-  .form--checkbox {
-    position: relative;
-    margin-top: .75em;
-    padding-left: 1.2em; }
-    form--checkbox input,
-    .form--checkbox input {
-      position: absolute;
-      margin-top: .25em;
-      margin-left: -1.25em; }
+  form--group label,
+  .form--group label {
+    color: #666666;
+    font-weight: 600; }
+
+form--checkbox,
+.form--checkbox {
+  position: relative;
+  margin-top: .75em;
+  padding-left: 1.2em; }
+  form--checkbox input,
+  .form--checkbox input {
+    position: absolute;
+    margin-top: .25em;
+    margin-left: -1.25em; }
 
 /**
  *
