@@ -419,6 +419,18 @@ textarea {
   input[type="url"].is-error,
   textarea.is-error {
     border: 1px solid #ffbaba; }
+  input[type="text"].edit-menu--background-form-element,
+  input[type="password"].edit-menu--background-form-element,
+  input[type="date"].edit-menu--background-form-element,
+  input[type="datetime"].edit-menu--background-form-element,
+  input[type="email"].edit-menu--background-form-element,
+  input[type="number"].edit-menu--background-form-element,
+  input[type="search"].edit-menu--background-form-element,
+  input[type="tel"].edit-menu--background-form-element,
+  input[type="time"].edit-menu--background-form-element,
+  input[type="url"].edit-menu--background-form-element,
+  textarea.edit-menu--background-form-element {
+    border: 1px solid #d9d9d9; }
 
 /* Form
    ================================================================================================================== */
