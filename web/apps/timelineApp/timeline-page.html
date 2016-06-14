@@ -41,24 +41,26 @@
 <!--<div class="spinner overview&#45;&#45;spinner" data-ng-show="loading"></div>-->
 
 <!-- The loaded time-lines -->
-<timeline data="item" data-ng-repeat="item in data" />
+<div class="container-full-width has-horisontal-margin" data-ng-class="{'spinner-element': loading}">
+  <timeline data="item" data-ng-repeat="item in data" data-ng-hide="loading" />
 
-<!-- Pager -->
-<div class="pager--search">
-  <paging wrap-class="pager--search"
-       disabled-class="is-disabled"
-       active-class="is-active"
-       page="pager.page + 1"
-       page-size="pager.size"
-       total="hits"
-       paging-action="changePage(page - 1)"
-       hide-if-empty="true"
-       show-prev-next="true"
-       show-first-last="true"
-       text-first="❮❮"
-       text-last="❯❯"
-       text-next="❯"
-       text-prev="❮"
-  >
-  </paging>
+  <!-- Pager -->
+  <div class="pager--search" data-ng-hide="loading">
+    <paging wrap-class="pager--search"
+            disabled-class="is-disabled"
+            active-class="is-active"
+            page="pager.page + 1"
+            page-size="pager.size"
+            total="hits"
+            paging-action="changePage(page - 1)"
+            hide-if-empty="true"
+            show-prev-next="true"
+            show-first-last="true"
+            text-first="❮❮"
+            text-last="❯❯"
+            text-next="❯"
+            text-prev="❮"
+    >
+    </paging>
+  </div>
 </div>
