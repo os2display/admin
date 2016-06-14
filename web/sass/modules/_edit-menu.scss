@@ -256,6 +256,7 @@
 
   &--content-form-element,
   &--background-form-element {
+    border: 1px solid $gray-lighter;
     max-width: 500px;
     height: 50px;
     margin: auto;

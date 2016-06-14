@@ -9852,6 +9852,7 @@ html.is-locked body {
     font-size: 2em;
     margin: auto; }
   .edit-menu--content-form-element, .edit-menu--background-form-element {
+    border: 1px solid #e6e6e6;
     max-width: 500px;
     height: 50px;
     margin: auto;
