@@ -9263,6 +9263,8 @@ html.is-locked body {
   width: 100%;
   padding-top: 9.2em;
   top: 0;
+  left: 0;
+  right: 0;
   box-sizing: border-box; }
   .screen--layout-inner {
     background: #fafafa;
@@ -9897,6 +9899,8 @@ html.is-locked body {
     background-repeat: no-repeat;
     width: 55%;
     height: 50%; }
+    .edit-menu--calendar-add-date img {
+      width: 64px; }
   .edit-menu--calendar-date-events {
     display: block;
     height: 60%;
@@ -9911,6 +9915,8 @@ html.is-locked body {
     background-repeat: no-repeat;
     width: 55%;
     height: 50%; }
+    .edit-menu--calendar-remove-date img {
+      width: 64px; }
   .edit-menu--calendar-remove-date-notice {
     display: none;
     line-height: 36px;

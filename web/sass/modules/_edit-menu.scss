@@ -326,6 +326,10 @@
     margin-top: 1.5em;
 
     @include get-icon('plus-icon', 55%);
+
+    img {
+      width: 64px;
+    }
   }
 
   &--calendar-date-events {
@@ -346,6 +350,10 @@
     float: left;
 
     @include get-icon('minus-icon', 55%);
+
+    img {
+      width: 64px;
+    }
   }
 
   &--calendar-remove-date-notice {

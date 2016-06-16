@@ -590,6 +590,11 @@ form--checkbox,
   [data-icon*="filter-none"].is-inverted {
     background-image: url("../icons/filter-none-alt.svg"); }
 
+[data-icon*="close"] {
+  background-image: url("../icons/close.svg"); }
+  [data-icon*="close"].is-inverted {
+    background-image: url("../icons/close-alt.svg"); }
+
 /**
  *
  * Forms
@@ -626,6 +631,11 @@ form--checkbox,
   max-width: 1024px; }
 
 .itk-message--inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
   border-radius: .75em;
   padding: 1em;
   background-color: #fff;
@@ -643,6 +653,23 @@ form--checkbox,
     background-color: #ffbaba;
     border: 1px solid #ff3b3b;
     color: #ba0000; }
+
+.itk-message--content {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -moz-box-flex: 1;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  margin-top: 6px; }
+
+.itk-message--close {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 40px;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 40px;
+  -ms-flex: 0 0 40px;
+  flex: 0 0 40px; }
 
 /**
  *
