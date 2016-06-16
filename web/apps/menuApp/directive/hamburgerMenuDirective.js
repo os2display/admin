@@ -53,6 +53,11 @@ angular.module('menuApp')
           scope.toggleMenu = function () {
             scope.menuOpen = !scope.menuOpen;
             $('body').toggleClass('is-locked');
+            $('.hamburger-menu').click(
+              function(e) {
+                e.stopPropagation();
+              }
+            );
           };
 
           scope.userHasPermission = function userHasPermission(permission) {
