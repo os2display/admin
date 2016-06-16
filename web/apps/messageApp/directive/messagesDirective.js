@@ -4,8 +4,8 @@
  * Displays the current message from itkLog.
  */
 angular.module('messageApp')
-  .directive('messages', ['busService',
-    function (busService) {
+  .directive('messages', ['busService', '$timeout',
+    function (busService, $timeout) {
       'use strict';
 
       var config = window.config.itkLog;
@@ -27,16 +27,24 @@ angular.module('messageApp')
            * @param args
            *   The message object send.
            */
-          busService.$on('log.message', function message(event, message) {
+          busService.$on('messages.add', function message(event, message) {
             scope.$apply(function() {
               scope.messages.push(message);
+              
+              // Automatically remove message if timeout defined.
+              if (message.timeout !== undefined) {
+                var index = scope.messages.length - 1;
+                $timeout(function() {
+                  scope.close(index);
+                }, message.timeout);
+              }
             });
           });
 
           /**
            * Clear displayed message.
            */
-          busService.$on('log.clear', function clear(event, args) {
+          busService.$on('messages.clear', function clear(event, args) {
             scope.clear();
           });
 
@@ -45,6 +53,16 @@ angular.module('messageApp')
            */
           scope.toggleExpanded = function toggleExpanded() {
             scope.expanded = !scope.expanded;
+          };
+
+          /**
+           * Remove/close single message.
+           *
+           * @param index
+           *   The index of the message to remove from the messages array.
+           */
+          scope.close = function close(index) {
+            scope.messages.splice(index, 1);
           };
 
           /**

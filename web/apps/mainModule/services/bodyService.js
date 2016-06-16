@@ -8,8 +8,9 @@ angular.module('mainModule').service('bodyService', ['busService', '$location',
     'use strict';
     var classesAdded = [];
 
-    // Listen for location change
-    //   Remove added classes from body
+    /**
+     * Listen for location change and remove added classes from body.
+     */
     busService.$on('$locationChangeSuccess', function () {
       for (var classAdded in classesAdded) {
         angular.element('body').removeClass(classesAdded[classAdded]);

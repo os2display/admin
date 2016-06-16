@@ -117,7 +117,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         slideFactory.saveSlide().then(
           function success() {
             busService.$emit('log.info', {
-              'msg': 'Kunne ikke gemme slide.',
+              'msg': 'Slide er gemt',
               'timeout': 3000
             });
 
@@ -128,7 +128,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
           function error(reason) {
             busService.$emit('log.error', {
               'cause': reason,
-              'msg': 'Kunne ikke gemme slide.'
+              'msg': 'Kunne ikke gemme slide'
             });
             $scope.disableSubmitButton = false;
           }

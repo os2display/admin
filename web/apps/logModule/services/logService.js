@@ -44,6 +44,7 @@ angular.module('logModule')
         return {
           "type": type,
           "date": new Date(),
+          "timeout": timeout,
           "message": msg,
           "cause": cause,
           "stacktrace": printStackTrace()
@@ -65,7 +66,7 @@ angular.module('logModule')
           var error = buildMessage('error', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('log.message', error);
+          busService.$emit('messages.add', error);
 
           if (config.logToConsole) {
             $log.error(error);
@@ -92,7 +93,7 @@ angular.module('logModule')
           var message = buildMessage('log', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('log.message', message);
+          busService.$emit('messages.add', message);
 
           if (config.logToConsole) {
             $log.log(message);
@@ -115,7 +116,7 @@ angular.module('logModule')
           var info = buildMessage('info', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('log.message', info);
+          busService.$emit('messages.add', info);
 
           if (config.logToConsole) {
             $log.info(info);
@@ -138,7 +139,7 @@ angular.module('logModule')
           var warn = buildMessage('warn', args.timeout, args.cause, args.msg);
 
           // Send generic log message into the bus.
-          busService.$emit('log.message', warn);
+          busService.$emit('messages.add', warn);
 
           if (config.logToConsole) {
             $log.warn(warn);

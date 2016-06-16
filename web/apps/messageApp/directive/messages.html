@@ -1,16 +1,22 @@
-<div class="log--container" data-ng-if="messages.length">
+<div class="itk-message" data-ng-if="messages.length">
   <div class="log" data-ng-repeat="message in messages">
-    <div class="log--inner" data-ng-class="{'is-log': message.type === 'log', 'is-error': message.type === 'error', 'is-info': message.type === 'info'}">
-      <div class="log--text">{{message.message}}</div>
+    <div class="itk-message--inner" data-ng-class="{'is-log': message.type === 'log', 'is-error': message.type === 'error', 'is-info': message.type === 'info'}">
 
-      <!-- Extra data when it is an error message -->
-      <div class="log--show-error" data-ng-click="toggleExpanded()" data-ng-class="{'is-expanded': expanded}" data-ng-if="message.type === 'error'">
-        Vis fejlbesked
+      <div class="itk-message--content">
+        <div class="log--text">{{message.message}}</div>
+
+        <!-- Extra data when it is an error message -->
+        <div class="log--show-error" data-ng-click="toggleExpanded()" data-ng-class="{'is-expanded': expanded}" data-ng-if="message.type === 'error'">
+          Vis fejlbesked
+        </div>
+        <div class="log--expanded" data-ng-if="expanded && message.type === 'error'">
+          <div class="log--cause">
+            <strong>Cause:</strong> {{message.cause}}</div>
+          <div class="log--stacktrace"><strong>Stacktrace:</strong> {{message.stacktrace}}</div>
+        </div>
       </div>
-      <div class="log--expanded" data-ng-if="expanded && message.type === 'error'">
-        <div class="log--cause">
-          <strong>Cause:</strong> {{message.cause}}</div>
-        <div class="log--stacktrace"><strong>Stacktrace:</strong> {{message.stacktrace}}</div>
+      <div class="itk-message--close" data-ng-click="close($index)">
+        <i data-icon="close" class="is-medium is-inverted"></i>
       </div>
     </div>
   </div>
