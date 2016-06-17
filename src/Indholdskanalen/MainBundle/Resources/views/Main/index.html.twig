@@ -1,16 +1,46 @@
 {% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
 
-{% block body %}
-  <div data-ng-include="'/app/shared/menu/menu.html?{{ version }}'"></div>
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/colorpicker.css?' ~ version) }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css?' ~ version) }}">
 
-  {% block content %}
-    <div class="layout-wrapper view-container">
-      <div data-ng-view="" class="view-frame">
+  {# Import css files for templates. #}
+  {% if templates is defined %}
+    {% for template in templates %}
+      <link rel="stylesheet" href="{{ template }}">
+    {% endfor %}
+  {% endif %}
+
+  {{ parent() }}
+{% endblock %}
+
+{% block body %}
+  <!-- Define applications HTML tags -->
+  {% for key, app in apps %}
+    {% if app.container is not defined or not app.container %}
+      <div {% if app.class is defined %}class="{{ app.class }}"{% endif %} id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} {% if app.controller is defined %}data-ng-controller="{{ app.controller }}"{% endif %} >
+      </div>
+    {%  endif %}
+  {% endfor %}
+
+    <div class="content view-container">
+      <div  class="content--inner">
+        {% for key, app in apps %}
+          {% if app.container is defined and app.container %}
+            <div data-ng-view="" {% if app.class is defined %}class="{{ app.class }}"{% endif %} id="{{ key }}" {% if app.template is defined %}data-ng-include="'{{ app.template }}?{{ version }}'"{% endif %} {% if app.controller is defined %}data-ng-controller="{{ app.controller }}"{% endif %} >
+            </div>
+          {%  endif %}
+        {% endfor %}
+
+        <!-- Load legacy app -->
+        <div data-ng-view="" data-ng-app="ikApp">
+        </div>
       </div>
     </div>
-  {% endblock %}
-
+  </div>
 {% endblock %}
+
+{% block body_attr %}class="is-page"{% endblock %}
 
 
 {% block scripts %}
@@ -36,114 +66,162 @@
     };
   </script>
 
-  {% if app.environment == 'dev' %}
-    <!-- Imports -->
-    <script src="{{ asset('assets/libs/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-1.4.6.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-animate-1.4.6.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-route-1.4.6.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/moment-2.8.3.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/es5-shim-4.0.2.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-file-upload-2.1.4.min.js') }}"></script>
-    <!-- @TODO: Fix on version number -->
-    <script src="{{ asset('assets/libs/angular-bootstrap-colorpicker.js') }}"></script>
-    <!-- @TODO: Fix on version number -->
-    <script src="{{ asset('assets/libs/angular-placeholder.js') }}"></script>
-    <script src="{{ asset('assets/libs/angular-css-injector-1.0.4.js') }}"></script>
-    <script src="{{ asset('assets/libs/datetimepicker.jquery-2.3.4.js') }}"></script>
-    <script src="{{ asset('assets/libs/datetimepicker-2.3.4.js') }}"></script>
-    <script src="{{ asset('assets/libs/locale_da.js?' ~ version) }}"></script>
-    <script src="{{ asset('assets/libs/stacktrace-0.6.4.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/md5.min.js') }}"></script>
+  <!-- Imports -->
+  <script src="{{ asset('assets/libs/jquery-1.11.1.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-1.5.3.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-animate-1.5.3.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-route-1.5.3.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/moment.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/moment_da_locale.js') }}"></script>
+  <script src="{{ asset('assets/libs/es5-shim-4.0.2.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-file-upload-2.1.4.min.js') }}"></script>
+  <!-- @TODO: Fix on version number -->
+  <script src="{{ asset('assets/libs/angular-bootstrap-colorpicker.js') }}"></script>
+  <!-- @TODO: Fix on version number -->
+  <script src="{{ asset('assets/libs/angular-placeholder.js') }}"></script>
+  <script src="{{ asset('assets/libs/angular-css-injector-1.0.4.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker.jquery-2.3.4.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker-2.3.4.js') }}"></script>
+  <script src="{{ asset('assets/libs/locale_da.js?') }}"></script>
+  <script src="{{ asset('assets/libs/stacktrace-0.6.4.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/md5.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/paging.js') }}"></script>
 
-    <!-- Socket io from the search node, to get right version -->
-    <script src="/proxy/socket.io/socket.io.js"></script>
+  <!-- Socket io from the search node, to get right version -->
+  <script src="/proxy/socket.io/socket.io.js"></script>
 
-    <!-- Main app -->
-    <script src="{{ asset('app/app.js?' ~ version) }}"></script>
+  <!-- Main app -->
+  <script src="{{ asset('app/app.js?' ~ version) }}"></script>
 
-    <!-- Modules -->
-    <script src="{{ asset('assets/modules/itkLog/itkLog.js?' ~ version) }}"></script>
+  <!-- Routing -->
+  <script src="{{ asset('app/routing.js?' ~ version) }}"></script>
 
-    <!-- Routing -->
-    <script src="{{ asset('app/routing.js?' ~ version) }}"></script>
+  <!-- Filters -->
+  <script src="{{ asset('app/shared/filters/activeEvents.js?' ~ version) }}"></script>
 
-    <!-- Filters -->
-    <script src="{{ asset('app/shared/filters/activeEvents.js?' ~ version) }}"></script>
+  <!-- Services -->
+  <script src="{{ asset('app/shared/services/mediaFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/templateFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/slideFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/screenFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/channelFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/userFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/sharedSearchFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/sharedChannelFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/kobaFactory.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js?' ~ version) }}"></script>
 
-    <!-- Services -->
-    <script src="{{ asset('app/shared/services/mediaFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/templateFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/slideFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/screenFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/channelFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/userFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/searchFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/sharedSearchFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/sharedChannelFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/kobaFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js?' ~ version) }}"></script>
+  <!-- Pages -->
+  <script src="{{ asset('app/pages/screen/screen.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/sharedChannel/sharedChannelController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/sharedChannelOverview/sharedChannelOverviewController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/adminSharing/adminSharingController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/adminTemplates/adminTemplatesController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/channel/channelController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/channelOverview/channelOverviewController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/mediaOverview/mediaOverviewController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/screenOverview/screenOverviewController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/mediaEdit/mediaEditController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/mediaUpload/mediaUploadController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/slideOverview/slideOverviewController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/slide/slideController.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/pages/slide/slideEditController.js?' ~ version) }}"></script>
 
-    <!-- Menu -->
-    <script src="{{ asset('app/shared/menu/menuController.js?' ~ version) }}"></script>
+  <!-- Elements -->
+  <script src="{{ asset('app/shared/elements/actionsMenu/actionsMenuDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/actionReloadScreen/actionReloadScreenDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/sharedChannel/sharedChannelDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/sharedChannelOverview/sharedChannelOverview.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/channel/channelDirectives.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/channelOverview/channelOverviewDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/pager/pagerDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/delete/deleteDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/channelShare/channelShareDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/checklist/checklistDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/screen/screenDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/slideOverview/slideOverviewDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/slideDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/slideEditableDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/slide/sharedSlideDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/mediaOverview/mediaOverviewDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/mediaUpload/mediaUploadDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/thumb/thumbDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/autoGrow/autoGrowDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/includeReplace/includeReplaceDirective.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/controlPanel/control-panel.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/elements/ngModal/ng-modal.js?' ~ version) }}"></script>
 
-    <!-- Pages -->
-    <script src="{{ asset('app/pages/screen/screen.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/sharedChannel/sharedChannelController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/sharedChannelOverview/sharedChannelOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/adminSharing/adminSharingController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/adminTemplates/adminTemplatesController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/channel/channelController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/channelOverview/channelOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/mediaOverview/mediaOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/screenOverview/screenOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/mediaEdit/mediaEditController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/mediaUpload/mediaUploadController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/slideOverview/slideOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/slide/slideController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/slide/slideEditController.js?' ~ version) }}"></script>
+  <!-- Widgets -->
+  <script src="{{ asset('app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/widgets/textWidget/textWidget.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/widgets/textAreaWidget/textAreaWidget.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/widgets/numberWidget/numberWidget.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/widgets/channelPickerWidget/channelPickerWidget.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/widgets/sharedChannelPickerWidget/sharedChannelPickerWidget.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/widgets/channelRemoverWidget/channelRemoverWidget.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/widgets/regionPreviewWidget/regionPreviewWidget.js?' ~ version) }}"></script>
 
-    <!-- Elements -->
-    <script src="{{ asset('app/shared/elements/actionsMenu/actionsMenuDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/actionReloadScreen/actionReloadScreenDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/sharedChannel/sharedChannelDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/sharedChannelOverview/sharedChannelOverview.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/channel/channelDirectives.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/channelOverview/channelOverviewDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/pager/pagerDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/delete/deleteDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/channelShare/channelShareDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/checklist/checklistDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/screen/screenDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slideOverview/slideOverviewDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slide/slideDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slide/slideEditableDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slide/sharedSlideDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/mediaOverview/mediaOverviewDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/mediaUpload/mediaUploadDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/thumb/thumbDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/autoGrow/autoGrowDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/includeReplace/includeReplaceDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/controlPanel/control-panel.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/ngModal/ng-modal.js?' ~ version) }}"></script>
+  <!-- Components -->
+  <script src="{{ asset('app/shared/components/date/dateComponent.js?' ~ version) }}"></script>
+  <script src="{{ asset('app/shared/components/digital-clock/digitalClockComponent.js?' ~ version) }}"></script>
 
-    <!-- Widgets -->
-    <script src="{{ asset('app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/textWidget/textWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/textAreaWidget/textAreaWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/numberWidget/numberWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/channelPickerWidget/channelPickerWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/sharedChannelPickerWidget/sharedChannelPickerWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/channelRemoverWidget/channelRemoverWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/regionPreviewWidget/regionPreviewWidget.js?' ~ version) }}"></script>
+  <!-- Bootstrap bus only services -->
+  <span id="bootstrap" style="display:none"></span>
+  <script type="text/javascript">
+    angular.module('bootstrap', [ {% for module in bootstrap.modules %}'{{ module }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    angular.module('bootstrap').run([ {% for service in bootstrap.services %}'{{ service }}',{% endfor %} angular.noop]);
+    angular.element(document).ready(function ready() {
+      angular.bootstrap(document.getElementById('bootstrap'), ['bootstrap']);
+    });
+  </script>
 
-    <!-- Components -->
-    <script src="{{ asset('app/shared/components/date/dateComponent.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/components/digital-clock/digitalClockComponent.js?' ~ version) }}"></script>
-  {% else %}
-    <script src="{{ asset('assets/build/assets.min.js') }}"></script>
-    <script src="/proxy/socket.io/socket.io.js"></script>
-    <script src="{{ asset('assets/build/app.min.js') }}"></script>
-  {% endif %}
+  <!-- Bootstrap the Angular applications. -->
+  <script type="text/javascript">
+    /**
+     * Define the Angular applications. They needs to be defined before
+     * loading the files using the applications.
+     */
 
+    {% for key, module in modules %}
+      angular.module('{{ key }}', [ {% for dependency in module.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    {% endfor %}
+
+    {% for key, app in apps %}
+      angular.module('{{ key }}', [ {% for dependency in app.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    {% endfor %}
+
+    /**
+     * When the document is ready bootstrap the two applications.
+     */
+    angular.element(document).ready(function ready() {
+      "use strict";
+      {% for key, app in apps %}
+        var {{ key }} = document.getElementById('{{ key }}');
+        if ({{ key }}) {
+          angular.bootstrap({{ key }}, ['{{ key }}']);
+        }
+        else {
+          console.error('Unable to bootstrap {{ key }}. Missing HTML tag with id "{{ key }}"');
+        }
+      {% endfor %}
+    });
+  </script>
+
+  <!-- Angular modules -->
+  {% for key, module in modules %}
+    {% for file in module.files %}
+      <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
+    {% endfor %}
+  {% endfor %}
+
+  <!-- New angular applications -->
+  {% for key, app in apps %}
+    {% for file in app.files %}
+      {% if file matches '{^.*\.js$}' %}
+      <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
+      {% elseif file matches '{^.*\.css$}' %}
+        <link rel="stylesheet" href="{{ asset(file ~ '?' ~ version) }}">
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
 {% endblock %}

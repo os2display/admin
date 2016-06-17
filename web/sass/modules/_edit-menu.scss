@@ -26,6 +26,19 @@
     padding: 4em;
   }
 
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea {
+    background: $gray-lighter;
+  }
 
 
   /* States. */
@@ -243,6 +256,7 @@
 
   &--content-form-element,
   &--background-form-element {
+    border: 1px solid $gray-lighter;
     max-width: 500px;
     height: 50px;
     margin: auto;
@@ -312,6 +326,10 @@
     margin-top: 1.5em;
 
     @include get-icon('plus-icon', 55%);
+
+    img {
+      width: 64px;
+    }
   }
 
   &--calendar-date-events {
@@ -332,6 +350,10 @@
     float: left;
 
     @include get-icon('minus-icon', 55%);
+
+    img {
+      width: 64px;
+    }
   }
 
   &--calendar-remove-date-notice {

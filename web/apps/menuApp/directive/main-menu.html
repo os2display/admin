@@ -1,0 +1,9 @@
+<!-- Main menu -->
+<div class="header--inner">
+  <a href="/" class="logo js-logo" title="{{siteTitle}}"><i data-icon="filter-none" class="is-medium logo--icon"></i><span>{{siteTitle}}</span></a>
+  <nav class="nav js-nav">
+    <a class="nav--link" data-ng-repeat="item in mainMenuItems | orderBy:item.weight" data-ng-class="{'is-active': url.indexOf(item.activeFilter) == 0}" href="{{item.route}}">
+      {{item.title}}
+    </a>
+  </nav>
+</div>

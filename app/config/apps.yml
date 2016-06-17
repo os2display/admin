@@ -1,0 +1,38 @@
+parameters:
+  apps:
+    menuApp:
+      container: false
+      class: menu-app
+      files:
+        - /apps/menuApp/directive/mainMenuDirective.js
+        - /apps/menuApp/directive/hamburgerMenuDirective.js
+        - /apps/menuApp/directive/subMenuDirective.js
+      template: /apps/menuApp/menu.html
+      dependencies:
+        - busModule
+        - mainModule
+
+    messageApp:
+      container: true
+      files:
+        - /apps/messageApp/directive/messagesDirective.js
+      template: /apps/messageApp/message.html
+      dependencies:
+        - busModule
+        - mainModule
+
+    timelineApp:
+      container: true
+      files:
+        - /apps/timelineApp/assets/vis/dist/vis.min.js
+        - /apps/timelineApp/timelineApp.js
+        - /apps/timelineApp/directive/timelineDirective.js
+        - /apps/timelineApp/services/timelineService.js
+        - /apps/timelineApp/timelineBaseController.js
+        - /apps/timelineApp/timelineScreenController.js
+        - /apps/timelineApp/timelineChannelController.js
+      dependencies:
+        - busModule
+        - mainModule
+        - ngRoute
+        - bw.paging

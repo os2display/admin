@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel overview.
  */
-angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'itkLog',
-  function(channelFactory, userFactory, itkLog) {
+angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'busService',
+  function(channelFactory, userFactory, busService) {
     'use strict';
 
     return {
@@ -77,7 +77,10 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
                   scope.loading = false;
                 },
                 function error(reason) {
-                  itkLog.error("Kunne ikke loade søgeresultatet.", reason);
+                  busService.$emit('log.error', {
+                    'cause': reason,
+                    'msg': 'Kunne ikke loade søgeresultatet.'
+                  });
                   scope.loading = false;
                 }
               );

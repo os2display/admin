@@ -19,8 +19,8 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('channelPickerWidget', ['userFactory', 'channelFactory', 'itkLog',
-    function (userFactory, channelFactory, itkLog) {
+  app.directive('channelPickerWidget', ['userFactory', 'channelFactory', 'busService',
+    function (userFactory, channelFactory, busService) {
       return {
         restrict: 'E',
         replace: true,
@@ -41,7 +41,10 @@
               scope.currentUser = data;
             },
             function error(reason) {
-              itkLog.error("Kunne ikke hente bruger", reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Kunne ikke hente bruger.'
+              });
             }
           );
 
@@ -100,7 +103,10 @@
                     scope.loading = false;
                   },
                   function error(reason) {
-                    itkLog.error("Kunne ikke hente søgeresultater", reason);
+                    busService.$emit('log.error', {
+                      'cause': reason,
+                      'msg': 'Kunne ikke hente søgeresultater.'
+                    });
                     scope.loading = false;
                   }
                 );

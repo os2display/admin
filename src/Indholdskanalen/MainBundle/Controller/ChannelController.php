@@ -316,4 +316,30 @@ class ChannelController extends Controller {
 
     return $response;
   }
+
+  /**
+   * Get a list of all channels.
+   *
+   * @Route("")
+   * @Method("GET")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function channelsGetAction() {
+    // Get all channel entities.
+    $channel_entities = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findAll();
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    $serializer = $this->get('jms_serializer');
+    $response->setContent($serializer->serialize($channel_entities, 'json', SerializationContext::create()
+      ->setGroups(array('api-bulk'))
+      ->enableMaxDepthChecks()));
+
+    return $response;
+  }
 }

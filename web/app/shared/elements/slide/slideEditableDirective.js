@@ -8,8 +8,8 @@
  * @param ik-slide: the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog',
-  function (templateFactory, itkLog) {
+angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'busService',
+  function (templateFactory, busService) {
     'use strict';
 
     return {
@@ -77,7 +77,10 @@ angular.module('ikApp').directive('ikSlideEditable', ['templateFactory', 'itkLog
                 };
               },
               function error(reason) {
-                itkLog.error("Hentning af template fejlede.", reason);
+                busService.$emit('log.error', {
+                  'cause': reason,
+                  'msg': 'Hentning af templates fejlede.'
+                });
               }
             );
           }

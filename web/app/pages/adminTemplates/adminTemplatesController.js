@@ -6,8 +6,8 @@
 /**
  * Admin sharing controller.
  */
-angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templateFactory', 'itkLog',
-  function ($scope, templateFactory, itkLog) {
+angular.module('ikApp').controller('AdminTemplatesController', ['busService', 'templateFactory', '$scope',
+  function (busService, templateFactory, $scope) {
     'use strict';
 
     $scope.saving = false;
@@ -29,7 +29,10 @@ angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templ
         $scope.enabledScreenTemplates = arr;
       },
       function error(reason) {
-        itkLog.error('Hentning af tilgængelige templates fejlede.', reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Hentning af tilgængelige templates fejlede.'
+        });
       }
     );
     templateFactory.getAllSlideTemplates().then(
@@ -45,7 +48,10 @@ angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templ
         $scope.enabledSlideTemplates = arr;
       },
       function error(reason) {
-        itkLog.error('Hentning af tilgængelige templates fejlede.', reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Hentning af tilgængelige templates fejlede.'
+        });
       }
     );
 
@@ -53,11 +59,17 @@ angular.module('ikApp').controller('AdminTemplatesController', ['$scope', 'templ
       $scope.saving = true;
       templateFactory.saveEnabledTemplates($scope.enabledScreenTemplates, $scope.enabledSlideTemplates).then(
         function success() {
-          itkLog.info('Template valg gemt', 3000);
+          busService.$emit('log.info', {
+            'msg': 'Template valg blev ikke gemt',
+            'timeout': 3000
+          });
           $scope.saving = false;
         },
         function error(reason) {
-          itkLog.error('Template valg blev ikke gemt', reason);
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Template valg blev ikke gemt'
+          });
           $scope.saving = false;
         }
       );

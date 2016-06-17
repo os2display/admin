@@ -181,6 +181,13 @@ class TemplateService extends ContainerAware {
           $template->setIdealDimensions($config->ideal_dimensions);
           $template->setMediaType($config->media_type);
           if (isset($config->tools)) {
+            // Fix paths if defined to be relative.
+            foreach ($config->tools as $tool) {
+              if (isset($tool->path)) {
+                $tool->path = $this->buildFilePath($serverAddress, $path, $dir, $tool->path);
+              }
+            }
+
             $template->setTools($config->tools);
           }
           if (isset($config->slide_type)) {

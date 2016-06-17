@@ -19,8 +19,8 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('sharedChannelPickerWidget', ['sharedChannelFactory', 'itkLog',
-    function (sharedChannelFactory, itkLog) {
+  app.directive('sharedChannelPickerWidget', ['sharedChannelFactory', 'busService',
+    function (sharedChannelFactory, busService) {
       return {
         restrict: 'E',
         replace: true,
@@ -40,7 +40,10 @@
               scope.sharingIndexes = data;
             },
             function error(reason) {
-              itkLog.error("Kunne ikke hente delingsindeks", reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Kunne ikke hente delingsindeks.'
+              });
             }
           );
 
@@ -93,7 +96,10 @@
                 scope.channels = data.results;
               },
               function error(reason) {
-                itkLog.error("Kunne ikke hente søgeresultater", reason);
+                busService.$emit('log.error', {
+                  'cause': reason,
+                  'msg': 'Kunne ikke hente søgeresultater.'
+                });
                 scope.loading = false;
               }
             );

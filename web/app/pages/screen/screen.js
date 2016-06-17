@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'itkLog', '$timeout',
-  function ($scope, $location, $routeParams, screenFactory, channelFactory, sharedChannelFactory, templateFactory, itkLog, $timeout) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'busService',
+  function ($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, templateFactory, busService) {
     'use strict';
 
     $scope.loading = true;
@@ -42,7 +42,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
                   $scope.loading = false;
                 },
                 function error(reason) {
-                  itkLog.error("Skabelonerne blev ikke loaded", reason);
+                  busService.$emit('log.error', {
+                    'cause': reason,
+                    'msg': 'Skabelonerne blev ikke loaded'
+                  });
                 }
               );
             }
@@ -77,7 +80,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
             },
             // Error getting
             function error(reason) {
-              itkLog.error("Skærmen med id: " + $routeParams.id + " blev ikke fundet", reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Skærmen med id: ' + $routeParams.id + ' blev ikke fundet'
+              });
             }
           );
         }
@@ -94,7 +100,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.region = null;
       screenFactory.saveScreen().then(
         function success() {
-          itkLog.info("Skærmen er gemt", 3000);
+          busService.$emit('log.info', {
+            'msg': 'Skærmen er gemt',
+            'timeout': 3000
+          });
 
           // Redirect to overview.
           $timeout(function () {
@@ -102,7 +111,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
           }, 1000);
         },
         function error(reason) {
-          itkLog.error("Skærmen blev ikke gemt", reason);
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Skærmen blev ikke gemt'
+          });
         }
       );
     };
@@ -115,10 +127,16 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.region = null;
       screenFactory.saveScreen().then(
         function success() {
-          itkLog.info("Skærmen er gemt", 3000);
+          busService.$emit('log.info', {
+            'msg': 'Skærmen er gemt',
+            'timeout': 3000
+          });
         },
         function error(reason) {
-          itkLog.error("Skærmen blev ikke gemt", reason);
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Skærmen blev ikke gemt'
+          });
         }
       );
     };

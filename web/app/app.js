@@ -19,7 +19,7 @@ angular.module('ikApp', [
     'ngModal',
     'angular.css.injector',
 
-    'itkLog',
+    'busModule',
 
     'itkControlPanel',
     'itkScreenTemplatePickerWidget',
@@ -57,7 +57,8 @@ angular.module('ikApp', [
         return function (exception, cause) {
           $delegate(exception, cause);
 
-          $injector.get('itkLog').error(exception, cause);
+          // @TODO: What do we do here?
+          //$injector.get('itkLog').error(exception, cause);
         };
       }
     ]);
