@@ -71,7 +71,7 @@ if (!window.slideFunctions['calendar-single-day-dokk1']) {
               booking.end_time = parseInt(end / 1000);
             }
 
-            // Remove all (list) from the event_name
+            // Remove all (liste) from the event_name
             booking.event_name = booking.event_name.split('(liste)').join('');
 
             // Replace the event_name with Optaget if it contains the (optaget)
