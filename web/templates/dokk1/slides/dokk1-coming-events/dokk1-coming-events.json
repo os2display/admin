@@ -8,7 +8,7 @@
     "edit": "dokk1-coming-events-edit.html",
     "preview": "dokk1-coming-events-preview.html",
     "css": "dokk1-coming-events.css",
-    "js": "dokk1-coming-events.js"
+    "js": "../../js/dokk1-coming-events.js"
   },
   "orientation": "portrait",
   "slide_type": "calendar",
@@ -28,12 +28,12 @@
     {
       "name": "Tekst / Farve",
       "id": "dokk1-coming-events-content-editor",
-      "path": "editors/content-editor.html"
+      "path": "templates/dokk1/slides/dokk1-coming-events/editors/content-editor.html"
     },
     {
       "name": "Kalender",
       "id": "event-calendar-editor",
-      "path": "editors/calendar-editor.html"
+      "path": "templates/dokk1/slides/dokk1-coming-events/editors/calendar-editor.html"
     }
   ]
 }
