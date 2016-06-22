@@ -86,26 +86,16 @@ gulp.task('assets', 'Build all asset js files into one js file. If --production 
 /**
  * Process SCSS using libsass
  */
-gulp.task('sass', 'Compile sass into css. If --production is set, minify the css as well.', function () {
-  // If not run in production mode, compile the sass into a non-minified css file.
+gulp.task('sass', 'Compile sass into minified css', function () {
   gulp.src(sassPath)
-    .pipe(gulpif(!argv.production, sass({
-      includePaths: [
-        './web/sass/compass-mixins/lib'
-      ]
-    }).on('error', sass.logError)))
-    .pipe(gulpif(!argv.production, gulp.dest(adminBuildDir)));
-
-  // If run in production mode, compile and minify the css.
-  gulp.src(sassPath)
-    .pipe(gulpif(argv.production, sass({
+    .pipe(sass({
       outputStyle: 'compressed',
       includePaths: [
         './web/sass/compass-mixins/lib'
       ]
-    }).on('error', sass.logError)))
-    .pipe(gulpif(argv.production, rename({extname: ".min.css"})))
-    .pipe(gulpif(argv.production, gulp.dest(adminBuildDir)));
+    }).on('error', sass.logError))
+    .pipe(rename({extname: ".min.css"}))
+    .pipe(gulp.dest(adminBuildDir));
 });
 
 /**
