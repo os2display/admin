@@ -187,6 +187,10 @@
     @include breakpoint($breakpoint-bigscreen) {
       width: 50%; // Position search next to shared channels filter.
     }
+
+    &:last-child {
+      margin-bottom: 2em;
+    }
   }
 
   &-item {
@@ -300,6 +304,10 @@
   &-search[type="search"] {
     @extend %cpw--text;
     @extend %cpw--search;
+
+    &:last-child {
+      margin-bottom: 2em;
+    }
   }
 
   &-item {
