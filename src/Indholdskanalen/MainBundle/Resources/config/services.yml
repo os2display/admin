@@ -60,9 +60,6 @@ services:
     calls:
       - [ setContainer,[ @service_container ] ]
 
-  indholdskanalen_main.api_authentication_service:
-    class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
-
   sonata.media.provider.zencoder:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
     tags:
