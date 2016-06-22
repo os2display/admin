@@ -35,7 +35,7 @@
   top: 0;
 
   &.has-menu {
-    margin-top: 6em;
+    margin-top: 7em;
   }
 }
 
@@ -145,6 +145,8 @@
 
 .control-panel--nav {
   @extend %itk--tabs; // Use the ITK tabs component.
+
+  margin-bottom: 1.5%;
 }
 
 .control-panel--nav-item {

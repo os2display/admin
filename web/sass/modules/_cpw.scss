@@ -38,7 +38,6 @@
 
 %cpw--search {
   box-sizing: border-box;
-  background: url("../../images/filter-icon.png") no-repeat 1em 50%;
   padding-left: 3em;
 }
 
@@ -184,10 +183,6 @@
     @extend %cpw--text;
     @extend %cpw--search;
 
-    @include breakpoint($breakpoint-bigscreen) {
-      width: 50%; // Position search next to shared channels filter.
-    }
-
     &:last-child {
       margin-bottom: 2em;
     }
@@ -235,9 +230,7 @@
     margin-bottom: 1em;
 
     @include breakpoint($breakpoint-bigscreen) {
-      position: absolute;  // Position search next to shared channels filter.
       right: 1.5em;
-      width: auto;
     }
   }
 
@@ -248,10 +241,6 @@
   &-type-item {
     @extend %itk--tabs-item; // Use the ITK tabs component.
     width: 50%;
-
-    @include breakpoint($breakpoint-bigscreen) {
-      width: auto;  // Position search next to shared channels filter.
-    }
 
     &.is-active {
       font-weight: bold;
