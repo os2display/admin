@@ -17,7 +17,6 @@ angular.module('ikApp', [
     'ngLocale',
     'taiPlaceholder',
     'ngModal',
-    'angular.css.injector',
 
     'busModule',
 
@@ -47,19 +46,5 @@ angular.module('ikApp', [
       'self',
       // Allow loading from outer templates domain.
       '**'
-    ]);
-  })
-  .config(function ($provide) {
-    "use strict";
-
-    $provide.decorator("$exceptionHandler", ['$delegate', '$injector',
-      function ($delegate, $injector) {
-        return function (exception, cause) {
-          $delegate(exception, cause);
-
-          // @TODO: What do we do here?
-          //$injector.get('itkLog').error(exception, cause);
-        };
-      }
     ]);
   });
