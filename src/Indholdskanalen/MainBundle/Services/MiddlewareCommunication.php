@@ -105,7 +105,10 @@ class MiddlewareCommunication extends ContainerAware {
           // but now has been removed.
           $updatedScreensFailed = FALSE;
 
-          $lastPushScreensArray = json_decode($lastPushScreens);
+          $lastPushScreensArray = array();
+          if (!empty($lastPushScreens)) {
+            $lastPushScreensArray = json_decode($lastPushScreens);
+          }
 
           foreach ($lastPushScreensArray as $lastPushScreenId) {
             if (!in_array($lastPushScreenId, $screenIds)) {
