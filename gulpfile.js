@@ -33,7 +33,6 @@ var adminJsAssets = [
   './web/assets/libs/angular.min.js',
   './web/assets/libs/angular-animate.min.js',
   './web/assets/libs/angular-bootstrap-colorpicker.js',
-  './web/assets/libs/angular-css-injector.js',
   './web/assets/libs/angular-file-upload.min.js',
   './web/assets/libs/angular-placeholder.js',
   './web/assets/libs/angular-route.min.js',

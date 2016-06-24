@@ -8,8 +8,8 @@
  * @param ik-id: the id of the slide.
  * @param ik-width: the width of the slide.
  */
-angular.module('ikApp').directive('ikSharedSlide', ['cssInjector',
-  function (cssInjector) {
+angular.module('ikApp').directive('ikSharedSlide', [
+  function () {
     'use strict';
 
     return {
@@ -26,8 +26,6 @@ angular.module('ikApp').directive('ikSharedSlide', ['cssInjector',
           if (!val) {
             return;
           }
-
-          cssInjector.add(scope.ikSlide.css_path);
 
           if (scope.ikSlide.media_thumbs && scope.ikSlide.media_thumbs.length > 0) {
             scope.ikSlide.currentImage = scope.ikSlide.media_thumbs[0];
