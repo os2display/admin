@@ -23,19 +23,18 @@ angular.module('messageApp')
            * @see logService
            *
            * @param event
-           *   The event the happend.
+           *   The event the happened.
            * @param args
-           *   The message object send.
+           *   The message object.
            */
           busService.$on('messages.add', function message(event, message) {
             scope.$apply(function() {
               scope.messages.push(message);
-              
+
               // Automatically remove message if timeout defined.
               if (message.timeout !== undefined) {
-                var index = scope.messages.length - 1;
                 $timeout(function() {
-                  scope.close(index);
+                  scope.close(message.$$hashKey);
                 }, message.timeout);
               }
             });
@@ -58,11 +57,15 @@ angular.module('messageApp')
           /**
            * Remove/close single message.
            *
-           * @param index
-           *   The index of the message to remove from the messages array.
+           * @param hashKey
+           *   The hashkey of the message to remove.
            */
-          scope.close = function close(index) {
-            scope.messages.splice(index, 1);
+          scope.close = function close(hashKey) {
+            for (var i = 0; i < scope.messages.length; i++) {
+              if (scope.messages[i].$$hashKey === hashKey) {
+                scope.messages.splice(i, 1);
+              }
+            }
           };
 
           /**
