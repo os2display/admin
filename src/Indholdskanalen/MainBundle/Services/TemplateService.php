@@ -259,7 +259,7 @@ class TemplateService extends ContainerAware {
           if (!empty($config->tools)) {
             // Ensure path is correct.
             foreach ($config->tools as &$tool) {
-              $tool = '/templates/screens' . $dir . '/' . $tool;
+              $tool = $this->buildFilePath($serverAddress, $path, $dir, $tool);
             }
 
             // Add the tools to the template.
