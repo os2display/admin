@@ -48,7 +48,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * @param tool
      */
     $scope.openTool = function openTool(tool) {
-      $('html').toggleClass('is-locked');
+      busService.$emit('bodyService.toggleClass', 'is-locked');
       if (!$scope.editor.editorOpen) {
         if (tool.id === 'manual-calendar-editor') {
           // Reset input fields.
@@ -119,7 +119,7 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     $scope.editor = {
       editorOpen: false,
       hideEditors: function hideEditors() {
-        $('html').removeClass('is-locked');
+        busService.$emit('bodyService.removeClass', 'is-locked');
         $scope.editor.editorOpen = false;
         $scope.editorURL = '';
       }

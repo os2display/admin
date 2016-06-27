@@ -27,5 +27,24 @@ angular.module('mainModule').service('bodyService', ['busService', '$location',
       angular.element('body').addClass(args);
       classesAdded.push(args);
     });
+
+    /**
+     * Listen for bodyService.toggleClass events.
+     *
+     * Toggle the class to body element.
+     */
+    busService.$on('bodyService.toggleClass', function toggleClass(event, args) {
+      angular.element('body').toggleClass(args);
+      classesAdded.push(args);
+    });
+
+    /**
+     * Listen for bodyService.addClass events.
+     *
+     * Add the class to body element.
+     */
+    busService.$on('bodyService.removeClass', function toggleClass(event, args) {
+      angular.element('body').removeClass(args);
+    });
   }
 ]);
