@@ -15,7 +15,7 @@ angular.module('messageApp')
         templateUrl: '/apps/messageApp/directive/messages.html?' + config.version,
         link: function (scope) {
           scope.expanded = false;
-          scope.messages = [];
+          scope.messages = {};
 
           /**
            * Listen for messages.
@@ -29,12 +29,17 @@ angular.module('messageApp')
            */
           busService.$on('messages.add', function message(event, message) {
             scope.$apply(function() {
-              scope.messages.push(message);
+              // Build hash value to identify a given message.
+              var hash = CryptoJS.MD5(JSON.stringify(message)).toString();
+              message.hash = hash;
+
+              // Add message to scope.
+              scope.messages[hash] = message;
 
               // Automatically remove message if timeout defined.
               if (message.timeout !== undefined) {
                 $timeout(function() {
-                  scope.close(message.$$hashKey);
+                  scope.close(message);
                 }, message.timeout);
               }
             });
@@ -57,15 +62,11 @@ angular.module('messageApp')
           /**
            * Remove/close single message.
            *
-           * @param hashKey
-           *   The hashkey of the message to remove.
+           * @param message
+           *   The message to remove.
            */
-          scope.close = function close(hashKey) {
-            for (var i = 0; i < scope.messages.length; i++) {
-              if (scope.messages[i].$$hashKey === hashKey) {
-                scope.messages.splice(i, 1);
-              }
-            }
+          scope.close = function close(message) {
+            delete scope.messages[message.hash];
           };
 
           /**

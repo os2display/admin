@@ -99,10 +99,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function success() {
+        function success(data) {
           busService.$emit('log.info', {
-            'msg': 'Skærmen er gemt',
-            'timeout': 3000
+            'msg': 'Skærmen (' + data.title + ') er gemt',
+            'timeout': 5000
           });
 
           // Redirect to overview.
@@ -126,10 +126,10 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.displayToolbar = false;
       $scope.region = null;
       screenFactory.saveScreen().then(
-        function success() {
+        function success(data) {
           busService.$emit('log.info', {
-            'msg': 'Skærmen er gemt',
-            'timeout': 3000
+            'msg': 'Skærmen (' + data.title + ') er gemt',
+            'timeout': 5000
           });
         },
         function error(reason) {
