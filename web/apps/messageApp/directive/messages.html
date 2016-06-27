@@ -1,4 +1,4 @@
-<div class="itk-message" data-ng-if="messages.length">
+<div class="itk-message">
   <div class="log" data-ng-repeat="message in messages">
     <div class="itk-message--inner" data-ng-class="{'is-log': message.type === 'log', 'is-error': message.type === 'error', 'is-info': message.type === 'info'}">
 
@@ -15,7 +15,7 @@
           <div class="log--stacktrace"><strong>Stacktrace:</strong> {{message.stacktrace}}</div>
         </div>
       </div>
-      <div class="itk-message--close" data-ng-click="close($index)">
+      <div class="itk-message--close" data-ng-click="close(message)">
         <i data-icon="close" class="is-medium is-inverted"></i>
       </div>
     </div>

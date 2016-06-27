@@ -18,7 +18,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
      * @param search
      * @returns {*|Number}
      */
-    factory.searchScreens = function (search) {
+    factory.searchScreens = function searchScreens(search) {
       var deferred = $q.defer();
 
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
@@ -51,7 +51,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
      *
      * @returns {Array}
      */
-    factory.getScreens = function () {
+    factory.getScreens = function getScreens() {
       var defer = $q.defer();
 
       $http.get('/api/screen')
@@ -93,7 +93,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
      * @param id
      * @returns {promiseAndHandler.promise|*|Promise._progressUnchecked.promise|promise|exports.exports.Reduction.promise|PromiseResolver.promise}
      */
-    factory.getEditScreen = function (id) {
+    factory.getEditScreen = function getEditScreen(id) {
       var defer = $q.defer();
 
       if (id === null || id === undefined || id === '') {
@@ -117,7 +117,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
      * @param id
      * @returns screen or null
      */
-    factory.getScreen = function (id) {
+    factory.getScreen = function getScreen(id) {
       var defer = $q.defer();
 
       $http.get('/api/screen/' + id)
@@ -134,7 +134,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
     /**
      * Saves screen.
      */
-    factory.saveScreen = function () {
+    factory.saveScreen = function saveScreen() {
       var defer = $q.defer();
 
       if (currentScreen === null) {
@@ -143,7 +143,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
         $http.post('/api/screen', currentScreen)
           .success(function (data) {
             currentScreen.id = data;
-            defer.resolve(data);
+            defer.resolve(currentScreen);
           })
           .error(function (data, status) {
             defer.reject(status);
@@ -157,7 +157,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
      * Returns an empty screen.
      * @returns screen (empty)
      */
-    factory.emptyScreen = function () {
+    factory.emptyScreen = function emptyScreen() {
       currentScreen = {
         id: null,
         template: null,
