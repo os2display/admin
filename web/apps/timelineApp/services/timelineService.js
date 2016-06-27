@@ -96,26 +96,52 @@ angular.module('timelineApp')
 
                   for (var channelKey in screen.channel_screen_regions) {
                     var csr = screen.channel_screen_regions[channelKey];
-                    var channel = csr.channel;
 
-                    items.push({
-                      // Ensure unique id: ChannelScreenRegion + channel id.
-                      id: csr.id + "_" + channel.id,
-                      // Text displayed in time-line item.
-                      content: channel.title,
-                      // Which group should the item belong to?
-                      group: csr.region,
-                      // Subgroup is used to make sure channel items with different
-                      // unique ids are gathered on the same line in the time line.
-                      subgroup: csr.id + "_" + channel.id,
-                      start: channel.publish_from * 1000,
-                      end: channel.publish_to * 1000,
-                      schedule_repeat: channel.schedule_repeat,
-                      schedule_repeat_days: channel.schedule_repeat_days,
-                      schedule_repeat_from: channel.schedule_repeat_from,
-                      schedule_repeat_to: channel.schedule_repeat_to,
-                      redirect_url: '/channel/' + channel.id
-                    });
+                    if (csr.channel) {
+                      var channel = csr.channel;
+
+                      items.push({
+                        // Ensure unique id: ChannelScreenRegion + channel id.
+                        id: csr.id + "_" + channel.id,
+                        // Text displayed in time-line item.
+                        content: channel.title,
+                        // Which group should the item belong to?
+                        group: csr.region,
+                        // Subgroup is used to make sure channel items with different
+                        // unique ids are gathered on the same line in the time line.
+                        subgroup: csr.id + "_" + channel.id,
+                        start: channel.publish_from * 1000,
+                        end: channel.publish_to * 1000,
+                        schedule_repeat: channel.schedule_repeat,
+                        schedule_repeat_days: channel.schedule_repeat_days,
+                        schedule_repeat_from: channel.schedule_repeat_from,
+                        schedule_repeat_to: channel.schedule_repeat_to,
+                        redirect_url: '/channel/' + channel.id
+                      });
+                    }
+                    else if (csr.shared_channel) {
+                      // Parse json-ified channel.
+                      var channel = angular.fromJson(csr.shared_channel.content);
+
+                      items.push({
+                        // Ensure unique id: ChannelScreenRegion + channel id.
+                        id: csr.shared_channel.index + "_" + csr.id + "_" + channel.id,
+                        // Text displayed in time-line item.
+                        content: channel.title + " (delt kanal fra: " + csr.shared_channel.index + ")",
+                        // Which group should the item belong to?
+                        group: csr.region,
+                        // Subgroup is used to make sure channel items with different
+                        // unique ids are gathered on the same line in the time line.
+                        subgroup: csr.id + "_" + channel.id,
+                        start: channel.publish_from * 1000,
+                        end: channel.publish_to * 1000,
+                        schedule_repeat: channel.schedule_repeat,
+                        schedule_repeat_days: channel.schedule_repeat_days,
+                        schedule_repeat_from: channel.schedule_repeat_from,
+                        schedule_repeat_to: channel.schedule_repeat_to,
+                        redirect_url: '/shared-channel/' + csr.shared_channel.unique_id + "/" + csr.shared_channel.index
+                      });
+                    }
 
                     // Add region if not already.
                     if (regions.indexOf(csr.region) === -1) {
