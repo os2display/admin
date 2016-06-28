@@ -32,7 +32,7 @@ angular.module('ikApp').directive('ikActionReloadScreen', ['$http', 'busService'
               .error(function (reason) {
                 busService.$emit('log.error', {
                   'cause': reason,
-                  'msg': 'Genindlæsning lykkedes ikke!'
+                  'msg': 'Genindlæsning lykkedes ikke! Dette kan skyldes at skærmen ikke er forbundet.'
                 });
               });
           }
