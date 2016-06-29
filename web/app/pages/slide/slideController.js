@@ -106,6 +106,8 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      * Submit a step in the installation process.
      */
     $scope.submitStep = function () {
+      console.log($scope.slide);
+
       if ($scope.step === $scope.steps) {
         $scope.disableSubmitButton = true;
 

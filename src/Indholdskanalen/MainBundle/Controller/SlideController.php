@@ -33,17 +33,17 @@ class SlideController extends Controller {
    */
   public function slideSaveAction(Request $request) {
     // Get posted slide information from the request.
-    $post = json_decode($request->getContent(), TRUE);
+    $post = json_decode($request->getContent());
 
     // Get hooks into doctrine.
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getManager();
 
     // Check if slide exists, to update, else create new slide.
-    if ($post['id']) {
+    if (isset($post->id)) {
       // Load current slide.
       $slide = $doctrine->getRepository('IndholdskanalenMainBundle:Slide')
-        ->findOneById($post['id']);
+        ->findOneById($post->id);
 
       if (!$slide) {
         $response = new Response();
@@ -57,51 +57,28 @@ class SlideController extends Controller {
       $slide = new Slide();
       $slide->setCreatedAt(time());
 
-	    // Set creator.
-	    $userEntity = $this->get('security.context')->getToken()->getUser();
-	    $slide->setUser($userEntity->getId());
+      // Set creator.
+      $userEntity = $this->get('security.context')->getToken()->getUser();
+      $slide->setUser($userEntity->getId());
     }
 
     // Update fields from post.
-    if (isset($post['slide_type'])) {
-      $slide->setSlideType($post['slide_type']);
-    }
-    if (isset($post['title'])) {
-      $slide->setTitle($post['title']);
-    }
-    if (isset($post['orientation'])) {
-      $slide->setOrientation($post['orientation']);
-    }
-    if (isset($post['template'])) {
-      $slide->setTemplate($post['template']);
-    }
-    if (isset($post['options'])) {
-      $slide->setOptions($post['options']);
-    }
-    if (isset($post['duration'])) {
-      $slide->setDuration($post['duration']);
-    }
-    if (isset($post['published'])) {
-      $slide->setPublished($post['published']);
-    }
-    if (isset($post['schedule_from'])) {
-      $slide->setScheduleFrom($post['schedule_from']);
-    }
-    if (isset($post['schedule_to'])) {
-      $slide->setScheduleTo($post['schedule_to']);
-    }
-    if (isset($post['media_type'])) {
-      $slide->setMediaType($post['media_type']);
-    }
-    if (isset($post['calendar_interest_period'])) {
-      $slide->setCalendarInterestPeriod($post['calendar_interest_period']);
-    }
+    $slide->setSlideType(isset($post->slide_type) ? $post->slide_type : null);
+    $slide->setTitle(isset($post->title) ? $post->title : null);
+    $slide->setOrientation(isset($post->orientation) ? $post->orientation : null);
+    $slide->setTemplate(isset($post->template) ? $post->template : null);
+    $slide->setOptions(isset($post->options) ? $post->options : null);
+    $slide->setDuration(isset($post->duration) ? $post->duration : null);
+    $slide->setPublished(isset($post->published) ? $post->published : null);
+    $slide->setScheduleFrom(isset($post->schedule_from) ? $post->schedule_from : null);
+    $slide->setScheduleTo(isset($post->schedule_to) ? $post->schedule_to : null);
+    $slide->setMediaType(isset($post->media_type) ? $post->media_type : null);
     $slide->setModifiedAt(time());
 
     // Get channel ids.
     $postChannelIds = array();
-    foreach ($post['channels'] as $channel) {
-      $postChannelIds[] = $channel['id'];
+    foreach ($post->channels as $channel) {
+      $postChannelIds[] = $channel->id;
     }
 
     // Update channel orders.
@@ -114,11 +91,11 @@ class SlideController extends Controller {
     }
 
     // Add to channels.
-	  $channelRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Channel');
-	  $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
+    $channelRepository = $doctrine->getRepository('IndholdskanalenMainBundle:Channel');
+    $channelSlideOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ChannelSlideOrder');
 
-    foreach ($post['channels'] as $channel) {
-      $channel = $channelRepository->findOneById($channel['id']);
+    foreach ($post->channels as $channel) {
+      $channel = $channelRepository->findOneById($channel->id);
 
       // Check if ChannelSlideOrder already exists, if not create it.
       $channelSlideOrder = $channelSlideOrderRepository->findOneBy(
@@ -153,8 +130,8 @@ class SlideController extends Controller {
 
     // Get channel ids.
     $postMediaIds = array();
-    foreach ($post['media'] as $media) {
-      $postMediaIds[] = $media['id'];
+    foreach ($post->media as $media) {
+      $postMediaIds[] = $media->id;
     }
 
     // Update media orders.
@@ -167,11 +144,11 @@ class SlideController extends Controller {
     }
 
     // Add to media.
-	  $mediaRepository = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
-	  $mediaOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder');
+    $mediaRepository = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
+    $mediaOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder');
 
-    foreach ($post['media'] as $media) {
-      $media = $mediaRepository->findOneById($media['id']);
+    foreach ($post->media as $media) {
+      $media = $mediaRepository->findOneById($media->id);
 
       // Check if ChannelSlideOrder already exists, if not create it.
       $mediaOrder = $mediaOrderRepository->findOneBy(
@@ -205,12 +182,13 @@ class SlideController extends Controller {
     }
 
     // Set logo
-    if (isset($post['logo'])) {
-      $logo = $mediaRepository->findOneById($post['logo']['id']);
+    if (isset($post->logo)) {
+      $logo = $mediaRepository->findOneById($post->logo->id);
 
-      if ($logo) {
-        $slide->setLogo($logo);
-      }
+      $slide->setLogo($logo);
+    }
+    else {
+      $slide->setLogo(NULL);
     }
 
     // Update shared channels
@@ -231,7 +209,7 @@ class SlideController extends Controller {
 
     // Create response.
     $response = new Response();
-		$response->setStatusCode(200);
+    $response->setStatusCode(200);
 
     return $response;
   }
@@ -247,7 +225,8 @@ class SlideController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function slideGetAction($id) {
-    $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
+    $slide = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
     // Get the serializer
@@ -257,7 +236,9 @@ class SlideController extends Controller {
     $response = new Response();
     if ($slide) {
       $response->headers->set('Content-Type', 'application/json');
-      $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()->setGroups(array('api'))->enableMaxDepthChecks());
+      $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()
+        ->setGroups(array('api'))
+        ->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }
     else {
@@ -280,7 +261,8 @@ class SlideController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function slideDeleteAction($id) {
-    $slide = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
+    $slide = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
     // Create response.
@@ -301,7 +283,7 @@ class SlideController extends Controller {
 
     return $response;
   }
-  
+
   /**
    * Get a list of all slides.
    *
@@ -312,7 +294,8 @@ class SlideController extends Controller {
    */
   public function slidesGetAction() {
     // Slide entities
-    $slide_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Slide')
+    $slide_entities = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findAll();
 
     // Create response.
@@ -320,7 +303,9 @@ class SlideController extends Controller {
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks());
+    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()
+      ->setGroups(array('api-bulk'))
+      ->enableMaxDepthChecks());
     $response->setContent($jsonContent);
 
     return $response;

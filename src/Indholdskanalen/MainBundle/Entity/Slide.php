@@ -140,13 +140,6 @@ class Slide {
   protected $externalData;
 
   /**
-   * @ORM\Column(name="interest_period", type="string", nullable=true)
-   *
-   * Possible options: "day" (null), "week", "month", "all"
-   */
-  protected $calendarInterestPeriod;
-
-  /**
    * Constructor
    */
   public function __construct() {
@@ -180,27 +173,6 @@ class Slide {
    */
   public function setExternalData($externalData) {
     $this->externalData = $externalData;
-
-    return $this;
-  }
-
-  /**
-   * Get calendarInterestPeriod.
-   *
-   * @return mixed
-   */
-  public function getCalendarInterestPeriod() {
-    return $this->calendarInterestPeriod;
-  }
-
-  /**
-   * Set calendarInterestPeriod.
-   *
-   * @param $calendarInterestPeriod
-   * @return Slide
-   */
-  public function setCalendarInterestPeriod($calendarInterestPeriod) {
-    $this->calendarInterestPeriod = $calendarInterestPeriod;
 
     return $this;
   }

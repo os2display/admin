@@ -78,16 +78,11 @@ class SearchIndexer {
     $entity = $args->getEntity();
     $type = get_class($entity);
 
-    // We will not send user data to ES.
-    // Ignore ChannelSlideOrders and MediaOrders as well.
-    if ($type === 'Application\Sonata\UserBundle\Entity\User' ||
-      $type === 'Indholdskanalen\MainBundle\Entity\ChannelScreenRegion' ||
-      $type === 'Indholdskanalen\MainBundle\Entity\ChannelSlideOrder' ||
-      $type === 'Indholdskanalen\MainBundle\Entity\MediaOrder' ||
-      $type === 'Indholdskanalen\MainBundle\Entity\ScreenTemplate' ||
-      $type === 'Indholdskanalen\MainBundle\Entity\SharedChannel' ||
-      $type === 'Indholdskanalen\MainBundle\Entity\SharingIndex' ||
-      $type === 'Indholdskanalen\MainBundle\Entity\SlideTemplate'
+    // Only send Channel, Screen, Slide, Media to search engine
+    if ($type !== 'Indholdskanalen\MainBundle\Entity\Channel' &&
+      $type !== 'Indholdskanalen\MainBundle\Entity\Screen' &&
+      $type !== 'Indholdskanalen\MainBundle\Entity\Slide' &&
+      $type !== 'Application\Sonata\MediaBundle\Entity\Media'
     ) {
       return FALSE;
     }

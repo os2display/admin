@@ -29,9 +29,14 @@ angular.module('datetimePicker', [])
       });
 
       ctrl.$parsers.unshift(function (viewValue) {
-        var date = moment(viewValue, dateFormat);
+        console.log(viewValue);
 
-        return (date && date.isValid() && date.year() > 1950 ) ? date.unix() : "";
+        if (viewValue == '') {
+          return null;
+        }
+
+        var date = moment(viewValue, dateFormat);
+        return (date && date.isValid() && date.year() >= 1970) ? date.unix() : null;
       });
     }
   }
