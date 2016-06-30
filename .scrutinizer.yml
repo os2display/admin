@@ -103,7 +103,7 @@ checks:
         avoid_fixme_comments: true
         avoid_closing_tag: true
         avoid_aliased_php_functions: true
-        duplication: true
+        duplication: false
         no_eval: true
         return_doc_comments: true
         parameter_doc_comments: true
