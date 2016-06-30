@@ -86,7 +86,7 @@ class ScreenController extends Controller {
     // Update fields.
     $screen->setTitle(isset($post->title) ? $post->title : NULL);
     $screen->setDescription(isset($post->description) ? $post->title : NULL);
-    $screen->setOptions(isset($post->options) ? $post->title : NULL);
+    $screen->setOptions(isset($post->options) ? $post->options : NULL);
     $screen->setModifiedAt(time());
 
     // Set an activation code and empty token for new screens.

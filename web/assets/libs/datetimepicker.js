@@ -29,8 +29,6 @@ angular.module('datetimePicker', [])
       });
 
       ctrl.$parsers.unshift(function (viewValue) {
-        console.log(viewValue);
-
         if (viewValue == '') {
           return null;
         }
@@ -43,7 +41,7 @@ angular.module('datetimePicker', [])
 });
 
 angular.module('datetimePicker')
-.directive('timePicker',
+.directive('hourPicker',
   function () {
     return {
       restrict: 'A',
@@ -51,7 +49,7 @@ angular.module('datetimePicker')
       link: function (scope, el) {
         el.datetimepicker({
           datepicker:false,
-          format:'H:i'
+          format:'H'
         });
       }
     }
