@@ -49,7 +49,7 @@ angular.module('datetimePicker')
       link: function (scope, el) {
         el.datetimepicker({
           datepicker:false,
-          format:'H'
+          format:'G'
         });
       }
     }
