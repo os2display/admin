@@ -29,16 +29,19 @@ angular.module('datetimePicker', [])
       });
 
       ctrl.$parsers.unshift(function (viewValue) {
-        var date = moment(viewValue, dateFormat);
+        if (viewValue == '') {
+          return null;
+        }
 
-        return (date && date.isValid() && date.year() > 1950 ) ? date.unix() : "";
+        var date = moment(viewValue, dateFormat);
+        return (date && date.isValid() && date.year() >= 1970) ? date.unix() : null;
       });
     }
   }
 });
 
 angular.module('datetimePicker')
-.directive('timePicker',
+.directive('hourPicker',
   function () {
     return {
       restrict: 'A',
@@ -46,7 +49,7 @@ angular.module('datetimePicker')
       link: function (scope, el) {
         el.datetimepicker({
           datepicker:false,
-          format:'H:i'
+          format:'H'
         });
       }
     }

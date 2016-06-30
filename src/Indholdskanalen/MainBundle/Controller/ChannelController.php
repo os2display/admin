@@ -63,33 +63,13 @@ class ChannelController extends Controller {
     }
 
     // Update fields.
-    if (isset($post->title)) {
-      $channel->setTitle($post->title);
-    }
-    // Update fields.
-    if (isset($post->publish_from)) {
-      $channel->setPublishFrom($post->publish_from);
-    }
-    // Update fields.
-    if (isset($post->publish_to)) {
-      $channel->setPublishTo($post->publish_to);
-    }
-    // Update fields.
-    if (isset($post->schedule_repeat)) {
-      $channel->setScheduleRepeat($post->schedule_repeat);
-    }
-    // Update fields.
-    if (isset($post->schedule_repeat_days)) {
-      $channel->setScheduleRepeatDays($post->schedule_repeat_days);
-    }
-    // Update fields.
-    if (isset($post->schedule_repeat_from)) {
-      $channel->setScheduleRepeatFrom($post->schedule_repeat_from);
-    }
-    // Update fields.
-    if (isset($post->schedule_repeat_to)) {
-      $channel->setScheduleRepeatTo($post->schedule_repeat_to);
-    }
+    $channel->setTitle(isset($post->title) ? $post->title : null);
+    $channel->setPublishFrom(isset($post->publish_from) ? $post->publish_from : null);
+    $channel->setPublishTo(isset($post->publish_to) ? $post->publish_to : null);
+    $channel->setScheduleRepeat(isset($post->schedule_repeat) ? $post->schedule_repeat : null);
+    $channel->setScheduleRepeatDays(isset($post->schedule_repeat_days) ? $post->schedule_repeat_days : null);
+    $channel->setScheduleRepeatFrom(isset($post->schedule_repeat_from) ? $post->schedule_repeat_from : null);
+    $channel->setScheduleRepeatTo(isset($post->schedule_repeat_to) ? $post->schedule_repeat_to : null);
     $channel->setModifiedAt(time());
 
     // Get all slide ids from POST.
