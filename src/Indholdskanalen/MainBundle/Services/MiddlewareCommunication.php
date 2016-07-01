@@ -261,7 +261,7 @@ class MiddlewareCommunication extends ContainerAware {
     $curlResult = $this->utilityService->curl(
       $middlewarePath . '/screen/' . $screen->getId() . '/reload',
       'POST',
-      json_encode(array("id" => $screen->getId())),
+      json_encode(array('id' => $screen->getId())),
       'middleware'
     );
 
@@ -283,7 +283,7 @@ class MiddlewareCommunication extends ContainerAware {
     $curlResult = $this->utilityService->curl(
       $middlewarePath . '/screen/' . $screen->getId() . '/' . $screen->getActivationCode(),
       'DELETE',
-      json_encode(array("id" => $screen->getId())),
+      json_encode(array('id' => $screen->getId())),
       'middleware'
     );
 

@@ -244,7 +244,7 @@ class ScreenController extends Controller {
       $response->setContent($jsonContent);
     }
     else {
-      throw new NotFoundHttpException("Screen not found.");
+      throw new NotFoundHttpException('Screen not found.');
     }
 
     return $response;
