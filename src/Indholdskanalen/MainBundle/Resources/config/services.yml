@@ -23,8 +23,6 @@ services:
   indholdskanalen.template_service:
     class: Indholdskanalen\MainBundle\Services\TemplateService
     arguments: [@service_container]
-    calls:
-      - [ setContainer,[ @service_container ] ]
 
   indholdskanalen.koba_service:
     class: Indholdskanalen\MainBundle\Services\KobaService
@@ -52,9 +50,7 @@ services:
 
   indholdskanalen.middleware.communication:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
-    arguments: [@indholdskanalen.template_service, @indholdskanalen.utility_service]
-    calls:
-      - [ setContainer,[ @service_container ] ]
+    arguments: [@service_container, @indholdskanalen.template_service, @indholdskanalen.utility_service]
 
   sonata.media.provider.zencoder:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
