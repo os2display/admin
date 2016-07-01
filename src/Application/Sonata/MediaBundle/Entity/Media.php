@@ -80,7 +80,7 @@ class Media extends BaseMedia {
   /**
    * Get updated_at
    *
-   * @return datetime $updatedAt
+   * @return \datetime $updatedAt
    */
   public function getUpdatedAt() {
     return $this->updatedAt;
