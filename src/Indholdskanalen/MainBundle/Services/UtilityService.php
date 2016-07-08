@@ -6,14 +6,13 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Indholdskanalen\MainBundle\Services\AuthenticationService;
 
 /**
  * Class UtilityService
  * @package Indholdskanalen\MainBundle\Services
  */
-class UtilityService extends ContainerAware {
+class UtilityService {
   protected $authenticationService;
 
   /**

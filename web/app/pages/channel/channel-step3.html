@@ -5,13 +5,14 @@
       <label class="create-channel--schedule-label">Udgivelse</label>
       <div class="create-channel--schedule">
         <div class="create-channel--schedule-from">
-          <label class="create-channel--from-label">Udgivelse fra</label>
+          <label class="create-channel--from-label">Udgivelse fra (<a class="create-channel--remove-link" data-ng-click="channel.publish_from = null">ryd</a>)</label>
           <input type="text" data-ng-model="channel.publish_from" datetime-picker="">
         </div>
         <div class="create-channel--schedule-to">
-          <label class="create-channel--to-label">Udgivelse til</label>
+          <label class="create-channel--to-label">Udgivelse til (<a class="create-channel--remove-link" data-ng-click="channel.publish_to = null">ryd</a>)</label>
           <input type="text" data-ng-model="channel.publish_to" datetime-picker="">
         </div>
+        <div class="create-channel--published-description">Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for udgivelse i fra/til.</div>
       </div>
 
       <label class="create-channel--schedule-label">Planlægning</label>
@@ -22,11 +23,13 @@
       </div>
 
       <div data-ng-if="channel.schedule_repeat">
-        <label class="create-channel--to-label" for="schedule_repeat_from">Fra</label>
-        <input type="text" readonly="" id="schedule_repeat_from" data-ng-model="channel.schedule_repeat_from" time-picker="">
+        <label class="create-channel--to-label" for="schedule_repeat_from">Fra (<a class="create-channel--remove-link" data-ng-click="channel.schedule_repeat_from = null">ryd</a>)</label>
+        <input type="text" readonly="" id="schedule_repeat_from" data-ng-model="channel.schedule_repeat_from" hour-picker="">
 
-        <label class="create-channel--to-label" for="schedule_repeat_to">Til</label>
-        <input type="text" readonly="" id="schedule_repeat_to" data-ng-model="channel.schedule_repeat_to" time-picker="">
+        <label class="create-channel--to-label" for="schedule_repeat_to">Til (<a class="create-channel--remove-link" data-ng-click="channel.schedule_repeat_to = null">ryd</a>)</label>
+        <input type="text" readonly="" id="schedule_repeat_to" data-ng-model="channel.schedule_repeat_to" hour-picker="">
+
+        <div class="create-channel--published-description">Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for tidspunkt i fra/til.</div>
 
         <ik-checklist elements="days" selected="channel.schedule_repeat_days" identity="'id'" class="create-channel--checklist-days"></ik-checklist>
       </div>

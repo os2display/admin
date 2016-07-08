@@ -9,7 +9,7 @@
     "css": "mso-four-sections.css"
   },
   "tools": {
-    "header-footer": "tools/mso-header-footer-tool.html"
+    "header-footer": "../tools/mso-header-footer-tool.html"
   },
   "orientation": "landscape"
 }

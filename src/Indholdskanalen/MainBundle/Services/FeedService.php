@@ -64,18 +64,18 @@ class FeedService {
 
           // Setup return array.
           $res = array(
-            "feed" => array(),
-            "title" => $feed->getTitle(),
+            'feed' => array(),
+            'title' => $feed->getTitle(),
           );
 
           // Get all items.
           $items = $feed->getItems();
 
           foreach ($items as $item) {
-            $res["feed"][] = (object) array(
-              "title" => $item->getTitle(),
-              "date" => $item->getUpdated()->format('U'),
-              "description" => $item->getDescription(),
+            $res['feed'][] = (object) array(
+              'title' => $item->getTitle(),
+              'date' => $item->getUpdated()->format('U'),
+              'description' => $item->getDescription(),
             );
           }
 

@@ -10,7 +10,6 @@
 namespace Indholdskanalen\MainBundle\Services;
 
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Indholdskanalen\MainBundle\Entity\ScreenTemplate;
 use Indholdskanalen\MainBundle\Entity\SlideTemplate;
 
@@ -19,7 +18,7 @@ use Indholdskanalen\MainBundle\Entity\SlideTemplate;
  *
  * @package Indholdskanalen\MainBundle\Services
  */
-class TemplateService extends ContainerAware {
+class TemplateService {
   protected $slideTemplates;
   protected $screenTemplates;
   protected $container;
@@ -259,7 +258,7 @@ class TemplateService extends ContainerAware {
           if (!empty($config->tools)) {
             // Ensure path is correct.
             foreach ($config->tools as &$tool) {
-              $tool = '/templates/screens' . $dir . '/' . $tool;
+              $tool = $this->buildFilePath($serverAddress, $path, $dir, $tool);
             }
 
             // Add the tools to the template.

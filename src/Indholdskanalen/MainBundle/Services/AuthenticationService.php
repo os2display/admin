@@ -9,7 +9,6 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -18,7 +17,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
  *
  * @package Indholdskanalen\MainBundle\Services
  */
-class AuthenticationService extends ContainerAware {
+class AuthenticationService {
   protected $container;
 
   /**

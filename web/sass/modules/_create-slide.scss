@@ -295,4 +295,9 @@
 
     @extend %create-element--layout-default;
   }
+
+  &--remove-link {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }

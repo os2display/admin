@@ -11,7 +11,6 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Symfony\Component\DependencyInjection\Container;
 use Indholdskanalen\MainBundle\Services\UtilityService;
@@ -21,7 +20,7 @@ use Indholdskanalen\MainBundle\Services\UtilityService;
  *
  * @package Indholdskanalen\MainBundle\Services
  */
-class SharingService extends ContainerAware {
+class SharingService {
   protected $utilityService;
   protected $serializer;
   protected $container;

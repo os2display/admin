@@ -8,33 +8,36 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializationContext;
 use Indholdskanalen\MainBundle\Services\UtilityService;
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\SharedChannel;
+use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Class MiddlewareCommunication
  *
  * @package Indholdskanalen\MainBundle\Services
  */
-class MiddlewareCommunication extends ContainerAware {
+class MiddlewareCommunication {
   protected $templateService;
   protected $utilityService;
+  protected $container;
 
   /**
    * Constructor.
    *
+   * @param Container $container
+   *   The service container.
    * @param TemplateService $templateService
    *   The template service.
    * @param UtilityService $utilityService
    *   The utility service.
    */
-  public function __construct(TemplateService $templateService, UtilityService $utilityService) {
+  public function __construct(Container $container, TemplateService $templateService, UtilityService $utilityService) {
     $this->templateService = $templateService;
     $this->utilityService = $utilityService;
+    $this->container = $container;
   }
 
   /**
@@ -261,7 +264,7 @@ class MiddlewareCommunication extends ContainerAware {
     $curlResult = $this->utilityService->curl(
       $middlewarePath . '/screen/' . $screen->getId() . '/reload',
       'POST',
-      json_encode(array("id" => $screen->getId())),
+      json_encode(array('id' => $screen->getId())),
       'middleware'
     );
 
@@ -283,7 +286,7 @@ class MiddlewareCommunication extends ContainerAware {
     $curlResult = $this->utilityService->curl(
       $middlewarePath . '/screen/' . $screen->getId() . '/' . $screen->getActivationCode(),
       'DELETE',
-      json_encode(array("id" => $screen->getId())),
+      json_encode(array('id' => $screen->getId())),
       'middleware'
     );
 

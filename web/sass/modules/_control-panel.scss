@@ -25,7 +25,7 @@
 }
 
 %control-panel--tab {
-  margin-bottom: 7em;
+  margin-bottom: 9em;
   overflow-y: auto;
   position: absolute;
   width: 100%;
@@ -35,7 +35,7 @@
   top: 0;
 
   &.has-menu {
-    margin-top: 7em;
+    margin-top: 9em;
   }
 }
 
@@ -132,7 +132,6 @@
 
 /* Display navigation in the control panel */
 .control-panel--nav-wrapper {
-  height: 3em;
   margin: 2em 0;
   padding: 0 2em;
   position: absolute;

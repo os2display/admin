@@ -48,18 +48,17 @@
     @include transform(translateY(-50%));
   }
 
-  &--edit-logo-settings {
-    @extend %slide--edit-logo-settings;
-
-    left: auto;
-    right: 5%;
-  }
-
   &.edit {
     .mbu-header {
       &--image {
         height: 90%;
         margin: 5px;
+      }
+
+      &--image-wrapper {
+        margin:0;
+        width: 10%;
+        height: 100%;
       }
     }
   }
@@ -70,6 +69,12 @@
     &--image {
       height: 90%;
       margin: 0;
+    }
+
+    &--image-wrapper {
+      margin:0;
+      width: 10%;
+      height: 100%;
     }
 
     &--clock {

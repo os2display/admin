@@ -52,7 +52,15 @@ angular.module('menuApp')
            */
           scope.toggleMenu = function () {
             scope.menuOpen = !scope.menuOpen;
-            $('body').toggleClass('is-locked');
+
+            if (scope.menuOpen) {
+              busService.$emit('bodyService.addClass', 'is-locked');
+            }
+            else {
+              busService.$emit('bodyService.removeClass', 'is-locked');
+            }
+
+
             $('.hamburger-menu').click(
               function(e) {
                 e.stopPropagation();

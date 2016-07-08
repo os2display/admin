@@ -54,18 +54,22 @@
     margin: 10px;
   }
 
-  &--edit-logo-settings {
-    @extend %slide--edit-logo-settings;
-
-    left: auto;
-    right: 5%;
-  }
-
   &.edit {
     .mbu-footer {
       &--image {
         height: 80%;
         margin: 10%;
+      }
+
+      &--image-wrapper {
+        margin:0;
+        width: 10%;
+        height: 100%;
+      }
+
+      &--image {
+        width: 80%;
+        height: 80%;
       }
     }
   }
@@ -82,8 +86,16 @@
       font-size: .3em;
     }
 
+
     &--image-wrapper {
-      margin-right: .5em;
+      margin:0;
+      width: 10%;
+      height: 100%;
+    }
+
+    &--image {
+      width: 80%;
+      height: 80%;
     }
   }
 }

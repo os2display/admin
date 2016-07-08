@@ -44,7 +44,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     $scope.editor = {
       slideOverviewEditor: false,
       toggleSlideOverviewEditor: function () {
-        $('html').toggleClass('is-locked');
+        busService.$emit('bodyService.toggleClass', 'is-locked');
         $scope.editor.slideOverviewEditor = !$scope.editor.slideOverviewEditor;
       }
     };

@@ -30,8 +30,4 @@
       box-sizing: border-box;
     }
   }
-
-  &--edit-box-settings {
-    @extend %slide--edit-box-settings;
-  }
 }

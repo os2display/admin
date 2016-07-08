@@ -59,7 +59,7 @@ class ScreenController extends Controller {
     // Get the entity manager.
     $em = $this->getDoctrine()->getManager();
 
-    if ($post->id) {
+    if (isset($post->id)) {
       // Load current slide.
       $screen = $this->getDoctrine()
         ->getRepository('IndholdskanalenMainBundle:Screen')
@@ -84,16 +84,9 @@ class ScreenController extends Controller {
     }
 
     // Update fields.
-    if (isset($post->title)) {
-      $screen->setTitle($post->title);
-    }
-    if (isset($post->description)) {
-      $screen->setDescription($post->description);
-    }
-    if (isset($post->options)) {
-      $screen->setOptions($post->options);
-    }
-
+    $screen->setTitle(isset($post->title) ? $post->title : NULL);
+    $screen->setDescription(isset($post->description) ? $post->title : NULL);
+    $screen->setOptions(isset($post->options) ? $post->options : NULL);
     $screen->setModifiedAt(time());
 
     // Set an activation code and empty token for new screens.
@@ -251,7 +244,7 @@ class ScreenController extends Controller {
       $response->setContent($jsonContent);
     }
     else {
-      throw new NotFoundHttpException("Screen not found.");
+      throw new NotFoundHttpException('Screen not found.');
     }
 
     return $response;
