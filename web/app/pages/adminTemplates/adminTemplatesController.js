@@ -60,7 +60,7 @@ angular.module('ikApp').controller('AdminTemplatesController', ['busService', 't
       templateFactory.saveEnabledTemplates($scope.enabledScreenTemplates, $scope.enabledSlideTemplates).then(
         function success() {
           busService.$emit('log.info', {
-            'msg': 'Template valg blev ikke gemt',
+            'msg': 'Template valg blev gemt',
             'timeout': 3000
           });
           $scope.saving = false;
