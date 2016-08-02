@@ -18,6 +18,7 @@ angular.module('timelineApp')
         link: function (scope) {
           var timeline;
           var items;
+          var groups;
           var focusDate;
 
           scope.start = null;
@@ -54,7 +55,7 @@ angular.module('timelineApp')
            *
            * @TODO: Move out of directive to service.
            */
-          var calculateData = function calculateData() {
+          function calculateData() {
             var items = [];
 
             // Iterate all items, and evaluate if/how they should be added to the timeline.
@@ -62,8 +63,9 @@ angular.module('timelineApp')
               var item = angular.copy(scope.data.items[i]);
 
               // If item is to be shown within the current range.
-              if ((!item.start || item.start < scope.end.getTime()) &&
-                  (!item.end   || item.end > scope.start.getTime())) {
+              if (
+                (!item.start || item.start < scope.end.getTime()) &&
+                (!item.end || item.end > scope.start.getTime())) {
 
                 // If item.start has not been set, set it to the start of the current range (representing infinite)
                 if (!item.start) {
@@ -139,7 +141,61 @@ angular.module('timelineApp')
             }
 
             return items;
-          };
+          }
+
+          /**
+           * Calculate the groups to show for a given array of items.
+           *
+           * @param items
+           * @returns {Array}
+           */
+          function calculateGroups(items) {
+            var groupIds = [];
+
+            // Gather group ids in items
+            for (var item in items) {
+              item = items[item];
+
+              if (groupIds.indexOf(item.group) == -1) {
+                groupIds.push(item.group);
+              }
+            }
+
+            var groups = [];
+
+            // Add groups that are attached to an item.
+            for (var group in scope.data.groups) {
+              group = scope.data.groups[group];
+
+              if (groupIds.indexOf(group.id) !== -1) {
+                groups.push(group);
+              }
+            }
+
+            return groups;
+          }
+
+          /**
+           * Update the data for the timeline.
+           *
+           * @param properties
+           */
+          function updateTimeline(properties) {
+            // Update window and recalculate data.
+            //   Timeout to avoid digest errors, since timeline events are outside angular.
+            $timeout(function () {
+              scope.start = new Date(properties.start);
+              scope.end = new Date(properties.end);
+
+              items = calculateData();
+              groups = calculateGroups(items);
+
+              timeline.setData({
+                'items': items,
+                'groups': groups
+              });
+            });
+          }
 
           // Configuration for the Timeline
           var options = {
@@ -169,7 +225,7 @@ angular.module('timelineApp')
               var container = document.getElementById("timeline_" + scope.data.id);
 
               // Create a Timeline
-              timeline = new vis.Timeline(container, [], scope.data.groups, options);
+              timeline = new vis.Timeline(container, [], [], options);
 
               // Initialize window to week window surrounding today.
               scope.today();
@@ -181,21 +237,11 @@ angular.module('timelineApp')
 
               // Load initial timeline data.
               items = calculateData();
-              timeline.setItems(items);
+              groups = calculateGroups(items);
 
               // Register listener for 'rangechanged'.
               //   This triggers a data reload.
-              timeline.on('rangechanged', function (properties) {
-                // Update window and recalculate data.
-                //   Timeout to avoid digest errors, since timeline events are outside angular.
-                $timeout(function() {
-                  scope.start = new Date(properties.start);
-                  scope.end = new Date(properties.end);
-
-                  items = calculateData();
-                  timeline.setItems(items);
-                });
-              });
+              timeline.on('rangechanged', updateTimeline);
 
               // Register double click listener
               //   Redirects to item.redirect_url
@@ -204,12 +250,17 @@ angular.module('timelineApp')
                 for (var item in items) {
                   item = items[item];
                   if (item.id == properties.item) {
-                    scope.$apply(function() {
+                    scope.$apply(function () {
                       $location.path(item.redirect_url);
                     });
                     return;
                   }
                 }
+              });
+
+              timeline.setData({
+                items: items,
+                groups: groups
               });
             }
           });
@@ -222,7 +273,6 @@ angular.module('timelineApp')
             var displacement = days * 24 * 60 * 60 * 1000;
 
             focusDate = new Date(focusDate.getTime() + displacement);
-
             calculateWeekWindow(focusDate);
           };
 
@@ -238,19 +288,19 @@ angular.module('timelineApp')
            * Zoom the timeline a given percentage in or out
            * @param {Number} percentage   For example 0.1 (zoom out) or -0.1 (zoom in)
            */
-          scope.zoom = function(percentage) {
+          scope.zoom = function (percentage) {
             var range = timeline.getWindow();
             var interval = range.end - range.start;
 
             timeline.setWindow({
               start: range.start.valueOf() - interval * percentage,
-              end:   range.end.valueOf()   + interval * percentage,
+              end: range.end.valueOf() + interval * percentage,
               animation: false
             });
           };
 
           // Register event listener for destroy.
-          scope.$on('$destroy', function() {
+          scope.$on('$destroy', function () {
             if (timeline) {
               timeline.off();
             }
