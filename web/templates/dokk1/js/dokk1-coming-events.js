@@ -56,6 +56,10 @@ if (!window.slideFunctions['dokk1-coming-events']) {
             booking.event_name = 'Optaget';
           }
         }
+        else {
+          // If event_name does not exist it cannot contain (liste) and should be ignored.
+          return;
+        }
 
         var day = region.$filter('date')(new Date(booking.start_time * 1000), 'EEEE d. MMMM');
 
