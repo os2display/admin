@@ -72,7 +72,7 @@ if (!window.slideFunctions['calendar-single-day-dokk1']) {
             }
 
             // Apply event_name filters if it exists.
-            if (element.event_name !== null && typeof element.event_name !== 'undefined') {
+            if (booking.event_name !== null && typeof booking.event_name !== 'undefined') {
               // Remove all (liste) from the event_name
               booking.event_name = booking.event_name.split('(liste)').join('');
 

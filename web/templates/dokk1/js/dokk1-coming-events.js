@@ -35,35 +35,35 @@ if (!window.slideFunctions['dokk1-coming-events']) {
       slide.eventDays = {};
 
       slide.external_data.forEach(function (el) {
-        var element = angular.copy(el);
+        var booking = angular.copy(el);
 
-        if (element.end_time * 1000 < Date.now()) {
+        if (booking.end_time * 1000 < Date.now()) {
           return;
         }
 
         // Apply event_name filters if it exists.
-        if (element.event_name !== null && typeof element.event_name !== 'undefined') {
+        if (booking.event_name !== null && typeof booking.event_name !== 'undefined') {
           // Exclude all events where the event_name does not include (list) in the string
-          if (element.event_name.indexOf('(liste)') === -1) {
+          if (booking.event_name.indexOf('(liste)') === -1) {
             return;
           }
 
           // Remove all (list) from the event_name
-          element.event_name = element.event_name.split('(liste)').join('');
+          booking.event_name = booking.event_name.split('(liste)').join('');
 
           // Replace the event_name with Optaget if it contains the (optaget)
-          if (/\(optaget\)/g.test(element.event_name)) {
-            element.event_name = 'Optaget';
+          if (/\(optaget\)/g.test(booking.event_name)) {
+            booking.event_name = 'Optaget';
           }
         }
 
-        var day = region.$filter('date')(new Date(element.start_time * 1000), 'EEEE d. MMMM');
+        var day = region.$filter('date')(new Date(booking.start_time * 1000), 'EEEE d. MMMM');
 
         if (!slide.eventDays.hasOwnProperty(day)) {
           slide.eventDays[day] = [];
         }
 
-        slide.eventDays[day].push(element);
+        slide.eventDays[day].push(booking);
       });
 
       // Wait fadeTime before start to account for fade in.
