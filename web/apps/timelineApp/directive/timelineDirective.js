@@ -258,6 +258,7 @@ angular.module('timelineApp')
                 }
               });
 
+              // Set initial data.
               timeline.setData({
                 items: items,
                 groups: groups

@@ -41,17 +41,20 @@ if (!window.slideFunctions['dokk1-coming-events']) {
           return;
         }
 
-        // Exclude all events where the event_name does not include (list) in the string
-        if (element.event_name.indexOf('(liste)') === -1) {
-          return;
-        }
+        // Apply event_name filters if it exists.
+        if (element.event_name !== null && typeof element.event_name !== 'undefined') {
+          // Exclude all events where the event_name does not include (list) in the string
+          if (element.event_name.indexOf('(liste)') === -1) {
+            return;
+          }
 
-        // Remove all (list) from the event_name
-        element.event_name = element.event_name.split('(liste)').join('');
+          // Remove all (list) from the event_name
+          element.event_name = element.event_name.split('(liste)').join('');
 
-        // Replace the event_name with Optaget if it contains the (optaget)
-        if (/\(optaget\)/g.test(element.event_name)) {
-          element.event_name = 'Optaget';
+          // Replace the event_name with Optaget if it contains the (optaget)
+          if (/\(optaget\)/g.test(element.event_name)) {
+            element.event_name = 'Optaget';
+          }
         }
 
         var day = region.$filter('date')(new Date(element.start_time * 1000), 'EEEE d. MMMM');

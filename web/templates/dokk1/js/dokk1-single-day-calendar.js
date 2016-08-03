@@ -71,12 +71,15 @@ if (!window.slideFunctions['calendar-single-day-dokk1']) {
               booking.end_time = parseInt(end / 1000);
             }
 
-            // Remove all (liste) from the event_name
-            booking.event_name = booking.event_name.split('(liste)').join('');
+            // Apply event_name filters if it exists.
+            if (element.event_name !== null && typeof element.event_name !== 'undefined') {
+              // Remove all (liste) from the event_name
+              booking.event_name = booking.event_name.split('(liste)').join('');
 
-            // Replace the event_name with Optaget if it contains the (optaget)
-            if (bookedRegex.test(booking.event_name)) {
-              booking.event_name = 'Optaget';
+              // Replace the event_name with Optaget if it contains the (optaget)
+              if (bookedRegex.test(booking.event_name)) {
+                booking.event_name = 'Optaget';
+              }
             }
 
             arr.push(booking);
