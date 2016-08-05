@@ -21,7 +21,8 @@
   "empty_options": {
     "source": "",
     "framewidth": "100%",
-    "bgcolor": "#ccc"
+    "bgcolor": "#ccc",
+    "disable_update": false
   },
   "tools": [
     {

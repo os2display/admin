@@ -18,6 +18,10 @@ if (!window.slideFunctions['iframe']) {
 
       // Return af new refreshed source, with a 5 minutes interval.
       slide.getRefreshedSource = function() {
+        if (slide.options.disable_update) {
+          return slide.options.source;
+        }
+
         var date = (new Date()).getTime();
         if (date - slide.lastRefresh > 300000) {
           slide.lastRefresh = date;
