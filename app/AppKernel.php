@@ -32,8 +32,6 @@ class AppKernel extends Kernel {
       new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
       // Rss/Atom
       new Debril\RssAtomBundle\DebrilRssAtomBundle(),
-      // Guzzle
-      new Misd\GuzzleBundle\MisdGuzzleBundle(),
       // Serializing.
       new JMS\SerializerBundle\JMSSerializerBundle(),
       // Indholdskanalen
