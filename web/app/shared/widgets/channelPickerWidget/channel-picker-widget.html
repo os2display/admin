@@ -10,8 +10,7 @@
     </form>
   </div>
   <div class="cpw--add-channels-list">
-    <div class="cpw--add-channels-item" data-ng-repeat="channel in channels"
-         data-ng-if="!channelSelected(channel)">
+    <div class="cpw--add-channels-item" data-ng-repeat="channel in channels">
       <div class="cpw--add-channels-item-image">
         <ik-channel class="overview--channel-container" ik-channel="channel"
                     ik-width="{{channel.orientation == 'portrait' ? 112.5 : 200 }}"
@@ -20,8 +19,10 @@
       <div class="cpw--add-channels-item-content">
         <h3 class="cpw--add-channels-item-header">{{ channel.title }}</h3>
         <div class="cpw--add-channels-item-meta">{{ channel.description }}</div>
-        <a data-ng-click="addChannel(channel)"
-           class="cpw--add-channels-item-action">Tilføj</a>
+        <a data-ng-click="addChannel(channel)" class="cpw--add-channels-item-action"
+           data-ng-if="!channelSelected(channel)">Tilføj</a>
+        <a data-ng-click="removeChannel(channel)" class="cpw--selected-channels-item-action"
+           data-ng-if="channelSelected(channel)">Fjern</a>
       </div>
     </div>
     <ik-pager></ik-pager>
