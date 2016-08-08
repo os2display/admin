@@ -5,8 +5,9 @@
  */
 
 namespace Indholdskanalen\MainBundle\Services;
-use Debril\RssAtomBundle\Exception\FeedException;
+
 use Debril\RssAtomBundle\Exception\RssAtomException;
+use Indholdskanalen\MainBundle\Events\CronEvent;
 
 /**
  * Class FeedService
@@ -26,6 +27,17 @@ class FeedService {
     $this->container = $container;
     $this->entityManager = $this->container->get('doctrine')->getManager();
     $this->slideRepo = $container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide');
+  }
+
+  /**
+   * ik.onCron event listener.
+   *
+   * Updates feed slides.
+   *
+   * @param CronEvent $event
+   */
+  public function onCron(CronEvent $event) {
+    $this->updateFeedSlides();
   }
 
   /**

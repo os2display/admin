@@ -27,10 +27,14 @@ services:
   indholdskanalen.koba_service:
     class: Indholdskanalen\MainBundle\Services\KobaService
     arguments: [%koba_path%, %koba_apikey%, @service_container]
+    tags:
+      - { name: kernel.event_listener, event: ik.cron, method: onCron }
 
   indholdskanalen.feed_service:
     class: Indholdskanalen\MainBundle\Services\FeedService
     arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: ik.cron, method: onCron }
 
   indholdskanalen.authentication_service:
     class: Indholdskanalen\MainBundle\Services\AuthenticationService
@@ -43,6 +47,7 @@ services:
       - { name: kernel.event_listener, event: indholdskanalen_sharing_service.add_channel_to_index, method: onAddChannelToIndex }
       - { name: kernel.event_listener, event: indholdskanalen_sharing_service.remove_channel_from_index, method: onRemoveChannelFromIndex }
       - { name: kernel.event_listener, event: indholdskanalen_sharing_service.update_channel, method: onUpdateChannel }
+      - { name: kernel.event_listener, event: ik.cron, method: onCron }
 
   indholdskanalen.utility_service:
     class: Indholdskanalen\MainBundle\Services\UtilityService
@@ -51,6 +56,8 @@ services:
   indholdskanalen.middleware.communication:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
     arguments: [@service_container, @indholdskanalen.template_service, @indholdskanalen.utility_service]
+    tags:
+      - { name: kernel.event_listener, event: ik.cron, method: onCron }
 
   sonata.media.provider.zencoder:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider

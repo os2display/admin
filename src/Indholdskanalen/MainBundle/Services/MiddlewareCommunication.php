@@ -8,8 +8,8 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
+use Indholdskanalen\MainBundle\Events\CronEvent;
 use JMS\Serializer\SerializationContext;
-use Indholdskanalen\MainBundle\Services\UtilityService;
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\SharedChannel;
 use Symfony\Component\DependencyInjection\Container;
@@ -38,6 +38,17 @@ class MiddlewareCommunication {
     $this->templateService = $templateService;
     $this->utilityService = $utilityService;
     $this->container = $container;
+  }
+
+  /**
+   * ik.onCron event listener.
+   *
+   * Pushes data to screens.
+   *
+   * @param CronEvent $event
+   */
+  public function onCron(CronEvent $event) {
+    $this->pushToScreens();
   }
 
   /**

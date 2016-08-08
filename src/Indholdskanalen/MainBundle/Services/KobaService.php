@@ -6,8 +6,8 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Indholdskanalen\MainBundle\Events\CronEvent;
 
 /**
  * Class KobaService
@@ -29,6 +29,17 @@ class KobaService {
     $this->kobaPath = $kobaPath;
     $this->apiKey = $apiKey;
     $this->container = $container;
+  }
+
+  /**
+   * ik.onCron event listener.
+   *
+   * Updates calendar slides.
+   *
+   * @param CronEvent $event
+   */
+  public function onCron(CronEvent $event) {
+    $this->updateCalendarSlides();
   }
 
   /**
