@@ -40,9 +40,6 @@ parameters:
 
     site_title: Indholdskanalen
 
-    koba_apikey:
-    koba_path:
-
     version: dev
 
     itk_log_version: 1
