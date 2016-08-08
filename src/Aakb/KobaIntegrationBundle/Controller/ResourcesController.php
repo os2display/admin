@@ -1,13 +1,13 @@
 <?php
 
-namespace Indholdskanalen\MainBundle\Controller;
+namespace Aakb\KobaIntegrationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * @Route("/api/resources")
+ * @Route("/api/koba/resources")
  */
 class ResourcesController extends Controller {
   /**
@@ -18,7 +18,7 @@ class ResourcesController extends Controller {
    * @return JsonResponse
    */
   public function getResources() {
-    return new JsonResponse($this->get('indholdskanalen.koba_service')->getResources());
+    return new JsonResponse($this->get('aakb.koba_service')->getResources());
   }
 
   /**
@@ -31,6 +31,6 @@ class ResourcesController extends Controller {
    * @return JsonResponse
    */
   public function getResourceBookings($resourceMail, $from, $to) {
-    return new JsonResponse($this->get('indholdskanalen.koba_service')->getResourceBookings($resourceMail, 'default', $from, $to));
+    return new JsonResponse($this->get('aakb.koba_service')->getResourceBookings($resourceMail, 'default', $from, $to));
   }
 }

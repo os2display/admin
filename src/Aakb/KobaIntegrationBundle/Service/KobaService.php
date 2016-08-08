@@ -1,34 +1,40 @@
 <?php
 /**
  * @file
- * Contains the koba service.
+ * Contains the KOBA service.
+ *
+ * Provides integration service with KOBA.
  */
 
-namespace Indholdskanalen\MainBundle\Services;
+namespace Aakb\KobaIntegrationBundle\Service;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Indholdskanalen\MainBundle\Events\CronEvent;
 
 /**
  * Class KobaService
- * @package Indholdskanalen\MainBundle\Services
+ * @package Aakb\KobaIntegrationBundle\Service
  */
 class KobaService {
+  private $container;
   private $apiKey;
   private $kobaPath;
-  private $container;
+  private $initialized;
 
   /**
    * Constructor.
    *
-   * @param $kobaPath
-   * @param $apiKey
    * @param $container
    */
-  public function __construct($kobaPath, $apiKey, $container) {
-    $this->kobaPath = $kobaPath;
-    $this->apiKey = $apiKey;
+  public function __construct($container) {
     $this->container = $container;
+
+    // Initialize if required parameters are set.
+    if ($this->container->hasParameter('koba_path') && $this->container->hasParameter('koba_apikey')) {
+      $this->initialized = TRUE;
+      $this->kobaPath = $this->container->getParameter('koba_path');
+      $this->apiKey = $this->container->getParameter('koba_apikey');
+    }
   }
 
   /**
@@ -50,6 +56,11 @@ class KobaService {
    * @return array
    */
   public function getResources($group = 'default') {
+    // Only run if properly initialized.
+    if (!$this->initialized) {
+      throw new HttpException(501, 'Not supported.');
+    }
+
     $url = $this->kobaPath . '/api/resources/group/' . $group . '?apikey=' . $this->apiKey;
 
     // Build query.
@@ -88,6 +99,11 @@ class KobaService {
    *   json array.
    */
   public function getResourceBookings($resourceMail, $group, $from, $to) {
+    // Only run if properly initialized.
+    if (!$this->initialized) {
+      throw new HttpException(501, 'Not supported.');
+    }
+
     $url = $this->kobaPath . '/api/resources/' . $resourceMail . '/group/' . $group . '/bookings/from/' . $from . '/to/' . $to . '?apikey=' . $this->apiKey;
 
     // Build query.
@@ -116,6 +132,11 @@ class KobaService {
    * Update the calendar events for calendar slides.
    */
   public function updateCalendarSlides() {
+    // Only run if properly initialized.
+    if (!$this->initialized) {
+      return;
+    }
+
     // For each calendar slide
     $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('calendar');
     $todayStart = time() - 3600;
