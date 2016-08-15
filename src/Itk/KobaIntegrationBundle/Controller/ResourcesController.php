@@ -1,6 +1,6 @@
 <?php
 
-namespace Aakb\KobaIntegrationBundle\Controller;
+namespace Itk\KobaIntegrationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,7 +18,7 @@ class ResourcesController extends Controller {
    * @return JsonResponse
    */
   public function getResources() {
-    return new JsonResponse($this->get('aakb.koba_service')->getResources());
+    return new JsonResponse($this->get('itk.koba_service')->getResources());
   }
 
   /**
@@ -31,6 +31,6 @@ class ResourcesController extends Controller {
    * @return JsonResponse
    */
   public function getResourceBookings($resourceMail, $from, $to) {
-    return new JsonResponse($this->get('aakb.koba_service')->getResourceBookings($resourceMail, 'default', $from, $to));
+    return new JsonResponse($this->get('itk.koba_service')->getResourceBookings($resourceMail, 'default', $from, $to));
   }
 }

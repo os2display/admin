@@ -1,3 +1,0 @@
-controllers:
-  resource: "@AakbKobaIntegrationBundle/Controller"
-  type: annotation

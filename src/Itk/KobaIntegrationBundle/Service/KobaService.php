@@ -6,14 +6,14 @@
  * Provides integration service with KOBA.
  */
 
-namespace Aakb\KobaIntegrationBundle\Service;
+namespace Itk\KobaIntegrationBundle\Service;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Indholdskanalen\MainBundle\Events\CronEvent;
 
 /**
  * Class KobaService
- * @package Aakb\KobaIntegrationBundle\Service
+ * @package Itk\KobaIntegrationBundle\Service
  */
 class KobaService {
   private $container;

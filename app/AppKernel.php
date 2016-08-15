@@ -33,7 +33,7 @@ class AppKernel extends Kernel {
       new JMS\DiExtraBundle\JMSDiExtraBundle($this),
       new JMS\AopBundle\JMSAopBundle(),
       new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-      new Aakb\KobaIntegrationBundle\AakbKobaIntegrationBundle(),
+      new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),
     );
 
     if (in_array($this->getEnvironment(), array('dev', 'test'))) {
