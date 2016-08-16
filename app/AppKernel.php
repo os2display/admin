@@ -26,7 +26,6 @@ class AppKernel extends Kernel {
       new Sonata\MediaBundle\SonataMediaBundle(),
       new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
       new Debril\RssAtomBundle\DebrilRssAtomBundle(),
-      new Misd\GuzzleBundle\MisdGuzzleBundle(),
       new JMS\SerializerBundle\JMSSerializerBundle(),
       new Indholdskanalen\MainBundle\IndholdskanalenMainBundle(),
       new JMS\JobQueueBundle\JMSJobQueueBundle(),
