@@ -19,7 +19,7 @@ angular.module('ikApp').factory('kobaFactory', ['$http', '$q',
     factory.getResources = function getResources() {
       var defer = $q.defer();
 
-      $http.get('/api/resources')
+      $http.get('/api/koba/resources')
         .success(function (data) {
           defer.resolve(data);
         })
@@ -44,7 +44,7 @@ angular.module('ikApp').factory('kobaFactory', ['$http', '$q',
     factory.getBookingsForResource = function getBookingsForResource(resourceMail, from, to) {
       var defer = $q.defer();
 
-      $http.get('/api/resources/' + resourceMail + '/bookings/from/' + from + '/to/' + to)
+      $http.get('/api/koba/resources/' + resourceMail + '/bookings/from/' + from + '/to/' + to)
         .success(function (data) {
           defer.resolve(data);
         })

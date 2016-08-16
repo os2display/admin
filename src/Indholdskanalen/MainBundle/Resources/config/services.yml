@@ -24,12 +24,6 @@ services:
     class: Indholdskanalen\MainBundle\Services\TemplateService
     arguments: [@service_container]
 
-  indholdskanalen.koba_service:
-    class: Indholdskanalen\MainBundle\Services\KobaService
-    arguments: [%koba_path%, %koba_apikey%, @service_container]
-    tags:
-      - { name: kernel.event_listener, event: ik.cron, method: onCron }
-
   indholdskanalen.feed_service:
     class: Indholdskanalen\MainBundle\Services\FeedService
     arguments: [@service_container]
