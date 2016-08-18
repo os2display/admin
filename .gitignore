@@ -16,7 +16,4 @@ config.codekit
 composer.phar
 web/uploads/
 /bin
-#/web/templates/*/*
-!/web/templates/js/*
-!/web/templates/editors/*
-!/web/templates/default/*
+
