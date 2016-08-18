@@ -1,4 +1,4 @@
 /*/*
-!/web/templates/js/*
-!/web/templates/editors/*
-!/web/templates/default/*
+!/js/*
+!/editors/*
+!/default_templates/*
