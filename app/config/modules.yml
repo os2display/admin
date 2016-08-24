@@ -1,0 +1,31 @@
+parameters:
+  modules:
+    busModule:
+      files:
+        - /apps/busModule/busModule.js
+      dependencies:
+
+    logModule:
+      files:
+        - /apps/logModule/services/logService.js
+      dependencies:
+        - busModule
+
+    mainModule:
+      files:
+        - /apps/mainModule/services/bodyService.js
+        - /apps/mainModule/services/userService.js
+        - /apps/mainModule/services/menuItemService.js
+        - /apps/mainModule/services/searchService.js
+      dependencies:
+
+  bootstrap:
+    modules:
+      - logModule
+      - mainModule
+    services:
+      - logService
+      - userService
+      - searchService
+      - menuItemService
+      - bodyService

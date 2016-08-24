@@ -11,17 +11,16 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Symfony\Component\DependencyInjection\Container;
-use Indholdskanalen\MainBundle\Services\UtilityService;
+use Indholdskanalen\MainBundle\Events\CronEvent;
 
 /**
  * Class SharingService
  *
  * @package Indholdskanalen\MainBundle\Services
  */
-class SharingService extends ContainerAware {
+class SharingService {
   protected $utilityService;
   protected $serializer;
   protected $container;
@@ -42,6 +41,19 @@ class SharingService extends ContainerAware {
 
     $this->url = $this->container->getParameter('sharing_host') . $this->container->getParameter('sharing_path');
     $this->doctrine = $this->container->get('doctrine');
+  }
+
+  /**
+   * ik.onCron event listener.
+   *
+   * Updates shared channels.
+   *
+   * @param CronEvent $event
+   */
+  public function onCron(CronEvent $event) {
+    if ($this->container->getParameter('sharing_enabled')) {
+      $this->updateAllSharedChannels();
+    }
   }
 
   /**

@@ -1,6 +1,7 @@
 /* Layout
    ================================================================================================================== */
 $breakpoint-lap:          481px;
+$breakpoint-tablet:       720px;
 $breakpoint-portable:     1023px;
 $breakpoint-desk:         1024px;
 $breakpoint-bigscreen:    1700px;
@@ -8,12 +9,12 @@ $breakpoint-bigscreen:    1700px;
 $layout-max-width:    75em;
 $border-radius:       .4em;
 $grid-markup-fix:     -4px;
+$layout-padding:      1em;
 
 // We need to handle the inline-block spacing
 %grid-markup-fix {
   margin-right: $grid-markup-fix;
 }
-
 
 
 /* Colors
@@ -39,6 +40,11 @@ $gray-color:          #999;
 
 $orange:              #FF8600;
 
+
+$theme-color:             rgb(21, 123, 179);
+$theme-color-dark:        rgb(42, 45, 88);
+$theme-color-light:       rgb(195, 226, 244);
+$theme-color-secondary:   #b13a32;
 
 /* Link colors
    ================================================================================================================== */
@@ -67,3 +73,9 @@ $button-default-background: #357fd1;
 $button-default-alternate: #2361a9;
 $button-default-inactive: #b8b8b8;
 $button-default-warning: #b20000;
+
+
+/* Z-index (inspired by https://www.smashingmagazine.com/2014/06/sassy-z-index-management-for-complex-layouts/)
+   ================================================================================================================== */
+
+$z-index-elements: header-overlay, header, content, nav, logo, overlay, hamburger-menu, nav-toggle;

@@ -8,8 +8,8 @@
  *
  * The communication is based on web-sockets via socket.io library.
  */
-angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$http', 'itkLog',
-  function ($q, $rootScope, $http, itkLog) {
+angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$http', 'busService',
+  function ($q, $rootScope, $http, busService) {
     'use strict';
 
     var socket;
@@ -28,8 +28,28 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
 
       // Handle error events.
       socket.on('error', function (reason) {
-        itkLog.error(reason, 'Search socket error.');
-        deferred.reject(reason);
+        if (reason === 'Not authorized') {
+          // Try reauth
+          $http.get('api/auth/sharing/reauth')
+            .success(function (data) {
+              token = data.token;
+              getSocket(deferred);
+            })
+            .error(function (data, status) {
+              busService.$emit('log.error', {
+                'cause': status,
+                'msg': 'Search socket error. Could not reauthorize.'
+              });
+              deferred.reject(status);
+            });
+        }
+        else {
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Search socket error.'
+          });
+          deferred.reject(reason);
+        }
       });
 
       socket.on('connect', function () {
@@ -66,7 +86,10 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
               getSocket(deferred);
             })
             .error(function (data, status) {
-              itkLog.error(data, 'Authentication (sharing) to search node failed (' + status + ')');
+              busService.$emit('log.error', {
+                'cause': status,
+                'msg': 'Authentication (sharing) to search node failed (' + status + ')'
+              });
               deferred.reject(status);
             });
         }
@@ -126,6 +149,8 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
         query.query = {
           "multi_match": {
             "query": search.text,
+            "type": "best_fields",
+            "operator": "or",
             "fields": search.fields,
             "analyzer": 'string_search'
           }
@@ -152,15 +177,28 @@ angular.module('ikApp').service('sharedSearchFactory', ['$q', '$rootScope', '$ht
         query.from = search.pager.page * search.pager.size;
       }
 
+      // Use an MD5 hash to make a unique callback/message in the socket
+      // connection. This is needed to ensure that more that one search query
+      // can be fired into the connection a the right response ends up with
+      // the component that send the request.
+      query.uuid = CryptoJS.MD5(JSON.stringify(query)).toString();
+      query.callbacks = {
+        'hits': 'hits-' + query.uuid,
+        'error': 'error-' + query.uuid
+      };
+
       connect().then(function () {
         socket.emit('search', query);
-        socket.once('result', function (hits) {
+        socket.once(query.callbacks['hits'], function (hits) {
           deferred.resolve(hits);
         });
 
         // Catch search errors.
-        socket.once('searchError', function (error) {
-          itkLog.error('Search error', error.message);
+        socket.once(query.callbacks['error'], function (error) {
+          busService.$emit('log.error', {
+            'cause': error.message,
+            'msg': 'Search error'
+          });
           deferred.reject(error.message);
         });
       });

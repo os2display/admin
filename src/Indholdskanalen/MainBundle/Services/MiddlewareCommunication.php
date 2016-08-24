@@ -8,33 +8,47 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use JMS\Serializer\SerializerBuilder;
+use Indholdskanalen\MainBundle\Events\CronEvent;
 use JMS\Serializer\SerializationContext;
-use Indholdskanalen\MainBundle\Services\UtilityService;
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\SharedChannel;
+use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Class MiddlewareCommunication
  *
  * @package Indholdskanalen\MainBundle\Services
  */
-class MiddlewareCommunication extends ContainerAware {
+class MiddlewareCommunication {
   protected $templateService;
   protected $utilityService;
+  protected $container;
 
   /**
    * Constructor.
    *
+   * @param Container $container
+   *   The service container.
    * @param TemplateService $templateService
    *   The template service.
    * @param UtilityService $utilityService
    *   The utility service.
    */
-  public function __construct(TemplateService $templateService, UtilityService $utilityService) {
+  public function __construct(Container $container, TemplateService $templateService, UtilityService $utilityService) {
     $this->templateService = $templateService;
     $this->utilityService = $utilityService;
+    $this->container = $container;
+  }
+
+  /**
+   * ik.onCron event listener.
+   *
+   * Pushes data to screens.
+   *
+   * @param CronEvent $event
+   */
+  public function onCron(CronEvent $event) {
+    $this->pushToScreens();
   }
 
   /**
@@ -105,7 +119,10 @@ class MiddlewareCommunication extends ContainerAware {
           // but now has been removed.
           $updatedScreensFailed = FALSE;
 
-          $lastPushScreensArray = json_decode($lastPushScreens);
+          $lastPushScreensArray = array();
+          if (!empty($lastPushScreens)) {
+            $lastPushScreensArray = json_decode($lastPushScreens);
+          }
 
           foreach ($lastPushScreensArray as $lastPushScreenId) {
             if (!in_array($lastPushScreenId, $screenIds)) {
@@ -258,7 +275,7 @@ class MiddlewareCommunication extends ContainerAware {
     $curlResult = $this->utilityService->curl(
       $middlewarePath . '/screen/' . $screen->getId() . '/reload',
       'POST',
-      json_encode(array("id" => $screen->getId())),
+      json_encode(array('id' => $screen->getId())),
       'middleware'
     );
 
@@ -280,7 +297,7 @@ class MiddlewareCommunication extends ContainerAware {
     $curlResult = $this->utilityService->curl(
       $middlewarePath . '/screen/' . $screen->getId() . '/' . $screen->getActivationCode(),
       'DELETE',
-      json_encode(array("id" => $screen->getId())),
+      json_encode(array('id' => $screen->getId())),
       'middleware'
     );
 

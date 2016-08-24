@@ -1,0 +1,88 @@
+// Include base vars
+@import "compass/css3";
+@import "../../../_shared-base.scss";
+
+
+
+.manual-calendar {
+  background-size: cover;
+  background-position: center;
+
+
+  &--header {
+    @extend %inline-textarea;
+
+    &.has-placeholder {
+      @extend %show-placeholder-text;
+    }
+
+    font-size: 100%;
+  }
+
+
+  &--text-inner {
+    background: rgba(0,0,0,0.7);
+    box-sizing: border-box;
+    color: $white;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 4%;
+    text-align: left;
+    position:relative;
+    width: 95%;
+    height: 90%;
+    top: 50%;
+
+    @include transform(translateY(-50%));
+    @include border-radius(.5em);
+  }
+
+
+  &--header {
+    &.has-placeholder {
+      @extend %show-placeholder-text;
+    }
+
+    font-size: 100%;
+    margin-bottom: .5em;
+  }
+
+
+  &--events {
+    font-size: 70%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+
+  &--event {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    margin-bottom: .5em;
+    padding-bottom: .5em;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+
+  &--title,
+  &--place,
+  &--time{
+    box-sizing: border-box;
+    padding: .5em;
+    vertical-align: middle;
+
+    &:first-child {
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+
+  &--logo {
+    position: absolute;
+    width: 10%;
+    padding: 2%;
+  }
+}

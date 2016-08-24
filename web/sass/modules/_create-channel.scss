@@ -359,4 +359,9 @@ $breakpoint-arrow-switch : 693px;
     vertical-align: middle;
     margin-top: -2px;
   }
+
+  &--remove-link {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }

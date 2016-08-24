@@ -10,7 +10,7 @@ if (!window.slideFunctions['calendar-single-day']) {
      * @param scope
      *   The slide scope.
      */
-    setup: function setupBaseSlide(scope) {
+    setup: function setupCalendarSingleDaySlide(scope) {
       var slide = scope.ikSlide;
 
       // Only show first image in array.
@@ -28,35 +28,6 @@ if (!window.slideFunctions['calendar-single-day']) {
         fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0)+ "px"
       };
 
-      if (slide.external_data) {
-        var now = new Date();
-        now = now.getTime();
-        var start = new Date();
-        start.setHours(0,0,0);
-        start = start.getTime();
-        var end = new Date();
-        end.setHours(23,59,59);
-        end = end.getTime();
-
-        var arr = [];
-
-        for (var i = 0; i < slide.external_data.length; i++) {
-          if (slide.external_data[i].end_time * 1000 > now && slide.external_data[i].start_time * 1000 <= end) {
-            var booking = slide.external_data[i];
-            if (booking.start_time * 1000 < start) {
-              booking.start_time = parseInt(start / 1000);
-            }
-            if (booking.end_time * 1000 > end) {
-              booking.end_time = parseInt(end / 1000);
-            }
-
-            arr.push(slide.external_data[i]);
-          }
-        }
-
-        slide.selected_data = arr;
-      }
-
       // Set the responsive font size if it is needed.
       if (slide.options.responsive_fontsize) {
         scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0)+ "vw";
@@ -71,7 +42,7 @@ if (!window.slideFunctions['calendar-single-day']) {
      * @param region
      *   The region object.
      */
-    run: function runBaseSlide(slide, region) {
+    run: function runCalendarSingleDaySlide(slide, region) {
       region.itkLog.info("Running calendar-single-day slide: " + slide.title);
 
       var duration = slide.duration !== null ? slide.duration : 15;
@@ -98,7 +69,7 @@ if (!window.slideFunctions['calendar-single-day']) {
               booking.end_time = parseInt(end / 1000);
             }
 
-            arr.push(slide.external_data[i]);
+            arr.push(booking);
           }
         }
 

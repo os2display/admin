@@ -24,19 +24,31 @@ var banner = ['/**',
 
 // We only want to process our own non-processed JavaScript files.
 var adminJsPath = [
+  './web/app/app.js',
   './web/app/**/**/**/**/*.js'
 ];
 
 var adminJsAssets = [
-  './web/assets/libs/jquery-*.min.js',
-  './web/assets/libs/angular-1.2.16.min.js',
-  './web/assets/libs/*.js',
-  './web/assets/modules/**/*.js'
+  './web/assets/libs/jquery.min.js',
+  './web/assets/libs/angular.min.js',
+  './web/assets/libs/angular-animate.min.js',
+  './web/assets/libs/angular-bootstrap-colorpicker.js',
+  './web/assets/libs/angular-file-upload.min.js',
+  './web/assets/libs/angular-placeholder.js',
+  './web/assets/libs/angular-route.min.js',
+  './web/assets/libs/datetimepicker.jquery.js',
+  './web/assets/libs/datetimepicker.js',
+  './web/assets/libs/es5-shim.min.js',
+  './web/assets/libs/locale_da.js',
+  './web/assets/libs/md5.min.js',
+  './web/assets/libs/moment.min.js',
+  './web/assets/libs/moment_da_locale.js',
+  './web/assets/libs/paging.js',
+  './web/assets/libs/stacktrace.min.js'
 ];
 
 var adminBuildDir = './web/assets/build';
 var sassPath = './web/sass/*.scss';
-
 var sassWatchPath = './web/sass/**/*.scss';
 
 /**
@@ -51,11 +63,11 @@ gulp.task('jshint', 'Runs JSHint on js', function () {
 /**
  * Build single app.js file.
  */
-gulp.task('js', 'Build all custom js files into one js file. If --production is set minify the js as well.', function () {
+gulp.task('js', 'Build all custom js files into one minified js file.', function () {
     gulp.src(adminJsPath)
       .pipe(concat('app.js'))
       .pipe(ngAnnotate())
-      .pipe(gulpif(argv.production, uglify()))
+      .pipe(uglify())
       .pipe(rename({extname: ".min.js"}))
       .pipe(header(banner, {pkg: pkg}))
       .pipe(gulp.dest(adminBuildDir))
@@ -65,11 +77,11 @@ gulp.task('js', 'Build all custom js files into one js file. If --production is 
 /**
  * Build single assets.js file.
  */
-gulp.task('assets', 'Build all asset js files into one js file. If --production is set minify the js as well.', function () {
+gulp.task('assets', 'Build all asset js files into one minified js file.', function () {
   gulp.src(adminJsAssets)
     .pipe(concat('assets.js'))
     .pipe(ngAnnotate())
-    .pipe(gulpif(argv.production, uglify()))
+    .pipe(uglify())
     .pipe(rename({extname: ".min.js"}))
     .pipe(gulp.dest(adminBuildDir))
 });
@@ -77,26 +89,16 @@ gulp.task('assets', 'Build all asset js files into one js file. If --production 
 /**
  * Process SCSS using libsass
  */
-gulp.task('sass', 'Compile sass into css. If --production is set, minify the css as well.', function () {
-  // If not run in production mode, compile the sass into a non-minified css file.
+gulp.task('sass', 'Compile sass into minified css', function () {
   gulp.src(sassPath)
-    .pipe(gulpif(!argv.production, sass({
-      includePaths: [
-        './web/sass/compass-mixins/lib'
-      ]
-    }).on('error', sass.logError)))
-    .pipe(gulpif(!argv.production, gulp.dest(adminBuildDir)));
-
-  // If run in production mode, compile and minify the css.
-  gulp.src(sassPath)
-    .pipe(gulpif(argv.production, sass({
+    .pipe(sass({
       outputStyle: 'compressed',
       includePaths: [
         './web/sass/compass-mixins/lib'
       ]
-    }).on('error', sass.logError)))
-    .pipe(gulpif(argv.production, rename({extname: ".min.css"})))
-    .pipe(gulpif(argv.production, gulp.dest(adminBuildDir)));
+    }).on('error', sass.logError))
+    .pipe(rename({extname: ".min.css"}))
+    .pipe(gulp.dest(adminBuildDir));
 });
 
 /**
@@ -114,9 +116,10 @@ var templatesPath = './web/templates/';
 var templates = {
   'screens': {
     'default': ['five-sections', 'three-columns', 'two-columns'],
-    'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows'],
+    'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows', 'itk-three-split'],
     'mso': ['mso-five-sections', 'mso-four-sections'],
-    'mbu': ['mbu-three-split']
+    'mbu': ['mbu-three-split'],
+    'itk': ['itk-three-split']
   },
   'slides': {
     'aarhus': ['rss-aarhus'],
@@ -139,14 +142,14 @@ gulp.task('sassTemplates', 'Compile the sass for each templates into minified cs
           var arr = templates[templateType][folder];
 
           arr.forEach(function (element) {
-            gulp.src(templatesPath + '/' + templateType + '/' + folder + '/' + element + '/' + element + '.scss')
+            gulp.src(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/' + element + '.scss')
               .pipe(sass({
                 outputStyle: 'compressed',
                 includePaths: [
                   './web/sass/compass-mixins/lib'
                 ]
               }).on('error', sass.logError))
-              .pipe(gulp.dest(templatesPath + '/' + templateType + '/' + folder + '/' + element + '/'));
+              .pipe(gulp.dest(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/'));
           });
         }
       }

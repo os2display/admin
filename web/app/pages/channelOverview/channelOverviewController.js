@@ -6,8 +6,8 @@
 /**
  * Channels controller handles the display and selection of channels.
  */
-angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'itkLog',
-  function($scope, sharedChannelFactory, channelFactory, itkLog) {
+angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'sharedChannelFactory', 'channelFactory', 'busService',
+  function($scope, sharedChannelFactory, channelFactory, busService) {
     'use strict';
 
     $scope.shareDialogShow = false;
@@ -27,7 +27,10 @@ angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'shar
             }
           },
           function error(reason) {
-            itkLog.error('Hentning af kanal fejlede', reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Hentning af kanal fejlede'
+            });
           }
         );
       });
@@ -38,18 +41,27 @@ angular.module('ikApp').controller('ChannelOverviewController', ['$scope', 'shar
           $scope.sharingIndexes = data;
         },
         function error(reason) {
-          itkLog.error('Hentning af delingsindeks fejlede.', reason);
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Hentning af delingsindeks fejlede.'
+          });
         }
       );
 
       $scope.saveSharingChannel = function saveSharingChannel() {
         channelFactory.channelShare($scope.shareDialogChannel).then(
           function() {
-            itkLog.info('Delingskonfiguration af kanal lykkedes.', 3000);
+            busService.$emit('log.info', {
+              'msg': 'Delingskonfiguration af kanal lykkedes.',
+              'timeout': 3000
+            });
           },
           function(reason) {
-            itkLog.error('Deling af kanal fejlede.', reason);
-          }
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Deling af kanal fejlede.'
+            });
+           }
         );
       };
     }

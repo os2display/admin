@@ -14,8 +14,8 @@
  *   which media type should be shown, "image" or "video",
  *   leave out show all media.
  */
-angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
-  function (itkLog) {
+angular.module('ikApp').directive('ikMediaOverview', ['busService',
+  function (busService) {
     'use strict';
 
     return {
@@ -86,7 +86,10 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
                   $scope.loading = false;
                 },
                 function error(reason) {
-                  itkLog.error("Hentning af søgeresultater fejlede.", reason);
+                  busService.$emit('log.error', {
+                    'cause': reason,
+                    'msg': 'Hentning af søgeresultater fejlede.'
+                  });
                   $scope.loading = false;
                 }
               );
@@ -154,11 +157,13 @@ angular.module('ikApp').directive('ikMediaOverview', ['itkLog',
           }
 
           if ($scope.showFromUser !== 'all') {
-            var term = {};
-            term.term = {
-              user: $scope.currentUser.id
-            };
-            search.filter.bool.must.push(term);
+            if ($scope.currentUser) {
+              var term = {};
+              term.term = {
+                user: $scope.currentUser.id
+              };
+              search.filter.bool.must.push(term);
+            }
           }
 
           $scope.updateSearch();

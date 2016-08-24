@@ -3,7 +3,7 @@
     <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
     <p class="create-slide--header-description">Angiv yderligere indstillinger for din slide.</p>
     <div class="create-slide--content-wrapper">
-      <div class="create-slide--duration" data-ng-if="slide.media_type !== 'video' && slide.slide_type !== 'rss' && slide.slide_type !== 'instagram'">
+      <div class="create-slide--duration" data-ng-if="slide.media_type !== 'video' && slide.slide_type !== 'rss'">
         <label class="create-slide--duration-label">Varighed</label>
         <div class="create-slide--duration-text"><input type="text" placeholder="f.eks. 15" data-ng-model="slide.duration" class="create-slide--duration-input"><span class="create-slide--duration-suffix">sekunder.</span></div>
         <div class="create-slide--duration-description">Angiv hvor længe din slide skal vises i sekunder</div>
@@ -18,11 +18,6 @@
         <div class="create-slide--duration-text"><input type="text" class="create-slide--duration-input" data-ng-value="slide.options.rss_duration * slide.options.rss_number" disabled="disabled"><span class="create-slide--duration-suffix">sekunder.</span></div>
         <div class="create-slide--duration-description">Beregnet varighed i sekunder</div>
       </div>
-      <div class="create-slide--duration" data-ng-if="slide.slide_type === 'instagram'">
-        <label class="create-slide--duration-label">Varighed</label>
-        <div class="create-slide--duration-text"><input type="text" class="create-slide--duration-input" data-ng-value="slide.options.instagram_duration * slide.options.instagram_number" disabled="disabled"><span class="create-slide--duration-suffix">sekunder.</span></div>
-        <div class="create-slide--duration-description">Beregnet varighed i sekunder</div>
-      </div>
       <div class="create-slide--publishing">
         <label class="create-slide--schedule-label">Udgivelse</label>
         <div class="create-slide--published">
@@ -31,11 +26,11 @@
         </div>
         <div class="create-slide--schedule">
           <div class="create-slide--schedule-from">
-            <label class="create-slide--from-label">Fra</label>
+            <label class="create-slide--from-label">Fra (<a class="create-slide--remove-link" data-ng-click="slide.schedule_from = null">ryd</a>)</label>
             <input type="text" data-ng-model="slide.schedule_from" datetime-picker="">
           </div>
           <div class="create-slide--schedule-to">
-            <label class="create-slide--to-label">Til</label>
+            <label class="create-slide--to-label">Til (<a class="create-slide--remove-link" data-ng-click="slide.schedule_to = null">ryd</a>)</label>
             <input type="text" data-ng-model="slide.schedule_to" datetime-picker="">
           </div>
           <div class="create-slide--schedule-description">Angiv eventuelt udgivelsesinterval.</div>

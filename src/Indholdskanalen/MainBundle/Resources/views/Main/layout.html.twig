@@ -1,33 +1,19 @@
 {% extends '::base.html.twig' %}
 
-{% block html %}data-ng-app="ikApp"{% endblock %}
-
 {% block title %}{{ site_title }}{% endblock %}
 
 {% block meta %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width">
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/colorpicker.css?' ~ version) }}">
-    <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css?' ~ version) }}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    {% if app.environment == 'dev' %}
-      <link rel="stylesheet" href="{{ asset('assets/build/styles.css?' ~ version) }}">
-    {% else %}
-      <link rel="stylesheet" href="{{ asset('assets/build/styles.min.css?' ~ version) }}">
-    {% endif %}
+  <link rel="stylesheet" href="{{ asset('assets/build/styles.min.css?' ~ version) }}">
 
-  {# Import css files for templates. #}
-  {% if templates is defined %}
-    {% for template in templates %}
-      <link rel="stylesheet" href="{{ template }}">
-    {% endfor %}
-  {% endif %}
-
+  <!-- Css from design (Scss files not found in this project) -->
+  <link rel="stylesheet" href="{{ asset('css/styles-new.css?' ~ version) }}">
 {% endblock %}
-
-{% block scripts %}{% endblock %}

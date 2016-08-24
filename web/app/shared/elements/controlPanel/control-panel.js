@@ -6,7 +6,7 @@
 /**
  * Setup the module.
  */
-(function() {
+(function () {
   'use strict';
 
   var app;
@@ -22,8 +22,8 @@
    *   saveAction (function): The function to call on a saveAction.
    *   region (integer): The region (id) to manipulate.
    */
-  app.directive('controlPanel',
-    function() {
+  app.directive('controlPanel', ['busService',
+    function (busService) {
       return {
         restrict: 'E',
         scope: {
@@ -35,12 +35,12 @@
           options: '='
         },
         replace: true,
-        link: function(scope) {
+        link: function (scope) {
           // Which control panel tab is selected?
           scope.selectedTab = null;
 
-          // Lock scrolling on page.
-          $('html').addClass('is-locked');
+          // Lock scrolling on page. (Deprecated)
+          busService.$emit('bodyService.addClass', 'is-screen');
 
           /**
            * Get the template for the control panel.
@@ -71,12 +71,12 @@
 
           // Register event listener for destroy.
           // Remove scroll lock.
-          scope.$on('$destroy', function() {
+          scope.$on('$destroy', function () {
             document.getElementsByTagName('body')[0].style.overflow = '';
           });
         },
         template: '<div data-ng-include="getContent()"></div>'
       };
-    }
+    }]
   );
 }).call(this);

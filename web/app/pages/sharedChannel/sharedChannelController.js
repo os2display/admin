@@ -6,8 +6,8 @@
 /**
  * Shared channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory', 'itkLog',
-  function ($scope, $location, $routeParams, $timeout, screenFactory, sharedChannelFactory, itkLog) {
+angular.module('ikApp').controller('SharedChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'sharedChannelFactory', 'busService',
+  function ($scope, $location, $routeParams, $timeout, screenFactory, sharedChannelFactory, busService) {
     'use strict';
 
     $scope.steps = 1;
@@ -22,7 +22,10 @@ angular.module('ikApp').controller('SharedChannelController', ['$scope', '$locat
         $scope.screens = data;
       },
       function error(reason) {
-        itkLog.error('Kunne ikke hente bruger.', reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Kunne ikke hente skærme.'
+        });
       }
     );
 
@@ -53,7 +56,10 @@ angular.module('ikApp').controller('SharedChannelController', ['$scope', '$locat
             loadStep(1);
           },
           function error(reason) {
-            itkLog.error("Delt kanal kunne ikke hentes.", reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Delt kanal kunne ikke hentes.'
+            });
           }
         );
       }

@@ -6,8 +6,8 @@
 /**
  * Screen factory. Main entry point for screens and screen groups.
  */
-angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory',
-  function ($http, $q, searchFactory) {
+angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
+  function ($http, $q, busService) {
     'use strict';
 
     var factory = {};
@@ -18,9 +18,32 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * @param search
      * @returns {*|Number}
      */
-    factory.searchScreens = function (search) {
+    factory.searchScreens = function searchScreens(search) {
+      var deferred = $q.defer();
+
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
-      return searchFactory.search(search);
+
+      var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
+      search.callbacks = {
+        'hits': 'searchService.hits-' + uuid,
+        'error': 'searchService.error-' + uuid
+      };
+
+      busService.$once(search.callbacks.hits, function(event, data) {
+        deferred.resolve(data);
+      });
+
+      busService.$once(search.callbacks.error, function(event, args) {
+        busService.$emit('log.error', {
+          'cause': args,
+          'msg': 'Kunne ikke hente søgeresultater.'
+        });
+        deferred.reject(args);
+      });
+
+      busService.$emit('searchService.request', search);
+
+      return deferred.promise;
     };
 
     /**
@@ -28,10 +51,10 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      *
      * @returns {Array}
      */
-    factory.getScreens = function () {
+    factory.getScreens = function getScreens() {
       var defer = $q.defer();
 
-      $http.get('/api/screens')
+      $http.get('/api/screen')
         .success(function (data) {
           defer.resolve(data);
         })
@@ -51,16 +74,10 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
       var defer = $q.defer();
 
       // Build query string.
-      var queryString = "?";
-      for (var i = 0; i < ids.length; i++) {
-        queryString = queryString + "ids[]=" + ids[i];
-        if (i < ids.length - 1) {
-          queryString = queryString + "&"
-        }
-      }
+      var queryString = "?ids[]=" + (ids.join('&ids[]='));
 
       // Load bulk.
-      $http.get('/api/screens/bulk' + queryString)
+      $http.get('/api/bulk/screen/api' + queryString)
         .success(function (data, status) {
           defer.resolve(data);
         })
@@ -76,7 +93,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * @param id
      * @returns {promiseAndHandler.promise|*|Promise._progressUnchecked.promise|promise|exports.exports.Reduction.promise|PromiseResolver.promise}
      */
-    factory.getEditScreen = function (id) {
+    factory.getEditScreen = function getEditScreen(id) {
       var defer = $q.defer();
 
       if (id === null || id === undefined || id === '') {
@@ -100,7 +117,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * @param id
      * @returns screen or null
      */
-    factory.getScreen = function (id) {
+    factory.getScreen = function getScreen(id) {
       var defer = $q.defer();
 
       $http.get('/api/screen/' + id)
@@ -117,7 +134,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
     /**
      * Saves screen.
      */
-    factory.saveScreen = function () {
+    factory.saveScreen = function saveScreen() {
       var defer = $q.defer();
 
       if (currentScreen === null) {
@@ -126,7 +143,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
         $http.post('/api/screen', currentScreen)
           .success(function (data) {
             currentScreen.id = data;
-            defer.resolve(data);
+            defer.resolve(currentScreen);
           })
           .error(function (data, status) {
             defer.reject(status);
@@ -140,7 +157,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'searchFactory'
      * Returns an empty screen.
      * @returns screen (empty)
      */
-    factory.emptyScreen = function () {
+    factory.emptyScreen = function emptyScreen() {
       currentScreen = {
         id: null,
         template: null,

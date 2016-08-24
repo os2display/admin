@@ -6,8 +6,8 @@
 /**
  * Media factory. Main entry to media.
  */
-angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
-  function ($http, $q, searchFactory) {
+angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'busService',
+  function ($http, $q, busService) {
     'use strict';
 
     var factory = {};
@@ -34,8 +34,31 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
      * @param search
      */
     factory.searchMedia = function (search) {
+      var deferred = $q.defer();
+
       search.type = 'Application\\Sonata\\MediaBundle\\Entity\\Media';
-      return searchFactory.search(search);
+
+      var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
+      search.callbacks = {
+        'hits': 'searchService.hits-' + uuid,
+        'error': 'searchService.error-' + uuid
+      };
+
+      busService.$once(search.callbacks.hits, function(event, data) {
+        deferred.resolve(data);
+      });
+
+      busService.$once(search.callbacks.error, function(event, args) {
+        busService.$emit('log.error', {
+          'cause': args,
+          'msg': 'Kunne ikke hente søgeresultater.'
+        });
+        deferred.reject(args);
+      });
+
+      busService.$emit('searchService.request', search);
+
+      return deferred.promise;
     };
 
     /**
@@ -47,16 +70,10 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'searchFactory',
       var defer = $q.defer();
 
       // Build query string.
-      var queryString = "?";
-      for (var i = 0; i < ids.length; i++) {
-        queryString = queryString + "ids[]=" + ids[i];
-        if (i < ids.length - 1) {
-          queryString = queryString + "&"
-        }
-      }
+      var queryString = "?ids[]=" + (ids.join('&ids[]='));
 
       // Load bulk.
-      $http.get('/api/media/bulk' + queryString)
+      $http.get('/api/bulk/media/api' + queryString)
         .success(function (data, status) {
           defer.resolve(data);
         })

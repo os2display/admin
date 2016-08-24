@@ -22,7 +22,6 @@
   &--section {
     margin: 0 auto;
     max-width: 100em;
-    padding-top: 2em;
     text-align: center;
   }
 
@@ -54,6 +53,7 @@
   &--media,
   &--channels,
   &--slides {
+    background-color: $white;
     border: 1px solid $border-color;
     margin-right: auto;
     margin-bottom: 1.5em;

@@ -6,8 +6,8 @@
 /**
  * Screens controller handles the display and selection of screens.
  */
-angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory', 'itkLog',
-  function($scope, screenFactory, userFactory, itkLog) {
+angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory', 'busService',
+  function($scope, screenFactory, userFactory, busService) {
     'use strict';
 
     $scope.loading = false;
@@ -65,7 +65,10 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
               $scope.loading = false;
             },
             function (reason) {
-              itkLog.error('Kunne ikke hente søgeresultater.', reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Kunne ikke hente søgeresultater.'
+              });
               $scope.loading = false;
             }
           );

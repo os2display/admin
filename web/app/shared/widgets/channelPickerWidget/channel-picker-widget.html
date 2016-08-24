@@ -1,14 +1,28 @@
 <div class="cpw--add-channels">
-  <input type="search" class="cpw--add-channels-search" placeholder="Søg..." size="30" maxlength="128" data-ng-change="updateSearch()" data-ng-model="search_text" data-ng-model-options="{debounce: 500}">
+  <div class="">
+    <form class="search">
+      <div class="search--input">
+        <input type="search" class="cpw--selected-channels-search"
+               placeholder="Søg..." size="30" maxlength="128"
+               data-ng-change="updateSearch()" data-ng-model="search_text"
+               data-ng-model-options="{debounce: 500}">
+      </div>
+    </form>
+  </div>
   <div class="cpw--add-channels-list">
-    <div class="cpw--add-channels-item" data-ng-repeat="channel in channels" data-ng-if="!channelSelected(channel)">
+    <div class="cpw--add-channels-item" data-ng-repeat="channel in channels">
       <div class="cpw--add-channels-item-image">
-        <ik-channel class="overview--channel-container" ik-channel="channel" ik-width="{{channel.orientation == 'portrait' ? 112.5 : 200 }}" ik-single-slide="false"></ik-channel>
+        <ik-channel class="overview--channel-container" ik-channel="channel"
+                    ik-width="{{channel.orientation == 'portrait' ? 112.5 : 200 }}"
+                    ik-single-slide="false"></ik-channel>
       </div>
       <div class="cpw--add-channels-item-content">
         <h3 class="cpw--add-channels-item-header">{{ channel.title }}</h3>
         <div class="cpw--add-channels-item-meta">{{ channel.description }}</div>
-        <a data-ng-click="addChannel(channel)" class="cpw--add-channels-item-action">Tilføj</a>
+        <a data-ng-click="addChannel(channel)" class="cpw--add-channels-item-action"
+           data-ng-if="!channelSelected(channel)">Tilføj</a>
+        <a data-ng-click="removeChannel(channel)" class="cpw--selected-channels-item-action"
+           data-ng-if="channelSelected(channel)">Fjern</a>
       </div>
     </div>
     <ik-pager></ik-pager>

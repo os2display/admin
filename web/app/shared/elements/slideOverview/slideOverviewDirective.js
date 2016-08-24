@@ -6,8 +6,8 @@
 /**
  * Directive to show the slide overview.
  */
-angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
-  function (itkLog) {
+angular.module('ikApp').directive('ikSlideOverview', ['busService',
+  function (busService) {
     'use strict';
 
     return {
@@ -71,9 +71,11 @@ angular.module('ikApp').directive('ikSlideOverview', ['itkLog',
                   $scope.loading = false;
                 },
                 function error(reason) {
+                  busService.$emit('log.error', {
+                    'cause': reason,
+                    'msg': 'Hentning af søgeresultater fejlede.'
+                  });
                   $scope.loading = false;
-
-                  itkLog.error("Hentning af søgeresultater fejlede.", reason);
                 }
               );
             }

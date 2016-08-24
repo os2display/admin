@@ -25,7 +25,7 @@
 }
 
 %control-panel--tab {
-  margin-bottom: 7em;
+  margin-bottom: 9em;
   overflow-y: auto;
   position: absolute;
   width: 100%;
@@ -35,7 +35,7 @@
   top: 0;
 
   &.has-menu {
-    margin-top: 6em;
+    margin-top: 9em;
   }
 }
 
@@ -55,6 +55,20 @@
 /* The default control panel. */
 .control-panel--main {
   @extend %control-panel-base;
+
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea {
+    background: $gray-lighter;
+  }
 }
 
 
@@ -99,12 +113,25 @@
   @extend %control-panel-base;
 
   top: 0;
+
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea {
+    background: $gray-lighter;
+  }
 }
 
 
 /* Display navigation in the control panel */
 .control-panel--nav-wrapper {
-  height: 3em;
   margin: 2em 0;
   padding: 0 2em;
   position: absolute;
@@ -117,6 +144,8 @@
 
 .control-panel--nav {
   @extend %itk--tabs; // Use the ITK tabs component.
+
+  margin-bottom: 1.5%;
 }
 
 .control-panel--nav-item {

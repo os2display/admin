@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.7.*",
+        "symfony/symfony": "2.8.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
@@ -29,10 +29,10 @@
         "jms/serializer-bundle": "~0.13",
         "jms/di-extra-bundle": "1.4.*@dev",
         "debril/rss-atom-bundle": "2.2",
-        "misd/guzzle-bundle": "~1.0",
         "jms/job-queue-bundle": "dev-master",
         "pagerfanta/pagerfanta": "^1.0",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2.1",
+        "doctrine/doctrine-migrations-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

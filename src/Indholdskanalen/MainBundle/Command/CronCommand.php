@@ -9,6 +9,7 @@
 
 namespace Indholdskanalen\MainBundle\Command;
 
+use Indholdskanalen\MainBundle\Events\CronEvent;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -38,30 +39,11 @@ class CronCommand extends ContainerAwareCommand {
    * @return int|null|void
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    // Push content to screens.
-    $middlewareCommunication = $this->getContainer()
-      ->get('indholdskanalen.middleware.communication');
-    $middlewareCommunication->pushToScreens();
+    // Send CronEvent to trigger updates.
+    $event = new CronEvent();
+    $dispatcher = $this->getContainer()->get('event_dispatcher');
+    $dispatcher->dispatch(CronEvent::EVENT_NAME, $event);
 
-    // Update shared channels.
-    if ($this->getContainer()->getParameter('sharing_enabled')) {
-      $sharingService = $this->getContainer()
-        ->get('indholdskanalen.sharing_service');
-      $sharingService->updateAllSharedChannels();
-    }
-
-    // Update calendar slides
-    $kobaService = $this->getContainer()->get('indholdskanalen.koba_service');
-    $kobaService->updateCalendarSlides();
-
-    // Update feed slides
-    $feedService = $this->getContainer()->get('indholdskanalen.feed_service');
-    $feedService->updateFeedSlides();
-
-    // Update instagram slides
-    $instagramService = $this->getContainer()->get('indholdskanalen.instagram_service');
-    $instagramService->updateInstagramSlides();
-
-    $output->writeln('Content pushed to screens.');
+    $output->writeln('Cron done.');
   }
 }

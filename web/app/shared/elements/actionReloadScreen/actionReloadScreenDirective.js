@@ -8,8 +8,8 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-angular.module('ikApp').directive('ikActionReloadScreen', ['$http', 'itkLog',
-  function ($http, itkLog) {
+angular.module('ikApp').directive('ikActionReloadScreen', ['$http', 'busService',
+  function ($http, busService) {
     'use strict';
 
     return {
@@ -24,10 +24,16 @@ angular.module('ikApp').directive('ikActionReloadScreen', ['$http', 'itkLog',
           if (result === true) {
             $http.post('/api/screen/' + scope.id + '/reload')
               .success(function () {
-                itkLog.info('Genindlæsning lykkedes.');
+                busService.$emit('log.info', {
+                  'msg': 'Genindlæsning lykkedes.',
+                  'timeout': 3000
+                });
               })
               .error(function (reason) {
-                itkLog.error('Genindlæsning lykkedes ikke!', reason);
+                busService.$emit('log.error', {
+                  'cause': reason,
+                  'msg': 'Genindlæsning lykkedes ikke! Dette kan skyldes at skærmen ikke er forbundet.'
+                });
               });
           }
         };

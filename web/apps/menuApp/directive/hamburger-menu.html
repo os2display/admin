@@ -1,0 +1,49 @@
+<!-- Open/Close hamburger menu icon -->
+<div class="hamburger-menu-toggle js-menu-toggle" data-ng-click="toggleMenu()" data-ng-class="{'open': menuOpen, 'is-hidden': !menuOpen}">
+  <!-- Styled icon -->
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<!-- Open/Close hamburger menu end -->
+<!-- Hamburger menu -->
+<div class="hamburger-menu--wrapper" data-ng-click="toggleMenu()" data-ng-class="{'is-visible': menuOpen, 'is-hidden': !menuOpen}">
+  <nav class="hamburger-menu" data-ng-show="menuOpen" data-ng-class="{'is-visible': menuOpen, 'is-hidden': !menuOpen}">
+    <div class="hamburger-menu--inner">
+      <div class="hamburger-menu--links">
+        <div class="hamburger-menu--group" data-ng-repeat="group in hamburgerMenuItems" data-ng-if="userHasPermission(group.permission)">
+          <!-- @TODO: Make into a div in the design -->
+          <div class="hamburger-menu--link">
+            {{group.title}}
+          </div>
+          <a class="hamburger-menu--link is-sub" data-ng-class="{'is-active': url == item.activeFilter}" data-ng-repeat="item in group.items" data-ng-if="userHasPermission(item.permission)" href="{{item.route}}" data-ng-click="toggleMenu()">
+            {{item.title}}
+          </a>
+        </div>
+        <!-- @TODO Find other solution for commands -->
+        <div class="hamburger-menu--group" data-ng-if="userHasPermission('super-admin')">
+          <div class="hamburger-menu--link">
+            Kommandoer
+          </div>
+          <a class="hamburger-menu--link is-sub" data-ng-if="userHasPermission('super-admin')" data-ng-click="updateTemplates()">
+            Opdater templates
+          </a>
+          <a class="hamburger-menu--link is-sub" data-ng-if="userHasPermission('super-admin')" data-ng-click="reindex()">
+            Reindekser søgning
+          </a>
+          <a class="hamburger-menu--link is-sub" data-ng-if="userHasPermission('super-admin')" data-ng-click="forcePush()">
+            Gensend alt indhold
+          </a>
+        </div>
+        <div class="hamburger-menu--group">
+          <a class="hamburger-menu--link is-sub" href="/logout">
+            Log ud
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Hamburger menu end -->
+

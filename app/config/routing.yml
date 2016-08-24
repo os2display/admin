@@ -46,3 +46,7 @@ JMSJobQueueBundle:
     resource: "@JMSJobQueueBundle/Controller/"
     type: annotation
     prefix: /admin/jobs
+
+itk_koba_integration:
+  resource: "@ItkKobaIntegrationBundle/Resources/config/routing.yml"
+  prefix:   /

@@ -6,8 +6,8 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'itkLog',
-  function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, itkLog) {
+angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'busService',
+  function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, busService) {
     'use strict';
 
     $scope.steps = 3;
@@ -33,7 +33,10 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
         $scope.slides = data;
       },
       function error(reason) {
-        itkLog.error("Hentning af slides fejlede", reason);
+        busService.$emit('log.error', {
+          'cause': reason,
+          'msg': 'Hentning af slides fejlede'
+        });
       }
     );
 
@@ -41,7 +44,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     $scope.editor = {
       slideOverviewEditor: false,
       toggleSlideOverviewEditor: function () {
-        $('html').toggleClass('is-locked');
+        busService.$emit('bodyService.toggleClass', 'is-locked');
         $scope.editor.slideOverviewEditor = !$scope.editor.slideOverviewEditor;
       }
     };
@@ -87,7 +90,10 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
             },
             function error(reason) {
               $location.path('/channel-overview');
-              itkLog.error("Hentning af valgt kanal med id:" + $routeParams.id + " fejlede", reason);
+              busService.$emit('log.error', {
+                'cause': reason,
+                'msg': 'Hentning af valgt kanal med id:' + $routeParams.id + ' fejlede'
+              });
             }
           );
         }
@@ -105,13 +111,20 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
 
         channelFactory.saveChannel().then(
           function success() {
-            itkLog.info("Kanal gemt.", 3000);
+            busService.$emit('log.info', {
+              'msg': 'Kanal gemt.',
+              'timeout': 3000
+            });
+
             $timeout(function () {
               $location.path('/channel-overview');
             }, 1000);
           },
           function error(reason) {
-            itkLog.error("Gem af kanal fejlede.", reason);
+            busService.$emit('log.error', {
+              'cause': reason,
+              'msg': 'Gem af kanal fejlede.'
+            });
             $scope.disableSubmitButton = false;
           }
         );

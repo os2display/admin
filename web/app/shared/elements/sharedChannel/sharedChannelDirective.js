@@ -8,8 +8,8 @@
  * Has a play button.
  * When pressing the channel, but not the play button, redirect to the channel editor.
  */
-angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 'cssInjector',
-  function($interval, $location, cssInjector) {
+angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location',
+  function($interval, $location) {
     'use strict';
 
     return {
@@ -43,8 +43,10 @@ angular.module('ikApp').directive('ikSharedChannel', ['$interval', '$location', 
 
           // Injector stylesheets
           scope.ikChannel.slides.forEach(function (el) {
-            // Inject stylesheet.
-            cssInjector.add(el.css_path);
+            // Inject stylesheets not already present in installation.
+            if (!$('head > link[href=\''+ el.css_path + '\']')) {
+              $('head').append('<link rel="stylesheet" href="' + el.css_path + '" type="text/css" />');
+            }
           });
         });
 
