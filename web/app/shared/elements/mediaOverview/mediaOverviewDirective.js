@@ -157,11 +157,13 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
           }
 
           if ($scope.showFromUser !== 'all') {
-            var term = {};
-            term.term = {
-              user: $scope.currentUser.id
-            };
-            search.filter.bool.must.push(term);
+            if ($scope.currentUser) {
+              var term = {};
+              term.term = {
+                user: $scope.currentUser.id
+              };
+              search.filter.bool.must.push(term);
+            }
           }
 
           $scope.updateSearch();
