@@ -51,7 +51,7 @@ services:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
     arguments: [@service_container, @indholdskanalen.template_service, @indholdskanalen.utility_service]
     tags:
-      - { name: kernel.event_listener, event: ik.cron, method: onCron }
+      - { name: kernel.event_listener, event: ik.cron, method: onCron, priority: 1 }
 
   sonata.media.provider.zencoder:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
