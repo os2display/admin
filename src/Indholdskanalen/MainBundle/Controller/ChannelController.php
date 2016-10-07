@@ -269,19 +269,21 @@ class ChannelController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
-    $dispatcher = $this->get('event_dispatcher');
-
-    // Remove from sharing indexes.
-    foreach ($channel->getSharingIndexes() as $sharingIndex) {
-      // Send event to sharingService to update channel in index.
-      $event = new SharingServiceEvent($channel, $sharingIndex);
-      $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
-    }
-
     // Create response.
     $response = new Response();
 
     if ($channel) {
+      // Remove from sharing indexes.
+      $dispatcher = $this->get('event_dispatcher');
+      foreach ($channel->getSharingIndexes() as $sharingIndex) {
+        // Send event to sharingService to update channel in index.
+        $event = new SharingServiceEvent($channel, $sharingIndex);
+        $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
+      }
+
+      // Remove the screen from the middleware.
+      $this->get('indholdskanalen.middleware.communication')->removeChannel($channel);
+
       $em = $this->getDoctrine()->getManager();
       $em->remove($channel);
       $em->flush();
