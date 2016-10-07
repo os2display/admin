@@ -17,7 +17,7 @@ angular.module('ikApp').factory('authHttpResponseInterceptor', ['$q', '$location
     return {
       responseError: function (rejection) {
         if (rejection.status === 401) {
-          $window.location.href = "/";
+          $window.location.href = "/login";
         }
         return $q.reject(rejection);
       }
