@@ -282,6 +282,30 @@ class MiddlewareCommunication {
     return $curlResult['status'] === 200;
   }
 
+  /**
+   * Remove channel
+   *
+   * @param $channel
+   *   The channel to remove.
+   * @return bool
+   *   Did it succeed?
+   */
+  public function removeChannel($channel) {
+    $middlewarePath = $this->container->getParameter('middleware_host') . $this->container->getParameter('middleware_path');
+
+    // @TODO: Handle error.
+    $curlResult = $this->utilityService->curl(
+      $middlewarePath . '/channel/' . $channel->getId(),
+      'DELETE',
+      json_encode(array('id' => $channel->getId())),
+      'middleware'
+    );
+
+    $logger = $this->container->get('logger');
+    $logger->info('Removing channel: ' . $channel->getId() . ' from middleware. Result ' . $curlResult['status']);
+
+    return $curlResult['status'] === 200;
+  }
 
   /**
    * Remove screen
@@ -294,12 +318,16 @@ class MiddlewareCommunication {
   public function removeScreen($screen) {
     $middlewarePath = $this->container->getParameter('middleware_host') . $this->container->getParameter('middleware_path');
 
+    // @TODO: Handle error.
     $curlResult = $this->utilityService->curl(
       $middlewarePath . '/screen/' . $screen->getId() . '/' . $screen->getActivationCode(),
       'DELETE',
       json_encode(array('id' => $screen->getId())),
       'middleware'
     );
+
+    $logger = $this->container->get('logger');
+    $logger->info('Removing screen: ' . $screen->getId() . ' from middleware. Result ' . $curlResult['status']);
 
     return $curlResult['status'] === 200;
   }
