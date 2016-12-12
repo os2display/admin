@@ -70,7 +70,7 @@ gulp.task('js', 'Build all custom js files into one minified js file.', function
       .pipe(uglify())
       .pipe(rename({extname: ".min.js"}))
       .pipe(header(banner, {pkg: pkg}))
-      .pipe(gulp.dest(adminBuildDir))
+      .pipe(gulp.dest(adminBuildDir));
   }
 );
 
@@ -83,7 +83,7 @@ gulp.task('assets', 'Build all asset js files into one minified js file.', funct
     .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(rename({extname: ".min.js"}))
-    .pipe(gulp.dest(adminBuildDir))
+    .pipe(gulp.dest(adminBuildDir));
 });
 
 /**
@@ -115,18 +115,18 @@ var templatesPath = './web/templates/';
 // @TODO: Discover this structure automatically
 var templates = {
   'screens': {
-    'default': ['five-sections', 'three-columns', 'two-columns'],
-    'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows', 'itk-three-split'],
-    'mso': ['mso-five-sections', 'mso-four-sections'],
-    'mbu': ['mbu-three-split'],
-    'itk': ['itk-three-split']
+    'default_templates': ['five-sections', 'three-columns', 'two-columns'],
+    'dokk1_templates': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows'],
+    'mso_templates': ['mso-five-sections', 'mso-four-sections'],
+    'mbu_templates': ['mbu-three-split'],
+    'itk_templates': ['itk-three-split']
   },
   'slides': {
-    'aarhus': ['rss-aarhus'],
-    'default': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top'],
-    'dokk1': ['dokk1-info', 'dokk1-multiple-calendar', 'dokk1-single-calendar', 'wayfinding', 'dokk1-instagram', 'dokk1-coming-events'],
-    'mso': ['event-calendar', 'header-top', 'mso-iframe'],
-    'mbu': ['mbu-header', 'mbu-footer']
+    'aarhus_templates': ['rss-aarhus'],
+    'default_templates': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top'],
+    'dokk1_templates': ['dokk1-info', 'dokk1-multiple-calendar', 'dokk1-single-calendar', 'wayfinding', 'dokk1-coming-events', 'dokk1-text-and-image'],
+    'mso_templates': ['event-calendar', 'header-top', 'mso-iframe'],
+    'mbu_templates': ['mbu-header', 'mbu-footer']
   }
 };
 
@@ -134,6 +134,8 @@ var templates = {
  * Process SCSS using libsass
  */
 gulp.task('sassTemplates', 'Compile the sass for each templates into minified css files.', function () {
+  'use strict';
+
   // Iterates through the screen and slide templates defined in templates variable, and compresses each one.
   for (var templateType in templates) {
     if (templates.hasOwnProperty(templateType)) {
@@ -142,14 +144,16 @@ gulp.task('sassTemplates', 'Compile the sass for each templates into minified cs
           var arr = templates[templateType][folder];
 
           arr.forEach(function (element) {
-            gulp.src(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/' + element + '.scss')
+            var path = templatesPath + folder + '/' + templateType + '/' + element + '/';
+
+            gulp.src(path + element + '.scss')
               .pipe(sass({
                 outputStyle: 'compressed',
                 includePaths: [
                   './web/sass/compass-mixins/lib'
                 ]
               }).on('error', sass.logError))
-              .pipe(gulp.dest(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/'));
+              .pipe(gulp.dest(path));
           });
         }
       }
