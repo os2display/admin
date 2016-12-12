@@ -160,10 +160,10 @@ class KobaService {
         $interestInterval = max(0, $interestInterval - 1);
 
         // Move today with number of requested days.
-        $todayEnd = strtotime('+' . $interestInterval . ' days', $todayEnd);
+        $end = strtotime('+' . $interestInterval . ' days', $todayEnd);
 
         try{
-          $resourceBookings = $this->getResourceBookings($resource['mail'], 'default', $todayStart, $todayEnd);
+          $resourceBookings = $this->getResourceBookings($resource['mail'], 'default', $todayStart, $end);
 
           if (count($resourceBookings) > 0) {
             $bookings = array_merge($bookings, $resourceBookings);
