@@ -123,7 +123,7 @@ var templates = {
   },
   'slides': {
     'aarhus_templates': ['rss-aarhus'],
-    'default_templates': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top'],
+    'default_templates': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top', 'slideshow'],
     'dokk1_templates': ['dokk1-info', 'dokk1-multiple-calendar', 'dokk1-single-calendar', 'wayfinding', 'dokk1-coming-events', 'dokk1-text-and-image'],
     'mso_templates': ['event-calendar', 'header-top', 'mso-iframe'],
     'mbu_templates': ['mbu-header', 'mbu-footer']

@@ -1,0 +1,48 @@
+<!-- Background editor -->
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.hideEditors()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--background-page">
+      <div class="edit-menu--background-page-inner">
+        <h2 class="edit-menu--background-header">Vælg effekter</h2>
+        <div class="edit-menu--background-content">
+          <div class="edit-menu--iframe-content">
+            <label class="edit-menu-background--label">Vælg varighed pr. billede i sekunder</label>
+            <input type="number" data-ng-model="ikSlide.options.duration">
+          </div>
+
+          <div class="edit-menu--iframe-content">
+            <label class="edit-menu-background--label">Vælg animationseffekter</label>
+            <div class="edit-menu--static-color-wrapper">
+              <div class="edit-menu--static-color-items">
+                <label><input type="radio" ng-model="ikSlide.options.animation" value="random">Tilfældig</label>
+                <label><input type="radio" ng-model="ikSlide.options.animation" value="zoom-in-middle">Zoom ind fra midten</label>
+                <label><input type="radio" ng-model="ikSlide.options.animation" value="zoom-out-middle">Zoom ud fra midten</label>
+                <label><input type="radio" ng-model="ikSlide.options.animation" value="zoom-in-random">Zoom ind fra tilfældigt</label>
+                <label><input type="radio" ng-model="ikSlide.options.animation" value="zoom-out-random">Zoom ud fra tilfældigt</label>
+                <label><input type="radio" ng-model="ikSlide.options.animation" value="">Ingen effekt</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="edit-menu--iframe-content">
+            <label class="edit-menu-background--label">Vælg overgangseffekt</label>
+            <div class="edit-menu--static-color-wrapper">
+              <div class="edit-menu--static-color-items">
+                <label><input type="radio" ng-model="ikSlide.options.fade" value="">Ingen effekt</label>
+                <label><input type="radio" ng-model="ikSlide.options.fade" value="fade">Fade</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

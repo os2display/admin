@@ -1,0 +1,40 @@
+{
+  "id": "slideshow",
+  "type": "slide",
+  "name": "Slideshow",
+  "icon": "slideshow.png",
+  "paths": {
+    "live": "slideshow.html",
+    "edit": "slideshow-preview.html",
+    "preview": "slideshow-preview.html",
+    "css": "slideshow.css",
+    "js": "../../../js/slideshowSlide.js"
+  },
+  "orientation": "landscape",
+  "slide_type": "slideshow",
+  "media_type": "image",
+  "script_id": "slideshow",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "duration": "10",
+    "animation": "",
+    "fade": "fade"
+  },
+  "tools": [
+    {
+      "name": "Billeder",
+      "id": "slideshow-editor"
+    },
+    {
+      "name": "Effekter",
+      "id": "slideshow-effects-editor"
+    },
+    {
+      "name": "Rækkefølge",
+      "id": "slideshow-order-editor"
+    }
+  ]
+}

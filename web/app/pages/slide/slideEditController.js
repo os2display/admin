@@ -219,6 +219,36 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       $scope.slide.external_data = arr;
     };
 
+    /**
+     * Add a media to $scope.slide.media.
+     *
+     * @param media
+     */
+    var addMedia = function (media) {
+      var mediaList = [];
+      var mediaRemoved = false;
+
+      for (var i = 0; i < $scope.slide.media.length; i++) {
+        var element = $scope.slide.media[i];
+
+        if (element.id !== media.id) {
+          // Open up for multiple images in slideshow
+          if ($scope.slide.slide_type === 'slideshow') {
+            mediaList.push(element);
+          }
+        }
+        else {
+          mediaRemoved = true;
+        }
+      }
+
+      if (!mediaRemoved) {
+        mediaList.push(media);
+      }
+
+      $scope.slide.media = mediaList;
+    };
+
     // Register event listener for select media.
     $scope.$on('mediaOverview.selectMedia', function (event, media) {
       if (media.media_type === 'logo') {
@@ -227,64 +257,42 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         $scope.logoStep = 'logo-picker';
       }
       else {
-        var containsMedia = false;
-
-        $scope.slide.media.forEach(function (element) {
-          if (element.id === media.id) {
-            containsMedia = true;
-          }
-        });
-
-        if (containsMedia) {
-          $scope.slide.media.length = 0;
-        }
-        else {
-          $scope.slide.media.length = 0;
-          $scope.slide.media.push(media);
-        }
-
-        // Hide editors.
-        $scope.editor.hideEditors();
+        addMedia(media);
       }
     });
 
     // Register event listener for media upload success.
     $scope.$on('mediaUpload.uploadSuccess', function (event, data) {
-      var allSuccess = true;
+      mediaFactory.getMedia(data.id).then(
+        function success(media) {
+          if (media.media_type === 'logo') {
+            $scope.slide.logo = media;
 
-      for (var i = 0; i < data.queue.length; i++) {
-        var item = data.queue[i];
-
-        if (!item.isSuccess) {
-          allSuccess = false;
-          break;
-        }
-      }
-
-      // If all the data items were uploaded correctly.
-      if (allSuccess) {
-        mediaFactory.getMedia(data.id).then(
-          function success(media) {
-            if (media.media_type === 'logo') {
-              $scope.slide.logo = media;
-
-              $scope.logoStep = 'logo-picker';
+            $scope.logoStep = 'logo-picker';
+          }
+          else {
+            if ($scope.slide.slide_type === 'slideshow') {
+              $scope.slide.media.push(media);
             }
             else {
-              $scope.slide.media.length = 0;
-              $scope.slide.media.push(media);
-
-              // Hide editors.
-              $scope.editor.hideEditors();
+              $scope.slide.media = [media];
             }
-          },
-          function error(reason) {
-            busService.$emit('log.error', {
-              'cause': reason,
-              'msg': 'Kunne ikke tilføje media.'
-            });
           }
-        );
+        },
+        function error(reason) {
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Kunne ikke tilføje media.'
+          });
+        }
+      );
+
+      var notAllSuccess = data.queue.find(function (item, index) {
+        return !item.isSuccess;
+      });
+
+      if (!notAllSuccess) {
+        $scope.editor.hideEditors();
       }
     });
 
