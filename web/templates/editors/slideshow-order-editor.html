@@ -11,8 +11,19 @@
     </div>
     <div class="edit-menu--background-page">
       <div class="edit-menu--background-page-inner">
-        <div data-ng-repeat="mediaElement in slide.media">
-          <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
+        <div class="create-channel--slides">
+            <div data-ng-repeat="mediaElement in slide.media" class="create-channel--slide-order-element">
+              <div class="create-channel--slide-order-link">
+                <span class="create-channel--slide-order-arrow-left" data-ng-click="pushMediaLeft($index)">
+                    <img class="create-channel--arrow-left-image" src="images/arrow-backward.png">
+                </span>
+                <span class="create-channel--slide-order-number">{{$index + 1}}</span>
+                <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
+                <span class="create-channel--slide-order-arrow-right" data-ng-click="pushMediaRight($index)">
+                    <img class="create-channel--arrow-right-image" src="images/arrow-forward.png">
+                </span>
+              </div>
+            </div>
         </div>
       </div>
     </div>

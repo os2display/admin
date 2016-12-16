@@ -299,6 +299,40 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     $scope.step = 'background-picker';
 
     /**
+     * Change the positioning of two array elements.
+     * */
+    function swapArrayEntries(arr, firstIndex, lastIndex) {
+      var temp = arr[firstIndex];
+      arr[firstIndex] = arr[lastIndex];
+      arr[lastIndex] = temp;
+    }
+
+    /**
+     * Push a media right.
+     * @param arrowPosition the position of the arrow.
+     */
+    $scope.pushMediaRight = function pushMediaRight(arrowPosition) {
+      if (arrowPosition === $scope.slide.media.length - 1) {
+        swapArrayEntries($scope.slide.media, arrowPosition, 0);
+      }
+      else {
+        swapArrayEntries($scope.slide.media, arrowPosition, arrowPosition + 1);
+      }
+    };
+
+    /**
+     * Push a media left.
+     * @param arrowPosition the position of the arrow.
+     */
+    $scope.pushMediaLeft = function pushMediaLeft(arrowPosition) {
+      if (arrowPosition === 0) {
+        swapArrayEntries($scope.slide.media, arrowPosition, $scope.slide.media.length - 1);
+      }
+      else {
+        swapArrayEntries($scope.slide.media, arrowPosition, arrowPosition - 1);
+      }
+    };
+    /**
      * Set the step to background-picker.
      */
     $scope.backgroundPicker = function backgroundPicker() {

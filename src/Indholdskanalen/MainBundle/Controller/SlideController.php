@@ -147,6 +147,8 @@ class SlideController extends Controller {
     $mediaRepository = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
     $mediaOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder');
 
+    $mediaIndex = 0;
+
     foreach ($post->media as $media) {
       $media = $mediaRepository->findOneById($media->id);
 
@@ -158,27 +160,22 @@ class SlideController extends Controller {
         )
       );
       if (!$mediaOrder) {
-        // Find the next sort order index for the given channel.
-        $index = 0;
-        $mediaLargestSortOrder = $mediaOrderRepository->findOneBy(
-          array('media' => $media),
-          array('sortOrder' => 'DESC')
-        );
-        if ($mediaLargestSortOrder) {
-          $index = $mediaLargestSortOrder->getSortOrder();
-        }
-
         // Create new ChannelSlideOrder.
         $mediaOrder = new MediaOrder();
         $mediaOrder->setMedia($media);
         $mediaOrder->setSlide($slide);
-        $mediaOrder->setSortOrder($index + 1);
+        $mediaOrder->setSortOrder($mediaIndex);
 
         // Save the ChannelSlideOrder.
         $em->persist($mediaOrder);
 
         $slide->addMediaOrder($mediaOrder);
       }
+      else {
+        $mediaOrder->setSortOrder($mediaIndex);
+      }
+
+      $mediaIndex++;
     }
 
     // Set logo
