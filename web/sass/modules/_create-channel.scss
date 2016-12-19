@@ -251,14 +251,14 @@ $breakpoint-arrow-switch : 693px;
   }
 
   &--slide-unpublished-overlay {
-    background: $white;
+    background: #fff repeating-linear-gradient(-55deg, #ddd, #ddd 30px, #ccc 30px, #ccc 60px);
     height: 168.75px; // Static since we are working within a static div anyway.
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 1;
 
-    @include opacity(.7);
+    @include opacity(.3);
   }
 
   &--slide-unpublished-icon {

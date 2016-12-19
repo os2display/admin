@@ -6,8 +6,8 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'busService',
-  function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, busService) {
+angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService',
+  function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService) {
     'use strict';
 
     $scope.steps = 3;
@@ -199,6 +199,55 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
       else {
         $scope.channel.slides.push(slide);
       }
+    };
+
+    /**
+     * Is the slide scheduled for now?
+     *
+     * @param slide
+     */
+    $scope.slideScheduledNow = function slideScheduledNow(slide) {
+      if (!slide.published) {
+        return false;
+      }
+
+      var now = new Date();
+      now = parseInt(now.getTime() / 1000);
+
+      if (slide.hasOwnProperty('schedule_from') && now < slide.schedule_from) {
+        return false;
+      }
+      else if (slide.hasOwnProperty('schedule_to') && now > slide.schedule_to) {
+        return false;
+      }
+
+      return true;
+    };
+
+    /**
+     * Get scheduled text for slide.
+     *
+     * @param slide
+     */
+    $scope.getScheduledText = function getScheduledText(slide) {
+      var text = '';
+
+      if (!slide.published) {
+        text = text + "\nDette slide er ikke markeret som udgivet!\n";
+      }
+      else {
+        text = text + "\n";
+      }
+
+      if (slide.hasOwnProperty('schedule_from')) {
+        text = text + "Udgivelse fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+      }
+
+      if (slide.hasOwnProperty('schedule_to')) {
+        text = text + "Udgivelse til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+      }
+
+      return text;
     };
 
     /**
