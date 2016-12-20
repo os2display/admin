@@ -364,4 +364,15 @@ $breakpoint-arrow-switch : 693px;
     cursor: pointer;
     text-decoration: underline;
   }
+
+  &--sort-filters {
+    width: 50%;
+    margin: 1em auto 2em;
+  }
+
+  &--sort-filters-button {
+    &:hover {
+      background: $gray-lighter;
+    }
+  }
 }
