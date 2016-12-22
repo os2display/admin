@@ -346,5 +346,18 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
       }
     };
+
+    /**
+     * Handle drop element. Move elements around.
+     * @param item
+     * @param bin
+     */
+    $scope.handleDrop = function(item, bin) {
+      item = parseInt(item.split('index-')[1]);
+      bin = parseInt(bin.split('index-')[1]);
+
+      var el = $scope.channel.slides.splice(item, 1);
+      $scope.channel.slides.splice(bin, 0, el[0]);
+    };
   }
 ]);

@@ -16,7 +16,10 @@
 
     <div class="create-channel--slides">
       <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
-        <div class="create-channel--slide-order-link">
+        <div class="create-channel--slide-order-link"
+             droppable drop="handleDrop"
+             id="index-{{ $index }}"
+             draggable>
           <div data-ng-if="slideScheduledNow(slide)">
             <img class="create-channel--slide-published-icon" src="/images/icons/check-circle-full-icon.png" title="Dette slide vil blive vist lige nu.">
           </div>
@@ -33,6 +36,7 @@
         </div>
       </div>
     </div>
+
     <div class="create-channel--finish-button">
       <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
       <input type="submit" class="create-channel--button" value="Fortsæt" data-ng-click="submitStep()">

@@ -215,8 +215,13 @@ $breakpoint-arrow-switch : 693px;
   &--slide-order-link {
     display: inline-block;
     position: relative;
+    border: 2px solid transparent;
 
     @include strip-link-styles();
+
+    &.over {
+      border: 2px dashed #62B001;
+    }
   }
 
   &--publishing {
