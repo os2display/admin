@@ -332,6 +332,15 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         swapArrayEntries($scope.slide.media, arrowPosition, arrowPosition - 1);
       }
     };
+
+    /**
+     * Remove mediaElement from media.
+     * @param index
+     */
+    $scope.removeMedia = function removeMedia(index) {
+      $scope.slide.media.splice(index, 1);
+    };
+
     /**
      * Set the step to background-picker.
      */

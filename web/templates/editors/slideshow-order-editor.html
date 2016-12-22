@@ -18,6 +18,7 @@
                     <img class="create-channel--arrow-left-image" src="images/arrow-backward.png">
                 </span>
                 <span class="create-channel--slide-order-number">{{$index + 1}}</span>
+                <img class="overview--channel-remove" data-ng-click="removeMedia($index)" src="/images/icons/cancel-icon.png">
                 <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
                 <span class="create-channel--slide-order-arrow-right" data-ng-click="pushMediaRight($index)">
                     <img class="create-channel--arrow-right-image" src="images/arrow-forward.png">
