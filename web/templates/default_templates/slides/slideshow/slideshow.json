@@ -19,13 +19,13 @@
     "height": "1080"
   },
   "empty_options": {
-    "duration": "10",
+    "duration": 10,
     "animation": "",
     "fade": "fade"
   },
   "tools": [
     {
-      "name": "Billeder",
+      "name": "Tilføj billeder",
       "id": "slideshow-editor"
     },
     {
