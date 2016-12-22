@@ -13,7 +13,10 @@
       <div class="edit-menu--background-page-inner">
         <div class="create-channel--slides">
             <div data-ng-repeat="mediaElement in slide.media" class="create-channel--slide-order-element">
-              <div class="create-channel--slide-order-link">
+              <div class="create-channel--slide-order-link"
+                   droppable drop="handleDropMedia"
+                   id="index-{{ $index }}"
+                   draggable>
                 <span class="create-channel--slide-order-arrow-left" data-ng-click="pushMediaLeft($index)">
                     <img class="create-channel--arrow-left-image" src="images/arrow-backward.png">
                 </span>

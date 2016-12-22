@@ -454,5 +454,19 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
         text: "Ekstra stor (40% af skærmen)"
       }
     ];
+
+
+    /**
+     * Handle drop media. Move elements around.
+     * @param item
+     * @param bin
+     */
+    $scope.handleDropMedia = function handleDropMedia(item, bin) {
+      item = parseInt(item.split('index-')[1]);
+      bin = parseInt(bin.split('index-')[1]);
+
+      var el = $scope.slide.media.splice(item, 1);
+      $scope.slide.media.splice(bin, 0, el[0]);
+    };
   }
 ]);
