@@ -21,7 +21,14 @@
   "empty_options": {
     "duration": 10,
     "animation": "",
-    "fade": "fade"
+    "fade": "fade",
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
   },
   "tools": [
     {
@@ -35,6 +42,10 @@
     {
       "name": "Rækkefølge",
       "id": "slideshow-order-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
     }
   ]
 }
