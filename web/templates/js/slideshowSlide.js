@@ -49,12 +49,12 @@ if (!window.slideFunctions['slideshow']) {
               setRandomOrigin = true;
             }
           }
-          else if (slide.options.animation === 'zoom-out-random') {
-            selectedStyle = 1;
+          else if (slide.options.animation === 'zoom-in-random') {
+            selectedStyle = 0;
             setRandomOrigin = true;
           }
-          else if (slide.options.animation === 'zoom-in-random') {
-            selectedStyle = 2;
+          else if (slide.options.animation === 'zoom-out-random') {
+            selectedStyle = 1;
             setRandomOrigin = true;
           }
 
