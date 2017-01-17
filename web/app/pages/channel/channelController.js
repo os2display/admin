@@ -6,7 +6,8 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService',
+angular.module('ikApp').controller('ChannelController', [
+  '$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService',
   function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService) {
     'use strict';
 
@@ -59,7 +60,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      */
     function loadStep(step) {
       $scope.step = step;
-      $scope.templatePath = '/app/pages/channel/channel-step' + $scope.step + '.html?' + window.config.version
+      $scope.templatePath = '/app/pages/channel/channel-step' + $scope.step + '.html?' + window.config.version;
     }
 
     /**
@@ -71,8 +72,9 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
         // If the ID is not set, get an empty channel.
         $scope.channel = channelFactory.emptyChannel();
         loadStep(1);
-      } else {
-        if ($routeParams.id == null || $routeParams.id == undefined || $routeParams.id == '') {
+      }
+      else {
+        if ($routeParams.id === null || $routeParams.id === undefined || $routeParams.id === '') {
           $location.path('/channel');
         }
         else {
@@ -106,7 +108,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * Submit a step in the installation process.
      */
     $scope.submitStep = function () {
-      if ($scope.step == $scope.steps) {
+      if ($scope.step === $scope.steps) {
         $scope.disableSubmitButton = true;
 
         channelFactory.saveChannel().then(
@@ -128,7 +130,8 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
             $scope.disableSubmitButton = false;
           }
         );
-      } else {
+      }
+      else {
         loadStep($scope.step + 1);
       }
     };
@@ -150,7 +153,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
       var res = false;
 
       $scope.channel.slides.forEach(function (element) {
-        if (id == element.id) {
+        if (id === element.id) {
           res = true;
         }
       });
@@ -187,8 +190,8 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     $scope.toggleSlide = function toggleSlide(slide) {
       var res = null;
 
-      $scope.channel.slides.forEach(function (element, index, array) {
-        if (slide.id == element.id) {
+      $scope.channel.slides.forEach(function (element, index) {
+        if (slide.id === element.id) {
           res = index;
         }
       });
@@ -283,7 +286,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * @param arrowPosition the position of the arrow.
      */
     $scope.pushRight = function pushRight(arrowPosition) {
-      if (arrowPosition == $scope.channel.slides.length - 1) {
+      if (arrowPosition === $scope.channel.slides.length - 1) {
         swapArrayEntries($scope.channel.slides, arrowPosition, 0);
       }
       else {
@@ -296,7 +299,7 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * @param arrowPosition the position of the arrow.
      */
     $scope.pushLeft = function pushLeft(arrowPosition) {
-      if (arrowPosition == 0) {
+      if (arrowPosition === 0) {
         swapArrayEntries($scope.channel.slides, arrowPosition, $scope.channel.slides.length - 1);
       }
       else {
@@ -309,12 +312,55 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
      * @param item
      * @param bin
      */
-    $scope.handleDrop = function(item, bin) {
+    $scope.handleDrop = function (item, bin) {
       item = parseInt(item.split('index-')[1]);
       bin = parseInt(bin.split('index-')[1]);
 
       var el = $scope.channel.slides.splice(item, 1);
       $scope.channel.slides.splice(bin, 0, el[0]);
+    };
+
+    /**
+     * Shuffle an array.
+     *
+     * @param array
+     * @return {*}
+     */
+    function shuffle(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    }
+
+    /**
+     * Sort the slides according to criteria.
+     *
+     * Defaults to alphabetic.
+     *
+     * @param sortCriteria
+     */
+    $scope.sortSlides = function sortSlides(sortCriteria) {
+      if (sortCriteria === 'random') {
+        $scope.channel.slides = shuffle($scope.channel.slides);
+        return;
+      }
+
+      var reverse = $scope.lastSortUsed === sortCriteria;
+
+      $scope.lastSortUsed = sortCriteria;
+
+      $scope.channel.slides = $filter('orderBy')($scope.channel.slides, reverse ? "-" : "" + sortCriteria);
     };
   }
 ]);
