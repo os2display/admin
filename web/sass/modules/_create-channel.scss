@@ -256,7 +256,7 @@ $breakpoint-arrow-switch : 693px;
   }
 
   &--slide-unpublished-overlay {
-    background: #fff repeating-linear-gradient(-55deg, #ddd, #ddd 30px, #ccc 30px, #ccc 60px);
+    background: #fff repeating-linear-gradient(-55deg, #ccc, #ccc 30px, #777 30px, #777 60px);
     height: 168.75px; // Static since we are working within a static div anyway.
     position: absolute;
     top: 0;
