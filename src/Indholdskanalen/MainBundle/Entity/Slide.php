@@ -66,31 +66,31 @@ class Slide {
 
   /**
    * @ORM\Column(name="user", type="integer", nullable=true)
-   * @Groups({"api", "search"})
+   * @Groups({"api", "api-bulk", "search"})
    */
   private $user;
 
   /**
    * @ORM\Column(name="duration", type="integer", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $duration;
 
   /**
    * @ORM\Column(name="schedule_from", type="integer", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $scheduleFrom;
 
   /**
    * @ORM\Column(name="schedule_to", type="integer", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $scheduleTo;
 
   /**
    * @ORM\Column(name="published", type="boolean", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $published;
 

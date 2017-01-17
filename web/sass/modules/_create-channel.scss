@@ -215,8 +215,13 @@ $breakpoint-arrow-switch : 693px;
   &--slide-order-link {
     display: inline-block;
     position: relative;
+    border: 2px solid transparent;
 
     @include strip-link-styles();
+
+    &.over {
+      border: 2px dashed #62B001;
+    }
   }
 
   &--publishing {
@@ -251,14 +256,14 @@ $breakpoint-arrow-switch : 693px;
   }
 
   &--slide-unpublished-overlay {
-    background: $white;
+    background: #fff repeating-linear-gradient(-55deg, #ccc, #ccc 30px, #777 30px, #777 60px);
     height: 168.75px; // Static since we are working within a static div anyway.
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 1;
 
-    @include opacity(.7);
+    @include opacity(.3);
   }
 
   &--slide-unpublished-icon {
@@ -363,5 +368,16 @@ $breakpoint-arrow-switch : 693px;
   &--remove-link {
     cursor: pointer;
     text-decoration: underline;
+  }
+
+  &--sort-filters {
+    width: 50%;
+    margin: 1em auto 2em;
+  }
+
+  &--sort-filters-button {
+    &:hover {
+      background: $gray-lighter;
+    }
   }
 }

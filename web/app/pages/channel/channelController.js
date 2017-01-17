@@ -6,8 +6,8 @@
 /**
  * Channel controller. Controls the channel creation process.
  */
-angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', 'channelFactory', 'slideFactory', 'busService',
-  function ($scope, $location, $routeParams, $timeout, channelFactory, slideFactory, busService) {
+angular.module('ikApp').controller('ChannelController', ['$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService',
+  function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService) {
     'use strict';
 
     $scope.steps = 3;
@@ -202,6 +202,55 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
     };
 
     /**
+     * Is the slide scheduled for now?
+     *
+     * @param slide
+     */
+    $scope.slideScheduledNow = function slideScheduledNow(slide) {
+      if (!slide.published) {
+        return false;
+      }
+
+      var now = new Date();
+      now = parseInt(now.getTime() / 1000);
+
+      if (slide.hasOwnProperty('schedule_from') && now < slide.schedule_from) {
+        return false;
+      }
+      else if (slide.hasOwnProperty('schedule_to') && now > slide.schedule_to) {
+        return false;
+      }
+
+      return true;
+    };
+
+    /**
+     * Get scheduled text for slide.
+     *
+     * @param slide
+     */
+    $scope.getScheduledText = function getScheduledText(slide) {
+      var text = '';
+
+      if (!slide.published) {
+        text = text + "\nIkke markeret som udgivet!\n";
+      }
+      else {
+        text = text + "\n";
+      }
+
+      if (slide.hasOwnProperty('schedule_from')) {
+        text = text + "Udgivet fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+      }
+
+      if (slide.hasOwnProperty('schedule_to')) {
+        text = text + "Udgivet til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+      }
+
+      return text;
+    };
+
+    /**
      * Change channel creation step.
      * @param step
      */
@@ -253,6 +302,19 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
       else {
         swapArrayEntries($scope.channel.slides, arrowPosition, arrowPosition - 1);
       }
+    };
+
+    /**
+     * Handle drop element. Move elements around.
+     * @param item
+     * @param bin
+     */
+    $scope.handleDrop = function(item, bin) {
+      item = parseInt(item.split('index-')[1]);
+      bin = parseInt(bin.split('index-')[1]);
+
+      var el = $scope.channel.slides.splice(item, 1);
+      $scope.channel.slides.splice(bin, 0, el[0]);
     };
   }
 ]);

@@ -18,7 +18,8 @@ angular.module('ikApp').directive('ikMediaUpload', [
     return {
       restrict: 'E',
       scope: {
-        ikUploadType: '@'
+        ikUploadType: '@',
+        queueLimit: '='
       },
       controller: function ($scope, FileUploader) {
         $scope.currentStep = 1;
@@ -43,7 +44,7 @@ angular.module('ikApp').directive('ikMediaUpload', [
         // Create an uploader
         $scope.uploader = new FileUploader({
           url: '/api/media',
-          queueLimit: 1,
+          queueLimit: $scope.queueLimit ? $scope.queueLimit : 1,
           filters: [{
             name: 'mediaFilter',
             fn: function (item /*{File|FileLikeObject}*/) {

@@ -17,6 +17,8 @@ angular.module('ikApp', [
     'ngLocale',
     'taiPlaceholder',
     'ngModal',
+    'angular-dnd',
+    '720kb.tooltips',
 
     'busModule',
 
