@@ -10,6 +10,7 @@ namespace Kkb\Ding2IntegrationBundle\Service;
 
 use DateTime;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Indholdskanalen\MainBundle\Entity\Slide;
 use Indholdskanalen\MainBundle\Events\CronEvent;
 
 /**
@@ -24,6 +25,13 @@ class Ding2Service {
   private $dingUrl;
   private $initialized = FALSE;
   const OPENING_HOURS_FEED_PATH = '/opening_hours/instances?from_date=%from%&to_date=%to%&nid=%nid%';
+  const DING_EVENTS_FEED_PATH = '/kultunaut_export/%slug%';
+  // Eg. "fredag d. 9. december 2016"
+  const HUMAN_DATE_FORMAT_FULL = "%A d. %e. %B %Y";
+  protected $today;
+  protected $today_formatted;
+  protected $tomorrow;
+  protected $tomorrow_formatted;
 
   /**
    * A time-interval can have a notice associated, this is used when
@@ -45,6 +53,11 @@ class Ding2Service {
    * @param $container
    */
   public function __construct($container) {
+    $this->tomorrow = new DateTime('tomorrow');
+    $this->today = new DateTime('today');
+    $this->tomorrow_formatted = $this->tomorrow->format('Y-m-d');
+    $this->today_formatted = $this->today->format('Y-m-d');
+
     $this->container = $container;
     $this->entityManager = $this->container->get('doctrine')->getManager();
     $this->slideRepo = $container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide');
@@ -78,7 +91,13 @@ class Ding2Service {
    */
   public function onCron(CronEvent $event) {
     if ($this->initialized) {
+
+      $old_locale = setlocale(LC_TIME, 0);
+      // Setup a time-stamp to display at the top of the screen. We want
+      setlocale(LC_TIME, "da_DK.utf8");
       $this->updateOpeningHours();
+      $this->updateDingEvents();
+      setlocale(LC_TIME, $old_locale);
     } 
   }
 
@@ -86,12 +105,14 @@ class Ding2Service {
    * Locate all opening-hours slides and download their feeds.
    */
   protected function updateOpeningHours() {
+    /** @var Slide[] $slide */
     $slides = $this->slideRepo->findBySlideType('opening-hours');
 
     $today = new DateTime('today');
     $today_string = $today->format('Y-m-d');
     $tomorrow = new DateTime('tomorrow');
     $tomorrow_string = $tomorrow->format('Y-m-d');
+
     foreach ($slides as $slide) {
       $options = $slide->getOptions();
 
@@ -129,7 +150,6 @@ class Ding2Service {
 
         list($json, $error) = $this->retriveFeed($url);
         if ($error) {
-          $this->logger->error('Ding2Service: Unable to download feed from ' . $url . ' : ' . $error);
           continue;
         }
         $data = \json_decode($json, TRUE);
@@ -201,11 +221,9 @@ class Ding2Service {
       }
       // Generate texts for the intervals.
       $interval_texts = $this->generateTexts($intervals);
-      // Setup a time-stamp to display at the top of the screen. We want
-      setlocale(LC_TIME, "da_DK.utf8");
-      $today_presentable = strftime("%a. %e/%l", $today->getTimestamp());
+      $date_headline = strftime(self::HUMAN_DATE_FORMAT_FULL, $today->getTimestamp());
       // Prepare the texts for openingHoursSlide.js to pick up.
-      $slide->setExternalData(['intervalTexts' => $interval_texts, 'date' => $today_presentable]);
+      $slide->setExternalData(['intervalTexts' => $interval_texts, 'date_headline' => $date_headline]);
       $this->entityManager->flush();
 
     }
@@ -223,10 +241,19 @@ class Ding2Service {
     curl_setopt($curl, CURLOPT_TIMEOUT, 10);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
     curl_setopt($curl, CURLOPT_MAXREDIRS, 5);
-    $json = curl_exec($curl);
+    $this->logger->info("Ding2Service: Fetching feed at $url");
+    $response = curl_exec($curl);
     $error = curl_error($curl);
     curl_close($curl);
-    return array($json, $error);
+
+    if (!empty($error)) {
+      $this->logger->error(
+        'Ding2Service: Error while fetching feed ' . $url . ' : ' . $error
+      );
+    }
+
+
+    return array($response, $error);
   }
 
   /**
@@ -270,7 +297,7 @@ class Ding2Service {
     if (isset($intervals['citizenservices']['open'])) {
       // If the interval is non-null, it means the library has Citizen
       // Services, but it may still be closed.
-      if ($intervals['citizenservices']['open'] === 'closed') {
+      if (TRUE || $intervals['citizenservices']['open'] === 'closed') {
         $texts['citizenservices']['open'] = "I dag er Borgerservice lukket";
       }
       else {
@@ -278,5 +305,125 @@ class Ding2Service {
       }
     }
      return $texts;
+  }
+
+  /**
+   * Finds all ding-event slides and updates their external-data.
+   */
+  protected function updateDingEvents() {
+    // Get our slides and go trough each looking for feeds to import
+    /** @var Slide[] $slides */
+    $slides = $this->slideRepo->findBySlideType('ding-events');
+    foreach ($slides as $slide) {
+      $options = $slide->getOptions();
+
+      // Fetch feed by library-slug.
+      if (empty($options['slug'])) {
+        continue;
+      }
+      $slug = $options['slug'];
+      // Build up the full feed URL.
+      $replacements = [
+        '%slug%' => $slug,
+      ];
+      $url = $this->dingUrl . str_replace(
+          array_keys($replacements),
+          array_values($replacements),
+          self::DING_EVENTS_FEED_PATH
+        );
+      list($response, $error) = $this->retriveFeed($url);
+      if ($error) {
+        // Error has been logged, so just continue.
+        continue;
+      }
+
+      // Parse XML.
+      libxml_use_internal_errors(true);
+      $xml = simplexml_load_string($response);
+      if ($xml === FALSE) {
+        echo "Failed loading XML\n";
+        $errors = [];
+        foreach(libxml_get_errors() as $error) {
+          $errors[] = $error->message;
+        }
+        $this->logger->error("Could not parse feed: \n" . implode("\n", $errors));
+        continue;
+      }
+
+      // Find all events in the feed and add them to a list we're going to pass
+      // on to the slide.
+      $events = [];
+      if (empty($xml->activity)) {
+        $this->logger->error("The activity feed was empty ($url)");
+        continue;
+      }
+
+      foreach ($xml->activity as $activity) {
+        // Get the fields we want, SimpleXML will return null-objects if the
+        // elements does not exist, so the following is safe without prechecks.
+        $event['start'] = (string) $activity->startdato;
+        $event['end'] = (string) $activity->slutdato;
+        $event['title'] = (string) $activity->titel;
+        $event['list_image'] = (string) $activity->list_image;
+        $event['description'] = (string) $activity->beskrivelse;
+
+        // Determine if we have enough data to continue.
+        if (empty($event['start']) || empty($event['end']) || empty($event['title'])) {
+          $uid = empty((string)$activity->uid) ? "(unknown)" : (string)$activity->uid;
+          $this->logger->notice("Not enough info for activity with uid $uid, (title/start/end) = ({$event['title']}/{$event['start']}/{$event['end']}) skipping");
+        }
+
+        // Format time-intervals to be presentable.
+        $start_datetime = new DateTime($event['start']);
+        $event['start_time'] = $start_datetime->format('H:i');
+        $end_datetime = new DateTime($event['end']);
+        $event['end_time'] = $end_datetime->format('H:i');
+
+        // Skip events in the past.
+        if ($start_datetime->getTimestamp() < $this->today->getTimestamp()) {
+          continue;
+        }
+
+        // Add date and time-stamps for the organization-code in
+        // openingHoursSlide.js to work with.
+        $date = $start_datetime->format('Y-m-d');
+        $event['date'] = $date;
+        $event['timestamp'] = $start_datetime->getTimestamp();
+
+        // Prepare headlines for the date-groupings.
+        $date_headline = strftime(
+          self::HUMAN_DATE_FORMAT_FULL,
+          $start_datetime->getTimestamp()
+        );
+
+        if ($date === $this->today_formatted) {
+          $date_headline = 'I dag, ' . $date_headline;
+        }
+
+        if ($date === $this->tomorrow_formatted) {
+          $date_headline = 'I morgen, ' . $date_headline;
+        }
+        $event['date_headline'] = $date_headline;
+
+        // Add the event to the list, keyed by its start-time for easier
+        // sorting.
+        $events[$start_datetime->getTimestamp()] = $event;
+      }
+
+
+      // We now have all events, make sure they are sorted from earliest to
+      // latest.
+      ksort($events);
+
+      // Package the data up for openingHoursSlide.js
+      $external_data =
+        [
+          // We need this to be an array when we hit js for easier iteration.
+          'events' => array_values($events),
+        ];
+      $slide->setExternalData($external_data);
+      // Make sure the data is written to db.
+      $this->entityManager->flush();
+    }
   }
 }

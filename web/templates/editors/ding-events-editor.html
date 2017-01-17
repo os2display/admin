@@ -1,0 +1,22 @@
+<!-- Opening hours editor -->
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.hideEditors()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--content-page">
+      <div class="edit-menu--content-page-inner">
+        <h2 class="edit-menu--iframe-header">Indstillinger</h2>
+        <div class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Bibliotekets slug på bibliotek.kk.dk</div>
+          <input type="text" data-ng-model="ikSlide.options.slug">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

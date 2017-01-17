@@ -1,0 +1,83 @@
+@import "compass/css3";
+@import "../../../_shared-base.scss";
+
+// Styling of a list of events grouped by their date.
+
+.ding-events {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+
+  // Main headline and its wrapper.
+  &--headline {
+    min-height: 1px;
+    font-size: 100%;
+    font-weight: bold;
+    margin-top: 0.5em;
+  }
+  &--headline-wrapper {
+    border-bottom: 2px solid;
+    margin-bottom: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+  }
+
+  // Headline for a group of events on the same day.
+  &--date-heading {
+    font-size: 60%;
+  }
+
+  // Wrapper (ul) for a list of events.
+  &--events {
+    margin-top: 0.5em;
+    // Clear som space to any lists following us
+    margin-bottom: 0.4em;
+    list-style: none;
+    // Make sure we resize to our inner floats.
+    overflow: hidden;
+  }
+
+  // Container for the individual events.
+  &--event {
+    font-size: 80%;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  // The from-to date interval to the left of the event title.
+  &--event-interval {
+    width: 20%;
+    height: 2em;
+    float: left;
+    display: inline-block;
+  }
+
+  &--event-title {
+    width: 80%;
+    float: left;
+    display: inline-block;
+  }
+
+  // Description on a seperate line underneath the event title.
+  &--event-description {
+    width: 80%;
+    float: left;
+    display: inline-block;
+  }
+
+
+  &--logo {
+    position: absolute;
+    width: 10%;
+    padding: 3%;
+  }
+
+  &--text-inner {
+    text-align: left;
+    position:relative;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+}
