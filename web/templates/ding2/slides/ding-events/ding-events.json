@@ -1,18 +1,18 @@
 {
-  "id": "opening-hours",
+  "id": "ding-events",
   "type": "slide",
-  "name": "Ding2 Åbningstider",
-  "icon": "opening-hours.png",
+  "name": "Ding2 Events",
+  "icon": "ding-events.png",
   "paths": {
-    "live": "opening-hours-live.html",
-    "edit": "opening-hours-edit.html",
-    "preview": "opening-hours-preview.html",
-    "css": "opening-hours.css",
-    "js": "../../../js/openingHoursSlide.js"
+    "live": "ding-events-live.html",
+    "edit": "ding-events-edit.html",
+    "preview": "ding-events-preview.html",
+    "css": "ding-events.css",
+    "js": "../../../js/dingEventsSlide.js"
   },
-  "slide_type": "opening-hours",
+  "slide_type": "ding-events",
   "media_type": "image",
-  "script_id": "opening-hours",
+  "script_id": "ding-events",
   "orientation": "landscape",
   "ideal_dimensions": {
     "width": "1920",
@@ -48,7 +48,7 @@
     },
     {
       "name": "Feed",
-      "id": "opening-hours-editor"
+      "id": "ding-events-editor"
     }
   ]
 }
