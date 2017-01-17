@@ -236,18 +236,15 @@ angular.module('ikApp').controller('ChannelController', [
       var text = '';
 
       if (!slide.published) {
-        text = text + "\nIkke markeret som udgivet!\n";
-      }
-      else {
-        text = text + "\n";
+        text = text + "Ikke udgivet!<br/>";
       }
 
       if (slide.hasOwnProperty('schedule_from')) {
-        text = text + "Udgivet fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+        text = text + "Udgivet fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".<br/>";
       }
 
       if (slide.hasOwnProperty('schedule_to')) {
-        text = text + "Udgivet til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+        text = text + "Udgivet til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".";
       }
 
       return text;
