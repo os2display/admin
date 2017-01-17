@@ -18,6 +18,7 @@ angular.module('ikApp', [
     'taiPlaceholder',
     'ngModal',
     'angular-dnd',
+    '720kb.tooltips',
 
     'busModule',
 

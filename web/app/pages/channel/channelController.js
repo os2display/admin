@@ -233,18 +233,18 @@ angular.module('ikApp').controller('ChannelController', ['$scope', '$location', 
       var text = '';
 
       if (!slide.published) {
-        text = text + "\nDette slide er ikke markeret som udgivet!\n";
+        text = text + "\nIkke markeret som udgivet!\n";
       }
       else {
         text = text + "\n";
       }
 
       if (slide.hasOwnProperty('schedule_from')) {
-        text = text + "Udgivelse fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+        text = text + "Udgivet fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".\n";
       }
 
       if (slide.hasOwnProperty('schedule_to')) {
-        text = text + "Udgivelse til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".\n";
+        text = text + "Udgivet til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".\n";
       }
 
       return text;

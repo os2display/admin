@@ -10,12 +10,14 @@
              droppable drop="handleDrop"
              id="index-{{ $index }}"
              draggable>
-          <div data-ng-if="slideScheduledNow(slide)">
-            <img class="create-channel--slide-published-icon" src="/images/icons/check-circle-full-icon.png" title="Dette slide vil blive vist lige nu.">
+          <div data-ng-if="slideScheduledNow(slide)" tooltips tooltip-template="Slide vises nu." tooltip-side="top">
+            <img class="create-channel--slide-published-icon" src="/images/icons/check-circle-full-icon.png" title="">
           </div>
           <div data-ng-if="!slideScheduledNow(slide)">
             <div class="create-channel--slide-unpublished-overlay"></div>
-            <img class="create-channel--slide-unpublished-icon" title="{{ getScheduledText(slide) }}" src="/images/icons/exclamation-icon.png">
+            <div tooltips tooltip-template="{{ getScheduledText(slide) }}" tooltip-side="top">
+              <img class="create-channel--slide-unpublished-icon" title="" src="/images/icons/exclamation-icon.png">
+            </div>
           </div>
           <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img class="create-channel--arrow-left-image" src="images/arrow-backward.png"></span>
           <span class="create-channel--slide-order-number">{{$index + 1}}</span>
