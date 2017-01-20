@@ -383,32 +383,35 @@ table {
     margin-bottom: 2em;
     opacity: .75;
     font-weight: bold; }
-  /* line 76, opening-hours.scss */
+    /* line 75, opening-hours.scss */
+    .opening-hours--date:first-letter {
+      text-transform: capitalize; }
+  /* line 80, opening-hours.scss */
   .opening-hours--description {
     font-size: 100%;
     line-height: 1.4em;
     padding-right: 1em; }
-    /* line 81, opening-hours.scss */
+    /* line 85, opening-hours.scss */
     .opening-hours--description a, .opening-hours--description a:link, .opening-hours--description a:visited, .opening-hours--description a:hover, .opening-hours--description a:focus, .opening-hours--description a:active {
       text-decoration: none;
       color: white; }
-    /* line 86, opening-hours.scss */
+    /* line 90, opening-hours.scss */
     .opening-hours--description img {
       max-width: 25%;
       float: left;
       padding-right: 1em;
       padding-bottom: 1em; }
-    /* line 93, opening-hours.scss */
+    /* line 97, opening-hours.scss */
     .opening-hours--description__seperated {
       margin-top: 1em; }
-    /* line 97, opening-hours.scss */
+    /* line 101, opening-hours.scss */
     .opening-hours--description__sub {
       margin-left: 0.5em; }
-      /* line 100, opening-hours.scss */
+      /* line 104, opening-hours.scss */
       .opening-hours--description__sub:before {
         margin-right: 0.5em;
         content: '\2013 '; }
-  /* line 107, opening-hours.scss */
+  /* line 111, opening-hours.scss */
   .opening-hours--overlay {
     position: absolute;
     top: 50%;
@@ -416,6 +419,6 @@ table {
     left: 0;
     bottom: 0;
     z-index: 99; }
-  /* line 116, opening-hours.scss */
+  /* line 120, opening-hours.scss */
   .opening-hours.preview {
     display: none; }
