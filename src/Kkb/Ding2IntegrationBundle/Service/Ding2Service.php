@@ -281,14 +281,14 @@ class Ding2Service {
         $texts['library']['open'] =  "Biblioteket er lukket i dag";
       } else {
 
-        $texts['library']['open'] = "Biblioteket er i dag åbent kl. {$intervals['library']['open']}";
+        $texts['library']['open'] = "Biblioteket har i dag åbent kl. {$intervals['library']['open']}";
 
         // Show specific service-hours if present. If not, just put out a note
         // that the library is self-serviced.
         if (isset($intervals['library']['service'])) {
           $texts['library']['service'] = "og der er betjening kl. {$intervals['library']['service']}";
         } else {
-          $texts['library']['service'] =  "Biblioteket er selvbetjent i hele åbningstiden";
+          $texts['library']['service'] =  "og der er selvbetjening i hele åbningstiden";
         }
       }
     }
@@ -297,11 +297,11 @@ class Ding2Service {
     if (isset($intervals['citizenservices']['open'])) {
       // If the interval is non-null, it means the library has Citizen
       // Services, but it may still be closed.
-      if (TRUE || $intervals['citizenservices']['open'] === 'closed') {
-        $texts['citizenservices']['open'] = "I dag er Borgerservice lukket";
+      if ($intervals['citizenservices']['open'] === 'closed') {
+        $texts['citizenservices']['open'] = "I dag har Borgerservice lukket";
       }
       else {
-        $texts['citizenservices']['open'] = "Borgerservice åbent i dag kl. {$intervals['citizenservices']['open']}";
+        $texts['citizenservices']['open'] = "Borgerservice har åbent kl. {$intervals['citizenservices']['open']}";
       }
     }
      return $texts;
