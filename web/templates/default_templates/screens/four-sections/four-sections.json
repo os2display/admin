@@ -1,0 +1,12 @@
+{
+  "id": "four-sections",
+  "type": "screen",
+  "name": "Firedelt",
+  "icon": "four-sections.png",
+  "paths": {
+    "live": "four-sections-live.html",
+    "edit": "four-sections-edit.html",
+    "css": "four-sections.css"
+  },
+  "orientation": "landscape"
+}
