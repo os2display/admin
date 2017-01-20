@@ -51,3 +51,7 @@ parameters:
 
     koba_apikey: 1234
     koba_path:   http://192.168.50.21
+
+    ding_url: 'http://bibliotek.kk.dk'
+    ding_opening_hours_library_open_keys: 'åben,åbent'
+    ding_opening_hours_library_service_keys: 'biblioteksbetjening'
