@@ -33,8 +33,10 @@ if (!window.slideFunctions['ding-events']) {
         var event_slides = [];
         var current_slide = -1;
         var current_group = -1;
+        var events_added = 0;
         var current_group_date = null;
         var lines_used = 0;
+        var max_events = (slide.options.max_events && slide.options.max_events > 0) ? slide.options.max_events : 999999;
         if (slide.external_data.events && slide.external_data.events.length > 0) {
 
           // Loop over events and assign them to groups and slides.
@@ -111,6 +113,10 @@ if (!window.slideFunctions['ding-events']) {
             // our event, so lets do it.
             event_slides[current_slide][current_group].events.push(event);
             lines_used += linePrEvent;
+            events_added++;
+            if (events_added >= max_events) {
+              break;
+            }
           }
         }
 
