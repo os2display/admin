@@ -154,14 +154,12 @@ if (!window.slideFunctions['ding-events']) {
      */
     run: function runDingEventsSlide(slide, region) {
       region.itkLog.info("Running ding events slide: " + slide.title);
-      // reset slide-count.
-      slide.event_settings.currentSlide = 0;
-  
+
       var slide_duration = slide.options.duration ? slide.options.duration : 15;
 
       // Check that external_data exists, if not stay on for one duration and
       // continue to next slide.
-      if (!slide.event_settings || !slide.event_settings.event_slides || slide.event_settings.event_slides <= 0) {
+      if (!slide.event_settings || !slide.event_settings.event_slides || slide.event_settings.event_slides.length <= 0) {
         region.$timeout(function() {
           region.nextSlide();
         }, slide_duration * 1000);
@@ -184,6 +182,9 @@ if (!window.slideFunctions['ding-events']) {
           }
         }, slide_duration * 1000);
       };
+
+      // reset slide-count.
+      slide.event_settings.currentSlide = 0;
 
       // Trigger initial sleep an subsequent advance of slide.
       dingEventTimeout();
