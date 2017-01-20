@@ -24,7 +24,9 @@
 
   }
   &--content {
-    min-height: 4em;
+    // We set min-height to have the border of the footer stay in place if the
+    // citizenservices line goes away.
+    min-height: 5.5em;
     font-size: 80%;
   }
   &--text-inner {
@@ -34,14 +36,14 @@
   }
 
   &--header-wrapper {
-    border-bottom: 2px solid transparentize($white, .25);
+    border-bottom: 2px solid;
     margin-bottom: .5em;
     padding-top: .5em;
     padding-bottom: .5em;
   }
 
   &--footer-wrapper {
-    border-top: 2px solid transparentize($white, .25);
+    border-top: 2px solid;
     margin-top: .5em;
     padding-top: .5em;
 
@@ -93,7 +95,7 @@
     }
 
     &__sub {
-      margin-left: 1em;
+      margin-left: 0.5em;
 
       &:before {
         margin-right: 0.5em;
