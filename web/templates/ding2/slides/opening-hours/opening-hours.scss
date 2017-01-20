@@ -25,6 +25,7 @@
   }
   &--content {
     min-height: 4em;
+    font-size: 80%;
   }
   &--text-inner {
     text-align: left;
@@ -68,7 +69,6 @@
     margin-bottom: 2em;
     opacity: .75;
     font-weight: bold;
-    text-transform: capitalize;
   }
 
   &--description {

@@ -350,39 +350,39 @@ table {
     width: 100%; }
   /* line 26, opening-hours.scss */
   .opening-hours--content {
-    min-height: 4em; }
-  /* line 29, opening-hours.scss */
+    min-height: 4em;
+    font-size: 80%; }
+  /* line 30, opening-hours.scss */
   .opening-hours--text-inner {
     text-align: left;
     position: relative;
     padding: 4%; }
-  /* line 35, opening-hours.scss */
+  /* line 36, opening-hours.scss */
   .opening-hours--header-wrapper {
     border-bottom: 2px solid rgba(255, 255, 255, 0.75);
     margin-bottom: .5em;
     padding-top: .5em;
     padding-bottom: .5em; }
-  /* line 42, opening-hours.scss */
+  /* line 43, opening-hours.scss */
   .opening-hours--footer-wrapper {
     border-top: 2px solid rgba(255, 255, 255, 0.75);
     margin-top: .5em;
     padding-top: .5em; }
-  /* line 48, opening-hours.scss */
+  /* line 49, opening-hours.scss */
   .opening-hours--footer-wrapper, .opening-hours--header-wrapper {
     width: 100%; }
-  /* line 52, opening-hours.scss */
+  /* line 53, opening-hours.scss */
   .opening-hours--header, .opening-hours--footer {
     min-height: 1px;
     font-size: 100%;
     font-weight: bold; }
-  /* line 65, opening-hours.scss */
+  /* line 66, opening-hours.scss */
   .opening-hours--date {
     font-style: normal !important;
     font-size: 40%;
     margin-bottom: 2em;
     opacity: .75;
-    font-weight: bold;
-    text-transform: capitalize; }
+    font-weight: bold; }
   /* line 74, opening-hours.scss */
   .opening-hours--description {
     font-size: 100%;
