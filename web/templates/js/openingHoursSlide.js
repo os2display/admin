@@ -55,8 +55,8 @@ if (!window.slideFunctions['opening-hours']) {
             slide.intervalTexts = slide.external_data.intervalTexts;
         }
 
-        if (slide.external_data.date) {
-            slide.date = slide.external_data.date;
+        if (slide.external_data.date_headline) {
+            slide.date_headline = slide.external_data.date_headline;
         }
 
         // Wait fadeTime before start to account for fade in.
