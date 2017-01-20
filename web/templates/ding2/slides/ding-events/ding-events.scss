@@ -26,6 +26,9 @@
   // Headline for a group of events on the same day.
   &--date-heading {
     font-size: 60%;
+    &:first-letter {
+      text-transform: capitalize;
+    }
   }
 
   // Wrapper (ul) for a list of events.

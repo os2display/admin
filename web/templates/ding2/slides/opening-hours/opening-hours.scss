@@ -71,6 +71,10 @@
     margin-bottom: 2em;
     opacity: .75;
     font-weight: bold;
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
   }
 
   &--description {

@@ -6,7 +6,7 @@
   "paths": {
     "live": "ding-events-live.html",
     "edit": "ding-events-edit.html",
-    "preview": "ding-events-preview.html",
+    "preview": "ding-events-edit.html",
     "css": "ding-events.css",
     "js": "../../../js/dingEventsSlide.js"
   },
