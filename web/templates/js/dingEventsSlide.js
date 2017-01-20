@@ -156,9 +156,8 @@ if (!window.slideFunctions['ding-events']) {
       region.itkLog.info("Running ding events slide: " + slide.title);
       // reset slide-count.
       slide.event_settings.currentSlide = 0;
-
-      //TODO: set duration via editor
-      var slide_duration = 15;
+  
+      var slide_duration = slide.options.duration ? slide.options.duration : 15;
 
       // Check that external_data exists, if not stay on for one duration and
       // continue to next slide.
@@ -174,7 +173,6 @@ if (!window.slideFunctions['ding-events']) {
        */
       var dingEventTimeout = function () {
         region.$timeout(function () {
-          // TODO: reorg properties, move event_slides to root
           // If we've reached the end, go to next (real) slide.
           if (slide.event_settings.currentSlide + 1 >= slide.event_settings.event_slides.length) {
             region.nextSlide();
