@@ -40,6 +40,10 @@
     <!-- If overlay display-->
     <div class="overview--slide" data-ng-repeat="slide in slides" data-ng-if="ikOverlay && !loading">
       <div class="overview--slide-link" data-ng-click="slideOverviewClickSlide(slide)" data-ng-class="{'is-selected': slideSelected(slide)}">
+        <span class="overview--overlay">
+          <span class="overview--link-check"></span>
+        </span>
+
         <div data-ng-if="slideScheduledNow(slide)" tooltips tooltip-template="Slide vises nu." tooltip-side="top">
           <img class="overview--publishing-icon" src="/images/icons/check-circle-full-icon.png" title="">
         </div>
