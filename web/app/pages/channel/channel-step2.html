@@ -30,7 +30,14 @@
           <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img class="create-channel--arrow-left-image" src="images/arrow-backward.png"></span>
           <span class="create-channel--slide-order-number">{{$index + 1}}</span>
           <img class="overview--channel-remove" data-ng-click="toggleSlide(slide)" src="/images/icons/cancel-icon.png">
-          <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
+          <div data-ng-if="!slideScheduledNow(slide)" class="create-channel--slide-unpublished-blur-wrapper">
+            <div class="create-channel--slide-unpublished-blur">
+              <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
+            </div>
+          </div>
+          <div data-ng-if="slideScheduledNow(slide)">
+            <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
+          </div>
           <a data-ng-href="/#/slide/{{slide.id}}" target="_blank">{{slide.title}}</a>
           <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><img class="create-channel--arrow-right-image" src="images/arrow-forward.png"></span>
         </div>

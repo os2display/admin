@@ -256,14 +256,24 @@ $breakpoint-arrow-switch : 693px;
   }
 
   &--slide-unpublished-overlay {
-    background: #fff repeating-linear-gradient(-55deg, #ccc, #ccc 30px, #777 30px, #777 60px);
+    background: #fff;
     height: 168.75px; // Static since we are working within a static div anyway.
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 1;
 
-    @include opacity(.3);
+    @include opacity(.75);
+  }
+
+  &--slide-unpublished-blur {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+  }
+
+  &--slide-unpublished-blur-wrapper {
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
   }
 
   &--slide-unpublished-icon {
