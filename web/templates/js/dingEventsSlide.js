@@ -36,7 +36,7 @@ if (!window.slideFunctions['ding-events']) {
         var events_added = 0;
         var current_group_date = null;
         var lines_used = 0;
-        var max_events = (slide.options.max_events && slide.options.max_events > 0) ? slide.options.max_events : 999999;
+        var max_events = (slide.options.rss_number && slide.options.rss_number > 0) ? slide.options.rss_number : 999999;
         if (slide.external_data.events && slide.external_data.events.length > 0) {
 
           // Loop over events and assign them to groups and slides.
@@ -155,7 +155,7 @@ if (!window.slideFunctions['ding-events']) {
     run: function runDingEventsSlide(slide, region) {
       region.itkLog.info("Running ding events slide: " + slide.title);
 
-      var slide_duration = slide.options.duration ? slide.options.duration : 15;
+      var slide_duration = slide.options.rss_duration ? slide.options.rss_duration : 15;
 
       // Check that external_data exists, if not stay on for one duration and
       // continue to next slide.
