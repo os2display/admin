@@ -1,7 +1,7 @@
 {
   "id": "ding-events",
   "type": "slide",
-  "name": "Ding2 Events",
+  "name": "DDB CMS Arrangementer",
   "icon": "ding-events.png",
   "paths": {
     "live": "ding-events-live.html",
