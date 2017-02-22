@@ -1,7 +1,7 @@
 {
   "id": "opening-hours",
   "type": "slide",
-  "name": "Ding2 Åbningstider",
+  "name": "DDB CMS Åbningstider",
   "icon": "opening-hours.png",
   "paths": {
     "live": "opening-hours-live.html",
