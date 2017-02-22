@@ -140,6 +140,11 @@ class Ding2Service {
       ];
 
       foreach ($options['feed'] as $key => $nid)  {
+        // Only attempt to process the configuration if it's actually there.
+        if (empty($options['feed'][$key])) {
+          continue;
+        }
+        
         // Build up the full feed URL.
         $replacements = [
           '%from%' => $today_string,
