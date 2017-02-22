@@ -307,64 +307,77 @@ table {
    ========================================================================== */
 /* Placeholders
    ========================================================================== */
-/* line 6, ding-events.scss */
+/* line 7, ../../assets/_ding-shared-base.scss */
+.ding--watermark {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 300%;
+  color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px; }
+
+/* line 7, ding-events.scss */
 .ding-events {
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden; }
-  /* line 13, ding-events.scss */
+  /* line 14, ding-events.scss */
   .ding-events--headline {
     min-height: 1px;
     font-size: 100%;
     font-weight: bold;
     margin-top: 0.5em; }
-  /* line 19, ding-events.scss */
+  /* line 20, ding-events.scss */
   .ding-events--headline-wrapper {
     border-bottom: 2px solid;
     margin-bottom: .5em;
     padding-top: .5em;
     padding-bottom: .5em; }
-  /* line 27, ding-events.scss */
+  /* line 28, ding-events.scss */
   .ding-events--date-heading {
     font-size: 60%; }
-    /* line 29, ding-events.scss */
+    /* line 30, ding-events.scss */
     .ding-events--date-heading:first-letter {
       text-transform: capitalize; }
-  /* line 35, ding-events.scss */
+  /* line 36, ding-events.scss */
   .ding-events--events {
     margin-top: 0.5em;
     margin-bottom: 0.4em;
     list-style: none;
     overflow: hidden; }
-  /* line 45, ding-events.scss */
+  /* line 46, ding-events.scss */
   .ding-events--event {
     font-size: 80%;
     display: block;
     width: 100%;
     overflow: hidden; }
-  /* line 53, ding-events.scss */
+  /* line 54, ding-events.scss */
   .ding-events--event-interval {
     width: 20%;
     height: 2em;
     float: left;
     display: inline-block; }
-  /* line 60, ding-events.scss */
+  /* line 61, ding-events.scss */
   .ding-events--event-title {
     width: 80%;
     float: left;
     display: inline-block; }
-  /* line 67, ding-events.scss */
+  /* line 68, ding-events.scss */
   .ding-events--event-description {
     width: 80%;
     float: left;
     display: inline-block; }
-  /* line 74, ding-events.scss */
+  /* line 75, ding-events.scss */
   .ding-events--logo {
     position: absolute;
     width: 10%;
     padding: 3%; }
-  /* line 80, ding-events.scss */
+  /* line 81, ding-events.scss */
   .ding-events--text-inner {
     text-align: left;
     position: relative;
