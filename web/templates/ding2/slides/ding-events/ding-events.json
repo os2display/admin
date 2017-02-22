@@ -10,7 +10,7 @@
     "css": "ding-events.css",
     "js": "../../../js/dingEventsSlide.js"
   },
-  "slide_type": "ding-events",
+  "slide_type": "rss",
   "media_type": "image",
   "script_id": "ding-events",
   "orientation": "landscape",
