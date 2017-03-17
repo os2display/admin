@@ -348,14 +348,14 @@ angular.module('ikApp').controller('ChannelController', [
      * @param sortCriteria
      */
     $scope.sortSlides = function sortSlides(sortCriteria) {
+      var reverse = $scope.lastSortUsed === sortCriteria;
+
+      $scope.lastSortUsed = sortCriteria;
+
       if (sortCriteria === 'random') {
         $scope.channel.slides = shuffle($scope.channel.slides);
         return;
       }
-
-      var reverse = $scope.lastSortUsed === sortCriteria;
-
-      $scope.lastSortUsed = sortCriteria;
 
       $scope.channel.slides = $filter('orderBy')($scope.channel.slides, reverse ? "-" : "" + sortCriteria);
     };
