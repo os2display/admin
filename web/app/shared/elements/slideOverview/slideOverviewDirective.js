@@ -6,8 +6,8 @@
 /**
  * Directive to show the slide overview.
  */
-angular.module('ikApp').directive('ikSlideOverview', ['busService',
-  function (busService) {
+angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
+  function (busService, $filter) {
     'use strict';
 
     return {
@@ -203,6 +203,52 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService',
          */
         $scope.slideOverviewClickSlide = function slideOverviewClickSlide(slide) {
           $scope.$emit('slideOverview.clickSlide', slide);
+        };
+
+        /**
+         * Is the slide scheduled for now?
+         *
+         * @param slide
+         */
+        $scope.slideScheduledNow = function slideScheduledNow(slide) {
+          if (!slide.published) {
+            return false;
+          }
+
+          var now = new Date();
+          now = parseInt(now.getTime() / 1000);
+
+          if (slide.hasOwnProperty('schedule_from') && now < slide.schedule_from) {
+            return false;
+          }
+          else if (slide.hasOwnProperty('schedule_to') && now > slide.schedule_to) {
+            return false;
+          }
+
+          return true;
+        };
+
+        /**
+         * Get scheduled text for slide.
+         *
+         * @param slide
+         */
+        $scope.getScheduledText = function getScheduledText(slide) {
+          var text = '';
+
+          if (!slide.published) {
+            text = text + "Ikke udgivet!<br/>";
+          }
+
+          if (slide.hasOwnProperty('schedule_from')) {
+            text = text + "Udgivet fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".<br/>";
+          }
+
+          if (slide.hasOwnProperty('schedule_to')) {
+            text = text + "Udgivet til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".";
+          }
+
+          return text;
         };
 
         // Load current user (need to activate "mine" tab as default).

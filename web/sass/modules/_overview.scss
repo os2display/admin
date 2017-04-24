@@ -432,4 +432,15 @@
     background: rgba(255,255,255,0);
     position: absolute;
   }
+
+  &--publishing-icon {
+    position: absolute;
+    top: -5px; // Static since we are working within a static div anyway.
+    left: -5px;
+
+    width: 20px;
+    height: 20px;
+
+    z-index: 1;
+  }
 }
