@@ -3,6 +3,7 @@
 {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('css/colorpicker.css?' ~ version) }}">
   <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css?' ~ version) }}">
+  <link rel="stylesheet" href="{{ asset('css/angular-tooltips.min.css?' ~ version) }}">
 
   {# Import css files for templates. #}
   {% if templates is defined %}
@@ -66,6 +67,8 @@
     };
   </script>
 
+  <script src="/proxy/socket.io/socket.io.js"></script>
+
   {% if app.environment == 'dev' %}
     <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/angular.min.js') }}"></script>
@@ -77,19 +80,15 @@
     <script src="{{ asset('assets/libs/angular-file-upload.min.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-bootstrap-colorpicker.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-placeholder.js') }}"></script>
+    <script src="{{ asset('assets/libs/angular-dnd.js') }}"></script>
+    <script src="{{ asset('assets/libs/angular-tooltips.min.js') }}"></script>
     <script src="{{ asset('assets/libs/datetimepicker.jquery.js') }}"></script>
     <script src="{{ asset('assets/libs/datetimepicker.js') }}"></script>
     <script src="{{ asset('assets/libs/locale_da.js') }}"></script>
     <script src="{{ asset('assets/libs/stacktrace.min.js') }}"></script>
     <script src="{{ asset('assets/libs/md5.min.js') }}"></script>
     <script src="{{ asset('assets/libs/paging.js') }}"></script>
-  {% else %}
-    <script src="{{ asset('assets/build/assets.min.js?' ~ version) }}"></script>
-  {% endif %}
 
-    <script src="/proxy/socket.io/socket.io.js"></script>
-
-  {% if app.environment == 'dev' %}
     <script src="{{ asset('app/app.js?' ~ version) }}"></script>
     <script src="{{ asset('app/routing.js?' ~ version) }}"></script>
     <script src="{{ asset('app/shared/filters/activeEvents.js?' ~ version) }}"></script>
@@ -148,7 +147,9 @@
     <script src="{{ asset('app/shared/widgets/regionPreviewWidget/regionPreviewWidget.js?' ~ version) }}"></script>
     <script src="{{ asset('app/shared/components/date/dateComponent.js?' ~ version) }}"></script>
     <script src="{{ asset('app/shared/components/digital-clock/digitalClockComponent.js?' ~ version) }}"></script>
+    <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js?' ~ version) }}"></script>
   {% else %}
+    <script src="{{ asset('assets/build/assets.min.js?' ~ version) }}"></script>
     <script src="{{ asset('assets/build/app.min.js?' ~ version) }}"></script>
   {% endif %}
 

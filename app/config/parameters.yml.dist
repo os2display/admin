@@ -10,8 +10,8 @@ parameters:
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
-    mailer_from_email: webmaster@ik3.indholdskanalen.vm
-    mailer_from_name: Webmaster Indholdskanalen
+    mailer_from_email: webmaster@ik3.os2display.vm
+    mailer_from_name: Webmaster os2display
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
@@ -20,7 +20,7 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
 
-    absolute_path_to_server: http://service.indholdskanalen.vm
+    absolute_path_to_server: http://admin.os2display.vm
 
     zencoder_api: API_KEY_HERE
 

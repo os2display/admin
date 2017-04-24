@@ -2,7 +2,7 @@
 <div class="container has-wrap">
   <form class="search">
     <div class="search--input">
-      <input type="search" placeholder="Søg..." data-ng-model="search_text" data-ng-change="search()">
+      <input type="search" placeholder="Søg..." data-ng-model="search_text" data-ng-change="search()" data-ng-model-options="{debounce: 500}">
     </div>
   </form>
   <i data-icon="tune" class="search--toggle-filter is-large" data-ng-class="toggleFilters ? 'is-inverted' : ''" data-ng-click="toggleFilters = !toggleFilters"></i>

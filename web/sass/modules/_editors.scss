@@ -1,0 +1,19 @@
+
+.editor {
+  &--container {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  &--content {
+    margin-bottom: 1em;
+  }
+
+  &--content-split {
+    display: inline-block;
+    width: 40%;
+    padding: 2%;
+    margin: 0;
+    vertical-align: top;
+  }
+}
