@@ -28,6 +28,7 @@ class UserController extends Controller {
 
 	  $response = new Response();
 	  $response->headers->set('Content-Type', 'application/json');
+
 	  $json_content = $serializer->serialize($user, 'json', SerializationContext::create()->setGroups(array('api')));
 
 		// Hack to include configurable search_filter_default

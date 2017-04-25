@@ -22,9 +22,7 @@ default:
       base_url: https://admin.os2display.vm/
       sessions:
         default:
-          goutte: ~
+          symfony2: ~
         selenium2:
           selenium2: ~
-        symfony2:
-          symfony2: ~
       show_cmd: open -a /Applications/Firefox.app/ %s

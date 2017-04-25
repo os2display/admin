@@ -199,24 +199,18 @@ angular.module('mainModule').service('menuItemService', ['busService',
           permission: 'super-admin',
           items: [
             {
-              title: 'Brugere',
-              route: '/admin',
-              permission: 'super-admin',
-              weight: 1
-            },
-            {
               title: 'Deling',
               route: '/#/admin-sharing',
               activeFilter: '/admin-sharing',
               permission: 'super-admin',
-              weight: 2
+              weight: 1
             },
             {
               title: 'Skabeloner',
               route: '/#/admin-templates',
               activeFilter: '/admin-sharing',
               permission: 'super-admin',
-              weight: 3
+              weight: 2
             }
           ]
         }
