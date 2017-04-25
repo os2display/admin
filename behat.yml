@@ -1,0 +1,30 @@
+default:
+  calls:
+    error_reporting: 16383 # E_ALL & ~E_USER_DREPRECATED
+
+  suites:
+    default:
+      mink_session: selenium2
+      type: symfony_bundle
+      bundle: IndholdskanalenMainBundle
+      contexts:
+        - Indholdskanalen\MainBundle\Features\Context\FeatureContext: ["@doctrine"]
+        # FeatureContext extends MinkContext
+        # - Behat\MinkExtension\Context\MinkContext
+
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        env: acceptance
+        debug: true
+
+    Behat\MinkExtension:
+      base_url: https://admin.os2display.vm/
+      sessions:
+        default:
+          goutte: ~
+        selenium2:
+          selenium2: ~
+        symfony2:
+          symfony2: ~
+      show_cmd: open -a /Applications/Firefox.app/ %s
