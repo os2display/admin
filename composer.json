@@ -20,7 +20,6 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3",
         "sonata-project/core-bundle": "~2",
-        "sonata-project/user-bundle": "~2",
         "sonata-project/doctrine-orm-admin-bundle": "~2",
         "sonata-project/admin-bundle": "~2",
         "sonata-project/datagrid-bundle": "~2",
