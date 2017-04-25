@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="fos_user_user")
  */
 class User extends BaseUser {
   /**
