@@ -8,6 +8,9 @@ namespace Indholdskanalen\MainBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * @ORM\Entity
@@ -18,8 +21,14 @@ class User extends BaseUser {
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Groups({"api"})
    */
   protected $id;
+
+  /**
+   * @Groups({"api"})
+   */
+  protected $roles;
 
   /**
    * Get id
@@ -41,6 +50,10 @@ class User extends BaseUser {
    * Is the user administrator
    *
    * @return boolean
+   *
+   * @VirtualProperty
+   * @SerializedName("is_admin")
+   * @Groups({"api"})
    */
   public function isAdmin() {
     $result = FALSE;
@@ -58,6 +71,10 @@ class User extends BaseUser {
    * Is the user a super administrator
    *
    * @return boolean
+   *
+   * @VirtualProperty
+   * @SerializedName("is_super_admin")
+   * @Groups({"api"})
    */
   public function isSuperAdmin() {
     $result = FALSE;

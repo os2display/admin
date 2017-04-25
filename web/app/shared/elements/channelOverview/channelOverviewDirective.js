@@ -263,6 +263,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
 
         userFactory.getCurrentUser().then(
           function (data) {
+            console.log(data);
             scope.currentUser = data;
 
             // Set search filter default
