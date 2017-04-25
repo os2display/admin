@@ -94,22 +94,12 @@ sonata_block:
     # Enable the SonataAdminBundle block
     sonata.admin.block.admin_list:
       contexts:   [admin]
-    sonata.user.block.menu:    # used to display the menu in profile pages
-    sonata.user.block.account: # used to display menu option (login option)
     sonata.block.service.text: # used to if you plan to use Sonata user routes
 
 fos_user:
   db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
   firewall_name: main
-  user_class: Application\Sonata\UserBundle\Entity\User
-
-  group:
-    group_class:   Application\Sonata\UserBundle\Entity\Group
-    group_manager: sonata.user.orm.group_manager
-
-  service:
-    user_manager: sonata.user.orm.user_manager
-
+  user_class: Indholdskanalen\MainBundle\Entity\User
   from_email:
       address:        "%mailer_from_email%"
       sender_name:    "%mailer_from_name%"
@@ -127,25 +117,18 @@ sonata_media:
       providers:
         - sonata.media.provider.image
         - sonata.media.provider.file
-
       formats:
         landscape: { width: 960 }
         portrait: { height: 540 }
         landscape_small: { width: 300 }
         portrait_small: { height: 150 }
-
   cdn:
     server:
       path: %absolute_path_to_server%/uploads/media
-
   filesystem:
     local:
       directory:  %kernel.root_dir%/../web/uploads/media
       create:     false
-
-sonata_user:
-  security_acl: true
-  manager_type: orm # can be orm or mongodb
 
 jms_serializer:
   metadata:
@@ -154,12 +137,6 @@ jms_serializer:
       SonataMediaBundle:
         namespace_prefix: "Sonata\\MediaBundle"
         path: "@ApplicationSonataMediaBundle/Resources/config/serializer/SonataMedia"
-      SonataUserBundle:
-        namespace_prefix: "Sonata\\UserBundle"
-        path: "@ApplicationSonataUserBundle/Resources/config/serializer/SonataUser"
-      FOSUserBundle:
-        namespace_prefix: "FOS\\UserBundle"
-        path: "@ApplicationSonataUserBundle/Resources/config/serializer/FOSUser"
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
