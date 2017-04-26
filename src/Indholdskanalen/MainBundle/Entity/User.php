@@ -38,6 +38,55 @@ class User extends BaseUser {
   protected $lastname;
 
   /**
+   * @ORM\Column(name="title")
+   * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="group", orphanRemoval=true)
+   * @Groups({"api"})
+   */
+  private $userGroups;
+
+  /**
+   * Is the user administrator
+   *
+   * @return boolean
+   *
+   * @VirtualProperty
+   * @SerializedName("is_admin")
+   * @Groups({"api"})
+   */
+  public function isAdmin() {
+    $result = FALSE;
+
+    foreach ($this->getRoles() as $role) {
+      if ($role == 'ROLE_ADMIN' || $role === 'ROLE_SUPER_ADMIN') {
+        $result = TRUE;
+      }
+    }
+
+    return $result;
+  }
+
+  /**
+   * Is the user a super administrator
+   *
+   * @return boolean
+   *
+   * @VirtualProperty
+   * @SerializedName("is_super_admin")
+   * @Groups({"api"})
+   */
+  public function isSuperAdmin() {
+    $result = FALSE;
+
+    foreach ($this->getRoles() as $role) {
+      if ($role == 'ROLE_SUPER_ADMIN') {
+        $result = TRUE;
+      }
+    }
+
+    return $result;
+  }
+
+  /**
    * Get id
    *
    * @return integer $id
@@ -82,44 +131,35 @@ class User extends BaseUser {
   }
 
   /**
-   * Is the user administrator
+   * Add userGroup
    *
-   * @return boolean
-   *
-   * @VirtualProperty
-   * @SerializedName("is_admin")
-   * @Groups({"api"})
+   * @param \Indholdskanalen\MainBundle\Entity\UserGroup $userGroup
+   * @return User
    */
-  public function isAdmin() {
-    $result = FALSE;
+  public function addUserGroup(\Indholdskanalen\MainBundle\Entity\UserGroup $userGroup) {
+    $this->userGroups[] = $userGroup;
 
-    foreach ($this->getRoles() as $role) {
-      if ($role == 'ROLE_ADMIN' || $role === 'ROLE_SUPER_ADMIN') {
-        $result = TRUE;
-      }
-    }
-
-    return $result;
+    return $this;
   }
 
   /**
-   * Is the user a super administrator
+   * Remove userGroup
    *
-   * @return boolean
-   *
-   * @VirtualProperty
-   * @SerializedName("is_super_admin")
-   * @Groups({"api"})
+   * @param \Indholdskanalen\MainBundle\Entity\UserGroup $userGroup
+   * @return User
    */
-  public function isSuperAdmin() {
-    $result = FALSE;
+  public function removeUserGroup(\Indholdskanalen\MainBundle\Entity\UserGroup $userGroup) {
+    $this->userGroups->removeElement($userGroup);
 
-    foreach ($this->getRoles() as $role) {
-      if ($role == 'ROLE_SUPER_ADMIN') {
-        $result = TRUE;
-      }
-    }
+    return $this;
+  }
 
-    return $result;
+  /**
+   * Get userGroup
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getUserGroups() {
+    return $this->userGroups;
   }
 }
