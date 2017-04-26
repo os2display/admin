@@ -38,7 +38,6 @@ class User extends BaseUser {
   protected $lastname;
 
   /**
-   * @ORM\Column(name="title")
    * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="group", orphanRemoval=true)
    * @Groups({"api"})
    */

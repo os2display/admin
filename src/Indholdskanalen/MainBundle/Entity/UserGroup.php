@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="ik_group")
+ * @ORM\Table(name="ik_user_group")
  */
 class UserGroup {
   /**

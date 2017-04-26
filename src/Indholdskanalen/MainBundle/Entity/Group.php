@@ -29,7 +29,6 @@ class Group {
   private $title;
 
   /**
-   * @ORM\Column(name="title")
    * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="group", orphanRemoval=true)
    * @Groups({"api"})
    */
