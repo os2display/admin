@@ -45,38 +45,7 @@ rm -rf app/cache/*
 </pre>
 
 
-# Acceptance tests
-
-## Prerequisites for running UI acceptance tests
-
-The UI acceptance tests use [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/), and at the time of writing, we need Selenium Standalone Server 2.53 and Firefox 46 to be able to run the tests.
-
-Install Firefox 46.0.1 for testing (on macOS):
-
-```
-mkdir -p ~/.firefox/46.0.1
-cd ~/.firefox/46.0.1
-curl https://ftp.mozilla.org/pub/firefox/releases/46.0.1/mac/en-US/Firefox%2046.0.1.dmg > Firefox.dmg
-hdiutil mount Firefox.dmg
-cp -Rv /Volumes/Firefox/Firefox.app .
-hdiutil unmount /Volumes/Firefox
-rm Firefox.dmg
-cd -
-```
-
-Download Selenium server:
-
-```
-curl --output /tmp/selenium-server-standalone.jar http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar
-```
-
-Start Selenium using Firefox 46.0.1
-
-```
-java -Dwebdriver.firefox.bin="$HOME/.firefox/46.0.1/Firefox.app/Contents/MacOS/firefox" -jar /tmp/selenium-server-standalone.jar                                                                                                      ⏎ feature/behat ✱ ◼
-```
-
-## Running acceptance tests
+# API tests
 
 Clear out the acceptance test cache and set up the database:
 
@@ -85,8 +54,8 @@ app/console --env=acceptance cache:clear
 app/console --env=acceptance doctrine:database:create
 ```
 
-Now we can run the tests:
+Run API tests:
 
 ```
-./vendor/behat/behat/bin/behat
+./vendor/behat/behat/bin/behat --suite=api_features
 ```

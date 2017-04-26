@@ -4,13 +4,28 @@ default:
 
   suites:
     default:
-      mink_session: selenium2
+      mink_session: default
+      mink_javascript_session: selenium2
       type: symfony_bundle
       bundle: IndholdskanalenMainBundle
       contexts:
         - Indholdskanalen\MainBundle\Features\Context\FeatureContext: ["@doctrine"]
         # FeatureContext extends MinkContext
         # - Behat\MinkExtension\Context\MinkContext
+        - behatch:context:rest
+        - behatch:context:json
+    api_features:
+      mink_session: default
+      type: symfony_bundle
+      bundle: IndholdskanalenMainBundle
+      paths: [src/Indholdskanalen/MainBundle/Features/api/]
+      contexts:
+        - Indholdskanalen\MainBundle\Features\Context\FeatureContext: ["@doctrine"]
+        - Behat\MinkExtension\Context\MinkContext
+        - behatch:context:rest
+        - behatch:context:json
+      filters:
+        tags: @api
 
   extensions:
     Behat\Symfony2Extension:
@@ -26,3 +41,5 @@ default:
         selenium2:
           selenium2: ~
       show_cmd: open -a /Applications/Firefox.app/ %s
+
+    Behatch\Extension: ~

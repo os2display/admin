@@ -2,11 +2,9 @@
 
 namespace Indholdskanalen\MainBundle\Features\Context;
 
-use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
-use Behatch\Context\BaseContext;
+use Behatch\Context\RestContext;
 use Behatch\HttpCall\Request;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
@@ -18,7 +16,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends BaseContext implements Context, KernelAwareContext {
+class ApiContext extends RestContext implements KernelAwareContext {
   private $kernel;
   private $container;
 
@@ -37,11 +35,6 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   private $manager;
 
   /**
-   * @var \Behatch\HttpCall\Request
-   */
-  private $request;
-
-  /**
    * Initializes context.
    *
    * Every scenario gets its own context instance.
@@ -49,68 +42,11 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
    * context constructor through behat.yml.
    */
   public function __construct(ManagerRegistry $doctrine, Request $request) {
+    parent::__construct($request);
     $this->doctrine = $doctrine;
-    $this->request = $request;
     $this->manager = $doctrine->getManager();
     $this->schemaTool = new SchemaTool($this->manager);
     $this->classes = $this->manager->getMetadataFactory()->getAllMetadata();
-  }
-
-  /**
-   * Checks, that a given element contains the specified text.
-   * Example: Then I should see an "h1" element containing "My page"
-   * Example: Then I see "My page" in "h1"
-   *
-   * @Then /^(?:|I )(?:should )?see (?:an? )?"(?P<selector>[^"]+)" (?:element)? containing "(?P<text>[^"]+)"$/
-   * @Then /^(?:|I )see "(?P<text>[^"]*)" in (?:an?)? "(?P<selector>[^"]+)"(?: element)?$/
-   */
-  public function iShouldSeeAnElementContaining($selector, $text) {
-    $this->assertSession()->elementTextContains('css', $selector, $text);
-  }
-
-  /**
-	 * Wait for a number of seconds.
-	 *
-   * @When /^(?:|I )wait (?:for )?(?P<value>[0-9]+) seconds?$/
-   */
-  public function iWaitForSeconds($value) {
-    $this->getSession()->wait(1000 * $value);
-  }
-
-  /**
-	 * Click on an element.
-	 *
-   * @When /^(?:|I )click (?:a |the )?"(?P<selector>[^"]+)"(?: element)?$/
-   */
-  public function iClickTheElement($selector) {
-    $session = $this->getSession();
-    $page = $session->getPage();
-    $element = $page->find('css', $selector);
-    if ($element === NULL) {
-      try {
-        $element = $page->find('named', ['content', $selector]);
-      }
-      catch (\Exception $e) {
-      }
-    }
-    if (NULL === $element) {
-      throw new \InvalidArgumentException(sprintf('Could not find element matching selector "%s"', $selector));
-    }
-
-    $element->click();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function fillField($field, $value) {
-    // See if we can find the field by css selector.
-    $element = $this->getSession()->getPage()->find('css', $field);
-    if ($element !== NULL) {
-      $element->setValue($value);
-    } else {
-      parent::fillField($field, $value);
-    }
   }
 
   /**
@@ -172,60 +108,26 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
     $this->attachments[] = new UploadedFile($path, $filename);
   }
 
-  private $attachments = [];
-
   /**
-   * @When I attach files:
+   * @When I send a :method request to :url with attachments:
+   * @param $method
+   * @param $url
+   * @param \Behat\Gherkin\Node\TableNode $table
    */
-  public function iAttachFiles(TableNode $table) {
+  public function iSendARequestToWithAttachments($method, $url, TableNode $table)
+  {
+    $files = [];
     foreach ($table->getHash() as $row) {
       $filename = $row['filename'];
-      $content = isset($row['content']) ? $row['content'] : NULL;
-      if (!$content && isset($row['mimetype'])) {
-        switch ($row['mimetype']) {
-          case 'image/png':
-            $content = base64_decode('R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
-            break;
-        }
-      }
+      $content = isset($row['content']) ? $row['content'] : $filename;
       $path = tempnam('/tmp', 'attachment' . $filename);
       file_put_contents($path, $content);
-      $this->attachments[] = new UploadedFile($path, $filename);
+      $files[] = new UploadedFile($path, $filename);
     }
+    $body = null;
+
+    return $this->iSendARequestTo($method, $url, $body, $files);
   }
-
-  /**
-   * Sends a HTTP request with a body
-   *
-   * @Given I send a :method request to :url with attachments and body:
-   */
-  public function iSendARequestToWithAttachmentsAndBody($method, $url, PyStringNode $body)
-  {
-    return $this->request->send(
-      $method,
-      $this->locatePath($url),
-      [],
-      $this->attachments,
-      $body !== null ? $body->getRaw() : null
-    );
-  }
-
-
-  /**
-   * Locates url, based on provided path.
-   * Override to provide custom routing mechanism.
-   *
-   * @param string $path
-   *
-   * @return string
-   */
-  public function locatePath($path)
-  {
-    $startUrl = rtrim($this->getMinkParameter('base_url'), '/') . '/';
-
-    return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
-  }
-
 
   /**
    * Get a user by username.

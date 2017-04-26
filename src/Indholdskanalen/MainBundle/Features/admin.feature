@@ -10,6 +10,7 @@ Feature: admin
       | user     | user     | ROLE_USER        |
 
   @createSchema
+  @javascript
   Scenario: Login
     When I go to "/"
     Then I should be on "/login"
