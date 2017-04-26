@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Group controller.
@@ -43,18 +44,21 @@ class GroupController extends Controller {
    * @Method({"POST"})
    */
   public function newAction(Request $request) {
+    $entityService = $this->get('os2display.entity_service');
+
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
+    // Get post content.
     $post = json_decode($request->getContent());
 
     $group = new Group();
-    $group->setTitle(isset($post->title)?: null);
+
+    // Set values from request.
+    $entityService->setValues($group, $post);
 
     // Validate entity.
-    $validator = $this->get('validator');
-    $errors = $validator->validate($group);
-
+    $errors = $entityService->validateEntity($group);
     if (count($errors) > 0) {
       $serializer = $this->get('jms_serializer');
       $data = $serializer->serialize($errors, 'json', SerializationContext::create());
@@ -78,38 +82,64 @@ class GroupController extends Controller {
    *
    * @Route("/{id}", name="api_group_show")
    * @Method("GET")
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\Group $group
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function showAction(Group $group) {
-    $deleteForm = $this->createDeleteForm($group);
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
 
-    return $this->render('group/show.html.twig', array(
-      'group' => $group,
-      'delete_form' => $deleteForm->createView(),
-    ));
+    $serializer = $this->get('jms_serializer');
+    $data = $serializer->serialize($group, 'json', SerializationContext::create()
+      ->setGroups(array('api'))
+      ->enableMaxDepthChecks());
+
+    $response->setContent($data);
+    $response->setStatusCode(200);
+    return $response;
   }
 
   /**
    * Displays a form to edit an existing group entity.
    *
    * @Route("/{id}/edit", name="api_group_edit")
-   * @Method({"GET", "POST"})
+   * @Method({"POST"})
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param \Indholdskanalen\MainBundle\Entity\Group $group
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function editAction(Request $request, Group $group) {
-    $deleteForm = $this->createDeleteForm($group);
-    $editForm = $this->createForm('Indholdskanalen\MainBundle\Form\GroupType', $group);
-    $editForm->handleRequest($request);
+    $entityService = $this->get('os2display.entity_service');
 
-    if ($editForm->isSubmitted() && $editForm->isValid()) {
-      $this->getDoctrine()->getManager()->flush();
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
 
-      return $this->redirectToRoute('api_group_edit', array('id' => $group->getId()));
+    // Get post content.
+    $post = json_decode($request->getContent());
+
+    // Set values from request.
+    $entityService->setValues($group, $post);
+
+    // Validate entity.
+    $errors = $entityService->validateEntity($group);
+    if (count($errors) > 0) {
+      $serializer = $this->get('jms_serializer');
+      $data = $serializer->serialize($errors, 'json', SerializationContext::create());
+
+      $response->setContent($data);
+      $response->setStatusCode(400);
+      return $response;
     }
 
-    return $this->render('group/edit.html.twig', array(
-      'group' => $group,
-      'edit_form' => $editForm->createView(),
-      'delete_form' => $deleteForm->createView(),
-    ));
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($group);
+    $em->flush();
+
+    $response->setContent(json_encode(['id' => $group->getId()]));
+    $response->setStatusCode(400);
+    return $response;
   }
 
   /**
@@ -119,29 +149,10 @@ class GroupController extends Controller {
    * @Method("DELETE")
    */
   public function deleteAction(Request $request, Group $group) {
-    $form = $this->createDeleteForm($group);
-    $form->handleRequest($request);
+    $em = $this->getDoctrine()->getManager();
+    $em->remove($group);
+    $em->flush();
 
-    if ($form->isSubmitted() && $form->isValid()) {
-      $em = $this->getDoctrine()->getManager();
-      $em->remove($group);
-      $em->flush();
-    }
-
-    return $this->redirectToRoute('api_group_index');
-  }
-
-  /**
-   * Creates a form to delete a group entity.
-   *
-   * @param Group $group The group entity
-   *
-   * @return \Symfony\Component\Form\Form The form
-   */
-  private function createDeleteForm(Group $group) {
-    return $this->createFormBuilder()
-      ->setAction($this->generateUrl('api_group_delete', array('id' => $group->getId())))
-      ->setMethod('DELETE')
-      ->getForm();
+    return new JsonResponse(null, 200);
   }
 }
