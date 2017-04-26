@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Contains the group controller.
+ */
 
 namespace Indholdskanalen\MainBundle\Controller;
 
@@ -8,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Group controller.
@@ -21,6 +24,8 @@ class GroupController extends Controller {
    *
    * @Route("/", name="api_group_index")
    * @Method("GET")
+   *
+   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
    */
   public function indexAction() {
     $em = $this->getDoctrine()->getManager();
@@ -37,14 +42,19 @@ class GroupController extends Controller {
    *
    * @Route("/new", name="api_group_new")
    * @Method({"POST"})
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
    */
   public function newAction(Request $request) {
+    // Set up new Group.
+    $group = new Group();
+
+    // Get the Entity Service.
     $entityService = $this->get('os2display.entity_service');
 
     // Get post content.
     $post = json_decode($request->getContent());
-
-    $group = new Group();
 
     // Set values from request.
     $entityService->setValues($group, $post);
@@ -52,15 +62,18 @@ class GroupController extends Controller {
     // Validate entity.
     $errors = $entityService->validateEntity($group);
     if (count($errors) > 0) {
+      // Send error response.
       $response = new CustomJsonResponse(400);
       $response->setData($errors, $this->get('jms_serializer'));
       return $response;
     }
 
+    // Persist to database.
     $em = $this->getDoctrine()->getManager();
     $em->persist($group);
     $em->flush();
 
+    // Send response.
     $response = new CustomJsonResponse();
     $response->setJsonData(json_encode(['id' => $group->getId()]));
     return $response;
@@ -73,7 +86,7 @@ class GroupController extends Controller {
    * @Method("GET")
    *
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Symfony\Component\HttpFoundation\Response
+   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
    */
   public function showAction(Group $group) {
     $response = new CustomJsonResponse();
@@ -89,13 +102,11 @@ class GroupController extends Controller {
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Symfony\Component\HttpFoundation\Response
+   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
    */
   public function editAction(Request $request, Group $group) {
+    // Get the Entity Service.
     $entityService = $this->get('os2display.entity_service');
-
-    $response = new Response();
-    $response->headers->set('Content-Type', 'application/json');
 
     // Get post content.
     $post = json_decode($request->getContent());
@@ -106,15 +117,18 @@ class GroupController extends Controller {
     // Validate entity.
     $errors = $entityService->validateEntity($group);
     if (count($errors) > 0) {
+      // Send error response.
       $response = new CustomJsonResponse(400);
       $response->setData($errors, $this->get('jms_serializer'));
       return $response;
     }
 
+    // Persist to database.
     $em = $this->getDoctrine()->getManager();
     $em->persist($group);
     $em->flush();
 
+    // Send response.
     $response = new CustomJsonResponse();
     $response->setJsonData(json_encode(['id' => $group->getId()]));
     return $response;
@@ -125,6 +139,10 @@ class GroupController extends Controller {
    *
    * @Route("/{id}", name="api_group_delete")
    * @Method("DELETE")
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param \Indholdskanalen\MainBundle\Entity\Group $group
+   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
    */
   public function deleteAction(Request $request, Group $group) {
     $em = $this->getDoctrine()->getManager();

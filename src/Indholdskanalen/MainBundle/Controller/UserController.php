@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Contains user controller.
+ */
 
 namespace Indholdskanalen\MainBundle\Controller;
 
@@ -21,7 +25,7 @@ class UserController extends Controller {
    *
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function userAction() {
+  public function getCurrentUser() {
 	  $user = $this->get('security.context')->getToken()->getUser();
 
 	  $serializer = $this->get('jms_serializer');
@@ -41,6 +45,4 @@ class UserController extends Controller {
 
 	  return $response;
   }
-
-
 }
