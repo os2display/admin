@@ -26,9 +26,16 @@ class User extends BaseUser {
   protected $id;
 
   /**
+   * @ORM\Column(name="firstname", type="string", nullable=false)
    * @Groups({"api"})
    */
-  protected $roles;
+  protected $firstname;
+
+  /**
+   * @ORM\Column(name="lastname", type="string", nullable=false)
+   * @Groups({"api"})
+   */
+  protected $lastname;
 
   /**
    * Get id
@@ -44,6 +51,34 @@ class User extends BaseUser {
    */
   public function __construct() {
     parent::__construct();
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getFirstname() {
+    return $this->firstname;
+  }
+
+  /**
+   * @param mixed $firstname
+   */
+  public function setFirstname($firstname) {
+    $this->firstname = $firstname;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getLastname() {
+    return $this->lastname;
+  }
+
+  /**
+   * @param mixed $lastname
+   */
+  public function setLastname($lastname) {
+    $this->lastname = $lastname;
   }
 
   /**
