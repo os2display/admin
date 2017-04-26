@@ -26,13 +26,13 @@ class User extends BaseUser {
   protected $id;
 
   /**
-   * @ORM\Column(name="firstname", type="string", nullable=false)
+   * @ORM\Column(name="firstname", type="string", nullable=true)
    * @Groups({"api"})
    */
   protected $firstname;
 
   /**
-   * @ORM\Column(name="lastname", type="string", nullable=false)
+   * @ORM\Column(name="lastname", type="string", nullable=true)
    * @Groups({"api"})
    */
   protected $lastname;

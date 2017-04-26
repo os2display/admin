@@ -8,6 +8,7 @@ namespace Indholdskanalen\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -23,6 +24,7 @@ class Group {
   protected $id;
 
   /**
+   * @Assert\NotNull()
    * @ORM\Column(name="title", type="string", nullable=false)
    * @Groups({"api"})
    */
