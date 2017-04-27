@@ -3,7 +3,7 @@ parameters:
 services:
   indholdskanalen_main.listener:
     class: Indholdskanalen\MainBundle\EventListener\SearchIndexer
-    arguments: [@jms_serializer, @service_container, @indholdskanalen.utility_service]
+    arguments: ['@jms_serializer', '@service_container', '@indholdskanalen.utility_service']
     tags:
       - { name: doctrine.event_listener, event: postPersist }
       - { name: doctrine.event_listener, event: preUpdate }
@@ -11,11 +11,11 @@ services:
 
   os2display.entity_service:
     class: Indholdskanalen\MainBundle\Services\EntityService
-    arguments: [@validator]
+    arguments: ['@validator']
 
   os2display.user_manager:
     class: Indholdskanalen\MainBundle\Services\UserManager
-    arguments: [@fos_user.user_manager, @os2display.user_mailer_service]
+    arguments: ['@fos_user.user_manager', '@os2display.user_mailer_service', '@property_accessor']
 
   os2display.user_mailer_service:
     class: Indholdskanalen\MainBundle\Services\UserMailerService
@@ -27,7 +27,7 @@ services:
 
   indholdskanalen_main.serialization_listener:
     class: Indholdskanalen\MainBundle\EventListener\SerializationListener
-    arguments: [@sonata.media.pool, @service_container, @indholdskanalen.template_service]
+    arguments: ['@sonata.media.pool', '@service_container', '@indholdskanalen.template_service']
     tags:
       - { name: jms_serializer.event_subscriber}
 
@@ -38,21 +38,21 @@ services:
 
   indholdskanalen.template_service:
     class: Indholdskanalen\MainBundle\Services\TemplateService
-    arguments: [@service_container]
+    arguments: ['@service_container']
 
   indholdskanalen.feed_service:
     class: Indholdskanalen\MainBundle\Services\FeedService
-    arguments: [@service_container]
+    arguments: ['@service_container']
     tags:
       - { name: kernel.event_listener, event: ik.cron, method: onCron }
 
   indholdskanalen.authentication_service:
     class: Indholdskanalen\MainBundle\Services\AuthenticationService
-    arguments: [@service_container]
+    arguments: ['@service_container']
 
   indholdskanalen.sharing_service:
     class: Indholdskanalen\MainBundle\Services\SharingService
-    arguments: [@jms_serializer, @service_container, @indholdskanalen.utility_service]
+    arguments: ['@jms_serializer', '@service_container', '@indholdskanalen.utility_service']
     tags:
       - { name: kernel.event_listener, event: indholdskanalen_sharing_service.add_channel_to_index, method: onAddChannelToIndex }
       - { name: kernel.event_listener, event: indholdskanalen_sharing_service.remove_channel_from_index, method: onRemoveChannelFromIndex }
@@ -61,11 +61,11 @@ services:
 
   indholdskanalen.utility_service:
     class: Indholdskanalen\MainBundle\Services\UtilityService
-    arguments: [@indholdskanalen.authentication_service]
+    arguments: ['@indholdskanalen.authentication_service']
 
   indholdskanalen.middleware.communication:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
-    arguments: [@service_container, @indholdskanalen.template_service, @indholdskanalen.utility_service]
+    arguments: ['@service_container', '@indholdskanalen.template_service', '@indholdskanalen.utility_service']
     tags:
       - { name: kernel.event_listener, event: ik.cron, method: onCron, priority: 1 }
 
@@ -73,6 +73,6 @@ services:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider
     tags:
       - { name: sonata.media.provider }
-    arguments: [sonata.media.provider.zencoder, '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '%absolute_path_to_server%', '%zencoder_api%', @logger]
+    arguments: ['sonata.media.provider.zencoder', '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '%absolute_path_to_server%', '%zencoder_api%', '@logger']
     calls:
       - [setTemplates, [{ helper_thumbnail: 'SonataMediaBundle:Provider:thumbnail.html.twig', helper_view: 'SonataMediaBundle:Provider:view_video.html.twig' }]]
