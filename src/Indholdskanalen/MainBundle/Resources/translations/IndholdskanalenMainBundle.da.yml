@@ -3,5 +3,5 @@ user:
     email:
       subject: Bruger oprettet.
       title: Hej %name%!
-      content: En administrator har oprettet konto til dig.
+      content: En administrator har oprettet en konto til dig.
       activate: For at aktivere din konto skal du besøge:
