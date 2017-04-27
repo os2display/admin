@@ -108,7 +108,6 @@ class Slide {
 
   /**
    * @ORM\Column(name="media_type", type="string", nullable=true)
-   *   "video" or "image".
    * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $mediaType;

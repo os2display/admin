@@ -9,7 +9,7 @@ angular.module('mainModule').service('userService', ['busService', '$http',
 
     busService.$on('userService.requestUser', function requestUser(event, args) {
       if (user === undefined) {
-        $http.get('/api/user')
+        $http.get('/api/user/current')
           .success(function (data) {
             user = data;
             busService.$emit('userService.returnUser', user);

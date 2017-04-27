@@ -23,15 +23,15 @@ class UserGroup {
   protected $id;
 
   /**
-   * @ORM\Column(name="role", type="string", nullable=false)
+   * @ORM\Column(name="role", type="string", nullable=true)
    * @Groups({"api"})
    */
-  private $role;
+  protected $role;
 
   /**
    * Channel to add.
    *
-   * @ORM\ManyToOne(targetEntity="Group", inversedBy="userGroup")
+   * @ORM\ManyToOne(targetEntity="Group", inversedBy="userGroups")
    * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=false)
    * @Groups({"api"})
    */
@@ -40,7 +40,7 @@ class UserGroup {
   /**
    * Channel to add.
    *
-   * @ORM\ManyToOne(targetEntity="User", inversedBy="userGroup")
+   * @ORM\ManyToOne(targetEntity="User", inversedBy="userGroups")
    * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
    * @Groups({"api"})
    */
@@ -70,12 +70,26 @@ class UserGroup {
   /**
    * @return mixed
    */
+  public function getUser() {
+    return $this->user;
+  }
+
+  /**
+   * @param User $user
+   */
+  public function setUser($user) {
+    $this->user = $user;
+  }
+
+  /**
+   * @return Group
+   */
   public function getGroup() {
     return $this->group;
   }
 
   /**
-   * @param mixed $group
+   * @param Group $group
    */
   public function setGroup($group) {
     $this->group = $group;
