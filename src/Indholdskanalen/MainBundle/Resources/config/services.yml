@@ -9,6 +9,10 @@ services:
       - { name: doctrine.event_listener, event: preUpdate }
       - { name: doctrine.event_listener, event: preRemove }
 
+  os2display.entity_service:
+    class: Indholdskanalen\MainBundle\Services\EntityService
+    arguments: [@validator]
+
   indholdskanalen_main.api_authentication_service:
     class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
 
