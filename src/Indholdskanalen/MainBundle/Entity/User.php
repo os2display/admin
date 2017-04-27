@@ -11,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Indholdskanalen\MainBundle\Entity\UserGroup;
 
 /**
  * @ORM\Entity
@@ -38,10 +41,19 @@ class User extends BaseUser {
   protected $lastname;
 
   /**
-   * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="group", orphanRemoval=true)
+   * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="user", orphanRemoval=true)
    * @Groups({"api"})
    */
-  private $userGroups;
+  protected $userGroups;
+
+  /**
+   * Constructor
+   */
+  public function __construct() {
+    parent::__construct();
+
+    $this->userGroups = new ArrayCollection();
+  }
 
   /**
    * Is the user administrator
@@ -95,13 +107,6 @@ class User extends BaseUser {
   }
 
   /**
-   * Constructor
-   */
-  public function __construct() {
-    parent::__construct();
-  }
-
-  /**
    * @return mixed
    */
   public function getFirstname() {
@@ -132,10 +137,10 @@ class User extends BaseUser {
   /**
    * Add userGroup
    *
-   * @param \Indholdskanalen\MainBundle\Entity\UserGroup $userGroup
+   * @param UserGroup $userGroup
    * @return User
    */
-  public function addUserGroup(\Indholdskanalen\MainBundle\Entity\UserGroup $userGroup) {
+  public function addUserGroup(UserGroup $userGroup) {
     $this->userGroups[] = $userGroup;
 
     return $this;
@@ -144,10 +149,10 @@ class User extends BaseUser {
   /**
    * Remove userGroup
    *
-   * @param \Indholdskanalen\MainBundle\Entity\UserGroup $userGroup
+   * @param UserGroup $userGroup
    * @return User
    */
-  public function removeUserGroup(\Indholdskanalen\MainBundle\Entity\UserGroup $userGroup) {
+  public function removeUserGroup(UserGroup $userGroup) {
     $this->userGroups->removeElement($userGroup);
 
     return $this;
@@ -156,7 +161,7 @@ class User extends BaseUser {
   /**
    * Get userGroup
    *
-   * @return \Doctrine\Common\Collections\Collection
+   * @return Collection
    */
   public function getUserGroups() {
     return $this->userGroups;

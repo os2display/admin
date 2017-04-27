@@ -74,7 +74,7 @@ class GroupController extends Controller {
     $em->flush();
 
     // Send response.
-    $response = new CustomJsonResponse();
+    $response = new CustomJsonResponse(201);
     $response->setJsonData(json_encode(['id' => $group->getId()]));
     return $response;
   }
@@ -149,6 +149,6 @@ class GroupController extends Controller {
     $em->remove($group);
     $em->flush();
 
-    return new CustomJsonResponse();
+    return new CustomJsonResponse(204);
   }
 }

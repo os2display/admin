@@ -28,13 +28,20 @@ class Group {
    * @ORM\Column(name="title", type="string", nullable=false)
    * @Groups({"api"})
    */
-  private $title;
+  protected $title;
 
   /**
    * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="group", orphanRemoval=true)
    * @Groups({"api"})
    */
-  private $userGroups;
+  protected $userGroups;
+
+  /**
+   * Group constructor.
+   */
+  public function __construct() {
+    $this->userGroups = new \Doctrine\Common\Collections\ArrayCollection();
+  }
 
   /**
    * @return mixed
