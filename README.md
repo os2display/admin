@@ -59,3 +59,9 @@ Run API tests:
 ```
 ./vendor/behat/behat/bin/behat --suite=api_features
 ```
+
+Run only tests with a specific tag:
+
+```
+./vendor/behat/behat/bin/behat --suite=api_features --tags=group
+```
