@@ -9,11 +9,14 @@ namespace Indholdskanalen\MainBundle\Controller;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
+use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
+use Indholdskanalen\MainBundle\Exception\ValidationException;
 use JMS\Serializer\SerializationContext;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @Route("/api/user")
@@ -48,7 +51,15 @@ class UserController extends ApiController {
     $data = $this->getData($request);
 
     // Create user.
-    $user = $this->get('os2display.user_manager')->createUser($data);
+    try {
+      $user = $this->get('os2display.user_manager')->createUser($data);
+    }
+    catch (ValidationException $e) {
+      return $this->json($e, 400);
+    }
+    catch (DuplicateEntityException $e) {
+      return $this->json($e, 409);
+    }
 
     // Send response.
     return $this->json($user, 201);
@@ -93,7 +104,7 @@ class UserController extends ApiController {
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function editAction(Request $request, User $user) {
     $this->setValuesFromRequest($user, $request);
@@ -141,7 +152,8 @@ class UserController extends ApiController {
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function addGroup(Request $request, User $user, Group $group) {
     $em = $this->getDoctrine()->getManager();

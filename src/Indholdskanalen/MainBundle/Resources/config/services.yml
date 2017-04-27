@@ -15,7 +15,7 @@ services:
 
   os2display.user_manager:
     class: Indholdskanalen\MainBundle\Services\UserManager
-    arguments: ['@fos_user.user_manager', '@os2display.user_mailer_service', '@property_accessor']
+    arguments: ['@fos_user.user_manager', '@os2display.user_mailer_service', '@os2display.entity_service']
 
   os2display.user_mailer_service:
     class: Indholdskanalen\MainBundle\Services\UserMailerService

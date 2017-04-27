@@ -7,7 +7,6 @@
 namespace Indholdskanalen\MainBundle\Services;
 
 use FOS\UserBundle\Doctrine\UserManager as FOSUserManager;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 
 /**
@@ -52,9 +51,8 @@ class UserManager {
 
     $this->entityService->validateEntity($user);
 
-    $user = $this->userManager->findUserByEmail($user->getEmail());
-    if ($user) {
-      throw new DuplicateEntityException('User already exists', $user);
+    if ($this->userManager->findUserByEmail($user->getEmail())) {
+      throw new DuplicateEntityException('User already exists.', $data);
     }
 
     // Send confirmation email.

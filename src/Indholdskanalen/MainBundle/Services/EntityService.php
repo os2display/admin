@@ -63,7 +63,7 @@ class EntityService {
   public function validateEntity($entity) {
     $errors = $this->validator->validate($entity);
 
-    if ($errors > 0) {
+    if (count($errors) > 0) {
       throw new ValidationException('Validation exceptions', $errors);
     }
 
