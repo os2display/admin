@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Contains the user service.
+ * Contains the user mailer service.
  */
 
 namespace Indholdskanalen\MainBundle\Services;
@@ -10,10 +10,10 @@ use FOS\UserBundle\Mailer\Mailer;
 use Indholdskanalen\MainBundle\Entity\User;
 
 /**
- * Class UserService
+ * Class UserMailerService
  * @package Indholdskanalen\MainBundle\Services
  */
-class UserService extends Mailer {
+class UserMailerService extends Mailer {
   /**
    * Send user created mail to user.
    *
