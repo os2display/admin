@@ -7,6 +7,7 @@
 namespace Indholdskanalen\MainBundle\Controller;
 
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Exception\ValidationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,8 @@ use Symfony\Component\HttpFoundation\Response;
  * @Route("api/group")
  */
 class GroupController extends ApiController {
+  protected static $editableProperties = ['title'];
+
   /**
    * Lists all group entities.
    *
@@ -45,12 +48,12 @@ class GroupController extends ApiController {
   public function newAction(Request $request) {
     // Set up new Group.
     $group = new Group();
-    $this->setValuesFromRequest($group, $request);
+    $this->setValuesFromRequest($group, $request, static::$editableProperties);
 
-    // Validate entity.
-    $errors = $this->validateEntity($group);
-    if (count($errors) > 0) {
-      return $this->json($errors, 400);
+    try {
+      $this->validateEntity($group);
+    } catch (ValidationException $e) {
+      return $this->json($e, 400);
     }
 
     // Persist to database.
@@ -86,13 +89,12 @@ class GroupController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function editAction(Request $request, Group $group) {
-    $this->setValuesFromRequest($group, $request);
+    $this->setValuesFromRequest($group, $request, static::$editableProperties);
 
-    // Validate entity.
-    $errors = $this->validateEntity($group);
-    if (count($errors) > 0) {
-      // Send error response.
-      return $this->json($errors, 400);
+    try {
+      $this->validateEntity($group);
+    } catch (ValidationException $e) {
+      return $this->json($e, 400);
     }
 
     // Persist to database.

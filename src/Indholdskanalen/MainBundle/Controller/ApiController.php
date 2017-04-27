@@ -50,9 +50,9 @@ class ApiController extends Controller {
    * @param $entity
    * @param array $data
    */
-  protected function setValues($entity, array $data) {
+  protected function setValues($entity, array $data, array $properties = NULL) {
     $entityService = $this->get('os2display.entity_service');
-    $entityService->setValues($entity, $data);
+    $entityService->setValues($entity, $data, $properties);
   }
 
   protected function validateEntity($entity) {
@@ -67,8 +67,8 @@ class ApiController extends Controller {
    * @param $entity
    * @param \Symfony\Component\HttpFoundation\Request $request
    */
-  protected function setValuesFromRequest($entity, Request $request) {
+  protected function setValuesFromRequest($entity, Request $request, array $properties = NULL) {
     $data = $this->getData($request);
-    $this->setValues($entity, $data);
+    $this->setValues($entity, $data, $properties);
   }
 }

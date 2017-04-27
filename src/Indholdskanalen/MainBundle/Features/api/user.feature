@@ -68,34 +68,19 @@ Feature: admin
     And the JSON node "[1].is_super_admin" should be false
     And the JSON node "[1].roles" should have 0 elements
 
-  Scenario: Add user (without username)
-    When I sign in with username "admin" and password "admin"
-    And I send a "POST" request to "/api/user" with body:
-      """
-      {
-        "firstname": "Jed I",
-        "lastname": "Night"
-      }
-      """
-    Then the response status code should be 400
-    And the response should be in JSON
-    And the JSON node "[0].property_path" should be equal to "username"
-    And the JSON node "[0].message" should not be null
-
   Scenario: Add user (without email)
     When I sign in with username "admin" and password "admin"
     And I send a "POST" request to "/api/user" with body:
       """
       {
-        "username": "jedinight",
         "firstname": "Jed I",
         "lastname": "Night"
       }
       """
     Then the response status code should be 400
     And the response should be in JSON
-    And the JSON node "[0].property_path" should be equal to "email"
-    And the JSON node "[0].message" should not be null
+    And the JSON node "message" should not be null
+    And the JSON node "data" should have 2 elements
 
   Scenario: Add user
     When I sign in with username "admin" and password "admin"
@@ -112,6 +97,20 @@ Feature: admin
     And the response should be in JSON
     And the JSON node "id" should be equal to 3
     And the JSON node "email" should be equal to "jedinight@tatooine.org"
+    And the JSON node "firstname" should be equal to "Jed I"
+    And the JSON node "lastname" should be equal to "Night"
+
+  Scenario: Add user with already existing email
+    When I sign in with username "admin" and password "admin"
+    And I send a "POST" request to "/api/user" with body:
+      """
+      {
+        "email": "jedinight@tatooine.org",
+        "firstname": "Jed II",
+        "lastname": "Night"
+      }
+      """
+    Then the response status code should be 409
 
   Scenario: Get users
     When I sign in with username "admin" and password "admin"
