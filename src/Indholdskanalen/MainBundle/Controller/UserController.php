@@ -161,7 +161,7 @@ class UserController extends ApiController {
     // Get post content.
     $data = $this->getData($request);
 
-    $role = isset($data->role) ? $data->role : null;
+    $role = isset($data['role']) ? $data['role']: null;
 
     // Check if group is already added.
     $userGroup = $em->getRepository('IndholdskanalenMainBundle:UserGroup')->findBy(['user' => $user->getId(), 'group' => $group->getId(), 'role' => $role]);
