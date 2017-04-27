@@ -119,7 +119,7 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   public function theFollowingUsersExist(TableNode $table) {
     foreach ($table->getHash() as $row) {
       $username = $row['username'];
-      $email = $username . '@example.com';
+      $email = isset($row['email']) ? $row['email'] : uniqid($username) . '@' . uniqid('example') . '.com';
       $password = isset($row['password']) ? $row['password'] : uniqid();
       $roles = isset($row['roles']) ? preg_split('/\s*,\s*/', $row['roles'], -1, PREG_SPLIT_NO_EMPTY) : [];
 
