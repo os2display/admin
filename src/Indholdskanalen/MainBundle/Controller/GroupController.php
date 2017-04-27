@@ -75,7 +75,7 @@ class GroupController extends Controller {
 
     // Send response.
     $response = new CustomJsonResponse(201);
-    $response->setJsonData(json_encode(['id' => $group->getId()]));
+    $response->setData($group, $this->get('jms_serializer'), ['api']);
     return $response;
   }
 
