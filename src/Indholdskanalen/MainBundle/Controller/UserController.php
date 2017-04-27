@@ -56,31 +56,8 @@ class UserController extends Controller {
       return new CustomJsonResponse(400);
     }
 
-    $userManager = $this->container->get('fos_user.user_manager');
-    $user = $userManager->findUserByEmail($post->email);
-    if ($user) {
-      return new CustomJsonResponse(409);
-    }
-
-    // Create user object.
-    $user = $userManager->createUser();
-    $user->setUsername($post->email);
-    $user->setEmail($post->email);
-    $user->setPlainPassword(uniqid());
-    $user->setFirstname($post->firstname);
-    $user->setLastname($post->lastname);
-    $user->setEnabled(TRUE);
-    
-    // Send confirmation email.
-    if (null === $user->getConfirmationToken()) {
-      /** @var $tokenGenerator \FOS\UserBundle\Util\TokenGeneratorInterface */
-      $tokenGenerator = $this->container->get('fos_user.util.token_generator');
-      $user->setConfirmationToken($tokenGenerator->generateToken());
-    }
-    $this->container->get('os2display.user_mailer_service')->sendUserCreatedEmailMessage($user);
-    $user->setPasswordRequestedAt(new \DateTime());
-
-    $userManager->updateUser($user);
+    // Create user.
+    $user = $this->get('os2display.user_manager')->createUser($post->email, $post->firstname, $post->lastname);
 
     // Send response.
     $response = new CustomJsonResponse(201);
