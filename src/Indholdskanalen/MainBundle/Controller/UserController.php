@@ -6,15 +6,17 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
-use Indholdskanalen\MainBundle\CustomJsonResponse;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
+use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
+use Indholdskanalen\MainBundle\Exception\ValidationException;
 use JMS\Serializer\SerializationContext;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @Route("/api/user")
@@ -26,7 +28,7 @@ class UserController extends ApiController {
    * @Route("", name="api_user_index")
    * @Method("GET")
    *
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function indexAction() {
     $em = $this->getDoctrine()->getManager();
@@ -42,41 +44,22 @@ class UserController extends ApiController {
    * @Method({"POST"})
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function newAction(Request $request) {
     // Get post content.
-    $post = json_decode($request->getContent());
+    $data = $this->getData($request);
 
-    if (!isset($post)) {
-      return new CustomJsonResponse(400);
+    // Create user.
+    try {
+      $user = $this->get('os2display.user_manager')->createUser($data);
     }
-
-    $userManager = $this->container->get('fos_user.user_manager');
-    $user = $userManager->findUserByEmail($post->email);
-    if ($user) {
-      return new CustomJsonResponse(409);
+    catch (ValidationException $e) {
+      return $this->json($e, 400);
     }
-
-    // Create user object.
-    $user = $userManager->createUser();
-    $user->setUsername($post->email);
-    $user->setEmail($post->email);
-    $user->setPlainPassword(uniqid());
-    $user->setFirstname($post->firstname);
-    $user->setLastname($post->lastname);
-    $user->setEnabled(TRUE);
-
-    // Send confirmation email.
-    if (null === $user->getConfirmationToken()) {
-      /** @var $tokenGenerator \FOS\UserBundle\Util\TokenGeneratorInterface */
-      $tokenGenerator = $this->container->get('fos_user.util.token_generator');
-      $user->setConfirmationToken($tokenGenerator->generateToken());
+    catch (DuplicateEntityException $e) {
+      return $this->json($e, 409);
     }
-    $this->container->get('os2display.user_mailer_service')->sendUserCreatedEmailMessage($user);
-    $user->setPasswordRequestedAt(new \DateTime());
-
-    $userManager->updateUser($user);
 
     // Send response.
     return $this->json($user, 201);
@@ -107,7 +90,7 @@ class UserController extends ApiController {
    * @Method("GET")
    *
    * @param \Indholdskanalen\MainBundle\Entity\User $user
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function showAction(User $user) {
     return $this->json($user);
@@ -121,7 +104,7 @@ class UserController extends ApiController {
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function editAction(Request $request, User $user) {
     $this->setValuesFromRequest($user, $request);
@@ -169,7 +152,8 @@ class UserController extends ApiController {
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function addGroup(Request $request, User $user, Group $group) {
     $em = $this->getDoctrine()->getManager();

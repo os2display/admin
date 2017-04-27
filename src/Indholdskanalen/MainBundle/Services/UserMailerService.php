@@ -7,7 +7,7 @@
 namespace Indholdskanalen\MainBundle\Services;
 
 use FOS\UserBundle\Mailer\Mailer;
-use Indholdskanalen\MainBundle\Entity\User;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Class UserMailerService
@@ -17,9 +17,9 @@ class UserMailerService extends Mailer {
   /**
    * Send user created mail to user.
    *
-   * @param User $user
+   * @param UserInterface $user
    */
-  public function sendUserCreatedEmailMessage(User $user) {
+  public function sendUserCreatedEmailMessage(UserInterface $user) {
     $rendered = $this->templating->render(
       'IndholdskanalenMainBundle:User:mailer.html.twig', [
         'name' => $user->getFirstname(),

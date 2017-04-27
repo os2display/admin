@@ -112,7 +112,7 @@ class GroupController extends ApiController {
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function deleteAction(Request $request, Group $group) {
     $em = $this->getDoctrine()->getManager();
