@@ -7,6 +7,8 @@
 namespace Indholdskanalen\MainBundle\Services;
 
 use FOS\UserBundle\Doctrine\UserManager as FOSUserManager;
+use FOS\UserBundle\Util\TokenGenerator;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 
 /**
@@ -17,6 +19,7 @@ class UserManager {
   protected $userManager;
   protected $mailerService;
   protected $entityService;
+  protected $tokenGenerator;
 
   /**
    * UserManager constructor.
@@ -24,10 +27,11 @@ class UserManager {
    * @param \FOS\UserBundle\Doctrine\UserManager $userManager
    * @param \Indholdskanalen\MainBundle\Services\UserMailerService $mailerService
    */
-  public function __construct(FOSUserManager $userManager, UserMailerService $mailerService, EntityService $entityService) {
+  public function __construct(FOSUserManager $userManager, UserMailerService $mailerService, EntityService $entityService, TokenGeneratorInterface $tokenGenerator) {
     $this->userManager = $userManager;
     $this->mailerService = $mailerService;
     $this->entityService = $entityService;
+    $this->tokenGenerator = $tokenGenerator;
   }
 
   /**
@@ -57,9 +61,7 @@ class UserManager {
 
     // Send confirmation email.
     if (null === $user->getConfirmationToken()) {
-      /** @var $tokenGenerator \FOS\UserBundle\Util\TokenGeneratorInterface */
-      $tokenGenerator = $this->container->get('fos_user.util.token_generator');
-      $user->setConfirmationToken($tokenGenerator->generateToken());
+      $user->setConfirmationToken($this->tokenGenerator->generateToken());
     }
     $this->mailerService->sendUserCreatedEmailMessage($user);
     $user->setPasswordRequestedAt(new \DateTime());

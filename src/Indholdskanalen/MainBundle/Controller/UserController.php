@@ -152,7 +152,7 @@ class UserController extends ApiController {
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   *
+    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function addGroup(Request $request, User $user, Group $group) {
