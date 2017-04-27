@@ -49,35 +49,44 @@ class UserController extends Controller {
    * @return \Indholdskanalen\MainBundle\CustomJsonResponse
    */
   public function newAction(Request $request) {
-    // Set up new User.
-    $user = new User();
-
-    // Get the Entity Service.
-    $entityService = $this->get('os2display.entity_service');
-
     // Get post content.
     $post = json_decode($request->getContent());
 
-    // Set values from request.
-    $entityService->setValues($user, $post);
-
-    // Validate entity.
-    $errors = $entityService->validateEntity($user);
-    if (count($errors) > 0) {
-      // Send error response.
-      $response = new CustomJsonResponse(400);
-      $response->setData($errors, $this->get('jms_serializer'));
-      return $response;
+    if (!isset($post)) {
+      return new CustomJsonResponse(400);
     }
 
-    // Persist to database.
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($user);
-    $em->flush();
+    $userManager = $this->container->get('fos_user.user_manager');
+    $user = $userManager->findUserByEmail($post->email);
+    if ($user) {
+      return new CustomJsonResponse(409);
+    }
+
+    $user = $userManager->createUser();
+    $user->setUsername($post->username);
+    $user->setEmail($post->email);
+    $user->setPlainPassword(uniqid());
+    $user->setFirstname($post->firstname);
+    $user->setLastname($post->lastname);
+    $user->setEnabled(TRUE);
+    
+    $userManager->updateUser($user);
+
+    // Send confirmation email.
+    if (null === $user->getConfirmationToken()) {
+      /** @var $tokenGenerator \FOS\UserBundle\Util\TokenGeneratorInterface */
+      $tokenGenerator = $this->container->get('fos_user.util.token_generator');
+      $user->setConfirmationToken($tokenGenerator->generateToken());
+    }
+
+    $this->container->get('os2display.user_service')->sendUserCreatedEmailMessage($user);
+    //$this->container->get('fos_user.mailer')->sendResettingEmailMessage($user);
+    $user->setPasswordRequestedAt(new \DateTime());
+    $userManager->updateUser($user);
 
     // Send response.
     $response = new CustomJsonResponse(201);
-    $response->setJsonData(json_encode(['id' => $user->getId()]));
+    $response->setData($user, $this->get('jms_serializer'), ['api']);
     return $response;
   }
 
