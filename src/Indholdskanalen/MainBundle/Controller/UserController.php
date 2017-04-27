@@ -64,7 +64,7 @@ class UserController extends Controller {
 
     // Create user object.
     $user = $userManager->createUser();
-    $user->setUsername($post->username);
+    $user->setUsername($post->email);
     $user->setEmail($post->email);
     $user->setPlainPassword(uniqid());
     $user->setFirstname($post->firstname);
