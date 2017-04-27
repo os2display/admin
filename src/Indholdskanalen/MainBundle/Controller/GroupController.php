@@ -22,7 +22,7 @@ class GroupController extends Controller {
   /**
    * Lists all group entities.
    *
-   * @Route("/", name="api_group_index")
+   * @Route("", name="api_group_index")
    * @Method("GET")
    *
    * @return \Indholdskanalen\MainBundle\CustomJsonResponse
@@ -40,7 +40,7 @@ class GroupController extends Controller {
   /**
    * Creates a new group entity.
    *
-   * @Route("/new", name="api_group_new")
+   * @Route("", name="api_group_new")
    * @Method({"POST"})
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
@@ -97,8 +97,8 @@ class GroupController extends Controller {
   /**
    * Displays a form to edit an existing group entity.
    *
-   * @Route("/{id}/edit", name="api_group_edit")
-   * @Method({"POST"})
+   * @Route("/{id}", name="api_group_edit")
+   * @Method({"PUT"})
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group

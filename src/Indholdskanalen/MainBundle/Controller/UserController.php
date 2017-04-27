@@ -22,35 +22,6 @@ use Indholdskanalen\MainBundle\Entity\UserGroup;
  */
 class UserController extends Controller {
   /**
-   * Sends current user.
-   *
-   * @Route("/current")
-   * @Method("GET")
-   *
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function getCurrentUser() {
-	  $user = $this->get('security.context')->getToken()->getUser();
-
-	  $serializer = $this->get('jms_serializer');
-
-	  $response = new Response();
-	  $response->headers->set('Content-Type', 'application/json');
-
-	  $json_content = $serializer->serialize($user, 'json', SerializationContext::create()->setUsers(array('api')));
-
-		// Hack to include configurable search_filter_default
-		// @TODO: move this into the user and make it configurable on a user level.
-		$user = json_decode($json_content);
-		$user->search_filter_default = $this->getParameter('search_filter_default');
-		$json_content = json_encode($user);
-
-	  $response->setContent($json_content);
-
-	  return $response;
-  }
-
-  /**
    * Lists all user entities.
    *
    * @Route("", name="api_user_index")
@@ -71,7 +42,7 @@ class UserController extends Controller {
   /**
    * Creates a new user entity.
    *
-   * @Route("/new", name="api_user_new")
+   * @Route("", name="api_user_new")
    * @Method({"POST"})
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
@@ -128,8 +99,8 @@ class UserController extends Controller {
   /**
    * Displays a form to edit an existing user entity.
    *
-   * @Route("/{id}/edit", name="api_user_edit")
-   * @Method({"POST"})
+   * @Route("/{id}", name="api_user_edit")
+   * @Method({"PUT"})
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
@@ -220,6 +191,35 @@ class UserController extends Controller {
     // Send response.
     $response = new CustomJsonResponse();
     $response->setJsonData(json_encode(['id' => $userGroup->getId()]));
+    return $response;
+  }
+
+  /**
+   * Sends current user.
+   *
+   * @Route("/current")
+   * @Method("GET")
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function getCurrentUser() {
+    $user = $this->get('security.context')->getToken()->getUser();
+
+    $serializer = $this->get('jms_serializer');
+
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    $json_content = $serializer->serialize($user, 'json', SerializationContext::create()->setUsers(array('api')));
+
+    // Hack to include configurable search_filter_default
+    // @TODO: move this into the user and make it configurable on a user level.
+    $user = json_decode($json_content);
+    $user->search_filter_default = $this->getParameter('search_filter_default');
+    $json_content = json_encode($user);
+
+    $response->setContent($json_content);
+
     return $response;
   }
 }
