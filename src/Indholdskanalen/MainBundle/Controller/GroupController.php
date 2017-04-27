@@ -6,35 +6,31 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
-use Indholdskanalen\MainBundle\CustomJsonResponse;
 use Indholdskanalen\MainBundle\Entity\Group;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Group controller.
  *
  * @Route("api/group")
  */
-class GroupController extends Controller {
+class GroupController extends ApiController {
   /**
    * Lists all group entities.
    *
    * @Route("", name="api_group_index")
    * @Method("GET")
    *
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function indexAction() {
     $em = $this->getDoctrine()->getManager();
+    $groups = $em->getRepository(Group::class)->findAll();
 
-    $groups = $em->getRepository('IndholdskanalenMainBundle:Group')->findAll();
-
-    $response = new CustomJsonResponse();
-    $response->setData($groups, $this->get('jms_serializer'), ['api']);
-    return $response;
+    return $this->json($groups);
   }
 
   /**
@@ -44,28 +40,17 @@ class GroupController extends Controller {
    * @Method({"POST"})
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function newAction(Request $request) {
     // Set up new Group.
     $group = new Group();
-
-    // Get the Entity Service.
-    $entityService = $this->get('os2display.entity_service');
-
-    // Get post content.
-    $post = json_decode($request->getContent());
-
-    // Set values from request.
-    $entityService->setValues($group, $post);
+    $this->setValuesFromRequest($group, $request);
 
     // Validate entity.
-    $errors = $entityService->validateEntity($group);
+    $errors = $this->validateEntity($group);
     if (count($errors) > 0) {
-      // Send error response.
-      $response = new CustomJsonResponse(400);
-      $response->setData($errors, $this->get('jms_serializer'));
-      return $response;
+      return $this->json($errors, 400);
     }
 
     // Persist to database.
@@ -74,9 +59,7 @@ class GroupController extends Controller {
     $em->flush();
 
     // Send response.
-    $response = new CustomJsonResponse(201);
-    $response->setData($group, $this->get('jms_serializer'), ['api']);
-    return $response;
+    return $this->json($group, 201);
   }
 
   /**
@@ -86,12 +69,10 @@ class GroupController extends Controller {
    * @Method("GET")
    *
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function showAction(Group $group) {
-    $response = new CustomJsonResponse();
-    $response->setData($group, $this->get('jms_serializer'), ['api']);
-    return $response;
+    return $this->json($group);
   }
 
   /**
@@ -102,25 +83,16 @@ class GroupController extends Controller {
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function editAction(Request $request, Group $group) {
-    // Get the Entity Service.
-    $entityService = $this->get('os2display.entity_service');
-
-    // Get post content.
-    $post = json_decode($request->getContent());
-
-    // Set values from request.
-    $entityService->setValues($group, $post);
+    $this->setValuesFromRequest($group, $request);
 
     // Validate entity.
-    $errors = $entityService->validateEntity($group);
+    $errors = $this->validateEntity($group);
     if (count($errors) > 0) {
       // Send error response.
-      $response = new CustomJsonResponse(400);
-      $response->setData($errors, $this->get('jms_serializer'));
-      return $response;
+      return $this->json($errors, 400);
     }
 
     // Persist to database.
@@ -129,9 +101,7 @@ class GroupController extends Controller {
     $em->flush();
 
     // Send response.
-    $response = new CustomJsonResponse();
-    $response->setJsonData(json_encode(['id' => $group->getId()]));
-    return $response;
+    return $this->json($group);
   }
 
   /**
@@ -149,6 +119,6 @@ class GroupController extends Controller {
     $em->remove($group);
     $em->flush();
 
-    return new CustomJsonResponse(204);
+    return new Response(null, 204);
   }
 }

@@ -13,6 +13,11 @@ services:
     class: Indholdskanalen\MainBundle\Services\EntityService
     arguments: [@validator]
 
+  os2display.user_mailer_service:
+    class: Indholdskanalen\MainBundle\Services\UserMailerService
+    parent: fos_user.mailer.default
+    public: true
+
   indholdskanalen_main.api_authentication_service:
     class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
 
