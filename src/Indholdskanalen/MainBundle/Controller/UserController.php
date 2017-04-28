@@ -11,12 +11,10 @@ use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
-use JMS\Serializer\SerializationContext;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @Route("/api/user")
@@ -74,11 +72,11 @@ class UserController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function getCurrentUser() {
-    $user = $this->get('security.token_storage')->getToken()->getUser();
+    $user = $this->getUser();
 
     // Hack to include configurable search_filter_default
     // @TODO: move this into the user and make it configurable on a user level.
-		$user->search_filter_default = $this->getParameter('search_filter_default');
+    $user->search_filter_default = $this->getParameter('search_filter_default');
 
     return $this->json($user);
   }
