@@ -52,7 +52,7 @@ Feature: admin
 
   Scenario: Get users
     When I sign in with username "admin" and password "admin"
-    And I send a "GET" request to "/api/user"
+    And I send a "GET" request to "/api/user?filter[name]=87&filter[age]=87"
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "" should have 2 elements
@@ -79,8 +79,10 @@ Feature: admin
       """
     Then the response status code should be 400
     And the response should be in JSON
-    And the JSON node "message" should not be null
-    And the JSON node "data" should have 2 elements
+    And the JSON node "error" should not be null
+    And the JSON node "error.message" should not be null
+    And the JSON node "error.exception[0].message" should be equal to "Invalid data"
+    # And the JSON node "error.exception[0].data" should be equal to "Invalid data"
 
   Scenario: Add user
     When I sign in with username "admin" and password "admin"
@@ -165,6 +167,25 @@ Feature: admin
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "" should have 3 elements
+
+  Scenario: Update non-existing user
+    When I sign in with username "admin" and password "admin"
+    And I send a "PUT" request to "/api/user/87" with body:
+      """
+      {}
+      """
+    Then the response status code should be 404
+
+  Scenario: Update user (with empty email)
+    When I sign in with username "admin" and password "admin"
+    And I send a "PUT" request to "/api/user/3" with body:
+      """
+      {
+        "email": null
+      }
+      """
+    Then the response status code should be 400
+    And the response should be in JSON
 
   Scenario: Update user
     When I sign in with username "admin" and password "admin"

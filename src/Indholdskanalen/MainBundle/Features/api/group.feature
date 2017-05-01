@@ -32,8 +32,9 @@ Feature: admin
       """
     Then the response status code should be 400
     And the response should be in JSON
-    And the JSON node "message" should not be null
-    And the JSON node "data" should have 1 element
+    And the JSON node "error" should not be null
+    And the JSON node "error.message" should not be null
+    # And the JSON node "data" should have 1 element
 
   Scenario: Create group (anonymous)
     And I send a "POST" request to "/api/group" with body:

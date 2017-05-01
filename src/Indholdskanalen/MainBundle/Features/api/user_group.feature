@@ -1,4 +1,4 @@
-@api @usergroup @user @group
+@api @usergroup
 Feature: admin
   In order to …
   As an api group
@@ -40,13 +40,25 @@ Feature: admin
       {}
       """
     Then the response status code should be 201
+    And the response should be in JSON
     And the JSON node "id" should be equal to 1
     And the JSON node "group.id" should be equal to 1
     And the JSON node "user.id" should be equal to 2
     And the JSON node "role" should not exist
 
+    When I send a "POST" request to "/api/user/2/group/1" with body:
+      """
+      {
+        "role": "ROLE_GROUP_GROUP_ADMIN"
+      }
+      """
+    Then the response status code should be 409
+    And the response should be in JSON
+
+  Scenario: Get user's groups
     When I send a "GET" request to "/api/user/2"
     Then the response status code should be 200
+    And the response should be in JSON
     And the JSON node "id" should be equal to 2
     And the JSON node "user_groups" should have 1 element
     And the JSON node "user_groups[0].id" should be equal to 1
@@ -63,6 +75,14 @@ Feature: admin
     # And the JSON node "group.id" should be equal to 1
     # And the JSON node "user.id" should be equal to 2
     # And the JSON node "role" should be equal to "ROLE_GROUP_GROUP_ADMIN"
+
+  Scenario: Get user's groups
+    When I send a "GET" request to "/api/user/2"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "id" should be equal to 2
+    And the JSON node "user_groups" should have 1 element
+    And the JSON node "user_groups[0].group.id" should be equal to 1
 
   @dropSchema
   Scenario: Drop schema
