@@ -2,12 +2,13 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Util\Codes;
 use JMS\Serializer\SerializationContext;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class ApiController extends Controller {
+class ApiController extends FOSRestController {
   /**
    * Deserialize JSON content from request.
    *
@@ -45,14 +46,28 @@ class ApiController extends Controller {
   }
 
   /**
+   * @param $data
+   * @param array $headers
+   * @param array $serializationGroups
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  protected function createCreatedResponse($data, array $headers = [], array $serializationGroups = ['api']) {
+    $view = $this->view($data, Codes::HTTP_CREATED);
+    $context = $view->getSerializationContext();
+    $context->setGroups($serializationGroups);
+    
+    return $this->handleView($view);
+  }
+
+  /**
    * Apply values to an object.
    *
    * @param $entity
    * @param array $data
    */
-  protected function setValues($entity, array $data) {
+  protected function setValues($entity, array $data, array $properties = NULL) {
     $entityService = $this->get('os2display.entity_service');
-    $entityService->setValues($entity, $data);
+    $entityService->setValues($entity, $data, $properties);
   }
 
   protected function validateEntity($entity) {
@@ -67,8 +82,8 @@ class ApiController extends Controller {
    * @param $entity
    * @param \Symfony\Component\HttpFoundation\Request $request
    */
-  protected function setValuesFromRequest($entity, Request $request) {
+  protected function setValuesFromRequest($entity, Request $request, array $properties = NULL) {
     $data = $this->getData($request);
-    $this->setValues($entity, $data);
+    $this->setValues($entity, $data, $properties);
   }
 }

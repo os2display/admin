@@ -44,3 +44,24 @@ To brute force clear cache
 rm -rf app/cache/*
 </pre>
 
+
+# API tests
+
+Clear out the acceptance test cache and set up the database:
+
+```
+app/console --env=acceptance cache:clear
+app/console --env=acceptance doctrine:database:create
+```
+
+Run API tests:
+
+```
+./vendor/behat/behat/bin/behat --suite=api_features
+```
+
+Run only tests with a specific tag:
+
+```
+./vendor/behat/behat/bin/behat --suite=api_features --tags=group
+```
