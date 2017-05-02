@@ -6,12 +6,13 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
-use Doctrine\ORM\Mapping\Entity;
+use Indholdskanalen\MainBundle\Exception\ValidationException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 /**
  * Class EntityService
+ *
  * @package Indholdskanalen\MainBundle\Services
  */
 class EntityService {
@@ -19,7 +20,9 @@ class EntityService {
   private $validator;
 
   /**
-   * Constructor.
+   * EntityService constructor.
+   *
+   * @param \Symfony\Component\Validator\Validator\RecursiveValidator $validator
    */
   public function __construct(RecursiveValidator $validator) {
     $this->accessor = PropertyAccess::createPropertyAccessor();
@@ -33,13 +36,17 @@ class EntityService {
    *   The entity to set values on.
    * @param array $values
    *   The values to set, in [name => value] array.
+   * @param array|NULL $properties
+   *   The names to set.
    * @return \Doctrine\ORM\Mapping\Entity
    *   The entity.
    */
-  public function setValues($entity, $values) {
+  public function setValues($entity, $values, array $properties = NULL) {
     foreach ($values as $name => $value) {
-      if ($this->accessor->isWritable($entity, $name)) {
-        $this->accessor->setValue($entity, $name, $value);
+      if ($properties === NULL || in_array($name, $properties)) {
+        if ($this->accessor->isWritable($entity, $name)) {
+          $this->accessor->setValue($entity, $name, $value);
+        }
       }
     }
 
@@ -50,10 +57,15 @@ class EntityService {
    * Validate an entity.
    *
    * @param $entity
-   * @return mixed
+   * @return \Symfony\Component\Validator\ConstraintViolationListInterface
+   * @throws \Indholdskanalen\MainBundle\Exception\ValidationException
    */
   public function validateEntity($entity) {
     $errors = $this->validator->validate($entity);
+
+    if (count($errors) > 0) {
+      throw new ValidationException('Validation exceptions', $errors);
+    }
 
     return $errors;
   }

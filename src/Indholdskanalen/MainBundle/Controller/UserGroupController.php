@@ -6,36 +6,45 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Util\Codes;
+use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use JMS\Serializer\SerializationContext;
-use Indholdskanalen\MainBundle\CustomJsonResponse;
-use Indholdskanalen\MainBundle\Entity\User;
-use Indholdskanalen\MainBundle\Entity\Group;
-use Indholdskanalen\MainBundle\Entity\UserGroup;
 
 /**
  * @Route("/api/user_group")
+ * @Rest\View(serializerGroups={"api"})
  */
-class UserGroupController extends Controller {
+class UserGroupController extends FOSRestController {
+  /**
+   * @Rest\Get("/", name="api_user_group_list")
+   * @return \FOS\RestBundle\View\View
+   */
+  public function getUserGroupsAction() {
+    $em = $this->getDoctrine()->getManager();
+    $userGroups = $em->getRepository(UserGroup::class)->findAll();
+
+    return $userGroups;
+  }
+
   /**
    * Deletes a user group entity.
    *
-   * @Route("/{id}", name="api_user_delete_group")
-   * @Method("DELETE")
+   * @Rest\Delete("/{id}", name="api_user_delete_group")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\UserGroup $userGroup
-   * @return \Indholdskanalen\MainBundle\CustomJsonResponse
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function deleteGroupAction(Request $request, UserGroup $userGroup) {
     $em = $this->getDoctrine()->getManager();
     $em->remove($userGroup);
     $em->flush();
 
-    return new CustomJsonResponse(204);
+    return $this->view(null, Codes::HTTP_NO_CONTENT);
   }
 }

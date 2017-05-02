@@ -36,3 +36,26 @@ parameters:
         - mainModule
         - ngRoute
         - bw.paging
+
+    styleguideComponentsApp:
+      files:
+        - /apps/styleguideComponentsApp/styleguideComponents.js
+        - /apps/styleguideComponentsApp/modules/box.js
+        - /apps/styleguideComponentsApp/modules/buttonIconLink.js
+        - /apps/styleguideComponentsApp/modules/contentList.js
+        - /apps/styleguideComponentsApp/modules/contentListItem.js
+      dependencies:
+
+    adminApp:
+      container: true
+      files:
+        - /apps/adminApp/adminApp.js
+        - /apps/adminApp/adminDashboardController.js
+        - /apps/adminApp/adminGroupsController.js
+        - /apps/adminApp/adminUsersController.js
+      dependencies:
+        - styleguideComponentsApp
+        - busModule
+        - mainModule
+        - ngRoute
+

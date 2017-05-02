@@ -15,6 +15,7 @@ parameters:
       files:
         - /apps/mainModule/services/bodyService.js
         - /apps/mainModule/services/userService.js
+        - /apps/mainModule/services/groupService.js
         - /apps/mainModule/services/menuItemService.js
         - /apps/mainModule/services/searchService.js
       dependencies:
@@ -26,6 +27,7 @@ parameters:
     services:
       - logService
       - userService
+      - groupService
       - searchService
       - menuItemService
       - bodyService

@@ -6,14 +6,14 @@
 
 namespace Indholdskanalen\MainBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\SerializedName;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Indholdskanalen\MainBundle\Entity\UserGroup;
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Entity\User as BaseUser;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -27,6 +27,26 @@ class User extends BaseUser {
    * @Groups({"api"})
    */
   protected $id;
+
+  /**
+   * @var array
+   * @Groups({"api"})
+   */
+  protected $roles;
+
+  /**
+   * @var string
+   * @Assert\NotNull
+   * @Groups({"api"})
+   */
+  protected $username;
+
+  /**
+   * @var string
+   * @Assert\NotNull
+   * @Groups({"api"})
+   */
+  protected $email;
 
   /**
    * @ORM\Column(name="firstname", type="string", nullable=true)
