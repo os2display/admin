@@ -14,7 +14,7 @@ angular.module('styleguideComponentsApp').directive('contentList', function () {
     replace: true,
     scope: {
       items: '=',
-      max: '@',
+      max: '=',
       order: '@'
     },
     template:

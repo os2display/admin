@@ -7,7 +7,9 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
   function (busService, $scope, $timeout) {
     'use strict';
 
+    $scope.usersLoading = true;
     $scope.users = null;
+    $scope.max = 50;
 
     /**
      * Add a user to the users array.
@@ -34,6 +36,8 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
             addUser(users[user]);
           }
         }
+
+        $scope.usersLoading = false;
       });
     });
 

@@ -7,7 +7,9 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
   function (busService, $scope, $timeout) {
     'use strict';
 
+    $scope.groupsLoading = true;
     $scope.groups = null;
+    $scope.max = 50;
 
     /**
      * Add a group to the groups array.
@@ -34,6 +36,8 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
             addGroup(groups[group]);
           }
         }
+
+        $scope.groupsLoading = false;
       });
     });
 
