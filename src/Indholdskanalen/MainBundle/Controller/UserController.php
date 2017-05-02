@@ -15,6 +15,7 @@ use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +31,24 @@ class UserController extends ApiController {
    * Lists all user entities.
    *
    * @Rest\Get("", name="api_user_index")
-   * @Rest\QueryParam(name="filter", array=true, nullable=true, description="Filter.")
+   * @Rest\QueryParam(
+   *   name="filter",
+   *   description="Filter to apply",
+   *   requirements="string",
+   *   array=true,
+   *   nullable=true
+   * )
+   * @ApiDoc(
+   *   section="Users",
+   *   description="Returns all users",
+   *   resource=false,
+   *   filters={
+   *      {"name"="filter", "dataType"="string"}
+   *   },
+   *   statusCodes={
+   *     200="Success"
+   *   }
+   * )
    *
    * @param \FOS\RestBundle\Request\ParamFetcherInterface $paramFetcher
    * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -48,7 +66,15 @@ class UserController extends ApiController {
    * Creates a new user entity.
    *
    * @Rest\Post("", name="api_user_new")
-   *
+   * @ApiDoc(
+   *   section="Users",
+   *   description="Create user",
+   *   statusCodes={
+   *     201="User created",
+   *     400="Invalid user data",
+   *     409="Duplicate user (specified email/username already used)"
+   *   }
+   * )
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @return User
    */
@@ -75,11 +101,15 @@ class UserController extends ApiController {
    * Sends current user.
    *
    * @Rest\Get("/current", name="api_user_current")
+   * @ApiDoc(
+   *   section="User",
+   *   description="Get current user"
+   * )
    *
    * @return User
    */
   public function getCurrentUser() {
-    $user = $this->get('security.token_storage')->getToken()->getUser();
+    $user = $this->getUser();
 
     if (!$user) {
       throw $this->createNotFoundException('No current user');
@@ -145,7 +175,17 @@ class UserController extends ApiController {
   /**
    * @Rest\Post("/{user}/group/{group}", name="api_user_group_create")
    *
-   * @Rest\QueryParam(name="role", requirements=".+", nullable=true, description="Role to give user in group.")
+   * @Rest\RequestParam(
+   *   name="role",
+   *   description="Role to give user in group.",
+   *   requirements="string",
+   *   nullable=true
+   * )
+   * @ApiDoc(
+   *   section="Users and groups",
+   *   description="Add user to group",
+   *   documentation="Add user to group"
+   * )
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
@@ -180,8 +220,17 @@ class UserController extends ApiController {
 
   /**
    * @Rest\Put("/{user}/group/{group}", name="api_user_group_update")
+   * @ApiDoc(
+	 *   section="Users and groups",
+   *   description=""
+   * )
    *
-   * @Rest\QueryParam(name="role", requirements=".+", nullable=true, description="Role to give user in group.")
+   * @Rest\RequestParam(
+   *   name="role",
+   *   description="Role to give user in group.",
+   *   requirements=".+",
+   *   nullable=true
+   * )
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user

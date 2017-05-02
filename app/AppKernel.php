@@ -16,6 +16,7 @@ class AppKernel extends Kernel {
       new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
       new FOS\UserBundle\FOSUserBundle(),
       new FOS\RestBundle\FOSRestBundle(),
+      new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
       new Knp\Bundle\MenuBundle\KnpMenuBundle(),
       new Sonata\CoreBundle\SonataCoreBundle(),
       new Sonata\BlockBundle\SonataBlockBundle(),

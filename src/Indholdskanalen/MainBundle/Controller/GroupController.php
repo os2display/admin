@@ -11,10 +11,9 @@ use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Group controller.
@@ -29,7 +28,11 @@ class GroupController extends ApiController {
    * Lists all group entities.
    *
    * @Rest\Get("", name="api_group_index")
-   * @Method("GET")
+   * @ApiDoc(
+   *   section="Groups",
+   *   description="Get all groups",
+   *   tags={"group"}
+   * )
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
@@ -83,8 +86,7 @@ class GroupController extends ApiController {
   /**
    * Displays a form to edit an existing group entity.
    *
-   * @Route("/{id}", name="api_group_edit")
-   * @Method({"PUT"})
+   * @Rest\Put("/{id}", name="api_group_edit")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
@@ -110,8 +112,7 @@ class GroupController extends ApiController {
   /**
    * Deletes a group entity.
    *
-   * @Route("/{id}", name="api_group_delete")
-   * @Method("DELETE")
+   * @Rest\Delete("/{id}", name="api_group_delete")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group

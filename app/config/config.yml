@@ -148,3 +148,5 @@ fos_rest:
         rules:
             - { path: '^/api', priorities: ['json'], fallback_format: json, prefer_extension: true }
             - { path: '^/', stop: true } # Available for version >= 1.5
+
+nelmio_api_doc: ~
