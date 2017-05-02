@@ -51,6 +51,7 @@ parameters:
       files:
         - /apps/adminApp/adminApp.js
         - /apps/adminApp/adminPageController.js
+        - /apps/adminApp/adminGroupsController.js
         - /apps/adminApp/service/userService.js
         - /apps/adminApp/service/groupService.js
       dependencies:
