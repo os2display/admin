@@ -84,8 +84,8 @@ fos_user:
   firewall_name: main
   user_class: Indholdskanalen\MainBundle\Entity\User
   from_email:
-      address: "%mailer_from_email%"
-      sender_name: "%mailer_from_name%"
+    address: "%mailer_from_email%"
+    sender_name: "%mailer_from_name%"
 
 # Sonata Block Configuration
 sonata_block:

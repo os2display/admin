@@ -13,7 +13,7 @@ parameters:
     mailer_from_email: webmaster@ik3.os2display.vm
     mailer_from_name: Webmaster os2display
 
-    locale:            en
+    locale:            da
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     debug_toolbar:          true
