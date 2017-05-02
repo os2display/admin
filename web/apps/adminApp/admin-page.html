@@ -1,19 +1,13 @@
 <main role="main" class="content">
   <div class="content--inner">
     <div class="grid is-halfs">
-      <content-list class="grid--inner">
+      <div class="grid--inner">
         <article class="grid--item">
           <box heading="Brugere">
-            <button-icon-link icon="person_add" button-link="Opret bruger" ng-click="addUser()"></button-icon-link>
-<!--
-            <content-list items="items">
-              <div class="content-list-item ">
-                <a href="#" title="Public">
-                  Public
-                </a>
-              </div>
-            </content-list>
--->
+            <button-icon-link icon="person_add" button-link="Opret bruger" click="addUser()"></button-icon-link>
+
+            <content-list items="users" max="5" order="-id"></content-list>
+
             <div class="box-link">
               <a href="#" title="Alle grupper" class="box-link--link">Alle grupper</a>
             </div>
@@ -22,17 +16,10 @@
 
         <article class="grid--item">
           <box heading="Grupper">
-            <button-icon-link icon="group_add" button-link="Opret gruppe" ng-click="addGroup()"></button-icon-link>
-<!--
-            <content-list items="items">
-              <div class="list-item ">
-                <a href="#" title="Public">
-                  Public
-                </a>
-              </div>
-            </content-list>
+            <button-icon-link icon="group_add" button-link="Opret gruppe" click="addGroup()"></button-icon-link>
 
-            -->
+            <content-list items="groups" max="5" order="-id"></content-list>
+
             <div class="box-link">
               <a href="#" title="Alle grupper" class="box-link--link">Alle grupper</a>
             </div>
@@ -43,4 +30,3 @@
     </div>
   </div>
 </main>
-

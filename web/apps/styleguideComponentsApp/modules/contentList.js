@@ -8,21 +8,18 @@
  * html parameters:
  *   items: The items to render in list.
  */
-angular.module('styleguideComponentsApp').directive('contentList', function(){
+angular.module('styleguideComponentsApp').directive('contentList', function () {
   return {
     restrict: 'E',
-    transclude: true,
     replace: true,
     scope: {
-      items:'@'
+      items: '=',
+      max: '@',
+      order: '@'
     },
     template:
-    '<div class="content-list">' +
-      '<div class="content-list-item" ng-repeat="item in items">' +
-        '<a href="{{ item.url }}" title="List item 1">' +
-          '{{ item.title }}' +
-        '</a>' +
-      '</div>' +
-    '</div>'
+      '<div class="content-list">' +
+        '<content-list-item ng-repeat="item in items | orderBy: order | limitTo: max" item="item"></content-list-item>' +
+      '</div>'
   };
 });

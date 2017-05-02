@@ -17,10 +17,10 @@ angular.module('styleguideComponentsApp').directive('buttonIconLink', function()
     scope: {
       buttonLink:'@',
       icon: '@',
-      click: '@'
+      click: '&'
     },
     template:
-      '<div class="button-icon-link " ng-click="click()">' +
+      '<div class="button-icon-link has-spacing-after" ng-click="click()">' +
         '<i class="icon-rounded material-icons">{{ icon }}</i>' +
         '<span class="button-text has-spacing-before">{{ buttonLink }}</span>' +
       '</div>'
