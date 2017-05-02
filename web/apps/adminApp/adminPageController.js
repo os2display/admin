@@ -2,8 +2,9 @@
  * @file
  * Controller for the channel overview time-line.
  */
-angular.module('adminApp').controller('AdminPageController', ['busService', '$scope', 'userService', 'groupService',
-  function (busService, $scope, userService, groupService) {
+angular.module('adminApp').controller('AdminPageController', [
+  'busService', '$scope', 'groupService', '$timeout',
+  function (busService, $scope, groupService, $timeout) {
     'use strict';
 
     $scope.users = null;
@@ -25,7 +26,7 @@ angular.module('adminApp').controller('AdminPageController', ['busService', '$sc
      * Add a user to the users array.
      * @param user
      */
-    function addUser(user) {
+    function addUser(user) {
       $scope.users.push({
         id: user.id,
         url: '/admin/user/' + user.id,
@@ -33,36 +34,52 @@ angular.module('adminApp').controller('AdminPageController', ['busService', '$sc
       });
     }
 
-    // Get all users.
-    userService.getUsers().then(
-      function success(data) {
-        $scope.users = [];
+    /**
+     * returnUsers listener.
+     * @type {*}
+     */
+    var cleanupUsersListener = busService.$on('userService.returnUsers', function (event, users) {
+      $scope.users = [];
 
-        for (var user in data) {
-          if (data.hasOwnProperty(user)) {
-            addUser(data[user]);
+      $timeout(function () {
+        for (var user in users) {
+          if (users.hasOwnProperty(user)) {
+            addUser(users[user]);
           }
         }
-      }
-    );
+      });
+    });
 
-    // Get all groups.
-    groupService.getGroups().then(
-      function success(data) {
-        $scope.groups = [];
+    /**
+     * returnGroups listener.
+     * @type {*}
+     */
+    var cleanupGroupsListener = busService.$on('groupService.returnGroups', function (event, groups) {
+      $scope.groups = [];
 
-        for (var group in data) {
-          if (data.hasOwnProperty(group)) {
-            addGroup(data[group]);
+      $timeout(function () {
+        for (var group in groups) {
+          if (groups.hasOwnProperty(group)) {
+            addGroup(groups[group]);
           }
         }
-      }
-    );
+      });
+    });
 
+    // Request users and groups.
+    busService.$emit('groupService.getGroups', {});
+    busService.$emit('userService.getUsers', {});
+
+    /**
+     * Add a new user.
+     */
     $scope.addUser = function () {
       console.log('add user');
     };
 
+    /**
+     * Add a new group.
+     */
     $scope.addGroup = function () {
       console.log('addGroup');
 
@@ -77,6 +94,14 @@ angular.module('adminApp').controller('AdminPageController', ['busService', '$sc
       );
     };
 
-
+    /**
+     * on destroy.
+     *
+     * Clean up listeners.
+     */
+    $scope.$on('$destroy', function destroy() {
+      cleanupUsersListener();
+      cleanupGroupsListener();
+    });
   }
 ]);
