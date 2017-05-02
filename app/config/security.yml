@@ -10,7 +10,7 @@ security:
 
   providers:
     fos_userbundle:
-      id: fos_user.user_manager
+      id: fos_user.user_provider.username_email
 
   firewalls:
     dev:
@@ -30,6 +30,7 @@ security:
       context: user
       form_login:
         check_path: /api/login_check
+      entry_point: indholdskanalen_main.api_authentication_service
 
     zencoder:
       pattern: ^/zencoder/callback
