@@ -6,10 +6,14 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Request\ParamFetcherInterface;
+use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
+use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,31 +22,36 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/api/user")
+ * @Rest\View(serializerGroups={"api"})
  */
 class UserController extends ApiController {
+  protected static $editableProperties = ['email', 'firstname', 'lastname'];
+
   /**
    * Lists all user entities.
    *
-   * @Route("", name="api_user_index")
-   * @Method("GET")
+   * @Rest\Get("", name="api_user_index")
+   * @Rest\QueryParam(name="filter", array=true, nullable=true, description="Filter.")
    *
+   * @param \FOS\RestBundle\Request\ParamFetcherInterface $paramFetcher
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
-  public function indexAction() {
+  public function indexAction(ParamFetcherInterface $paramFetcher) {
     $em = $this->getDoctrine()->getManager();
+// $filter = $paramFetcher->get('filter');
+// $users = $em->getRepository(User::class)->findBy($filter);
     $users = $em->getRepository(User::class)->findAll();
 
-    return $this->json($users);
+    return $users;
   }
 
   /**
    * Creates a new user entity.
    *
-   * @Route("", name="api_user_new")
-   * @Method({"POST"})
+   * @Rest\Post("", name="api_user_new")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   * @return User
    */
   public function newAction(Request $request) {
     // Get post content.
@@ -53,65 +62,63 @@ class UserController extends ApiController {
       $user = $this->get('os2display.user_manager')->createUser($data);
     }
     catch (ValidationException $e) {
-      return $this->json($e, 400);
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $data, 'Invalid data', $e);
     }
     catch (DuplicateEntityException $e) {
-      return $this->json($e, 409);
+      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
     }
 
     // Send response.
-    return $this->json($user, 201);
+    return $this->createCreatedResponse($user);
   }
 
   /**
    * Sends current user.
    *
-   * @Route("/current", name="api_user_current")
-   * @Method("GET")
+   * @Rest\Get("/current", name="api_user_current")
    *
-   * @return \Symfony\Component\HttpFoundation\Response
+   * @return User
    */
   public function getCurrentUser() {
     $user = $this->getUser();
+
+    if (!$user) {
+      throw $this->createNotFoundException('No current user');
+    }
 
     // Hack to include configurable search_filter_default
     // @TODO: move this into the user and make it configurable on a user level.
     $user->search_filter_default = $this->getParameter('search_filter_default');
 
-    return $this->json($user);
+    return $this->showAction($user);
   }
 
   /**
    * Finds and displays a user entity.
    *
-   * @Route("/{id}", name="api_user_show")
-   * @Method("GET")
+   * @Rest\Get("/{id}", name="api_user_show")
    *
    * @param \Indholdskanalen\MainBundle\Entity\User $user
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   * @return User
    */
   public function showAction(User $user) {
-    return $this->json($user);
+    return $user;
   }
 
   /**
-   * Displays a form to edit an existing user entity.
-   *
-   * @Route("/{id}", name="api_user_edit")
-   * @Method({"PUT"})
+   * @Rest\Put("/{id}", name="api_user_edit")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   * @return User
    */
   public function editAction(Request $request, User $user) {
-    $this->setValuesFromRequest($user, $request);
+    $this->setValuesFromRequest($user, $request, static::$editableProperties);
 
-    // Validate entity.
-    $errors = $this->validateEntity($user);
-    if (count($errors) > 0) {
-      // Send error response.
-      return $this->json($errors, 400);
+    try {
+      $this->validateEntity($user);
+    } catch (ValidationException $e) {
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
     }
 
     // Persist to database.
@@ -120,14 +127,13 @@ class UserController extends ApiController {
     $em->flush();
 
     // Send response.
-    return $this->json($user);
+    return $user;
   }
 
   /**
    * Deletes a user entity.
    *
-   * @Route("/{id}", name="api_user_delete")
-   * @Method("DELETE")
+   * @Rest\Delete("/{id}", name="api_user_delete")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
@@ -138,35 +144,32 @@ class UserController extends ApiController {
     $em->remove($user);
     $em->flush();
 
-    return new Response(NULL, 204);
+    return $this->view(null, Codes::HTTP_NO_CONTENT);
   }
 
   /**
-   * Displays a form to edit an existing user entity.
+   * @Rest\Post("/{user}/group/{group}", name="api_user_group_create")
    *
-   * @Route("/{user}/group/{group}", name="api_user_add_group")
-   * @Method({"POST"})
+   * @Rest\QueryParam(name="role", requirements=".+", nullable=true, description="Role to give user in group.")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-    *
+   * @param \FOS\RestBundle\Request\ParamFetcherInterface $paramFetcher
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
-  public function addGroup(Request $request, User $user, Group $group) {
+  public function createUserGroup(Request $request, User $user, Group $group, ParamFetcherInterface $paramFetcher) {
     $em = $this->getDoctrine()->getManager();
 
     // Get post content.
     $data = $this->getData($request);
 
-    $role = isset($data['role']) ? $data['role']: null;
+    $role = $paramFetcher->get('role');
 
     // Check if group is already added.
-    $userGroup = $em->getRepository('IndholdskanalenMainBundle:UserGroup')->findBy(['user' => $user->getId(), 'group' => $group->getId(), 'role' => $role]);
+    $userGroup = $em->getRepository(UserGroup::class)->findBy(['user' => $user, 'group' => $group, 'role' => $role]);
     if (!empty($userGroup)) {
-      return $this->json([
-        'message' => 'Group already added',
-      ], 409);
+      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Group already added');
     }
 
     $userGroup = new UserGroup();
@@ -177,6 +180,39 @@ class UserController extends ApiController {
     $em->flush();
 
     // Send response.
-    return $this->json($userGroup, 201);
+    return $this->createCreatedResponse($userGroup);
   }
+
+  /**
+   * @Rest\Put("/{user}/group/{group}", name="api_user_group_update")
+   *
+   * @Rest\QueryParam(name="role", requirements=".+", nullable=true, description="Role to give user in group.")
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param \Indholdskanalen\MainBundle\Entity\User $user
+   * @param \Indholdskanalen\MainBundle\Entity\Group $group
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   */
+  public function updateUserGroup(Request $request, User $user, Group $group, ParamFetcherInterface $paramFetcher) {
+    $em = $this->getDoctrine()->getManager();
+    $role = $paramFetcher->get('role');
+
+    // Check if group is already added.
+    $userGroup = $em->getRepository(UserGroup::class)->findBy(['user' => $user, 'group' => $group]);
+    if (empty($userGroup)) {
+      throw new HttpDataException(Codes::HTTP_NOT_FOUND, $paramFetcher->all(), 'User group not found');
+    }
+
+    $userGroup = new UserGroup();
+    $userGroup->setUser($user);
+    $userGroup->setGroup($group);
+    $userGroup->setRole($role);
+    $em->persist($userGroup);
+    $em->flush();
+
+    // Send response.
+    return $this->view($userGroup, Codes::HTTP_OK);
+  }
+
 }

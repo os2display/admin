@@ -7,7 +7,6 @@
 namespace Indholdskanalen\MainBundle\Services;
 
 use FOS\UserBundle\Doctrine\UserManager as FOSUserManager;
-use FOS\UserBundle\Util\TokenGenerator;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 

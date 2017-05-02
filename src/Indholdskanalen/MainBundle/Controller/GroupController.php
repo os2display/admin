@@ -6,7 +6,11 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Exception\HttpDataException;
+use Indholdskanalen\MainBundle\Exception\ValidationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +20,15 @@ use Symfony\Component\HttpFoundation\Response;
  * Group controller.
  *
  * @Route("api/group")
+ * @Rest\View(serializerGroups={"api"})
  */
 class GroupController extends ApiController {
+  protected static $editableProperties = ['title'];
+
   /**
    * Lists all group entities.
    *
-   * @Route("", name="api_group_index")
+   * @Rest\Get("", name="api_group_index")
    * @Method("GET")
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -30,14 +37,13 @@ class GroupController extends ApiController {
     $em = $this->getDoctrine()->getManager();
     $groups = $em->getRepository(Group::class)->findAll();
 
-    return $this->json($groups);
+    return $groups;
   }
 
   /**
    * Creates a new group entity.
    *
-   * @Route("", name="api_group_new")
-   * @Method({"POST"})
+   * @Rest\Post("", name="api_group_new")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -45,12 +51,12 @@ class GroupController extends ApiController {
   public function newAction(Request $request) {
     // Set up new Group.
     $group = new Group();
-    $this->setValuesFromRequest($group, $request);
+    $this->setValuesFromRequest($group, $request, static::$editableProperties);
 
-    // Validate entity.
-    $errors = $this->validateEntity($group);
-    if (count($errors) > 0) {
-      return $this->json($errors, 400);
+    try {
+      $this->validateEntity($group);
+    } catch (ValidationException $e) {
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
     }
 
     // Persist to database.
@@ -59,20 +65,19 @@ class GroupController extends ApiController {
     $em->flush();
 
     // Send response.
-    return $this->json($group, 201);
+    return $this->createCreatedResponse($group);
   }
 
   /**
    * Finds and displays a group entity.
    *
-   * @Route("/{id}", name="api_group_show")
-   * @Method("GET")
+   * @Rest\Get("/{id}", name="api_group_show")
    *
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   * @return Group
    */
   public function showAction(Group $group) {
-    return $this->json($group);
+    return $group;
   }
 
   /**
@@ -86,13 +91,12 @@ class GroupController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function editAction(Request $request, Group $group) {
-    $this->setValuesFromRequest($group, $request);
+    $this->setValuesFromRequest($group, $request, static::$editableProperties);
 
-    // Validate entity.
-    $errors = $this->validateEntity($group);
-    if (count($errors) > 0) {
-      // Send error response.
-      return $this->json($errors, 400);
+    try {
+      $this->validateEntity($group);
+    } catch (ValidationException $e) {
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
     }
 
     // Persist to database.
@@ -100,8 +104,7 @@ class GroupController extends ApiController {
     $em->persist($group);
     $em->flush();
 
-    // Send response.
-    return $this->json($group);
+    return $group;
   }
 
   /**
@@ -119,6 +122,6 @@ class GroupController extends ApiController {
     $em->remove($group);
     $em->flush();
 
-    return new Response(null, 204);
+    return $this->view(null, Codes::HTTP_NO_CONTENT);
   }
 }
