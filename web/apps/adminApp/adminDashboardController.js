@@ -3,8 +3,8 @@
  * Controller admin dashboard.
  */
 angular.module('adminApp').controller('AdminDashboardController', [
-  'busService', '$scope', '$controller', '$timeout',
-  function (busService, $scope, $controller, $timeout) {
+  'busService', '$scope', '$controller',
+  function (busService, $scope, $controller) {
     'use strict';
 
     // Instantiate Users and Groups controllers.
