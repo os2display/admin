@@ -10,8 +10,12 @@ angular.module('adminApp').config(function ($routeProvider) {
   // Register routes
   $routeProvider
   .when('/admin', {
-    controller: 'AdminPageController',
-    templateUrl: 'apps/adminApp/admin-page.html?' + window.config.version
+    controller: 'AdminDashboardController',
+    templateUrl: 'apps/adminApp/admin-dashboard.html?' + window.config.version
+  })
+  .when('/admin/users', {
+    controller: 'AdminUsersController',
+    templateUrl: 'apps/adminApp/admin-users.html?' + window.config.version
   })
   .when('/admin/groups', {
     controller: 'AdminGroupsController',

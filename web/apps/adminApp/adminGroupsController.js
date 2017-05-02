@@ -3,8 +3,8 @@
  * Controller for the admin groups page.
  */
 
-angular.module('adminApp').controller('AdminGroupsController', ['busService', '$scope', 'userService', 'groupService',
-  function (busService, $scope, userService, groupService) {
+angular.module('adminApp').controller('AdminGroupsController', ['busService', '$scope', '$timeout',
+  function (busService, $scope, $timeout) {
     'use strict';
 
     $scope.groups = null;
@@ -21,31 +21,36 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
       });
     }
 
-    // Get all groups.
-    groupService.getGroups().then(
-      function success(data) {
-        $scope.groups = [];
+    /**
+     * returnGroups listener.
+     * @type {*}
+     */
+    var cleanupGetGroupsListener = busService.$on('groupService.returnGroups', function (event, groups) {
+      $scope.groups = [];
 
-        for (var group in data) {
-          if (data.hasOwnProperty(group)) {
-            addGroup(data[group]);
+      $timeout(function () {
+        for (var group in groups) {
+          if (groups.hasOwnProperty(group)) {
+            addGroup(groups[group]);
           }
         }
-      }
-    );
+      });
+    });
+
+    // Request users and groups.
+    busService.$emit('groupService.getGroups', {});
 
     $scope.addGroup = function () {
       console.log('addGroup');
-
-      // Create popup.
-      groupService.createGroup('Super duper').then(
-        function success(data) {
-          addGroup(data);
-        },
-        function error(err) {
-          console.log(err);
-        }
-      );
     };
+
+    /**
+     * on destroy.
+     *
+     * Clean up listeners.
+     */
+    $scope.$on('$destroy', function destroy() {
+      cleanupGetGroupsListener();
+    });
   }
 ]);
