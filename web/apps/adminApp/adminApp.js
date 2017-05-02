@@ -12,6 +12,10 @@ angular.module('adminApp').config(function ($routeProvider) {
   .when('/admin', {
     controller: 'AdminPageController',
     templateUrl: 'apps/adminApp/admin-page.html?' + window.config.version
+  })
+  .when('/admin/groups', {
+    controller: 'AdminGroupsController',
+    templateUrl: 'apps/adminApp/admin-groups.html?' + window.config.version
   });
 });
 

@@ -50,7 +50,9 @@ parameters:
       container: true
       files:
         - /apps/adminApp/adminApp.js
-        - /apps/adminApp/adminPageController.js
+        - /apps/adminApp/adminDashboardController.js
+        - /apps/adminApp/adminGroupsController.js
+        - /apps/adminApp/adminUsersController.js
       dependencies:
         - styleguideComponentsApp
         - busModule
