@@ -11,6 +11,8 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
     $scope.users = null;
     $scope.max = 50;
 
+    $scope.createPopup = false;
+
     /**
      * Add a user to the users array.
      * @param user
@@ -44,7 +46,7 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
     busService.$emit('userService.getUsers', {});
 
     $scope.addUser = function () {
-      console.log('addUser');
+      $scope.createPopup = true;
     };
 
     /**
