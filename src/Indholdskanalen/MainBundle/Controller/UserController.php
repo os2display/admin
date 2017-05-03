@@ -10,6 +10,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\RoleGroup;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
@@ -17,8 +18,8 @@ use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/api/user")
@@ -53,13 +54,14 @@ class UserController extends ApiController {
    * @param \FOS\RestBundle\Request\ParamFetcherInterface $paramFetcher
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
-  public function indexAction(ParamFetcherInterface $paramFetcher) {
-    $em = $this->getDoctrine()->getManager();
-// $filter = $paramFetcher->get('filter');
-// $users = $em->getRepository(User::class)->findBy($filter);
-    $users = $em->getRepository(User::class)->findAll();
+  public function indexAction() {
+    $users = $this->findAll(User::class);
 
-    return $users;
+    foreach ($users as $user) {
+      $user->buildRoleGroups();
+    }
+
+    return $this->setApiData($users);
   }
 
   /**
@@ -106,6 +108,8 @@ class UserController extends ApiController {
    * @return User
    */
   public function showAction(User $user) {
+    $user->buildRoleGroups();
+
     return $user;
   }
 
@@ -121,7 +125,8 @@ class UserController extends ApiController {
 
     try {
       $this->validateEntity($user);
-    } catch (ValidationException $e) {
+    }
+    catch (ValidationException $e) {
       throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
     }
 
@@ -148,23 +153,57 @@ class UserController extends ApiController {
     $em->remove($user);
     $em->flush();
 
-    return $this->view(null, Codes::HTTP_NO_CONTENT);
+    return $this->view(NULL, Codes::HTTP_NO_CONTENT);
+  }
+
+  /**
+   * @Rest\Get("/{user}/group")
+   */
+  public function getUserGroups(User $user) {
+    $groups = $this->findBy(UserGroup::class, ['user' => $user]);
+
+    return $groups;
+  }
+
+  /**
+   * @Rest\Get("/{user}/group/{group}", name="api_user_group_read")
+   *
+   * @ApiDoc(
+   *   section="Users and groups"
+   * )
+   * @param \Indholdskanalen\MainBundle\Entity\User $user
+   * @param \Indholdskanalen\MainBundle\Entity\Group $group
+   * @return array
+   */
+  public function getUserGroupRoles(User $user, Group $group) {
+    $items = $this->fetchUserGroupRoles($user, $group);
+
+    $roles = array_map(function (UserGroup $userGroup) {
+      return $userGroup->getRole();
+    }, $items);
+
+    return [
+      'roles' => array_unique($roles),
+      'group' => $group,
+      'user' => $user,
+    ];
   }
 
   /**
    * @Rest\Post("/{user}/group/{group}", name="api_user_group_create")
    *
    * @Rest\RequestParam(
-   *   name="role",
-   *   description="Role to give user in group.",
-   *   requirements="string",
+   *   name="roles",
+   *   description="Roles to give user in group.",
+   *   requirements="string[]",
    *   nullable=true
    * )
    * @ApiDoc(
    *   section="Users and groups",
-   *   description="Add user to group",
-   *   documentation="Add user to group"
+   *   description="Add user to group"
    * )
+   *
+   * @Security("is_granted('create', group)")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
@@ -173,43 +212,19 @@ class UserController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function createUserGroup(Request $request, User $user, Group $group, ParamFetcherInterface $paramFetcher) {
-    $em = $this->getDoctrine()->getManager();
+    $items = $this->updateUserGroupRoles($request, $user, $group, $paramFetcher);
 
-    // Get post content.
-    $data = $this->getData($request);
-
-    $role = $paramFetcher->get('role');
-
-    // Check if group is already added.
-    $userGroup = $em->getRepository(UserGroup::class)->findBy(['user' => $user, 'group' => $group, 'role' => $role]);
-    if (!empty($userGroup)) {
-      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Group already added');
-    }
-
-    $userGroup = new UserGroup();
-    $userGroup->setUser($user);
-    $userGroup->setGroup($group);
-    $userGroup->setRole($role);
-    $em->persist($userGroup);
-    $em->flush();
-
-    // Send response.
-    return $this->createCreatedResponse($userGroup);
+    return $this->createCreatedResponse($items);
   }
 
   /**
    * @Rest\Put("/{user}/group/{group}", name="api_user_group_update")
    * @ApiDoc(
-	 *   section="Users and groups",
-   *   description=""
+   *   section="Users and groups",
+   *   description="Update user's roles in group"
    * )
    *
-   * @Rest\RequestParam(
-   *   name="role",
-   *   description="Role to give user in group.",
-   *   requirements=".+",
-   *   nullable=true
-   * )
+   * @Security("is_granted('update', group)")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
@@ -217,25 +232,62 @@ class UserController extends ApiController {
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
-  public function updateUserGroup(Request $request, User $user, Group $group, ParamFetcherInterface $paramFetcher) {
+  public function updateUserGroupRoles(Request $request, User $user, Group $group, ParamFetcherInterface $paramFetcher) {
     $em = $this->getDoctrine()->getManager();
-    $role = $paramFetcher->get('role');
+    $roles = $this->getData($request, 'roles');
 
-    // Check if group is already added.
-    $userGroup = $em->getRepository(UserGroup::class)->findBy(['user' => $user, 'group' => $group]);
-    if (empty($userGroup)) {
-      throw new HttpDataException(Codes::HTTP_NOT_FOUND, $paramFetcher->all(), 'User group not found');
+    $items = $this->fetchUserGroupRoles($user, $group);
+    foreach ($items as $item) {
+      $em->remove($item);
     }
-
-    $userGroup = new UserGroup();
-    $userGroup->setUser($user);
-    $userGroup->setGroup($group);
-    $userGroup->setRole($role);
-    $em->persist($userGroup);
     $em->flush();
 
-    // Send response.
-    return $this->view($userGroup, Codes::HTTP_OK);
+    if (is_array($roles)) {
+      foreach ($roles as $role) {
+        $userGroup = new UserGroup();
+        $userGroup->setUser($user);
+        $userGroup->setGroup($group);
+        $userGroup->setRole($role);
+        $em->persist($userGroup);
+      }
+      $em->flush();
+    }
+
+    return $this->getUserGroupRoles($user, $group);
+  }
+
+  /**
+   * @Rest\Delete("/{user}/group/{group}")
+   * @ApiDoc(
+   *   section="Users and groups",
+   *   description="Remove user from group"
+   * )
+   *
+   * @Security("is_granted('update', group)")
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\User $user
+   * @param \Indholdskanalen\MainBundle\Entity\Group $group
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   */
+  public function deleteUserGroupRoles(User $user, Group $group, ParamFetcherInterface $paramFetcher) {
+    $em = $this->getDoctrine()->getManager();
+    $items = $this->fetchUserGroupRoles($user, $group);
+    foreach ($items as $item) {
+      $em->remove($item);
+    }
+    $em->flush();
+
+    return $this->view(NULL, Codes::HTTP_NO_CONTENT);
+  }
+
+  private function fetchUserGroupRoles(User $user, Group $group) {
+    $items = $this->findBy(UserGroup::class, [
+      'user' => $user,
+      'group' => $group,
+    ]);
+
+    return $items;
   }
 
 }

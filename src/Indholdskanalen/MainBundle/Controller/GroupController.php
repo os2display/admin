@@ -37,10 +37,13 @@ class GroupController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function indexAction() {
-    $em = $this->getDoctrine()->getManager();
-    $groups = $em->getRepository(Group::class)->findAll();
+    $groups = $this->findAll(Group::class);
 
-    return $groups;
+    foreach ($groups as $group) {
+      $group->buildUsers();
+    }
+
+    return $this->setApiData($groups);
   }
 
   /**
@@ -58,7 +61,8 @@ class GroupController extends ApiController {
 
     try {
       $this->validateEntity($group);
-    } catch (ValidationException $e) {
+    }
+    catch (ValidationException $e) {
       throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
     }
 
@@ -80,6 +84,8 @@ class GroupController extends ApiController {
    * @return Group
    */
   public function showAction(Group $group) {
+    $group->buildUsers();
+
     return $group;
   }
 
@@ -97,7 +103,8 @@ class GroupController extends ApiController {
 
     try {
       $this->validateEntity($group);
-    } catch (ValidationException $e) {
+    }
+    catch (ValidationException $e) {
       throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
     }
 
@@ -123,6 +130,22 @@ class GroupController extends ApiController {
     $em->remove($group);
     $em->flush();
 
-    return $this->view(null, Codes::HTTP_NO_CONTENT);
+    return $this->view(NULL, Codes::HTTP_NO_CONTENT);
   }
+
+  /**
+   * Get users with roles in group.
+   *
+   * @Rest\Get("/{group}/users")
+   */
+  public function getGroupUsers(Group $group) {
+    $users = $group->buildUsers()->getUsers();
+
+    foreach ($users as $user) {
+      $user->buildGroupRoles($group);
+    }
+
+    return $this->setApiData($users);
+  }
+
 }

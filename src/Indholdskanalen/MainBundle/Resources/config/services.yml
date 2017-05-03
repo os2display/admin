@@ -22,6 +22,17 @@ services:
     parent: fos_user.mailer.default
     public: true
 
+  os2display.entity_manager:
+    class: Indholdskanalen\MainBundle\Services\EntityManagerService
+    arguments: ['@doctrine.orm.entity_manager', '@security.token_storage', '@security.authorization_checker']
+
+  os2display.edit_voter:
+    class: Indholdskanalen\MainBundle\Security\EditVoter
+    arguments: ['@doctrine.orm.entity_manager', '@security.access.decision_manager']
+    public: false
+    tags:
+      - { name: security.voter }
+
   os2display.user_converter:
     class: Indholdskanalen\MainBundle\Request\ParamConverter\UserConverter
     arguments: ['@?doctrine', '@security.token_storage']
