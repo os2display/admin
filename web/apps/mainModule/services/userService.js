@@ -14,7 +14,6 @@ angular.module('mainModule').service('userService', ['busService', '$http',
         busService.$emit('userService.returnUsers', data);
       })
       .error(function (err) {
-        console.log(err);
         busService.$emit('userService.returnUsersError', err);
       });
     });
@@ -33,6 +32,19 @@ angular.module('mainModule').service('userService', ['busService', '$http',
             'msg': 'Bruger kunne ikke hentes'
           });
         });
+    });
+
+    /**
+     * Create user event listener.
+     */
+    busService.$on('userService.createUser', function requestUser(event, args) {
+      $http.post('/api/user', args)
+      .success(function (data) {
+        busService.$emit('userService.returnCreateUser', data);
+      })
+      .error(function (err) {
+        busService.$emit('userService.returnCreateUserError', err);
+      });
     });
   }
 ]);

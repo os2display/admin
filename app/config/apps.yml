@@ -53,9 +53,12 @@ parameters:
         - /apps/adminApp/adminDashboardController.js
         - /apps/adminApp/adminGroupsController.js
         - /apps/adminApp/adminUsersController.js
+        - /apps/adminApp/popupCreateUserController.js
+        - /apps/adminApp/popupCreateGroupController.js
       dependencies:
         - styleguideComponentsApp
         - busModule
         - mainModule
         - ngRoute
-
+        - angularModalService
+        - messageApp

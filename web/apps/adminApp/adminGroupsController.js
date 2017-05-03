@@ -3,8 +3,8 @@
  * Controller for the admin groups page.
  */
 
-angular.module('adminApp').controller('AdminGroupsController', ['busService', '$scope', '$timeout',
-  function (busService, $scope, $timeout) {
+angular.module('adminApp').controller('AdminGroupsController', ['busService', '$scope', '$timeout', 'ModalService',
+  function (busService, $scope, $timeout, ModalService) {
     'use strict';
 
     $scope.groupsLoading = true;
@@ -44,8 +44,19 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
     // Request users and groups.
     busService.$emit('groupService.getGroups', {});
 
-    $scope.addGroup = function () {
-      console.log('addGroup');
+    // Show create group modal.
+    $scope.createGroup = function () {
+      // Just provide a template url, a controller and call 'showModal'.
+      ModalService.showModal({
+        templateUrl: "apps/adminApp/popup-create-group.html",
+        controller: "PopupCreateGroup"
+      }).then(function(modal) {
+        modal.close.then(function(group) {
+          if (group) {
+            addGroup(group);
+          }
+        });
+      });
     };
 
     /**
