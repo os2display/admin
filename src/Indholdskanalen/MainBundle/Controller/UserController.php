@@ -98,27 +98,6 @@ class UserController extends ApiController {
   }
 
   /**
-   * Sends current user.
-   *
-   * @Rest\Get("/current", name="api_user_current")
-   * @ApiDoc(
-   *   section="User",
-   *   description="Get current user"
-   * )
-   *
-   * @return User
-   */
-  public function getCurrentUser() {
-    $user = $this->getUser();
-
-    if (!$user) {
-      throw $this->createNotFoundException('No current user');
-    }
-
-    return $this->showAction($user);
-  }
-
-  /**
    * Finds and displays a user entity.
    *
    * @Rest\Get("/{id}", name="api_user_show")

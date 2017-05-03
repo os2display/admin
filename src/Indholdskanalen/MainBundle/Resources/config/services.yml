@@ -22,6 +22,12 @@ services:
     parent: fos_user.mailer.default
     public: true
 
+  os2display.user_converter:
+    class: Indholdskanalen\MainBundle\Request\ParamConverter\UserConverter
+    arguments: ['@?doctrine', '@security.token_storage']
+    tags:
+      - { name: request.param_converter, priority: 1, converter: user_converter }
+
   indholdskanalen_main.api_authentication_service:
     class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
 
