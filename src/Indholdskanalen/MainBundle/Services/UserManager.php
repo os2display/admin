@@ -8,6 +8,7 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use FOS\UserBundle\Doctrine\UserManager as FOSUserManager;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
+use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 
 /**
@@ -59,7 +60,7 @@ class UserManager {
     }
 
     // Send confirmation email.
-    if (null === $user->getConfirmationToken()) {
+    if (NULL === $user->getConfirmationToken()) {
       $user->setConfirmationToken($this->tokenGenerator->generateToken());
     }
     $this->mailerService->sendUserCreatedEmailMessage($user);
@@ -69,4 +70,32 @@ class UserManager {
 
     return $user;
   }
+
+  /**
+   * Update a user.
+   *
+   * @param \Indholdskanalen\MainBundle\Services\User $user
+   * @param $data
+   * @return \FOS\UserBundle\Model\UserInterface
+   * @throws \Indholdskanalen\MainBundle\Exception\DuplicateEntityException
+   */
+  public function updateUser(User $user, $data) {
+    $properties = ['email', 'firstname', 'lastname'];
+
+    $this->entityService->setValues($user, $data, $properties);
+
+    $user->setUsername($user->getEmail());
+
+    $this->entityService->validateEntity($user);
+
+    $anotherUser = $this->userManager->findUserByEmail($user->getEmail());
+    if ($anotherUser && $anotherUser->getId() !== $user->getId()) {
+      throw new DuplicateEntityException('User already exists.', $data);
+    }
+
+    $this->userManager->updateUser($user);
+
+    return $user;
+  }
+
 }

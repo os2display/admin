@@ -52,14 +52,15 @@ class User extends BaseUser {
 
   /**
    * @var string
-   * @Assert\NotNull
+   * @Assert\NotBlank()
    * @Groups({"api"})
    */
   protected $username;
 
   /**
    * @var string
-   * @Assert\NotNull
+   * @Assert\NotBlank()
+   * @Assert\Email()
    * @Groups({"api"})
    */
   protected $email;

@@ -121,19 +121,17 @@ class UserController extends ApiController {
    * @return User
    */
   public function editAction(Request $request, User $user) {
-    $this->setValuesFromRequest($user, $request, static::$editableProperties);
+    $data = $this->getData($request);
 
     try {
-      $this->validateEntity($user);
+      $user = $this->get('os2display.user_manager')->updateUser($user, $data);
     }
     catch (ValidationException $e) {
-      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $data, 'Invalid data', $e);
     }
-
-    // Persist to database.
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($user);
-    $em->flush();
+    catch (DuplicateEntityException $e) {
+      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
+    }
 
     // Send response.
     return $user;
