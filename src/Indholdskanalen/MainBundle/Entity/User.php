@@ -10,6 +10,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
+use Indholdskanalen\MainBundle\Traits\ApiData;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
@@ -20,6 +22,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="fos_user_user")
  */
 class User extends BaseUser {
+  use ApiData;
+
   /**
    * @ORM\Id
    * @ORM\Column(type="integer")
@@ -33,6 +37,18 @@ class User extends BaseUser {
    * @Groups({"api"})
    */
   protected $roles;
+
+  /**
+   * @var array
+   * @Groups({"api", "api-group"})
+   */
+  protected $groupRoles;
+
+  /**
+   * @var Collection
+   * @Groups({"api"})
+   */
+  protected $groups;
 
   /**
    * @var string
@@ -62,9 +78,14 @@ class User extends BaseUser {
 
   /**
    * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="user", orphanRemoval=true)
-   * @Groups({"api"})
    */
   protected $userGroups;
+
+  /**
+   * @Groups({"api"})
+   * @SerializedName("groups")
+   */
+  protected $roleGroups;
 
   /**
    * Constructor
@@ -186,4 +207,48 @@ class User extends BaseUser {
   public function getUserGroups() {
     return $this->userGroups;
   }
+
+  /**
+   * Build groupRoles, i.e. a list of roles within a group.
+   */
+  public function buildGroupRoles(Group $group, $force = FALSE) {
+    if ($this->groupRoles === NULL || $force) {
+      $groupRoles = [];
+      $userGroups = $this->getUserGroups();
+      foreach ($userGroups as $userGroup) {
+        if ($userGroup->getGroup() == $group) {
+          $groupRoles[] = $userGroup->getRole();
+        }
+      }
+
+      $this->groupRoles = array_unique($groupRoles);
+    }
+
+    return $this;
+  }
+
+  /**
+   * Build role groups.
+   *
+   * @return array
+   */
+  public function buildRoleGroups($force = FALSE) {
+    if ($this->roleGroups === NULL || $force) {
+      $userGroups = $this->getUserGroups();
+      $roleGroups = [];
+      foreach ($userGroups as $userGroup) {
+        $group = $userGroup->getGroup();
+        if (!isset($roleGroups[$group->getId()])) {
+          $roleGroups[$group->getId()] = RoleGroup::create($group);
+        }
+        $roleGroup = $roleGroups[$group->getId()];
+        $roleGroup->addRole($userGroup->getRole());
+      }
+
+      $this->roleGroups = array_values($roleGroups);
+    }
+
+    return $this;
+  }
+
 }
