@@ -125,5 +125,24 @@ Feature: admin
     And the response should be in JSON
     And the JSON node "" should have 0 elements
 
+  Scenario: Cannot create duplicate group
+    When I sign in with username "admin" and password "admin"
+    And I send a "POST" request to "/api/group" with body:
+      """
+      {
+        "title": "A unique group title"
+      }
+      """
+    Then the response status code should be 201
+
+    When I sign in with username "admin" and password "admin"
+    And I send a "POST" request to "/api/group" with body:
+      """
+      {
+        "title": "A unique group title"
+      }
+      """
+    Then the response status code should be 409
+
   @dropSchema
   Scenario: Drop schema

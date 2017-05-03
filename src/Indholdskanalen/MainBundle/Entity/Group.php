@@ -25,7 +25,7 @@ class Group extends ApiEntity {
   protected $id;
 
   /**
-   * @Assert\NotNull()
+   * @Assert\NotBlank()
    * @ORM\Column(name="title", type="string", nullable=false)
    * @Groups({"api"})
    */
