@@ -146,6 +146,28 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   }
 
   /**
+   * @Given the following groups exist:
+   */
+  public function theFollowingGroupsExist(TableNode $table) {
+    foreach ($table->getHash() as $row) {
+      $title = $row['title'];
+
+      $this->createGroup(['title' => $title]);
+    }
+  }
+
+  private function createGroup(array $data) {
+    $manager = $this->container->get('os2display.group_manager');
+
+    $group = $manager->findGroupBy(['title' => $data['title']]);
+    if (!$group) {
+      $group = $manager->createGroup($data);
+    }
+
+    $manager->updateGroup($group, $data);
+  }
+
+  /**
    * @When I sign in with username :username and password :password
    */
   public function iSignInWithUsernameAndPassword($username, $password) {

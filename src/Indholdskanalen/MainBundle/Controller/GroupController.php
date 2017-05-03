@@ -9,6 +9,7 @@ namespace Indholdskanalen\MainBundle\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
 use Indholdskanalen\MainBundle\Security\GroupRoles;
@@ -56,21 +57,17 @@ class GroupController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function newAction(Request $request) {
-    // Set up new Group.
-    $group = new Group();
-    $this->setValuesFromRequest($group, $request, static::$editableProperties);
+    $data = $this->getData($request);
 
     try {
-      $this->validateEntity($group);
+      $group = $this->get('os2display.group_manager')->createGroup($data);
     }
     catch (ValidationException $e) {
-      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $data, 'Invalid data', $e);
     }
-
-    // Persist to database.
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($group);
-    $em->flush();
+    catch (DuplicateEntityException $e) {
+      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
+    }
 
     // Send response.
     return $this->createCreatedResponse($group);
@@ -117,19 +114,17 @@ class GroupController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function editAction(Request $request, Group $group) {
-    $this->setValuesFromRequest($group, $request, static::$editableProperties);
+    $data = $this->getData($request);
 
     try {
-      $this->validateEntity($group);
+      $group = $this->get('os2display.group_manager')->updateGroup($group, $data);
     }
     catch (ValidationException $e) {
-      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $data, 'Invalid data', $e);
     }
-
-    // Persist to database.
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($group);
-    $em->flush();
+    catch (DuplicateEntityException $e) {
+      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
+    }
 
     return $group;
   }
