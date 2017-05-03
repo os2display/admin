@@ -316,9 +316,12 @@ class Ding2Service {
    * Finds all ding-event slides and updates their external-data.
    */
   protected function updateDingEvents() {
-    // Get our slides and go trough each looking for feeds to import
+    // Get our slides and go trough each looking for feeds to import.
+    // Most other services finds their slides by type, but as we piggyback a
+    // lot on the rss-type and thus have to have "rss" as slide-type for ding-
+    // events, we instead search by template.
     /** @var Slide[] $slides */
-    $slides = $this->slideRepo->findBySlideType('ding-events');
+    $slides = $this->slideRepo->findByTemplate('ding-events');
     foreach ($slides as $slide) {
       $options = $slide->getOptions();
 
