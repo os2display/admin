@@ -17,14 +17,14 @@ angular.module('menuApp')
           scope.url = $location.url();
 
           // Listen for Main menu items.
-          busService.$on('userService.returnUser', function returnUser(event, user) {
+          busService.$on('userService.returnCurrentUser', function returnCurrentUser(event, user) {
             scope.$apply(function () {
               scope.currentUser = user;
             });
           });
 
           // Request user
-          busService.$emit('userService.requestUser', {});
+          busService.$emit('userService.getCurrentUser', {});
 
           // Listen for Hamburger menu items.
           busService.$on('menuApp.returnHamburgerMenuItems', function returnHamburgerMenuItems(event, items) {
@@ -46,6 +46,9 @@ angular.module('menuApp')
           busService.$on('$locationChangeSuccess', function () {
             scope.url = $location.url();
           });
+
+          // Request user
+          busService.$emit('userService.getCurrentUser', {});
 
           /**
            * Toggle hamburger menu.

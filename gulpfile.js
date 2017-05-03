@@ -38,6 +38,7 @@ var adminJsAssets = [
   './web/assets/libs/angular-route.min.js',
   './web/assets/libs/angular-dnd.js',
   './web/assets/libs/angular-tooltips.min.js',
+  './web/assets/libs/angular-modal-service.min.js',
   './web/assets/libs/datetimepicker.jquery.js',
   './web/assets/libs/datetimepicker.js',
   './web/assets/libs/es5-shim.min.js',
