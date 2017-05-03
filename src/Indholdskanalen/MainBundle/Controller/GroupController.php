@@ -11,6 +11,7 @@ use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
+use Indholdskanalen\MainBundle\Security\GroupRoles;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,6 +74,23 @@ class GroupController extends ApiController {
 
     // Send response.
     return $this->createCreatedResponse($group);
+  }
+
+  /**
+   * @Rest\Get("/roles")
+   * @ApiDoc(
+   *   section="Groups",
+   *   description="Get all available group roles"
+   * )
+   *
+   * @return array
+   */
+  public function getRoles() {
+    $roles = GroupRoles::getRoleNames();
+    $data = array_combine($roles, $roles);
+    asort($data);
+
+    return $data;
   }
 
   /**

@@ -10,12 +10,12 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
-use Indholdskanalen\MainBundle\Entity\RoleGroup;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
+use Indholdskanalen\MainBundle\Security\Roles;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -97,6 +97,23 @@ class UserController extends ApiController {
 
     // Send response.
     return $this->createCreatedResponse($user);
+  }
+
+  /**
+   * @Rest\Get("/roles")
+   * @ApiDoc(
+   *   section="Users and groups",
+   *   description="Get all available user roles"
+   * )
+   *
+   * @return array
+   */
+  public function getRoles() {
+    $roles = Roles::getRoleNames();
+    $data = array_combine($roles, $roles);
+    asort($data);
+
+    return $data;
   }
 
   /**
