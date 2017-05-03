@@ -18,7 +18,7 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
     function addGroup(group) {
       $scope.groups.push({
         id: group.id,
-        url: '/admin/group/' + group.id,
+        url: '#/admin/group/' + group.id,
         title: group.title
       });
     }
