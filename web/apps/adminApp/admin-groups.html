@@ -2,7 +2,7 @@
   <div class="grid--inner">
     <article class="grid--item">
       <box heading="Grupper">
-        <button-icon-link icon="group_add" button-link="Opret gruppe" click="addGroup()"></button-icon-link>
+        <button-icon-link icon="group_add" button-link="Opret gruppe" click="createGroup()"></button-icon-link>
         <div data-ng-class="{'spinner-element': groupsLoading}"></div>
         <content-list items="groups" max="max" order="-id"></content-list>
 

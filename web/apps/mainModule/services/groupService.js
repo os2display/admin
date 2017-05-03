@@ -19,5 +19,18 @@ angular.module('mainModule').service('groupService', ['busService', '$http',
         busService.$emit('groupService.returnGroupsError', err);
       });
     });
+
+    /**
+     * Create group event listener.
+     */
+    busService.$on('groupService.createGroup', function requestGroup(event, args) {
+      $http.post('/api/group', args)
+      .success(function (data) {
+        busService.$emit('groupService.returnCreateGroup', data);
+      })
+      .error(function (err) {
+        busService.$emit('groupService.returnCreateGroupError', err);
+      });
+    });
   }
 ]);

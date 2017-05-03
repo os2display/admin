@@ -3,15 +3,13 @@
  * Controller for the admin users page.
  */
 
-angular.module('adminApp').controller('AdminUsersController', ['busService', '$scope', '$timeout',
-  function (busService, $scope, $timeout) {
+angular.module('adminApp').controller('AdminUsersController', ['busService', '$scope', '$timeout', 'ModalService',
+  function (busService, $scope, $timeout, ModalService) {
     'use strict';
 
     $scope.usersLoading = true;
     $scope.users = null;
     $scope.max = 50;
-
-    $scope.createPopup = false;
 
     /**
      * Add a user to the users array.
@@ -45,8 +43,19 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
 
     busService.$emit('userService.getUsers', {});
 
-    $scope.addUser = function () {
-      $scope.createPopup = true;
+    // Show create user modal.
+    $scope.createUser = function () {
+      // Just provide a template url, a controller and call 'showModal'.
+      ModalService.showModal({
+        templateUrl: "apps/adminApp/popup-create-user.html",
+        controller: "PopupCreateUser"
+      }).then(function(modal) {
+        modal.close.then(function(user) {
+          if (user) {
+            addUser(user);
+          }
+        });
+      });
     };
 
     /**

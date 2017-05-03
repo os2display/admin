@@ -1,0 +1,39 @@
+<div class="popup is-visible">
+  <div class="popup--dialog is-visible">
+    <div class="popup--content">
+      <div data-ng-class="{'spinner-element': loading}"></div>
+
+      <form name="groupCreateForm" novalidate>
+        <div class="grid is-full " ng-show="!loading">
+          <div class="grid--inner">
+            <article class="grid--item">
+              <h2 class="heading-has-spacing-after">Tilføj gruppe</h2>
+            </article>
+            <article class="grid--item">
+                <div class="forms-field">
+                  <label for="textInput" class="forms-label">Titel</label>
+                  <input id="textInput" name="textInput" type="text" ng-model="group" placeholder="Indtast navn på gruppen"
+                         class="forms-text" required>
+                </div>
+            </article>
+            <!-- @TODO: create this in styleguide -->
+            <article class="grid--item" ng-if="errors.length > 0">
+              <p style="color: red" class="popup--error" ng-repeat="error in errors">{{ error }}</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="grid is-halfs">
+          <div class="grid--inner">
+            <article class="grid--item">
+              <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
+            </article>
+            <article class="grid--item">
+              <a type="submit" class="button-link " title="Tilføj gruppe" ng-click="createGroup()">Tilføj gruppe</a>
+            </article>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

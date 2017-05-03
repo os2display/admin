@@ -2,45 +2,13 @@
   <div class="grid--inner">
     <article class="grid--item">
       <box heading="Brugere">
-        <button-icon-link icon="person_add" button-link="Opret bruger" click="addUser()"></button-icon-link>
+        <button-icon-link icon="person_add" button-link="Opret bruger" click="createUser()"></button-icon-link>
         <div data-ng-class="{'spinner-element': usersLoading}"></div>
         <content-list items="users" max="max" order="-id"></content-list>
 
         <div class="box-link" ng-if="allLinks">
           <a href="#admin/users" title="Alle brugere" class="box-link--link">Alle brugere</a>
         </div>
-
-        <popup open="createPopup">
-          <div class="grid is-full ">
-            <div class="grid--inner">
-              <article class="grid--item">
-                <h2 class="heading-has-spacing-after"></h2>
-              </article>
-              <article class="grid--item">
-                <div class="forms-field">
-                  <label for="" class="forms-label"></label>
-                  <input id="" name="" type="text" placeholder="" value="" class="forms-text">
-                </div>
-              </article>
-              <article class="grid--item">
-                <p>Der bliver sendt en e-mail til brugeren med et aktiveringslink.</p>
-              </article>
-
-            </div>
-          </div>
-
-          <div class="grid is-halfs">
-            <div class="grid--inner">
-              <article class="grid--item">
-                <a href="" class="button-link is-neutral" title=""></a>
-              </article>
-              <article class="grid--item">
-                <a href="" class="button-link " title=""></a>
-              </article>
-
-            </div>
-          </div>
-        </popup>
       </box>
     </article>
   </div>
