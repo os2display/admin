@@ -17,10 +17,19 @@ angular.module('adminApp').config(function ($routeProvider) {
     controller: 'AdminUsersController',
     templateUrl: 'apps/adminApp/admin-users.html?' + window.config.version
   })
+  .when('/admin/user/:id', {
+    controller: 'AdminUserController',
+    templateUrl: 'apps/adminApp/admin-user.html?' + window.config.version
+  })
   .when('/admin/groups', {
     controller: 'AdminGroupsController',
     templateUrl: 'apps/adminApp/admin-groups.html?' + window.config.version
-  });
+  })
+  .when('/admin/group/:id', {
+    controller: 'AdminGroupController',
+    templateUrl: 'apps/adminApp/admin-group.html?' + window.config.version
+  })
+  ;
 });
 
 // Setup the app.

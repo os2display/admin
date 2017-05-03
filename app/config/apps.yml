@@ -52,7 +52,9 @@ parameters:
         - /apps/adminApp/adminApp.js
         - /apps/adminApp/adminDashboardController.js
         - /apps/adminApp/adminGroupsController.js
+        - /apps/adminApp/adminGroupController.js
         - /apps/adminApp/adminUsersController.js
+        - /apps/adminApp/adminUserController.js
         - /apps/adminApp/popupCreateUserController.js
         - /apps/adminApp/popupCreateGroupController.js
       dependencies:

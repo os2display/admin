@@ -1,0 +1,21 @@
+<div data-ng-class="{'spinner-element': loading}"></div>
+
+<div ng-if="!loading">
+  <div class="grid is-full ">
+    <div class="grid--inner">
+      <article class="grid--item">
+        <article class="box">
+          <h2 class="heading-has-spacing-after">Information</h2>
+          <div class="box--inner">
+            <div class="forms-field">
+              <label for="titel" class="forms-label">Titel</label>
+              <input id="titel" name="titel" type="text" placeholder="Indtast titel" ng-model="group.title"
+                     class="forms-text">
+            </div>
+            <a class="button-link has-spacing-top" title="Gem" data-ng-click="saveGroup()">Gem</a>
+          </div>
+        </article>
+      </article>
+    </div>
+  </div>
+</div>

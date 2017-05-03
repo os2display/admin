@@ -10,7 +10,7 @@ angular.module('mainModule').service('groupService', ['busService', '$http',
   function (busService, $http) {
     'use strict';
 
-    busService.$on('groupService.getGroups', function requestUser(event, args) {
+    busService.$on('groupService.getGroups', function requestGroup(event, args) {
       $http.get('/api/group')
       .success(function (data) {
         busService.$emit('groupService.returnGroups', data);
@@ -20,6 +20,32 @@ angular.module('mainModule').service('groupService', ['busService', '$http',
       });
     });
 
+    /**
+     * Get group event listener.
+     */
+    busService.$on('groupService.getGroup', function requestGroup(event, args) {
+      $http.get('/api/group/' + args.id)
+      .success(function (data) {
+        busService.$emit('groupService.returnGroup', data);
+      })
+      .error(function (err) {
+        busService.$emit('groupService.returnGroupError', err);
+      });
+    });
+    
+    /**
+     * Update group event listener.
+     */
+    busService.$on('groupService.updateGroup', function requestGroup(event, args) {
+      $http.put('/api/group/' + args.id, args)
+      .success(function (data) {
+        busService.$emit('groupService.returnUpdateGroup', data);
+      })
+      .error(function (err) {
+        busService.$emit('groupService.returnUpdateGroupError', err);
+      });
+    });
+    
     /**
      * Create group event listener.
      */

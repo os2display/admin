@@ -18,7 +18,7 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
     function addUser(user) {
       $scope.users.push({
         id: user.id,
-        url: '/admin/user/' + user.id,
+        url: '#/admin/user/' + user.id,
         title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username
       });
     }

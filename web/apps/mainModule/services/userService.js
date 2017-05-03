@@ -19,6 +19,19 @@ angular.module('mainModule').service('userService', ['busService', '$http',
     });
 
     /**
+     * Get user event listener.
+     */
+    busService.$on('userService.getUser', function requestUser(event, args) {
+      $http.get('/api/user/' + args.id)
+      .success(function (data) {
+        busService.$emit('userService.returnUser', data);
+      })
+      .error(function (err) {
+        busService.$emit('userService.returnUserError', err);
+      });
+    });
+
+    /**
      * Get current user event listener.
      */
     busService.$on('userService.getCurrentUser', function requestUser(event, args) {
@@ -44,6 +57,32 @@ angular.module('mainModule').service('userService', ['busService', '$http',
       })
       .error(function (err) {
         busService.$emit('userService.returnCreateUserError', err);
+      });
+    });
+
+    /**
+     * Update user event listener.
+     */
+    busService.$on('userService.updateUser', function requestUser(event, args) {
+      $http.put('/api/user/' + args.id, args)
+      .success(function (data) {
+        busService.$emit('userService.returnUpdateUser', data);
+      })
+      .error(function (err) {
+        busService.$emit('userService.returnUpdateUserError', err);
+      });
+    });
+
+    /**
+     * Delete user event listener.
+     */
+    busService.$on('userService.deleteUser', function requestUser(event, args) {
+      $http.delete('/api/user/' + args.id)
+      .success(function (data) {
+        busService.$emit('userService.returnDeleteUser', data);
+      })
+      .error(function (err) {
+        busService.$emit('userService.returnDeleteUserError', err);
       });
     });
   }
