@@ -41,6 +41,7 @@ Feature: admin
     And the JSON node "is_super_admin" should be equal to 1
     And the JSON node "roles" should have 1 element
     And the JSON node "roles[0]" should be equal to "ROLE_SUPER_ADMIN"
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Get current user
     When I sign in with username "user" and password "user"
@@ -51,6 +52,7 @@ Feature: admin
     And the JSON node "is_admin" should be false
     And the JSON node "is_super_admin" should be false
     And the JSON node "roles" should have 0 elements
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Get users
     When I sign in with username "admin" and password "admin"
@@ -103,6 +105,7 @@ Feature: admin
     And the JSON node "email" should be equal to "jedinight@tatooine.org"
     And the JSON node "firstname" should be equal to "Jed I"
     And the JSON node "lastname" should be equal to "Night"
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Add user with already existing email
     When I sign in with username "admin" and password "admin"
@@ -144,6 +147,7 @@ Feature: admin
     And the response should be in JSON
     And the JSON node "id" should be equal to 4
     And the JSON node "email" should be equal to "tahradactyl@example.com"
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Get users
     When I sign in with username "admin" and password "admin"
@@ -204,6 +208,7 @@ Feature: admin
     And the JSON node "firstname" should be equal to "Darth"
     And the JSON node "lastname" should be equal to "Vader"
     And the JSON node "email" should be equal to "jedinight@tatooine.org"
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Get users
     When I sign in with username "admin" and password "admin"

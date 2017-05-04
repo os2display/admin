@@ -3,9 +3,12 @@
 namespace Indholdskanalen\MainBundle\Entity;
 
 use FOS\UserBundle\Entity\Group as BaseGroup;
+use Indholdskanalen\MainBundle\Traits\ApiData;
 use JMS\Serializer\Annotation as Serializer;
 
 class RoleGroup extends BaseGroup {
+  use ApiData;
+
   /**
    * @Serializer\Groups({"api"})
    */
