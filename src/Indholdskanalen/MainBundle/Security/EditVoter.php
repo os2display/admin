@@ -27,30 +27,32 @@ class EditVoter extends Voter {
   protected function supports($attribute, $subject) {
     // if the attribute isn't one we support, return false
     if (!in_array($attribute, [self::CREATE, self::READ, self::UPDATE, self::DELETE])) {
-      return false;
+      return FALSE;
     }
 
     return $subject instanceof Group || $subject instanceof User;
   }
 
   protected function voteOnAttribute($attribute, $subject, TokenInterface $token) {
-    if ($this->decisionManager->decide($token, ['ROLE_SUPER_ADMIN'])) {
-      return true;
+    if ($this->decisionManager->decide($token, ['ROLE_ADMIN'])) {
+      return TRUE;
     }
 
     $user = $token->getUser();
     if (!$user instanceof User) {
       // the user must be logged in; if not, deny access
-      return false;
+      return FALSE;
     }
 
     switch ($attribute) {
-//      case self::CREATE:
-//        return $this->canCreate($subject, $user);
+      //      case self::CREATE:
+      //        return $this->canCreate($subject, $user);
       case self::READ:
         return $this->canRead($subject, $user);
+
       case self::UPDATE:
         return $this->canUpdate($subject, $user);
+
       case self::DELETE:
         return $this->canDelete($subject, $user);
     }
@@ -58,37 +60,44 @@ class EditVoter extends Voter {
     throw new \LogicException('This code should not be reached!');
   }
 
-	private function canRead($subject, User $user) {
-		if ($subject instanceof Group) {
-			return $this->canReadGroup($subject, $user);
-		} elseif ($subject instanceof User) {
-			return $this->canReadUser($subject, $user);
-		}
-
-		throw new \LogicException('This code should not be reached!');
-	}
-
-  private function canUpdate($subject, User $user) {
+  private function canRead($subject, User $user) {
     if ($subject instanceof Group) {
-      return $this->canEditGroup($subject, $user);
-    } elseif ($subject instanceof User) {
-      return $this->canEditUser($subject, $user);
+      return $this->canReadGroup($subject, $user);
+    }
+    elseif ($subject instanceof User) {
+      return $this->canReadUser($subject, $user);
     }
 
     throw new \LogicException('This code should not be reached!');
   }
 
-	private function canDelete($subject, User $user) {
-		if ($subject instanceof Group) {
-			return $this->canDeleteGroup($subject, $user);
-		} elseif ($subject instanceof User) {
-			return $this->canDeleteUser($subject, $user);
-		}
+  private function canUpdate($subject, User $user) {
+    if ($subject instanceof Group) {
+      return $this->canUpdateGroup($subject, $user);
+    }
+    elseif ($subject instanceof User) {
+      return $this->canUpdateUser($subject, $user);
+    }
 
-		throw new \LogicException('This code should not be reached!');
-	}
+    throw new \LogicException('This code should not be reached!');
+  }
 
-	private function canReadGroup(Group $group, User $user) {
+  private function canDelete($subject, User $user) {
+    if ($subject instanceof Group) {
+      return $this->canDeleteGroup($subject, $user);
+    }
+    elseif ($subject instanceof User) {
+      return $this->canDeleteUser($subject, $user);
+    }
+
+    throw new \LogicException('This code should not be reached!');
+  }
+
+  // ---------------------------------------------------------------------------
+  // Group
+  // ---------------------------------------------------------------------------
+
+  private function canReadGroup(Group $group, User $user) {
     $roles = $this->manager->getRepository(UserGroup::class)->findBy([
       'group' => $group,
       'user' => $user,
@@ -97,7 +106,7 @@ class EditVoter extends Voter {
     return count($roles) > 0;
   }
 
-  private function canEditGroup(Group $group, User $user) {
+  private function canUpdateGroup(Group $group, User $user) {
     $roles = $this->manager->getRepository(UserGroup::class)->findBy([
       'group' => $group,
       'user' => $user,
@@ -107,7 +116,32 @@ class EditVoter extends Voter {
     return count($roles) > 0;
   }
 
-	private function canDeleteGroup(Group $group, User $user) {
-		return $this->canEditGroup($group, $user);
+  private function canDeleteGroup(Group $group, User $user) {
+    return $this->canUpdateGroup($group, $user);
   }
+
+  // ---------------------------------------------------------------------------
+  // User
+  // ---------------------------------------------------------------------------
+
+  private function canReadUser(User $user, User $currentUser) {
+    if ($user->getId() === $currentUser->getId()) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+
+  private function canUpdateUser(User $user, User $currentUser) {
+    if ($user->getId() === $currentUser->getId()) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+
+  private function canDeleteUser(User $user, User $currentUser) {
+    return FALSE;
+  }
+
 }

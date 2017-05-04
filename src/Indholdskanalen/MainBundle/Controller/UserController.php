@@ -51,6 +51,8 @@ class UserController extends ApiController {
    *   }
    * )
    *
+   * @Security("has_role('ROLE_ADMIN')")
+   *
    * @param \FOS\RestBundle\Request\ParamFetcherInterface $paramFetcher
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
@@ -77,6 +79,9 @@ class UserController extends ApiController {
    *     409="Duplicate user (specified email/username already used)"
    *   }
    * )
+   *
+   * @Security("has_role('ROLE_ADMIN')")
+   *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @return User
    */
@@ -128,13 +133,18 @@ class UserController extends ApiController {
    *
    * @Rest\Get("/{id}", name="api_user_show")
    *
-   * @param \Indholdskanalen\MainBundle\Entity\User $user
-   * @return User
+   * Note: In the Security annotation "user" always refers to the current
+   * user. Therefore we use parameter name different from "user".
+   *
+   * @Security("is_granted('read', aUser)")
+   *
+   * @param \Indholdskanalen\MainBundle\Entity\User $aUser
+   * @return \Indholdskanalen\MainBundle\Entity\User
    */
-  public function showAction(User $user) {
-    $user->buildRoleGroups();
+  public function showAction(User $aUser) {
+    $aUser->buildRoleGroups();
 
-    return $user;
+    return $aUser;
   }
 
   /**
