@@ -9,12 +9,18 @@ angular.module('adminApp').controller('PopupCreateGroup', ['busService', '$scope
 
     $scope.group = "";
     $scope.loading = false;
+    $scope.errors = [];
 
+    /**
+     * Close the modal.
+     */
     $scope.closeModal = function() {
-      //  Now close as normal, but give 500ms for bootstrap to animate
       close(null);
     };
 
+    /**
+     * Create group.
+     */
     $scope.createGroup = function () {
       if ($scope.loading) {
         return;
@@ -28,31 +34,31 @@ angular.module('adminApp').controller('PopupCreateGroup', ['busService', '$scope
 
       $scope.loading = true;
 
-      busService.$emit('groupService.createGroup', {
-        'title': $scope.group
-      });
-    };
-
-    /**
-     * returnCreateErrorGroup listener.
-     * @type {*}
-     */
-    var cleanupReturnCreateGroupErrorListener = busService.$on('groupService.returnCreateGroupError', function (event, err) {
-      $timeout(function () {
-        $scope.loading = false;
-
-        if (err.error.code === 409) {
-          $scope.errors.push("Gruppen eksisterer allerede.");
+      busService.$emit('apiService.createEntity', {
+        type: 'group',
+        returnEvent: 'PopupCreateGroup.returnCreateGroup',
+        data: {
+          title: $scope.group
         }
       });
-    });
+    };
 
     /**
      * returnCreateGroup listener.
      * @type {*}
      */
-    var cleanupReturnCreateGroupListener = busService.$on('groupService.returnCreateGroup', function (event, group) {
+    var cleanupReturnCreateGroupListener = busService.$on('PopupCreateGroup.returnCreateGroup', function (event, result) {
       $timeout(function () {
+        $scope.loading = false;
+
+        if (result.error) {
+          if (result.error.code === 409) {
+            $scope.errors.push("Gruppen eksisterer allerede.");
+          }
+
+          return;
+        }
+
         $scope.creatingGroup = false;
 
         // Display message success.
@@ -61,13 +67,12 @@ angular.module('adminApp').controller('PopupCreateGroup', ['busService', '$scope
           msg: 'Gruppen blev oprettet.'
         });
 
-        close(group);
+        close(result);
       });
     });
 
     $scope.$on('$destroy', function () {
       cleanupReturnCreateGroupListener();
-      cleanupReturnCreateGroupErrorListener();
     });
   }
 ]);

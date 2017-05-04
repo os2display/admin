@@ -1,28 +1,104 @@
 /**
  * @file
- * Controller for the admin users page.
+ * Controller for the admin user page.
  */
 
-angular.module('adminApp').controller('AdminUserController', ['busService', '$scope', '$timeout', 'ModalService', '$routeParams',
-  function (busService, $scope, $timeout, ModalService, $routeParams) {
+angular.module('adminApp').controller('AdminUserController', ['busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location) {
     'use strict';
 
-    $scope.loading = true;
     $scope.user = null;
+    $scope.loading = true;
 
     /**
      * returnUsers listener.
      * @type {*}
      */
-    var cleanupUserListener = busService.$on('userService.returnUser', function (event, user) {
+    var cleanupUserListener = busService.$on('AdminUserController.returnUser', function (event, result) {
       $timeout(function () {
-        $scope.user = user;
+        if (result.error) {
+          busService.$emit('log.error', {
+            timeout: 5000,
+            cause: result.error.code,
+            msg: 'Bruger kan ikke findes.'
+          });
 
+          // Redirect to dashboard.
+          $location.path('/admin');
+
+          return;
+        }
+
+        // Update the user with data from database.
+        $scope.user = result;
+
+        // Remove spinner.
         $scope.loading = false;
       });
     });
 
-    busService.$emit('userService.getUser', { id: $routeParams.id });
+    /**
+     * returnUpdateUser listener.
+     * @type {*}
+     */
+    var cleanupUpdateUserListener = busService.$on('AdminUserController.returnUpdateUser', function (event, result) {
+      $timeout(function () {
+        if (result.error) {
+          // Display message success.
+          busService.$emit('log.error', {
+            cause: result.error.code,
+            msg: 'Bruger kunne ikke opdateres.'
+          });
+
+          // Remove spinner.
+          $scope.loading = false;
+
+          return;
+        }
+
+        // Update the user with data from database.
+        $scope.user = result;
+
+        // Remove spinner.
+        $scope.loading = false;
+
+        // Display message success.
+        busService.$emit('log.info', {
+          timeout: 3000,
+          msg: 'Bruger opdateret.'
+        });
+      });
+    });
+
+    /**
+     * returnCurrentUser listener.
+     * @type {*}
+     */
+    var cleanupCurrentUserListener = busService.$on('userService.returnCurrentUser', function (event, result) {
+      $timeout(function () {
+        // Update the user with data from database.
+        $scope.user = result;
+
+        // Remove spinner.
+        $scope.loading = false;
+      });
+    });
+
+    // If id set, request that user, else request current user.
+    if ($routeParams.id) {
+      // Emit event to get the user.
+      busService.$emit('apiService.getEntity', {
+        type: 'user',
+        returnEvent: 'AdminUserController.returnUser',
+        data: {
+          id: $routeParams.id
+        }
+      });
+    }
+    else {
+      // Emit event to get the user.
+      busService.$emit('userService.getCurrentUser', {});
+    }
 
     /**
      * Save user.
@@ -30,37 +106,13 @@ angular.module('adminApp').controller('AdminUserController', ['busService', '$sc
     $scope.saveUser = function () {
       $scope.loading = true;
 
-      busService.$emit('userService.updateUser', $scope.user);
+      // Emit event to update user.
+      busService.$emit('apiService.updateEntity', {
+        type: 'user',
+        returnEvent: 'AdminUserController.returnUpdateUser',
+        data: $scope.user
+      });
     };
-
-    /**
-     * returnUpdateErrorUser listener.
-     * @type {*}
-     */
-    var cleanupReturnUpdateUserErrorListener = busService.$on('userService.returnUpdateUserError', function (event, err) {
-      $timeout(function () {
-        $scope.loading = false;
-
-        // @TODO: Handle error.
-        console.log(err);
-      });
-    });
-    
-    /**
-     * returnUpdateUser listener.
-     * @type {*}
-     */
-    var cleanupReturnUpdateUserListener = busService.$on('userService.returnUpdateUser', function (event, user) {
-      $timeout(function () {
-        $scope.loading = false;
-    
-        // Display message success.
-        busService.$emit('log.info', {
-          timeout: 3000,
-          msg: 'Brugeren opdateret.'
-        });
-      });
-    });
 
     /**
      * on destroy.
@@ -69,8 +121,8 @@ angular.module('adminApp').controller('AdminUserController', ['busService', '$sc
      */
     $scope.$on('$destroy', function destroy() {
       cleanupUserListener();
-      cleanupReturnUpdateUserErrorListener();
-      cleanupReturnUpdateUserListener();
+      cleanupUpdateUserListener();
+      cleanupCurrentUserListener();
     });
   }
 ]);

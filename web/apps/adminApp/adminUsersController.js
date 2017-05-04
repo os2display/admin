@@ -3,7 +3,8 @@
  * Controller for the admin users page.
  */
 
-angular.module('adminApp').controller('AdminUsersController', ['busService', '$scope', '$timeout', 'ModalService',
+angular.module('adminApp').controller('AdminUsersController', [
+  'busService', '$scope', '$timeout', 'ModalService',
   function (busService, $scope, $timeout, ModalService) {
     'use strict';
 
@@ -27,13 +28,26 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
      * returnUsers listener.
      * @type {*}
      */
-    var cleanupUsersListener = busService.$on('userService.returnUsers', function (event, users) {
-      $scope.users = [];
-
+    var cleanupUsersListener = busService.$on('AdminUsersController.returnUsers', function (event, result) {
       $timeout(function () {
-        for (var user in users) {
-          if (users.hasOwnProperty(user)) {
-            addUser(users[user]);
+        if (result.error) {
+          // Display message success.
+          busService.$emit('log.error', {
+            cause: result.error.code,
+            msg: 'Brugere kunne ikke hentes.'
+          });
+
+          // Remove spinner.
+          $scope.usersLoading = false;
+
+          return;
+        }
+
+        $scope.users = [];
+
+        for (var user in result) {
+          if (result.hasOwnProperty(user)) {
+            addUser(result[user]);
           }
         }
 
@@ -41,7 +55,11 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
       });
     });
 
-    busService.$emit('userService.getUsers', {});
+    // Emit event to get the user.
+    busService.$emit('apiService.getEntities', {
+      type: 'user',
+      returnEvent: 'AdminUsersController.returnUsers'
+    });
 
     // Show create user modal.
     $scope.createUser = function () {
@@ -49,8 +67,8 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
       ModalService.showModal({
         templateUrl: "apps/adminApp/popup-create-user.html",
         controller: "PopupCreateUser"
-      }).then(function(modal) {
-        modal.close.then(function(user) {
+      }).then(function (modal) {
+        modal.close.then(function (user) {
           if (user) {
             addUser(user);
           }

@@ -27,13 +27,26 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
      * returnGroups listener.
      * @type {*}
      */
-    var cleanupGetGroupsListener = busService.$on('groupService.returnGroups', function (event, groups) {
-      $scope.groups = [];
-
+    var cleanupGetGroupsListener = busService.$on('AdminGroupsController.returnGroups', function (event, result) {
       $timeout(function () {
-        for (var group in groups) {
-          if (groups.hasOwnProperty(group)) {
-            addGroup(groups[group]);
+        if (result.error) {
+          // Display message success.
+          busService.$emit('log.error', {
+            cause: result.error.code,
+            msg: 'Grupper kunne ikke hentes.'
+          });
+
+          // Remove spinner.
+          $scope.groupsLoading = false;
+
+          return;
+        }
+
+        $scope.groups = [];
+
+        for (var group in result) {
+          if (result.hasOwnProperty(group)) {
+            addGroup(result[group]);
           }
         }
 
@@ -41,8 +54,11 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
       });
     });
 
-    // Request users and groups.
-    busService.$emit('groupService.getGroups', {});
+    // Get groups.
+    busService.$emit('apiService.getEntities', {
+      type: 'group',
+      returnEvent: 'AdminGroupsController.returnGroups'
+    });
 
     // Show create group modal.
     $scope.createGroup = function () {

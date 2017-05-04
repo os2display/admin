@@ -9,12 +9,18 @@ angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope'
 
     $scope.email = "";
     $scope.loading = false;
+    $scope.errors = [];
 
+    /**
+     * Close the modal.
+     */
     $scope.closeModal = function() {
-      //  Now close as normal, but give 500ms for bootstrap to animate
       close(null);
     };
 
+    /**
+     * Create user.
+     */
     $scope.createUser = function () {
       if ($scope.loading) {
         return;
@@ -29,46 +35,49 @@ angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope'
 
       $scope.loading = true;
 
-      busService.$emit('userService.createUser', {
-        'email': $scope.email
-      });
-    };
-
-    /**
-     * returnCreateErrorUser listener.
-     * @type {*}
-     */
-    var cleanupReturnCreateUserErrorListener = busService.$on('userService.returnCreateUserError', function (event, err) {
-      $timeout(function () {
-        $scope.loading = false;
-
-        if (err.error.code === 409) {
-          $scope.errors.push("Bruger eksisterer allerede.");
+      busService.$emit('apiService.createEntity', {
+        type: 'user',
+        returnEvent: 'PopupCreateUser.returnCreateUser',
+        data: {
+          email: $scope.email
         }
       });
-    });
+    };
 
     /**
      * returnCreateUser listener.
      * @type {*}
      */
-    var cleanupReturnCreateUserListener = busService.$on('userService.returnCreateUser', function (event, user) {
+    var cleanupReturnCreateUserListener = busService.$on('PopupCreateUser.returnCreateUser', function (event, result) {
       $timeout(function () {
+        $scope.loading = false;
+
+        if (result.error) {
+          // @TODO: Better way of handling errors. Message should be created (and translated) in Symfony.
+          if (result.error.code === 400) {
+            $scope.errors.push("Ugyldig email.");
+          }
+          if (result.error.code === 409) {
+            $scope.errors.push("Brugeren eksisterer allerede.");
+          }
+
+          return;
+        }
+
         $scope.creatingUser = false;
 
         // Display message success.
         busService.$emit('log.info', {
           timeout: 5000,
-          msg: 'Bruger blev oprettet. Der er sendt en mail med oprettelsesinformation til brugeren.'
+          msg: 'Brugeren blev oprettet.'
         });
 
-        close(user);
+        close(result);
       });
     });
 
     $scope.$on('$destroy', function () {
       cleanupReturnCreateUserListener();
-      cleanupReturnCreateUserErrorListener();
     });
   }
 ]);

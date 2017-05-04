@@ -3,12 +3,79 @@
  * Controller for the admin groups page.
  */
 
-angular.module('adminApp').controller('AdminGroupController', ['busService', '$scope', '$timeout', 'ModalService', '$routeParams',
-  function (busService, $scope, $timeout, ModalService, $routeParams) {
+angular.module('adminApp').controller('AdminGroupController', [
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location) {
     'use strict';
 
-    $scope.loading = true;
     $scope.group = null;
+    $scope.loading = true;
+
+    /**
+     * returnGroups listener.
+     * @type {*}
+     */
+    var cleanupGroupListener = busService.$on('AdminGroupController.returnGroup', function (event, result) {
+      $timeout(function () {
+        if (result.error) {
+          busService.$emit('log.error', {
+            timeout: 5000,
+            cause: result.error.code,
+            msg: 'Gruppe kan ikke findes.'
+          });
+
+          // Redirect to dashboard.
+          $location.path('/admin');
+
+          return;
+        }
+
+        // Update the group with data from database.
+        $scope.group = result;
+
+        // Remove spinner.
+        $scope.loading = false;
+      });
+    });
+
+    /**
+     * returnUpdateGroup listener.
+     * @type {*}
+     */
+    var cleanupUpdateGroupListener = busService.$on('AdminGroupController.returnUpdateGroup', function (event, result) {
+      $timeout(function () {
+        if (result.error) {
+          // Display message success.
+          busService.$emit('log.error', {
+            cause: result.error.code,
+            msg: 'Gruppe kunne ikke opdateres.'
+          });
+
+          return;
+        }
+
+        // Update the group with data from database.
+        $scope.group = result;
+
+        // Remove spinner.
+        $scope.loading = false;
+
+        // Display message success.
+        busService.$emit('log.info', {
+          timeout: 3000,
+          msg: 'Gruppe opdateret.'
+        });
+      });
+    });
+
+    // Emit event to get the group.
+    busService.$emit('apiService.getEntity', {
+      type: 'group',
+      returnEvent: 'AdminGroupController.returnGroup',
+      data: {
+        id: $routeParams.id
+      }
+    });
 
     /**
      * Save group.
@@ -16,51 +83,13 @@ angular.module('adminApp').controller('AdminGroupController', ['busService', '$s
     $scope.saveGroup = function () {
       $scope.loading = true;
 
-      busService.$emit('groupService.updateGroup', $scope.group);
+      // Emit event to update group.
+      busService.$emit('apiService.updateEntity', {
+        type: 'group',
+        returnEvent: 'AdminGroupController.returnUpdateGroup',
+        data: $scope.group
+      });
     };
-
-    /**
-     * returnGroups listener.
-     * @type {*}
-     */
-    var cleanupGroupListener = busService.$on('groupService.returnGroup', function (event, group) {
-      $timeout(function () {
-        $scope.group = group;
-
-        $scope.loading = false;
-      });
-    });
-
-    busService.$emit('groupService.getGroup', { id: $routeParams.id });
-
-    /**
-     * returnUpdateErrorGroup listener.
-     * @type {*}
-     */
-    var cleanupReturnUpdateGroupErrorListener = busService.$on('groupService.returnUpdateGroupError', function (event, err) {
-      $timeout(function () {
-        $scope.loading = false;
-
-        // @TODO: Handle error.
-        console.log(err);
-      });
-    });
-    
-    /**
-     * returnUpdateGroup listener.
-     * @type {*}
-     */
-    var cleanupReturnUpdateGroupListener = busService.$on('groupService.returnUpdateGroup', function (event, group) {
-      $timeout(function () {
-        $scope.loading = false;
-    
-        // Display message success.
-        busService.$emit('log.info', {
-          timeout: 3000,
-          msg: 'Brugeren opdateret.'
-        });
-      });
-    });
 
     /**
      * on destroy.
@@ -69,8 +98,7 @@ angular.module('adminApp').controller('AdminGroupController', ['busService', '$s
      */
     $scope.$on('$destroy', function destroy() {
       cleanupGroupListener();
-      cleanupReturnUpdateGroupErrorListener();
-      cleanupReturnUpdateGroupListener();
+      cleanupUpdateGroupListener();
     });
   }
 ]);
