@@ -60,7 +60,7 @@ class UserController extends ApiController {
     $users = $this->findAll(User::class);
 
     foreach ($users as $user) {
-      $user->buildGroups();
+      $user->buildRoleGroups();
     }
 
     return $this->setApiData($users);
@@ -142,7 +142,7 @@ class UserController extends ApiController {
    * @return \Indholdskanalen\MainBundle\Entity\User
    */
   public function showAction(User $aUser) {
-    $aUser->buildGroups();
+    $aUser->buildRoleGroups();
 
     return $this->setApiData($aUser);
   }
@@ -192,7 +192,7 @@ class UserController extends ApiController {
    * @Rest\Get("/{user}/group")
    */
   public function getUserGroups(User $user) {
-    $groups = $user->buildGroups()->getGroups();
+    $groups = $user->buildRoleGroups()->getRoleGroups();
 
     return $this->setApiData($groups);
   }

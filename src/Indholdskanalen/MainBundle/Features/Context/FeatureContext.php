@@ -7,7 +7,10 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behatch\Context\BaseContext;
+use Behatch\HttpCall\HttpCallResultPool;
 use Behatch\HttpCall\Request;
+use Behatch\Json\Json;
+use Behatch\Json\JsonInspector;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
 use Indholdskanalen\MainBundle\Entity\User;
@@ -42,18 +45,31 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   private $request;
 
   /**
+   * @var \Behatch\Json\JsonInspector
+   */
+  private $inspector;
+
+  /**
+   * @var \Behatch\HttpCall\HttpCallResultPool
+   */
+  private $httpCallResultPool;
+
+  /**
    * Initializes context.
    *
    * Every scenario gets its own context instance.
    * You can also pass arbitrary arguments to the
    * context constructor through behat.yml.
    */
-  public function __construct(ManagerRegistry $doctrine, Request $request) {
+  public function __construct(ManagerRegistry $doctrine, Request $request, HttpCallResultPool $httpCallResultPool, $evaluationMode = 'javascript') {
     $this->doctrine = $doctrine;
     $this->request = $request;
     $this->manager = $doctrine->getManager();
     $this->schemaTool = new SchemaTool($this->manager);
     $this->classes = $this->manager->getMetadataFactory()->getAllMetadata();
+
+    $this->inspector = new JsonInspector($evaluationMode);
+    $this->httpCallResultPool = $httpCallResultPool;
   }
 
   /**
@@ -289,4 +305,44 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
     $this->schemaTool->dropSchema($this->classes);
   }
 
+  /**
+   * @Then the JSON node :node should contain key :key
+   */
+  public function theJsonNodeShouldContainKey($node, $key)
+  {
+    $json = $this->getJson();
+    $actual = $this->inspector->evaluate($json, $node);
+    $this->assertTrue(array_key_exists($key, $actual), sprintf('The node "%s" should contain key "%s"', $node, $key));
+  }
+
+  /**
+   * @Then the JSON node :node should not contain key :key
+   */
+  public function theJsonNodeShouldNotContainKey($node, $key) {
+    $this->not(function () use ($node, $key) {
+      return $this->theJsonNodeShouldContainKey($node, $key);
+    }, sprintf('The node "%s" should not contain key "%s"', $node, $key));
+  }
+
+  /**
+   * @Then the JSON node :node should contain value :value
+   */
+  public function theJsonNodeShouldContainValue($node, $value) {
+    $json = $this->getJson();
+    $actual = $this->inspector->evaluate($json, $node);
+    $this->assertTrue(in_array($value, $actual), sprintf('The node "%s" should contain value "%s"', $node, $value));
+  }
+
+  /**
+   * @Then the JSON node :node should not contain value :value
+   */
+  public function theJsonNodeShouldNotContainValue($node, $value) {
+    $this->not(function () use ($node, $value) {
+      return $this->theJsonNodeShouldContainKey($node, $value);
+    }, sprintf('The node "%s" should not contain value "%s"', $node, $value));
+  }
+
+  protected function getJson() {
+    return new Json($this->httpCallResultPool->getResult()->getValue());
+  }
 }

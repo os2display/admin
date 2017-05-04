@@ -34,21 +34,23 @@ class User extends BaseUser {
 
   /**
    * @var array
-   * @Groups({"api"})
-   */
-  protected $roles;
-
-  /**
-   * @var array
    * @Groups({"api", "api-group"})
    */
   protected $groupRoles;
 
   /**
+   * @var array
+   * @Groups({"api"})
+   * @SerializedName("roles")
+   */
+  protected $userRoles;
+
+  /**
    * @var Collection
    * @Groups({"api"})
+   * @SerializedName("groups")
    */
-  protected $groups;
+  protected $roleGroups;
 
   /**
    * @var string
@@ -229,12 +231,12 @@ class User extends BaseUser {
   }
 
   /**
-   * Build groups.
+   * Build groups with roles.
    *
    * @return array
    */
-  public function buildGroups($force = FALSE) {
-    if ($this->groups === NULL || $force) {
+  public function buildRoleGroups($force = FALSE) {
+    if ($this->roleGroups === NULL || $force) {
       $userGroups = $this->getUserGroups();
       $groups = [];
       foreach ($userGroups as $userGroup) {
@@ -245,16 +247,43 @@ class User extends BaseUser {
         $groups[$group->getId()]->addRole($userGroup->getRole());
       }
 
-      $this->groups = array_values($groups);
+      $this->roleGroups = array_values($groups);
     }
 
     return $this;
   }
 
-  public function getGroups() {
-    $this->buildGroups();
+  public function getRoleGroups() {
+    $this->buildRoleGroups();
 
-    return $this->groups;
+    return $this->roleGroups;
+  }
+
+  public function setUserRoles(array $userRoles) {
+    $this->userRoles = array_unique($userRoles);
+  }
+
+  /**
+   * Returns the user roles
+   *
+   * @return array The roles
+   */
+  public function getUserRoles() {
+    return $this->userRoles;
+  }
+
+  public function getRoles($includeGroupRoles = TRUE) {
+    $roles = $this->roles;
+
+    if ($includeGroupRoles) {
+      foreach ($this->getGroups() as $group) {
+        $roles = array_merge($roles, $group->getRoles());
+      }
+    }
+    // we need to make sure to have at least one role
+    $roles[] = static::ROLE_DEFAULT;
+
+    return array_unique($roles);
   }
 
 }
