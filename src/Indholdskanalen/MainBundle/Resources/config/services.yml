@@ -1,4 +1,5 @@
 parameters:
+  router.options.generator_base_class: Indholdskanalen\MainBundle\Routing\HashtagDecodedUrlGenerator
 
 services:
   indholdskanalen_main.listener:

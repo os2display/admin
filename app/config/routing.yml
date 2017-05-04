@@ -27,7 +27,7 @@ fos_user_change_password:
     prefix: /profile
 
 fos_user_profile_show:
-    path: "/#/admin/user"
+    path: /#/admin/user
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
