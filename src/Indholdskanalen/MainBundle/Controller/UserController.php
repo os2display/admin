@@ -144,7 +144,7 @@ class UserController extends ApiController {
   public function showAction(User $aUser) {
     $aUser->buildRoleGroups();
 
-    return $aUser;
+    return $this->setApiData($aUser);
   }
 
   /**
