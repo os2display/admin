@@ -70,7 +70,7 @@ class GroupController extends ApiController {
     }
 
     // Send response.
-    return $this->createCreatedResponse($group);
+    return $this->createCreatedResponse($this->setApiData($group));
   }
 
   /**

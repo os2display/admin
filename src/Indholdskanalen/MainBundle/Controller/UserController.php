@@ -101,7 +101,7 @@ class UserController extends ApiController {
     }
 
     // Send response.
-    return $this->createCreatedResponse($user);
+    return $this->createCreatedResponse($this->setApiData($user));
   }
 
   /**
@@ -246,7 +246,7 @@ class UserController extends ApiController {
   public function createUserGroup(Request $request, User $user, Group $group, ParamFetcherInterface $paramFetcher) {
     $items = $this->updateUserGroupRoles($request, $user, $group, $paramFetcher);
 
-    return $this->createCreatedResponse($items);
+    return $this->createCreatedResponse($this->setApiData($items));
   }
 
   /**
