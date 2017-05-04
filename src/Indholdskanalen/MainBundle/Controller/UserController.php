@@ -106,11 +106,18 @@ class UserController extends ApiController {
    *   description="Get all available user roles"
    * )
    *
+   * @param \Symfony\Component\HttpFoundation\Request $request
    * @return array
    */
-  public function getRoles() {
+  public function getRoles(Request $request) {
+    $translator = $this->get('translator');
+    $locale = $request->get('locale', $this->getParameter('locale'));
+
     $roles = Roles::getRoleNames();
-    $data = array_combine($roles, $roles);
+    $labels = array_map(function ($role) use ($translator, $locale) {
+      return $translator->trans($role, [], 'IndholdskanalenMainBundle', $locale);
+    }, $roles);
+    $data = array_combine($roles, $labels);
     asort($data);
 
     return $data;
