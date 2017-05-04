@@ -56,31 +56,27 @@ class EntityManagerService {
   }
 
   private function addCriteriaGroup(array &$criteria, User $user) {
-    // Find all groups in which current user is manager.
+    // Find all groups in which current user is member.
     $builder = $this->manager->createQueryBuilder();
     $query = $builder
       ->select('g')
       ->from(UserGroup::class, 'g')
       ->where('g.user = :user')
-      ->andWhere('g.role = :role')
       ->getQuery();
     $result = $query->setParameters([
       'user' => $user,
-      'role' => 'ROLE_GROUP_ROLE_ADMIN',
     ])->getResult();
 
-    $ids = $this->getIds($result);
+    $ids = [];
+    foreach ($result as $userGroup) {
+      $ids[] = $userGroup->getGroup()->getId();
+    }
     if (isset($criteria['id'])) {
       $ids = array_intersect($ids, $criteria['id']);
     }
     $criteria['id'] = $ids;
   }
 
-  private function getIds(array $items) {
-    return array_map(function ($item) {
-      return $item->getId();
-    }, $items);
-  }
 
   private function addCriteriaUser(array &$criteria, User $user) {
     // @TODO

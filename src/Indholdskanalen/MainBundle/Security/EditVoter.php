@@ -18,6 +18,7 @@ class EditVoter extends Voter {
   const READ = 'read';
   const UPDATE = 'update';
   const DELETE = 'delete';
+  const READ_LIST = 'list';
 
   public function __construct(EntityManagerInterface $manager, AccessDecisionManagerInterface $decisionManager) {
     $this->manager = $manager;
@@ -26,8 +27,12 @@ class EditVoter extends Voter {
 
   protected function supports($attribute, $subject) {
     // if the attribute isn't one we support, return false
-    if (!in_array($attribute, [self::CREATE, self::READ, self::UPDATE, self::DELETE])) {
+    if (!in_array($attribute, [self::CREATE, self::READ, self::UPDATE, self::DELETE, self::READ_LIST])) {
       return FALSE;
+    }
+
+    if ($attribute === self::READ_LIST && $subject === 'user') {
+      return TRUE;
     }
 
     return $subject instanceof Group || $subject instanceof User;
@@ -45,8 +50,8 @@ class EditVoter extends Voter {
     }
 
     switch ($attribute) {
-      //      case self::CREATE:
-      //        return $this->canCreate($subject, $user);
+      case self::CREATE:
+        return $this->canCreate($subject, $user);
       case self::READ:
         return $this->canRead($subject, $user);
 
@@ -55,9 +60,16 @@ class EditVoter extends Voter {
 
       case self::DELETE:
         return $this->canDelete($subject, $user);
+
+      case self::READ_LIST:
+        return $this->canList($subject, $user);
     }
 
     throw new \LogicException('This code should not be reached!');
+  }
+
+  private function canCreate($type, User $user) {
+    return FALSE;
   }
 
   private function canRead($subject, User $user) {
@@ -93,6 +105,15 @@ class EditVoter extends Voter {
     throw new \LogicException('This code should not be reached!');
   }
 
+  private function canList($type, User $user) {
+    $items = $this->manager->getRepository(UserGroup::class)->findBy([
+      'user' => $user,
+      'role' => GroupRoles::ROLE_GROUP_ROLE_ADMIN,
+    ]);
+
+    return count($items) > 0;
+  }
+
   // ---------------------------------------------------------------------------
   // Group
   // ---------------------------------------------------------------------------
@@ -110,7 +131,7 @@ class EditVoter extends Voter {
     $roles = $this->manager->getRepository(UserGroup::class)->findBy([
       'group' => $group,
       'user' => $user,
-      'role' => GroupRoles::ROLE_GROUP_GROUP_ADMIN,
+      'role' => GroupRoles::ROLE_GROUP_ROLE_ADMIN,
     ]);
 
     return count($roles) > 0;
