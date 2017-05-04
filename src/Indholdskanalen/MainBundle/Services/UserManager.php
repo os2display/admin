@@ -16,6 +16,8 @@ use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
  * @package Indholdskanalen\MainBundle\Services
  */
 class UserManager {
+  protected static $editableProperties = ['email', 'firstname', 'lastname', 'roles'];
+
   protected $userManager;
   protected $mailerService;
   protected $entityService;
@@ -45,9 +47,7 @@ class UserManager {
     // Create user object.
     $user = $this->userManager->createUser();
 
-    $properties = ['email', 'firstname', 'lastname'];
-
-    $this->entityService->setValues($user, $data, $properties);
+    $this->entityService->setValues($user, $data, self::$editableProperties);
 
     $user->setUsername($user->getEmail());
     $user->setPlainPassword(uniqid());
@@ -80,9 +80,7 @@ class UserManager {
    * @throws \Indholdskanalen\MainBundle\Exception\DuplicateEntityException
    */
   public function updateUser(User $user, $data) {
-    $properties = ['email', 'firstname', 'lastname'];
-
-    $this->entityService->setValues($user, $data, $properties);
+    $this->entityService->setValues($user, $data, self::$editableProperties);
 
     $user->setUsername($user->getEmail());
 
