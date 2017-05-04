@@ -36,7 +36,6 @@ Feature: admin
     And the response should be in JSON
     And the JSON node "error" should not be null
     And the JSON node "error.message" should not be null
-    # And the JSON node "data" should have 1 element
 
   Scenario: Create group (anonymous)
     And I send a "POST" request to "/api/group" with body:
@@ -60,6 +59,7 @@ Feature: admin
     And the JSON node "id" should be equal to 1
     And the JSON node "title" should be equal to "The first group"
     And the JSON node "groups" should not exist
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Get groups
     When I sign in with username "admin" and password "admin"
@@ -79,6 +79,7 @@ Feature: admin
     And the JSON node "id" should be equal to 1
     And the JSON node "title" should be equal to "The first group"
     And the JSON node "users" should have 0 elements
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Update group
     When I sign in with username "admin" and password "admin"
@@ -93,6 +94,7 @@ Feature: admin
     And the JSON node "id" should be equal to 1
     And the JSON node "title" should be equal to "The first group (title updated)"
     And the JSON node "users" should not exist
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Get group
     When I sign in with username "admin" and password "admin"
@@ -102,6 +104,7 @@ Feature: admin
     And the JSON node "id" should be equal to 1
     And the JSON node "title" should be equal to "The first group (title updated)"
     And the JSON node "users" should have 0 elements
+    And the JSON node "api_data.permissions" should exist
 
   Scenario: Get groups
     When I sign in with username "admin" and password "admin"

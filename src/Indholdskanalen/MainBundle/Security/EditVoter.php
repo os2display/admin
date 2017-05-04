@@ -26,20 +26,11 @@ class EditVoter extends Voter {
   }
 
   protected function supports($attribute, $subject) {
-    // if the attribute isn't one we support, return false
-    if (!in_array($attribute, [self::CREATE, self::READ, self::UPDATE, self::DELETE, self::READ_LIST])) {
-      return FALSE;
-    }
-
-    if ($attribute === self::READ_LIST && $subject === 'user') {
-      return TRUE;
-    }
-
-    return $subject instanceof Group || $subject instanceof User;
+    return in_array($attribute, [self::CREATE, self::READ, self::UPDATE, self::DELETE, self::READ_LIST]);
   }
 
   protected function voteOnAttribute($attribute, $subject, TokenInterface $token) {
-    if ($this->decisionManager->decide($token, ['ROLE_ADMIN'])) {
+    if ($this->decisionManager->decide($token, [Roles::ROLE_ADMIN])) {
       return TRUE;
     }
 
@@ -51,7 +42,8 @@ class EditVoter extends Voter {
 
     switch ($attribute) {
       case self::CREATE:
-        return $this->canCreate($subject, $user);
+        return $this->canCreate($subject, $token);
+
       case self::READ:
         return $this->canRead($subject, $user);
 
@@ -65,10 +57,18 @@ class EditVoter extends Voter {
         return $this->canList($subject, $user);
     }
 
-    throw new \LogicException('This code should not be reached!');
+    return FALSE;
   }
 
-  private function canCreate($type, User $user) {
+  private function canCreate($type, TokenInterface $token) {
+    switch ($type) {
+      case Group::class:
+        return $this->canCreateGroup($token);
+
+      case User::class:
+        return $this->canCreateUser($token);
+    }
+
     return FALSE;
   }
 
@@ -80,7 +80,7 @@ class EditVoter extends Voter {
       return $this->canReadUser($subject, $user);
     }
 
-    throw new \LogicException('This code should not be reached!');
+    return FALSE;
   }
 
   private function canUpdate($subject, User $user) {
@@ -91,7 +91,7 @@ class EditVoter extends Voter {
       return $this->canUpdateUser($subject, $user);
     }
 
-    throw new \LogicException('This code should not be reached!');
+    return FALSE;
   }
 
   private function canDelete($subject, User $user) {
@@ -102,21 +102,29 @@ class EditVoter extends Voter {
       return $this->canDeleteUser($subject, $user);
     }
 
-    throw new \LogicException('This code should not be reached!');
+    return FALSE;
   }
 
   private function canList($type, User $user) {
-    $items = $this->manager->getRepository(UserGroup::class)->findBy([
-      'user' => $user,
-      'role' => GroupRoles::ROLE_GROUP_ROLE_ADMIN,
-    ]);
+    switch ($type) {
+      case Group::class:
+      case 'group':
+        return $this->canListGroup($user);
+      case User::class:
+      case 'user':
+        return $this->canListUser($user);
+    }
 
-    return count($items) > 0;
+    return FALSE;
   }
 
   // ---------------------------------------------------------------------------
   // Group
   // ---------------------------------------------------------------------------
+
+  private function canCreateGroup(TokenInterface $token) {
+    return $this->decisionManager->decide($token, [Roles::ROLE_GROUP_ADMIN]);
+  }
 
   private function canReadGroup(Group $group, User $user) {
     $roles = $this->manager->getRepository(UserGroup::class)->findBy([
@@ -141,9 +149,23 @@ class EditVoter extends Voter {
     return $this->canUpdateGroup($group, $user);
   }
 
+  private function canListGroup(User $user) {
+    // A user can list groups if he is member of a group.
+    $items = $this->manager->getRepository(UserGroup::class)->findBy([
+      'user' => $user,
+      'role' => GroupRoles::ROLE_GROUP_ROLE_ADMIN,
+    ]);
+
+    return count($items) > 0;
+  }
+
   // ---------------------------------------------------------------------------
   // User
   // ---------------------------------------------------------------------------
+
+  private function canCreateUser(TokenInterface $token) {
+    return $this->decisionManager->decide($token, [Roles::ROLE_USER_ADMIN]);
+  }
 
   private function canReadUser(User $user, User $currentUser) {
     if ($user->getId() === $currentUser->getId()) {
@@ -163,6 +185,10 @@ class EditVoter extends Voter {
 
   private function canDeleteUser(User $user, User $currentUser) {
     return FALSE;
+  }
+
+  private function canListUser(User $user) {
+    return TRUE;
   }
 
 }

@@ -141,6 +141,8 @@ class ApiController extends FOSRestController {
         'can_read' => $decisionManager->decide($token, [EditVoter::READ], $user),
         'can_update' => $decisionManager->decide($token, [EditVoter::UPDATE], $user),
         'can_delete' => $decisionManager->decide($token, [EditVoter::DELETE], $user),
+        'can_create_group' => $decisionManager->decide($token, [EditVoter::CREATE], Group::class),
+        'can_create_user' => $decisionManager->decide($token, [EditVoter::CREATE], User::class),
       ]
     ]);
   }

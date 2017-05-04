@@ -168,7 +168,7 @@ class UserController extends ApiController {
     }
 
     // Send response.
-    return $user;
+    return $this->setApiData($user);
   }
 
   /**

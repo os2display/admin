@@ -133,7 +133,7 @@ class GroupController extends ApiController {
       throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
     }
 
-    return $group;
+    return $this->setApiData($group);
   }
 
   /**
