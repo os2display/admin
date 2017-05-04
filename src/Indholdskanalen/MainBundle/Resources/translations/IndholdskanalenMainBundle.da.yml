@@ -10,5 +10,5 @@ ROLE_USER: Bruger
 ROLE_ADMIN: Administrator
 ROLE_SUPER_ADMIN: Superadministrator
 
-ROLE_GROUP_USER: Bruger
-ROLE_GROUP_GROUP_ADMIN: Administrator
+ROLE_GROUP_ROLE_USER: Bruger
+ROLE_GROUP_ROLE_ADMIN: Administrator

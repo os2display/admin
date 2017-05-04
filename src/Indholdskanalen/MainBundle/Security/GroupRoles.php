@@ -10,8 +10,8 @@ namespace Indholdskanalen\MainBundle\Security;
  * @package Indholdskanalen\MainBundle\Security
  */
 class GroupRoles {
-  const ROLE_GROUP_USER = 'ROLE_GROUP_USER';
-  const ROLE_GROUP_GROUP_ADMIN = 'ROLE_GROUP_GROUP_ADMIN';
+  const ROLE_GROUP_ROLE_USER = 'ROLE_GROUP_ROLE_USER';
+  const ROLE_GROUP_ROLE_ADMIN = 'ROLE_GROUP_ROLE_ADMIN';
 
   public static function getRoleNames() {
     $class = new \ReflectionClass(static::class);

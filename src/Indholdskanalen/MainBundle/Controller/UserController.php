@@ -51,7 +51,7 @@ class UserController extends ApiController {
    *   }
    * )
    *
-   * @Security("has_role('ROLE_ADMIN')")
+   * @Security("is_granted('list', 'user')")
    *
    * @param \FOS\RestBundle\Request\ParamFetcherInterface $paramFetcher
    * @return \Symfony\Component\HttpFoundation\JsonResponse
