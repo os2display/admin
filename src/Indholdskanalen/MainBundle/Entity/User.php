@@ -83,12 +83,6 @@ class User extends BaseUser {
   protected $userGroups;
 
   /**
-   * @Groups({"api"})
-   * @SerializedName("groups")
-   */
-  protected $roleGroups;
-
-  /**
    * Constructor
    */
   public function __construct() {
@@ -228,28 +222,39 @@ class User extends BaseUser {
     return $this;
   }
 
+  public function getGroupRoles() {
+    $this->buildGroupRoles();
+
+    return $this->groupRoles;
+  }
+
   /**
-   * Build role groups.
+   * Build groups.
    *
    * @return array
    */
-  public function buildRoleGroups($force = FALSE) {
-    if ($this->roleGroups === NULL || $force) {
+  public function buildGroups($force = FALSE) {
+    if ($this->groups === NULL || $force) {
       $userGroups = $this->getUserGroups();
-      $roleGroups = [];
+      $groups = [];
       foreach ($userGroups as $userGroup) {
         $group = $userGroup->getGroup();
-        if (!isset($roleGroups[$group->getId()])) {
-          $roleGroups[$group->getId()] = RoleGroup::create($group);
+        if (!isset($groups[$group->getId()])) {
+          $groups[$group->getId()] = $group;
         }
-        $roleGroup = $roleGroups[$group->getId()];
-        $roleGroup->addRole($userGroup->getRole());
+        $groups[$group->getId()]->addRole($userGroup->getRole());
       }
 
-      $this->roleGroups = array_values($roleGroups);
+      $this->groups = array_values($groups);
     }
 
     return $this;
+  }
+
+  public function getGroups() {
+    $this->buildGroups();
+
+    return $this->groups;
   }
 
 }
