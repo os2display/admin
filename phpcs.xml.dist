@@ -22,5 +22,7 @@
 	 <!-- <exclude name="Drupal.Commenting.PostStatementComment"/> -->
 
 	 <exclude name="Drupal.Array.Array.LongLineDeclaration"/>
+	 <exclude name="Drupal.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+	 <exclude name="Drupal.WhiteSpace.OpenTagNewline.BlankLine"/>
  </rule>
 </ruleset>

@@ -69,8 +69,8 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   }
 
   /**
-	 * Wait for a number of seconds.
-	 *
+     * Wait for a number of seconds.
+     *
    * @When /^(?:|I )wait (?:for )?(?P<value>[0-9]+) seconds?$/
    */
   public function iWaitForSeconds($value) {
@@ -78,8 +78,8 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   }
 
   /**
-	 * Click on an element.
-	 *
+     * Click on an element.
+     *
    * @When /^(?:|I )click (?:a |the )?"(?P<selector>[^"]+)"(?: element)?$/
    */
   public function iClickTheElement($selector) {
@@ -108,7 +108,8 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
     $element = $this->getSession()->getPage()->find('css', $field);
     if ($element !== NULL) {
       $element->setValue($value);
-    } else {
+    }
+    else {
       parent::fillField($field, $value);
     }
   }
@@ -119,9 +120,9 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   public function theFollowingUsersExist(TableNode $table) {
     foreach ($table->getHash() as $row) {
       $username = $row['username'];
-      $email = isset($row['email']) ? $row['email'] : uniqid($username) . '@' . uniqid('example') . '.com';
-      $password = isset($row['password']) ? $row['password'] : uniqid();
-      $roles = isset($row['roles']) ? preg_split('/\s*,\s*/', $row['roles'], -1, PREG_SPLIT_NO_EMPTY) : [];
+      $email = !empty($row['email']) ? $row['email'] : uniqid($username) . '@' . uniqid('example') . '.com';
+      $password = !empty($row['password']) ? $row['password'] : uniqid();
+      $roles = !empty($row['roles']) ? preg_split('/\s*,\s*/', $row['roles'], -1, PREG_SPLIT_NO_EMPTY) : [];
 
       $this->createUser($username, $email, $password, $roles);
     }
@@ -145,10 +146,31 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   }
 
   /**
+   * @Given the following groups exist:
+   */
+  public function theFollowingGroupsExist(TableNode $table) {
+    foreach ($table->getHash() as $row) {
+      $title = $row['title'];
+
+      $this->createGroup(['title' => $title]);
+    }
+  }
+
+  private function createGroup(array $data) {
+    $manager = $this->container->get('os2display.group_manager');
+
+    $group = $manager->findGroupBy(['title' => $data['title']]);
+    if (!$group) {
+      $group = $manager->createGroup($data);
+    }
+
+    $manager->updateGroup($group, $data);
+  }
+
+  /**
    * @When I sign in with username :username and password :password
    */
-  public function iSignInWithUsernameAndPassword($username, $password)
-  {
+  public function iSignInWithUsernameAndPassword($username, $password) {
     $user = $this->getUser($username);
 
     if ($user) {
@@ -157,7 +179,8 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
       if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
         $this->authenticate($user);
       }
-    } else {
+    }
+    else {
       $this->deauthenticate();
     }
   }
@@ -165,8 +188,7 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   /**
    * @When I attach the file :filename
    */
-  public function iAttachTheFile($filename)
-  {
+  public function iAttachTheFile($filename) {
     $path = tempnam('/tmp', 'attachment');
     file_put_contents($path, $path);
     $this->attachments[] = new UploadedFile($path, $filename);
@@ -199,17 +221,15 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
    *
    * @Given I send a :method request to :url with attachments and body:
    */
-  public function iSendARequestToWithAttachmentsAndBody($method, $url, PyStringNode $body)
-  {
+  public function iSendARequestToWithAttachmentsAndBody($method, $url, PyStringNode $body) {
     return $this->request->send(
       $method,
       $this->locatePath($url),
       [],
       $this->attachments,
-      $body !== null ? $body->getRaw() : null
+      $body !== NULL ? $body->getRaw() : NULL
     );
   }
-
 
   /**
    * Locates url, based on provided path.
@@ -219,13 +239,11 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
    *
    * @return string
    */
-  public function locatePath($path)
-  {
+  public function locatePath($path) {
     $startUrl = rtrim($this->getMinkParameter('base_url'), '/') . '/';
 
     return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
   }
-
 
   /**
    * Get a user by username.
@@ -233,8 +251,7 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
    * @param $username
    * @return User|null
    */
-  private function getUser($username)
-  {
+  private function getUser($username) {
     $repository = $this->manager->getRepository(User::class);
     return $repository->findOneBy(['username' => $username]);
   }

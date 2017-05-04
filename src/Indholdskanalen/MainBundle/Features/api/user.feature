@@ -10,6 +10,8 @@ Feature: admin
       | admin    | admin    | ROLE_SUPER_ADMIN | Admin     | Jensen   |
       | user     | user     | ROLE_USER        | John      | Doe      |
 
+    And I add "Content-Type" header equal to "application/json"
+
   @createSchema
   Scenario: Invalid username
     When I sign in with username "no such user" and password "password"

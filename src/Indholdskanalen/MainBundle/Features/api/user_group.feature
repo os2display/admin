@@ -10,6 +10,7 @@ Feature: admin
       | admin    | admin    | ROLE_SUPER_ADMIN |
 
     And I sign in with username "admin" and password "admin"
+    And I add "Content-Type" header equal to "application/json"
 
   @createSchema
   Scenario: Add user to group
@@ -41,27 +42,26 @@ Feature: admin
       """
     Then the response status code should be 201
     And the response should be in JSON
-    And the JSON node "id" should be equal to 1
-    And the JSON node "group.id" should be equal to 1
-    And the JSON node "user.id" should be equal to 2
-    And the JSON node "role" should not exist
+    And the JSON node "roles" should have 0 elements
 
     When I send a "POST" request to "/api/user/2/group/1" with body:
       """
       {
-        "role": "ROLE_GROUP_GROUP_ADMIN"
+        "roles": ["ROLE_GROUP_GROUP_ADMIN"]
       }
       """
-    Then the response status code should be 409
+    Then the response status code should be 201
     And the response should be in JSON
+    And the JSON node "roles" should have 1 element
+    And the JSON node "roles[0]" should be equal to "ROLE_GROUP_GROUP_ADMIN"
 
   Scenario: Get user's groups
     When I send a "GET" request to "/api/user/2"
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "id" should be equal to 2
-    And the JSON node "user_groups" should have 1 element
-    And the JSON node "user_groups[0].id" should be equal to 1
+    And the JSON node "groups" should have 1 element
+    And the JSON node "groups[0].id" should be equal to 1
 
     # When I send a "PUT" request to "/api/user/2/group/1" with body:
     #   """
@@ -81,8 +81,43 @@ Feature: admin
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "id" should be equal to 2
-    And the JSON node "user_groups" should have 1 element
-    And the JSON node "user_groups[0].group.id" should be equal to 1
+    And the JSON node "groups" should have 1 element
+    And the JSON node "groups[0].id" should be equal to 1
+
+  Scenario: Update user's roles in group
+    When I send a "PUT" request to "/api/user/2/group/1" with body:
+      """
+      {
+        "roles": ["ROLE_GROUP_GROUP_ADMIN", "ROLE_TEST"]
+      }
+      """
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "roles" should have 2 elements
+    And the JSON node "roles[0]" should be equal to "ROLE_GROUP_GROUP_ADMIN"
+    And the JSON node "roles[1]" should be equal to "ROLE_TEST"
+
+  Scenario: Get user's roles in group
+    When I send a "GET" request to "/api/user/2/group/1"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "roles" should have 2 elements
+    And the JSON node "roles[0]" should be equal to "ROLE_GROUP_GROUP_ADMIN"
+    And the JSON node "roles[1]" should be equal to "ROLE_TEST"
+
+  Scenario: Get user's groups
+    When I send a "GET" request to "/api/user/2/group"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "" should have 2 elements
+    And the JSON node "[0].role" should be equal to "ROLE_GROUP_GROUP_ADMIN"
+    And the JSON node "[0].group.id" should be equal to 1
+    And the JSON node "[1].role" should be equal to "ROLE_TEST"
+    And the JSON node "[1].group.id" should be equal to 1
+
+  Scenario: Remove user from group
+    When I send a "DELETE" request to "/api/user/2/group/1"
+    Then the response status code should be 204
 
   @dropSchema
   Scenario: Drop schema

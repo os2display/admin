@@ -9,12 +9,13 @@ namespace Indholdskanalen\MainBundle\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Util\Codes;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
 use Indholdskanalen\MainBundle\Exception\HttpDataException;
 use Indholdskanalen\MainBundle\Exception\ValidationException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Indholdskanalen\MainBundle\Security\GroupRoles;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Group controller.
@@ -29,15 +30,22 @@ class GroupController extends ApiController {
    * Lists all group entities.
    *
    * @Rest\Get("", name="api_group_index")
-   * @Method("GET")
+   * @ApiDoc(
+   *   section="Groups",
+   *   description="Get all groups",
+   *   tags={"group"}
+   * )
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function indexAction() {
-    $em = $this->getDoctrine()->getManager();
-    $groups = $em->getRepository(Group::class)->findAll();
+    $groups = $this->findAll(Group::class);
 
-    return $groups;
+    foreach ($groups as $group) {
+      $group->buildUsers();
+    }
+
+    return $this->setApiData($groups);
   }
 
   /**
@@ -49,23 +57,37 @@ class GroupController extends ApiController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function newAction(Request $request) {
-    // Set up new Group.
-    $group = new Group();
-    $this->setValuesFromRequest($group, $request, static::$editableProperties);
+    $data = $this->getData($request);
 
     try {
-      $this->validateEntity($group);
-    } catch (ValidationException $e) {
-      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
+      $group = $this->get('os2display.group_manager')->createGroup($data);
     }
-
-    // Persist to database.
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($group);
-    $em->flush();
+    catch (ValidationException $e) {
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $data, 'Invalid data', $e);
+    }
+    catch (DuplicateEntityException $e) {
+      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
+    }
 
     // Send response.
     return $this->createCreatedResponse($group);
+  }
+
+  /**
+   * @Rest\Get("/roles")
+   * @ApiDoc(
+   *   section="Groups",
+   *   description="Get all available group roles"
+   * )
+   *
+   * @return array
+   */
+  public function getRoles() {
+    $roles = GroupRoles::getRoleNames();
+    $data = array_combine($roles, $roles);
+    asort($data);
+
+    return $data;
   }
 
   /**
@@ -77,32 +99,32 @@ class GroupController extends ApiController {
    * @return Group
    */
   public function showAction(Group $group) {
+    $group->buildUsers();
+
     return $group;
   }
 
   /**
    * Displays a form to edit an existing group entity.
    *
-   * @Route("/{id}", name="api_group_edit")
-   * @Method({"PUT"})
+   * @Rest\Put("/{id}", name="api_group_edit")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function editAction(Request $request, Group $group) {
-    $this->setValuesFromRequest($group, $request, static::$editableProperties);
+    $data = $this->getData($request);
 
     try {
-      $this->validateEntity($group);
-    } catch (ValidationException $e) {
-      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $e->getData(), 'Invalid data', $e);
+      $group = $this->get('os2display.group_manager')->updateGroup($group, $data);
     }
-
-    // Persist to database.
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($group);
-    $em->flush();
+    catch (ValidationException $e) {
+      throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $data, 'Invalid data', $e);
+    }
+    catch (DuplicateEntityException $e) {
+      throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
+    }
 
     return $group;
   }
@@ -110,8 +132,7 @@ class GroupController extends ApiController {
   /**
    * Deletes a group entity.
    *
-   * @Route("/{id}", name="api_group_delete")
-   * @Method("DELETE")
+   * @Rest\Delete("/{id}", name="api_group_delete")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
@@ -122,6 +143,22 @@ class GroupController extends ApiController {
     $em->remove($group);
     $em->flush();
 
-    return $this->view(null, Codes::HTTP_NO_CONTENT);
+    return $this->view(NULL, Codes::HTTP_NO_CONTENT);
   }
+
+  /**
+   * Get users with roles in group.
+   *
+   * @Rest\Get("/{group}/users")
+   */
+  public function getGroupUsers(Group $group) {
+    $users = $group->buildUsers()->getUsers();
+
+    foreach ($users as $user) {
+      $user->buildGroupRoles($group);
+    }
+
+    return $this->setApiData($users);
+  }
+
 }

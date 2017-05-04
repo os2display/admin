@@ -4,22 +4,32 @@ namespace Indholdskanalen\MainBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Util\Codes;
+use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\User;
+use Indholdskanalen\MainBundle\Security\EditVoter;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ApiController extends FOSRestController {
+
+  protected function findAll($class) {
+    return $this->findBy($class, []);
+  }
+
+  protected function findBy($class, array $criteria, array $orderBy = NULL, $limit = NULL, $offset = NULL) {
+    $manager = $this->get('os2display.entity_manager');
+    return $manager->findBy($class, $criteria, $orderBy, $limit, $offset);
+  }
+
   /**
    * Deserialize JSON content from request.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @return array
    */
-  protected function getData(Request $request) {
-    $data = $request->getContent();
-    $serializer = $this->get('serializer');
-
-    return (array)$serializer->deserialize($data, 'array', 'json');
+  protected function getData(Request $request, $key = NULL) {
+    return $key ? $request->request->get($key) : $request->request->all();
   }
 
   /**
@@ -32,7 +42,7 @@ class ApiController extends FOSRestController {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   protected function json($data, $status = 200, array $headers = [], array $serializationGroups = ['api']) {
-    $response = new JsonResponse(null, $status, $headers);
+    $response = new JsonResponse(NULL, $status, $headers);
 
     $serializer = $this->get('serializer');
     $context = SerializationContext::create()->enableMaxDepthChecks();
@@ -55,7 +65,7 @@ class ApiController extends FOSRestController {
     $view = $this->view($data, Codes::HTTP_CREATED);
     $context = $view->getSerializationContext();
     $context->setGroups($serializationGroups);
-    
+
     return $this->handleView($view);
   }
 
@@ -86,4 +96,53 @@ class ApiController extends FOSRestController {
     $data = $this->getData($request);
     $this->setValues($entity, $data, $properties);
   }
+
+  /**
+   * Set API data on an object or a list of objects.
+   *
+   * @param $object
+   * @return mixed
+   */
+  protected function setApiData($object) {
+    if (is_array($object)) {
+      foreach ($object as $item) {
+        $this->setApiData($item);
+      }
+    }
+    elseif ($object instanceof Group) {
+      $this->setApiDataGroup($object);
+    }
+    elseif ($object instanceof User) {
+      $this->setApiDataUser($object);
+    }
+
+    return $object;
+  }
+
+  protected function setApiDataGroup(Group $group) {
+    $token = $this->get('security.token_storage')->getToken();
+    $decisionManager = $this->get('security.access.decision_manager');
+
+    $group->setApiData([
+      'permissions' => [
+        'can_read' => $decisionManager->decide($token, [EditVoter::READ], $group),
+        'can_update' => $decisionManager->decide($token, [EditVoter::UPDATE], $group),
+        'can_delete' => $decisionManager->decide($token, [EditVoter::DELETE], $group),
+      ]
+    ]);
+  }
+
+  protected function setApiDataUser(User $user) {
+    $token = $this->get('security.token_storage')->getToken();
+    $decisionManager = $this->get('security.access.decision_manager');
+
+    $user->setApiData([
+      'permissions' => [
+        'can_read' => $decisionManager->decide($token, [EditVoter::READ], $user),
+        'can_update' => $decisionManager->decide($token, [EditVoter::UPDATE], $user),
+        'can_delete' => $decisionManager->decide($token, [EditVoter::DELETE], $user),
+      ]
+    ]);
+  }
+
 }
