@@ -43,10 +43,17 @@ class Group extends ApiEntity {
   protected $users;
 
   /**
+   * @var array
+   * @Groups({"api"})
+   */
+  protected $roles;
+
+  /**
    * Group constructor.
    */
   public function __construct() {
     $this->userGroups = new ArrayCollection();
+    $this->roles = [];
   }
 
   /**
@@ -88,9 +95,7 @@ class Group extends ApiEntity {
    * @param \Indholdskanalen\MainBundle\Entity\UserGroup $userGroup
    * @return Group
    */
-  public function removeUserGroup(
-    UserGroup $userGroup
-  ) {
+  public function removeUserGroup(UserGroup $userGroup) {
     $this->userGroups->removeElement($userGroup);
 
     return $this;
@@ -124,6 +129,33 @@ class Group extends ApiEntity {
 
   public function getUsers() {
     return $this->users;
+  }
+
+  /**
+   * @param string $role
+   *
+   * @return Group
+   */
+  public function addRole($role) {
+    if ($this->roles === NULL) {
+      $this->roles = [];
+    }
+    if (!$this->hasRole($role)) {
+      $this->roles[] = strtoupper($role);
+    }
+
+    return $this;
+  }
+
+  /**
+   * @param string $role
+   */
+  public function hasRole($role) {
+    return in_array(strtoupper($role), $this->roles, TRUE);
+  }
+
+  public function getRoles() {
+    return $this->roles;
   }
 
 }
