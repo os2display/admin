@@ -26,8 +26,6 @@ use Symfony\Component\HttpFoundation\Request;
  * @Rest\View(serializerGroups={"api"})
  */
 class UserController extends ApiController {
-  protected static $editableProperties = ['email', 'firstname', 'lastname'];
-
   /**
    * Lists all user entities.
    *
