@@ -5,3 +5,10 @@ user:
       title: Hej %name%!
       content: En administrator har oprettet en konto til dig.
       activate: For at aktivere din konto skal du besøge:
+
+ROLE_USER: Bruger
+ROLE_ADMIN: Administrator
+ROLE_SUPER_ADMIN: Superadministrator
+
+ROLE_GROUP_USER: Bruger
+ROLE_GROUP_GROUP_ADMIN: Administrator
