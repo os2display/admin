@@ -25,5 +25,17 @@ Feature: admin
     And the response should be in JSON
     And print last JSON response
 
+  Scenario: Get user roles (Danish)
+    When I send a "GET" request to "/api/user/roles?locale=da"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And print last JSON response
+
+  Scenario: Get group roles
+    When I send a "GET" request to "/api/group/roles?locale=da"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And print last JSON response
+
   @dropSchema
   Scenario: Drop schema
