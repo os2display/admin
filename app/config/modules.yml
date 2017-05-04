@@ -13,6 +13,7 @@ parameters:
 
     mainModule:
       files:
+        - /apps/mainModule/controller/baseController.js
         - /apps/mainModule/services/apiService.js
         - /apps/mainModule/services/bodyService.js
         - /apps/mainModule/services/menuItemService.js

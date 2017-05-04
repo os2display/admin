@@ -3,9 +3,12 @@
  * Controller for the admin user page.
  */
 
-angular.module('adminApp').controller('AdminUserController', ['busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location',
-  function (busService, $scope, $timeout, ModalService, $routeParams, $location) {
+angular.module('adminApp').controller('AdminUserController', ['busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller) {
     'use strict';
+
+    // Extend BaseController.
+    $controller('BaseController', { $scope: $scope });
 
     $scope.user = null;
     $scope.loading = true;

@@ -50,13 +50,13 @@ parameters:
       container: true
       files:
         - /apps/adminApp/adminApp.js
-        - /apps/adminApp/adminDashboardController.js
-        - /apps/adminApp/adminGroupsController.js
-        - /apps/adminApp/adminGroupController.js
-        - /apps/adminApp/adminUsersController.js
-        - /apps/adminApp/adminUserController.js
-        - /apps/adminApp/popupCreateUserController.js
-        - /apps/adminApp/popupCreateGroupController.js
+        - /apps/adminApp/dashboard/adminDashboardController.js
+        - /apps/adminApp/group/adminGroupsController.js
+        - /apps/adminApp/group/adminGroupController.js
+        - /apps/adminApp/group/popupCreateGroupController.js
+        - /apps/adminApp/user/adminUsersController.js
+        - /apps/adminApp/user/adminUserController.js
+        - /apps/adminApp/user/popupCreateUserController.js
       dependencies:
         - styleguideComponentsApp
         - busModule

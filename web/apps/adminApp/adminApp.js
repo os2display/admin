@@ -12,29 +12,29 @@ angular.module('adminApp').config(function ($routeProvider) {
   // Dashboard
   .when('/admin', {
     controller: 'AdminDashboardController',
-    templateUrl: 'apps/adminApp/admin-dashboard.html?' + window.config.version
+    templateUrl: 'apps/adminApp/dashboard/admin-dashboard.html?' + window.config.version
   })
   // Users
+  .when('/user', {
+    controller: 'AdminUserController',
+    templateUrl: 'apps/adminApp/user/admin-user.html?' + window.config.version
+  })
   .when('/admin/users', {
     controller: 'AdminUsersController',
-    templateUrl: 'apps/adminApp/admin-users.html?' + window.config.version
-  })
-  .when('/admin/user', {
-    controller: 'AdminUserController',
-    templateUrl: 'apps/adminApp/admin-user.html?' + window.config.version
+    templateUrl: 'apps/adminApp/user/admin-users.html?' + window.config.version
   })
   .when('/admin/user/:id', {
     controller: 'AdminUserController',
-    templateUrl: 'apps/adminApp/admin-user.html?' + window.config.version
+    templateUrl: 'apps/adminApp/user/admin-user.html?' + window.config.version
   })
   // Groups
   .when('/admin/groups', {
     controller: 'AdminGroupsController',
-    templateUrl: 'apps/adminApp/admin-groups.html?' + window.config.version
+    templateUrl: 'apps/adminApp/group/admin-groups.html?' + window.config.version
   })
   .when('/admin/group/:id', {
     controller: 'AdminGroupController',
-    templateUrl: 'apps/adminApp/admin-group.html?' + window.config.version
+    templateUrl: 'apps/adminApp/group/admin-group.html?' + window.config.version
   })
   ;
 });
@@ -46,24 +46,28 @@ angular.module('adminApp').config(function ($routeProvider) {
 //          ensure messages on the bus. Should the bus have a buffer if no one
 //          is listing?
 angular.module('adminApp').service('adminAppSetup', [
-  'busService',
-  function (busService) {
+  'busService', 'userService',
+  function (busService, userService) {
     'use strict';
 
     // Register listener for requests for Main Menu items
     busService.$on('menuApp.requestMainMenuItems', function requestMainMenuItems(event, args) {
-
-      // @TODO: Get user. Assert has permission to this menu item.
-
-      busService.$emit('menuApp.returnMainMenuItems', [
-        {
-          title: "Admin",
-          route: '/#/admin',
-          activeFilter: '/admin',
-          icon: 'picture_in_picture',
-          weight: 5
+      // Get user. Assert has permission to this menu item.
+      userService.getCurrentUser().then(
+        function (user) {
+          if (user.is_admin) {
+            busService.$emit('menuApp.returnMainMenuItems', [
+              {
+                title: "Admin",
+                route: '/#/admin',
+                activeFilter: '/admin',
+                icon: 'picture_in_picture',
+                weight: 5
+              }
+            ]);
+          }
         }
-      ]);
+      );
     });
 
     // Listen for sub menu requests

@@ -8,8 +8,8 @@ angular.module('adminApp').controller('AdminDashboardController', [
     'use strict';
 
     // Instantiate Users and Groups controllers.
-    $controller('AdminUsersController', { busService: busService, $scope: $scope });
-    $controller('AdminGroupsController', { busService: busService, $scope: $scope });
+    $controller('AdminUsersController', { $scope: $scope });
+    $controller('AdminGroupsController', { $scope: $scope });
 
     $scope.max = 5;
     $scope.allLinks = true;

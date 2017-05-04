@@ -4,9 +4,12 @@
  */
 
 angular.module('adminApp').controller('AdminGroupController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location',
-  function (busService, $scope, $timeout, ModalService, $routeParams, $location) {
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller) {
     'use strict';
+
+    // Extend
+    $controller('BaseController', { $scope: $scope });
 
     $scope.group = null;
     $scope.loading = true;
@@ -78,9 +81,9 @@ angular.module('adminApp').controller('AdminGroupController', [
     });
 
     /**
-     * Save group.
+     * Edit group.
      */
-    $scope.saveGroup = function () {
+    $scope.editGroup = function () {
       $scope.loading = true;
 
       // Emit event to update group.

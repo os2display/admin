@@ -3,9 +3,12 @@
  * Controller for the popup: create user.
  */
 
-angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope', '$timeout', 'close',
-  function (busService, $scope, $timeout, close) {
+angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope', '$timeout', 'close', '$controller',
+  function (busService, $scope, $timeout, close, $controller) {
     'use strict';
+
+    // Extend BaseController.
+    $controller('BaseController', { $scope: $scope });
 
     $scope.email = "";
     $scope.loading = false;

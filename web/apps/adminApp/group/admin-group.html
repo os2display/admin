@@ -12,7 +12,7 @@
               <input id="titel" name="titel" type="text" placeholder="Indtast titel" ng-model="group.title"
                      class="forms-text">
             </div>
-            <a class="button-link has-spacing-top" title="Gem" data-ng-click="saveGroup()">Gem</a>
+            <a class="button-link has-spacing-top" title="Gem" data-ng-click="editGroup()" data-ng-if="canUpdate(group)">Gem</a>
           </div>
         </article>
       </article>

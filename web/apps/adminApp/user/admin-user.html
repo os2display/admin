@@ -22,7 +22,7 @@
               <input id="email" name="email" type="text" placeholder="Indtast e-mail" ng-model="user.email"
                      class="forms-text">
             </div>
-            <a class="button-link has-spacing-top" title="Gem" data-ng-click="saveUser()">Gem</a>
+            <a class="button-link has-spacing-top" title="Gem" data-ng-click="saveUser()" data-ng-if="canUpdate(user)">Gem</a>
           </div>
         </article>
       </article>
