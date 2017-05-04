@@ -108,7 +108,7 @@ class GroupController extends ApiController {
   public function showAction(Group $group) {
     $group->buildUsers();
 
-    return $group;
+    return $this->setApiData($group);
   }
 
   /**
