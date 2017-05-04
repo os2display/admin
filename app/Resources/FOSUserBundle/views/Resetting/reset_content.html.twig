@@ -1,43 +1,34 @@
-{% extends 'IndholdskanalenMainBundle:Main:layout.html.twig' %}
+<main role="main" class="content">
+  <div class="content--inner">
 
-{% block title %}{{ site_title }}{% endblock %}
-
-{% block body %}
-  <main role="main" class="content">
-    <div class="content--inner">
-
-      <div class="grid is-full ">
-        <div class="grid--inner">
-          <article class="grid--item">
-            <article class="box">
-              <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }}
-                    method="POST" class="fos_user_resetting_reset">
-                <h2 class="heading-has-spacing-after">Skift kodeord</h2>
-                <div class="box--inner">
-                  <div class="forms-field">
-                    <label for="forms_label_id" class="forms-label">Nyt kodeord</label>
-                    {{ form_widget(form.new.first) }}
-                    {{ form_errors(form.new.first) }}
-                  </div>
-                  <div class="forms-field">
-                    <label for="forms_label_id" class="forms-label">Gentag kodeord</label>
-                    {{ form_widget(form.new.second) }}
-                    {{ form_errors(form.new.second) }}
-                  </div>
-                  <div>
-                    <input type="submit" class="button-link has-spacing-top"
-                           title="Fortsæt" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}">
-                  </div>
-                  {{ form_rest(form) }}
+    <div class="grid is-full ">
+      <div class="grid--inner">
+        <article class="grid--item">
+          <article class="box">
+            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }}
+                  method="POST" class="fos_user_resetting_reset">
+              <h2 class="heading-has-spacing-after">Skift kodeord</h2>
+              <div class="box--inner">
+                <div class="forms-field">
+                  <label for="forms_label_id" class="forms-label">Nyt kodeord</label>
+                  {{ form_widget(form.new.first) }}
+                  {{ form_errors(form.new.first) }}
                 </div>
-              </form>
-            </article>
+                <div class="forms-field">
+                  <label for="forms_label_id" class="forms-label">Gentag kodeord</label>
+                  {{ form_widget(form.new.second) }}
+                  {{ form_errors(form.new.second) }}
+                </div>
+                <div>
+                  <input type="submit" class="button-link has-spacing-top"
+                         title="Fortsæt" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}">
+                </div>
+                {{ form_rest(form) }}
+              </div>
+            </form>
           </article>
-        </div>
+        </article>
       </div>
     </div>
-  </main>
-{% endblock %}
-
-
-
+  </div>
+</main>
