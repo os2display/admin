@@ -10,6 +10,7 @@ use Indholdskanalen\MainBundle\Security\EditVoter;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Role\Role;
 
 class ApiController extends FOSRestController {
 
@@ -145,6 +146,16 @@ class ApiController extends FOSRestController {
         'can_create_user' => $decisionManager->decide($token, [EditVoter::CREATE], User::class),
       ]
     ]);
+
+    $userRoles = array_map(function ($role) {
+      return new Role($role);
+    }, $user->getRoles(FALSE));
+    $roles = $this->get('security.role_hierarchy')->getReachableRoles($userRoles);
+    $userRoles = array_map(function (Role $role) {
+      return $role->getRole();
+    }, $roles);
+
+    $user->setUserRoles(array_unique($userRoles));
   }
 
 }

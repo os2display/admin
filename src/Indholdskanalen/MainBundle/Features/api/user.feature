@@ -39,7 +39,7 @@ Feature: admin
     And the JSON node "id" should be equal to 1
     And the JSON node "is_admin" should be true
     And the JSON node "is_super_admin" should be equal to 1
-    And the JSON node "roles" should have 1 element
+    And the JSON node "roles" should have 5 elements
     And the JSON node "roles[0]" should be equal to "ROLE_SUPER_ADMIN"
     And the JSON node "api_data.permissions" should exist
 
@@ -51,7 +51,7 @@ Feature: admin
     And the JSON node "id" should be equal to 2
     And the JSON node "is_admin" should be false
     And the JSON node "is_super_admin" should be false
-    And the JSON node "roles" should have 0 elements
+    And the JSON node "roles" should have 1 elements
     And the JSON node "api_data.permissions" should exist
 
   Scenario: Get users
@@ -64,13 +64,13 @@ Feature: admin
     And the JSON node "[0].id" should be equal to 1
     And the JSON node "[0].is_admin" should be true
     And the JSON node "[0].is_super_admin" should be true
-    And the JSON node "[0].roles" should have 1 element
+    And the JSON node "[0].roles" should have 5 element
     And the JSON node "[0].roles[0]" should be equal to "ROLE_SUPER_ADMIN"
 
     And the JSON node "[1].id" should be equal to 2
     And the JSON node "[1].is_admin" should be false
     And the JSON node "[1].is_super_admin" should be false
-    And the JSON node "[1].roles" should have 0 elements
+    And the JSON node "[1].roles" should have 1 element
 
   Scenario: Add user (without email)
     When I sign in with username "admin" and password "admin"
@@ -130,7 +130,7 @@ Feature: admin
     And the JSON node "[2].email" should be equal to "jedinight@tatooine.org"
     And the JSON node "[2].is_admin" should be false
     And the JSON node "[2].is_super_admin" should be false
-    And the JSON node "[2].roles" should have 0 elements
+    And the JSON node "[2].roles" should have 1 elements
 
   Scenario: Add user
     When I sign in with username "admin" and password "admin"
@@ -160,7 +160,8 @@ Feature: admin
     And the JSON node "[3].email" should be equal to "tahradactyl@example.com"
     And the JSON node "[3].is_admin" should be false
     And the JSON node "[3].is_super_admin" should be false
-    And the JSON node "[3].roles" should have 0 elements
+    And the JSON node "[3].roles" should have 1 elements
+    And the JSON node "[3].roles[0]" should be equal to "ROLE_USER"
 
   Scenario: Delete user
     When I sign in with username "admin" and password "admin"
