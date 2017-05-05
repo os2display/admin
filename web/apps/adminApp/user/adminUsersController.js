@@ -17,13 +17,56 @@ angular.module('adminApp').controller('AdminUsersController', [
 
     /**
      * Add a user to the users array.
+     *
      * @param user
+     *   The user to add.
      */
     function addUser(user) {
+      var actions = [];
+
+      if ($scope.canRead(user)) {
+        actions.push({
+          url: '#/admin/user/' + user.id,
+          title: 'Se bruger'
+        });
+      }
+      if ($scope.canUpdate(user)) {
+        actions.push({
+          url: '#/admin/user/' + user.id,
+          title: 'Rediger bruger'
+        });
+      }
+      if ($scope.canDelete(user)) {
+        actions.push({
+          click: $scope.deleteUser,
+          entity: user,
+          title: 'Slet bruger'
+        });
+      }
+
       $scope.users.push({
         id: user.id,
         url: '#/admin/user/' + user.id,
-        title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username
+        title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
+        actions: actions
+      });
+    }
+
+    /**
+     * Remove a user to the users array.
+     *
+     * @param user
+     *   The user to remove.
+     */
+    function removeUser(user) {
+      $timeout(function () {
+        var findUser = $scope.users.findIndex(function (element, index, array) {
+          return element.id === user.id;
+        });
+
+        if (findUser) {
+          $scope.users.splice(findUser, 1);
+        }
       });
     }
 
@@ -48,29 +91,11 @@ angular.module('adminApp').controller('AdminUsersController', [
 
         $scope.users = [];
 
+        console.log(result);
+
         for (var user in result) {
           if (result.hasOwnProperty(user)) {
-            user = result[user];
-
-            user.actions = [];
-
-            if ($scope.canRead(user)) {
-              user.actions.push({
-                url: '#/admin/user/' + user.id,
-                title: 'Brugerprofil'
-              });
-            }
-            if ($scope.canUpdate(user)) {
-              user.actions.push({
-                url: '#/admin/user/' + user.id,
-                title: 'Rediger bruger'
-              });
-            }
-            if ($scope.canDelete(user)) {
-              // @TODO: how to handle the delete link? Redirect to delete page?
-            }
-
-            addUser(user);
+            addUser(result[user]);
           }
         }
 
@@ -88,7 +113,7 @@ angular.module('adminApp').controller('AdminUsersController', [
     $scope.createUser = function () {
       // Just provide a template url, a controller and call 'showModal'.
       ModalService.showModal({
-        templateUrl: "apps/adminApp/users/popup-create-user.html",
+        templateUrl: "apps/adminApp/user/popup-create-user.html",
         controller: "PopupCreateUser"
       }).then(function (modal) {
         modal.close.then(function (user) {
@@ -99,6 +124,26 @@ angular.module('adminApp').controller('AdminUsersController', [
       });
     };
 
+    /**
+     * Show delete user modal.
+     */
+    $scope.deleteUser = function (user) {
+      // Show modal.
+      ModalService.showModal({
+        templateUrl: "apps/adminApp/user/popup-delete-user.html",
+        controller: "PopupDeleteUser",
+        inputs: {
+          user: user
+        }
+      }).then(function (modal) {
+        modal.close.then(function (user) {
+          if (user) {
+            removeUser(user);
+          }
+        });
+      });
+    };
+    
     /**
      * on destroy.
      *
