@@ -70,7 +70,7 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
      * @param type
      */
     $scope.canCreate = function canCreate(type) {
-      return hasPermission(user, 'can_create_' + type);
+      return hasPermission(self.user, 'can_create_' + type);
     };
   }
 ]);

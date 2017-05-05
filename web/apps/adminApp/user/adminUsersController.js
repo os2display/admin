@@ -3,12 +3,13 @@
  * Controller for the admin users page.
  */
 
-angular.module('adminApp').controller('AdminUsersController', ['busService', '$scope', '$timeout', 'ModalService', '$controller',
+angular.module('adminApp').controller('AdminUsersController', [
+  'busService', '$scope', '$timeout', 'ModalService', '$controller',
   function (busService, $scope, $timeout, ModalService, $controller) {
     'use strict';
 
     // Extend BaseController.
-    $controller('BaseController', { $scope: $scope });
+    $controller('BaseController', {$scope: $scope});
 
     $scope.usersLoading = true;
     $scope.users = null;
@@ -49,7 +50,27 @@ angular.module('adminApp').controller('AdminUsersController', ['busService', '$s
 
         for (var user in result) {
           if (result.hasOwnProperty(user)) {
-            addUser(result[user]);
+            user = result[user];
+
+            user.actions = [];
+
+            if ($scope.canRead(user)) {
+              user.actions.push({
+                url: '#/admin/user/' + user.id,
+                title: 'Brugerprofil'
+              });
+            }
+            if ($scope.canUpdate(user)) {
+              user.actions.push({
+                url: '#/admin/user/' + user.id,
+                title: 'Rediger bruger'
+              });
+            }
+            if ($scope.canDelete(user)) {
+              // @TODO: how to handle the delete link? Redirect to delete page?
+            }
+
+            addUser(user);
           }
         }
 

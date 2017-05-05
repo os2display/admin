@@ -18,10 +18,14 @@ angular.module('styleguideComponentsApp').directive('contentListItem', function(
     template:
       '<div class="content-list-item">' +
         '<span class="content-list-item--link">' +
-          '<a href="{{ item.url }}" title="{{ item.title }}">' +
+          '<a href="{{ item.url }}" title="{{ item.title }}" ng-if="item.url">' +
+            '{{ item.title }}' +
+          '</a>' +
+          '<a title="{{ item.title }}" ng-if="!item.url" ng-click="item.click(item.entity)">' +
             '{{ item.title }}' +
           '</a>' +
         '</span>' +
+        '<panel-menu items="item.actions" ng-if="item.actions"></panel-menu>' +
       '</div>'
   };
 });

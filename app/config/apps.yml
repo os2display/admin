@@ -44,6 +44,8 @@ parameters:
         - /apps/styleguideComponentsApp/modules/buttonIconLink.js
         - /apps/styleguideComponentsApp/modules/contentList.js
         - /apps/styleguideComponentsApp/modules/contentListItem.js
+        - /apps/styleguideComponentsApp/modules/panelMenu.js
+        - /apps/styleguideComponentsApp/modules/popup.js
       dependencies:
 
     adminApp:
@@ -54,6 +56,7 @@ parameters:
         - /apps/adminApp/group/adminGroupsController.js
         - /apps/adminApp/group/adminGroupController.js
         - /apps/adminApp/group/popupCreateGroupController.js
+        - /apps/adminApp/group/popupDeleteGroupController.js
         - /apps/adminApp/user/adminUsersController.js
         - /apps/adminApp/user/adminUserController.js
         - /apps/adminApp/user/popupCreateUserController.js

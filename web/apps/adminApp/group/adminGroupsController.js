@@ -3,12 +3,13 @@
  * Controller for the admin groups page.
  */
 
-angular.module('adminApp').controller('AdminGroupsController', ['busService', '$scope', '$timeout', 'ModalService', '$controller',
+angular.module('adminApp').controller('AdminGroupsController', [
+  'busService', '$scope', '$timeout', 'ModalService', '$controller',
   function (busService, $scope, $timeout, ModalService, $controller) {
     'use strict';
 
     // Extend BaseController.
-    $controller('BaseController', { $scope: $scope });
+    $controller('BaseController', {$scope: $scope});
 
     $scope.groupsLoading = true;
     $scope.groups = null;
@@ -16,13 +17,57 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
 
     /**
      * Add a group to the groups array.
+     *
      * @param group
+     *   The group to add.
      */
     function addGroup(group) {
+      var actions = [];
+
+      if ($scope.canRead(group)) {
+        actions.push({
+          url: '#/admin/group/' + group.id,
+          title: 'Se gruppe'
+        });
+      }
+      if ($scope.canUpdate(group)) {
+        actions.push({
+          url: '#/admin/group/' + group.id,
+          title: 'Rediger gruppe'
+        });
+      }
+      if ($scope.canDelete(group)) {
+        actions.push({
+          click: $scope.deleteGroup,
+          entity: group,
+          title: 'Slet gruppe'
+        });
+      }
+
+      // Add group.
       $scope.groups.push({
         id: group.id,
         url: '#/admin/group/' + group.id,
-        title: group.title
+        title: group.title,
+        actions: actions
+      });
+    }
+
+    /**
+     * Remove a group to the groups array.
+     *
+     * @param group
+     *   The group to remove.
+     */
+    function removeGroup(group) {
+      $timeout(function () {
+        var findGroup = $scope.groups.findIndex(function (element, index, array) {
+          return element.id === group.id;
+        });
+
+        if (findGroup) {
+          $scope.groups.splice(findGroup, 1);
+        }
       });
     }
 
@@ -63,16 +108,38 @@ angular.module('adminApp').controller('AdminGroupsController', ['busService', '$
       returnEvent: 'AdminGroupsController.returnGroups'
     });
 
-    // Show create group modal.
+    /**
+     * Show create group modal.
+     */
     $scope.createGroup = function () {
-      // Just provide a template url, a controller and call 'showModal'.
+      // Show modal.
       ModalService.showModal({
-        templateUrl: "apps/adminApp/groups/popup-create-group.html",
+        templateUrl: "apps/adminApp/group/popup-create-group.html",
         controller: "PopupCreateGroup"
-      }).then(function(modal) {
-        modal.close.then(function(group) {
+      }).then(function (modal) {
+        modal.close.then(function (group) {
           if (group) {
             addGroup(group);
+          }
+        });
+      });
+    };
+
+    /**
+     * Show delete group modal.
+     */
+    $scope.deleteGroup = function (group) {
+      // Show modal.
+      ModalService.showModal({
+        templateUrl: "apps/adminApp/group/popup-delete-group.html",
+        controller: "PopupDeleteGroup",
+        inputs: {
+          group: group
+        }
+      }).then(function (modal) {
+        modal.close.then(function (group) {
+          if (group) {
+            removeGroup(group);
           }
         });
       });
