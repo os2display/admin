@@ -18,7 +18,7 @@ angular.module('styleguideComponentsApp').directive('box', function(){
     },
     template:
       '<article class="box">' +
-        '<h2 class="heading" ng-if="heading">{{ heading }}</h2>' +
+        '<h2 class="heading-has-spacing-after" ng-if="heading">{{ heading }}</h2>' +
         '<div class="box--inner" ng-transclude>' +
         '</div>' +
       '</article>'

@@ -9,11 +9,11 @@ angular.module('adminApp').controller('AdminGroupsController', [
     'use strict';
 
     // Extend BaseController.
-    $controller('BaseController', {$scope: $scope});
+    $controller('BaseApiController', {$scope: $scope});
 
     $scope.groupsLoading = true;
     $scope.groups = null;
-    $scope.max = 50;
+    $scope.max = null;
 
     /**
      * Add a group to the groups array.
@@ -71,25 +71,9 @@ angular.module('adminApp').controller('AdminGroupsController', [
       });
     }
 
-    /**
-     * returnGroups listener.
-     * @type {*}
-     */
-    var cleanupGetGroupsListener = busService.$on('AdminGroupsController.returnGroups', function (event, result) {
-      $timeout(function () {
-        if (result.error) {
-          // Display message success.
-          busService.$emit('log.error', {
-            cause: result.error.code,
-            msg: 'Grupper kunne ikke hentes.'
-          });
-
-          // Remove spinner.
-          $scope.groupsLoading = false;
-
-          return;
-        }
-
+    // Get the group.
+    $scope.getEntities('group').then(
+      function success(result) {
         $scope.groups = [];
 
         for (var group in result) {
@@ -97,15 +81,17 @@ angular.module('adminApp').controller('AdminGroupsController', [
             addGroup(result[group]);
           }
         }
-
-        $scope.groupsLoading = false;
-      });
-    });
-
-    // Get groups.
-    busService.$emit('apiService.getEntities', {
-      type: 'group',
-      returnEvent: 'AdminGroupsController.returnGroups'
+      },
+      function error(err) {
+        busService.$emit('log.error', {
+          timeout: 5000,
+          cause: err.code,
+          msg: 'Grupper kan ikke findes.'
+        });
+      }
+    ).then(function () {
+      // Remove spinner.
+      $scope.groupsLoading = false;
     });
 
     /**
@@ -144,14 +130,5 @@ angular.module('adminApp').controller('AdminGroupsController', [
         });
       });
     };
-
-    /**
-     * on destroy.
-     *
-     * Clean up listeners.
-     */
-    $scope.$on('$destroy', function destroy() {
-      cleanupGetGroupsListener();
-    });
   }
 ]);
