@@ -21,9 +21,9 @@ angular.module('styleguideComponentsApp').directive('contentListItem', function(
           '<a href="{{ item.url }}" title="{{ item.title }}" ng-if="item.url">' +
             '{{ item.title }}' +
           '</a>' +
-          '<a title="{{ item.title }}" ng-if="!item.url" ng-click="item.click(item.entity)">' +
+          '<span class="button-text {{ data.class }}" ng-if="!item.url" ng-click="item.click(item.entity)">' +
             '{{ item.title }}' +
-          '</a>' +
+          '</span>' +
         '</span>' +
         '<panel-menu items="item.actions" ng-if="item.actions"></panel-menu>' +
       '</div>'
