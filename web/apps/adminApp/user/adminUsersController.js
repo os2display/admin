@@ -91,8 +91,6 @@ angular.module('adminApp').controller('AdminUsersController', [
 
         $scope.users = [];
 
-        console.log(result);
-
         for (var user in result) {
           if (result.hasOwnProperty(user)) {
             addUser(result[user]);
