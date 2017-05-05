@@ -10,9 +10,10 @@ angular.module('adminApp').controller('PopupCreateGroup', ['busService', '$scope
     // Extend BaseController.
     $controller('BaseController', { $scope: $scope });
 
-    $scope.group = "";
+    $scope.groupTitle = "";
     $scope.loading = false;
     $scope.errors = [];
+    $scope.forms = {};
 
     /**
      * Close the modal.
@@ -22,16 +23,20 @@ angular.module('adminApp').controller('PopupCreateGroup', ['busService', '$scope
     };
 
     /**
-     * Create group.
+     * Submit form.
+     *
+     * @param form
      */
-    $scope.createGroup = function () {
+    $scope.submitForm = function(form){
       if ($scope.loading) {
         return;
       }
 
       $scope.errors = [];
 
-      if ($scope.groupCreateForm.textInput.$invalid) {
+      if (form.$invalid) {
+        $scope.errors.push("Ugyldig input");
+
         return;
       }
 
@@ -41,7 +46,7 @@ angular.module('adminApp').controller('PopupCreateGroup', ['busService', '$scope
         type: 'group',
         returnEvent: 'PopupCreateGroup.returnCreateGroup',
         data: {
-          title: $scope.group
+          title: $scope.groupTitle
         }
       });
     };

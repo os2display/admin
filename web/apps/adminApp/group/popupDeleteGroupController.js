@@ -13,6 +13,7 @@ angular.module('adminApp').controller('PopupDeleteGroup', ['busService', '$scope
     $scope.loading = false;
     $scope.errors = [];
     $scope.group = group;
+    $scope.forms = {};
 
     /**
      * Close the modal.
@@ -22,9 +23,11 @@ angular.module('adminApp').controller('PopupDeleteGroup', ['busService', '$scope
     };
 
     /**
-     * Create group.
+     * Submit form.
+     *
+     * @param form
      */
-    $scope.deleteGroup = function () {
+    $scope.submitForm = function(form){
       if ($scope.loading) {
         return;
       }

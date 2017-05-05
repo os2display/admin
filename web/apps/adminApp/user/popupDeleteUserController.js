@@ -22,9 +22,11 @@ angular.module('adminApp').controller('PopupDeleteUser', ['busService', '$scope'
     };
 
     /**
-     * Create user.
+     * Submit form.
+     *
+     * @param form
      */
-    $scope.deleteUser = function () {
+    $scope.submitForm = function(form){
       if ($scope.loading) {
         return;
       }
@@ -49,8 +51,6 @@ angular.module('adminApp').controller('PopupDeleteUser', ['busService', '$scope'
         $scope.loading = false;
 
         if (result && result.error) {
-          console.log(result.error);
-
           return;
         }
 

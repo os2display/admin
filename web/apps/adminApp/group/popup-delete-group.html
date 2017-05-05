@@ -1,25 +1,27 @@
 <popup>
   <div data-ng-class="{'spinner-element': loading}"></div>
-  <div class="grid is-full " ng-show="!loading">
-    <div class="grid--inner">
-      <article class="grid--item">
-        <h2 class="heading-has-spacing-after">Slet gruppe</h2>
-      </article>
-      <article class="grid--item">
-        <p>{{ group.title }}</p>
-      </article>
+  <form name="forms.groupDeleteForm" novalidate ng-submit="submitForm(forms.groupDeleteForm)">
+    <div class="grid is-full " ng-show="!loading">
+      <div class="grid--inner">
+        <article class="grid--item">
+          <h2 class="heading-has-spacing-after">Slet gruppe</h2>
+        </article>
+        <article class="grid--item">
+          <p>{{ group.title }}</p>
+        </article>
+      </div>
     </div>
-  </div>
 
-  <div class="grid is-halfs">
-    <div class="grid--inner">
-      <article class="grid--item">
-        <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
-      </article>
-      <article class="grid--item">
-        <a type="submit" class="button-link " title="Slet gruppe" ng-click="deleteGroup(group)"
-           ng-if="canDelete(group)">Slet gruppe</a>
-      </article>
+    <div class="grid is-halfs">
+      <div class="grid--inner">
+        <article class="grid--item">
+          <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
+        </article>
+        <article class="grid--item">
+          <a type="submit" class="button-link " title="Slet gruppe" ng-click="submitForm(forms.groupDeleteForm)"
+             ng-if="canDelete(group)">Slet gruppe</a>
+        </article>
+      </div>
     </div>
-  </div>
+  </form>
 </popup>

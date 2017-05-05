@@ -13,6 +13,7 @@ angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope'
     $scope.email = "";
     $scope.loading = false;
     $scope.errors = [];
+    $scope.forms = {};
 
     /**
      * Close the modal.
@@ -22,16 +23,18 @@ angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope'
     };
 
     /**
-     * Create user.
+     * Submit form.
+     *
+     * @param form
      */
-    $scope.createUser = function () {
+    $scope.submitForm = function(form){
       if ($scope.loading) {
         return;
       }
 
       $scope.errors = [];
 
-      if ($scope.userCreateForm.emailInput.$invalid) {
+      if (form.emailInput.$invalid) {
         $scope.errors.push('Ugyldig email.');
         return;
       }
@@ -58,7 +61,7 @@ angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope'
         if (result.error) {
           // @TODO: Better way of handling errors. Message should be created (and translated) in Symfony.
           if (result.error.code === 400) {
-            $scope.errors.push("Ugyldig email.");
+            $scope.errors.push("Ugyldigt input.");
           }
           if (result.error.code === 409) {
             $scope.errors.push("Brugeren eksisterer allerede.");
