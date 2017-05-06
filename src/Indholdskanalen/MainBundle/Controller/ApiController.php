@@ -121,29 +121,28 @@ class ApiController extends FOSRestController {
   }
 
   protected function setApiDataGroup(Group $group) {
-    $token = $this->get('security.token_storage')->getToken();
-    $decisionManager = $this->get('security.access.decision_manager');
+    $securityMananger = $this->get('os2display.security_manager');
 
     $group->setApiData([
       'permissions' => [
-        'can_read' => $decisionManager->decide($token, [EditVoter::READ], $group),
-        'can_update' => $decisionManager->decide($token, [EditVoter::UPDATE], $group),
-        'can_delete' => $decisionManager->decide($token, [EditVoter::DELETE], $group),
+        'can_read' => $securityMananger->decide(EditVoter::READ, $group),
+        'can_update' => $securityMananger->decide(EditVoter::UPDATE, $group),
+        'can_delete' => $securityMananger->decide(EditVoter::DELETE, $group),
+        'can_add_user' => $securityMananger->decide('can_add_user', $group),
       ]
     ]);
   }
 
   protected function setApiDataUser(User $user) {
-    $token = $this->get('security.token_storage')->getToken();
-    $decisionManager = $this->get('security.access.decision_manager');
+    $securityMananger = $this->get('os2display.security_manager');
 
     $user->setApiData([
       'permissions' => [
-        'can_read' => $decisionManager->decide($token, [EditVoter::READ], $user),
-        'can_update' => $decisionManager->decide($token, [EditVoter::UPDATE], $user),
-        'can_delete' => $decisionManager->decide($token, [EditVoter::DELETE], $user),
-        'can_create_group' => $decisionManager->decide($token, [EditVoter::CREATE], Group::class),
-        'can_create_user' => $decisionManager->decide($token, [EditVoter::CREATE], User::class),
+        'can_read' => $securityMananger->decide(EditVoter::READ, $user),
+        'can_update' => $securityMananger->decide(EditVoter::UPDATE, $user),
+        'can_delete' => $securityMananger->decide(EditVoter::DELETE, $user),
+        'can_create_group' => $securityMananger->decide(EditVoter::CREATE, Group::class),
+        'can_create_user' => $securityMananger->decide(EditVoter::CREATE, User::class),
       ]
     ]);
 
