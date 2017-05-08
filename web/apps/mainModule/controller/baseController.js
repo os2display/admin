@@ -73,5 +73,14 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
     $scope.canCreate = function canCreate(type) {
       return hasPermission(self.user, 'can_create_' + type);
     };
+
+    /**
+     * Can the user add a type?
+     *
+     * @param type
+     */
+    $scope.canAdd = function canCreate(type) {
+      return hasPermission(self.user, 'can_add_' + type);
+    };
   }
 ]);

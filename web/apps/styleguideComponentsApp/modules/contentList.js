@@ -15,11 +15,12 @@ angular.module('styleguideComponentsApp').directive('contentList', function () {
     scope: {
       items: '=',
       max: '=',
-      order: '@'
+      filter: '=',
+      order: '='
     },
     template:
       '<div class="content-list">' +
-        '<content-list-item ng-repeat="item in items | orderBy: order | limitTo: max" item="item"></content-list-item>' +
+        '<content-list-item ng-repeat="item in items | filter: filter | orderBy: order | limitTo: max" item="item"></content-list-item>' +
       '</div>'
   };
 });

@@ -1,8 +1,9 @@
-<div class="grid is-full ">
+<div data-ng-class="{'spinner-element': loading}"></div>
+
+<div class="grid is-full " ng-if="!loading">
   <div class="grid--inner">
     <article class="grid--item">
-      <div data-ng-class="{'spinner-element': loading}"></div>
-      <article class="box" ng-if="!loading">
+      <article class="box">
         <form name="forms.groupUpdate" novalidate ng-submit="submitForm(forms.groupUpdate)">
           <h2 class="heading-has-spacing-after">Information</h2>
           <div class="box--inner">
@@ -16,6 +17,16 @@
           </div>
         </form>
       </article>
+    </article>
+
+    <article class="grid--item">
+      <box heading="Brugere">
+        <button-icon-link icon="person_add" button-link="Tilføj bruger" click="showAddUserModal()" ng-if="canUpdate(group)"></button-icon-link>
+        <content-list items="users" max="max" order="-id"></content-list>
+        <div class="box-link" ng-if="allLinks">
+          <a href="#/admin/groups" title="Alle grupper" class="box-link--link">Alle grupper</a>
+        </div>
+      </box>
     </article>
   </div>
 </div>

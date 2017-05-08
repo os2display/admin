@@ -57,6 +57,7 @@ parameters:
         - /apps/adminApp/group/adminGroupController.js
         - /apps/adminApp/group/popupCreateGroupController.js
         - /apps/adminApp/group/popupDeleteGroupController.js
+        - /apps/adminApp/group/popupAddUserController.js
         - /apps/adminApp/user/adminUsersController.js
         - /apps/adminApp/user/adminUserController.js
         - /apps/adminApp/user/popupCreateUserController.js

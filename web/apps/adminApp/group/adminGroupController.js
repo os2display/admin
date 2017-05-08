@@ -13,12 +13,27 @@ angular.module('adminApp').controller('AdminGroupController', [
 
     $scope.group = null;
     $scope.loading = true;
+    $scope.users = null;
+
+    function addToUsers(user) {
+      $scope.users.push({
+        id: user.id,
+        url: '/admin/user/' + user.id,
+        title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username
+      });
+    }
 
     // Get the group.
     $scope.getEntity('group', {id: $routeParams.id}).then(
-      function success(result) {
+      function success(group) {
         // Update the group with data from database.
-        $scope.group = result;
+        $scope.group = group;
+
+        $scope.users = [];
+
+        for (var user in $scope.group.users) {
+          addToUsers($scope.group.users[user]);
+        }
 
         // Remove spinner.
         $scope.loading = false;
@@ -34,6 +49,19 @@ angular.module('adminApp').controller('AdminGroupController', [
         $location.path('/admin');
       }
     );
+
+    $scope.showAddUserModal = function showAddUserModal() {
+      ModalService.showModal({
+        templateUrl: "apps/adminApp/group/popup-add-user.html",
+        controller: "PopupAddUser",
+        inputs: {
+          group: $scope.group,
+          addedUser: addToUsers
+        }
+      }).then(function (modal) {
+        modal.close.then(function () {});
+      });
+    };
 
     /**
      * Submit form.

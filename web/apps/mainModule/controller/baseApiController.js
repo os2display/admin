@@ -165,6 +165,36 @@ angular.module('adminApp').controller('BaseApiController', [
     };
 
     /**
+     * Function to execute custom api request.
+     *
+     * @param method
+     * @param url
+     * @param data
+     */
+    $scope.baseApiRequest = function baseApiRequest(method, url, data) {
+      var deferred = $q.defer();
+      var uuid = createUuid();
+
+      baseApiCleanupListeners.push(busService.$on('BaseApiController.baseApiRequest.' + uuid, function (event, result) {
+        if (result.error) {
+          deferred.reject(result.error);
+        }
+        else {
+          deferred.resolve(result);
+        }
+      }));
+
+      busService.$emit('apiService.request', {
+        method: method,
+        url: url,
+        returnEvent: 'BaseApiController.baseApiRequest.' + uuid,
+        data: data
+      });
+
+      return deferred.promise;
+    };
+
+    /**
      * on destroy.
      *
      * Clean up baseApiCleanupListeners.

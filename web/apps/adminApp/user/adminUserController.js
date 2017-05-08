@@ -3,22 +3,96 @@
  * Controller for the admin user page.
  */
 
-angular.module('adminApp').controller('AdminUserController', ['busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller',
+angular.module('adminApp').controller('AdminUserController', [
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller',
   function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller) {
     'use strict';
 
     // Extend BaseApiController.
-    $controller('BaseApiController', { $scope: $scope });
+    $controller('BaseApiController', {$scope: $scope});
+
+    var userRoles;
 
     $scope.user = null;
+    $scope.userRoles = [];
     $scope.loading = true;
     $scope.forms = {};
 
+    $scope.baseApiRequest('get', '/api/user/roles').then(
+      function (roles) {
+        userRoles = roles;
+      }
+    );
+
+    /**
+     * Adds role to userRoles.
+     *
+     * @param role
+     */
+    var addRole = function addRole(role) {
+      var newRole = {
+        id: role,
+        title: userRoles[role] ? userRoles[role] : role
+      };
+
+      if ($scope.canUpdate($scope.user)) {
+        newRole.actions = [
+          {
+            'title': 'Fjern rolle',
+            'entity': {id: role},
+            'click': $scope.removeRoleFromUser
+          }
+        ];
+      }
+      $scope.userRoles.push(newRole);
+    };
+
+    /**
+     * Remove role from userRoles.
+     *
+     * @param role
+     */
+    function removeRole(role) {
+      var roleIndex = $scope.userRoles.findIndex(function (element) {
+        return element.id === role.id;
+      });
+
+      if (roleIndex) {
+        $scope.userRoles.splice(roleIndex, 1);
+      }
+    }
+
+    /**
+     * Show add role modal.
+     */
+    $scope.addRole = function addRole() {
+      ModalService.showModal({
+        templateUrl: "apps/adminApp/user/popup-add-roles.html",
+        controller: "PopupAddRoles"
+      }).then(function (modal) {
+        modal.close.then(function (role) {
+          if (role) {
+            addRole(role);
+          }
+        });
+      });
+    };
+
+    $scope.removeRoleFromUser = function removeRole(role) {
+      alert('not implemented!');
+    };
+
     // If id set, request that user, else use baseCurrentUser (from BaseController).
     if ($routeParams.id) {
-      $scope.getEntity('user', { id: $routeParams.id }).then(
+      $scope.getEntity('user', {id: $routeParams.id}).then(
         function success(user) {
-          $scope.user = user;
+          $timeout(function () {
+            $scope.user = user;
+
+            for (var role in $scope.user.roles) {
+              addRole($scope.user.roles[role]);
+            }
+          });
         },
         function error(err) {
           busService.$emit('log.error', {
@@ -75,7 +149,7 @@ angular.module('adminApp').controller('AdminUserController', ['busService', '$sc
         function error(err) {
           // Display message success.
           busService.$emit('log.error', {
-            cause: result.error.code,
+            cause: err.code,
             msg: 'Bruger kunne ikke opdateres.'
           });
         }
