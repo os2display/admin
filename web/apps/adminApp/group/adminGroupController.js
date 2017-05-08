@@ -36,9 +36,23 @@ angular.module('adminApp').controller('AdminGroupController', [
     );
 
     /**
-     * Edit group.
+     * Submit form.
      */
-    $scope.editGroup = function () {
+    $scope.submitForm = function (form) {
+      if ($scope.loading) {
+        return;
+      }
+
+      if (form.$invalid) {
+        busService.$emit('log.error', {
+          timeout: 5000,
+          cause: err.code,
+          msg: 'Ugyldigt input.'
+        });
+
+        return;
+      }
+
       $scope.loading = true;
 
       // Emit event to update group.

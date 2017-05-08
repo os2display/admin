@@ -7,125 +7,81 @@ angular.module('adminApp').controller('AdminUserController', ['busService', '$sc
   function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller) {
     'use strict';
 
-    // Extend BaseController.
-    $controller('BaseController', { $scope: $scope });
+    // Extend BaseApiController.
+    $controller('BaseApiController', { $scope: $scope });
 
     $scope.user = null;
     $scope.loading = true;
+    $scope.forms = {};
 
-    /**
-     * returnUsers listener.
-     * @type {*}
-     */
-    var cleanupUserListener = busService.$on('AdminUserController.returnUser', function (event, result) {
-      $timeout(function () {
-        if (result.error) {
+    // If id set, request that user, else use baseCurrentUser (from BaseController).
+    if ($routeParams.id) {
+      $scope.getEntity('user', { id: $routeParams.id }).then(
+        function success(user) {
+          $scope.user = user;
+        },
+        function error(err) {
           busService.$emit('log.error', {
             timeout: 5000,
-            cause: result.error.code,
-            msg: 'Bruger kan ikke findes.'
+            cause: err.code,
+            msg: 'Brugeren kan ikke findes.'
           });
 
           // Redirect to dashboard.
           $location.path('/admin');
-
-          return;
         }
-
-        // Update the user with data from database.
-        $scope.user = result;
-
-        // Remove spinner.
+      ).then(function () {
         $scope.loading = false;
       });
-    });
+    }
+    else {
+      // Get user from BaseController.
+      $scope.user = $scope.baseCurrentUser;
+
+      // Remove spinner.
+      $scope.loading = false;
+    }
 
     /**
-     * returnUpdateUser listener.
-     * @type {*}
+     * Submit form.
      */
-    var cleanupUpdateUserListener = busService.$on('AdminUserController.returnUpdateUser', function (event, result) {
-      $timeout(function () {
-        if (result.error) {
+    $scope.submitForm = function submitForm(form) {
+      if ($scope.loading) {
+        return;
+      }
+
+      if (form.$invalid) {
+        busService.$emit('log.error', {
+          timeout: 5000,
+          cause: err.code,
+          msg: 'Ugyldigt input.'
+        });
+
+        return;
+      }
+
+      $scope.loading = true;
+
+      $scope.updateEntity('user', $scope.user).then(
+        function success(user) {
+          $scope.user = user;
+
+          // Display message success.
+          busService.$emit('log.info', {
+            timeout: 3000,
+            msg: 'Bruger opdateret.'
+          });
+        },
+        function error(err) {
           // Display message success.
           busService.$emit('log.error', {
             cause: result.error.code,
             msg: 'Bruger kunne ikke opdateres.'
           });
-
-          // Remove spinner.
-          $scope.loading = false;
-
-          return;
         }
-
-        // Update the user with data from database.
-        $scope.user = result;
-
-        // Remove spinner.
+      ).then(function () {
         $scope.loading = false;
-
-        // Display message success.
-        busService.$emit('log.info', {
-          timeout: 3000,
-          msg: 'Bruger opdateret.'
-        });
-      });
-    });
-
-    /**
-     * returnCurrentUser listener.
-     * @type {*}
-     */
-    var cleanupCurrentUserListener = busService.$on('userService.returnCurrentUser', function (event, result) {
-      $timeout(function () {
-        // Update the user with data from database.
-        $scope.user = result;
-
-        // Remove spinner.
-        $scope.loading = false;
-      });
-    });
-
-    // If id set, request that user, else request current user.
-    if ($routeParams.id) {
-      // Emit event to get the user.
-      busService.$emit('apiService.getEntity', {
-        type: 'user',
-        returnEvent: 'AdminUserController.returnUser',
-        data: {
-          id: $routeParams.id
-        }
-      });
-    }
-    else {
-      // Emit event to get the user.
-      busService.$emit('userService.getCurrentUser', {});
-    }
-
-    /**
-     * Save user.
-     */
-    $scope.saveUser = function () {
-      $scope.loading = true;
-
-      // Emit event to update user.
-      busService.$emit('apiService.updateEntity', {
-        type: 'user',
-        returnEvent: 'AdminUserController.returnUpdateUser',
-        data: $scope.user
       });
     };
-
-    /**
-     * on destroy.
-     *
-     * Clean up listeners.
-     */
-    $scope.$on('$destroy', function destroy() {
-      cleanupUserListener();
-      cleanupUpdateUserListener();
-      cleanupCurrentUserListener();
-    });
   }
 ]);

@@ -3,22 +3,23 @@
  * Controller for the popup: create group.
  */
 
-angular.module('adminApp').controller('PopupDeleteGroup', ['busService', '$scope', '$timeout', 'close', '$controller', 'group',
+angular.module('adminApp').controller('PopupDeleteGroup', [
+  'busService', '$scope', '$timeout', 'close', '$controller', 'group',
   function (busService, $scope, $timeout, close, $controller, group) {
     'use strict';
 
     // Extend BaseController.
-    $controller('BaseController', { $scope: $scope });
+    $controller('BaseApiController', {$scope: $scope});
 
+    $scope.group = group;
     $scope.loading = false;
     $scope.errors = [];
-    $scope.group = group;
     $scope.forms = {};
 
     /**
      * Close the modal.
      */
-    $scope.closeModal = function() {
+    $scope.closeModal = function () {
       close(null);
     };
 
@@ -27,7 +28,7 @@ angular.module('adminApp').controller('PopupDeleteGroup', ['busService', '$scope
      *
      * @param form
      */
-    $scope.submitForm = function(form){
+    $scope.submitForm = function (form) {
       if ($scope.loading) {
         return;
       }
@@ -36,46 +37,22 @@ angular.module('adminApp').controller('PopupDeleteGroup', ['busService', '$scope
 
       $scope.loading = true;
 
-      busService.$emit('apiService.deleteEntity', {
-        type: 'group',
-        returnEvent: 'PopupCreateGroup.returnDeleteGroup',
-        data: $scope.group
-      });
-    };
+      $scope.deleteEntity('group', $scope.group).then(
+        function success() {
+          // Display message success.
+          busService.$emit('log.info', {
+            timeout: 5000,
+            msg: 'Gruppen blev slettet.'
+          });
 
-    /**
-     * returnCreateGroup listener.
-     * @type {*}
-     */
-    var cleanupReturnDeleteGroupListener = busService.$on('PopupCreateGroup.returnDeleteGroup', function (event, result) {
-      $timeout(function () {
-        $scope.loading = false;
-
-        if (result && result.error) {
-          console.log(result.error);
-
-          return;
+          close($scope.group);
+        },
+        function error(err) {
+          $scope.errors.push(err.message);
         }
-
-        $scope.creatingGroup = false;
-
-        // Display message success.
-        busService.$emit('log.info', {
-          timeout: 5000,
-          msg: 'Gruppen blev slettet.'
-        });
-
-        close(group);
-      });
-    });
-
-    /**
-     * on destroy.
-     *
-     * Clean up listeners.
-     */
-    $scope.$on('$destroy', function () {
-      cleanupReturnDeleteGroupListener();
-    });
+      ).then(function () {
+        $scope.loading = false;
+      })
+    };
   }
 ]);

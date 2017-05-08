@@ -71,7 +71,7 @@ angular.module('adminApp').controller('AdminGroupsController', [
       });
     }
 
-    // Get the group.
+    // Get the groups.
     $scope.getEntities('group').then(
       function success(result) {
         $scope.groups = [];
@@ -90,7 +90,6 @@ angular.module('adminApp').controller('AdminGroupsController', [
         });
       }
     ).then(function () {
-      // Remove spinner.
       $scope.groupsLoading = false;
     });
 
