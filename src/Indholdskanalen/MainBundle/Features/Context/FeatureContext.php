@@ -308,8 +308,7 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   /**
    * @Then the JSON node :node should contain key :key
    */
-  public function theJsonNodeShouldContainKey($node, $key)
-  {
+  public function theJsonNodeShouldContainKey($node, $key) {
     $json = $this->getJson();
     $actual = $this->inspector->evaluate($json, $node);
     $this->assertTrue(array_key_exists($key, $actual), sprintf('The node "%s" should contain key "%s"', $node, $key));
@@ -344,5 +343,26 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
 
   protected function getJson() {
     return new Json($this->httpCallResultPool->getResult()->getValue());
+  }
+
+  /**
+   * @Then the DQL query :dql should return :count element(s)
+   */
+  public function theDqlQueryShouldReturnElements($dql, $count) {
+    $query = $this->manager->createQuery($dql);
+    $items = $query->getResult();
+
+    $this->assertEquals($count, count($items));
+  }
+
+  /**
+   * @Then the SQL query :sql should return :count element(s)
+   */
+  public function theSqlQueryShouldReturnElements($sql, $count) {
+    $stmt = $this->manager->getConnection()->prepare($sql);
+    $stmt->execute();
+    $items = $stmt->fetchAll();
+
+    $this->assertEquals($count, count($items));
   }
 }

@@ -1,4 +1,4 @@
-@api @channel
+@api @screen
 Feature: admin
   In order to …
   As a client …
@@ -19,8 +19,8 @@ Feature: admin
     And I sign in with username "user" and password "user"
 
   @createSchema
-  Scenario: Get channels
-    When I send a "GET" request to "/api/channel"
+  Scenario: Get screens
+    When I send a "GET" request to "/api/screen"
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON should be equal to:
@@ -28,61 +28,60 @@ Feature: admin
       []
       """
 
-  Scenario: Create channel
-    When I send a "POST" request to "/api/channel" with body:
+  Scenario: Create screen
+    When I send a "POST" request to "/api/screen" with body:
     """
     {
       "id": null,
-      "title": "The first channel",
-      "slides": []
+      "title": "The first screen",
+      "description": "Description of The first screen"
     }
     """
     Then the response status code should be 200
 
-  Scenario: Get channels
-    When I send a "GET" request to "/api/channel"
+  Scenario: Get screens
+    When I send a "GET" request to "/api/screen"
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "" should have 1 element
     And the JSON node "[0].id" should be equal to 1
-    And the JSON node "[0].title" should be equal to "The first channel"
-    And the JSON node "[0].slides" should have 0 elements
+    And the JSON node "[0].title" should be equal to "The first screen"
+    And the JSON node "[0].description" should be equal to "Description of The first screen"
 
-  Scenario: Update channel
-    When I send a "POST" request to "/api/channel" with body:
+  Scenario: Update screen
+    When I send a "POST" request to "/api/screen" with body:
     """
     {
       "id": 1,
-      "title": "The first channel (updated)",
-      "slides": []
+      "title": "The first screen (updated)",
+      "description": "Description of The first screen"
     }
     """
     Then the response status code should be 200
 
-  Scenario: Get channels
-    When I send a "GET" request to "/api/channel"
+  Scenario: Get screens
+    When I send a "GET" request to "/api/screen"
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "" should have 1 element
     And the JSON node "[0].id" should be equal to 1
-    And the JSON node "[0].title" should be equal to "The first channel (updated)"
-    And the JSON node "[0].slides" should have 0 elements
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Channel'" should return 0 element
+    And the JSON node "[0].title" should be equal to "The first screen (updated)"
+    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Screen'" should return 0 element
 
-  Scenario: Add channel to group
-    When I send a "POST" request to "/api/channel" with body:
+  Scenario: Add screen to group
+    When I send a "POST" request to "/api/screen" with body:
     """
     {
       "id": 1,
-      "title": "The first channel (updated)",
-      "slides": [],
+      "title": "The first screen (updated)",
+      "description": "Description of The first screen",
       "groups": [1, 2]
     }
     """
     Then the response status code should be 200
 
-  Scenario: Get channels
-    When I send a "GET" request to "/api/channel"
+  Scenario: Get screens
+    When I send a "GET" request to "/api/screen"
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "" should have 1 element
@@ -90,35 +89,35 @@ Feature: admin
     And the JSON node "[0].groups" should have 2 elements
     And the JSON node "[0].groups[0].id" should be equal to 1
     And the JSON node "[0].groups[1].id" should be equal to 2
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Channel'" should return 2 elements
+    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Screen'" should return 2 elements
 
-  Scenario: Remove channel from group
-    When I send a "POST" request to "/api/channel" with body:
+  Scenario: Remove screen from group
+    When I send a "POST" request to "/api/screen" with body:
     """
     {
       "id": 1,
-      "title": "The first channel (updated)",
-      "slides": [],
+      "title": "The first screen (updated)",
+      "description": "Description of The first screen",
       "groups": [2]
     }
     """
     Then the response status code should be 200
 
-  Scenario: Get channels
-    When I send a "GET" request to "/api/channel"
+  Scenario: Get screens
+    When I send a "GET" request to "/api/screen"
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "" should have 1 element
     And the JSON node "[0].id" should be equal to 1
     And the JSON node "[0].groups" should have 1 element
     And the JSON node "[0].groups[0].id" should be equal to 2
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Channel'" should return 1 element
+    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Screen'" should return 1 element
 
 
-  Scenario: Remove channel
-    When I send a "DELETE" request to "/api/channel/1"
+  Scenario: Remove screen
+    When I send a "DELETE" request to "/api/screen/1"
     Then the response status code should be 200
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Channel'" should return 0 elements
+    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Screen'" should return 0 elements
 
   @dropSchema
   Scenario: Drop schema
