@@ -10,7 +10,7 @@ angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope'
     // Extend BaseController.
     $controller('BaseController', { $scope: $scope });
 
-    $scope.email = "";
+    $scope.userEmail = "";
     $scope.loading = false;
     $scope.errors = [];
     $scope.forms = {};
@@ -45,7 +45,7 @@ angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope'
         type: 'user',
         returnEvent: 'PopupCreateUser.returnCreateUser',
         data: {
-          email: $scope.email
+          email: this.userEmail
         }
       });
     };

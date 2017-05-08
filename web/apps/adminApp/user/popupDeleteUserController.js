@@ -38,7 +38,7 @@ angular.module('adminApp').controller('PopupDeleteUser', ['busService', '$scope'
       busService.$emit('apiService.deleteEntity', {
         type: 'user',
         returnEvent: 'PopupCreateUser.returnDeleteUser',
-        data: user
+        data: $scope.user
       });
     };
 

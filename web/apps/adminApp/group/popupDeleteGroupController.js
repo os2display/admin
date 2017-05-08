@@ -39,7 +39,7 @@ angular.module('adminApp').controller('PopupDeleteGroup', ['busService', '$scope
       busService.$emit('apiService.deleteEntity', {
         type: 'group',
         returnEvent: 'PopupCreateGroup.returnDeleteGroup',
-        data: group
+        data: $scope.group
       });
     };
 

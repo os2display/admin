@@ -46,7 +46,7 @@ angular.module('adminApp').controller('PopupCreateGroup', ['busService', '$scope
         type: 'group',
         returnEvent: 'PopupCreateGroup.returnCreateGroup',
         data: {
-          title: $scope.groupTitle
+          title: this.groupTitle
         }
       });
     };
