@@ -12,6 +12,7 @@ namespace Indholdskanalen\MainBundle\Security;
 class Roles {
   const ROLE_USER = 'ROLE_USER';
   const ROLE_ADMIN = 'ROLE_ADMIN';
+  const ROLE_CHANNEL_ADMIN = 'ROLE_CHANNEL_ADMIN';
   const ROLE_GROUP_ADMIN = 'ROLE_GROUP_ADMIN';
   const ROLE_USER_ADMIN = 'ROLE_USER_ADMIN';
   const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';

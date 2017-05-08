@@ -4,7 +4,10 @@ namespace Indholdskanalen\MainBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Util\Codes;
+use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\Screen;
+use Indholdskanalen\MainBundle\Entity\Slide;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Security\EditVoter;
 use JMS\Serializer\SerializationContext;
@@ -128,7 +131,11 @@ class ApiController extends FOSRestController {
         'can_read' => $securityMananger->decide(EditVoter::READ, $group),
         'can_update' => $securityMananger->decide(EditVoter::UPDATE, $group),
         'can_delete' => $securityMananger->decide(EditVoter::DELETE, $group),
+
         'can_add_user' => $securityMananger->decide('can_add_user', $group),
+        'can_add_channel' => $securityMananger->decide('can_add_channel', $group),
+        'can_add_slide' => $securityMananger->decide('can_add_slide', $group),
+        'can_add_screen' => $securityMananger->decide('can_add_screen', $group),
       ]
     ]);
   }
@@ -136,15 +143,25 @@ class ApiController extends FOSRestController {
   protected function setApiDataUser(User $user) {
     $securityMananger = $this->get('os2display.security_manager');
 
-    $user->setApiData([
-      'permissions' => [
-        'can_read' => $securityMananger->decide(EditVoter::READ, $user),
-        'can_update' => $securityMananger->decide(EditVoter::UPDATE, $user),
-        'can_delete' => $securityMananger->decide(EditVoter::DELETE, $user),
+    $permissions = [
+      'can_read' => $securityMananger->decide(EditVoter::READ, $user),
+      'can_update' => $securityMananger->decide(EditVoter::UPDATE, $user),
+      'can_delete' => $securityMananger->decide(EditVoter::DELETE, $user),
+    ];
+
+    // Add permissions for current user.
+    $token = $this->get('security.token_storage')->getToken();
+    if ($token && $user == $token->getUser()) {
+      $permissions += [
         'can_create_group' => $securityMananger->decide(EditVoter::CREATE, Group::class),
         'can_create_user' => $securityMananger->decide(EditVoter::CREATE, User::class),
-      ]
-    ]);
+        'can_create_channel' => $securityMananger->decide([EditVoter::CREATE], Channel::class),
+        'can_create_slide' => $securityMananger->decide([EditVoter::CREATE], Slide::class),
+        'can_create_screen' => $securityMananger->decide([EditVoter::CREATE], Screen::class),
+      ];
+    }
+
+    $user->setApiData(['permissions' => $permissions]);
 
     $userRoles = array_map(function ($role) {
       return new Role($role);

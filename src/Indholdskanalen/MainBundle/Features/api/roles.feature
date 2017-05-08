@@ -17,6 +17,7 @@ Feature: admin
     When I send a "GET" request to "/api/user/roles"
     Then the response status code should be 200
     And the response should be in JSON
+    And print last JSON response
     And the JSON node "" should have 5 elements
     And the JSON node "" should contain key "ROLE_SUPER_ADMIN"
     And the JSON node "" should contain key "ROLE_ADMIN"
