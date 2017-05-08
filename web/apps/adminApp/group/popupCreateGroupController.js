@@ -50,17 +50,17 @@ angular.module('adminApp').controller('PopupCreateGroup', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 5000,
-            msg: 'Gruppen blev oprettet.'
+            msg: 'Gruppen blev oprettet'
           });
 
           close(group);
         },
         function error(err) {
           if (err.code === 409) {
-            $scope.errors.push('Gruppen eksisterer allerede.');
+            $scope.errors.push('Gruppen eksisterer allerede');
           }
           else {
-            $scope.errors.push('Kunne ikke oprette gruppen.');
+            $scope.errors.push('Kunne ikke oprette gruppen');
           }
         }
       ).then(function () {

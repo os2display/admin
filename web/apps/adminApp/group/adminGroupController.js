@@ -67,14 +67,14 @@ angular.module('adminApp').controller('AdminGroupController', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 3000,
-            msg: 'Gruppe opdateret.'
+            msg: 'Gruppe opdateret'
           });
         },
         function error(err) {
           // Display message success.
           busService.$emit('log.error', {
             cause: err.code,
-            msg: 'Gruppe kunne ikke opdateres.'
+            msg: 'Gruppe kunne ikke opdateres'
           });
         }
       );

@@ -42,7 +42,7 @@ angular.module('adminApp').controller('PopupDeleteGroup', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 5000,
-            msg: 'Gruppen blev slettet.'
+            msg: 'Gruppen blev slettet'
           });
 
           close($scope.group);
