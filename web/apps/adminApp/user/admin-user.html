@@ -10,18 +10,18 @@
               <label for="firstname" class="forms-label">Fornavn</label>
               <input id="firstname" name="firstname" type="text" placeholder="Indtast fornavn"
                      ng-model="user.firstname"
-                     class="forms-text">
+                     class="forms-base forms-text">
             </div>
             <div class="forms-field">
               <label for="lastname" class="forms-label">Efternavn</label>
               <input id="lastname" name="lastname" type="text" placeholder="Indtast efternavn"
                      ng-model="user.lastname"
-                     class="forms-text">
+                     class="forms-base forms-text">
             </div>
             <div class="forms-field">
               <label for="email" class="forms-label">E-mail</label>
               <input id="email" name="email" type="text" placeholder="Indtast e-mail" ng-model="user.email"
-                     class="forms-text">
+                     class="forms-base forms-text">
             </div>
             <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.userUpdate)"
                data-ng-if="canUpdate(user)">Gem</a>
