@@ -92,12 +92,34 @@ class GroupManager {
     $this->addGroups($groups, $groupable);
   }
 
+  /**
+   * Convert list of "groups", i.e.
+   *
+   *   - list of Groups,
+   *   - list of ids,
+   *   - list of objects/arrays with "id" key,
+   *
+   * into a list of proper Groups.
+   */
   private function loadGroups(array $groups) {
-    if (count($groups) > 0 && is_numeric($groups[0])) {
-      $groups = $this->entityManager->getRepository(Group::class)->findBy(['id' => $groups]);
+    $ids = [];
+    foreach ($groups as $group) {
+      $id = null;
+      if ($group instanceof Group) {
+        $id = $group->getId();
+      } elseif (is_numeric($group)) {
+        $id = $group;
+      } elseif (isset($group->id)) {
+        $id = $group->id;
+      } elseif (isset($group['id'])) {
+        $id = $group['id'];
+      }
+      if ($id !== null) {
+        $ids[] = $id;
+      }
     }
 
-    return $groups;
+    return $this->entityManager->getRepository(Group::class)->findBy(['id' => $ids]);
   }
 
   public function addGroup(Group $group, GroupableEntity $groupable) {
