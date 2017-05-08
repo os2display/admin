@@ -1,20 +1,21 @@
-<div data-ng-class="{'spinner-element': loading}"></div>
-
-<div ng-if="!loading">
-  <div class="grid is-full ">
-    <div class="grid--inner">
-      <article class="grid--item">
-        <article class="box">
+<div class="grid is-full ">
+  <div class="grid--inner">
+    <article class="grid--item">
+      <div data-ng-class="{'spinner-element': loading}"></div>
+      <article class="box" ng-if="!loading">
+        <form name="forms.userUpdate" novalidate ng-submit="submitForm(forms.userUpdate)">
           <h2 class="heading-has-spacing-after">Information</h2>
           <div class="box--inner">
             <div class="forms-field">
               <label for="firstname" class="forms-label">Fornavn</label>
-              <input id="firstname" name="firstname" type="text" placeholder="Indtast fornavn" ng-model="user.firstname"
+              <input id="firstname" name="firstname" type="text" placeholder="Indtast fornavn"
+                     ng-model="user.firstname"
                      class="forms-text">
             </div>
             <div class="forms-field">
               <label for="lastname" class="forms-label">Efternavn</label>
-              <input id="lastname" name="lastname" type="text" placeholder="Indtast efternavn" ng-model="user.lastname"
+              <input id="lastname" name="lastname" type="text" placeholder="Indtast efternavn"
+                     ng-model="user.lastname"
                      class="forms-text">
             </div>
             <div class="forms-field">
@@ -22,10 +23,11 @@
               <input id="email" name="email" type="text" placeholder="Indtast e-mail" ng-model="user.email"
                      class="forms-text">
             </div>
-            <a class="button-link has-spacing-top" title="Gem" data-ng-click="saveUser()" data-ng-if="canUpdate(user)">Gem</a>
+            <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.userUpdate)"
+               data-ng-if="canUpdate(user)">Gem</a>
           </div>
-        </article>
+        </form>
       </article>
-    </div>
+    </article>
   </div>
 </div>

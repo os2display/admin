@@ -1,6 +1,6 @@
 <popup>
   <div data-ng-class="{'spinner-element': loading}"></div>
-  <form name="groupCreateForm" novalidate>
+  <form name="forms.groupCreateForm" novalidate ng-submit="submitForm(forms.groupCreateForm)">
     <div class="grid is-full " ng-show="!loading">
       <div class="grid--inner">
         <article class="grid--item">
@@ -9,7 +9,7 @@
         <article class="grid--item">
           <div class="forms-field">
             <label for="textInput" class="forms-label">Titel</label>
-            <input id="textInput" name="textInput" type="text" ng-model="group" placeholder="Indtast navn på gruppen"
+            <input id="textInput" name="textInput" type="text" ng-model="group.title" placeholder="Indtast navn på gruppen"
                    class="forms-text" required>
           </div>
         </article>
@@ -26,7 +26,8 @@
           <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
         </article>
         <article class="grid--item">
-          <a type="submit" class="button-link " title="Tilføj gruppe" ng-click="createGroup()" ng-if="canCreate('group')">Tilføj gruppe</a>
+          <a type="submit" class="button-link " title="Tilføj gruppe" ng-click="submitForm(forms.groupCreateForm)"
+             ng-if="canCreate('group')">Tilføj gruppe</a>
         </article>
       </div>
     </div>

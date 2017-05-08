@@ -9,7 +9,7 @@ angular.module('adminApp').controller('AdminUsersController', [
     'use strict';
 
     // Extend BaseController.
-    $controller('BaseController', {$scope: $scope});
+    $controller('BaseApiController', {$scope: $scope});
 
     $scope.usersLoading = true;
     $scope.users = null;
@@ -70,46 +70,32 @@ angular.module('adminApp').controller('AdminUsersController', [
       });
     }
 
-    /**
-     * returnUsers listener.
-     * @type {*}
-     */
-    var cleanupUsersListener = busService.$on('AdminUsersController.returnUsers', function (event, result) {
-      $timeout(function () {
-        if (result.error) {
-          // Display message success.
-          busService.$emit('log.error', {
-            cause: result.error.code,
-            msg: 'Brugere kunne ikke hentes.'
-          });
-
-          // Remove spinner.
-          $scope.usersLoading = false;
-
-          return;
-        }
-
+    // Get the users.
+    $scope.getEntities('user').then(
+      function success(users) {
         $scope.users = [];
 
-        for (var user in result) {
-          if (result.hasOwnProperty(user)) {
-            addUser(result[user]);
+        for (var user in users) {
+          if (users.hasOwnProperty(user)) {
+            addUser(users[user]);
           }
         }
-
-        $scope.usersLoading = false;
-      });
+      },
+      function error(err) {
+        // Display message success.
+        busService.$emit('log.error', {
+          cause: err.code,
+          msg: 'Brugere kunne ikke hentes.'
+        });
+      }
+    ).then(function () {
+      $scope.usersLoading = false;
     });
 
-    // Emit event to get the user.
-    busService.$emit('apiService.getEntities', {
-      type: 'user',
-      returnEvent: 'AdminUsersController.returnUsers'
-    });
-
-    // Show create user modal.
+    /**
+     * Show create user modal.
+     */
     $scope.createUser = function () {
-      // Just provide a template url, a controller and call 'showModal'.
       ModalService.showModal({
         templateUrl: "apps/adminApp/user/popup-create-user.html",
         controller: "PopupCreateUser"
@@ -126,7 +112,6 @@ angular.module('adminApp').controller('AdminUsersController', [
      * Show delete user modal.
      */
     $scope.deleteUser = function (user) {
-      // Show modal.
       ModalService.showModal({
         templateUrl: "apps/adminApp/user/popup-delete-user.html",
         controller: "PopupDeleteUser",
@@ -141,14 +126,5 @@ angular.module('adminApp').controller('AdminUsersController', [
         });
       });
     };
-    
-    /**
-     * on destroy.
-     *
-     * Clean up listeners.
-     */
-    $scope.$on('$destroy', function destroy() {
-      cleanupUsersListener();
-    });
   }
 ]);

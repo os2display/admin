@@ -8,7 +8,7 @@
  * html parameters:
  *   items: The item to render.
  */
-angular.module('styleguideComponentsApp').directive('panelMenu', function(){
+angular.module('styleguideComponentsApp').directive('panelMenu', ['$document', function ($document) {
   return {
     restrict: 'E',
     replace: true,
@@ -16,22 +16,36 @@ angular.module('styleguideComponentsApp').directive('panelMenu', function(){
       items: '='
     },
     link: function (scope) {
-      scope.showMenu = false;
+      scope.menuOpen = false;
 
-      scope.toggle = function () {
-        scope.showMenu = !scope.showMenu;
+      function clickHandler() {
+        scope.menuOpen = false;
       }
+
+      scope.showMenu = function () {
+        $document.off('click', clickHandler);
+        $document.on('click', clickHandler);
+
+        scope.menuOpen = true;
+      };
+
+      /**
+       * onDestroy.
+       */
+      scope.$on('$destroy', function () {
+        $document.off('click', clickHandler);
+      })
     },
     template:
       '<div>' +
-        '<span class="content-list-item--icon" ng-click="toggle()">' +
+        '<span class="content-list-item--icon" ng-click="showMenu()">' +
           '<i class="icon-default material-icons">more_vert</i>' +
         '</span>' +
-        '<div class="panel-menu is-positioned" ng-class="{\'is-hidden\': !showMenu}" ng-click="showMenu = false">' +
+        '<div class="panel-menu is-positioned" ng-class="{\'is-hidden\': !menuOpen}">' +
           '<box>' +
             '<content-list items="items"></content-list>' +
           '</box>' +
         '</div>' +
       '</div>'
   }
-});
+}]);

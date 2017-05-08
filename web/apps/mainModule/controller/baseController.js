@@ -11,7 +11,8 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
     'use strict';
 
     var self = this;
-    var user;
+    self.user = null;
+    $scope.baseCurrentUser = self.user;
 
     // Get the current user.
     userService.getCurrentUser().then(
