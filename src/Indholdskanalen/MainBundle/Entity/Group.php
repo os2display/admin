@@ -9,6 +9,8 @@ namespace Indholdskanalen\MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -52,6 +54,19 @@ class Group extends ApiEntity {
    * @ORM\OneToMany(targetEntity="Indholdskanalen\MainBundle\Entity\Grouping", mappedBy="group", fetch="EAGER")
   */
   protected $grouping;
+
+  /**
+   * @VirtualProperty()
+   * @SerializedName("displayName")
+   * @Groups({"api"})
+   */
+  public function __toString() {
+    if ($this->getTitle()) {
+      return $this->getTitle();
+    }
+
+    return 'group#' . $this->getId();
+  }
 
   /**
    * Group constructor.
