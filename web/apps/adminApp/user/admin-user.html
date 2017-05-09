@@ -1,18 +1,17 @@
 <div data-ng-class="{'spinner-element': loading}"></div>
-<div class="grid is-full" ng-if="!loading">
-  <div class="grid--inner">
+<article class="grid is-full" ng-if="!loading">
+  <article class="grid--inner">
     <article class="grid--item">
       <box heading="{{  user.firstname ? user.firstname + ' ' + user.lastname : user.email }}">
         <form name="forms.userUpdate" novalidate ng-submit="submitForm(forms.userUpdate)">
-          <h2 class="heading-has-spacing-after">Information</h2>
-          <div class="box--inner">
+          <article class="grid--item">
             <div class="forms-field">
               <label for="firstname" class="forms-label">Fornavn</label>
               <input id="firstname" name="firstname" type="text" placeholder="Indtast fornavn"
                      ng-model="user.firstname"
                      class="forms-base forms-text">
             </div>
-          </>
+          </article>
           <article class="grid--item">
             <div class="forms-field">
               <label for="lastname" class="forms-label">Efternavn</label>
@@ -21,10 +20,6 @@
                      class="forms-base forms-text">
             </div>
           </article>
-        </div>
-      </div>
-      <div class="grid is-full">
-        <div class="grid--inner">
           <article class="grid--item">
             <div class="forms-field">
               <label for="email" class="forms-label">E-mail</label>
@@ -33,12 +28,11 @@
             </div>
             <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.userUpdate)"
                data-ng-if="baseCanUpdate(user)">Gem</a>
-          </div>
+          </article>
         </form>
-      </article>
-    </article>
-  </div>
-</div>
+      </box>
+  </article>
+</article>
 <div class="grid is-halfs" ng-if="!loading">
   <div class="grid--inner">
     <article class="grid--item">
@@ -48,10 +42,12 @@
     </article>
     <article class="grid--item">
       <box heading="Roller">
+        <!--
         <div class="button-icon-link has-spacing-after" ng-click="addRole()" ng-if="baseCanUpdate(user)">
           <i class="icon-rounded material-icons">security</i>
           <span class="button-text has-spacing-before">Tilføj rolle</span>
         </div>
+        -->
         <content-list items="userRoles"></content-list>
       </box>
     </article>
