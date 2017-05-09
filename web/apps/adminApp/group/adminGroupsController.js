@@ -24,19 +24,19 @@ angular.module('adminApp').controller('AdminGroupsController', [
     function addGroup(group) {
       var actions = [];
 
-      if ($scope.canRead(group)) {
+      if ($scope.baseCanRead(group)) {
         actions.push({
           url: '#/admin/group/' + group.id,
           title: 'Se gruppe'
         });
       }
-      if ($scope.canUpdate(group)) {
+      if ($scope.baseCanUpdate(group)) {
         actions.push({
           url: '#/admin/group/' + group.id,
           title: 'Rediger gruppe'
         });
       }
-      if ($scope.canDelete(group)) {
+      if ($scope.baseCanDelete(group)) {
         actions.push({
           click: $scope.deleteGroup,
           entity: group,

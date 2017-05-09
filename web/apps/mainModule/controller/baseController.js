@@ -41,7 +41,7 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
      * @param entity
      * @return {*}
      */
-    $scope.canRead = function canRead(entity) {
+    $scope.baseCanRead = function baseCanRead(entity) {
       return hasPermission(entity, 'can_read');
     };
 
@@ -51,7 +51,7 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
      * @param entity
      * @return {*}
      */
-    $scope.canUpdate = function canUpdate(entity) {
+    $scope.baseCanUpdate = function baseCanUpdate(entity) {
       return hasPermission(entity, 'can_update');
     };
 
@@ -61,7 +61,7 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
      * @param entity
      * @return {*}
      */
-    $scope.canDelete = function canDelete(entity) {
+    $scope.baseCanDelete = function baseCanDelete(entity) {
       return hasPermission(entity, 'can_delete');
     };
 
@@ -70,8 +70,36 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
      *
      * @param type
      */
-    $scope.canCreate = function canCreate(type) {
+    $scope.baseCanCreate = function baseCanCreate(type) {
       return hasPermission(self.user, 'can_create_' + type);
+    };
+
+    /**
+     * Can the user add a type?
+     *
+     * @param type
+     */
+    $scope.baseCanAdd = function baseCanAdd(type) {
+      return hasPermission(self.user, 'can_add_' + type);
+    };
+
+    /**
+     * Remove an element from a list where field equals.
+     *
+     * @param list
+     * @param element
+     * @param field
+     * @return {null}
+     */
+    $scope.baseRemoveElementFromList = function(list, element, field) {
+      var i = list.findIndex(function (el) {
+        return element[field] === el[field];
+      });
+      if (i !== undefined) {
+        return list.splice(i, 1);
+      }
+
+      return null;
     };
   }
 ]);

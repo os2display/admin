@@ -1,9 +1,9 @@
 <div class="grid is-full">
   <div class="grid--inner">
     <article class="grid--item">
-      <box heading="Grupper">
-        <button-icon-link icon="group_add" button-link="Opret gruppe" click="createGroup()" ng-if="canCreate('group')"></button-icon-link>
-        <div data-ng-class="{'spinner-element': groupsLoading}"></div>
+      <div data-ng-class="{'spinner-element': groupsLoading}"></div>
+      <box heading="Grupper" ng-if="!groupsLoading">
+        <button-icon-link icon="group_add" button-link="Opret gruppe" click="createGroup()" ng-if="baseCanCreate('group')"></button-icon-link>
         <content-list items="groups" max="max" order="-id"></content-list>
         <div class="box-link" ng-if="allLinks">
           <a href="#/admin/groups" title="Alle grupper" class="box-link--link">Alle grupper</a>

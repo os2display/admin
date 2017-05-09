@@ -24,19 +24,19 @@ angular.module('adminApp').controller('AdminUsersController', [
     function addUser(user) {
       var actions = [];
 
-      if ($scope.canRead(user)) {
+      if ($scope.baseCanRead(user)) {
         actions.push({
           url: '#/admin/user/' + user.id,
           title: 'Se bruger'
         });
       }
-      if ($scope.canUpdate(user)) {
+      if ($scope.baseCanUpdate(user)) {
         actions.push({
           url: '#/admin/user/' + user.id,
           title: 'Rediger bruger'
         });
       }
-      if ($scope.canDelete(user)) {
+      if ($scope.baseCanDelete(user)) {
         actions.push({
           click: $scope.deleteUser,
           entity: user,

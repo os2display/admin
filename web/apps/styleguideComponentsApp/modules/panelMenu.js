@@ -18,32 +18,18 @@ angular.module('styleguideComponentsApp').directive('panelMenu', ['$document', f
     link: function (scope) {
       scope.menuOpen = false;
 
-      function clickHandler() {
-        scope.menuOpen = false;
-      }
-
-      scope.showMenu = function () {
-        $document.off('click', clickHandler);
-        $document.on('click', clickHandler);
-
-        scope.menuOpen = true;
+      scope.toggleMenu = function () {
+        scope.menuOpen = !scope.menuOpen;
       };
-
-      /**
-       * onDestroy.
-       */
-      scope.$on('$destroy', function () {
-        $document.off('click', clickHandler);
-      })
     },
     template:
       '<div>' +
-        '<span class="content-list-item--icon" ng-click="showMenu()">' +
+        '<span class="content-list-item--icon" ng-click="toggleMenu()">' +
           '<i class="icon-default material-icons">more_vert</i>' +
         '</span>' +
         '<div class="panel-menu is-positioned" ng-class="{\'is-hidden\': !menuOpen}">' +
           '<box>' +
-            '<content-list items="items"></content-list>' +
+            '<content-list items="items" ng-click="menuOpen = false"></content-list>' +
           '</box>' +
         '</div>' +
       '</div>'

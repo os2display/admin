@@ -25,6 +25,7 @@ angular.module('styleguideComponentsApp').directive('contentListItem', function(
             '{{ item.title }}' +
           '</span>' +
         '</span>' +
+        '<span class="content-list-item--text" ng-if="item.text">{{ item.text }}</span>' +
         '<panel-menu items="item.actions" ng-if="item.actions"></panel-menu>' +
       '</div>'
   };
