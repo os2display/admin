@@ -62,6 +62,7 @@ parameters:
         - /apps/adminApp/user/adminUserController.js
         - /apps/adminApp/user/popupCreateUserController.js
         - /apps/adminApp/user/popupDeleteUserController.js
+        - /apps/adminApp/user/popupAddRoleToUserController.js
       dependencies:
         - styleguideComponentsApp
         - busModule

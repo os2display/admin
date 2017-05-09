@@ -39,10 +39,11 @@ angular.module('adminApp').controller('AdminUserController', [
         $scope.getEntity('user', {id: $routeParams.id}).then(
           function success(user) {
             $timeout(function () {
+
               setUser(user);
 
               for (var role in $scope.user.roles) {
-                addRole($scope.user.roles[role]);
+                addRoleToDisplayList($scope.user.roles[role]);
               }
             });
           },
@@ -68,26 +69,143 @@ angular.module('adminApp').controller('AdminUserController', [
         $scope.loading = false;
 
         for (var role in $scope.user.roles) {
-          addRole($scope.user.roles[role]);
+          addRoleToDisplayList($scope.user.roles[role]);
         }
       }
     });
+
+    /**
+     * Remove role from user.
+     *
+     * @param roleToRemove
+     */
+    $scope.removeRoleFromUser = function (roleToRemove) {
+      $scope.loading = true;
+
+      var roles = [];
+      for (var role in $scope.user.roles) {
+        if ($scope.user.roles[role] !== roleToRemove)
+        roles.push($scope.user.roles[role]);
+      }
+
+      var user = angular.copy($scope.user);
+      user.roles = roles;
+
+      $scope.loading = true;
+
+      // Load roles, then load user.
+      $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
+        function (user) {
+          $timeout(function () {
+            // Get user from BaseController.
+            setUser(user);
+
+            $scope.userRoles = [];
+
+            for (var role in $scope.user.roles) {
+              addRoleToDisplayList($scope.user.roles[role]);
+            }
+          });
+        },
+        function error(err) {
+          console.error(err);
+        }
+      ).then(function () {
+        $scope.loading = false;
+      });
+    };
 
     /**
      * Adds role to userRoles.
      *
      * @param role
      */
-    var addRole = function addRole(role) {
-      var newRole = {
-        id: role,
-        title: userRoles[role] ? userRoles[role] : role
-      };
-      $scope.userRoles.push(newRole);
+    var addRoleToDisplayList = function addRoleToDisplayList(role) {
+      var f = $scope.userRoles.find(function (element) {
+        return element.id === role
+      });
+
+      if (!f) {
+        var actions = [];
+
+        if ($scope.baseCanUpdate($scope.user)) {
+          actions.push({
+            title: 'Fjern rolle fra bruger',
+            click: $scope.removeRoleFromUser,
+            entity: role
+          });
+        }
+        var newRole = {
+          id: role,
+          title: userRoles[role] ? userRoles[role] : role,
+          actions: actions
+        };
+        $scope.userRoles.push(newRole);
+      }
     };
 
-    $scope.removeRoleFromUser = function removeRole(role) {
-      alert('not implemented!');
+    /**
+     * Add role to user.
+     *
+     * @param roleToAdd
+     */
+    var addRoleToUser = function addRoleToUser(roleToAdd) {
+      var roles = [];
+      for (var role in $scope.user.roles) {
+        roles.push($scope.user.roles[role]);
+      }
+
+      if (roles.indexOf(roleToAdd.id) === -1) {
+        roles.push(roleToAdd.id)
+      }
+
+      var user = angular.copy($scope.user);
+      user.roles = roles;
+
+      $scope.loading = true;
+
+      // Load roles, then load user.
+      $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
+        function (user) {
+          $timeout(function () {
+            // Get user from BaseController.
+            setUser(user);
+
+            $scope.userRoles = [];
+
+            for (var role in $scope.user.roles) {
+              addRoleToDisplayList($scope.user.roles[role]);
+            }
+          });
+        },
+        function error(err) {
+          console.error(err);
+        }
+      ).then(function () {
+        $scope.loading = false;
+      });
+    };
+
+    /**
+     * Show add role modal.
+     */
+    $scope.showAddRoleModal = function showAddRoleModal() {
+      ModalService.showModal({
+        templateUrl: "apps/adminApp/user/popup-add-role-to-user.html",
+        controller: "PopupAddRoleToUser",
+        inputs: {
+          options: {
+            type: 'user/roles',
+            list: $scope.userRoles,
+            heading: 'Søg efter roller',
+            searchPlaceholder: '',
+            clickCallback: addRoleToUser
+          }
+        }
+      }).then(function (modal) {
+        modal.close.then(function () {
+        });
+      });
     };
 
     /**
