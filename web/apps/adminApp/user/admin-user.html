@@ -32,7 +32,7 @@
                   <input id="email" name="email" type="text" placeholder="Indtast e-mail" ng-model="user.email"
                          class="forms-base forms-text">
                   <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.userUpdate)"
-                     data-ng-if="canUpdate(user)">Gem</a>
+                     ng-if="baseCanUpdate(user)">Gem</a>
                 </div>
               </article>
             </div>
