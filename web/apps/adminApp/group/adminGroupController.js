@@ -141,6 +141,7 @@ angular.module('adminApp').controller('AdminGroupController', [
         function success(group) {
           // Update the group with data from database.
           $scope.group = group;
+          $scope.groupHeading = group.title + "";
 
           $scope.users = [];
 
@@ -206,6 +207,7 @@ angular.module('adminApp').controller('AdminGroupController', [
         function success(result) {
           // Update the group with data from database.
           $scope.group = result;
+          $scope.groupHeading = result.title + "";
 
           // Remove spinner.
           $scope.loading = false;
