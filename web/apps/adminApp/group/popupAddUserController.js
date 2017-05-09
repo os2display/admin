@@ -4,8 +4,8 @@
  */
 
 angular.module('adminApp').controller('PopupAddUser', [
-  'busService', '$scope', '$timeout', 'close', '$controller', 'group', 'addedUser',
-  function (busService, $scope, $timeout, close, $controller, group, addedUser) {
+  'busService', '$scope', '$timeout', 'close', '$controller', 'group', 'groupUsers', 'addedUserCallback',
+  function (busService, $scope, $timeout, close, $controller, group, groupUsers, addedUserCallback) {
     'use strict';
 
     // Extend BaseController.
@@ -23,10 +23,10 @@ angular.module('adminApp').controller('PopupAddUser', [
      */
     $scope.addUser = function (user) {
       $scope.baseApiRequest('post', '/api/user/' + user.id + '/group/' + group.id, {
-        roles: ['ROLE_USER']
+        roles: ['ROLE_GROUP_ROLE_USER']
       }).then(
         function success(res) {
-          addedUser(user);
+          addedUserCallback(user);
 
           $scope.baseRemoveElementFromList($scope.users, user, 'id');
         },
@@ -42,9 +42,11 @@ angular.module('adminApp').controller('PopupAddUser', [
      * @param user
      */
     function addUserToList(user) {
-      if (group.users.find(function (element) {
-          return element.email === user.email;
-        }) === undefined) {
+      var f = groupUsers.find(function (element) {
+        return element.id === user.id;
+      });
+
+      if (!f) {
         $scope.users.push({
           id: user.id,
           title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
@@ -55,6 +57,7 @@ angular.module('adminApp').controller('PopupAddUser', [
     }
 
     // Get users.
+    $scope.users = [];
     $scope.getEntities('user').then(
       function success(users) {
         for (var user in users) {
@@ -64,7 +67,7 @@ angular.module('adminApp').controller('PopupAddUser', [
       function error(err) {
         console.error(err);
       }
-    ).then(function() {
+    ).then(function () {
       $scope.loading = false;
     });
 

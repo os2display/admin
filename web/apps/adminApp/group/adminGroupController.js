@@ -29,6 +29,7 @@ angular.module('adminApp').controller('AdminGroupController', [
         function success(userGroup) {
           entity.user.roles = userGroup.roles;
 
+          // Remove an re-add role.
           $scope.baseRemoveElementFromList($scope.users, entity.user, 'id');
           addToUsers(entity.user);
         },
@@ -90,7 +91,9 @@ angular.module('adminApp').controller('AdminGroupController', [
           var text = "";
 
           for (var role in group.roles) {
-            text = text + "(" + groupRoles[group.roles[role]] + ") ";
+            role = group.roles[role];
+
+            text = text + "(" + (groupRoles[role] ? groupRoles[role] : role)  + ") ";
           }
 
           $scope.users.push({
@@ -146,8 +149,9 @@ angular.module('adminApp').controller('AdminGroupController', [
         templateUrl: "apps/adminApp/group/popup-add-user.html",
         controller: "PopupAddUser",
         inputs: {
-          group: angular.copy($scope.group),
-          addedUser: addToUsers
+          group: $scope.group,
+          groupUsers: $scope.users,
+          addedUserCallback: addToUsers
         }
       }).then(function (modal) {
         modal.close.then(function () {});
