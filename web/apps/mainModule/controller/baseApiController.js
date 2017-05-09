@@ -175,6 +175,9 @@ angular.module('adminApp').controller('BaseApiController', [
       var deferred = $q.defer();
       var uuid = createUuid();
 
+      // @FIXME: Handle locale in a better way
+      url += (url.indexOf('?') < 0 ? '?' : '&') + 'locale=da';
+
       baseApiCleanupListeners.push(busService.$on('BaseApiController.baseApiRequest.' + uuid, function (event, result) {
         if (result.error) {
           deferred.reject(result.error);

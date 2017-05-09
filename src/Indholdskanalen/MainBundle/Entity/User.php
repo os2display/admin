@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Indholdskanalen\MainBundle\Traits\ApiData;
-use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
@@ -39,11 +38,13 @@ class User extends BaseUser {
   protected $groupRoles;
 
   /**
+   * User's roles mapped to role display name.
+
    * @var array
    * @Groups({"api"})
    * @SerializedName("roles")
    */
-  protected $userRoles;
+  protected $roleNames;
 
   /**
    * @var Collection
@@ -259,20 +260,15 @@ class User extends BaseUser {
     return $this->roleGroups;
   }
 
-  public function setUserRoles(array $userRoles) {
-    $this->userRoles = array_unique($userRoles);
+  public function setRoleNames(array $roleNames) {
+    $this->roleNames = array_unique($roleNames);
   }
 
-  /**
-   * Returns the user roles
-   *
-   * @return array The roles
-   */
-  public function getUserRoles() {
-    return $this->userRoles;
+  public function getRoleNames() {
+    return $this->roleNames;
   }
 
-  public function getRoles($includeGroupRoles = TRUE) {
+  public function getRoles($includeGroupRoles = TRUE, $includeDefaultRole = TRUE) {
     $roles = $this->roles;
 
     if ($includeGroupRoles) {
@@ -280,8 +276,11 @@ class User extends BaseUser {
         $roles = array_merge($roles, $group->getRoles());
       }
     }
-    // we need to make sure to have at least one role
-    $roles[] = static::ROLE_DEFAULT;
+
+    if ($includeDefaultRole || count($roles) === 0) {
+      // we need to make sure to have at least one role
+      $roles[] = static::ROLE_DEFAULT;
+    }
 
     return array_unique($roles);
   }
