@@ -11,13 +11,29 @@
               <div class="box--inner">
                 <div class="forms-field">
                   <label for="forms_label_id" class="forms-label">Nyt kodeord</label>
-                  {{ form_widget(form.new.first) }}
-                  {{ form_errors(form.new.first) }}
+                  {{ form_widget(form.new.first, { 'attr': {'class': 'forms-base forms-password'} }) }}
+                  {% for error in form.new.first.vars.errors %}
+                    <div class="message">
+                      <div class="message--inner is-inline-error">
+                        <div class="message--content">
+                          {{ error.message | trans({}, 'FOSUserBundle') }}
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
                 </div>
                 <div class="forms-field">
                   <label for="forms_label_id" class="forms-label">Gentag kodeord</label>
-                  {{ form_widget(form.new.second) }}
-                  {{ form_errors(form.new.second) }}
+                  {{ form_widget(form.new.second, { 'attr': {'class': 'forms-base forms-password'} }) }}
+                  {% for error in form.new.second.vars.errors %}
+                    <div class="message">
+                      <div class="message--inner is-inline-error">
+                        <div class="message--content">
+                          {{ error.message }}
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
                 </div>
                 <div>
                   <input type="submit" class="button-link has-spacing-top"
