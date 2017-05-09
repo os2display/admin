@@ -4,25 +4,29 @@
     <div class="grid is-full " ng-show="!loading">
       <div class="grid--inner">
         <article class="grid--item">
-          <h2 class="heading-has-spacing-after">Slet bruger</h2>
+          <h2 class="heading-has-spacing-after">Er du sikker på du vil slette brugeren?</h2>
         </article>
         <article class="grid--item">
-          <p>Du er ved at slette: </p>
-          <p>Navn: {{ user.firstname }} {{ user.lastname }}</p>
-          <p>Email: {{ user.email }}</p>
-          <p></p>
-          <p>Bemærk! Dette kan ikke fortrydes.</p>
+          <p><strong>{{ user.email }}</strong><span ng-if="user.firstname || user.lastname"> ({{ user.firstname }} {{ user.lastname }})</span></p>
+        </article>
+        <article class="grid--item">
+          <div class="message">
+            <div class="message--inner is-inline-error">
+              <div class="message--content">
+                Bemærk! Dette kan ikke fortrydes.
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </div>
-
     <div class="grid is-halfs">
       <div class="grid--inner">
         <article class="grid--item">
           <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
         </article>
         <article class="grid--item">
-          <a type="submit" class="button-link " title="Slet gruppe" ng-click="submitForm(forms.userDeleteForm)"
+          <a type="submit" class="button-link " title="Slet bruger" ng-click="submitForm(forms.userDeleteForm)"
              ng-if="baseCanDelete(user)">Slet bruger</a>
         </article>
       </div>

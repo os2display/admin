@@ -2,7 +2,7 @@
 <div class="grid is-full" ng-if="!loading">
   <div class="grid--inner">
     <article class="grid--item">
-      <article class="box">
+      <box heading="{{  user.firstname ? user.firstname + ' ' + user.lastname : user.email }}">
         <form name="forms.userUpdate" novalidate ng-submit="submitForm(forms.userUpdate)">
           <h2 class="heading-has-spacing-after">Information</h2>
           <div class="box--inner">
@@ -12,12 +12,20 @@
                      ng-model="user.firstname"
                      class="forms-base forms-text">
             </div>
+          </>
+          <article class="grid--item">
             <div class="forms-field">
               <label for="lastname" class="forms-label">Efternavn</label>
               <input id="lastname" name="lastname" type="text" placeholder="Indtast efternavn"
                      ng-model="user.lastname"
                      class="forms-base forms-text">
             </div>
+          </article>
+        </div>
+      </div>
+      <div class="grid is-full">
+        <div class="grid--inner">
+          <article class="grid--item">
             <div class="forms-field">
               <label for="email" class="forms-label">E-mail</label>
               <input id="email" name="email" type="text" placeholder="Indtast e-mail" ng-model="user.email"

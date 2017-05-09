@@ -198,6 +198,11 @@ class SlideController extends Controller {
       }
     }
 
+    $groups = isset($post->groups) ? $post->groups : [];
+    $groupManager = $this->get('os2display.group_manager');
+    $groupManager->replaceGroups($groups, $slide);
+    $groupManager->saveGrouping($slide);
+
     // Save the slide.
     $em->persist($slide);
 
@@ -225,6 +230,8 @@ class SlideController extends Controller {
     $slide = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
+
+    $this->get('os2display.group_manager')->loadGrouping($slide);
 
     // Get the serializer
     $serializer = $this->get('jms_serializer');
@@ -294,6 +301,10 @@ class SlideController extends Controller {
     $slide_entities = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findAll();
+
+    foreach ($slide_entities as $slide) {
+      $this->get('os2display.group_manager')->loadGrouping($slide);
+    }
 
     // Create response.
     $response = new Response();

@@ -20,14 +20,14 @@ class Group extends ApiEntity {
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   protected $id;
 
   /**
    * @Assert\NotBlank()
    * @ORM\Column(name="title", type="string", nullable=false)
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   protected $title;
 
@@ -47,6 +47,11 @@ class Group extends ApiEntity {
    * @Groups({"api"})
    */
   protected $roles;
+
+  /**
+   * @ORM\OneToMany(targetEntity="Indholdskanalen\MainBundle\Entity\Grouping", mappedBy="group", fetch="EAGER")
+  */
+  protected $grouping;
 
   /**
    * Group constructor.
