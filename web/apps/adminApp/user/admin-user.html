@@ -1,38 +1,48 @@
-<div data-ng-class="{'spinner-element': loading}"></div>
-<article class="grid is-full" ng-if="!loading">
-  <article class="grid--inner">
+<div class="grid is-full">
+  <div class="grid--inner">
     <article class="grid--item">
-      <box heading="{{  user.firstname ? user.firstname + ' ' + user.lastname : user.email }}">
+      <box ng-if="!loading" heading="{{ user.firstname ? user.firstname + ' ' + user.lastname : user.email }}">
         <form name="forms.userUpdate" novalidate ng-submit="submitForm(forms.userUpdate)">
-          <article class="grid--item">
-            <div class="forms-field">
-              <label for="firstname" class="forms-label">Fornavn</label>
-              <input id="firstname" name="firstname" type="text" placeholder="Indtast fornavn"
-                     ng-model="user.firstname"
-                     class="forms-base forms-text">
+          <div data-ng-class="{'spinner-element': loading}"></div>
+          <div class="grid is-halfs">
+            <div class="grid--inner">
+              <article class="grid--item">
+                <div class="forms-field">
+                  <label for="firstname" class="forms-label">Fornavn</label>
+                  <input id="firstname" name="firstname" type="text" placeholder="Indtast fornavn"
+                         ng-model="user.firstname"
+                         class="forms-base forms-text">
+                </div>
+              </article>
+              <article class="grid--item">
+                <div class="forms-field">
+                  <label for="lastname" class="forms-label">Efternavn</label>
+                  <input id="lastname" name="lastname" type="text" placeholder="Indtast efternavn"
+                         ng-model="user.lastname"
+                         class="forms-base forms-text">
+                </div>
+              </article>
             </div>
-          </article>
-          <article class="grid--item">
-            <div class="forms-field">
-              <label for="lastname" class="forms-label">Efternavn</label>
-              <input id="lastname" name="lastname" type="text" placeholder="Indtast efternavn"
-                     ng-model="user.lastname"
-                     class="forms-base forms-text">
+          </div>
+          <div class="grid is-full">
+            <div class="grid--inner">
+              <article class="grid--item">
+                <div class="forms-field">
+                  <label for="email" class="forms-label">E-mail</label>
+                  <input id="email" name="email" type="text" placeholder="Indtast e-mail" ng-model="user.email"
+                         class="forms-base forms-text">
+                  <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.userUpdate)"
+                     data-ng-if="canUpdate(user)">Gem</a>
+                </div>
+              </article>
             </div>
-          </article>
-          <article class="grid--item">
-            <div class="forms-field">
-              <label for="email" class="forms-label">E-mail</label>
-              <input id="email" name="email" type="text" placeholder="Indtast e-mail" ng-model="user.email"
-                     class="forms-base forms-text">
-            </div>
-            <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.userUpdate)"
-               data-ng-if="baseCanUpdate(user)">Gem</a>
-          </article>
+          </div>
         </form>
       </box>
-  </article>
-</article>
+    </article>
+  </div>
+</div>
+
 <div class="grid is-halfs" ng-if="!loading">
   <div class="grid--inner">
     <article class="grid--item">
