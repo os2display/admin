@@ -83,6 +83,8 @@ Feature: admin
     And the JSON node "id" should be equal to 2
     And the JSON node "groups" should have 1 element
     And the JSON node "groups[0].id" should be equal to 1
+    And the JSON node "groups[0].roles" should have 1 element
+    And the JSON node "groups[0].roles" should contain value "ROLE_GROUP_ROLE_ADMIN"
 
   Scenario: Update user's roles in group
     When I send a "PUT" request to "/api/user/2/group/1" with body:
@@ -109,12 +111,21 @@ Feature: admin
     When I send a "GET" request to "/api/user/2/group"
     Then the response status code should be 200
     And the response should be in JSON
-    And print last JSON response
     And the JSON node "" should have 1 element
     And the JSON node "[0].id" should be equal to 1
     And the JSON node "[0].roles" should have 2 elements
-    And the JSON node "[0].roles[0]" should be equal to "ROLE_GROUP_ROLE_ADMIN"
-    And the JSON node "[0].roles[1]" should be equal to "ROLE_TEST"
+    And the JSON node "[0].roles" should contain value "ROLE_GROUP_ROLE_ADMIN"
+    And the JSON node "[0].roles" should contain value "ROLE_TEST"
+
+  Scenario: Get user's role in group
+    When I send a "GET" request to "/api/group/1"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "users" should have 1 element
+    And the JSON node "users[0].id" should be equal to 2
+    And the JSON node "users[0].group_roles" should have 2 elements
+    And the JSON node "users[0].group_roles" should contain value "ROLE_GROUP_ROLE_ADMIN"
+    And the JSON node "users[0].group_roles" should contain value "ROLE_TEST"
 
   Scenario: Remove user from group
     When I send a "DELETE" request to "/api/user/2/group/1"
