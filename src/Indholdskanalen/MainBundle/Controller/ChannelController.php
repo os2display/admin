@@ -116,6 +116,11 @@ class ChannelController extends Controller {
       $sort_order++;
     }
 
+    $groups = isset($post->groups) ? $post->groups : [];
+    $groupManager = $this->get('os2display.group_manager');
+    $groupManager->replaceGroups($groups, $channel);
+    $groupManager->saveGrouping($channel);
+
     // Save the entity.
     $em->persist($channel);
 
@@ -235,6 +240,8 @@ class ChannelController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
+    $this->get('os2display.group_manager')->loadGrouping($channel);
+
     $serializer = $this->get('jms_serializer');
 
     // Create response.
@@ -312,6 +319,10 @@ class ChannelController extends Controller {
     $channel_entities = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findAll();
+
+    foreach ($channel_entities as $channel) {
+      $this->get('os2display.group_manager')->loadGrouping($channel);
+    }
 
     // Create response.
     $response = new Response();
