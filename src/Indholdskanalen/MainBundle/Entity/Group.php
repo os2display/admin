@@ -126,7 +126,11 @@ class Group extends ApiEntity {
         }
       }
 
-      $this->users = array_values($users);
+      $users = array_values($users);
+      foreach ($users as $user) {
+        $user->buildGroupRoles($this);
+      }
+      $this->users = $users;
     }
 
     return $this;
