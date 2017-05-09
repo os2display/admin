@@ -95,7 +95,7 @@ angular.module('adminApp').controller('AdminGroupController', [
 
           $scope.users.push({
             id: user.id,
-            url: '/admin/user/' + user.id,
+            url: '#/admin/user/' + user.id,
             title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
             actions: actions,
             text: text

@@ -18,11 +18,50 @@ angular.module('adminApp').controller('AdminUserController', [
     $scope.loading = true;
     $scope.forms = {};
 
+    // Load roles, then load user.
     $scope.baseApiRequest('get', '/api/user/roles').then(
       function (roles) {
         userRoles = roles;
       }
-    );
+    ).then(function () {
+      // If id set, request that user, else use baseCurrentUser (from BaseController).
+      if ($routeParams.id) {
+        $scope.getEntity('user', {id: $routeParams.id}).then(
+          function success(user) {
+            $timeout(function () {
+              $scope.user = user;
+
+              for (var role in $scope.user.roles) {
+                addRole($scope.user.roles[role]);
+              }
+            });
+          },
+          function error(err) {
+            busService.$emit('log.error', {
+              timeout: 5000,
+              cause: err.code,
+              msg: 'Brugeren kan ikke findes.'
+            });
+
+            // Redirect to dashboard.
+            $location.path('/admin');
+          }
+        ).then(function () {
+          $scope.loading = false;
+        });
+      }
+      else {
+        // Get user from BaseController.
+        $scope.user = $scope.baseCurrentUser;
+
+        // Remove spinner.
+        $scope.loading = false;
+
+        for (var role in $scope.user.roles) {
+          addRole($scope.user.roles[role]);
+        }
+      }
+    });
 
     /**
      * Adds role to userRoles.
@@ -34,87 +73,12 @@ angular.module('adminApp').controller('AdminUserController', [
         id: role,
         title: userRoles[role] ? userRoles[role] : role
       };
-
-      if ($scope.baseCanUpdate($scope.user)) {
-        newRole.actions = [
-          {
-            'title': 'Fjern rolle',
-            'entity': {id: role},
-            'click': $scope.removeRoleFromUser
-          }
-        ];
-      }
       $scope.userRoles.push(newRole);
-    };
-
-    /**
-     * Remove role from userRoles.
-     *
-     * @param role
-     */
-    function removeRole(role) {
-      var roleIndex = $scope.userRoles.findIndex(function (element) {
-        return element.id === role.id;
-      });
-
-      if (roleIndex) {
-        $scope.userRoles.splice(roleIndex, 1);
-      }
-    }
-
-    /**
-     * Show add role modal.
-     */
-    $scope.addRole = function addRole() {
-      ModalService.showModal({
-        templateUrl: "apps/adminApp/user/popup-add-roles.html",
-        controller: "PopupAddRoles"
-      }).then(function (modal) {
-        modal.close.then(function (role) {
-          if (role) {
-            addRole(role);
-          }
-        });
-      });
     };
 
     $scope.removeRoleFromUser = function removeRole(role) {
       alert('not implemented!');
     };
-
-    // If id set, request that user, else use baseCurrentUser (from BaseController).
-    if ($routeParams.id) {
-      $scope.getEntity('user', {id: $routeParams.id}).then(
-        function success(user) {
-          $timeout(function () {
-            $scope.user = user;
-
-            for (var role in $scope.user.roles) {
-              addRole($scope.user.roles[role]);
-            }
-          });
-        },
-        function error(err) {
-          busService.$emit('log.error', {
-            timeout: 5000,
-            cause: err.code,
-            msg: 'Brugeren kan ikke findes.'
-          });
-
-          // Redirect to dashboard.
-          $location.path('/admin');
-        }
-      ).then(function () {
-        $scope.loading = false;
-      });
-    }
-    else {
-      // Get user from BaseController.
-      $scope.user = $scope.baseCurrentUser;
-
-      // Remove spinner.
-      $scope.loading = false;
-    }
 
     /**
      * Submit form.
