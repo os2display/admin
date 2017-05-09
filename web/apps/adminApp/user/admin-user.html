@@ -24,7 +24,7 @@
                      class="forms-base forms-text">
             </div>
             <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.userUpdate)"
-               data-ng-if="canUpdate(user)">Gem</a>
+               data-ng-if="baseCanUpdate(user)">Gem</a>
           </div>
         </form>
       </article>
@@ -40,7 +40,7 @@
     </article>
     <article class="grid--item">
       <box heading="Roller">
-        <div class="button-icon-link has-spacing-after" ng-click="addRole()" ng-if="canUpdate(user)">
+        <div class="button-icon-link has-spacing-after" ng-click="addRole()" ng-if="baseCanUpdate(user)">
           <i class="icon-rounded material-icons">security</i>
           <span class="button-text has-spacing-before">Tilføj rolle</span>
         </div>

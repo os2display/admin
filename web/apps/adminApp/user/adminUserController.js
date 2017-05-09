@@ -35,7 +35,7 @@ angular.module('adminApp').controller('AdminUserController', [
         title: userRoles[role] ? userRoles[role] : role
       };
 
-      if ($scope.canUpdate($scope.user)) {
+      if ($scope.baseCanUpdate($scope.user)) {
         newRole.actions = [
           {
             'title': 'Fjern rolle',

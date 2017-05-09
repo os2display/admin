@@ -7,12 +7,10 @@
           <input id="name" name="name" type="text" placeholder="Find brugeren ved at indtaste navn"
                  ng-model="filterText" class="forms-base forms-text" autocomplete="off">
         </div>
-
         <box>
-          <content-list items="users" filter="filterText"></content-list>
+          <content-list items="users" filter="filterText" max="5"></content-list>
         </box>
       </article>
-
       <article class="grid--item">
         <a class="button-link" title="Annullér" ng-click="closeModal()">Færdig</a>
       </article>

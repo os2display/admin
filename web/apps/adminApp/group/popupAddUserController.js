@@ -27,6 +27,8 @@ angular.module('adminApp').controller('PopupAddUser', [
       }).then(
         function success(res) {
           addedUser(user);
+
+          $scope.baseRemoveElementFromList($scope.users, user, 'id');
         },
         function error(err) {
           console.error(err);
@@ -40,12 +42,16 @@ angular.module('adminApp').controller('PopupAddUser', [
      * @param user
      */
     function addUserToList(user) {
-      $scope.users.push({
-        id: user.id,
-        title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
-        entity: user,
-        click: $scope.addUser
-      });
+      if (group.users.find(function (element) {
+          return element.email === user.email;
+        }) === undefined) {
+        $scope.users.push({
+          id: user.id,
+          title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
+          entity: user,
+          click: $scope.addUser
+        });
+      }
     }
 
     // Get users.

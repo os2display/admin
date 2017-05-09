@@ -13,7 +13,7 @@
                      class="forms-text">
             </div>
             <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.groupUpdate)"
-               data-ng-if="canUpdate(group)">Gem</a>
+               data-ng-if="baseCanUpdate(group)">Gem</a>
           </div>
         </form>
       </article>
@@ -21,7 +21,7 @@
 
     <article class="grid--item">
       <box heading="Brugere">
-        <button-icon-link icon="person_add" button-link="Tilføj bruger" click="showAddUserModal()" ng-if="canUpdate(group)"></button-icon-link>
+        <button-icon-link icon="person_add" button-link="Tilføj bruger" click="showAddUserModal()" ng-if="baseCanUpdate(group)"></button-icon-link>
         <content-list items="users" max="max" order="-id"></content-list>
         <div class="box-link" ng-if="allLinks">
           <a href="#/admin/groups" title="Alle grupper" class="box-link--link">Alle grupper</a>
