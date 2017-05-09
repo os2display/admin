@@ -48,11 +48,13 @@
     <article class="grid--item">
       <box heading="Grupper">
         <content-list items="user.groups"></content-list>
+        <span ng-if="user.groups.length === 0">Brugeren er ikke med i nogen gruppe</span>
       </box>
     </article>
     <article class="grid--item">
       <box heading="Roller">
         <content-list items="userRoles"></content-list>
+        <span ng-if="userRoles.length === 0">Brugeren har ingen roller</span>
       </box>
     </article>
   </div>
