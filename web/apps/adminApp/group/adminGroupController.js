@@ -27,6 +27,11 @@ angular.module('adminApp').controller('AdminGroupController', [
         roles: entity.roles
       }).then(
         function success(userGroup) {
+          busService.$emit('log.info', {
+            timeout: 2000,
+            msg: 'Grupperolle sat.'
+          });
+
           entity.user.roles = userGroup.roles;
 
           // Remove an re-add role.
@@ -34,7 +39,11 @@ angular.module('adminApp').controller('AdminGroupController', [
           addToUsers(entity.user);
         },
         function error(err) {
-          console.error(err);
+          busService.$emit('log.error', {
+            timeout: 5000,
+            cause: err.code,
+            msg: 'Grupperolle blev ikke sat!'
+          });
         }
       )
     };
@@ -46,11 +55,20 @@ angular.module('adminApp').controller('AdminGroupController', [
       $scope.baseApiRequest('delete', '/api/user/' + user.id + '/group/' + $scope.group.id).then(
         function success() {
           $timeout(function () {
+            busService.$emit('log.info', {
+              timeout: 2000,
+              msg: 'Bruger fjernet fra gruppe.'
+            });
+
             $scope.baseRemoveElementFromList($scope.users, user, 'id');
           });
         },
         function error(err) {
-          console.error(err);
+          busService.$emit('log.error', {
+            timeout: 5000,
+            cause: err.code,
+            msg: 'Kunne ikke fjerne bruger fra gruppen.'
+          });
         }
       )
     };
@@ -62,6 +80,8 @@ angular.module('adminApp').controller('AdminGroupController', [
      */
     function addToUsers(user) {
       var actions = [];
+
+      // @TODO: Use roles from user object instead of extra load.
 
       $scope.baseApiRequest('get', '/api/user/' + user.id + '/group/' + $scope.group.id).then(
         function success(group) {
@@ -144,6 +164,9 @@ angular.module('adminApp').controller('AdminGroupController', [
       );
     });
 
+    /**
+     * Show add user modal.
+     */
     $scope.showAddUserModal = function showAddUserModal() {
       ModalService.showModal({
         templateUrl: "apps/adminApp/group/popup-add-user.html",
