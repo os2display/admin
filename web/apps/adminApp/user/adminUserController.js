@@ -152,7 +152,7 @@ angular.module('adminApp').controller('AdminUserController', [
     var addRoleToUser = function addRoleToUser(roleToAdd) {
       var roles = [];
       for (var role in $scope.user.roles) {
-        roles.push($scope.user.roles[role]);
+        roles.push(role);
       }
 
       if (roles.indexOf(roleToAdd.id) === -1) {

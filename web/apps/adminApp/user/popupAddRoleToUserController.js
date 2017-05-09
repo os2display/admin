@@ -24,7 +24,7 @@ angular.module('adminApp').controller('PopupAddRoleToUser', [
       if (!f) {
         $scope.elements.push({
           id: element.id,
-          title: element.id,  // element.displayName
+          title: element.title,
           entity: element,
           click: $scope.clickCallback
         });
