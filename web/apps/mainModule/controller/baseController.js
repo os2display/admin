@@ -11,13 +11,12 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
     'use strict';
 
     var self = this;
-    self.user = null;
-    $scope.baseCurrentUser = self.user;
+    $scope.baseCurrentUser = null;
 
     // Get the current user.
     userService.getCurrentUser().then(
       function (currentUser) {
-        self.user = currentUser;
+        $scope.baseCurrentUser = currentUser;
       },
       function error(err) {
         console.error(err);
@@ -71,7 +70,7 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
      * @param type
      */
     $scope.baseCanCreate = function baseCanCreate(type) {
-      return hasPermission(self.user, 'can_create_' + type);
+      return hasPermission($scope.baseCurrentUser, 'can_create_' + type);
     };
 
     /**
@@ -80,7 +79,7 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
      * @param type
      */
     $scope.baseCanAdd = function baseCanAdd(type) {
-      return hasPermission(self.user, 'can_add_' + type);
+      return hasPermission($scope.baseCurrentUser, 'can_add_' + type);
     };
 
     /**

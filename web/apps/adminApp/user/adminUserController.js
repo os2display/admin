@@ -18,6 +18,16 @@ angular.module('adminApp').controller('AdminUserController', [
     $scope.loading = true;
     $scope.forms = {};
 
+    /**
+     * Set user on scope.
+     *
+     * @param user
+     */
+    function setUser(user) {
+      $scope.user = user;
+      $scope.userHeading = $scope.user.firstname ? $scope.user.firstname + ' ' + $scope.user.lastname : $scope.user.email;
+    }
+
     // Load roles, then load user.
     $scope.baseApiRequest('get', '/api/user/roles').then(
       function (roles) {
@@ -29,7 +39,7 @@ angular.module('adminApp').controller('AdminUserController', [
         $scope.getEntity('user', {id: $routeParams.id}).then(
           function success(user) {
             $timeout(function () {
-              $scope.user = user;
+              setUser(user);
 
               for (var role in $scope.user.roles) {
                 addRole($scope.user.roles[role]);
@@ -52,7 +62,7 @@ angular.module('adminApp').controller('AdminUserController', [
       }
       else {
         // Get user from BaseController.
-        $scope.user = $scope.baseCurrentUser;
+        setUser($scope.baseCurrentUser);
 
         // Remove spinner.
         $scope.loading = false;
@@ -102,7 +112,7 @@ angular.module('adminApp').controller('AdminUserController', [
 
       $scope.updateEntity('user', $scope.user).then(
         function success(user) {
-          $scope.user = user;
+          setUser(user);
 
           // Display message success.
           busService.$emit('log.info', {
