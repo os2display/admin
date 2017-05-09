@@ -86,6 +86,22 @@ class User extends BaseUser {
   protected $userGroups;
 
   /**
+   * @VirtualProperty()
+   * @SerializedName("displayName")
+   * @Groups({"api"})
+   */
+  public function __toString() {
+    if ($this->getFirstname() && $this->getLastname()) {
+      return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+    if ($this->getEmail()) {
+      return $this->getEmail();
+    }
+
+    return 'user#' . $this->getId();
+  }
+
+  /**
    * Constructor
    */
   public function __construct() {
