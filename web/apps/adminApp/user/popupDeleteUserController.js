@@ -37,14 +37,14 @@ angular.module('adminApp').controller('PopupDeleteUser', [
       $scope.loading = true;
 
       $scope.deleteEntity('user', $scope.user).then(
-        function success(user) {
+        function success() {
           // Display message success.
           busService.$emit('log.info', {
             timeout: 5000,
             msg: 'Brugeren blev slettet.'
           });
 
-          close(user);
+          close($scope.user);
         },
         function error(err) {
           // Display message success.

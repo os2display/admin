@@ -61,13 +61,7 @@ angular.module('adminApp').controller('AdminGroupsController', [
      */
     function removeGroup(group) {
       $timeout(function () {
-        var findGroup = $scope.groups.findIndex(function (element, index, array) {
-          return element.id === group.id;
-        });
-
-        if (findGroup) {
-          $scope.groups.splice(findGroup, 1);
-        }
+        $scope.baseRemoveElementFromList($scope.groups, group, 'id');
       });
     }
 

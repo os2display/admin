@@ -60,13 +60,7 @@ angular.module('adminApp').controller('AdminUsersController', [
      */
     function removeUser(user) {
       $timeout(function () {
-        var findUser = $scope.users.findIndex(function (element, index, array) {
-          return element.id === user.id;
-        });
-
-        if (findUser) {
-          $scope.users.splice(findUser, 1);
-        }
+        $scope.baseRemoveElementFromList($scope.users, user, 'id');
       });
     }
 
