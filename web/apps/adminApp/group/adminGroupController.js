@@ -91,7 +91,7 @@ angular.module('adminApp').controller('AdminGroupController', [
                 var roleName = groupRoles[roleId];
 
                 actions.push({
-                  title: 'Sæt gruppe role: ' + roleName,
+                  title: 'Sæt grupperolle: ' + roleName,
                   click: $scope.setRoleToUser,
                   entity: {
                     user: user,
