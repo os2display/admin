@@ -3,84 +3,71 @@
  * Controller for the popup: create user.
  */
 
-angular.module('adminApp').controller('PopupCreateUser', ['busService', '$scope', '$timeout', 'close', '$controller',
+angular.module('adminApp').controller('PopupCreateUser', [
+  'busService', '$scope', '$timeout', 'close', '$controller',
   function (busService, $scope, $timeout, close, $controller) {
     'use strict';
 
     // Extend BaseController.
-    $controller('BaseController', { $scope: $scope });
+    $controller('BaseApiController', {$scope: $scope});
 
-    $scope.email = "";
+    $scope.user = {
+      email: ''
+    };
     $scope.loading = false;
     $scope.errors = [];
+    $scope.forms = {};
 
     /**
      * Close the modal.
      */
-    $scope.closeModal = function() {
+    $scope.closeModal = function () {
       close(null);
     };
 
     /**
-     * Create user.
+     * Submit form.
+     *
+     * @param form
      */
-    $scope.createUser = function () {
+    $scope.submitForm = function (form) {
       if ($scope.loading) {
         return;
       }
 
       $scope.errors = [];
 
-      if ($scope.userCreateForm.emailInput.$invalid) {
-        $scope.errors.push('Ugyldig email.');
+      if (form.emailInput.$invalid) {
+        $scope.errors.push('E-mail er ikke gyldig');
         return;
       }
 
       $scope.loading = true;
 
-      busService.$emit('apiService.createEntity', {
-        type: 'user',
-        returnEvent: 'PopupCreateUser.returnCreateUser',
-        data: {
-          email: $scope.email
+      $scope.createEntity('user', $scope.user).then(
+        function success(user) {
+          // Display message success.
+          busService.$emit('log.info', {
+            timeout: 5000,
+            msg: 'Brugeren blev oprettet'
+          });
+
+          close(user);
+        },
+        function error(err) {
+          if (err.code === 400) {
+            $scope.errors.push("Ugyldigt input");
+          }
+          else if (err.code === 409) {
+            $scope.errors.push("Brugeren eksisterer allerede");
+          }
+          else {
+            $scope.errors.push("Brugeren kunne ikke oprettes");
+          }
         }
+      ).then(function () {
+        $scope.loading = false;
       });
     };
-
-    /**
-     * returnCreateUser listener.
-     * @type {*}
-     */
-    var cleanupReturnCreateUserListener = busService.$on('PopupCreateUser.returnCreateUser', function (event, result) {
-      $timeout(function () {
-        $scope.loading = false;
-
-        if (result.error) {
-          // @TODO: Better way of handling errors. Message should be created (and translated) in Symfony.
-          if (result.error.code === 400) {
-            $scope.errors.push("Ugyldig email.");
-          }
-          if (result.error.code === 409) {
-            $scope.errors.push("Brugeren eksisterer allerede.");
-          }
-
-          return;
-        }
-
-        $scope.creatingUser = false;
-
-        // Display message success.
-        busService.$emit('log.info', {
-          timeout: 5000,
-          msg: 'Brugeren blev oprettet.'
-        });
-
-        close(result);
-      });
-    });
-
-    $scope.$on('$destroy', function () {
-      cleanupReturnCreateUserListener();
-    });
   }
 ]);

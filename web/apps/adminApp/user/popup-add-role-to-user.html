@@ -1,0 +1,19 @@
+<popup>
+  <div class="grid is-full ">
+    <div class="grid--inner">
+      <article class="grid--item">
+        <div class="forms-field">
+          <label for="name" class="forms-label">{{ heading }}</label>
+          <input id="name" name="name" type="text" placeholder="{{ searchPlaceholder }}"
+                 ng-model="filterText" class="forms-base forms-text" autocomplete="off">
+        </div>
+        <box>
+          <content-list items="elements" filter="filterText" max="5"></content-list>
+        </box>
+      </article>
+      <article class="grid--item">
+        <a class="button-link" title="Færdig" ng-click="closeModal()">Færdig</a>
+      </article>
+    </div>
+  </div>
+</popup>

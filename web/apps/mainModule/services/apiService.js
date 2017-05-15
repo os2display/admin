@@ -7,6 +7,9 @@ angular.module('mainModule').service('apiService', [
     'use strict';
 
     function sendRequest(method, url, returnEvent, data) {
+      // @FIXME: Handle locale in a better way
+      url += (url.indexOf('?') < 0 ? '?' : '&') + 'locale=da';
+
       $http({
         method: method,
         url: url,

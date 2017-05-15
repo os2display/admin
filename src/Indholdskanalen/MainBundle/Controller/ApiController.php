@@ -163,15 +163,16 @@ class ApiController extends FOSRestController {
 
     $user->setApiData(['permissions' => $permissions]);
 
-    $userRoles = array_map(function ($role) {
-      return new Role($role);
-    }, $user->getRoles(FALSE));
-    $roles = $this->get('security.role_hierarchy')->getReachableRoles($userRoles);
-    $userRoles = array_map(function (Role $role) {
-      return $role->getRole();
-    }, $roles);
+    $translator = $this->get('translator');
+    $request = $this->container->get('request_stack')->getCurrentRequest();
+    $locale = $request->get('locale', $this->getParameter('locale'));
 
-    $user->setUserRoles(array_unique($userRoles));
+    $roleNames = [];
+    foreach ($user->getRoles(FALSE, FALSE) as $roleName) {
+      $roleNames[$roleName] = $translator->trans($roleName, [], 'IndholdskanalenMainBundle', $locale);
+    }
+
+    $user->setRoleNames($roleNames);
   }
 
 }

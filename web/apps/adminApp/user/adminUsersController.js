@@ -9,7 +9,7 @@ angular.module('adminApp').controller('AdminUsersController', [
     'use strict';
 
     // Extend BaseController.
-    $controller('BaseController', {$scope: $scope});
+    $controller('BaseApiController', {$scope: $scope});
 
     $scope.usersLoading = true;
     $scope.users = null;
@@ -24,19 +24,19 @@ angular.module('adminApp').controller('AdminUsersController', [
     function addUser(user) {
       var actions = [];
 
-      if ($scope.canRead(user)) {
+      if ($scope.baseCanRead(user)) {
         actions.push({
           url: '#/admin/user/' + user.id,
           title: 'Se bruger'
         });
       }
-      if ($scope.canUpdate(user)) {
+      if ($scope.baseCanUpdate(user)) {
         actions.push({
           url: '#/admin/user/' + user.id,
           title: 'Rediger bruger'
         });
       }
-      if ($scope.canDelete(user)) {
+      if ($scope.baseCanDelete(user)) {
         actions.push({
           click: $scope.deleteUser,
           entity: user,
@@ -47,7 +47,7 @@ angular.module('adminApp').controller('AdminUsersController', [
       $scope.users.push({
         id: user.id,
         url: '#/admin/user/' + user.id,
-        title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
+        title: user.displayName,
         actions: actions
       });
     }
@@ -60,56 +60,36 @@ angular.module('adminApp').controller('AdminUsersController', [
      */
     function removeUser(user) {
       $timeout(function () {
-        var findUser = $scope.users.findIndex(function (element, index, array) {
-          return element.id === user.id;
-        });
-
-        if (findUser) {
-          $scope.users.splice(findUser, 1);
-        }
+        $scope.baseRemoveElementFromList($scope.users, user, 'id');
       });
     }
 
-    /**
-     * returnUsers listener.
-     * @type {*}
-     */
-    var cleanupUsersListener = busService.$on('AdminUsersController.returnUsers', function (event, result) {
-      $timeout(function () {
-        if (result.error) {
-          // Display message success.
-          busService.$emit('log.error', {
-            cause: result.error.code,
-            msg: 'Brugere kunne ikke hentes.'
-          });
-
-          // Remove spinner.
-          $scope.usersLoading = false;
-
-          return;
-        }
-
+    // Get the users.
+    $scope.getEntities('user').then(
+      function success(users) {
         $scope.users = [];
 
-        for (var user in result) {
-          if (result.hasOwnProperty(user)) {
-            addUser(result[user]);
+        for (var user in users) {
+          if (users.hasOwnProperty(user)) {
+            addUser(users[user]);
           }
         }
-
-        $scope.usersLoading = false;
-      });
+      },
+      function error(err) {
+        // Display message success.
+        busService.$emit('log.error', {
+          cause: err.code,
+          msg: 'Brugere kunne ikke hentes.'
+        });
+      }
+    ).then(function () {
+      $scope.usersLoading = false;
     });
 
-    // Emit event to get the user.
-    busService.$emit('apiService.getEntities', {
-      type: 'user',
-      returnEvent: 'AdminUsersController.returnUsers'
-    });
-
-    // Show create user modal.
+    /**
+     * Show create user modal.
+     */
     $scope.createUser = function () {
-      // Just provide a template url, a controller and call 'showModal'.
       ModalService.showModal({
         templateUrl: "apps/adminApp/user/popup-create-user.html",
         controller: "PopupCreateUser"
@@ -126,7 +106,6 @@ angular.module('adminApp').controller('AdminUsersController', [
      * Show delete user modal.
      */
     $scope.deleteUser = function (user) {
-      // Show modal.
       ModalService.showModal({
         templateUrl: "apps/adminApp/user/popup-delete-user.html",
         controller: "PopupDeleteUser",
@@ -141,14 +120,5 @@ angular.module('adminApp').controller('AdminUsersController', [
         });
       });
     };
-    
-    /**
-     * on destroy.
-     *
-     * Clean up listeners.
-     */
-    $scope.$on('$destroy', function destroy() {
-      cleanupUsersListener();
-    });
   }
 ]);

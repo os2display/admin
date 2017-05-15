@@ -8,7 +8,7 @@
  * html parameters:
  *   items: The item to render.
  */
-angular.module('styleguideComponentsApp').directive('panelMenu', function(){
+angular.module('styleguideComponentsApp').directive('panelMenu', ['$document', function ($document) {
   return {
     restrict: 'E',
     replace: true,
@@ -16,22 +16,22 @@ angular.module('styleguideComponentsApp').directive('panelMenu', function(){
       items: '='
     },
     link: function (scope) {
-      scope.showMenu = false;
+      scope.menuOpen = false;
 
-      scope.toggle = function () {
-        scope.showMenu = !scope.showMenu;
-      }
+      scope.toggleMenu = function () {
+        scope.menuOpen = !scope.menuOpen;
+      };
     },
     template:
       '<div>' +
-        '<span class="content-list-item--icon" ng-click="toggle()">' +
+        '<span class="content-list-item--icon" ng-click="toggleMenu()">' +
           '<i class="icon-default material-icons">more_vert</i>' +
         '</span>' +
-        '<div class="panel-menu is-positioned" ng-class="{\'is-hidden\': !showMenu}" ng-click="showMenu = false">' +
+        '<div class="panel-menu is-positioned" ng-class="{\'is-hidden\': !menuOpen}">' +
           '<box>' +
-            '<content-list items="items"></content-list>' +
+            '<content-list items="items" ng-click="menuOpen = false"></content-list>' +
           '</box>' +
         '</div>' +
       '</div>'
   }
-});
+}]);

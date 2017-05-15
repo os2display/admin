@@ -9,6 +9,8 @@ namespace Indholdskanalen\MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -20,14 +22,14 @@ class Group extends ApiEntity {
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   protected $id;
 
   /**
    * @Assert\NotBlank()
    * @ORM\Column(name="title", type="string", nullable=false)
-   * @Groups({"api"})
+   * @Groups({"api", "api-bulk"})
    */
   protected $title;
 
@@ -47,6 +49,24 @@ class Group extends ApiEntity {
    * @Groups({"api"})
    */
   protected $roles;
+
+  /**
+   * @ORM\OneToMany(targetEntity="Indholdskanalen\MainBundle\Entity\Grouping", mappedBy="group", fetch="EAGER")
+  */
+  protected $grouping;
+
+  /**
+   * @VirtualProperty()
+   * @SerializedName("displayName")
+   * @Groups({"api"})
+   */
+  public function __toString() {
+    if ($this->getTitle()) {
+      return $this->getTitle();
+    }
+
+    return 'group#' . $this->getId();
+  }
 
   /**
    * Group constructor.
@@ -121,7 +141,11 @@ class Group extends ApiEntity {
         }
       }
 
-      $this->users = array_values($users);
+      $users = array_values($users);
+      foreach ($users as $user) {
+        $user->buildGroupRoles($this);
+      }
+      $this->users = $users;
     }
 
     return $this;

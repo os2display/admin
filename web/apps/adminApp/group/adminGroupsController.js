@@ -24,19 +24,19 @@ angular.module('adminApp').controller('AdminGroupsController', [
     function addGroup(group) {
       var actions = [];
 
-      if ($scope.canRead(group)) {
+      if ($scope.baseCanRead(group)) {
         actions.push({
           url: '#/admin/group/' + group.id,
           title: 'Se gruppe'
         });
       }
-      if ($scope.canUpdate(group)) {
+      if ($scope.baseCanUpdate(group)) {
         actions.push({
           url: '#/admin/group/' + group.id,
           title: 'Rediger gruppe'
         });
       }
-      if ($scope.canDelete(group)) {
+      if ($scope.baseCanDelete(group)) {
         actions.push({
           click: $scope.deleteGroup,
           entity: group,
@@ -48,7 +48,7 @@ angular.module('adminApp').controller('AdminGroupsController', [
       $scope.groups.push({
         id: group.id,
         url: '#/admin/group/' + group.id,
-        title: group.title,
+        title: group.displayName,
         actions: actions
       });
     }
@@ -61,17 +61,11 @@ angular.module('adminApp').controller('AdminGroupsController', [
      */
     function removeGroup(group) {
       $timeout(function () {
-        var findGroup = $scope.groups.findIndex(function (element, index, array) {
-          return element.id === group.id;
-        });
-
-        if (findGroup) {
-          $scope.groups.splice(findGroup, 1);
-        }
+        $scope.baseRemoveElementFromList($scope.groups, group, 'id');
       });
     }
 
-    // Get the group.
+    // Get the groups.
     $scope.getEntities('group').then(
       function success(result) {
         $scope.groups = [];
@@ -90,7 +84,6 @@ angular.module('adminApp').controller('AdminGroupsController', [
         });
       }
     ).then(function () {
-      // Remove spinner.
       $scope.groupsLoading = false;
     });
 
