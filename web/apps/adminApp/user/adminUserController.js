@@ -239,11 +239,18 @@ angular.module('adminApp').controller('AdminUserController', [
           });
         },
         function error(err) {
-          // Display message success.
-          busService.$emit('log.error', {
-            cause: err.code,
-            msg: 'Bruger kunne ikke opdateres.'
-          });
+          if (err.code === 409) {
+            busService.$emit('log.error', {
+              cause: err.code,
+              msg: 'Bruger kunne ikke opdateres. Email eksisterer allerede.'
+            });
+          }
+          else {
+            busService.$emit('log.error', {
+              cause: err.code,
+              msg: 'Bruger kunne ikke opdateres.'
+            });
+          }
         }
       ).then(function () {
         $scope.loading = false;
