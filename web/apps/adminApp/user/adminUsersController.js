@@ -49,7 +49,7 @@ angular.module('adminApp').controller('AdminUsersController', [
           $scope.users.push({
             id: user.id,
             url: '#/admin/user/' + user.id,
-            title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
+            title: user.displayName,
             actions: actions
           });
         }

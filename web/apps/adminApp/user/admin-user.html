@@ -1,7 +1,9 @@
+<div data-ng-class="{'spinner-element': loading}"></div>
+
 <div class="grid is-full">
   <div class="grid--inner">
     <article class="grid--item">
-      <box ng-if="!loading" heading="{{ userHeading }}">
+      <box ng-if="!loading" heading="{{ user.displayName }}">
         <form name="forms.userUpdate" novalidate ng-submit="submitForm(forms.userUpdate)">
           <div data-ng-class="{'spinner-element': loading}"></div>
           <div class="grid is-halfs">
@@ -47,7 +49,7 @@
   <div class="grid--inner">
     <article class="grid--item">
       <box heading="Grupper">
-        <content-list items="user.groups"></content-list>
+        <content-list items="userGroups"></content-list>
         <span ng-if="user.groups.length === 0">Brugeren er ikke med i nogen gruppe</span>
       </box>
     </article>

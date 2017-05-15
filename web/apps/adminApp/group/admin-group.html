@@ -3,7 +3,7 @@
 <div class="grid is-full " ng-if="!loading">
   <div class="grid--inner">
     <article class="grid--item">
-      <box heading="{{ groupHeading }}">
+      <box heading="{{ group.displayName }}">
         <form name="forms.groupUpdate" novalidate ng-submit="submitForm(forms.groupUpdate)">
           <div class="forms-field">
             <label for="titel" class="forms-label">Titel</label>

@@ -49,7 +49,7 @@ angular.module('adminApp').controller('PopupAddUser', [
       if (!f) {
         $scope.users.push({
           id: user.id,
-          title: user.firstname ? user.firstname + (user.lastname ? " " + user.lastname : '') : user.username,
+          title: user.displayName,
           entity: user,
           click: $scope.addUser
         });

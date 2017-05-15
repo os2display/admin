@@ -1,1 +1,1 @@
-See the shared changelog: https://github.com/Indholdskanalen/docs/blob/master/CHANGELOG.md
+See the shared changelog: https://github.com/os2display/docs/blob/master/CHANGELOG.md
