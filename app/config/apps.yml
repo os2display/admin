@@ -36,3 +36,37 @@ parameters:
         - mainModule
         - ngRoute
         - bw.paging
+
+    styleguideComponentsApp:
+      files:
+        - /apps/styleguideComponentsApp/styleguideComponents.js
+        - /apps/styleguideComponentsApp/modules/box.js
+        - /apps/styleguideComponentsApp/modules/buttonIconLink.js
+        - /apps/styleguideComponentsApp/modules/contentList.js
+        - /apps/styleguideComponentsApp/modules/contentListItem.js
+        - /apps/styleguideComponentsApp/modules/panelMenu.js
+        - /apps/styleguideComponentsApp/modules/popup.js
+      dependencies:
+
+    adminApp:
+      container: true
+      files:
+        - /apps/adminApp/adminApp.js
+        - /apps/adminApp/dashboard/adminDashboardController.js
+        - /apps/adminApp/group/adminGroupsController.js
+        - /apps/adminApp/group/adminGroupController.js
+        - /apps/adminApp/group/popupCreateGroupController.js
+        - /apps/adminApp/group/popupDeleteGroupController.js
+        - /apps/adminApp/group/popupAddUserController.js
+        - /apps/adminApp/user/adminUsersController.js
+        - /apps/adminApp/user/adminUserController.js
+        - /apps/adminApp/user/popupCreateUserController.js
+        - /apps/adminApp/user/popupDeleteUserController.js
+        - /apps/adminApp/user/popupAddRoleToUserController.js
+      dependencies:
+        - styleguideComponentsApp
+        - busModule
+        - mainModule
+        - ngRoute
+        - angularModalService
+        - messageApp

@@ -85,7 +85,7 @@ class ScreenController extends Controller {
 
     // Update fields.
     $screen->setTitle(isset($post->title) ? $post->title : NULL);
-    $screen->setDescription(isset($post->description) ? $post->title : NULL);
+    $screen->setDescription(isset($post->description) ? $post->description : NULL);
     $screen->setOptions(isset($post->options) ? $post->options : NULL);
     $screen->setModifiedAt(time());
 
@@ -205,6 +205,11 @@ class ScreenController extends Controller {
       $middlewareService->pushScreenUpdate($screen);
     }
 
+    $groups = isset($post->groups) ? $post->groups : [];
+    $groupManager = $this->get('os2display.group_manager');
+    $groupManager->replaceGroups($groups, $screen);
+    $groupManager->saveGrouping($screen);
+
     // Save the entity.
     $em->persist($screen);
     $em->flush();
@@ -231,6 +236,8 @@ class ScreenController extends Controller {
     $screen = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
+
+    $this->get('os2display.group_manager')->loadGrouping($screen);
 
     // Create response.
     $response = new Response();
@@ -428,6 +435,10 @@ class ScreenController extends Controller {
     // Screen entities
     $screen_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
       ->findAll();
+
+    foreach ($screen_entities as $screen) {
+      $this->get('os2display.group_manager')->loadGrouping($screen);
+    }
 
     // Create response.
     $response = new Response();

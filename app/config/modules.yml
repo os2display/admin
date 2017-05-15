@@ -13,10 +13,13 @@ parameters:
 
     mainModule:
       files:
+        - /apps/mainModule/controller/baseController.js
+        - /apps/mainModule/controller/baseApiController.js
+        - /apps/mainModule/services/apiService.js
         - /apps/mainModule/services/bodyService.js
-        - /apps/mainModule/services/userService.js
         - /apps/mainModule/services/menuItemService.js
         - /apps/mainModule/services/searchService.js
+        - /apps/mainModule/services/userService.js
       dependencies:
 
   bootstrap:
@@ -24,6 +27,7 @@ parameters:
       - logModule
       - mainModule
     services:
+      - apiService
       - logService
       - userService
       - searchService

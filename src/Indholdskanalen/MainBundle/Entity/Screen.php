@@ -6,14 +6,12 @@
 
 namespace Indholdskanalen\MainBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\MaxDepth;
-
+use Doctrine\ORM\Mapping as ORM;
+use Indholdskanalen\MainBundle\Traits\Groupable;
 use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Extra
@@ -21,7 +19,9 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="ik_screen")
  * @ORM\Entity
  */
-class Screen {
+class Screen implements GroupableEntity {
+  use Groupable;
+
   /**
    * @ORM\Column(type="integer")
    * @ORM\Id

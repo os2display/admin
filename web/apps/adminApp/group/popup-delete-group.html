@@ -1,0 +1,36 @@
+<popup>
+  <div data-ng-class="{'spinner-element': loading}"></div>
+  <form name="forms.groupDeleteForm" novalidate ng-submit="submitForm(forms.groupDeleteForm)" ng-show="!loading">
+    <div class="grid is-full">
+      <div class="grid--inner">
+        <article class="grid--item">
+          <h2 class="heading-has-spacing-after">Er du sikker på du vil slette gruppen?</h2>
+        </article>
+        <article class="grid--item">
+          <p><strong>{{ group.title }}</strong></p>
+        </article>
+        <article class="grid--item">
+          <div class="message">
+            <div class="message--inner is-inline-error">
+              <div class="message--content">
+                Bemærk! Dette kan ikke fortrydes.
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="grid is-halfs">
+      <div class="grid--inner">
+        <article class="grid--item">
+          <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
+        </article>
+        <article class="grid--item">
+          <a type="submit" class="button-link " title="Slet gruppe" ng-click="submitForm(forms.groupDeleteForm)"
+             ng-if="baseCanDelete(group)">Slet gruppe</a>
+        </article>
+      </div>
+    </div>
+  </form>
+</popup>

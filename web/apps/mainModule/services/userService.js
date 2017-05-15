@@ -1,29 +1,55 @@
 /**
  * User service.
  */
-angular.module('mainModule').service('userService', ['busService', '$http',
-  function (busService, $http) {
+angular.module('mainModule').service('userService', ['busService', '$http', '$q',
+  function (busService, $http, $q) {
     'use strict';
 
-    var user;
+    var currentUser;
 
-    busService.$on('userService.requestUser', function requestUser(event, args) {
-      if (user === undefined) {
-        $http.get('/api/user')
-          .success(function (data) {
-            user = data;
-            busService.$emit('userService.returnUser', user);
-          })
-          .error(function (response) {
-            busService.$emit('log.error', {
-              'cause': response,
-              'msg': 'Bruger kunne ikke hentes'
-            });
-          });
+    /**
+     * Get current user promise.
+     *
+     * @return {HttpPromise}
+     */
+    var getCurrentUser = function getCurrentUser() {
+      var deferred = $q.defer();
+
+      if (currentUser) {
+        deferred.resolve(currentUser);
       }
       else {
-        busService.$emit('userService.returnUser', user);
+        $http.get('/api/user/current')
+        .success(function (data) {
+          currentUser = data;
+          deferred.resolve(currentUser);
+        })
+        .error(function (response) {
+
+        });
       }
+
+      return deferred.promise;
+    };
+
+    /**
+     * Get current user event listener.
+     */
+    busService.$on('userService.getCurrentUser', function requestUser(event, args) {
+      getCurrentUser().then(
+        function (user) {
+          busService.$emit('userService.returnCurrentUser', user);
+        },
+        function (err) {
+          busService.$emit('log.error', {
+            'cause': err,
+            'msg': 'Bruger kunne ikke hentes'
+          });
+        }
+      )
     });
+
+
+    this.getCurrentUser = getCurrentUser;
   }
 ]);

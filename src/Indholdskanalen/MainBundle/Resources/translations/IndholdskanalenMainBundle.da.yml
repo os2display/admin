@@ -1,0 +1,16 @@
+user:
+  create:
+    email:
+      subject: Din bruger er oprettet på OS2display
+      title: Hej %name%!
+      content: Der er blevet oprettet en bruger til dig på OS2display.
+      activate: For at aktivere din konto skal du besøge følgende link i din browser:
+
+ROLE_USER: Bruger
+ROLE_GROUP_ADMIN: Gruppeadministrator
+ROLE_USER_ADMIN: Brugeradministrator
+ROLE_ADMIN: Administrator
+ROLE_SUPER_ADMIN: Superadministrator
+
+ROLE_GROUP_ROLE_USER: Bruger
+ROLE_GROUP_ROLE_ADMIN: Administrator
