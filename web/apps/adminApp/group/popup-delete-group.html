@@ -4,7 +4,7 @@
     <div class="grid is-full">
       <div class="grid--inner">
         <article class="grid--item">
-          <h2 class="heading-has-spacing-after">Er du sikker på du vil slette gruppen?</h2>
+          <h2 class="heading-has-spacing-after">{{ 'group.messages.confirm_delete' | translate }}</h2>
         </article>
         <article class="grid--item">
           <p><strong>{{ group.title }}</strong></p>
@@ -13,7 +13,7 @@
           <div class="message">
             <div class="message--inner is-inline-error">
               <div class="message--content">
-                Bemærk! Dette kan ikke fortrydes.
+                {{ 'group.messages.no_reverse_delete' | translate }}
               </div>
             </div>
           </div>
@@ -24,11 +24,11 @@
     <div class="grid is-halfs">
       <div class="grid--inner">
         <article class="grid--item">
-          <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
+          <a class="button-link is-neutral" title="{{ 'common.action.cancel' | translate }}" ng-click="closeModal()">{{ 'common.action.cancel' | translate }}</a>
         </article>
         <article class="grid--item">
-          <a type="submit" class="button-link " title="Slet gruppe" ng-click="submitForm(forms.groupDeleteForm)"
-             ng-if="baseCanDelete(group)">Slet gruppe</a>
+          <a type="submit" class="button-link " title="{{ 'group.actions.delete' | translate }}" ng-click="submitForm(forms.groupDeleteForm)"
+             ng-if="baseCanDelete(group)">{{ 'group.actions.delete' | translate }}</a>
         </article>
       </div>
     </div>

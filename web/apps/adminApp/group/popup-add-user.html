@@ -3,8 +3,9 @@
     <div class="grid--inner">
       <article class="grid--item">
         <div class="forms-field">
-          <label for="name" class="forms-label">Søg efter bruger</label>
-          <input id="name" name="name" type="text" placeholder="Find brugeren ved at indtaste navn"
+          <label for="name" class="forms-label">{{ 'group.actions.search_users' | translate }}</label>
+          <input id="name" name="name" type="text"
+                 placeholder="{{ 'group.placeholder.search_users' | translate }}"
                  ng-model="filterText" class="forms-base forms-text" autocomplete="off">
         </div>
         <box>
@@ -12,7 +13,7 @@
         </box>
       </article>
       <article class="grid--item">
-        <a class="button-link" title="Annullér" ng-click="closeModal()">Færdig</a>
+        <a class="button-link" title="Annullér" ng-click="closeModal()">{{ 'common.action.finish' | translate }}</a>
       </article>
     </div>
   </div>

@@ -1,28 +1,33 @@
 <div data-ng-class="{'spinner-element': loading}"></div>
 
-<div class="grid is-full " ng-if="!loading">
+<div class="grid is-full" ng-if="!loading">
   <div class="grid--inner">
     <article class="grid--item">
       <box heading="{{ group.displayName }}">
         <form name="forms.groupUpdate" novalidate ng-submit="submitForm(forms.groupUpdate)">
           <div class="forms-field">
-            <label for="titel" class="forms-label">Titel</label>
-            <input id="titel" name="titel" type="text" placeholder="Indtast titel" ng-model="group.title"
+            <label for="titel" class="forms-label">{{ 'group.title' | translate }}</label>
+            <input id="titel" name="titel" type="text" placeholder="{{ 'group.placeholder.title' | translate }}"
+                   ng-model="group.title"
                    class="forms-base forms-text">
           </div>
-          <a class="button-link has-spacing-top" title="Gem" data-ng-click="submitForm(forms.groupUpdate)"
-             data-ng-if="baseCanUpdate(group)">Gem</a>
+          <a class="button-link has-spacing-top" title="{{ 'common.action.save' | translate }}"
+             data-ng-click="submitForm(forms.groupUpdate)"
+             data-ng-if="baseCanUpdate(group)">{{ 'common.action.save' | translate }}</a>
         </form>
       </box>
     </article>
 
     <article class="grid--item">
-      <box heading="Brugere">
-        <button-icon-link icon="person_add" button-link="Tilføj bruger" click="showAddUserModal()" ng-if="baseCanUpdate(group)"></button-icon-link>
+      <box heading="{{ 'user.heading' | translate }}">
+        <button-icon-link icon="person_add" button-link="{{ 'common.action.add_user' | translate }}"
+                          click="showAddUserModal()"
+                          ng-if="baseCanUpdate(group)"></button-icon-link>
         <content-list items="users" max="max" order="-id"></content-list>
-        <span ng-if="users.length === 0">Gruppen har ingen brugere</span>
+        <span ng-if="users.length === 0">{{ 'group.messages.empty_users' | translate }}</span>
         <div class="box-link" ng-if="allLinks">
-          <a href="#/admin/groups" title="Alle grupper" class="box-link--link">Alle grupper</a>
+          <a href="#/admin/groups" title="{{ 'group.action.all' | translate }}" class="box-link--link">{{
+            'group.action.all' | translate }}</a>
         </div>
       </box>
     </article>

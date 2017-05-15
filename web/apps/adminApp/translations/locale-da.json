@@ -1,28 +1,70 @@
 {
   "user": {
+    "action": {
+      "all": "Alle brugere",
+      "create": "Opret bruger",
+      "delete": "Slet bruger"
+    },
+    "heading": "Brugere",
     "firstname": "Fornavn",
     "surname": "Efternavn",
     "email": "E-mail",
-    "forms": {
-      "placeholder": {
-        "firstname": "Indtast fornavn",
-        "surname": "Indtast efternavn",
-        "email": "Indtast e-mail"
-      }
+    "placeholder": {
+      "firstname": "Indtast fornavn",
+      "surname": "Indtast efternavn",
+      "email": "Indtast e-mail"
     },
     "messages": {
+      "confirm_delete": "Er du sikker på du vil slette brugeren?",
+      "no_reverse_delete": "Bemærk! Dette kan ikke fortrydes.",
       "empty_groups": "Brugeren er ikke med i nogen gruppe",
-      "empty_roles": "Brugeren har ingen roller"
+      "empty_roles": "Brugeren har ingen roller",
+      "empty_users": "Der er ikke oprettet nogen brugere",
+      "activation_link_text": "Der bliver sendt en e-mail til brugeren med et aktiveringslink."
     }
   },
   "common": {
     "action": {
+      "cancel": "Annullér",
       "save": "Gem",
-      "add_role": "Tilføj rolle"
+      "finish": "Færdig",
+      "add_group": "Tilføj gruppe",
+      "add_role": "Tilføj rolle",
+      "add_user": "Tilføj bruger"
+    },
+    "messages": {
+
     }
   },
   "group": {
-    "heading": "Grupper"
+    "action": {
+      "all": "Alle grupper",
+      "create": "Opret gruppe",
+      "delete": "Slet gruppe",
+      "search_users": "Søg efter bruger",
+      "set_group_role": "Sæt grupperolle: {{ roleName }}",
+      "remove_user": "Fjern bruger fra gruppe"
+    },
+    "title": "Titel",
+    "heading": "Grupper",
+    "placeholder": {
+      "title": "Indtast navn på gruppen",
+      "search_users": "Find brugeren ved at indtaste navn"
+    },
+    "messages": {
+      "confirm_delete": "Er du sikker på du vil slette gruppen?",
+      "form_invalid": "Ugyldigt input",
+      "group_not_found": "Gruppe kan ikke findes",
+      "group_updated": "Gruppe opdateret",
+      "group_not_updated": "Gruppe kunne ikke opdateres",
+      "no_reverse_delete": "Bemærk! Dette kan ikke fortrydes.",
+      "empty_users": "Gruppen har ingen brugere",
+      "empty_groups": "Der er ikke oprettet nogen grupper",
+      "user_role_set": "Grupperolle opdateret",
+      "user_role_not_set": "Grupperolle blev ikke opdateret",
+      "user_removed_from_grouo": "Bruger fjernet fra gruppe",
+      "user_not_removed_from_group": "Kunne ikke fjerne bruger fra gruppen"
+    }
   },
   "role": {
     "heading": "Roller"

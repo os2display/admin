@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('AdminGroupController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller',
-  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller) {
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter) {
     'use strict';
 
     // Extend
     $controller('BaseApiController', {$scope: $scope});
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.group = null;
     $scope.loading = true;
@@ -29,7 +32,7 @@ angular.module('adminApp').controller('AdminGroupController', [
         function success(userGroup) {
           busService.$emit('log.info', {
             timeout: 2000,
-            msg: 'Grupperolle sat.'
+            msg: $translate('group.messages.user_role_set')
           });
 
           entity.user.roles = userGroup.roles;
@@ -40,9 +43,8 @@ angular.module('adminApp').controller('AdminGroupController', [
         },
         function error(err) {
           busService.$emit('log.error', {
-            timeout: 5000,
             cause: err.code,
-            msg: 'Grupperolle blev ikke sat!'
+            msg: $translate('group.messages.user_role_not_set')
           });
         }
       )
@@ -57,7 +59,7 @@ angular.module('adminApp').controller('AdminGroupController', [
           $timeout(function () {
             busService.$emit('log.info', {
               timeout: 2000,
-              msg: 'Bruger fjernet fra gruppe.'
+              msg: $translate('group.messages.user_removed_from_group')
             });
 
             $scope.baseRemoveElementFromList($scope.users, user, 'id');
@@ -67,7 +69,7 @@ angular.module('adminApp').controller('AdminGroupController', [
           busService.$emit('log.error', {
             timeout: 5000,
             cause: err.code,
-            msg: 'Kunne ikke fjerne bruger fra gruppen.'
+            msg: $translate('group.messages.user_not_removed_from_group')
           });
         }
       )
@@ -91,7 +93,7 @@ angular.module('adminApp').controller('AdminGroupController', [
                 var roleName = groupRoles[roleId];
 
                 actions.push({
-                  title: 'Sæt grupperolle: ' + roleName,
+                  title: $translate('group.action.set_group_role', { 'roleName': roleName }),
                   click: $scope.setRoleToUser,
                   entity: {
                     user: user,
@@ -102,7 +104,7 @@ angular.module('adminApp').controller('AdminGroupController', [
             }
 
             actions.push({
-              title: 'Fjern bruger fra gruppe',
+              title: $translate('group.action.remove_user'),
               click: $scope.removeUserFromGroup,
               entity: user
             });
@@ -155,7 +157,7 @@ angular.module('adminApp').controller('AdminGroupController', [
           busService.$emit('log.error', {
             timeout: 5000,
             cause: err.code,
-            msg: 'Gruppe kan ikke findes.'
+            msg: $translate('group.messages.group_not_found')
           });
 
           // Redirect to dashboard.
@@ -193,7 +195,7 @@ angular.module('adminApp').controller('AdminGroupController', [
         busService.$emit('log.error', {
           timeout: 5000,
           cause: err.code,
-          msg: 'Ugyldigt input.'
+          msg: $translate('group.messages.form_invalid')
         });
 
         return;
@@ -213,14 +215,14 @@ angular.module('adminApp').controller('AdminGroupController', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 3000,
-            msg: 'Gruppe opdateret'
+            msg: $translate('group.messages.group_updated')
           });
         },
         function error(err) {
           // Display message success.
           busService.$emit('log.error', {
             cause: err.code,
-            msg: 'Gruppe kunne ikke opdateres'
+            msg: $translate('group.messages.group_not_updated')
           });
         }
       );
