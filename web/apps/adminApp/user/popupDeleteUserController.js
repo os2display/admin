@@ -52,6 +52,7 @@ angular.module('adminApp').controller('PopupDeleteUser', [
         function error(err) {
           // Display message success.
           busService.$emit('log.error', {
+            cause: err.code,
             timeout: 5000,
             msg: $translate('user.messages.user_not_deleted')
           });
