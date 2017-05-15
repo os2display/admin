@@ -13,6 +13,7 @@ angular.module('adminApp').controller('AdminUserController', [
 
     $scope.user = null;
     $scope.userRoles = [];
+    $scope.userGroups = [];
     $scope.loading = true;
     $scope.forms = {};
 
@@ -86,9 +87,20 @@ angular.module('adminApp').controller('AdminUserController', [
     function setUser(user) {
       $scope.user = user;
       $scope.userRoles = [];
+      $scope.userGroups = [];
 
       for (var role in $scope.user.roles) {
         addRoleToDisplayList(role, $scope.user.roles[role]);
+      }
+
+      for (var group in $scope.user.groups) {
+        var group = $scope.user.groups[group];
+
+        $scope.userGroups.push({
+          id: group.id,
+          title: group.displayName,
+          url: '#/admin/group/' + group.id
+        });
       }
     }
 
