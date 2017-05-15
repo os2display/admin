@@ -14,11 +14,11 @@ class EditVoter extends Voter {
   protected $manager;
   protected $decisionManager;
 
-  const CREATE = 'create';
-  const READ = 'read';
-  const UPDATE = 'update';
-  const DELETE = 'delete';
-  const READ_LIST = 'list';
+  const CREATE = 'CREATE';
+  const READ = 'READ';
+  const UPDATE = 'UPDATE';
+  const DELETE = 'DELETE';
+  const READ_LIST = 'LIST';
 
   public function __construct(EntityManagerInterface $manager, AccessDecisionManagerInterface $decisionManager) {
     $this->manager = $manager;

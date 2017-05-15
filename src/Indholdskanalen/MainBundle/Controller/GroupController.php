@@ -15,6 +15,7 @@ use Indholdskanalen\MainBundle\Exception\ValidationException;
 use Indholdskanalen\MainBundle\Security\GroupRoles;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -101,6 +102,8 @@ class GroupController extends ApiController {
    * Finds and displays a group entity.
    *
    * @Rest\Get("/{id}", name="api_group_show")
+   *
+   * @Security("is_granted('READ', group)")
    *
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
    * @return Group

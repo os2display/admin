@@ -49,7 +49,7 @@ class UserController extends ApiController {
    *   }
    * )
    *
-   * @Security("is_granted('list', 'user')")
+   * @Security("is_granted('LIST', 'user')")
    *
    * @param \FOS\RestBundle\Request\ParamFetcherInterface $paramFetcher
    * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -134,7 +134,7 @@ class UserController extends ApiController {
    * Note: In the Security annotation "user" always refers to the current
    * user. Therefore we use parameter name different from "user".
    *
-   * @Security("is_granted('read', aUser)")
+   * @Security("is_granted('READ', aUser)")
    *
    * @param \Indholdskanalen\MainBundle\Entity\User $aUser
    * @return \Indholdskanalen\MainBundle\Entity\User
@@ -233,7 +233,7 @@ class UserController extends ApiController {
    *   description="Add user to group"
    * )
    *
-   * @Security("is_granted('create', group)")
+   * @Security("is_granted('CREATE', group)")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
@@ -254,7 +254,7 @@ class UserController extends ApiController {
    *   description="Update user's roles in group"
    * )
    *
-   * @Security("is_granted('update', group)")
+   * @Security("is_granted('UPDATE', group)")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
@@ -293,7 +293,7 @@ class UserController extends ApiController {
    *   description="Remove user from group"
    * )
    *
-   * @Security("is_granted('update', group)")
+   * @Security("is_granted('UPDATE', group)")
    *
    * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
