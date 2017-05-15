@@ -1,0 +1,30 @@
+{
+  "user": {
+    "firstname": "Fornavn",
+    "surname": "Efternavn",
+    "email": "E-mail",
+    "forms": {
+      "placeholder": {
+        "firstname": "Indtast fornavn",
+        "surname": "Indtast efternavn",
+        "email": "Indtast e-mail"
+      }
+    },
+    "messages": {
+      "empty_groups": "Brugeren er ikke med i nogen gruppe",
+      "empty_roles": "Brugeren har ingen roller"
+    }
+  },
+  "common": {
+    "action": {
+      "save": "Gem",
+      "add_role": "Tilføj rolle"
+    }
+  },
+  "group": {
+    "heading": "Grupper"
+  },
+  "role": {
+    "heading": "Roller"
+  }
+}
