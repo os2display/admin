@@ -6,8 +6,8 @@
 /**
  * Base controller.
  */
-angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$q', '$location',
-  function ($scope, userService, $q, $location) {
+angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$q',
+  function ($scope, userService, $q) {
     'use strict';
 
     var self = this;
@@ -36,9 +36,6 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
     // Get the current user.
     userService.getCurrentUser().then(
       function (currentUser) {
-        if (typeof($scope.checkSecurity) === 'function') {
-          $scope.checkSecurity(currentUser);
-        }
         $scope.baseCurrentUser = currentUser;
       },
       function error(err) {
