@@ -103,7 +103,7 @@ class GroupController extends ApiController {
    *
    * @Rest\Get("/{id}", name="api_group_show")
    *
-   * @Security("is_granted('read', group)")
+   * @Security("is_granted('READ', group)")
    *
    * @param \Indholdskanalen\MainBundle\Entity\Group $group
    * @return Group

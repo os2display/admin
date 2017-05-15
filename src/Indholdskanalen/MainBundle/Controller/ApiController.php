@@ -160,8 +160,16 @@ class ApiController extends FOSRestController {
         'can_create_screen' => $securityMananger->decide([EditVoter::CREATE], Screen::class),
       ];
     }
+    $userRoles = array_map(function ($role) {
+      return new Role($role);
+    }, $user->getRoles(FALSE));
+    $roles = $this->get('security.role_hierarchy')->getReachableRoles($userRoles);
+    $roles = array_unique(array_map(function (Role $role) { return $role->getRole(); }, $roles));
 
-    $user->setApiData(['permissions' => $permissions]);
+    $user->setApiData([
+      'permissions' => $permissions,
+      'roles' => $roles,
+    ]);
 
     $translator = $this->get('translator');
     $request = $this->container->get('request_stack')->getCurrentRequest();
