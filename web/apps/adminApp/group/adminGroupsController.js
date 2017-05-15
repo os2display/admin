@@ -48,7 +48,7 @@ angular.module('adminApp').controller('AdminGroupsController', [
       $scope.groups.push({
         id: group.id,
         url: '#/admin/group/' + group.id,
-        title: group.title,
+        title: group.displayName,
         actions: actions
       });
     }

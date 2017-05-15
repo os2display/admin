@@ -39,7 +39,10 @@ angular.module('adminApp').controller('PopupAddRoleToUser', [
         }
       },
       function error(err) {
-        console.error(err);
+        busService.$emit('log.error', {
+          cause: err.code,
+          msg: 'Roller kunne ikke hentes.'
+        });
       }
     ).then(function () {
       $scope.loading = false;
