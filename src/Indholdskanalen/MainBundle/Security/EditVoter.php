@@ -45,16 +45,16 @@ class EditVoter extends Voter {
         return $this->canCreate($subject, $token);
 
       case self::READ:
-        return $this->canRead($subject, $user);
+        return $this->canRead($subject, $token);
 
       case self::UPDATE:
-        return $this->canUpdate($subject, $user);
+        return $this->canUpdate($subject, $token);
 
       case self::DELETE:
-        return $this->canDelete($subject, $user);
+        return $this->canDelete($subject, $token);
 
       case self::READ_LIST:
-        return $this->canList($subject, $user);
+        return $this->canList($subject, $token);
     }
 
     return FALSE;
@@ -72,47 +72,47 @@ class EditVoter extends Voter {
     return FALSE;
   }
 
-  private function canRead($subject, User $user) {
+  private function canRead($subject, TokenInterface $token) {
     if ($subject instanceof Group) {
-      return $this->canReadGroup($subject, $user);
+      return $this->canReadGroup($subject, $token);
     }
     elseif ($subject instanceof User) {
-      return $this->canReadUser($subject, $user);
+      return $this->canReadUser($subject, $token);
     }
 
     return FALSE;
   }
 
-  private function canUpdate($subject, User $user) {
+  private function canUpdate($subject, TokenInterface $token) {
     if ($subject instanceof Group) {
-      return $this->canUpdateGroup($subject, $user);
+      return $this->canUpdateGroup($subject, $token);
     }
     elseif ($subject instanceof User) {
-      return $this->canUpdateUser($subject, $user);
+      return $this->canUpdateUser($subject, $token);
     }
 
     return FALSE;
   }
 
-  private function canDelete($subject, User $user) {
+  private function canDelete($subject, TokenInterface $token) {
     if ($subject instanceof Group) {
-      return $this->canDeleteGroup($subject, $user);
+      return $this->canDeleteGroup($subject, $token);
     }
     elseif ($subject instanceof User) {
-      return $this->canDeleteUser($subject, $user);
+      return $this->canDeleteUser($subject, $token);
     }
 
     return FALSE;
   }
 
-  private function canList($type, User $user) {
+  private function canList($type, TokenInterface $token) {
     switch ($type) {
       case Group::class:
       case 'group':
-        return $this->canListGroup($user);
+        return $this->canListGroup($token);
       case User::class:
       case 'user':
-        return $this->canListUser($user);
+        return $this->canListUser($token);
     }
 
     return FALSE;
@@ -126,33 +126,45 @@ class EditVoter extends Voter {
     return $this->decisionManager->decide($token, [Roles::ROLE_GROUP_ADMIN]);
   }
 
-  private function canReadGroup(Group $group, User $user) {
+  private function canReadGroup(Group $group, TokenInterface $token) {
+    if ($this->decisionManager->decide($token, [Roles::ROLE_GROUP_ADMIN])) {
+      return TRUE;
+    }
+
     $roles = $this->manager->getRepository(UserGroup::class)->findBy([
       'group' => $group,
-      'user' => $user,
+      'user' => $token->getUser(),
     ]);
 
     return count($roles) > 0;
   }
 
-  private function canUpdateGroup(Group $group, User $user) {
+  private function canUpdateGroup(Group $group, TokenInterface $token) {
+    if ($this->decisionManager->decide($token, [Roles::ROLE_GROUP_ADMIN])) {
+      return TRUE;
+    }
+
     $roles = $this->manager->getRepository(UserGroup::class)->findBy([
       'group' => $group,
-      'user' => $user,
+      'user' => $token->getUser(),
       'role' => GroupRoles::ROLE_GROUP_ROLE_ADMIN,
     ]);
 
     return count($roles) > 0;
   }
 
-  private function canDeleteGroup(Group $group, User $user) {
-    return $this->canUpdateGroup($group, $user);
+  private function canDeleteGroup(Group $group, TokenInterface $token) {
+    return $this->canUpdateGroup($group, $token);
   }
 
-  private function canListGroup(User $user) {
-    // A user can list groups if he is member of a group.
+  private function canListGroup(TokenInterface $token) {
+    if ($this->decisionManager->decide($token, [Roles::ROLE_GROUP_ADMIN])) {
+      return TRUE;
+    }
+
+    // A user can list groups if he is manager of a group.
     $items = $this->manager->getRepository(UserGroup::class)->findBy([
-      'user' => $user,
+      'user' => $token->getUser(),
       'role' => GroupRoles::ROLE_GROUP_ROLE_ADMIN,
     ]);
 
@@ -167,27 +179,37 @@ class EditVoter extends Voter {
     return $this->decisionManager->decide($token, [Roles::ROLE_USER_ADMIN]);
   }
 
-  private function canReadUser(User $user, User $currentUser) {
-    if ($user->getId() === $currentUser->getId()) {
+  private function canReadUser(User $user, TokenInterface $token) {
+    if ($this->decisionManager->decide($token, [Roles::ROLE_USER_ADMIN])) {
+      return TRUE;
+    }
+
+    // Any user can read itself.
+    if ($user->getId() === $token->getUser()->getId()) {
       return TRUE;
     }
 
     return FALSE;
   }
 
-  private function canUpdateUser(User $user, User $currentUser) {
-    if ($user->getId() === $currentUser->getId()) {
+  private function canUpdateUser(User $user, TokenInterface $token) {
+    if ($this->decisionManager->decide($token, [Roles::ROLE_USER_ADMIN])) {
+      return TRUE;
+    }
+
+    // Any user can update itself.
+    if ($user->getId() === $token->getUser()->getId()) {
       return TRUE;
     }
 
     return FALSE;
   }
 
-  private function canDeleteUser(User $user, User $currentUser) {
+  private function canDeleteUser(User $user, TokenInterface $token) {
     return FALSE;
   }
 
-  private function canListUser(User $user) {
+  private function canListUser(TokenInterface $token) {
     return TRUE;
   }
 

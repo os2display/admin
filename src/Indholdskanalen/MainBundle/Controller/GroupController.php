@@ -37,6 +37,8 @@ class GroupController extends ApiController {
    *   tags={"group"}
    * )
    *
+   * @Security("is_granted('LIST', 'group')")
+   *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function indexAction() {
