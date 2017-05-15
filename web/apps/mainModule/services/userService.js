@@ -51,5 +51,14 @@ angular.module('mainModule').service('userService', ['busService', '$http', '$q'
 
 
     this.getCurrentUser = getCurrentUser;
+
+    /**
+     * Check if user (default: current user) has a specified role.
+     */
+    this.hasRole = function hasRole(role, user) {
+      user || (user = currentUser);
+
+      return user && user.api_data && user.api_data.roles && user.api_data.roles.indexOf(role) !== -1;
+    }
   }
 ]);

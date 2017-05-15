@@ -6,22 +6,49 @@
 /**
  * Base controller.
  */
-angular.module('mainModule').controller('BaseController', ['$scope', 'userService',
-  function ($scope, userService) {
+angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$q', '$location',
+  function ($scope, userService, $q, $location) {
     'use strict';
 
     var self = this;
     $scope.baseCurrentUser = null;
 
+    $scope.requireRole = function requirePermissions(role) {
+      var deferred = $q.defer();
+
+      userService.getCurrentUser().then(function (user) {
+        $scope.baseCurrentUser = user;
+
+        if (user && user.api_data && user.api_data.roles && user.api_data.roles.indexOf(role) !== -1) {
+          deferred.resolve(user);
+        } else {
+          deferred.reject({
+            code: 403,
+            message: 'role ' + role + ' required'
+          });
+        }
+      });
+      // @TODO: Handle error when getting user.
+
+      return deferred.promise;
+    };
+
     // Get the current user.
     userService.getCurrentUser().then(
       function (currentUser) {
+        if (typeof($scope.checkSecurity) === 'function') {
+          $scope.checkSecurity(currentUser);
+        }
         $scope.baseCurrentUser = currentUser;
       },
       function error(err) {
         console.error(err);
       }
     );
+
+    $scope.hasRole = function hasRole(role, user) {
+      return userService.hasRole(role, user);
+    }
 
     /**
      * Check if the entity has a given permission.

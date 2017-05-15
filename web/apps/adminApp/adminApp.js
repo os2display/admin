@@ -55,7 +55,7 @@ angular.module('adminApp').service('adminAppSetup', [
       // Get user. Assert has permission to this menu item.
       userService.getCurrentUser().then(
         function (user) {
-          if (user.is_admin) {
+          if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
             busService.$emit('menuApp.returnMainMenuItems', [
               {
                 title: "Admin",
@@ -72,37 +72,50 @@ angular.module('adminApp').service('adminAppSetup', [
 
     // Listen for sub menu requests
     busService.$on('menuApp.requestSubMenuItems', function (event, data) {
-      busService.$emit('menuApp.returnSubMenuItems', [
-          {
-            mainMenuItem: 'admin',
-            items: [
-              {
-                title: 'Oversigt',
-                path: '#/admin',
-                classes: 'overview-right',
-                activeFilter: '/admin',
-                group: 'left',
-                weight: 1
-              },
-              {
-                title: 'Brugere',
-                path: '#/admin/users',
-                classes: 'admin-users',
-                activeFilter: '/admin/user',
-                group: 'left',
-                weight: 2
-              },
-              {
-                title: 'Grupper',
-                path: '#/admin/groups',
-                classes: 'overview-right',
-                activeFilter: '/admin/group',
-                group: 'left',
-                weight: 3
-              }
-            ]
+      userService.getCurrentUser().then(
+        function (user) {
+          var items = [];
+
+          if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
+            items.push({
+              title: 'Oversigt',
+              path: '#/admin',
+              classes: 'overview-right',
+              activeFilter: '/admin',
+              group: 'left',
+              weight: 1
+            });
           }
-        ]
+
+          if (userService.hasRole('ROLE_USER_ADMIN')) {
+            items.push({
+              title: 'Brugere',
+              path: '#/admin/users',
+              classes: 'admin-users',
+              activeFilter: '/admin/user',
+              group: 'left',
+              weight: 2
+            });
+          }
+
+          if (userService.hasRole('ROLE_GROUP_ADMIN')) {
+            items.push({
+              title: 'Grupper',
+              path: '#/admin/groups',
+              classes: 'overview-right',
+              activeFilter: '/admin/group',
+              group: 'left',
+              weight: 3
+            });
+          }
+
+          busService.$emit('menuApp.returnSubMenuItems', [
+            {
+              mainMenuItem: 'admin',
+              items: items
+            }
+          ]);
+        }
       )
     });
   }
