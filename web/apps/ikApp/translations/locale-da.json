@@ -1,0 +1,24 @@
+{
+  "create_channel": {
+    "action": {
+      "save": "Gem kanal",
+      "continue": "Fortsæt"
+    },
+    "heading": {
+      "edit": "Redigér kanal",
+      "create": "Opret kanal"
+    },
+    "help_text": {
+      "channel_naming": "Giv din kanal et godt navn så du kan finde den igen senere."
+    },
+    "placeholder": {
+      "title": "F.eks. skærme i forhallen, skærm i børnesektion eller lignende"
+    },
+    "progress_bar": {
+      "step1": "Titel",
+      "step2": "Rækkefølge",
+      "step3": "Planlægning",
+      "step4": "Grupper og gem"
+    }
+  }
+}

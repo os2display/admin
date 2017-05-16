@@ -1,0 +1,15 @@
+<section class="create-channel--section">
+  <div class="create-channel--content--channel-four">
+    <h1 class="create-channel--header">{{ (channel.status === 'edit-channel' ? 'create_channel.heading.edit' : 'create_channel.heading.create') | translate }}</h1>
+
+    <ik-checklist elements="currentUser.groups" selected="channel.groups" identity="'id'"></ik-checklist>
+
+    <div class="create-channel--finish-button">
+      <div class="create-channel--spinner"
+           data-ng-show="disableSubmitButton"></div>
+      <input type="submit" data-ng-disabled="disableSubmitButton"
+             class="create-channel--button" value="{{ 'create_channel.action.save' | translate }}"
+             data-ng-click="submitStep()">
+    </div>
+  </div>
+</section>

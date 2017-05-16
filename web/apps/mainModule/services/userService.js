@@ -1,7 +1,8 @@
 /**
  * User service.
  */
-angular.module('mainModule').service('userService', ['busService', '$http', '$q',
+angular.module('mainModule').service('userService', [
+  'busService', '$http', '$q',
   function (busService, $http, $q) {
     'use strict';
 
@@ -16,7 +17,16 @@ angular.module('mainModule').service('userService', ['busService', '$http', '$q'
     var getCurrentUser = function getCurrentUser() {
       var deferred = $q.defer();
 
-      deferred.resolve(currentUser);
+      $http.get('/api/user/current')
+      .success(function (data) {
+        currentUser = data;
+        deferred.resolve(currentUser);
+      })
+      .error(function (response) {
+        deferred.reject(response);
+      });
+
+      //deferred.resolve(currentUser);
 
       return deferred.promise;
     };
@@ -37,7 +47,6 @@ angular.module('mainModule').service('userService', ['busService', '$http', '$q'
         }
       )
     });
-
 
     this.getCurrentUser = getCurrentUser;
   }

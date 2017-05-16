@@ -8,8 +8,20 @@
  *
  * Register modules here.
  */
-angular.module('ikApp').config(function ($sceDelegateProvider) {
+angular.module('ikApp').config([
+  '$sceDelegateProvider', '$translateProvider', function ($sceDelegateProvider, $translateProvider) {
     'use strict';
+
+    // Set up translations.
+    $translateProvider
+    .useSanitizeValueStrategy('escape')
+    .useStaticFilesLoader({
+      prefix: 'apps/ikApp/translations/locale-',
+      suffix: '.json'
+    })
+    .preferredLanguage('da')
+    .fallbackLanguage('da')
+    .forceAsyncReload(true);
 
     // The administration interface and the client code do not run on the same
     // domain/sub-domain hence we need to whitelist the domains to load slide
@@ -20,4 +32,5 @@ angular.module('ikApp').config(function ($sceDelegateProvider) {
       // Allow loading from outer templates domain.
       '**'
     ]);
-  });
+  }
+]);
