@@ -18,8 +18,31 @@ angular.module('styleguideComponentsApp').directive('panelMenu', ['$document', f
     link: function (scope) {
       scope.menuOpen = false;
 
+      /**
+       * Click handler.
+       *
+       * @param event
+       */
+      function clickHandler(event) {
+        scope.$apply(function () {
+          scope.menuOpen = false;
+
+          document.removeEventListener('click', clickHandler);
+        });
+      }
+
+      /**
+       * Toggle menu.
+       */
       scope.toggleMenu = function () {
         scope.menuOpen = !scope.menuOpen;
+
+        // Register click handler after timeout.
+        setTimeout(function () {
+          if (scope.menuOpen) {
+            document.addEventListener('click', clickHandler);
+          }
+        });
       };
     },
     template:
@@ -28,9 +51,11 @@ angular.module('styleguideComponentsApp').directive('panelMenu', ['$document', f
           '<i class="icon-default material-icons">more_vert</i>' +
         '</span>' +
         '<div class="panel-menu is-positioned" ng-class="{\'is-hidden\': !menuOpen}">' +
-          '<box>' +
-            '<content-list items="items" ng-click="menuOpen = false"></content-list>' +
-          '</box>' +
+          '<div class="panel-menu--inner">' +
+            '<box>' +
+              '<content-list items="items" ng-click="menuOpen = false"></content-list>' +
+            '</box>' +
+          '</div>' +
         '</div>' +
       '</div>'
   }

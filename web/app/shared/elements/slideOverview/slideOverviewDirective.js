@@ -96,6 +96,9 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
          *   This should either be 'mine' or 'all'.
          */
         $scope.setUser = function setUser(user) {
+          // Save selection in localStorage.
+          localStorage.setItem('overview.slide.search_filter_default', user);
+
           if ($scope.showFromUser !== user) {
             $scope.showFromUser = user;
 
@@ -256,8 +259,10 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
           function (data) {
             $scope.currentUser = data;
 
-            // Set search filter default
-            $scope.showFromUser = $scope.currentUser.search_filter_default;
+            // Get filter selection "all/mine" from localStorage.
+            $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
+              localStorage.getItem('overview.slide.search_filter_default') :
+              'all';
 
             // Updated search filters (build "mine" filter with user id). It
             // will trigger an search update.
