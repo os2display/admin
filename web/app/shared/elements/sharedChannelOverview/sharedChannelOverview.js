@@ -34,8 +34,10 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
           function success(data) {
             scope.currentUser = data;
 
-            // Set search filter default
-            scope.showFromUser = scope.currentUser.search_filter_default;
+            // Get filter selection "all/mine" from localStorage.
+            scope.showFromUser = localStorage.getItem('overview.shared_channel.search_filter_default') ?
+              localStorage.getItem('overview.shared_channel.search_filter_default') :
+              'all';
           },
           function error(reason) {
             busService.$emit('log.error', {
@@ -162,6 +164,9 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
          *   This should either be 'mine' or 'all'.
          */
         scope.setUser = function setUser(user) {
+          // Save selection in localStorage.
+          localStorage.setItem('overview.shared_channel.search_filter_default', user);
+
           if (scope.showFromUser !== user) {
             scope.showFromUser = user;
 
