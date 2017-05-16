@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('AdminGroupsController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$controller',
-  function (busService, $scope, $timeout, ModalService, $controller) {
+  'busService', '$scope', '$timeout', 'ModalService', '$controller', '$filter',
+  function (busService, $scope, $timeout, ModalService, $controller, $filter) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', {$scope: $scope});
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.groupsLoading = true;
     $scope.groups = null;
@@ -27,20 +30,20 @@ angular.module('adminApp').controller('AdminGroupsController', [
       if ($scope.baseCanRead(group)) {
         actions.push({
           url: '#/admin/group/' + group.id,
-          title: 'Se gruppe'
+          title: $translate('group.action.view')
         });
       }
       if ($scope.baseCanUpdate(group)) {
         actions.push({
           url: '#/admin/group/' + group.id,
-          title: 'Rediger gruppe'
+          title: $translate('group.action.edit')
         });
       }
       if ($scope.baseCanDelete(group)) {
         actions.push({
           click: $scope.deleteGroup,
           entity: group,
-          title: 'Slet gruppe'
+          title: $translate('group.action.delete')
         });
       }
 
@@ -80,7 +83,7 @@ angular.module('adminApp').controller('AdminGroupsController', [
         busService.$emit('log.error', {
           timeout: 5000,
           cause: err.code,
-          msg: 'Grupper kan ikke findes.'
+          msg: $translate('group.messages.groups_not_found')
         });
       }
     ).then(function () {

@@ -155,3 +155,4 @@ parameters:
         - ngRoute
         - angularModalService
         - messageApp
+        - pascalprecht.translate

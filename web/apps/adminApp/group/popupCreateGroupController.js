@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('PopupCreateGroup', [
-  'busService', '$scope', '$timeout', 'close', '$controller',
-  function (busService, $scope, $timeout, close, $controller) {
+  'busService', '$scope', '$timeout', 'close', '$controller', '$filter',
+  function (busService, $scope, $timeout, close, $controller, $filter) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', {$scope: $scope});
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.group = {
       title: ""
@@ -38,7 +41,7 @@ angular.module('adminApp').controller('PopupCreateGroup', [
       $scope.errors = [];
 
       if (form.$invalid) {
-        $scope.errors.push("Ugyldig input");
+        $scope.errors.push($translate('group.texts.error_form_invalid'));
 
         return;
       }
@@ -50,17 +53,17 @@ angular.module('adminApp').controller('PopupCreateGroup', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 5000,
-            msg: 'Gruppen blev oprettet'
+            msg: $translate('group.messages.group_created')
           });
 
           close(group);
         },
         function error(err) {
           if (err.code === 409) {
-            $scope.errors.push('Gruppen eksisterer allerede');
+            $scope.errors.push($translate('group.texts.error_group_already_exists'));
           }
           else {
-            $scope.errors.push('Kunne ikke oprette gruppen');
+            $scope.errors.push($translate('group.texts.error_could_not_create_group'));
           }
         }
       ).then(function () {
