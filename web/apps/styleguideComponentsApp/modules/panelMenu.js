@@ -51,9 +51,11 @@ angular.module('styleguideComponentsApp').directive('panelMenu', ['$document', f
           '<i class="icon-default material-icons">more_vert</i>' +
         '</span>' +
         '<div class="panel-menu is-positioned" ng-class="{\'is-hidden\': !menuOpen}">' +
-          '<box>' +
-            '<content-list items="items" ng-click="menuOpen = false"></content-list>' +
-          '</box>' +
+          '<div class="panel-menu--inner">' +
+            '<box>' +
+              '<content-list items="items" ng-click="menuOpen = false"></content-list>' +
+            '</box>' +
+          '</div>' +
         '</div>' +
       '</div>'
   }
