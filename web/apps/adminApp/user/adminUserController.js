@@ -143,15 +143,13 @@ angular.module('adminApp').controller('AdminUserController', [
 
       var roles = [];
       for (var role in $scope.user.roles) {
-        if ($scope.user.roles[role] !== roleToRemove) {
-          roles.push($scope.user.roles[role]);
+        if (role !== roleToRemove) {
+          roles.push(role);
         }
       }
 
       var user = angular.copy($scope.user);
       user.roles = roles;
-
-      $scope.loading = true;
 
       // Load roles, then load user.
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
