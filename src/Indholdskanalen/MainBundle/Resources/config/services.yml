@@ -32,6 +32,10 @@ services:
     class: Indholdskanalen\MainBundle\Services\SecurityManager
     arguments: ['@security.token_storage', '@doctrine.orm.entity_manager', '@security.access.decision_manager']
 
+  os2display.api_data:
+    class: Indholdskanalen\MainBundle\Services\ApiDataService
+    arguments: ['@service_container']
+
   os2display.user_mailer_service:
     class: Indholdskanalen\MainBundle\Services\UserMailerService
     parent: fos_user.mailer.default

@@ -27,7 +27,10 @@ class MainController extends Controller {
     }
 
     // Get current user.
-    $user = $this->get('serializer')->serialize($this->getUser(), 'json', SerializationContext::create()
+    $user = $this->getUser();
+    $user->buildRoleGroups();
+    $user = $this->get('os2display.api_data')->setApiData($user);
+    $user = $this->get('serializer')->serialize($user, 'json', SerializationContext::create()
       ->setGroups(array('api'))
       ->enableMaxDepthChecks());
 
