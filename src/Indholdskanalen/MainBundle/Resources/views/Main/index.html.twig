@@ -66,7 +66,7 @@
 
   <script src="/proxy/socket.io/socket.io.js"></script>
 
-  {% if app.environment == 'dev' %}
+  {% if app.environment != 'prod' %}
     <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/angular.min.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-animate.min.js') }}"></script>
@@ -93,37 +93,36 @@
   {% endif %}
 
   <script type="text/javascript">
-    /**
-     * Define the Angular applications. They needs to be defined before
-     * loading the files using the applications.
-     */
-    {% for key, module in modules %}
-      angular.module('{{ key }}', [ {% for dependency in module.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
-    {% endfor %}
+   /**
+    * Define the Angular applications. They needs to be defined before
+    * loading the files using the applications.
+    */
+   {% for key, module in modules %}
+   angular.module('{{ key }}', [ {% for dependency in module.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+   {% endfor %}
 
-    {% for key, app in apps %}
-      angular.module('{{ key }}', [ {% for dependency in app.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
-    {% endfor %}
+   {% for key, app in apps %}
+   angular.module('{{ key }}', [ {% for dependency in app.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+   {% endfor %}
   </script>
 
-  <!-- Angular modules -->
-  {% for key, module in modules %}
-    {% for file in module.files %}
-      <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
+  {% if app.environment != 'prod' %}
+    <!-- Angular modules -->
+    {% for key, module in modules %}
+      {% for file in module.files %}
+        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
+      {% endfor %}
     {% endfor %}
-  {% endfor %}
 
-  <!-- New angular applications -->
-  {% for key, app in apps %}
-    {% for file in app.files %}
-      {% if file matches '{^.*\.js$}' %}
-        <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
-      {% elseif file matches '{^.*\.css$}' %}
-        <link rel="stylesheet" href="{{ asset(file ~ '?' ~ version) }}">
-      {% endif %}
+    <!-- New angular applications -->
+    {% for key, app in apps %}
+      {% for file in app.files %}
+        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
+      {% endfor %}
     {% endfor %}
-  {% endfor %}
-
+  {% else %}
+    <script src="{{ asset('assets/build/app.min.js?' ~ version) }}"></script>
+  {% endif %}
   <!-- Bootstrap bus only services -->
   <span id="bootstrap" style="display:none"></span>
 
