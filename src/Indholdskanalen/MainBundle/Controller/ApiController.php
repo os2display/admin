@@ -4,16 +4,9 @@ namespace Indholdskanalen\MainBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Util\Codes;
-use Indholdskanalen\MainBundle\Entity\Channel;
-use Indholdskanalen\MainBundle\Entity\Group;
-use Indholdskanalen\MainBundle\Entity\Screen;
-use Indholdskanalen\MainBundle\Entity\Slide;
-use Indholdskanalen\MainBundle\Entity\User;
-use Indholdskanalen\MainBundle\Security\EditVoter;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Role\Role;
 
 class ApiController extends FOSRestController {
 
