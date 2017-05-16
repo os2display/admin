@@ -26,7 +26,7 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
         ikHideFilters: '=',
         ikSelectedMedia: '='
       },
-      controller: function ($scope, mediaFactory, userFactory) {
+      controller: function ($scope, mediaFactory, userService) {
         // Set default orientation and sort.
         $scope.sort = {"created_at": "desc"};
         $scope.loading = false;
@@ -229,7 +229,7 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
           event.preventDefault();
         });
 
-        userFactory.getCurrentUser().then(
+        userService.getCurrentUser().then(
           function (data) {
             $scope.currentUser = data;
 

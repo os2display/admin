@@ -8,36 +8,7 @@
  *
  * Register modules here.
  */
-angular.module('ikApp', [
-    'ngRoute',
-    'ngAnimate',
-    'angularFileUpload',
-    'colorpicker.module',
-    'datetimePicker',
-    'ngLocale',
-    'taiPlaceholder',
-    'ngModal',
-    'angular-dnd',
-    '720kb.tooltips',
-
-    'busModule',
-
-    'itkControlPanel',
-    'itkScreenTemplatePickerWidget',
-    'itkTextWidget',
-    'itkTextAreaWidget',
-    'itkNumberWidget',
-    'itkChannelPickerWidget',
-    'itkSharedChannelPickerWidget',
-    'itkChannelRemoverWidget',
-    'itkRegionPreviewWidget',
-    'itkDateComponent',
-    'itkDigitalClockComponent'
-  ],
-  function () {
-  }
-)
-  .config(function ($sceDelegateProvider) {
+angular.module('ikApp').config(function ($sceDelegateProvider) {
     'use strict';
 
     // The administration interface and the client code do not run on the same

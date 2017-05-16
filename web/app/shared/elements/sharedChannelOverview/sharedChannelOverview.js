@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel Sharing overview.
  */
-angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userFactory', '$timeout', 'busService',
-  function(sharedChannelFactory, userFactory, $timeout, busService) {
+angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactory', 'userService', '$timeout', 'busService',
+  function(sharedChannelFactory, userService, $timeout, busService) {
     'use strict';
 
     return {
@@ -30,7 +30,7 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
 
         scope.sort = { "created_at": "desc" };
 
-        userFactory.getCurrentUser().then(
+        userService.getCurrentUser().then(
           function success(data) {
             scope.currentUser = data;
 

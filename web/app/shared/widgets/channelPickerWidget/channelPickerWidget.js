@@ -19,8 +19,8 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('channelPickerWidget', ['userFactory', 'channelFactory', 'busService',
-    function (userFactory, channelFactory, busService) {
+  app.directive('channelPickerWidget', ['userService', 'channelFactory', 'busService',
+    function (userService, channelFactory, busService) {
       return {
         restrict: 'E',
         replace: true,
@@ -36,7 +36,7 @@
           scope.showFromUser = 'all';
           scope.sort = {"created_at": "desc"};
 
-          userFactory.getCurrentUser().then(
+          userService.getCurrentUser().then(
             function success(data) {
               scope.currentUser = data;
             },

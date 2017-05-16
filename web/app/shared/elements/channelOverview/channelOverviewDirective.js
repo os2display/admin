@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel overview.
  */
-angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'busService', '$filter',
-  function(channelFactory, userFactory, busService, $filter) {
+angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userService', 'busService', '$filter',
+  function(channelFactory, userService, busService, $filter) {
     'use strict';
 
     return {
@@ -264,7 +264,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           return text;
         };
 
-        userFactory.getCurrentUser().then(
+        userService.getCurrentUser().then(
           function (data) {
             scope.currentUser = data;
 

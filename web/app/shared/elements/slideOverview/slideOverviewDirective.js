@@ -16,7 +16,7 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
         ikSelectedSlides: '=',
         ikOverlay: '@'
       },
-      controller: function ($scope, slideFactory, userFactory) {
+      controller: function ($scope, slideFactory, userService) {
         $scope.loading = false;
 
         $scope.sort = {"created_at": "desc"};
@@ -255,7 +255,7 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
         };
 
         // Load current user (need to activate "mine" tab as default).
-        userFactory.getCurrentUser().then(
+        userService.getCurrentUser().then(
           function (data) {
             $scope.currentUser = data;
 

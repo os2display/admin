@@ -6,8 +6,8 @@
 /**
  * Screens controller handles the display and selection of screens.
  */
-angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userFactory', 'busService',
-  function($scope, screenFactory, userFactory, busService) {
+angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'screenFactory', 'userService', 'busService',
+  function($scope, screenFactory, userService, busService) {
     'use strict';
 
     $scope.loading = false;
@@ -150,7 +150,7 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
       }
     };
 
-    userFactory.getCurrentUser().then(
+    userService.getCurrentUser().then(
       function (data) {
         $scope.currentUser = data;
 

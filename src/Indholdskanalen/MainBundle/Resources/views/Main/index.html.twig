@@ -32,10 +32,6 @@
             </div>
           {%  endif %}
         {% endfor %}
-
-        <!-- Load legacy app -->
-        <div data-ng-view="" data-ng-app="ikApp">
-        </div>
       </div>
     </div>
   </div>
@@ -89,111 +85,22 @@
     <script src="{{ asset('assets/libs/md5.min.js') }}"></script>
     <script src="{{ asset('assets/libs/paging.js') }}"></script>
     <script src="{{ asset('assets/libs/angular-modal-service.min.js') }}"></script>
-
-    <script src="{{ asset('app/app.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/routing.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/filters/activeEvents.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/mediaFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/templateFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/slideFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/screenFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/channelFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/userFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/sharedSearchFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/sharedChannelFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/kobaFactory.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/screen/screen.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/sharedChannel/sharedChannelController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/sharedChannelOverview/sharedChannelOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/adminSharing/adminSharingController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/adminTemplates/adminTemplatesController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/channel/channelController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/channelOverview/channelOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/mediaOverview/mediaOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/screenOverview/screenOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/mediaEdit/mediaEditController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/mediaUpload/mediaUploadController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/slideOverview/slideOverviewController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/slide/slideController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/pages/slide/slideEditController.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/actionsMenu/actionsMenuDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/actionReloadScreen/actionReloadScreenDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/sharedChannel/sharedChannelDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/sharedChannelOverview/sharedChannelOverview.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/channel/channelDirectives.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/channelOverview/channelOverviewDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/pager/pagerDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/delete/deleteDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/channelShare/channelShareDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/checklist/checklistDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/screen/screenDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slideOverview/slideOverviewDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slide/slideDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slide/slideEditableDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/slide/sharedSlideDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/mediaOverview/mediaOverviewDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/mediaUpload/mediaUploadDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/thumb/thumbDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/autoGrow/autoGrowDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/includeReplace/includeReplaceDirective.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/controlPanel/control-panel.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/elements/ngModal/ng-modal.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/textWidget/textWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/textAreaWidget/textAreaWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/numberWidget/numberWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/channelPickerWidget/channelPickerWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/sharedChannelPickerWidget/sharedChannelPickerWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/channelRemoverWidget/channelRemoverWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/widgets/regionPreviewWidget/regionPreviewWidget.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/components/date/dateComponent.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/components/digital-clock/digitalClockComponent.js?' ~ version) }}"></script>
-    <script src="{{ asset('app/shared/services/authHttpResponseInterceptor.js?' ~ version) }}"></script>
   {% else %}
     <script src="{{ asset('assets/build/assets.min.js?' ~ version) }}"></script>
-    <script src="{{ asset('assets/build/app.min.js?' ~ version) }}"></script>
   {% endif %}
 
-  <!-- Bootstrap bus only services -->
-  <span id="bootstrap" style="display:none"></span>
-  <script type="text/javascript">
-    angular.module('bootstrap', [ {% for module in bootstrap.modules %}'{{ module }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
-    angular.module('bootstrap').run([ {% for service in bootstrap.services %}'{{ service }}',{% endfor %} angular.noop]);
-    angular.element(document).ready(function ready() {
-      angular.bootstrap(document.getElementById('bootstrap'), ['bootstrap']);
-    });
-  </script>
-
-  <!-- Bootstrap the Angular applications. -->
   <script type="text/javascript">
     /**
      * Define the Angular applications. They needs to be defined before
      * loading the files using the applications.
      */
-
     {% for key, module in modules %}
-      angular.module('{{ key }}', [ {% for dependency in module.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+      angular.module('{{ key }}', [ {% for dependency in module.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
     {% endfor %}
 
     {% for key, app in apps %}
-      angular.module('{{ key }}', [ {% for dependency in app.dependencies %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+      angular.module('{{ key }}', [ {% for dependency in app.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
     {% endfor %}
-
-    /**
-     * When the document is ready bootstrap the two applications.
-     */
-    angular.element(document).ready(function ready() {
-      "use strict";
-      {% for key, app in apps %}
-        var {{ key }} = document.getElementById('{{ key }}');
-        if ({{ key }}) {
-          angular.bootstrap({{ key }}, ['{{ key }}']);
-        }
-        else {
-          console.error('Unable to bootstrap {{ key }}. Missing HTML tag with id "{{ key }}"');
-        }
-      {% endfor %}
-    });
   </script>
 
   <!-- Angular modules -->
@@ -207,10 +114,56 @@
   {% for key, app in apps %}
     {% for file in app.files %}
       {% if file matches '{^.*\.js$}' %}
-      <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
+        <script type="text/javascript" src="{{ asset(file ~ '?' ~ version) }}"></script>
       {% elseif file matches '{^.*\.css$}' %}
         <link rel="stylesheet" href="{{ asset(file ~ '?' ~ version) }}">
       {% endif %}
     {% endfor %}
   {% endfor %}
+
+  <!-- Bootstrap bus only services -->
+  <span id="bootstrap" style="display:none"></span>
+
+  <script>
+    angular.module('bootstrap', [{% for module in bootstrap.modules %}'{{ module }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+    angular.module('bootstrap')
+    .run([{% for service in bootstrap.services %}'{{ service }}',{% endfor %} angular.noop]);
+    angular.element(document).ready(function ready() {
+      angular.bootstrap(document.getElementById('bootstrap'), ['bootstrap']);
+    });
+
+    var OS2DISPLAY_CURRENT_USER;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/api/user/current", true);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          OS2DISPLAY_CURRENT_USER = JSON.parse(xhr.responseText);
+
+          /**
+           * When the document is ready bootstrap the two applications.
+           */
+          angular.element(document).ready(function ready() {
+            "use strict";
+            {% for key, app in apps %}
+            var {{ key }} = document.getElementById('{{ key }}');
+            if ({{ key }}) {
+              angular.bootstrap({{ key }}, ['{{ key }}']);
+            }
+            else {
+              console.error('Unable to bootstrap {{ key }}. Missing HTML tag with id "{{ key }}"');
+            }
+            {% endfor %}
+          });
+        }
+      } else {
+        console.error(xhr.statusText);
+      }
+    };
+    xhr.onerror = function (e) {
+      console.error(xhr.statusText);
+    };
+    xhr.send(null);
+  </script>
 {% endblock %}
