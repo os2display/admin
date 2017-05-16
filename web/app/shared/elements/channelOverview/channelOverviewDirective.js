@@ -6,8 +6,8 @@
 /**
  * Directive to show the Channel overview.
  */
-angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'busService',
-  function(channelFactory, userFactory, busService) {
+angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userFactory', 'busService', '$filter',
+  function(channelFactory, userFactory, busService, $filter) {
     'use strict';
 
     return {
@@ -133,6 +133,9 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
          *   This should either be 'mine' or 'all'.
          */
         scope.setUser = function setUser(user) {
+          // Save selection in localStorage.
+          localStorage.setItem('overview.channel.search_filter_default', user);
+
           if (scope.showFromUser !== user) {
             scope.showFromUser = user;
 
@@ -190,12 +193,85 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userF
           }
         };
 
+        /**
+         * Is the channel scheduled for now?
+         *
+         * @param channel
+         */
+        scope.channelScheduledNow = function channelScheduledNow(channel) {
+          var now = new Date();
+          var todayDayNumber = now.getDay();
+          var todayHour = now.getHours();
+          now = parseInt(now.getTime() / 1000);
+
+          if (channel.hasOwnProperty('publish_from') && now < channel.publish_from) {
+            return false;
+          }
+          else if (channel.hasOwnProperty('publish_to') && now > channel.publish_to) {
+            return false;
+          }
+          else if (channel.hasOwnProperty('schedule_repeat') && channel.schedule_repeat) {
+            if (channel.hasOwnProperty('schedule_repeat_days') && channel.schedule_repeat_days.length > 0) {
+              for (var i = 0; i < channel.schedule_repeat_days.length; i++) {
+                if (todayDayNumber === channel.schedule_repeat_days[i].id) {
+                  if (channel.hasOwnProperty('schedule_repeat_from') && todayHour < channel.schedule_repeat_from) {
+                    return false;
+                  }
+                  if (channel.hasOwnProperty('schedule_repeat_to') && todayHour > channel.schedule_repeat_to) {
+                    return false;
+                  }
+                }
+              }
+            }
+            else {
+              return false;
+            }
+          }
+
+          return true;
+        };
+
+        /**
+         * Get scheduled text for channel.
+         *
+         * @param channel
+         */
+        scope.getScheduledText = function getScheduledText(channel) {
+          var text = '';
+
+          if (channel.hasOwnProperty('publish_from')) {
+            text = text + "Udgivet fra: " + $filter('date')(channel.publish_from * 1000, "dd/MM/yyyy HH:mm") + ".<br/>";
+          }
+
+          if (channel.hasOwnProperty('publish_to')) {
+            text = text + "Udgivet til: " + $filter('date')(channel.publish_to * 1000, "dd/MM/yyyy HH:mm") + ".<br/>";
+          }
+
+          if (channel.hasOwnProperty('schedule_repeat') && channel.schedule_repeat) {
+            text = text + "Vises disse dage:<br/>";
+            for (var i = 0; i < channel.schedule_repeat_days.length; i++) {
+              text = text + channel.schedule_repeat_days[i].name + " ";
+            }
+            text = text + "<br/>"
+            if (channel.hasOwnProperty('schedule_repeat_from')) {
+              text = text + "Fra: " + channel.schedule_repeat_from + ":00<br/>";
+            }
+            if (channel.hasOwnProperty('schedule_repeat_to')) {
+              text = text + "Til: " + channel.schedule_repeat_to + ":00<br/>";
+            }
+          }
+
+          return text;
+        };
+
         userFactory.getCurrentUser().then(
           function (data) {
             scope.currentUser = data;
 
-            // Set search filter default
-            scope.showFromUser = scope.currentUser.search_filter_default;
+            // Get filter selection "all/mine" from localStorage.
+            scope.showFromUser = localStorage.getItem('overview.channel.search_filter_default') ?
+              localStorage.getItem('overview.channel.search_filter_default') :
+              'all';
 
             // Updated search filters (build "mine" filter with user id). It
             // will trigger an search update.

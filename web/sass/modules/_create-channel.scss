@@ -195,7 +195,6 @@ $breakpoint-arrow-switch : 693px;
     @extend %buttons--default; // Needs refactoring (We shouldn't extend on classes from other documents but rather silent classes)
 
     margin-bottom: 2em;
-    width: 10em;
   }
 
   &--slide-order-element {
@@ -215,8 +214,13 @@ $breakpoint-arrow-switch : 693px;
   &--slide-order-link {
     display: inline-block;
     position: relative;
+    border: 2px solid transparent;
 
     @include strip-link-styles();
+
+    &.over {
+      border: 2px dashed #62B001;
+    }
   }
 
   &--publishing {
@@ -251,14 +255,24 @@ $breakpoint-arrow-switch : 693px;
   }
 
   &--slide-unpublished-overlay {
-    background: $white;
+    background: #fff;
     height: 168.75px; // Static since we are working within a static div anyway.
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 1;
 
-    @include opacity(.7);
+    @include opacity(.75);
+  }
+
+  &--slide-unpublished-blur {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+  }
+
+  &--slide-unpublished-blur-wrapper {
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
   }
 
   &--slide-unpublished-icon {
@@ -363,5 +377,10 @@ $breakpoint-arrow-switch : 693px;
   &--remove-link {
     cursor: pointer;
     text-decoration: underline;
+  }
+
+  &--sort-buttons {
+    width: 50%;
+    margin: 1em auto 2em;
   }
 }

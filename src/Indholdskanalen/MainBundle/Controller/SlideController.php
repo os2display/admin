@@ -147,6 +147,8 @@ class SlideController extends Controller {
     $mediaRepository = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
     $mediaOrderRepository = $doctrine->getRepository('IndholdskanalenMainBundle:MediaOrder');
 
+    $mediaIndex = 0;
+
     foreach ($post->media as $media) {
       $media = $mediaRepository->findOneById($media->id);
 
@@ -158,27 +160,22 @@ class SlideController extends Controller {
         )
       );
       if (!$mediaOrder) {
-        // Find the next sort order index for the given channel.
-        $index = 0;
-        $mediaLargestSortOrder = $mediaOrderRepository->findOneBy(
-          array('media' => $media),
-          array('sortOrder' => 'DESC')
-        );
-        if ($mediaLargestSortOrder) {
-          $index = $mediaLargestSortOrder->getSortOrder();
-        }
-
         // Create new ChannelSlideOrder.
         $mediaOrder = new MediaOrder();
         $mediaOrder->setMedia($media);
         $mediaOrder->setSlide($slide);
-        $mediaOrder->setSortOrder($index + 1);
+        $mediaOrder->setSortOrder($mediaIndex);
 
         // Save the ChannelSlideOrder.
         $em->persist($mediaOrder);
 
         $slide->addMediaOrder($mediaOrder);
       }
+      else {
+        $mediaOrder->setSortOrder($mediaIndex);
+      }
+
+      $mediaIndex++;
     }
 
     // Set logo
@@ -200,6 +197,11 @@ class SlideController extends Controller {
         $dispatcher->dispatch(SharingServiceEvents::UPDATE_CHANNEL, $event);
       }
     }
+
+    $groups = isset($post->groups) ? $post->groups : [];
+    $groupManager = $this->get('os2display.group_manager');
+    $groupManager->replaceGroups($groups, $slide);
+    $groupManager->saveGrouping($slide);
 
     // Save the slide.
     $em->persist($slide);
@@ -228,6 +230,8 @@ class SlideController extends Controller {
     $slide = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
+
+    $this->get('os2display.group_manager')->loadGrouping($slide);
 
     // Get the serializer
     $serializer = $this->get('jms_serializer');
@@ -297,6 +301,10 @@ class SlideController extends Controller {
     $slide_entities = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findAll();
+
+    foreach ($slide_entities as $slide) {
+      $this->get('os2display.group_manager')->loadGrouping($slide);
+    }
 
     // Create response.
     $response = new Response();

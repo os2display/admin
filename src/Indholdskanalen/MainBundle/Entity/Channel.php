@@ -6,14 +6,14 @@
 
 namespace Indholdskanalen\MainBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\SerializedName;
+use Doctrine\ORM\Mapping as ORM;
+use Indholdskanalen\MainBundle\Traits\Groupable;
 use JMS\Serializer\Annotation\AccessorOrder;
-use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Channel entity.
@@ -23,7 +23,9 @@ use JMS\Serializer\Annotation\MaxDepth;
  * @ORM\Table(name="ik_channel")
  * @ORM\Entity
  */
-class Channel {
+class Channel implements GroupableEntity {
+  use Groupable;
+
   /**
    * Id.
    *
@@ -118,37 +120,37 @@ class Channel {
 
   /**
    * @ORM\Column(name="publish_from", type="integer", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $publishFrom;
 
   /**
    * @ORM\Column(name="publish_to", type="integer", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $publishTo;
 
   /**
    * @ORM\Column(name="schedule_repeat", type="boolean", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $scheduleRepeat;
 
   /**
    * @ORM\Column(name="schedule_repeat_from", type="integer", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $scheduleRepeatFrom;
 
   /**
    * @ORM\Column(name="schedule_repeat_to", type="integer", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $scheduleRepeatTo;
 
   /**
    * @ORM\Column(name="schedule_repeat_days", type="json_array", nullable=true)
-   * @Groups({"api", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $scheduleRepeatDays;
 

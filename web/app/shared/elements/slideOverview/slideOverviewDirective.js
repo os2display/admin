@@ -6,8 +6,8 @@
 /**
  * Directive to show the slide overview.
  */
-angular.module('ikApp').directive('ikSlideOverview', ['busService',
-  function (busService) {
+angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
+  function (busService, $filter) {
     'use strict';
 
     return {
@@ -96,6 +96,9 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService',
          *   This should either be 'mine' or 'all'.
          */
         $scope.setUser = function setUser(user) {
+          // Save selection in localStorage.
+          localStorage.setItem('overview.slide.search_filter_default', user);
+
           if ($scope.showFromUser !== user) {
             $scope.showFromUser = user;
 
@@ -205,13 +208,61 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService',
           $scope.$emit('slideOverview.clickSlide', slide);
         };
 
+        /**
+         * Is the slide scheduled for now?
+         *
+         * @param slide
+         */
+        $scope.slideScheduledNow = function slideScheduledNow(slide) {
+          if (!slide.published) {
+            return false;
+          }
+
+          var now = new Date();
+          now = parseInt(now.getTime() / 1000);
+
+          if (slide.hasOwnProperty('schedule_from') && now < slide.schedule_from) {
+            return false;
+          }
+          else if (slide.hasOwnProperty('schedule_to') && now > slide.schedule_to) {
+            return false;
+          }
+
+          return true;
+        };
+
+        /**
+         * Get scheduled text for slide.
+         *
+         * @param slide
+         */
+        $scope.getScheduledText = function getScheduledText(slide) {
+          var text = '';
+
+          if (!slide.published) {
+            text = text + "Ikke udgivet!<br/>";
+          }
+
+          if (slide.hasOwnProperty('schedule_from')) {
+            text = text + "Udgivet fra: " + $filter('date')(slide.schedule_from * 1000, "dd/MM/yyyy HH:mm") + ".<br/>";
+          }
+
+          if (slide.hasOwnProperty('schedule_to')) {
+            text = text + "Udgivet til: " + $filter('date')(slide.schedule_to * 1000, "dd/MM/yyyy HH:mm") + ".";
+          }
+
+          return text;
+        };
+
         // Load current user (need to activate "mine" tab as default).
         userFactory.getCurrentUser().then(
           function (data) {
             $scope.currentUser = data;
 
-            // Set search filter default
-            $scope.showFromUser = $scope.currentUser.search_filter_default;
+            // Get filter selection "all/mine" from localStorage.
+            $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
+              localStorage.getItem('overview.slide.search_filter_default') :
+              'all';
 
             // Updated search filters (build "mine" filter with user id). It
             // will trigger an search update.

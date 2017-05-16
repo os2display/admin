@@ -3,14 +3,23 @@ security:
     FOS\UserBundle\Model\UserInterface: sha512
 
   role_hierarchy:
-    ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
-    ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    ROLE_ADMIN:
+      - ROLE_GROUP_ADMIN
+      - ROLE_USER_ADMIN
+      - ROLE_SONATA_ADMIN
+    ROLE_GROUP_ADMIN:
+      - ROLE_USER
+    ROLE_USER_ADMIN:
+      - ROLE_USER
+    ROLE_SUPER_ADMIN:
+      - ROLE_ADMIN
+      - ROLE_ALLOWED_TO_SWITCH
     SONATA:
       - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
 
   providers:
     fos_userbundle:
-      id: fos_user.user_manager
+      id: fos_user.user_provider.username_email
 
   firewalls:
     dev:
@@ -30,6 +39,7 @@ security:
       context: user
       form_login:
         check_path: /api/login_check
+      entry_point: indholdskanalen_main.api_authentication_service
 
     zencoder:
       pattern: ^/zencoder/callback
@@ -75,7 +85,6 @@ security:
 
     # URL of FOSUserBundle which need to be available to anonymous users
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     # Admin login page needs to be access without credential

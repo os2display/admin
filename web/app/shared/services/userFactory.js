@@ -20,7 +20,7 @@ angular.module('ikApp').factory('userFactory', ['$http', '$q',
       var defer = $q.defer();
 
       if (cache === undefined) {
-        $http.get('/api/user')
+        $http.get('/api/user/current')
           .success(function (data) {
             cache = data;
             defer.resolve(data);
