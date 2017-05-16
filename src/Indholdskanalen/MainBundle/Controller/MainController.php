@@ -5,6 +5,7 @@ namespace Indholdskanalen\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/")
@@ -25,8 +26,14 @@ class MainController extends Controller {
       $templates[] = $template->getPathCss();
     }
 
+    // Get current user.
+    $user = $this->get('serializer')->serialize($this->getUser(), 'json', SerializationContext::create()
+      ->setGroups(array('api'))
+      ->enableMaxDepthChecks());
+
     return $this->render('IndholdskanalenMainBundle:Main:index.html.twig', array(
       'templates' => $templates,
+      'user' => $user
     ));
   }
 }

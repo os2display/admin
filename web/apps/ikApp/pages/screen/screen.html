@@ -1,0 +1,12 @@
+<div class="screen--layout">
+  <div class="screen--layout-inner">
+    <div class="screen--layout-content">
+      <div class="spinner overview--spinner" data-ng-show="loading"></div>
+      <div data-ng-include="screen.template.paths.edit"></div>
+    </div>
+    <div class="screen--layout-control-panel">
+      <control-panel template="'apps/ikApp/pages/screen/screen-main-control-panel.html'" display="true" data="screen" save-action="saveScreenAndClose()" class="control-panel"></control-panel>
+      <control-panel options="{'sharingEnabled': sharingEnabled}" template="toolbarTemplate" display="displayToolbar" data="screen" save-action="saveScreen()" region="region" class="control-panel"></control-panel>
+    </div>
+  </div>
+</div>

@@ -39,7 +39,6 @@
 
 {% block body_attr %}class="is-page"{% endblock %}
 
-
 {% block scripts %}
   <!-- Configuration -->
   <script type="text/javascript">
@@ -61,6 +60,8 @@
       },
       "version": "{{ version }}"
     };
+
+    var OS2DISPLAY_CURRENT_USER = {{ user | raw }};
   </script>
 
   <script src="/proxy/socket.io/socket.io.js"></script>
@@ -134,38 +135,20 @@
       angular.bootstrap(document.getElementById('bootstrap'), ['bootstrap']);
     });
 
-    var OS2DISPLAY_CURRENT_USER;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/api/user/current", true);
-    xhr.onload = function (e) {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          OS2DISPLAY_CURRENT_USER = JSON.parse(xhr.responseText);
-
-          /**
-           * When the document is ready bootstrap the two applications.
-           */
-          angular.element(document).ready(function ready() {
-            "use strict";
-            {% for key, app in apps %}
-            var {{ key }} = document.getElementById('{{ key }}');
-            if ({{ key }}) {
-              angular.bootstrap({{ key }}, ['{{ key }}']);
-            }
-            else {
-              console.error('Unable to bootstrap {{ key }}. Missing HTML tag with id "{{ key }}"');
-            }
-            {% endfor %}
-          });
-        }
-      } else {
-        console.error(xhr.statusText);
+    /**
+     * When the document is ready bootstrap the two applications.
+     */
+    angular.element(document).ready(function ready() {
+      "use strict";
+      {% for key, app in apps %}
+      var {{ key }} = document.getElementById('{{ key }}');
+      if ({{ key }}) {
+        angular.bootstrap({{ key }}, ['{{ key }}']);
       }
-    };
-    xhr.onerror = function (e) {
-      console.error(xhr.statusText);
-    };
-    xhr.send(null);
+      else {
+        console.error('Unable to bootstrap {{ key }}. Missing HTML tag with id "{{ key }}"');
+      }
+      {% endfor %}
+    });
   </script>
 {% endblock %}
