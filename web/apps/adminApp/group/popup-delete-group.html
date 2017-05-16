@@ -4,7 +4,7 @@
     <div class="grid is-full">
       <div class="grid--inner">
         <article class="grid--item">
-          <h2 class="heading-has-spacing-after">{{ 'group.messages.confirm_delete' | translate }}</h2>
+          <h2 class="heading-has-spacing-after">{{ 'group.texts.confirm_delete' | translate }}</h2>
         </article>
         <article class="grid--item">
           <p><strong>{{ group.title }}</strong></p>
@@ -13,7 +13,16 @@
           <div class="message">
             <div class="message--inner is-inline-error">
               <div class="message--content">
-                {{ 'group.messages.no_reverse_delete' | translate }}
+                {{ 'group.texts.no_reverse_delete' | translate }}
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="grid--item" ng-if="errors.length > 0">
+          <div class="message">
+            <div class="message--inner is-inline-error">
+              <div class="message--content">
+                <p ng-repeat="error in errors">{{ error }}</p>
               </div>
             </div>
           </div>
@@ -24,11 +33,15 @@
     <div class="grid is-halfs">
       <div class="grid--inner">
         <article class="grid--item">
-          <a class="button-link is-neutral" title="{{ 'common.action.cancel' | translate }}" ng-click="closeModal()">{{ 'common.action.cancel' | translate }}</a>
+          <a class="button-link is-neutral" title="{{ 'common.action.cancel' | translate }}" ng-click="closeModal()">
+            {{ 'common.action.cancel' | translate }}
+          </a>
         </article>
         <article class="grid--item">
-          <a type="submit" class="button-link " title="{{ 'group.actions.delete' | translate }}" ng-click="submitForm(forms.groupDeleteForm)"
-             ng-if="baseCanDelete(group)">{{ 'group.actions.delete' | translate }}</a>
+          <a type="submit" class="button-link " title="{{ 'group.actions.delete' | translate }}"
+             ng-click="submitForm(forms.groupDeleteForm)" ng-if="baseCanDelete(group)">
+            {{ 'group.actions.delete' | translate }}
+          </a>
         </article>
       </div>
     </div>

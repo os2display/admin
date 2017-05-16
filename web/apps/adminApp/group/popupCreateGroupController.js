@@ -41,7 +41,7 @@ angular.module('adminApp').controller('PopupCreateGroup', [
       $scope.errors = [];
 
       if (form.$invalid) {
-        $scope.errors.push($translate('group.messages.form_invalid'));
+        $scope.errors.push($translate('group.texts.error_form_invalid'));
 
         return;
       }
@@ -60,10 +60,10 @@ angular.module('adminApp').controller('PopupCreateGroup', [
         },
         function error(err) {
           if (err.code === 409) {
-            $scope.errors.push($translate('group.messages.group_already_exists'));
+            $scope.errors.push($translate('group.texts.error_group_already_exists'));
           }
           else {
-            $scope.errors.push($translate('group.messages.could_not_create_group'));
+            $scope.errors.push($translate('group.texts.error_could_not_create_group'));
           }
         }
       ).then(function () {

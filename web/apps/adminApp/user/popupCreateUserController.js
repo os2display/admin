@@ -41,7 +41,7 @@ angular.module('adminApp').controller('PopupCreateUser', [
       $scope.errors = [];
 
       if (form.emailInput.$invalid) {
-        $scope.errors.push($translate('user.messages.email_not_valid'));
+        $scope.errors.push($translate('user.texts.error_email_not_valid'));
         return;
       }
 

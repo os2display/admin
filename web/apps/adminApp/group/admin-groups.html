@@ -6,7 +6,7 @@
         <button-icon-link icon="group_add" button-link="{{ 'group.action.create' | translate }}" click="createGroup()"
                           ng-if="baseCanCreate('group')"></button-icon-link>
         <content-list items="groups" max="max" order="-id"></content-list>
-        <span ng-if="groups.length === 0">{{ 'group.messages.empty_groups' | translate }}</span>
+        <span ng-if="groups.length === 0">{{ 'group.texts.empty_groups' | translate }}</span>
         <div class="box-link" ng-if="allLinks">
           <a href="#/admin/groups" title="{{ 'group.action.all' | translate }}" class="box-link--link">
             {{ 'group.action.all' | translate }}</a>

@@ -24,10 +24,11 @@
                           click="showAddUserModal()"
                           ng-if="baseCanUpdate(group)"></button-icon-link>
         <content-list items="users" max="max" order="-id"></content-list>
-        <span ng-if="users.length === 0">{{ 'group.messages.empty_users' | translate }}</span>
+        <span ng-if="users.length === 0">{{ 'group.texts.empty_users' | translate }}</span>
         <div class="box-link" ng-if="allLinks">
-          <a href="#/admin/groups" title="{{ 'group.action.all' | translate }}" class="box-link--link">{{
-            'group.action.all' | translate }}</a>
+          <a href="#/admin/groups" title="{{ 'group.action.all' | translate }}" class="box-link--link">
+            {{ 'group.action.all' | translate }}
+          </a>
         </div>
       </box>
     </article>

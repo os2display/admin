@@ -16,7 +16,6 @@ angular.module('adminApp').controller('PopupDeleteUser', [
 
     $scope.user = user;
     $scope.loading = false;
-    $scope.errors = [];
 
     /**
      * Close the modal.
@@ -34,8 +33,6 @@ angular.module('adminApp').controller('PopupDeleteUser', [
       if ($scope.loading) {
         return;
       }
-
-      $scope.errors = [];
 
       $scope.loading = true;
 
