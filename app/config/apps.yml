@@ -4,9 +4,9 @@ parameters:
       container: false
       class: menu-app
       files:
-        - /apps/menuApp/directive/mainMenuDirective.js
-        - /apps/menuApp/directive/hamburgerMenuDirective.js
-        - /apps/menuApp/directive/subMenuDirective.js
+        - apps/menuApp/directive/mainMenuDirective.js
+        - apps/menuApp/directive/hamburgerMenuDirective.js
+        - apps/menuApp/directive/subMenuDirective.js
       template: /apps/menuApp/menu.html
       dependencies:
         - busModule
@@ -15,64 +15,64 @@ parameters:
     ikApp:
       container: true
       files:
-        - /apps/ikApp/ikApp.js
-        - /apps/ikApp/routing.js
-        - /apps/ikApp/shared/filters/activeEvents.js
-        - /apps/ikApp/shared/services/mediaFactory.js
-        - /apps/ikApp/shared/services/templateFactory.js
-        - /apps/ikApp/shared/services/slideFactory.js
-        - /apps/ikApp/shared/services/screenFactory.js
-        - /apps/ikApp/shared/services/channelFactory.js
-        - /apps/ikApp/shared/services/sharedSearchFactory.js
-        - /apps/ikApp/shared/services/sharedChannelFactory.js
-        - /apps/ikApp/shared/services/kobaFactory.js
-        - /apps/ikApp/pages/screen/screen.js
-        - /apps/ikApp/pages/sharedChannel/sharedChannelController.js
-        - /apps/ikApp/pages/sharedChannelOverview/sharedChannelOverviewController.js
-        - /apps/ikApp/pages/adminSharing/adminSharingController.js
-        - /apps/ikApp/pages/adminTemplates/adminTemplatesController.js
-        - /apps/ikApp/pages/channel/channelController.js
-        - /apps/ikApp/pages/channelOverview/channelOverviewController.js
-        - /apps/ikApp/pages/mediaOverview/mediaOverviewController.js
-        - /apps/ikApp/pages/screenOverview/screenOverviewController.js
-        - /apps/ikApp/pages/mediaEdit/mediaEditController.js
-        - /apps/ikApp/pages/mediaUpload/mediaUploadController.js
-        - /apps/ikApp/pages/slideOverview/slideOverviewController.js
-        - /apps/ikApp/pages/slide/slideController.js
-        - /apps/ikApp/pages/slide/slideEditController.js
-        - /apps/ikApp/shared/elements/actionsMenu/actionsMenuDirective.js
-        - /apps/ikApp/shared/elements/actionReloadScreen/actionReloadScreenDirective.js
-        - /apps/ikApp/shared/elements/sharedChannel/sharedChannelDirective.js
-        - /apps/ikApp/shared/elements/sharedChannelOverview/sharedChannelOverview.js
-        - /apps/ikApp/shared/elements/channel/channelDirectives.js
-        - /apps/ikApp/shared/elements/channelOverview/channelOverviewDirective.js
-        - /apps/ikApp/shared/elements/pager/pagerDirective.js
-        - /apps/ikApp/shared/elements/delete/deleteDirective.js
-        - /apps/ikApp/shared/elements/channelShare/channelShareDirective.js
-        - /apps/ikApp/shared/elements/checklist/checklistDirective.js
-        - /apps/ikApp/shared/elements/screen/screenDirective.js
-        - /apps/ikApp/shared/elements/slideOverview/slideOverviewDirective.js
-        - /apps/ikApp/shared/elements/slide/slideDirective.js
-        - /apps/ikApp/shared/elements/slide/slideEditableDirective.js
-        - /apps/ikApp/shared/elements/slide/sharedSlideDirective.js
-        - /apps/ikApp/shared/elements/mediaOverview/mediaOverviewDirective.js
-        - /apps/ikApp/shared/elements/mediaUpload/mediaUploadDirective.js
-        - /apps/ikApp/shared/elements/thumb/thumbDirective.js
-        - /apps/ikApp/shared/elements/autoGrow/autoGrowDirective.js
-        - /apps/ikApp/shared/elements/includeReplace/includeReplaceDirective.js
-        - /apps/ikApp/shared/elements/controlPanel/control-panel.js
-        - /apps/ikApp/shared/elements/ngModal/ng-modal.js
-        - /apps/ikApp/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js
-        - /apps/ikApp/shared/widgets/textWidget/textWidget.js
-        - /apps/ikApp/shared/widgets/textAreaWidget/textAreaWidget.js
-        - /apps/ikApp/shared/widgets/numberWidget/numberWidget.js
-        - /apps/ikApp/shared/widgets/channelPickerWidget/channelPickerWidget.js
-        - /apps/ikApp/shared/widgets/sharedChannelPickerWidget/sharedChannelPickerWidget.js
-        - /apps/ikApp/shared/widgets/channelRemoverWidget/channelRemoverWidget.js
-        - /apps/ikApp/shared/widgets/regionPreviewWidget/regionPreviewWidget.js
-        - /apps/ikApp/shared/components/date/dateComponent.js
-        - /apps/ikApp/shared/components/digital-clock/digitalClockComponent.js
-        - /apps/ikApp/shared/services/authHttpResponseInterceptor.js
+        - apps/ikApp/ikApp.js
+        - apps/ikApp/routing.js
+        - apps/ikApp/shared/filters/activeEvents.js
+        - apps/ikApp/shared/services/mediaFactory.js
+        - apps/ikApp/shared/services/templateFactory.js
+        - apps/ikApp/shared/services/slideFactory.js
+        - apps/ikApp/shared/services/screenFactory.js
+        - apps/ikApp/shared/services/channelFactory.js
+        - apps/ikApp/shared/services/sharedSearchFactory.js
+        - apps/ikApp/shared/services/sharedChannelFactory.js
+        - apps/ikApp/shared/services/kobaFactory.js
+        - apps/ikApp/pages/screen/screen.js
+        - apps/ikApp/pages/sharedChannel/sharedChannelController.js
+        - apps/ikApp/pages/sharedChannelOverview/sharedChannelOverviewController.js
+        - apps/ikApp/pages/adminSharing/adminSharingController.js
+        - apps/ikApp/pages/adminTemplates/adminTemplatesController.js
+        - apps/ikApp/pages/channel/channelController.js
+        - apps/ikApp/pages/channelOverview/channelOverviewController.js
+        - apps/ikApp/pages/mediaOverview/mediaOverviewController.js
+        - apps/ikApp/pages/screenOverview/screenOverviewController.js
+        - apps/ikApp/pages/mediaEdit/mediaEditController.js
+        - apps/ikApp/pages/mediaUpload/mediaUploadController.js
+        - apps/ikApp/pages/slideOverview/slideOverviewController.js
+        - apps/ikApp/pages/slide/slideController.js
+        - apps/ikApp/pages/slide/slideEditController.js
+        - apps/ikApp/shared/elements/actionsMenu/actionsMenuDirective.js
+        - apps/ikApp/shared/elements/actionReloadScreen/actionReloadScreenDirective.js
+        - apps/ikApp/shared/elements/sharedChannel/sharedChannelDirective.js
+        - apps/ikApp/shared/elements/sharedChannelOverview/sharedChannelOverview.js
+        - apps/ikApp/shared/elements/channel/channelDirectives.js
+        - apps/ikApp/shared/elements/channelOverview/channelOverviewDirective.js
+        - apps/ikApp/shared/elements/pager/pagerDirective.js
+        - apps/ikApp/shared/elements/delete/deleteDirective.js
+        - apps/ikApp/shared/elements/channelShare/channelShareDirective.js
+        - apps/ikApp/shared/elements/checklist/checklistDirective.js
+        - apps/ikApp/shared/elements/screen/screenDirective.js
+        - apps/ikApp/shared/elements/slideOverview/slideOverviewDirective.js
+        - apps/ikApp/shared/elements/slide/slideDirective.js
+        - apps/ikApp/shared/elements/slide/slideEditableDirective.js
+        - apps/ikApp/shared/elements/slide/sharedSlideDirective.js
+        - apps/ikApp/shared/elements/mediaOverview/mediaOverviewDirective.js
+        - apps/ikApp/shared/elements/mediaUpload/mediaUploadDirective.js
+        - apps/ikApp/shared/elements/thumb/thumbDirective.js
+        - apps/ikApp/shared/elements/autoGrow/autoGrowDirective.js
+        - apps/ikApp/shared/elements/includeReplace/includeReplaceDirective.js
+        - apps/ikApp/shared/elements/controlPanel/control-panel.js
+        - apps/ikApp/shared/elements/ngModal/ng-modal.js
+        - apps/ikApp/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js
+        - apps/ikApp/shared/widgets/textWidget/textWidget.js
+        - apps/ikApp/shared/widgets/textAreaWidget/textAreaWidget.js
+        - apps/ikApp/shared/widgets/numberWidget/numberWidget.js
+        - apps/ikApp/shared/widgets/channelPickerWidget/channelPickerWidget.js
+        - apps/ikApp/shared/widgets/sharedChannelPickerWidget/sharedChannelPickerWidget.js
+        - apps/ikApp/shared/widgets/channelRemoverWidget/channelRemoverWidget.js
+        - apps/ikApp/shared/widgets/regionPreviewWidget/regionPreviewWidget.js
+        - apps/ikApp/shared/components/date/dateComponent.js
+        - apps/ikApp/shared/components/digital-clock/digitalClockComponent.js
+        - apps/ikApp/shared/services/authHttpResponseInterceptor.js
       dependencies:
         - busModule
         - mainModule
@@ -101,7 +101,7 @@ parameters:
     messageApp:
       container: true
       files:
-        - /apps/messageApp/directive/messagesDirective.js
+        - apps/messageApp/directive/messagesDirective.js
       template: /apps/messageApp/message.html
       dependencies:
         - busModule
@@ -110,13 +110,13 @@ parameters:
     timelineApp:
       container: true
       files:
-        - /apps/timelineApp/assets/vis/dist/vis.min.js
-        - /apps/timelineApp/timelineApp.js
-        - /apps/timelineApp/directive/timelineDirective.js
-        - /apps/timelineApp/services/timelineService.js
-        - /apps/timelineApp/timelineBaseController.js
-        - /apps/timelineApp/timelineScreenController.js
-        - /apps/timelineApp/timelineChannelController.js
+        - apps/timelineApp/assets/vis/dist/vis.min.js
+        - apps/timelineApp/timelineApp.js
+        - apps/timelineApp/directive/timelineDirective.js
+        - apps/timelineApp/services/timelineService.js
+        - apps/timelineApp/timelineBaseController.js
+        - apps/timelineApp/timelineScreenController.js
+        - apps/timelineApp/timelineChannelController.js
       dependencies:
         - busModule
         - mainModule
@@ -125,29 +125,29 @@ parameters:
 
     styleguideComponentsApp:
       files:
-        - /apps/styleguideComponentsApp/styleguideComponents.js
-        - /apps/styleguideComponentsApp/modules/box.js
-        - /apps/styleguideComponentsApp/modules/buttonIconLink.js
-        - /apps/styleguideComponentsApp/modules/contentList.js
-        - /apps/styleguideComponentsApp/modules/contentListItem.js
-        - /apps/styleguideComponentsApp/modules/panelMenu.js
-        - /apps/styleguideComponentsApp/modules/popup.js
+        - apps/styleguideComponentsApp/styleguideComponents.js
+        - apps/styleguideComponentsApp/modules/box.js
+        - apps/styleguideComponentsApp/modules/buttonIconLink.js
+        - apps/styleguideComponentsApp/modules/contentList.js
+        - apps/styleguideComponentsApp/modules/contentListItem.js
+        - apps/styleguideComponentsApp/modules/panelMenu.js
+        - apps/styleguideComponentsApp/modules/popup.js
 
     adminApp:
       container: true
       files:
-        - /apps/adminApp/adminApp.js
-        - /apps/adminApp/dashboard/adminDashboardController.js
-        - /apps/adminApp/group/adminGroupsController.js
-        - /apps/adminApp/group/adminGroupController.js
-        - /apps/adminApp/group/popupCreateGroupController.js
-        - /apps/adminApp/group/popupDeleteGroupController.js
-        - /apps/adminApp/group/popupAddUserController.js
-        - /apps/adminApp/user/adminUsersController.js
-        - /apps/adminApp/user/adminUserController.js
-        - /apps/adminApp/user/popupCreateUserController.js
-        - /apps/adminApp/user/popupDeleteUserController.js
-        - /apps/adminApp/user/popupAddRoleToUserController.js
+        - apps/adminApp/adminApp.js
+        - apps/adminApp/dashboard/adminDashboardController.js
+        - apps/adminApp/group/adminGroupsController.js
+        - apps/adminApp/group/adminGroupController.js
+        - apps/adminApp/group/popupCreateGroupController.js
+        - apps/adminApp/group/popupDeleteGroupController.js
+        - apps/adminApp/group/popupAddUserController.js
+        - apps/adminApp/user/adminUsersController.js
+        - apps/adminApp/user/adminUserController.js
+        - apps/adminApp/user/popupCreateUserController.js
+        - apps/adminApp/user/popupDeleteUserController.js
+        - apps/adminApp/user/popupAddRoleToUserController.js
       dependencies:
         - styleguideComponentsApp
         - busModule
