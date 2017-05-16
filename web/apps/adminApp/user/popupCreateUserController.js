@@ -52,7 +52,7 @@ angular.module('adminApp').controller('PopupCreateUser', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 5000,
-            msg: $translate('user.message.user_created')
+            msg: $translate('user.messages.user_created')
           });
 
           close(user);
@@ -62,10 +62,10 @@ angular.module('adminApp').controller('PopupCreateUser', [
             $scope.errors.push($translate('common.form.invalid'));
           }
           else if (err.code === 409) {
-            $scope.errors.push($translate('user.message.user_not_create_conflict'));
+            $scope.errors.push($translate('user.texts.user_not_created_conflict'));
           }
           else {
-            $scope.errors.push($translate('user.message.user_not_create'));
+            $scope.errors.push($translate('user.texts.user_not_created'));
           }
         }
       ).then(function () {

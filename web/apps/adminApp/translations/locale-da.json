@@ -81,8 +81,6 @@
       "could_not_remove_role_from_user": "Kunne ikke fjerne rolle fra bruger.",
       "roles_not_found": "Roller kunne ikke hentes",
       "user_created": "Bruger oprettet",
-      "user_not_created": "Brugeren kunne ikke oprettes",
-      "user_not_created_conflict": "Brugeren eksisterer allerede",
       "user_deleted": "Brugeren blev slettet",
       "user_not_deleted": "Brugeren kunne ikke slettes",
       "user_not_found": "Brugeren kan ikke findes",
@@ -98,7 +96,9 @@
       "empty_roles": "Brugeren har ingen roller.",
       "empty_users": "Der er ikke oprettet nogen brugere.",
       "error_email_not_valid": "E-mail er ikke gyldig",
-      "no_reverse_delete": "Bemærk! Dette kan ikke fortrydes."
+      "no_reverse_delete": "Bemærk! Dette kan ikke fortrydes.",
+      "user_not_created": "Brugeren kunne ikke oprettes",
+      "user_not_created_conflict": "Brugeren eksisterer allerede"
     }
   }
 }
