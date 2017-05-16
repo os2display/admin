@@ -2,12 +2,12 @@
   <div class="grid--inner">
     <article class="grid--item">
       <div data-ng-class="{'spinner-element': usersLoading}"></div>
-      <box heading="Brugere" ng-if="!usersLoading">
-        <button-icon-link icon="person_add" button-link="Opret bruger" click="createUser()" ng-if="baseCanCreate('user')"></button-icon-link>
+      <box heading="{{ 'user.heading' | translate }}" ng-if="!usersLoading">
+        <button-icon-link icon="person_add" button-link="{{ 'user.action.create' | translate }}" click="createUser()" ng-if="baseCanCreate('user')"></button-icon-link>
         <content-list items="users" max="max" order="-id"></content-list>
-        <span ng-if="users.length === 0">Der er ikke oprettet nogen brugere.</span>
+        <span ng-if="users.length === 0">{{ 'user.texts.empty_users' | translate }}</span>
         <div class="box-link" ng-if="allLinks">
-          <a href="#/admin/users" title="Alle brugere" class="box-link--link">Alle brugere</a>
+          <a href="#/admin/users" title="{{ 'user.action.all' | translate }}" class="box-link--link">{{ 'user.action.all' | translate }}</a>
         </div>
       </box>
     </article>

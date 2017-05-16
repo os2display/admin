@@ -4,7 +4,7 @@
     <div class="grid is-full " ng-show="!loading">
       <div class="grid--inner">
         <article class="grid--item">
-          <h2 class="heading-has-spacing-after">Er du sikker på du vil slette brugeren?</h2>
+          <h2 class="heading-has-spacing-after">{{ 'user.texts.confirm_delete' | translate }}</h2>
         </article>
         <article class="grid--item">
           <p><strong>{{ user.email }}</strong><span ng-if="user.firstname || user.lastname"> ({{ user.firstname }} {{ user.lastname }})</span></p>
@@ -13,7 +13,7 @@
           <div class="message">
             <div class="message--inner is-inline-error">
               <div class="message--content">
-                Bemærk! Dette kan ikke fortrydes.
+                {{ 'user.texts.no_reverse_delete' | translate }}
               </div>
             </div>
           </div>
@@ -23,11 +23,11 @@
     <div class="grid is-halfs">
       <div class="grid--inner">
         <article class="grid--item">
-          <a class="button-link is-neutral" title="Annullér" ng-click="closeModal()">Annullér</a>
+          <a class="button-link is-neutral" title="{{ 'common.action.cancel' | translate }}" ng-click="closeModal()">{{ 'common.action.cancel' | translate }}</a>
         </article>
         <article class="grid--item">
-          <a type="submit" class="button-link " title="Slet bruger" ng-click="submitForm(forms.userDeleteForm)"
-             ng-if="baseCanDelete(user)">Slet bruger</a>
+          <a type="submit" class="button-link " title="{{ 'user.action.delete' | translate }}" ng-click="submitForm(forms.userDeleteForm)"
+             ng-if="baseCanDelete(user)">{{ 'user.action.delete' | translate }}</a>
         </article>
       </div>
     </div>

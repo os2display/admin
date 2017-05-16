@@ -2,12 +2,14 @@
   <div class="grid--inner">
     <article class="grid--item">
       <div data-ng-class="{'spinner-element': groupsLoading}"></div>
-      <box heading="Grupper" ng-if="!groupsLoading">
-        <button-icon-link icon="group_add" button-link="Opret gruppe" click="createGroup()" ng-if="baseCanCreate('group')"></button-icon-link>
+      <box heading="{{ 'group.heading' | translate }}" ng-if="!groupsLoading">
+        <button-icon-link icon="group_add" button-link="{{ 'group.action.create' | translate }}" click="createGroup()"
+                          ng-if="baseCanCreate('group')"></button-icon-link>
         <content-list items="groups" max="max" order="-id"></content-list>
-        <span ng-if="groups.length === 0">Der er ikke oprettet nogen grupper.</span>
+        <span ng-if="groups.length === 0">{{ 'group.texts.empty_groups' | translate }}</span>
         <div class="box-link" ng-if="allLinks">
-          <a href="#/admin/groups" title="Alle grupper" class="box-link--link">Alle grupper</a>
+          <a href="#/admin/groups" title="{{ 'group.action.all' | translate }}" class="box-link--link">
+            {{ 'group.action.all' | translate }}</a>
         </div>
       </box>
     </article>

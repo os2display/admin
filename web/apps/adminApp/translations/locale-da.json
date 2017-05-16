@@ -1,0 +1,104 @@
+{
+  "common": {
+    "action": {
+      "add_group": "Tilføj gruppe",
+      "add_role": "Tilføj rolle",
+      "add_user": "Tilføj bruger",
+      "cancel": "Annullér",
+      "finish": "Færdig",
+      "save": "Gem"
+    },
+    "form": {
+      "invalid": "Ugyldigt input"
+    }
+  },
+  "group": {
+    "action": {
+      "all": "Alle grupper",
+      "create": "Opret gruppe",
+      "delete": "Slet gruppe",
+      "edit": "Redigér gruppe",
+      "remove_user": "Fjern bruger fra gruppe",
+      "search_users": "Søg efter bruger",
+      "set_group_role": "Sæt grupperolle: {{ roleName }}",
+      "view": "Se gruppe"
+    },
+    "title": "Titel",
+    "heading": "Grupper",
+    "placeholder": {
+      "search_users": "Find brugeren ved at indtaste navn",
+      "title": "Indtast navn på gruppen"
+    },
+    "messages": {
+      "group_created": "Gruppen blev oprettet",
+      "group_deleted": "Gruppen blev slettet",
+      "group_not_found": "Gruppe kan ikke findes",
+      "group_not_updated": "Gruppe kunne ikke opdateres",
+      "group_updated": "Gruppe opdateret",
+      "groups_not_found": "Grupper kan ikke findes",
+      "unable_to_load_users": "Kunne ikke hente brugere",
+      "user_not_removed_from_group": "Kunne ikke fjerne bruger fra gruppen",
+      "user_removed_from_grouo": "Bruger fjernet fra gruppe",
+      "user_role_not_set": "Grupperolle blev ikke opdateret",
+      "user_role_set": "Grupperolle opdateret"
+    },
+    "texts": {
+      "confirm_delete": "Er du sikker på du vil slette gruppen?",
+      "empty_users": "Gruppen har ingen brugere.",
+      "empty_groups": "Der er ikke oprettet nogen grupper.",
+      "error_adding_user": "Kunne ikke tilføje bruger til gruppen.",
+      "error_could_not_create_group": "Kunne ikke oprette gruppen.",
+      "error_could_not_delete_group": "Kunne ikke slette gruppen.",
+      "error_form_invalid": "Ugyldigt input.",
+      "error_group_already_exists": "Gruppen eksisterer allerede.",
+      "no_reverse_delete": "Bemærk! Dette kan ikke fortrydes."
+    }
+  },
+  "role": {
+    "heading": "Roller"
+  },
+  "user": {
+    "action": {
+      "all": "Alle brugere",
+      "create": "Opret bruger",
+      "delete": "Slet bruger",
+      "edit": "Redigér bruger",
+      "remove_role": "Fjern rolle fra bruger",
+      "search_for_role": "Søg efter roller",
+      "view": "Se bruger"
+    },
+    "email": "E-mail",
+    "firstname": "Fornavn",
+    "heading": "Brugere",
+    "surname": "Efternavn",
+    "placeholder": {
+      "email": "Indtast e-mail",
+      "firstname": "Indtast fornavn",
+      "surname": "Indtast efternavn"
+    },
+    "messages": {
+      "could_not_add_role_to_user": "Kunne ikke tilføje rolle til bruger",
+      "could_not_remove_role_from_user": "Kunne ikke fjerne rolle fra bruger",
+      "roles_not_found": "Roller kunne ikke hentes",
+      "user_created": "Bruger oprettet",
+      "user_deleted": "Brugeren blev slettet",
+      "user_not_deleted": "Brugeren kunne ikke slettes",
+      "user_not_found": "Brugeren kan ikke findes",
+      "users_not_found": "Brugere kan ikke findes",
+      "user_updated": "Brugeren er opdateret",
+      "user_not_updated_conflict": "Bruger kunne ikke opdateres. Email eksisterer allerede",
+      "user_not_updated": "Bruger kunne ikke opdateres"
+    },
+    "texts": {
+      "activation_link_text": "Der bliver sendt en e-mail til brugeren med et aktiveringslink.",
+      "confirm_delete": "Er du sikker på du vil slette brugeren?",
+      "empty_groups": "Brugeren er ikke med i nogen gruppe.",
+      "empty_roles": "Brugeren har ingen roller.",
+      "empty_users": "Der er ikke oprettet nogen brugere.",
+      "error_email_not_valid": "E-mail er ikke gyldig.",
+      "no_reverse_delete": "Bemærk! Dette kan ikke fortrydes.",
+      "user_not_created": "Brugeren kunne ikke oprettes.",
+      "user_not_created_conflict": "Brugeren eksisterer allerede."
+    }
+  }
+}

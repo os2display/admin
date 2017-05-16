@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('PopupAddUser', [
-  'busService', '$scope', '$timeout', 'close', '$controller', 'group', 'groupUsers', 'addedUserCallback',
-  function (busService, $scope, $timeout, close, $controller, group, groupUsers, addedUserCallback) {
+  'busService', '$scope', '$timeout', 'close', '$controller', 'group', 'groupUsers', 'addedUserCallback', '$filter',
+  function (busService, $scope, $timeout, close, $controller, group, groupUsers, addedUserCallback, $filter) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', {$scope: $scope});
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.loading = false;
     $scope.errors = [];
@@ -22,6 +25,8 @@ angular.module('adminApp').controller('PopupAddUser', [
      * @param user
      */
     $scope.addUser = function (user) {
+      $scope.errors = [];
+
       $scope.baseApiRequest('post', '/api/user/' + user.id + '/group/' + group.id, {
         roles: ['ROLE_GROUP_ROLE_USER']
       }).then(
@@ -31,7 +36,7 @@ angular.module('adminApp').controller('PopupAddUser', [
           $scope.baseRemoveElementFromList($scope.users, user, 'id');
         },
         function error(err) {
-          console.error(err);
+          $scope.errors.push($translate('group.texts.error_adding_user'));
         }
       );
     };
@@ -65,7 +70,14 @@ angular.module('adminApp').controller('PopupAddUser', [
         }
       },
       function error(err) {
-        console.error(err);
+        busService.$emit('log.error', {
+          timeout: 5000,
+          cause: err.code,
+          msg: $translate('group.messages.unable_to_load_users')
+        });
+
+        // Redirect to dashboard.
+        $location.path('/admin');
       }
     ).then(function () {
       $scope.loading = false;

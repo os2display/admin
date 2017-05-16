@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('PopupDeleteGroup', [
-  'busService', '$scope', '$timeout', 'close', '$controller', 'group',
-  function (busService, $scope, $timeout, close, $controller, group) {
+  'busService', '$scope', '$timeout', 'close', '$controller', 'group', '$filter',
+  function (busService, $scope, $timeout, close, $controller, group, $filter) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', {$scope: $scope});
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.group = group;
     $scope.loading = false;
@@ -42,13 +45,13 @@ angular.module('adminApp').controller('PopupDeleteGroup', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 5000,
-            msg: 'Gruppen blev slettet'
+            msg: $translate('group.messages.group_deleted')
           });
 
           close($scope.group);
         },
         function error(err) {
-          $scope.errors.push(err.message);
+          $scope.errors.push($translate('group.texts.error_could_not_delete_group'));
         }
       ).then(function () {
         $scope.loading = false;

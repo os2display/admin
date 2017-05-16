@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('AdminUsersController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$controller',
-  function (busService, $scope, $timeout, ModalService, $controller) {
+  'busService', '$scope', '$timeout', 'ModalService', '$controller', '$filter',
+  function (busService, $scope, $timeout, ModalService, $controller, $filter) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', {$scope: $scope});
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.usersLoading = true;
     $scope.users = null;
@@ -27,20 +30,20 @@ angular.module('adminApp').controller('AdminUsersController', [
       if ($scope.baseCanRead(user)) {
         actions.push({
           url: '#/admin/user/' + user.id,
-          title: 'Se bruger'
+          title: $translate('user.action.view')
         });
       }
       if ($scope.baseCanUpdate(user)) {
         actions.push({
           url: '#/admin/user/' + user.id,
-          title: 'Rediger bruger'
+          title: $translate('user.action.edit')
         });
       }
       if ($scope.baseCanDelete(user)) {
         actions.push({
           click: $scope.deleteUser,
           entity: user,
-          title: 'Slet bruger'
+          title: $translate('user.action.delete')
         });
       }
 
@@ -79,7 +82,7 @@ angular.module('adminApp').controller('AdminUsersController', [
         // Display message success.
         busService.$emit('log.error', {
           cause: err.code,
-          msg: 'Brugere kunne ikke hentes.'
+          msg: $translate('user.messages.users_not_found')
         });
       }
     ).then(function () {

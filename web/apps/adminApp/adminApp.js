@@ -3,9 +3,20 @@
  * Sets up the Admin App.
  */
 
-// Configure routing
-angular.module('adminApp').config(function ($routeProvider) {
+// Configure routing and translations.
+angular.module('adminApp').config(['$routeProvider', '$translateProvider', function ($routeProvider, $translateProvider) {
   'use strict';
+
+  // Set up translations.
+  $translateProvider
+  .useSanitizeValueStrategy('escape')
+  .useStaticFilesLoader({
+    prefix: 'apps/adminApp/translations/locale-',
+    suffix: '.json'
+  })
+  .preferredLanguage('da')
+  .fallbackLanguage('da')
+  .forceAsyncReload(true);
 
   // Register routes
   $routeProvider
@@ -37,7 +48,7 @@ angular.module('adminApp').config(function ($routeProvider) {
     templateUrl: 'apps/adminApp/group/admin-group.html?' + window.config.version
   })
   ;
-});
+}]);
 
 // Setup the app.
 //  - submenu items.

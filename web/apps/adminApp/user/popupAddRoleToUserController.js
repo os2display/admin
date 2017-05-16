@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('PopupAddRoleToUser', [
-  'busService', '$scope', '$timeout', '$controller', 'close', 'options',
-  function (busService, $scope, $timeout, $controller, close, options) {
+  'busService', '$scope', '$timeout', '$controller', 'close', 'options', '$filter',
+  function (busService, $scope, $timeout, $controller, close, options, $filter) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', { $scope: $scope });
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.loading = false;
     $scope.clickCallback = options.clickCallback;
@@ -41,7 +44,7 @@ angular.module('adminApp').controller('PopupAddRoleToUser', [
       function error(err) {
         busService.$emit('log.error', {
           cause: err.code,
-          msg: 'Roller kunne ikke hentes.'
+          msg: $translate('user.messages.roles_not_found')
         });
       }
     ).then(function () {
