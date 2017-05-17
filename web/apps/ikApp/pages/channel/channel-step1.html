@@ -1,6 +1,10 @@
 <section id="create-channel-one" class="create-channel--section">
   <div class="create-channel--content--channel-one">
-    <h1 class="create-channel--header">{{ (channel.status === 'edit-channel' ? 'create_channel.heading.edit' : 'create_channel.heading.create') | translate }}</h1>
+    <h1 class="create-channel--header">
+      {{ (channel.status === 'edit-channel' ?
+      'create_channel.heading.edit' :
+      'create_channel.heading.create') | translate }}
+    </h1>
     <p class="create-channel--header-description">{{ 'create_channel.help_text.channel_naming' | translate }}</p>
     <form data-ng-submit="submitStep()" class="create-channel--form">
       <input type="text" class="create-channel--text" placeholder="{{ 'create_channel.placeholder.title' | translate }}" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="channel.title">

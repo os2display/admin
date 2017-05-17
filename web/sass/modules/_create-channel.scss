@@ -180,15 +180,11 @@ $breakpoint-arrow-switch : 693px;
   }
 
 
-  /* Create channel - slide order (Page 4)
+
+  /* Create channel - group (Page 4)
    ========================================================================== */
   &--content--channel-four {
-    @extend %grid;
-
     @extend %create-element--layout-default;
-
-    // We hide some arrows between the slides that extends the div.
-    overflow: hidden;
   }
 
   &--add-slide-button {
@@ -236,7 +232,7 @@ $breakpoint-arrow-switch : 693px;
 
   &--schedule,
   &--published {
-    margin-bottom: 4em;
+    margin-bottom: 2em;
     margin-left: .3em;
   }
 
@@ -382,5 +378,9 @@ $breakpoint-arrow-switch : 693px;
   &--sort-buttons {
     width: 50%;
     margin: 1em auto 2em;
+  }
+
+  &--buttons {
+    margin-top: 2em;
   }
 }
