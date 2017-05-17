@@ -202,52 +202,6 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   }
 
   /**
-   * @When I attach the file :filename
-   */
-  public function iAttachTheFile($filename) {
-    $path = tempnam('/tmp', 'attachment');
-    file_put_contents($path, $path);
-    $this->attachments[] = new UploadedFile($path, $filename);
-  }
-
-  private $attachments = [];
-
-  /**
-   * @When I attach files:
-   */
-  public function iAttachFiles(TableNode $table) {
-    foreach ($table->getHash() as $row) {
-      $filename = $row['filename'];
-      $content = isset($row['content']) ? $row['content'] : NULL;
-      if (!$content && isset($row['mimetype'])) {
-        switch ($row['mimetype']) {
-          case 'image/png':
-            $content = base64_decode('R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
-            break;
-        }
-      }
-      $path = tempnam('/tmp', 'attachment' . $filename);
-      file_put_contents($path, $content);
-      $this->attachments[] = new UploadedFile($path, $filename);
-    }
-  }
-
-  /**
-   * Sends a HTTP request with a body
-   *
-   * @Given I send a :method request to :url with attachments and body:
-   */
-  public function iSendARequestToWithAttachmentsAndBody($method, $url, PyStringNode $body) {
-    return $this->request->send(
-      $method,
-      $this->locatePath($url),
-      [],
-      $this->attachments,
-      $body !== NULL ? $body->getRaw() : NULL
-    );
-  }
-
-  /**
    * Locates url, based on provided path.
    * Override to provide custom routing mechanism.
    *

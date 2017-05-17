@@ -237,8 +237,6 @@ class ScreenController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
 
-    $this->get('os2display.group_manager')->loadGrouping($screen);
-
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
@@ -435,10 +433,6 @@ class ScreenController extends Controller {
     // Screen entities
     $screen_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
       ->findAll();
-
-    foreach ($screen_entities as $screen) {
-      $this->get('os2display.group_manager')->loadGrouping($screen);
-    }
 
     // Create response.
     $response = new Response();
