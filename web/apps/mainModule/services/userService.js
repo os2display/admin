@@ -2,17 +2,17 @@
  * User service.
  */
 angular.module('mainModule').service('userService', [
-  'busService', '$http', '$q',
-  function (busService, $http, $q) {
+  'busService',
+  function (busService) {
     'use strict';
 
     // Get
     var currentUser = OS2DISPLAY_CURRENT_USER;
 
     /**
-     * Get current user promise.
+     * Get the current user.
      *
-     * @return {HttpPromise}
+     * @return object
      */
     var getCurrentUser = function getCurrentUser() {
       return currentUser;
@@ -27,6 +27,7 @@ angular.module('mainModule').service('userService', [
       busService.$emit('userService.returnCurrentUser', user);
     });
 
+    // Expose methods.
     this.getCurrentUser = getCurrentUser;
   }
 ]);

@@ -4,8 +4,8 @@
  */
 
 angular.module('adminApp').controller('AdminUserController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter',
-  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter) {
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter', 'userService',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter, userService) {
     'use strict';
 
     // Extend BaseApiController.
@@ -157,6 +157,13 @@ angular.module('adminApp').controller('AdminUserController', [
       // Load roles, then load user.
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
         function (user) {
+          if (user.id === userService.getCurrentUser().id) {
+            busService.$emit('log.info', {
+              timeout: 10000,
+              msg: $translate('user.messages.current_user_updated')
+            });
+          }
+
           $timeout(function () {
             setUser(user);
           });
@@ -216,6 +223,13 @@ angular.module('adminApp').controller('AdminUserController', [
 
       $scope.updateEntity('user', $scope.user).then(
         function success(user) {
+          if (user.id === userService.getCurrentUser().id) {
+            busService.$emit('log.info', {
+              timeout: 10000,
+              msg: $translate('user.messages.current_user_updated')
+            });
+          }
+
           setUser(user);
 
           // Display message success.

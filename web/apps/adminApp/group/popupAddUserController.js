@@ -4,8 +4,8 @@
  */
 
 angular.module('adminApp').controller('PopupAddUser', [
-  'busService', '$scope', '$timeout', 'close', '$controller', 'group', 'groupUsers', 'addedUserCallback', '$filter',
-  function (busService, $scope, $timeout, close, $controller, group, groupUsers, addedUserCallback, $filter) {
+  'busService', '$scope', '$timeout', 'close', '$controller', 'group', 'groupUsers', 'addedUserCallback', '$filter', 'userService',
+  function (busService, $scope, $timeout, close, $controller, group, groupUsers, addedUserCallback, $filter, userService) {
     'use strict';
 
     // Extend BaseController.
@@ -31,6 +31,13 @@ angular.module('adminApp').controller('PopupAddUser', [
         roles: ['ROLE_GROUP_ROLE_USER']
       }).then(
         function success(res) {
+          if (res.user.id === userService.getCurrentUser().id) {
+            busService.$emit('log.info', {
+              timeout: 10000,
+              msg: $translate('user.messages.current_user_updated')
+            });
+          }
+
           addedUserCallback(user);
 
           $scope.baseRemoveElementFromList($scope.users, user, 'id');

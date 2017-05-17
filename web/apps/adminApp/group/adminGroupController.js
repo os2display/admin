@@ -4,8 +4,8 @@
  */
 
 angular.module('adminApp').controller('AdminGroupController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter',
-  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter) {
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter', 'userService',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter, userService) {
     'use strict';
 
     // Extend
@@ -61,6 +61,13 @@ angular.module('adminApp').controller('AdminGroupController', [
               timeout: 2000,
               msg: $translate('group.messages.user_removed_from_group')
             });
+
+            if (user.id === userService.getCurrentUser().id) {
+              busService.$emit('log.info', {
+                timeout: 10000,
+                msg: $translate('user.messages.current_user_updated')
+              });
+            }
 
             $scope.baseRemoveElementFromList($scope.users, user, 'id');
           });
