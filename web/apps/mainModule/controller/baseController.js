@@ -10,18 +10,7 @@ angular.module('mainModule').controller('BaseController', ['$scope', 'userServic
   function ($scope, userService) {
     'use strict';
 
-    var self = this;
-    $scope.baseCurrentUser = null;
-
-    // Get the current user.
-    userService.getCurrentUser().then(
-      function (currentUser) {
-        $scope.baseCurrentUser = currentUser;
-      },
-      function error(err) {
-        console.error(err);
-      }
-    );
+    $scope.baseCurrentUser = userService.getCurrentUser();
 
     /**
      * Check if the entity has a given permission.

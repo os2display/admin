@@ -85,6 +85,7 @@ parameters:
         - taiPlaceholder
         - ngModal
         - angular-dnd
+        - pascalprecht.translate
         - 720kb.tooltips
         - itkControlPanel
         - itkScreenTemplatePickerWidget

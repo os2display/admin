@@ -264,20 +264,16 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
           return text;
         };
 
-        userService.getCurrentUser().then(
-          function (data) {
-            scope.currentUser = data;
+        scope.currentUser = userService.getCurrentUser();
 
-            // Get filter selection "all/mine" from localStorage.
-            scope.showFromUser = localStorage.getItem('overview.channel.search_filter_default') ?
-              localStorage.getItem('overview.channel.search_filter_default') :
-              'all';
+        // Get filter selection "all/mine" from localStorage.
+        scope.showFromUser = localStorage.getItem('overview.channel.search_filter_default') ?
+          localStorage.getItem('overview.channel.search_filter_default') :
+          'all';
 
-            // Updated search filters (build "mine" filter with user id). It
-            // will trigger an search update.
-            scope.setSearchFilters();
-          }
-        );
+        // Updated search filters (build "mine" filter with user id). It
+        // will trigger an search update.
+        scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/channelOverview/channel-overview-directive.html?' + window.config.version
     };

@@ -1,15 +1,19 @@
 <section id="create-channel-four" class="create-channel--section">
-  <div class="create-channel--content--channel-four">
-    <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
-    <p class="create-channel--header-description">Tryk på tilføj slides for at tilføje eksisterende slides. Brug pilene til at vælge i hvilken rækkefølge dine slides skal vises.</p>
-    <div class="create-channel--add-slide-button" data-ng-click="editor.toggleSlideOverviewEditor()">Tilføj slides</div>
+  <div class="create-channel--content--channel-two">
+    <h1 class="create-channel--header">
+      {{ (channel.status === 'edit-channel' ?
+      'create_channel.heading.edit' :
+      'create_channel.heading.create') | translate }}
+    </h1>
+    <p class="create-channel--header-description">
+      {{ 'create_channel.help_text.channel_add_slides' | translate }}
+    </p>
+    <div class="create-channel--add-slide-button" data-ng-click="editor.toggleSlideOverviewEditor()">{{ 'create_channel.action.select_slides' | translate }}</div>
 
     <div class="create-channel--slides">
       <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
-        <div class="create-channel--slide-order-link"
-             droppable drop="handleDrop"
-             id="index-{{ $index }}"
-             draggable>
+        <div class="create-channel--slide-order-link" droppable drop="handleDrop"
+             id="index-{{ $index }}" draggable>
           <div data-ng-if="slideScheduledNow(slide)" tooltips tooltip-template="Slide vises nu." tooltip-side="top">
             <img class="create-channel--slide-published-icon" src="/images/icons/check-circle-full-icon.png" title="">
           </div>
@@ -19,7 +23,8 @@
               <img class="create-channel--slide-unpublished-icon" title="" src="/images/icons/exclamation-icon.png">
             </div>
           </div>
-          <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img class="create-channel--arrow-left-image" src="images/arrow-backward.png"></span>
+          <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img
+              class="create-channel--arrow-left-image" src="images/arrow-backward.png"></span>
           <span class="create-channel--slide-order-number">{{$index + 1}}</span>
           <img class="overview--channel-remove" data-ng-click="toggleSlide(slide)" src="/images/icons/cancel-icon.png">
           <div data-ng-if="!slideScheduledNow(slide)" class="create-channel--slide-unpublished-blur-wrapper">
@@ -31,44 +36,51 @@
             <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
           </div>
           <a data-ng-href="/#/slide/{{slide.id}}" target="_blank">{{slide.title}}</a>
-          <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><img class="create-channel--arrow-right-image" src="images/arrow-forward.png"></span>
+          <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><img
+              class="create-channel--arrow-right-image" src="images/arrow-forward.png"></span>
         </div>
       </div>
     </div>
 
     <div class="create-channel--sort-buttons">
-      <label>Ændrer rækkefølge (efter):</label>
+      <label>{{ 'create_channel.help_text.channel_change_order' | translate }}</label>
 
       <div class="overview--sort-links">
-        <span class="overview--filter-foursplit-left" data-ng-click="sortSlides('schedule_from')" data-ng-class="{'is-active': lastSortUsed === 'schedule_from'}">Udgivelse start</span>
-        <span class="overview--filter-foursplit-middle" data-ng-click="sortSlides('schedule_to')" data-ng-class="{'is-active': lastSortUsed === 'schedule_to'}">Udgivelse udløb</span>
-        <span class="overview--filter-foursplit-middle" data-ng-click="sortSlides('title')" data-ng-class="{'is-active': lastSortUsed === 'title'}">Alfabetisk</span>
-        <span class="overview--filter-foursplit-right" data-ng-click="sortSlides('random')" data-ng-class="{'is-active': lastSortUsed === 'random'}">Tilfældig</span>
+        <span class="overview--filter-foursplit-left" data-ng-click="sortSlides('schedule_from')"
+              data-ng-class="{'is-active': lastSortUsed === 'schedule_from'}">{{ 'create_channel.action.change_order.schedule_from' | translate }}</span>
+        <span class="overview--filter-foursplit-middle" data-ng-click="sortSlides('schedule_to')"
+              data-ng-class="{'is-active': lastSortUsed === 'schedule_to'}">{{ 'create_channel.action.change_order.schedule_to' | translate }}</span>
+        <span class="overview--filter-foursplit-middle" data-ng-click="sortSlides('title')"
+              data-ng-class="{'is-active': lastSortUsed === 'title'}">{{ 'create_channel.action.change_order.title' | translate }}</span>
+        <span class="overview--filter-foursplit-right" data-ng-click="sortSlides('random')"
+              data-ng-class="{'is-active': lastSortUsed === 'random'}">{{ 'create_channel.action.change_order.random' | translate }}</span>
       </div>
     </div>
 
     <div class="create-channel--finish-button">
       <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
-      <input type="submit" class="create-channel--button" value="Fortsæt" data-ng-click="submitStep()">
+      <input type="submit" class="create-channel--button" value="{{ 'create_channel.action.continue' | translate }}" data-ng-click="submitStep()">
     </div>
   </div>
 </section>
 
 <!-- Select slide editor -->
-<div class="edit-menu--content" role="banner" data-ng-class="{'is-visible': editor.slideOverviewEditor, 'is-hidden': !editor.slideOverviewEditor}" >
+<div class="edit-menu--content" role="banner"
+     data-ng-class="{'is-visible': editor.slideOverviewEditor, 'is-hidden': !editor.slideOverviewEditor}">
   <div class="edit-menu--content-inner">
     <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleSlideOverviewEditor()">
       <div class="svg-clickable">
         <object data="images/svg/cancel.svg" type="image/svg+xml">
           <!-- Fallback (ie8)-->
-          <img src="images/cancel.png" />
+          <img src="images/cancel.png"/>
         </object>
       </div>
     </div>
     <div class="edit-menu--content-page-inner">
-      <h2 class="edit-menu--content-header">Vælg slides</h2>
+      <h2 class="edit-menu--content-header">{{ 'create_channel.action.select_slides' | translate }}</h2>
       <div class="edit-menu--background-content">
-        <ik-slide-overview ik-selected-slides="channel.slides" ik-hide-filters="true" ik-overlay="true"></ik-slide-overview>
+        <ik-slide-overview ik-selected-slides="channel.slides" ik-hide-filters="true"
+                           ik-overlay="true"></ik-slide-overview>
       </div>
     </div>
   </div>

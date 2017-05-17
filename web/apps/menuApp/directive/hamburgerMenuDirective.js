@@ -18,9 +18,7 @@ angular.module('menuApp')
 
           // Listen for Main menu items.
           busService.$on('userService.returnCurrentUser', function returnCurrentUser(event, user) {
-            scope.$apply(function () {
-              scope.currentUser = user;
-            });
+            scope.currentUser = user;
           });
 
           // Request user

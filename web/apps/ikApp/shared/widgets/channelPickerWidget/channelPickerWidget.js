@@ -36,17 +36,8 @@
           scope.showFromUser = 'all';
           scope.sort = {"created_at": "desc"};
 
-          userService.getCurrentUser().then(
-            function success(data) {
-              scope.currentUser = data;
-            },
-            function error(reason) {
-              busService.$emit('log.error', {
-                'cause': reason,
-                'msg': 'Kunne ikke hente bruger.'
-              });
-            }
-          );
+          // Get current user.
+          scope.currentUser = userService.getCurrentUser();
 
           // Default pager values.
           scope.pager = {

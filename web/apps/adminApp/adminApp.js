@@ -63,22 +63,19 @@ angular.module('adminApp').service('adminAppSetup', [
 
     // Register listener for requests for Main Menu items
     busService.$on('menuApp.requestMainMenuItems', function requestMainMenuItems(event, args) {
-      // Get user. Assert has permission to this menu item.
-      userService.getCurrentUser().then(
-        function (user) {
-          if (user.is_admin) {
-            busService.$emit('menuApp.returnMainMenuItems', [
-              {
-                title: "Admin",
-                route: '/#/admin',
-                activeFilter: '/admin',
-                icon: 'picture_in_picture',
-                weight: 5
-              }
-            ]);
+      var user = userService.getCurrentUser();
+
+      if (user.is_admin) {
+        busService.$emit('menuApp.returnMainMenuItems', [
+          {
+            title: "Admin",
+            route: '/#/admin',
+            activeFilter: '/admin',
+            icon: 'picture_in_picture',
+            weight: 5
           }
-        }
-      );
+        ]);
+      }
     });
 
     // Listen for sub menu requests

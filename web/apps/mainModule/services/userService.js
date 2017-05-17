@@ -1,7 +1,8 @@
 /**
  * User service.
  */
-angular.module('mainModule').service('userService', ['busService', '$http', '$q',
+angular.module('mainModule').service('userService', [
+  'busService', '$http', '$q',
   function (busService, $http, $q) {
     'use strict';
 
@@ -14,30 +15,17 @@ angular.module('mainModule').service('userService', ['busService', '$http', '$q'
      * @return {HttpPromise}
      */
     var getCurrentUser = function getCurrentUser() {
-      var deferred = $q.defer();
-
-      deferred.resolve(currentUser);
-
-      return deferred.promise;
+      return currentUser;
     };
 
     /**
      * Get current user event listener.
      */
     busService.$on('userService.getCurrentUser', function requestUser(event, args) {
-      getCurrentUser().then(
-        function (user) {
-          busService.$emit('userService.returnCurrentUser', user);
-        },
-        function (err) {
-          busService.$emit('log.error', {
-            'cause': err,
-            'msg': 'Bruger kunne ikke hentes'
-          });
-        }
-      )
-    });
+      var user = getCurrentUser();
 
+      busService.$emit('userService.returnCurrentUser', user);
+    });
 
     this.getCurrentUser = getCurrentUser;
   }

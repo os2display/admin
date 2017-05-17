@@ -7,13 +7,16 @@
  * Channel controller. Controls the channel creation process.
  */
 angular.module('ikApp').controller('ChannelController', [
-  '$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService',
-  function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService) {
+  '$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService', 'userService',
+  function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService, userService) {
     'use strict';
 
-    $scope.steps = 3;
+    $scope.steps = 4;
     $scope.slides = [];
     $scope.channel = {};
+
+    // Get current user.
+    $scope.currentUser = userService.getCurrentUser();
 
     // Days, for use with schedule day checklist
     // Follows the javascript  Date.getDay()  numbers for days.
@@ -177,9 +180,6 @@ angular.module('ikApp').controller('ChannelController', [
     $scope.validation = {
       titleSet: function () {
         return validateNotEmpty('title');
-      },
-      orientationSet: function () {
-        return validateNotEmpty('orientation');
       }
     };
 
@@ -256,13 +256,9 @@ angular.module('ikApp').controller('ChannelController', [
      */
     $scope.goToStep = function goToStep(step) {
       var s = 1;
-      // If title is set enable next step.
+      // If title is set enable the next steps.
       if ($scope.validation.titleSet()) {
-        s++;
-        // If orientation is set enable next three steps.
-        if ($scope.validation.orientationSet()) {
-          s = s + 3;
-        }
+        s += 3;
       }
       if (step <= s) {
         loadStep(step);

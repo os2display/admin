@@ -1,10 +1,14 @@
 <section id="create-channel-one" class="create-channel--section">
   <div class="create-channel--content--channel-one">
-    <h1 class="create-channel--header">{{channel.status === "edit-channel" ? "Redigér kanal" : "Opret kanal"}}</h1>
-    <p class="create-channel--header-description">Giv din kanal et godt navn så du kan finde den igen senere.</p>
+    <h1 class="create-channel--header">
+      {{ (channel.status === 'edit-channel' ?
+      'create_channel.heading.edit' :
+      'create_channel.heading.create') | translate }}
+    </h1>
+    <p class="create-channel--header-description">{{ 'create_channel.help_text.channel_naming' | translate }}</p>
     <form data-ng-submit="submitStep()" class="create-channel--form">
-      <input type="text" class="create-channel--text" placeholder="F.eks. skærme i forhallen, skærm i børnesektion eller lignende" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="channel.title">
-      <input type="submit" class="create-channel--button" data-ng-class="{'is-inactive': !validation.titleSet()}" data-ng-disabled="!validation.titleSet()" value="Fortsæt">
+      <input type="text" class="create-channel--text" placeholder="{{ 'create_channel.placeholder.title' | translate }}" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="channel.title">
+      <input type="submit" class="create-channel--button" data-ng-class="{'is-inactive': !validation.titleSet()}" data-ng-disabled="!validation.titleSet()" value="{{ 'create_channel.action.continue' | translate }}">
     </form>
   </div>
 </section>

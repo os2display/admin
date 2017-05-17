@@ -255,20 +255,16 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
         };
 
         // Load current user (need to activate "mine" tab as default).
-        userService.getCurrentUser().then(
-          function (data) {
-            $scope.currentUser = data;
+        $scope.currentUser = userService.getCurrentUser();
 
-            // Get filter selection "all/mine" from localStorage.
-            $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
-              localStorage.getItem('overview.slide.search_filter_default') :
-              'all';
+        // Get filter selection "all/mine" from localStorage.
+        $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
+          localStorage.getItem('overview.slide.search_filter_default') :
+          'all';
 
-            // Updated search filters (build "mine" filter with user id). It
-            // will trigger an search update.
-            $scope.setSearchFilters();
-          }
-        );
+        // Updated search filters (build "mine" filter with user id). It
+        // will trigger an search update.
+        $scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/slideOverview/slide-overview-directive.html?' + window.config.version
     };
