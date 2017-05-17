@@ -239,8 +239,6 @@ class ChannelController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
-    $this->get('os2display.group_manager')->loadGrouping($channel);
-
     $serializer = $this->get('jms_serializer');
 
     // Create response.
@@ -318,10 +316,6 @@ class ChannelController extends Controller {
     $channel_entities = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findAll();
-
-    foreach ($channel_entities as $channel) {
-      $this->get('os2display.group_manager')->loadGrouping($channel);
-    }
 
     // Create response.
     $response = new Response();
