@@ -12,6 +12,8 @@ var uglify = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var rename = require('gulp-rename');
 var gulpif = require('gulp-if');
+var yaml = require('js-yaml');
+var fs = require('fs');
 
 var header = require('gulp-header');
 var pkg = require('./version.json');
@@ -23,10 +25,37 @@ var banner = ['/**',
   ''].join('\n');
 
 // We only want to process our own non-processed JavaScript files.
-var adminJsPath = [
-  './web/app/app.js',
-  './web/app/**/**/**/**/*.js'
-];
+var adminJsPath = (function() {
+  var configFiles = [
+    'app/config/modules.yml',
+    'app/config/apps.yml'
+  ],
+  jsFiles = [
+    'app/app.js'
+  ],
+
+  // Breadth-first descend into data to find "files".
+  buildFiles = function(data) {
+    if (typeof(data) === 'object') {
+      for (var p in data) {
+        if (p === 'files') {
+          jsFiles = jsFiles.concat(data[p]);
+        } else {
+          buildFiles(data[p]);
+        }
+      }
+    }
+  };
+
+  configFiles.forEach(function(path) {
+    var data = yaml.safeLoad(fs.readFileSync(path, 'utf8'));
+    buildFiles(data);
+  });
+
+  return jsFiles.map(function (file) {
+    return 'web/' + file;
+  });
+}());
 
 var adminJsAssets = [
   './web/assets/libs/jquery.min.js',
