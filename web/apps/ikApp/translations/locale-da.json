@@ -44,6 +44,12 @@
       "to": "Udgivelse til"
     }
   },
+  "create_media": {
+    "help_text": {
+      "select_groups": "Vælg hvilke grupper filerne skal tilhøre",
+      "selected_media": "Valgte filer"
+    }
+  },
   "create_slide": {
     "action": {
       "add_to_channels": "Tilføj til kanaler",
