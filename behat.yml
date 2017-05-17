@@ -41,5 +41,6 @@ default:
         selenium2:
           selenium2: ~
       show_cmd: open -a /Applications/Firefox.app/ %s
+      files_path: "%paths.base%/src/Indholdskanalen/MainBundle/Features/files"
 
     Behatch\Extension: ~
