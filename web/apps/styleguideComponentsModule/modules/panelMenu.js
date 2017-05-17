@@ -8,7 +8,7 @@
  * html parameters:
  *   items: The item to render.
  */
-angular.module('styleguideComponentsApp').directive('panelMenu', ['$document', function ($document) {
+angular.module('styleguideComponentsModule').directive('panelMenu', ['$document', function ($document) {
   return {
     restrict: 'E',
     replace: true,

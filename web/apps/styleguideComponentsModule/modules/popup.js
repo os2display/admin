@@ -7,7 +7,7 @@
 /**
  * html parameters:
  */
-angular.module('styleguideComponentsApp').directive('popup', function(){
+angular.module('styleguideComponentsModule').directive('popup', function(){
   return {
     restrict: 'E',
     replace: true,

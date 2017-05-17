@@ -19,6 +19,10 @@ angular.module('mainModule').service('apiService', [
           busService.$emit(returnEvent, response.data);
         },
         function error(response) {
+          if (response.status === 401) {
+            return;
+          }
+
           busService.$emit(returnEvent, response.data);
         });
     }

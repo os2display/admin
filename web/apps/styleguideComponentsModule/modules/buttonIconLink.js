@@ -10,7 +10,7 @@
  *   icon: The icon.
  *   click: The click function.
  */
-angular.module('styleguideComponentsApp').directive('buttonIconLink', function(){
+angular.module('styleguideComponentsModule').directive('buttonIconLink', function(){
   return {
     restrict: 'E',
     replace: true,

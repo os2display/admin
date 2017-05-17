@@ -12,6 +12,15 @@ parameters:
         - busModule
         - mainModule
 
+    messageApp:
+      container: true
+      files:
+        - apps/messageApp/directive/messagesDirective.js
+      template: /apps/messageApp/message.html
+      dependencies:
+        - busModule
+        - mainModule
+
     ikApp:
       container: true
       files:
@@ -72,7 +81,6 @@ parameters:
         - apps/ikApp/shared/widgets/regionPreviewWidget/regionPreviewWidget.js
         - apps/ikApp/shared/components/date/dateComponent.js
         - apps/ikApp/shared/components/digital-clock/digitalClockComponent.js
-        - apps/ikApp/shared/services/authHttpResponseInterceptor.js
       dependencies:
         - busModule
         - mainModule
@@ -99,15 +107,6 @@ parameters:
         - itkDateComponent
         - itkDigitalClockComponent
 
-    messageApp:
-      container: true
-      files:
-        - apps/messageApp/directive/messagesDirective.js
-      template: /apps/messageApp/message.html
-      dependencies:
-        - busModule
-        - mainModule
-
     timelineApp:
       container: true
       files:
@@ -123,16 +122,6 @@ parameters:
         - mainModule
         - ngRoute
         - bw.paging
-
-    styleguideComponentsApp:
-      files:
-        - apps/styleguideComponentsApp/styleguideComponents.js
-        - apps/styleguideComponentsApp/modules/box.js
-        - apps/styleguideComponentsApp/modules/buttonIconLink.js
-        - apps/styleguideComponentsApp/modules/contentList.js
-        - apps/styleguideComponentsApp/modules/contentListItem.js
-        - apps/styleguideComponentsApp/modules/panelMenu.js
-        - apps/styleguideComponentsApp/modules/popup.js
 
     adminApp:
       container: true
@@ -150,9 +139,9 @@ parameters:
         - apps/adminApp/user/popupDeleteUserController.js
         - apps/adminApp/user/popupAddRoleToUserController.js
       dependencies:
-        - styleguideComponentsApp
         - busModule
         - mainModule
+        - styleguideComponentsModule
         - ngRoute
         - angularModalService
         - messageApp

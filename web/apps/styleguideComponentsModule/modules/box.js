@@ -8,7 +8,7 @@
  * html parameters:
  *   heading: The heading of the box.
  */
-angular.module('styleguideComponentsApp').directive('box', function(){
+angular.module('styleguideComponentsModule').directive('box', function(){
   return {
     restrict: 'E',
     transclude: true,

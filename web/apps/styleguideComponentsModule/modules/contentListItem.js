@@ -8,7 +8,7 @@
  * html parameters:
  *   items: The items to render in list.
  */
-angular.module('styleguideComponentsApp').directive('contentListItem', function(){
+angular.module('styleguideComponentsModule').directive('contentListItem', function(){
   return {
     restrict: 'E',
     replace: true,

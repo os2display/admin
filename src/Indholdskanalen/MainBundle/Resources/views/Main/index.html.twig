@@ -93,40 +93,35 @@
   {% endif %}
 
   <script type="text/javascript">
-   /**
+    /**
     * Define the Angular applications. They needs to be defined before
     * loading the files using the applications.
     */
-   {% for key, module in modules %}
-   angular.module('{{ key }}', [ {% for dependency in module.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
-   {% endfor %}
+    {% for key, module in modules %}
+      angular.module('{{ key }}', [ {% for dependency in module.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+      angular.module('{{ key }}').config([
+        '$httpProvider', function ($httpProvider) {
+          'use strict';
+          $httpProvider.interceptors.push('authHttpResponseInterceptor');
+        }
+      ]);
+    {% endfor %}
 
-   {% for key, app in apps %}
-   angular.module('{{ key }}', [ {% for dependency in app.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
-   {% endfor %}
+    {% for key, app in apps %}
+     angular.module('{{ key }}', [ {% for dependency in app.dependencies | default([]) %}'{{ dependency }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
+     angular.module('{{ key }}').config([
+       '$httpProvider', function ($httpProvider) {
+         'use strict';
+         $httpProvider.interceptors.push('authHttpResponseInterceptor');
+       }
+     ]);
+    {% endfor %}
   </script>
 
-  {% if app.environment != 'prod' %}
-    <!-- Angular modules -->
-    {% for key, module in modules %}
-      {% for file in module.files %}
-        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
-      {% endfor %}
-    {% endfor %}
-
-    <!-- New angular applications -->
-    {% for key, app in apps %}
-      {% for file in app.files %}
-        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
-      {% endfor %}
-    {% endfor %}
-  {% else %}
-    <script src="{{ asset('assets/build/app.min.js?' ~ version) }}"></script>
-  {% endif %}
   <!-- Bootstrap bus only services -->
   <span id="bootstrap" style="display:none"></span>
 
-  <script>
+  <script type="text/javascript">
     angular.module('bootstrap', [{% for module in bootstrap.modules %}'{{ module }}'{% if not loop.last %}, {% endif %}{% endfor %} ]);
     angular.module('bootstrap')
     .run([{% for service in bootstrap.services %}'{{ service }}',{% endfor %} angular.noop]);
@@ -150,4 +145,23 @@
       {% endfor %}
     });
   </script>
+
+  {% if app.environment != 'prod' %}
+    <!-- Angular modules -->
+    {% for key, module in modules %}
+      {% for file in module.files %}
+        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
+      {% endfor %}
+    {% endfor %}
+
+    <!-- New angular applications -->
+    {% for key, app in apps %}
+      {% for file in app.files %}
+        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
+      {% endfor %}
+    {% endfor %}
+  {% else %}
+    <script src="{{ asset('assets/build/app.min.js?' ~ version) }}"></script>
+  {% endif %}
+
 {% endblock %}
