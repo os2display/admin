@@ -30,6 +30,12 @@ trait Groupable {
     return $this->getId();
   }
 
+  public function setGroups(ArrayCollection $groups) {
+    $this->groups = $groups;
+
+    return $this;
+  }
+
   /**
    * Returns the groups for this groupable entity
    *

@@ -137,11 +137,33 @@ Feature: admin
     And the JSON node "[0].groups[0].id" should be equal to 2
     And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Channel'" should return 1 element
 
-
   Scenario: Remove channel
     When I send a "DELETE" request to "/api/channel/1"
     Then the response status code should be 200
     And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Channel'" should return 0 elements
+
+  Scenario: Create channel in group
+    When I send a "POST" request to "/api/channel" with body:
+      """
+      {
+        "id": null,
+        "title": "Channel in group",
+        "slides": [],
+        "groups": [2]
+      }
+      """
+    Then the response status code should be 200
+
+  Scenario: Get channels
+    When I send a "GET" request to "/api/channel"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "" should have 1 element
+    And the JSON node "[0].id" should be equal to 2
+    And the JSON node "[0].title" should be equal to "Channel in group"
+    And the JSON node "[0].slides" should have 0 elements
+    And the JSON node "[0].groups" should have 1 element
+    And the JSON node "[0].groups[0].id" should be equal to 2
 
   @dropSchema
   Scenario: Drop schema

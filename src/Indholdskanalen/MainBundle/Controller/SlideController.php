@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\MediaOrder;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -198,10 +199,9 @@ class SlideController extends Controller {
       }
     }
 
-    $groups = isset($post->groups) ? $post->groups : [];
-    $groupManager = $this->get('os2display.group_manager');
-    $groupManager->replaceGroups($groups, $slide);
-    $groupManager->saveGrouping($slide);
+    // Add slide to groups.
+    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
+    $slide->setGroups($groups);
 
     // Save the slide.
     $em->persist($slide);
