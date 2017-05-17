@@ -25,10 +25,6 @@
   <section id="create-media--upload-files" class="overview--section" data-ng-show="currentStep==2">
     <h1 class="create-media--header">Media - upload</h1>
     <div class="create-media--elements">
-      <div class="create-media--select-groups">
-        <label class="create-channel--schedule-label">{{ 'create_media.help_text.select_groups' | translate }}</label>
-        <ik-checklist elements="currentUser.groups" selected="selectedGroups" identity="'id'" ng-hide="uploadInProgress || uploadComplete"></ik-checklist>
-      </div>
       <label class="create-channel--schedule-label">{{ 'create_media.help_text.selected_media' | translate }}</label>
       <div class="create-media--thumb-container" data-ng-repeat="item in uploader.queue" ng-hide="uploadInProgress || uploadComplete">
         <div class="create-media--thumb" data-ng-show="isImage(item.file)">
@@ -44,6 +40,10 @@
             <div class="create-media--remove" data-ng-click="removeItem(item)">Fjern medie</div>
           </div>
         </div>
+      </div>
+      <div class="create-media--select-groups">
+        <label class="create-channel--schedule-label">{{ 'create_media.help_text.select_groups' | translate }}</label>
+        <ik-checklist elements="currentUser.groups" selected="selectedGroups" identity="'id'" ng-hide="uploadInProgress || uploadComplete"></ik-checklist>
       </div>
     </div>
     <div>
