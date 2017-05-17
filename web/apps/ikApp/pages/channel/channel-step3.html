@@ -2,38 +2,48 @@
   <div class="create-channel--content--channel-three">
     <h1 class="create-channel--header">
       {{ (channel.status === 'edit-channel' ?
-          'create_channel.heading.edit' :
-          'create_channel.heading.create') | translate }}
+      'create_channel.heading.edit' :
+      'create_channel.heading.create') | translate }}
     </h1>
     <div class="create-channel--publishing">
       <label class="create-channel--schedule-label">{{ 'create_channel.heading.scheduling' | translate }}</label>
       <div class="create-channel--schedule">
         <div class="create-channel--schedule-from">
-          <label class="create-channel--from-label">Udgivelse fra (<a class="create-channel--remove-link" data-ng-click="channel.publish_from = null">ryd</a>)</label>
+          <label class="create-channel--from-label">{{ 'create_channel.scheduling.from' | translate }}
+            (<a class="create-channel--remove-link" data-ng-click="channel.publish_from = null">{{ 'create_channel.action.clear' | translate }}</a>)
+          </label>
           <input type="text" data-ng-model="channel.publish_from" datetime-picker="">
         </div>
         <div class="create-channel--schedule-to">
-          <label class="create-channel--to-label">Udgivelse til (<a class="create-channel--remove-link" data-ng-click="channel.publish_to = null">ryd</a>)</label>
+          <label class="create-channel--to-label">{{ 'create_channel.scheduling.to' | translate }} (
+            <a class="create-channel--remove-link" data-ng-click="channel.publish_to = null">{{ 'create_channel.action.clear' | translate }}</a>)
+          </label>
           <input type="text" data-ng-model="channel.publish_to" datetime-picker="">
         </div>
-        <div class="create-channel--published-description">Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for udgivelse i fra/til.</div>
+        <div class="create-channel--published-description">{{ 'create_channel.help_text.published' | translate }}
+        </div>
       </div>
 
-      <label class="create-channel--schedule-label">Planlægning</label>
+      <label class="create-channel--schedule-label">{{ 'create_channel.heading.planning' | translate }}</label>
       <div class="create-channel--published">
-        <span class="create-channel--published-checkbox-text">Planlægning aktiv?</span>
+        <span class="create-channel--published-checkbox-text">{{ 'create_channel.scheduling.planning_active' | translate }}</span>
         <input class="create-channel--published-checkbox" type="checkbox" data-ng-model="channel.schedule_repeat">
-        <div class="create-channel--published-description">Angiv om kanalen kun skal vises i nedenstående interval.</div>
+        <div class="create-channel--published-description">{{ 'create_channel.help_text.planning_active' | translate }}
+        </div>
       </div>
 
       <div data-ng-if="channel.schedule_repeat">
-        <label class="create-channel--to-label" for="schedule_repeat_from">Fra (<a class="create-channel--remove-link" data-ng-click="channel.schedule_repeat_from = null">ryd</a>)</label>
+        <label class="create-channel--to-label" for="schedule_repeat_from">{{ 'create_channel.scheduling.planning_from' | translate }}
+          (<a class="create-channel--remove-link" data-ng-click="channel.schedule_repeat_from = null">{{ 'create_channel.action.clear' | translate }}</a>)
+        </label>
         <input type="text" readonly="" id="schedule_repeat_from" data-ng-model="channel.schedule_repeat_from" hour-picker="">
-
-        <label class="create-channel--to-label" for="schedule_repeat_to">Til (<a class="create-channel--remove-link" data-ng-click="channel.schedule_repeat_to = null">ryd</a>)</label>
+        <label class="create-channel--to-label" for="schedule_repeat_to">{{ 'create_channel.scheduling.planning_to' | translate }}
+          (<a class="create-channel--remove-link" data-ng-click="channel.schedule_repeat_to = null">{{ 'create_channel.action.clear' | translate }}</a>)
+        </label>
         <input type="text" readonly="" id="schedule_repeat_to" data-ng-model="channel.schedule_repeat_to" hour-picker="">
 
-        <div class="create-channel--published-description">Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for tidspunkt i fra/til.</div>
+        <div class="create-channel--published-description">{{ 'create_channel.help_text.published_description' | translate }}
+        </div>
 
         <ik-checklist elements="days" selected="channel.schedule_repeat_days" identity="'id'" class="create-channel--checklist-days"></ik-checklist>
       </div>
