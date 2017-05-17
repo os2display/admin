@@ -215,7 +215,7 @@ class UserController extends ApiController {
     return [
       'roles' => array_unique($roles),
       'group' => $group,
-      'user' => $this->setApiData($user),
+      'user' => $user,
     ];
   }
 
