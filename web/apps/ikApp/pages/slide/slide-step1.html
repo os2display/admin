@@ -1,10 +1,10 @@
 <section id="create-slide-one" class="create-slide--section">
   <div class="create-slide--content--slide-one">
-    <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
-    <p class="create-slide--header-description">Giv din slide et godt navn så du kan finde den igen senere.</p>
+    <h1 class="create-slide--header">{{ (slide.status === 'edit-slide' ? 'create_slide.heading.edit' : 'create_slide.heading.create') | translate }}</h1>
+    <p class="create-slide--header-description">{{ 'create_slide.help_text.title ' | translate }}</p>
     <form data-ng-submit="submitStep()" class="create-slide--form">
-      <input type="text" class="create-slide--text" placeholder="Skriv f.eks. Frokost uge 10, Billeder fra DHL eller lignende" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="slide.title">
-      <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.titleSet()}" data-ng-disabled="!validation.titleSet()" value="Fortsæt">
+      <input type="text" class="create-slide--text" placeholder="{{ 'create_slide.placeholder.title' | translate }}" data-ng-class="{'is-valid': validation.titleSet()}" data-ng-model="slide.title">
+      <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.titleSet()}" data-ng-disabled="!validation.titleSet()" value="{{ 'create_slide.action.continue' | translate }}">
     </form>
   </div>
 </section>

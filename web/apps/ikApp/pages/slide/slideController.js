@@ -6,11 +6,11 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'busService',
-  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, busService) {
+angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'busService', 'userService',
+  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, busService, userService) {
     'use strict';
 
-    $scope.steps = 5;
+    $scope.steps = 6;
     $scope.slide = {};
     $scope.templates = [];
     templateFactory.getSlideTemplates().then(
@@ -29,6 +29,13 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       }
     );
     $scope.channels = [];
+
+    $scope.currentUser = userService.getCurrentUser();
+
+    // Get all channels for step 6
+    channelFactory.getChannels().then(function (data) {
+      $scope.channels = data;
+    });
 
     // Setup the editor.
     $scope.editor = {
@@ -57,11 +64,6 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
      * Handles different settings of route parameters.
      */
     function init() {
-      // Get all channels for step 6
-      channelFactory.getChannels().then(function (data) {
-        $scope.channels = data;
-      });
-
       if (!$routeParams.id) {
         // If the ID is not set, get an empty slide.
         $scope.slide = slideFactory.emptySlide();
@@ -170,7 +172,7 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       if ($scope.validation.titleSet()) {
         s++;
         if ($scope.validation.templateSet()) {
-          s = s + 3;
+          s = s + 4;
         }
       }
       if (step <= s) {

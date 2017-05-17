@@ -43,5 +43,51 @@
       "planning_to": "Til",
       "to": "Udgivelse til"
     }
+  },
+  "create_slide": {
+    "action": {
+      "add_to_channels": "Tilføj til kanaler",
+      "clear": "ryd",
+      "continue": "Fortsæt",
+      "publish": "Udgiv.",
+      "save": "Gem slide"
+    },
+    "heading": {
+      "edit": "Redigér slide",
+      "create": "Opret slide",
+      "duration": "Varighed",
+      "publishing": "Udgivelse"
+    },
+    "help_text": {
+      "channels": "Vælg hvilke kanaler din skærm skal vises på.",
+      "choose_channels": "Vælg kanaler",
+      "content": "Tilføj indhold.",
+      "duration": "Angiv hvor længe din slide skal vises i sekunder",
+      "duration_calculated": "Beregnet varighed i sekunder",
+      "duration_video": "Den valgte videos længde i sekunder",
+      "information": "Angiv yderligere indstillinger for din slide.",
+      "publishing": "Angiv om din slide skal udgives.",
+      "publishing_from": "Fra",
+      "publishing_interval": "Angiv eventuelt udgivelsesinterval.",
+      "publishing_to": "Til",
+      "select_groups": "Vælg hvilke grupper sliden skal være med i. Hvis der ikke er valgt nogen grupper vil sliden være privat.",
+      "template": "Vælg template - du kan altid ændre dit valg senere.",
+      "title": "Giv din slide et godt navn så du kan finde den igen senere."
+    },
+    "placeholder": {
+      "duration": "f.eks. 15",
+      "title": "Skriv f.eks. Frokost uge 10, Billeder fra DHL eller lignende"
+    },
+    "progress_bar": {
+      "step1": "Titel",
+      "step2": "Skabelon",
+      "step3": "Indhold",
+      "step4": "Indstillinger",
+      "step5": "Grupper",
+      "step6": "Kanaler og gem"
+    },
+    "text": {
+      "seconds": "sekunder."
+    }
   }
 }

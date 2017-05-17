@@ -161,6 +161,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
       currentScreen = {
         id: null,
         template: null,
+        groups: [],
         description: '',
         title: '',
         orientation: 'landscape',

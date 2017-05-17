@@ -1,47 +1,47 @@
 <section id="create-slide-five" class="create-slide--section">
   <div class="create-slide--content--slide-five">
-    <h1 class="create-slide--header">{{slide.status === "edit-slide" ? "Redigér slide" : "Opret slide"}}</h1>
-    <p class="create-slide--header-description">Angiv yderligere indstillinger for din slide.</p>
+    <h1 class="create-slide--header">{{ (slide.status === 'edit-slide' ? 'create_slide.heading.edit' : 'create_slide.heading.create') | translate }}</h1>
+    <p class="create-slide--header-description">{{ 'create_slide.help_text.information' | translate }}</p>
     <div class="create-slide--content-wrapper">
       <div class="create-slide--duration" data-ng-if="slide.media_type !== 'video' && slide.slide_type !== 'rss' && slide.slide_type !== 'slideshow'">
-        <label class="create-slide--duration-label">Varighed</label>
-        <div class="create-slide--duration-text"><input type="text" placeholder="f.eks. 15" data-ng-model="slide.duration" class="create-slide--duration-input"><span class="create-slide--duration-suffix">sekunder.</span></div>
-        <div class="create-slide--duration-description">Angiv hvor længe din slide skal vises i sekunder</div>
+        <label class="create-slide--duration-label">{{ 'create_slide.heading.duration' | translate }}</label>
+        <div class="create-slide--duration-text"><input type="text" placeholder="{{ 'create_slide.placeholder.duration' | translate }}" data-ng-model="slide.duration" class="create-slide--duration-input"><span class="create-slide--duration-suffix">{{ 'create_slide.text.seconds' | translate }}</span></div>
+        <div class="create-slide--duration-description">{{ 'create_slide.help_text.duration' | translate }}</div>
       </div>
       <div class="create-slide--duration" data-ng-if="slide.slide_type === 'slideshow'">
-        <label class="create-slide--duration-label">Varighed</label>
-        <div class="create-slide--duration-text"><input type="text" class="create-slide--duration-input" data-ng-value="slide.options.duration * slide.media.length" disabled="disabled"><span class="create-slide--duration-suffix">sekunder.</span></div>
-        <div class="create-slide--duration-description">Beregnet varighed i sekunder</div>
+        <label class="create-slide--duration-label">{{ 'create_slide.heading.duration' | translate }}</label>
+        <div class="create-slide--duration-text"><input type="text" class="create-slide--duration-input" data-ng-value="slide.options.duration * slide.media.length" disabled="disabled"><span class="create-slide--duration-suffix">{{ 'create_slide.text.seconds' | translate }}</span></div>
+        <div class="create-slide--duration-description">{{ 'create_slide.help_text.duration_calculated' | translate }}</div>
       </div>
       <div class="create-slide--duration" data-ng-if="slide.media_type === 'video'">
-        <label class="create-slide--duration-label">Varighed</label>
-        <div class="create-slide--duration-text"><input type="text" data-ng-model="slide.media[0].length" class="create-slide--duration-input" disabled="disabled"><span class="create-slide--duration-suffix">sekunder.</span></div>
-        <div class="create-slide--duration-description">Den valgte videos længde i sekunder</div>
+        <label class="create-slide--duration-label">{{ 'create_slide.heading.duration' | translate }}</label>
+        <div class="create-slide--duration-text"><input type="text" data-ng-model="slide.media[0].length" class="create-slide--duration-input" disabled="disabled"><span class="create-slide--duration-suffix">{{ 'create_slide.text.seconds' | translate }}</span></div>
+        <div class="create-slide--duration-description">{{ 'create_slide.help_text.duration_video' | translate }}</div>
       </div>
       <div class="create-slide--duration" data-ng-if="slide.slide_type === 'rss'">
-        <label class="create-slide--duration-label">Varighed</label>
-        <div class="create-slide--duration-text"><input type="text" class="create-slide--duration-input" data-ng-value="slide.options.rss_duration * slide.options.rss_number" disabled="disabled"><span class="create-slide--duration-suffix">sekunder.</span></div>
-        <div class="create-slide--duration-description">Beregnet varighed i sekunder</div>
+        <label class="create-slide--duration-label">{{ 'create_slide.heading.duration' | translate }}</label>
+        <div class="create-slide--duration-text"><input type="text" class="create-slide--duration-input" data-ng-value="slide.options.rss_duration * slide.options.rss_number" disabled="disabled"><span class="create-slide--duration-suffix">{{ 'create_slide.text.seconds' | translate }}</span></div>
+        <div class="create-slide--duration-description">{{ 'create_slide.help_text.duration_calculated' | translate }}</div>
       </div>
       <div class="create-slide--publishing">
-        <label class="create-slide--schedule-label">Udgivelse</label>
+        <label class="create-slide--schedule-label">{{ 'create_slide.heading.publishing' | translate }}</label>
         <div class="create-slide--published">
-          <input class="create-slide--published-checkbox" type="checkbox" data-ng-model="slide.published"><span class="create-slide--published-checkbox-text">Udgiv.</span>
-          <div class="create-slide--published-description">Angiv om din slide skal udgives.</div>
+          <input class="create-slide--published-checkbox" type="checkbox" data-ng-model="slide.published"><span class="create-slide--published-checkbox-text">{{ 'create_slide.action.publish' | translate }}</span>
+          <div class="create-slide--published-description">{{ 'create_slide.help_text.publishing' | translate }}</div>
         </div>
         <div class="create-slide--schedule">
           <div class="create-slide--schedule-from">
-            <label class="create-slide--from-label">Fra (<a class="create-slide--remove-link" data-ng-click="slide.schedule_from = null">ryd</a>)</label>
+            <label class="create-slide--from-label">{{ 'create_slide.help_text.publishing_from' | translate }} (<a class="create-slide--remove-link" data-ng-click="slide.schedule_from = null">{{ 'create_slide.action.clear' | translate }}</a>)</label>
             <input type="text" data-ng-model="slide.schedule_from" datetime-picker="">
           </div>
           <div class="create-slide--schedule-to">
-            <label class="create-slide--to-label">Til (<a class="create-slide--remove-link" data-ng-click="slide.schedule_to = null">ryd</a>)</label>
+            <label class="create-slide--to-label">{{ 'create_slide.help_text.publishing_to' | translate }} (<a class="create-slide--remove-link" data-ng-click="slide.schedule_to = null">{{ 'create_slide.action.clear' | translate }}</a>)</label>
             <input type="text" data-ng-model="slide.schedule_to" datetime-picker="">
           </div>
-          <div class="create-slide--schedule-description">Angiv eventuelt udgivelsesinterval.</div>
+          <div class="create-slide--schedule-description">{{ 'create_slide.help_text.publishing_interval' | translate }}</div>
         </div>
       </div>
     </div>
-    <input type="submit" class="create-slide--button" value="Fortsæt" data-ng-click="submitStep()">
+    <input type="submit" class="create-slide--button" value="{{ 'create_slide.action.continue' | translate }}" data-ng-click="submitStep()">
   </div>
 </section>

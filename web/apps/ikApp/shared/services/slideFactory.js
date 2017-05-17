@@ -167,6 +167,7 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'busService',
     factory.emptySlide = function () {
       currentSlide = {
         "id": null,
+        "groups": [],
         "published": true,
         "schedule_from": null,
         "schedule_to": null,
