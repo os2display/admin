@@ -148,6 +148,8 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'busService',
     factory.saveSlide = function () {
       var defer = $q.defer();
 
+      console.log(currentSlide);
+
       $http.post('/api/slide', currentSlide)
         .success(function (data) {
           defer.resolve(data);

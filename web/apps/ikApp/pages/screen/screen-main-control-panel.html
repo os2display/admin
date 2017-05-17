@@ -11,15 +11,21 @@
     <form class="cpw--wrapper">
       <div class="cpw--text">
         <label class="cpw--text-label">Skærmnavn</label>
-        <text-widget field="data.title" placeholder-text="f.eks. Hovedindgang til højre"></text-widget>
+        <text-widget field="data.screen.title" placeholder-text="f.eks. Hovedindgang til højre"></text-widget>
       </div>
       <div class="cpw--textarea">
         <label class="cpw--textarea-label">Beskrivelse</label>
-        <text-area-widget field="data.description" placeholder-text="f.eks. Bruges til mødelokale A, B og C"></text-area-widget>
+        <text-area-widget field="data.screen.description" placeholder-text="f.eks. Bruges til mødelokale A, B og C"></text-area-widget>
       </div>
-      <div class="cpw--text" data-ng-if="data.activation_code">
+      <div class="cpw--text" data-ng-if="data.screen.activation_code">
         <label class="cpw--text-label">Aktiveringskode</label>
-        <input type="text" class="cpw--text-input" readonly="readonly" data-ng-model="data.activation_code">
+        <input type="text" class="cpw--text-input" readonly="readonly" data-ng-model="data.screen.activation_code">
+      </div>
+    </form>
+    <form class="cpw--wrapper">
+      <div class="cpw--text">
+        <label class="cpw--text-label">Grupper</label>
+        <ik-checklist elements="data.currentUser.groups" selected="data.screen.groups" identity="'id'"></ik-checklist>
       </div>
     </form>
   </div>

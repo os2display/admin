@@ -6,8 +6,8 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'busService',
-  function ($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, templateFactory, busService) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'busService', 'userService',
+  function ($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, templateFactory, busService, userService) {
     'use strict';
 
     $scope.loading = true;
@@ -16,6 +16,7 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
     $scope.toolbarTemplate = null;
     $scope.display = false;
     $scope.region = null;
+    $scope.currentUser = userService.getCurrentUser();
 
     /**
      * Constructor.
