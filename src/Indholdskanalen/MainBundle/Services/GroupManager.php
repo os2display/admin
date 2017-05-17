@@ -86,7 +86,7 @@ class GroupManager {
     return $this->entityManager->getRepository(Group::class)->findOneBy($criteria);
   }
 
-  public function replaceGroups(array $groups, GroupableEntity $groupable) {
+  public function replaceGroups($groups, GroupableEntity $groupable) {
     $groups = $this->loadGroups($groups);
     $groupable->getGroups()->clear();
     $this->addGroups($groups, $groupable);
@@ -101,7 +101,7 @@ class GroupManager {
    *
    * into a list of proper Groups.
    */
-  private function loadGroups(array $groups) {
+  private function loadGroups($groups) {
     $ids = [];
     foreach ($groups as $group) {
       $id = null;

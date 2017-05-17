@@ -25,10 +25,23 @@ class GroupingListener implements EventSubscriber {
   }
 
   public function getSubscribedEvents() {
-    return [Events::preRemove];
+    return [Events::postPersist, Events::postUpdate, Events::preRemove];
   }
 
-  public function preRemove(LifecycleEventArgs $args) {
+  public function postPersist(LifecycleEventArgs $args) {
+    $entity = $args->getObject();
+    if ($entity instanceof GroupableEntity) {
+      $groupManager = $this->container->get('os2display.group_manager');
+      $groupManager->replaceGroups($entity->getGroups(), $entity);
+      $groupManager->saveGrouping($entity);
+    }
+  }
+
+  public function postUpdate(LifecycleEventArgs $args) {
+    $this->postPersist($args);
+  }
+
+    public function preRemove(LifecycleEventArgs $args) {
     $entity = $args->getObject();
     if ($entity instanceof GroupableEntity) {
       $groupManager = $this->container->get('os2display.group_manager');
