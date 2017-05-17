@@ -88,10 +88,6 @@ angular.module('adminApp').controller('AdminUserController', [
      * @param user
      */
     function setUser(user) {
-      if (user.id === userService.getCurrentUser().id) {
-        userService.setCurrentUser(user);
-      }
-
       $scope.user = user;
       $scope.userRoles = [];
       $scope.userGroups = [];
@@ -161,6 +157,13 @@ angular.module('adminApp').controller('AdminUserController', [
       // Load roles, then load user.
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
         function (user) {
+          if (user.id === userService.getCurrentUser().id) {
+            busService.$emit('log.info', {
+              timeout: 10000,
+              msg: $translate('user.messages.current_user_updated')
+            });
+          }
+
           $timeout(function () {
             setUser(user);
           });
@@ -220,6 +223,13 @@ angular.module('adminApp').controller('AdminUserController', [
 
       $scope.updateEntity('user', $scope.user).then(
         function success(user) {
+          if (user.id === userService.getCurrentUser().id) {
+            busService.$emit('log.info', {
+              timeout: 10000,
+              msg: $translate('user.messages.current_user_updated')
+            });
+          }
+
           setUser(user);
 
           // Display message success.

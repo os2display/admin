@@ -2,8 +2,8 @@
  * User service.
  */
 angular.module('mainModule').service('userService', [
-  'busService', '$http', '$q',
-  function (busService, $http, $q) {
+  'busService',
+  function (busService) {
     'use strict';
 
     // Get
@@ -19,15 +19,6 @@ angular.module('mainModule').service('userService', [
     };
 
     /**
-     * Set the current user.
-     *
-     * @param user
-     */
-    var setCurrentUser = function setCurrentUser(user) {
-      currentUser = user;
-    };
-
-    /**
      * Get current user event listener.
      */
     busService.$on('userService.getCurrentUser', function requestUser(event, args) {
@@ -38,6 +29,5 @@ angular.module('mainModule').service('userService', [
 
     // Expose methods.
     this.getCurrentUser = getCurrentUser;
-    this.setCurrentUser = setCurrentUser;
   }
 ]);

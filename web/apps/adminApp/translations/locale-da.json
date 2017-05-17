@@ -38,7 +38,7 @@
       "groups_not_found": "Grupper kan ikke findes",
       "unable_to_load_users": "Kunne ikke hente brugere",
       "user_not_removed_from_group": "Kunne ikke fjerne bruger fra gruppen",
-      "user_removed_from_grouo": "Bruger fjernet fra gruppe",
+      "user_removed_from_group": "Bruger fjernet fra gruppe",
       "user_role_not_set": "Grupperolle blev ikke opdateret",
       "user_role_set": "Grupperolle opdateret"
     },
@@ -79,6 +79,7 @@
     "messages": {
       "could_not_add_role_to_user": "Kunne ikke tilføje rolle til bruger",
       "could_not_remove_role_from_user": "Kunne ikke fjerne rolle fra bruger",
+      "current_user_updated": "Du har opdateret din egen bruger. For at ændringer slår igennem, genindlæs siden.",
       "roles_not_found": "Roller kunne ikke hentes",
       "user_created": "Bruger oprettet",
       "user_deleted": "Brugeren blev slettet",

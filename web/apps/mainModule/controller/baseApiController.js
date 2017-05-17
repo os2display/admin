@@ -37,10 +37,7 @@ angular.module('adminApp').controller('BaseApiController', [
       var uuid = createUuid();
 
       baseApiCleanupListeners.push(busService.$on('BaseApiController.returnEntity.' + uuid, function (event, result) {
-        if (!result) {
-          deferred.reject();
-        }
-        else if (result.error) {
+        if (result && result.error) {
           deferred.reject(result.error);
         }
         else {
@@ -67,10 +64,7 @@ angular.module('adminApp').controller('BaseApiController', [
       var uuid = createUuid();
 
       baseApiCleanupListeners.push(busService.$on('BaseApiController.returnEntities.' + uuid, function (event, result) {
-        if (!result) {
-          deferred.reject();
-        }
-        else if (result.error) {
+        if (result && result.error) {
           deferred.reject(result.error);
         }
         else {
@@ -97,10 +91,7 @@ angular.module('adminApp').controller('BaseApiController', [
       var uuid = createUuid();
 
       baseApiCleanupListeners.push(busService.$on('BaseApiController.updateEntity.' + uuid, function (event, result) {
-        if (!result) {
-          deferred.reject();
-        }
-        else if (result.error) {
+        if (result && result.error) {
           deferred.reject(result.error);
         }
         else {
@@ -128,10 +119,7 @@ angular.module('adminApp').controller('BaseApiController', [
       var uuid = createUuid();
 
       baseApiCleanupListeners.push(busService.$on('BaseApiController.createEntity.' + uuid, function (event, result) {
-        if (!result) {
-          deferred.reject();
-        }
-        else if (result.error) {
+        if (result && result.error) {
           deferred.reject(result.error);
         }
         else {
@@ -159,10 +147,7 @@ angular.module('adminApp').controller('BaseApiController', [
       var uuid = createUuid();
 
       baseApiCleanupListeners.push(busService.$on('BaseApiController.deleteEntity.' + uuid, function (event, result) {
-        if (!result) {
-          deferred.reject();
-        }
-        else if (result.error) {
+        if (result && result.error) {
           deferred.reject(result.error);
         }
         else {
@@ -191,10 +176,7 @@ angular.module('adminApp').controller('BaseApiController', [
       var uuid = createUuid();
 
       baseApiCleanupListeners.push(busService.$on('BaseApiController.baseApiRequest.' + uuid, function (event, result) {
-        if (!result) {
-          deferred.reject();
-        }
-        else if (result.error) {
+        if (result && result.error) {
           deferred.reject(result.error);
         }
         else {
