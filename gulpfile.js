@@ -98,7 +98,7 @@ gulp.task('jshint', 'Runs JSHint on js', function () {
  * Build single app.js file.
  */
 gulp.task('js', 'Build all custom js files into one minified js file.', function () {
-    gulp.src(adminJsPath)
+  return gulp.src(adminJsPath)
       .pipe(concat('app.js'))
       .pipe(ngAnnotate())
       .pipe(uglify())
@@ -109,10 +109,19 @@ gulp.task('js', 'Build all custom js files into one minified js file.', function
 );
 
 /**
+ * Build single app.js file.
+ */
+gulp.task('js-src', 'Report all source files for "js" task.', function () {
+  adminJsPath.forEach(function (path) {
+    process.stdout.write(path + '\n');
+  });
+});
+
+/**
  * Build single assets.js file.
  */
 gulp.task('assets', 'Build all asset js files into one minified js file.', function () {
-  gulp.src(adminJsAssets)
+  return gulp.src(adminJsAssets)
     .pipe(concat('assets.js'))
     .pipe(ngAnnotate())
     .pipe(uglify())
@@ -124,7 +133,7 @@ gulp.task('assets', 'Build all asset js files into one minified js file.', funct
  * Process SCSS using libsass
  */
 gulp.task('sass', 'Compile sass into minified css', function () {
-  gulp.src(sassPath)
+  return gulp.src(sassPath)
     .pipe(sass({
       outputStyle: 'compressed',
       includePaths: [
