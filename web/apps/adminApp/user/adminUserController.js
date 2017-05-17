@@ -4,8 +4,8 @@
  */
 
 angular.module('adminApp').controller('AdminUserController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter',
-  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter) {
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter', 'userService',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter, userService) {
     'use strict';
 
     // Extend BaseApiController.
@@ -88,6 +88,10 @@ angular.module('adminApp').controller('AdminUserController', [
      * @param user
      */
     function setUser(user) {
+      if (user.id === userService.getCurrentUser().id) {
+        userService.setCurrentUser(user);
+      }
+
       $scope.user = user;
       $scope.userRoles = [];
       $scope.userGroups = [];

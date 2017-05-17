@@ -10,12 +10,21 @@ angular.module('mainModule').service('userService', [
     var currentUser = OS2DISPLAY_CURRENT_USER;
 
     /**
-     * Get current user promise.
+     * Get the current user.
      *
-     * @return {HttpPromise}
+     * @return object
      */
     var getCurrentUser = function getCurrentUser() {
       return currentUser;
+    };
+
+    /**
+     * Set the current user.
+     *
+     * @param user
+     */
+    var setCurrentUser = function setCurrentUser(user) {
+      currentUser = user;
     };
 
     /**
@@ -27,6 +36,8 @@ angular.module('mainModule').service('userService', [
       busService.$emit('userService.returnCurrentUser', user);
     });
 
+    // Expose methods.
     this.getCurrentUser = getCurrentUser;
+    this.setCurrentUser = setCurrentUser;
   }
 ]);
