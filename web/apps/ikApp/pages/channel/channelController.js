@@ -15,6 +15,9 @@ angular.module('ikApp').controller('ChannelController', [
     $scope.slides = [];
     $scope.channel = {};
 
+    // Get current user.
+    $scope.currentUser = userService.getCurrentUser();
+
     // Days, for use with schedule day checklist
     // Follows the javascript  Date.getDay()  numbers for days.
     // http://www.w3schools.com/jsref/jsref_getday.asp
@@ -62,15 +65,6 @@ angular.module('ikApp').controller('ChannelController', [
       $scope.step = step;
       $scope.templatePath = '/apps/ikApp/pages/channel/channel-step' + $scope.step + '.html?' + window.config.version;
     }
-
-    // Get current user.
-    userService.getCurrentUser().then(
-      function (user) {
-        $timeout(function () {
-          $scope.currentUser = user;
-        });
-      }
-    );
 
     /**
      * Constructor.

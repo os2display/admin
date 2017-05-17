@@ -15,37 +15,16 @@ angular.module('mainModule').service('userService', [
      * @return {HttpPromise}
      */
     var getCurrentUser = function getCurrentUser() {
-      var deferred = $q.defer();
-
-      $http.get('/api/user/current')
-      .success(function (data) {
-        currentUser = data;
-        deferred.resolve(currentUser);
-      })
-      .error(function (response) {
-        deferred.reject(response);
-      });
-
-      //deferred.resolve(currentUser);
-
-      return deferred.promise;
+      return currentUser;
     };
 
     /**
      * Get current user event listener.
      */
     busService.$on('userService.getCurrentUser', function requestUser(event, args) {
-      getCurrentUser().then(
-        function (user) {
-          busService.$emit('userService.returnCurrentUser', user);
-        },
-        function (err) {
-          busService.$emit('log.error', {
-            'cause': err,
-            'msg': 'Bruger kunne ikke hentes'
-          });
-        }
-      )
+      var user = getCurrentUser();
+
+      busService.$emit('userService.returnCurrentUser', user);
     });
 
     this.getCurrentUser = getCurrentUser;

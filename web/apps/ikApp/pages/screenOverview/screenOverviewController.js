@@ -150,19 +150,16 @@ angular.module('ikApp').controller('ScreenOverviewController', ['$scope', 'scree
       }
     };
 
-    userService.getCurrentUser().then(
-      function (data) {
-        $scope.currentUser = data;
+    // Get current user.
+    $scope.currentUser = userService.getCurrentUser();
 
-        // Get filter selection "all/mine" from localStorage.
-        $scope.showFromUser = localStorage.getItem('overview.screen.search_filter_default') ?
-          localStorage.getItem('overview.screen.search_filter_default') :
-          'all';
+    // Get filter selection "all/mine" from localStorage.
+    $scope.showFromUser = localStorage.getItem('overview.screen.search_filter_default') ?
+      localStorage.getItem('overview.screen.search_filter_default') :
+      'all';
 
-        // Updated search filters (build "mine" filter with user id). It
-        // will trigger an search update.
-        $scope.setSearchFilters();
-      }
-    );
+    // Updated search filters (build "mine" filter with user id). It
+    // will trigger an search update.
+    $scope.setSearchFilters();
   }
 ]);

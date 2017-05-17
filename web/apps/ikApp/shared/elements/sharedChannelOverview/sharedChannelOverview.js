@@ -30,22 +30,12 @@ angular.module('ikApp').directive('sharedChannelOverview', ['sharedChannelFactor
 
         scope.sort = { "created_at": "desc" };
 
-        userService.getCurrentUser().then(
-          function success(data) {
-            scope.currentUser = data;
+        scope.currentUser = userService.getCurrentUser();
 
-            // Get filter selection "all/mine" from localStorage.
-            scope.showFromUser = localStorage.getItem('overview.shared_channel.search_filter_default') ?
-              localStorage.getItem('overview.shared_channel.search_filter_default') :
-              'all';
-          },
-          function error(reason) {
-            busService.$emit('log.error', {
-              'cause': reason,
-              'msg': 'Kunne ikke loade bruger'
-            });
-          }
-        );
+        // Get filter selection "all/mine" from localStorage.
+        scope.showFromUser = localStorage.getItem('overview.shared_channel.search_filter_default') ?
+          localStorage.getItem('overview.shared_channel.search_filter_default') :
+          'all';
 
         // Default pager values.
         scope.pager = {
