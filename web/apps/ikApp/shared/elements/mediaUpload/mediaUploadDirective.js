@@ -91,10 +91,17 @@ angular.module('ikApp').directive('ikMediaUpload', ['userService',
         $scope.upload = function upload() {
           $scope.uploadInProgress = true;
 
+          // Get group ids.
+          var groupIds = [];
+          for (var group in $scope.selectedGroups) {
+            group = $scope.selectedGroups[group];
+            groupIds.push(group.id);
+          }
+
           // Set groups for each item.
           for (var item in $scope.uploader.queue) {
             item = $scope.uploader.queue[item];
-            item.formData[0].groups = $scope.selectedGroups;
+            item.formData[0].groups = JSON.stringify(groupIds);
           }
 
           $scope.uploader.uploadAll();
