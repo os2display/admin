@@ -6,7 +6,7 @@ angular.module('mainModule').service('userService', [
   function (busService) {
     'use strict';
 
-    // Get
+    // Get current user.
     var currentUser = angular.copy(OS2DISPLAY_CURRENT_USER);
 
     /**
@@ -47,8 +47,10 @@ angular.module('mainModule').service('userService', [
     this.hasRole = function hasRole(role, user) {
       user || (user = currentUser);
 
+      var roles = (Object.keys(user.api_data.roles).map(function(key){return user.api_data.roles[key]}));
+
       return user && user.api_data && user.api_data.roles &&
-        (Object.keys(user.api_data.roles).map(function(key){return user.api_data.roles[key]})).indexOf(role) !== -1;
+         roles.indexOf(role) !== -1;
     };
 
     /**

@@ -89,6 +89,4 @@ angular.module('ikApp').config(function ($routeProvider) {
       controller: 'MediaEditController',
       templateUrl: 'apps/ikApp/pages/mediaEdit/media-edit.html?' + window.config.version
     })
-
-    .otherwise({template: ""});
 });

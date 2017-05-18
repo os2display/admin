@@ -4,18 +4,27 @@
  */
 
 angular.module('adminApp').controller('AdminGroupsController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$controller', '$filter',
-  function (busService, $scope, $timeout, ModalService, $controller, $filter) {
+  'busService', '$scope', '$timeout', 'ModalService', '$controller', '$filter', '$location',
+  function (busService, $scope, $timeout, ModalService, $controller, $filter, $location) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', {$scope: $scope});
 
-    // Check role.
-    $scope.requireRole('ROLE_GROUP_ADMIN');
-
     // Get translation filter.
     var $translate = $filter('translate');
+
+    // Check role.
+    if (!$scope.requireRole('ROLE_GROUP_ADMIN')) {
+      busService.$emit('log.error', {
+        timeout: 5000,
+        cause: 403,
+        msg: $translate('common.error.forbidden')
+      });
+
+      $location.path('/');
+      return;
+    }
 
     $scope.groupsLoading = true;
     $scope.groups = null;

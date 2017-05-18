@@ -101,7 +101,16 @@ angular.module('adminApp').controller('AdminUserController', [
     // If id set, request that user, else use baseCurrentUser (from BaseController).
     if ($routeParams.id) {
       // Check role.
-      $scope.requireRole('ROLE_USER_ADMIN');
+      if (!$scope.requireRole('ROLE_USER_ADMIN')) {
+        busService.$emit('log.error', {
+          timeout: 5000,
+          cause: 403,
+          msg: $translate('common.error.forbidden')
+        });
+
+        $location.path('/');
+        return;
+      }
 
       $scope.getEntity('user', {id: $routeParams.id}).then(
         function success(user) {

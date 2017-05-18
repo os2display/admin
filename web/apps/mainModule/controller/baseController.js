@@ -6,35 +6,19 @@
 /**
  * Base controller.
  */
-angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$location', '$filter',
-  function ($scope, userService, $location, $filter) {
+angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$location',
+  function ($scope, userService, $location) {
     'use strict';
 
     $scope.baseCurrentUser = userService.getCurrentUser();
-
-    // Get translation filter.
-    var $translate = $filter('translate');
 
     /**
      * Require role of current user.
      * 
      * @param role
-     * @param redirect_path
      */
-    $scope.requireRole = function requireRole(role, redirect_path) {
-      redirect_path || (redirect_path = '/');
-
-      if (userService.hasRole) {
-        return;
-      }
-
-      busService.$emit('log.error', {
-        timeout: 5000,
-        cause: 403,
-        msg: $translate('common.error.forbidden')
-      });
-
-      $location.path(redirect_path);
+    $scope.requireRole = function requireRole(role) {
+      return userService.hasRole(role)
     };
 
     /**

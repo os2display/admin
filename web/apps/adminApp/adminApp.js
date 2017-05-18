@@ -47,7 +47,6 @@ angular.module('adminApp').config(['$routeProvider', '$translateProvider', funct
     controller: 'AdminGroupController',
     templateUrl: 'apps/adminApp/group/admin-group.html?' + window.config.version
   })
-  ;
 }]);
 
 // Setup the app.
@@ -80,7 +79,7 @@ angular.module('adminApp').service('adminAppSetup', [
     busService.$on('menuApp.requestSubMenuItems', function (event, data) {
       var items = [];
 
-      if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
+      if (userService.hasRole('ROLE_USER_ADMIN') && userService.hasRole('ROLE_GROUP_ADMIN')) {
         items.push({
           title: 'Oversigt',
           path: '#/admin',

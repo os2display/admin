@@ -11,11 +11,20 @@ angular.module('adminApp').controller('AdminGroupController', [
     // Extend
     $controller('BaseApiController', {$scope: $scope});
 
-    // Check role.
-    $scope.requireRole('ROLE_GROUP_ADMIN');
-
     // Get translation filter.
     var $translate = $filter('translate');
+
+    // Check role.
+    if (!$scope.requireRole('ROLE_GROUP_ADMIN')) {
+      busService.$emit('log.error', {
+        timeout: 5000,
+        cause: 403,
+        msg: $translate('common.error.forbidden')
+      });
+
+      $location.path('/');
+      return;
+    }
 
     $scope.group = null;
     $scope.loading = true;
