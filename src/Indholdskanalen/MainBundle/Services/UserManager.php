@@ -47,6 +47,7 @@ class UserManager {
     // Create user object.
     $user = $this->userManager->createUser();
 
+    $data = $this->normalizeData($data);
     $this->entityService->setValues($user, $data, self::$editableProperties);
 
     $user->setUsername($user->getEmail());
@@ -80,6 +81,7 @@ class UserManager {
    * @throws \Indholdskanalen\MainBundle\Exception\DuplicateEntityException
    */
   public function updateUser(User $user, $data) {
+    $data = $this->normalizeData($data);
     $this->entityService->setValues($user, $data, self::$editableProperties);
 
     $user->setUsername($user->getEmail());
@@ -94,6 +96,19 @@ class UserManager {
     $this->userManager->updateUser($user);
 
     return $user;
+  }
+
+  private function normalizeData(array $data) {
+    if (isset($data['roles']) && $this->isAssoc($data['roles'])) {
+      $data['roles'] = array_keys($data['roles']);
+    }
+
+    return $data;
+  }
+
+  private function isAssoc(array $arr) {
+    if (array() === $arr) return false;
+    return array_keys($arr) !== range(0, count($arr) - 1);
   }
 
 }
