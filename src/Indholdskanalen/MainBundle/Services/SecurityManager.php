@@ -4,9 +4,13 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Security\EditVoter;
+use Indholdskanalen\MainBundle\Security\Roles;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManager;
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
 class SecurityManager {
   /**
@@ -24,10 +28,16 @@ class SecurityManager {
    */
   protected $decisionManager;
 
-  public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $manager, AccessDecisionManager $decisionManager) {
+  /**
+   * @var \Symfony\Component\Security\Core\Role\RoleHierarchyInterface
+   */
+  protected $roleHierarchy;
+
+  public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $manager, AccessDecisionManager $decisionManager, RoleHierarchyInterface $roleHierarchy) {
     $this->tokenStorage = $tokenStorage;
     $this->manager = $manager;
     $this->decisionManager = $decisionManager;
+    $this->roleHierarchy = $roleHierarchy;
   }
 
   public function decide($attributes, $object = null) {
@@ -68,5 +78,42 @@ class SecurityManager {
 
   protected function canAddScreenToGroup(Group $group) {
     return $this->decide(EditVoter::READ, $group);
+  }
+
+  public function getReachableRoles(User $user) {
+    $userRoles = array_map(function ($role) {
+      return new Role($role);
+    }, $user->getRoles(FALSE));
+
+    $roles = $this->roleHierarchy->getReachableRoles($userRoles);
+    $roleNames = array_map(function (Role $role) {
+      return $role->getRole();
+    }, $roles);
+
+    return array_unique(array_intersect($roleNames, Roles::getRoleNames()));
+  }
+
+  public function hasRole(User $user, $role) {
+    return in_array($role, $this->getReachableRoles($user));
+  }
+
+  /**
+   * Decide if current user can assign roles to a user.
+   *
+   * @param array $roleNames
+   * @return bool
+   */
+  public function canAssignRoles(array $roleNames) {
+    // Only super admin can assign super admin role.
+    if (in_array(Roles::ROLE_SUPER_ADMIN, $roleNames) && !$this->decide(Roles::ROLE_SUPER_ADMIN)) {
+      return FALSE;
+    }
+
+    // Only admin can assign admin role.
+    if (in_array(Roles::ROLE_ADMIN, $roleNames) && !$this->decide(Roles::ROLE_ADMIN)) {
+      return FALSE;
+    }
+
+    return $this->decide(Roles::ROLE_USER_ADMIN);
   }
 }

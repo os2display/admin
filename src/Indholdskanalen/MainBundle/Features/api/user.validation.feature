@@ -6,10 +6,10 @@ Feature: admin
 
   Background:
     Given the following users exist:
-      | username          | email             | password |
-      | admin             | admin@example.com | admin    |
-      | user1@example.com | user1@example.com |          |
-      | user2@example.com | user2@example.com |          |
+      | username          | email             | password | roles      |
+      | admin             | admin@example.com | admin    | ROLE_ADMIN |
+      | user1@example.com | user1@example.com |          |            |
+      | user2@example.com | user2@example.com |          |            |
 
     When I sign in with username "admin" and password "admin"
     And I add "Content-Type" header equal to "application/json"

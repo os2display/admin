@@ -10,6 +10,7 @@ use FOS\UserBundle\Doctrine\UserManager as FOSUserManager;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
+use Indholdskanalen\MainBundle\Exception\ValidationException;
 
 /**
  * Class UserManager
@@ -22,6 +23,7 @@ class UserManager {
   protected $mailerService;
   protected $entityService;
   protected $tokenGenerator;
+  protected $securityMananager;
 
   /**
    * UserManager constructor.
@@ -29,11 +31,12 @@ class UserManager {
    * @param \FOS\UserBundle\Doctrine\UserManager $userManager
    * @param \Indholdskanalen\MainBundle\Services\UserMailerService $mailerService
    */
-  public function __construct(FOSUserManager $userManager, UserMailerService $mailerService, EntityService $entityService, TokenGeneratorInterface $tokenGenerator) {
+  public function __construct(FOSUserManager $userManager, UserMailerService $mailerService, EntityService $entityService, TokenGeneratorInterface $tokenGenerator, SecurityManager $securityManager) {
     $this->userManager = $userManager;
     $this->mailerService = $mailerService;
     $this->entityService = $entityService;
     $this->tokenGenerator = $tokenGenerator;
+    $this->securityMananager = $securityManager;
   }
 
   /**
@@ -99,8 +102,14 @@ class UserManager {
   }
 
   private function normalizeData(array $data) {
-    if (isset($data['roles']) && $this->isAssoc($data['roles'])) {
-      $data['roles'] = array_keys($data['roles']);
+    if (isset($data['roles'])) {
+      if ($this->isAssoc($data['roles'])) {
+        $data['roles'] = array_keys($data['roles']);
+      }
+
+      if (!$this->securityMananager->canAssignRoles($data['roles'])) {
+        throw new ValidationException('Invalid roles', $data['roles']);
+      }
     }
 
     return $data;
