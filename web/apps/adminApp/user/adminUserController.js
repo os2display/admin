@@ -50,19 +50,10 @@ angular.module('adminApp').controller('AdminUserController', [
      * @param roleToAdd
      */
     var addRoleToUser = function addRoleToUser(roleToAdd) {
-      var roles = [];
-      for (var role in $scope.user.roles) {
-        roles.push(role);
-      }
-
-      if (roles.indexOf(roleToAdd.id) === -1) {
-        roles.push(roleToAdd.id)
-      }
+      $scope.loading = true;
 
       var user = angular.copy($scope.user);
-      user.roles = roles;
-
-      $scope.loading = true;
+      user.roles[roleToAdd.id] = roleToAdd.title;
 
       // Load roles, then load user.
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
@@ -144,15 +135,8 @@ angular.module('adminApp').controller('AdminUserController', [
     $scope.removeRoleFromUser = function (roleToRemove) {
       $scope.loading = true;
 
-      var roles = [];
-      for (var role in $scope.user.roles) {
-        if (role !== roleToRemove) {
-          roles.push(role);
-        }
-      }
-
       var user = angular.copy($scope.user);
-      user.roles = roles;
+      delete user.roles[roleToRemove];
 
       // Load roles, then load user.
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
