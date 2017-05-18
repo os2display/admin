@@ -15,8 +15,11 @@ angular.module('ikApp').controller('ChannelController', [
     $scope.slides = [];
     $scope.channel = {};
 
-    // Get current user.
-    $scope.currentUser = userService.getCurrentUser();
+    // Get current user groups.
+    var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, groups) {
+      $scope.userGroups = groups;
+    });
+    userService.getCurrentUserGroups('channelController.getCurrentUserGroups');
 
     // Get all slides.
     slideFactory.getSlides().then(
@@ -355,5 +358,12 @@ angular.module('ikApp').controller('ChannelController', [
 
       $scope.channel.slides = $filter('orderBy')($scope.channel.slides, reverse ? "-" : "" + sortCriteria);
     };
+
+    /**
+     * onDestroy.
+     */
+    $scope.$on('$destroy', function () {
+      cleanupGetCurrentUserGroups();
+    });
   }
 ]);

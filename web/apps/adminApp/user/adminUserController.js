@@ -158,10 +158,7 @@ angular.module('adminApp').controller('AdminUserController', [
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
         function (user) {
           if (user.id === userService.getCurrentUser().id) {
-            busService.$emit('log.info', {
-              timeout: 10000,
-              msg: $translate('user.messages.current_user_updated')
-            });
+            userService.updateCurrentUser();
           }
 
           $timeout(function () {
@@ -224,10 +221,7 @@ angular.module('adminApp').controller('AdminUserController', [
       $scope.updateEntity('user', $scope.user).then(
         function success(user) {
           if (user.id === userService.getCurrentUser().id) {
-            busService.$emit('log.info', {
-              timeout: 10000,
-              msg: $translate('user.messages.current_user_updated')
-            });
+            userService.updateCurrentUser();
           }
 
           setUser(user);

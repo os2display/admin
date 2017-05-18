@@ -7,7 +7,7 @@
     </h1>
     <p class="create-channel--header-description">{{ 'create_channel.help_text.select_groups' | translate }}</p>
 
-    <ik-checklist elements="currentUser.groups" selected="channel.groups" identity="'id'"></ik-checklist>
+    <ik-checklist elements="userGroups" selected="channel.groups" identity="'id'"></ik-checklist>
 
     <div class="create-channel--buttons">
       <input type="submit" data-ng-disabled="disableSubmitButton"

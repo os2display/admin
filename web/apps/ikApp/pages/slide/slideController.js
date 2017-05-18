@@ -30,7 +30,11 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
     );
     $scope.channels = [];
 
-    $scope.currentUser = userService.getCurrentUser();
+    // Get current user groups.
+    var cleanupGetCurrentUserGroups = busService.$on('slideController.getCurrentUserGroups', function (event, groups) {
+      $scope.userGroups = groups;
+    });
+    userService.getCurrentUserGroups('slideController.getCurrentUserGroups');
 
     // Get all channels for step 6
     channelFactory.getChannels().then(function (data) {
@@ -283,5 +287,9 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
         $scope.slide.channels.push(channel);
       }
     };
+
+    $scope.$on('$destroy', function () {
+      cleanupGetCurrentUserGroups();
+    });
   }
 ]);

@@ -11,8 +11,8 @@
  * Emits the 'mediaUpload.uploadComplete' event for a parent controller to catch.
  *   Catch this event to handle when the upload is complete.
  */
-angular.module('ikApp').directive('ikMediaUpload', ['userService',
-  function (userService) {
+angular.module('ikApp').directive('ikMediaUpload', ['busService', 'userService',
+  function (busService, userService) {
     'use strict';
 
     return {
@@ -28,7 +28,12 @@ angular.module('ikApp').directive('ikMediaUpload', ['userService',
         $scope.uploadInProgress = false;
         $scope.uploadErrorText = '';
 
-        $scope.currentUser = userService.getCurrentUser();
+        // Get current user groups.
+        var cleanupGetCurrentUserGroups = busService.$on('mediaUpdateDirective.getCurrentUserGroups', function (event, groups) {
+          $scope.userGroups = groups;
+        });
+        userService.getCurrentUserGroups('mediaUpdateDirective.getCurrentUserGroups');
+
         $scope.selectedGroups = [];
 
         var acceptedVideotypes = '|mp4|x-msvideo|x-ms-wmv|quicktime|mpeg|mpg|x-matroska|ogg|webm';
@@ -193,6 +198,13 @@ angular.module('ikApp').directive('ikMediaUpload', ['userService',
             queue: $scope.uploader.queue
           });
         };
+
+        /**
+         * onDestroy.
+         */
+        $scope.$on('$destory', function () {
+          cleanupGetCurrentUserGroups();
+        });
       },
       link: function () {
       },

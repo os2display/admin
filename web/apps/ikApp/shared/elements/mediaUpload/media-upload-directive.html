@@ -43,7 +43,7 @@
       </div>
       <div class="create-media--select-groups">
         <label class="create-channel--schedule-label">{{ 'create_media.help_text.select_groups' | translate }}</label>
-        <ik-checklist elements="currentUser.groups" selected="selectedGroups" identity="'id'" ng-hide="uploadInProgress || uploadComplete"></ik-checklist>
+        <ik-checklist elements="userGroups" selected="selectedGroups" identity="'id'" ng-hide="uploadInProgress || uploadComplete"></ik-checklist>
       </div>
     </div>
     <div>

@@ -16,7 +16,14 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
     $scope.toolbarTemplate = null;
     $scope.display = false;
     $scope.region = null;
-    $scope.currentUser = userService.getCurrentUser();
+
+    // Get current user groups.
+    var cleanupGetCurrentUserGroups = busService.$on('screenController.getCurrentUserGroups', function (event, groups) {
+      $timeout(function () {
+        $scope.userGroups = groups;
+      });
+    });
+    userService.getCurrentUserGroups('screenController.getCurrentUserGroups');
 
     /**
      * Constructor.
@@ -159,5 +166,12 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
       $scope.region = tool.region;
       $scope.displayToolbar = true;
     };
+
+    /**
+     * onDestroy.
+     */
+    $scope.$on('$destroy', function () {
+      cleanupGetCurrentUserGroups();
+    });
   }
 ]);

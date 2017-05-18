@@ -32,10 +32,7 @@ angular.module('adminApp').controller('PopupAddUser', [
       }).then(
         function success(res) {
           if (res.user.id === userService.getCurrentUser().id) {
-            busService.$emit('log.info', {
-              timeout: 10000,
-              msg: $translate('user.messages.current_user_updated')
-            });
+            userService.updateCurrentUser();
           }
 
           addedUserCallback(user);
