@@ -6,46 +6,46 @@
 /**
  * Base controller.
  */
-angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$q',
-  function ($scope, userService, $q) {
+angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$location', '$filter',
+  function ($scope, userService, $location, $filter) {
     'use strict';
 
-    var self = this;
-    $scope.baseCurrentUser = null;
+    $scope.baseCurrentUser = userService.getCurrentUser();
 
-    $scope.requireRole = function requirePermissions(role) {
-      var deferred = $q.defer();
+    // Get translation filter.
+    var $translate = $filter('translate');
 
-      userService.getCurrentUser().then(function (user) {
-        $scope.baseCurrentUser = user;
+    /**
+     * Require role of current user.
+     * 
+     * @param role
+     * @param redirect_path
+     */
+    $scope.requireRole = function requireRole(role, redirect_path) {
+      redirect_path || (redirect_path = '/');
 
-        if (user && user.api_data && user.api_data.roles && user.api_data.roles.indexOf(role) !== -1) {
-          deferred.resolve(user);
-        } else {
-          deferred.reject({
-            code: 403,
-            message: 'role ' + role + ' required'
-          });
-        }
+      if (userService.hasRole) {
+        return;
+      }
+
+      busService.$emit('log.error', {
+        timeout: 5000,
+        cause: 403,
+        msg: $translate('common.error.forbidden')
       });
-      // @TODO: Handle error when getting user.
 
-      return deferred.promise;
+      $location.path(redirect_path);
     };
 
-    // Get the current user.
-    userService.getCurrentUser().then(
-      function (currentUser) {
-        $scope.baseCurrentUser = currentUser;
-      },
-      function error(err) {
-        console.error(err);
-      }
-    );
-
+    /**
+     * Has user has role.
+     * 
+     * @param role
+     * @param user
+     */
     $scope.hasRole = function hasRole(role, user) {
       return userService.hasRole(role, user);
-    }
+    };
 
     /**
      * Check if the entity has a given permission.

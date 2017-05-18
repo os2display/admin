@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\SharingIndex;
 use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Indholdskanalen\MainBundle\Entity\Channel;
@@ -116,12 +117,10 @@ class ChannelController extends Controller {
       $sort_order++;
     }
 
-    $groups = isset($post->groups) ? $post->groups : [];
-    $groupManager = $this->get('os2display.group_manager');
-    $groupManager->replaceGroups($groups, $channel);
-    $groupManager->saveGrouping($channel);
+    // Add channel to groups.
+    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
+    $channel->setGroups($groups);
 
-    // Save the entity.
     $em->persist($channel);
 
     $dispatcher = $this->get('event_dispatcher');
@@ -240,8 +239,6 @@ class ChannelController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
-    $this->get('os2display.group_manager')->loadGrouping($channel);
-
     $serializer = $this->get('jms_serializer');
 
     // Create response.
@@ -319,10 +316,6 @@ class ChannelController extends Controller {
     $channel_entities = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findAll();
-
-    foreach ($channel_entities as $channel) {
-      $this->get('os2display.group_manager')->loadGrouping($channel);
-    }
 
     // Create response.
     $response = new Response();

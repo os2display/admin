@@ -4,12 +4,15 @@
  */
 
 angular.module('adminApp').controller('AdminUserController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller',
-  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller) {
+  'busService', '$scope', '$timeout', 'ModalService', '$routeParams', '$location', '$controller', '$filter', 'userService',
+  function (busService, $scope, $timeout, ModalService, $routeParams, $location, $controller, $filter, userService) {
     'use strict';
 
     // Extend BaseApiController.
     $controller('BaseApiController', {$scope: $scope});
+
+    // Get translation filter.
+    var $translate = $filter('translate');
 
     $scope.user = null;
     $scope.userRoles = [];
@@ -28,7 +31,7 @@ angular.module('adminApp').controller('AdminUserController', [
 
       if ($scope.baseCanUpdate($scope.user)) {
         actions.push({
-          title: 'Fjern rolle fra bruger',
+          title: $translate('user.action.remove_role'),
           click: $scope.removeRoleFromUser,
           entity: key
         });
@@ -47,19 +50,10 @@ angular.module('adminApp').controller('AdminUserController', [
      * @param roleToAdd
      */
     var addRoleToUser = function addRoleToUser(roleToAdd) {
-      var roles = [];
-      for (var role in $scope.user.roles) {
-        roles.push(role);
-      }
-
-      if (roles.indexOf(roleToAdd.id) === -1) {
-        roles.push(roleToAdd.id)
-      }
+      $scope.loading = true;
 
       var user = angular.copy($scope.user);
-      user.roles = roles;
-
-      $scope.loading = true;
+      user.roles[roleToAdd.id] = roleToAdd.title;
 
       // Load roles, then load user.
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
@@ -71,7 +65,7 @@ angular.module('adminApp').controller('AdminUserController', [
         function error(err) {
           busService.$emit('log.error', {
             cause: err.code,
-            msg: 'Kunne ikke tilføje rolle til bruger.'
+            msg: $translate('user.messages.could_not_add_role_to_user')
           });
         }
       ).then(function () {
@@ -106,6 +100,9 @@ angular.module('adminApp').controller('AdminUserController', [
 
     // If id set, request that user, else use baseCurrentUser (from BaseController).
     if ($routeParams.id) {
+      // Check role.
+      $scope.requireRole('ROLE_USER_ADMIN');
+
       $scope.getEntity('user', {id: $routeParams.id}).then(
         function success(user) {
           $timeout(function () {
@@ -116,7 +113,7 @@ angular.module('adminApp').controller('AdminUserController', [
           busService.$emit('log.error', {
             timeout: 5000,
             cause: err.code,
-            msg: 'Brugeren kan ikke findes.'
+            msg: $translate('user.messages.user_not_found')
           });
 
           // Redirect to dashboard.
@@ -141,21 +138,16 @@ angular.module('adminApp').controller('AdminUserController', [
     $scope.removeRoleFromUser = function (roleToRemove) {
       $scope.loading = true;
 
-      var roles = [];
-      for (var role in $scope.user.roles) {
-        if ($scope.user.roles[role] !== roleToRemove) {
-          roles.push($scope.user.roles[role]);
-        }
-      }
-
       var user = angular.copy($scope.user);
-      user.roles = roles;
-
-      $scope.loading = true;
+      delete user.roles[roleToRemove];
 
       // Load roles, then load user.
       $scope.baseApiRequest('put', '/api/user/' + $scope.user.id, user).then(
         function (user) {
+          if (user.id === userService.getCurrentUser().id) {
+            userService.updateCurrentUser();
+          }
+
           $timeout(function () {
             setUser(user);
           });
@@ -163,7 +155,7 @@ angular.module('adminApp').controller('AdminUserController', [
         function error(err) {
           busService.$emit('log.error', {
             cause: err.code,
-            msg: 'Kunne ikke fjerne rolle fra bruger.'
+            msg: $translate('user.messages.could_not_remove_role_from_user')
           });
         }
       ).then(function () {
@@ -182,7 +174,7 @@ angular.module('adminApp').controller('AdminUserController', [
           options: {
             type: 'user/roles',
             list: $scope.userRoles,
-            heading: 'Søg efter roller',
+            heading: $translate('user.action.search_for_role'),
             searchPlaceholder: '',
             clickCallback: addRoleToUser
           }
@@ -205,7 +197,7 @@ angular.module('adminApp').controller('AdminUserController', [
         busService.$emit('log.error', {
           timeout: 5000,
           cause: err.code,
-          msg: 'Ugyldigt input.'
+          msg: $translate('common.form.invalid')
         });
 
         return;
@@ -215,25 +207,29 @@ angular.module('adminApp').controller('AdminUserController', [
 
       $scope.updateEntity('user', $scope.user).then(
         function success(user) {
+          if (user.id === userService.getCurrentUser().id) {
+            userService.updateCurrentUser();
+          }
+
           setUser(user);
 
           // Display message success.
           busService.$emit('log.info', {
             timeout: 3000,
-            msg: 'Bruger opdateret.'
+            msg: $translate('user.messages.user_updated')
           });
         },
         function error(err) {
           if (err.code === 409) {
             busService.$emit('log.error', {
               cause: err.code,
-              msg: 'Bruger kunne ikke opdateres. Email eksisterer allerede.'
+              msg: $translate('user.messages.user_not_updated_conflict')
             });
           }
           else {
             busService.$emit('log.error', {
               cause: err.code,
-              msg: 'Bruger kunne ikke opdateres.'
+              msg: $translate('user.messages.user_not_updated')
             });
           }
         }

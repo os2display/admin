@@ -113,11 +113,30 @@ Feature: admin
     And the JSON node "[0].groups[0].id" should be equal to 2
     And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Screen'" should return 1 element
 
-
   Scenario: Remove screen
     When I send a "DELETE" request to "/api/screen/1"
     Then the response status code should be 200
     And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Screen'" should return 0 elements
+
+  Scenario: Create screen in group
+    When I send a "POST" request to "/api/screen" with body:
+      """
+      {
+        "id": null,
+        "title": "Screen in group",
+        "description": "Screen in group",
+        "groups": [2]
+      }
+      """
+    Then the response status code should be 200
+
+  Scenario: Get screens
+    When I send a "GET" request to "/api/screen"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "" should have 1 element
+    And the JSON node "[0].id" should be equal to 2
+    And the JSON node "[0].title" should be equal to "Screen in group"
 
   @dropSchema
   Scenario: Drop schema

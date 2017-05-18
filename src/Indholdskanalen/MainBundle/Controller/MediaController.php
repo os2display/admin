@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -31,7 +32,7 @@ class MediaController extends Controller {
     $uploadedItems = array();
 
     foreach ($request->files as $file) {
-      $media = new Media;
+      $media = new Media();
 
       if (isset($title) && $title !== '') {
         $media->setName($title);
@@ -74,8 +75,13 @@ class MediaController extends Controller {
       $userEntity = $this->get('security.context')->getToken()->getUser();
       $media->setUser($userEntity->getId());
 
-      $mediaManager = $this->get('sonata.media.manager.media');
+      $groups = json_decode($request->request->get('groups'));
+      $groups = new ArrayCollection($groups ?: []);
+      // echo var_export(['all' => $request->request->all(), 'groups' => $groups], true);
+      // var_export(['groups' => $groups]);
+      $media->setGroups($groups);
 
+      $mediaManager = $this->get('sonata.media.manager.media');
       $mediaManager->save($media);
 
       $uploadedItems[] = $media->getId();
@@ -101,7 +107,7 @@ class MediaController extends Controller {
     $qb = $em->createQueryBuilder();
 
     $qb->select('m')
-      ->from('ApplicationSonataMediaBundle:Media', 'm')
+      ->from(Media::class, 'm')
       ->orderBy('m.updatedAt', 'DESC');
 
     $query = $qb->getQuery();
@@ -132,7 +138,7 @@ class MediaController extends Controller {
    */
   public function mediaGetAction($id) {
     $media = $this->getDoctrine()
-      ->getRepository('ApplicationSonataMediaBundle:Media')
+      ->getRepository(Media::class)
       ->findOneById($id);
 
     // Create response.
@@ -166,7 +172,7 @@ class MediaController extends Controller {
   public function mediaDeleteAction($id) {
     $em = $this->getDoctrine()->getManager();
     $media = $this->getDoctrine()
-      ->getRepository('ApplicationSonataMediaBundle:Media')
+      ->getRepository(Media::class)
       ->findOneById($id);
 
     // Create response.

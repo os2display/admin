@@ -4,16 +4,18 @@
  */
 
 angular.module('adminApp').controller('PopupDeleteUser', [
-  'busService', '$scope', '$timeout', 'close', '$controller', 'user',
-  function (busService, $scope, $timeout, close, $controller, user) {
+  'busService', '$scope', '$timeout', 'close', '$controller', 'user', '$filter',
+  function (busService, $scope, $timeout, close, $controller, user, $filter) {
     'use strict';
 
     // Extend BaseController.
     $controller('BaseApiController', {$scope: $scope});
 
+    // Get translation filter.
+    var $translate = $filter('translate');
+
     $scope.user = user;
     $scope.loading = false;
-    $scope.errors = [];
 
     /**
      * Close the modal.
@@ -32,8 +34,6 @@ angular.module('adminApp').controller('PopupDeleteUser', [
         return;
       }
 
-      $scope.errors = [];
-
       $scope.loading = true;
 
       $scope.deleteEntity('user', $scope.user).then(
@@ -41,7 +41,7 @@ angular.module('adminApp').controller('PopupDeleteUser', [
           // Display message success.
           busService.$emit('log.info', {
             timeout: 5000,
-            msg: 'Brugeren blev slettet.'
+            msg: $translate('user.messages.user_deleted')
           });
 
           close($scope.user);
@@ -49,8 +49,9 @@ angular.module('adminApp').controller('PopupDeleteUser', [
         function error(err) {
           // Display message success.
           busService.$emit('log.error', {
+            cause: err.code,
             timeout: 5000,
-            msg: 'Brugeren kunne ikke slettes.'
+            msg: $translate('user.messages.user_not_deleted')
           });
         }
       ).then(function () {

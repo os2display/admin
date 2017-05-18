@@ -212,6 +212,8 @@ class UserController extends ApiController {
       return $userGroup->getRole();
     }, $items);
 
+    $user->buildRoleGroups();
+
     return [
       'roles' => array_unique($roles),
       'group' => $group,

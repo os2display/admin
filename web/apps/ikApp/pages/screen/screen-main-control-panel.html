@@ -1,0 +1,43 @@
+<div class="control-panel--main">
+  <div class="control-panel--nav-wrapper">
+    <div class="control-panel--nav is-full-width" itk--tabs-count="2">
+      <a data-ng-click="clickTab('settings')" class="control-panel--nav-item" data-ng-class="{'is-active': !selectedTab || selectedTab === 'settings'}">Indstillinger</a>
+      <a data-ng-click="clickTab('template')" class="control-panel--nav-item" data-ng-class="{'is-active': selectedTab === 'template'}">Skabelon</a>
+    </div>
+  </div>
+
+  <!-- Settings tab -->
+  <div class="control-panel--tab has-menu" data-ng-if="!selectedTab || selectedTab === 'settings'">
+    <form class="cpw--wrapper">
+      <div class="cpw--text">
+        <label class="cpw--text-label">Skærmnavn</label>
+        <text-widget field="data.screen.title" placeholder-text="f.eks. Hovedindgang til højre"></text-widget>
+      </div>
+      <div class="cpw--textarea">
+        <label class="cpw--textarea-label">Beskrivelse</label>
+        <text-area-widget field="data.screen.description" placeholder-text="f.eks. Bruges til mødelokale A, B og C"></text-area-widget>
+      </div>
+      <div class="cpw--text" data-ng-if="data.screen.activation_code">
+        <label class="cpw--text-label">Aktiveringskode</label>
+        <input type="text" class="cpw--text-input" readonly="readonly" data-ng-model="data.screen.activation_code">
+      </div>
+    </form>
+    <form class="cpw--wrapper">
+      <div class="cpw--text">
+        <label class="cpw--text-label">Grupper</label>
+        <ik-checklist elements="data.userGroups" selected="data.screen.groups" identity="'id'"></ik-checklist>
+      </div>
+    </form>
+  </div>
+
+  <!-- Template picker tab -->
+  <div class="control-panel--tab has-menu" data-ng-if="selectedTab === 'template'">
+    <screen-template-picker-widget screen="data"></screen-template-picker-widget>
+  </div>
+
+  <div class="control-panel--actions">
+    <div class="control-panel--actions-inner">
+      <a class="control-panel--actions-close" data-ng-click="saveAction()">Gem skærm</a>
+    </div>
+  </div>
+</div>

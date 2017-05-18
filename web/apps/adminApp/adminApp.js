@@ -3,9 +3,20 @@
  * Sets up the Admin App.
  */
 
-// Configure routing
-angular.module('adminApp').config(function ($routeProvider) {
+// Configure routing and translations.
+angular.module('adminApp').config(['$routeProvider', '$translateProvider', function ($routeProvider, $translateProvider) {
   'use strict';
+
+  // Set up translations.
+  $translateProvider
+  .useSanitizeValueStrategy('escape')
+  .useStaticFilesLoader({
+    prefix: 'apps/adminApp/translations/locale-',
+    suffix: '.json'
+  })
+  .preferredLanguage('da')
+  .fallbackLanguage('da')
+  .forceAsyncReload(true);
 
   // Register routes
   $routeProvider
@@ -37,7 +48,7 @@ angular.module('adminApp').config(function ($routeProvider) {
     templateUrl: 'apps/adminApp/group/admin-group.html?' + window.config.version
   })
   ;
-});
+}]);
 
 // Setup the app.
 //  - submenu items.
@@ -52,71 +63,62 @@ angular.module('adminApp').service('adminAppSetup', [
 
     // Register listener for requests for Main Menu items
     busService.$on('menuApp.requestMainMenuItems', function requestMainMenuItems(event, args) {
-      // Get user. Assert has permission to this menu item.
-      userService.getCurrentUser().then(
-        function (user) {
-          if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
-            busService.$emit('menuApp.returnMainMenuItems', [
-              {
-                title: "Admin",
-                route: '/#/admin',
-                activeFilter: '/admin',
-                icon: 'picture_in_picture',
-                weight: 5
-              }
-            ]);
+      if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
+        busService.$emit('menuApp.returnMainMenuItems', [
+          {
+            title: "Admin",
+            route: '/#/admin',
+            activeFilter: '/admin',
+            icon: 'picture_in_picture',
+            weight: 5
           }
-        }
-      );
+        ]);
+      }
     });
 
     // Listen for sub menu requests
     busService.$on('menuApp.requestSubMenuItems', function (event, data) {
-      userService.getCurrentUser().then(
-        function (user) {
-          var items = [];
+      var items = [];
 
-          if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
-            items.push({
-              title: 'Oversigt',
-              path: '#/admin',
-              classes: 'overview-right',
-              activeFilter: '/admin',
-              group: 'left',
-              weight: 1
-            });
-          }
+      if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
+        items.push({
+          title: 'Oversigt',
+          path: '#/admin',
+          classes: 'overview-right',
+          activeFilter: '/admin',
+          group: 'left',
+          weight: 1
+        });
+      }
 
-          if (userService.hasRole('ROLE_USER_ADMIN')) {
-            items.push({
-              title: 'Brugere',
-              path: '#/admin/users',
-              classes: 'admin-users',
-              activeFilter: '/admin/user',
-              group: 'left',
-              weight: 2
-            });
-          }
+      if (userService.hasRole('ROLE_USER_ADMIN')) {
+        items.push({
+          title: 'Brugere',
+          path: '#/admin/users',
+          classes: 'admin-users',
+          activeFilter: '/admin/user',
+          group: 'left',
+          weight: 2
+        });
+      }
 
-          if (userService.hasRole('ROLE_GROUP_ADMIN')) {
-            items.push({
-              title: 'Grupper',
-              path: '#/admin/groups',
-              classes: 'overview-right',
-              activeFilter: '/admin/group',
-              group: 'left',
-              weight: 3
-            });
-          }
+      if (userService.hasRole('ROLE_GROUP_ADMIN')) {
+        items.push({
+          title: 'Grupper',
+          path: '#/admin/groups',
+          classes: 'overview-right',
+          activeFilter: '/admin/group',
+          group: 'left',
+          weight: 3
+        });
+      }
 
-          busService.$emit('menuApp.returnSubMenuItems', [
-            {
-              mainMenuItem: 'admin',
-              items: items
-            }
-          ]);
+      busService.$emit('menuApp.returnSubMenuItems', [
+        {
+          mainMenuItem: 'admin',
+          items: items
         }
-      )
+      ]);
     });
   }
 ]);

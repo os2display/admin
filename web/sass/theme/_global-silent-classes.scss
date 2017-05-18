@@ -33,7 +33,6 @@
   background-size:2em 2em;
   background-repeat:no-repeat;
   background-position: right 1.25em top 1.25em;
-  border: 0;
 }
 
 
@@ -82,7 +81,7 @@
   background-color: $white;
   display: inline-block;
   height: 4.5em;
-  margin-bottom: 2em;
+  margin: 0 auto 2em;
   max-width: $breakpoint-desk;
   padding: 1.5em;
 
@@ -91,6 +90,18 @@
   }
 }
 
+%create-element--input-default {
+  background-color: $white;
+  display: inline-block;
+  height: 4.5em;
+  margin-bottom: 2em;
+  max-width: $breakpoint-desk;
+  padding: 1.5em;
+
+  &.is-valid {
+    @extend %validation-default;
+  }
+}
 
 %create-element--layout-default {
   margin: 0 auto;

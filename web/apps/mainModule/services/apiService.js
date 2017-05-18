@@ -7,7 +7,7 @@ angular.module('mainModule').service('apiService', [
     'use strict';
 
     function sendRequest(method, url, returnEvent, data) {
-      // @FIXME: Handle locale in a better way
+      // @TODO: Handle locale in a better way.
       url += (url.indexOf('?') < 0 ? '?' : '&') + 'locale=da';
 
       $http({
@@ -19,6 +19,10 @@ angular.module('mainModule').service('apiService', [
           busService.$emit(returnEvent, response.data);
         },
         function error(response) {
+          if (response.status === 401) {
+            return;
+          }
+
           busService.$emit(returnEvent, response.data);
         });
     }

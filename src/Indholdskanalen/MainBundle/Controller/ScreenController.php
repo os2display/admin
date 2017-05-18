@@ -6,15 +6,16 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\ChannelScreenRegion;
-use Proxies\__CG__\Indholdskanalen\MainBundle\Entity\SharedChannel;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Screen;
 use JMS\Serializer\SerializationContext;
+use Proxies\__CG__\Indholdskanalen\MainBundle\Entity\SharedChannel;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -205,10 +206,9 @@ class ScreenController extends Controller {
       $middlewareService->pushScreenUpdate($screen);
     }
 
-    $groups = isset($post->groups) ? $post->groups : [];
-    $groupManager = $this->get('os2display.group_manager');
-    $groupManager->replaceGroups($groups, $screen);
-    $groupManager->saveGrouping($screen);
+    // Add slide to groups.
+    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
+    $screen->setGroups($groups);
 
     // Save the entity.
     $em->persist($screen);
@@ -236,8 +236,6 @@ class ScreenController extends Controller {
     $screen = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Screen')
       ->findOneById($id);
-
-    $this->get('os2display.group_manager')->loadGrouping($screen);
 
     // Create response.
     $response = new Response();
@@ -422,7 +420,7 @@ class ScreenController extends Controller {
 
     return $response;
   }
-  
+
   /**
    * Get a list of all screens.
    *
@@ -435,10 +433,6 @@ class ScreenController extends Controller {
     // Screen entities
     $screen_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
       ->findAll();
-
-    foreach ($screen_entities as $screen) {
-      $this->get('os2display.group_manager')->loadGrouping($screen);
-    }
 
     // Create response.
     $response = new Response();
