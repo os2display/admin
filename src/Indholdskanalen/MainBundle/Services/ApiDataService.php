@@ -24,17 +24,17 @@ class ApiDataService {
    * @param $object
    * @return mixed
    */
-  public function setApiData($object) {
+  public function setApiData($object, $inCollection = FALSE) {
     if (is_array($object)) {
       foreach ($object as $item) {
-        $this->setApiData($item);
+        $this->setApiData($item, TRUE);
       }
     }
     elseif ($object instanceof Group) {
-      $this->setApiDataGroup($object);
+      $this->setApiDataGroup($object, $inCollection);
     }
     elseif ($object instanceof User) {
-      $this->setApiDataUser($object);
+      $this->setApiDataUser($object, $inCollection);
     }
 
     return $object;
@@ -57,7 +57,7 @@ class ApiDataService {
     ]);
   }
 
-  protected function setApiDataUser(User $user) {
+  protected function setApiDataUser(User $user, $inCollection = FALSE) {
     $securityMananger = $this->container->get('os2display.security_manager');
 
     $permissions = [
@@ -66,16 +66,18 @@ class ApiDataService {
       'can_delete' => $securityMananger->decide(EditVoter::DELETE, $user),
     ];
 
-    // Add permissions for current user.
-    $token = $this->container->get('security.token_storage')->getToken();
-    if ($token && $user == $token->getUser()) {
-      $permissions += [
-        'can_create_group' => $securityMananger->decide(EditVoter::CREATE, Group::class),
-        'can_create_user' => $securityMananger->decide(EditVoter::CREATE, User::class),
-        'can_create_channel' => $securityMananger->decide(EditVoter::CREATE, Channel::class),
-        'can_create_slide' => $securityMananger->decide(EditVoter::CREATE, Slide::class),
-        'can_create_screen' => $securityMananger->decide(EditVoter::CREATE, Screen::class),
-      ];
+    if (!$inCollection) {
+      // Add permissions for current user.
+      $token = $this->container->get('security.token_storage')->getToken();
+      if ($token && $user == $token->getUser()) {
+        $permissions += [
+          'can_create_group' => $securityMananger->decide(EditVoter::CREATE, Group::class),
+          'can_create_user' => $securityMananger->decide(EditVoter::CREATE, User::class),
+          'can_create_channel' => $securityMananger->decide(EditVoter::CREATE, Channel::class),
+          'can_create_slide' => $securityMananger->decide(EditVoter::CREATE, Slide::class),
+          'can_create_screen' => $securityMananger->decide(EditVoter::CREATE, Screen::class),
+        ];
+      }
     }
     $userRoles = array_map(function ($role) {
       return new Role($role);

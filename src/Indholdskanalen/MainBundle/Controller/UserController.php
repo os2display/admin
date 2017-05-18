@@ -78,7 +78,7 @@ class UserController extends ApiController {
    *   }
    * )
    *
-   * @Security("has_role('ROLE_ADMIN')")
+   * @Security("has_role('ROLE_USER_ADMIN')")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @return User
@@ -109,6 +109,8 @@ class UserController extends ApiController {
    *   description="Get all available user roles"
    * )
    *
+   * @Security("has_role('ROLE_USER_ADMIN')")
+   *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @return array
    */
@@ -116,7 +118,8 @@ class UserController extends ApiController {
     $translator = $this->get('translator');
     $locale = $request->get('locale', $this->getParameter('locale'));
 
-    $roles = Roles::getRoleNames();
+    $manager = $this->get('os2display.security_manager');
+    $roles = $manager->getReachableRoles($this->getUser());
     $labels = array_map(function ($role) use ($translator, $locale) {
       return $translator->trans($role, [], 'IndholdskanalenMainBundle', $locale);
     }, $roles);
@@ -148,15 +151,17 @@ class UserController extends ApiController {
   /**
    * @Rest\Put("/{id}", name="api_user_edit")
    *
+   * @Security("is_granted('UPDATE', aUser)")
+   *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @return User
    */
-  public function editAction(Request $request, User $user) {
+  public function editAction(Request $request, User $aUser) {
     $data = $this->getData($request);
 
     try {
-      $user = $this->get('os2display.user_manager')->updateUser($user, $data);
+      $aUser = $this->get('os2display.user_manager')->updateUser($aUser, $data);
     }
     catch (ValidationException $e) {
       throw new HttpDataException(Codes::HTTP_BAD_REQUEST, $data, 'Invalid data', $e);
@@ -166,7 +171,7 @@ class UserController extends ApiController {
     }
 
     // Send response.
-    return $this->setApiData($user);
+    return $this->setApiData($aUser);
   }
 
   /**
@@ -174,13 +179,15 @@ class UserController extends ApiController {
    *
    * @Rest\Delete("/{id}", name="api_user_delete")
    *
+   * @Security("is_granted('DELETE', aUser)")
+   *
    * @param \Symfony\Component\HttpFoundation\Request $request
    * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function deleteAction(Request $request, User $user) {
+  public function deleteAction(Request $request, User $aUser) {
     $em = $this->getDoctrine()->getManager();
-    $em->remove($user);
+    $em->remove($aUser);
     $em->flush();
 
     return $this->view(NULL, Codes::HTTP_NO_CONTENT);

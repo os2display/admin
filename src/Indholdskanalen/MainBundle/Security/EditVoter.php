@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
+use Indholdskanalen\MainBundle\Services\SecurityManager;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -13,6 +14,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class EditVoter extends Voter {
   protected $manager;
   protected $decisionManager;
+  protected $securityManager;
 
   const CREATE = 'CREATE';
   const READ = 'READ';
@@ -20,9 +22,10 @@ class EditVoter extends Voter {
   const DELETE = 'DELETE';
   const READ_LIST = 'LIST';
 
-  public function __construct(EntityManagerInterface $manager, AccessDecisionManagerInterface $decisionManager) {
+  public function __construct(EntityManagerInterface $manager, AccessDecisionManagerInterface $decisionManager, SecurityManager $securityManager) {
     $this->manager = $manager;
     $this->decisionManager = $decisionManager;
+    $this->securityManager = $securityManager;
   }
 
   protected function supports($attribute, $subject) {
@@ -193,6 +196,15 @@ class EditVoter extends Voter {
   }
 
   private function canUpdateUser(User $user, TokenInterface $token) {
+    $roleNames = $this->securityManager->getReachableRoles($user);
+
+    if (in_array(Roles::ROLE_SUPER_ADMIN, $roleNames) && !$this->securityManager->decide(Roles::ROLE_SUPER_ADMIN)) {
+      return FALSE;
+    }
+    if (in_array(Roles::ROLE_ADMIN, $roleNames) && !$this->securityManager->decide(Roles::ROLE_ADMIN)) {
+      return FALSE;
+    }
+
     if ($this->decisionManager->decide($token, [Roles::ROLE_USER_ADMIN])) {
       return TRUE;
     }
