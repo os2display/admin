@@ -47,7 +47,6 @@ angular.module('adminApp').config(['$routeProvider', '$translateProvider', funct
     controller: 'AdminGroupController',
     templateUrl: 'apps/adminApp/group/admin-group.html?' + window.config.version
   })
-  ;
 }]);
 
 // Setup the app.
@@ -63,9 +62,7 @@ angular.module('adminApp').service('adminAppSetup', [
 
     // Register listener for requests for Main Menu items
     busService.$on('menuApp.requestMainMenuItems', function requestMainMenuItems(event, args) {
-      var user = userService.getCurrentUser();
-
-      if (user.is_admin) {
+      if (userService.hasRole('ROLE_USER_ADMIN') || userService.hasRole('ROLE_GROUP_ADMIN')) {
         busService.$emit('menuApp.returnMainMenuItems', [
           {
             title: "Admin",
@@ -80,38 +77,47 @@ angular.module('adminApp').service('adminAppSetup', [
 
     // Listen for sub menu requests
     busService.$on('menuApp.requestSubMenuItems', function (event, data) {
+      var items = [];
+
+      if (userService.hasRole('ROLE_USER_ADMIN') && userService.hasRole('ROLE_GROUP_ADMIN')) {
+        items.push({
+          title: 'Oversigt',
+          path: '#/admin',
+          classes: 'overview-right',
+          activeFilter: '/admin',
+          group: 'left',
+          weight: 1
+        });
+      }
+
+      if (userService.hasRole('ROLE_USER_ADMIN')) {
+        items.push({
+          title: 'Brugere',
+          path: '#/admin/users',
+          classes: 'admin-users',
+          activeFilter: '/admin/user',
+          group: 'left',
+          weight: 2
+        });
+      }
+
+      if (userService.hasRole('ROLE_GROUP_ADMIN')) {
+        items.push({
+          title: 'Grupper',
+          path: '#/admin/groups',
+          classes: 'overview-right',
+          activeFilter: '/admin/group',
+          group: 'left',
+          weight: 3
+        });
+      }
+
       busService.$emit('menuApp.returnSubMenuItems', [
-          {
-            mainMenuItem: 'admin',
-            items: [
-              {
-                title: 'Oversigt',
-                path: '#/admin',
-                classes: 'overview-right',
-                activeFilter: '/admin',
-                group: 'left',
-                weight: 1
-              },
-              {
-                title: 'Brugere',
-                path: '#/admin/users',
-                classes: 'admin-users',
-                activeFilter: '/admin/user',
-                group: 'left',
-                weight: 2
-              },
-              {
-                title: 'Grupper',
-                path: '#/admin/groups',
-                classes: 'overview-right',
-                activeFilter: '/admin/group',
-                group: 'left',
-                weight: 3
-              }
-            ]
-          }
-        ]
-      )
+        {
+          mainMenuItem: 'admin',
+          items: items
+        }
+      ]);
     });
   }
 ]);

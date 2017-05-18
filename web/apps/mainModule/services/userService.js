@@ -6,7 +6,7 @@ angular.module('mainModule').service('userService', [
   function (busService) {
     'use strict';
 
-    // Get
+    // Get current user.
     var currentUser = angular.copy(OS2DISPLAY_CURRENT_USER);
 
     /**
@@ -39,6 +39,18 @@ angular.module('mainModule').service('userService', [
      */
     this.getCurrentUser = function getCurrentUser() {
       return currentUser;
+    };
+
+    /**
+     * Check if user (default: current user) has a specified role.
+     */
+    this.hasRole = function hasRole(role, user) {
+      user || (user = currentUser);
+
+      var roles = (Object.keys(user.api_data.roles).map(function(key){return user.api_data.roles[key]}));
+
+      return user && user.api_data && user.api_data.roles &&
+         roles.indexOf(role) !== -1;
     };
 
     /**

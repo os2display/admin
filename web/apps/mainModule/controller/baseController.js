@@ -6,11 +6,30 @@
 /**
  * Base controller.
  */
-angular.module('mainModule').controller('BaseController', ['$scope', 'userService',
-  function ($scope, userService) {
+angular.module('mainModule').controller('BaseController', ['$scope', 'userService', '$location',
+  function ($scope, userService, $location) {
     'use strict';
 
     $scope.baseCurrentUser = userService.getCurrentUser();
+
+    /**
+     * Require role of current user.
+     * 
+     * @param role
+     */
+    $scope.requireRole = function requireRole(role) {
+      return userService.hasRole(role)
+    };
+
+    /**
+     * Has user has role.
+     * 
+     * @param role
+     * @param user
+     */
+    $scope.hasRole = function hasRole(role, user) {
+      return userService.hasRole(role, user);
+    };
 
     /**
      * Check if the entity has a given permission.

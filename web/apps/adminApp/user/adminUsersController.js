@@ -4,8 +4,8 @@
  */
 
 angular.module('adminApp').controller('AdminUsersController', [
-  'busService', '$scope', '$timeout', 'ModalService', '$controller', '$filter',
-  function (busService, $scope, $timeout, ModalService, $controller, $filter) {
+  'busService', '$scope', '$timeout', 'ModalService', '$controller', '$filter', '$location',
+  function (busService, $scope, $timeout, ModalService, $controller, $filter, $location) {
     'use strict';
 
     // Extend BaseController.
@@ -13,6 +13,18 @@ angular.module('adminApp').controller('AdminUsersController', [
 
     // Get translation filter.
     var $translate = $filter('translate');
+
+    // Check role.
+    if (!$scope.requireRole('ROLE_USER_ADMIN')) {
+      busService.$emit('log.error', {
+        timeout: 5000,
+        cause: 403,
+        msg: $translate('common.error.forbidden')
+      });
+
+      $location.path('/');
+      return;
+    }
 
     $scope.usersLoading = true;
     $scope.users = null;

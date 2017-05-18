@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
+use Indholdskanalen\MainBundle\Security\Roles;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -38,7 +39,7 @@ class EntityManagerService {
   }
 
   private function addCriteria($class, array &$criteria = NULL) {
-    if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+    if ($this->authorizationChecker->isGranted(Roles::ROLE_ADMIN)) {
       return;
     }
 
@@ -56,6 +57,10 @@ class EntityManagerService {
   }
 
   private function addCriteriaGroup(array &$criteria, User $user) {
+    if ($this->authorizationChecker->isGranted(Roles::ROLE_GROUP_ADMIN)) {
+      return;
+    }
+
     // Find all groups in which current user is member.
     $builder = $this->manager->createQueryBuilder();
     $query = $builder

@@ -8,6 +8,10 @@
       "finish": "Færdig",
       "save": "Gem"
     },
+    "error": {
+      "forbidden": "Du har ikke adgang til denne side",
+      "not_found": "Siden blev ikke fundet"
+    },
     "form": {
       "invalid": "Ugyldigt input"
     }
