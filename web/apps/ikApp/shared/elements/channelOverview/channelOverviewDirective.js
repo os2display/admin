@@ -20,6 +20,14 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
         scope.displaySharingOption = window.config.sharingService.enabled;
         scope.loading = false;
 
+        scope.selectedGroups = [];
+
+        // Get current user groups.
+        var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, groups) {
+          scope.userGroups = groups;
+        });
+        userService.getCurrentUserGroups('channelController.getCurrentUserGroups');
+
         scope.sort = { "created_at": "desc" };
 
         // Default pager values.
@@ -274,6 +282,10 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
         // Updated search filters (build "mine" filter with user id). It
         // will trigger an search update.
         scope.setSearchFilters();
+
+        scope.$on('$destroy', function () {
+          cleanupGetCurrentUserGroups();
+        });
       },
       templateUrl: '/apps/ikApp/shared/elements/channelOverview/channel-overview-directive.html?' + window.config.version
     };
