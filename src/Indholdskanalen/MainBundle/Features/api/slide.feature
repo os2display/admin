@@ -69,7 +69,7 @@ Feature: admin
     And the JSON node "[0].id" should be equal to 1
     And the JSON node "[0].title" should be equal to "The first slide (updated)"
     # And the JSON node "[0].channels" should have 0 elements
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 0 element
+    And the SQL query "SELECT * FROM ik_grouping WHERE entity_type = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 0 element
 
   Scenario: Add slide to group
     When I send a "POST" request to "/api/slide" with body:
@@ -93,7 +93,7 @@ Feature: admin
     And the JSON node "[0].groups" should have 2 elements
     And the JSON node "[0].groups[0].id" should be equal to 1
     And the JSON node "[0].groups[1].id" should be equal to 2
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 2 elements
+    And the SQL query "SELECT * FROM ik_grouping WHERE entity_type = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 2 elements
 
   Scenario: Remove slide from group
     When I send a "POST" request to "/api/slide" with body:
@@ -116,12 +116,12 @@ Feature: admin
     And the JSON node "[0].id" should be equal to 1
     And the JSON node "[0].groups" should have 1 element
     And the JSON node "[0].groups[0].id" should be equal to 2
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 1 element
+    And the SQL query "SELECT * FROM ik_grouping WHERE entity_type = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 1 element
 
   Scenario: Remove slide
     When I send a "DELETE" request to "/api/slide/1"
     Then the response status code should be 200
-    And the SQL query "SELECT * FROM ik_grouping WHERE entityType = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 0 elements
+    And the SQL query "SELECT * FROM ik_grouping WHERE entity_type = 'Indholdskanalen\\MainBundle\\Entity\\Slide'" should return 0 elements
 
   Scenario: Create slide in group
     When I send a "POST" request to "/api/slide" with body:

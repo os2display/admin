@@ -24,27 +24,15 @@ class Grouping {
 
   /**
    * @var string
-   * @ORM\Column(type="string", length=255, nullable=false)
+   * @ORM\Column(name="entity_type", type="string", length=255, nullable=false)
    */
   protected $entityType;
 
   /**
    * @var string
-   * @ORM\Column(type="integer", nullable=false)
+   * @ORM\Column(name="entity_id", type="integer", nullable=false)
    */
   protected $entityId;
-
-  /**
-   * @var \DateTime
-   * @ORM\Column(type="datetime")
-   */
-  protected $createdAt;
-
-  /**
-   * @var \DateTime
-   * @ORM\Column(type="datetime")
-   */
-  protected $updatedAt;
 
   /**
    * Constructor
@@ -54,8 +42,6 @@ class Grouping {
   public function __construct(Group $group, GroupableEntity $groupable) {
     $this->setGroup($group);
     $this->setGroupable($groupable);
-    $this->setCreatedAt(new \DateTime());
-    $this->setUpdatedAt(new \DateTime());
   }
 
   /**
@@ -111,22 +97,6 @@ class Grouping {
    */
   public function getEntityId() {
     return $this->entityId;
-  }
-
-  public function setCreatedAt(\DateTime $date) {
-    $this->createdAt = $date;
-  }
-
-  public function getCreatedAt() {
-    return $this->createdAt;
-  }
-
-  public function setUpdatedAt(\DateTime $date) {
-    $this->updatedAt = $date;
-  }
-
-  public function getUpdatedAt() {
-    return $this->updatedAt;
   }
 
 }
