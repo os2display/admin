@@ -78,8 +78,6 @@ class MediaController extends Controller {
 
       $groups = json_decode($request->request->get('groups'));
       $groups = new ArrayCollection($groups ?: []);
-      // echo var_export(['all' => $request->request->all(), 'groups' => $groups], true);
-      // var_export(['groups' => $groups]);
       $media->setGroups($groups);
 
       $mediaManager = $this->get('sonata.media.manager.media');
