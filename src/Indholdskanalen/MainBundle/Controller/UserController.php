@@ -170,7 +170,8 @@ class UserController extends ApiController {
       throw new HttpDataException(Codes::HTTP_CONFLICT, $data, 'Duplicate user', $e);
     }
 
-    // Send response.
+    $aUser->buildRoleGroups();
+
     return $this->setApiData($aUser);
   }
 
