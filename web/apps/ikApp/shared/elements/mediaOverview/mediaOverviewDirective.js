@@ -14,7 +14,8 @@
  *   which media type should be shown, "image" or "video",
  *   leave out show all media.
  */
-angular.module('ikApp').directive('ikMediaOverview', ['busService',
+angular.module('ikApp').directive('ikMediaOverview', [
+  'busService',
   function (busService) {
     'use strict';
 
@@ -30,6 +31,31 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
         // Set default orientation and sort.
         $scope.sort = {"created_at": "desc"};
         $scope.loading = false;
+
+        $scope.selectedGroups = [];
+
+        // Get current user groups.
+        var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, result) {
+          if (result.error) {
+            $scope.setSearchFilters();
+            return;
+          }
+
+          $scope.$apply(
+            function () {
+              $scope.userGroups = result;
+
+              for (var group in result) {
+                $scope.selectedGroups[result[group].id] = true;
+              }
+
+              // Updated search filters (build "mine" filter with user id). It
+              // will trigger an search update.
+              $scope.setSearchFilters();
+            }
+          );
+        });
+        userService.getCurrentUserGroups('channelController.getCurrentUserGroups');
 
         // Set default search text.
         $scope.search_text = '';
@@ -56,7 +82,8 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
               "order": "desc"
             }
           },
-          'pager': $scope.pager
+          'pager': $scope.pager,
+          "filter": {}
         };
 
         /**
@@ -68,8 +95,12 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
 
           $scope.loading = true;
 
+          console.log(search);
+
           mediaFactory.searchMedia(search).then(
             function (data) {
+              console.log(data);
+
               // Total hits.
               $scope.hits = data.hits;
 
@@ -137,23 +168,21 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
          * Updates the search filter based on current orientation and user
          */
         $scope.setSearchFilters = function setSearchFilters() {
-          // Update orientation for the search.
           delete search.filter;
 
-          if ($scope.media_type !== 'all' || $scope.showFromUser !== 'all') {
-            search.filter = {
-              "bool": {
-                "must": []
-              }
+          var filter = {
+            "bool": {
+              "must": [],
+              "should": []
             }
-          }
+          };
 
           if ($scope.media_type !== 'all') {
             var term = {};
             term.term = {
               media_type: $scope.media_type
             };
-            search.filter.bool.must.push(term);
+            filter.bool.must.push(term);
           }
 
           if ($scope.showFromUser !== 'all') {
@@ -162,9 +191,28 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
               term.term = {
                 user: $scope.currentUser.id
               };
-              search.filter.bool.must.push(term);
+              filter.bool.must.push(term);
             }
           }
+
+          var should = [
+            {
+              term: {
+                user: $scope.currentUser.id
+              }
+            }
+          ];
+          if ($scope.selectedGroups.length > 0) {
+            should.push({
+              terms: {
+                groups: Object.keys($scope.selectedGroups)
+              }
+            });
+          }
+
+          filter.bool.should = should;
+
+          search.filter = filter;
 
           $scope.updateSearch();
         };
@@ -237,9 +285,10 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
           localStorage.getItem('overview.media.search_filter_default') :
           'all';
 
-        // Updated search filters (build "mine" filter with user id). It
-        // will trigger an search update.
-        $scope.setSearchFilters();
+
+        $scope.$on('$destroy', function () {
+          cleanupGetCurrentUserGroups();
+        })
       },
       link: function (scope, element, attrs) {
         attrs.$observe('ikMediaType', function (val) {

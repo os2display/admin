@@ -16,6 +16,8 @@ use Indholdskanalen\MainBundle\Entity\Slide;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializationContext;
 use Sonata\MediaBundle\Provider;
+use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\GroupableEntity;
 
 /**
  * Class PushScheduleCommand
@@ -144,6 +146,10 @@ class SearchCommand extends ContainerAwareCommand {
    * @return array
    */
   private function sendEvent($entity, $method) {
+    if ($entity instanceof GroupableEntity && $groups = $entity->getGroups()) {
+      $entity->setGroups($groups->map(function (Group $group) { return $group->getid(); }));
+    }
+
     // Build parameters to send to the search backend.
     $index = $this->getContainer()->getParameter('search_index');
     $params = array(
@@ -203,7 +209,7 @@ class SearchCommand extends ContainerAwareCommand {
    * @param array $params
    *   The data to send.
    *
-   * @return array
+   * @return object
    */
   private function curl($url, $method = 'POST', $params = array()) {
     $authenticationService = $this->getContainer()
@@ -214,6 +220,8 @@ class SearchCommand extends ContainerAwareCommand {
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()
         ->setGroups(array('search')));
+
+    print_r($data);
 
     // Build query.
     $ch = $this->buildQuery($url, $method, $data, $auth['token']);
