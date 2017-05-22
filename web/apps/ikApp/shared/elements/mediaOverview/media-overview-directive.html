@@ -20,7 +20,7 @@
     <div class="overview--checkboxes">
       <span class="overview--checkbox" ng-repeat="group in userGroups">
         <label class="overview--checkbox-label" for="{{group.id}}">
-          <input type="checkbox" ng-model="selectedGroups[group.id]" name="group" id="{{group.id}}" ng-change="setSearchFilters()" />
+          <input type="checkbox" ng-model="group.selected" value={{group.id}} name="group" id="{{group.id}}" ng-change="setSearchFilters()" />
           {{group.displayName}}
         </label>
       </span>

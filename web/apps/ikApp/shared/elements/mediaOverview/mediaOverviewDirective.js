@@ -27,12 +27,10 @@ angular.module('ikApp').directive('ikMediaOverview', [
         ikHideFilters: '=',
         ikSelectedMedia: '='
       },
-      controller: function ($scope, mediaFactory, userService) {
+      controller: function ($scope, $filter, mediaFactory, userService) {
         // Set default orientation and sort.
         $scope.sort = {"created_at": "desc"};
         $scope.loading = false;
-
-        $scope.selectedGroups = [];
 
         // Get current user groups.
         var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, result) {
@@ -91,12 +89,8 @@ angular.module('ikApp').directive('ikMediaOverview', [
 
           $scope.loading = true;
 
-          console.log(search);
-
           mediaFactory.searchMedia(search).then(
             function (data) {
-              console.log(data);
-
               // Total hits.
               $scope.hits = data.hits;
 
@@ -167,55 +161,74 @@ angular.module('ikApp').directive('ikMediaOverview', [
           delete search.filter;
 
           var filter = {
-            "bool": {
-              "must": [],
-              "should": []
+            "query": {
+              "bool": {
+                "must": [],
+                "should": []
+              }
             }
           };
 
+          // Filter based on media type.
           if ($scope.media_type !== 'all') {
             var term = {};
             term.term = {
               media_type: $scope.media_type
             };
-            filter.bool.must.push(term);
+            filter.query.bool.must.push(term);
           }
 
+          // Filter based on user selection (all or me).
           if ($scope.showFromUser !== 'all') {
             if ($scope.currentUser) {
               var term = {};
               term.term = {
                 user: $scope.currentUser.id
               };
-              filter.bool.must.push(term);
+              filter.query.bool.must.push(term);
             }
           }
 
-          var should = [
-            {
-              term: {
-                user: $scope.currentUser.id
-              }
-            }
-          ];
+          // No groups selected and "all" selected => select all groups and my.
+          var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
+            return group.id;
+          });
 
-          if ($scope.selectedGroups.length > 0) {
-            var keys = [];
+          if ($scope.showFromUser === 'all' && selectedGroupIds.length === 0) {
+            // Find all allowed group id's.
+            selectedGroupIds = $scope.userGroups.map(function (group) {
+              return group.id;
+            });
 
-            for (var key in $scope.selectedGroups) {
-              if ($scope.selectedGroups[key]) {
-                keys.push(key);
-              }
-            }
-
-            should.push({
-              terms: {
-                groups: keys
+            // Add all "my" to the query.
+            filter.query.bool.should.push({
+              "bool": {
+                "must": [
+                  {
+                    "term": {
+                      "user": $scope.currentUser.id
+                    }
+                  }
+                ]
               }
             });
           }
 
-          filter.bool.should = should;
+          if (selectedGroupIds.length) {
+            // Select if it should be "or" or "and" between "user" and "groups".
+            var type = $scope.showFromUser === 'all' ? "should" : "must";
+            filter.query.bool[type].push({
+              "bool": {
+                "must": [
+                  {
+                    "terms": {
+                      "groups": selectedGroupIds
+                    }
+                  }
+                ]
+              }
+            });
+          }
 
           search.filter = filter;
 
@@ -300,7 +313,7 @@ angular.module('ikApp').directive('ikMediaOverview', [
           if (!val) {
             return;
           }
-          if (val == scope.media_type) {
+          if (val === scope.media_type) {
             return;
           }
 
