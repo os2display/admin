@@ -312,8 +312,10 @@ class ChannelController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function channelsGetAction() {
-    $manager = $this->get('os2display.entity_manager');
-    $channel_entities = $manager->findAll(Channel::class);
+    // Get all channel entities.
+    $channel_entities = $this->getDoctrine()
+      ->getRepository('IndholdskanalenMainBundle:Channel')
+      ->findAll();
 
     // Create response.
     $response = new Response();

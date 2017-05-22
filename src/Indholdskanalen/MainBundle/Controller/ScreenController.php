@@ -430,8 +430,9 @@ class ScreenController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function screensGetAction() {
-    $manager = $this->get('os2display.entity_manager');
-    $screen_entities = $manager->findAll(Screen::class);
+    // Screen entities
+    $screen_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
+      ->findAll();
 
     // Create response.
     $response = new Response();

@@ -3,7 +3,6 @@
 namespace Indholdskanalen\MainBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Criteria;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -102,8 +101,15 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function mediaListAction() {
-    $manager = $this->get('os2display.entity_manager');
-    $results = $manager->findBy(Media::class, [], ['updatedAt' => Criteria::DESC]);
+    $em = $this->getDoctrine()->getManager();
+    $qb = $em->createQueryBuilder();
+
+    $qb->select('m')
+      ->from(Media::class, 'm')
+      ->orderBy('m.updatedAt', 'DESC');
+
+    $query = $qb->getQuery();
+    $results = $query->getResult();
 
     $response = new Response();
 
