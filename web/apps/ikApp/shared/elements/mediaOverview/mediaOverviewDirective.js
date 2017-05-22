@@ -45,10 +45,6 @@ angular.module('ikApp').directive('ikMediaOverview', [
             function () {
               $scope.userGroups = result;
 
-              for (var group in result) {
-                $scope.selectedGroups[result[group].id] = true;
-              }
-
               // Updated search filters (build "mine" filter with user id). It
               // will trigger an search update.
               $scope.setSearchFilters();
@@ -202,10 +198,19 @@ angular.module('ikApp').directive('ikMediaOverview', [
               }
             }
           ];
+
           if ($scope.selectedGroups.length > 0) {
+            var keys = [];
+
+            for (var key in $scope.selectedGroups) {
+              if ($scope.selectedGroups[key]) {
+                keys.push(key);
+              }
+            }
+
             should.push({
               terms: {
-                groups: Object.keys($scope.selectedGroups)
+                groups: keys
               }
             });
           }
