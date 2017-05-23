@@ -102,7 +102,9 @@ class SearchIndexer {
     $path = $this->container->getParameter('search_path');
 
     if ($entity instanceof GroupableEntity && $groups = $entity->getGroups()) {
-      $entity->setGroups($groups->map(function (Group $group) { return $group->getid(); }));
+      $entity->setGroups($groups->map(function ($group) {
+        return isset($group->id) ? $group->id : $group->getid();
+      }));
     }
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()
