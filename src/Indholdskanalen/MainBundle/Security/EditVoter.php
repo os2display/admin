@@ -244,7 +244,7 @@ class EditVoter extends Voter {
     $user = $token->getUser();
 
     if (method_exists($groupable, 'getUser') && $groupable->getUser() === $user->getId()) {
-      //return TRUE;
+      return TRUE;
     }
 
     // @TODO: Check user's groups intersects with groupable's groups.

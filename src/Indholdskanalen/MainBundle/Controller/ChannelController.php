@@ -241,6 +241,8 @@ class ChannelController extends Controller {
 
     $serializer = $this->get('jms_serializer');
 
+    $this->get('os2display.api_data')->setApiData($channel);
+
     // Create response.
     $response = new Response();
     if ($channel) {
@@ -313,18 +315,18 @@ class ChannelController extends Controller {
    */
   public function channelsGetAction() {
     // Get all channel entities.
-    $channel_entities = $this->getDoctrine()
+    $channelEntities = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findAll();
 
-    $this->get('os2display.api_data')->setApiData($channel_entities);
+    $this->get('os2display.api_data')->setApiData($channelEntities);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $response->setContent($serializer->serialize($channel_entities, 'json', SerializationContext::create()
+    $response->setContent($serializer->serialize($channelEntities, 'json', SerializationContext::create()
       ->setGroups(array('api-bulk'))
       ->enableMaxDepthChecks()));
 
