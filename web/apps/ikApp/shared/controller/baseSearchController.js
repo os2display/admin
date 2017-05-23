@@ -8,6 +8,9 @@ angular.module('ikApp').controller('BaseSearchController', [
   function ($scope, userService, busService) {
     'use strict';
 
+    // Get current user.
+    $scope.currentUser = userService.getCurrentUser();
+
     // Get current user groups.
     $scope.userGroups = [];
     var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, result) {

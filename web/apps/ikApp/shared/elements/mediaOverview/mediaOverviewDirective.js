@@ -27,8 +27,13 @@ angular.module('ikApp').directive('ikMediaOverview', [
         ikHideFilters: '=',
         ikSelectedMedia: '='
       },
-      controller: function ($scope, $filter, $controller, mediaFactory, userService) {
+      controller: function ($scope, $filter, $controller, mediaFactory) {
         $controller('BaseSearchController', {$scope: $scope});
+
+        // Get filter selection "all/mine" from localStorage.
+        $scope.showFromUser = localStorage.getItem('overview.media.search_filter_default') ?
+          localStorage.getItem('overview.media.search_filter_default') :
+          'all';
 
         $scope.loading = false;
 
@@ -224,14 +229,6 @@ angular.module('ikApp').directive('ikMediaOverview', [
 
           event.preventDefault();
         });
-
-        // Get current user.
-        $scope.currentUser = userService.getCurrentUser();
-
-        // Get filter selection "all/mine" from localStorage.
-        $scope.showFromUser = localStorage.getItem('overview.media.search_filter_default') ?
-          localStorage.getItem('overview.media.search_filter_default') :
-          'all';
       },
       link: function (scope, element, attrs) {
         attrs.$observe('ikMediaType', function (val) {

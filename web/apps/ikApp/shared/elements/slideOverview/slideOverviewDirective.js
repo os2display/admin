@@ -19,6 +19,11 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
       controller: function ($scope, $filter, $controller, slideFactory, userService) {
         $controller('BaseSearchController', {$scope: $scope});
 
+        // Get filter selection "all/mine" from localStorage.
+        $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
+          localStorage.getItem('overview.slide.search_filter_default') :
+          'all';
+
         $scope.loading = false;
 
         // Set default orientation and sort.
@@ -248,14 +253,6 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
 
           return text;
         };
-
-        // Load current user (need to activate "mine" tab as default).
-        $scope.currentUser = userService.getCurrentUser();
-
-        // Get filter selection "all/mine" from localStorage.
-        $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
-          localStorage.getItem('overview.slide.search_filter_default') :
-          'all';
       },
       templateUrl: '/apps/ikApp/shared/elements/slideOverview/slide-overview-directive.html?' + window.config.version
     };
