@@ -34,7 +34,6 @@ angular.module('ikApp').config(function ($routeProvider) {
       templateUrl: 'apps/ikApp/pages/slideOverview/slide-overview.html?' + window.config.version
     })
     .when('/screen-overview', {
-      controller: 'ScreenOverviewController',
       templateUrl: 'apps/ikApp/pages/screenOverview/screen-overview.html?' + window.config.version
     })
     .when('/media-overview', {
@@ -42,7 +41,6 @@ angular.module('ikApp').config(function ($routeProvider) {
       templateUrl: 'apps/ikApp/pages/mediaOverview/media-overview.html?' + window.config.version
     })
     .when('/shared-channel-overview', {
-      controller: 'SharedChannelOverviewController',
       templateUrl: 'apps/ikApp/pages/sharedChannelOverview/shared-channel-overview.html?' + window.config.version
     })
 
@@ -82,7 +80,6 @@ angular.module('ikApp').config(function ($routeProvider) {
 
     // Media
     .when('/media/upload', {
-      controller: 'MediaUploadController',
       templateUrl: 'apps/ikApp/pages/mediaUpload/media-upload.html?' + window.config.version
     })
     .when('/media/:id', {
