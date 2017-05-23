@@ -16,8 +16,6 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
     // Get the selected media
     mediaFactory.getMedia($routeParams.id).then(
       function success(data) {
-
-        console.log(data);
         // Check permission.
         if (!$scope.baseCanUpdate(data)) {
           busService.$emit('log.error', {
