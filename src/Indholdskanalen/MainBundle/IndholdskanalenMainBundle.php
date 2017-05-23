@@ -20,6 +20,6 @@ class IndholdskanalenMainBundle extends Bundle {
     $em = $this->container->get('doctrine.orm.default_entity_manager');
     $conf = $em->getConfiguration();
     $conf->addFilter('filter_grouping', GroupingFilter::class);
-    //$em->getFilters()->enable('filter_grouping')->setContainer($this->container);
+    $em->getFilters()->enable('filter_grouping')->setContainer($this->container);
   }
 }
