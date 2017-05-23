@@ -65,6 +65,7 @@ parameters:
         - apps/ikApp/shared/elements/slide/slideDirective.js
         - apps/ikApp/shared/elements/slide/slideEditableDirective.js
         - apps/ikApp/shared/elements/slide/sharedSlideDirective.js
+        - apps/ikApp/shared/elements/screenOverview/screenOverviewDirective.js
         - apps/ikApp/shared/elements/mediaOverview/mediaOverviewDirective.js
         - apps/ikApp/shared/elements/mediaUpload/mediaUploadDirective.js
         - apps/ikApp/shared/elements/thumb/thumbDirective.js
