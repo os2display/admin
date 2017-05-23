@@ -6,13 +6,30 @@
 /**
  * Media controller. Controls media editing functions.
  */
-angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'busService',
-  function ($scope, $location, $routeParams, $timeout, mediaFactory, busService) {
+angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'busService', '$controller',
+  function ($scope, $location, $routeParams, $timeout, mediaFactory, busService, $controller) {
     'use strict';
+
+    // Extend BaseController.
+    $controller('BaseController', {$scope: $scope});
 
     // Get the selected media
     mediaFactory.getMedia($routeParams.id).then(
       function success(data) {
+
+        console.log(data);
+        // Check permission.
+        if (!$scope.baseCanUpdate(data)) {
+          busService.$emit('log.error', {
+            timeout: 5000,
+            cause: 403,
+            msg: 'Du har ikke ret til ændre i dette indhold'
+          });
+
+          $location.path('/');
+          return;
+        }
+
         $scope.media = data;
 
         if ($scope.media === {}) {

@@ -7,9 +7,12 @@
  * Channel controller. Controls the channel creation process.
  */
 angular.module('ikApp').controller('ChannelController', [
-  '$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService', 'userService',
-  function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService, userService) {
+  '$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService', 'userService', '$controller',
+  function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService, userService, $controller) {
     'use strict';
+
+    // Extend BaseController.
+    $controller('BaseController', {$scope: $scope});
 
     $scope.steps = 4;
     $scope.slides = [];
@@ -75,6 +78,18 @@ angular.module('ikApp').controller('ChannelController', [
      */
     function init() {
       if (!$routeParams.id) {
+        // Check permission.
+        if (!$scope.baseCanCreate('channel')) {
+          busService.$emit('log.error', {
+            timeout: 5000,
+            cause: 403,
+            msg: 'Du har ikke ret til ændre i dette indhold'
+          });
+
+          $location.path('/');
+          return;
+        }
+
         // If the ID is not set, get an empty channel.
         $scope.channel = channelFactory.emptyChannel();
         loadStep(1);
@@ -86,6 +101,18 @@ angular.module('ikApp').controller('ChannelController', [
         else {
           channelFactory.getEditChannel($routeParams.id).then(
             function (data) {
+              // Check permission.
+              if (!$scope.baseCanUpdate(data)) {
+                busService.$emit('log.error', {
+                  timeout: 5000,
+                  cause: 403,
+                  msg: 'Du har ikke ret til ændre i dette indhold'
+                });
+
+                $location.path('/');
+                return;
+              }
+
               $scope.channel = data;
               $scope.channel.status = 'edit-channel';
 

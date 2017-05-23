@@ -6,9 +6,12 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'busService', 'userService',
-  function ($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, templateFactory, busService, userService) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'busService', 'userService', '$controller',
+  function ($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, templateFactory, busService, userService, $controller) {
     'use strict';
+
+    // Extend BaseController.
+    $controller('BaseController', {$scope: $scope});
 
     $scope.loading = true;
     $scope.sharingEnabled = window.config.sharingService.enabled;
@@ -67,6 +70,18 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
           // Get the screen from the backend.
           screenFactory.getEditScreen($routeParams.id).then(
             function success(data) {
+              // Check permission.
+              if (!$scope.baseCanUpdate(data)) {
+                busService.$emit('log.error', {
+                  timeout: 5000,
+                  cause: 403,
+                  msg: 'Du har ikke ret til ændre i dette indhold'
+                });
+
+                $location.path('/');
+                return;
+              }
+
               $scope.loading = false;
 
               $scope.screen = data;

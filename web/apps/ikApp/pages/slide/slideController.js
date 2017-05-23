@@ -6,9 +6,12 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'busService', 'userService',
-  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, busService, userService) {
+angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'busService', 'userService', '$controller',
+  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, busService, userService, $controller) {
     'use strict';
+
+    // Extend BaseController.
+    $controller('BaseController', {$scope: $scope});
 
     $scope.steps = 6;
     $scope.slide = {};
@@ -85,6 +88,18 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
           // Get the slide from the backend.
           slideFactory.getEditSlide($routeParams.id).then(
             function success(data) {
+              // Check permission.
+              if (!$scope.baseCanUpdate(data)) {
+                busService.$emit('log.error', {
+                  timeout: 5000,
+                  cause: 403,
+                  msg: 'Du har ikke ret til ændre i dette indhold'
+                });
+
+                $location.path('/');
+                return;
+              }
+
               $scope.slide = data;
               $scope.slide.status = 'edit-slide';
               if ($scope.slide === {}) {
