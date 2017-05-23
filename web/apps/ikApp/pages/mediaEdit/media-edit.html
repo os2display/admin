@@ -1,15 +1,19 @@
 <div class="create-media--content">
-  <section id="create-media-one" class="create-media--section">
+  <div class="spinner overview--spinner" data-ng-show="loading"></div>
+
+  <section id="create-media-one" class="create-media--section" ng-if="!loading">
     <h1 class="">{{media.name}}</h1>
+
     <div data-ng-switch on="getContentType(media)" class="create-media--content-element">
       <div data-ng-switch-when="image">
-        <img class="create-media--image" data-ng-src="{{media.urls.default_landscape}}" alt="{{ media.name }}" title="{{media.name}}" >
+        <img class="create-media--image" data-ng-src="{{media.urls.default_landscape}}" alt="{{ media.name }}"
+             title="{{media.name}}">
       </div>
       <div data-ng-switch-when="video" class="create-media--video-container">
         <div data-ng-if="media.provider_metadata[0]">
           <video width="100%" controls class="create-media--video">
-            <source data-ng-src="{{videoPath(media, 'ogg')}}"  type="video/ogg">
-            <source data-ng-src="{{videoPath(media, 'mpeg4')}}"  type="video/mp4">
+            <source data-ng-src="{{videoPath(media, 'ogg')}}" type="video/ogg">
+            <source data-ng-src="{{videoPath(media, 'mpeg4')}}" type="video/mp4">
           </video>
         </div>
         <div class="create-media--currently-encoding" data-ng-if="!media.provider_metadata[0]">
@@ -20,9 +24,25 @@
 
       <div class="create-media--spinner"></div>
     </div>
-     <p>
-         <a data-ng-hide="media.media_is_in_use" class="create-media--button" data-ng-click="delete()">Slet</a>
-         <span data-ng-hide="!media.media_is_in_use">Kan ikke slettes - bruges på et eller flere slides</span>
-     </p>
+
+    <div class="create-media--content-element">
+      <label class="create-channel--schedule-label">{{ 'create_media.help_text.title' | translate }}</label>
+      <form class="create-media--form">
+        <input type="text" class="create-media--title" placeholder="{{ 'create_media.placeholder.title' | translate }}" data-ng-model="media.name">
+      </form>
+    </div>
+
+    <div class="create-media--select-groups">
+      <label class="create-channel--schedule-label">{{ 'create_media.help_text.select_groups' | translate }}</label>
+      <ik-checklist elements="userGroups" selected="media.groups" identity="'id'"></ik-checklist>
+    </div>
+
+      <div>
+        <a class="button" data-ng-click="updateMedia()">Gem</a>
+        <a ng-if="!media.media_is_in_use" class="button is-warning" data-ng-click="delete()">Slet</a>
+      </div>
+      <div ng-if="media.media_is_in_use">
+        <p>Kan ikke slettes - bruges på et eller flere slides</p>
+      </div>
   </section>
 </div>

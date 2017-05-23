@@ -122,6 +122,13 @@ class Media extends BaseMedia implements GroupableEntity {
   }
 
   /**
+   * @param \Doctrine\Common\Collections\ArrayCollection $mediaOrders
+   */
+  public function setMediaOrders($mediaOrders) {
+    $this->mediaOrders = $mediaOrders;
+  }
+
+  /**
    * Get if media is being used in slide(s)
    *
    * @return boolean

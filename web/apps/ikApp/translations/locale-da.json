@@ -47,7 +47,11 @@
   "create_media": {
     "help_text": {
       "select_groups": "Vælg hvilke grupper filerne skal tilhøre",
-      "selected_media": "Valgte filer"
+      "selected_media": "Valgte filer",
+      "title": "Titel"
+    },
+    "placeholder": {
+      "title": "F.eks. Strandtur"
     }
   },
   "create_slide": {

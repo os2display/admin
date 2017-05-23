@@ -234,4 +234,15 @@
     margin-top: 2em;
     margin-bottom: 2em;
   }
+
+  &--form {
+    margin: 0;
+  }
+
+  &--title[type="text"] {
+    @extend %create-element--page-name-input-default;
+    display: inline-block;
+    width: 47%;
+    margin-right: 2%;
+  }
 }
