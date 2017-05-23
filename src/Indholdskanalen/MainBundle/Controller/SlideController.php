@@ -231,12 +231,14 @@ class SlideController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
-    // Get the serializer
-    $serializer = $this->get('jms_serializer');
-
     // Create response.
     $response = new Response();
     if ($slide) {
+      // Get the serializer
+      $serializer = $this->get('jms_serializer');
+
+      $this->get('os2display.api_data')->setApiData($slide);
+
       $response->headers->set('Content-Type', 'application/json');
       $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()
         ->setGroups(array('api'))
@@ -296,16 +298,18 @@ class SlideController extends Controller {
    */
   public function slidesGetAction() {
     // Slide entities
-    $slide_entities = $this->getDoctrine()
+    $slideEntities = $this->getDoctrine()
       ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findAll();
+
+    $this->get('os2display.api_data')->setApiData($slideEntities);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()
+    $jsonContent = $serializer->serialize($slideEntities, 'json', SerializationContext::create()
       ->setGroups(array('api-bulk'))
       ->enableMaxDepthChecks());
     $response->setContent($jsonContent);

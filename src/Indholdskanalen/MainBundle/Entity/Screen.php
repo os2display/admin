@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  * @ORM\Table(name="ik_screen")
  * @ORM\Entity
  */
-class Screen implements GroupableEntity {
+class Screen extends ApiEntity implements GroupableEntity {
   use Groupable;
 
   /**
