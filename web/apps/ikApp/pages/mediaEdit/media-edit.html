@@ -3,6 +3,7 @@
 
   <section id="create-media-one" class="create-media--section" ng-if="!loading">
     <h1 class="">{{media.name}}</h1>
+
     <div data-ng-switch on="getContentType(media)" class="create-media--content-element">
       <div data-ng-switch-when="image">
         <img class="create-media--image" data-ng-src="{{media.urls.default_landscape}}" alt="{{ media.name }}"
@@ -22,6 +23,13 @@
       </div>
 
       <div class="create-media--spinner"></div>
+    </div>
+
+    <div class="create-media--content-element">
+      <label class="create-channel--schedule-label">{{ 'create_media.help_text.title' | translate }}</label>
+      <form class="create-media--form">
+        <input type="text" class="create-media--title" placeholder="{{ 'create_media.placeholder.title' | translate }}" data-ng-model="media.name">
+      </form>
     </div>
 
     <div class="create-media--select-groups">
