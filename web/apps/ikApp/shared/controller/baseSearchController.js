@@ -28,7 +28,7 @@ angular.module('ikApp').controller('BaseSearchController', [
 
     // Setup default search options.
     $scope.baseQuery = {
-      "fields": 'name',
+      "fields": ['name', 'title'],
       "text": '',
       "sort": {
         "created_at": {
