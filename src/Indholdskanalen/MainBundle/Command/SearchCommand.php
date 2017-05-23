@@ -128,7 +128,6 @@ class SearchCommand extends ContainerAwareCommand {
       $this->indexEntity($entity, 'PUT');
     }
     else {
-      print_r($data);
       $this->output->write(sprintf('F'));
     }
   }
