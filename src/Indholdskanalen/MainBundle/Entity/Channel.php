@@ -23,7 +23,7 @@ use JMS\Serializer\Annotation\VirtualProperty;
  * @ORM\Table(name="ik_channel")
  * @ORM\Entity
  */
-class Channel implements GroupableEntity {
+class Channel extends ApiEntity implements GroupableEntity {
   use Groupable;
 
   /**

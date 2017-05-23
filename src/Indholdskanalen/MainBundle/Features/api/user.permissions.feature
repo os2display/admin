@@ -20,7 +20,7 @@ Feature: admin
   Scenario: Get groups
     When I sign in with username "user" and password "user"
     And I send a "GET" request to "/api/group"
-    Then the response status code should be 403
+    Then the response status code should be 200
 
   Scenario: Add user to group
     When I sign in with username "admin" and password "admin"

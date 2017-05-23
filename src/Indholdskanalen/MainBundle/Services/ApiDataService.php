@@ -4,6 +4,7 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use Indholdskanalen\MainBundle\Entity\Channel;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\GroupableEntity;
 use Indholdskanalen\MainBundle\Entity\Screen;
 use Indholdskanalen\MainBundle\Entity\Slide;
 use Indholdskanalen\MainBundle\Entity\User;
@@ -36,8 +37,23 @@ class ApiDataService {
     elseif ($object instanceof User) {
       $this->setApiDataUser($object, $inCollection);
     }
-
+    elseif ($object instanceof GroupableEntity) {
+      $this->setApiDataGroupable($object, $inCollection);
+    }
     return $object;
+  }
+
+  protected function setApiDataGroupable(GroupableEntity $groupable, $inCollection = FALSE) {
+    $securityMananger = $this->container->get('os2display.security_manager');
+
+    $groupable->setApiData([
+      'permissions' => [
+        'can_read' => $securityMananger->decide(EditVoter::READ, $groupable),
+        'can_update' => $securityMananger->decide(EditVoter::UPDATE, $groupable),
+        'can_delete' => $securityMananger->decide(EditVoter::DELETE, $groupable),
+      ]
+    ]);
+
   }
 
   protected function setApiDataGroup(Group $group) {

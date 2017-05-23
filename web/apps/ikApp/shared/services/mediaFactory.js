@@ -104,10 +104,27 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'busService',
     };
 
     /**
+     * Update the media
+     * @param media
+     */
+    factory.updateMedia = function (media) {
+      var defer = $q.defer();
+
+      $http.put('/api/media/' + media.id, media)
+      .success(function (data) {
+        defer.resolve(data);
+      })
+      .error(function (data, status) {
+        defer.reject(status);
+      });
+
+      return defer.promise;
+    };
+
+    /**
      * Delete the media with @id
      * @param id
      */
-
     factory.deleteMedia = function (id) {
       var defer = $q.defer();
 
