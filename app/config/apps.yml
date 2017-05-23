@@ -23,6 +23,7 @@ parameters:
 
     ikApp:
       container: true
+      class: has-legacy-form-styling
       files:
         - apps/ikApp/ikApp.js
         - apps/ikApp/routing.js
