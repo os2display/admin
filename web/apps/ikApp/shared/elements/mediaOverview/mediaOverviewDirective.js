@@ -14,7 +14,8 @@
  *   which media type should be shown, "image" or "video",
  *   leave out show all media.
  */
-angular.module('ikApp').directive('ikMediaOverview', ['busService',
+angular.module('ikApp').directive('ikMediaOverview', [
+  'busService',
   function (busService) {
     'use strict';
 
@@ -26,13 +27,13 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
         ikHideFilters: '=',
         ikSelectedMedia: '='
       },
-      controller: function ($scope, mediaFactory, userService) {
-        // Set default orientation and sort.
-        $scope.sort = {"created_at": "desc"};
-        $scope.loading = false;
+      controller: function ($scope, $filter, $controller, mediaFactory) {
+        $controller('BaseSearchController', {$scope: $scope});
 
-        // Set default search text.
-        $scope.search_text = '';
+        // Get filter selection "all/mine" from localStorage.
+        $scope.showFromUser = localStorage.getItem('overview.media.search_filter_default') ?
+          localStorage.getItem('overview.media.search_filter_default') :
+          'all';
 
         // Set default media type.
         $scope.media_type = 'all';
@@ -40,35 +41,16 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
         // Media to display.
         $scope.media = [];
 
-        // Default pager values.
-        $scope.pager = {
-          "size": 6,
-          "page": 0
-        };
-        $scope.hits = 0;
-
-        // Setup default search options.
-        var search = {
-          "fields": 'name',
-          "text": '',
-          "sort": {
-            "created_at": {
-              "order": "desc"
-            }
-          },
-          'pager': $scope.pager
-        };
-
         /**
          * Updates the images array by sending a search request.
          */
         $scope.updateSearch = function updateSearch() {
           // Get search text from scope.
-          search.text = $scope.search_text;
+          $scope.baseQuery.text = $scope.search_text;
 
           $scope.loading = true;
 
-          mediaFactory.searchMedia(search).then(
+          mediaFactory.searchMedia($scope.baseQuery).then(
             function (data) {
               // Total hits.
               $scope.hits = data.hits;
@@ -137,78 +119,27 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
          * Updates the search filter based on current orientation and user
          */
         $scope.setSearchFilters = function setSearchFilters() {
-          // Update orientation for the search.
-          delete search.filter;
+          delete $scope.baseQuery.filter;
 
-          if ($scope.media_type !== 'all' || $scope.showFromUser !== 'all') {
-            search.filter = {
-              "bool": {
-                "must": []
-              }
-            }
-          }
+          // No groups selected and "all" selected => select all groups and my.
+          var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
+            return group.id;
+          });
 
+          var filter = $scope.baseBuildSearchFilter(selectedGroupIds);
+
+          // Filter based on media type.
           if ($scope.media_type !== 'all') {
             var term = {};
             term.term = {
               media_type: $scope.media_type
             };
-            search.filter.bool.must.push(term);
+            filter.query.bool.must.push(term);
           }
 
-          if ($scope.showFromUser !== 'all') {
-            if ($scope.currentUser) {
-              var term = {};
-              term.term = {
-                user: $scope.currentUser.id
-              };
-              search.filter.bool.must.push(term);
-            }
-          }
+          $scope.baseQuery.filter = filter;
 
           $scope.updateSearch();
-        };
-
-        /**
-         * Changes if all slides are shown or only slides belonging to current user
-         *
-         * @param user
-         *   This should either be 'mine' or 'all'.
-         */
-        $scope.setUser = function setUser(user) {
-          // Save selection in localStorage.
-          localStorage.setItem('overview.media.search_filter_default', user);
-
-          if ($scope.showFromUser !== user) {
-            $scope.showFromUser = user;
-
-            $scope.setSearchFilters();
-          }
-        };
-
-        /**
-         * Changes the sort order and updated the images.
-         *
-         * @param sort_field
-         *   Field to sort on.
-         * @param sort_order
-         *   The order to sort in 'desc' or 'asc'.
-         */
-        $scope.setSort = function setSort(sort_field, sort_order) {
-          // Only update search if sort have changed.
-          if ($scope.sort[sort_field] === undefined || $scope.sort[sort_field] !== sort_order) {
-            // Update the store sort order.
-            $scope.sort = {};
-            $scope.sort[sort_field] = sort_order;
-
-            // Update the search variable.
-            search.sort = {};
-            search.sort[sort_field] = {
-              "order": sort_order
-            };
-
-            $scope.updateSearch();
-          }
         };
 
         /**
@@ -228,25 +159,13 @@ angular.module('ikApp').directive('ikMediaOverview', ['busService',
 
           event.preventDefault();
         });
-
-        // Get current user.
-        $scope.currentUser = userService.getCurrentUser();
-
-        // Get filter selection "all/mine" from localStorage.
-        $scope.showFromUser = localStorage.getItem('overview.media.search_filter_default') ?
-          localStorage.getItem('overview.media.search_filter_default') :
-          'all';
-
-        // Updated search filters (build "mine" filter with user id). It
-        // will trigger an search update.
-        $scope.setSearchFilters();
       },
       link: function (scope, element, attrs) {
         attrs.$observe('ikMediaType', function (val) {
           if (!val) {
             return;
           }
-          if (val == scope.media_type) {
+          if (val === scope.media_type) {
             return;
           }
 

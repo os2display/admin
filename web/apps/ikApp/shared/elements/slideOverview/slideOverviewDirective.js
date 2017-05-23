@@ -16,43 +16,27 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
         ikSelectedSlides: '=',
         ikOverlay: '@'
       },
-      controller: function ($scope, slideFactory, userService) {
-        $scope.loading = false;
+      controller: function ($scope, $filter, $controller, slideFactory, userService) {
+        $controller('BaseSearchController', {$scope: $scope});
 
-        $scope.sort = {"created_at": "desc"};
-
-        // Default pager values.
-        $scope.pager = {
-          "size": 6,
-          "page": 0
-        };
-        $scope.hits = 0;
+        // Get filter selection "all/mine" from localStorage.
+        $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
+          localStorage.getItem('overview.slide.search_filter_default') :
+          'all';
 
         // Slides to display.
         $scope.slides = [];
-
-        // Setup default search options.
-        var search = {
-          "fields": ['title'],
-          "text": $scope.search_text,
-          "sort": {
-            "created_at": {
-              "order": "desc"
-            }
-          },
-          'pager': $scope.pager
-        };
 
         /**
          * Updates the slides array by send a search request.
          */
         $scope.updateSearch = function updateSearch() {
           // Get search text from scope.
-          search.text = $scope.search_text;
+          $scope.baseQuery.text = $scope.search_text;
 
           $scope.loading = true;
 
-          slideFactory.searchSlides(search).then(
+          slideFactory.searchSlides($scope.baseQuery).then(
             function (data) {
               // Total hits.
               $scope.hits = data.hits;
@@ -90,42 +74,17 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
         });
 
         /**
-         * Changes if all slides are shown or only slides belonging to current user
-         *
-         * @param user
-         *   This should either be 'mine' or 'all'.
-         */
-        $scope.setUser = function setUser(user) {
-          // Save selection in localStorage.
-          localStorage.setItem('overview.slide.search_filter_default', user);
-
-          if ($scope.showFromUser !== user) {
-            $scope.showFromUser = user;
-
-            $scope.setSearchFilters();
-          }
-        };
-
-        /**
          * Updates the search filter based on current orientation and user
          */
         $scope.setSearchFilters = function setSearchFilters() {
-          // Update orientation for the search.
-          delete search.filter;
+          delete $scope.baseQuery.filter;
 
-          if ($scope.showFromUser !== 'all') {
-            search.filter = {
-              "bool": {
-                "must": []
-              }
-            }
-          }
+          // No groups selected and "all" selected => select all groups and my.
+          var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
+            return group.id;
+          });
 
-          if ($scope.showFromUser !== 'all') {
-            var term = {};
-            term.term = {user: $scope.currentUser.id};
-            search.filter.bool.must.push(term);
-          }
+          $scope.baseQuery.filter = $scope.baseBuildSearchFilter(selectedGroupIds);
 
           $scope.updateSearch();
         };
@@ -172,31 +131,6 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
           }
           // No schedule is set.
           return false;
-        };
-
-        /**
-         * Changes the sort order and updated the slides.
-         *
-         * @param sort_field
-         *   Field to sort on.
-         * @param sort_order
-         *   The order to sort in 'desc' or 'asc'.
-         */
-        $scope.setSort = function setSort(sort_field, sort_order) {
-          // Only update search if sort have changed.
-          if ($scope.sort[sort_field] === undefined || $scope.sort[sort_field] !== sort_order) {
-            // Update the store sort order.
-            $scope.sort = {};
-            $scope.sort[sort_field] = sort_order;
-
-            // Update the search variable.
-            search.sort = {};
-            search.sort[sort_field] = {
-              "order": sort_order
-            };
-
-            $scope.updateSearch();
-          }
         };
 
         /**
@@ -253,18 +187,6 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
 
           return text;
         };
-
-        // Load current user (need to activate "mine" tab as default).
-        $scope.currentUser = userService.getCurrentUser();
-
-        // Get filter selection "all/mine" from localStorage.
-        $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
-          localStorage.getItem('overview.slide.search_filter_default') :
-          'all';
-
-        // Updated search filters (build "mine" filter with user id). It
-        // will trigger an search update.
-        $scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/slideOverview/slide-overview-directive.html?' + window.config.version
     };

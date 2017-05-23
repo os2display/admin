@@ -11,7 +11,8 @@ use Indholdskanalen\MainBundle\Services\UtilityService;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\Container;
-
+use Indholdskanalen\MainBundle\Entity\GroupableEntity;
+use Indholdskanalen\MainBundle\Entity\Group;
 
 /**
  * Class SearchIndexer
@@ -99,6 +100,10 @@ class SearchIndexer {
     // Get search backend URL.
     $url = $this->container->getParameter('search_host');
     $path = $this->container->getParameter('search_path');
+
+    if ($entity instanceof GroupableEntity && $groups = $entity->getGroups()) {
+      $entity->setGroups($groups->map(function (Group $group) { return $group->getid(); }));
+    }
 
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()
         ->setGroups(array('search')));
