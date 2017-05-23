@@ -27,14 +27,13 @@ angular.module('ikApp').directive('ikMediaUpload', ['busService', 'userService',
         $scope.uploadErrors = false;
         $scope.uploadInProgress = false;
         $scope.uploadErrorText = '';
+        $scope.selectedGroups = [];
 
         // Get current user groups.
         var cleanupGetCurrentUserGroups = busService.$on('mediaUpdateDirective.getCurrentUserGroups', function (event, groups) {
           $scope.userGroups = groups;
         });
         userService.getCurrentUserGroups('mediaUpdateDirective.getCurrentUserGroups');
-
-        $scope.selectedGroups = [];
 
         var acceptedVideotypes = '|mp4|x-msvideo|x-ms-wmv|quicktime|mpeg|mpg|x-matroska|ogg|webm';
         var acceptedImagetypes = '|jpg|png|jpeg|bmp|gif';
