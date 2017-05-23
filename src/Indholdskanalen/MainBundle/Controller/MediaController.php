@@ -135,36 +135,34 @@ class MediaController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function mediaUpdateAction(Request $request, $id) {
+    $serializer = $this->get('jms_serializer');
+
     $media = $this->getDoctrine()
       ->getRepository(Media::class)
       ->findOneById($id);
 
     $post = json_decode($request->getContent());
 
-    print_r($post);
-
-    $groups = isset($post->groups) ? $post->groups : [];
-    $groups = new ArrayCollection($groups);
+    // Add groups.
+    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
     $media->setGroups($groups);
+    if (isset($post->name)) {
+      $media->setName($post->name);
+    }
+
+    // Hack: Make the entity Dirty!
+    $media->setMediaOrders(clone($media->getMediaOrders()));
 
     $mediaManager = $this->get('sonata.media.manager.media');
     $mediaManager->save($media);
 
+    $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()
+      ->setGroups(array('api')));
+
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
-
-    if ($media) {
-      $serializer = $this->get('jms_serializer');
-      $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()
-        ->setGroups(array('api')));
-
-      $response->setContent($jsonContent);
-    }
-    else {
-      $response->setContent(json_encode(array()));
-    }
-
+    $response->setContent($jsonContent);
     return $response;
   }
 

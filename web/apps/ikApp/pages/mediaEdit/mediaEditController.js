@@ -10,7 +10,7 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
   function ($scope, $location, $routeParams, $timeout, mediaFactory, busService, userService) {
     'use strict';
 
-    $scope.selectedGroups = [];
+    $scope.loading = true;
 
     // Get current user groups.
     var cleanupGetCurrentUserGroups = busService.$on('mediaUpdateDirective.getCurrentUserGroups', function (event, groups) {
@@ -23,11 +23,13 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
     // Get the selected media
     mediaFactory.getMedia($routeParams.id).then(
       function success(data) {
-        $scope.media = data;
+        $timeout(function () {
+          $scope.media = data;
 
-        if ($scope.media === {}) {
-          $location.path('/media-overview');
-        }
+          if ($scope.media === {}) {
+            $location.path('/media-overview');
+          }
+        });
       },
       function error(reason) {
         busService.$emit('log.error', {
@@ -36,21 +38,23 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
         });
         $location.path('/media-overview');
       }
-    );
+    ).then(function () {
+      $scope.loading = false;
+    });
 
     /**
      * Update an image.
      */
     $scope.updateMedia = function () {
-      var media = angular.copy($scope.media);
-      media.groups = $scope.selectedGroups;
- 
-      mediaFactory.updateMedia(media).then(
-        function success(media) {
-          $scope.media = media;
-          busService.$emit('log.info', {
-            'msg': 'Media opdateret.',
-            'timeout': 3000
+      $scope.loading = true;
+
+      mediaFactory.updateMedia($scope.media).then(
+        function success() {
+          $timeout(function() {
+            busService.$emit('log.info', {
+              'msg': 'Media opdateret.',
+              'timeout': 3000
+            });
           });
         },
         function error(reason) {
@@ -59,13 +63,17 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
             'msg': 'Opdatering af media fejlede.'
           });
         }
-      );
+      ).then(function () {
+        $scope.loading = false;
+      });
     };
 
     /**
      * Delete an image.
      */
     $scope.delete = function () {
+      $scope.loading = true;
+
       mediaFactory.deleteMedia($scope.media.id).then(
         function success() {
           busService.$emit('log.info', {
@@ -82,7 +90,9 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
             'msg': 'Sletning af media fejlede.'
           });
         }
-      );
+      ).then(function () {
+        $scope.loading = false;
+      });
     };
 
     /**
