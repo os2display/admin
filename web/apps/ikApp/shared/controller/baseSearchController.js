@@ -155,6 +155,25 @@ angular.module('ikApp').controller('BaseSearchController', [
     };
 
     /**
+     * Changes if all slides are shown or only slides belonging to current user
+     *
+     * @param {string} user
+     *   This should either be 'mine' or 'all'.
+     * @param {string} type
+     *   The type to store the selection under.
+     */
+    $scope.setUser = function setUser(user, type) {
+      // Save selection in localStorage.
+      localStorage.setItem('overview.' + type + '.search_filter_default', user);
+
+      if ($scope.showFromUser !== user) {
+        $scope.showFromUser = user;
+
+        $scope.setSearchFilters();
+      }
+    };
+
+    /**
      * Clean up registered listeners.
      */
     $scope.$on('$destroy', function () {

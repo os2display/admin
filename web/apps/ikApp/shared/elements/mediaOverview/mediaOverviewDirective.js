@@ -143,23 +143,6 @@ angular.module('ikApp').directive('ikMediaOverview', [
         };
 
         /**
-         * Changes if all slides are shown or only slides belonging to current user
-         *
-         * @param user
-         *   This should either be 'mine' or 'all'.
-         */
-        $scope.setUser = function setUser(user) {
-          // Save selection in localStorage.
-          localStorage.setItem('overview.media.search_filter_default', user);
-
-          if ($scope.showFromUser !== user) {
-            $scope.showFromUser = user;
-
-            $scope.setSearchFilters();
-          }
-        };
-
-        /**
          * Emits event when the user clicks a media.
          *
          * @param mediaElement

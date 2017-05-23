@@ -108,23 +108,6 @@ angular.module('ikApp').directive('ikChannelOverview', [
         };
 
         /**
-         * Changes if all slides are shown or only slides belonging to current user
-         *
-         * @param user
-         *   This should either be 'mine' or 'all'.
-         */
-        $scope.setUser = function setUser(user) {
-          // Save selection in localStorage.
-          localStorage.setItem('overview.channel.search_filter_default', user);
-
-          if ($scope.showFromUser !== user) {
-            $scope.showFromUser = user;
-
-            $scope.setSearchFilters();
-          }
-        };
-
-        /**
          * Updates the search filter based on current orientation and user
          */
         $scope.setSearchFilters = function setSearchFilters() {

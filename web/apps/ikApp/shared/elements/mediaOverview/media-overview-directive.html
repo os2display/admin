@@ -5,8 +5,8 @@
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-model-options="{debounce: 500}" data-ng-change="updateSearch()">
     </form>
     <div class="overview--filter-owner overview--filter-owner-foursplit">
-      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all')">Alle</span>
-      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine')">Mine</span>
+      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all', 'media')">Alle</span>
+      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine', 'media')">Mine</span>
     </div>
     <div class="overview--filter-orientation" data-ng-show="!ikHideFilters">
       <span data-ng-class="{'is-active': media_type == 'all'}" class="overview--filter-foursplit-left" data-ng-click="filterMediaType('all')">Alle</span>
