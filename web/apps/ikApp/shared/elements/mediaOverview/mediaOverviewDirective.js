@@ -35,50 +35,22 @@ angular.module('ikApp').directive('ikMediaOverview', [
           localStorage.getItem('overview.media.search_filter_default') :
           'all';
 
-        $scope.loading = false;
-
-        // Set default orientation and sort.
-        $scope.sort = {"created_at": "desc"};
-
-        // Set default search text.
-        $scope.search_text = '';
-
         // Set default media type.
         $scope.media_type = 'all';
 
         // Media to display.
         $scope.media = [];
 
-        // Default pager values.
-        $scope.pager = {
-          "size": 6,
-          "page": 0
-        };
-        $scope.hits = 0;
-
-        // Setup default search options.
-        var search = {
-          "fields": 'name',
-          "text": '',
-          "sort": {
-            "created_at": {
-              "order": "desc"
-            }
-          },
-          'pager': $scope.pager,
-          "filter": {}
-        };
-
         /**
          * Updates the images array by sending a search request.
          */
         $scope.updateSearch = function updateSearch() {
           // Get search text from scope.
-          search.text = $scope.search_text;
+          $scope.baseQuery.text = $scope.search_text;
 
           $scope.loading = true;
 
-          mediaFactory.searchMedia(search).then(
+          mediaFactory.searchMedia($scope.baseQuery).then(
             function (data) {
               // Total hits.
               $scope.hits = data.hits;
@@ -147,7 +119,7 @@ angular.module('ikApp').directive('ikMediaOverview', [
          * Updates the search filter based on current orientation and user
          */
         $scope.setSearchFilters = function setSearchFilters() {
-          delete search.filter;
+          delete $scope.baseQuery.filter;
 
           // No groups selected and "all" selected => select all groups and my.
           var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
@@ -165,7 +137,7 @@ angular.module('ikApp').directive('ikMediaOverview', [
             filter.query.bool.must.push(term);
           }
 
-          search.filter = filter;
+          $scope.baseQuery.filter = filter;
 
           $scope.updateSearch();
         };
@@ -184,31 +156,6 @@ angular.module('ikApp').directive('ikMediaOverview', [
             $scope.showFromUser = user;
 
             $scope.setSearchFilters();
-          }
-        };
-
-        /**
-         * Changes the sort order and updated the images.
-         *
-         * @param sort_field
-         *   Field to sort on.
-         * @param sort_order
-         *   The order to sort in 'desc' or 'asc'.
-         */
-        $scope.setSort = function setSort(sort_field, sort_order) {
-          // Only update search if sort have changed.
-          if ($scope.sort[sort_field] === undefined || $scope.sort[sort_field] !== sort_order) {
-            // Update the store sort order.
-            $scope.sort = {};
-            $scope.sort[sort_field] = sort_order;
-
-            // Update the search variable.
-            search.sort = {};
-            search.sort[sort_field] = {
-              "order": sort_order
-            };
-
-            $scope.updateSearch();
           }
         };
 

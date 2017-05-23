@@ -11,6 +11,34 @@ angular.module('ikApp').controller('BaseSearchController', [
     // Get current user.
     $scope.currentUser = userService.getCurrentUser();
 
+    $scope.loading = false;
+
+    // Set default orientation and sort.
+    $scope.sort = {"created_at": "desc"};
+
+    // Set default search text.
+    $scope.search_text = '';
+
+    // Default pager values.
+    $scope.pager = {
+      "size": 6,
+      "page": 0
+    };
+    $scope.hits = 0;
+
+    // Setup default search options.
+    $scope.baseQuery = {
+      "fields": 'name',
+      "text": '',
+      "sort": {
+        "created_at": {
+          "order": "desc"
+        }
+      },
+      'pager': $scope.pager,
+      "filter": {}
+    };
+
     // Get current user groups.
     $scope.userGroups = [];
     var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, result) {
@@ -98,6 +126,32 @@ angular.module('ikApp').controller('BaseSearchController', [
       }
 
       return filter;
+    };
+
+    /**
+     * Changes the sort order and updated the screens.
+     *
+     * @param sort_field
+     *   Field to sort on.
+     * @param sort_order
+     *   The order to sort in 'desc' or 'asc'.
+     */
+    $scope.setSort = function(sort_field, sort_order) {
+      // Only update search if sort have changed.
+      if ($scope.sort[sort_field] === undefined || $scope.sort[sort_field] !== sort_order) {
+
+        // Update the store sort order.
+        $scope.sort = { };
+        $scope.sort[sort_field] = sort_order;
+
+        // Update the search variable.
+        $scope.baseQuery.sort = { };
+        $scope.baseQuery.sort[sort_field] = {
+          "order": sort_order
+        };
+
+        $scope.updateSearch();
+      }
     };
 
     /**
