@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation\VirtualProperty;
  * @ORM\Table(name="ik_slide")
  * @ORM\Entity
  */
-class Slide implements GroupableEntity {
+class Slide extends ApiEntity implements GroupableEntity {
   use Groupable;
 
   /**
