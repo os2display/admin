@@ -14,6 +14,7 @@ use Behatch\Json\JsonInspector;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
 use Indholdskanalen\MainBundle\Entity\User;
+use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -139,12 +140,13 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
       $email = !empty($row['email']) ? $row['email'] : uniqid($username) . '@' . uniqid('example') . '.com';
       $password = !empty($row['password']) ? $row['password'] : uniqid();
       $roles = !empty($row['roles']) ? preg_split('/\s*,\s*/', $row['roles'], -1, PREG_SPLIT_NO_EMPTY) : [];
+      $groups = !empty($row['groups']) ? preg_split('/\s*,\s*/', $row['groups'], -1, PREG_SPLIT_NO_EMPTY) : NULL;
 
-      $this->createUser($username, $email, $password, $roles);
+      $this->createUser($username, $email, $password, $roles, $groups);
     }
   }
 
-  private function createUser($username, $email, $password, array $roles) {
+  private function createUser($username, $email, $password, array $roles, array $groups = NULL) {
     $userManager = $this->container->get('fos_user.user_manager');
 
     $user = $userManager->findUserBy(['username' => $username]);
@@ -157,6 +159,20 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
       ->setPlainPassword($password)
       ->setEmail($email)
       ->setRoles($roles);
+
+    if ($groups) {
+      $groupManager = $this->container->get('os2display.group_manager');
+
+      foreach ($groups as $spec) {
+        list($groupId, $role) = preg_split('/\s*:\s*/', $spec, 2, PREG_SPLIT_NO_EMPTY);
+        $group = $groupManager->findGroupBy(['id' => $groupId]);
+        $userGroup = new UserGroup();
+        $userGroup->setUser($user);
+        $userGroup->setGroup($group);
+        $userGroup->setRole($role);
+        $this->doctrine->getManager()->persist($userGroup);
+      }
+    }
 
     $userManager->updateUser($user);
   }
@@ -184,6 +200,13 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
   }
 
   /**
+   * @When I authenticate as :username
+   */
+  public function iAuthenticateAs($username) {
+    $this->iSignInWithUsernameAndPassword($username, NULL);
+  }
+
+  /**
    * @When I sign in with username :username and password :password
    */
   public function iSignInWithUsernameAndPassword($username, $password) {
@@ -192,7 +215,7 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
     if ($user) {
       $encoder_service = $this->container->get('security.encoder_factory');
       $encoder = $encoder_service->getEncoder($user);
-      if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
+      if (!$password || $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
         $this->authenticate($user);
       }
     }

@@ -4,6 +4,7 @@ namespace Indholdskanalen\MainBundle\Services;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\GroupableEntity;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Security\Roles;
@@ -54,6 +55,10 @@ class EntityManagerService {
       case User::class:
         return $this->addCriteriaUser($criteria, $user);
     }
+
+    if (is_subclass_of($class, GroupableEntity::class)) {
+      return $this->addCriteriaGroupable($class, $criteria, $user);
+    }
   }
 
   private function addCriteriaGroup(array &$criteria, User $user) {
@@ -86,4 +91,31 @@ class EntityManagerService {
   private function addCriteriaUser(array &$criteria, User $user) {
     // @TODO
   }
+
+  private function addCriteriaGroupable($class, array &$criteria, User $user) {
+    if ($this->authorizationChecker->isGranted(Roles::ROLE_ADMIN)) {
+      return;
+    }
+
+    $tableName = $this->manager->getClassMetadata($class)->getTableName();
+
+    // User can see all groupables created by himself
+    $sql = 'select id from ' . $tableName . ' where user = :user_id';
+    // Plus all groupables in groups he's a member of
+    $sql .= ' union select entity_id id from ik_grouping where entity_type = :entity_type and group_id in (select group_id from ik_user_group where user_id = :user_id)';
+
+    $result = $this->manager->getConnection()->fetchAll($sql, [
+      'entity_type' => $class,
+      'user_id' => $user->getId(),
+    ]);
+    $ids = array_map(function ($row) {
+      return $row['id'];
+    }, $result);
+
+    if (isset($criteria['id'])) {
+      $ids = array_intersect($ids, $criteria['id']);
+    }
+    $criteria['id'] = $ids;
+  }
+
 }
