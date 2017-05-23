@@ -125,6 +125,50 @@ class MediaController extends Controller {
   }
 
   /**
+   * Update media with ID.
+   *
+   * @Route("/{id}")
+   * @Method("PUT")
+   *
+   * @param $id
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
+  public function mediaUpdateAction(Request $request, $id) {
+    $media = $this->getDoctrine()
+      ->getRepository(Media::class)
+      ->findOneById($id);
+
+    $post = json_decode($request->getContent());
+
+    print_r($post);
+
+    $groups = isset($post->groups) ? $post->groups : [];
+    $groups = new ArrayCollection($groups);
+    $media->setGroups($groups);
+
+    $mediaManager = $this->get('sonata.media.manager.media');
+    $mediaManager->save($media);
+
+    // Create response.
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+
+    if ($media) {
+      $serializer = $this->get('jms_serializer');
+      $jsonContent = $serializer->serialize($media, 'json', SerializationContext::create()
+        ->setGroups(array('api')));
+
+      $response->setContent($jsonContent);
+    }
+    else {
+      $response->setContent(json_encode(array()));
+    }
+
+    return $response;
+  }
+
+  /**
    * Get media with ID.
    *
    * @Route("/{id}")

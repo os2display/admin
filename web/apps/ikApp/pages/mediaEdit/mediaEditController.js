@@ -6,9 +6,19 @@
 /**
  * Media controller. Controls media editing functions.
  */
-angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'busService',
-  function ($scope, $location, $routeParams, $timeout, mediaFactory, busService) {
+angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'busService', 'userService',
+  function ($scope, $location, $routeParams, $timeout, mediaFactory, busService, userService) {
     'use strict';
+
+    $scope.selectedGroups = [];
+
+    // Get current user groups.
+    var cleanupGetCurrentUserGroups = busService.$on('mediaUpdateDirective.getCurrentUserGroups', function (event, groups) {
+      $timeout(function () {
+        $scope.userGroups = groups;
+      });
+    });
+    userService.getCurrentUserGroups('mediaUpdateDirective.getCurrentUserGroups');
 
     // Get the selected media
     mediaFactory.getMedia($routeParams.id).then(
@@ -27,6 +37,30 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
         $location.path('/media-overview');
       }
     );
+
+    /**
+     * Update an image.
+     */
+    $scope.updateMedia = function () {
+      var media = angular.copy($scope.media);
+      media.groups = $scope.selectedGroups;
+ 
+      mediaFactory.updateMedia(media).then(
+        function success(media) {
+          $scope.media = media;
+          busService.$emit('log.info', {
+            'msg': 'Media opdateret.',
+            'timeout': 3000
+          });
+        },
+        function error(reason) {
+          busService.$emit('log.error', {
+            'cause': reason,
+            'msg': 'Opdatering af media fejlede.'
+          });
+        }
+      );
+    };
 
     /**
      * Delete an image.
@@ -97,6 +131,13 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$location'
         }
       });
       return filepath;
-    }
+    };
+
+    /**
+     * onDestroy.
+     */
+    $scope.$on('$destroy', function () {
+      cleanupGetCurrentUserGroups();
+    });
   }
 ]);
