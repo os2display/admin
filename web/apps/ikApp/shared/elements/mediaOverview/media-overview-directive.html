@@ -5,14 +5,25 @@
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-model-options="{debounce: 500}" data-ng-change="updateSearch()">
     </form>
     <div class="overview--filter-owner overview--filter-owner-foursplit">
-      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all')">Alle</span>
-      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine')">Mine</span>
+      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all', 'media')">Alle</span>
+      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine', 'media')">Mine</span>
     </div>
     <div class="overview--filter-orientation" data-ng-show="!ikHideFilters">
       <span data-ng-class="{'is-active': media_type == 'all'}" class="overview--filter-foursplit-left" data-ng-click="filterMediaType('all')">Alle</span>
       <span data-ng-class="{'is-active': media_type == 'image'}" class="overview--filter-foursplit-middle" data-ng-click="filterMediaType('image')">Billeder</span>
       <span data-ng-class="{'is-active': media_type == 'logo'}" class="overview--filter-foursplit-middle" data-ng-click="filterMediaType('logo')">Logoer</span>
       <span data-ng-class="{'is-active': media_type == 'video'}" class="overview--filter-foursplit-right" data-ng-click="filterMediaType('video')">Videoer</span>
+    </div>
+  </div>
+  <div class="overview--groups">
+    <label class="overview--label">Grupper:</label>
+    <div class="overview--checkboxes">
+      <span class="overview--checkbox" ng-repeat="group in userGroups">
+        <label class="overview--checkbox-label" for="{{group.id}}">
+          <input type="checkbox" ng-model="group.selected" value={{group.id}} name="group" id="{{group.id}}" ng-change="setSearchFilters()" />
+          {{group.displayName}}
+        </label>
+      </span>
     </div>
   </div>
   <div class="overview--sorting">

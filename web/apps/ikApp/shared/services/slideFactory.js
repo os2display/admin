@@ -46,7 +46,8 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'busService',
 
       busService.$emit('searchService.request', search);
 
-      return deferred.promise;    };
+      return deferred.promise;
+    };
 
     /**
      * Get all slides.

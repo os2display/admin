@@ -5,8 +5,19 @@
       <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-change="updateSearch()" data-ng-model-options="{debounce: 500}">
     </form>
     <div class="overview--filter-owner">
-      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all')">Alle</span>
-      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine')">Mine</span>
+      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all', 'slide')">Alle</span>
+      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine', 'slide')">Mine</span>
+    </div>
+  </div>
+  <div class="overview--groups">
+    <label class="overview--label">Grupper:</label>
+    <div class="overview--checkboxes">
+      <span class="overview--checkbox" ng-repeat="group in userGroups">
+        <label class="overview--checkbox-label" for="{{group.id}}">
+          <input type="checkbox" ng-model="group.selected" value={{group.id}} name="group" id="{{group.id}}" ng-change="setSearchFilters()" />
+          {{group.displayName}}
+        </label>
+      </span>
     </div>
   </div>
   <div class="overview--sorting">

@@ -22,7 +22,7 @@ class Group extends ApiEntity {
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "api-bulk"})
+   * @Groups({"api", "search", "api-bulk"})
    */
   protected $id;
 

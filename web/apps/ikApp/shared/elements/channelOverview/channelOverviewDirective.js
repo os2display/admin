@@ -6,8 +6,9 @@
 /**
  * Directive to show the Channel overview.
  */
-angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userService', 'busService', '$filter',
-  function(channelFactory, userService, busService, $filter) {
+angular.module('ikApp').directive('ikChannelOverview', [
+  'busService',
+  function(busService) {
     'use strict';
 
     return {
@@ -16,52 +17,32 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
         ikSelectedChannels: '=',
         ikOverlay: '@'
       },
-      link: function(scope) {
-        scope.displaySharingOption = window.config.sharingService.enabled;
-        scope.loading = false;
+      controller: function ($scope, $filter, $controller, channelFactory) {
+        $controller('BaseSearchController', {$scope: $scope});
 
-        scope.sort = { "created_at": "desc" };
+        // Get filter selection "all/mine" from localStorage.
+        $scope.showFromUser = localStorage.getItem('overview.channel.search_filter_default') ?
+          localStorage.getItem('overview.channel.search_filter_default') :
+          'all';
 
-        // Default pager values.
-        scope.pager = {
-          "size": 6,
-          "page": 0
-        };
-        scope.hits = 0;
+        $scope.displaySharingOption = window.config.sharingService.enabled;
 
         // Channels to display.
-        scope.channels = [];
-
-        // Setup default search options.
-        var search = {
-          "fields": 'title',
-          "text": '',
-          "filter": {
-            "bool": {
-              "must": []
-            }
-          },
-          "sort": {
-            "created_at" : {
-              "order": 'desc'
-            }
-          },
-          'pager': scope.pager
-        };
+        $scope.channels = [];
 
         /**
          * Updates the channels array by send a search request.
          */
-        scope.updateSearch = function updateSearch() {
+        $scope.updateSearch = function updateSearch() {
           // Get search text from scope.
-          search.text = scope.search_text;
+          $scope.baseQuery.text = $scope.search_text;
 
-          scope.loading = true;
+          $scope.loading = true;
 
-          channelFactory.searchChannels(search).then(
+          channelFactory.searchChannels($scope.baseQuery).then(
             function success(data) {
               // Total hits.
-              scope.hits = data.hits;
+              $scope.hits = data.hits;
 
               // Extract search ids.
               var ids = [];
@@ -72,16 +53,16 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
               // Load slides bulk.
               channelFactory.loadChannelsBulk(ids).then(
                 function success(data) {
-                  scope.channels = data;
+                  $scope.channels = data;
 
-                  scope.loading = false;
+                  $scope.loading = false;
                 },
                 function error(reason) {
                   busService.$emit('log.error', {
                     'cause': reason,
                     'msg': 'Kunne ikke loade søgeresultatet.'
                   });
-                  scope.loading = false;
+                  $scope.loading = false;
                 }
               );
             }
@@ -91,8 +72,8 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
         /**
          * Update search result on channel deletion.
          */
-        scope.$on('channel-deleted', function() {
-          scope.updateSearch();
+        $scope.$on('channel-deleted', function() {
+          $scope.updateSearch();
         });
 
         /**
@@ -101,14 +82,14 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
          * @param channel
          * @returns {boolean}
          */
-        scope.channelSelected = function channelSelected(channel) {
-          if (!scope.ikSelectedChannels) {
+        $scope.channelSelected = function channelSelected(channel) {
+          if (!$scope.ikSelectedChannels) {
             return false;
           }
 
           var res = false;
 
-          scope.ikSelectedChannels.forEach(function(element) {
+          $scope.ikSelectedChannels.forEach(function(element) {
             if (element.id === channel.id) {
               res = true;
             }
@@ -122,75 +103,24 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
          *
          * @param channel
          */
-        scope.channelOverviewClickChannel = function channelOverviewClickChannel(channel) {
-          scope.$emit('channelOverview.clickChannel', channel);
-        };
-
-        /**
-         * Changes if all slides are shown or only slides belonging to current user
-         *
-         * @param user
-         *   This should either be 'mine' or 'all'.
-         */
-        scope.setUser = function setUser(user) {
-          // Save selection in localStorage.
-          localStorage.setItem('overview.channel.search_filter_default', user);
-
-          if (scope.showFromUser !== user) {
-            scope.showFromUser = user;
-
-            scope.setSearchFilters();
-          }
+        $scope.channelOverviewClickChannel = function channelOverviewClickChannel(channel) {
+          $scope.$emit('channelOverview.clickChannel', channel);
         };
 
         /**
          * Updates the search filter based on current orientation and user
          */
-        scope.setSearchFilters = function setSearchFilters() {
-          // Update orientation for the search.
-          delete search.filter;
+        $scope.setSearchFilters = function setSearchFilters() {
+          delete $scope.baseQuery.filter;
 
-          if(scope.showFromUser !== 'all') {
-            search.filter = {
-              "bool": {
-                "must": []
-              }
-            };
-          }
+          // No groups selected and "all" selected => select all groups and my.
+          var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
+            return group.id;
+          });
 
-          var term = {};
+          $scope.baseQuery.filter = $scope.baseBuildSearchFilter(selectedGroupIds);
 
-          if (scope.showFromUser !== 'all') {
-            term.term = {user : scope.currentUser.id};
-            search.filter.bool.must.push(term);
-          }
-
-          scope.updateSearch();
-        };
-
-        /**
-         * Changes the sort order and updated the channels.
-         *
-         * @param sortField
-         *   Field to sort on.
-         * @param sortOrder
-         *   The order to sort in 'desc' or 'asc'.
-         */
-        scope.setSort = function setSort(sortField, sortOrder) {
-          // Only update search if sort have changed.
-          if (scope.sort[sortField] === undefined || scope.sort[sortField] !== sortOrder) {
-            // Update the store sort order.
-            scope.sort = { };
-            scope.sort[sortField] = sortOrder;
-
-            // Update the search variable.
-            search.sort = { };
-            search.sort[sortField] = {
-              "order": sortOrder
-            };
-
-            scope.updateSearch();
-          }
+          $scope.updateSearch();
         };
 
         /**
@@ -198,7 +128,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
          *
          * @param channel
          */
-        scope.channelScheduledNow = function channelScheduledNow(channel) {
+        $scope.channelScheduledNow = function channelScheduledNow(channel) {
           var now = new Date();
           var todayDayNumber = now.getDay();
           var todayHour = now.getHours();
@@ -236,7 +166,7 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
          *
          * @param channel
          */
-        scope.getScheduledText = function getScheduledText(channel) {
+        $scope.getScheduledText = function getScheduledText(channel) {
           var text = '';
 
           if (channel.hasOwnProperty('publish_from')) {
@@ -263,17 +193,6 @@ angular.module('ikApp').directive('ikChannelOverview', ['channelFactory', 'userS
 
           return text;
         };
-
-        scope.currentUser = userService.getCurrentUser();
-
-        // Get filter selection "all/mine" from localStorage.
-        scope.showFromUser = localStorage.getItem('overview.channel.search_filter_default') ?
-          localStorage.getItem('overview.channel.search_filter_default') :
-          'all';
-
-        // Updated search filters (build "mine" filter with user id). It
-        // will trigger an search update.
-        scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/channelOverview/channel-overview-directive.html?' + window.config.version
     };

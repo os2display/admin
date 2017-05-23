@@ -38,18 +38,16 @@ parameters:
         - apps/ikApp/shared/services/kobaFactory.js
         - apps/ikApp/pages/screen/screen.js
         - apps/ikApp/pages/sharedChannel/sharedChannelController.js
-        - apps/ikApp/pages/sharedChannelOverview/sharedChannelOverviewController.js
         - apps/ikApp/pages/adminSharing/adminSharingController.js
         - apps/ikApp/pages/adminTemplates/adminTemplatesController.js
         - apps/ikApp/pages/channel/channelController.js
         - apps/ikApp/pages/channelOverview/channelOverviewController.js
         - apps/ikApp/pages/mediaOverview/mediaOverviewController.js
-        - apps/ikApp/pages/screenOverview/screenOverviewController.js
         - apps/ikApp/pages/mediaEdit/mediaEditController.js
-        - apps/ikApp/pages/mediaUpload/mediaUploadController.js
         - apps/ikApp/pages/slideOverview/slideOverviewController.js
         - apps/ikApp/pages/slide/slideController.js
         - apps/ikApp/pages/slide/slideEditController.js
+        - apps/ikApp/shared/controller/baseSearchController.js
         - apps/ikApp/shared/elements/actionsMenu/actionsMenuDirective.js
         - apps/ikApp/shared/elements/actionReloadScreen/actionReloadScreenDirective.js
         - apps/ikApp/shared/elements/sharedChannel/sharedChannelDirective.js
@@ -65,6 +63,7 @@ parameters:
         - apps/ikApp/shared/elements/slide/slideDirective.js
         - apps/ikApp/shared/elements/slide/slideEditableDirective.js
         - apps/ikApp/shared/elements/slide/sharedSlideDirective.js
+        - apps/ikApp/shared/elements/screenOverview/screenOverviewDirective.js
         - apps/ikApp/shared/elements/mediaOverview/mediaOverviewDirective.js
         - apps/ikApp/shared/elements/mediaUpload/mediaUploadDirective.js
         - apps/ikApp/shared/elements/thumb/thumbDirective.js
