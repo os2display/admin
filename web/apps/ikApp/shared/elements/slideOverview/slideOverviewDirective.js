@@ -16,9 +16,12 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
         ikSelectedSlides: '=',
         ikOverlay: '@'
       },
-      controller: function ($scope, slideFactory, userService) {
+      controller: function ($scope, $filter, $controller, slideFactory, userService) {
+        $controller('BaseSearchController', {$scope: $scope});
+
         $scope.loading = false;
 
+        // Set default orientation and sort.
         $scope.sort = {"created_at": "desc"};
 
         // Default pager values.
@@ -110,22 +113,14 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
          * Updates the search filter based on current orientation and user
          */
         $scope.setSearchFilters = function setSearchFilters() {
-          // Update orientation for the search.
           delete search.filter;
 
-          if ($scope.showFromUser !== 'all') {
-            search.filter = {
-              "bool": {
-                "must": []
-              }
-            }
-          }
+          // No groups selected and "all" selected => select all groups and my.
+          var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
+            return group.id;
+          });
 
-          if ($scope.showFromUser !== 'all') {
-            var term = {};
-            term.term = {user: $scope.currentUser.id};
-            search.filter.bool.must.push(term);
-          }
+          search.filter = $scope.baseBuildSearchFilter(selectedGroupIds);
 
           $scope.updateSearch();
         };
@@ -261,10 +256,6 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
         $scope.showFromUser = localStorage.getItem('overview.slide.search_filter_default') ?
           localStorage.getItem('overview.slide.search_filter_default') :
           'all';
-
-        // Updated search filters (build "mine" filter with user id). It
-        // will trigger an search update.
-        $scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/slideOverview/slide-overview-directive.html?' + window.config.version
     };

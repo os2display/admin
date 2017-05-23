@@ -27,29 +27,13 @@ angular.module('ikApp').directive('ikMediaOverview', [
         ikHideFilters: '=',
         ikSelectedMedia: '='
       },
-      controller: function ($scope, $filter, mediaFactory, userService) {
-        // Set default orientation and sort.
-        $scope.sort = {"created_at": "desc"};
+      controller: function ($scope, $filter, $controller, mediaFactory, userService) {
+        $controller('BaseSearchController', {$scope: $scope});
+
         $scope.loading = false;
 
-        // Get current user groups.
-        var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, result) {
-          if (result.error) {
-            $scope.setSearchFilters();
-            return;
-          }
-
-          $scope.$apply(
-            function () {
-              $scope.userGroups = result;
-
-              // Updated search filters (build "mine" filter with user id). It
-              // will trigger an search update.
-              $scope.setSearchFilters();
-            }
-          );
-        });
-        userService.getCurrentUserGroups('channelController.getCurrentUserGroups');
+        // Set default orientation and sort.
+        $scope.sort = {"created_at": "desc"};
 
         // Set default search text.
         $scope.search_text = '';
@@ -160,14 +144,12 @@ angular.module('ikApp').directive('ikMediaOverview', [
         $scope.setSearchFilters = function setSearchFilters() {
           delete search.filter;
 
-          var filter = {
-            "query": {
-              "bool": {
-                "must": [],
-                "should": []
-              }
-            }
-          };
+          // No groups selected and "all" selected => select all groups and my.
+          var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
+            return group.id;
+          });
+
+          var filter = $scope.baseBuildSearchFilter(selectedGroupIds);
 
           // Filter based on media type.
           if ($scope.media_type !== 'all') {
@@ -176,58 +158,6 @@ angular.module('ikApp').directive('ikMediaOverview', [
               media_type: $scope.media_type
             };
             filter.query.bool.must.push(term);
-          }
-
-          // Filter based on user selection (all or me).
-          if ($scope.showFromUser !== 'all') {
-            if ($scope.currentUser) {
-              var term = {};
-              term.term = {
-                user: $scope.currentUser.id
-              };
-              filter.query.bool.must.push(term);
-            }
-          }
-
-          // No groups selected and "all" selected => select all groups and my.
-          var selectedGroupIds = $filter('filter')($scope.userGroups, { selected: true }, true).map(function (group) {
-            return group.id;
-          });
-
-          if ($scope.showFromUser === 'all' && selectedGroupIds.length === 0) {
-            // Find all allowed group id's.
-            selectedGroupIds = $scope.userGroups.map(function (group) {
-              return group.id;
-            });
-
-            // Add all "my" to the query.
-            filter.query.bool.should.push({
-              "bool": {
-                "must": [
-                  {
-                    "term": {
-                      "user": $scope.currentUser.id
-                    }
-                  }
-                ]
-              }
-            });
-          }
-
-          if (selectedGroupIds.length) {
-            // Select if it should be "or" or "and" between "user" and "groups".
-            var type = $scope.showFromUser === 'all' ? "should" : "must";
-            filter.query.bool[type].push({
-              "bool": {
-                "must": [
-                  {
-                    "terms": {
-                      "groups": selectedGroupIds
-                    }
-                  }
-                ]
-              }
-            });
           }
 
           search.filter = filter;
@@ -302,11 +232,6 @@ angular.module('ikApp').directive('ikMediaOverview', [
         $scope.showFromUser = localStorage.getItem('overview.media.search_filter_default') ?
           localStorage.getItem('overview.media.search_filter_default') :
           'all';
-
-
-        $scope.$on('$destroy', function () {
-          cleanupGetCurrentUserGroups();
-        })
       },
       link: function (scope, element, attrs) {
         attrs.$observe('ikMediaType', function (val) {

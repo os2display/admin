@@ -31,6 +31,7 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'busService',
 
     /**
      * Search for media defined by search parameter.
+     *
      * @param search
      */
     factory.searchMedia = function (search) {

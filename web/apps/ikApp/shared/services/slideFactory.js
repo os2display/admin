@@ -24,6 +24,8 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'busService',
     factory.searchSlides = function (search) {
       var deferred = $q.defer();
 
+      console.log(search);
+
       search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
 
       var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
@@ -46,7 +48,8 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'busService',
 
       busService.$emit('searchService.request', search);
 
-      return deferred.promise;    };
+      return deferred.promise;
+    };
 
     /**
      * Get all slides.
