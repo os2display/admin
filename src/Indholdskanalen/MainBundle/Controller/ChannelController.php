@@ -317,6 +317,8 @@ class ChannelController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findAll();
 
+    $this->get('os2display.api_data')->setApiData($channel_entities);
+
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');

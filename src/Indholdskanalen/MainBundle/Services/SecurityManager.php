@@ -8,7 +8,7 @@ use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Security\EditVoter;
 use Indholdskanalen\MainBundle\Security\Roles;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authorization\AccessDecisionManager;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
@@ -24,7 +24,7 @@ class SecurityManager {
   protected $manager;
 
   /**
-   * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManager
+   * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
    */
   protected $decisionManager;
 
@@ -33,7 +33,7 @@ class SecurityManager {
    */
   protected $roleHierarchy;
 
-  public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $manager, AccessDecisionManager $decisionManager, RoleHierarchyInterface $roleHierarchy) {
+  public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $manager, AccessDecisionManagerInterface $decisionManager, RoleHierarchyInterface $roleHierarchy) {
     $this->tokenStorage = $tokenStorage;
     $this->manager = $manager;
     $this->decisionManager = $decisionManager;

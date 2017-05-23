@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\GroupableEntity;
 use Indholdskanalen\MainBundle\Entity\MediaOrder;
 use Indholdskanalen\MainBundle\Entity\Slide;
+use Indholdskanalen\MainBundle\Traits\ApiData;
 use Indholdskanalen\MainBundle\Traits\Groupable;
 use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;
 
@@ -29,6 +30,7 @@ use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;
  * @author <yourname> <youremail>
  */
 class Media extends BaseMedia implements GroupableEntity {
+  use ApiData;
   use Groupable;
 
   /**

@@ -4,6 +4,7 @@ namespace Indholdskanalen\MainBundle\Security;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Indholdskanalen\MainBundle\Entity\Group;
+use Indholdskanalen\MainBundle\Entity\GroupableEntity;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Services\SecurityManager;
@@ -82,6 +83,9 @@ class EditVoter extends Voter {
     elseif ($subject instanceof User) {
       return $this->canReadUser($subject, $token);
     }
+    elseif ($subject instanceof GroupableEntity) {
+      return $this->canReadGroupable($subject, $token);
+    }
 
     return FALSE;
   }
@@ -93,6 +97,9 @@ class EditVoter extends Voter {
     elseif ($subject instanceof User) {
       return $this->canUpdateUser($subject, $token);
     }
+    elseif ($subject instanceof GroupableEntity) {
+      return $this->canUpdateGroupable($subject, $token);
+    }
 
     return FALSE;
   }
@@ -103,6 +110,9 @@ class EditVoter extends Voter {
     }
     elseif ($subject instanceof User) {
       return $this->canDeleteUser($subject, $token);
+    }
+    elseif ($subject instanceof GroupableEntity) {
+      return $this->canDeleteGroupable($subject, $token);
     }
 
     return FALSE;
@@ -225,4 +235,34 @@ class EditVoter extends Voter {
     return TRUE;
   }
 
+
+  // ---------------------------------------------------------------------------
+  // Groupable
+  // ---------------------------------------------------------------------------
+
+  private function canReadGroupable(GroupableEntity $groupable, TokenInterface $token) {
+    $user = $token->getUser();
+
+    if (method_exists($groupable, 'getUser') && $groupable->getUser() === $user->getId()) {
+      //return TRUE;
+    }
+
+    // @TODO: Check user's groups intersects with groupable's groups.
+    $userGroupIds = $user->getUserGroups()->map(function (UserGroup $userGroup) {
+      return $userGroup->getGroup()->getId();
+    })->toArray();
+    $groupableGroupIds = $groupable->getGroups()->map(function (Group $group) {
+      return $group->getId();
+    })->toArray();
+
+    return !empty(array_intersect($userGroupIds, $groupableGroupIds));
+  }
+
+  private function canUpdateGroupable(GroupableEntity $groupable, TokenInterface $token) {
+    return $this->canReadGroupable($groupable, $token);
+  }
+
+  private function canDeleteGroupable(GroupableEntity $groupable, TokenInterface $token) {
+    return $this->canReadGroupable($groupable, $token);
+  }
 }
