@@ -49,6 +49,7 @@ parameters:
         - apps/ikApp/pages/slideOverview/slideOverviewController.js
         - apps/ikApp/pages/slide/slideController.js
         - apps/ikApp/pages/slide/slideEditController.js
+        - apps/ikApp/shared/controller/baseSearchController.js
         - apps/ikApp/shared/elements/actionsMenu/actionsMenuDirective.js
         - apps/ikApp/shared/elements/actionReloadScreen/actionReloadScreenDirective.js
         - apps/ikApp/shared/elements/sharedChannel/sharedChannelDirective.js
