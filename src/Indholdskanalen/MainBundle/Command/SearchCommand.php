@@ -220,8 +220,6 @@ class SearchCommand extends ContainerAwareCommand {
     $data = $this->serializer->serialize($params, 'json', SerializationContext::create()
         ->setGroups(array('search')));
 
-    print_r($data);
-
     // Build query.
     $ch = $this->buildQuery($url, $method, $data, $auth['token']);
     $content = curl_exec($ch);
