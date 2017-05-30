@@ -134,7 +134,13 @@ angular.module('ikApp').directive('ikMediaOverview', [
             term.term = {
               media_type: $scope.media_type
             };
-            filter.query.bool.must.push(term);
+
+            if ($scope.showFromUser === 'all') {
+              filter.query.bool.should[0].bool.must.push(term);
+            }
+            else {
+              filter.query.bool.must.push(term);
+            }
           }
 
           $scope.baseQuery.filter = filter;
