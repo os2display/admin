@@ -314,10 +314,8 @@ class ChannelController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function channelsGetAction() {
-    // Get all channel entities.
-    $channelEntities = $this->getDoctrine()
-      ->getRepository('IndholdskanalenMainBundle:Channel')
-      ->findAll();
+    $manager = $this->get('os2display.entity_manager');
+    $channelEntities = $manager->findAll(Channel::class);
 
     $this->get('os2display.api_data')->setApiData($channelEntities);
 

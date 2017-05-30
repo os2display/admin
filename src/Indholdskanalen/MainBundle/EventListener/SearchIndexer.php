@@ -47,20 +47,20 @@ class SearchIndexer {
   }
 
   /**
-   * Listen to pre-update events.
+   * Listen to post-update events.
    *
    * @param LifecycleEventArgs $args
    */
-  public function preUpdate(LifecycleEventArgs $args) {
+  public function postUpdate(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'PUT');
   }
 
   /**
-   * Listen to pre-remove events.
+   * Listen to post-remove events.
    *
    * @param LifecycleEventArgs $args
    */
-  public function preRemove(LifecycleEventArgs $args) {
+  public function postRemove(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'DELETE');
   }
 

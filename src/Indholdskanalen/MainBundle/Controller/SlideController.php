@@ -297,10 +297,8 @@ class SlideController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function slidesGetAction() {
-    // Slide entities
-    $slideEntities = $this->getDoctrine()
-      ->getRepository('IndholdskanalenMainBundle:Slide')
-      ->findAll();
+    $manager = $this->get('os2display.entity_manager');
+    $slideEntities = $manager->findAll(Slide::class);
 
     $this->get('os2display.api_data')->setApiData($slideEntities);
 

@@ -430,16 +430,15 @@ class ScreenController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function screensGetAction() {
-    // Screen entities
-    $screen_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
-      ->findAll();
+    $manager = $this->get('os2display.entity_manager');
+    $screenEntities = $manager->findAll(Screen::class);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $response->setContent($serializer->serialize($screen_entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
+    $response->setContent($serializer->serialize($screenEntities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
 
     return $response;
   }
