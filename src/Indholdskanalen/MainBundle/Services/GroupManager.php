@@ -137,7 +137,8 @@ class GroupManager {
   public function saveGrouping(GroupableEntity $groupable) {
     $oldGroups = $this->getGrouping($groupable);
     $newGroups = $groupable->getGroups();
-    $groupsToAdd = $newGroups;
+    // We'll potentially remove groups form the collection, so we make a copy in order to not destroy the group collection on the entity.
+    $groupsToAdd = clone $newGroups;
 
     if ($oldGroups !== NULL and is_array($oldGroups) and !empty($oldGroups)) {
       $groupsToRemove = [];
