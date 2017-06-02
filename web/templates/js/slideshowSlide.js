@@ -17,6 +17,9 @@ if (!window.slideFunctions['slideshow']) {
         return slide.fadeStyle + media.animationStyle;
       };
 
+      // Set currentLogo.
+      slide.currentLogo = slide.logo;
+
       if (!slide.options.hasOwnProperty('duration')) {
         slide.options.duration = 15;
       }
