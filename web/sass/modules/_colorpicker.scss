@@ -3,3 +3,52 @@
   border: 1px solid $gray;
   padding: .5em;
 }
+
+/**
+ * Static color picker.
+ *
+ * Makes the radio button visually appear
+ * as checkboxes with the representive color as background.
+ * When a color is chosen, it has cross as an indicator.
+ */
+.edit-menu--static-color-items {
+  $DarkBrown: #292321;
+  $Orange: #CC3300;
+
+  div {
+    margin:0 0 0.75em 0;
+  }
+
+  input[type="radio"] {
+      display: none;
+  }
+  input[type="radio"] + label {
+      font-family:Arial, sans-serif;
+      font-size:14px;
+  }
+  input[type="radio"] + label span {
+      display:inline-block;
+      width: 40px;
+      height: 40px;
+      margin:-1px 4px 0 0;
+      vertical-align:middle;
+      cursor:pointer;
+  }
+
+  input[type="radio"] + label span {
+       background-color: $DarkBrown;
+       border: 2px solid gray;
+  }
+
+  input[type="radio"]:checked + label span{
+      text-align: center;
+
+       &:before {
+         // This is the UTF-8 Dingbat for BALLOT X(cross).
+         content: "\2717";
+         font-size: 26px;
+         color: white;
+         text-shadow: 0 0 6px rgba(0,0,0,0.78);
+       }
+  }
+}

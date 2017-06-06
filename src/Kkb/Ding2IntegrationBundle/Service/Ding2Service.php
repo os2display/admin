@@ -98,7 +98,7 @@ class Ding2Service {
       $this->updateOpeningHours();
       $this->updateDingEvents();
       setlocale(LC_TIME, $old_locale);
-    } 
+    }
   }
 
   /**
@@ -117,7 +117,7 @@ class Ding2Service {
       $options = $slide->getOptions();
 
       // Each opening-hours slide has a feed-parameter containing 0-2 feeds
-      // 0 if it is not configured, 1 library, and 2 if the library has 
+      // 0 if it is not configured, 1 library, and 2 if the library has
       // citizenservices attached.
       if (empty($options['feed']) || !is_array($options['feed'])) {
         continue;
@@ -144,7 +144,7 @@ class Ding2Service {
         if (empty($options['feed'][$key])) {
           continue;
         }
-        
+
         // Build up the full feed URL.
         $replacements = [
           '%from%' => $today_string,

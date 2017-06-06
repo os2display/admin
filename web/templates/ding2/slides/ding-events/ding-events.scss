@@ -1,5 +1,3 @@
-@import "compass/css3";
-@import "../../../_shared-base.scss";
 @import "../../assets/_ding-shared-base.scss";
 
 // Styling of a list of events grouped by their date.
@@ -9,12 +7,13 @@
   background-position: center;
   position: relative;
   overflow: hidden;
+  font-family: $font__templates;
 
   // Main headline and its wrapper.
   &--headline {
     min-height: 1px;
-    font-size: 100%;
-    font-weight: bold;
+    font-size: 110%;
+    font-weight: 600;
     margin-top: 0.5em;
   }
   &--headline-wrapper {
