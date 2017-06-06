@@ -37,7 +37,7 @@
   "tools": [
     {
       "name": "Baggrund",
-      "id": "background-editor"
+      "id": "background-editor-static-colors"
     },
     {
       "name": "RSS",

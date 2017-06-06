@@ -30,7 +30,7 @@
   "tools": [
     {
       "name": "Video",
-      "id": "background-editor"
+      "id": "background-editor-static-colors"
     },
     {
       "name": "Logo",
