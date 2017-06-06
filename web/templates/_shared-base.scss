@@ -28,6 +28,17 @@ $gray-darkest:        lighten($black, 25%);
 $gray-background:     #f2f2f2;
 $gray-color:          #999;
 
+@font-face {
+ font-family: GillSans;
+ src: url(../fonts/GillSansMT.ttf);
+}
+
+@font-face {
+ font-family: GillSansBold;
+ src: url(../fonts/GillSansMTBold.ttf);
+}
+
+$font__templates: 'GillSans', Arial, sans-serif;
 
 /* Link colors
    ================================================================================================================== */
@@ -42,6 +53,14 @@ $link-color:       #2c79d3;
 
 /* Placeholders
    ========================================================================== */
+
+// Pre text
+%description-default {
+  line-height: 120%;
+  font-size: 75%;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
 
 // Show the placeholder text (edit)
 %show-placeholder-text {

@@ -114,19 +114,12 @@ var templatesPath = './web/templates/';
 
 // @TODO: Discover this structure automatically
 var templates = {
-  'screens': {
-    'default': ['five-sections', 'three-columns', 'two-columns'],
-    'dokk1': ['wayfinding-eleven-rows', 'wayfinding-five-rows', 'wayfinding-four-rows', 'wayfinding-seven-rows', 'wayfinding-six-rows', 'wayfinding-three-rows', 'itk-three-split'],
-    'mso': ['mso-five-sections', 'mso-four-sections'],
-    'mbu': ['mbu-three-split'],
-    'itk': ['itk-three-split']
+  'default_templates': {
+    'screens': ['five-sections', 'three-columns', 'two-columns', 'full-screen', 'two-columns', 'full-screen-portrait', 'four-sections'],
+    'slides': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top']
   },
-  'slides': {
-    'aarhus': ['rss-aarhus'],
-    'default': ['ik-iframe', 'manual-calendar', 'only-image', 'only-video', 'portrait-text-top', 'rss-default', 'text-bottom', 'text-left', 'text-right', 'text-top'],
-    'dokk1': ['dokk1-info', 'dokk1-multiple-calendar', 'dokk1-single-calendar', 'wayfinding', 'dokk1-instagram', 'dokk1-coming-events'],
-    'mso': ['event-calendar', 'header-top', 'mso-iframe'],
-    'mbu': ['mbu-header', 'mbu-footer']
+  'ding2': {
+    'slides': ['ding-events', 'opening-hours']
   }
 };
 
@@ -135,24 +128,19 @@ var templates = {
  */
 gulp.task('sassTemplates', 'Compile the sass for each templates into minified css files.', function () {
   // Iterates through the screen and slide templates defined in templates variable, and compresses each one.
-  for (var templateType in templates) {
-    if (templates.hasOwnProperty(templateType)) {
-      for (var folder in templates[templateType]) {
-        if (templates[templateType].hasOwnProperty(folder)) {
-          var arr = templates[templateType][folder];
-
-          arr.forEach(function (element) {
-            gulp.src(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/' + element + '.scss')
-              .pipe(sass({
-                outputStyle: 'compressed',
-                includePaths: [
-                  './web/sass/compass-mixins/lib'
-                ]
-              }).on('error', sass.logError))
-              .pipe(gulp.dest(templatesPath + '/' + folder + '/' + templateType + '/' + element + '/'));
-          });
-        }
-      }
+  for (var folder in templates) {
+    for (var type in templates[folder]) {
+      templates[folder][type].forEach(function (element) {
+        var path = templatesPath + folder + '/' + type + '/' + element + '/';// + folder + '/' + templateType + '/' + element + '/';
+        gulp.src(path + element + '.scss')
+          .pipe(sass({
+            outputStyle: 'compressed',
+            includePaths: [
+              './web/sass/compass-mixins/lib'
+            ]
+          }).on('error', sass.logError))
+          .pipe(gulp.dest(path));
+      });
     }
   }
 });

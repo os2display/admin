@@ -1,0 +1,124 @@
+@import "../../assets/_ding-shared-base.scss";
+
+// Based on the rss-slides styling, you might find a style or two below that
+// is not in use and can safely be removed.
+
+.opening-hours {
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  font-family: $font__templates;
+
+  &--logo {
+    position: absolute;
+    width: 10%;
+    padding: 3%;
+  }
+
+  &--text-wrapper {
+    position: absolute;
+    text-align: left;
+    width: 100%;
+
+  }
+  &--content {
+    // We set min-height to have the border of the footer stay in place if the
+    // citizenservices line goes away.
+    min-height: 5.5em;
+    @extend %description-default;
+    font-size: 80%;
+  }
+  &--text-inner {
+    text-align: left;
+    position:relative;
+    padding: 4%
+  }
+
+  &--header-wrapper {
+    border-bottom: 2px solid;
+    margin-bottom: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+  }
+
+  &--footer-wrapper {
+    border-top: 2px solid;
+    margin-top: .5em;
+    padding-top: .5em;
+
+  }
+  &--footer-wrapper,  &--header-wrapper{
+    width: 100%;
+  }
+
+  &--header, &--footer {
+    min-height: 1px;
+    @extend %inline-textarea;
+
+    &.has-placeholder {
+      @extend %show-placeholder-text;
+    }
+
+    font-size: 110%;
+
+    font-weight: bold;
+  }
+
+  &--date {
+    font-style: normal !important;
+    font-size: 40%;
+    margin-bottom: 2em;
+    opacity: .75;
+    font-weight: bold;
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  &--description {
+    font-size: 100%;
+    line-height: 1.4em;
+    padding-right: 1em;
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: white;
+    }
+
+    img {
+      max-width: 25%;
+      float: left;
+      padding-right: 1em;
+      padding-bottom: 1em;
+    }
+
+    &__seperated {
+      margin-top: 1em;
+    }
+
+    &__sub {
+      margin-left: 0.5em;
+
+      &:before {
+        margin-right: 0.5em;
+        content: '\2013 ';
+      }
+    }
+  }
+
+  &--overlay {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+  }
+
+  &.preview {
+    display: none;
+  }
+}

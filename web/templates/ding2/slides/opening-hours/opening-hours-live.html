@@ -1,0 +1,35 @@
+<div class="opening-hours" data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+
+  <div class="opening-hours--text-wrapper">
+    <div class="opening-hours--text-inner">
+      <div class="opening-hours--date"
+           data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.date_headline}}</div>
+
+      <div class="opening-hours--header-wrapper" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'color': ikSlide.options.textcolor}">
+        <div class="opening-hours--header">{{ikSlide.options.headertext}}</div>
+      </div>
+
+      <div class="opening-hours--content">
+
+        <div class="opening-hours--description"
+             ng-if="ikSlide.intervalTexts.library.open"
+             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.library.open}}</div>
+
+        <div class="opening-hours--description opening-hours--description__sub"
+             ng-if="ikSlide.intervalTexts.library.service"
+             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.library.service}}</div>
+
+        <div class="opening-hours--description  opening-hours--description__seperated"
+             ng-if="ikSlide.intervalTexts.citizenservices.open"
+             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.citizenservices.open}}</div>
+      </div>
+      <div class="opening-hours--footer-wrapper" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'color': ikSlide.options.textcolor}">
+        <div class="opening-hours--footer">{{ikSlide.options.footertext}}</div>
+      </div>
+    </div>
+  </div>
+
+  <img class="opening-hours--logo" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="{{ikSlide.currentLogo}}" />
+</div>
+<div class="opening-hours--overlay" data-ng-style="{'background': 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 75%, ' + ikSlide.options.bgcolor + ' 90%, ' + ikSlide.options.bgcolor + ' 100%'}"/>
+

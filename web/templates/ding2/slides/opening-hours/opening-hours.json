@@ -1,0 +1,54 @@
+{
+  "id": "opening-hours",
+  "type": "slide",
+  "name": "DDB CMS Åbningstider",
+  "icon": "opening-hours.png",
+  "paths": {
+    "live": "opening-hours-live.html",
+    "edit": "opening-hours-edit.html",
+    "preview": "opening-hours-preview.html",
+    "css": "opening-hours.css",
+    "js": "../../../js/openingHoursSlide.js"
+  },
+  "slide_type": "opening-hours",
+  "media_type": "image",
+  "script_id": "opening-hours",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": 60,
+    "responsive_fontsize": 4,
+    "bgcolor": "#555",
+    "textcolor": "#fff",
+    "headertext": "",
+    "footertext": "",
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%"
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor-static-colors"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    },
+    {
+      "name": "Tekst farve",
+      "id": "text-color-editor"
+    },
+    {
+      "name": "Feed",
+      "id": "opening-hours-editor"
+    }
+  ]
+}
