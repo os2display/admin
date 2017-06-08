@@ -17,13 +17,29 @@
           <button class="edit-menu--background-button" data-ng-click="pickFromComputer()">Vælg fil fra computer</button>
           <p class="edit-menu--divider">- og angiv farve -</p>
           <label class="edit-menu-background--label">Vælg en baggrundsfarve</label>
-          <div class="edit-menu--static-color-wrapper">
-            <div class="edit-menu--static-color-items">
-              <label><input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(210, 65, 30)" class="edit-menu--static-color-item">Rød</label>
-              <label><input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(35, 85, 135)" class="edit-menu--static-color-item">Blå</label>
-              <label><input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(255, 180, 0)" class="edit-menu--static-color-item">Gul</label>
-              <label><input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(180, 180, 180)" class="edit-menu--static-color-item">Grå</label>
-              <label><input type="radio" ng-model="ikSlide.options.bgcolor" value="" class="edit-menu--static-color-item">Ingen</label>
+          <div class="form-group">
+            <div class="edit-menu--static-color-wrapper">
+              <div class="edit-menu--static-color-items">
+                  <div>
+                    <input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(246, 80, 88)" class="edit-menu--static-color-item" id="radio1">
+                    <label for="radio1"><span style="background-color: rgb(246, 80, 88);"></span>PantoneRed</label>
+                  </div>
+                  <div>
+                    <input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(103, 108, 115)" class="edit-menu--static-color-item" id="radio2">
+                    <label for="radio2"><span style="background-color: rgb(103, 108, 115);"></span>Pantone</label>
+                  </div>
+                  <div>
+                    <input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(0, 0, 0)" class="edit-menu--static-color-item" id="radio3">
+                    <label for="radio3"><span style="background-color: rgb(0, 0, 0);"></span>Sort</label>
+                  </div>
+                  <div>
+                    <input type="radio" ng-model="ikSlide.options.bgcolor" value="rgb(255, 255, 255)" class="edit-menu--static-color-item" id="radio4">
+                    <label for="radio4"><span style="background-color: white;"></span>Hvid</label>
+                  </div>
+                  <div>
+                    {{ikSlide.options.bgcolor}}
+                  </div>
+              </div>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@
 
   // Maintain font.
   pre {
-    font-family: inherit;
+    font-family: $font__templates;
     margin: 0;
     text-align: left;
   }
@@ -57,7 +57,7 @@
     @extend %show-placeholder-text;
   }
 
-  font-size: 70%;
+  @extend %description-default;
 }
 
 .text-left--logo {
