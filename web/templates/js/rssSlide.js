@@ -60,10 +60,10 @@ if (!window.slideFunctions['rss']) {
 
       // Check that external_data exists.
       if (!slide.external_data || !slide.external_data.feed || slide.external_data.feed.length <= 0) {
-        region.$timeout(function() {
-          region.nextSlide();
-        }, slide.options.rss_duration * 1000);
-
+        // Go straight to the next slide if we don't have any data. For now this
+        // simply assumes that we have a "next" to go to, if not, we're going
+        // to loop real fast.
+        region.nextSlide();
         return;
       }
 

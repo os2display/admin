@@ -160,9 +160,10 @@ if (!window.slideFunctions['ding-events']) {
       // Check that external_data exists, if not stay on for one duration and
       // continue to next slide.
       if (!slide.event_settings || !slide.event_settings.event_slides || slide.event_settings.event_slides.length <= 0) {
-        region.$timeout(function() {
-          region.nextSlide();
-        }, slide_duration * 1000);
+        // Go straight to the next slide if we don't have any data. For now this
+        // simply assumes that we have a "next" to go to, if not, we're going
+        // to loop real fast.
+        region.nextSlide();
         return;
       }
 
