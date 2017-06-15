@@ -1,0 +1,8 @@
+<div class="slideshow">
+  <div class="slideshow--image"
+       data-ng-repeat="media in ikSlide.media track by $index"
+       style="{{ media.style + '; background-image: url(' + media.image + ')' }}"
+       data-ng-show="ikSlide.imageEntry === $index">
+  </div>
+  <img class="slideshow--logo" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="{{ikSlide.currentLogo}}" />
+</div>

@@ -9,6 +9,9 @@ services:
       - { name: doctrine.event_listener, event: preUpdate }
       - { name: doctrine.event_listener, event: preRemove }
 
+  indholdskanalen_main.api_authentication_service:
+    class: Indholdskanalen\MainBundle\Security\ApiAuthenticationEntryPoint
+
   indholdskanalen_main.serialization_listener:
     class: Indholdskanalen\MainBundle\EventListener\SerializationListener
     arguments: [@sonata.media.pool, @service_container, @indholdskanalen.template_service]
@@ -51,7 +54,7 @@ services:
     class: Indholdskanalen\MainBundle\Services\MiddlewareCommunication
     arguments: [@service_container, @indholdskanalen.template_service, @indholdskanalen.utility_service]
     tags:
-      - { name: kernel.event_listener, event: ik.cron, method: onCron }
+      - { name: kernel.event_listener, event: ik.cron, method: onCron, priority: 1 }
 
   sonata.media.provider.zencoder:
     class: Indholdskanalen\MainBundle\Provider\ZencoderProvider

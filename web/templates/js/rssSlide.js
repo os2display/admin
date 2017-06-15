@@ -13,12 +13,16 @@ if (!window.slideFunctions['rss']) {
     setup: function setupRssSlide(scope) {
       var slide = scope.ikSlide;
 
+      slide.rss = {};
+
       // Only show first image in array.
       if (slide.media_type === 'image' && slide.media.length > 0) {
         slide.currentImage = slide.media[0].image;
       }
 
-      if (slide.external_data && slide.external_data.feed) {
+      if (slide.external_data && slide.external_data[0]) {
+        slide.external_data = slide.external_data[0];
+
         slide.rss = {
           rssEntry: 0,
           numberOfSlidesToShow: slide.options.rss_number < slide.external_data.feed.length ?
@@ -56,7 +60,9 @@ if (!window.slideFunctions['rss']) {
 
       // Check that external_data exists.
       if (!slide.external_data || !slide.external_data.feed || slide.external_data.feed.length <= 0) {
-        region.nextSlide();
+        region.$timeout(function() {
+          region.nextSlide();
+        }, slide.options.rss_duration * 1000);
 
         return;
       }
