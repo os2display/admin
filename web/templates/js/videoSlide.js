@@ -34,9 +34,6 @@ if (!window.slideFunctions['video']) {
     run: function runVideoSlide(slide, region) {
       region.itkLog.info("Running video slide: " + slide.title);
 
-      // Get hold of the video element and update.
-      var video = document.getElementById('videoPlayer-' + slide.uniqueId);
-
       /**
        * Helper function to update source for video.
        *
@@ -97,61 +94,66 @@ if (!window.slideFunctions['video']) {
         return;
       }
 
-      // Update video.
-      updateVideoSources(video, false);
-
-      // Add error handling.
-      video.addEventListener('error', videoErrorHandling);
-
-      // Reset video position to prevent flicker from latest playback.
-      try {
-        // Load video to ensure playback after possible errors from last playback. If not called
-        // the video will not play.
-        video.load();
-      }
-      catch (error) {
-        region.itkLog.info('Video content might not be loaded, so reset current time not possible');
-
-        // Use the error handling to get next slide.
-        videoErrorHandling(undefined);
-      }
-
-      // Fade timeout to ensure video don't start before it's displayed.
       region.$timeout(function () {
-        // Create interval to get video duration (ready state larger than one is
-        // meta-data loaded).
-        var interval = region.$interval(function () {
-          if (video.readyState > 0) {
-            var duration = Math.round(video.duration);
-            region.progressBar.start(duration);
+        // Get hold of the video element and update.
+        var video = document.getElementById('videoPlayer-' + slide.uniqueId);
 
-            // Metadata/duration found stop the interval.
-            region.$interval.cancel(interval);
-          }
-        }, 500);
+        // Update video.
+        updateVideoSources(video, false);
 
-        // Go to the next slide when video playback has ended.
-        video.onended = function ended(event) {
-          region.itkLog.info("Video playback ended.", event);
-          region.$timeout(function () {
-              region.scope.$apply(function () {
-                // Remove error handling.
-                video.removeEventListener('error', videoErrorHandling);
-                Offline.off('down');
+        // Add error handling.
+        video.addEventListener('error', videoErrorHandling);
 
-                // Remove video src.
-                updateVideoSources(video, true);
+        // Reset video position to prevent flicker from latest playback.
+        try {
+          // Load video to ensure playback after possible errors from last playback. If not called
+          // the video will not play.
+          video.load();
+        }
+        catch (error) {
+          region.itkLog.info('Video content might not be loaded, so reset current time not possible');
 
-                // Go to the next slide.
-                region.nextSlide();
-              });
-            },
-            1000);
-        };
+          // Use the error handling to get next slide.
+          videoErrorHandling(undefined);
+        }
 
-        // Play the video.
-        video.play();
-      }, region.fadeTime);
+        // Fade timeout to ensure video don't start before it's displayed.
+        region.$timeout(function () {
+          // Create interval to get video duration (ready state larger than one is
+          // meta-data loaded).
+          var interval = region.$interval(function () {
+            if (video.readyState > 0) {
+              var duration = Math.round(video.duration);
+              region.progressBar.start(duration);
+
+              // Metadata/duration found stop the interval.
+              region.$interval.cancel(interval);
+            }
+          }, 500);
+
+          // Go to the next slide when video playback has ended.
+          video.onended = function ended(event) {
+            region.itkLog.info("Video playback ended.", event);
+            region.$timeout(function () {
+                region.scope.$apply(function () {
+                  // Remove error handling.
+                  video.removeEventListener('error', videoErrorHandling);
+                  Offline.off('down');
+
+                  // Remove video src.
+                  updateVideoSources(video, true);
+
+                  // Go to the next slide.
+                  region.nextSlide();
+                });
+              },
+              1000);
+          };
+
+          // Play the video.
+          video.play();
+        }, region.fadeTime);
+      });
     }
   };
 }
