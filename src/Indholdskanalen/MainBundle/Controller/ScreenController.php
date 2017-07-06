@@ -206,9 +206,8 @@ class ScreenController extends Controller {
       $middlewareService->pushScreenUpdate($screen);
     }
 
-    // Add slide to groups.
-    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
-    $screen->setGroups($groups);
+    // Add screen to groups.
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $screen);
 
     // Save the entity.
     $em->persist($screen);
