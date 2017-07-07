@@ -7,19 +7,15 @@
  * Channel controller. Controls the channel creation process.
  */
 angular.module('ikApp').controller('ChannelController', [
-  '$scope', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService', 'userService',
-  function ($scope, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService, userService) {
+  '$scope', '$controller', '$location', '$routeParams', '$timeout', "$filter", 'channelFactory', 'slideFactory', 'busService', 'userService',
+  function ($scope, $controller, $location, $routeParams, $timeout, $filter, channelFactory, slideFactory, busService, userService) {
     'use strict';
+
+    $controller('BaseEntityController', {$scope: $scope, entityType: 'channel'});
 
     $scope.steps = 4;
     $scope.slides = [];
     $scope.channel = {};
-
-    // Get current user groups.
-    var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, groups) {
-      $scope.userGroups = groups;
-    });
-    userService.getCurrentUserGroups('channelController.getCurrentUserGroups');
 
     // Get all slides.
     slideFactory.getSlides().then(

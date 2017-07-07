@@ -6,9 +6,11 @@
 /**
  * Screen controller. Controls the screen creation process.
  */
-angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'busService', 'userService',
-  function ($scope, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, templateFactory, busService, userService) {
+angular.module('ikApp').controller('ScreenController', ['$scope', '$controller', '$location', '$routeParams', '$timeout', 'screenFactory', 'channelFactory', 'sharedChannelFactory', 'templateFactory', 'busService', 'userService',
+  function ($scope, $controller, $location, $routeParams, $timeout, screenFactory, channelFactory, sharedChannelFactory, templateFactory, busService, userService) {
     'use strict';
+
+    $controller('BaseEntityController', {$scope: $scope, entityType: 'screen'});
 
     $scope.loading = true;
     $scope.sharingEnabled = window.config.sharingService.enabled;
@@ -16,14 +18,6 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$location', '
     $scope.toolbarTemplate = null;
     $scope.display = false;
     $scope.region = null;
-
-    // Get current user groups.
-    var cleanupGetCurrentUserGroups = busService.$on('screenController.getCurrentUserGroups', function (event, groups) {
-      $timeout(function () {
-        $scope.userGroups = groups;
-      });
-    });
-    userService.getCurrentUserGroups('screenController.getCurrentUserGroups');
 
     /**
      * Constructor.

@@ -28,7 +28,8 @@
     <div class="create-media--content-element">
       <label class="create-channel--schedule-label">{{ 'create_media.help_text.title' | translate }}</label>
       <form class="create-media--form">
-        <input type="text" class="create-media--title" placeholder="{{ 'create_media.placeholder.title' | translate }}" data-ng-model="media.name">
+        <input type="text" class="create-media--title" placeholder="{{ 'create_media.placeholder.title' | translate }}"
+               data-ng-model="media.name">
       </form>
     </div>
 
@@ -37,12 +38,17 @@
       <ik-checklist elements="userGroups" selected="media.groups" identity="'id'"></ik-checklist>
     </div>
 
-      <div>
-        <a class="button" data-ng-click="updateMedia()">Gem</a>
-        <a ng-if="!media.media_is_in_use" class="button is-warning" data-ng-click="delete()">Slet</a>
-      </div>
-      <div ng-if="media.media_is_in_use">
-        <p>Kan ikke slettes - bruges på et eller flere slides</p>
-      </div>
+    <div class="create-channel--unavailable-groups">
+      <p class="create-channel--header-description">{{ 'create_media.help_text.unavailable_groups' | translate }}</p>
+      <ik-disabled-list elements="getUnavailableGroups()"></ik-disabled-list>
+    </div>
+
+    <div>
+      <a class="button" data-ng-click="updateMedia()">Gem</a>
+      <a ng-if="!media.media_is_in_use" class="button is-warning" data-ng-click="delete()">Slet</a>
+    </div>
+    <div ng-if="media.media_is_in_use">
+      <p>Kan ikke slettes - bruges på et eller flere slides</p>
+    </div>
   </section>
 </div>

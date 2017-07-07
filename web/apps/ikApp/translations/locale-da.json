@@ -25,7 +25,8 @@
       "planning_active": "Angiv om kanalen kun skal vises i nedenstående interval.",
       "published": "Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for udgivelse i fra/til.",
       "published_description": "Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for tidspunkt i fra/til.",
-      "select_groups": "Vælg hvilke grupper kanalen skal være med i. Hvis der ikke er valgt nogen grupper vil kanalen være privat."
+      "select_groups": "Vælg hvilke grupper kanalen skal være med i. Hvis der ikke er valgt nogen grupper vil kanalen være privat.",
+      "unavailable_groups": "Derudover tilhører kanalen disse grupper, som du ikke har adgang til."
     },
     "placeholder": {
       "title": "F.eks. skærme i forhallen, skærm i børnesektion eller lignende"
@@ -48,7 +49,8 @@
     "help_text": {
       "select_groups": "Vælg hvilke grupper filerne skal tilhøre",
       "selected_media": "Valgte filer",
-      "title": "Titel"
+      "title": "Titel",
+      "unavailable_groups": "Derudover tilhører mediet disse grupper, som du ikke har adgang til."
     },
     "placeholder": {
       "title": "F.eks. Strandtur"
@@ -82,7 +84,8 @@
       "publishing_to": "Til",
       "select_groups": "Vælg hvilke grupper sliden skal være med i. Hvis der ikke er valgt nogen grupper vil sliden være privat.",
       "template": "Vælg template - du kan altid ændre dit valg senere.",
-      "title": "Giv din slide et godt navn så du kan finde den igen senere."
+      "title": "Giv din slide et godt navn så du kan finde den igen senere.",
+      "unavailable_groups": "Derudover tilhører sliden disse grupper, som du ikke har adgang til."
     },
     "placeholder": {
       "duration": "f.eks. 15",

@@ -6,9 +6,11 @@
 /**
  * Slide controller. Controls the slide creation/edit process.
  */
-angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'busService', 'userService',
-  function ($scope, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, busService, userService) {
+angular.module('ikApp').controller('SlideController', ['$scope', '$controller', '$location', '$routeParams', '$timeout', 'slideFactory', 'templateFactory', 'channelFactory', 'busService', 'userService',
+  function ($scope, $controller, $location, $routeParams, $timeout, slideFactory, templateFactory, channelFactory, busService, userService) {
     'use strict';
+
+    $controller('BaseEntityController', {$scope: $scope, entityType: 'slide'});
 
     $scope.steps = 6;
     $scope.slide = {};
@@ -29,12 +31,6 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$location', '$
       }
     );
     $scope.channels = [];
-
-    // Get current user groups.
-    var cleanupGetCurrentUserGroups = busService.$on('slideController.getCurrentUserGroups', function (event, groups) {
-      $scope.userGroups = groups;
-    });
-    userService.getCurrentUserGroups('slideController.getCurrentUserGroups');
 
     // Get all channels for step 6
     channelFactory.getChannels().then(function (data) {

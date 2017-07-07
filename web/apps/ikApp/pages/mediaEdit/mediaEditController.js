@@ -6,19 +6,13 @@
 /**
  * Media controller. Controls media editing functions.
  */
-angular.module('ikApp').controller('MediaEditController', ['$scope', '$location', '$routeParams', '$timeout', 'mediaFactory', 'busService', 'userService',
-  function ($scope, $location, $routeParams, $timeout, mediaFactory, busService, userService) {
+angular.module('ikApp').controller('MediaEditController', ['$scope', '$controller', '$location', '$routeParams', '$timeout', 'mediaFactory', 'busService', 'userService',
+  function ($scope, $controller, $location, $routeParams, $timeout, mediaFactory, busService, userService) {
     'use strict';
 
-    $scope.loading = true;
+    $controller('BaseEntityController', {$scope: $scope, entityType: 'media'});
 
-    // Get current user groups.
-    var cleanupGetCurrentUserGroups = busService.$on('mediaUpdateDirective.getCurrentUserGroups', function (event, groups) {
-      $timeout(function () {
-        $scope.userGroups = groups;
-      });
-    });
-    userService.getCurrentUserGroups('mediaUpdateDirective.getCurrentUserGroups');
+    $scope.loading = true;
 
     // Get the selected media
     mediaFactory.getMedia($routeParams.id).then(
