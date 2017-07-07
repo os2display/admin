@@ -241,12 +241,6 @@ class User extends BaseUser {
     return $this;
   }
 
-  public function getGroupRoles() {
-    $this->buildGroupRoles();
-
-    return $this->groupRoles;
-  }
-
   /**
    * Build groups with roles.
    *

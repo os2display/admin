@@ -16,7 +16,7 @@ services:
 
   os2display.group_manager:
     class: Indholdskanalen\MainBundle\Services\GroupManager
-    arguments: ['@doctrine.orm.entity_manager', '@os2display.entity_service']
+    arguments: ['@doctrine.orm.entity_manager', '@os2display.entity_service', '@service_container']
 
   os2display.grouping_listener:
     class: Indholdskanalen\MainBundle\EventListener\GroupingListener

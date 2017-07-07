@@ -5,16 +5,18 @@ Feature: admin
   I need to be able to …
 
   Background:
-    Given the following users exist:
-      | username | password | roles            |
-      | admin    | admin    | ROLE_SUPER_ADMIN |
-      | user     | user     | ROLE_USER        |
-
-    And the following groups exist:
+    Given the following groups exist:
       | title   |
       | Group 1 |
       | Group 2 |
       | Group 3 |
+      | Group 4 |
+
+    And the following users exist:
+      | username | password | roles     | groups                                                      |
+      | user     | user     | ROLE_USER | 1: GROUP_ROLE_USER, 2: GROUP_ROLE_USER                      |
+      | user     | user     | ROLE_USER | 1: GROUP_ROLE_ADMIN, 2: GROUP_ROLE_USER, 3: GROUP_ROLE_USER |
+      | user2    | user2    | ROLE_USER | 1: GROUP_ROLE_USER, 2: GROUP_ROLE_USER, 4: GROUP_ROLE_USER  |
 
     And I sign in with username "user" and password "user"
 

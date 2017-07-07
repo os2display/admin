@@ -93,7 +93,30 @@ Feature: admin
     When I send a "GET" request to "/api/media/2"
     Then the response status code should be 200
     And the response should be in JSON
+    # User is not member of any groups
+    And the JSON node "groups" should have 2 elements
+    And the JSON node "groups[0].id" should be equal to 2
+    And the JSON node "groups[1].id" should be equal to 3
+
+  Scenario: Update media in group
+    When I authenticate as "admin"
+    And I send a "PUT" request to "/api/media/2" with body:
+      """
+      {
+        "groups": [{"id": 1}, {"id": 2}, {"id": 3}, {"id": 4}]
+      }
+      """
+    Then the response status code should be 200
+    And the JSON node "id" should be equal to 2
+    When I send a "GET" request to "/api/media/2"
+    Then the response status code should be 200
+    And the response should be in JSON
+    # Admin can add to all groups
     And the JSON node "groups" should have 4 elements
+    And the JSON node "groups[0].id" should be equal to 2
+    And the JSON node "groups[1].id" should be equal to 3
+    And the JSON node "groups[2].id" should be equal to 1
+    And the JSON node "groups[3].id" should be equal to 4
 
   @dropSchema
   Scenario: Drop schema
