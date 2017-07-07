@@ -200,8 +200,7 @@ class SlideController extends Controller {
     }
 
     // Add slide to groups.
-    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
-    $slide->setGroups($groups);
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $slide);
 
     // Save the slide.
     $em->persist($slide);

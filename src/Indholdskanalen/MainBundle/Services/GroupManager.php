@@ -6,12 +6,16 @@
 
 namespace Indholdskanalen\MainBundle\Services;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\Join;
 use Indholdskanalen\MainBundle\Entity\Group;
 use Indholdskanalen\MainBundle\Entity\GroupableEntity;
 use Indholdskanalen\MainBundle\Entity\Grouping;
+use Indholdskanalen\MainBundle\Entity\UserGroup;
 use Indholdskanalen\MainBundle\Exception\DuplicateEntityException;
+use Indholdskanalen\MainBundle\Security\Roles;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class GroupManager
@@ -24,15 +28,18 @@ class GroupManager {
 
   protected $entityService;
 
+  protected $container;
+
   /**
    * GroupManager constructor.
    *
    * @param \Doctrine\ORM\EntityManagerInterface $entityManager
    * @param \Indholdskanalen\MainBundle\Services\EntityService $entityService
    */
-  public function __construct(EntityManagerInterface $entityManager, EntityService $entityService) {
+  public function __construct(EntityManagerInterface $entityManager, EntityService $entityService, ContainerInterface $container) {
     $this->entityManager = $entityManager;
     $this->entityService = $entityService;
+    $this->container = $container;
   }
 
   /**
@@ -120,6 +127,48 @@ class GroupManager {
     }
 
     return $this->entityManager->getRepository(Group::class)->findBy(['id' => $ids]);
+  }
+
+  /**
+   * Set groups on a groupable entity.
+   *
+   * A user can only assign groups that he's a member of.
+   * Any exiting groups on the entity that the user is no member of will be kept on the entity.
+   *
+   * @param array $groups
+   *   The groups (@see GroupManager::loadGroups()).
+   * @param \Indholdskanalen\MainBundle\Entity\GroupableEntity $entity
+   *   The entity.
+   */
+  public function setGroups(array $groups, GroupableEntity $entity) {
+    $securityManager = $this->container->get('os2display.security_manager');
+    $user = $securityManager->getUser();
+
+    // Get the groups to add to entity.
+    $groups = new ArrayCollection($this->loadGroups($groups));
+
+    if (!$securityManager->hasRole($user, Roles::ROLE_ADMIN)) {
+      $userGroupIds = $user->getUserGroups()->map(function (UserGroup $userGroup) {
+        return $userGroup->getGroup()->getId();
+      })->toArray();
+
+      // Remove any groups that the user is not member of.
+      $groups = $groups->filter(function (Group $group) use ($userGroupIds) {
+        return in_array($group->getId(), $userGroupIds);
+      });
+
+      // Get existing entity groups that the current user is not a member of.
+      $additionalGroups = $entity->getGroups()->filter(function (Group $group) use ($userGroupIds) {
+        return !in_array($group->getId(), $userGroupIds);
+      });
+
+      // Add the additional groups.
+      foreach ($additionalGroups as $group) {
+        $groups->add($group);
+      }
+    }
+
+    $entity->setGroups($groups);
   }
 
   public function addGroup(Group $group, GroupableEntity $groupable) {

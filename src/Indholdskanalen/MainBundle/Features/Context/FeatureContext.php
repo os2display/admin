@@ -3,7 +3,6 @@
 namespace Indholdskanalen\MainBundle\Features\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behatch\Context\BaseContext;
@@ -15,7 +14,6 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
 use Indholdskanalen\MainBundle\Entity\User;
 use Indholdskanalen\MainBundle\Entity\UserGroup;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -160,7 +158,8 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
       ->setEmail($email)
       ->setRoles($roles);
 
-    if ($groups) {
+    // Only set groups on new users.
+    if ($groups && $user->getId() === NULL) {
       $groupManager = $this->container->get('os2display.group_manager');
 
       foreach ($groups as $spec) {
@@ -342,4 +341,29 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
 
     $this->assertEquals($count, count($items));
   }
+
+  /**
+   * @Then print result of :sql
+   */
+  public function printResultOfSql($sql) {
+    $stmt = $this->manager->getConnection()->prepare($sql);
+    $stmt->execute();
+    $items = $stmt->fetchAll();
+
+    $rows = [];
+    foreach ($items as $index => $item) {
+      if ($index === 0) {
+        $rows[$index+1] = array_keys($item);
+      }
+      $rows[$index+2] = array_values($item);
+    }
+
+    if ($rows) {
+      $table = new TableNode($rows);
+      echo $table->getTableAsString();
+    } else {
+      echo '(empty)';
+    }
+  }
+
 }

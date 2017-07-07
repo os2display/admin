@@ -138,8 +138,7 @@ class MediaController extends Controller {
     $post = json_decode($request->getContent());
 
     // Add groups.
-    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
-    $media->setGroups($groups);
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $media);
     if (isset($post->name)) {
       $media->setName($post->name);
     }
