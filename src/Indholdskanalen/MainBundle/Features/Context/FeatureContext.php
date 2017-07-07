@@ -142,6 +142,7 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
 
       $this->createUser($username, $email, $password, $roles, $groups);
     }
+    $this->doctrine->getManager()->clear();
   }
 
   private function createUser($username, $email, $password, array $roles, array $groups = NULL) {
@@ -185,6 +186,7 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
 
       $this->createGroup(['title' => $title]);
     }
+    $this->doctrine->getManager()->clear();
   }
 
   private function createGroup(array $data) {
