@@ -283,9 +283,5 @@ angular.module('ikApp').controller('SlideController', ['$scope', '$controller', 
         $scope.slide.channels.push(channel);
       }
     };
-
-    $scope.$on('$destroy', function () {
-      cleanupGetCurrentUserGroups();
-    });
   }
 ]);

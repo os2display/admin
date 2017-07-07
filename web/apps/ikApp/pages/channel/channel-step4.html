@@ -6,15 +6,9 @@
       'create_channel.heading.create') | translate }}
     </h1>
 
-    <div>
-      <p class="create-channel--header-description">{{ 'create_channel.help_text.select_groups' | translate }}</p>
-      <ik-checklist elements="userGroups" selected="channel.groups" identity="'id'"></ik-checklist>
-    </div>
-
-    <div class="create-channel--unavailable-groups">
-      <p class="create-channel--header-description">{{ 'create_channel.help_text.unavailable_groups' | translate }}</p>
-      <ik-disabled-list elements="baseUnavailableGroups"></ik-disabled-list>
-    </div>
+    <p class="create-channel--header-description">{{ 'create_channel.help_text.select_groups' | translate }}</p>
+    <ik-checklist elements="userGroups" selected="channel.groups" identity="'id'"></ik-checklist>
+    <ik-disabled-list elements="baseUnavailableGroups"></ik-disabled-list>
 
     <div class="create-channel--buttons">
       <input type="submit" data-ng-disabled="disableSubmitButton"

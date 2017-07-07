@@ -36,10 +36,6 @@
     <div class="create-media--select-groups">
       <label class="create-channel--schedule-label">{{ 'create_media.help_text.select_groups' | translate }}</label>
       <ik-checklist elements="userGroups" selected="media.groups" identity="'id'"></ik-checklist>
-    </div>
-
-    <div class="create-channel--unavailable-groups">
-      <p class="create-channel--header-description">{{ 'create_media.help_text.unavailable_groups' | translate }}</p>
       <ik-disabled-list elements="baseUnavailableGroups"></ik-disabled-list>
     </div>
 
