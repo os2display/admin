@@ -4,27 +4,16 @@
  */
 
 angular.module('ikApp').controller('BaseEntityController', [
-  '$scope', 'userService', 'busService', 'entityType',
-  function ($scope, userService, busService, entityType) {
+  '$scope', 'userService', 'busService', 'entityType', '$timeout',
+  function ($scope, userService, busService, entityType, $timeout) {
     'use strict';
 
     // Get current user groups.
     var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, groups) {
-      $scope.userGroups = groups;
-    });
-    userService.getCurrentUserGroups('channelController.getCurrentUserGroups');
+      $timeout(function () {
+        $scope.userGroups = groups;
 
-    /**
-     * Get unavailable (to the user) groups set for entityType.
-     * @return {*}
-     */
-    $scope.getUnavailableGroups = function () {
-      if ($scope.unavailableGroups) {
-        return $scope.unavailableGroups;
-      }
-
-      if ($scope.userGroups && $scope.hasOwnProperty(entityType)) {
-        $scope.unavailableGroups = $scope[entityType].groups.reduce(function (result, element) {
+        $scope.baseUnavailableGroups = $scope[entityType].groups.reduce(function (result, element) {
           if ($scope.userGroups.findIndex(function (el) {
               return el.id === element.id;
             }) === -1) {
@@ -32,9 +21,9 @@ angular.module('ikApp').controller('BaseEntityController', [
           }
           return result;
         }, []);
-      }
-      return $scope.unavailableGroups;
-    };
+      });
+    });
+    userService.getCurrentUserGroups('BaseEntityController.getCurrentUserGroups');
 
     $scope.$on('destroy', function () {
       cleanupGetCurrentUserGroups();

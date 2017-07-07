@@ -160,12 +160,5 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$controller',
       $scope.region = tool.region;
       $scope.displayToolbar = true;
     };
-
-    /**
-     * onDestroy.
-     */
-    $scope.$on('$destroy', function () {
-      cleanupGetCurrentUserGroups();
-    });
   }
 ]);

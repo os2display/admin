@@ -136,12 +136,5 @@ angular.module('ikApp').controller('MediaEditController', ['$scope', '$controlle
       });
       return filepath;
     };
-
-    /**
-     * onDestroy.
-     */
-    $scope.$on('$destroy', function () {
-      cleanupGetCurrentUserGroups();
-    });
   }
 ]);

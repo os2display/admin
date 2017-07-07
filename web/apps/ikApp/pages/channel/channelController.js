@@ -354,12 +354,5 @@ angular.module('ikApp').controller('ChannelController', [
 
       $scope.channel.slides = $filter('orderBy')($scope.channel.slides, reverse ? "-" : "" + sortCriteria);
     };
-
-    /**
-     * onDestroy.
-     */
-    $scope.$on('$destroy', function () {
-      cleanupGetCurrentUserGroups();
-    });
   }
 ]);
