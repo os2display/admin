@@ -129,15 +129,29 @@ class GroupManager {
     return $this->entityManager->getRepository(Group::class)->findBy(['id' => $ids]);
   }
 
+  /**
+   * Set groups on a groupable entity.
+   *
+   * A user can only assign groups that he's a member of.
+   * Any exiting groups on the entity that the user is no member of will be kept on the entity.
+   *
+   * @param array $groups
+   *   The groups (@see GroupManager::loadGroups()).
+   * @param \Indholdskanalen\MainBundle\Entity\GroupableEntity $entity
+   *   The entity.
+   */
   public function setGroups(array $groups, GroupableEntity $entity) {
     $securityManager = $this->container->get('os2display.security_manager');
     $user = $securityManager->getUser();
-    $userGroupIds = $user->getUserGroups()->map(function (UserGroup $userGroup) { return $userGroup->getGroup()->getId(); })->toArray();
 
     // Get the groups to add to entity.
     $groups = new ArrayCollection($this->loadGroups($groups));
 
     if (!$securityManager->hasRole($user, Roles::ROLE_ADMIN)) {
+      $userGroupIds = $user->getUserGroups()->map(function (UserGroup $userGroup) {
+        return $userGroup->getGroup()->getId();
+      })->toArray();
+
       // Remove any groups that the user is not member of.
       $groups = $groups->filter(function (Group $group) use ($userGroupIds) {
         return in_array($group->getId(), $userGroupIds);
