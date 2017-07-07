@@ -385,4 +385,11 @@ $breakpoint-arrow-switch : 693px;
   &--buttons {
     margin-top: 2em;
   }
+
+  &--unavailable-groups {
+    text-align: left;
+    margin: 3em auto;
+    position: relative;
+    max-width: 40em;
+  }
 }

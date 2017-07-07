@@ -5,9 +5,10 @@
       'create_channel.heading.edit' :
       'create_channel.heading.create') | translate }}
     </h1>
-    <p class="create-channel--header-description">{{ 'create_channel.help_text.select_groups' | translate }}</p>
 
+    <p class="create-channel--header-description">{{ 'create_channel.help_text.select_groups' | translate }}</p>
     <ik-checklist elements="userGroups" selected="channel.groups" identity="'id'"></ik-checklist>
+    <ik-disabled-list elements="baseUnavailableGroups"></ik-disabled-list>
 
     <div class="create-channel--buttons">
       <input type="submit" data-ng-disabled="disableSubmitButton"

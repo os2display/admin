@@ -28,21 +28,23 @@
     <div class="create-media--content-element">
       <label class="create-channel--schedule-label">{{ 'create_media.help_text.title' | translate }}</label>
       <form class="create-media--form">
-        <input type="text" class="create-media--title" placeholder="{{ 'create_media.placeholder.title' | translate }}" data-ng-model="media.name">
+        <input type="text" class="create-media--title" placeholder="{{ 'create_media.placeholder.title' | translate }}"
+               data-ng-model="media.name">
       </form>
     </div>
 
     <div class="create-media--select-groups">
       <label class="create-channel--schedule-label">{{ 'create_media.help_text.select_groups' | translate }}</label>
       <ik-checklist elements="userGroups" selected="media.groups" identity="'id'"></ik-checklist>
+      <ik-disabled-list elements="baseUnavailableGroups"></ik-disabled-list>
     </div>
 
-      <div>
-        <a class="button" data-ng-click="updateMedia()">Gem</a>
-        <a ng-if="!media.media_is_in_use" class="button is-warning" data-ng-click="delete()">Slet</a>
-      </div>
-      <div ng-if="media.media_is_in_use">
-        <p>Kan ikke slettes - bruges på et eller flere slides</p>
-      </div>
+    <div>
+      <a class="button" data-ng-click="updateMedia()">Gem</a>
+      <a ng-if="!media.media_is_in_use" class="button is-warning" data-ng-click="delete()">Slet</a>
+    </div>
+    <div ng-if="media.media_is_in_use">
+      <p>Kan ikke slettes - bruges på et eller flere slides</p>
+    </div>
   </section>
 </div>
