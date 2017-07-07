@@ -97,6 +97,10 @@ class SecurityManager {
     return in_array($role, $this->getReachableRoles($user));
   }
 
+  public function getUser() {
+    return $this->tokenStorage->getToken()->getUser();
+  }
+
   /**
    * Decide if current user can assign roles to a user.
    *

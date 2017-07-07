@@ -118,9 +118,7 @@ class ChannelController extends Controller {
     }
 
     // Add channel to groups.
-    $groups = new ArrayCollection(isset($post->groups) ? $post->groups : []);
-    $channel->setGroups($groups);
-
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $channel);
     $em->persist($channel);
 
     $dispatcher = $this->get('event_dispatcher');
