@@ -455,7 +455,6 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       }
     ];
 
-
     /**
      * Handle drop media. Move elements around.
      * @param item
