@@ -28,14 +28,10 @@ $gray-darkest:        lighten($black, 25%);
 $gray-background:     #f2f2f2;
 $gray-color:          #999;
 
+ // "Use font in web/templates/fonts"
 @font-face {
  font-family: GillSans;
- src: url(../fonts/GillSansMT.ttf);
-}
-
-@font-face {
- font-family: GillSansBold;
- src: url(../fonts/GillSansMTBold.ttf);
+ src: url(../../../fonts/GillSansMT.ttf);
 }
 
 $font__templates: 'GillSans', Arial, sans-serif;
