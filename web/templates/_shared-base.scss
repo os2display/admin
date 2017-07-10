@@ -30,12 +30,7 @@ $gray-color:          #999;
 
 @font-face {
  font-family: GillSans;
- src: url(../fonts/GillSansMT.ttf);
-}
-
-@font-face {
- font-family: GillSansBold;
- src: url(../fonts/GillSansMTBold.ttf);
+ src: url(../../../fonts/GillSansMT.ttf);
 }
 
 $font__templates: 'GillSans', Arial, sans-serif;
