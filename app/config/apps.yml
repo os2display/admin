@@ -108,6 +108,7 @@ parameters:
         - itkRegionPreviewWidget
         - itkDateComponent
         - itkDigitalClockComponent
+        - defaultToolsModule
 
     timelineApp:
       container: true

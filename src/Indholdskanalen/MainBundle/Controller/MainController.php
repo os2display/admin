@@ -34,7 +34,13 @@ class MainController extends Controller {
       ->setGroups(array('api'))
       ->enableMaxDepthChecks());
 
+    // Get angular modules and apps from other bundles.
+    $externalModules = $this->container->hasParameter('external_modules') ? $this->container->getParameter('external_modules') : [];
+    $externalApps = $this->container->hasParameter('external_apps') ? $this->container->getParameter('external_apps') : [];
+
     return $this->render('IndholdskanalenMainBundle:Main:index.html.twig', array(
+      'apps' => array_merge($this->container->getParameter('apps'), $externalApps),
+      'modules' => array_merge($this->container->getParameter('modules'), $externalModules),
       'templates' => $templates,
       'user' => $user
     ));

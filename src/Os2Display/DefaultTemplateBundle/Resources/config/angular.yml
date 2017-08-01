@@ -1,0 +1,6 @@
+modules:
+  defaultToolsModule:
+    files:
+      - bundles/os2displaydefaulttemplate/apps/defaultToolsModule/text-editor.js
+      - bundles/os2displaydefaulttemplate/apps/defaultToolsModule/logo-editor.js
+apps:

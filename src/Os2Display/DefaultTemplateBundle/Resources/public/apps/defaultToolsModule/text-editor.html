@@ -1,0 +1,19 @@
+<div class="edit-menu" role="banner">
+  <a class="edit-menu--overlay is-visible" data-ng-click="close()"></a>
+  <div class="edit-menu--inner is-visible">
+    <div class="edit-menu--toggle-icon" data-ng-click="close()">X</div>
+    <h2 class="edit-menu--header">Redigér tekst</h2>
+    <form class="edit-menu--form">
+      <label class="edit-menu--label">Tekstfarve</label>
+      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="slide.options.textcolor" data-ng-style="{'background-color': slide.options.textcolor}">
+      <label class="edit-menu--label">Baggrundsfarve</label>
+      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #000" data-ng-model="slide.options.textbgcolor" data-ng-style="{'background-color': slide.options.textbgcolor}">
+      <label class="edit-menu--label">Skriftstørrelse</label>
+      <input class="edit-menu--form-element js-ik-slide-editor-fontsize-input" type="text" placeholder="32" data-ng-model="slide.options.fontsize">
+      <div data-ng-if="slide.template === 'manual-calendar'">
+        <label class="edit-menu--label">Antal viste begivenheder</label>
+        <input class="edit-menu--form-element" type="text" placeholder="7" data-ng-model="slide.options.displayitems">
+      </div>
+    </form>
+  </div>
+</div>

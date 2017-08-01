@@ -6,21 +6,14 @@
 /**
  * Slide edit controller. Controls the editors for the slide creation process.
  */
-angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'busService', 'templateFactory',
-  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, busService, templateFactory) {
+angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$filter', 'mediaFactory', 'slideFactory', 'kobaFactory', 'busService', 'templateFactory', '$compile',
+  function ($scope, $http, $filter, mediaFactory, slideFactory, kobaFactory, busService, templateFactory, $compile) {
     'use strict';
-
-    $scope.step = 'background-picker';
-    $scope.addevent = {
-      "title": null,
-      "place": null,
-      "from": null,
-      "to": null
-    };
 
     // Get the slide from the backend.
     slideFactory.getEditSlide(null).then(
       function success(data) {
+
         $scope.slide = data;
 
         templateFactory.getSlideTemplate(data.template).then(
@@ -43,12 +36,39 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       }
     );
 
+    busService.$emit('bodyService.removeClass', 'is-locked');
+
+    // Setup editor states and functions.
+    $scope.editor = {
+      editorOpen: false,
+      hideEditors: function hideEditors() {
+        busService.$emit('bodyService.removeClass', 'is-locked');
+        $scope.editor.editorOpen = false;
+
+        var element = document.getElementById('slide-edit-tool');
+        angular.element(element).html(
+          $compile("")($scope)
+        );
+      }
+    };
+
     /**
      * Open the selected tool.
      * @param tool
      */
     $scope.openTool = function openTool(tool) {
       busService.$emit('bodyService.toggleClass', 'is-locked');
+
+      $scope.editor.editorOpen = true;
+
+      var html = '<div><' + tool + ' slide="slide" close="editor.hideEditors()"></' + tool + '></div>';
+
+      // Inject new tool in DOM.
+      var element = document.getElementById('slide-edit-tool');
+      angular.element(element).html(
+        $compile(html)($scope)
+      );
+/*
       if (!$scope.editor.editorOpen) {
         if (tool.id === 'manual-calendar-editor') {
           // Reset input fields.
@@ -112,17 +132,15 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
       } else {
         $scope.editor.editorOpen = false;
         $scope.editorURL = '';
-      }
+      }*/
     };
 
-    // Setup editor states and functions.
-    $scope.editor = {
-      editorOpen: false,
-      hideEditors: function hideEditors() {
-        busService.$emit('bodyService.removeClass', 'is-locked');
-        $scope.editor.editorOpen = false;
-        $scope.editorURL = '';
-      }
+    $scope.step = 'background-picker';
+    $scope.addevent = {
+      "title": null,
+      "place": null,
+      "from": null,
+      "to": null
     };
 
     /**
@@ -362,98 +380,6 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
     $scope.pickFromComputer = function pickFromComputer() {
       $scope.step = 'pick-from-computer';
     };
-
-    $scope.logoStep = 'logo-picker';
-
-    /**
-     * Set the step to logo-picker.
-     */
-    $scope.logoPicker = function logoPicker() {
-      $scope.logoStep = 'logo-picker';
-    };
-
-    /**
-     * Set the step to pick-logo-from-media.
-     */
-    $scope.pickLogoFromMedia = function pickLogoFromMedia() {
-      $scope.logoStep = 'pick-logo-from-media';
-      $scope.$emit('mediaOverview.updateSearch');
-    };
-
-    /**
-     * Set the step to pick-logo-from-computer.
-     */
-    $scope.pickLogoFromComputer = function pickLogoFromComputer() {
-      $scope.logoStep = 'pick-logo-from-computer';
-    };
-
-    /**
-     * Available logo positions.
-     */
-    $scope.logoPositions = [
-      {
-        value: {
-          'top': '0',
-          'bottom': 'auto',
-          'left': '0',
-          'right': 'auto'
-        },
-        text: 'top venstre'
-      },
-      {
-        value: {
-          'top': '0',
-          'bottom': 'auto',
-          'left': 'auto',
-          'right': '0'
-        },
-        text: 'top højre'
-      },
-      {
-        value: {
-          'top': 'auto',
-          'bottom': '0',
-          'left': '0',
-          'right': 'auto'
-        },
-        text: 'bund venstre'
-      },
-      {
-        value: {
-          'top': 'auto',
-          'bottom': '0',
-          'left': 'auto',
-          'right': '0'
-        },
-        text: 'bund højre'
-      }
-    ];
-
-    /**
-     * Available logo sizes.
-     */
-    $scope.logoSizes = [
-      {
-        value: "5%",
-        text: "Meget lille (5% af skærmen)"
-      },
-      {
-        value: "10%",
-        text: "Lille (10% af skærmen)"
-      },
-      {
-        value: "15%",
-        text: "Medium (15% af skærmen)"
-      },
-      {
-        value: "20%",
-        text: "Stor (20% af skærmen)"
-      },
-      {
-        value: "40%",
-        text: "Ekstra stor (40% af skærmen)"
-      }
-    ];
 
     /**
      * Handle drop media. Move elements around.
