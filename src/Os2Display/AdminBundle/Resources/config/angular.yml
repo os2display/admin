@@ -1,0 +1,183 @@
+modules:
+  busModule:
+    files:
+      - bundles/os2displayadmin/apps/busModule/busModule.js
+
+  logModule:
+    files:
+      - bundles/os2displayadmin/apps/logModule/services/logService.js
+    dependencies:
+      - busModule
+
+  mainModule:
+    files:
+      - bundles/os2displayadmin/apps/mainModule/controller/baseController.js
+      - bundles/os2displayadmin/apps/mainModule/controller/baseApiController.js
+      - bundles/os2displayadmin/apps/mainModule/services/apiService.js
+      - bundles/os2displayadmin/apps/mainModule/services/bodyService.js
+      - bundles/os2displayadmin/apps/mainModule/services/menuItemService.js
+      - bundles/os2displayadmin/apps/mainModule/services/searchService.js
+      - bundles/os2displayadmin/apps/mainModule/services/userService.js
+      - bundles/os2displayadmin/apps/mainModule/services/authHttpResponseInterceptor.js
+
+  styleguideComponentsModule:
+    files:
+      - bundles/os2displayadmin/apps/styleguideComponentsModule/styleguideComponents.js
+      - bundles/os2displayadmin/apps/styleguideComponentsModule/modules/box.js
+      - bundles/os2displayadmin/apps/styleguideComponentsModule/modules/buttonIconLink.js
+      - bundles/os2displayadmin/apps/styleguideComponentsModule/modules/contentList.js
+      - bundles/os2displayadmin/apps/styleguideComponentsModule/modules/contentListItem.js
+      - bundles/os2displayadmin/apps/styleguideComponentsModule/modules/panelMenu.js
+      - bundles/os2displayadmin/apps/styleguideComponentsModule/modules/popup.js
+
+apps:
+  menuApp:
+    container: false
+    class: menu-app
+    files:
+      - bundles/os2displayadmin/apps/menuApp/directive/mainMenuDirective.js
+      - bundles/os2displayadmin/apps/menuApp/directive/hamburgerMenuDirective.js
+      - bundles/os2displayadmin/apps/menuApp/directive/subMenuDirective.js
+    template: /bundles/os2displayadmin/apps/menuApp/menu.html
+    dependencies:
+      - busModule
+      - mainModule
+
+  messageApp:
+    container: true
+    files:
+      - bundles/os2displayadmin/apps/messageApp/directive/messagesDirective.js
+    template: bundles/os2displayadmin/apps/messageApp/message.html
+    dependencies:
+      - busModule
+      - mainModule
+
+  ikApp:
+    container: true
+    class: has-legacy-form-styling
+    files:
+      - bundles/os2displayadmin/apps/ikApp/ikApp.js
+      - bundles/os2displayadmin/apps/ikApp/routing.js
+      - bundles/os2displayadmin/apps/ikApp/shared/filters/activeEvents.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/mediaFactory.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/templateFactory.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/slideFactory.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/screenFactory.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/channelFactory.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/sharedSearchFactory.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/sharedChannelFactory.js
+      - bundles/os2displayadmin/apps/ikApp/shared/services/kobaFactory.js
+      - bundles/os2displayadmin/apps/ikApp/pages/screen/screen.js
+      - bundles/os2displayadmin/apps/ikApp/pages/sharedChannel/sharedChannelController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/adminSharing/adminSharingController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/adminTemplates/adminTemplatesController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/channel/channelController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/channelOverview/channelOverviewController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/mediaOverview/mediaOverviewController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/mediaEdit/mediaEditController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/slideOverview/slideOverviewController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/slide/slideController.js
+      - bundles/os2displayadmin/apps/ikApp/pages/slide/slideEditController.js
+      - bundles/os2displayadmin/apps/ikApp/shared/controller/baseSearchController.js
+      - bundles/os2displayadmin/apps/ikApp/shared/controller/baseEntityController.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/actionsMenu/actionsMenuDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/actionReloadScreen/actionReloadScreenDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/sharedChannel/sharedChannelDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/sharedChannelOverview/sharedChannelOverview.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/channel/channelDirectives.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/channelOverview/channelOverviewDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/pager/pagerDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/delete/deleteDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/channelShare/channelShareDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/checklist/checklistDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/screen/screenDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/slideOverview/slideOverviewDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/slide/slideDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/slide/slideEditableDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/slide/sharedSlideDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/screenOverview/screenOverviewDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/mediaOverview/mediaOverviewDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/mediaUpload/mediaUploadDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/thumb/thumbDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/autoGrow/autoGrowDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/includeReplace/includeReplaceDirective.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/controlPanel/control-panel.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/ngModal/ng-modal.js
+      - bundles/os2displayadmin/apps/ikApp/shared/elements/disabledList/disabledList.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/screenTemplatePickerWidget/screenTemplatePickerWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/textWidget/textWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/textAreaWidget/textAreaWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/numberWidget/numberWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/channelPickerWidget/channelPickerWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/sharedChannelPickerWidget/sharedChannelPickerWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/channelRemoverWidget/channelRemoverWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/widgets/regionPreviewWidget/regionPreviewWidget.js
+      - bundles/os2displayadmin/apps/ikApp/shared/components/date/dateComponent.js
+      - bundles/os2displayadmin/apps/ikApp/shared/components/digital-clock/digitalClockComponent.js
+    dependencies:
+      - busModule
+      - mainModule
+      - ngRoute
+      - ngAnimate
+      - angularFileUpload
+      - colorpicker.module
+      - datetimePicker
+      - ngLocale
+      - taiPlaceholder
+      - ngModal
+      - angular-dnd
+      - pascalprecht.translate
+      - 720kb.tooltips
+      - itkControlPanel
+      - itkScreenTemplatePickerWidget
+      - itkTextWidget
+      - itkTextAreaWidget
+      - itkNumberWidget
+      - itkChannelPickerWidget
+      - itkSharedChannelPickerWidget
+      - itkChannelRemoverWidget
+      - itkRegionPreviewWidget
+      - itkDateComponent
+      - itkDigitalClockComponent
+      - toolsModule
+
+  timelineApp:
+    container: true
+    files:
+      - bundles/os2displayadmin/apps/timelineApp/assets/vis/dist/vis.min.js
+      - bundles/os2displayadmin/apps/timelineApp/timelineApp.js
+      - bundles/os2displayadmin/apps/timelineApp/directive/timelineDirective.js
+      - bundles/os2displayadmin/apps/timelineApp/services/timelineService.js
+      - bundles/os2displayadmin/apps/timelineApp/timelineBaseController.js
+      - bundles/os2displayadmin/apps/timelineApp/timelineScreenController.js
+      - bundles/os2displayadmin/apps/timelineApp/timelineChannelController.js
+    dependencies:
+      - busModule
+      - mainModule
+      - ngRoute
+      - bw.paging
+
+  adminApp:
+    container: true
+    files:
+      - bundles/os2displayadmin/apps/adminApp/adminApp.js
+      - bundles/os2displayadmin/apps/adminApp/dashboard/adminDashboardController.js
+      - bundles/os2displayadmin/apps/adminApp/group/adminGroupsController.js
+      - bundles/os2displayadmin/apps/adminApp/group/adminGroupController.js
+      - bundles/os2displayadmin/apps/adminApp/group/popupCreateGroupController.js
+      - bundles/os2displayadmin/apps/adminApp/group/popupDeleteGroupController.js
+      - bundles/os2displayadmin/apps/adminApp/group/popupAddUserController.js
+      - bundles/os2displayadmin/apps/adminApp/user/adminUsersController.js
+      - bundles/os2displayadmin/apps/adminApp/user/adminUserController.js
+      - bundles/os2displayadmin/apps/adminApp/user/popupCreateUserController.js
+      - bundles/os2displayadmin/apps/adminApp/user/popupDeleteUserController.js
+      - bundles/os2displayadmin/apps/adminApp/user/popupAddRoleToUserController.js
+    dependencies:
+      - busModule
+      - mainModule
+      - styleguideComponentsModule
+      - ngRoute
+      - angularModalService
+      - messageApp
+      - pascalprecht.translate
+

@@ -1,35 +1,5 @@
 parameters:
-  modules:
-    busModule:
-      files:
-        - apps/busModule/busModule.js
-
-    logModule:
-      files:
-        - apps/logModule/services/logService.js
-      dependencies:
-        - busModule
-
-    mainModule:
-      files:
-        - apps/mainModule/controller/baseController.js
-        - apps/mainModule/controller/baseApiController.js
-        - apps/mainModule/services/apiService.js
-        - apps/mainModule/services/bodyService.js
-        - apps/mainModule/services/menuItemService.js
-        - apps/mainModule/services/searchService.js
-        - apps/mainModule/services/userService.js
-        - apps/mainModule/services/authHttpResponseInterceptor.js
-
-    styleguideComponentsModule:
-      files:
-        - apps/styleguideComponentsModule/styleguideComponents.js
-        - apps/styleguideComponentsModule/modules/box.js
-        - apps/styleguideComponentsModule/modules/buttonIconLink.js
-        - apps/styleguideComponentsModule/modules/contentList.js
-        - apps/styleguideComponentsModule/modules/contentListItem.js
-        - apps/styleguideComponentsModule/modules/panelMenu.js
-        - apps/styleguideComponentsModule/modules/popup.js
+  modules: []
 
   bootstrap:
     modules:

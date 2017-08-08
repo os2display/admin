@@ -1,18 +1,18 @@
 modules:
-  templateModule:
+  toolsModule:
     files:
-      - bundles/os2displaydefaulttemplate/apps/templateModule/background-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/background-editor-static-colors.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/background-editor-transparent.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/base-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/event-calendar-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/header-editor-responsive.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/logo-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/manual-calendar-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/rss-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/slideshow-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/slideshow-effects-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/slideshow-order-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/source-editor.js
-      - bundles/os2displaydefaulttemplate/apps/templateModule/text-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor-static-colors.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor-transparent.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/base-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/event-calendar-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/header-editor-responsive.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/logo-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/manual-calendar-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/rss-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/slideshow-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/slideshow-effects-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/slideshow-order-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/source-editor.js
+      - bundles/os2displaydefaulttemplate/apps/toolsModule/text-editor.js
 apps:

@@ -34,6 +34,7 @@ class AppKernel extends Kernel {
       new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
       new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),
       new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
+      new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
     );
 
     if (in_array($this->getEnvironment(), array('dev', 'test', 'acceptance'))) {
