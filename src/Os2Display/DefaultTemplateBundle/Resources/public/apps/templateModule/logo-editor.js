@@ -1,4 +1,4 @@
-angular.module('defaultToolsModule').directive('logoEditor', [
+angular.module('templateModule').directive('logoEditor', [
   'mediaFactory', function (mediaFactory) {
     return {
       restrict: 'E',
@@ -128,7 +128,7 @@ angular.module('defaultToolsModule').directive('logoEditor', [
           );
         });
       },
-      templateUrl: '/bundles/os2displaydefaulttemplate/apps/defaultToolsModule/logo-editor.html'
+      templateUrl: '/bundles/os2displaydefaulttemplate/apps/templateModule/logo-editor.html'
     };
   }
 ]);

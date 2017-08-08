@@ -1,0 +1,59 @@
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="close()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--background-page" data-ng-show="step === 'background-picker'">
+      <div class="edit-menu--background-page-inner">
+        <h2 class="edit-menu--background-header">Vælg medie</h2>
+        <div class="edit-menu--background-content">
+          <button class="edit-menu--background-button" data-ng-click="pickFromMedia()">Vælg fil fra medier</button>
+          <button class="edit-menu--background-button" data-ng-click="pickFromComputer()">Vælg fil fra computer</button>
+          <p class="edit-menu--divider">- og -</p>
+          <div class="edit-menu--background-input">
+            <label class="edit-menu-background--label">Vælg en baggrundsfarve</label>
+            <input colorpicker="rgba" class="form-slide-background-background-color edit-menu--background-form-element" type="text" placeholder="e.g. #000" ng-model="slide.options.bgcolor" data-ng-style="{'background-color': slide.options.bgcolor}">
+          </div>
+          <div class="edit-menu--background-input">
+            <label class="edit-menu-background--label">Vælg en tekstfarve</label>
+            <input colorpicker="rgba" class="edit-menu--background-form-element" type="text" placeholder="e.g. #000" data-ng-model="slide.options.textcolor" data-ng-style="{'background-color': slide.options.textcolor}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-media'">
+      <div class="edit-menu--background-image-back" data-ng-click="backgroundPicker()">
+        <div class="svg-clickable">
+          <object data="images/svg/back.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/back.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--background-page-inner">
+        <h2 class="edit-menu--background-header">Vælg fil fra mediearkiv</h2>
+        <ik-media-overview ik-media-type="{{slide.media_type}}" ik-auto-search="false" ik-hide-filters="true" ik-selected-media="slide.media"></ik-media-overview>
+      </div>
+    </div>
+    <div class="edit-menu--background-page" data-ng-show="step === 'pick-from-computer'">
+      <div class="edit-menu--background-image-back" data-ng-click="backgroundPicker()">
+        <div class="svg-clickable">
+          <object data="images/svg/back.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/back.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--background-page-inner">
+        <div class="edit-menu--background-content-alternate">
+          <ik-media-upload ik-upload-type="{{slide.media_type}}"></ik-media-upload>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

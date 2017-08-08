@@ -1,6 +1,18 @@
 modules:
-  defaultToolsModule:
+  templateModule:
     files:
-      - bundles/os2displaydefaulttemplate/apps/defaultToolsModule/text-editor.js
-      - bundles/os2displaydefaulttemplate/apps/defaultToolsModule/logo-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/background-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/background-editor-static-colors.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/background-editor-transparent.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/base-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/event-calendar-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/header-editor-responsive.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/logo-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/manual-calendar-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/rss-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/slideshow-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/slideshow-effects-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/slideshow-order-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/source-editor.js
+      - bundles/os2displaydefaulttemplate/apps/templateModule/text-editor.js
 apps:
