@@ -66,9 +66,15 @@
 
   <script src="/proxy/socket.io/socket.io.js"></script>
 
-  {% for file in assets.js %}
-    <script src="{{ file }}"></script>
-  {% endfor %}
+  {% if app.environment == 'prod' %}
+    {% for file in assets.production_js %}
+      <script src="{{ file }}"></script>
+    {% endfor %}
+  {% else %}
+    {% for file in assets.js %}
+      <script src="{{ file }}"></script>
+    {% endfor %}
+  {% endif %}
 
   <script type="text/javascript">
     /**

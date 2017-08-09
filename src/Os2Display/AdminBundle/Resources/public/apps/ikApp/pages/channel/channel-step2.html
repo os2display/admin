@@ -15,18 +15,18 @@
         <div class="create-channel--slide-order-link" droppable drop="handleDrop"
              id="index-{{ $index }}" draggable>
           <div data-ng-if="slideScheduledNow(slide)" tooltips tooltip-template="Slide vises nu." tooltip-side="top">
-            <img class="create-channel--slide-published-icon" src="/images/icons/check-circle-full-icon.png" title="">
+            <img class="create-channel--slide-published-icon" src="bundles/os2displayadmin/images/icons/check-circle-full-icon.png" title="">
           </div>
           <div data-ng-if="!slideScheduledNow(slide)">
             <div class="create-channel--slide-unpublished-overlay"></div>
             <div tooltips tooltip-template="{{ getScheduledText(slide) }}" tooltip-side="top">
-              <img class="create-channel--slide-unpublished-icon" title="" src="/images/icons/exclamation-icon.png">
+              <img class="create-channel--slide-unpublished-icon" title="" src="bundles/os2displayadmin/images/icons/exclamation-icon.png">
             </div>
           </div>
           <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img
-              class="create-channel--arrow-left-image" src="images/arrow-backward.png"></span>
+              class="create-channel--arrow-left-image" src="bundles/os2displayadmin/images/arrow-backward.png"></span>
           <span class="create-channel--slide-order-number">{{$index + 1}}</span>
-          <img class="overview--channel-remove" data-ng-click="toggleSlide(slide)" src="/images/icons/cancel-icon.png">
+          <img class="overview--channel-remove" data-ng-click="toggleSlide(slide)" src="bundles/os2displayadmin/images/icons/cancel-icon.png">
           <div data-ng-if="!slideScheduledNow(slide)" class="create-channel--slide-unpublished-blur-wrapper">
             <div class="create-channel--slide-unpublished-blur">
               <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
@@ -37,7 +37,7 @@
           </div>
           <a data-ng-href="/#/slide/{{slide.id}}" target="_blank">{{slide.title}}</a>
           <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><img
-              class="create-channel--arrow-right-image" src="images/arrow-forward.png"></span>
+              class="create-channel--arrow-right-image" src="bundles/os2displayadmin/images/arrow-forward.png"></span>
         </div>
       </div>
     </div>
@@ -70,9 +70,9 @@
   <div class="edit-menu--content-inner">
     <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleSlideOverviewEditor()">
       <div class="svg-clickable">
-        <object data="images/svg/cancel.svg" type="image/svg+xml">
+        <object data="bundles/os2displayadmin/images/svg/cancel.svg" type="image/svg+xml">
           <!-- Fallback (ie8)-->
-          <img src="images/cancel.png"/>
+          <img src="bundles/os2displayadmin/images/cancel.png"/>
         </object>
       </div>
     </div>

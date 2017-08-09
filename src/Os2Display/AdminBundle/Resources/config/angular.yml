@@ -27,6 +27,9 @@ assets:
     - bundles/os2displayadmin/css/angular-tooltips.min.css
     - bundles/os2displayadmin/assets/build/styles.min.css
     - bundles/os2displayadmin/css/styleguide.css
+  production_js:
+    - bundles/os2displayadmin/assets/build/assets.min.css
+    - bundles/os2displayadmin/assets/build/app.min.css
 
 bootstrap:
   modules:

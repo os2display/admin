@@ -35,11 +35,11 @@
     <div class="overview--channel" data-ng-repeat="channel in channels" data-ng-if="!ikOverlay && !loading">
       <div class="overview--channel-link" data-ng-click="clickChannel(channel)" data-ng-class="{'is-selected': channelSelected(channel)}">
         <div data-ng-if="channelScheduledNow(channel)" tooltips tooltip-template="Kanal vises nu." tooltip-side="top">
-          <img class="overview--publishing-icon" src="/images/icons/check-circle-full-icon.png" title="">
+          <img class="overview--publishing-icon" src="bundles/os2displayadmin/images/icons/check-circle-full-icon.png" title="">
         </div>
         <div data-ng-if="!channelScheduledNow(channel)">
           <div tooltips tooltip-template="{{ getScheduledText(channel) }}" tooltip-side="top">
-            <img class="overview--publishing-icon" title="" src="/images/icons/exclamation-icon.png">
+            <img class="overview--publishing-icon" title="" src="bundles/os2displayadmin/images/icons/exclamation-icon.png">
           </div>
         </div>
 
@@ -58,11 +58,11 @@
         </span>
 
         <div data-ng-if="channelScheduledNow(channel)" tooltips tooltip-template="Kanal vises nu." tooltip-side="top">
-          <img class="overview--publishing-icon" src="/images/icons/check-circle-full-icon.png" title="">
+          <img class="overview--publishing-icon" src="bundles/os2displayadmin/images/icons/check-circle-full-icon.png" title="">
         </div>
         <div data-ng-if="!channelScheduledNow(channel)">
           <div tooltips tooltip-template="{{ getScheduledText(channel) }}" tooltip-side="top">
-            <img class="overview--publishing-icon" title="" src="/images/icons/exclamation-icon.png">
+            <img class="overview--publishing-icon" title="" src="bundles/os2displayadmin/images/icons/exclamation-icon.png">
           </div>
         </div>
 
