@@ -4,16 +4,16 @@
  *
  */
 
-$icons: apps, search, event-note, tune, check-circle, filter-none, close;
+$icons: apps, search, event-note, tune, check-circle, wfilter-none, close;
 
 // Itterate through $icons array defined in _vars.scss, and if a file name matches the data value use this as background image.
 @each $icon-name in $icons {
   [data-icon*="#{$icon-name}"] {
-    background-image: url("/assets/icons/#{$icon-name}.svg");
+    background-image: url("../assets/icons/#{$icon-name}.svg");
 
     // Override background image with an inverted version if state class applied.
     &.is-inverted {
-      background-image: url("/assets/icons/#{$icon-name}-alt.svg");
+      background-image: url("../assets/icons/#{$icon-name}-alt.svg");
     }
   }
 }

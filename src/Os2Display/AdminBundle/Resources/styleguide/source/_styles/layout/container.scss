@@ -57,7 +57,7 @@
       &:nth-child(1) {
         @include flex(0 0 auto);
 
-        background-image: url("/assets/images/structure.jpg");
+        background-image: url("../assets/images/structure.jpg");
         background-size: cover;
 
         @include breakpoint($breakpoint-tablet) {

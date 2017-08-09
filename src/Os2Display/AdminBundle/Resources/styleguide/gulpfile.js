@@ -30,8 +30,9 @@ var configuration = {
     "sass": {
       "paths": ['./source/**/*.scss'],
       "srcs": ['./source/*.scss'],
-      'dest': './source/css'
-    },
+      'dest': './source/css',
+      'build_dest': './../public/css'
+    }
   }
 };
 
@@ -53,15 +54,17 @@ function sassTask(theme, config) {
   gulp.task(taskName, false, function () {
 
     var pipe = gulp.src(config.sass.srcs)
-    .pipe(sourcemaps.init())
+//    .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
       includePaths: [
         'scss/assets/compass-mixins/lib'
       ]
     }).on('error', sass.logError))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.sass.dest));
+//    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(config.sass.dest))
+    .pipe(rename('styleguide.css'))
+    .pipe(gulp.dest(config.sass.build_dest));
   });
 
   return taskName;
