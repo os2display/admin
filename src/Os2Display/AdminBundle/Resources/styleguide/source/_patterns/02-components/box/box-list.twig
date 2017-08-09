@@ -1,0 +1,29 @@
+{% embed "modules-box" with { data: data } %}
+  {% block header %}
+    {% if data.heading %}
+      {% include "elements-heading-spacing-after" with { data: data.heading } %}
+    {% endif %}
+  {% endblock %}
+  {% block content %}
+    {% if data.buttonLink %}
+      {% include "modules-button-icon-link-spacing-after" with { data: data.buttonLink } %}
+    {% endif %}
+    {% include "modules-content-list-panel-menu" with { data: data } %}
+    {% if data.boxLink %}
+      {% include "modules-box-link" with { data: data.boxLink } %}
+    {% endif %}
+  {% endblock %}
+  {% block footer %}
+    {% if data.boxPager %}
+      {% embed "modules-grid-two-thirds-centered" %}
+        {% block items %}
+          {% embed "modules-grid-item-centered" %}
+            {% block content %}
+              {% include "modules-box-pager" with { data: data.boxPager } %}
+            {% endblock %}
+          {% endembed %}
+        {% endblock %}
+      {% endembed %}
+    {% endif %}
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,89 @@
+/**
+ *
+ * Box Pager
+ *
+ */
+
+$box-pager-margin-top: 10px;
+$box-pager-border-style: 1px solid $gray-lighter;
+$box-pager-border-style-active: 1px solid $theme-color;
+$box-pager-border-radius: $border-radius;
+$box-pager-background: $white;
+$box-pager-background-hover: $gray-lightest;
+$box-pager-background-active: $theme-color;
+$box-pager-background-inactive: $gray-lighter;
+$box-pager-text-color: $gray-dark;
+$box-pager-text-color-active: $white;
+$box-pager-text-color-inactive: $gray-dark;
+$box-pager-height: 41px;
+$box-pager-empty-padding: 10px;
+
+.box-pager {
+  @include flexbox;
+
+  margin-top: $box-pager-margin-top;
+
+  &--item,
+  &--item-inner {
+    @include flexbox;
+    @include align-content(center);
+    @include align-self(center);
+    @include justify-content(center);
+  }
+
+  &--item:not(.is-empty) {
+    @include flex(1, 0, auto);
+
+    background: $box-pager-background;
+    border: $box-pager-border-style;
+  }
+
+  &--item {
+    color: $box-pager-text-color;
+    cursor: pointer;
+    height: $box-pager-height;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    &:hover:not(.is-inactive, .is-active, .is-empty) {
+      background: $box-pager-background-hover;
+    }
+
+    &:first-child {
+      border-radius: $box-pager-border-radius 0 0 $box-pager-border-radius;
+      border-right: 0;
+    }
+
+    &:last-child {
+      border-left: 0;
+      border-radius: 0 $box-pager-border-radius $box-pager-border-radius 0;
+    }
+
+    &.is-active {
+      background: $box-pager-background-active;
+      border-bottom: $box-pager-border-style-active;
+      border-left: 0;
+      border-right: 0;
+      border-top: $box-pager-border-style-active;
+      color: $box-pager-text-color-active;
+      font-weight: 600;
+    }
+
+    &.is-inactive {
+      background: $box-pager-background-inactive;
+      color: $box-pager-text-color-inactive;
+      cursor: default;
+    }
+
+    &.is-empty {
+      padding-left: $box-pager-empty-padding;
+      padding-right: $box-pager-empty-padding;
+    }
+  }
+
+  &--item-inner {
+    margin-bottom: auto;
+    margin-top: auto;
+  }
+}

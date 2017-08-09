@@ -1,0 +1,53 @@
+/**
+ *
+ * Navigation.
+ *
+ */
+
+
+.nav {
+  display: none; // Hiding navigation on smaller screens
+
+  @include breakpoint($breakpoint-desk) {
+    @include flexbox;
+    @include flex-grow(1);
+    @include flex-shrink(0);
+    @include justify-content(flex-start);
+
+    font-weight: 300;
+    text-align: right;
+
+    @include breakpoint($breakpoint-desk) {
+      margin-left: 3em;
+    }
+
+    a {
+      @include strip-link-styles($white, none);
+    }
+  }
+
+  &--link {
+    @include breakpoint($breakpoint-desk) {
+      @include flexbox;
+      @include align-items(center);
+
+      color: $gray-darker;
+      font-size: 1.2em;
+      padding-left: 1.75em;
+      padding-right: 1.75em;
+      text-decoration: none;
+
+      transition: border .15s;
+
+      &:hover {
+        background-color: transparentize($black, 0);
+      }
+
+      &.is-active,
+      &.is-active:hover {
+        @include strip-link-styles($black, none);
+        background-color: $white;
+      }
+    }
+  }
+}

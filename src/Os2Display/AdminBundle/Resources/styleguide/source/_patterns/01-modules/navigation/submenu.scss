@@ -1,0 +1,75 @@
+/**
+ *
+ * Submenu.
+ *
+ */
+
+.submenu {
+  background-color: $white;
+  border-bottom: 1px solid $gray-lighter;
+  box-sizing: border-box;
+  display: flex;
+  min-height: 60px;
+  padding-left: 1em;
+  padding-right: 1em;
+  position: absolute;
+  top: 5.5em;
+  width: 100%;
+  z-index: z($z-index-elements, nav);
+
+  &--inner {
+    @include flexbox;
+    @include align-content(stretch);
+    @include justify-content(flex-start);
+
+    width: 100%;
+
+    @include breakpoint($layout-max-width+1) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: $layout-max-width;
+    }
+  }
+
+  &--links {
+    @include flexbox;
+    @include align-content(stretch);
+
+    margin: auto;
+
+    &.is-left {
+      @include align-self(stretch);
+      @include flex-grow(1);
+    }
+
+    &.is-right {
+      @include align-self(flex-end);
+    }
+  }
+
+  &--link {
+    @include flexbox;
+    @include strip-link-styles($theme-color);
+
+    &:hover {
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &--link + &--link {
+    padding-left: 1.5em;
+  }
+
+  &--icon-link {
+    @include flexbox;
+    @include strip-link-styles($gray-darkest);
+
+    padding: .75em;
+
+    &.is-active {
+      background-color: $theme-color;
+    }
+  }
+}

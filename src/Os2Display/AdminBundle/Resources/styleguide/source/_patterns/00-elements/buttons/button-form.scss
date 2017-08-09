@@ -1,0 +1,27 @@
+/**
+ *
+ * Button Form
+ *
+ */
+
+$button-form-background-color: $theme-color;
+$button-form-background-color-hover: darken($theme-color, 15%);
+$button-form-text-color: $white;
+$button-form-border-style: 2px solid $theme-color;
+$button-form-border-radius: $border-radius;
+$button-form-padding: 12px;
+
+.button-form {
+  background-color: $button-form-background-color;
+  border: $button-form-border-style;
+  border-radius: $button-form-border-radius;
+  color: $button-form-text-color;
+  display: block;
+  font-size: 100%;
+  padding: $button-form-padding;
+  text-align: center;
+
+  &:hover {
+    background-color: $button-form-background-color-hover;
+  }
+}

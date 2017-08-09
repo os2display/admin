@@ -1,0 +1,126 @@
+/**
+ *
+ * Base
+ *
+ * Contains styling and reset of basic elements
+ *
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+// Make sure the user can't scroll sideways.
+body, html {
+  overflow-x: hidden;
+
+  &.is-locked {
+    overflow: hidden;
+    position: fixed;
+  }
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: $gray-lightest;
+  color: $gray-darker;
+  display: table; // http://galengidman.com/2014/03/25/responsive-flexible-height-sticky-footers-in-css/
+  font: $font;
+  height: 100%;
+  margin: 0;
+  position: relative; // For absolute positioned burger menu to have 100 height.
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  /* This fixes huge spaces when a heading wraps onto two lines */
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-top: 0;
+
+  /* Voodoo to enable ligatures and kerning */
+  text-rendering: optimizeLegibility;
+}
+
+
+strong {
+  font-weight: bold;
+}
+
+
+em {
+  font-style: italic;
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+fieldset {
+  border-color: $gray-lighter;
+  border-radius: .85em;
+}
+
+fieldset + fieldset {
+  margin-top: 3em;
+}
+
+legend {
+  color: $gray-dark;
+  font-size: 1.25em;
+  font-weight: 600;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+
+/* Links
+   ================================================================================================================== */
+
+a {
+  &:link {
+    color: $link-color;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: darken($link-color, 5%);
+  }
+
+  &:hover {
+    color: darken($link-color, 10%);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    color: darken($link-color, 10%);
+  }
+}
+
+
+/* Paragraph
+   ================================================================================================================== */
+
+p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+/* Image
+   ================================================================================================================== */
+
+img {
+  display: inline;
+  max-width: 100%;
+  vertical-align: bottom;
+}

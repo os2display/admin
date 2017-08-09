@@ -2,6 +2,10 @@ indholdskanalen_main:
   resource: "@IndholdskanalenMainBundle/Resources/config/routing.yml"
   prefix:   /
 
+os2display_admin:
+  resource: "@Os2DisplayAdminBundle/Resources/config/routing.yml"
+  prefix:   /
+
 JMSJobQueueBundle:
     resource: "@JMSJobQueueBundle/Controller/"
     type: annotation

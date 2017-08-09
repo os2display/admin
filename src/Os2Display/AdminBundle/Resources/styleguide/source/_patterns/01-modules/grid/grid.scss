@@ -1,0 +1,201 @@
+/**
+ *
+ * Grid
+ *
+ */
+
+/* Variables
+   ========================================================================== */
+
+$grid-spacing-pixel-small:    10px;
+$grid-spacing-pixel-medium:   40px;
+$grid-spacing-percent-medium: 2%;
+$grid-spacing-percent-large:  4%;
+
+
+/* Mixins
+   ========================================================================== */
+
+ @mixin reset-margins($number) {
+    /* Set margins for 2 columns. */
+    &:nth-of-type(#{$number}n) {
+      margin-right: 0;
+    }
+
+    &:nth-of-type(#{$number}n+1) {
+      margin-left: 0;
+    }
+ }
+
+/* Grid
+   ========================================================================== */
+
+
+.grid {
+  width: 100%;
+
+  &--inner {
+    @include flexbox;
+    @include flex-wrap(wrap);
+  }
+
+  &--item {
+    @include align-items(stretch);
+
+    margin-bottom: $grid-spacing-pixel-small;
+    margin-top: $grid-spacing-pixel-small;
+    width: 100%;
+
+    > .grid.is-full > .grid--inner > .grid--item:first-child {
+      margin-top: 0;
+    }
+
+    > .grid--item {
+      margin-top: 0;
+    }
+  }
+
+
+  &.is-full {
+    .grid--item {
+      width: 100%;
+    }
+  }
+
+  &.is-centered {
+    .grid--inner .grid--item.is-centered {
+      @include align-self(center);
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &.is-halfs, &.is-thirds, &.is-fourths {
+    > .grid--inner > .grid--item {
+      @include breakpoint($breakpoint-tablet) {
+        width: 50% - $grid-spacing-percent-medium;
+      }
+    }
+
+    > .grid--inner > .grid--item:not(.is-centered) {
+      @include breakpoint($breakpoint-tablet) {
+        margin-left: $grid-spacing-percent-medium;
+        margin-right: $grid-spacing-percent-medium;
+
+        /* We have to set this last to override margins. */
+        @include reset-margins(2);
+      }
+    }
+  }
+
+  &.is-thirds, &.is-fourths {
+    > .grid--inner > .grid--item {
+      @include breakpoint($breakpoint-desk) {
+        /* 2 columns = 2 margins, 3 columns = 4 margins, 4 columns = 6 margins.
+         Calculate width: <width> - <number of margins> / <number of columns>. */
+        width: (100% - 8%) / 3;
+      }
+    }
+
+    > .grid--inner > .grid--item:not(.is-centered) {
+      @include breakpoint($breakpoint-desk) {
+        /* Set margins from smaller breakpoint. */
+        &:nth-of-type(2n) {
+          margin-right: $grid-spacing-percent-medium;
+        }
+
+        &:nth-of-type(2n+1) {
+          margin-left: $grid-spacing-percent-medium;
+        }
+
+        /* We have to set this last to override margins. */
+        @include reset-margins(3);
+      }
+    }
+  }
+
+  &.is-fourths {
+    > .grid--inner > .grid--item {
+      @include breakpoint($breakpoint-bigscreen) {
+        /* 2 columns = 2 margins, 3 columns = 4 margins, 4 columns = 6 margins.
+        Calculate width: <width> - <number of margins> / <number of columns>. */
+        width: (100% - 12%) / 4;
+      }
+    }
+
+    > .grid--inner > .grid--item:not(.is-centered) {
+      @include breakpoint($breakpoint-bigscreen) {
+        /* Set margins from smaller breakpoint. */
+        &:nth-of-type(3n) {
+          margin-right: $grid-spacing-percent-medium;
+        }
+
+        &:nth-of-type(3n+1) {
+          margin-left: $grid-spacing-percent-medium;
+        }
+
+        /* We have to set this last to override margins. */
+        @include reset-margins(4);
+      }
+    }
+  }
+
+  &.is-two-thirds {
+    > .grid--inner > .grid--item {
+      @include breakpoint($breakpoint-desk) {
+        &:nth-of-type(1n) {
+          width: ((100% - 4%) / 3)*2;
+        }
+
+        &:nth-of-type(2n) {
+          width: ((100% - 4%) / 3);
+        }
+      }
+    }
+
+    > .grid--inner > .grid--item:not(.is-centered) {
+
+      @include breakpoint($breakpoint-desk) {
+        &:nth-of-type(1n) {
+          margin-left: 0;
+          margin-right: $grid-spacing-percent-medium;
+        }
+
+        &:nth-of-type(2n) {
+          margin-left: $grid-spacing-percent-medium;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  &.is-two-thirds-reversed {
+    > .grid--inner > .grid--item {
+      @include breakpoint($breakpoint-desk) {
+        &:nth-of-type(1n) {
+          width: ((100% - 4%) / 3);
+        }
+
+        &:nth-of-type(2n) {
+          width: ((100% - 4%) / 3)*2;
+        }
+      }
+    }
+
+    > .grid--inner > .grid--item:not(.is-centered) {
+
+      @include breakpoint($breakpoint-desk) {
+        &:nth-of-type(1n) {
+          margin-left: 0;
+          margin-right: $grid-spacing-percent-medium;
+        }
+
+        &:nth-of-type(2n) {
+          margin-left: $grid-spacing-percent-medium;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

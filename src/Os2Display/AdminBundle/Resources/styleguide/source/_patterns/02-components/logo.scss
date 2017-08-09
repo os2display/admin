@@ -1,0 +1,78 @@
+/**
+ *
+ * Logo.
+ *
+ */
+
+
+/* Default use
+   ========================================================================== */
+
+.logo {
+  @include flexbox;
+  @include flex-direction(row);
+
+  &--icon {
+    margin-right: 10px;
+  }
+
+  &.is-anonymous {
+    margin: 0 auto;
+  }
+}
+
+
+.logo,
+.logo.is-sticky {
+  @include align-items(center);
+  @include strip-link-styles($white, none);
+  font-size: 1.25em;
+  font-weight: 300;
+  height: 100%;
+  line-height: 1em;
+  margin-left: $layout-padding;
+  overflow: hidden;
+
+  .material-icons {
+    font-size: 38px;
+    margin-right: .25em;
+  }
+
+  @include breakpoint($layout-max-width+1) {
+    font-size: 1.75em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $layout-max-width;
+  }
+
+  span {
+    box-sizing: border-box;
+
+    font-weight: 400;
+    white-space: nowrap;
+  }
+}
+
+
+/* Specific use on the login page.
+   ========================================================================== */
+
+.is-login-page .logo {
+  @include align-items(center);
+  @include flex-direction(column);
+  color: $white;
+  margin-bottom: 0;
+
+  .material-icons {
+    font-size: 34px;
+  }
+
+  &--text {
+    margin-top: .1em;
+  }
+
+  &--slogan {
+    color: transparentize($white, .5);
+    font-size: .45em;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "data": {
+    "url": "#",
+    "title": "Active submenu title",
+    "label": "Active submenu link",
+    "class": "is-active"
+  }
+}

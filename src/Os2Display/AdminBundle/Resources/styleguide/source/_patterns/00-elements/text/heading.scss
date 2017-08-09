@@ -1,0 +1,19 @@
+/**
+ *
+ * Heading
+ *
+ */
+
+$heading-spacing-after: 10px;
+
+.heading {
+  color: $gray-dark;
+  font-size: 20px;
+  font-weight: 300;
+
+
+  // Variants
+  &.has-spacing-after {
+    margin-bottom: $heading-spacing-after;
+  }
+}

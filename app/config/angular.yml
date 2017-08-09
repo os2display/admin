@@ -1,0 +1,12 @@
+parameters:
+  assets:
+    js: []
+    css: []
+
+  apps: []
+
+  modules: []
+
+  bootstrap:
+    modules: []
+    services: []

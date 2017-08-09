@@ -1,0 +1,11 @@
+{% set items %}
+  {% block items %}{% endblock %}
+{% endset %}
+
+{% embed "@modules/grid/grid.twig" with { class: "is-two-thirds is-centered " ~ class } %}
+  {% block content %}
+    {% block items %}
+      {{ items }}
+    {% endblock %}
+  {% endblock %}
+{% endembed %}

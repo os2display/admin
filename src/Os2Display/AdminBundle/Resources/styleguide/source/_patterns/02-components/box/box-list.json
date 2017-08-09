@@ -1,0 +1,94 @@
+{
+  "data": {
+    "heading": {
+      "label": "Box list"
+    },
+    "buttonLink": {
+      "label": "Button link",
+      "icon": "insert_emoticon"
+    },
+    "items": [
+      {
+        "url": "#",
+        "title": "List item titel",
+        "label": "List item label",
+        "actions": {
+          "icon": "more_vert",
+          "items": [
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            },
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            },
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            }
+          ]
+        }
+      },
+      {
+        "url": "#",
+        "title": "List item titel",
+        "label": "List item label",
+        "actions": {
+          "icon": "more_vert",
+          "items": [
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            },
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            },
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            }
+          ]
+        }
+      },
+      {
+        "url": "#",
+        "title": "List item titel",
+        "label": "List item label",
+        "icon": "more_vert",
+        "actions": {
+          "icon": "more_vert",
+          "items": [
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            },
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            },
+            {
+              "url": "#",
+              "title": "Panel Menu List item titel",
+              "label": "Panel Menu List item label"
+            }
+          ]
+        }
+      }
+    ],
+    "boxLink": {
+      "url": "#",
+      "title": "Box link",
+      "label": "Box link"
+    }
+  }
+}

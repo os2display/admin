@@ -1,0 +1,14 @@
+/**
+ *
+ * Heading Has Spacing After
+ *
+ */
+
+$heading-spacing-after: 10px;
+
+.heading-has-spacing-after {
+  color: $gray-dark;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: $heading-spacing-after;
+}

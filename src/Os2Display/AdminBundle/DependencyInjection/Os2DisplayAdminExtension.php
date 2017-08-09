@@ -29,6 +29,17 @@ class Os2DisplayAdminExtension extends Extension {
     // Get angular configuration.
     $angular = Yaml::parse(file_get_contents(__DIR__ . '/../Resources/config/angular.yml'));
 
+    // Extend registered angular assets.
+    $assets = $container->hasParameter('external_assets') ? $container->getParameter('external_assets') : [];
+    if (array_key_exists('assets', $angular) && is_array($angular['assets'])) {
+      foreach ($angular['assets'] as $key => $module) {
+        if (!in_array($key, $assets)) {
+          $assets[$key] = $module;
+        }
+      }
+    }
+    $container->setParameter('external_assets', $assets);
+    
     // Extend registered angular modules.
     $modules = $container->hasParameter('external_modules') ? $container->getParameter('external_modules') : [];
     if (array_key_exists('modules', $angular) && is_array($angular['modules'])) {
@@ -50,5 +61,16 @@ class Os2DisplayAdminExtension extends Extension {
       }
     }
     $container->setParameter('external_apps', $apps);
+
+    // Extend registered angular bootstrap.
+    $bootstrap = $container->hasParameter('external_bootstrap') ? $container->getParameter('external_bootstrap') : [];
+    if (array_key_exists('bootstrap', $angular) && is_array($angular['bootstrap'])) {
+      foreach ($angular['bootstrap'] as $key => $module) {
+        if (!in_array($key, $bootstrap)) {
+          $bootstrap[$key] = $module;
+        }
+      }
+    }
+    $container->setParameter('external_bootstrap', $bootstrap);
   }
 }

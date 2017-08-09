@@ -2,8 +2,7 @@
 imports:
   - { resource: parameters.yml }
   - { resource: security.yml }
-  - { resource: apps.yml }
-  - { resource: modules.yml }
+  - { resource: angular.yml }
 
 # Framework Configuration
 framework:

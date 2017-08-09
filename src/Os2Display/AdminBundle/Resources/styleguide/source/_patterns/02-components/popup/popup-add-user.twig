@@ -1,0 +1,37 @@
+{% embed "modules-popup" with { data: data } %}
+  {% block content %}
+    {% embed "modules-grid-full" %}
+      {% block items %}
+        {% embed "modules-grid-item" %}
+          {% block content %}
+            {% include "elements-heading-spacing-after" with { data: data.heading } %}
+          {% endblock %}
+        {% endembed %}
+        {% embed "modules-grid-item" %}
+          {% block content %}
+            {% include "modules-forms-text-field" with { data: data.formEmail } %}
+          {% endblock %}
+        {% endembed %}
+        {% embed "modules-grid-item" %}
+          {% block content %}
+            <p>Der bliver sendt en e-mail til brugeren med et aktiveringslink.</p>
+          {% endblock %}
+        {% endembed %}
+      {% endblock %}
+    {% endembed %}
+    {% embed "modules-grid-halfs" %}
+      {% block items %}
+        {% embed "modules-grid-item" %}
+          {% block content %}
+            {% include "elements-button-link-neutral" with { data: data.cancel } %}
+          {% endblock %}
+        {% endembed %}
+        {% embed "modules-grid-item" %}
+          {% block content %}
+            {% include "elements-button-link" with { data: data.submit } %}
+          {% endblock %}
+        {% endembed %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

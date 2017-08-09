@@ -1,3 +1,46 @@
+assets:
+  js:
+    - bundles/os2displayadmin/assets/libs/jquery.min.js
+    - bundles/os2displayadmin/assets/libs/angular.min.js
+    - bundles/os2displayadmin/assets/libs/angular-animate.min.js
+    - bundles/os2displayadmin/assets/libs/angular-route.min.js
+    - bundles/os2displayadmin/assets/libs/moment.min.js
+    - bundles/os2displayadmin/assets/libs/moment_da_locale.js
+    - bundles/os2displayadmin/assets/libs/es5-shim.min.js
+    - bundles/os2displayadmin/assets/libs/angular-file-upload.min.js
+    - bundles/os2displayadmin/assets/libs/angular-bootstrap-colorpicker.js
+    - bundles/os2displayadmin/assets/libs/angular-placeholder.js
+    - bundles/os2displayadmin/assets/libs/angular-dnd.js
+    - bundles/os2displayadmin/assets/libs/angular-tooltips.min.js
+    - bundles/os2displayadmin/assets/libs/datetimepicker.jquery.js
+    - bundles/os2displayadmin/assets/libs/datetimepicker.js
+    - bundles/os2displayadmin/assets/libs/locale_da.js
+    - bundles/os2displayadmin/assets/libs/stacktrace.min.js
+    - bundles/os2displayadmin/assets/libs/md5.min.js
+    - bundles/os2displayadmin/assets/libs/paging.js
+    - bundles/os2displayadmin/assets/libs/angular-modal-service.min.js
+    - bundles/os2displayadmin/assets/libs/angular-translate.min.js
+    - bundles/os2displayadmin/assets/libs/angular-translate-loader-static-files.min.js
+  css:
+    - bundles/os2displayadmin/css/colorpicker.css
+    - bundles/os2displayadmin/css/jquery.datetimepicker.css
+    - bundles/os2displayadmin/css/angular-tooltips.min.css
+    - bundles/os2displayadmin/assets/build/styles.min.css
+    - bundles/os2displayadmin/css/styles-new.css
+
+bootstrap:
+  modules:
+    - logModule
+    - mainModule
+  services:
+    - apiService
+    - logService
+    - userService
+    - searchService
+    - menuItemService
+    - bodyService
+    - authHttpResponseInterceptor
+
 modules:
   busModule:
     files:

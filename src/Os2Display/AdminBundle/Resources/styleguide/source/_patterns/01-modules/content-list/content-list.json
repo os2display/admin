@@ -1,0 +1,25 @@
+{
+  "data": {
+    "items": [
+      {
+        "url": "#",
+        "title": "List item titel",
+        "label": "List item label",
+        "icon": "more_vert"
+      },
+      {
+        "url": "#",
+        "title": "List item titel",
+        "label": "List item label",
+        "text": "text",
+        "icon": "close"
+      },
+      {
+        "url": "#",
+        "title": "List item titel",
+        "label": "List item label",
+        "icon": "more_vert"
+      }
+    ]
+  }
+}

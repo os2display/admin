@@ -1,0 +1,24 @@
+{
+  "data": {
+    "heading": {
+      "label": "Tilføj bruger"
+    },
+    "formEmail": {
+      "for": "email",
+      "label": "E-mail",
+      "id": "email",
+      "name": "email",
+      "placeholder": "Indtast brugerens e-mail"
+    },
+    "cancel": {
+      "url": "#",
+      "title": "Annullér",
+      "label": "Annullér"
+    },
+    "submit": {
+      "url": "#",
+      "title": "Gem",
+      "label": "Gem"
+    }
+  }
+}

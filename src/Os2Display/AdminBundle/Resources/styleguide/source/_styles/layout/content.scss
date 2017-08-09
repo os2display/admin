@@ -1,0 +1,57 @@
+/**
+ *
+ * Content.
+ *
+ */
+
+
+.is-frontpage .content {
+  @include flexbox;
+
+  background-color: transparentize($black, .1);
+  height: 100%;
+
+  &--inner {
+    @include flexbox;
+    @include flex-basis(100%);
+    @include flex-direction(column);
+
+    height: 100%;
+    margin: auto;
+    max-width: 100%;
+
+    @include breakpoint($breakpoint-tablet) {
+      height: auto;
+      max-width: 75%;
+    }
+
+    @include breakpoint($breakpoint-desk) {
+      @include flex-direction(row);
+    }
+
+    @include breakpoint($breakpoint-bigscreen) {
+      max-width: $layout-max-width;
+    }
+  }
+}
+
+.is-page .content {
+  margin-top: 11em;
+  padding-left: 1em;
+  padding-right: 1em;
+  position: relative;
+
+  &--inner {
+    margin-bottom: 16em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $layout-max-width;
+
+    @include word-wrap;
+  }
+}
+
+// Screen creation design uses full width.
+.is-page.is-screen .content--inner {
+  max-width: 100%;
+}

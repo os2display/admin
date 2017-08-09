@@ -1,0 +1,9 @@
+{
+  "data": {
+    "for": "forms_text_id",
+    "label": "Forms Text Field",
+    "id": "forms_text_id",
+    "name": "forms_text_id",
+    "placeholder": "Forms Field Text placeholder"
+  }
+}

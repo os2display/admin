@@ -1,0 +1,9 @@
+<nav class="submenu">
+  <div class="submenu--inner">
+    <div class="submenu--links is-left">
+      {% for item in data.items %}
+        {% include "elements-submenu-link" with { data: item } %}
+      {% endfor %}
+    </div>
+  </div>
+</nav>

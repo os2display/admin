@@ -1,0 +1,260 @@
+/**
+ *
+ * Planning timeline
+ * Display of timeline using Visjs: http://visjs.org/index.html
+ *
+ */
+
+ /* Variables
+   ========================================================================== */
+
+/* stylelint-disable */
+$planning-screen-background-color: #efefef;
+/* stylelint-enable */
+
+
+/* Styles
+   ========================================================================== */
+
+.vis--timeline-wrapper {
+  background: $white;
+  border: 1px solid $gray-light;
+  margin: 2em 0;
+  padding: 1em;
+}
+
+.vis--header {
+  @include flexbox;
+  @include flex-flow(row wrap);
+  @include justify-content(space-between);
+
+  border-bottom: 1px solid $gray-light;
+  margin-bottom: 1em;
+  padding: 0 0 .75em;
+}
+
+
+.vis--date-header {
+  @include flex(0, 0, 100%);
+
+  font-weight: bold;
+  margin-bottom: .5em;
+  text-align: right;
+}
+
+.vis--item-header {
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
+
+  @include flex(1, 1, 100%);
+
+  @include breakpoint(600px) {
+    margin-bottom: 0;
+    text-align: left;
+
+    @include flex(1, 1, auto);
+  }
+}
+
+
+.vis--date-controls {
+  @include flex(1, 1, auto);
+
+  text-align: right;
+}
+
+.vis--button {
+  margin: 0;
+}
+
+
+
+/* Vis styling (we haven't changed the html of elements)
+   =========================================================== */
+.vis-timeline {
+  background: $white;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.vis-content {
+  position: relative;
+}
+
+.vis-background {
+  overflow: hidden;
+}
+
+.vis-background,
+.vis-foreground {
+  height: 100%;
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+}
+
+.vis-axis {
+  height: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.vis-foreground .vis-group {
+  position: relative;
+
+  &:nth-child(even) {
+    background: $planning-screen-background-color;
+  }
+}
+
+.vis-foreground .vis-group:last-child {
+  border-bottom: none;
+}
+
+.vis-center {
+  border-bottom: 2px solid $gray-lighter;
+}
+
+
+/* Vis panel
+   =========================================================== */
+.vis-panel {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+
+  &.vis-center,
+  &.vis-left,
+  &.vis-right {
+    overflow: hidden;
+  }
+
+  &.vis-left {
+    border-right: 1px solid $gray-lighter;
+    box-sizing: border-box;
+  }
+
+  &.vis-vertical {
+    overflow-x: hidden;
+  }
+}
+
+
+/* Vis label
+   =========================================================== */
+.vis-label {
+  box-sizing: content-box;
+  display: flex;
+  font-size: .8em;
+  padding: 0 .8em;
+
+  &:nth-child(even) {
+    background: $planning-screen-background-color;
+  }
+
+  .vis-inner {
+    margin-top: .7em;
+  }
+}
+
+
+/* Vis item
+   =========================================================== */
+
+.vis-item {
+  background-color: $theme-color;
+  box-sizing: border-box;
+  color: $white;
+  display: inline-block;
+  font-size: .8em;
+  overflow-x: hidden;
+  padding: .4em 1em;
+  position: absolute;
+  white-space: nowrap;
+
+  &.vis-box {
+    text-align: center;
+  }
+
+  &.vis-point {
+    background: none;
+  }
+
+  &.vis-dot {
+    padding: 0;
+    position: absolute;
+  }
+
+  &.vis-range {
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  &-content {
+    display: inline-block;
+    position: relative;
+  }
+}
+
+
+/* Time axis
+   =========================================================== */
+.vis-time-axis {
+  color: $gray-dark;
+  font-size: .8em;
+  overflow: hidden;
+  position: relative;
+
+  &.vis-foreground {
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  &.vis-background {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.vis-text {
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 3px;
+  position: absolute;
+  text-transform: capitalize;
+  white-space: nowrap;
+
+  &.vis-measure {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: absolute;
+    visibility: hidden;
+  }
+
+  &.vis-major {
+    font-weight: bold;
+  }
+}
+
+
+
+
+/* Current time line
+   =========================================================== */
+.vis-current-time {
+  background-color: $theme-color-secondary;
+  width: 2px;
+  z-index: 1;
+}

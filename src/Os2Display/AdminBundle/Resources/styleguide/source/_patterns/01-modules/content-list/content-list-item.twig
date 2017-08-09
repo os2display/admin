@@ -1,0 +1,20 @@
+<div class="content-list-item {{ dataClass }}">
+  <span class="content-list-item--link">
+  {% if data.url %}
+    <a href="{{ data.url }}" title="{{ data.title }}">
+  {% endif %}
+    {{ data.label }}
+  {% if data.url %}
+    </a>
+  {% endif %}
+  </span>
+  {% if data.text %}
+      <span class="content-list-item--text">{{ data.text }}</span>
+  {% endif %}
+  {% if data.actions %}
+    {% block actions %}
+      <span class="content-list-item--icon js-toggle-element" data-toggle-element="{{ data.actions.jsClass | default("js-panel-menu") }}">{% include "elements-icon-default" with { data: data.actions } %}</span>
+      {% include "modules-panel-menu" with { data: data.actions } %}
+    {% endblock %}
+  {% endif %}
+</div>

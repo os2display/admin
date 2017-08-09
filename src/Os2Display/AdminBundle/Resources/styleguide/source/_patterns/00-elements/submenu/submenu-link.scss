@@ -1,0 +1,25 @@
+/**
+ *
+ * Submenu link
+ *
+ */
+
+
+.submenu-link {
+  @include flexbox;
+  @include strip-link-styles($theme-color);
+
+  &:hover {
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  &.is-active {
+    text-decoration: underline;
+  }
+
+  + .submenu-link {
+    padding-left: 1.5em;
+  }
+}

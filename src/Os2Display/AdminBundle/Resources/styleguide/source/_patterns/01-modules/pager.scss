@@ -1,0 +1,68 @@
+/**
+ *
+ * Pager
+ *
+ */
+
+
+/* Silent classes and variables related to this document
+   ========================================================================== */
+$pager--border-width: 3px;
+$pager--border-color: $gray-lighter;
+$pager--background: $white;
+$pager--text-color: $gray-lighter;
+$pager--valid: $gray-light;
+
+
+/* Pager for the creation pages (The one just below header.)
+   ========================================================================== */
+
+.pager {
+  &--search {
+    margin: 2em;
+    text-align: center;
+
+    @include flexbox();
+    @include justify-content(center);
+  }
+
+  &--search-item {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-right: 0;
+    box-sizing: border-box;
+    color: $gray-darker;
+    cursor: pointer;
+    text-align: center;
+
+    @include flex(0, 1, auto);
+
+    &:first-child {
+      border-radius: .5em 0 0 .5em;
+    }
+
+    &:last-child {
+      border-radius: 0 .5em .5em 0;
+      border-right: 1px solid $gray-lighter;
+    }
+
+    &.is-active {
+      background: $gray-lighter;
+    }
+
+    &.is-inactive {
+      color: $gray;
+      cursor: default;
+    }
+  }
+
+  &--search-item-inner {
+    display: block;
+    padding: .4em .9em;
+
+    &.is-arrow {  // The used font has som weirdly positioned arrows, so we use a font family that positions arrows correctly.
+      font: 1em/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+  }
+}
+

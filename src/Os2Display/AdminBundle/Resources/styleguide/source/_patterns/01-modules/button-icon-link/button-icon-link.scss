@@ -1,0 +1,22 @@
+/**
+ *
+ * Button Icon Link
+ *
+ */
+
+$button-icon-link-border-style: 1px solid $gray-lighter;
+$button-icon-link-padding: 15px;
+$button-icon-link-spacing-top: 15px;
+
+.button-icon-link {
+  @include flexbox;
+  @include align-items(center);
+
+  cursor: pointer;
+
+  &.has-spacing-after {
+    border-bottom: $button-icon-link-border-style;
+    margin-bottom: $button-icon-link-spacing-top;
+    padding-bottom: $button-icon-link-padding;
+  }
+}

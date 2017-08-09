@@ -1,0 +1,16 @@
+/**
+ *
+ * Button Text
+ *
+ */
+
+$button-text-color: $theme-color;
+$button-text-spacing-left: 10px;
+
+.button-text {
+  color: $button-text-color;
+
+  &.has-spacing-before {
+    margin-left: $button-text-spacing-left;
+  }
+}
