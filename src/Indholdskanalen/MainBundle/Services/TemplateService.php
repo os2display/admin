@@ -153,7 +153,7 @@ class TemplateService {
    *   URL to the file with it's modified timestamp prefixed.
    */
   private function buildFilePath($serverAddress, $path, $dir, $file) {
-    return $serverAddress . $dir . '/' . $file . '?' . filemtime($path . '/' . $dir . '/' . $file);
+    return $serverAddress . '/' . $dir . '/' . $file . '?' . filemtime($path . '/' . $dir . '/' . $file);
   }
 
   private function findTemplates($path) {
@@ -200,7 +200,7 @@ class TemplateService {
 
       // Set the template values on the entity. The css, live and edit files need to be prefixed with their last
       // modified timestamp to ensure they are load by the screen clients.
-      $template->setPathIcon($serverAddress . $dir . '/' . $config->icon);
+      $template->setPathIcon($this->buildFilePath($serverAddress, $path, $dir, $config->icon));
       $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $config->paths->live));
       $template->setPathEdit($this->buildFilePath($serverAddress, $path, $dir, $config->paths->edit));
       $template->setPathCss($this->buildFilePath($serverAddress, $path, $dir, $config->paths->css));
@@ -245,7 +245,7 @@ class TemplateService {
 
       // Set the template values on the entity. The css, live, edit and preview files need to be prefixed with their last
       // modified timestamp to ensure they are load by the screen clients.
-      $template->setPathIcon($serverAddress . $dir . '/' . $config->icon);
+      $template->setPathIcon($this->buildFilePath($serverAddress, $path, $dir, $config->icon));
       $template->setPathLive($this->buildFilePath($serverAddress, $path, $dir, $config->paths->live));
       $template->setPathEdit($this->buildFilePath($serverAddress, $path, $dir, $config->paths->edit));
       $template->setPathCss($this->buildFilePath($serverAddress, $path, $dir, $config->paths->css));
@@ -286,28 +286,29 @@ class TemplateService {
   public function loadTemplates() {
     // Get database hooks.
     $doctrine = $this->container->get('doctrine');
-    $templateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:SlideTemplate');
+    $slideTemplateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:SlideTemplate');
+    $screenemplateRepository = $doctrine->getRepository('IndholdskanalenMainBundle:ScreenTemplate');
     $entityManager = $doctrine->getManager();
 
     // Get parameters.
-    $path = $this->container->get('kernel')->getRootDir() . '/../web/bundles';
-    $serverAddress = $this->container->getParameter('absolute_path_to_server') . '/templates';
+    $path = $this->container->get('kernel')->getRootDir() . '/../web/';
+    $serverAddress = $this->container->getParameter('absolute_path_to_server');
 
     // Locate templates in /web/bundles/
     $templates = $this->findTemplates($path);
 
     foreach ($templates['slides'] as $config) {
-      $dir = explode('/web/bundles/', pathinfo($config, PATHINFO_DIRNAME));
-      $this->loadSlideTemplate($config, $templateRepository, $entityManager, $dir[1], $serverAddress, $path);
+      $dir = explode('/web/', pathinfo($config, PATHINFO_DIRNAME));
+      $this->loadSlideTemplate($config, $slideTemplateRepository, $entityManager, $dir[1], $serverAddress, $path);
     }
 
     foreach ($templates['screens'] as $config) {
-      $dir = explode('/web/bundles/', pathinfo($config, PATHINFO_DIRNAME));
-      $this->loadScreenTemplate($config, $templateRepository, $entityManager, $dir[1], $serverAddress, $path);
+      $dir = explode('/web/', pathinfo($config, PATHINFO_DIRNAME));
+      $this->loadScreenTemplate($config, $screenemplateRepository, $entityManager, $dir[1], $serverAddress, $path);
     }
 
     // Get all templates from the database, and push update to screens.
-    $existingTemplates = $templateRepository->findAll();
+    $existingTemplates = $screenemplateRepository->findAll();
     $middlewareService = $this->container->get('indholdskanalen.middleware.communication');
     foreach ($existingTemplates as $template) {
       foreach ($template->getScreens() as $screen) {
