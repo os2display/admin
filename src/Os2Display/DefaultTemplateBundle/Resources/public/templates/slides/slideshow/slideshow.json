@@ -8,7 +8,7 @@
     "edit": "slideshow-preview.html",
     "preview": "slideshow-preview.html",
     "css": "slideshow.css",
-    "js": "../../../js/slideshowSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/slideshowSlide.js"
   },
   "orientation": "landscape",
   "slide_type": "slideshow",

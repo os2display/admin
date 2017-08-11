@@ -8,7 +8,7 @@
     "edit": "rss-default-edit.html",
     "preview": "rss-default-preview.html",
     "css": "rss-default.css",
-    "js": "../../../js/rssSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/rssSlide.js"
   },
   "slide_type": "rss",
   "media_type": "image",

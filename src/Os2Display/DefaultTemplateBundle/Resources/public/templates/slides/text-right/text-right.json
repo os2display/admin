@@ -8,7 +8,7 @@
     "edit": "text-right-edit.html",
     "preview": "text-right.html",
     "css": "text-right.css",
-    "js": "../../../js/baseSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/baseSlide.js"
   },
   "orientation": "landscape",
   "slide_type": "base",

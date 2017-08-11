@@ -269,7 +269,7 @@ class TemplateService {
         $template->setSlideType($config->slide_type);
       }
       if (isset($config->paths->js)) {
-        $template->setPathJs($serverAddress . $dir . '/' . $config->paths->js);
+        $template->setPathJs($serverAddress . '/' . $config->paths->js);
       }
       $template->setScriptId($config->script_id);
 

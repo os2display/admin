@@ -8,7 +8,7 @@
     "edit": "ik-iframe-edit.html",
     "preview": "ik-iframe-preview.html",
     "css": "ik-iframe.css",
-    "js": "../../../js/iframeSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/iframeSlide.js"
   },
   "orientation": "landscape",
   "slide_type": "iframe",

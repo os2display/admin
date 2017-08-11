@@ -8,7 +8,7 @@
     "edit": "only-video-edit.html",
     "preview": "only-video-preview.html",
     "css": "only-video.css",
-    "js": "../../../js/videoSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/videoSlide.js"
   },
   "slide_type": "video",
   "media_type": "video",
