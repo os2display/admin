@@ -156,6 +156,13 @@ class TemplateService {
     return $serverAddress . '/' . $dir . '/' . $file . '?' . filemtime($path . '/' . $dir . '/' . $file);
   }
 
+  /**
+   * Find the templates in path.
+   *
+   * @param $path
+   *
+   * @return array
+   */
   private function findTemplates($path) {
     $dir_iterator = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
     $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
@@ -295,7 +302,7 @@ class TemplateService {
     $serverAddress = $this->container->getParameter('absolute_path_to_server');
 
     // Locate templates in /web/bundles/
-    $templates = $this->findTemplates($path);
+    $templates = $this->findTemplates($path . 'bundles/');
 
     foreach ($templates['slides'] as $config) {
       $dir = explode('/web/', pathinfo($config, PATHINFO_DIRNAME));

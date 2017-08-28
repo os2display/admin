@@ -65,7 +65,3 @@ Run only tests with a specific tag:
 ```
 ./vendor/behat/behat/bin/behat --suite=api_features --tags=group
 ```
-
-# Extending the angular UI
-
-To extend the UI, create 

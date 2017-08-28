@@ -35,6 +35,8 @@ class AppKernel extends Kernel {
       new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),
       new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
       new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
+            new Os2Display\TemplateContainerBundle\Os2DisplayTemplateContainerBundle(),
+            new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
     );
 
     if (in_array($this->getEnvironment(), array('dev', 'test', 'acceptance'))) {
