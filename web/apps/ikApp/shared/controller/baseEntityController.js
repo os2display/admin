@@ -9,6 +9,7 @@ angular.module('ikApp').controller('BaseEntityController', [
     'use strict';
 
     $scope.baseUnavailableGroups = [];
+    $scope.userGroups = null;
 
     // Get current user groups.
     var cleanupGetCurrentUserGroups = busService.$on('BaseEntityController.getCurrentUserGroups', function (event, groups) {
