@@ -136,7 +136,10 @@ angular.module('ikApp').directive('ikMediaOverview', [
             };
 
             if ($scope.showFromUser === 'all') {
-              filter.query.bool.should[0].bool.must.push(term);
+              for (var should in filter.query.bool.should) {
+                should = filter.query.bool.should[should];
+                should.bool.must.push(term);
+              }
             }
             else {
               filter.query.bool.must.push(term);
