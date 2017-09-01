@@ -1,17 +1,16 @@
 <?php
 
-namespace Os2Display\DefaultTemplateBundle\DependencyInjection;
+namespace Itk\AarhusTemplateBundle\DependencyInjection;
 
-use Os2Display\CoreBundle\DependencyInjection\Os2DisplayBaseExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Os2Display\CoreBundle\DependencyInjection\Os2DisplayBaseExtension;
 
 /**
  * This is the class that loads and manages your bundle configuration
  *
- * To learn more see
- * {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class Os2DisplayDefaultTemplateExtension extends Os2DisplayBaseExtension
+class ItkAarhusTemplateExtension extends Os2DisplayBaseExtension
 {
     /**
      * {@inheritdoc}

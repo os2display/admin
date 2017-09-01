@@ -1,0 +1,13 @@
+@import "compass/css3";
+@import "../../../_shared-base.scss";
+
+.only-image-vertical {
+  background-size: cover;
+  background-position: center;
+
+  &--logo {
+    position: absolute;
+    width: 10%;
+    padding: 2%;
+  }
+}

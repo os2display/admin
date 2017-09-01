@@ -1,0 +1,47 @@
+@import "compass/css3";
+@import "../../../shared-base";
+
+
+.itk-three-split {
+  &--inner {
+    font-size: 0; // inline-block fix.
+    margin: 0 auto;
+  }
+
+  &--region-horizontal {
+    width: 100%;
+    height:100%;
+
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+
+    &:last-child {
+      border: 0;
+    }
+
+    &-halfsplit {
+      height: 50%;
+    }
+  }
+
+  &--region-vertical {
+    width: 50%;
+    height: 100%;
+
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &--region-content {
+    font-size: 1rem;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+}
