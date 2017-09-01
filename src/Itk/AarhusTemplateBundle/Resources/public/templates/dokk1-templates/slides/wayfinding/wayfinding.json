@@ -8,7 +8,7 @@
     "edit": "wayfinding-edit.html",
     "preview": "wayfinding.html",
     "css": "wayfinding.css",
-    "js": "../../../js/baseSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js//baseSlide.js"
   },
   "orientation": "landscape",
   "slide_type": "base",

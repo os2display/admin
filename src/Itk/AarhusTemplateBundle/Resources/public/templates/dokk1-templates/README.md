@@ -1,1 +1,1 @@
-Add the Gibson fonts to the directory `fonts/gibson` folder.
+Copy the Gibson fonts to the directory `fonts/gibson` folder.
