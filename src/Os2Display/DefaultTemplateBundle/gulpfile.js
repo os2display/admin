@@ -1,13 +1,5 @@
 var gulp = require('gulp-help')(require('gulp'));
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
 var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var yaml = require('js-yaml');
-var fs = require('fs');
-var header = require('gulp-header');
 
 var templatesPath = 'Resources/public/templates/';
 
