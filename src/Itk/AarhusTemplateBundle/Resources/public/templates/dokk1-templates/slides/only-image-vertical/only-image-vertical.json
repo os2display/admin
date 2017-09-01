@@ -8,7 +8,7 @@
     "edit": "only-image-vertical-edit.html",
     "preview": "only-image-vertical.html",
     "css": "only-image-vertical.css",
-    "js": "bundles/os2displaydefaulttemplate/templates/js//baseSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/baseSlide.js"
   },
   "orientation": "portrait",
   "slide_type": "base",

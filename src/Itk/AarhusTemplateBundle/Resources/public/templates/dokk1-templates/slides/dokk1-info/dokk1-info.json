@@ -8,7 +8,7 @@
     "edit": "dokk1-info-edit.html",
     "preview": "dokk1-info-preview.html",
     "css": "dokk1-info.css",
-    "js": "bundles/os2displaydefaulttemplate/templates/js//baseSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/baseSlide.js"
   },
   "orientation": "landscape",
   "slide_type": "base",

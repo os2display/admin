@@ -1,4 +1,1 @@
 services:
-#    itk_aarhus_template.example:
-#        class: Itk\AarhusTemplateBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

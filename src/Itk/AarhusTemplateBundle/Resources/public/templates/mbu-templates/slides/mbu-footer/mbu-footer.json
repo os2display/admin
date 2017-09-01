@@ -8,7 +8,7 @@
     "edit": "mbu-footer-edit.html",
     "preview": "mbu-footer.html",
     "css": "mbu-footer.css",
-    "js": "bundles/os2displaydefaulttemplate/templates/js//baseSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/baseSlide.js"
   },
   "orientation": "landscape",
   "slide_type": "base",

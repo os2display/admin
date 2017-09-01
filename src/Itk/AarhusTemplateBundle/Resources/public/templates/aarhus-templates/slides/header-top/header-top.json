@@ -8,7 +8,7 @@
     "edit": "header-top-edit.html",
     "preview": "header-top-preview.html",
     "css": "header-top.css",
-    "js": "bundles/os2displaydefaulttemplate/templates/js//baseSlide.js"
+    "js": "bundles/os2displaydefaulttemplate/templates/js/baseSlide.js"
   },
   "orientation": "landscape",
   "slide_type": "base",
