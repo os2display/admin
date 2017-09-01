@@ -28,13 +28,12 @@
   "tools": [
     {
       "name": "Tekst / Farve",
-      "id": "dokk1-coming-events-content-editor",
-      "path": "editors/content-editor.html"
+      "template": "bundles/itkaarhustemplate/templates/dokk1-templates/slides/dokk1-coming-events/editors/content-editor.html"
     },
     {
       "name": "Kalender",
       "id": "event-calendar-editor",
-      "path": "editors/calendar-editor.html"
+      "template": "bundles/itkaarhustemplate/templates/dokk1-templates/slides/dokk1-coming-events/editors/calendar-editor.html"
     }
   ]
 }
