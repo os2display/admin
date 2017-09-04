@@ -3,4 +3,5 @@ modules:
     files:
       - bundles/itkaarhustemplate/apps/toolsModule/background-editor-static-colors.js
       - bundles/itkaarhustemplate/apps/toolsModule/background-editor-transparent.js
+      - bundles/itkaarhustemplate/apps/toolsModule/event-calendar-editor.js
 apps:

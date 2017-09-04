@@ -8,7 +8,7 @@
     "edit": "event-calendar-edit.html",
     "preview": "event-calendar-preview.html",
     "css": "event-calendar.css",
-    "js": "bundles/os2displaydefaulttemplate/templates/js/calendarSingleDay.js"
+    "js": "bundles/itkaarhustemplate/templates/js/calendarSingleDay.js"
   },
   "orientation": "landscape",
   "slide_type": "calendar",

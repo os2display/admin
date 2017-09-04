@@ -8,7 +8,7 @@
     "edit": "dokk1-coming-events-edit.html",
     "preview": "dokk1-coming-events-preview.html",
     "css": "dokk1-coming-events.css",
-    "js": "../../js/dokk1-coming-events.js"
+    "js": "bundles/itkaarhustemplate/templates/dokk1-templates/js/dokk1-coming-events.js"
   },
   "orientation": "portrait",
   "slide_type": "calendar",

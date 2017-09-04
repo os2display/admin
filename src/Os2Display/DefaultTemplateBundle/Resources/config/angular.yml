@@ -3,7 +3,6 @@ modules:
     files:
       - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor.js
       - bundles/os2displaydefaulttemplate/apps/toolsModule/base-editor.js
-      - bundles/os2displaydefaulttemplate/apps/toolsModule/event-calendar-editor.js
       - bundles/os2displaydefaulttemplate/apps/toolsModule/header-editor-responsive.js
       - bundles/os2displaydefaulttemplate/apps/toolsModule/logo-editor.js
       - bundles/os2displaydefaulttemplate/apps/toolsModule/manual-calendar-editor.js

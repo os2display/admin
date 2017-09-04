@@ -8,7 +8,7 @@
     "edit": "dokk1-multiple-calendar-edit.html",
     "preview": "dokk1-multiple-calendar-preview.html",
     "css": "dokk1-multiple-calendar.css",
-    "js": "../../js/dokk1-single-day-calendar.js"
+    "js": "bundles/itkaarhustemplate/templates/dokk1-templates/js/dokk1-single-day-calendar.js"
   },
   "orientation": "landscape",
   "slide_type": "calendar",

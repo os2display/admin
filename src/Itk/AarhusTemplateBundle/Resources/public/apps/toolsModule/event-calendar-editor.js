@@ -47,7 +47,7 @@ angular.module('toolsModule')
             });
           }
         );
-        
+
         /**
          * Add calendar events from source (for event calendar.)
          */
@@ -84,7 +84,7 @@ angular.module('toolsModule')
           scope.slide.external_data = arr;
         };
       },
-      templateUrl: '/bundles/os2displaydefaulttemplate/apps/toolsModule/event-calendar-editor.html'
+      templateUrl: '/bundles/itkaarhustemplate/apps/toolsModule/event-calendar-editor.html'
     };
   }
 ]);
