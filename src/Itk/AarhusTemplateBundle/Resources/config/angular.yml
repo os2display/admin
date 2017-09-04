@@ -1,6 +1,6 @@
 modules:
   toolsModule:
     files:
-      - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor-static-colors.js
-      - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor-transparent.js
+      - bundles/itkaarhustemplate/apps/toolsModule/background-editor-static-colors.js
+      - bundles/itkaarhustemplate/apps/toolsModule/background-editor-transparent.js
 apps:

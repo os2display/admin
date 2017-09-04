@@ -1,4 +1,4 @@
-angular.module('toolsModule').directive('backgroundEditorTransparent', [
+angular.module('toolsModule').directive('backgroundEditorStaticColors', [
   'mediaFactory', function (mediaFactory) {
     return {
       restrict: 'E',
@@ -92,7 +92,7 @@ angular.module('toolsModule').directive('backgroundEditorTransparent', [
         });
 
       },
-      templateUrl: '/bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor-transparent.html'
+      templateUrl: '/bundles/itkaarhustemplate/apps/toolsModule/background-editor-static-colors.html'
     };
   }
 ]);

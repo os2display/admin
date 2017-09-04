@@ -2,8 +2,6 @@ modules:
   toolsModule:
     files:
       - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor.js
-      - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor-static-colors.js
-      - bundles/os2displaydefaulttemplate/apps/toolsModule/background-editor-transparent.js
       - bundles/os2displaydefaulttemplate/apps/toolsModule/base-editor.js
       - bundles/os2displaydefaulttemplate/apps/toolsModule/event-calendar-editor.js
       - bundles/os2displaydefaulttemplate/apps/toolsModule/header-editor-responsive.js
