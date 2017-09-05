@@ -14,7 +14,8 @@ be symlinked during "composer install" to web/bundles/ folder.
 ### Upgrading
 
 * Create a bundle with a structure like src/Os2Display/DefaultTemplateBundle.
-* Update [Bundlename]Extension.php to match Os2DisplayDefaultTemplateExtension.php.
+* Update [Bundlename]Extension.php to extend Os2DisplayBaseExtension.php like
+  Os2DisplayCoreExtension.
 * Change nginx setup for admin. Change
 
 ```
