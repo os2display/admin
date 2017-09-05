@@ -1,0 +1,45 @@
+<popup>
+  <div data-ng-class="{'spinner-element': loading}"></div>
+  <form name="forms.groupCreateForm" novalidate ng-submit="submitForm(forms.groupCreateForm)">
+    <div class="grid is-full" ng-show="!loading">
+      <div class="grid--inner">
+        <article class="grid--item">
+          <h2 class="heading-has-spacing-after">{{ 'common.action.add_group' | translate }}</h2>
+        </article>
+        <article class="grid--item">
+          <div class="forms-field">
+            <label for="textInput" class="forms-label">{{ 'group.title' | translate }}</label>
+            <input id="textInput" name="textInput" type="text" ng-model="group.title"
+                   placeholder="{{ 'group.placeholder.title' | translate }}"
+                   class="forms-base forms-text" required>
+          </div>
+        </article>
+        <article class="grid--item" ng-if="errors.length > 0">
+          <div class="message">
+            <div class="message--inner is-inline-error">
+              <div class="message--content">
+                <p ng-repeat="error in errors">{{ error }}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="grid is-halfs">
+      <div class="grid--inner">
+        <article class="grid--item">
+          <a class="button-link is-neutral" title="{{ 'common.action.cancel' | translate }}" ng-click="closeModal()">
+            {{ 'common.action.cancel' | translate }}
+          </a>
+        </article>
+        <article class="grid--item">
+          <a type="submit" class="button-link " title="{{ 'common.action.add_group' | translate }}"
+             ng-click="submitForm(forms.groupCreateForm)" ng-if="baseCanCreate('group')">
+            {{ 'common.action.add_group' | translate }}
+          </a>
+        </article>
+      </div>
+    </div>
+  </form>
+</popup>
