@@ -130,22 +130,18 @@
     });
   </script>
 
-  {% if app.environment != 'prod' %}
-    <!-- Angular modules -->
-    {% for key, module in modules %}
-      {% for file in module.files %}
-        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
-      {% endfor %}
+  <!-- Angular modules -->
+  {% for key, module in modules %}
+    {% for file in module.files %}
+      <script src="{{ asset(file ~ '?' ~ version) }}"></script>
     {% endfor %}
+  {% endfor %}
 
-    <!-- New angular applications -->
-    {% for key, app in apps %}
-      {% for file in app.files %}
-        <script src="{{ asset(file ~ '?' ~ version) }}"></script>
-      {% endfor %}
+  <!-- New angular applications -->
+  {% for key, app in apps %}
+    {% for file in app.files %}
+      <script src="{{ asset(file ~ '?' ~ version) }}"></script>
     {% endfor %}
-  {% else %}
-    <script src="{{ asset('assets/build/app.min.js?' ~ version) }}"></script>
-  {% endif %}
+  {% endfor %}
 
 {% endblock %}
