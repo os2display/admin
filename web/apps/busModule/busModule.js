@@ -38,7 +38,7 @@ angular.module('busModule')
      *   The listener to call on event.
      */
     this.$on = function on(name, listener) {
-      $rootScope.$on(name, function (event, message) {
+      return $rootScope.$on(name, function (event, message) {
         listener.apply($rootScope, [event, message]);
       });
     };

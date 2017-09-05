@@ -1,0 +1,69 @@
+<div data-ng-class="{'spinner-element': loading}"></div>
+
+<div class="grid is-full">
+  <div class="grid--inner">
+    <article class="grid--item">
+      <box ng-if="!loading" heading="{{ user.displayName }}">
+        <form name="forms.userUpdate" novalidate ng-submit="submitForm(forms.userUpdate)">
+          <div data-ng-class="{'spinner-element': loading}"></div>
+          <div class="grid is-halfs">
+            <div class="grid--inner">
+              <article class="grid--item">
+                <div class="forms-field">
+                  <label for="firstname" class="forms-label">{{ 'user.firstname' | translate }}</label>
+                  <input id="firstname" name="firstname" type="text"
+                         placeholder="{{ 'user.placeholder.firstname' | translate }}"
+                         ng-model="user.firstname" class="forms-base forms-text">
+                </div>
+              </article>
+              <article class="grid--item">
+                <div class="forms-field">
+                  <label for="lastname" class="forms-label">{{ 'user.surname' | translate }}</label>
+                  <input id="lastname" name="lastname" type="text"
+                         placeholder="{{ 'user.placeholder.surname' | translate }}"
+                         ng-model="user.lastname" class="forms-base forms-text">
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="grid is-full">
+            <div class="grid--inner">
+              <article class="grid--item">
+                <div class="forms-field">
+                  <label for="email" class="forms-label">{{ 'user.email' | translate }}</label>
+                  <input id="email" name="email" type="text" placeholder="{{ 'user.placeholder.email' | translate }}"
+                         ng-model="user.email" class="forms-base forms-text">
+                  <a class="button-link has-spacing-top" title="{{ 'common.action.save' | translate }}"
+                     data-ng-click="submitForm(forms.userUpdate)" ng-if="baseCanUpdate(user)">
+                    {{ 'common.action.save' | translate }}
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </form>
+      </box>
+    </article>
+  </div>
+</div>
+
+<div class="grid is-halfs" ng-if="!loading">
+  <div class="grid--inner">
+    <article class="grid--item">
+      <box heading="{{ 'group.heading' | translate }}">
+        <content-list items="userGroups"></content-list>
+        <span ng-if="user.groups.length === 0">{{ 'user.texts.empty_groups' | translate }}</span>
+      </box>
+    </article>
+    <article class="grid--item">
+      <box heading="{{ 'role.heading' | translate }}">
+        <div class="button-icon-link has-spacing-after" ng-click="showAddRoleModal()" ng-if="baseCanUpdate(user)">
+          <i class="icon-rounded material-icons">security</i>
+          <span class="button-text has-spacing-before">{{ 'common.action.add_role' | translate }}</span>
+        </div>
+        <content-list items="userRoles"></content-list>
+        <span ng-if="userRoles.length === 0">{{ 'user.texts.empty_roles' | translate }}</span>
+      </box>
+    </article>
+  </div>
+</div>

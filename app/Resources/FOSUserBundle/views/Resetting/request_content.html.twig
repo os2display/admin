@@ -1,0 +1,12 @@
+<div class="login--reset-form">
+  <form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
+    <div class="login--name">
+      {% if invalid_username is defined %}
+        <p class="login--alert">Brugernavnet eller emailadressen findes ikke i systemet</p>
+      {% endif %}
+      <label for="username" class="login--reset-label">Brugernavn eller email adresse</label>
+      <input class="login--reset-input" type="text" id="username" name="username" required="required" placeholder="Brugernavn eller email adresse"/>
+    </div>
+    <input type="submit" class="login--submit" value="Send email"/>
+  </form>
+</div>
