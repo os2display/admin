@@ -19,7 +19,8 @@
    *   screen (object): The screen to modify.
    *   region (integer): The region of the screen to modify.
    */
-  app.directive('channelPickerWidget', ['userService', 'channelFactory', 'busService',
+  app.directive('channelPickerWidget', [
+    'userService', 'channelFactory', 'busService',
     function (userService, channelFactory, busService) {
       return {
         restrict: 'E',
@@ -36,8 +37,15 @@
           scope.showFromUser = 'all';
           scope.sort = {"created_at": "desc"};
 
+          scope.selectedGroup = null;
+
           // Get current user.
           scope.currentUser = userService.getCurrentUser();
+
+          var cleanupCurrentUserGroupsListener = busService.$on('itkChannelPickerWidget.currentUserGroups', function getCurrentUserGroups(event, userGroups) {
+            scope.userGroups = userGroups;
+          });
+          userService.getCurrentUserGroups('itkChannelPickerWidget.currentUserGroups');
 
           // Default pager values.
           scope.pager = {
@@ -50,28 +58,38 @@
           scope.channels = [];
 
           // Setup default search options.
-          var search = {
-            "fields": 'title',
-            "text": '',
-            "filter": {
-              "bool": {
-                "must": []
+          scope.search = {
+            fields: 'title',
+            text: '',
+            filter: {
+              bool: {
+                must: []
               }
             },
-            "sort": {
-              "created_at": {
-                "order": "desc"
+            sort: {
+              created_at: {
+                order: 'desc'
               }
             },
-            'pager': scope.pager
+            pager: scope.pager
           };
 
           /**
            * Updates the channels array by send a search request.
            */
           scope.updateSearch = function updateSearch() {
+            var search = angular.copy(scope.search);
+
             // Get search text from scope.
             search.text = scope.search_text;
+
+            if (scope.selectedGroup !== null) {
+              search.filter.bool.must.push({
+                "terms": {
+                  "groups": [scope.selectedGroup.id]
+                }
+              });
+            }
 
             scope.loading = true;
 
@@ -151,15 +169,32 @@
             }
           };
 
+          scope.selectGroup = function selectGroup(group) {
+            scope.pickGroupDialog = false;
+            scope.selectedGroup = group;
+
+            // Update the search.
+            scope.updateSearch();
+          };
+
           /**
            * When the screen is loaded, set search orientation.
            */
           scope.$watch('screen', function (val) {
-            if (!val) return;
+            if (!val) {
+              return;
+            }
 
             // Update the search.
             scope.updateSearch();
           });
+
+          /**
+           * Cleanup.
+           */
+          scope.$on('$destroy', function () {
+            cleanupCurrentUserGroupsListener();
+          })
         }
       };
     }

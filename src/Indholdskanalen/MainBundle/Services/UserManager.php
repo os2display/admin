@@ -14,15 +14,26 @@ use Indholdskanalen\MainBundle\Exception\ValidationException;
 
 /**
  * Class UserManager
+ *
  * @package Indholdskanalen\MainBundle\Services
  */
 class UserManager {
-  protected static $editableProperties = ['email', 'firstname', 'lastname', 'roles'];
+
+  protected static $editableProperties = [
+    'email',
+    'firstname',
+    'lastname',
+    'roles',
+  ];
 
   protected $userManager;
+
   protected $mailerService;
+
   protected $entityService;
+
   protected $tokenGenerator;
+
   protected $securityMananager;
 
   /**
@@ -31,7 +42,13 @@ class UserManager {
    * @param \FOS\UserBundle\Doctrine\UserManager $userManager
    * @param \Indholdskanalen\MainBundle\Services\UserMailerService $mailerService
    */
-  public function __construct(FOSUserManager $userManager, UserMailerService $mailerService, EntityService $entityService, TokenGeneratorInterface $tokenGenerator, SecurityManager $securityManager) {
+  public function __construct(
+    FOSUserManager $userManager,
+    UserMailerService $mailerService,
+    EntityService $entityService,
+    TokenGeneratorInterface $tokenGenerator,
+    SecurityManager $securityManager
+  ) {
     $this->userManager = $userManager;
     $this->mailerService = $mailerService;
     $this->entityService = $entityService;
@@ -43,6 +60,7 @@ class UserManager {
    * Create a user.
    *
    * @param $data
+   *
    * @return \FOS\UserBundle\Model\UserInterface
    * @throws \Indholdskanalen\MainBundle\Exception\DuplicateEntityException
    */
@@ -78,16 +96,15 @@ class UserManager {
   /**
    * Update a user.
    *
-   * @param \Indholdskanalen\MainBundle\Services\User $user
+   * @param \Indholdskanalen\MainBundle\Entity\User $user
    * @param $data
+   *
    * @return \FOS\UserBundle\Model\UserInterface
    * @throws \Indholdskanalen\MainBundle\Exception\DuplicateEntityException
    */
   public function updateUser(User $user, $data) {
     $data = $this->normalizeData($data);
     $this->entityService->setValues($user, $data, self::$editableProperties);
-
-    $user->setUsername($user->getEmail());
 
     $this->entityService->validateEntity($user);
 
@@ -116,7 +133,9 @@ class UserManager {
   }
 
   private function isAssoc(array $arr) {
-    if (array() === $arr) return false;
+    if ([] === $arr) {
+      return FALSE;
+    }
     return array_keys($arr) !== range(0, count($arr) - 1);
   }
 
