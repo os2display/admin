@@ -19,12 +19,12 @@
       "scheduling": "Udgivelse"
     },
     "help_text": {
-      "channel_naming": "Giv din kanal et godt navn så du kan finde den igen senere.",
+      "channel_naming": "Giv din kanal et godt og gerne unikt navn, så er det lettere at finde den igen senere.",
       "channel_change_order": "Ændrer rækkefølge (efter):",
       "channel_add_slides": "Tryk på tilføj slides for at tilføje eksisterende slides. Brug pilene til at vælge i hvilken rækkefølge dine slides skal vises.",
       "planning_active": "Angiv om kanalen kun skal vises i nedenstående interval.",
-      "published": "Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for udgivelse i fra/til.",
-      "published_description": "Lad felterne være tomme, hvis du ikke vil sætte nogen grænser for tidspunkt i fra/til.",
+      "published": "Lad fra/til felterne være tomme, hvis du ikke vil sætte nogen grænser for udgivelse.",
+      "published_description": "Lad fra/til felterne være tomme, hvis du ikke vil sætte nogen grænser for tidspunkt.",
       "select_groups": "Vælg hvilke grupper kanalen skal være med i. Hvis der ikke er valgt nogen grupper vil kanalen være privat."
     },
     "placeholder": {
@@ -69,9 +69,9 @@
       "publishing": "Udgivelse"
     },
     "help_text": {
-      "channels": "Vælg hvilke kanaler din skærm skal vises på.",
+      "channels": "Vælg hvilke kanaler din slide skal vises på.",
       "choose_channels": "Vælg kanaler",
-      "content": "Tilføj indhold.",
+      "content": "Tilføj indhold til dit slide via knapperne her.",
       "duration": "Angiv hvor længe din slide skal vises i sekunder",
       "duration_calculated": "Beregnet varighed i sekunder",
       "duration_video": "Den valgte videos længde i sekunder",
@@ -82,7 +82,7 @@
       "publishing_to": "Til",
       "select_groups": "Vælg hvilke grupper sliden skal være med i. Hvis der ikke er valgt nogen grupper vil sliden være privat.",
       "template": "Vælg template - du kan altid ændre dit valg senere.",
-      "title": "Giv din slide et godt navn så du kan finde den igen senere."
+      "title": "Giv din slide et godt og gerne unikt navn, så er det lettere at finde den igen senere."
     },
     "placeholder": {
       "duration": "f.eks. 15",
