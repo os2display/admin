@@ -8,58 +8,86 @@
     <p class="create-channel--header-description">
       {{ 'create_channel.help_text.channel_add_slides' | translate }}
     </p>
-    <div class="create-channel--add-slide-button" data-ng-click="editor.toggleSlideOverviewEditor()">{{ 'create_channel.action.select_slides' | translate }}</div>
+    <div class="create-channel--add-slide-button"
+         data-ng-click="editor.toggleSlideOverviewEditor()">{{
+      'create_channel.action.select_slides' | translate }}
+    </div>
 
     <div class="create-channel--slides">
-      <div class="create-channel--slide-order-element" data-ng-repeat="slide in channel.slides">
-        <div class="create-channel--slide-order-link" droppable drop="handleDrop"
+      <div class="create-channel--slide-order-element"
+           data-ng-repeat="slide in channel.slides">
+        <div class="create-channel--slide-order-link" droppable
+             drop="handleDrop"
              id="index-{{ $index }}" draggable>
-          <div data-ng-if="slideScheduledNow(slide)" tooltips tooltip-template="Slide vises nu." tooltip-side="top">
-            <img class="create-channel--slide-published-icon" src="bundles/os2displayadmin/images/icons/check-circle-full-icon.png" title="">
+          <div data-ng-if="slideScheduledNow(slide)" tooltips
+               tooltip-template="Slide vises nu." tooltip-side="top">
+            <img class="create-channel--slide-published-icon"
+                 src="bundles/os2displayadmin/images/icons/check-circle-full-icon.png"
+                 title="">
           </div>
           <div data-ng-if="!slideScheduledNow(slide)">
             <div class="create-channel--slide-unpublished-overlay"></div>
-            <div tooltips tooltip-template="{{ getScheduledText(slide) }}" tooltip-side="top">
-              <img class="create-channel--slide-unpublished-icon" title="" src="bundles/os2displayadmin/images/icons/exclamation-icon.png">
+            <div tooltips tooltip-template="{{ getScheduledText(slide) }}"
+                 tooltip-side="top">
+              <img class="create-channel--slide-unpublished-icon" title=""
+                   src="bundles/os2displayadmin/images/icons/exclamation-icon.png">
             </div>
           </div>
-          <span class="create-channel--slide-order-arrow-left" data-ng-click="pushLeft($index)"><img
-              class="create-channel--arrow-left-image" src="bundles/os2displayadmin/images/arrow-backward.png"></span>
+          <span class="create-channel--slide-order-arrow-left"
+                data-ng-click="pushLeft($index)"><img
+              class="create-channel--arrow-left-image"
+              src="bundles/os2displayadmin/images/arrow-backward.png"></span>
           <span class="create-channel--slide-order-number">{{$index + 1}}</span>
-          <img class="overview--channel-remove" data-ng-click="toggleSlide(slide)" src="bundles/os2displayadmin/images/icons/cancel-icon.png">
-          <div data-ng-if="!slideScheduledNow(slide)" class="create-channel--slide-unpublished-blur-wrapper">
+          <img class="overview--channel-remove"
+               data-ng-click="toggleSlide(slide)"
+               src="bundles/os2displayadmin/images/icons/cancel-icon.png">
+          <div data-ng-if="!slideScheduledNow(slide)"
+               class="create-channel--slide-unpublished-blur-wrapper">
             <div class="create-channel--slide-unpublished-blur">
-              <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
+              <ik-slide ik-slide="slide"
+                        ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
             </div>
           </div>
           <div data-ng-if="slideScheduledNow(slide)">
-            <ik-slide ik-slide="slide" ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
+            <ik-slide ik-slide="slide"
+                      ik-width="{{slide.orientation === 'landscape' ? 300 : 168.75 }}"></ik-slide>
           </div>
           <a data-ng-href="/#/slide/{{slide.id}}" target="_blank">{{slide.title}}</a>
-          <span class="create-channel--slide-order-arrow-right" data-ng-click="pushRight($index)"><img
-              class="create-channel--arrow-right-image" src="bundles/os2displayadmin/images/arrow-forward.png"></span>
+          <span class="create-channel--slide-order-arrow-right"
+                data-ng-click="pushRight($index)"><img
+              class="create-channel--arrow-right-image"
+              src="bundles/os2displayadmin/images/arrow-forward.png"></span>
         </div>
       </div>
     </div>
 
     <div class="create-channel--sort-buttons">
-      <label>{{ 'create_channel.help_text.channel_change_order' | translate }}</label>
+      <label>{{ 'create_channel.help_text.channel_change_order' | translate
+        }}</label>
 
       <div class="overview--sort-links">
-        <span class="overview--filter-foursplit-left" data-ng-click="sortSlides('schedule_from')"
+        <span class="overview--filter-foursplit-left"
+              data-ng-click="sortSlides('schedule_from')"
               data-ng-class="{'is-active': lastSortUsed === 'schedule_from'}">{{ 'create_channel.action.change_order.schedule_from' | translate }}</span>
-        <span class="overview--filter-foursplit-middle" data-ng-click="sortSlides('schedule_to')"
+        <span class="overview--filter-foursplit-middle"
+              data-ng-click="sortSlides('schedule_to')"
               data-ng-class="{'is-active': lastSortUsed === 'schedule_to'}">{{ 'create_channel.action.change_order.schedule_to' | translate }}</span>
-        <span class="overview--filter-foursplit-middle" data-ng-click="sortSlides('title')"
+        <span class="overview--filter-foursplit-middle"
+              data-ng-click="sortSlides('title')"
               data-ng-class="{'is-active': lastSortUsed === 'title'}">{{ 'create_channel.action.change_order.title' | translate }}</span>
-        <span class="overview--filter-foursplit-right" data-ng-click="sortSlides('random')"
+        <span class="overview--filter-foursplit-right"
+              data-ng-click="sortSlides('random')"
               data-ng-class="{'is-active': lastSortUsed === 'random'}">{{ 'create_channel.action.change_order.random' | translate }}</span>
       </div>
     </div>
 
-    <div class="create-channel--finish-button">
-      <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
-      <input type="submit" class="create-channel--button" value="{{ 'create_channel.action.continue' | translate }}" data-ng-click="submitStep()">
+    <div class="create-channel--buttons">
+      <div class="create-channel--spinner"
+           data-ng-show="disableSubmitButton"></div>
+      <form data-ng-submit="submitStep()" class="create-channel--form">
+        <input type="submit" class="create-channel--button"
+               value="{{ 'create_channel.action.continue' | translate }}">
+      </form>
     </div>
   </div>
 </section>
@@ -68,18 +96,22 @@
 <div class="edit-menu--content" role="banner"
      data-ng-class="{'is-visible': editor.slideOverviewEditor, 'is-hidden': !editor.slideOverviewEditor}">
   <div class="edit-menu--content-inner">
-    <div class="edit-menu--toggle-icon" data-ng-click="editor.toggleSlideOverviewEditor()">
+    <div class="edit-menu--toggle-icon"
+         data-ng-click="editor.toggleSlideOverviewEditor()">
       <div class="svg-clickable">
-        <object data="bundles/os2displayadmin/images/svg/cancel.svg" type="image/svg+xml">
+        <object data="bundles/os2displayadmin/images/svg/cancel.svg"
+                type="image/svg+xml">
           <!-- Fallback (ie8)-->
           <img src="bundles/os2displayadmin/images/cancel.png"/>
         </object>
       </div>
     </div>
     <div class="edit-menu--content-page-inner">
-      <h2 class="edit-menu--content-header">{{ 'create_channel.action.select_slides' | translate }}</h2>
+      <h2 class="edit-menu--content-header">{{
+        'create_channel.action.select_slides' | translate }}</h2>
       <div class="edit-menu--background-content">
-        <ik-slide-overview ik-selected-slides="channel.slides" ik-hide-filters="true"
+        <ik-slide-overview ik-selected-slides="channel.slides"
+                           ik-hide-filters="true"
                            ik-overlay="true"></ik-slide-overview>
       </div>
     </div>

@@ -1,6 +1,5 @@
 <section id="create-slide-five" class="create-slide--section">
   <div class="create-slide--content--slide-five">
-    <h1 class="create-slide--header">{{ (slide.status === 'edit-slide' ? 'create_slide.heading.edit' : 'create_slide.heading.create') | translate }}</h1>
     <p class="create-slide--header-description">{{ 'create_slide.help_text.information' | translate }}</p>
     <div class="create-slide--content-wrapper">
       <div class="create-slide--duration" data-ng-if="slide.media_type !== 'video' && slide.slide_type !== 'rss' && slide.slide_type !== 'slideshow'">
@@ -42,6 +41,10 @@
         </div>
       </div>
     </div>
-    <input type="submit" class="create-slide--button" value="{{ 'create_slide.action.continue' | translate }}" data-ng-click="submitStep()">
+    <div class="create-slide--buttons">
+      <form data-ng-submit="submitStep()" class="create-slide--form">
+        <input type="submit" class="create-slide--button" value="{{ 'create_slide.action.continue' | translate }}">
+      </form>
+    </div>
   </div>
 </section>

@@ -49,9 +49,10 @@
       </div>
     </div>
 
-    <div class="create-channel--finish-button">
-      <div class="create-channel--spinner" data-ng-show="disableSubmitButton"></div>
-      <input type="submit" class="create-channel--button" value="Fortsæt" data-ng-click="submitStep()">
+    <div class="create-channel--buttons">
+      <form data-ng-submit="submitStep()" class="create-channel--form">
+        <input type="submit" class="create-channel--button" value="Fortsæt">
+      </form>
     </div>
   </div>
 </section>

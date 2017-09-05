@@ -1,6 +1,5 @@
 <section id="create-slide-five" class="create-slide--section">
   <div class="create-slide--content--slide-six">
-    <h1 class="create-slide--header">{{ (slide.status === 'edit-slide' ? 'create_slide.heading.edit' : 'create_slide.heading.create') | translate }}</h1>
     <p class="create-slide--header-description">{{ 'create_slide.help_text.channels' | translate }}</p>
     <div class="create-channel--add-slide-button" data-ng-click="editor.toggleChannelOverviewEditor()">{{ 'create_slide.action.add_to_channels' | translate }}</div>
     <div class="overview--channels">
@@ -16,9 +15,11 @@
         <span class="overview--channel-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
       </div>
     </div>
-    <div class="create-slide--finish-button">
+    <div class="create-slide--buttons">
+      <form data-ng-submit="submitStep()" class="create-slide--form">
+        <input type="submit" class="create-slide--button" data-ng-show="!disableSubmitButton" value="{{ 'create_slide.action.save' | translate }}">
+      </form>
       <div class="create-slide--spinner" data-ng-show="disableSubmitButton"></div>
-      <input type="submit" class="create-slide--button" data-ng-disabled="disableSubmitButton" value="{{ 'create_slide.action.save' | translate }}" data-ng-click="submitStep()">
     </div>
   </div>
 </section>

@@ -383,7 +383,9 @@ $breakpoint-arrow-switch : 693px;
   }
 
   &--buttons {
+    bottom: -5px;
     margin-top: 2em;
+    position: sticky;
   }
 
   &--unavailable-groups {

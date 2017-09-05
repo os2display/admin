@@ -48,14 +48,10 @@
     margin: 0 auto 1em;
   }
 
-
-  &--finish-button {
-    @extend %create-element--finish-button-wrapper;
-  }
-
-
   &--spinner {
-    @extend %create-element--submit-spinner;
+    @extend .spinner;
+
+    margin: 1em auto;
   }
 
 
@@ -295,6 +291,8 @@
   }
 
   &--buttons {
+    bottom: -5px;
     margin-top: 2em;
+    position: sticky;
   }
 }

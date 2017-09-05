@@ -1,10 +1,12 @@
 <section id="create-slide-three" class="create-slide--section">
   <div class="create-slide--content--slide-three">
-    <h1 class="create-slide--header">{{ (slide.status === 'edit-slide' ? 'create_slide.heading.edit' : 'create_slide.heading.create') | translate }}</h1>
-    <p class="create-slide--header-description">{{ 'create_slide.help_text.template' | translate }}</p>
+    <p class="create-slide--header-description">{{
+      'create_slide.help_text.template' | translate }}</p>
     <div class="create-slide--templates">
-      <div class="create-slide--template" data-ng-repeat="template in templates" data-ng-click="selectTemplate(template.id)">
-        <div class="create-slide--template-link" data-ng-class="{'is-selected': slide.template == template.id}">
+      <div class="create-slide--template" data-ng-repeat="template in templates"
+           data-ng-click="selectTemplate(template.id)">
+        <div class="create-slide--template-link"
+             data-ng-class="{'is-selected': slide.template == template.id}">
           <span class="create-slide--overlay">
             <span class="create-slide--link-check"></span>
           </span>
@@ -14,7 +16,12 @@
       </div>
     </div>
     <div class="create-slide--buttons">
-      <input type="submit" class="create-slide--button" data-ng-class="{'is-inactive': !validation.templateSet()}" data-ng-disabled="!validation.templateSet()" value="{{ 'create_slide.action.continue' | translate }}" data-ng-click="submitStep()">
+      <form data-ng-submit="submitStep()" class="create-slide--form">
+        <input type="submit" class="create-slide--button"
+               data-ng-class="{'is-inactive': !validation.templateSet()}"
+               data-ng-disabled="!validation.templateSet()"
+               value="{{ 'create_slide.action.continue' | translate }}">
+      </form>
     </div>
   </div>
 </section>
