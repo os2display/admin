@@ -28,8 +28,8 @@ assets:
     - bundles/os2displayadmin/assets/build/styles.min.css
     - bundles/os2displayadmin/css/styleguide.css
   production_js:
-    - bundles/os2displayadmin/assets/build/assets.min.css
-    - bundles/os2displayadmin/assets/build/app.min.css
+    - bundles/os2displayadmin/assets/build/assets.min.js
+    - bundles/os2displayadmin/assets/build/app.min.js
 
 bootstrap:
   modules:
