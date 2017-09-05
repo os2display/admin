@@ -19,6 +19,18 @@ angular.module('ikApp').controller('ScreenController', ['$scope', '$controller',
     $scope.display = false;
     $scope.region = null;
 
+    $scope.controlPanelData = {
+      userGroups: $scope.userGroups,
+      baseUnavailableGroups: $scope.baseUnavailableGroups
+    };
+
+    $scope.$watch('userGroups', function () {
+      $scope.controlPanelData.userGroups = $scope.userGroups;
+    });
+    $scope.$watch('baseUnavailableGroups', function () {
+      $scope.controlPanelData.baseUnavailableGroups = $scope.baseUnavailableGroups;
+    });
+
     /**
      * Constructor.
      * Handles different settings of route parameters.

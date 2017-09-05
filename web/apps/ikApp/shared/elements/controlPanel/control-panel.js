@@ -29,6 +29,7 @@
         scope: {
           template: '=',
           data: '=',
+          screen: '=',
           display: '=',
           saveAction: '&',
           region: '=',

@@ -17,14 +17,14 @@
   </div>
   <div class="control-panel--tool-tab has-menu" data-ng-if="!selectedTab || selectedTab === 'pick-channels'">
     <div data-ng-if="!channelType || channelType === 'local'">
-      <channel-picker-widget screen="data" region="region"></channel-picker-widget>
+      <channel-picker-widget screen="screen" region="region"></channel-picker-widget>
     </div>
-    <div data-ng-if="channelType === 'shared'">
-      <shared-channel-picker-widget data-ng-if="options.sharingEnabled" screen="data" region="region"></shared-channel-picker-widget>
+    <div data-ng-if="options.sharingEnabled && channelType === 'shared'">
+      <shared-channel-picker-widget screen="screen" region="region"></shared-channel-picker-widget>
     </div>
   </div>
   <div class="control-panel--tool-tab has-menu" data-ng-if="selectedTab === 'view-channels'">
-    <channel-remover-widget screen="data" region="region"></channel-remover-widget>
+    <channel-remover-widget screen="screen" region="region"></channel-remover-widget>
   </div>
   <div class="control-panel--actions">
     <div class="control-panel--actions-inner">

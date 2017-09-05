@@ -11,21 +11,21 @@
     <form class="cpw--wrapper">
       <div class="cpw--text">
         <label class="cpw--text-label">Skærmnavn</label>
-        <text-widget field="data.screen.title" placeholder-text="f.eks. Hovedindgang til højre"></text-widget>
+        <text-widget field="screen.title" placeholder-text="f.eks. Hovedindgang til højre"></text-widget>
       </div>
       <div class="cpw--textarea">
         <label class="cpw--textarea-label">Beskrivelse</label>
-        <text-area-widget field="data.screen.description" placeholder-text="f.eks. Bruges til mødelokale A, B og C"></text-area-widget>
+        <text-area-widget field="screen.description" placeholder-text="f.eks. Bruges til mødelokale A, B og C"></text-area-widget>
       </div>
-      <div class="cpw--text" data-ng-if="data.screen.activation_code">
+      <div class="cpw--text" data-ng-if="screen.activation_code">
         <label class="cpw--text-label">Aktiveringskode</label>
-        <input type="text" class="cpw--text-input" readonly="readonly" data-ng-model="data.screen.activation_code">
+        <input type="text" class="cpw--text-input" readonly="readonly" data-ng-model="screen.activation_code">
       </div>
     </form>
     <form class="cpw--wrapper">
       <div class="cpw--text">
         <label class="cpw--text-label">Grupper</label>
-        <ik-checklist elements="data.userGroups" selected="data.screen.groups" identity="'id'"></ik-checklist>
+        <ik-checklist elements="data.userGroups" selected="screen.groups" identity="'id'"></ik-checklist>
         <ik-disabled-list elements="data.baseUnavailableGroups"></ik-disabled-list>
       </div>
     </form>
@@ -33,7 +33,7 @@
 
   <!-- Template picker tab -->
   <div class="control-panel--tab has-menu" data-ng-if="selectedTab === 'template'">
-    <screen-template-picker-widget screen="data"></screen-template-picker-widget>
+    <screen-template-picker-widget screen="screen"></screen-template-picker-widget>
   </div>
 
   <div class="control-panel--actions">
