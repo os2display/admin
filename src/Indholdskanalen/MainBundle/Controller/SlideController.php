@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\MediaOrder;
 use Indholdskanalen\MainBundle\Entity\ChannelSlideOrder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -198,6 +199,9 @@ class SlideController extends Controller {
       }
     }
 
+    // Add slide to groups.
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $slide);
+
     // Save the slide.
     $em->persist($slide);
 
@@ -226,12 +230,14 @@ class SlideController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Slide')
       ->findOneById($id);
 
-    // Get the serializer
-    $serializer = $this->get('jms_serializer');
-
     // Create response.
     $response = new Response();
     if ($slide) {
+      // Get the serializer
+      $serializer = $this->get('jms_serializer');
+
+      $this->get('os2display.api_data')->setApiData($slide);
+
       $response->headers->set('Content-Type', 'application/json');
       $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()
         ->setGroups(array('api'))
@@ -290,17 +296,17 @@ class SlideController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function slidesGetAction() {
-    // Slide entities
-    $slide_entities = $this->getDoctrine()
-      ->getRepository('IndholdskanalenMainBundle:Slide')
-      ->findAll();
+    $manager = $this->get('os2display.entity_manager');
+    $slideEntities = $manager->findAll(Slide::class);
+
+    $this->get('os2display.api_data')->setApiData($slideEntities);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $jsonContent = $serializer->serialize($slide_entities, 'json', SerializationContext::create()
+    $jsonContent = $serializer->serialize($slideEntities, 'json', SerializationContext::create()
       ->setGroups(array('api-bulk'))
       ->enableMaxDepthChecks());
     $response->setContent($jsonContent);
