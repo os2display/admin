@@ -176,7 +176,7 @@ angular.module('timelineApp').controller('TimelineBaseController', ['busService'
     /**
      * Load current user.
      */
-    busService.$on('userService.returnUser', function returnUser(event, user) {
+    var cleanupCurrentUserListener = busService.$on('userService.returnCurrentUser', function returnCurrentUser(event, user) {
         $scope.currentUser = user;
 
         // Set search filter default
@@ -187,6 +187,15 @@ angular.module('timelineApp').controller('TimelineBaseController', ['busService'
         $scope.setSearchFilters();
       }
     );
-    busService.$emit('userService.requestUser');
+    busService.$emit('userService.getCurrentUser');
+
+    /**
+     * on destroy.
+     *
+     * Clean up listeners.
+     */
+    $scope.$on('$destroy', function destroy() {
+      cleanupCurrentUserListener();
+    });
   }
 ]);

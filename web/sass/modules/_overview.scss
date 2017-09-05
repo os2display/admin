@@ -4,12 +4,8 @@
  *
  */
 
-
 /* Silent classes related to this document
    ========================================================================== */
-
-
-
 
 /* Styles
    ========================================================================== */
@@ -101,7 +97,7 @@
   &--slide-link,
   &--channel-link {
     position: relative;
-    
+
     border: 1px solid $border-color;
     margin-bottom: .5em;
     margin-left: 1em;
@@ -129,7 +125,7 @@
   &--channel-empty-text {
     font-size: 1em;
     position: relative;
-    top:50%;
+    top: 50%;
 
     @include translateY(-50%);
   }
@@ -145,7 +141,6 @@
     color: $gray;
     font-size: .9em;
   }
-
 
   &--filter {
     border-bottom: 0;
@@ -217,7 +212,6 @@
     }
   }
 
-
   &--sorting {
     display: inline-block;
     margin: 0 0 1em 0;
@@ -229,9 +223,9 @@
     }
   }
 
-
   &--filter-label,
-  &--sort-label {
+  &--sort-label,
+  &--label {
     font-weight: bold;
     overflow: hidden;
     text-align: left;
@@ -310,7 +304,6 @@
     @include strip-link-styles();
   }
 
-
   &--screen-wrapper {
     margin: 0;
     background: $gray-lightest;
@@ -319,7 +312,7 @@
     color: $gray-darker;
     text-align: center;
 
-    @include breakpoint($breakpoint-lap){
+    @include breakpoint($breakpoint-lap) {
       margin: 0 1em 1em 0;
     }
   }
@@ -338,9 +331,8 @@
     width: 33.3%;
   }
 
-
-/* Media overview
-========================================================================== */
+  /* Media overview
+  ========================================================================== */
   &--media-single {
     position: relative;
 
@@ -358,7 +350,6 @@
     height: 30%;
   }
 
-
   &--media-image {
     max-height: 10rem; // We use rem since the container fontsize is 0 (See "&--media-single" selector)
     max-width: 300px;
@@ -367,11 +358,9 @@
     min-width: 200px;
   }
 
-
   &--media-overlay-inner {
     padding: .5em;
   }
-
 
   &--media-text {
     max-width: 80%;
@@ -429,7 +418,7 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    background: rgba(255,255,255,0);
+    background: rgba(255, 255, 255, 0);
     position: absolute;
   }
 
@@ -442,5 +431,28 @@
     height: 20px;
 
     z-index: 1;
+  }
+
+  &--groups {
+    margin-bottom: 12px;
+  }
+
+  &--checkboxes {
+    text-align: left;
+    position: relative;
+    border-radius: 0.5em;
+    background-color: #fafafa;
+    color: #595959;
+    border: 1px solid #e6e6e6;
+    padding: 12px;
+  }
+
+  &--checkbox {
+    margin-left: 10px;
+    margin-right: 20px;
+
+    &-label {
+      display: inline-block !important;
+    }
   }
 }

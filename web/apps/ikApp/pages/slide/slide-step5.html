@@ -1,0 +1,13 @@
+<section id="create-slide-one" class="create-slide--section">
+  <div class="create-slide--content--slide-one">
+    <h1 class="create-slide--header">{{ (slide.status === 'edit-slide' ? 'create_slide.heading.edit' : 'create_slide.heading.create') | translate }}</h1>
+    <p class="create-channel--header-description">{{ 'create_slide.help_text.select_groups' | translate }}</p>
+
+    <ik-checklist elements="userGroups" selected="slide.groups" identity="'id'"></ik-checklist>
+    <ik-disabled-list elements="baseUnavailableGroups"></ik-disabled-list>
+
+    <div class="create-slide--buttons">
+      <input type="submit" class="create-slide--button" value="{{ 'create_slide.action.continue' | translate }}" data-ng-click="submitStep()">
+    </div>
+  </div>
+</section>
