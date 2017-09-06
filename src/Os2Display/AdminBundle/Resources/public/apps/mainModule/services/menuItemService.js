@@ -51,13 +51,15 @@ angular.module('mainModule').service('menuItemService', ['busService',
                 title: 'Opret kanal',
                 path: '/#/channel',
                 classSuffix: 'create-channel',
+                activeFilter: '/channel',
                 group: 'left'
               },
               {
                 title: 'Delte kanaler',
                 path: '/#/shared-channel-overview',
                 classSuffix: 'overview',
-                group: 'left',
+                activeFilter: '/shared-channel-overview',
+                group: 'left'
               }
             ]
           },
@@ -76,6 +78,7 @@ angular.module('mainModule').service('menuItemService', ['busService',
                 title: 'Opret slide',
                 path: '/#/slide',
                 classSuffix: 'create-channel',
+                activeFilter: '/slide',
                 group: 'left'
               }
             ]
@@ -95,6 +98,7 @@ angular.module('mainModule').service('menuItemService', ['busService',
                 title: 'Upload medie',
                 path: '/#/media/upload',
                 classSuffix: 'create-media',
+                activeFilter: '/media/upload',
                 group: 'left'
               }
             ]

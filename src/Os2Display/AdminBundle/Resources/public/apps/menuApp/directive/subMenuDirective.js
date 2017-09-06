@@ -86,6 +86,7 @@ angular.module('menuApp')
           // Listen for location change
           busService.$on('$locationChangeSuccess', function () {
             scope.url = $location.url();
+
             updateSubMenu();
           });
 

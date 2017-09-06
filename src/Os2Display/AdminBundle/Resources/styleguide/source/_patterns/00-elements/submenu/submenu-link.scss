@@ -9,17 +9,16 @@
   @include flexbox;
   @include strip-link-styles($theme-color);
 
-  &:hover {
-    span {
-      text-decoration: underline;
-    }
-  }
+  line-height: 54px;
 
   &.is-active {
-    text-decoration: underline;
+    border-bottom: 5px solid #0095fd;
+    font-weight: bold;
+    text-shadow: none;
+    text-decoration: none;
   }
 
   + .submenu-link {
-    padding-left: 1.5em;
+    margin-left: 1.5em;
   }
 }
