@@ -1,11 +1,5 @@
 <section class="create-channel--section">
   <div class="create-channel--content--channel-four">
-    <h1 class="create-channel--header">
-      {{ (channel.status === 'edit-channel' ?
-      'create_channel.heading.edit' :
-      'create_channel.heading.create') | translate }}
-    </h1>
-
     <p class="create-channel--header-description">{{
       'create_channel.help_text.select_groups' | translate }}</p>
     <ik-checklist elements="userGroups" selected="channel.groups"
