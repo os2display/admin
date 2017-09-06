@@ -9,6 +9,7 @@
   @include flexbox;
   @include strip-link-styles($theme-color);
 
+  border-bottom: 5px solid transparent;
   line-height: 54px;
 
   &.is-active {
