@@ -386,6 +386,7 @@ $breakpoint-arrow-switch : 693px;
     bottom: -5px;
     margin-top: 2em;
     position: sticky;
+    z-index: 2;
   }
 
   &--unavailable-groups {
