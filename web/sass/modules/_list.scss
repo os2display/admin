@@ -10,16 +10,23 @@
 .list {
   margin: 0 auto;
   position: relative;
-  width: 40em;
+  max-width: 40em;
 
   &--element {
     border-bottom: 1px solid;
-    cursor: pointer;
-    height: 1.5em;
+    height: 3.5em;
     padding: 1em;
 
-    &:hover {
-      background: $gray-lighter;
+    &.is-hoverable {
+      cursor: pointer;
+
+      &:hover {
+        background: $gray-lighter;
+      }
+    }
+
+    &.is-disabled {
+      color: $gray;
     }
   }
 

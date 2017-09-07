@@ -6,18 +6,14 @@
 
 namespace Indholdskanalen\MainBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Indholdskanalen\MainBundle\Traits\Groupable;
+use JMS\Serializer\Annotation as JMS;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\MaxDepth;
-
-use Doctrine\ORM\Mapping\DiscriminatorMap;
-use Doctrine\ORM\Mapping\DiscriminatorColumn;
-use Doctrine\ORM\Mapping\InheritanceType;
-
-use JMS\Serializer\Annotation as JMS;
 
 /**
  * Extra
@@ -25,7 +21,9 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="ik_slide")
  * @ORM\Entity
  */
-class Slide {
+class Slide extends ApiEntity implements GroupableEntity {
+  use Groupable;
+
   /**
    * @ORM\Column(type="integer")
    * @ORM\Id
@@ -60,7 +58,7 @@ class Slide {
 
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
-   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
+   * @Groups({"api", "api-bulk", "sharing", "middleware"})
    */
   private $options;
 
@@ -108,7 +106,6 @@ class Slide {
 
   /**
    * @ORM\Column(name="media_type", type="string", nullable=true)
-   *   "video" or "image".
    * @Groups({"api", "api-bulk", "middleware", "sharing"})
    */
   private $mediaType;

@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\SharingIndex;
 use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Indholdskanalen\MainBundle\Entity\Channel;
@@ -116,7 +117,8 @@ class ChannelController extends Controller {
       $sort_order++;
     }
 
-    // Save the entity.
+    // Add channel to groups.
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $channel);
     $em->persist($channel);
 
     $dispatcher = $this->get('event_dispatcher');
@@ -237,6 +239,8 @@ class ChannelController extends Controller {
 
     $serializer = $this->get('jms_serializer');
 
+    $this->get('os2display.api_data')->setApiData($channel);
+
     // Create response.
     $response = new Response();
     if ($channel) {
@@ -308,17 +312,17 @@ class ChannelController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function channelsGetAction() {
-    // Get all channel entities.
-    $channel_entities = $this->getDoctrine()
-      ->getRepository('IndholdskanalenMainBundle:Channel')
-      ->findAll();
+    $manager = $this->get('os2display.entity_manager');
+    $channelEntities = $manager->findAll(Channel::class);
+
+    $this->get('os2display.api_data')->setApiData($channelEntities);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $response->setContent($serializer->serialize($channel_entities, 'json', SerializationContext::create()
+    $response->setContent($serializer->serialize($channelEntities, 'json', SerializationContext::create()
       ->setGroups(array('api-bulk'))
       ->enableMaxDepthChecks()));
 
