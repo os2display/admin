@@ -6,15 +6,16 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\ChannelScreenRegion;
-use Proxies\__CG__\Indholdskanalen\MainBundle\Entity\SharedChannel;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Indholdskanalen\MainBundle\Entity\Screen;
 use JMS\Serializer\SerializationContext;
+use Proxies\__CG__\Indholdskanalen\MainBundle\Entity\SharedChannel;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -204,6 +205,9 @@ class ScreenController extends Controller {
       $middlewareService = $this->get('indholdskanalen.middleware.communication');
       $middlewareService->pushScreenUpdate($screen);
     }
+
+    // Add screen to groups.
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $screen);
 
     // Save the entity.
     $em->persist($screen);
@@ -415,7 +419,7 @@ class ScreenController extends Controller {
 
     return $response;
   }
-  
+
   /**
    * Get a list of all screens.
    *
@@ -425,16 +429,15 @@ class ScreenController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function screensGetAction() {
-    // Screen entities
-    $screen_entities = $this->getDoctrine()->getRepository('IndholdskanalenMainBundle:Screen')
-      ->findAll();
+    $manager = $this->get('os2display.entity_manager');
+    $screenEntities = $manager->findAll(Screen::class);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $response->setContent($serializer->serialize($screen_entities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
+    $response->setContent($serializer->serialize($screenEntities, 'json', SerializationContext::create()->setGroups(array('api-bulk'))->enableMaxDepthChecks()));
 
     return $response;
   }

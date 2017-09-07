@@ -6,14 +6,14 @@
 
 namespace Indholdskanalen\MainBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\SerializedName;
+use Doctrine\ORM\Mapping as ORM;
+use Indholdskanalen\MainBundle\Traits\Groupable;
 use JMS\Serializer\Annotation\AccessorOrder;
-use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Channel entity.
@@ -23,7 +23,9 @@ use JMS\Serializer\Annotation\MaxDepth;
  * @ORM\Table(name="ik_channel")
  * @ORM\Entity
  */
-class Channel {
+class Channel extends ApiEntity implements GroupableEntity {
+  use Groupable;
+
   /**
    * Id.
    *

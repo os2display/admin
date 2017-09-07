@@ -130,12 +130,6 @@
     margin: 0 2em 2em;
   }
 
-
-  &--templates {
-    margin-bottom: 3em;
-  }
-
-
   &--template-link {
     display: block;
     position: relative;
@@ -153,7 +147,6 @@
   }
 
   &--content-wrapper {
-    margin-bottom: 2em;
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
@@ -220,7 +213,7 @@
   &--publishing,
   &--duration {
     border-bottom: 1px solid $gray;
-    margin: 0 auto 2em;
+    margin: 0 auto;
     max-width: 30em;
     padding-bottom: 2em;
     width: 75%;
@@ -299,5 +292,9 @@
   &--remove-link {
     cursor: pointer;
     text-decoration: underline;
+  }
+
+  &--buttons {
+    margin-top: 2em;
   }
 }

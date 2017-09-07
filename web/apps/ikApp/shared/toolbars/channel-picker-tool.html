@@ -1,0 +1,34 @@
+<!-- Channel picker tool -->
+<div class="control-panel--tool" data-ng-class="{'is-visible': display,'is-hidden': !display}">
+  <!-- @TODO: Fix this arrow -->
+  <a href="#" class="control-panel--main-toggle">
+    <img class="control-panel--toggle-image" src="./images/arrow-right-icon.png"/>
+  </a>
+
+  <div class="control-panel--nav-wrapper">
+    <div class="control-panel--nav is-full-width" itk--tabs-count="2">
+      <a class="control-panel--nav-item" data-ng-click="clickTab('pick-channels')" data-ng-class="{'is-active': !selectedTab || selectedTab === 'pick-channels'}">Tilføj kanaler</a>
+      <a class="control-panel--nav-item" data-ng-click="clickTab('view-channels')" data-ng-class="{'is-active': selectedTab === 'view-channels'}">Valgte kanaler</a>
+    </div>
+    <div class="control-panel--nav is-full-width" itk--tabs-count="2" data-ng-if="!selectedTab || selectedTab === 'pick-channels'">
+      <a class="control-panel--nav-item" data-ng-click="toggleChannelType('local')" data-ng-class="{'is-active': !channelType || channelType === 'local'}">Lokale kanaler</a>
+      <a class="control-panel--nav-item" data-ng-click="toggleChannelType('shared')" data-ng-class="{'is-active': channelType === 'shared'}">Delte kanaler</a>
+    </div>
+  </div>
+  <div class="control-panel--tool-tab has-menu" data-ng-if="!selectedTab || selectedTab === 'pick-channels'">
+    <div data-ng-if="!channelType || channelType === 'local'">
+      <channel-picker-widget screen="screen" region="region"></channel-picker-widget>
+    </div>
+    <div data-ng-if="options.sharingEnabled && channelType === 'shared'">
+      <shared-channel-picker-widget screen="screen" region="region"></shared-channel-picker-widget>
+    </div>
+  </div>
+  <div class="control-panel--tool-tab has-menu" data-ng-if="selectedTab === 'view-channels'">
+    <channel-remover-widget screen="screen" region="region"></channel-remover-widget>
+  </div>
+  <div class="control-panel--actions">
+    <div class="control-panel--actions-inner">
+      <a class="control-panel--actions-close" data-ng-click="saveAction()">Gem og luk</a>
+    </div>
+  </div>
+</div>
