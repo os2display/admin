@@ -127,7 +127,7 @@ jms_serializer:
 
 # Doctrine Migrations Configuration
 doctrine_migrations:
-    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    dir_name: "%kernel.root_dir%/../src/Os2Display/CoreBundle/DoctrineMigrations"
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
