@@ -6,7 +6,7 @@ angular.module('timelineApp').controller('TimelineScreenController', ['busServic
   function (busService, $scope, $controller) {
     'use strict';
 
-    $scope.searchType = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
+    $scope.searchType = 'Os2Display\\CoreBundle\\Entity\\Screen';
     $controller('TimelineBaseController', {$scope: $scope});
   }
 ]);

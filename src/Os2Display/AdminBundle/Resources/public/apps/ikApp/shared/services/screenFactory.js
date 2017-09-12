@@ -21,7 +21,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
     factory.searchScreens = function searchScreens(search) {
       var deferred = $q.defer();
 
-      search.type = 'Indholdskanalen\\MainBundle\\Entity\\Screen';
+      search.type = 'Os2Display\\CoreBundle\\Entity\\Screen';
 
       var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
       search.callbacks = {

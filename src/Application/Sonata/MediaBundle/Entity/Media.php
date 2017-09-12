@@ -12,11 +12,11 @@
 namespace Application\Sonata\MediaBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Indholdskanalen\MainBundle\Entity\GroupableEntity;
-use Indholdskanalen\MainBundle\Entity\MediaOrder;
-use Indholdskanalen\MainBundle\Entity\Slide;
-use Indholdskanalen\MainBundle\Traits\ApiData;
-use Indholdskanalen\MainBundle\Traits\Groupable;
+use Os2Display\CoreBundle\Entity\GroupableEntity;
+use Os2Display\CoreBundle\Entity\MediaOrder;
+use Os2Display\CoreBundle\Entity\Slide;
+use Os2Display\CoreBundle\Traits\ApiData;
+use Os2Display\CoreBundle\Traits\Groupable;
 use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;
 
 /**

@@ -26,7 +26,7 @@ angular.module('timelineApp')
         var queryString = "?ids[]=" + (ids.join('&ids[]='));
 
         switch (searchType) {
-          case 'Indholdskanalen\\MainBundle\\Entity\\Channel':
+          case 'Os2Display\\CoreBundle\\Entity\\Channel':
 
             // Load bulk.
             // @TODO: Screens should be load through a mainModule screenService,
@@ -77,7 +77,7 @@ angular.module('timelineApp')
             );
 
             break;
-          case 'Indholdskanalen\\MainBundle\\Entity\\Screen':
+          case 'Os2Display\\CoreBundle\\Entity\\Screen':
 
             // Load bulk.
             // @TODO: Screens should be load through a mainModule screenService,

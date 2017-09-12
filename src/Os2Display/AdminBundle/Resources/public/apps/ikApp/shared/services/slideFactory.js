@@ -24,7 +24,7 @@ angular.module('ikApp').factory('slideFactory', ['$http', '$q', 'busService',
     factory.searchSlides = function (search) {
       var deferred = $q.defer();
 
-      search.type = 'Indholdskanalen\\MainBundle\\Entity\\Slide';
+      search.type = 'Os2Display\\CoreBundle\\Entity\\Slide';
 
       var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
       search.callbacks = {

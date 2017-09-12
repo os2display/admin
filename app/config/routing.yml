@@ -1,5 +1,5 @@
-indholdskanalen_main:
-  resource: "@IndholdskanalenMainBundle/Resources/config/routing.yml"
+os2display_main:
+  resource: "@Os2DisplayCoreBundle/Resources/config/routing.yml"
   prefix:   /
 
 os2display_admin:

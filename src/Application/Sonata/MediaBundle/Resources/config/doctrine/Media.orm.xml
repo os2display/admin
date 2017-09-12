@@ -21,13 +21,13 @@
 
         <field name="mediaType" type="string" column="media_type" nullable="true" />
 
-        <one-to-many target-entity="Indholdskanalen\MainBundle\Entity\MediaOrder" mapped-by="media" field="mediaOrders">
+        <one-to-many target-entity="Os2Display\CoreBundle\Entity\MediaOrder" mapped-by="media" field="mediaOrders">
             <order-by>
                 <order-by-field name="sortOrder" direction="ASC"/>
             </order-by>
         </one-to-many>
 
-        <one-to-many target-entity="Indholdskanalen\MainBundle\Entity\Slide" mapped-by="logo" field="logoSlides" />
+        <one-to-many target-entity="Os2Display\CoreBundle\Entity\Slide" mapped-by="logo" field="logoSlides" />
 
     </entity>
 </doctrine-mapping>

@@ -26,7 +26,7 @@ angular.module('ikApp').factory('channelFactory', ['$http', '$q', 'busService',
     factory.searchChannels = function (search) {
       var deferred = $q.defer();
 
-      search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
+      search.type = 'Os2Display\\CoreBundle\\Entity\\Channel';
 
       var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
       search.callbacks = {

@@ -21,7 +21,7 @@ angular.module('ikApp').factory('sharedChannelFactory', ['$http', '$q', 'sharedS
      * @returns {*|Number}
      */
     factory.searchChannels = function (search, indexName) {
-      search.type = 'Indholdskanalen\\MainBundle\\Entity\\Channel';
+      search.type = 'Os2Display\\CoreBundle\\Entity\\Channel';
       return sharedSearchFactory.search(search, indexName);
     };
 

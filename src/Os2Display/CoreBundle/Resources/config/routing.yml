@@ -1,0 +1,3 @@
+controllers:
+  resource: "@Os2DisplayCoreBundle/Controller"
+  type: annotation

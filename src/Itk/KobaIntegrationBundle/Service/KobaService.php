@@ -9,7 +9,7 @@
 namespace Itk\KobaIntegrationBundle\Service;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Indholdskanalen\MainBundle\Events\CronEvent;
+use Os2Display\CoreBundle\Events\CronEvent;
 
 /**
  * Class KobaService
@@ -138,7 +138,7 @@ class KobaService {
     }
 
     // For each calendar slide
-    $slides = $this->container->get('doctrine')->getRepository('IndholdskanalenMainBundle:Slide')->findBySlideType('calendar');
+    $slides = $this->container->get('doctrine')->getRepository('Os2DisplayCoreBundle:Slide')->findBySlideType('calendar');
     $todayStart = time() - 3600;
     // Round down to nearest hour
     $todayStart = $todayStart - ($todayStart % 3600);
