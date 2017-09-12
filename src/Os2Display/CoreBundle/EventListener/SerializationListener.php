@@ -47,7 +47,7 @@ class SerializationListener implements EventSubscriberInterface {
     return array(
       array(
         'event' => 'serializer.post_serialize',
-        'class' => 'Application\Sonata\MediaBundle\Entity\Media',
+        'class' => 'Os2Display\MediaBundle\Entity\Media',
         'method' => 'onPostMediaSerialize'
       ),
       array(

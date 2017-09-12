@@ -51,7 +51,7 @@ class SearchCommand extends ContainerAwareCommand {
     // Find all media elements.
     $entities = $this->getContainer()
       ->get('doctrine')
-      ->getRepository('ApplicationSonataMediaBundle:Media')
+      ->getRepository('Os2DisplayMediaBundle:Media')
       ->findAll();
 
     // Loop over the elements to add real urls.

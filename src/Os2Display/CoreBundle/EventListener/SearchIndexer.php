@@ -83,7 +83,7 @@ class SearchIndexer {
     if ($type !== 'Os2Display\CoreBundle\Entity\Channel' &&
       $type !== 'Os2Display\CoreBundle\Entity\Screen' &&
       $type !== 'Os2Display\CoreBundle\Entity\Slide' &&
-      $type !== 'Application\Sonata\MediaBundle\Entity\Media'
+      $type !== 'Os2Display\MediaBundle\Entity\Media'
     ) {
       return FALSE;
     }

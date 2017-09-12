@@ -31,7 +31,7 @@ class BulkLoadController extends Controller {
       case 'screen':
         return 'Os2DisplayCoreBundle:Screen';
       case 'media':
-        return 'ApplicationSonataMediaBundle:Media';
+        return 'Os2DisplayMediaBundle:Media';
       default:
         return 'Os2DisplayCoreBundle:' . $type;
     }

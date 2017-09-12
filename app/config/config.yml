@@ -115,6 +115,10 @@ sonata_media:
     local:
       directory:  %kernel.root_dir%/../web/uploads/media
       create:     false
+  class:
+    media: Os2Display\MediaBundle\Entity\Media
+    gallery: Os2Display\MediaBundle\Entity\Gallery
+    gallery_has_media: Os2Display\MediaBundle\Entity\GalleryHasMedia
 
 # JMS Serializer Configuration
 jms_serializer:
@@ -123,7 +127,7 @@ jms_serializer:
     directories:
       SonataMediaBundle:
         namespace_prefix: "Sonata\\MediaBundle"
-        path: "@ApplicationSonataMediaBundle/Resources/config/serializer/SonataMedia"
+        path: "@Os2DisplayMediaBundle/Resources/config/serializer/SonataMedia"
 
 # Doctrine Migrations Configuration
 doctrine_migrations:

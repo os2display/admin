@@ -37,7 +37,7 @@ angular.module('ikApp').factory('mediaFactory', ['$http', '$q', 'busService',
     factory.searchMedia = function (search) {
       var deferred = $q.defer();
 
-      search.type = 'Application\\Sonata\\MediaBundle\\Entity\\Media';
+      search.type = 'Os2Display\\MediaBundle\\Entity\\Media';
 
       var uuid = CryptoJS.MD5(JSON.stringify(search)).toString();
       search.callbacks = {

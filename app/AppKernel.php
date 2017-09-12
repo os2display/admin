@@ -26,19 +26,19 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Debril\RssAtomBundle\DebrilRssAtomBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\JobQueueBundle\JMSJobQueueBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\AopBundle\JMSAopBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-            new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),
+            new Os2Display\MediaBundle\Os2DisplayMediaBundle(),
             new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
             new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
             new Os2Display\TemplateContainerBundle\Os2DisplayTemplateContainerBundle(),
             new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
             new Itk\AarhusTemplateBundle\ItkAarhusTemplateBundle(),
+            new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'acceptance'))) {

@@ -111,7 +111,7 @@ class Slide extends ApiEntity implements GroupableEntity {
   private $mediaType;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="logoSlides")
+   * @ORM\ManyToOne(targetEntity="Os2Display\MediaBundle\Entity\Media", inversedBy="logoSlides")
    * @ORM\JoinColumn(name="logo_id", referencedColumnName="id")
    * @Groups({"api", "api-bulk"})
    */

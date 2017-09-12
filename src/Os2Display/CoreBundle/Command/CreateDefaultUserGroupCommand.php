@@ -75,7 +75,7 @@ class CreateDefaultUserGroupCommand extends ContainerAwareCommand
             'Os2DisplayCoreBundle:Channel',
             'Os2DisplayCoreBundle:Slide',
             'Os2DisplayCoreBundle:Screen',
-            'ApplicationSonataMediaBundle:Media'
+            'Os2DisplayMediaBundle:Media'
         ];
         foreach ($types as $type) {
             $entities = $em->getRepository($type)->findAll();

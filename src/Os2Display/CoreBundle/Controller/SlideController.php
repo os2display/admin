@@ -145,7 +145,7 @@ class SlideController extends Controller {
     }
 
     // Add to media.
-    $mediaRepository = $doctrine->getRepository('ApplicationSonataMediaBundle:Media');
+    $mediaRepository = $doctrine->getRepository('Os2DisplayMediaBundle:Media');
     $mediaOrderRepository = $doctrine->getRepository('Os2DisplayCoreBundle:MediaOrder');
 
     $mediaIndex = 0;

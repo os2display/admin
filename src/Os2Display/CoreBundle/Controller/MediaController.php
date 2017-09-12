@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Application\Sonata\MediaBundle\Entity\Media;
+use Os2Display\MediaBundle\Entity\Media;
 use JMS\Serializer\SerializationContext;
 
 /**

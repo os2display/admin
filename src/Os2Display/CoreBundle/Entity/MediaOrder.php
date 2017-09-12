@@ -8,7 +8,7 @@ namespace Os2Display\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
-use Application\Sonata\MediaBundle\Entity\Media as Media;
+use Os2Display\MediaBundle\Entity\Media as Media;
 
 
 /**
@@ -38,7 +38,7 @@ class MediaOrder {
   private $slide;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="mediaOrders")
+   * @ORM\ManyToOne(targetEntity="Os2Display\MediaBundle\Entity\Media", inversedBy="mediaOrders")
    * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
    */
   private $media;
@@ -98,10 +98,10 @@ class MediaOrder {
   /**
    * Set media
    *
-   * @param null|\Application\Sonata\MediaBundle\Entity\Media $media
+   * @param null|\Os2Display\MediaBundle\Entity\Media $media
    * @return MediaOrder
    */
-  public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = NULL) {
+  public function setMedia(\Os2Display\MediaBundle\Entity\Media $media = NULL) {
     $this->media = $media;
 
     return $this;
@@ -110,7 +110,7 @@ class MediaOrder {
   /**
    * Get media
    *
-   * @return null|\Application\Sonata\MediaBundle\Entity\Media
+   * @return null|\Os2Display\MediaBundle\Entity\Media
    */
   public function getMedia() {
     return $this->media;
