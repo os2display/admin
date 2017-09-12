@@ -114,11 +114,9 @@ Feature: Channel groups
     When I send a "GET" request to "/api/channel/1"
     Then the response status code should be 200
     And the response should be in JSON
-    And print last JSON response
     And the JSON node "groups" should have 2 elements
-    # @TODO: Fix this test. We cannot assume order of elements.
-    # And the JSON node "groups[0].id" should be equal to 4
-    # And the JSON node "groups[1].id" should be equal to 2
+    And the JSON node "groups" should contain 1 element with "id" equal to 2
+    And the JSON node "groups" should contain 1 element with "id" equal to 4
 
   @dropSchema
   Scenario: Drop schema

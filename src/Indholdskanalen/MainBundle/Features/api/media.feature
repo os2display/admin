@@ -113,12 +113,10 @@ Feature: admin
     And the response should be in JSON
     # Admin can add to all groups
     And the JSON node "groups" should have 4 elements
-    And print last JSON response
-    # @TODO: Fix this test. We cannot assume order of elements.
-    #    And the JSON node "groups[0].id" should be equal to 2
-    #    And the JSON node "groups[1].id" should be equal to 3
-    #    And the JSON node "groups[2].id" should be equal to 1
-    #    And the JSON node "groups[3].id" should be equal to 4
+    And the JSON node "groups" should contain 1 element with "id" equal to 1
+    And the JSON node "groups" should contain 1 element with "id" equal to 2
+    And the JSON node "groups" should contain 1 element with "id" equal to 3
+    And the JSON node "groups" should contain 1 element with "id" equal to 4
 
   @dropSchema
   Scenario: Drop schema
