@@ -52,10 +52,30 @@ class MainController extends Controller
         $externalBootstrap = $this->container->hasParameter('external_bootstrap') ?
             $this->container->getParameter('external_bootstrap') : [];
 
-        $mergedAssets = array_merge($this->container->getParameter('assets'), $externalAssets);
-        $mergedApps = array_merge($this->container->getParameter('apps'), $externalApps);
-        $mergedBootstrap = array_merge($this->container->getParameter('bootstrap'), $externalBootstrap);
-        $mergedModules = array_merge($this->container->getParameter('modules'), $externalModules);
+        $mergedAssets = array_merge(
+            $this->container->hasParameter('assets') ?
+                $this->container->getParameter('assets') :
+                [],
+            $externalAssets
+        );
+        $mergedApps = array_merge(
+            $this->container->hasParameter('apps') ?
+                $this->container->getParameter('apps') :
+                [],
+            $externalApps
+        );
+        $mergedBootstrap = array_merge(
+            $this->container->hasParameter('bootstrap') ?
+                $this->container->getParameter('bootstrap') :
+                [],
+            $externalBootstrap
+        );
+        $mergedModules = array_merge(
+            $this->container->hasParameter('modules') ?
+                $this->container->getParameter('modules') :
+                [],
+            $externalModules
+        );
 
         return $this->render(
             'Os2DisplayAdminBundle:Main:index.html.twig',
