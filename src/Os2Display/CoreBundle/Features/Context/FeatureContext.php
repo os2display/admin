@@ -319,6 +319,22 @@ class FeatureContext extends BaseContext implements Context, KernelAwareContext 
     }, sprintf('The node "%s" should not contain value "%s"', $node, $value));
   }
 
+  /**
+   * Checks that a list of elements contains a specific number of nodes matching a criterion.
+   *
+   * @Then the JSON node :node should contain :count element(s) with :propertyPath equal to :value
+   */
+  public function theJsonNodeShouldContainElementWithEqualTo($node, $count, $propertyPath, $value) {
+    $json = $this->getJson();
+    $items = $this->inspector->evaluate($json, $node);
+    $this->assertTrue(is_array($items), sprintf('The node "%s" should be an array', $node));
+    $matches = array_filter($items, function ($item) use ($propertyPath, $value) {
+      $accessor = $this->container->get('property_accessor');
+      return $accessor->isReadable($item, $propertyPath) && $accessor->getValue($item, $propertyPath) === $value;
+    });
+    $this->assertEquals($count, count($matches));
+  }
+
   protected function getJson() {
     return new Json($this->httpCallResultPool->getResult()->getValue());
   }

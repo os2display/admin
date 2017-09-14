@@ -25,7 +25,7 @@ Feature: admin
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "email" should be equal to "user87@example.com"
-    And the JSON node "username" should be equal to "user87@example.com"
+    And the JSON node "username" should be equal to "user1@example.com"
 
   Scenario: Update user with conflict
     When I send a "PUT" request to "/api/user/2" with body:

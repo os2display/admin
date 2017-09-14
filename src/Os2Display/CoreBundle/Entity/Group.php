@@ -17,169 +17,183 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="ik_group")
  */
-class Group extends ApiEntity {
-  /**
-   * @ORM\Id
-   * @ORM\Column(type="integer")
-   * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "search", "api-bulk"})
-   */
-  protected $id;
+class Group extends ApiEntity
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"api", "search", "api-bulk"})
+     */
+    protected $id;
 
-  /**
-   * @Assert\NotBlank()
-   * @ORM\Column(name="title", type="string", nullable=false)
-   * @Groups({"api", "api-bulk"})
-   */
-  protected $title;
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(name="title", type="string", nullable=false)
+     * @Groups({"api", "api-bulk"})
+     */
+    protected $title;
 
-  /**
-   * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="group", orphanRemoval=true)
-   */
-  protected $userGroups;
+    /**
+     * @ORM\OneToMany(targetEntity="UserGroup", mappedBy="group", orphanRemoval=true)
+     */
+    protected $userGroups;
 
-  /**
-   * @var array
-   * @Groups({"api"})
-   */
-  protected $users;
+    /**
+     * @var array
+     * @Groups({"api"})
+     */
+    protected $users;
 
-  /**
-   * @var array
-   * @Groups({"api"})
-   */
-  protected $roles;
+    /**
+     * @var array
+     * @Groups({"api"})
+     */
+    protected $roles;
 
-  /**
-   * @ORM\OneToMany(targetEntity="Os2Display\CoreBundle\Entity\Grouping", mappedBy="group", fetch="EAGER")
-  */
-  protected $grouping;
+    /**
+     * @ORM\OneToMany(targetEntity="Os2Display\CoreBundle\Entity\Grouping", mappedBy="group")
+     */
+    protected $grouping;
 
-  /**
-   * @VirtualProperty()
-   * @SerializedName("displayName")
-   * @Groups({"api"})
-   */
-  public function __toString() {
-    if ($this->getTitle()) {
-      return $this->getTitle();
-    }
-
-    return 'group#' . $this->getId();
-  }
-
-  /**
-   * Group constructor.
-   */
-  public function __construct() {
-    $this->userGroups = new ArrayCollection();
-    $this->roles = [];
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getId() {
-    return $this->id;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getTitle() {
-    return $this->title;
-  }
-
-  /**
-   * @param mixed $title
-   */
-  public function setTitle($title) {
-    $this->title = $title;
-  }
-
-  /**
-   * Add userGroup
-   *
-   * @param \Os2Display\CoreBundle\Entity\UserGroup $userGroup
-   * @return Group
-   */
-  public function addUserGroup(UserGroup $userGroup) {
-    $this->userGroups[] = $userGroup;
-
-    return $this;
-  }
-
-  /**
-   * Remove userGroup
-   *
-   * @param \Os2Display\CoreBundle\Entity\UserGroup $userGroup
-   * @return Group
-   */
-  public function removeUserGroup(UserGroup $userGroup) {
-    $this->userGroups->removeElement($userGroup);
-
-    return $this;
-  }
-
-  /**
-   * Get userGroup
-   *
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getUserGroups() {
-    return $this->userGroups;
-  }
-
-  public function buildUsers($force = FALSE) {
-    if ($this->users === NULL || $force) {
-      $users = [];
-      $userGroups = $this->getUserGroups();
-      foreach ($userGroups as $userGroup) {
-        $user = $userGroup->getUser();
-        if (!isset($users[$user->getId()])) {
-          $users[$user->getId()] = $user;
+    /**
+     * @VirtualProperty()
+     * @SerializedName("displayName")
+     * @Groups({"api"})
+     */
+    public function __toString()
+    {
+        if ($this->getTitle()) {
+            return $this->getTitle();
         }
-      }
 
-      $users = array_values($users);
-      foreach ($users as $user) {
-        $user->buildGroupRoles($this);
-      }
-      $this->users = $users;
+        return 'group#' . $this->getId();
     }
 
-    return $this;
-  }
-
-  public function getUsers() {
-    return $this->users;
-  }
-
-  /**
-   * @param string $role
-   *
-   * @return Group
-   */
-  public function addRole($role) {
-    if ($this->roles === NULL) {
-      $this->roles = [];
-    }
-    if (!$this->hasRole($role)) {
-      $this->roles[] = strtoupper($role);
+    /**
+     * Group constructor.
+     */
+    public function __construct()
+    {
+        $this->userGroups = new ArrayCollection();
+        $this->roles = [];
     }
 
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * @param string $role
-   */
-  public function hasRole($role) {
-    return in_array(strtoupper($role), $this->roles, TRUE);
-  }
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
-  public function getRoles() {
-    return $this->roles;
-  }
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Add userGroup
+     *
+     * @param \Os2Display\CoreBundle\Entity\UserGroup $userGroup
+     * @return Group
+     */
+    public function addUserGroup(UserGroup $userGroup)
+    {
+        $this->userGroups[] = $userGroup;
+
+        return $this;
+    }
+
+    /**
+     * Remove userGroup
+     *
+     * @param \Os2Display\CoreBundle\Entity\UserGroup $userGroup
+     * @return Group
+     */
+    public function removeUserGroup(UserGroup $userGroup)
+    {
+        $this->userGroups->removeElement($userGroup);
+
+        return $this;
+    }
+
+    /**
+     * Get userGroup
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserGroups()
+    {
+        return $this->userGroups;
+    }
+
+    public function buildUsers($force = false)
+    {
+        if ($this->users === null || $force) {
+            $users = [];
+            $userGroups = $this->getUserGroups();
+            foreach ($userGroups as $userGroup) {
+                $user = $userGroup->getUser();
+                if (!isset($users[$user->getId()])) {
+                    $users[$user->getId()] = $user;
+                }
+            }
+
+            $users = array_values($users);
+            foreach ($users as $user) {
+                $user->buildGroupRoles($this);
+            }
+            $this->users = $users;
+        }
+
+        return $this;
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param string $role
+     *
+     * @return Group
+     */
+    public function addRole($role)
+    {
+        if ($this->roles === null) {
+            $this->roles = [];
+        }
+        if (!$this->hasRole($role)) {
+            $this->roles[] = strtoupper($role);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->roles, true);
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
 
 }
