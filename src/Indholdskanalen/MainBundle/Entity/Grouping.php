@@ -18,7 +18,7 @@ class Grouping {
 
   /**
    * @var \Indholdskanalen\MainBundle\Entity\Group
-   * @ORM\ManyToOne(targetEntity="Indholdskanalen\MainBundle\Entity\Group")
+   * @ORM\ManyToOne(targetEntity="Indholdskanalen\MainBundle\Entity\Group", inversedBy="grouping")
    */
   protected $group;
 

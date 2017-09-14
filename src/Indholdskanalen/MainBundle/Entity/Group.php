@@ -51,7 +51,7 @@ class Group extends ApiEntity {
   protected $roles;
 
   /**
-   * @ORM\OneToMany(targetEntity="Indholdskanalen\MainBundle\Entity\Grouping", mappedBy="group", fetch="EAGER")
+  * @ORM\OneToMany(targetEntity="Indholdskanalen\MainBundle\Entity\Grouping", mappedBy="group")
   */
   protected $grouping;
 
