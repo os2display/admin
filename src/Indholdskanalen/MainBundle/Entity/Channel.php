@@ -32,7 +32,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "api-bulk", "search", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "channel", "slide"})
    */
   private $id;
 
@@ -40,7 +40,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * Title.
    *
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide"})
    */
   private $title;
 
@@ -48,7 +48,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * Creation timestamp.
    *
    * @ORM\Column(name="created_at", type="integer", nullable=false)
-   * @Groups({"api", "api-bulk", "search", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "channel", "slide"})
    */
   private $createdAt;
 
@@ -341,7 +341,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    *
    * @VirtualProperty
    * @SerializedName("slides")
-   * @Groups({"api", "channel"})
+   * @Groups({"api", "channel", "slide"})
    */
   public function getAllSlides() {
     $result = new ArrayCollection();

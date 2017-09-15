@@ -240,7 +240,7 @@ class SlideController extends Controller {
 
       $response->headers->set('Content-Type', 'application/json');
       $jsonContent = $serializer->serialize($slide, 'json', SerializationContext::create()
-        ->setGroups(array('api'))
+        ->setGroups(array('slide'))
         ->enableMaxDepthChecks());
       $response->setContent($jsonContent);
     }

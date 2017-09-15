@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\Groups;
 trait Groupable {
   /**
    * @var ArrayCollection
-   * @Groups({"api", "search", "api-bulk", "channel"})
+   * @Groups({"api", "search", "api-bulk", "channel", "slide", "media", "screen"})
    */
   protected $groups;
 

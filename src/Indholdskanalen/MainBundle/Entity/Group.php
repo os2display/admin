@@ -22,14 +22,14 @@ class Group extends ApiEntity {
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "search", "api-bulk", "channel"})
+   * @Groups({"api", "search", "api-bulk", "channel", "slide", "media", "screen"})
    */
   protected $id;
 
   /**
    * @Assert\NotBlank()
    * @ORM\Column(name="title", type="string", nullable=false)
-   * @Groups({"api", "api-bulk", "channel"})
+   * @Groups({"api", "api-bulk", "channel", "slide", "media", "screen"})
    */
   protected $title;
 
@@ -58,7 +58,7 @@ class Group extends ApiEntity {
   /**
    * @VirtualProperty()
    * @SerializedName("displayName")
-   * @Groups({"api"})
+   * @Groups({"api", "channel", "slide", "media", "screen"})
    */
   public function __toString() {
     if ($this->getTitle()) {

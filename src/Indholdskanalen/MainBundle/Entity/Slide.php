@@ -28,25 +28,25 @@ class Slide extends ApiEntity implements GroupableEntity {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide"})
    */
   private $id;
 
   /**
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide"})
    */
   private $title;
 
   /**
    * @ORM\Column(name="orientation", type="string", nullable=true)
-   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide"})
    */
   private $orientation;
 
   /**
    * @ORM\Column(name="template", type="string", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
    */
   private $template;
 
@@ -58,37 +58,37 @@ class Slide extends ApiEntity implements GroupableEntity {
 
   /**
    * @ORM\Column(name="options", type="json_array", nullable=true)
-   * @Groups({"api", "api-bulk", "sharing", "middleware", "channel"})
+   * @Groups({"api", "api-bulk", "sharing", "middleware", "channel", "slide"})
    */
   private $options;
 
   /**
    * @ORM\Column(name="user", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "search"})
+   * @Groups({"api", "api-bulk", "search", "slide"})
    */
   private $user;
 
   /**
    * @ORM\Column(name="duration", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
    */
   private $duration;
 
   /**
    * @ORM\Column(name="schedule_from", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
    */
   private $scheduleFrom;
 
   /**
    * @ORM\Column(name="schedule_to", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
    */
   private $scheduleTo;
 
   /**
    * @ORM\Column(name="published", type="boolean", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
    */
   private $published;
 
@@ -106,14 +106,14 @@ class Slide extends ApiEntity implements GroupableEntity {
 
   /**
    * @ORM\Column(name="media_type", type="string", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
    */
   private $mediaType;
 
   /**
    * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", inversedBy="logoSlides")
    * @ORM\JoinColumn(name="logo_id", referencedColumnName="id")
-   * @Groups({"api", "api-bulk", "channel"})
+   * @Groups({"api", "api-bulk", "channel", "slide"})
    */
   private $logo;
 
@@ -124,7 +124,7 @@ class Slide extends ApiEntity implements GroupableEntity {
 
   /**
    * @ORM\Column(name="slide_type", type="string", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
    */
   private $slideType;
 
@@ -507,7 +507,7 @@ class Slide extends ApiEntity implements GroupableEntity {
    *
    * @VirtualProperty
    * @SerializedName("media")
-   * @Groups({"api", "api-bulk", "channel"})
+   * @Groups({"api", "api-bulk", "channel", "slide"})
    */
   public function getMedia() {
     $result = new ArrayCollection();
@@ -560,7 +560,7 @@ class Slide extends ApiEntity implements GroupableEntity {
    *
    * @VirtualProperty
    * @SerializedName("channels")
-   * @Groups({"api"})
+   * @Groups({"api", "slide"})
    * @MaxDepth(6)
    */
   public function getChannels() {

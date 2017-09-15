@@ -11,7 +11,7 @@
     <property name="mediaType" type="string" expose="true" since-version="1.0" groups="api,search,channel" />
     <property name="user" type="integer" expose="true" since-version="1.0" groups="api,search" />
     <property name="groups" type="array" expose="true" since-version="1.0" groups="api,search" />
-    <virtual-property name="providerMetadata"  type="array"   expose="true" since-version="1.0" groups="sonata_api_read,sonata_search, api, api-bulk, middleware, sharing, channel" method="getProviderMetadata" />
+    <virtual-property name="providerMetadata"  type="array"   expose="true" since-version="1.0" groups="sonata_api_read,sonata_search,api,api-bulk,middleware,sharing,channel,slide" method="getProviderMetadata" />
     <virtual-property name="isInUse"  type="boolean"   expose="true" since-version="1.0" groups="api" method="getMediaIsInUse" />
   </class>
 </serializer>
