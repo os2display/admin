@@ -9,12 +9,12 @@ angular.module('ikApp').controller('BaseEntityController', [
     'use strict';
 
     $scope.baseUnavailableGroups = [];
-    $scope.userGroups = userService.getCurrentUser().userGroups;
+    $scope.userGroups = userService.getCurrentUser().groups;
 
-    $scope.$watchGroup([entityType, 'userGroups'], function (newValues) {
-      if (newValues && newValues[0] && newValues[0].hasOwnProperty('groups') && newValues[1]) {
+    $scope.$watch(entityType, function (newValue) {
+      if (newValue !== null && newValue !== undefined && newValue.hasOwnProperty('groups')) {
         $timeout(function () {
-          $scope.baseUnavailableGroups = $scope[entityType].groups.reduce(function (result, element) {
+          $scope.baseUnavailableGroups = newValue.groups.reduce(function (result, element) {
             if ($scope.userGroups.findIndex(function (el) {
                 return el.id === element.id;
               }) === -1) {
