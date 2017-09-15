@@ -40,7 +40,7 @@ angular.module('ikApp').controller('BaseSearchController', [
     };
 
     // Get current user groups.
-    $scope.userGroups = $scope.currentUser.groups;
+    $scope.userGroups = angular.copy($scope.currentUser.groups);
 
     /**
      * Build search filter based on selected groups.
