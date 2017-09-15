@@ -9,15 +9,7 @@ angular.module('ikApp').controller('BaseEntityController', [
     'use strict';
 
     $scope.baseUnavailableGroups = [];
-    $scope.userGroups = null;
-
-    // Get current user groups.
-    var cleanupGetCurrentUserGroups = busService.$on('BaseEntityController.getCurrentUserGroups', function (event, groups) {
-      $timeout(function () {
-        $scope.userGroups = groups;
-      });
-    });
-    userService.getCurrentUserGroups('BaseEntityController.getCurrentUserGroups');
+    $scope.userGroups = userService.getCurrentUser().userGroups;
 
     $scope.$watchGroup([entityType, 'userGroups'], function (newValues) {
       if (newValues && newValues[0] && newValues[0].hasOwnProperty('groups') && newValues[1]) {
@@ -32,10 +24,6 @@ angular.module('ikApp').controller('BaseEntityController', [
           }, []);
         });
       }
-    });
-
-    $scope.$on('destroy', function () {
-      cleanupGetCurrentUserGroups();
     });
   }
 ]);

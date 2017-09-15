@@ -40,24 +40,7 @@ angular.module('ikApp').controller('BaseSearchController', [
     };
 
     // Get current user groups.
-    $scope.userGroups = [];
-    var cleanupGetCurrentUserGroups = busService.$on('channelController.getCurrentUserGroups', function (event, result) {
-      if (result.error) {
-        $scope.setSearchFilters();
-        return;
-      }
-
-      $scope.$apply(
-        function () {
-          $scope.userGroups = result;
-
-          // Updated search filters (build "mine" filter with user id). It
-          // will trigger an search update.
-          $scope.setSearchFilters();
-        }
-      );
-    });
-    userService.getCurrentUserGroups('channelController.getCurrentUserGroups');
+    $scope.userGroups = $scope.currentUser.groups;
 
     /**
      * Build search filter based on selected groups.
@@ -172,12 +155,5 @@ angular.module('ikApp').controller('BaseSearchController', [
         $scope.setSearchFilters();
       }
     };
-
-    /**
-     * Clean up registered listeners.
-     */
-    $scope.$on('$destroy', function () {
-      cleanupGetCurrentUserGroups();
-    });
   }
 ]);
