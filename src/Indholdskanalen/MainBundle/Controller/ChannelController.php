@@ -246,7 +246,7 @@ class ChannelController extends Controller {
     if ($channel) {
       $response->headers->set('Content-Type', 'application/json');
       $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()
-          ->setGroups(array('api'))
+          ->setGroups(array('channel'))
           ->enableMaxDepthChecks());
       $response->setContent($json_content);
     }

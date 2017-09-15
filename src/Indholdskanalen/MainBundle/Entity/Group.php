@@ -22,14 +22,14 @@ class Group extends ApiEntity {
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "search", "api-bulk"})
+   * @Groups({"api", "search", "api-bulk", "channel"})
    */
   protected $id;
 
   /**
    * @Assert\NotBlank()
    * @ORM\Column(name="title", type="string", nullable=false)
-   * @Groups({"api", "api-bulk"})
+   * @Groups({"api", "api-bulk", "channel"})
    */
   protected $title;
 

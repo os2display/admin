@@ -32,7 +32,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
-   * @Groups({"api", "api-bulk", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "channel"})
    */
   private $id;
 
@@ -40,7 +40,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * Title.
    *
    * @ORM\Column(name="title", type="text", nullable=false)
-   * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel"})
    */
   private $title;
 
@@ -48,7 +48,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * Creation timestamp.
    *
    * @ORM\Column(name="created_at", type="integer", nullable=false)
-   * @Groups({"api", "api-bulk", "search", "sharing"})
+   * @Groups({"api", "api-bulk", "search", "sharing", "channel"})
    */
   private $createdAt;
 
@@ -73,7 +73,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * User that created the channel.
    *
    * @ORM\Column(name="user", type="integer", nullable=true)
-   * @Groups({"api", "search"})
+   * @Groups({"api", "search", "channel"})
    */
   private $user;
 
@@ -88,7 +88,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * Indexes the channel are shared in?
    *
    * @ORM\ManyToMany(targetEntity="SharingIndex", mappedBy="channels")
-   * @Groups({"api"})
+   * @Groups({"api", "channel"})
    */
   private $sharingIndexes;
 
@@ -96,7 +96,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    * Unique id across all installations connected to the sharing service.
    *
    * @ORM\Column(name="unique_id", type="string", nullable=true)
-   * @Groups({"sharing", "api"})
+   * @Groups({"sharing", "api", "channel"})
    */
   private $uniqueId;
 
@@ -120,37 +120,37 @@ class Channel extends ApiEntity implements GroupableEntity {
 
   /**
    * @ORM\Column(name="publish_from", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
    */
   private $publishFrom;
 
   /**
    * @ORM\Column(name="publish_to", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
    */
   private $publishTo;
 
   /**
    * @ORM\Column(name="schedule_repeat", type="boolean", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
    */
   private $scheduleRepeat;
 
   /**
    * @ORM\Column(name="schedule_repeat_from", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
    */
   private $scheduleRepeatFrom;
 
   /**
    * @ORM\Column(name="schedule_repeat_to", type="integer", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
    */
   private $scheduleRepeatTo;
 
   /**
    * @ORM\Column(name="schedule_repeat_days", type="json_array", nullable=true)
-   * @Groups({"api", "api-bulk", "middleware", "sharing"})
+   * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
    */
   private $scheduleRepeatDays;
 
@@ -341,7 +341,7 @@ class Channel extends ApiEntity implements GroupableEntity {
    *
    * @VirtualProperty
    * @SerializedName("slides")
-   * @Groups({"api"})
+   * @Groups({"api", "channel"})
    */
   public function getAllSlides() {
     $result = new ArrayCollection();
