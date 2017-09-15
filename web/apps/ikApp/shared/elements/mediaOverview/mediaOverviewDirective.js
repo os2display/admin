@@ -168,6 +168,8 @@ angular.module('ikApp').directive('ikMediaOverview', [
 
           event.preventDefault();
         });
+
+        $scope.setSearchFilters();
       },
       link: function (scope, element, attrs) {
         attrs.$observe('ikMediaType', function (val) {

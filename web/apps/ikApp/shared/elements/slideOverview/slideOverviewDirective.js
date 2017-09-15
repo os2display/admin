@@ -187,6 +187,8 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
 
           return text;
         };
+
+        $scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/slideOverview/slide-overview-directive.html?' + window.config.version
     };

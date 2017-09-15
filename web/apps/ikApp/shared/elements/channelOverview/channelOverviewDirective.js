@@ -193,6 +193,8 @@ angular.module('ikApp').directive('ikChannelOverview', [
 
           return text;
         };
+
+        $scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/channelOverview/channel-overview-directive.html?' + window.config.version
     };
