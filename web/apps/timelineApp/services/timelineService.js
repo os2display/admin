@@ -33,7 +33,7 @@ angular.module('timelineApp')
             //        that uses the busService.
             // @TODO: Decide on time-line data structure, to be shared between
             //        screen and channel time-lines.
-            $http.get('/api/bulk/channel/api' + queryString).then(
+            $http.get('/api/bulk/channel/timeline-channel' + queryString).then(
               function (response) {
                 var data = [];
 
@@ -84,7 +84,7 @@ angular.module('timelineApp')
             //        that uses the busService.
             // @TODO: Decide on time-line data structure, to be shared between
             //        screen and channel time-lines.
-            $http.get('/api/bulk/screen/api' + queryString).then(
+            $http.get('/api/bulk/screen/timeline-screen' + queryString).then(
               function (response) {
                 var data = [];
 

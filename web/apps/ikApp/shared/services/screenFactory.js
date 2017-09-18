@@ -77,7 +77,7 @@ angular.module('ikApp').factory('screenFactory', ['$http', '$q', 'busService',
       var queryString = "?ids[]=" + (ids.join('&ids[]='));
 
       // Load bulk.
-      $http.get('/api/bulk/screen/api' + queryString)
+      $http.get('/api/bulk/screen/api-bulk' + queryString)
         .success(function (data, status) {
           defer.resolve(data);
         })
