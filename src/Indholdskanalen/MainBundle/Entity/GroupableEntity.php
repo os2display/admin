@@ -2,11 +2,11 @@
 
 namespace Indholdskanalen\MainBundle\Entity;
 
-interface GroupableEntity {
+interface GroupableEntity
+{
+    public function getGroupableType();
 
-  public function getGroupableType();
+    public function getGroupableId();
 
-  public function getGroupableId();
-
-  public function getGroups();
+    public function getGroups();
 }

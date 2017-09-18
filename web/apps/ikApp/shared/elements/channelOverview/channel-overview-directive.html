@@ -70,6 +70,9 @@
       </div>
       <span class="overview--channel-label">{{channel.title}}</span> <span class="overview--slide-date">- {{channel.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>
+    <div class="overview--section" data-ng-show="!loading" ng-if="channels.length === 0">
+      Ingen resultater.
+    </div>
   </div>
   <ik-pager></ik-pager>
 </section>
