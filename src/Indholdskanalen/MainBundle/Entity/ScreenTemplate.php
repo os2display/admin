@@ -22,13 +22,13 @@ class ScreenTemplate
     /**
      * @ORM\Column(type="string")
      * @ORM\Id
-     * @Groups({"api", "middleware"})
+     * @Groups({"api", "middleware", "screen"})
      */
     protected $id;
 
     /**
      * @ORM\Column(name="name", type="string")
-     * @Groups({"api"})
+     * @Groups({"api", "screen"})
      */
     protected $name;
 
@@ -63,12 +63,13 @@ class ScreenTemplate
 
     /**
      * @ORM\Column(name="tools", type="string")
+     * @Groups({"screen"})
      */
     protected $tools;
 
     /**
      * @ORM\Column(name="orientation", type="string")
-     * @Groups({"api", "api-bulk"})
+     * @Groups({"api", "api-bulk", "screen"})
      */
     protected $orientation;
 
@@ -99,7 +100,7 @@ class ScreenTemplate
      *
      * @VirtualProperty
      * @SerializedName("paths")
-     * @Groups({"api"})
+     * @Groups({"api", "screen"})
      */
     public function getPaths()
     {

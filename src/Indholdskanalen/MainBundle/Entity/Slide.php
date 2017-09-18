@@ -47,7 +47,7 @@ class Slide extends ApiEntity implements GroupableEntity
 
     /**
      * @ORM\Column(name="template", type="string", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide", "screen"})
      */
     private $template;
 
@@ -59,7 +59,7 @@ class Slide extends ApiEntity implements GroupableEntity
 
     /**
      * @ORM\Column(name="options", type="json_array", nullable=true)
-     * @Groups({"api", "api-bulk", "sharing", "middleware", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "sharing", "middleware", "channel", "slide", "screen"})
      */
     private $options;
 
@@ -107,7 +107,7 @@ class Slide extends ApiEntity implements GroupableEntity
 
     /**
      * @ORM\Column(name="media_type", type="string", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide", "screen"})
      */
     private $mediaType;
 
@@ -542,7 +542,7 @@ class Slide extends ApiEntity implements GroupableEntity
      *
      * @VirtualProperty
      * @SerializedName("media")
-     * @Groups({"api", "api-bulk", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "channel", "slide", "screen"})
      */
     public function getMedia()
     {

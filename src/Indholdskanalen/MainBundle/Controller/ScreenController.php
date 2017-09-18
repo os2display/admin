@@ -253,7 +253,7 @@ class ScreenController extends Controller
             $serializer = $this->get('jms_serializer');
             $response->headers->set('Content-Type', 'application/json');
             $jsonContent = $serializer->serialize($screen, 'json', SerializationContext::create()
-                ->setGroups(array('api'))
+                ->setGroups(array('screen'))
                 ->enableMaxDepthChecks());
             $response->setContent($jsonContent);
         } else {

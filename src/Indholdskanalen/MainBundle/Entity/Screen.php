@@ -27,13 +27,13 @@ class Screen extends ApiEntity implements GroupableEntity
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"api", "api-bulk", "search"})
+     * @Groups({"api", "api-bulk", "search", "screen"})
      */
     private $id;
 
     /**
      * @ORM\Column(name="title", type="text", nullable=false)
-     * @Groups({"api", "api-bulk", "search"})
+     * @Groups({"api", "api-bulk", "search", "screen"})
      */
     private $title;
 
@@ -51,14 +51,14 @@ class Screen extends ApiEntity implements GroupableEntity
 
     /**
      * @ORM\Column(name="activation_code", type="integer")
-     * @Groups({"api", "api-bulk"})
+     * @Groups({"screen"})
      */
     protected $activationCode;
 
     /**
      * @ORM\OneToMany(targetEntity="ChannelScreenRegion", mappedBy="screen", orphanRemoval=true)
      * @ORM\OrderBy({"sortOrder" = "ASC"})
-     * @Groups({"api"})
+     * @Groups({"api", "screen"})
      * @MaxDepth(8)
      */
     private $channelScreenRegions;
@@ -76,19 +76,19 @@ class Screen extends ApiEntity implements GroupableEntity
 
     /**
      * @ORM\ManyToOne(targetEntity="ScreenTemplate", inversedBy="screens")
-     * @Groups({"api", "api-bulk"})
+     * @Groups({"api", "api-bulk", "screen"})
      */
     private $template;
 
     /**
      * @ORM\Column(name="description", type="text", nullable=false)
-     * @Groups({"api", "api-bulk", "search"})
+     * @Groups({"api", "api-bulk", "search", "screen"})
      */
     private $description;
 
     /**
      * @ORM\Column(name="options", type="json_array", nullable=true)
-     * @Groups({"api", "api-bulk", "search", "sharing", "middleware"})
+     * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "screen"})
      * @JMS\Type("array<string, string>")
      */
     private $options;
