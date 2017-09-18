@@ -33,7 +33,7 @@ class Channel extends ApiEntity implements GroupableEntity
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"api", "api-bulk", "search", "sharing", "channel", "slide", "screen"})
+     * @Groups({"api", "api-bulk", "search", "sharing", "channel", "slide", "screen", "timeline-screen", "timeline-channel"})
      */
     private $id;
 
@@ -41,7 +41,7 @@ class Channel extends ApiEntity implements GroupableEntity
      * Title.
      *
      * @ORM\Column(name="title", type="text", nullable=false)
-     * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide", "screen"})
+     * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide", "screen", "timeline-screen", "timeline-channel"})
      */
     private $title;
 
@@ -121,37 +121,37 @@ class Channel extends ApiEntity implements GroupableEntity
 
     /**
      * @ORM\Column(name="publish_from", type="integer", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "timeline-screen"})
      */
     private $publishFrom;
 
     /**
      * @ORM\Column(name="publish_to", type="integer", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "timeline-screen"})
      */
     private $publishTo;
 
     /**
      * @ORM\Column(name="schedule_repeat", type="boolean", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "timeline-screen"})
      */
     private $scheduleRepeat;
 
     /**
      * @ORM\Column(name="schedule_repeat_from", type="integer", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "timeline-screen"})
      */
     private $scheduleRepeatFrom;
 
     /**
      * @ORM\Column(name="schedule_repeat_to", type="integer", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "timeline-screen"})
      */
     private $scheduleRepeatTo;
 
     /**
      * @ORM\Column(name="schedule_repeat_days", type="json_array", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "timeline-screen"})
      */
     private $scheduleRepeatDays;
 
@@ -359,7 +359,7 @@ class Channel extends ApiEntity implements GroupableEntity
      *
      * @VirtualProperty
      * @SerializedName("slides")
-     * @Groups({"api", "channel", "slide", "screen"})
+     * @Groups({"api", "channel", "slide", "screen", "timeline-channel"})
      */
     public function getAllSlides()
     {

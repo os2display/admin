@@ -29,13 +29,13 @@ class Slide extends ApiEntity implements GroupableEntity
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide", "timeline-channel"})
      */
     private $id;
 
     /**
      * @ORM\Column(name="title", type="text", nullable=false)
-     * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "search", "sharing", "middleware", "channel", "slide", "timeline-channel"})
      */
     private $title;
 
@@ -77,19 +77,19 @@ class Slide extends ApiEntity implements GroupableEntity
 
     /**
      * @ORM\Column(name="schedule_from", type="integer", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide", "timeline-channel"})
      */
     private $scheduleFrom;
 
     /**
      * @ORM\Column(name="schedule_to", type="integer", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide", "timeline-channel"})
      */
     private $scheduleTo;
 
     /**
      * @ORM\Column(name="published", type="boolean", nullable=true)
-     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide"})
+     * @Groups({"api", "api-bulk", "middleware", "sharing", "channel", "slide", "timeline-channel"})
      */
     private $published;
 

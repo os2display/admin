@@ -27,13 +27,13 @@ class Screen extends ApiEntity implements GroupableEntity
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"api", "api-bulk", "search", "screen"})
+     * @Groups({"api", "api-bulk", "search", "screen", "timeline-screen"})
      */
     private $id;
 
     /**
      * @ORM\Column(name="title", type="text", nullable=false)
-     * @Groups({"api", "api-bulk", "search", "screen"})
+     * @Groups({"api", "api-bulk", "search", "screen", "timeline-screen"})
      */
     private $title;
 
@@ -58,7 +58,7 @@ class Screen extends ApiEntity implements GroupableEntity
     /**
      * @ORM\OneToMany(targetEntity="ChannelScreenRegion", mappedBy="screen", orphanRemoval=true)
      * @ORM\OrderBy({"sortOrder" = "ASC"})
-     * @Groups({"api", "screen"})
+     * @Groups({"api", "screen", "timeline-screen"})
      * @MaxDepth(8)
      */
     private $channelScreenRegions;

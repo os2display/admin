@@ -23,7 +23,7 @@ class ChannelScreenRegion
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"api", "screen"})
+     * @Groups({"api", "screen", "timeline-screen"})
      */
     protected $id;
 
@@ -31,7 +31,7 @@ class ChannelScreenRegion
      * Ordering number.
      *
      * @ORM\Column(name="sort_order", type="integer")
-     * @Groups({"api", "screen"})
+     * @Groups({"api", "screen", "timeline-screen"})
      */
     protected $sortOrder;
 
@@ -39,7 +39,7 @@ class ChannelScreenRegion
      * Region in screen to include channel in.
      *
      * @ORM\Column(name="region", type="integer")
-     * @Groups({"api", "screen"})
+     * @Groups({"api", "screen", "timeline-screen"})
      */
     protected $region;
 
@@ -48,7 +48,7 @@ class ChannelScreenRegion
      *
      * @ORM\ManyToOne(targetEntity="Screen", inversedBy="channelScreenRegions")
      * @ORM\JoinColumn(name="screen_id", referencedColumnName="id")
-     * @Groups({"api", "screen"})
+     * @Groups({"api", "screen", "timeline-screen"})
      */
     protected $screen;
 
@@ -57,7 +57,7 @@ class ChannelScreenRegion
      *
      * @ORM\ManyToOne(targetEntity="Channel", inversedBy="channelScreenRegions")
      * @ORM\JoinColumn(name="channel_id", referencedColumnName="id", nullable=true)
-     * @Groups({"api", "screen"})
+     * @Groups({"api", "screen", "timeline-screen"})
      */
     protected $channel;
 
@@ -66,7 +66,7 @@ class ChannelScreenRegion
      *
      * @ORM\ManyToOne(targetEntity="SharedChannel", inversedBy="channelScreenRegions")
      * @ORM\JoinColumn(name="shared_channel_id", referencedColumnName="id", nullable=true)
-     * @Groups({"api", "screen"})
+     * @Groups({"api", "screen", "timeline-screen"})
      */
     protected $sharedChannel;
 
