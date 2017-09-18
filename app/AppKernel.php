@@ -34,10 +34,10 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
             new Os2Display\MediaBundle\Os2DisplayMediaBundle(),
-            new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
-            new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
-            new Os2Display\TemplateContainerBundle\Os2DisplayTemplateContainerBundle(),
             new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
+            new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
+            new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
+            new Os2Display\TemplateContainerBundle\Os2DisplayTemplateContainerBundle(),
 
             new Itk\AarhusTemplateBundle\ItkAarhusTemplateBundle(),
             new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),

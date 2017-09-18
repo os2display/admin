@@ -106,7 +106,7 @@ angular.module('adminApp').controller('AdminUsersController', [
      */
     $scope.createUser = function () {
       ModalService.showModal({
-        templateUrl: "apps/adminApp/user/popup-create-user.html",
+        templateUrl: "bundles/os2displayadmin/apps/adminApp/user/popup-create-user.html",
         controller: "PopupCreateUser"
       }).then(function (modal) {
         modal.close.then(function (user) {
@@ -122,7 +122,7 @@ angular.module('adminApp').controller('AdminUsersController', [
      */
     $scope.deleteUser = function (user) {
       ModalService.showModal({
-        templateUrl: "apps/adminApp/user/popup-delete-user.html",
+        templateUrl: "bundles/os2displayadmin/apps/adminApp/user/popup-delete-user.html",
         controller: "PopupDeleteUser",
         inputs: {
           user: user

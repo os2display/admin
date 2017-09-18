@@ -177,7 +177,7 @@ angular.module('adminApp').controller('AdminUserController', [
      */
     $scope.showAddRoleModal = function showAddRoleModal() {
       ModalService.showModal({
-        templateUrl: "apps/adminApp/user/popup-add-role-to-user.html",
+        templateUrl: "bundles/os2displayadmin/apps/adminApp/user/popup-add-role-to-user.html",
         controller: "PopupAddRoleToUser",
         inputs: {
           options: {

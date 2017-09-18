@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "001fbcf701b1199c8dcdf73066bb2174",
+    "content-hash": "6d6d9110ded7a1ba4da3805a8ce375da",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1504,6 +1504,58 @@
                 "password"
             ],
             "time": "2014-11-20T16:49:30+00:00"
+        },
+        {
+            "name": "itk/os2display-aarhus-templates",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/os2display-aarhus-templates.git",
+                "reference": "5b23b091a2308851b119a927d5ec7c2e7b52ac63"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/os2display-aarhus-templates/zipball/5b23b091a2308851b119a927d5ec7c2e7b52ac63",
+                "reference": "5b23b091a2308851b119a927d5ec7c2e7b52ac63",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Itk\\AarhusTemplateBundle\\": ""
+                }
+            },
+            "support": {
+                "source": "https://github.com/itk-os2display/os2display-aarhus-templates/tree/v1.0.2",
+                "issues": "https://github.com/itk-os2display/os2display-aarhus-templates/issues"
+            },
+            "time": "2017-09-18T10:42:24+00:00"
+        },
+        {
+            "name": "itk/os2display-koba-integration",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/os2display-koba-integration.git",
+                "reference": "34e73a66d328ed21286f2c516e682699759ea890"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/os2display-koba-integration/zipball/34e73a66d328ed21286f2c516e682699759ea890",
+                "reference": "34e73a66d328ed21286f2c516e682699759ea890",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Itk\\KobaIntegrationBundle\\": ""
+                }
+            },
+            "support": {
+                "source": "https://github.com/itk-os2display/os2display-koba-integration/tree/v1.0.4",
+                "issues": "https://github.com/itk-os2display/os2display-koba-integration/issues"
+            },
+            "time": "2017-09-18T10:40:26+00:00"
         },
         {
             "name": "jdorn/sql-formatter",

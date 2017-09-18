@@ -108,7 +108,7 @@ angular.module('adminApp').controller('AdminGroupsController', [
     $scope.createGroup = function () {
       // Show modal.
       ModalService.showModal({
-        templateUrl: "apps/adminApp/group/popup-create-group.html",
+        templateUrl: "bundles/os2displayadmin/apps/adminApp/group/popup-create-group.html",
         controller: "PopupCreateGroup"
       }).then(function (modal) {
         modal.close.then(function (group) {
@@ -125,7 +125,7 @@ angular.module('adminApp').controller('AdminGroupsController', [
     $scope.deleteGroup = function (group) {
       // Show modal.
       ModalService.showModal({
-        templateUrl: "apps/adminApp/group/popup-delete-group.html",
+        templateUrl: "bundles/os2displayadmin/apps/adminApp/group/popup-delete-group.html",
         controller: "PopupDeleteGroup",
         inputs: {
           group: group

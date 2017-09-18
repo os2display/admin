@@ -190,7 +190,7 @@ angular.module('adminApp').controller('AdminGroupController', [
      */
     $scope.showAddUserModal = function showAddUserModal() {
       ModalService.showModal({
-        templateUrl: "apps/adminApp/group/popup-add-user.html",
+        templateUrl: "bundles/os2displayadmin/apps/adminApp/group/popup-add-user.html",
         controller: "PopupAddUser",
         inputs: {
           group: $scope.group,
