@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d6d9110ded7a1ba4da3805a8ce375da",
+    "content-hash": "96abd57670aad8dc0f976e5709038854",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1838,7 +1838,7 @@
                 "job",
                 "queue"
             ],
-            "time": "2017-04-20 13:59:35"
+            "time": "2017-04-20T13:59:35+00:00"
         },
         {
             "name": "jms/metadata",
@@ -2678,6 +2678,33 @@
                 "service proxies"
             ],
             "time": "2015-08-09T04:28:19+00:00"
+        },
+        {
+            "name": "os2display/core-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/core-bundle.git",
+                "reference": "c3ccaaf7b2891ff9f12b12961b63f40f41083e80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/c3ccaaf7b2891ff9f12b12961b63f40f41083e80",
+                "reference": "c3ccaaf7b2891ff9f12b12961b63f40f41083e80",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\CoreBundle\\": ""
+                }
+            },
+            "description": "Os2Display core",
+            "support": {
+                "source": "https://github.com/itk-os2display/core-bundle/tree/1.0.0",
+                "issues": "https://github.com/itk-os2display/core-bundle/issues"
+            },
+            "time": "2017-09-18T12:13:06+00:00"
         },
         {
             "name": "pagerfanta/pagerfanta",

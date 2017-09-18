@@ -36,7 +36,8 @@
     "doctrine/doctrine-migrations-bundle": "^1.0",
     "nelmio/api-doc-bundle": "^2.13",
     "itk/os2display-koba-integration": "^1.0",
-    "itk/os2display-aarhus-templates": "^1.0"
+    "itk/os2display-aarhus-templates": "^1.0",
+    "os2display/core-bundle": "^1.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",
@@ -47,6 +48,10 @@
     "behatch/contexts": "^2.6"
   },
   "repositories": [
+    {
+      "type": "vcs",
+      "url":  "https://github.com/itk-os2display/core-bundle"
+    },
     {
       "type": "vcs",
       "url":  "https://github.com/itk-os2display/os2display-koba-integration"
