@@ -378,7 +378,7 @@ class Channel extends ApiEntity implements GroupableEntity
      *
      * @VirtualProperty
      * @SerializedName("slides")
-     * @Groups({"api-bulk", "sharing", "channel", "slide", "screen"})
+     * @Groups({"api-bulk", "sharing", "screen"})
      */
     public function getPublishedSlides()
     {
