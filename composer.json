@@ -39,7 +39,8 @@
     "itk/os2display-aarhus-templates": "^1.0",
     "os2display/core-bundle": "^1.0",
     "os2display/admin-bundle": "^1.0",
-    "os2display/media-bundle": "^1.0"
+    "os2display/media-bundle": "^1.0",
+    "os2display/default-template-bundle": "^1.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",
@@ -61,6 +62,10 @@
     {
       "type": "vcs",
       "url":  "https://github.com/itk-os2display/media-bundle"
+    },
+    {
+      "type": "vcs",
+      "url":  "https://github.com/itk-os2display/default-template-bundle"
     },
     {
       "type": "vcs",

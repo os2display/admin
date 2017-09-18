@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d77199cdcd8087b8b22c5d6ca92a6bb",
+    "content-hash": "a8c4690815bf7049b590f57438b406b5",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2732,6 +2732,33 @@
                 "issues": "https://github.com/itk-os2display/core-bundle/issues"
             },
             "time": "2017-09-18T12:13:06+00:00"
+        },
+        {
+            "name": "os2display/default-template-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/default-template-bundle.git",
+                "reference": "b6e72263f83ef8933de08f33d0faa4e643a42567"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/default-template-bundle/zipball/b6e72263f83ef8933de08f33d0faa4e643a42567",
+                "reference": "b6e72263f83ef8933de08f33d0faa4e643a42567",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\DefaultTemplateBundle\\": ""
+                }
+            },
+            "description": "Os2Display default template",
+            "support": {
+                "source": "https://github.com/itk-os2display/default-template-bundle/tree/1.0.0",
+                "issues": "https://github.com/itk-os2display/default-template-bundle/issues"
+            },
+            "time": "2017-09-18T13:02:16+00:00"
         },
         {
             "name": "os2display/media-bundle",
