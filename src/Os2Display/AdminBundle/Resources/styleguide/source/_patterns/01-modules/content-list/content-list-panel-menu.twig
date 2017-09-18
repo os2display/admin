@@ -1,7 +1,0 @@
-{% embed "modules-content-list" with { data: data } %}
-  {% block content %}
-    {% for item in data.items %}
-      {% include "modules-content-list-item" with { data: item } %}
-    {% endfor %}
-  {% endblock %}
-{% endembed %}

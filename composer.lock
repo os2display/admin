@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "96abd57670aad8dc0f976e5709038854",
+    "content-hash": "9f259e10fd3f8543aad7efc94cb221ff",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2678,6 +2678,33 @@
                 "service proxies"
             ],
             "time": "2015-08-09T04:28:19+00:00"
+        },
+        {
+            "name": "os2display/admin-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/admin-bundle.git",
+                "reference": "4da40baa930e5af212c2014b6fc9f19345ecdf85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/4da40baa930e5af212c2014b6fc9f19345ecdf85",
+                "reference": "4da40baa930e5af212c2014b6fc9f19345ecdf85",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\AdminBundle\\": ""
+                }
+            },
+            "description": "Os2Display admin",
+            "support": {
+                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.0",
+                "issues": "https://github.com/itk-os2display/admin-bundle/issues"
+            },
+            "time": "2017-09-18T12:36:37+00:00"
         },
         {
             "name": "os2display/core-bundle",

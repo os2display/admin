@@ -1,9 +1,0 @@
-{% set items %}
- {% block items %}{% endblock %}
-{% endset %}
-
-{% embed "@modules/grid/grid.twig" with { class: "is-halfs" } %}
-  {% block content %}
-    {{ items }}
-  {% endblock %}
-{% endembed %}

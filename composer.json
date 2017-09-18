@@ -37,7 +37,8 @@
     "nelmio/api-doc-bundle": "^2.13",
     "itk/os2display-koba-integration": "^1.0",
     "itk/os2display-aarhus-templates": "^1.0",
-    "os2display/core-bundle": "^1.0"
+    "os2display/core-bundle": "^1.0",
+    "os2display/admin-bundle": "^1.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",
@@ -51,6 +52,10 @@
     {
       "type": "vcs",
       "url":  "https://github.com/itk-os2display/core-bundle"
+    },
+    {
+      "type": "vcs",
+      "url":  "https://github.com/itk-os2display/admin-bundle"
     },
     {
       "type": "vcs",

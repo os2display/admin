@@ -1,9 +1,0 @@
-{
-  "data": {
-    "for": "forms_field_email_id",
-    "label": "Forms Email Field",
-    "id": "forms_field_email_id",
-    "name": "forms_field_email_id",
-    "placeholder": "Forms Field Email placeholder"
-  }
-}

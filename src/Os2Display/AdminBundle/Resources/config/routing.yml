@@ -1,3 +1,0 @@
-controllers:
-  resource: "@Os2DisplayAdminBundle/Controller"
-  type: annotation
