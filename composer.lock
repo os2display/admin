@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f259e10fd3f8543aad7efc94cb221ff",
+    "content-hash": "2d77199cdcd8087b8b22c5d6ca92a6bb",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2732,6 +2732,33 @@
                 "issues": "https://github.com/itk-os2display/core-bundle/issues"
             },
             "time": "2017-09-18T12:13:06+00:00"
+        },
+        {
+            "name": "os2display/media-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/media-bundle.git",
+                "reference": "8c8ac3b8c021ec321a3ab7cee3f97a8f23ee3cce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/media-bundle/zipball/8c8ac3b8c021ec321a3ab7cee3f97a8f23ee3cce",
+                "reference": "8c8ac3b8c021ec321a3ab7cee3f97a8f23ee3cce",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\MediaBundle\\": ""
+                }
+            },
+            "description": "Os2Display media",
+            "support": {
+                "source": "https://github.com/itk-os2display/media-bundle/tree/1.0.0",
+                "issues": "https://github.com/itk-os2display/media-bundle/issues"
+            },
+            "time": "2017-09-18T12:51:51+00:00"
         },
         {
             "name": "pagerfanta/pagerfanta",
