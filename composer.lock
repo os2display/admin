@@ -2708,16 +2708,16 @@
         },
         {
             "name": "os2display/core-bundle",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/core-bundle.git",
-                "reference": "c3ccaaf7b2891ff9f12b12961b63f40f41083e80"
+                "reference": "01efe90e6db14351e5340285f397cdd20564ab21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/c3ccaaf7b2891ff9f12b12961b63f40f41083e80",
-                "reference": "c3ccaaf7b2891ff9f12b12961b63f40f41083e80",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/01efe90e6db14351e5340285f397cdd20564ab21",
+                "reference": "01efe90e6db14351e5340285f397cdd20564ab21",
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -2728,10 +2728,10 @@
             },
             "description": "Os2Display core",
             "support": {
-                "source": "https://github.com/itk-os2display/core-bundle/tree/1.0.0",
+                "source": "https://github.com/itk-os2display/core-bundle/tree/1.0.1",
                 "issues": "https://github.com/itk-os2display/core-bundle/issues"
             },
-            "time": "2017-09-18T12:13:06+00:00"
+            "time": "2017-09-19T08:38:11+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -6032,7 +6032,7 @@
                 {
                     "name": "Anthon Pang",
                     "email": "apang@softwaredevelopment.ca",
-                    "role": "Fork maintainer"
+                    "role": "Fork Maintainer"
                 }
             ],
             "description": "PHP WebDriver for Selenium 2",
