@@ -56,11 +56,11 @@ class SearchIndexer {
   }
 
   /**
-   * Listen to post-remove events.
+   * Listen to pre-remove events.
    *
    * @param LifecycleEventArgs $args
    */
-  public function postRemove(LifecycleEventArgs $args) {
+  public function preRemove(LifecycleEventArgs $args) {
     $this->sendEvent($args, 'DELETE');
   }
 
