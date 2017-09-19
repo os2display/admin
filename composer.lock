@@ -2739,17 +2739,20 @@
         },
         {
             "name": "os2display/default-template-bundle",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/default-template-bundle.git",
-                "reference": "b6e72263f83ef8933de08f33d0faa4e643a42567"
+                "reference": "6464ecccfae8e4a9a00bd29b8308018768feb89f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/default-template-bundle/zipball/b6e72263f83ef8933de08f33d0faa4e643a42567",
-                "reference": "b6e72263f83ef8933de08f33d0faa4e643a42567",
+                "url": "https://api.github.com/repos/itk-os2display/default-template-bundle/zipball/6464ecccfae8e4a9a00bd29b8308018768feb89f",
+                "reference": "6464ecccfae8e4a9a00bd29b8308018768feb89f",
                 "shasum": ""
+            },
+            "require": {
+                "os2display/admin-bundle": "^1.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2759,10 +2762,10 @@
             },
             "description": "Os2Display default template",
             "support": {
-                "source": "https://github.com/itk-os2display/default-template-bundle/tree/1.0.0",
+                "source": "https://github.com/itk-os2display/default-template-bundle/tree/1.0.2",
                 "issues": "https://github.com/itk-os2display/default-template-bundle/issues"
             },
-            "time": "2017-09-18T13:02:16+00:00"
+            "time": "2017-09-19T09:28:34+00:00"
         },
         {
             "name": "os2display/media-bundle",
