@@ -2766,17 +2766,20 @@
         },
         {
             "name": "os2display/media-bundle",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/media-bundle.git",
-                "reference": "8c8ac3b8c021ec321a3ab7cee3f97a8f23ee3cce"
+                "reference": "039a6f602cf75846334c08137d009e04609e9905"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/media-bundle/zipball/8c8ac3b8c021ec321a3ab7cee3f97a8f23ee3cce",
-                "reference": "8c8ac3b8c021ec321a3ab7cee3f97a8f23ee3cce",
+                "url": "https://api.github.com/repos/itk-os2display/media-bundle/zipball/039a6f602cf75846334c08137d009e04609e9905",
+                "reference": "039a6f602cf75846334c08137d009e04609e9905",
                 "shasum": ""
+            },
+            "require": {
+                "sonata-project/media-bundle": "^2.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2786,10 +2789,10 @@
             },
             "description": "Os2Display media",
             "support": {
-                "source": "https://github.com/itk-os2display/media-bundle/tree/1.0.0",
+                "source": "https://github.com/itk-os2display/media-bundle/tree/1.0.2",
                 "issues": "https://github.com/itk-os2display/media-bundle/issues"
             },
-            "time": "2017-09-18T12:51:51+00:00"
+            "time": "2017-09-19T09:29:02+00:00"
         },
         {
             "name": "pagerfanta/pagerfanta",
