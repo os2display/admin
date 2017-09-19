@@ -2681,17 +2681,21 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/admin-bundle.git",
-                "reference": "4da40baa930e5af212c2014b6fc9f19345ecdf85"
+                "reference": "3723dca60b5eb5b98025fd439be234e1a57381c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/4da40baa930e5af212c2014b6fc9f19345ecdf85",
-                "reference": "4da40baa930e5af212c2014b6fc9f19345ecdf85",
+                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/3723dca60b5eb5b98025fd439be234e1a57381c8",
+                "reference": "3723dca60b5eb5b98025fd439be234e1a57381c8",
                 "shasum": ""
+            },
+            "require": {
+                "os2display/core-bundle": "^1.0",
+                "twig/extensions": "^1.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2701,10 +2705,10 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.0",
+                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.2",
                 "issues": "https://github.com/itk-os2display/admin-bundle/issues"
             },
-            "time": "2017-09-18T12:36:37+00:00"
+            "time": "2017-09-19T09:27:29+00:00"
         },
         {
             "name": "os2display/core-bundle",
