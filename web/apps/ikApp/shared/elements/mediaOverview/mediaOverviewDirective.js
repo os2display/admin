@@ -22,7 +22,7 @@ angular.module('ikApp').directive('ikMediaOverview', [
     return {
       restrict: 'E',
       scope: {
-        ikMediaType: '@',
+        ikMediaType: '=',
         ikAutoSearch: '@',
         ikHideFilters: '=',
         ikSelectedMedia: '='
@@ -169,18 +169,13 @@ angular.module('ikApp').directive('ikMediaOverview', [
           event.preventDefault();
         });
 
-        $scope.setSearchFilters();
-      },
-      link: function (scope, element, attrs) {
-        attrs.$observe('ikMediaType', function (val) {
-          if (!val) {
-            return;
+        $scope.$watch('ikMediaType', function (val) {
+          if (val === undefined) {
+            $scope.updateSearch();
           }
-          if (val === scope.media_type) {
-            return;
+          else {
+            $scope.filterMediaType(val);
           }
-
-          scope.filterMediaType(val);
         });
       },
       templateUrl: '/apps/ikApp/shared/elements/mediaOverview/media-overview-directive.html?' + window.config.version

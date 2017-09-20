@@ -352,8 +352,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * Set the step to pick-from-media.
      */
     $scope.pickFromMedia = function pickFromMedia() {
-      $scope.step = 'pick-from-media';
       $scope.$emit('mediaOverview.updateSearch');
+      $scope.step = 'pick-from-media';
     };
 
     /**
@@ -376,8 +376,8 @@ angular.module('ikApp').controller('SlideEditController', ['$scope', '$http', '$
      * Set the step to pick-logo-from-media.
      */
     $scope.pickLogoFromMedia = function pickLogoFromMedia() {
-      $scope.logoStep = 'pick-logo-from-media';
       $scope.$emit('mediaOverview.updateSearch');
+      $scope.logoStep = 'pick-logo-from-media';
     };
 
     /**
