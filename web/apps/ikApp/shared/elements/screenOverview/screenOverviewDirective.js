@@ -53,6 +53,8 @@ angular.module('ikApp').directive('ikScreenOverview', [
                 function (data) {
                   $scope.screens = data;
 
+                  $scope.pager.page = 0;
+
                   $scope.loading = false;
                 },
                 function (reason) {

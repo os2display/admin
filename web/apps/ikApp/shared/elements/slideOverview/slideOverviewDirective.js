@@ -52,6 +52,8 @@ angular.module('ikApp').directive('ikSlideOverview', ['busService', '$filter',
                 function success(data) {
                   $scope.slides = data;
 
+                  $scope.pager.page = 0;
+
                   $scope.loading = false;
                 },
                 function error(reason) {

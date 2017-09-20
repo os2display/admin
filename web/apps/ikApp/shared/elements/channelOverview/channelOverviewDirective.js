@@ -55,6 +55,8 @@ angular.module('ikApp').directive('ikChannelOverview', [
                 function success(data) {
                   $scope.channels = data;
 
+                  $scope.pager.page = 0;
+
                   $scope.loading = false;
                 },
                 function error(reason) {
