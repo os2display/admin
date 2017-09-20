@@ -65,8 +65,6 @@ angular.module('ikApp').directive('ikMediaOverview', [
                 function success(data) {
                   $scope.media = data;
 
-                  $scope.pager.page = 0;
-
                   $scope.loading = false;
                 },
                 function error(reason) {
@@ -149,6 +147,8 @@ angular.module('ikApp').directive('ikMediaOverview', [
           }
 
           $scope.baseQuery.filter = filter;
+
+          $scope.pager.page = 0;
 
           $scope.updateSearch();
         };

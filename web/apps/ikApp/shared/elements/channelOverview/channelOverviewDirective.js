@@ -55,8 +55,6 @@ angular.module('ikApp').directive('ikChannelOverview', [
                 function success(data) {
                   $scope.channels = data;
 
-                  $scope.pager.page = 0;
-
                   $scope.loading = false;
                 },
                 function error(reason) {
@@ -121,6 +119,8 @@ angular.module('ikApp').directive('ikChannelOverview', [
           });
 
           $scope.baseQuery.filter = $scope.baseBuildSearchFilter(selectedGroupIds);
+
+          $scope.pager.page = 0;
 
           $scope.updateSearch();
         };
