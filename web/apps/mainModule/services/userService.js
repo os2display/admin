@@ -57,10 +57,7 @@ angular.module('mainModule').service('userService', [
      * Get current users groups.
      */
     this.getCurrentUserGroups = function getCurrentUserGroups(returnEvent) {
-      busService.$emit('apiService.getEntities', {
-        'type': 'group',
-        'returnEvent': returnEvent
-      });
-    }
+      busService.$emit(returnEvent, currentUser.groups);
+    };
   }
 ]);

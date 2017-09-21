@@ -32,6 +32,9 @@
       <ik-shared-channel class="overview--channel-container" data-ng-click="clickSharedChannel(channel, index.index)" ik-channel="channel" ik-width="300" ik-sharing-index="index.index" ik-single-slide="{{ikOverlay}}"></ik-shared-channel>
       <div>{{channel.title}}</div>
     </div>
+    <div class="overview--section" data-ng-show="!loading" ng-if="channels.length === 0">
+      Ingen resultater.
+    </div>
   </div>
   <ik-pager></ik-pager>
 </section>

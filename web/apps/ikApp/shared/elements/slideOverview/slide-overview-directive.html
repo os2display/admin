@@ -68,6 +68,9 @@
       </div>
       <span class="overview--slide-label">{{slide.title}}</span> <span class="overview--slide-date">- {{slide.created_at * 1000 | date:'dd.MM.yyyy'}}</span>
     </div>
+    <div class="overview--section" data-ng-show="!loading" ng-if="slides.length === 0">
+      Ingen resultater.
+    </div>
   </div>
   <ik-pager></ik-pager>
 </section>
