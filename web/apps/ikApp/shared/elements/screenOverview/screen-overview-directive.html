@@ -45,6 +45,9 @@
         <ik-screen ik-screen="screen"></ik-screen>
       </a>
     </div>
+    <div class="overview--section" data-ng-show="!loading" ng-if="screens.length === 0">
+      Ingen resultater.
+    </div>
   </div>
   <ik-pager></ik-pager>
 </section>

@@ -22,7 +22,7 @@ angular.module('ikApp').directive('ikMediaOverview', [
     return {
       restrict: 'E',
       scope: {
-        ikMediaType: '@',
+        ikMediaType: '=',
         ikAutoSearch: '@',
         ikHideFilters: '=',
         ikSelectedMedia: '='
@@ -148,6 +148,8 @@ angular.module('ikApp').directive('ikMediaOverview', [
 
           $scope.baseQuery.filter = filter;
 
+          $scope.pager.page = 0;
+
           $scope.updateSearch();
         };
 
@@ -168,17 +170,14 @@ angular.module('ikApp').directive('ikMediaOverview', [
 
           event.preventDefault();
         });
-      },
-      link: function (scope, element, attrs) {
-        attrs.$observe('ikMediaType', function (val) {
-          if (!val) {
-            return;
-          }
-          if (val === scope.media_type) {
-            return;
-          }
 
-          scope.filterMediaType(val);
+        $scope.$watch('ikMediaType', function (val) {
+          if (val === undefined) {
+            $scope.updateSearch();
+          }
+          else {
+            $scope.filterMediaType(val);
+          }
         });
       },
       templateUrl: '/apps/ikApp/shared/elements/mediaOverview/media-overview-directive.html?' + window.config.version

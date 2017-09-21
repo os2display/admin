@@ -87,8 +87,12 @@ angular.module('ikApp').directive('ikScreenOverview', [
 
           $scope.baseQuery.filter = $scope.baseBuildSearchFilter(selectedGroupIds);
 
+          $scope.pager.page = 0;
+
           $scope.updateSearch();
         };
+
+        $scope.setSearchFilters();
       },
       templateUrl: '/apps/ikApp/shared/elements/screenOverview/screen-overview-directive.html?' + window.config.version
     };
