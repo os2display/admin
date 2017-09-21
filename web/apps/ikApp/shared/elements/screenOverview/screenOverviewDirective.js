@@ -87,6 +87,8 @@ angular.module('ikApp').directive('ikScreenOverview', [
 
           $scope.baseQuery.filter = $scope.baseBuildSearchFilter(selectedGroupIds);
 
+          $scope.pager.page = 0;
+
           $scope.updateSearch();
         };
 

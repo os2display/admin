@@ -120,6 +120,8 @@ angular.module('ikApp').directive('ikChannelOverview', [
 
           $scope.baseQuery.filter = $scope.baseBuildSearchFilter(selectedGroupIds);
 
+          $scope.pager.page = 0;
+
           $scope.updateSearch();
         };
 

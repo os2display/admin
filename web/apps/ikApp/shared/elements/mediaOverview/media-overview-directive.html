@@ -14,16 +14,16 @@
       <span data-ng-class="{'is-active': media_type == 'logo'}" class="overview--filter-foursplit-middle" data-ng-click="filterMediaType('logo')">Logoer</span>
       <span data-ng-class="{'is-active': media_type == 'video'}" class="overview--filter-foursplit-right" data-ng-click="filterMediaType('video')">Videoer</span>
     </div>
-  </div>
-  <div class="overview--groups">
-    <label class="overview--label">Grupper:</label>
-    <div class="overview--checkboxes">
+    <div class="overview--groups">
+      <label class="overview--label">Grupper:</label>
+      <div class="overview--checkboxes">
       <span class="overview--checkbox" ng-repeat="group in userGroups">
         <label class="overview--checkbox-label" for="{{group.id}}">
           <input type="checkbox" ng-model="group.selected" value={{group.id}} name="group" id="{{group.id}}" ng-change="setSearchFilters()" />
           {{group.displayName}}
         </label>
       </span>
+      </div>
     </div>
   </div>
   <div class="overview--sorting">
