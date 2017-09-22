@@ -2,8 +2,6 @@
 imports:
   - { resource: parameters.yml }
   - { resource: security.yml }
-  - { resource: apps.yml }
-  - { resource: modules.yml }
 
 # Framework Configuration
 framework:
@@ -41,10 +39,6 @@ twig:
     itk_log_error_callback: %itk_log_error_callback%
     itk_log_log_to_console: %itk_log_log_to_console%
     itk_log_log_level: %itk_log_log_level%
-    apps: %apps%
-    modules: %modules%
-    bootstrap: %bootstrap%
-
 
 # Assetic Configuration
 assetic:
@@ -83,7 +77,7 @@ swiftmailer:
 fos_user:
   db_driver: orm
   firewall_name: main
-  user_class: Indholdskanalen\MainBundle\Entity\User
+  user_class: Os2Display\CoreBundle\Entity\User
   from_email:
     address: "%mailer_from_email%"
     sender_name: "%mailer_from_name%"
@@ -116,6 +110,10 @@ sonata_media:
     local:
       directory:  %kernel.root_dir%/../web/uploads/media
       create:     false
+  class:
+    media: Os2Display\MediaBundle\Entity\Media
+    gallery: Os2Display\MediaBundle\Entity\Gallery
+    gallery_has_media: Os2Display\MediaBundle\Entity\GalleryHasMedia
 
 # JMS Serializer Configuration
 jms_serializer:
@@ -124,14 +122,7 @@ jms_serializer:
     directories:
       SonataMediaBundle:
         namespace_prefix: "Sonata\\MediaBundle"
-        path: "@ApplicationSonataMediaBundle/Resources/config/serializer/SonataMedia"
-
-# Doctrine Migrations Configuration
-doctrine_migrations:
-    dir_name: "%kernel.root_dir%/DoctrineMigrations"
-    namespace: Application\Migrations
-    table_name: migration_versions
-    name: Application Migrations
+        path: "@Os2DisplayMediaBundle/Resources/config/serializer/SonataMedia"
 
 fos_rest:
     routing_loader:

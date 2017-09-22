@@ -39,7 +39,7 @@ parameters:
     middleware_path: /api
     middleware_apikey: 1234567890
 
-    site_title: Indholdskanalen
+    site_title: Os2Display
 
     version: dev
 
