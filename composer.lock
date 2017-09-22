@@ -2696,16 +2696,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/admin-bundle.git",
-                "reference": "a4488d86fd317e0501854ff60f9a59a9ad8fda2d"
+                "reference": "a6a2918fa775f428ee52ae84c4e19bd5b15ef129"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/a4488d86fd317e0501854ff60f9a59a9ad8fda2d",
-                "reference": "a4488d86fd317e0501854ff60f9a59a9ad8fda2d",
+                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/a6a2918fa775f428ee52ae84c4e19bd5b15ef129",
+                "reference": "a6a2918fa775f428ee52ae84c4e19bd5b15ef129",
                 "shasum": ""
             },
             "require": {
@@ -2720,10 +2720,10 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.3",
+                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.4",
                 "issues": "https://github.com/itk-os2display/admin-bundle/issues"
             },
-            "time": "2017-09-21T10:24:15+00:00"
+            "time": "2017-09-22T08:07:02+00:00"
         },
         {
             "name": "os2display/core-bundle",
@@ -6066,7 +6066,7 @@
                     "email": "igor@wiedler.ch"
                 },
                 {
-                    "name": "Robert Sch?nthal",
+                    "name": "Robert Schönthal",
                     "email": "seroscho@googlemail.com"
                 }
             ],
