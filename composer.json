@@ -13,8 +13,6 @@
     "os2display/admin-bundle": "^1.0",
     "os2display/default-template-bundle": "^1.0",
     "incenteev/composer-parameter-handler": "^2.0",
-    "itk/os2display-koba-integration": "^1.0",
-    "itk/os2display-aarhus-templates": "^1.0",
     "sonata-project/admin-bundle": "^2.0",
     "sonata-project/doctrine-orm-admin-bundle": "^2.0"
   },
@@ -42,14 +40,6 @@
     "os2display/default-template-bundle": {
       "type": "vcs",
       "url": "https://github.com/itk-os2display/default-template-bundle"
-    },
-    "itk-os2display/os2display-koba-integration": {
-      "type": "vcs",
-      "url": "https://github.com/itk-os2display/os2display-koba-integration"
-    },
-    "itk-os2display/os2display-aarhus-templates": {
-      "type": "vcs",
-      "url": "https://github.com/itk-os2display/os2display-aarhus-templates"
     }
   },
   "scripts": {
