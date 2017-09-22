@@ -1514,16 +1514,16 @@
         },
         {
             "name": "itk/os2display-aarhus-templates",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/os2display-aarhus-templates.git",
-                "reference": "ce889c8611818ee1a7261882b1a396270fedd482"
+                "reference": "38fb98b9109fc2a9fe3899efe255f611b351ecab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/os2display-aarhus-templates/zipball/ce889c8611818ee1a7261882b1a396270fedd482",
-                "reference": "ce889c8611818ee1a7261882b1a396270fedd482",
+                "url": "https://api.github.com/repos/itk-os2display/os2display-aarhus-templates/zipball/38fb98b9109fc2a9fe3899efe255f611b351ecab",
+                "reference": "38fb98b9109fc2a9fe3899efe255f611b351ecab",
                 "shasum": ""
             },
             "type": "library",
@@ -1533,10 +1533,10 @@
                 }
             },
             "support": {
-                "source": "https://github.com/itk-os2display/os2display-aarhus-templates/tree/1.0.3",
+                "source": "https://github.com/itk-os2display/os2display-aarhus-templates/tree/1.0.4",
                 "issues": "https://github.com/itk-os2display/os2display-aarhus-templates/issues"
             },
-            "time": "2017-09-19T08:39:40+00:00"
+            "time": "2017-09-21T10:25:56+00:00"
         },
         {
             "name": "itk/os2display-koba-integration",
@@ -2696,16 +2696,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/admin-bundle.git",
-                "reference": "3723dca60b5eb5b98025fd439be234e1a57381c8"
+                "reference": "a4488d86fd317e0501854ff60f9a59a9ad8fda2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/3723dca60b5eb5b98025fd439be234e1a57381c8",
-                "reference": "3723dca60b5eb5b98025fd439be234e1a57381c8",
+                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/a4488d86fd317e0501854ff60f9a59a9ad8fda2d",
+                "reference": "a4488d86fd317e0501854ff60f9a59a9ad8fda2d",
                 "shasum": ""
             },
             "require": {
@@ -2720,23 +2720,23 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.2",
+                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.3",
                 "issues": "https://github.com/itk-os2display/admin-bundle/issues"
             },
-            "time": "2017-09-19T09:27:29+00:00"
+            "time": "2017-09-21T10:24:15+00:00"
         },
         {
             "name": "os2display/core-bundle",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/core-bundle.git",
-                "reference": "9147b284810053e79644af4ece4e3c575fab201e"
+                "reference": "1c405f3f7c5174e38ec7e3311b3d2f4d1b70b049"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/9147b284810053e79644af4ece4e3c575fab201e",
-                "reference": "9147b284810053e79644af4ece4e3c575fab201e",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/1c405f3f7c5174e38ec7e3311b3d2f4d1b70b049",
+                "reference": "1c405f3f7c5174e38ec7e3311b3d2f4d1b70b049",
                 "shasum": ""
             },
             "require": {
@@ -2767,23 +2767,23 @@
             },
             "description": "Os2Display core",
             "support": {
-                "source": "https://github.com/itk-os2display/core-bundle/tree/1.0.6",
+                "source": "https://github.com/itk-os2display/core-bundle/tree/1.0.7",
                 "issues": "https://github.com/itk-os2display/core-bundle/issues"
             },
-            "time": "2017-09-20T11:34:42+00:00"
+            "time": "2017-09-21T09:21:20+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/default-template-bundle.git",
-                "reference": "6464ecccfae8e4a9a00bd29b8308018768feb89f"
+                "reference": "88b4c6a67723417637204db6ac910994f27fa20e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/default-template-bundle/zipball/6464ecccfae8e4a9a00bd29b8308018768feb89f",
-                "reference": "6464ecccfae8e4a9a00bd29b8308018768feb89f",
+                "url": "https://api.github.com/repos/itk-os2display/default-template-bundle/zipball/88b4c6a67723417637204db6ac910994f27fa20e",
+                "reference": "88b4c6a67723417637204db6ac910994f27fa20e",
                 "shasum": ""
             },
             "require": {
@@ -2797,10 +2797,10 @@
             },
             "description": "Os2Display default template",
             "support": {
-                "source": "https://github.com/itk-os2display/default-template-bundle/tree/1.0.2",
+                "source": "https://github.com/itk-os2display/default-template-bundle/tree/1.0.3",
                 "issues": "https://github.com/itk-os2display/default-template-bundle/issues"
             },
-            "time": "2017-09-19T09:28:34+00:00"
+            "time": "2017-09-21T10:27:01+00:00"
         },
         {
             "name": "os2display/media-bundle",
