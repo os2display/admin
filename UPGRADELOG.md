@@ -27,6 +27,7 @@ be symlinked during "composer install" to web/bundles/ folder.
 
 ### Upgrading
 
+* Requires PHP 5.6 now.
 * Create a bundle with a structure like src/Os2Display/DefaultTemplateBundle
   to contain all custom code and templates. If a bundle is relevant for
   os2display, think about contributing it back to `github.com/os2display`.
