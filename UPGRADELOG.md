@@ -13,6 +13,7 @@ be symlinked during "composer install" to web/bundles/ folder.
 
 ### Upgrading
 
+* All commands have changed name to start with os2display: instead of ik:. This especially can affect cron execution where the name of the cron command has changed to "os2display:core:cron". 
 * Create a bundle with a structure like src/Os2Display/DefaultTemplateBundle.
 * Update [Bundlename]Extension.php to extend Os2DisplayBaseExtension.php like
   Os2DisplayCoreExtension.
