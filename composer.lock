@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f70ca1822d81b9eb40422328c171ef3",
+    "content-hash": "22413dbbd545dee7d954939af42da61a",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2749,6 +2749,37 @@
                 "issues": "https://github.com/itk-os2display/default-template-bundle/issues"
             },
             "time": "2017-09-21T10:27:01+00:00"
+        },
+        {
+            "name": "os2display/exchange-bundle",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/exchange-bundle.git",
+                "reference": "56658e8df5663be00880abe42c4dc46fd3149f81"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/exchange-bundle/zipball/56658e8df5663be00880abe42c4dc46fd3149f81",
+                "reference": "56658e8df5663be00880abe42c4dc46fd3149f81",
+                "shasum": ""
+            },
+            "require": {
+                "os2display/core-bundle": "^1.0",
+                "twig/extensions": "^1.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\ExchangeBundle\\": ""
+                }
+            },
+            "description": "Os2Display exchange calendar integration",
+            "support": {
+                "source": "https://github.com/itk-os2display/exchange-bundle/tree/0.0.1",
+                "issues": "https://github.com/itk-os2display/exchange-bundle/issues"
+            },
+            "time": "2017-09-25T10:30:24+00:00"
         },
         {
             "name": "os2display/media-bundle",

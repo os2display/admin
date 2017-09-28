@@ -14,7 +14,8 @@
     "os2display/default-template-bundle": "^1.0",
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
-    "sonata-project/doctrine-orm-admin-bundle": "^2.0"
+    "sonata-project/doctrine-orm-admin-bundle": "^2.0",
+    "os2display/exchange-bundle": "^0.0.1"
   },
   "require-dev": {
     "sensio/generator-bundle": "^2.3",
@@ -40,6 +41,10 @@
     "os2display/default-template-bundle": {
       "type": "vcs",
       "url": "https://github.com/itk-os2display/default-template-bundle"
+    },
+    "os2display/exchange-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/exchange-bundle"
     }
   },
   "scripts": {
