@@ -2644,16 +2644,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/admin-bundle.git",
-                "reference": "ae6339efcbb80b54c164425730b1c92e2f808e5d"
+                "reference": "3bc398919db839b582051ddd619db3c9807c2ddd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/ae6339efcbb80b54c164425730b1c92e2f808e5d",
-                "reference": "ae6339efcbb80b54c164425730b1c92e2f808e5d",
+                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/3bc398919db839b582051ddd619db3c9807c2ddd",
+                "reference": "3bc398919db839b582051ddd619db3c9807c2ddd",
                 "shasum": ""
             },
             "require": {
@@ -2668,10 +2668,10 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.6",
+                "source": "https://github.com/itk-os2display/admin-bundle/tree/1.0.7",
                 "issues": "https://github.com/itk-os2display/admin-bundle/issues"
             },
-            "time": "2017-09-22T11:03:34+00:00"
+            "time": "2017-09-28T08:18:12+00:00"
         },
         {
             "name": "os2display/core-bundle",
