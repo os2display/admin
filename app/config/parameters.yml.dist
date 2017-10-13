@@ -49,3 +49,9 @@ parameters:
     itk_log_log_level: all
 
     search_filter_default: all
+
+    os2display_exchange_enabled: false
+    os2display_exchange_host: HOST
+    os2display_exchange_user: USER
+    os2display_exchange_password: PASSWORD
+    os2display_exchange_version: EXCHANGE_VERSION, fx. Exchange2010
