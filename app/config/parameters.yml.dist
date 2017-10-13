@@ -49,6 +49,3 @@ parameters:
     itk_log_log_level: all
 
     search_filter_default: all
-
-    koba_apikey: 1234
-    koba_path:   http://192.168.50.21

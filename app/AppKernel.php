@@ -29,7 +29,7 @@ class AppKernel extends Kernel
             new Debril\RssAtomBundle\DebrilRssAtomBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\JobQueueBundle\JMSJobQueueBundle(),
-            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            new JMS\DiExtraBundle\JMSDiExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
@@ -37,9 +37,6 @@ class AppKernel extends Kernel
             new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
             new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
             new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
-
-            new Itk\AarhusTemplateBundle\ItkAarhusTemplateBundle(),
-            new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'acceptance'))) {
