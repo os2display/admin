@@ -8,7 +8,7 @@ When working with os2display together with the vagrant provide. You have to visi
 # Gulp
 To build the js for production and the sass we use gulp.
 
-### NB! if you add a js file or js assets file, add it to the gulpfile.js and to /src/Indholdskanalen/MainBundle/Resources/views/Main/index.html.twig
+### NB! if you add a js file or js assets file, add it to the gulpfile.js and to /src/Os2Display/CoreBundle/Resources/views/Main/index.html.twig
 
 Run gulp help to see list of commands.
 
