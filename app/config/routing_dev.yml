@@ -12,3 +12,7 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+_exchange:
+    resource: "@Os2DisplayExchangeBundle/Resources/config/routing_dev.yml"
+    prefix:   /
