@@ -369,23 +369,41 @@ class Ding2Service {
       foreach ($xml->activity as $activity) {
         // Get the fields we want, SimpleXML will return null-objects if the
         // elements does not exist, so the following is safe without prechecks.
-        $event['start'] = (string) $activity->startdato;
-        $event['end'] = (string) $activity->slutdato;
+        $event['start'] = $this->prepareDate((string) $activity->startdato);
+        $event['end'] = $this->prepareDate((string) $activity->slutdato);
         $event['title'] = (string) $activity->titel;
         $event['list_image'] = (string) $activity->list_image;
         $event['description'] = (string) $activity->beskrivelse;
+        $uid = empty((string)$activity->uid) ? "(unknown)" : (string)$activity->uid;
 
+        // Make sure we could parse dates, if not skip the activity.
+        foreach ([
+                   ['start', (string) $activity->startdato, $event['start']],
+                   ['end', (string) $activity->slutdato, $event['end']],
+                 ] as list($field, $org, $parsed)) {
+          if ($parsed === NULL) {
+            $this->logger->error("Unable to parse {$field}-time value '$org' - skipping activity with (uid/title) ('$uid'/'{$event['title']}')");
+            // We're already inside a foreach.
+            continue(2);
+
+          }
+        }
         // Determine if we have enough data to continue.
         if (empty($event['start']) || empty($event['end']) || empty($event['title'])) {
-          $uid = empty((string)$activity->uid) ? "(unknown)" : (string)$activity->uid;
-          $this->logger->notice("Not enough info for activity with uid $uid, (title/start/end) = ({$event['title']}/{$event['start']}/{$event['end']}) skipping");
+          $this->logger->error("Not enough info for activity with uid $uid, (title/start/end) = ('{$event['title']}'/'{$event['start']}'/'{$event['end']}') skipping");
+          continue;
         }
 
         // Format time-intervals to be presentable.
-        $start_datetime = new DateTime($event['start']);
-        $event['start_time'] = $start_datetime->format('H:i');
-        $end_datetime = new DateTime($event['end']);
-        $event['end_time'] = $end_datetime->format('H:i');
+        try {
+          $start_datetime = new DateTime($event['start']);
+          $event['start_time'] = $start_datetime->format('H:i');
+          $end_datetime = new DateTime($event['end']);
+          $event['end_time'] = $end_datetime->format('H:i');
+        } catch (\Exception $e) {
+          $this->logger->error("Error while parsing start/end for uid $uid, (title/start/end) = ('{$event['title']}'/'{$event['start']}'/'{$event['end']}') skipping activity. Message: " . $e->getMessage());
+          continue;
+        }
 
         // Skip events in the past.
         if ($start_datetime->getTimestamp() < $this->today->getTimestamp()) {
@@ -433,5 +451,42 @@ class Ding2Service {
       // Make sure the data is written to db.
       $this->entityManager->flush();
     }
+  }
+
+  /**
+   * Basic cleanup of a date before we pass it to DateTime.
+   *
+   * @param string $date_string
+   *   The date
+   *
+   * @return string|NULL
+   *   The cleaned string, or NULL if we could not parse it.
+   */
+  private function prepareDate($date_string) {
+    // The cleanup is based on knowledge of how the ding_kultunaut_feed module
+    // used on bibliotek.kk.dk formats its dates.
+
+    // Dates will either be formatted as an all-day event:
+    // 2017/10/17 (Hele dagen).
+
+    // Or with time-granularity:
+    // 2017/10/26 09:30:00 CEST.
+
+    // Match all day pattern.
+    if (preg_match('#^(\d{4}/\d{1,2}/\d{1,2}).*Hele dagen#i', $date_string, $matches)) {
+      // Pick out the date we expect to be the start of the string.
+      return $matches[1];
+    }
+
+    // Match with time-granularity - in this case we don't do match to verify
+    // the time-zone. We just want something that looks roughly like a date and
+    // a time.
+    if (preg_match('#^\d{4}/\d{1,2}/\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}#i', $date_string)) {
+      // Pick out the date we expect to be the start of the string.
+      return $date_string;
+    }
+
+    // No match, bail out.
+    return NULL;
   }
 }
