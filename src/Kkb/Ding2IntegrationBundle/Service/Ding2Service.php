@@ -374,6 +374,7 @@ class Ding2Service {
         $event['title'] = (string) $activity->titel;
         $event['list_image'] = (string) $activity->list_image;
         $event['description'] = (string) $activity->beskrivelse;
+        $event['all_day'] = stripos((string) $activity->startdato, 'Hele dagen') !== FALSE;
         $uid = empty((string)$activity->uid) ? "(unknown)" : (string)$activity->uid;
 
         // Make sure we could parse dates, if not skip the activity.

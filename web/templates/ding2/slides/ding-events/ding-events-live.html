@@ -23,7 +23,8 @@
                  </div>
                  <ul class="ding-events--events">
                      <li class="ding-events--event" ng-repeat="event in group.events">
-                         <div class="ding-events--event ding-events--event-interval">{{event.start_time}} - {{event.end_time}}</div>
+                         <div ng-if="!event.all_day" class="ding-events--event ding-events--event-interval">{{event.start_time}} - {{event.end_time}}</div>
+                         <div ng-if="event.all_day" class="ding-events--event ding-events--event-interval">Hele dagen</div>
                          <div class="ding-events--event ding-events--event-title">{{event.title}}</div>
                      </li>
                  </ul>
