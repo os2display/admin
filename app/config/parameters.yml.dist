@@ -55,3 +55,6 @@ parameters:
     os2display_exchange_user: USER
     os2display_exchange_password: PASSWORD
     os2display_exchange_version: EXCHANGE_VERSION, fx. Exchange2010
+
+    koba_apikey: SomeApiKey
+    koba_path: 'http://127.0.0.1'
