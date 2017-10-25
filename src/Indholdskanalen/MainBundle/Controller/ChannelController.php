@@ -2,6 +2,7 @@
 
 namespace Indholdskanalen\MainBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Indholdskanalen\MainBundle\Entity\SharingIndex;
 use Indholdskanalen\MainBundle\Events\SharingServiceEvent;
 use Indholdskanalen\MainBundle\Entity\Channel;
@@ -116,7 +117,8 @@ class ChannelController extends Controller {
       $sort_order++;
     }
 
-    // Save the entity.
+    // Add channel to groups.
+    $this->get('os2display.group_manager')->setGroups(isset($post->groups) ? $post->groups : [], $channel);
     $em->persist($channel);
 
     $dispatcher = $this->get('event_dispatcher');
@@ -237,12 +239,14 @@ class ChannelController extends Controller {
 
     $serializer = $this->get('jms_serializer');
 
+    $this->get('os2display.api_data')->setApiData($channel);
+
     // Create response.
     $response = new Response();
     if ($channel) {
       $response->headers->set('Content-Type', 'application/json');
       $json_content = $serializer->serialize($channel, 'json', SerializationContext::create()
-          ->setGroups(array('api'))
+          ->setGroups(array('channel'))
           ->enableMaxDepthChecks());
       $response->setContent($json_content);
     }
@@ -269,19 +273,21 @@ class ChannelController extends Controller {
       ->getRepository('IndholdskanalenMainBundle:Channel')
       ->findOneById($id);
 
-    $dispatcher = $this->get('event_dispatcher');
-
-    // Remove from sharing indexes.
-    foreach ($channel->getSharingIndexes() as $sharingIndex) {
-      // Send event to sharingService to update channel in index.
-      $event = new SharingServiceEvent($channel, $sharingIndex);
-      $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
-    }
-
     // Create response.
     $response = new Response();
 
     if ($channel) {
+      // Remove from sharing indexes.
+      $dispatcher = $this->get('event_dispatcher');
+      foreach ($channel->getSharingIndexes() as $sharingIndex) {
+        // Send event to sharingService to update channel in index.
+        $event = new SharingServiceEvent($channel, $sharingIndex);
+        $dispatcher->dispatch(SharingServiceEvents::REMOVE_CHANNEL_FROM_INDEX, $event);
+      }
+
+      // Remove the screen from the middleware.
+      $this->get('indholdskanalen.middleware.communication')->removeChannel($channel);
+
       $em = $this->getDoctrine()->getManager();
       $em->remove($channel);
       $em->flush();
@@ -306,17 +312,17 @@ class ChannelController extends Controller {
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function channelsGetAction() {
-    // Get all channel entities.
-    $channel_entities = $this->getDoctrine()
-      ->getRepository('IndholdskanalenMainBundle:Channel')
-      ->findAll();
+    $manager = $this->get('os2display.entity_manager');
+    $channelEntities = $manager->findAll(Channel::class);
+
+    $this->get('os2display.api_data')->setApiData($channelEntities);
 
     // Create response.
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
 
     $serializer = $this->get('jms_serializer');
-    $response->setContent($serializer->serialize($channel_entities, 'json', SerializationContext::create()
+    $response->setContent($serializer->serialize($channelEntities, 'json', SerializationContext::create()
       ->setGroups(array('api-bulk'))
       ->enableMaxDepthChecks()));
 

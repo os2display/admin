@@ -179,7 +179,7 @@ angular.module('mainModule').service('searchService', ['$q', '$http', 'busServic
 
           busService.$emit(message.callbacks.error, error.message);
         });
-        
+
         socket.emit('search', query);
       });
     });

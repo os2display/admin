@@ -1,0 +1,78 @@
+<section class="overview--section">
+  <div class="overview--filter">
+    <label class="overview--filter-label">Filtrér på:</label>
+    <form class="overview--form" accept-charset="UTF-8" data-ng-class="{'full-width': ikHideFilters}">
+      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-model-options="{debounce: 500}" data-ng-change="updateSearch()">
+    </form>
+    <div class="overview--filter-owner overview--filter-owner-foursplit">
+      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all', 'media')">Alle</span>
+      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine', 'media')">Mine</span>
+    </div>
+    <div class="overview--filter-orientation" data-ng-show="!ikHideFilters">
+      <span data-ng-class="{'is-active': media_type == 'all'}" class="overview--filter-foursplit-left" data-ng-click="filterMediaType('all')">Alle</span>
+      <span data-ng-class="{'is-active': media_type == 'image'}" class="overview--filter-foursplit-middle" data-ng-click="filterMediaType('image')">Billeder</span>
+      <span data-ng-class="{'is-active': media_type == 'logo'}" class="overview--filter-foursplit-middle" data-ng-click="filterMediaType('logo')">Logoer</span>
+      <span data-ng-class="{'is-active': media_type == 'video'}" class="overview--filter-foursplit-right" data-ng-click="filterMediaType('video')">Videoer</span>
+    </div>
+    <div class="overview--groups">
+      <label class="overview--label">Grupper:</label>
+      <div class="overview--checkboxes">
+      <span class="overview--checkbox" ng-repeat="group in userGroups">
+        <label class="overview--checkbox-label" for="{{group.id}}">
+          <input type="checkbox" ng-model="group.selected" value={{group.id}} name="group" id="{{group.id}}" ng-change="setSearchFilters()" />
+          {{group.displayName}}
+        </label>
+      </span>
+      </div>
+    </div>
+  </div>
+  <div class="overview--sorting">
+    <label class="overview--sort-label">Sorter på:</label>
+    <div class="overview--sort-links">
+      <span class="overview--newest" data-ng-class="{'is-active': sort.created_at === 'desc'}" data-ng-click="setSort('created_at', 'desc')">Nyeste</span>
+      <span class="overview--oldest" data-ng-class="{'is-active': sort.created_at === 'asc'}" data-ng-click="setSort('created_at', 'asc')">Ældste</span>
+      <span class="overview--alphabetical" data-ng-class="{'is-active': sort.name}"  data-ng-click="setSort('name', 'asc')">A-Å</span>
+    </div>
+  </div>
+
+  <div class="overview--media">
+    <div class="spinner overview--spinner" data-ng-show="loading"></div>
+    <div class="overview--media-single" data-ng-show="!loading" data-ng-click="mediaOverviewClickMedia(mediaElement)" data-ng-repeat="mediaElement in media">
+      <div class="overview--media-link" data-ng-switch data-on="mediaElement.media_type" data-ng-class="{'is-selected': mediaSelected(mediaElement)}">
+        <span class="overview--overlay">
+          <span class="overview--link-check"></span>
+        </span>
+        <div data-ng-switch-when="image">
+          <a class="overview--media-link">
+            <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
+          </a>
+          <div class="overview--media-label">{{mediaElement.name}} (billede)</div>
+        </div>
+        <div data-ng-switch-when="logo">
+          <a class="overview--media-link">
+            <img class="overview--media-image" data-ng-src="{{ mediaElement.urls.default_portrait_small }}"/>
+          </a>
+          <div class="overview--media-label">{{mediaElement.name}} (logo)</div>
+        </div>
+        <div data-ng-switch-when="video">
+          <a class="overview--media-link">
+            <div data-ng-if="mediaElement.provider_metadata[0].thumbnails[1].reference">
+              <img class="overview--media-image" data-ng-src="{{ mediaElement.provider_metadata[0].thumbnails[1].reference }}"/>
+            </div>
+            <div data-ng-if="!mediaElement.provider_metadata[0].thumbnails[1].reference">
+              <div class="overview--no-video">Video ikke klar</div>
+            </div>
+          </a>
+          <div class="overview--media-label">{{mediaElement.name}} (video)</div>
+        </div>
+        <div data-ng-switch-default>
+          default
+        </div>
+      </div>
+    </div>
+    <div class="overview--section" data-ng-show="!loading" ng-if="media.length === 0">
+      Ingen resultater.
+    </div>
+  </div>
+  <ik-pager></ik-pager>
+</section>

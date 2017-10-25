@@ -2,7 +2,7 @@
 <div class="container has-wrap">
   <form class="search">
     <div class="search--input">
-      <input type="search" placeholder="Søg..." data-ng-model="search_text" data-ng-change="search()">
+      <input type="search" placeholder="Søg..." data-ng-model="search_text" data-ng-change="search()" data-ng-model-options="{debounce: 1500}">
     </div>
   </form>
   <i data-icon="tune" class="search--toggle-filter is-large" data-ng-class="toggleFilters ? 'is-inverted' : ''" data-ng-click="toggleFilters = !toggleFilters"></i>
@@ -37,12 +37,13 @@
   </div>
 </div>
 
-<!-- Loader -->
-<!--<div class="spinner overview&#45;&#45;spinner" data-ng-show="loading"></div>-->
-
 <!-- The loaded time-lines -->
 <div class="container-full-width has-horisontal-margin" data-ng-class="{'spinner-element': loading}">
   <timeline data="item" data-ng-repeat="item in data" data-ng-hide="loading" />
+
+  <div class="overview--section" data-ng-show="!loading" ng-if="data.length === 0">
+    Ingen resultater.
+  </div>
 
   <!-- Pager -->
   <div class="pager--search" data-ng-hide="loading">
