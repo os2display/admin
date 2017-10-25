@@ -41,6 +41,7 @@ class AppKernel extends Kernel
             new Os2Display\ExchangeBundle\Os2DisplayExchangeBundle(),
             new Os2Display\HorizonTemplateBundle\Os2DisplayHorizonTemplateBundle(),
             new Itk\LokalcenterTemplateBundle\ItkLokalcenterTemplateBundle(),
+            new Itk\AarhusTemplateBundle\ItkAarhusTemplateBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'acceptance'))) {
