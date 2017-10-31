@@ -14,5 +14,5 @@ _main:
     resource: routing.yml
 
 _exchange:
-    resource: "@Os2DisplayExchangeBundle/Resources/config/routing_dev.yml"
+    resource: "@ItkExchangeBundle/Resources/config/routing_dev.yml"
     prefix:   /
