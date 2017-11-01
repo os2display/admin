@@ -17,332 +17,359 @@ use JMS\Serializer\Annotation\SerializedName;
  * @ORM\Table(name="ik_screen_templates")
  * @ORM\Entity
  */
-class ScreenTemplate {
-  /**
-   * @ORM\Column(type="string")
-   * @ORM\Id
-   * @Groups({"api", "middleware"})
-   */
-  protected $id;
+class ScreenTemplate
+{
+    /**
+     * @ORM\Column(type="string")
+     * @ORM\Id
+     * @Groups({"api", "middleware", "screen"})
+     */
+    protected $id;
 
-  /**
-   * @ORM\Column(name="name", type="string")
-   * @Groups({"api"})
-   */
-  protected $name;
+    /**
+     * @ORM\Column(name="name", type="string")
+     * @Groups({"api", "screen"})
+     */
+    protected $name;
 
-  /**
-   * @ORM\Column(name="path_icon", type="string")
-   * @Groups({"api", "api-bulk"})
-   */
-  protected $pathIcon;
+    /**
+     * @ORM\Column(name="path_icon", type="string")
+     * @Groups({"api", "api-bulk"})
+     */
+    protected $pathIcon;
 
-  /**
-   * @ORM\Column(name="path_live", type="string")
-   * @Groups({"middleware"})
-   */
-  protected $pathLive;
+    /**
+     * @ORM\Column(name="path_live", type="string")
+     * @Groups({"middleware"})
+     */
+    protected $pathLive;
 
-  /**
-   * @ORM\Column(name="path_edit", type="string")
-   */
-  protected $pathEdit;
+    /**
+     * @ORM\Column(name="path_edit", type="string")
+     */
+    protected $pathEdit;
 
-  /**
-   * @ORM\Column(name="path_css", type="string")
-   * @Groups({"middleware"})
-   */
-  protected $pathCss;
+    /**
+     * @ORM\Column(name="path_css", type="string")
+     * @Groups({"middleware"})
+     */
+    protected $pathCss;
 
-  /**
-   * @ORM\Column(name="path", type="string")
-   * @Groups({"middleware"})
-   */
-  protected $path;
+    /**
+     * @ORM\Column(name="path", type="string")
+     * @Groups({"middleware"})
+     */
+    protected $path;
 
-  /**
-   * @ORM\Column(name="tools", type="string")
-   */
-  protected $tools;
+    /**
+     * @ORM\Column(name="tools", type="string")
+     * @Groups({"screen"})
+     */
+    protected $tools;
 
-  /**
-   * @ORM\Column(name="orientation", type="string")
-   * @Groups({"api", "api-bulk"})
-   */
-  protected $orientation;
+    /**
+     * @ORM\Column(name="orientation", type="string")
+     * @Groups({"api", "api-bulk", "screen"})
+     */
+    protected $orientation;
 
-  /**
-   * @ORM\OneToMany(targetEntity="Screen", mappedBy="template")
-   */
-  protected $screens;
+    /**
+     * @ORM\OneToMany(targetEntity="Screen", mappedBy="template")
+     */
+    protected $screens;
 
-  /**
-   * @ORM\Column(name="enabled", type="boolean")
-   * @Groups({"api", "api-bulk"})
-   */
-  protected $enabled;
+    /**
+     * @ORM\Column(name="enabled", type="boolean")
+     * @Groups({"api", "api-bulk"})
+     */
+    protected $enabled;
 
 
-  /**
-   * Constructor
-   */
-  public function __construct() {
-    $this->screens = new \Doctrine\Common\Collections\ArrayCollection();
-  }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->screens = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
-  /**
-   * Get the paths virtual property.
-   *
-   * @return array
-   *
-   * @VirtualProperty
-   * @SerializedName("paths")
-   * @Groups({"api"})
-   */
-  public function getPaths() {
-    $result = array(
-      'icon' => $this->getPathIcon(),
-      'live' => $this->getPathLive(),
-      'edit' => $this->getPathEdit(),
-      'css' => $this->getPathCss(),
-      'path' => $this->getPath(),
-    );
-    return $result;
-  }
+    /**
+     * Get the paths virtual property.
+     *
+     * @return array
+     *
+     * @VirtualProperty
+     * @SerializedName("paths")
+     * @Groups({"api", "screen"})
+     */
+    public function getPaths()
+    {
+        $result = array(
+            'icon' => $this->getPathIcon(),
+            'live' => $this->getPathLive(),
+            'edit' => $this->getPathEdit(),
+            'css' => $this->getPathCss(),
+            'path' => $this->getPath(),
+        );
+        return $result;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getPath() {
-    return $this->path;
-  }
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 
-  /**
-   * @param mixed $path
-   * @return ScreenTemplate
-   */
-  public function setPath($path) {
-    $this->path = $path;
+    /**
+     * @param mixed $path
+     * @return ScreenTemplate
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Set id
-   *
-   * @param string $id
-   *
-   * @return ScreenTemplate
-   */
-  public function setId($id) {
-    $this->id = $id;
+    /**
+     * Set id
+     *
+     * @param string $id
+     *
+     * @return ScreenTemplate
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get id
-   *
-   * @return string
-   */
-  public function getId() {
-    return $this->id;
-  }
+    /**
+     * Get id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * Set name
-   *
-   * @param string $name
-   * @return ScreenTemplate
-   */
-  public function setName($name) {
-    $this->name = $name;
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return ScreenTemplate
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getEnabled() {
-    return $this->enabled;
-  }
+    /**
+     * @return mixed
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
 
-  /**
-   * @param mixed $enabled
-   * @return ScreenTemplate
-   */
-  public function setEnabled($enabled) {
-    $this->enabled = $enabled;
+    /**
+     * @param mixed $enabled
+     * @return ScreenTemplate
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get name
-   *
-   * @return string
-   */
-  public function getName() {
-    return $this->name;
-  }
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-  /**
-   * Set pathIcon
-   *
-   * @param string $pathIcon
-   * @return ScreenTemplate
-   */
-  public function setPathIcon($pathIcon) {
-    $this->pathIcon = $pathIcon;
+    /**
+     * Set pathIcon
+     *
+     * @param string $pathIcon
+     * @return ScreenTemplate
+     */
+    public function setPathIcon($pathIcon)
+    {
+        $this->pathIcon = $pathIcon;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get pathIcon
-   *
-   * @return string
-   */
-  public function getPathIcon() {
-    return $this->pathIcon;
-  }
+    /**
+     * Get pathIcon
+     *
+     * @return string
+     */
+    public function getPathIcon()
+    {
+        return $this->pathIcon;
+    }
 
-  /**
-   * Set pathLive
-   *
-   * @param string $pathLive
-   * @return ScreenTemplate
-   */
-  public function setPathLive($pathLive) {
-    $this->pathLive = $pathLive;
+    /**
+     * Set pathLive
+     *
+     * @param string $pathLive
+     * @return ScreenTemplate
+     */
+    public function setPathLive($pathLive)
+    {
+        $this->pathLive = $pathLive;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get pathLive
-   *
-   * @return string
-   */
-  public function getPathLive() {
-    return $this->pathLive;
-  }
+    /**
+     * Get pathLive
+     *
+     * @return string
+     */
+    public function getPathLive()
+    {
+        return $this->pathLive;
+    }
 
-  /**
-   * Set pathEdit
-   *
-   * @param string $pathEdit
-   * @return ScreenTemplate
-   */
-  public function setPathEdit($pathEdit) {
-    $this->pathEdit = $pathEdit;
+    /**
+     * Set pathEdit
+     *
+     * @param string $pathEdit
+     * @return ScreenTemplate
+     */
+    public function setPathEdit($pathEdit)
+    {
+        $this->pathEdit = $pathEdit;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get pathEdit
-   *
-   * @return string
-   */
-  public function getPathEdit() {
-    return $this->pathEdit;
-  }
+    /**
+     * Get pathEdit
+     *
+     * @return string
+     */
+    public function getPathEdit()
+    {
+        return $this->pathEdit;
+    }
 
-  /**
-   * Set pathCss
-   *
-   * @param string $pathCss
-   * @return ScreenTemplate
-   */
-  public function setPathCss($pathCss) {
-    $this->pathCss = $pathCss;
+    /**
+     * Set pathCss
+     *
+     * @param string $pathCss
+     * @return ScreenTemplate
+     */
+    public function setPathCss($pathCss)
+    {
+        $this->pathCss = $pathCss;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get pathCss
-   *
-   * @return string
-   */
-  public function getPathCss() {
-    return $this->pathCss;
-  }
+    /**
+     * Get pathCss
+     *
+     * @return string
+     */
+    public function getPathCss()
+    {
+        return $this->pathCss;
+    }
 
-  /**
-   * Set orientation
-   *
-   * @param string $orientation
-   * @return ScreenTemplate
-   */
-  public function setOrientation($orientation) {
-    $this->orientation = $orientation;
+    /**
+     * Set orientation
+     *
+     * @param string $orientation
+     * @return ScreenTemplate
+     */
+    public function setOrientation($orientation)
+    {
+        $this->orientation = $orientation;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get orientation
-   *
-   * @return string
-   */
-  public function getOrientation() {
-    return $this->orientation;
-  }
+    /**
+     * Get orientation
+     *
+     * @return string
+     */
+    public function getOrientation()
+    {
+        return $this->orientation;
+    }
 
-  /**
-   * Add screen
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
-   * @return ScreenTemplate
-   */
-  public function addScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
-    $this->screens[] = $screen;
+    /**
+     * Add screen
+     *
+     * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+     * @return ScreenTemplate
+     */
+    public function addScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen)
+    {
+        $this->screens[] = $screen;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Remove screen
-   *
-   * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
-   * @return ScreenTemplate
-   */
-  public function removeScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen) {
-    $this->screens->removeElement($screen);
+    /**
+     * Remove screen
+     *
+     * @param \Indholdskanalen\MainBundle\Entity\Screen $screen
+     * @return ScreenTemplate
+     */
+    public function removeScreen(\Indholdskanalen\MainBundle\Entity\Screen $screen)
+    {
+        $this->screens->removeElement($screen);
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get screens
-   *
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getScreens() {
-    return $this->screens;
-  }
+    /**
+     * Get screens
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getScreens()
+    {
+        return $this->screens;
+    }
 
-  /**
-   * Set tools
-   *
-   * @param array $tools
-   * @return ScreenTemplate
-   */
-  public function setTools(array $tools) {
-    $this->tools = serialize($tools);
+    /**
+     * Set tools
+     *
+     * @param array $tools
+     * @return ScreenTemplate
+     */
+    public function setTools(array $tools)
+    {
+        $this->tools = serialize($tools);
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get tools
-   *
-   * @return array
-   */
-  public function getTools() {
-    return unserialize($this->tools);
-  }
+    /**
+     * Get tools
+     *
+     * @return array
+     */
+    public function getTools()
+    {
+        return unserialize($this->tools);
+    }
 }

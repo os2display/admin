@@ -152,8 +152,18 @@ class KobaService {
       $options = $slide->getOptions();
 
       foreach ($options['resources'] as $resource) {
+        $interestInterval = 0;
+        // Read interestInterval from options.
+        if (isset($options['interest_interval'])) {
+          $interestInterval = $options['interest_interval'];
+        }
+        $interestInterval = max(0, $interestInterval - 1);
+
+        // Move today with number of requested days.
+        $end = strtotime('+' . $interestInterval . ' days', $todayEnd);
+
         try{
-          $resourceBookings = $this->getResourceBookings($resource['mail'], 'default', $todayStart, $todayEnd);
+          $resourceBookings = $this->getResourceBookings($resource['mail'], 'default', $todayStart, $end);
 
           if (count($resourceBookings) > 0) {
             $bookings = array_merge($bookings, $resourceBookings);

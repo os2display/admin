@@ -15,6 +15,8 @@ angular.module('timelineApp').controller('TimelineBaseController', ['busService'
     // Set default values.
     $scope.sort = { "created_at": "desc" };
 
+    $scope.showFromUser = localStorage.getItem('overview.timeline.search_filter_default') ? localStorage.getItem('overview.timeline.search_filter_default') : 'all';
+
     // Default pager values.
     $scope.pager = {
       "size": 6,
@@ -106,6 +108,9 @@ angular.module('timelineApp').controller('TimelineBaseController', ['busService'
      *   This should either be 'mine' or 'all'.
      */
     $scope.setUser = function setUser(user) {
+      // Save selection in localStorage.
+      localStorage.setItem('overview.timeline.search_filter_default', user);
+
       if ($scope.showFromUser !== user) {
         $scope.showFromUser = user;
 
@@ -176,17 +181,23 @@ angular.module('timelineApp').controller('TimelineBaseController', ['busService'
     /**
      * Load current user.
      */
-    busService.$on('userService.returnUser', function returnUser(event, user) {
+    var cleanupCurrentUserListener = busService.$on('userService.returnCurrentUser', function returnCurrentUser(event, user) {
         $scope.currentUser = user;
-
-        // Set search filter default
-        $scope.showFromUser = $scope.currentUser.search_filter_default;
 
         // Updated search filters (build "mine" filter with user id). It
         // will trigger an search update.
         $scope.setSearchFilters();
       }
     );
-    busService.$emit('userService.requestUser');
+    busService.$emit('userService.getCurrentUser');
+
+    /**
+     * on destroy.
+     *
+     * Clean up listeners.
+     */
+    $scope.$on('$destroy', function destroy() {
+      cleanupCurrentUserListener();
+    });
   }
 ]);

@@ -1,0 +1,53 @@
+<section class="overview--section">
+  <div class="overview--filter">
+    <label class="overview--filter-label">Filtrér på:</label>
+    <form class="overview--form full-width" accept-charset="UTF-8">
+      <input placeholder="Angiv del af titlen for at filtrere listen" class="overview--filter-field" type="text" size="30" maxlength="128" data-ng-model="search_text" data-ng-change="updateSearch()" data-ng-model-options="{debounce: 500}">
+    </form>
+    <div class="overview--filter-owner">
+      <span data-ng-class="{'is-active': showFromUser == 'all'}" class="overview--filter-twosplit-left" data-ng-click="setUser('all', 'screen')">Alle</span>
+      <span data-ng-class="{'is-active': showFromUser == 'mine'}" class="overview--filter-twosplit-right" data-ng-click="setUser('mine', 'screen')">Mine</span>
+    </div>
+  </div>
+  <div class="overview--groups">
+    <label class="overview--label">Grupper:</label>
+    <div class="overview--checkboxes">
+      <span class="overview--checkbox" ng-repeat="group in userGroups">
+        <label class="overview--checkbox-label" for="{{group.id}}">
+          <input type="checkbox" ng-model="group.selected" value={{group.id}} name="group" id="{{group.id}}" ng-change="setSearchFilters()" />
+          {{group.displayName}}
+        </label>
+      </span>
+    </div>
+  </div>
+  <div class="overview--sorting">
+    <label class="overview--sort-label">Sorter på:</label>
+    <div class="overview--sort-links">
+      <span class="overview--newest" data-ng-class="{'is-active': sort.created_at === 'desc'}" data-ng-click="setSort('created_at', 'desc')">Nyeste</span>
+      <span class="overview--oldest" data-ng-class="{'is-active': sort.created_at === 'asc'}" data-ng-click="setSort('created_at', 'asc')">Ældste</span>
+      <span class="overview--alphabetical" data-ng-class="{'is-active': sort.title}"  data-ng-click="setSort('title', 'asc')">A-Å</span>
+    </div>
+  </div>
+
+  <div class="overview--screens">
+    <div class="spinner overview--spinner" data-ng-show="loading"></div>
+    <div data-ng-repeat="screen in screens" class="overview--screen" data-ng-show="!loading">
+      <div class="overview--header">
+        <div class="overview--title">{{screen.title}}</div>
+        <ik-actions-menu class="overview--header-actions-menu" data-ng-if="currentUser.is_admin">
+          <ul>
+            <li><ik-delete id="{{ screen.id }}" type="screen"></ik-delete></li>
+            <li><ik-action-reload-screen id="{{ screen.id }}"></ik-action-reload-screen></li>
+          </ul>
+        </ik-actions-menu>
+      </div>
+      <a href="/#/screen/{{screen.id}}" class="overview--screen-link">
+        <ik-screen ik-screen="screen"></ik-screen>
+      </a>
+    </div>
+    <div class="overview--section" data-ng-show="!loading" ng-if="screens.length === 0">
+      Ingen resultater.
+    </div>
+  </div>
+  <ik-pager></ik-pager>
+</section>

@@ -1,0 +1,51 @@
+<!-- Background editor -->
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="editor.hideEditors()">
+      <div class="svg-clickable">
+        <object data="images/svg/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="images/cancel.png" />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--background-page" data-ng-if="step === 'background-picker'">
+      <div class="edit-menu--background-page-inner">
+        <h2 class="edit-menu--background-header">Vælg billeder</h2>
+        <div class="edit-menu--background-content">
+          <button class="edit-menu--background-button" data-ng-click="pickFromMedia()">Vælg billeder fra medier</button>
+          <button class="edit-menu--background-button" data-ng-click="pickFromComputer()">Vælg billeder fra computer</button>
+        </div>
+      </div>
+    </div>
+    <div class="edit-menu--background-page" data-ng-if="step === 'pick-from-media'">
+      <div class="edit-menu--background-image-back" data-ng-click="backgroundPicker()">
+        <div class="svg-clickable">
+          <object data="images/svg/back.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/back.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--background-page-inner">
+        <h2 class="edit-menu--background-header">Vælg fil fra mediearkiv</h2>
+        <ik-media-overview ik-media-type="image" ik-auto-search="true" ik-hide-filters="true" ik-selected-media="ikSlide.media"></ik-media-overview>
+      </div>
+    </div>
+    <div class="edit-menu--background-page" data-ng-if="step === 'pick-from-computer'">
+      <div class="edit-menu--background-image-back" data-ng-click="backgroundPicker()">
+        <div class="svg-clickable">
+          <object data="images/svg/back.svg" type="image/svg+xml">
+            <!-- Fallback (ie8)-->
+            <img src="images/back.png" />
+          </object>
+        </div>
+      </div>
+      <div class="edit-menu--background-page-inner">
+        <div class="edit-menu--background-content-alternate">
+          <ik-media-upload queue-limit="8" ik-upload-type="image"></ik-media-upload>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

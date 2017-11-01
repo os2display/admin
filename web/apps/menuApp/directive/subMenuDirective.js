@@ -60,6 +60,7 @@ angular.module('menuApp')
 
           /**
            * Set the submenu items according to what the url starts with.
+           * @TODO: Make this generic.
            */
           var updateSubMenu = function () {
             if (scope.url.indexOf('/channel') === 0 || scope.url.indexOf('/shared-channel') === 0) {
@@ -73,6 +74,9 @@ angular.module('menuApp')
             }
             else if (scope.url.indexOf('/media') === 0) {
               scope.subMenuItems = subMenus['media'];
+            }
+            else if (scope.url.indexOf('/admin') === 0) {
+              scope.subMenuItems = subMenus['admin'];
             }
             else {
               scope.subMenuItems = [];

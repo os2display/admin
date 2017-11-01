@@ -68,6 +68,14 @@
   input[type="url"],
   textarea {
     background: $gray-lighter;
+    border: 1px solid transparent;
+    border-radius: .25em;
+    box-sizing: border-box;
+    color: $gray-darkest;
+    display: block;
+    min-height: 3.25em;
+    padding: .85em 1.25em;
+    width: 100%;
   }
 }
 
