@@ -562,7 +562,7 @@ class Slide extends ApiEntity implements GroupableEntity
     {
         foreach ($this->getMediaOrders() as $mediaorder) {
             $media = $mediaorder->getMedia();
-            if ($media->getProviderStatus() != 1) {
+            if (empty($media) || $media->getProviderStatus() != 1) {
                 return FALSE;
             }
 
