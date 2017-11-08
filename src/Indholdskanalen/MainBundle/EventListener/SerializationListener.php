@@ -125,21 +125,19 @@ class SerializationListener implements EventSubscriberInterface {
           // Set media paths
           $slide = $event->getObject();
           foreach ($slide->getMedia() as $media) {
-            if (!empty($media)) {
-              $providerName = $media->getProviderName();
+            $providerName = $media->getProviderName();
 
-              // Video
-              if ($providerName === 'sonata.media.provider.zencoder') {
-                $metadata = $media->getProviderMetadata();
+            // Video
+            if ($providerName === 'sonata.media.provider.zencoder') {
+              $metadata = $media->getProviderMetadata();
 
-                $mediaUrls = array();
+              $mediaUrls = array();
 
-                foreach ($metadata as $data) {
-                  $mediaUrls[$data['label']] = $data['reference'];
-                }
-
-                $urls[] = $mediaUrls;
+              foreach ($metadata as $data) {
+                $mediaUrls[$data['label']] = $data['reference'];
               }
+
+              $urls[] = $mediaUrls;
             }
 
             // Image
@@ -181,28 +179,26 @@ class SerializationListener implements EventSubscriberInterface {
             // Set media paths
             $slide = $event->getObject();
             foreach ($slide->getMedia() as $media) {
-              if (!empty($media)) {
-                $providerName = $media->getProviderName();
+              $providerName = $media->getProviderName();
 
-                // Video
-                if ($providerName === 'sonata.media.provider.zencoder') {
-                  $metadata = $media->getProviderMetadata();
-                  $mediaUrls = array();
+              // Video
+              if ($providerName === 'sonata.media.provider.zencoder') {
+                $metadata = $media->getProviderMetadata();
+                $mediaUrls = array();
 
-                  foreach ($metadata as $data) {
-                    $mediaUrls[$data['label']] = $data['reference'];
-                  }
-
-                  $thumbs[] = $metadata[0]['thumbnails'][1]['reference'];
-                  $urls[] = $mediaUrls;
+                foreach ($metadata as $data) {
+                  $mediaUrls[$data['label']] = $data['reference'];
                 }
-                // Image
-                else {
-                  if ($providerName === 'sonata.media.provider.image') {
-                    $provider = $this->mediaService->getProvider($providerName);
-                    $urls[] = array('image' => $provider->generatePublicUrl($media, 'reference'));
-                    $thumbs[] = $provider->generatePublicUrl($media, 'default_landscape');
-                  }
+
+                $thumbs[] = $metadata[0]['thumbnails'][1]['reference'];
+                $urls[] = $mediaUrls;
+              }
+              // Image
+              else {
+                if ($providerName === 'sonata.media.provider.image') {
+                  $provider = $this->mediaService->getProvider($providerName);
+                  $urls[] = array('image' => $provider->generatePublicUrl($media, 'reference'));
+                  $thumbs[] = $provider->generatePublicUrl($media, 'default_landscape');
                 }
               }
             }
