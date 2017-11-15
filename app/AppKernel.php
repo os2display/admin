@@ -38,11 +38,13 @@ class AppKernel extends Kernel
             new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
             new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
 
+            new Itk\TemplateExtensionBundle\ItkTemplateExtensionBundle(),
             new Itk\ExchangeBundle\ItkExchangeBundle(),
+
             new Itk\HorizonTemplateBundle\ItkHorizonTemplateBundle(),
             new Itk\LokalcenterTemplateBundle\ItkLokalcenterTemplateBundle(),
             new Itk\AarhusTemplateBundle\ItkAarhusTemplateBundle(),
-            new Itk\QuillEditorBundle\ItkQuillEditorBundle(),
+            new Itk\AarhusSecondTemplateBundle\ItkAarhusSecondTemplateBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'acceptance'))) {

@@ -9,5 +9,6 @@ git clone git@github.com:itk-os2display/exchange-bundle.git Itk/ExchangeBundle
 git clone git@github.com:itk-os2display/horizon-template-bundle.git Itk/HorizonTemplateBundle
 git clone git@github.com:itk-os2display/os2display-koba-integration.git Itk/KobaIntegrationBundle
 git clone git@github.com:itk-os2display/lokalcenter-template-bundle.git Itk/LokalcenterTemplateBundle
-git clone git@github.com:itk-os2display/quill-editor-bundle.git Itk/QuillEditorBundle
+git clone git@github.com:itk-os2display/template-extension-bundle.git Itk/TemplateExtensionBundle
+git clone git@github.com:itk-os2display/aarhus-second-template-bundle.git Itk/AarhusSecondTemplateBundle
 git clone git@github.com:aakb/os2display-aarhus-templates.git Itk/AarhusTemplateBundle
