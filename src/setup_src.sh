@@ -11,4 +11,5 @@ git clone git@github.com:itk-os2display/os2display-koba-integration.git Itk/Koba
 git clone git@github.com:itk-os2display/lokalcenter-template-bundle.git Itk/LokalcenterTemplateBundle
 git clone git@github.com:itk-os2display/template-extension-bundle.git Itk/TemplateExtensionBundle
 git clone git@github.com:itk-os2display/aarhus-second-template-bundle.git Itk/AarhusSecondTemplateBundle
+git clone git@github.com:itk-os2display/aarhus-data-bundle.get Itk/AarhusDataBundle
 git clone git@github.com:aakb/os2display-aarhus-templates.git Itk/AarhusTemplateBundle
