@@ -6,6 +6,10 @@ os2display_admin:
   resource: "@Os2DisplayAdminBundle/Resources/config/routing.yml"
   prefix:   /
 
+itk_aarhus_data:
+    resource: "@ItkAarhusDataBundle/Resources/config/routing.yml"
+    prefix:   /api
+
 JMSJobQueueBundle:
     resource: "@JMSJobQueueBundle/Controller/"
     type: annotation
