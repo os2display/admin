@@ -2644,16 +2644,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.0.9",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "49034a550e1dc6f95b510773a84ca69fe2f99f5a"
+                "reference": "54d2be18f6d4363219e21f384762328ebfd53bf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/49034a550e1dc6f95b510773a84ca69fe2f99f5a",
-                "reference": "49034a550e1dc6f95b510773a84ca69fe2f99f5a",
+                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/54d2be18f6d4363219e21f384762328ebfd53bf1",
+                "reference": "54d2be18f6d4363219e21f384762328ebfd53bf1",
                 "shasum": ""
             },
             "require": {
@@ -2668,23 +2668,23 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/os2display/admin-bundle/tree/1.0.9",
+                "source": "https://github.com/os2display/admin-bundle/tree/1.0.10",
                 "issues": "https://github.com/os2display/admin-bundle/issues"
             },
-            "time": "2017-10-13T18:10:39+00:00"
+            "time": "2017-11-22T12:23:31+00:00"
         },
         {
             "name": "os2display/core-bundle",
-            "version": "1.0.9",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/core-bundle.git",
-                "reference": "fcc41098dbfc2697a5b11c3b5350dca35fec9b56"
+                "reference": "29c22e9da24b8b5d1eace3efd65f485fdc665f74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/fcc41098dbfc2697a5b11c3b5350dca35fec9b56",
-                "reference": "fcc41098dbfc2697a5b11c3b5350dca35fec9b56",
+                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/29c22e9da24b8b5d1eace3efd65f485fdc665f74",
+                "reference": "29c22e9da24b8b5d1eace3efd65f485fdc665f74",
                 "shasum": ""
             },
             "require": {
@@ -2724,23 +2724,23 @@
             },
             "description": "Os2Display core",
             "support": {
-                "source": "https://github.com/os2display/core-bundle/tree/1.0.9",
+                "source": "https://github.com/os2display/core-bundle/tree/1.0.10",
                 "issues": "https://github.com/os2display/core-bundle/issues"
             },
-            "time": "2017-10-13T18:11:29+00:00"
+            "time": "2017-11-22T12:33:23+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/default-template-bundle.git",
-                "reference": "88b4c6a67723417637204db6ac910994f27fa20e"
+                "reference": "3acc95ae37d3a0b290417c1a4566b30ab860402a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/88b4c6a67723417637204db6ac910994f27fa20e",
-                "reference": "88b4c6a67723417637204db6ac910994f27fa20e",
+                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/3acc95ae37d3a0b290417c1a4566b30ab860402a",
+                "reference": "3acc95ae37d3a0b290417c1a4566b30ab860402a",
                 "shasum": ""
             },
             "require": {
@@ -2754,10 +2754,10 @@
             },
             "description": "Os2Display default template",
             "support": {
-                "source": "https://github.com/os2display/default-template-bundle/tree/1.0.3",
+                "source": "https://github.com/os2display/default-template-bundle/tree/1.0.4",
                 "issues": "https://github.com/os2display/default-template-bundle/issues"
             },
-            "time": "2017-09-21T10:27:01+00:00"
+            "time": "2017-11-22T12:45:52+00:00"
         },
         {
             "name": "os2display/media-bundle",
