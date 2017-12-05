@@ -142,3 +142,11 @@ fos_rest:
             - { path: '^/', stop: true } # Available for version >= 1.5
 
 nelmio_api_doc: ~
+
+itk_exchange:
+    enabled: true
+    host: %itk_exchange_host%
+    user: %itk_exchange_user%
+    password: %itk_exchange_password%
+    version: Exchange2010
+    cache_ttl: 1800
