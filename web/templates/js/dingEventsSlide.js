@@ -159,13 +159,26 @@ if (!window.slideFunctions['ding-events']) {
 
       // Check that external_data exists, if not stay on for one duration and
       // continue to next slide.
-      if (!slide.event_settings || !slide.event_settings.event_slides || slide.event_settings.event_slides.length <= 0) {
+      if (!slide.external_data || !slide.external_data.events || slide.external_data.events.length <= 0) {
         // Go straight to the next slide if we don't have any data. For now this
         // simply assumes that we have a "next" to go to, if not, we're going
         // to loop real fast.
+
+        // In some situations the data is just about to be ready. Skipping the
+        // slide once gives us the time we need.
+        if (!slide.loop_throttle) {
+          region.itkLog.info("Throttling...");
+          slide.loop_throttle = 1;
+          return;
+        }
+        region.itkLog.info("No data for slide, skipping");
+
         region.nextSlide();
         return;
       }
+
+      // Reset throttle in case we where successful.
+      slide.loop_throttle = false;
 
       /**
        * Iterate through event slides.
