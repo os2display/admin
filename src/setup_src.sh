@@ -5,6 +5,7 @@ git clone git@github.com:itk-os2display/core-bundle.git Os2Display/CoreBundle
 git clone git@github.com:itk-os2display/media-bundle.git Os2Display/MediaBundle
 
 # Extras
+git clone git@github.com:itk-os2display/campaign-bundle.git Itk/CampaignBundle
 git clone git@github.com:itk-os2display/exchange-bundle.git Itk/ExchangeBundle
 git clone git@github.com:itk-os2display/horizon-template-bundle.git Itk/HorizonTemplateBundle
 git clone git@github.com:itk-os2display/os2display-koba-integration.git Itk/KobaIntegrationBundle

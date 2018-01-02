@@ -1,3 +1,7 @@
+itk_campaign:
+    resource: "@ItkCampaignBundle/Resources/config/routing.yml"
+    prefix:   /
+
 os2display_main:
   resource: "@Os2DisplayCoreBundle/Resources/config/routing.yml"
   prefix:   /
