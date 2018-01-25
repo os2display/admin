@@ -64,4 +64,11 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
     }
+
+    public function __construct($environment, $debug)
+    {
+        // Force the timezone to be UTC.
+        date_default_timezone_set('UTC');
+        parent::__construct($environment, $debug);
+    }
 }
