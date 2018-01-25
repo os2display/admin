@@ -150,7 +150,7 @@ stof_doctrine_extensions:
             blameable: true
 
 itk_exchange:
-    enabled: true
+    enabled: %itk_exchange_enabled%
     host: %itk_exchange_host%
     user: %itk_exchange_user%
     password: %itk_exchange_password%

@@ -53,6 +53,7 @@ parameters:
     itk_exchange_host: HOST
     itk_exchange_user: USER
     itk_exchange_password: PASSWORD
+    itk_exchange_enabled: false
 
     koba_apikey: SomeApiKey
     koba_path: 'http://127.0.0.1'
