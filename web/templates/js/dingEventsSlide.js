@@ -155,30 +155,33 @@ if (!window.slideFunctions['ding-events']) {
     run: function runDingEventsSlide(slide, region) {
       region.itkLog.info("Running ding events slide: " + slide.title);
 
-      var slide_duration = slide.options.rss_duration ? slide.options.rss_duration : 15;
-
-      // Check that external_data exists, if not stay on for one duration and
-      // continue to next slide.
-      if (!slide.external_data || !slide.external_data.events || slide.external_data.events.length <= 0) {
-        // Go straight to the next slide if we don't have any data. For now this
-        // simply assumes that we have a "next" to go to, if not, we're going
+      // Experience has shown that we can't be certain that all our data is
+      // present, so we'll have to be careful verify presence before accessing
+      // anything.
+      if (!slide.options || !slide.external_data || !slide.external_data.events || slide.external_data.events.length <= 0 || !slide.event_settings) {
+        // Go straight to the next slide if we're missing something. For now we
+        // simply assume that we have a "next" to go to, if not, we're going
         // to loop real fast.
 
         // In some situations the data is just about to be ready. Skipping the
-        // slide once gives us the time we need.
-        if (!slide.loop_throttle) {
-          region.itkLog.info("Throttling...");
-          slide.loop_throttle = 1;
+        // slide once and letting us get control back right away gives us the
+        // time we need.
+        if (!slide.loop_skip) {
+          region.itkLog.info("Skipping to buy time for data ...");
+          slide.loop_skip = 1;
           return;
         }
+
+        // We tried the skip, did not work, continue to next slide.
         region.itkLog.info("No data for slide, skipping");
 
         region.nextSlide();
         return;
       }
-
       // Reset throttle in case we where successful.
       slide.loop_throttle = false;
+
+      var slide_duration = slide.options.rss_duration ? slide.options.rss_duration : 15;
 
       /**
        * Iterate through event slides.
