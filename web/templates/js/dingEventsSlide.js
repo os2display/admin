@@ -166,9 +166,9 @@ if (!window.slideFunctions['ding-events']) {
         // In some situations the data is just about to be ready. Skipping the
         // slide once and letting us get control back right away gives us the
         // time we need.
-        if (!slide.loop_skip) {
+        if (!slide.loop_throttle) {
           region.itkLog.info("Skipping to buy time for data ...");
-          slide.loop_skip = 1;
+          slide.loop_throttle = 1;
           return;
         }
 
