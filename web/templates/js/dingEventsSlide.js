@@ -153,8 +153,6 @@ if (!window.slideFunctions['ding-events']) {
      *   The region to call when the slide has been executed.
      */
     run: function runDingEventsSlide(slide, region) {
-      region.itkLog.info("Running ding events slide: " + slide.title);
-
       // Experience has shown that we can't be certain that all our data is
       // present, so we'll have to be careful verify presence before accessing
       // anything.
