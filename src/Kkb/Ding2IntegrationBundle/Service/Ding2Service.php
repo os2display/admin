@@ -23,6 +23,17 @@ class Ding2Service {
   private $entityManager;
   private $slideRepo;
   private $dingUrl;
+
+  /**
+   * Map of [term id => categoryname]
+   *
+   * Maps an opening hours category name ("citizenservices", "libraryservice")
+   * to its corresponding DDB CMS Opening Hours category taxonomy term.
+   *
+   * @var array
+   */
+  private $openingHoursCategories = [];
+
   private $initialized = FALSE;
   const OPENING_HOURS_FEED_PATH = '/opening_hours/instances?from_date=%from%&to_date=%to%&nid=%nid%';
   const DING_EVENTS_FEED_PATH = '/kultunaut_export/%slug%';
@@ -32,20 +43,6 @@ class Ding2Service {
   protected $today_formatted;
   protected $tomorrow;
   protected $tomorrow_formatted;
-
-  /**
-   * A time-interval can have a notice associated, this is used when
-   * eg a library has a printing service that has a different availability
-   * than the rest of the library.
-   *
-   * This array maps location types (we currently only support "library")
-   * with a list of notice-values that is expected to attached to the time
-   * interval for the entire location.
-   *
-   * @var array
-   */
-  private $open_notice_values = array();
-  private $service_notice_values = array();
 
   /**
    * Constructor.
@@ -70,15 +67,19 @@ class Ding2Service {
       $this->initialized = TRUE;
     }
 
-    // Get the keywords we should be looking for to identify service and
-    // open hours.
-    if ($this->container->hasParameter('ding_opening_hours_library_open_keys')) {
-      $keys = explode(',', $this->container->getParameter('ding_opening_hours_library_open_keys'));
-      $this->open_notice_values = array_map('trim', $keys);
-    }
-    if ($this->container->hasParameter('ding_opening_hours_library_service_keys')) {
-      $keys = explode(',', $this->container->getParameter('ding_opening_hours_library_service_keys'));
-      $this->service_notice_values = array_map('trim', $keys);
+    // Get categories for opening hours.
+    if ($this->container->hasParameter('ding_opening_hours_category') && is_array($this->container->getParameter('ding_opening_hours_category'))) {
+      // Configuration is a map with categories as key and term id's as value.
+      // For lookup we need a map of tids pointing to categories.
+      $configured_categories = $this->container->getParameter('ding_opening_hours_category');
+      array_walk($configured_categories, function($tid, $category) {
+        // In some future version of the integration we might be tad more 
+        // dynamic in handling the types of categories, but for now we go with
+        // robustness as we know the two possible categories.
+        if (is_numeric($tid) && in_array($category, ['libraryservice', 'citizenservices'], TRUE)) {
+          $this->openingHoursCategories[$tid] = $category;
+        }
+      });
     }
   }
 
@@ -116,6 +117,13 @@ class Ding2Service {
     foreach ($slides as $slide) {
       $options = $slide->getOptions();
 
+      // Get the Drupal Node ID for the library. It is required so continue if
+      // it is missing.
+      if (!isset($options['feed']['library'])) {
+        continue;
+      }
+      $nid = $options['feed']['library'];
+
       // Each opening-hours slide has a feed-parameter containing 0-2 feeds
       // 0 if it is not configured, 1 library, and 2 if the library has
       // citizenservices attached.
@@ -123,111 +131,91 @@ class Ding2Service {
         continue;
       }
 
-      // Contains the "<from> - <to>" intervals found while parsing the
-      // feed. Keyed by library/citizenservices and for libraries sub-keyed
-      // by open/service.
-      // NULL means we don't have any data for the service, ie. it should
-      // not be shown. If we have data for the service but the service is
-      // closed we'll put an explicit "closed" as value.
-      $intervals = [
-        'library' => [
-          'open' => NULL,
-          'service' => NULL,
-        ],
-        'citizenservices' => [
-          'open' => NULL,
-        ],
-      ];
-
-      foreach ($options['feed'] as $key => $nid)  {
-        // Only attempt to process the configuration if it's actually there.
-        if (empty($options['feed'][$key])) {
-          continue;
-        }
-
-        // Build up the full feed URL.
-        $replacements = [
-          '%from%' => $today_string,
-          '%to%' => $tomorrow_string,
-          '%nid%' => $nid
-        ];
-        $url = $this->dingUrl . str_replace(array_keys($replacements), array_values($replacements), self::OPENING_HOURS_FEED_PATH);
-
-        list($json, $error) = $this->retriveFeed($url);
-        if ($error) {
-          continue;
-        }
-        $data = \json_decode($json, TRUE);
-        if (JSON_ERROR_NONE !== json_last_error()) {
-          $this->logger->error('json_decode error: ' . json_last_error_msg());
-            continue;
-        }
-        if (is_array(!$data)) {
-          $this->logger->error('Could not decode the feed: ' . print_r($data, TRUE));
-          continue;
-        }
-
-        // Handle libraries.
-        if ($key === 'library') {
-          // Default opening-status.
-          $intervals['library']['open'] = 'closed';
-          if (count($data) > 1) {
-            // Libraries can have multiple intervals. In that case the
-            // interval we want will be tagged with a specific notice.
-            // We're looking for intervals for the main opening and
-            // service.
-            foreach ($data as $interval_candidate) {
-              // We need a notice text to work with, and the interval has to
-              // be todays interval.
-              if (empty($interval_candidate['notice']) || $interval_candidate['date'] !== $today_string) {
-                continue;
-              }
-
-              // Match against (locale-neutral) lowercase.
-              $lowercase_notice = mb_convert_case(
-                $interval_candidate['notice'],
-                MB_CASE_LOWER,
-                'UTF-8'
-              );
-
-              if (in_array($lowercase_notice, $this->open_notice_values, FALSE)) {
-                $intervals['library']['open'] = "{$interval_candidate['start_time']} - {$interval_candidate['end_time']}";
-              }
-
-              if (in_array($lowercase_notice, $this->service_notice_values, FALSE)) {
-                $intervals['library']['service'] = "{$interval_candidate['start_time']} - {$interval_candidate['end_time']}";
-              }
-            }
-          }
-          // If we only have the one interval and it does not have a notice
-          // we'll accept it as main opening hours, and skip setting
-          // service-opening-hours.
-          else if (count($data) === 1 && empty($data[0]['notice'])){
-            $interval = reset($data);
-            if ($interval['date'] === $today_string) {
-              $intervals['library']['open'] = "{$interval['start_time']} - {$interval['end_time']}";
-            }
-          }
-        }
-
-        // Handle citizenservices, we ignore notices on the intervals for now
-        // and will be satisfied with anything we find.
-        if ($key === 'citizenservices') {
-          // Default if we don't find some data below.
-          $intervals['citizenservices']['open'] = 'closed';
-
-          // Look for todays date (in case we got several intervals).
-          foreach ($data as $interval) {
-            if (!empty($interval['date']) && $interval['date'] === $today_string) {
-              $intervals['citizenservices']['open'] = "{$interval['start_time']} - {$interval['end_time']}";
-            }
-          }
-        }
+      // Temporary migration fix, openinghours for citizenservices had their
+      // own nid. Going forward that data is now contained in the libraries
+      // feed. So, we now have a toggle to indicate whether to process
+      // citizenservices openinghours for this library.
+      // In the interim period we'll port any "citizenservices" setting over
+      // into a new citizenservicesenabled setting.
+      if (isset($options['feed']['citizenservices'])) {
+        // Toggle citizenservicesenabled
+        $options['feed']['citizenservicesenabled'] = TRUE;
+        // We no longer need the old settings, remove it and update the slide.
+        unset($options['feed']['citizenservices']);
+        $slide->setOptions($options);
       }
-      // Generate texts for the intervals.
+
+      // Build up the full feed URL we're going to pull data from.
+      $replacements = [
+        '%from%' => $today_string,
+        '%to%' => $tomorrow_string,
+        '%nid%' => $nid
+      ];
+      $url = $this->dingUrl . str_replace(array_keys($replacements), array_values($replacements), self::OPENING_HOURS_FEED_PATH);
+
+      // Get the data from the feed, error out if we run in to trouble.
+      list($json, $error) = $this->retriveFeed($url);
+      if ($error) {
+        continue;
+      }
+      $data = \json_decode($json, TRUE);
+      if (JSON_ERROR_NONE !== json_last_error()) {
+        $this->logger->error('json_decode error: ' . json_last_error_msg());
+          continue;
+      }
+      if (is_array(!$data)) {
+        $this->logger->error('Could not decode the feed: ' . print_r($data, TRUE));
+        continue;
+      }
+
+      // Build up the intervals array we're going to pass to the screen.
+      // The interval consists of up to 3 entries for "general" (required),
+      // "service" (optional) and "citizenservices" (required if enabled).
+      $intervals = [];
+
+      // If we can't find the general interval, set everything as closed.
+      $intervals['general'] = 'closed';
+
+      // If citizenservices is enabled, we'll always show the interval, so we
+      // need to default to closed as well.
+      $citizenservices_enabled = !empty($options['feed']['citizenservicesenabled']);
+      if ($citizenservices_enabled) {
+        $intervals['citizenservices'] = 'closed';
+      }
+
+      // Process the feed, pick up the intervals we need for the screen.
+      foreach ($data as $interval) {
+        // Only process intervals for today
+        if ($interval['date'] !== $today_string) {
+          continue;
+        }
+
+        // Determine what category this interval belongs to. We pick the
+        // category based a taxonomy term id. If it is null we assume it is a
+        // general interval so we use that category as a default.
+        $category = 'general';
+        // Detect the category.
+        if (isset($interval['category_tid']) && is_numeric($interval['category_tid'])) {
+          if (isset($this->openingHoursCategories[$interval['category_tid']])) {
+            $category = $this->openingHoursCategories[$interval['category_tid']];
+          } else {
+            // Unknown category, skip.
+            continue;
+          }
+        }
+
+        // Skip citizenservices if it is not enabled.
+        if (!$citizenservices_enabled && $category === 'citizenservices') {
+          continue;
+        }
+
+        $intervals[$category] = "{$interval['start_time']} - {$interval['end_time']}";
+      }
+
+      // Generate texts for the intervals and store it into the slides external-
+      // data property for openingHoursSlide.js to pick up.
       $interval_texts = $this->generateTexts($intervals);
       $date_headline = strftime(self::HUMAN_DATE_FORMAT_FULL, $today->getTimestamp());
-      // Prepare the texts for openingHoursSlide.js to pick up.
       $slide->setExternalData(['intervalTexts' => $interval_texts, 'date_headline' => $date_headline]);
       $this->entityManager->flush();
 
@@ -269,44 +257,38 @@ class Ding2Service {
    */
   private function generateTexts($intervals) {
     $texts = [
-      'library' => [
-        'open' => NULL,
-        'service' => NULL,
-      ],
-      'citizenservices' => [
-        'open' => NULL,
-      ],
+      'libraryservice' => NULL,
+      'citizenservices' => NULL,
+      'general' => NULL,
     ];
-
 
     // Show openinghours for the library if we have a value for it. If the
     // library is open, we also show a self-service interval.
-    if (isset($intervals['library']['open'])) {
-      if ($intervals['library']['open'] === 'closed') {
-        $texts['library']['open'] =  "Biblioteket er lukket i dag";
+    if (isset($intervals['general'])) {
+      if ($intervals['general'] === 'closed') {
+        $texts['general'] =  "Biblioteket er lukket i dag";
       } else {
-
-        $texts['library']['open'] = "Biblioteket har i dag åbent kl. {$intervals['library']['open']}";
+        $texts['general'] = "Biblioteket har i dag åbent kl. {$intervals['general']}";
 
         // Show specific service-hours if present. If not, just put out a note
         // that the library is self-serviced.
-        if (isset($intervals['library']['service'])) {
-          $texts['library']['service'] = "og der er betjening kl. {$intervals['library']['service']}";
+        if (isset($intervals['libraryservice'])) {
+          $texts['libraryservice'] = "og der er betjening kl. {$intervals['libraryservice']}";
         } else {
-          $texts['library']['service'] =  "og der er selvbetjening i hele åbningstiden";
+          $texts['libraryservice'] =  "og der er selvbetjening i hele åbningstiden";
         }
       }
     }
 
     // Show opening-hours for Citizen Services.
-    if (isset($intervals['citizenservices']['open'])) {
+    if (isset($intervals['citizenservices'])) {
       // If the interval is non-null, it means the library has Citizen
       // Services, but it may still be closed.
-      if ($intervals['citizenservices']['open'] === 'closed') {
-        $texts['citizenservices']['open'] = "I dag har Borgerservice lukket";
+      if ($intervals['citizenservices'] === 'closed') {
+        $texts['citizenservices'] = "I dag har Borgerservice lukket";
       }
       else {
-        $texts['citizenservices']['open'] = "Borgerservice har åbent kl. {$intervals['citizenservices']['open']}";
+        $texts['citizenservices'] = "Borgerservice har åbent kl. {$intervals['citizenservices']}";
       }
     }
      return $texts;
