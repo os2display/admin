@@ -53,6 +53,11 @@ parameters:
     koba_apikey: 1234
     koba_path:   http://192.168.50.21
 
+    # Base URL for the DDB CMS installation.
     ding_url: 'http://bibliotek.kk.dk'
-    ding_opening_hours_library_open_keys: 'åben,åbent'
-    ding_opening_hours_library_service_keys: 'biblioteksbetjening'
+
+    # Drupal taxonomy term id's for Opening Hours interval categories.
+    ding_opening_hours_category:
+      libraryservice: 14291
+      citizenservices: 14292
+

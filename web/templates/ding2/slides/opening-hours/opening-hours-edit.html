@@ -15,7 +15,7 @@
       <div class="opening-hours--content">
 
         <div class="opening-hours--description"
-             ng-if="!ikSlide.options.feed.library && !ikSlide.options.feed.citizenservices"
+             ng-if="!ikSlide.options.feed.library"
              data-ng-style="{'color': ikSlide.options.textcolor}">(Angiv et biblioteks-id for at vise en tekst her)</div>
 
         <div class="opening-hours--description"
@@ -27,7 +27,7 @@
              data-ng-style="{'color': ikSlide.options.textcolor}">og der er betjening kl 13-15</div>
 
         <div class="opening-hours--description opening-hours--description__seperated"
-             ng-if="ikSlide.options.feed.citizenservices"
+             ng-if="ikSlide.options.feed.citizenservicesenabled"
              data-ng-style="{'color': ikSlide.options.textcolor}">Borgerservice åbent i dag 8-17</div>
 
       </div>

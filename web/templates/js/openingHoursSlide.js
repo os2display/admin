@@ -44,10 +44,6 @@ if (!window.slideFunctions['opening-hours']) {
             if (slide.options.feed.library) {
                 region.itkLog.info("- library nid: " + slide.options.feed.library);
             }
-
-            if (slide.options.feed.citizenservices) {
-                region.itkLog.info("- citizen services nid: " + slide.options.feed.citizenservices);
-            }
         }
 
         // Get the strings we're going to display on the slide.

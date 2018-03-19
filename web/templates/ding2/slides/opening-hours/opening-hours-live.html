@@ -12,16 +12,16 @@
       <div class="opening-hours--content">
 
         <div class="opening-hours--description"
-             ng-if="ikSlide.intervalTexts.library.open"
-             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.library.open}}</div>
+             ng-if="ikSlide.intervalTexts.general"
+             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.general}}</div>
 
         <div class="opening-hours--description opening-hours--description__sub"
-             ng-if="ikSlide.intervalTexts.library.service"
-             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.library.service}}</div>
+             ng-if="ikSlide.intervalTexts.general && ikSlide.intervalTexts.libraryservice"
+             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.libraryservice}}</div>
 
         <div class="opening-hours--description  opening-hours--description__seperated"
-             ng-if="ikSlide.intervalTexts.citizenservices.open"
-             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.citizenservices.open}}</div>
+             ng-if="ikSlide.intervalTexts.citizenservices"
+             data-ng-style="{'color': ikSlide.options.textcolor}">{{ikSlide.intervalTexts.citizenservices}}</div>
       </div>
       <div class="opening-hours--footer-wrapper" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'color': ikSlide.options.textcolor}">
         <div class="opening-hours--footer">{{ikSlide.options.footertext}}</div>
