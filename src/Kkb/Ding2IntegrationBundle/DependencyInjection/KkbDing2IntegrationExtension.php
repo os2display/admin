@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Loads the Ding2Service.
+ */
 
 namespace Kkb\Ding2IntegrationBundle\DependencyInjection;
 
