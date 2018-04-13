@@ -1,6 +1,0 @@
-services:
-  itk.koba_service:
-    class: Itk\KobaIntegrationBundle\Service\KobaService
-    arguments: [@service_container]
-    tags:
-      - { name: kernel.event_listener, event: ik.cron, method: onCron }
