@@ -1,0 +1,91 @@
+// We're based off of default-template-bundle.
+@import "../../../../os2display/default-template-bundle/Resources/sass/_shared-base.scss";
+@import "compass/css3";
+
+// Styling shared by ding elements.
+.ding {
+  &--watermark {
+    // We're positioning relative to the entire slide wrapper.
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    font-size: 300%;
+    // Transparent black on transparent white.
+    color: rgba(0,0,0,0.4);
+    background-color: rgba(255,255,255,0.5);
+
+    // Overlay z-index is 99.
+    z-index: 100;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+// "Use font in web/templates/fonts"
+@font-face {
+  font-family: GillSans;
+  src: url(../../../../fonts/GillSansMT.ttf);
+}
+
+$font__templates: 'GillSans', Arial, sans-serif;
+
+// Pre text
+%description-default {
+  line-height: 120%;
+  font-size: 75%;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+/**
+ * Static color picker.
+ *
+ * Makes the radio button visually appear
+ * as checkboxes with the representive color as background.
+ * When a color is chosen, it has cross as an indicator.
+ */
+.edit-menu--static-color-items {
+  $DarkBrown: #292321;
+  $Orange: #CC3300;
+
+  div {
+    margin:0 0 0.75em 0;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+  input[type="radio"] + label {
+    font-family:Arial, sans-serif;
+    font-size:14px;
+  }
+  input[type="radio"] + label span {
+    display:inline-block;
+    width: 40px;
+    height: 40px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    cursor:pointer;
+  }
+
+  input[type="radio"] + label span {
+    background-color: $DarkBrown;
+    border: 2px solid gray;
+  }
+
+  input[type="radio"]:checked + label span{
+    text-align: center;
+
+    &:before {
+      // This is the UTF-8 Dingbat for BALLOT X(cross).
+      content: "\2717";
+      font-size: 26px;
+      color: white;
+      text-shadow: 0 0 6px rgba(0,0,0,0.78);
+    }
+  }
+}

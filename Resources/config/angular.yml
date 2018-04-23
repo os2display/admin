@@ -1,0 +1,14 @@
+assets:
+  js_prod:
+    - bundles/kkbding2integration/assets/build/kkbding2integration.min.js
+
+modules:
+  dingTools:
+    files:
+      - bundles/kkbding2integration/apps/dingEditors/background-editor-static-colors.js
+      - bundles/kkbding2integration/apps/dingEditors/ding-events-editor.js
+      - bundles/kkbding2integration/apps/dingEditors/opening-hours-editor.js
+      - bundles/kkbding2integration/apps/dingEditors/text-color-editor.js
+
+apps:
+
