@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "132be067a40a2996a6036e986c43b43e",
+    "content-hash": "069130af4e210103deea7e8f41ddd122",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2026,6 +2026,37 @@
                 "xml"
             ],
             "time": "2013-12-05T14:36:11+00:00"
+        },
+        {
+            "name": "kdb/os2display-kkbding2-bundle",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kdb/os2display-kkbding2-bundle.git",
+                "reference": "d8612a0b337ac5518e7ecc8caa4e83f519e6f96b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kdb/os2display-kkbding2-bundle/zipball/d8612a0b337ac5518e7ecc8caa4e83f519e6f96b",
+                "reference": "d8612a0b337ac5518e7ecc8caa4e83f519e6f96b",
+                "shasum": ""
+            },
+            "require": {
+                "os2display/admin-bundle": "^1.0.10",
+                "os2display/core-bundle": "^1.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Kkb\\Ding2IntegrationBundle\\": ""
+                }
+            },
+            "description": "Os2Display Ding2 integration.",
+            "support": {
+                "source": "https://github.com/kdb/os2display-kkbding2-bundle/tree/1.0.0",
+                "issues": "https://github.com/kdb/os2display-kkbding2-bundle/issues"
+            },
+            "time": "2018-04-26T12:24:53+00:00"
         },
         {
             "name": "knplabs/gaufrette",
