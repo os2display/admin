@@ -102,6 +102,7 @@ class FeedService {
         }
         catch (\Exception $e) {
           $logger = $this->container->get('logger');
+          $logger->warning('FeedService: Error while fetching data for slide id ' . $slide->getId());
           $logger->warning('FeedService: Unable to download feed from ' . $source);
           $logger->warning($e);
 
