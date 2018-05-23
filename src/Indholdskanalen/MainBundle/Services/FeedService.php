@@ -100,7 +100,7 @@ class FeedService {
 
           $this->entityManager->flush();
         }
-        catch (RssAtomException $e) {
+        catch (\Exception $e) {
           $logger = $this->container->get('logger');
           $logger->warning('FeedService: Unable to download feed from ' . $source);
           $logger->warning($e);
