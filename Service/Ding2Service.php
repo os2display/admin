@@ -190,6 +190,7 @@ class Ding2Service
 
             // If we can't find the general interval, set everything as closed.
             $intervals[self::KEY_INTERVAL_GENERAL] = 'closed';
+            $intervals[self::KEY_INTERVAL_LIBRARYSERVICE] = NULL;
 
             // If citizenservices is enabled, we'll always show the interval, so we
             // need to default to closed as well.
@@ -229,8 +230,6 @@ class Ding2Service
 
             // Generate texts for the intervals and store it into the slides external-
             // data property for openingHoursSlide.js to pick up.
-            $intervals['citizenservices'] = 'closed';
-            $intervals['libraryservice'] = NULL;
             $intervalTexts = $this->generateTexts($intervals);
             $dateHeadline = strftime(self::HUMAN_DATE_FORMAT_FULL, $today->getTimestamp());
             $slide->setExternalData(['intervalTexts' => $intervalTexts, 'date_headline' => $dateHeadline]);
