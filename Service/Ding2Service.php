@@ -39,7 +39,15 @@ class Ding2Service
     const DING_EVENTS_FEED_PATH = '/kultunaut_export/%slug%';
     // Eg. "fredag d. 9. december 2016"
     const HUMAN_DATE_FORMAT_FULL = '%A d. %e. %B %Y';
+
+    // Array keys we use troughout handling of data from feeds.
+    const KEY_CITIZENSERVICESENABLED = 'citizenservicesenabled';
+    const KEY_INTERVAL_CITIZENSERVICES = 'citizenservices';
+    const KEY_INTERVAL_LIBRARYSERVICE = 'libraryservice';
+    const KEY_INTERVAL_GENERAL = 'general';
+
     protected $today;
+
     protected $todayFormatted;
     protected $tomorrow;
     protected $tomorrowFormatted;
@@ -144,11 +152,11 @@ class Ding2Service
             // citizenservices openinghours for this library.
             // In the interim period we'll port any "citizenservices" setting over
             // into a new citizenservicesenabled setting.
-            if (isset($options['feed']['citizenservices'])) {
+            if (isset($options['feed'][self::KEY_INTERVAL_CITIZENSERVICES])) {
                 // Toggle citizenservicesenabled
-                $options['feed']['citizenservicesenabled'] = true;
+                $options['feed'][self::KEY_CITIZENSERVICESENABLED] = true;
                 // We no longer need the old settings, remove it and update the slide.
-                unset($options['feed']['citizenservices']);
+                unset($options['feed'][self::KEY_INTERVAL_CITIZENSERVICES]);
                 $slide->setOptions($options);
             }
 
@@ -181,13 +189,14 @@ class Ding2Service
             $intervals = [];
 
             // If we can't find the general interval, set everything as closed.
-            $intervals['general'] = 'closed';
+            $intervals[self::KEY_INTERVAL_GENERAL] = 'closed';
+            $intervals[self::KEY_INTERVAL_LIBRARYSERVICE] = NULL;
 
             // If citizenservices is enabled, we'll always show the interval, so we
             // need to default to closed as well.
-            $citizenServicesEnabled = !empty($options['feed']['citizenservicesenabled']);
+            $citizenServicesEnabled = !empty($options['feed'][self::KEY_CITIZENSERVICESENABLED]);
             if ($citizenServicesEnabled) {
-                $intervals['citizenservices'] = 'closed';
+                $intervals[self::KEY_INTERVAL_CITIZENSERVICES] = 'closed';
             }
 
             // Process the feed, pick up the intervals we need for the screen.
@@ -200,7 +209,7 @@ class Ding2Service
                 // Determine what category this interval belongs to. We pick the
                 // category based a taxonomy term id. If it is null we assume it is a
                 // general interval so we use that category as a default.
-                $category = 'general';
+                $category = self::KEY_INTERVAL_GENERAL;
                 // Detect the category.
                 if (isset($interval['category_tid']) && is_numeric($interval['category_tid'])) {
                     if (isset($this->openingHoursCategories[$interval['category_tid']])) {
@@ -212,7 +221,7 @@ class Ding2Service
                 }
 
                 // Skip citizenservices if it is not enabled.
-                if (!$citizenServicesEnabled && 'citizenservices' === $category) {
+                if (!$citizenServicesEnabled && self::KEY_INTERVAL_CITIZENSERVICES === $category) {
                     continue;
                 }
 
@@ -221,8 +230,6 @@ class Ding2Service
 
             // Generate texts for the intervals and store it into the slides external-
             // data property for openingHoursSlide.js to pick up.
-            $intervals['citizenservices'] = 'closed';
-            $intervals['libraryservice'] = NULL;
             $intervalTexts = $this->generateTexts($intervals);
             $dateHeadline = strftime(self::HUMAN_DATE_FORMAT_FULL, $today->getTimestamp());
             $slide->setExternalData(['intervalTexts' => $intervalTexts, 'date_headline' => $dateHeadline]);
@@ -426,37 +433,37 @@ class Ding2Service
     private function generateTexts($intervals)
     {
         $texts = [
-            'libraryservice' => null,
-            'citizenservices' => null,
-            'general' => null,
+            self::KEY_INTERVAL_LIBRARYSERVICE => null,
+            self::KEY_INTERVAL_CITIZENSERVICES => null,
+            self::KEY_INTERVAL_GENERAL => null,
         ];
 
         // Show openinghours for the library if we have a value for it. If the
         // library is open, we also show a self-service interval.
-        if (isset($intervals['general'])) {
-            if ($intervals['general'] === 'closed') {
-                $texts['general'] = "Biblioteket er lukket i dag";
+        if (isset($intervals[self::KEY_INTERVAL_GENERAL])) {
+            if ($intervals[self::KEY_INTERVAL_GENERAL] === 'closed') {
+                $texts[self::KEY_INTERVAL_GENERAL] = "Biblioteket er lukket i dag";
             } else {
-                $texts['general'] = "Biblioteket har i dag åbent kl. {$intervals['general']}";
+                $texts[self::KEY_INTERVAL_GENERAL] = "Biblioteket har i dag åbent kl. {$intervals[self::KEY_INTERVAL_GENERAL]}";
 
                 // Show specific service-hours if present. If not, just put out a note
                 // that the library is self-serviced.
-                if (isset($intervals['libraryservice'])) {
-                    $texts['libraryservice'] = "og der er betjening kl. {$intervals['libraryservice']}";
+                if (isset($intervals[self::KEY_INTERVAL_LIBRARYSERVICE])) {
+                    $texts[self::KEY_INTERVAL_LIBRARYSERVICE] = "og der er betjening kl. {$intervals[self::KEY_INTERVAL_LIBRARYSERVICE]}";
                 } else {
-                    $texts['libraryservice'] = "og der er selvbetjening i hele åbningstiden";
+                    $texts[self::KEY_INTERVAL_LIBRARYSERVICE] = "og der er selvbetjening i hele åbningstiden";
                 }
             }
         }
 
         // Show opening-hours for Citizen Services.
-        if (isset($intervals['citizenservices'])) {
+        if (isset($intervals[self::KEY_INTERVAL_CITIZENSERVICES])) {
             // If the interval is non-null, it means the library has Citizen
             // Services, but it may still be closed.
-            if ($intervals['citizenservices'] === 'closed') {
-                $texts['citizenservices'] = "I dag har Borgerservice lukket";
+            if ($intervals[self::KEY_INTERVAL_CITIZENSERVICES] === 'closed') {
+                $texts[self::KEY_INTERVAL_CITIZENSERVICES] = "I dag har Borgerservice lukket";
             } else {
-                $texts['citizenservices'] = "Borgerservice har åbent kl. {$intervals['citizenservices']}";
+                $texts[self::KEY_INTERVAL_CITIZENSERVICES] = "Borgerservice har åbent kl. {$intervals[self::KEY_INTERVAL_CITIZENSERVICES]}";
             }
         }
 
