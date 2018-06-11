@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "069130af4e210103deea7e8f41ddd122",
+    "content-hash": "7c4c9030612c491a6aded5d658dac738",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2029,16 +2029,16 @@
         },
         {
             "name": "kdb/os2display-kkbding2-bundle",
-            "version": "1.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kdb/os2display-kkbding2-bundle.git",
-                "reference": "d8612a0b337ac5518e7ecc8caa4e83f519e6f96b"
+                "reference": "a2b0ea9257cb7eda56cb4cc2ec44fd8ced27cf9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kdb/os2display-kkbding2-bundle/zipball/d8612a0b337ac5518e7ecc8caa4e83f519e6f96b",
-                "reference": "d8612a0b337ac5518e7ecc8caa4e83f519e6f96b",
+                "url": "https://api.github.com/repos/kdb/os2display-kkbding2-bundle/zipball/a2b0ea9257cb7eda56cb4cc2ec44fd8ced27cf9d",
+                "reference": "a2b0ea9257cb7eda56cb4cc2ec44fd8ced27cf9d",
                 "shasum": ""
             },
             "require": {
@@ -2053,10 +2053,10 @@
             },
             "description": "Os2Display Ding2 integration.",
             "support": {
-                "source": "https://github.com/kdb/os2display-kkbding2-bundle/tree/1.0.0",
+                "source": "https://github.com/kdb/os2display-kkbding2-bundle/tree/1.0.1",
                 "issues": "https://github.com/kdb/os2display-kkbding2-bundle/issues"
             },
-            "time": "2018-04-26T12:24:53+00:00"
+            "time": "2018-06-11T19:00:35+00:00"
         },
         {
             "name": "knplabs/gaufrette",
@@ -2675,16 +2675,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.0.10",
+            "version": "dev-kdb-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "54d2be18f6d4363219e21f384762328ebfd53bf1"
+                "url": "https://github.com/kdb/os2display-admin-bundle.git",
+                "reference": "56958416bb7b24805ae5a02a93172a7a2cf8bf6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/54d2be18f6d4363219e21f384762328ebfd53bf1",
-                "reference": "54d2be18f6d4363219e21f384762328ebfd53bf1",
+                "url": "https://api.github.com/repos/kdb/os2display-admin-bundle/zipball/56958416bb7b24805ae5a02a93172a7a2cf8bf6f",
+                "reference": "56958416bb7b24805ae5a02a93172a7a2cf8bf6f",
                 "shasum": ""
             },
             "require": {
@@ -2699,10 +2699,9 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/os2display/admin-bundle/tree/1.0.10",
-                "issues": "https://github.com/os2display/admin-bundle/issues"
+                "source": "https://github.com/kdb/os2display-admin-bundle/tree/kdb-master"
             },
-            "time": "2017-11-22T12:23:31+00:00"
+            "time": "2018-06-11T17:01:08+00:00"
         },
         {
             "name": "os2display/core-bundle",
@@ -4228,6 +4227,7 @@
                 "compression",
                 "minification"
             ],
+            "abandoned": "symfony/webpack-encore-pack",
             "time": "2017-07-14T07:26:46+00:00"
         },
         {
@@ -5194,7 +5194,7 @@
             ],
             "authors": [
                 {
-                    "name": "William Durand",
+                    "name": "William DURAND",
                     "email": "william.durand1@gmail.com"
                 }
             ],
@@ -6116,9 +6116,18 @@
             "time": "2017-02-14T16:28:37+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "1.0.11",
+            "alias_normalized": "1.0.11.0",
+            "version": "dev-kdb-master",
+            "package": "os2display/admin-bundle"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "os2display/admin-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
