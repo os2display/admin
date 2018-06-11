@@ -10,7 +10,7 @@
     }
   },
   "require": {
-    "os2display/admin-bundle": "^1.0",
+    "os2display/admin-bundle": "dev-kdb-master as 1.0.11",
     "os2display/default-template-bundle": "^1.0",
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
@@ -32,7 +32,7 @@
     },
     "os2display/admin-bundle": {
       "type": "vcs",
-      "url": "https://github.com/os2display/admin-bundle"
+      "url": "https://github.com/kdb/os2display-admin-bundle"
     },
     "os2display/media-bundle": {
       "type": "vcs",
