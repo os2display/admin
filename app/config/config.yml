@@ -143,8 +143,14 @@ fos_rest:
 
 nelmio_api_doc: ~
 
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            blameable: true
+
 itk_exchange:
-    enabled: true
+    enabled: %itk_exchange_enabled%
     host: %itk_exchange_host%
     user: %itk_exchange_user%
     password: %itk_exchange_password%

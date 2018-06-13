@@ -13,7 +13,21 @@
     "php": ">=5.5.0 <7",
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
-    "sonata-project/doctrine-orm-admin-bundle": "^2.0"
+    "sonata-project/doctrine-orm-admin-bundle": "^2.0",
+    "os2display/core-bundle": "^1.0",
+    "os2display/admin-bundle": "^1.0",
+    "os2display/media-bundle": "^1.0",
+    "os2display/default-template-bundle": "^1.0",
+    "itk-os2display/exchange-bundle": "^1.0",
+    "itk-os2display/horizon-template-bundle": "^1.0",
+    "itk-os2display/os2display-koba-integration": "^1.0",
+    "itk-os2display/lokalcenter-template-bundle": "^1.0",
+    "itk-os2display/template-extension-bundle": "^1.0",
+    "itk-os2display/aarhus-second-template-bundle": "^1.0",
+    "itk-os2display/aarhus-data-bundle": "^1.0",
+    "itk-os2display/vimeo-bundle": "^1.0",
+    "aakb/os2display-aarhus-templates": "^1.0",
+    "itk-os2display/campaign-bundle": "dev-develop"
   },
   "require-dev": {
     "sensio/generator-bundle": "^2.3",
@@ -56,6 +70,64 @@
     },
     "branch-alias": {
       "dev-master": "2.5-dev"
+    }
+  },
+  "repositories": {
+    "itk-os2display/aarhus-data-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/aarhus-data-bundle"
+    },
+    "itk-os2display/aarhus-second-template-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/aarhus-second-template-bundle"
+    },
+    "itk-os2display/admin-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/admin-bundle"
+    },
+    "itk-os2display/campaign-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/campaign-bundle"
+    },
+    "itk-os2display/core-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/core-bundle"
+    },
+    "itk-os2display/default-template-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/default-template-bundle"
+    },
+    "itk-os2display/exchange-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/exchange-bundle"
+    },
+    "itk-os2display/horizon-template-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/horizon-template-bundle"
+    },
+    "itk-os2display/lokalcenter-template-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/lokalcenter-template-bundle"
+    },
+    "itk-os2display/media-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/media-bundle"
+    },
+    "itk-os2display/template-extension-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/template-extension-bundle"
+    },
+    "itk-os2display/vimeo-bundle": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/vimeo-bundle"
+    },
+    "itk-os2display/os2display-koba-integration": {
+      "type": "vcs",
+      "url": "https://github.com/itk-os2display/os2display-koba-integration"
+    },
+    "aakb/os2display-aarhus-templates": {
+      "type": "vcs",
+      "url": "https://github.com/aakb/os2display-aarhus-templates"
     }
   }
 }
