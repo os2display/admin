@@ -2,3 +2,14 @@ twig:
     paths: ['%kernel.project_dir%/templates']
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        sharing_host: '%sharing_host%'
+        sharing_enabled: '%sharing_enabled%'
+        search_host: '%search_host%'
+        search_index: '%search_index%'
+        site_title: '%site_title%'
+        version: '%version%'
+        itk_log_version: '%itk_log_version%'
+        itk_log_error_callback: '%itk_log_error_callback%'
+        itk_log_log_to_console: '%itk_log_log_to_console%'
+        itk_log_log_level: '%itk_log_log_level%'

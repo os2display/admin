@@ -20,8 +20,11 @@ return [
     Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
     JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
     Sonata\MediaBundle\SonataMediaBundle::class => ['all' => true],
-    Os2Display\MediaBundle\Os2DisplayMediaBundle::class => ['all' => true],
     FOS\RestBundle\FOSRestBundle::class => ['all' => true],
     Debril\RssAtomBundle\DebrilRssAtomBundle::class => ['all' => true],
+    Nelmio\ApiDocBundle\NelmioApiDocBundle::class => ['all' => true],
+    Os2Display\MediaBundle\Os2DisplayMediaBundle::class => ['all' => true],
     Os2Display\CoreBundle\Os2DisplayCoreBundle::class => ['all' => true],
+    Os2Display\AdminBundle\Os2DisplayAdminBundle::class => ['all' => true],
+    Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle::class => ['all' => true],
 ];
