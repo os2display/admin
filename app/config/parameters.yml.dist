@@ -39,7 +39,7 @@ parameters:
     middleware_path: /api
     middleware_apikey: 1234567890
 
-    site_title: Indholdskanalen
+    site_title: Os2Display
 
     version: dev
 
@@ -50,9 +50,6 @@ parameters:
 
     search_filter_default: all
 
-    koba_apikey: 1234
-    koba_path:   http://192.168.50.21
-
     # Base URL for the DDB CMS installation.
     ding_url: 'http://bibliotek.kk.dk'
 
@@ -60,4 +57,3 @@ parameters:
     ding_opening_hours_category:
       libraryservice: 14291
       citizenservices: 14292
-
