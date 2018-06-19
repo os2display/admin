@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "464f08eb6a25eac3f968b50e38d93d3e",
+    "content-hash": "2aab20eecbdc123e58ef5f5e0e0088d2",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1727,6 +1727,80 @@
                 "sql"
             ],
             "time": "2014-01-12T16:20:24+00:00"
+        },
+        {
+            "name": "jms/job-queue-bundle",
+            "version": "dev-symfony4",
+            "target-dir": "JMS/JobQueueBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSJobQueueBundle.git",
+                "reference": "6c1982e7207aa2be5845757e08adc8cd5dc6961b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSJobQueueBundle/zipball/6c1982e7207aa2be5845757e08adc8cd5dc6961b",
+                "reference": "6c1982e7207aa2be5845757e08adc8cd5dc6961b",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "^2.3",
+                "php": "^7.1",
+                "symfony/debug": "^4.0",
+                "symfony/framework-bundle": "^4.0",
+                "symfony/process": "^4.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/doctrine-fixtures-bundle": "*",
+                "doctrine/orm": "*",
+                "phpunit/phpunit": "^6.0",
+                "sensio/framework-extra-bundle": "*",
+                "symfony/browser-kit": "*",
+                "symfony/class-loader": "*",
+                "symfony/css-selector": "*",
+                "symfony/finder": "*",
+                "symfony/form": "*",
+                "symfony/intl": "*",
+                "symfony/twig-bundle": "*",
+                "symfony/validator": "*",
+                "symfony/yaml": "*"
+            },
+            "suggest": {
+                "sensio/framework-extra-bundle": "Required when using the webinterface.",
+                "symfony/twig-bundle": "Required when using the webinterface."
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\JobQueueBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Allows to run and schedule Symfony console commands as background jobs.",
+            "homepage": "http://jmsyst.com/bundles/JMSJobQueueBundle",
+            "keywords": [
+                "background",
+                "cron",
+                "job",
+                "queue",
+                "scheduled"
+            ],
+            "time": "2018-05-05T06:00:54+00:00"
         },
         {
             "name": "jms/metadata",
@@ -7823,6 +7897,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "jms/job-queue-bundle": 20,
         "nelmio/api-doc-bundle": 20,
         "os2display/admin-bundle": 20,
         "os2display/core-bundle": 20,

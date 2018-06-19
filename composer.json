@@ -3,6 +3,7 @@
     "license": "GNU General Public License v3.0",
     "require": {
         "php": "^7.1.3",
+        "jms/job-queue-bundle": "dev-symfony4",
         "nelmio/api-doc-bundle": "^3.2@dev",
         "os2display/admin-bundle": "dev-master",
         "os2display/core-bundle": "dev-symf4",
