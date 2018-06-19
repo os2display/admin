@@ -16,7 +16,7 @@ sonata_media:
             path: '%absolute_path_to_server%/uploads/media'
     filesystem:
         local:
-            directory:  '%kernel.root_dir%/../web/uploads/media'
+            directory:  '%kernel.root_dir%/../public/uploads/media'
             create:     false
     class:
         media: Os2Display\MediaBundle\Entity\Media
