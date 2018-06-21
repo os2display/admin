@@ -1,7 +1,0 @@
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class: Os2Display\CoreBundle\Entity\User
-    from_email:
-        address: "%mailer_from_email%"
-        sender_name: "%mailer_from_name%"

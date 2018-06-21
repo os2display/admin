@@ -1,0 +1,8 @@
+# Steps to upgrade to symfony 3.4
+
+<pre>
+mv admin adminOLD
+symfony new admin 3.4
+cp -R adminOLD/.git admin/
+</pre>
+
