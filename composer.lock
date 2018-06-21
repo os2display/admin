@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b7235ddc49ac928638134d3c6764647",
+    "content-hash": "8ab93e0ceaa0e69af13bb2b3c58bf7c7",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1710,6 +1710,32 @@
                 "source": "https://github.com/itk-os2display/core-bundle/tree/symf34"
             },
             "time": "2018-06-21T08:52:18+00:00"
+        },
+        {
+            "name": "os2display/default-template-bundle",
+            "version": "dev-symf34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/default-template-bundle.git",
+                "reference": "9ca1ac25cd46add75c20cf8f918ebbf7435c7d9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/default-template-bundle/zipball/9ca1ac25cd46add75c20cf8f918ebbf7435c7d9d",
+                "reference": "9ca1ac25cd46add75c20cf8f918ebbf7435c7d9d",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\DefaultTemplateBundle\\": ""
+                }
+            },
+            "description": "Os2Display default template",
+            "support": {
+                "source": "https://github.com/itk-os2display/default-template-bundle/tree/symf4"
+            },
+            "time": "2018-06-15T11:17:29+00:00"
         },
         {
             "name": "os2display/media-bundle",
@@ -3683,6 +3709,7 @@
     "stability-flags": {
         "os2display/admin-bundle": 20,
         "os2display/core-bundle": 20,
+        "os2display/default-template-bundle": 20,
         "os2display/media-bundle": 20
     },
     "prefer-stable": false,
