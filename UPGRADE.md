@@ -33,7 +33,6 @@ php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle o
 </pre>
 
 
-
 ## Notes: Steps to upgrade to symfony 3.4
 
 <pre>
@@ -49,3 +48,9 @@ php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle:d
 </pre>
 
 
+Require bundles for core-bundle
+<pre>
+php -d memory_limit=-1 /usr/local/bin/composer require debril/rss-atom-bundle doctrine/doctrine-migrations-bundle friendsofsymfony/rest-bundle friendsofsymfony/user-bundle guzzlehttp/guzzle jms/job-queue-bundle jms/serializer-bundle nelmio/api-doc-bundle
+</pre>
+
+Move requirements to os2display/core-bundle requirements
