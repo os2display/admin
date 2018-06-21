@@ -4,8 +4,73 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59288fb83da0537a6ebd4298ac36a0f9",
+    "content-hash": "2b7235ddc49ac928638134d3c6764647",
     "packages": [
+        {
+            "name": "cocur/slugify",
+            "version": "v3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cocur/slugify.git",
+                "reference": "b2ccf7b735f4f3df3979aef2e1ebf8e19ca772f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cocur/slugify/zipball/b2ccf7b735f4f3df3979aef2e1ebf8e19ca772f7",
+                "reference": "b2ccf7b735f4f3df3979aef2e1ebf8e19ca772f7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "laravel/framework": "~5.1",
+                "latte/latte": "~2.2",
+                "league/container": "^2.2.0",
+                "mikey179/vfsstream": "~1.6",
+                "mockery/mockery": "~0.9",
+                "nette/di": "~2.2",
+                "phpunit/phpunit": "~4.8|~5.2",
+                "pimple/pimple": "~1.1",
+                "plumphp/plum": "~0.1",
+                "silex/silex": "~1.3",
+                "symfony/config": "~2.4|~3.0",
+                "symfony/dependency-injection": "~2.4|~3.0",
+                "symfony/http-kernel": "~2.4|~3.0",
+                "twig/twig": "~1.26|~2.0",
+                "zendframework/zend-modulemanager": "~2.2",
+                "zendframework/zend-servicemanager": "~2.2",
+                "zendframework/zend-view": "~2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cocur\\Slugify\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivo Bathke",
+                    "email": "ivo.bathke@gmail.com"
+                },
+                {
+                    "name": "Florian Eckerstorfer",
+                    "email": "florian@eckerstorfer.co",
+                    "homepage": "https://florian.ec"
+                }
+            ],
+            "description": "Converts a string into a slug.",
+            "keywords": [
+                "slug",
+                "slugify"
+            ],
+            "time": "2018-01-22T09:00:48+00:00"
+        },
         {
             "name": "composer/ca-bundle",
             "version": "1.1.1",
@@ -890,6 +955,129 @@
             "time": "2016-10-17T18:31:11+00:00"
         },
         {
+            "name": "guzzlehttp/psr7",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "psr/http-message": "~1.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
+                }
+            ],
+            "description": "PSR-7 message implementation that also provides common utility methods",
+            "keywords": [
+                "http",
+                "message",
+                "request",
+                "response",
+                "stream",
+                "uri",
+                "url"
+            ],
+            "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "imagine/imagine",
+            "version": "v0.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avalanche123/Imagine.git",
+                "reference": "a9a702a946073cbca166718f1b02a1e72d742daa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/a9a702a946073cbca166718f1b02a1e72d742daa",
+                "reference": "a9a702a946073cbca166718f1b02a1e72d742daa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "sami/sami": "^3.3",
+                "symfony/phpunit-bridge": "^3.2"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD implementation",
+                "ext-gmagick": "to use the Gmagick implementation",
+                "ext-imagick": "to use the Imagick implementation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Imagine": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image processing for PHP 5.3",
+            "homepage": "http://imagine.readthedocs.org/",
+            "keywords": [
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
+            ],
+            "time": "2017-05-16T10:31:22+00:00"
+        },
+        {
             "name": "incenteev/composer-parameter-handler",
             "version": "v2.1.3",
             "source": {
@@ -991,6 +1179,390 @@
             "time": "2014-01-12T16:20:24+00:00"
         },
         {
+            "name": "jms/metadata",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/metadata.git",
+                "reference": "6a06970a10e0a532fb52d3959547123b84a3b3ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/6a06970a10e0a532fb52d3959547123b84a3b3ab",
+                "reference": "6a06970a10e0a532fb52d3959547123b84a3b3ab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "doctrine/cache": "~1.0",
+                "symfony/cache": "~3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Metadata\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Class/method/property metadata management in PHP",
+            "keywords": [
+                "annotations",
+                "metadata",
+                "xml",
+                "yaml"
+            ],
+            "time": "2016-12-05T10:18:33+00:00"
+        },
+        {
+            "name": "jms/parser-lib",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/parser-lib.git",
+                "reference": "c509473bc1b4866415627af0e1c6cc8ac97fa51d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/parser-lib/zipball/c509473bc1b4866415627af0e1c6cc8ac97fa51d",
+                "reference": "c509473bc1b4866415627af0e1c6cc8ac97fa51d",
+                "shasum": ""
+            },
+            "require": {
+                "phpoption/phpoption": ">=0.9,<2.0-dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "description": "A library for easily creating recursive-descent parsers.",
+            "time": "2012-11-18T18:08:43+00:00"
+        },
+        {
+            "name": "jms/serializer",
+            "version": "1.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/serializer.git",
+                "reference": "93d6e03fcb71d45854cc44b5a84d645c02c5d763"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/93d6e03fcb71d45854cc44b5a84d645c02c5d763",
+                "reference": "93d6e03fcb71d45854cc44b5a84d645c02c5d763",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "^1.0",
+                "doctrine/instantiator": "^1.0.3",
+                "jms/metadata": "^1.3",
+                "jms/parser-lib": "1.*",
+                "php": "^5.5|^7.0",
+                "phpcollection/phpcollection": "~0.1",
+                "phpoption/phpoption": "^1.1"
+            },
+            "conflict": {
+                "twig/twig": "<1.12"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.1",
+                "doctrine/phpcr-odm": "^1.3|^2.0",
+                "ext-pdo_sqlite": "*",
+                "jackalope/jackalope-doctrine-dbal": "^1.1.5",
+                "phpunit/phpunit": "^4.8|^5.0",
+                "propel/propel1": "~1.7",
+                "psr/container": "^1.0",
+                "symfony/dependency-injection": "^2.7|^3.3|^4.0",
+                "symfony/expression-language": "^2.6|^3.0",
+                "symfony/filesystem": "^2.1",
+                "symfony/form": "~2.1|^3.0",
+                "symfony/translation": "^2.1|^3.0",
+                "symfony/validator": "^2.2|^3.0",
+                "symfony/yaml": "^2.1|^3.0",
+                "twig/twig": "~1.12|~2.0"
+            },
+            "suggest": {
+                "doctrine/cache": "Required if you like to use cache functionality.",
+                "doctrine/collections": "Required if you like to use doctrine collection types as ArrayCollection.",
+                "symfony/yaml": "Required if you'd like to serialize data to YAML format."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.11-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Serializer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                },
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Library for (de-)serializing data of any complexity; supports XML, JSON, and YAML.",
+            "homepage": "http://jmsyst.com/libs/serializer",
+            "keywords": [
+                "deserialization",
+                "jaxb",
+                "json",
+                "serialization",
+                "xml"
+            ],
+            "time": "2018-06-01T12:10:12+00:00"
+        },
+        {
+            "name": "jms/serializer-bundle",
+            "version": "2.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSSerializerBundle.git",
+                "reference": "22eb9a2f7983394b0770237ca91e879eb2a4b4a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/22eb9a2f7983394b0770237ca91e879eb2a4b4a6",
+                "reference": "22eb9a2f7983394b0770237ca91e879eb2a4b4a6",
+                "shasum": ""
+            },
+            "require": {
+                "jms/serializer": "^1.10",
+                "php": "^5.4|^7.0",
+                "phpoption/phpoption": "^1.1.0",
+                "symfony/framework-bundle": "~2.3|~3.0|~4.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "*",
+                "phpunit/phpunit": "^4.8.35|^5.4.3|^6.0",
+                "symfony/expression-language": "~2.6|~3.0|~4.0",
+                "symfony/finder": "^2.3|^3.0|^4.0",
+                "symfony/form": "*",
+                "symfony/stopwatch": "*",
+                "symfony/twig-bundle": "*",
+                "symfony/validator": "*",
+                "symfony/yaml": "*"
+            },
+            "suggest": {
+                "jms/di-extra-bundle": "Required to get lazy loading (de)serialization visitors, ~1.3",
+                "symfony/finder": "Required for cache warmup, supported versions ^2.3|^3.0|^4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JMS\\SerializerBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                },
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Allows you to easily serialize, and deserialize data of any complexity",
+            "homepage": "http://jmsyst.com/bundles/JMSSerializerBundle",
+            "keywords": [
+                "deserialization",
+                "jaxb",
+                "json",
+                "serialization",
+                "xml"
+            ],
+            "time": "2018-06-19T13:39:25+00:00"
+        },
+        {
+            "name": "knplabs/gaufrette",
+            "version": "v0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/Gaufrette.git",
+                "reference": "2f228650fd4cc50c3d3c1d6541546ffc169b2240"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/2f228650fd4cc50c3d3c1d6541546ffc169b2240",
+                "reference": "2f228650fd4cc50c3d3c1d6541546ffc169b2240",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "conflict": {
+                "microsoft/windowsazure": "<0.4.3"
+            },
+            "require-dev": {
+                "akeneo/phpspec-skip-example-extension": "~1.2",
+                "amazonwebservices/aws-sdk-for-php": "1.5.*",
+                "aws/aws-sdk-php": "^2.4.12||~3",
+                "doctrine/dbal": ">=2.3",
+                "dropbox-php/dropbox-php": "*",
+                "google/apiclient": "~1.1.3",
+                "league/flysystem": "~1.0",
+                "microsoft/azure-storage": "~0.15.0",
+                "microsoft/windowsazure": "~0.4",
+                "mikey179/vfsstream": "~1.2.0",
+                "mongodb/mongodb": "^1.1",
+                "phpseclib/phpseclib": "^2.0",
+                "phpspec/phpspec": "~2.4",
+                "phpunit/phpunit": "^5.6.8",
+                "rackspace/php-opencloud": "^1.9.2"
+            },
+            "suggest": {
+                "ext-curl": "*",
+                "ext-fileinfo": "This extension is used to automatically detect the content-type of a file in the AwsS3, OpenCloud, AzureBlogStorage and GoogleCloudStorage adapters",
+                "ext-mbstring": "*",
+                "gaufrette/aws-s3-adapter": "to use AwsS3 adapter (supports SDK v2 and v3)",
+                "gaufrette/azure-blob-storage-adapter": "to use AzureBlobStorage adapter",
+                "gaufrette/doctrine-dbal-adapter": "to use DBAL adapter",
+                "gaufrette/flysystem-adapter": "to use Flysystem adapter",
+                "gaufrette/ftp-adapter": "to use Ftp adapter",
+                "gaufrette/gridfs-adapter": "to use GridFS adapter",
+                "gaufrette/in-memory-adapter": "to use InMemory adapter",
+                "gaufrette/local-adapter": "to use Local adapter",
+                "gaufrette/opencloud-adapter": "to use Opencloud adapter",
+                "gaufrette/phpseclib-sftp-adapter": "to use PhpseclibSftp adapter",
+                "gaufrette/zip-adapter": "to use Zip adapter",
+                "google/apiclient": "to use GoogleCloudStorage adapter",
+                "knplabs/knp-gaufrette-bundle": "to use with Symfony2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Gaufrette": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "The contributors",
+                    "homepage": "http://github.com/knplabs/Gaufrette/contributors"
+                },
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                }
+            ],
+            "description": "PHP library that provides a filesystem abstraction layer",
+            "homepage": "http://knplabs.com",
+            "keywords": [
+                "abstraction",
+                "file",
+                "filesystem",
+                "media"
+            ],
+            "time": "2018-01-04T19:50:08+00:00"
+        },
+        {
+            "name": "kriswallsmith/buzz",
+            "version": "v0.16.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kriswallsmith/Buzz.git",
+                "reference": "4977b7d44dbef49cdc641f14be6512fdcfe32f12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/4977b7d44dbef49cdc641f14be6512fdcfe32f12",
+                "reference": "4977b7d44dbef49cdc641f14be6512fdcfe32f12",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.4",
+                "php": "^5.4 || ^7.0"
+            },
+            "require-dev": {
+                "php-http/client-integration-tests": "^0.6.2",
+                "symfony/phpunit-bridge": "^3.4 || ^4.0"
+            },
+            "suggest": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Buzz\\": "lib/Buzz"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                }
+            ],
+            "description": "Lightweight HTTP client",
+            "homepage": "https://github.com/kriswallsmith/Buzz",
+            "keywords": [
+                "curl",
+                "http client"
+            ],
+            "time": "2018-03-19T10:34:40+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.23.0",
             "source": {
@@ -1069,6 +1641,106 @@
             "time": "2017-06-19T01:22:40+00:00"
         },
         {
+            "name": "os2display/admin-bundle",
+            "version": "dev-symf34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/admin-bundle.git",
+                "reference": "e0e3ede41a41d1d7f337bd960757288ae048c668"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/e0e3ede41a41d1d7f337bd960757288ae048c668",
+                "reference": "e0e3ede41a41d1d7f337bd960757288ae048c668",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "^1.0||^2.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\AdminBundle\\": ""
+                }
+            },
+            "description": "Os2Display admin",
+            "support": {
+                "source": "https://github.com/itk-os2display/admin-bundle/tree/symf34"
+            },
+            "time": "2018-06-21T08:52:40+00:00"
+        },
+        {
+            "name": "os2display/core-bundle",
+            "version": "dev-symf34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/core-bundle.git",
+                "reference": "dbc61929d61b4553cdf5d7508211e9392429c0a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/dbc61929d61b4553cdf5d7508211e9392429c0a4",
+                "reference": "dbc61929d61b4553cdf5d7508211e9392429c0a4",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^1.6",
+                "doctrine/orm": "^2.5",
+                "incenteev/composer-parameter-handler": "^2.0",
+                "php": ">=5.5.9",
+                "sensio/distribution-bundle": "^5.0.19",
+                "sensio/framework-extra-bundle": "^5.0.0",
+                "symfony/monolog-bundle": "^3.1.0",
+                "symfony/polyfill-apcu": "^1.0",
+                "symfony/swiftmailer-bundle": "^2.6.4",
+                "symfony/symfony": "3.4.*",
+                "twig/twig": "^1.0||^2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "patches": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\CoreBundle\\": ""
+                }
+            },
+            "description": "Os2Display core",
+            "support": {
+                "source": "https://github.com/itk-os2display/core-bundle/tree/symf34"
+            },
+            "time": "2018-06-21T08:52:18+00:00"
+        },
+        {
+            "name": "os2display/media-bundle",
+            "version": "dev-symf34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/media-bundle.git",
+                "reference": "efab13b43f0b9da0843d7a63c0117f533c27a4bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/media-bundle/zipball/efab13b43f0b9da0843d7a63c0117f533c27a4bc",
+                "reference": "efab13b43f0b9da0843d7a63c0117f533c27a4bc",
+                "shasum": ""
+            },
+            "require": {
+                "sonata-project/media-bundle": "^3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\MediaBundle\\": ""
+                }
+            },
+            "description": "Os2Display media",
+            "support": {
+                "source": "https://github.com/itk-os2display/media-bundle/tree/symf4"
+            },
+            "time": "2018-06-13T17:38:49+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.12",
             "source": {
@@ -1115,6 +1787,104 @@
                 "random"
             ],
             "time": "2018-04-04T21:24:14+00:00"
+        },
+        {
+            "name": "phpcollection/phpcollection",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/php-collection.git",
+                "reference": "f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/php-collection/zipball/f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6",
+                "reference": "f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6",
+                "shasum": ""
+            },
+            "require": {
+                "phpoption/phpoption": "1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PhpCollection": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "General-Purpose Collection Library for PHP",
+            "keywords": [
+                "collection",
+                "list",
+                "map",
+                "sequence",
+                "set"
+            ],
+            "time": "2015-05-17T12:39:23+00:00"
+        },
+        {
+            "name": "phpoption/phpoption",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/php-option.git",
+                "reference": "94e644f7d2051a5f0fcf77d81605f152eecff0ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/94e644f7d2051a5f0fcf77d81605f152eecff0ed",
+                "reference": "94e644f7d2051a5f0fcf77d81605f152eecff0ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PhpOption\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Option Type for PHP",
+            "keywords": [
+                "language",
+                "option",
+                "php",
+                "type"
+            ],
+            "time": "2015-07-25T16:39:46+00:00"
         },
         {
             "name": "psr/cache",
@@ -1210,6 +1980,56 @@
                 "psr"
             ],
             "time": "2017-02-14T16:28:37+00:00"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/link",
@@ -1520,6 +2340,373 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2018-02-28T22:10:01+00:00"
+        },
+        {
+            "name": "sonata-project/core-bundle",
+            "version": "3.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataCoreBundle.git",
+                "reference": "352275323c28f921c57312d5fb609b693a8bc8e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/352275323c28f921c57312d5fb609b693a8bc8e0",
+                "reference": "352275323c28f921c57312d5fb609b693a8bc8e0",
+                "shasum": ""
+            },
+            "require": {
+                "cocur/slugify": "^1.4 || ^2.0 || ^3.0",
+                "php": "^5.6 || ^7.0",
+                "sonata-project/datagrid-bundle": "^2.0",
+                "symfony/config": "^2.8 || ^3.2 || ^4.0",
+                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+                "symfony/event-dispatcher": "^2.8 || ^3.2 || ^4.0",
+                "symfony/form": "^2.8 || ^3.2 || ^4.0",
+                "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
+                "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
+                "symfony/property-access": "^2.8 || ^3.2 || ^4.0",
+                "symfony/security-csrf": "^2.8 || ^3.2 || ^4.0",
+                "symfony/translation": "^2.8 || ^3.2 || ^4.0",
+                "symfony/twig-bridge": "^2.8 || ^3.2 || ^4.0",
+                "symfony/validator": "^2.8 || ^3.2 || ^4.0",
+                "twig/extensions": "^1.5",
+                "twig/twig": "^1.34 || ^2.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.4",
+                "doctrine/phpcr-odm": "^1.0",
+                "jackalope/jackalope-doctrine-dbal": "^1.0",
+                "jms/serializer-bundle": "^1.0 || ^2.0",
+                "matthiasnoback/symfony-config-test": "^2.1",
+                "matthiasnoback/symfony-dependency-injection-test": "^1.1",
+                "nelmio/api-doc-bundle": "^2.11",
+                "sonata-project/exporter": "^1.3",
+                "symfony/phpunit-bridge": "^4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\CoreBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataCoreBundle/contributors"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org"
+                }
+            ],
+            "description": "Symfony SonataCoreBundle",
+            "homepage": "https://sonata-project.org/bundles/core",
+            "keywords": [
+                "sonata"
+            ],
+            "time": "2018-06-13T04:16:25+00:00"
+        },
+        {
+            "name": "sonata-project/datagrid-bundle",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataDatagridBundle.git",
+                "reference": "4e53da7f3a027eee10f1f2bf37237b2b7cffaa71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/4e53da7f3a027eee10f1f2bf37237b2b7cffaa71",
+                "reference": "4e53da7f3a027eee10f1f2bf37237b2b7cffaa71",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+                "symfony/form": "^2.8 || ^3.2 || ^4.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.4",
+                "symfony/phpunit-bridge": "^3.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\DatagridBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataDatagridBundle/contributors"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "https://sonata-project.org"
+                }
+            ],
+            "description": "Symfony SonataDatagridBundle",
+            "homepage": "https://sonata-project.org/bundles/datagrid",
+            "keywords": [
+                "datagrid",
+                "sonata"
+            ],
+            "time": "2017-12-12T17:04:29+00:00"
+        },
+        {
+            "name": "sonata-project/doctrine-extensions",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/sonata-doctrine-extensions.git",
+                "reference": "4c6e9bd3ac9ef4c2f19e552a63d4926db5a9400f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/sonata-doctrine-extensions/zipball/4c6e9bd3ac9ef4c2f19e552a63d4926db5a9400f",
+                "reference": "4c6e9bd3ac9ef4c2f19e552a63d4926db5a9400f",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "~2.2",
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\Doctrine\\": "src/",
+                    "Sonata\\Doctrine\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "http://sonata-project.org"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/sonata-doctrine-extensions/contributors"
+                }
+            ],
+            "description": "Doctrine2 behavioral extensions",
+            "homepage": "https://github.com/sonata-project/sonata-doctrine-extensions",
+            "keywords": [
+                "doctrine",
+                "doctrine2",
+                "json"
+            ],
+            "time": "2014-02-14T12:45:49+00:00"
+        },
+        {
+            "name": "sonata-project/easy-extends-bundle",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataEasyExtendsBundle.git",
+                "reference": "c62fb4f7e74f7fc5f32f122ffa8131d7cf05a1db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/c62fb4f7e74f7fc5f32f122ffa8131d7cf05a1db",
+                "reference": "c62fb4f7e74f7fc5f32f122ffa8131d7cf05a1db",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "symfony/console": "^2.8 || ^3.2 || ^4.0",
+                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+                "symfony/finder": "^2.8 || ^3.2 || ^4.0",
+                "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.2",
+                "symfony/phpunit-bridge": "^4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\EasyExtendsBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataEasyExtendsBundle/contributors"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "https://sonata-project.org"
+                }
+            ],
+            "description": "Symfony SonataEasyExtendsBundle",
+            "homepage": "https://sonata-project.org/bundles/easy-extends",
+            "keywords": [
+                "Easy Extends",
+                "sonata"
+            ],
+            "time": "2018-02-11T12:21:41+00:00"
+        },
+        {
+            "name": "sonata-project/media-bundle",
+            "version": "3.13.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataMediaBundle.git",
+                "reference": "f27869929af11e5e41a07e9c3bf0538f8edbc578"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/f27869929af11e5e41a07e9c3bf0538f8edbc578",
+                "reference": "f27869929af11e5e41a07e9c3bf0538f8edbc578",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.0",
+                "imagine/imagine": "^0.6 || ^0.7",
+                "jms/serializer-bundle": "^1.0 || ^2.0",
+                "knplabs/gaufrette": "^0.3 || ^0.4 || ^0.5",
+                "kriswallsmith/buzz": "^0.15 || ^0.16",
+                "php": "^5.6 || ^7.0",
+                "psr/log": "^1.0",
+                "sonata-project/core-bundle": "^3.9",
+                "sonata-project/doctrine-extensions": "^1.0",
+                "sonata-project/easy-extends-bundle": "^2.5",
+                "symfony/config": "^2.8 || ^3.2 || ^4.0",
+                "symfony/console": "^2.8 || ^3.2 || ^4.0",
+                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+                "symfony/event-dispatcher": "^2.8 || ^3.2 || ^4.0",
+                "symfony/filesystem": "^2.8 || ^3.2 || ^4.0",
+                "symfony/finder": "^2.8 || ^3.2 || ^4.0",
+                "symfony/form": "^2.8 || ^3.2 || ^4.0",
+                "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
+                "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
+                "symfony/routing": "^2.8 || ^3.2 || ^4.0",
+                "symfony/security-bundle": "^2.8 || ^3.2 || ^4.0",
+                "symfony/security-core": "^2.8 || ^3.2 || ^4.0",
+                "symfony/templating": "^2.8 || ^3.2 || ^4.0",
+                "symfony/translation": "^2.8 || ^3.2 || ^4.0",
+                "symfony/twig-bridge": "^2.8 || ^3.2 || ^4.0",
+                "symfony/twig-bundle": "^2.8 || ^3.2 || ^4.0",
+                "symfony/validator": "^2.8 || ^3.2 || ^4.0",
+                "twig/twig": "^1.35 || ^2.0"
+            },
+            "conflict": {
+                "friendsofsymfony/rest-bundle": "<2.1 || >=3.0",
+                "jms/serializer": "<0.13",
+                "liip/imagine-bundle": "<1.9",
+                "sonata-project/block-bundle": "<3.11 || >=4.0",
+                "sonata-project/classification-bundle": "<3.0 || >= 5.0",
+                "sonata-project/formatter-bundle": "<3.2",
+                "sonata-project/notification-bundle": "<3.3",
+                "sonata-project/seo-bundle": "<2.1 || >=3.0",
+                "symfony/monolog-bundle": "<2.4"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^2.8",
+                "friendsofsymfony/rest-bundle": "^2.1",
+                "jackalope/jackalope-doctrine-dbal": "^1.1",
+                "liip/imagine-bundle": "^1.9",
+                "matthiasnoback/symfony-dependency-injection-test": "^1.0",
+                "nelmio/api-doc-bundle": "^2.11",
+                "sonata-project/admin-bundle": "^3.31",
+                "sonata-project/block-bundle": "^3.11",
+                "sonata-project/datagrid-bundle": "^2.3",
+                "sonata-project/doctrine-orm-admin-bundle": "^3.4",
+                "sonata-project/formatter-bundle": "^3.4",
+                "sonata-project/notification-bundle": "^3.3",
+                "sonata-project/seo-bundle": "^2.5",
+                "symfony/phpunit-bridge": "^4.0",
+                "symfony/security-csrf": "^2.8 || ^3.2 || ^4.0"
+            },
+            "suggest": {
+                "liip/imagine-bundle": "If you want on-the-fly thumbnail generation or image filtering (scale, crop, watermark...)",
+                "rackspace/php-opencloud": "^1.6",
+                "sonata-project/classification-bundle": "If you want to categorize your media items.",
+                "sonata-project/doctrine-orm-admin-bundle": "^3.0",
+                "sonata-project/notification-bundle": "If you want to generate thumbnails asynchronously.",
+                "sonata-project/seo-bundle": "^2.1",
+                "symfony/monolog-bundle": "If you want to log exceptions produced when dealing with images.",
+                "tilleuls/ckeditor-sonata-media-bundle": "^1.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\MediaBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataMediaBundle/contributors"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "https://sonata-project.org"
+                }
+            ],
+            "description": "Symfony SonataMediaBundle",
+            "homepage": "https://sonata-project.org/bundles/media",
+            "keywords": [
+                "dailymotion",
+                "file",
+                "media",
+                "pdf",
+                "sonata",
+                "upload",
+                "vimeo",
+                "youtube"
+            ],
+            "time": "2018-05-25T20:31:22+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2248,6 +3435,62 @@
             "time": "2018-05-25T13:16:49+00:00"
         },
         {
+            "name": "twig/extensions",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig-extensions.git",
+                "reference": "d188c76168b853481cc75879ea045bf93d718e9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/d188c76168b853481cc75879ea045bf93d718e9c",
+                "reference": "d188c76168b853481cc75879ea045bf93d718e9c",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "~1.27|~2.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~3.3@dev",
+                "symfony/translation": "~2.3|~3.0"
+            },
+            "suggest": {
+                "symfony/translation": "Allow the time_diff output to be translated"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_Extensions_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\Extensions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Common additional features for Twig that do not directly belong in core",
+            "homepage": "http://twig.sensiolabs.org/doc/extensions/index.html",
+            "keywords": [
+                "i18n",
+                "text"
+            ],
+            "time": "2017-06-08T18:19:53+00:00"
+        },
+        {
             "name": "twig/twig",
             "version": "v1.35.3",
             "source": {
@@ -2437,14 +3680,15 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "os2display/admin-bundle": 20,
+        "os2display/core-bundle": 20,
+        "os2display/media-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.5.9"
     },
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "5.6"
-    }
+    "platform-dev": []
 }
