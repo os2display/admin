@@ -1858,16 +1858,16 @@
         },
         {
             "name": "itk-os2display/aarhus-second-template-bundle",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/aarhus-second-template-bundle.git",
-                "reference": "41fa6f661f8c51cbfcdb6fda733bd6cacd9b5f98"
+                "reference": "c9547cffd2c02fa73a096341155da56b5c83acaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/aarhus-second-template-bundle/zipball/41fa6f661f8c51cbfcdb6fda733bd6cacd9b5f98",
-                "reference": "41fa6f661f8c51cbfcdb6fda733bd6cacd9b5f98",
+                "url": "https://api.github.com/repos/itk-os2display/aarhus-second-template-bundle/zipball/c9547cffd2c02fa73a096341155da56b5c83acaa",
+                "reference": "c9547cffd2c02fa73a096341155da56b5c83acaa",
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -1878,10 +1878,10 @@
             },
             "description": "Os2Display Aarhus templates",
             "support": {
-                "source": "https://github.com/itk-os2display/aarhus-second-template-bundle/tree/1.1.5",
+                "source": "https://github.com/itk-os2display/aarhus-second-template-bundle/tree/1.1.6",
                 "issues": "https://github.com/itk-os2display/aarhus-second-template-bundle/issues"
             },
-            "time": "2018-05-30T06:33:36+00:00"
+            "time": "2018-06-22T09:00:16+00:00"
         },
         {
             "name": "itk-os2display/campaign-bundle",
@@ -2910,12 +2910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/core-bundle.git",
-                "reference": "dbc61929d61b4553cdf5d7508211e9392429c0a4"
+                "reference": "fd35e0928504e00e5d757b58960e9757a5252e84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/dbc61929d61b4553cdf5d7508211e9392429c0a4",
-                "reference": "dbc61929d61b4553cdf5d7508211e9392429c0a4",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/fd35e0928504e00e5d757b58960e9757a5252e84",
+                "reference": "fd35e0928504e00e5d757b58960e9757a5252e84",
                 "shasum": ""
             },
             "require": {
@@ -2944,7 +2944,7 @@
             "support": {
                 "source": "https://github.com/itk-os2display/core-bundle/tree/symf34"
             },
-            "time": "2018-06-21T08:52:18+00:00"
+            "time": "2018-06-22T14:13:31+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
