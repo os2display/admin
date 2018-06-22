@@ -51,6 +51,13 @@ php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle:d
 Require bundles for core-bundle
 <pre>
 php -d memory_limit=-1 /usr/local/bin/composer require debril/rss-atom-bundle doctrine/doctrine-migrations-bundle friendsofsymfony/rest-bundle friendsofsymfony/user-bundle guzzlehttp/guzzle jms/job-queue-bundle jms/serializer-bundle nelmio/api-doc-bundle
+php -d memory_limit=-1 /usr/local/bin/composer require itk-os2display/aarhus-data-bundle itk-os2display/aarhus-second-template-bundle aakb/os2display-aarhus-templates itk-os2display/template-extension-bundle itk-os2display/lokalcenter-template-bundle itk-os2display/vimeo-bundle itk-os2display/campaign-bundle
 </pre>
 
+Add to AppKernel.php
+
+Add config.yml from old
+Copy security.yml from old
+
 Move requirements to os2display/core-bundle requirements
+

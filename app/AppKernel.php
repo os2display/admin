@@ -17,6 +17,21 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Debril\RssAtomBundle\DebrilRssAtomBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new JMS\JobQueueBundle\JMSJobQueueBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Os2Display\MediaBundle\Os2DisplayMediaBundle(),
+            new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
+            new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
+            new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

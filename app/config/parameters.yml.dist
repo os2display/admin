@@ -2,18 +2,56 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host: 127.0.0.1
-    database_port: ~
-    database_name: symfony
-    database_user: root
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
     database_password: ~
-    # You should uncomment this if you want to use pdo_sqlite
-    #database_path: '%kernel.project_dir%/var/data/data.sqlite'
+    database_server_version: 5.5
 
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: ~
-    mailer_password: ~
+    mailer_transport:  sendmail
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+    mailer_from_email: webmaster@ik3.os2display.vm
+    mailer_from_name: Webmaster os2display
 
-    # A secret key that's used to generate certain security-related tokens
-    secret: ThisTokenIsNotSoSecretChangeIt
+    locale:            da
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+
+    absolute_path_to_server: http://admin.os2display.vm
+
+    zencoder_api: API_KEY_HERE
+
+    sharing_host: http://127.0.0.1:3010
+    sharing_path: /api
+    sharing_apikey: 1234567890
+    sharing_enabled: true
+
+    search_host: http://127.0.0.1:3010
+    search_path: /api
+    search_apikey: 1234567890
+    search_index: e7df7cd2ca07f4f1ab415d457a6e1c13
+
+    middleware_host: http://127.0.0.1:3020
+    middleware_path: /api
+    middleware_apikey: 1234567890
+
+    site_title: Os2Display
+
+    version: dev
+
+    itk_log_version: 1
+    itk_log_error_callback: /api/error
+    itk_log_log_to_console: true
+    itk_log_log_level: all
+
+    search_filter_default: all
+
+    koba_apikey: SomeApiKey
+    koba_path: 'http://127.0.0.1'
