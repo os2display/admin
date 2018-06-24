@@ -2910,12 +2910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/core-bundle.git",
-                "reference": "fd35e0928504e00e5d757b58960e9757a5252e84"
+                "reference": "9c05dc0272f1ad0a169a83fb7ce208ad73e67834"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/fd35e0928504e00e5d757b58960e9757a5252e84",
-                "reference": "fd35e0928504e00e5d757b58960e9757a5252e84",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/9c05dc0272f1ad0a169a83fb7ce208ad73e67834",
+                "reference": "9c05dc0272f1ad0a169a83fb7ce208ad73e67834",
                 "shasum": ""
             },
             "require": {
@@ -2944,7 +2944,7 @@
             "support": {
                 "source": "https://github.com/itk-os2display/core-bundle/tree/symf34"
             },
-            "time": "2018-06-22T14:13:31+00:00"
+            "time": "2018-06-23T06:58:33+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
