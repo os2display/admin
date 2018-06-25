@@ -16,7 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -30,6 +29,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 //            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+
             new Os2Display\MediaBundle\Os2DisplayMediaBundle(),
             new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
             new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
