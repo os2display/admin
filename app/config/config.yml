@@ -38,16 +38,16 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        sharing_host: %sharing_host%
-        sharing_enabled: %sharing_enabled%
-        search_host: %search_host%
-        search_index: %search_index%
-        site_title: %site_title%
-        version: %version%
-        itk_log_version: %itk_log_version%
-        itk_log_error_callback: %itk_log_error_callback%
-        itk_log_log_to_console: %itk_log_log_to_console%
-        itk_log_log_level: %itk_log_log_level%
+        sharing_host: '%sharing_host%'
+        sharing_enabled: '%sharing_enabled%'
+        search_host: '%search_host%'
+        search_index: '%search_index%'
+        site_title: '%site_title%'
+        version: '%version%'
+        itk_log_version: '%itk_log_version%'
+        itk_log_error_callback: '%itk_log_error_callback%'
+        itk_log_log_to_console: '%itk_log_log_to_console%'
+        itk_log_log_level: '%itk_log_log_level%'
 
 # Doctrine Configuration
 doctrine:
@@ -85,6 +85,11 @@ fos_user:
     address: "%mailer_from_email%"
     sender_name: "%mailer_from_name%"
 
+sonata_core:
+    form:
+        mapping:
+            enabled: false
+
 # Sonata Media Configuration
 sonata_media:
   default_context: default
@@ -101,10 +106,10 @@ sonata_media:
         portrait_small: { height: 150 }
   cdn:
     server:
-      path: %absolute_path_to_server%/uploads/media
+      path: '%absolute_path_to_server%/uploads/media'
   filesystem:
     local:
-      directory:  %kernel.root_dir%/../web/uploads/media
+      directory:  '%kernel.root_dir%/../web/uploads/media'
       create:     false
   class:
     media: Os2Display\MediaBundle\Entity\Media
