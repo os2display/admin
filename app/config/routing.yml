@@ -1,10 +1,10 @@
 os2display_main:
-  resource: "@Os2DisplayCoreBundle/Resources/config/routing.yml"
-  prefix:   /
+    resource: "@Os2DisplayCoreBundle/Resources/config/routing.yml"
+    prefix:   /
 
 os2display_admin:
-  resource: "@Os2DisplayAdminBundle/Resources/config/routing.yml"
-  prefix:   /
+    resource: "@Os2DisplayAdminBundle/Resources/config/routing.yml"
+    prefix:   /
 
 JMSJobQueueBundle:
     resource: "@JMSJobQueueBundle/Controller/"
@@ -42,9 +42,9 @@ itk_campaign:
     prefix:   /
 
 itk_koba_integration:
-  resource: "@ItkKobaIntegrationBundle/Resources/config/routing.yml"
-  prefix:   /
+    resource: "@ItkKobaIntegrationBundle/Resources/config/routing.yml"
+    prefix:   /
 
-#NelmioApiDocBundle:
-#    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-#    prefix:   /api/doc
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
