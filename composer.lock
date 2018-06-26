@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "747b3e632a06a8f60e70e8b2bff5a3ba",
+    "content-hash": "5c1669957a77e41bb46049ec6a9ae891",
     "packages": [
         {
             "name": "aakb/os2display-aarhus-templates",
@@ -1827,16 +1827,16 @@
         },
         {
             "name": "itk-os2display/aarhus-data-bundle",
-            "version": "1.2.2",
+            "version": "dev-symf34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/aarhus-data-bundle.git",
-                "reference": "1f6a584571b0dd055336dbb1ff7fab21ee01ca1b"
+                "reference": "728ff02b7a60930d0cf4172f83e80228e67db610"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/aarhus-data-bundle/zipball/1f6a584571b0dd055336dbb1ff7fab21ee01ca1b",
-                "reference": "1f6a584571b0dd055336dbb1ff7fab21ee01ca1b",
+                "url": "https://api.github.com/repos/itk-os2display/aarhus-data-bundle/zipball/728ff02b7a60930d0cf4172f83e80228e67db610",
+                "reference": "728ff02b7a60930d0cf4172f83e80228e67db610",
                 "shasum": ""
             },
             "require": {
@@ -1851,10 +1851,10 @@
             },
             "description": "Os2Display aarhus data",
             "support": {
-                "source": "https://github.com/itk-os2display/aarhus-data-bundle/tree/1.2.2",
+                "source": "https://github.com/itk-os2display/aarhus-data-bundle/tree/symf34",
                 "issues": "https://github.com/itk-os2display/aarhus-data-bundle/issues"
             },
-            "time": "2018-05-30T06:34:40+00:00"
+            "time": "2018-06-26T07:16:32+00:00"
         },
         {
             "name": "itk-os2display/aarhus-second-template-bundle",
@@ -1949,16 +1949,16 @@
         },
         {
             "name": "itk-os2display/os2display-koba-integration",
-            "version": "1.0.6",
+            "version": "dev-symf34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/os2display-koba-integration.git",
-                "reference": "5f55cde1d023d6ac19081be9406a5d17fe132a38"
+                "reference": "127ec59c9a35de93771b2a8a0a8a91151c1c070b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/os2display-koba-integration/zipball/5f55cde1d023d6ac19081be9406a5d17fe132a38",
-                "reference": "5f55cde1d023d6ac19081be9406a5d17fe132a38",
+                "url": "https://api.github.com/repos/itk-os2display/os2display-koba-integration/zipball/127ec59c9a35de93771b2a8a0a8a91151c1c070b",
+                "reference": "127ec59c9a35de93771b2a8a0a8a91151c1c070b",
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -1969,10 +1969,10 @@
             },
             "description": "Os2Display koba integration",
             "support": {
-                "source": "https://github.com/itk-os2display/os2display-koba-integration/tree/1.0.6",
+                "source": "https://github.com/itk-os2display/os2display-koba-integration/tree/symf34",
                 "issues": "https://github.com/itk-os2display/os2display-koba-integration/issues"
             },
-            "time": "2018-05-30T06:29:48+00:00"
+            "time": "2018-06-26T06:48:47+00:00"
         },
         {
             "name": "itk-os2display/template-extension-bundle",
@@ -5294,7 +5294,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "itk-os2display/aarhus-data-bundle": 20,
         "itk-os2display/campaign-bundle": 20,
+        "itk-os2display/os2display-koba-integration": 20,
         "os2display/admin-bundle": 20,
         "os2display/core-bundle": 20,
         "os2display/default-template-bundle": 20,
