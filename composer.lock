@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d899417d2eb719c8134ee2545e1bd37",
+    "content-hash": "747b3e632a06a8f60e70e8b2bff5a3ba",
     "packages": [
         {
             "name": "aakb/os2display-aarhus-templates",
@@ -1885,16 +1885,16 @@
         },
         {
             "name": "itk-os2display/campaign-bundle",
-            "version": "1.0.1",
+            "version": "dev-symf34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/campaign-bundle.git",
-                "reference": "be3804a45cb7a749a36dc881bef0504db741e7b5"
+                "reference": "f1cbabe4581b584931ed379a5c4b82513505cd86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/campaign-bundle/zipball/be3804a45cb7a749a36dc881bef0504db741e7b5",
-                "reference": "be3804a45cb7a749a36dc881bef0504db741e7b5",
+                "url": "https://api.github.com/repos/itk-os2display/campaign-bundle/zipball/f1cbabe4581b584931ed379a5c4b82513505cd86",
+                "reference": "f1cbabe4581b584931ed379a5c4b82513505cd86",
                 "shasum": ""
             },
             "require": {
@@ -1916,10 +1916,10 @@
             },
             "description": "Os2Display campaigns",
             "support": {
-                "source": "https://github.com/itk-os2display/campaign-bundle/tree/1.0.1",
+                "source": "https://github.com/itk-os2display/campaign-bundle/tree/symf34",
                 "issues": "https://github.com/itk-os2display/campaign-bundle/issues"
             },
-            "time": "2018-05-30T06:37:02+00:00"
+            "time": "2018-06-25T08:57:43+00:00"
         },
         {
             "name": "itk-os2display/lokalcenter-template-bundle",
@@ -1946,6 +1946,33 @@
                 "source": "https://github.com/itk-os2display/lokalcenter-template-bundle/tree/1.0.6"
             },
             "time": "2018-05-30T06:30:51+00:00"
+        },
+        {
+            "name": "itk-os2display/os2display-koba-integration",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-os2display/os2display-koba-integration.git",
+                "reference": "5f55cde1d023d6ac19081be9406a5d17fe132a38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-os2display/os2display-koba-integration/zipball/5f55cde1d023d6ac19081be9406a5d17fe132a38",
+                "reference": "5f55cde1d023d6ac19081be9406a5d17fe132a38",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Itk\\KobaIntegrationBundle\\": ""
+                }
+            },
+            "description": "Os2Display koba integration",
+            "support": {
+                "source": "https://github.com/itk-os2display/os2display-koba-integration/tree/1.0.6",
+                "issues": "https://github.com/itk-os2display/os2display-koba-integration/issues"
+            },
+            "time": "2018-05-30T06:29:48+00:00"
         },
         {
             "name": "itk-os2display/template-extension-bundle",
@@ -5267,6 +5294,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "itk-os2display/campaign-bundle": 20,
         "os2display/admin-bundle": 20,
         "os2display/core-bundle": 20,
         "os2display/default-template-bundle": 20,
