@@ -3039,12 +3039,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/admin-bundle.git",
-                "reference": "e0e3ede41a41d1d7f337bd960757288ae048c668"
+                "reference": "b21e090ff7ee15eedf71b48cc2c9f01a42a02888"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/e0e3ede41a41d1d7f337bd960757288ae048c668",
-                "reference": "e0e3ede41a41d1d7f337bd960757288ae048c668",
+                "url": "https://api.github.com/repos/itk-os2display/admin-bundle/zipball/b21e090ff7ee15eedf71b48cc2c9f01a42a02888",
+                "reference": "b21e090ff7ee15eedf71b48cc2c9f01a42a02888",
                 "shasum": ""
             },
             "require": {
@@ -3060,7 +3060,7 @@
             "support": {
                 "source": "https://github.com/itk-os2display/admin-bundle/tree/symf34"
             },
-            "time": "2018-06-21T08:52:40+00:00"
+            "time": "2018-06-25T07:35:31+00:00"
         },
         {
             "name": "os2display/core-bundle",
@@ -3068,12 +3068,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/core-bundle.git",
-                "reference": "9c05dc0272f1ad0a169a83fb7ce208ad73e67834"
+                "reference": "f2590c7c34a38b9bc626bc5a64397f46b0ff9645"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/9c05dc0272f1ad0a169a83fb7ce208ad73e67834",
-                "reference": "9c05dc0272f1ad0a169a83fb7ce208ad73e67834",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/f2590c7c34a38b9bc626bc5a64397f46b0ff9645",
+                "reference": "f2590c7c34a38b9bc626bc5a64397f46b0ff9645",
                 "shasum": ""
             },
             "require": {
@@ -3102,7 +3102,7 @@
             "support": {
                 "source": "https://github.com/itk-os2display/core-bundle/tree/symf34"
             },
-            "time": "2018-06-23T06:58:33+00:00"
+            "time": "2018-06-26T08:29:25+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -4887,20 +4887,20 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "8eb567d8398ce31a402ea8db3e6b5b1faf121cbc"
+                "reference": "c36f8cb21b5f1661a14fdb8cef9cc611d54a3494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/8eb567d8398ce31a402ea8db3e6b5b1faf121cbc",
-                "reference": "8eb567d8398ce31a402ea8db3e6b5b1faf121cbc",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/c36f8cb21b5f1661a14fdb8cef9cc611d54a3494",
+                "reference": "c36f8cb21b5f1661a14fdb8cef9cc611d54a3494",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "~2.4",
+                "doctrine/common": "~2.4@stable",
                 "ext-xml": "*",
                 "fig/link-util": "^1.0",
                 "php": "^5.5.9|>=7.0.8",
@@ -5038,7 +5038,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-05-25T13:16:49+00:00"
+            "time": "2018-06-25T12:29:33+00:00"
         },
         {
             "name": "twig/extensions",
