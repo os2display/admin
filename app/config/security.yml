@@ -37,16 +37,17 @@ security:
       pattern: ^/api/screen/get
       security: false
 
+    zencoder:
+      pattern: ^/zencoder/callback
+      security: false
+
     api:
       pattern: ^/api(.*)
       context: user
       form_login:
         check_path: /api/login_check
       entry_point: os2display.api_authentication_service
-
-    zencoder:
-      pattern: ^/zencoder/callback
-      security: false
+      logout_on_user_change: true
 
     admin:
       pattern: /admin(.*)
@@ -60,6 +61,7 @@ security:
       logout:
         path: /admin/logout
       anonymous: true
+      logout_on_user_change: true
 
     main:
       pattern: ^/
@@ -72,6 +74,7 @@ security:
         failure_path: null
       logout:       true
       anonymous:    true
+      logout_on_user_change: true
       remember_me:
         secret:      "%secret%"
         lifetime: 604800 # a week
