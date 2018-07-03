@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "132be067a40a2996a6036e986c43b43e",
+    "content-hash": "112802d908c0e4fc776e8dbd11049d81",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2644,20 +2644,19 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.0.10",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "54d2be18f6d4363219e21f384762328ebfd53bf1"
+                "reference": "317661f9c97de01e7e3364a4e745a63beb36788e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/54d2be18f6d4363219e21f384762328ebfd53bf1",
-                "reference": "54d2be18f6d4363219e21f384762328ebfd53bf1",
+                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/317661f9c97de01e7e3364a4e745a63beb36788e",
+                "reference": "317661f9c97de01e7e3364a4e745a63beb36788e",
                 "shasum": ""
             },
             "require": {
-                "os2display/core-bundle": "^1.0",
                 "twig/extensions": "^1.0"
             },
             "type": "symfony-bundle",
@@ -2668,23 +2667,23 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/os2display/admin-bundle/tree/1.0.10",
+                "source": "https://github.com/os2display/admin-bundle/tree/1.1.0",
                 "issues": "https://github.com/os2display/admin-bundle/issues"
             },
-            "time": "2017-11-22T12:23:31+00:00"
+            "time": "2018-07-03T07:30:32+00:00"
         },
         {
             "name": "os2display/core-bundle",
-            "version": "1.0.10",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/core-bundle.git",
-                "reference": "29c22e9da24b8b5d1eace3efd65f485fdc665f74"
+                "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/29c22e9da24b8b5d1eace3efd65f485fdc665f74",
-                "reference": "29c22e9da24b8b5d1eace3efd65f485fdc665f74",
+                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
+                "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
                 "shasum": ""
             },
             "require": {
@@ -2713,10 +2712,18 @@
                 "behat/mink-selenium2-driver": "^1.3",
                 "behat/symfony2-extension": "^2.1",
                 "behatch/contexts": "^2.6",
+                "cweagans/composer-patches": "^1.5",
                 "sonata-project/admin-bundle": "^2.3.7",
                 "sonata-project/doctrine-orm-admin-bundle": "^2.3.4"
             },
             "type": "symfony-bundle",
+            "extra": {
+                "patches": {
+                    "doctrine/dbal": {
+                        "https://github.com/doctrine/dbal/issues/2426": "Features/Fixtures/patch/doctrine-dbal-issues-2426.patch"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Os2Display\\CoreBundle\\": ""
@@ -2724,27 +2731,24 @@
             },
             "description": "Os2Display core",
             "support": {
-                "source": "https://github.com/os2display/core-bundle/tree/1.0.10",
+                "source": "https://github.com/os2display/core-bundle/tree/1.1.0",
                 "issues": "https://github.com/os2display/core-bundle/issues"
             },
-            "time": "2017-11-22T12:33:23+00:00"
+            "time": "2018-07-03T07:53:37+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
-            "version": "1.0.4",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/default-template-bundle.git",
-                "reference": "3acc95ae37d3a0b290417c1a4566b30ab860402a"
+                "reference": "bed9eb33fc549f7d04760cf9e890cd165f5ffcbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/3acc95ae37d3a0b290417c1a4566b30ab860402a",
-                "reference": "3acc95ae37d3a0b290417c1a4566b30ab860402a",
+                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/bed9eb33fc549f7d04760cf9e890cd165f5ffcbe",
+                "reference": "bed9eb33fc549f7d04760cf9e890cd165f5ffcbe",
                 "shasum": ""
-            },
-            "require": {
-                "os2display/admin-bundle": "^1.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2754,10 +2758,10 @@
             },
             "description": "Os2Display default template",
             "support": {
-                "source": "https://github.com/os2display/default-template-bundle/tree/1.0.4",
+                "source": "https://github.com/os2display/default-template-bundle/tree/1.1.0",
                 "issues": "https://github.com/os2display/default-template-bundle/issues"
             },
-            "time": "2017-11-22T12:45:52+00:00"
+            "time": "2018-07-02T13:17:25+00:00"
         },
         {
             "name": "os2display/media-bundle",
@@ -4197,6 +4201,7 @@
                 "compression",
                 "minification"
             ],
+            "abandoned": "symfony/webpack-encore-pack",
             "time": "2017-07-14T07:26:46+00:00"
         },
         {
@@ -4311,6 +4316,61 @@
                 "shim"
             ],
             "time": "2017-07-05T15:09:33+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2018-04-30T19:57:29+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -4832,16 +4892,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.8.27",
+            "version": "v2.8.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "d512cc1c2c418f42c07b82d8b029e7a487be007f"
+                "reference": "0084ec5bb6614688f547ef80bf1ef8a900c4e350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/d512cc1c2c418f42c07b82d8b029e7a487be007f",
-                "reference": "d512cc1c2c418f42c07b82d8b029e7a487be007f",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/0084ec5bb6614688f547ef80bf1ef8a900c4e350",
+                "reference": "0084ec5bb6614688f547ef80bf1ef8a900c4e350",
                 "shasum": ""
             },
             "require": {
@@ -4850,6 +4910,7 @@
                 "php": ">=5.3.9",
                 "psr/log": "~1.0",
                 "symfony/polyfill-apcu": "~1.1",
+                "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-intl-icu": "~1.0",
                 "symfony/polyfill-mbstring": "~1.0",
                 "symfony/polyfill-php54": "~1.0",
@@ -4913,6 +4974,7 @@
                 "symfony/yaml": "self.version"
             },
             "require-dev": {
+                "doctrine/annotations": "~1.0",
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.4",
                 "doctrine/doctrine-bundle": "~1.2",
@@ -4922,7 +4984,7 @@
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
                 "phpdocumentor/reflection": "^1.0.7",
                 "sensio/framework-extra-bundle": "^3.0.2",
-                "symfony/phpunit-bridge": "~3.2"
+                "symfony/phpunit-bridge": "~3.4|~4.0"
             },
             "type": "library",
             "extra": {
@@ -4966,7 +5028,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-08-28T19:21:56+00:00"
+            "time": "2018-06-25T12:02:18+00:00"
         },
         {
             "name": "twig/extensions",

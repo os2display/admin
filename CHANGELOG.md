@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.1.0
+
+* Updated symfony/symfony: 2.8.42
+* Updated os2display/core-bundle: 1.1.0
+* Updated os2display/admin-bundle: 1.1.0
+* Updated os2display/default-template-bundle: 1.1.0
+
 ## 5.0.2
 
 * Added migration required for https://github.com/os2display/core-bundle/pull/3
