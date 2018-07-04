@@ -46,10 +46,6 @@
         "os2display/default-template-bundle": {
             "type": "vcs",
             "url": "https://github.com/itk-os2display/default-template-bundle"
-        },
-        "os2display/campaign-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/itk-os2display/campaign-bundle"
         }
     },
     "scripts": {
