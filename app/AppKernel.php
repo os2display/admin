@@ -36,15 +36,6 @@ class AppKernel extends Kernel
             new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
             new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
 
-            new Itk\CampaignBundle\ItkCampaignBundle(),
-            new Itk\KobaIntegrationBundle\ItkKobaIntegrationBundle(),
-            new Itk\AarhusDataBundle\ItkAarhusDataBundle(),
-            new Itk\TemplateExtensionBundle\ItkTemplateExtensionBundle(),
-            new Itk\AarhusTemplateBundle\ItkAarhusTemplateBundle(),
-            new Itk\LokalcenterTemplateBundle\ItkLokalcenterTemplateBundle(),
-            new Itk\AarhusSecondTemplateBundle\ItkAarhusSecondTemplateBundle(),
-            new Itk\VimeoBundle\ItkVimeoBundle(),
-
             new AppBundle\AppBundle(),
         ];
 
