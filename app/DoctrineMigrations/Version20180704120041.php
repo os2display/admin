@@ -1,16 +1,19 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Application\Migrations;
 
+use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20180704092001 extends AbstractMigration
+class Version20180704120041 extends AbstractMigration
 {
-    public function up(Schema $schema) : void
+    /**
+     * @param Schema $schema
+     */
+    public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
@@ -29,17 +32,18 @@ final class Version20180704092001 extends AbstractMigration
         $this->addSql('ALTER TABLE ik_sharing_indexes_channels ADD CONSTRAINT FK_6EB2E7B99440B54B FOREIGN KEY (sharing_index_id) REFERENCES ik_sharing_index (id) ON DELETE CASCADE');
         $this->addSql('CREATE INDEX IDX_6EB2E7B99440B54B ON ik_sharing_indexes_channels (sharing_index_id)');
         $this->addSql('ALTER TABLE ik_sharing_indexes_channels ADD PRIMARY KEY (sharing_index_id, channel_id)');
-        $this->addSql('ALTER TABLE ik_campaign ADD created_at DATETIME NOT NULL, ADD updated_at DATETIME NOT NULL, DROP createdAt, DROP updatedAt');
     }
 
-    public function down(Schema $schema) : void
+    /**
+     * @param Schema $schema
+     */
+    public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP INDEX UNIQ_C560D761C05FB297 ON fos_user_user');
         $this->addSql('ALTER TABLE fos_user_user ADD locked TINYINT(1) NOT NULL, ADD expired TINYINT(1) NOT NULL, ADD expires_at DATETIME DEFAULT NULL, ADD credentials_expired TINYINT(1) NOT NULL, ADD credentials_expire_at DATETIME DEFAULT NULL, CHANGE username username VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, CHANGE username_canonical username_canonical VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, CHANGE email email VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, CHANGE email_canonical email_canonical VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, CHANGE salt salt VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, CHANGE confirmation_token confirmation_token VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
-        $this->addSql('ALTER TABLE ik_campaign ADD createdAt DATETIME NOT NULL, ADD updatedAt DATETIME NOT NULL, DROP created_at, DROP updated_at');
         $this->addSql('ALTER TABLE ik_sharing_indexes_channels DROP FOREIGN KEY FK_6EB2E7B99440B54B');
         $this->addSql('DROP INDEX IDX_6EB2E7B99440B54B ON ik_sharing_indexes_channels');
         $this->addSql('ALTER TABLE ik_sharing_indexes_channels DROP PRIMARY KEY');

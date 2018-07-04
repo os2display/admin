@@ -29,22 +29,6 @@ fos_user_change_password:
 fos_user_profile_show:
     path: /#/user
 
-itk_aarhus_data:
-    resource: "@ItkAarhusDataBundle/Resources/config/routing.yml"
-    prefix:   /api
-
-itk_template_extension:
-    resource: "@ItkTemplateExtensionBundle/Resources/config/routing.yml"
-    prefix:   /
-
-itk_campaign:
-    resource: "@ItkCampaignBundle/Resources/config/routing.yml"
-    prefix:   /
-
-itk_koba_integration:
-    resource: "@ItkKobaIntegrationBundle/Resources/config/routing.yml"
-    prefix:   /
-
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
