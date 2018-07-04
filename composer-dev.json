@@ -60,20 +60,20 @@
     },
     "repositories": {
         "os2display/media-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/itk-os2display/media-bundle"
+            "type": "path",
+            "url": "../../packages/os2display/media-bundle"
         },
         "os2display/core-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/itk-os2display/core-bundle"
+            "type": "path",
+            "url": "../../packages/os2display/core-bundle"
         },
         "os2display/admin-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/itk-os2display/admin-bundle"
+            "type": "path",
+            "url": "../../packages/os2display/admin-bundle"
         },
         "os2display/default-template-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/itk-os2display/default-template-bundle"
+            "type": "path",
+            "url": "../../packages/os2display/default-template-bundle"
         },
         "itk-os2display/os2display-koba-integration": {
             "type": "vcs",
