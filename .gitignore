@@ -17,3 +17,4 @@
 /web/bundles/
 web/uploads/media/*
 !web/uploads/media/.gitkeep
+composer-dev.*
