@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "112802d908c0e4fc776e8dbd11049d81",
+    "content-hash": "996cf76dde83b96a1696cd4f487770b8",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2028,6 +2028,37 @@
             "time": "2013-12-05T14:36:11+00:00"
         },
         {
+            "name": "kdb/os2display-kkbding2-bundle",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kdb/os2display-kkbding2-bundle.git",
+                "reference": "a2b0ea9257cb7eda56cb4cc2ec44fd8ced27cf9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kdb/os2display-kkbding2-bundle/zipball/a2b0ea9257cb7eda56cb4cc2ec44fd8ced27cf9d",
+                "reference": "a2b0ea9257cb7eda56cb4cc2ec44fd8ced27cf9d",
+                "shasum": ""
+            },
+            "require": {
+                "os2display/admin-bundle": "^1.0.10",
+                "os2display/core-bundle": "^1.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Kkb\\Ding2IntegrationBundle\\": ""
+                }
+            },
+            "description": "Os2Display Ding2 integration.",
+            "support": {
+                "source": "https://github.com/kdb/os2display-kkbding2-bundle/tree/1.0.1",
+                "issues": "https://github.com/kdb/os2display-kkbding2-bundle/issues"
+            },
+            "time": "2018-06-11T19:00:35+00:00"
+        },
+        {
             "name": "knplabs/gaufrette",
             "version": "v0.4.0",
             "source": {
@@ -2167,7 +2198,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -2644,16 +2675,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.1.0",
+            "version": "dev-kdb-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "317661f9c97de01e7e3364a4e745a63beb36788e"
+                "url": "https://github.com/kdb/os2display-admin-bundle.git",
+                "reference": "5bc00f325c01294b15b56bf6631182687188b0ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/317661f9c97de01e7e3364a4e745a63beb36788e",
-                "reference": "317661f9c97de01e7e3364a4e745a63beb36788e",
+                "url": "https://api.github.com/repos/kdb/os2display-admin-bundle/zipball/5bc00f325c01294b15b56bf6631182687188b0ad",
+                "reference": "5bc00f325c01294b15b56bf6631182687188b0ad",
                 "shasum": ""
             },
             "require": {
@@ -2667,23 +2698,22 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/os2display/admin-bundle/tree/1.1.0",
-                "issues": "https://github.com/os2display/admin-bundle/issues"
+                "source": "https://github.com/kdb/os2display-admin-bundle/tree/kdb-master"
             },
-            "time": "2018-07-03T07:30:32+00:00"
+            "time": "2018-08-02T09:39:31+00:00"
         },
         {
             "name": "os2display/core-bundle",
-            "version": "1.1.0",
+            "version": "dev-kdb-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/os2display/core-bundle.git",
-                "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0"
+                "url": "https://github.com/kdb/os2display-core-bundle.git",
+                "reference": "894e00f144c8d2df08998c28e5cdd3a7adf15c60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
-                "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
+                "url": "https://api.github.com/repos/kdb/os2display-core-bundle/zipball/894e00f144c8d2df08998c28e5cdd3a7adf15c60",
+                "reference": "894e00f144c8d2df08998c28e5cdd3a7adf15c60",
                 "shasum": ""
             },
             "require": {
@@ -2731,10 +2761,9 @@
             },
             "description": "Os2Display core",
             "support": {
-                "source": "https://github.com/os2display/core-bundle/tree/1.1.0",
-                "issues": "https://github.com/os2display/core-bundle/issues"
+                "source": "https://github.com/kdb/os2display-core-bundle/tree/feature/OS2-89-upgrade-1.1.0"
             },
-            "time": "2018-07-03T07:53:37+00:00"
+            "time": "2018-08-02T09:20:41+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -6147,11 +6176,30 @@
             "time": "2017-02-14T16:28:37+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "1.1.0",
+            "alias_normalized": "1.1.0.0",
+            "version": "dev-kdb-master",
+            "package": "os2display/admin-bundle"
+        },
+        {
+            "alias": "1.1.0",
+            "alias_normalized": "1.1.0.0",
+            "version": "dev-kdb-master",
+            "package": "os2display/core-bundle"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "os2display/admin-bundle": 20,
+        "os2display/core-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "platform-overrides": {
+        "php": "5.6.36"
+    }
 }
