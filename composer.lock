@@ -2679,12 +2679,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kdb/os2display-admin-bundle.git",
-                "reference": "5bc00f325c01294b15b56bf6631182687188b0ad"
+                "reference": "a32feec8e852ebcb3670015852bac0944c22f71c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kdb/os2display-admin-bundle/zipball/5bc00f325c01294b15b56bf6631182687188b0ad",
-                "reference": "5bc00f325c01294b15b56bf6631182687188b0ad",
+                "url": "https://api.github.com/repos/kdb/os2display-admin-bundle/zipball/a32feec8e852ebcb3670015852bac0944c22f71c",
+                "reference": "a32feec8e852ebcb3670015852bac0944c22f71c",
                 "shasum": ""
             },
             "require": {
@@ -2700,7 +2700,7 @@
             "support": {
                 "source": "https://github.com/kdb/os2display-admin-bundle/tree/kdb-master"
             },
-            "time": "2018-08-02T09:39:31+00:00"
+            "time": "2018-08-03T11:29:29+00:00"
         },
         {
             "name": "os2display/core-bundle",
