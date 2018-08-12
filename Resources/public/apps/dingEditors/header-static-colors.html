@@ -1,0 +1,11 @@
+<div class="edit-menu" role="banner">
+  <a class="edit-menu--overlay is-visible" data-ng-click="close()"></a>
+  <div class="edit-menu--inner is-visible">
+    <div class="edit-menu--toggle-icon" data-ng-click="close()">X</div>
+    <h2 class="edit-menu--header">Redigér tekst</h2>
+    <form class="edit-menu--form">
+      <label class="edit-menu--label">Overskriftsfarve</label>
+      <input colorpicker="rgba" class="edit-menu--form-element" type="text" placeholder="e.g. #fff" data-ng-model="slide.options.textcolor" data-ng-style="{'background-color': slide.options.textcolor}">
+    </form>
+  </div>
+</div>

@@ -9,6 +9,10 @@ modules:
       - bundles/kkbding2integration/apps/dingEditors/ding-events-editor.js
       - bundles/kkbding2integration/apps/dingEditors/opening-hours-editor.js
       - bundles/kkbding2integration/apps/dingEditors/text-color-editor.js
+      - bundles/kkbding2integration/apps/dingEditors/header-static-colors.js
 
 apps:
+  ikApp:
+    dependencies:
+      - dingTools
 
