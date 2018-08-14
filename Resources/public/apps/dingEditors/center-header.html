@@ -1,0 +1,112 @@
+<div
+  class="edit-menu"
+  role="banner"
+>
+  <div class="edit-menu--inner is-visible">
+    <div
+      class="edit-menu--toggle-icon"
+      data-ng-click="close()"
+    >X</div>
+    <form class="edit-menu--form">
+      <label class="edit-menu--label">Overskrift</label>
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.headertext1"
+        id="header1"
+      >
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.headertext2"
+        id="header2"
+      >
+      <input
+        class="medium-bottom-margin"
+        type="text"
+        ng-model="slide.options.headertext3"
+        id="header2"
+      >
+      <label class="edit-menu--label">Farve</label>
+      <div class="edit-menu--static-color-items reset-margin full-width">
+        <div>
+          <input
+            type="radio"
+            ng-model="slide.options.textcolor"
+            value="rgb(78, 74, 71)"
+            class="edit-menu--static-color-item"
+            id="radio1"
+          >
+          <label for="radio1">
+            <span style="background-color: rgb(78, 74, 71);"></span>Sort</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            ng-model="slide.options.textcolor"
+            value="rgb(246, 80, 88)"
+            class="edit-menu--static-color-item"
+            id="radio2"
+          >
+          <label for="radio2">
+            <span style="background-color: rgb(246, 80, 88);"></span>Rød</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            ng-model="slide.options.textcolor"
+            value="rgb(103, 108, 115)"
+            class="edit-menu--static-color-item"
+            id="radio3"
+          >
+          <label for="radio3">
+            <span style="background-color: rgb(103, 108, 115);"></span>Grå</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            ng-model="slide.options.textcolor"
+            value="rgb(121, 137, 129)"
+            class="edit-menu--static-color-item"
+            id="radio4"
+          >
+          <label for="radio4">
+            <span style="background-color: rgb(121, 137, 129);"></span>Grå Grøn</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            ng-model="slide.options.textcolor"
+            value="rgb(38, 103, 130)"
+            class="edit-menu--static-color-item"
+            id="radio5"
+          >
+          <label for="radio5">
+            <span style="background-color: rgb(38, 103, 130);"></span>Blå</label>
+        </div>
+        <div>
+            <input
+              type="radio"
+              ng-model="slide.options.textcolor"
+              value="rgb(0, 169, 92)"
+              class="edit-menu--static-color-item"
+              id="radio6"
+            >
+            <label for="radio6">
+              <span style="background-color: rgb(0, 169, 92);"></span>Grøn</label>
+          </div>
+        <div>
+          <input
+            type="radio"
+            ng-model="slide.options.textcolor"
+            value="rgb(255, 108, 47)"
+            class="edit-menu--static-color-item"
+            id="radio7"
+          >
+          <label for="radio7">
+            <span style="background-color: rgb(255, 108, 47);"></span>Gul</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -15,6 +15,7 @@ if (!window.slideFunctions['podcast']) {
 
       // Set currentLogo.
       slide.currentLogo = slide.logo;
+      slide.currentImage = slide.media[0] && slide.media[0].image;
 
       // Setup the inline styling
       scope.theStyle = {

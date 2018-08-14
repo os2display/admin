@@ -4,7 +4,7 @@
   "name": "DDB CMS Podcast",
   "icon": "podcast.png",
   "paths": {
-    "live": "podcast-live.html",
+    "live": "podcast-edit.html",
     "edit": "podcast-edit.html",
     "preview": "podcast-preview.html",
     "css": "podcast.css",
@@ -23,7 +23,9 @@
     "responsive_fontsize": 4,
     "bgcolor": "#fff",
     "textcolor": "#4e4a47",
-    "headertext": "",
+    "headertext1": "Bag om",
+    "headertext2": "København",
+    "headertext3": "Podcast",
     "infoheadertext": "Månedens udsendelse:",
     "infotext": "",
     "footertext": "Få mere information på ",
@@ -31,16 +33,16 @@
   },
   "tools": [
     {
-      "name": "Overskriftsfarve",
-      "id": "header-static-colors"
+      "name": "Overskrift",
+      "id": "center-header"
     },
     {
       "name": "Billede",
-      "id": "background-editor-static-colors"
+      "id": "image-picker"
     },
     {
       "name": "Logo",
-      "id": "logo-editor"
+      "id": "logo-picker"
     }
   ]
 }
