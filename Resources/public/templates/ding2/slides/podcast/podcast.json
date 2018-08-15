@@ -1,0 +1,48 @@
+{
+  "id": "podcast",
+  "type": "slide",
+  "name": "DDB CMS Podcast",
+  "icon": "podcast.png",
+  "paths": {
+    "live": "podcast-edit.html",
+    "edit": "podcast-edit.html",
+    "preview": "podcast-preview.html",
+    "css": "podcast.css",
+    "js": "bundles/kkbding2integration/templates/js/podcastSlide.js"
+  },
+  "slide_type": "podcast",
+  "media_type": "image",
+  "script_id": "podcast",
+  "orientation": "portrait",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "1920"
+  },
+  "empty_options": {
+    "fontsize": 60,
+    "responsive_fontsize": 4,
+    "bgcolor": "#fff",
+    "textcolor": "#4e4a47",
+    "headertext1": "Bag om",
+    "headertext2": "København",
+    "headertext3": "Podcast",
+    "infoheadertext": "Månedens udsendelse:",
+    "infotext": "",
+    "footertext": "Få mere information på ",
+    "footerimage": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
+  },
+  "tools": [
+    {
+      "name": "Overskrift",
+      "id": "center-header"
+    },
+    {
+      "name": "Billede",
+      "id": "image-picker"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-picker"
+    }
+  ]
+}

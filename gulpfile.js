@@ -33,6 +33,7 @@ var templates = {
       'four-sections'
     ],
     'slides': [
+      'podcast',
       'ding-events',
       'opening-hours'
     ]

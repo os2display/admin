@@ -9,6 +9,8 @@ modules:
       - bundles/kkbding2integration/apps/dingEditors/ding-events-editor.js
       - bundles/kkbding2integration/apps/dingEditors/opening-hours-editor.js
       - bundles/kkbding2integration/apps/dingEditors/text-color-editor.js
+      - bundles/kkbding2integration/apps/dingEditors/center-header.js
+      - bundles/kkbding2integration/apps/dingEditors/image-picker.js
+      - bundles/kkbding2integration/apps/dingEditors/logo-picker.js
 
 apps:
-

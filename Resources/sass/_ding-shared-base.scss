@@ -81,11 +81,50 @@ $font__templates: 'GillSans', Arial, sans-serif;
     text-align: center;
 
     &:before {
-      // This is the UTF-8 Dingbat for BALLOT X(cross).
-      content: "\2717";
+      content: "X";
       font-size: 26px;
       color: white;
       text-shadow: 0 0 6px rgba(0,0,0,0.78);
     }
   }
+}
+
+/**
+ * Functional classes
+ */
+
+.small-bottom-margin {
+  margin-bottom: 1em;
+}
+
+.medium-bottom-margin {
+  margin-bottom: 1.5em;
+}
+
+.wrap-text {
+  white-space: pre-wrap;
+}
+
+.reset-margin {
+  margin: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.quarter-width {
+  width: 25%; 
+}
+
+.third-width {
+  width: 33%;
+}
+
+.font-100 {
+  font-size: 100%;
+}
+
+.font-150 {
+  font-size: 150%;
 }
