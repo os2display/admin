@@ -2029,16 +2029,16 @@
         },
         {
             "name": "kdb/os2display-kkbding2-bundle",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kdb/os2display-kkbding2-bundle.git",
-                "reference": "0943fbef1e67fe4b007a9ef09f552d3322a655d9"
+                "reference": "e6aeb39ed70055927195df79b598fe04fb26314c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kdb/os2display-kkbding2-bundle/zipball/0943fbef1e67fe4b007a9ef09f552d3322a655d9",
-                "reference": "0943fbef1e67fe4b007a9ef09f552d3322a655d9",
+                "url": "https://api.github.com/repos/kdb/os2display-kkbding2-bundle/zipball/e6aeb39ed70055927195df79b598fe04fb26314c",
+                "reference": "e6aeb39ed70055927195df79b598fe04fb26314c",
                 "shasum": ""
             },
             "require": {
@@ -2053,10 +2053,10 @@
             },
             "description": "Os2Display Ding2 integration.",
             "support": {
-                "source": "https://github.com/kdb/os2display-kkbding2-bundle/tree/1.0.2",
+                "source": "https://github.com/kdb/os2display-kkbding2-bundle/tree/1.0.3",
                 "issues": "https://github.com/kdb/os2display-kkbding2-bundle/issues"
             },
-            "time": "2018-08-15T11:37:48+00:00"
+            "time": "2018-08-15T13:46:14+00:00"
         },
         {
             "name": "knplabs/gaufrette",
