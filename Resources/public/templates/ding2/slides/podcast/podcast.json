@@ -1,7 +1,7 @@
 {
   "id": "podcast",
   "type": "slide",
-  "name": "DDB CMS Podcast",
+  "name": "Podcast",
   "icon": "podcast.png",
   "paths": {
     "live": "podcast-edit.html",
@@ -22,23 +22,34 @@
     "fontsize": 60,
     "responsive_fontsize": 4,
     "bgcolor": "#fff",
-    "textcolor": "#4e4a47",
-    "headertext1": "Bag om",
-    "headertext2": "København",
-    "headertext3": "Podcast",
-    "infoheadertext": "Månedens udsendelse:",
-    "infotext": "",
-    "footertext": "Få mere information på ",
-    "footerimage": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
+    "headercolor": "#4e4a47",
+    "header1": "Bag om",
+    "header2": "København",
+    "header3": "Podcast",
+    "infoheader": "Månedens udsendelse:",
+    "info1": "Kvinden med umættelig",
+    "info2": "kundskabstørst og læger",
+    "info3": "uden grænser.",
+    "info4": "Lyt med!",
+    "reference": "Få mere information på bibliotek.kk.dk/lyd",
+    "logo": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
   },
   "tools": [
     {
       "name": "Overskrift",
-      "id": "center-header"
+      "id": "header-editor"
+    },
+    {
+      "name": "Info",
+      "id": "info-editor"
     },
     {
       "name": "Billede",
       "id": "image-picker"
+    },
+    {
+      "name": "Reference",
+      "id": "reference-editor"
     },
     {
       "name": "Logo",
