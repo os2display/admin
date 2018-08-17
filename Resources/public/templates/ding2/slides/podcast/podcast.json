@@ -22,19 +22,26 @@
     "fontsize": 60,
     "responsive_fontsize": 4,
     "bgcolor": "#fff",
-    "textcolor": "#4e4a47",
-    "headertext1": "Bag om",
-    "headertext2": "København",
-    "headertext3": "Podcast",
-    "infoheadertext": "Månedens udsendelse:",
-    "infotext": "",
-    "footertext": "Få mere information på ",
-    "footerimage": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
+    "headercolor": "#4e4a47",
+    "header1": "Overskrift",
+    "header2": "til",
+    "header3": "Podcast",
+    "infoheader": "Månedens udsendelse:",
+    "info1": "Infotekst",
+    "info2": "til",
+    "info3": "podcast",
+    "info4": "",
+    "reference": "Få mere information på bibliotek.kk.dk",
+    "logo": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
   },
   "tools": [
     {
       "name": "Overskrift",
-      "id": "center-header"
+      "id": "header-editor"
+    },
+    {
+      "name": "Infotekst",
+      "id": "info-editor"
     },
     {
       "name": "Billede",
