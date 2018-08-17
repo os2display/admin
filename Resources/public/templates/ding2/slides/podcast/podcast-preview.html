@@ -5,11 +5,11 @@
   <div class="podcast--header-wrapper">
     <div
       class="podcast--header has-placeholder"
-      data-ng-style="{'color': ikSlide.options.textcolor}"
+      data-ng-style="{'color': ikSlide.options.headercolor}"
     >
-    <div>{{ikSlide.options.headertext1}}</div>
-    <div>{{ikSlide.options.headertext2}}</div>
-    <div>{{ikSlide.options.headertext3}}</div>
+    <div>{{ikSlide.options.header1}}</div>
+    <div>{{ikSlide.options.header2}}</div>
+    <div>{{ikSlide.options.header3}}</div>
     </div>
   </div>
 
@@ -21,35 +21,25 @@
     <div
       class="podcast--info-header"
       spellcheck="false"
-      data-ng-style="{'border-color': ikSlide.options.textcolor}"
-    >{{ikSlide.options.infoheadertext}}</div>
-    <textarea
-      auto-grow
-      class="podcast--info has-placeholder"
-      data-ng-trim="false"
-      placeholder="Tilføj info"
-      data-ng-model="ikSlide.options.infotext"
-      spellcheck="false"
-    >
-      </textarea>
+      data-ng-style="{'border-color': ikSlide.options.headercolor}"
+    >{{ikSlide.options.infoheader}}</div>
+    <div class="podcast--info has-placeholder">
+      <div>{{ikSlide.options.info1}}</div>
+      <div>{{ikSlide.options.info2}}</div>
+      <div>{{ikSlide.options.info3}}</div>
+      <div>{{ikSlide.options.info4}}</div>
+    </div>
   </div>
 
   <div class="podcast--footer-wrapper">
-    <textarea
-      auto-grow
-      class="podcast--footer has-placeholder"
-      data-ng-trim="false"
-      placeholder="Tilføj tekst"
-      data-ng-model="ikSlide.options.footertext"
-      spellcheck="false"
-    >
-      </textarea>
+    <div class="podcast--footer">{{ikSlide.options.reference}}</div>
     <div
       class="podcast--footer-image"
-      data-ng-style="ikSlide.currentLogo ? {'background-image': 'url(' + ikSlide.currentLogo + ')'} : {'background-image': 'url(' + ikSlide.options.footerimage + ')'}"
+      data-ng-style="ikSlide.currentLogo ? {'background-image': 'url(' + ikSlide.currentLogo + ')'} : {'background-image': 'url(' + ikSlide.options.logo + ')'}"
     ></div>
   </div>
 </div>
+
 
 
 <div

@@ -1,7 +1,7 @@
 {
   "id": "podcast",
   "type": "slide",
-  "name": "DDB CMS Podcast",
+  "name": "Podcast",
   "icon": "podcast.png",
   "paths": {
     "live": "podcast-edit.html",
@@ -46,6 +46,10 @@
     {
       "name": "Billede",
       "id": "image-picker"
+    },
+    {
+      "name": "Reference",
+      "id": "reference-editor"
     },
     {
       "name": "Logo",
