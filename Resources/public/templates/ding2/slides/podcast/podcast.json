@@ -23,15 +23,15 @@
     "responsive_fontsize": 4,
     "bgcolor": "#fff",
     "headercolor": "#4e4a47",
-    "header1": "Bag om",
-    "header2": "København",
+    "header1": "Overskrift",
+    "header2": "til",
     "header3": "Podcast",
     "infoheader": "Månedens udsendelse:",
-    "info1": "Kvinden med umættelig",
-    "info2": "kundskabstørst og læger",
-    "info3": "uden grænser.",
-    "info4": "Lyt med!",
-    "reference": "Få mere information på bibliotek.kk.dk/lyd",
+    "info1": "Infotekst",
+    "info2": "til",
+    "info3": "podcast",
+    "info4": "",
+    "reference": "Få mere information på bibliotek.kk.dk",
     "logo": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
   },
   "tools": [
@@ -40,7 +40,7 @@
       "id": "header-editor"
     },
     {
-      "name": "Info",
+      "name": "Infotekst",
       "id": "info-editor"
     },
     {
