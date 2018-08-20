@@ -1,0 +1,35 @@
+<div
+  class="edit-menu"
+  role="banner"
+>
+  <div class="edit-menu--inner is-visible">
+    <div
+      class="edit-menu--toggle-icon"
+      data-ng-click="close()"
+    >X</div>
+    <form class="edit-menu--form">
+      <div class="edit-menu--label small-bottom-margin reset-margin">Sted</div>
+      <div class="small-bottom-margin">
+        <label>Linje 1</label>
+        <input
+          type="text"
+          data-ng-model="slide.options.place.first"
+        >
+      </div>
+      <div class="small-bottom-margin">
+        <label>Linje 2</label>
+        <input
+          type="text"
+          data-ng-model="slide.options.place.second"
+        >
+      </div>
+      <div>
+        <label>Linje 3</label>
+        <input
+          type="text"
+          data-ng-model="slide.options.place.third"
+        >
+      </div>
+    </form>
+  </div>
+</div>

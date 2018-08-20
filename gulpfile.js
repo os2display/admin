@@ -34,6 +34,7 @@ var templates = {
     ],
     'slides': [
       'podcast',
+      'event',
       'ding-events',
       'opening-hours'
     ]

@@ -1,0 +1,40 @@
+<div
+  class="edit-menu"
+  role="banner"
+>
+  <div class="edit-menu--inner is-visible">
+    <div
+      class="edit-menu--toggle-icon"
+      data-ng-click="close()"
+    >X</div>
+    <form class="edit-menu--form">
+      <div class="edit-menu--label small-bottom-margin reset-margin">Datoer</div>
+      <div class="small-bottom-margin">
+        <label class="edit-menu--calendar-label">Start</label>
+        <input
+          class="edit-menu--calendar-form-element-date"
+          date-picker
+          type="text"
+          data-ng-model="slide.options.date.from"
+        >
+      </div>
+      <div class="medium-bottom-margin">
+        <label class="edit-menu--calendar-label">Slut</label>
+        <input
+          class="edit-menu--calendar-form-element-date"
+          date-picker
+          type="text"
+          data-ng-model="slide.options.date.to"
+        >
+      </div>
+      <div>
+        <div class="edit-menu--label reset-margin">Tekst (overskriver)</div>
+        <input
+          class="small-bottom-margin"
+          type="text"
+          data-ng-model="slide.options.date.text"
+        >
+      </div>
+    </form>
+  </div>
+</div>
