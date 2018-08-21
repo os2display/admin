@@ -22,10 +22,7 @@
       class="event--info-header"
       spellcheck="false"
       data-ng-style="{'border-color': ikSlide.options.headercolor}"
-    >{{ ikSlide.options.date.text ? ikSlide.options.date.text : ikSlide.options.date.to
-      && ikSlide.options.date.to ? 'Dato: ' + ikSlide.options.date.from + ' - ' +
-      ikSlide.options.date.to : ikSlide.options.date.to ? 'Dato: ' + ikSlide.options.date.to
-      : 'Dato: ' + ikSlide.options.date.from }}
+    >{{ikSlide.options.infoheader}}
     </div>
     <div class="event--info has-placeholder">
       <div ng-if="ikSlide.options.time.first">
