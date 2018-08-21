@@ -1,0 +1,80 @@
+{
+  "id": "event",
+  "type": "slide",
+  "name": "Arrangement",
+  "icon": "event.png",
+  "paths": {
+    "live": "event-edit.html",
+    "edit": "event-edit.html",
+    "preview": "event-preview.html",
+    "css": "event.css",
+    "js": "bundles/kkbding2integration/templates/js/eventSlide.js"
+  },
+  "slide_type": "event",
+  "media_type": "image",
+  "script_id": "event",
+  "orientation": "portrait",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "1920"
+  },
+  "empty_options": {
+    "fontsize": 60,
+    "responsive_fontsize": 4,
+    "bgcolor": "#fff",
+    "headercolor": "#4e4a47",
+    "header1": "Overskrift",
+    "header2": "til",
+    "header3": "Arrangement",
+    "infoheader": "Dato for arrangement",
+    "date": {
+      "from": "",
+      "to": "",
+      "text": ""
+    },
+    "time": {
+      "first": "",
+      "second": "",
+      "third": "",
+      "fourth": "",
+      "fifth": ""
+    },
+    "place": {
+      "first": "",
+      "second": "",
+      "third": ""
+    },
+    "reference": "Få mere information på bibliotek.kk.dk",
+    "logo": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
+  },
+  "tools": [
+    {
+      "name": "Overskrift",
+      "id": "header-editor"
+    },
+    {
+      "name": "Dato",
+      "id": "event-date-picker"
+    },
+    {
+      "name": "Tid",
+      "id": "event-time-picker"
+    },
+    {
+      "name": "Sted",
+      "id": "event-place-editor"
+    },
+    {
+      "name": "Billede",
+      "id": "image-picker"
+    },
+    {
+      "name": "Reference",
+      "id": "reference-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-picker"
+    }
+  ]
+}
