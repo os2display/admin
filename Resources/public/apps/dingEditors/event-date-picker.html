@@ -15,7 +15,7 @@
           class="edit-menu--calendar-form-element-date"
           date-picker
           type="text"
-          data-ng-change="onFromChange()"
+          data-ng-change="onDateChange()"
           data-ng-model="slide.options.date.from"
         >
       </div>
@@ -25,7 +25,7 @@
           class="edit-menu--calendar-form-element-date"
           date-picker
           type="text"
-          data-ng-change="onToChange()"
+          data-ng-change="onDateChange()"
           data-ng-model="slide.options.date.to"
         >
       </div>
@@ -34,7 +34,7 @@
         <input
           class="small-bottom-margin"
           type="text"
-          data-ng-change="onTextChange()"
+          data-ng-change="onDateChange()"
           data-ng-model="slide.options.date.text"
         >
       </div>

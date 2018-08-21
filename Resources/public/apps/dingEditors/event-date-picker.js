@@ -44,12 +44,7 @@ angular.module('toolsModule').directive('eventDatePicker', function() {
       template: '@'
     },
     link: function(scope) {
-      function change() {
-        return headlineChange(scope)
-      }
-      scope.onFromChange = change
-      scope.onToChange = change
-      scope.onTextChange = change
+      scope.onDateChange = function() { headlineChange(scope) }
     },
     templateUrl:
       '/bundles/kkbding2integration/apps/dingEditors/event-date-picker.html'
