@@ -31,7 +31,13 @@
   src: url(../../../../fonts/GillSansMT.ttf);
 }
 
+@font-face {
+  font-family: GillSansLight;
+  src: url(../../../../fonts/GillSansMTLight.ttf);
+}
+
 $font__templates: 'GillSans', Arial, sans-serif;
+$font__templates_light: 'GillSansLight', Arial, sans-serif;
 
 // Pre text
 %description-default {
