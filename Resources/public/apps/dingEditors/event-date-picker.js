@@ -12,7 +12,7 @@ angular.module('datetimePicker').directive('datePicker', function() {
 })
 
 function dateDecorator(date) {
-  return 'Dato:' + date
+  return 'Dato: ' + date
 }
 
 function headlineChange(scope) {
@@ -20,6 +20,7 @@ function headlineChange(scope) {
   const date = options.date
 
   function setInfoHeader(value) {
+    
     options.infoheader = value
   }
 
