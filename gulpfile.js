@@ -1,3 +1,5 @@
+var fs = require('fs')
+
 var gulp = require('gulp-help')(require('gulp'));
 
 // Plugins.
@@ -131,4 +133,8 @@ gulp.task('js-src', 'Report all source files for "js" task.', function () {
   adminJsPath.forEach(function (path) {
     process.stdout.write(path + '\n');
   });
+});
+
+gulp.task('js:watch', function () {
+  gulp.watch(['gulpfile.js', adminJsPath], ['js']);
 });
