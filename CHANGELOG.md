@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 5.1.1
+
+* Updated symfony/symfony: 2.8.44
+* Updated os2display/admin-bundle: 1.1.1
+
 ## 5.1.0
 
 * Updated symfony/symfony: 2.8.42
