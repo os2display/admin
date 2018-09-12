@@ -1809,12 +1809,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/campaign-bundle.git",
-                "reference": "a6269ccfdd82d4190a9d71bc934d4ae82411b4a2"
+                "reference": "d70654924a300a317e6f68fe580d1b6f94ab6df6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/campaign-bundle/zipball/a6269ccfdd82d4190a9d71bc934d4ae82411b4a2",
-                "reference": "a6269ccfdd82d4190a9d71bc934d4ae82411b4a2",
+                "url": "https://api.github.com/repos/itk-os2display/campaign-bundle/zipball/d70654924a300a317e6f68fe580d1b6f94ab6df6",
+                "reference": "d70654924a300a317e6f68fe580d1b6f94ab6df6",
                 "shasum": ""
             },
             "require": {
@@ -1839,7 +1839,7 @@
                 "source": "https://github.com/itk-os2display/campaign-bundle/tree/pr-os2display-symf34",
                 "issues": "https://github.com/itk-os2display/campaign-bundle/issues"
             },
-            "time": "2018-07-05T05:45:45+00:00"
+            "time": "2018-07-05T09:04:14+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2881,12 +2881,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/core-bundle.git",
-                "reference": "7c70876e0fbd95d39b8342b90390a2262614a1d4"
+                "reference": "02d78a3df234dc16689b7687fe1656e13e217844"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/7c70876e0fbd95d39b8342b90390a2262614a1d4",
-                "reference": "7c70876e0fbd95d39b8342b90390a2262614a1d4",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/02d78a3df234dc16689b7687fe1656e13e217844",
+                "reference": "02d78a3df234dc16689b7687fe1656e13e217844",
                 "shasum": ""
             },
             "require": {
@@ -2925,7 +2925,7 @@
             "support": {
                 "source": "https://github.com/itk-os2display/core-bundle/tree/pr-os2display-symf34"
             },
-            "time": "2018-07-04T10:31:32+00:00"
+            "time": "2018-07-05T08:05:49+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -4710,20 +4710,20 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "f50e17fa4edd6216f7fe5b908f04e64ba1d19a9e"
+                "reference": "5bb5c2d4b0d5cf10672015b68519a199e6ac27c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/f50e17fa4edd6216f7fe5b908f04e64ba1d19a9e",
-                "reference": "f50e17fa4edd6216f7fe5b908f04e64ba1d19a9e",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/5bb5c2d4b0d5cf10672015b68519a199e6ac27c1",
+                "reference": "5bb5c2d4b0d5cf10672015b68519a199e6ac27c1",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "~2.4@stable",
+                "doctrine/common": "~2.4",
                 "ext-xml": "*",
                 "fig/link-util": "^1.0",
                 "php": "^5.5.9|>=7.0.8",
@@ -4811,7 +4811,7 @@
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.4",
                 "doctrine/doctrine-bundle": "~1.4",
-                "doctrine/orm": "~2.4,>=2.4.5,<=2.7.0",
+                "doctrine/orm": "~2.4,>=2.4.5",
                 "egulias/email-validator": "~1.2,>=1.2.8|~2.0",
                 "monolog/monolog": "~1.11",
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
@@ -4861,7 +4861,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-08-01T14:48:04+00:00"
+            "time": "2018-08-28T06:06:28+00:00"
         },
         {
             "name": "twig/extensions",
