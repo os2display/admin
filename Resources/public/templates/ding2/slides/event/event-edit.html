@@ -16,7 +16,13 @@
   <div class="event--info-wrapper">
     <div
       class="event--image"
-      data-ng-style="{'background-image': 'url(' + ikSlide.currentImage + ')'}"
+      data-ng-style="
+        {
+          'background-image': 'url(' + ikSlide.currentImage + ')',
+          'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'cover',
+          'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
+          'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center'
+        }"
     ></div>
     <div
       class="event--info-header"

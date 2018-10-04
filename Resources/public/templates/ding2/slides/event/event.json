@@ -27,6 +27,9 @@
     "header2": "til",
     "header3": "Arrangement",
     "infoheader": "Dato for arrangement",
+    "imageZoom": 100,
+    "imageX": 0,
+    "imageY": 0,
     "date": {
       "from": "",
       "to": "",

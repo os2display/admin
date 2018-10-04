@@ -67,6 +67,7 @@
     position: absolute;
     clip-path: polygon(0 0, 100% 25%, 100% 100%, 0% 100%);
     background-color: $grey;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100%;

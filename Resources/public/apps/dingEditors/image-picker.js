@@ -10,6 +10,9 @@ angular.module('toolsModule').directive('imagePicker', [
         template: '@'
       },
       link: function(scope) {
+        scope.zoomMin = 100
+        scope.zoomMax = 500
+
         scope.step = 'background-picker'
 
         /**
@@ -81,7 +84,9 @@ angular.module('toolsModule').directive('imagePicker', [
           })
 
           if (!notAllSuccess) {
-            scope.close()
+            console.log('success')
+            scope.step = 'focal-point-pick'
+            // scope.close()
           }
         })
       },

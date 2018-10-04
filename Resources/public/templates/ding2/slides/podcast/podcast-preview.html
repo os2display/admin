@@ -7,16 +7,22 @@
       class="podcast--header has-placeholder"
       data-ng-style="{'color': ikSlide.options.headercolor}"
     >
-    <div>{{ikSlide.options.header1}}</div>
-    <div>{{ikSlide.options.header2}}</div>
-    <div>{{ikSlide.options.header3}}</div>
+      <div>{{ikSlide.options.header1}}</div>
+      <div>{{ikSlide.options.header2}}</div>
+      <div>{{ikSlide.options.header3}}</div>
     </div>
   </div>
 
   <div class="podcast--info-wrapper">
     <div
       class="podcast--image"
-      data-ng-style="{'background-image': 'url(' + ikSlide.currentImage + ')'}"
+      data-ng-style="
+        {
+          'background-image': 'url(' + ikSlide.currentImage + ')',
+          'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'cover',
+          'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
+          'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center'
+        }"
     ></div>
     <div
       class="podcast--info-header"
@@ -39,8 +45,6 @@
     ></div>
   </div>
 </div>
-
-
 
 <div
   class="podcast--overlay"
