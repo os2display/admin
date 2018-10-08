@@ -84,9 +84,7 @@ angular.module('toolsModule').directive('imagePicker', [
           })
 
           if (!notAllSuccess) {
-            console.log('success')
             scope.step = 'focal-point-pick'
-            // scope.close()
           }
         })
       },
