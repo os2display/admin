@@ -78,14 +78,6 @@ angular.module('toolsModule').directive('imagePicker', [
               })
             }
           )
-
-          var notAllSuccess = data.queue.find(function(item) {
-            return !item.isSuccess
-          })
-
-          if (!notAllSuccess) {
-            scope.step = 'focal-point-pick'
-          }
         })
       },
       templateUrl: function(_, attrs) {
