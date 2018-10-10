@@ -78,57 +78,6 @@
           </div>
         </div>
       </div>
-      <div data-ng-show="step === 'focal-point-pick'">
-        <div class="edit-menu--background-page-inner">
-          <h2 class="edit-menu--background-header">Vælg fokus</h2>
-          <div class="edit-menu--background-content flex focus-tools-container">
-            <div class='flex grow small-right-margin vertical align-start'>
-              <label class="edit-menu--label font-150">Zoom</label>
-              <input
-                class='block'
-                type="range"
-                min="{{zoomMin}}"
-                max="{{zoomMax}}"
-                step="10"
-                ng-model="slide.options.imageZoom"
-              />
-              <label class="edit-menu--label font-150">Horisontal justering</label>
-              <input
-                class='block'
-                type="range"
-                min="-1000"
-                max="1000"
-                step="10"
-                ng-model="slide.options.imageX"
-              />
-              <label class="edit-menu--label font-150">Vertikal justering</label>
-              <input
-                class='block'
-                type="range"
-                min="-1000"
-                max="1000"
-                step="10"
-                ng-model="slide.options.imageY"
-              />
-              <button
-                class="edit-menu--background-button reset-margin small-top-margin"
-                data-ng-click="close()"
-              >Gem og luk</button>
-            </div>
-            <div class='small-bottom-margin'>
-              <div
-                class="image-picker-placeholder"
-                data-ng-style="{
-                'background-image': 'url(' + slide.currentImage + ')',
-                'background-size': slide.options.imageZoom ? slide.options.imageZoom + '%' : 'cover',
-                'background-position-x': slide.options.imageX ? slide.options.imageX + '%' : 'center', 
-                'background-position-y': slide.options.imageY ? slide.options.imageY + '%' : 'center'
-              }"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </form>
   </div>
 </div>

@@ -17,5 +17,6 @@ modules:
       - bundles/kkbding2integration/apps/dingEditors/event-date-picker.js
       - bundles/kkbding2integration/apps/dingEditors/event-time-picker.js
       - bundles/kkbding2integration/apps/dingEditors/event-place-editor.js
+      - bundles/kkbding2integration/apps/dingEditors/image-focus.js
 
 apps:

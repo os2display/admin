@@ -72,6 +72,10 @@
       "id": "image-picker"
     },
     {
+      "name": "Billedefokus",
+      "id": "image-focus"
+    },
+    {
       "name": "Reference",
       "id": "reference-editor"
     },
