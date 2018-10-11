@@ -1,6 +1,6 @@
 // We're based off of default-template-bundle.
-@import "../../../../os2display/default-template-bundle/Resources/sass/_shared-base.scss";
-@import "compass/css3";
+@import '../../../../os2display/default-template-bundle/Resources/sass/_shared-base.scss';
+@import 'compass/css3';
 
 // Styling shared by ding elements.
 .ding {
@@ -12,8 +12,8 @@
 
     font-size: 300%;
     // Transparent black on transparent white.
-    color: rgba(0,0,0,0.4);
-    background-color: rgba(255,255,255,0.5);
+    color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.5);
 
     // Overlay z-index is 99.
     z-index: 100;
@@ -56,41 +56,41 @@ $font__templates_light: 'GillSansLight', Arial, sans-serif;
  */
 .edit-menu--static-color-items {
   $DarkBrown: #292321;
-  $Orange: #CC3300;
+  $Orange: #cc3300;
 
   div {
-    margin:0 0 0.75em 0;
+    margin: 0 0 0.75em 0;
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     display: none;
   }
-  input[type="radio"] + label {
-    font-family:Arial, sans-serif;
-    font-size:14px;
+  input[type='radio'] + label {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
   }
-  input[type="radio"] + label span {
-    display:inline-block;
+  input[type='radio'] + label span {
+    display: inline-block;
     width: 40px;
     height: 40px;
-    margin:-1px 4px 0 0;
-    vertical-align:middle;
-    cursor:pointer;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
   }
 
-  input[type="radio"] + label span {
+  input[type='radio'] + label span {
     background-color: $DarkBrown;
     border: 2px solid gray;
   }
 
-  input[type="radio"]:checked + label span{
+  input[type='radio']:checked + label span {
     text-align: center;
 
     &:before {
-      content: "X";
+      content: 'X';
       font-size: 26px;
       color: white;
-      text-shadow: 0 0 6px rgba(0,0,0,0.78);
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.78);
     }
   }
 }
@@ -115,26 +115,6 @@ $font__templates_light: 'GillSansLight', Arial, sans-serif;
  * Functional classes
  */
 
-.block {
-  display: block;
-}
-
-.small-bottom-margin {
-  margin-bottom: 1em;
-}
-
-.medium-bottom-margin {
-  margin-bottom: 1.5em;
-}
-
-.small-right-margin {
-  margin-right: 1em;
-}
-
-.wrap-text {
-  white-space: pre-wrap;
-}
-
 .reset-margin {
   margin: 0;
   margin-left: 0;
@@ -151,6 +131,42 @@ $font__templates_light: 'GillSansLight', Arial, sans-serif;
   padding-top: 0;
 }
 
+.block {
+  display: block;
+}
+
+.small-bottom-margin {
+  margin-bottom: 1em;
+}
+
+.small-right-margin {
+  margin-right: 1em;
+}
+
+.small-top-margin {
+  margin-top: 1em;
+}
+
+.medium-bottom-margin {
+  margin-bottom: 1.5em;
+}
+
+.large-top-margin {
+  margin-top: 6em;
+}
+
+.small-right-padding {
+  padding-right: 1em;
+}
+
+.small-left-padding {
+  padding-left: 1em;
+}
+
+.wrap-text {
+  white-space: pre-wrap;
+}
+
 .full-width {
   width: 100%;
 }
@@ -160,7 +176,7 @@ $font__templates_light: 'GillSansLight', Arial, sans-serif;
 }
 
 .quarter-width {
-  width: 25%; 
+  width: 25%;
 }
 
 .third-width {
@@ -201,8 +217,4 @@ $font__templates_light: 'GillSansLight', Arial, sans-serif;
 
 .grow {
   flex-grow: 1;
-}
-
-.small-top-margin {
-  margin-top: 1em;
 }
