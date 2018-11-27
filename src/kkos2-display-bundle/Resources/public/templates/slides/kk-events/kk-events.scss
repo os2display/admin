@@ -1,0 +1,77 @@
+
+.kk-events-default {
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+
+  &--text-wrapper {
+    position: absolute;
+    text-align: left;
+
+    padding: 3%;
+  }
+
+  &--text-inner {
+    text-align: left;
+    position:relative;
+    width: 95%;
+  }
+
+  &--headline {
+    font-size: 60%;
+    margin-bottom: 1.5em;
+    margin-top: .6em;
+    opacity: .75;
+  }
+
+  &--header {
+    border-bottom: 2px solid transparentize(#fff, .25);
+    margin-bottom: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+
+    font-size: 80%;
+    font-weight: bold;
+  }
+
+  &--date {
+    font-style: normal !important;
+    font-size: 40%;
+    margin-bottom: 2em;
+    opacity: .75;
+    text-transform: capitalize;
+  }
+
+  &--description {
+    font-size: 60%;
+    line-height: 1.4em;
+    padding-right: 1em;
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: white;
+    }
+
+    img {
+      max-width: 25%;
+      float: left;
+      padding-right: 1em;
+      padding-bottom: 1em;
+    }
+  }
+
+  &--overlay {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+  }
+
+  &.preview {
+    display: none;
+  }
+}

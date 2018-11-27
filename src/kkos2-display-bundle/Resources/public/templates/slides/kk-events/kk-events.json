@@ -1,0 +1,40 @@
+{
+  "id": "kk-events",
+  "type": "slide",
+  "name": "KK events RSS",
+  "icon": "kk-events.png",
+  "paths": {
+    "live": "kk-events-live.html",
+    "edit": "kk-events-edit.html",
+    "preview": "kk-events-preview.html",
+    "css": "kk-events.css",
+    "js": "bundles/kkos2displayintegration/templates/js/kkeventsSlide.js"
+  },
+  "slide_type": "kultunaut-event",
+  "media_type": "image",
+  "script_id": "kk-events",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": 60,
+    "responsive_fontsize": 4,
+    "bgcolor": "#555",
+    "textcolor": "#fff",
+    "rss_number": 5,
+    "rss_duration": 10,
+    "source": ""
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "RSS-feed med arrangementer",
+      "id": "event-feed-editor"
+    }
+  ]
+}
