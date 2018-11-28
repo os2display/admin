@@ -6,7 +6,7 @@
   "paths": {
     "live": "kk-events-live.html",
     "edit": "kk-events-edit.html",
-    "preview": "kk-events-preview.html",
+    "preview": "kk-events-edit.html",
     "css": "kk-events.css",
     "js": "bundles/kkos2displayintegration/templates/js/kkeventsSlide.js"
   },
@@ -23,7 +23,7 @@
     "responsive_fontsize": 4,
     "bgcolor": "#555",
     "textcolor": "#fff",
-    "rss_number": 5,
+    "rss_number": 6,
     "rss_duration": 10,
     "source": ""
   },
@@ -31,6 +31,10 @@
     {
       "name": "Baggrund",
       "id": "background-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
     },
     {
       "name": "RSS-feed med arrangementer",
