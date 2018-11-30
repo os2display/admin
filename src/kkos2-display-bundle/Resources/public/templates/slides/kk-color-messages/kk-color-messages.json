@@ -1,0 +1,34 @@
+{
+  "id": "kk-color-messages",
+  "type": "slide",
+  "name": "Farverige meddelelser",
+  "icon": "kk-color-messages.png",
+  "paths": {
+    "live": "kk-color-messages-live.html",
+    "edit": "kk-color-messages-edit.html",
+    "preview": "kk-color-messages-edit.html",
+    "css": "kk-color-messages.css",
+    "js": "bundles/kkos2displayintegration/templates/js/kkColorMessages.js"
+  },
+  "slide_type": "color-messages",
+  "media_type": "image",
+  "script_id": "kk-color-messages",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "fontsize": 60,
+    "responsive_fontsize": 4,
+    "num_messages": 6,
+    "slide_duration": 10,
+    "source": ""
+  },
+  "tools": [
+    {
+      "name": "Mellemfeed",
+      "id": "color-message-editor"
+    }
+  ]
+}

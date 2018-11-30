@@ -28,17 +28,10 @@ var banner = [
   ''
 ].join('\n');
 
-// @TODO: Discover this structure automatically
-var templates = {
-  'ding2': {
-    'slides': [
-      'kk-events'
-    ]
-  }
-};
 
 var folders = [
   'slides/kk-events',
+  'slides/kk-color-messages',
 ];
 
 /**

@@ -1,7 +1,7 @@
 {
   "id": "kk-events",
   "type": "slide",
-  "name": "KK events RSS",
+  "name": "Kultunaut-arrangementer",
   "icon": "kk-events.png",
   "paths": {
     "live": "kk-events-live.html",

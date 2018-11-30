@@ -9,6 +9,7 @@ namespace Kkos2\KkOs2DisplayIntegrationBundle\Service;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use Os2Display\CoreBundle\Events\CronEvent;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Kkos2DisplayService
 {
@@ -34,13 +35,80 @@ class Kkos2DisplayService
    */
   public function onCron(CronEvent $event)
   {
-    $this->updateEvents();
+//    $this->updateKultunautEvents();
+    $this->updateColorMessages();
+  }
+
+  private function updateColorMessages()
+  {
+    $slideRepo = $this->container->get('doctrine')->getRepository('Os2DisplayCoreBundle:Slide');
+
+    /** @var \Os2Display\CoreBundle\Entity\Slide[] $slides */
+    $slides = $slideRepo->findBySlideType('color-messages');
+
+    $client = new Client();
+
+    $messages = [];
+
+    $mockMellemFeed = [
+      'https://kibuk.testkkms.kk.dk/indhold/bloeb',
+      'https://kibuk.testkkms.kk.dk/indhold/jep'
+    ];
+
+    // TODO. Der er ikke noget der looper i "mellemefeedet".
+    foreach ($slides as $slide) {
+      $options = $slide->getOptions();
+
+      foreach ($mockMellemFeed as $mockUrl) {
+        $html = false;
+        try {
+          $response = $client->get($mockUrl);
+          $body = $response->getBody();
+          $html = (string) $body;
+        } catch (TransferException $exception) {
+          // TODO.
+          die('argh');
+        }
+        if (!$html) {
+          die('argh');
+        }
+
+        // TODO. Vi skal finde en defaultfarve.
+        $colorMessage = [];
+
+        // TODO. Error handling.
+        $crawler = new Crawler($html);
+        $crawler = $crawler->filter(('#main-content .node-service-spot'));
+        $style = $crawler->attr('style');
+        preg_match('@background:\s?(#[A-Za-z0-9]+)@', $style, $matches);
+        if (!empty($matches[1])) {
+          $colorMessage['background_color'] = $matches[1];
+        }
+        $content = $crawler->filter('.content');
+        $colorMessage['title'] = $content->filter('h1')->eq(0)->text();
+        $colorMessage['message'] = $content->filter('.field-name-body')->eq(0)->html();
+
+        $messages[] = $colorMessage;
+      }
+
+
+    } // TODO. Loop
+    // TODO.
+
+    $externalData = [
+      'messages' => array_values($messages),
+    ];
+    $slide->setExternalData($externalData);
+    // Write to the db.
+    $entityManager = $this->container->get('doctrine')->getManager();
+    $entityManager->flush();
+    error_log(print_r($externalData, TRUE));
   }
 
   /**
    * Fetch and parse Kultunaut feeds and save on slide external data.
    */
-  private function updateEvents()
+  private function updateKultunautEvents()
   {
     $slideRepo = $this->container->get('doctrine')->getRepository('Os2DisplayCoreBundle:Slide');
 
@@ -123,7 +191,7 @@ class Kkos2DisplayService
       libxml_use_internal_errors(true);
       $xml = simplexml_load_string($contents);
     } catch (TransferException $exception) {
-      $this->logger->error('Could not fetch Kultutnaut feed from: ' . $xml_url);
+      $this->logger->error('Could not fetch Kultunaut feed from: ' . $xml_url);
     }
 
     // If the parsing failed, then try to log the errors and then throw an
