@@ -1,25 +1,25 @@
-var fs = require('fs')
+'use strict';
 
-var gulp = require('gulp-help')(require('gulp'));
+const gulp = require('gulp-help')(require('gulp'));
 
 // Plugins.
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var ngAnnotate = require('gulp-ng-annotate');
-var rename = require('gulp-rename');
-var yaml = require('js-yaml');
-var fs = require('fs');
-var header = require('gulp-header');
+const jshint = require('gulp-jshint');
+const stylish = require('jshint-stylish');
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const ngAnnotate = require('gulp-ng-annotate');
+const rename = require('gulp-rename');
+const yaml = require('js-yaml');
+const fs = require('fs');
+const header = require('gulp-header');
 
-var adminBuildDir = 'Resources/public/assets/build';
-var templatesPath = 'Resources/public/templates/';
+const jsBuildDir = 'Resources/public/assets/build';
+const templatesPath = 'Resources/public/templates/';
 
 // Get information for top of minified files.
-var pkg = require('./version.json');
-var banner = [
+const pkg = require('./version.json');
+const banner = [
   '/**',
   ' * @name <%= pkg.name %>',
   ' * @version v<%= pkg.version %>',
@@ -29,27 +29,22 @@ var banner = [
 ].join('\n');
 
 
-var folders = [
+const slideFolders = [
   'slides/kk-events',
   'slides/kk-color-messages',
 ];
 
-/**
- * Process SCSS using libsass
- */
-gulp.task('sass', 'Compile the sass for each templates into minified css files.', function () {
-  'use strict';
-
-  folders.map(function(item) {
+gulp.task('sass', 'Compile each of the scss files into a compressed css file.', function () {
+    slideFolders.map(function (item) {
       var path = templatesPath + item;
       gulp.src(path + '/' + item.split('/').pop() + '.scss')
-          .pipe(sass({
-              outputStyle: 'compressed'
-          }).on('error', sass.logError))
-          .pipe(gulp.dest(path));
-  });
-});
-
+        .pipe(sass({
+          outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(gulp.dest(path));
+    });
+  }
+);
 
 // We only want to process our own non-processed JavaScript files.
 var adminJsPath = (function () {
@@ -60,13 +55,12 @@ var adminJsPath = (function () {
 
     // Breadth-first descend into data to find "files".
     buildFiles = function (data) {
-      if (typeof(data) === 'object') {
+      if (typeof (data) === 'object') {
         for (var p in data) {
 
           if (p === 'files') {
             jsFiles = jsFiles.concat(data[p]);
-          }
-          else {
+          } else {
             buildFiles(data[p]);
           }
         }
@@ -93,7 +87,7 @@ gulp.task('jshint', 'Runs JSHint on js', function () {
 });
 
 /**
- * Build single app.js file.
+ * Build single admin app.js file.
  */
 gulp.task('js', 'Build all custom js files into one minified js file.', function () {
     return gulp.src(adminJsPath)
@@ -102,7 +96,17 @@ gulp.task('js', 'Build all custom js files into one minified js file.', function
       .pipe(uglify())
       .pipe(rename({extname: ".min.js"}))
       .pipe(header(banner, {pkg: pkg}))
-      .pipe(gulp.dest(adminBuildDir));
+      .pipe(gulp.dest(jsBuildDir));
+  }
+);
+
+gulp.task('js-frontend', 'Build JS for the frontend.', function () {
+    slideFolders.map(function (item) {
+      const path = templatesPath + item;
+      gulp.src(path + '/' + item.split('/').pop() + '.js')
+        .pipe(rename({extname: ".min.js"}))
+        .pipe(gulp.dest(jsBuildDir));
+    });
   }
 );
 
@@ -111,7 +115,7 @@ gulp.task('js', 'Build all custom js files into one minified js file.', function
  */
 gulp.task('js-src', 'Report all source files for "js" task.', function () {
   adminJsPath.forEach(function (path) {
-    process.stdout.write(path + '\n');
+    console.log(path + '\n');
   });
 });
 

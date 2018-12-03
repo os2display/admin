@@ -8,7 +8,7 @@
     "edit": "kk-events-edit.html",
     "preview": "kk-events-edit.html",
     "css": "kk-events.css",
-    "js": "bundles/kkos2displayintegration/templates/js/kkeventsSlide.js"
+    "js": "bundles/kkos2displayintegration/assets/build/kk-events.min.js"
   },
   "slide_type": "kultunaut-event",
   "media_type": "image",

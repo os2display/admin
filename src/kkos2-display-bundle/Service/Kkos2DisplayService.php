@@ -35,7 +35,7 @@ class Kkos2DisplayService
    */
   public function onCron(CronEvent $event)
   {
-//    $this->updateKultunautEvents();
+    $this->updateKultunautEvents();
     $this->updateColorMessages();
   }
 
@@ -102,7 +102,6 @@ class Kkos2DisplayService
     // Write to the db.
     $entityManager = $this->container->get('doctrine')->getManager();
     $entityManager->flush();
-    error_log(print_r($externalData, TRUE));
   }
 
   /**
