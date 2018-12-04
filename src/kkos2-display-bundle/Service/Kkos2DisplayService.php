@@ -1,15 +1,17 @@
 <?php
 /**
  * @file
- * Service for Kultunaut-feeds for events.
+ * Service for KK Os2Display.
  */
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Service;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
+use Kkos2\KkOs2DisplayIntegrationBundle\Crawlers\MellemfeedCrawler;
+use Kkos2\KkOs2DisplayIntegrationBundle\Crawlers\ServicespotCrawler;
+use Os2Display\CoreBundle\Entity\Slide;
 use Os2Display\CoreBundle\Events\CronEvent;
-use Symfony\Component\DomCrawler\Crawler;
 
 class Kkos2DisplayService
 {
@@ -22,6 +24,16 @@ class Kkos2DisplayService
    */
   private $container;
 
+  /**
+   * Low-tech caching of mellemfeed links.
+   * @var array $mellemfeedLinks
+   */
+  private $mellemfeedLinks = [];
+
+  /**
+   * Kkos2DisplayService constructor.
+   * @param $container
+   */
   public function __construct($container)
   {
     $this->container = $container;
@@ -35,104 +47,79 @@ class Kkos2DisplayService
    */
   public function onCron(CronEvent $event)
   {
-    $this->updateKultunautEvents();
-    $this->updateColorMessages();
-  }
-
-  private function updateColorMessages()
-  {
     $slideRepo = $this->container->get('doctrine')->getRepository('Os2DisplayCoreBundle:Slide');
 
-    /** @var \Os2Display\CoreBundle\Entity\Slide[] $slides */
-    $slides = $slideRepo->findBySlideType('color-messages');
+    // Update colorful messages.
+    $colorMessageSlides = $slideRepo->findBySlideType('color-messages');
+    array_map([$this, 'updateColorMessageSlide'], $colorMessageSlides);
 
-    $client = new Client();
+    // Update events.
+    $eventSlides = $slideRepo->findBySlideType('kultunaut-event');
+    array_map([$this, 'updateKultunautEventsSlide'], $eventSlides);
+  }
 
-    $messages = [];
+  /**
+   * Update a color message slide with data.
+   *
+   * @param Slide $slide
+   *   Slide to update.
+   */
+  private function updateColorMessageSlide(Slide $slide)
+  {
+    $options = $slide->getOptions();
+    if (empty($options['source'])) {
+      return;
+    }
 
-    $mockMellemFeed = [
-      'https://kibuk.testkkms.kk.dk/indhold/bloeb',
-      'https://kibuk.testkkms.kk.dk/indhold/jep'
-    ];
+    // Get service spots to scrape from the "temporary" mellemfeed solution.
+    $servicespotLinks = $this->getMellemfeedLinksForGroup($options['source'], 'servicespots');
 
-    // TODO. Der er ikke noget der looper i "mellemefeedet".
-    foreach ($slides as $slide) {
-      $options = $slide->getOptions();
+    // Get data for each message the slide will display.
+    $messages = array_reduce($servicespotLinks, function ($carry, $link) {
+      try {
+        $crawler = new ServicespotCrawler($link);
+        $crawler->crawl();
 
-      foreach ($mockMellemFeed as $mockUrl) {
-        $html = false;
-        try {
-          $response = $client->get($mockUrl);
-          $body = $response->getBody();
-          $html = (string) $body;
-        } catch (TransferException $exception) {
-          // TODO.
-          die('argh');
+        $message = $crawler->getContent();
+        if (!empty($message)) {
+          $carry[] = $message;
         }
-        if (!$html) {
-          die('argh');
-        }
-
-        // TODO. Vi skal finde en defaultfarve.
-        $colorMessage = [];
-
-        // TODO. Error handling.
-        $crawler = new Crawler($html);
-        $crawler = $crawler->filter(('#main-content .node-service-spot'));
-        $style = $crawler->attr('style');
-        preg_match('@background:\s?(#[A-Za-z0-9]+)@', $style, $matches);
-        if (!empty($matches[1])) {
-          $colorMessage['background_color'] = $matches[1];
-        }
-        $content = $crawler->filter('.content');
-        $colorMessage['title'] = $content->filter('h1')->eq(0)->text();
-        $colorMessage['message'] = $content->filter('.field-name-body')->eq(0)->html();
-
-        $messages[] = $colorMessage;
+      } catch (\Exception $e) {
+        $this->logger->error($e->getMessage());
       }
-
-
-    } // TODO. Loop
-    // TODO.
+      return $carry;
+    }, []);
 
     $externalData = [
-      'messages' => array_values($messages),
+      'messages' => $messages,
     ];
     $slide->setExternalData($externalData);
-    // Write to the db.
     $entityManager = $this->container->get('doctrine')->getManager();
     $entityManager->flush();
   }
 
   /**
-   * Fetch and parse Kultunaut feeds and save on slide external data.
+   * Update an event slide.
+   *
+   * @param Slide $slide
+   *   Slide to update.
+   * @throws \Exception
+   *   If there was a problem updating.
    */
-  private function updateKultunautEvents()
+  private function updateKultunautEventsSlide(Slide $slide)
   {
-    $slideRepo = $this->container->get('doctrine')->getRepository('Os2DisplayCoreBundle:Slide');
-
-    /** @var \Os2Display\CoreBundle\Entity\Slide[] $slides */
-    $slides = $slideRepo->findBySlideType('kultunaut-event');
-
+    $options = $slide->getOptions();
+    if (empty($options['source'])) {
+      return;
+    }
     $client = new Client();
 
-    foreach ($slides as $slide) {
-      $options = $slide->getOptions();
-      if (empty($options['source'])) {
-        continue;
-      }
+    $events = [];
+    $now = new \DateTime();
 
-      $xml = NULL;
-      try {
-        $xml = $this->fetchKultunautXml($client, $options['source']);
-      }
-      catch (\Exception $O_o) {
-        $this->logger->error('An error occured trying to get XML: ' . $O_o->getMessage());
-        continue;
-      }
+    try {
+      $xml = $this->fetchKultunautXml($client, $options['source']);
 
-      $events = [];
-      $now = new \DateTime();
       foreach ($xml->item as $item) {
         $startdato = \DateTime::createFromFormat('d.m.Y', $item->startdato->item);
         $slutdato = \DateTime::createFromFormat('d.m.Y', $item->slutdato->item);
@@ -141,10 +128,10 @@ class Kkos2DisplayService
         if ((count($events) >= $options['rss_number']) || $startdato < $now || $slutdato < $now) {
           break;
         }
-        $tid = (string) $item->tid->item[0];
+        $tid = (string)$item->tid->item[0];
         $eventItem = [
-          'title' => (string) $item->overskrift,
-          'description' => (string) $item->kortbeskrivelse,
+          'title' => (string)$item->overskrift,
+          'description' => (string)$item->kortbeskrivelse,
           'date' => $startdato->format('Y-m-d'),
           'tid' => $tid,
           'dateandtime' => $startdato->format('l \d. j. F') . ' kl. ' . $tid,
@@ -152,14 +139,22 @@ class Kkos2DisplayService
         // Low-tech way to avoid duplicates.
         $events[(string)$item->nid] = $eventItem;
       }
+    }
+    catch (\Exception $O_o) {
+      $this->logger->error('An error occured trying to update event slide: ' . $O_o->getMessage());
+    }
 
+    try {
       $externalData = [
-        'events' => array_values($events),
+        'events' => $events,
       ];
       $slide->setExternalData($externalData);
       // Write to the db.
       $entityManager = $this->container->get('doctrine')->getManager();
       $entityManager->flush();
+    }
+    catch (\Exception $O_o) {
+      $this->logger->error('An error occured trying save data on event slide: ' . $O_o->getMessage());
     }
   }
 
@@ -177,7 +172,8 @@ class Kkos2DisplayService
    * @return \SimpleXMLElement
    *   The xml object parsed from the feed.
    */
-  private function fetchKultunautXml(Client $client, $xml_url) {
+  private function fetchKultunautXml(Client $client, $xml_url)
+  {
     $xml = false;
     try {
       $response = $client->get($xml_url, [
@@ -186,7 +182,7 @@ class Kkos2DisplayService
         ]
       ]);
       $body = $response->getBody();
-      $contents = (string) $body;
+      $contents = (string)$body;
       libxml_use_internal_errors(true);
       $xml = simplexml_load_string($contents);
     } catch (TransferException $exception) {
@@ -210,6 +206,33 @@ class Kkos2DisplayService
     }
 
     return $xml;
+  }
+
+  /**
+   * Get links for a group from the mellemfeed.
+   *
+   * @param string $mellemfeedUrl
+   *   Link to the KK multisite mellemfeed.
+   * @param string $group
+   *   The name of the grouping in the mellemfeed to get links from.
+   *
+   * @return array
+   *   Array of links from group in mellemfeed.
+   */
+  private function getMellemfeedLinksForGroup($mellemfeedUrl, $group)
+  {
+    if (empty($this->mellemfeedLinks[$mellemfeedUrl])) {
+      try {
+        $crawler = new MellemfeedCrawler($mellemfeedUrl);
+        $crawler->crawl();
+        $this->mellemfeedLinks[$mellemfeedUrl] = $crawler->getLinkGroups();
+      }
+      catch (\Exception $e) {
+        $this->logger->error("Could not get mellemfeed links for group: ${group}. Error message: " . $e->getMessage());
+        $this->mellemfeedLinks[$mellemfeedUrl] = [];
+      }
+    }
+    return empty($this->mellemfeedLinks[$mellemfeedUrl][$group]) ? [] : $this->mellemfeedLinks[$mellemfeedUrl][$group];
   }
 
 }
