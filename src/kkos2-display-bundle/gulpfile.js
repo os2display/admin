@@ -122,3 +122,7 @@ gulp.task('js-src', 'Report all source files for "js" task.', function () {
 gulp.task('js:watch', function () {
   gulp.watch(['gulpfile.js', adminJsPath], ['js']);
 });
+
+gulp.task('sass:watch', function () {
+  gulp.watch('Resources/public/templates/**/*.scss', ['sass']);
+});

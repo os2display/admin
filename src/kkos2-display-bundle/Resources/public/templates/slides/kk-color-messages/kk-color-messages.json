@@ -23,12 +23,23 @@
     "responsive_fontsize": 4,
     "num_messages": 6,
     "slide_duration": 10,
-    "source": ""
+    "source": "",
+    "logopos": {
+      "top":"auto",
+      "bottom":"0",
+      "left":"auto",
+      "right":"0"
+    },
+    "logosize": "20%"
   },
   "tools": [
     {
       "name": "Mellemfeed",
-      "id": "color-message-editor"
+      "id": "mellemfeed-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
     }
   ]
 }

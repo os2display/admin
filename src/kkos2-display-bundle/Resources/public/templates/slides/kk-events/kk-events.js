@@ -40,10 +40,10 @@ if (!window.slideFunctions['kk-events']) {
         fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0) + "px"
       };
 
-      // // Set the responsive fontsize if it is needed.
-      // if (slide.options.responsive_fontsize) {
-      //   scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0) + "vw";
-      // }
+      // Set the responsive fontsize if it is needed.
+      if (slide.options.responsive_fontsize) {
+        scope.theStyle.responsiveFontsize = slide.options.responsive_fontsize * (scope.scale ? scope.scale : 1.0) + "vw";
+      }
     },
 
     /**

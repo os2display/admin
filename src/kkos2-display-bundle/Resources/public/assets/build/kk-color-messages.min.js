@@ -14,34 +14,20 @@ if (!window.slideFunctions['kk-color-messages']) {
         return;
       }
 
-      var messages = slide.external_data.messages;
-
-      var currentSlide = -1;
-      var messageSlides = [];
-      messages.forEach(function (message, i) {
-        if (i % 3 === 0) {
-          currentSlide++;
-          messageSlides[currentSlide] = [];
-        }
-        messageSlides[currentSlide].push(message);
-      });
-
-
       slide.data = {
         // Current slide being displayed, used by angular as index to find
         // the slide
         currentSlide: 0,
-        message_slides: messageSlides
+        message_slides: slide.external_data.messages
       };
+
+      slide.currentLogo = slide.logo;
 
       // Setup the inline styling
       scope.theStyle = {
-        width: "100%",
-        height: "100%",
-        fontsize: slide.options.fontsize * (scope.scale ? scope.scale : 1.0) + "px"
+        fontsize: 24 * (scope.scale ? scope.scale : 1.0) + "px"
       };
 
-      console.log(slide);
     },
 
     /**
@@ -84,7 +70,7 @@ if (!window.slideFunctions['kk-color-messages']) {
       /**
        * Iterate through event slides.
        */
-      var dingEventTimeout = function () {
+      var colorSlideTimeout = function () {
         region.$timeout(function () {
           // If we've reached the end, go to next (real) slide.
           if (slide.data.currentSlide + 1 >= slide.data.message_slides.length) {
@@ -92,7 +78,7 @@ if (!window.slideFunctions['kk-color-messages']) {
           } else {
             // We have more, iterate to the next (event) slide.
             slide.data.currentSlide++;
-            dingEventTimeout();
+            colorSlideTimeout();
           }
         }, slide_duration * 1000);
       };
@@ -101,7 +87,7 @@ if (!window.slideFunctions['kk-color-messages']) {
       slide.data.currentSlide = 0;
 
       // Trigger initial sleep an subsequent advance of slide.
-      dingEventTimeout();
+      colorSlideTimeout();
 
       // Wait fadeTime before start to account for fade in.
       region.$timeout(function () {
