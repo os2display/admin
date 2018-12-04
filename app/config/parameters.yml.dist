@@ -9,6 +9,7 @@ parameters:
 
     mailer_transport:  sendmail
     mailer_host:       127.0.0.1
+    mailer_port:       25
     mailer_user:       ~
     mailer_password:   ~
     mailer_from_email: webmaster@ik3.os2display.vm
