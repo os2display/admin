@@ -1,0 +1,30 @@
+.kk-events {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.kk-events__headline {
+  height: 10%;
+}
+
+// Single event
+.kk-events__event {
+  height: 30%;
+  //background-color: white;// TODO
+  margin: 4%;
+}
+.kk-events__event--img-text {
+  //color: black;//TODO
+  display: flex;
+  width: 100%;
+}
+
+.kk-events__event--img {
+  flex: 0 25%;
+}
+
+.kk-events__event--text {
+  text-align: left;
+}

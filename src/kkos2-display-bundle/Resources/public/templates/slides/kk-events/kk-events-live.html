@@ -1,0 +1,39 @@
+<div class="kk-events kk-events--landscape"
+     data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor}">
+
+  <div class="kk-events__headline" data-ng-style="{'border-color': ikSlide.options.textcolor}">
+    <div class="kk-events__headline--text">Kommende arrangementer
+      <span ng-if="ikSlide.event_settings.event_slides.length">
+                    ({{ikSlide.event_settings.currentSlide + 1}}/{{ikSlide.event_settings.event_slides.length}})</span>
+      <span ng-if="!ikSlide.event_settings.event_slides.length">Vi har ingen arrangementer planlagt lige nu.
+      </span>
+    </div>
+  </div>
+
+  <div class="kk-events__subslide" ng-repeat="slide in ikSlide.event_settings.event_slides track by $index"
+       data-ng-show="ikSlide.event_settings.currentSlide === $index">
+
+    <div class="kk-events__event" ng-repeat="event in slide">
+      <div class="kk-events__event--img-text">
+        <div class="kk-events__event--img">
+          <img
+            src="htps://prismen.kk.dk/sites/prismen.kk.dk/files/styles/list_content_grid/public/uploaded-images/img_6141.jpg?itok=ZC65sUgc"
+            alt="">
+        </div>
+        <div class="kk-events__event--text">
+          <div class="kk-events__event--date">
+            {{event.dateandtime}}
+          </div>
+          <div class="kk-events__event--title">
+            {{event.title}}
+          </div>
+          <div class="kk-events_event--description">
+            {{event.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

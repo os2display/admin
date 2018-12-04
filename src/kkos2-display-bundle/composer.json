@@ -1,0 +1,10 @@
+{
+  "name": "kkos2/kkos2-display-bundle",
+  "description": "TODO",
+  "type": "symfony-bundle",
+  "autoload": {
+    "psr-4": {
+      "Kkos2\\KkOs2DisplayIntegrationBundle\\": ""
+    }
+  }
+}
