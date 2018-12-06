@@ -19,8 +19,6 @@
     "height": "1080"
   },
   "empty_options": {
-    "fontsize": 60,
-    "responsive_fontsize": 4,
     "num_messages": 6,
     "slide_duration": 10,
     "source": "",

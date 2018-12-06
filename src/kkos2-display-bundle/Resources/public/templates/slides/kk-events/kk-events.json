@@ -19,8 +19,6 @@
     "height": "1080"
   },
   "empty_options": {
-    "fontsize": 60,
-    "responsive_fontsize": 4,
     "bgcolor": "#555",
     "textcolor": "#fff",
     "rss_number": 6,
@@ -31,10 +29,6 @@
     {
       "name": "Baggrund",
       "id": "background-editor"
-    },
-    {
-      "name": "Logo",
-      "id": "logo-editor"
     },
     {
       "name": "Kultunaut-feed med arrangementer",

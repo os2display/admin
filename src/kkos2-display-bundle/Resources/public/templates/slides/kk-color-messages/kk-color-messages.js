@@ -22,12 +22,6 @@ if (!window.slideFunctions['kk-color-messages']) {
       };
 
       slide.currentLogo = slide.logo;
-
-      // Setup the inline styling
-      scope.theStyle = {
-        fontsize: 24 * (scope.scale ? scope.scale : 1.0) + "px"
-      };
-
     },
 
     /**

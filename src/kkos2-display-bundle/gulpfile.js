@@ -104,6 +104,7 @@ gulp.task('js-frontend', 'Build JS for the frontend.', function () {
     slideFolders.map(function (item) {
       const path = templatesPath + item;
       gulp.src(path + '/' + item.split('/').pop() + '.js')
+        .pipe(uglify())
         .pipe(rename({extname: ".min.js"}))
         .pipe(gulp.dest(jsBuildDir));
     });
@@ -125,4 +126,8 @@ gulp.task('js:watch', function () {
 
 gulp.task('sass:watch', function () {
   gulp.watch('Resources/public/templates/**/*.scss', ['sass']);
+});
+
+gulp.task('js-frontend:watch', function () {
+  gulp.watch('Resources/public/templates/**/*.js', ['js-frontend']);
 });

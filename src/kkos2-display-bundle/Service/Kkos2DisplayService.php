@@ -47,6 +47,9 @@ class Kkos2DisplayService
    */
   public function onCron(CronEvent $event)
   {
+    // Make sure our dates are formatted with Danish locale
+    $oldLocale = setlocale(LC_ALL, 0);
+    setlocale(LC_ALL, 'da_DK.UTF-8');
     $slideRepo = $this->container->get('doctrine')->getRepository('Os2DisplayCoreBundle:Slide');
 
     // Update colorful messages.
@@ -56,6 +59,7 @@ class Kkos2DisplayService
     // Update events.
     $eventSlides = $slideRepo->findBySlideType('kultunaut-event');
     array_map([$this, 'updateKultunautEventsSlide'], $eventSlides);
+    setlocale(LC_ALL, $oldLocale);
   }
 
   /**
@@ -128,32 +132,35 @@ class Kkos2DisplayService
         if ((count($events) >= $options['rss_number']) || $startdato < $now || $slutdato < $now) {
           break;
         }
-        $tid = (string)$item->tid->item[0];
+        $tid = (string) $item->tid->item[0];
         $eventItem = [
           'title' => (string)$item->overskrift,
-          'description' => (string)$item->kortbeskrivelse,
-          'date' => $startdato->format('Y-m-d'),
+          'teaserText' => (string)$item->kortbeskrivelse,
+          'originalImage' => (string)$item->billede,
+          'image' => '',
           'tid' => $tid,
-          'dateandtime' => $startdato->format('l \d. j. F') . ' kl. ' . $tid,
+          'dateandtime' => ucfirst(strftime('%A d. %e. %B', $startdato->getTimestamp()) . ' kl. ' . $tid),
         ];
-        // Low-tech way to avoid duplicates.
-        $events[(string)$item->nid] = $eventItem;
+        $urlParts = explode('/files/', $eventItem['originalImage']);
+        if (!empty($urlParts[1])) {
+          $eventItem['image'] = $urlParts[0] . '/files/styles/flexslider_full/public/' . $urlParts[1];
+        }
+        $events[] = $eventItem;
       }
-    }
-    catch (\Exception $O_o) {
+    } catch (\Exception $O_o) {
       $this->logger->error('An error occured trying to update event slide: ' . $O_o->getMessage());
     }
 
+    $externalData = [
+      'slides' => array_chunk($events, 3),
+      'num_slides' => count($events),
+    ];
     try {
-      $externalData = [
-        'events' => $events,
-      ];
       $slide->setExternalData($externalData);
       // Write to the db.
       $entityManager = $this->container->get('doctrine')->getManager();
       $entityManager->flush();
-    }
-    catch (\Exception $O_o) {
+    } catch (\Exception $O_o) {
       $this->logger->error('An error occured trying save data on event slide: ' . $O_o->getMessage());
     }
   }
@@ -226,8 +233,7 @@ class Kkos2DisplayService
         $crawler = new MellemfeedCrawler($mellemfeedUrl);
         $crawler->crawl();
         $this->mellemfeedLinks[$mellemfeedUrl] = $crawler->getLinkGroups();
-      }
-      catch (\Exception $e) {
+      } catch (\Exception $e) {
         $this->logger->error("Could not get mellemfeed links for group: ${group}. Error message: " . $e->getMessage());
         $this->mellemfeedLinks[$mellemfeedUrl] = [];
       }
