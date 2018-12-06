@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use Kkos2\KkOs2DisplayIntegrationBundle\Crawlers\MellemfeedCrawler;
 use Kkos2\KkOs2DisplayIntegrationBundle\Crawlers\ServicespotCrawler;
+use Kkos2\KkOs2DisplayIntegrationBundle\Events\KultunautFeedParser;
 use Os2Display\CoreBundle\Entity\Slide;
 use Os2Display\CoreBundle\Events\CronEvent;
 
@@ -59,6 +60,8 @@ class Kkos2DisplayService
     // Update events.
     $eventSlides = $slideRepo->findBySlideType('kultunaut-event');
     array_map([$this, 'updateKultunautEventsSlide'], $eventSlides);
+
+    // Set locale back to what it was.
     setlocale(LC_ALL, $oldLocale);
   }
 
@@ -116,44 +119,21 @@ class Kkos2DisplayService
     if (empty($options['source'])) {
       return;
     }
-    $client = new Client();
 
-    $events = [];
-    $now = new \DateTime();
-
+    // Hardcode this number for now.
+    $eventsPrSlide = 3;
+    $upcoming = [];
     try {
-      $xml = $this->fetchKultunautXml($client, $options['source']);
-
-      foreach ($xml->item as $item) {
-        $startdato = \DateTime::createFromFormat('d.m.Y', $item->startdato->item);
-        $slutdato = \DateTime::createFromFormat('d.m.Y', $item->slutdato->item);
-        // If the event is old or we have hit the max number of desired events,
-        // then skip the item.
-        if ((count($events) >= $options['rss_number']) || $startdato < $now || $slutdato < $now) {
-          break;
-        }
-        $tid = (string) $item->tid->item[0];
-        $eventItem = [
-          'title' => (string)$item->overskrift,
-          'teaserText' => (string)$item->kortbeskrivelse,
-          'originalImage' => (string)$item->billede,
-          'image' => '',
-          'tid' => $tid,
-          'dateandtime' => ucfirst(strftime('%A d. %e. %B', $startdato->getTimestamp()) . ' kl. ' . $tid),
-        ];
-        $urlParts = explode('/files/', $eventItem['originalImage']);
-        if (!empty($urlParts[1])) {
-          $eventItem['image'] = $urlParts[0] . '/files/styles/flexslider_full/public/' . $urlParts[1];
-        }
-        $events[] = $eventItem;
-      }
-    } catch (\Exception $O_o) {
+      $parser = new KultunautFeedParser($options['source']);
+      $parser->parse();
+      $upcoming = $parser->getUpcoming($options['rss_number']);
+    }
+    catch (\Exception $O_o) {
       $this->logger->error('An error occured trying to update event slide: ' . $O_o->getMessage());
     }
-
     $externalData = [
-      'slides' => array_chunk($events, 3),
-      'num_slides' => count($events),
+      'slides' => array_chunk($upcoming, $eventsPrSlide),
+      'num_slides' => count($upcoming),
     ];
     try {
       $slide->setExternalData($externalData);
@@ -163,56 +143,6 @@ class Kkos2DisplayService
     } catch (\Exception $O_o) {
       $this->logger->error('An error occured trying save data on event slide: ' . $O_o->getMessage());
     }
-  }
-
-  /**
-   * Get a SimpleXmlElement with data from the feed url.
-   *
-   * @param Client $client
-   *   The client to (re)use.
-   * @param string $xml_url
-   *   The url to fetch the XML from.
-   *
-   * @throws \UnexpectedValueException
-   *   If the feed is malformed or does not contain events.
-   *
-   * @return \SimpleXMLElement
-   *   The xml object parsed from the feed.
-   */
-  private function fetchKultunautXml(Client $client, $xml_url)
-  {
-    $xml = false;
-    try {
-      $response = $client->get($xml_url, [
-        'headers' => [
-          'Accept' => 'application/xml'
-        ]
-      ]);
-      $body = $response->getBody();
-      $contents = (string)$body;
-      libxml_use_internal_errors(true);
-      $xml = simplexml_load_string($contents);
-    } catch (TransferException $exception) {
-      $this->logger->error('Could not fetch Kultunaut feed from: ' . $xml_url);
-    }
-
-    // If the parsing failed, then try to log the errors and then throw an
-    // exception.
-    if (false === $xml) {
-      $errors = [];
-      foreach (libxml_get_errors() as $error) {
-        $errors[] = $error->message;
-      }
-      $this->logger->error("Could not parse feed: \n" . implode("\n", $errors));
-      throw new \UnexpectedValueException('An error occured when trying to parse Kultunaut feed: ' . $xml_url);
-    }
-
-    // If the feed is empty, that's an error too.
-    if ($xml->item->count() < 1) {
-      throw new \UnexpectedValueException('It seems that the Kultunaut feed: ' . $xml_url . ' does not contain any events.');
-    }
-
-    return $xml;
   }
 
   /**
