@@ -1,0 +1,41 @@
+{
+  "id": "kk-eventplakat",
+  "type": "slide",
+  "name": "Eventplakat",
+  "icon": "kk-eventplakat.png",
+  "paths": {
+    "live": "kk-eventplakat-live.html",
+    "edit": "kk-eventplakat-edit.html",
+    "preview": "kk-eventplakat-edit.html",
+    "css": "kk-eventplakat.css",
+    "js": "bundles/kkos2displayintegration/assets/build/kk-eventplakat.min.js"
+  },
+  "slide_type": "eventplakat",
+  "media_type": "image",
+  "script_id": "kk-eventplakat",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "bgcolor": "#555",
+    "slide_duration": 10,
+    "kultunautfeed": "",
+    "mellemfeed": ""
+  },
+  "tools": [
+    {
+      "name": "Baggrund",
+      "id": "background-editor"
+    },
+    {
+      "name": "Mellemfeed",
+      "id": "mellemfeed-editor"
+    },
+    {
+      "name": "Kultunaut-feed med arrangementer",
+      "id": "event-feed-editor"
+    }
+  ]
+}

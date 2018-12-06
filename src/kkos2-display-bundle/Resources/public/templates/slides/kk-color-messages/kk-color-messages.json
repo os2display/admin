@@ -19,9 +19,8 @@
     "height": "1080"
   },
   "empty_options": {
-    "num_messages": 6,
     "slide_duration": 10,
-    "source": "",
+    "mellemfeed": "",
     "logopos": {
       "top":"auto",
       "bottom":"0",

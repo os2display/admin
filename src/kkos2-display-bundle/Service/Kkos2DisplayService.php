@@ -6,8 +6,6 @@
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Service;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\TransferException;
 use Kkos2\KkOs2DisplayIntegrationBundle\Crawlers\MellemfeedCrawler;
 use Kkos2\KkOs2DisplayIntegrationBundle\Crawlers\ServicespotCrawler;
 use Kkos2\KkOs2DisplayIntegrationBundle\Events\KultunautFeedParser;
@@ -57,6 +55,10 @@ class Kkos2DisplayService
     $colorMessageSlides = $slideRepo->findBySlideType('color-messages');
     array_map([$this, 'updateColorMessageSlide'], $colorMessageSlides);
 
+    // Update eventplakat slides.
+    $plakatSlides = $slideRepo->findBySlideType('eventplakat');
+    array_map([$this, 'UpdateEventPlakatSlide'], $plakatSlides);
+
     // Update events.
     $eventSlides = $slideRepo->findBySlideType('kultunaut-event');
     array_map([$this, 'updateKultunautEventsSlide'], $eventSlides);
@@ -74,12 +76,12 @@ class Kkos2DisplayService
   private function updateColorMessageSlide(Slide $slide)
   {
     $options = $slide->getOptions();
-    if (empty($options['source'])) {
+    if (empty($options['mellemfeed'])) {
       return;
     }
 
     // Get service spots to scrape from the "temporary" mellemfeed solution.
-    $servicespotLinks = $this->getMellemfeedLinksForGroup($options['source'], 'servicespots');
+    $servicespotLinks = $this->getMellemfeedLinksForGroup($options['mellemfeed'], 'servicespots');
 
     // Get data for each message the slide will display.
     $messages = array_reduce($servicespotLinks, function ($carry, $link) {
@@ -105,6 +107,39 @@ class Kkos2DisplayService
     $entityManager->flush();
   }
 
+  private function UpdateEventPlakatSlide(Slide $slide)
+  {
+    $options = $slide->getOptions();
+    if (empty($options['mellemfeed'])) {
+      return;
+    }
+
+    // Get service spots to scrape from the "temporary" mellemfeed solution.
+    $plakatLinks = $this->getMellemfeedLinksForGroup($options['mellemfeed'], 'plakater');
+    $events = [];
+    try {
+      $parser = new KultunautFeedParser($options['kultunautfeed']);
+      $parser->parse();
+      $events = $parser->getEventsWithUrls($plakatLinks);
+    }
+    catch (\Exception $O_o) {
+      $this->logger->error('An error occured trying to update eventplakat slide: ' . $O_o->getMessage());
+    }
+
+    $externalData = [
+      'slides' => $events,
+      'num_slides' => count($events),
+    ];
+    try {
+      $slide->setExternalData($externalData);
+      // Write to the db.
+      $entityManager = $this->container->get('doctrine')->getManager();
+      $entityManager->flush();
+    } catch (\Exception $O_o) {
+      $this->logger->error('An error occured trying save data on plakatevent slide: ' . $O_o->getMessage());
+    }
+  }
+
   /**
    * Update an event slide.
    *
@@ -116,7 +151,7 @@ class Kkos2DisplayService
   private function updateKultunautEventsSlide(Slide $slide)
   {
     $options = $slide->getOptions();
-    if (empty($options['source'])) {
+    if (empty($options['kultunautfeed'])) {
       return;
     }
 
@@ -124,7 +159,7 @@ class Kkos2DisplayService
     $eventsPrSlide = 3;
     $upcoming = [];
     try {
-      $parser = new KultunautFeedParser($options['source']);
+      $parser = new KultunautFeedParser($options['kultunautfeed']);
       $parser->parse();
       $upcoming = $parser->getUpcoming($options['rss_number']);
     }

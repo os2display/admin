@@ -71,7 +71,7 @@ class MellemfeedCrawler
         $key = strtolower($node->filter('h2')->text());
         $anchorTags = $node->filter('a');
         $links = $anchorTags->each(function (Crawler $a, $i) {
-          return $a->text();
+          return $a->attr('href');
         });
         $this->linkGroups[$key] = $links;
       });

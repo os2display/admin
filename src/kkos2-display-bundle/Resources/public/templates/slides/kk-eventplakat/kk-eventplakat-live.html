@@ -1,0 +1,27 @@
+<div class="kk-eventplakat kk-eventplakat--landscape"
+     data-ng-style="{'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor}">
+
+  <div class="kk-eventplakat__inner">
+    <div class="kk-eventplakat__subslide" ng-repeat="slide in ikSlide.data.event_slides track by $index"
+         data-ng-show="ikSlide.data.currentSlide === $index">
+
+      <div class="kk-eventplakat__event" ng-repeat="event in slide">
+        <img class="kk-eventplakat__event--img" src="{{event.image}}" alt="">
+        <div class="kk-eventplakat__event--text">
+          <div class="kk-eventplakat__event--date">
+            {{event.date}} kl. {{event.time}}
+          </div>
+          <h1 class="kk-eventplakat__event--title">{{event.title}}</h1>
+          <div class="kk-eventplakat_event--teaser-text">
+            <p>
+              {{event.teaserText}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

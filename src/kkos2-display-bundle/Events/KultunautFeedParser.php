@@ -63,12 +63,12 @@ class KultunautFeedParser
     $today = new \DateTime();
 
     foreach ($this->xml->item as $item) {
-      $startdato = \DateTime::createFromFormat('d.m.Y', $item->startdato->item);
-      $slutdato = \DateTime::createFromFormat('d.m.Y', $item->slutdato->item);
-      // If the event is old or we have hit the max number of desired events,
-      // then skip the item.
+      $startdato = \DateTime::createFromFormat('d.m.Y', (string) $item->startdato->item);
+      $slutdato = \DateTime::createFromFormat('d.m.Y', (string) $item->slutdato->item);
+
+      // If the event is old then skip the item.
       if ($startdato < $today || $slutdato < $today) {
-        break;
+        continue;
       }
       $timeStamp = $startdato->getTimestamp();
       $eventItem = [
@@ -79,13 +79,33 @@ class KultunautFeedParser
         'time' => (string) $item->tid->item[0],
         'date' => ucfirst(strftime('%A d. %e. %B', $timeStamp)),
         'timestamp' => $timeStamp,
+        'url' => (string) $item->url,
       ];
       $urlParts = explode('/files/', $eventItem['originalImage']);
+      // Grab the cropped image from the image style url in the Drupal
+      // multisite. Not pretty, but it works.
       if (!empty($urlParts[1])) {
         $eventItem['image'] = $urlParts[0] . '/files/styles/flexslider_full/public/' . $urlParts[1];
       }
       $this->events[] = $eventItem;
     }
+    error_log(count($this->events));
+  }
+
+  /**
+   * Get events that have specific urls.
+   *
+   * @param array $urls
+   *   Urls to events to search for.
+   *
+   * @return array
+   *   Array of events with urls given - can be empty.
+   */
+  public function getEventsWithUrls(array $urls)
+  {
+    return array_filter($this->events, function($event) use ($urls) {
+      return in_array($event['url'], $urls);
+    });
   }
 
   /**
