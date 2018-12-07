@@ -1,7 +1,6 @@
 
 // Register the function, if it does not already exist.
 if (!window.slideFunctions['kk-color-messages']) {
-
   window.slideFunctions['kk-color-messages'] = {
     /**
      * Setup the slide for rendering.
@@ -32,7 +31,7 @@ if (!window.slideFunctions['kk-color-messages']) {
      * @param region
      *   The region to call when the slide has been executed.
      */
-    run: function runDingEventsSlide(slide, region) {
+    run: function runColorfulSlide(slide, region) {
       // Experience has shown that we can't be certain that all our data is
       // present, so we'll have to be careful verify presence before accessing
       // anything.
@@ -45,13 +44,13 @@ if (!window.slideFunctions['kk-color-messages']) {
         // slide once and letting us get control back right away gives us the
         // time we need.
         if (!slide.loop_throttle) {
-          region.itkLog.info("Skipping to buy time for data ...");
+          region.itkLog.info("Skipping to buy time for colorful message data ...");
           slide.loop_throttle = 1;
           return;
         }
 
         // We tried the skip, did not work, continue to next slide.
-        region.itkLog.info("No data for slide, skipping");
+        region.itkLog.info("No data for colorful message slide, skipping");
 
         region.nextSlide();
         return;

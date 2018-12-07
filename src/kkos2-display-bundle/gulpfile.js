@@ -31,6 +31,7 @@ const banner = [
 
 const slideFolders = [
   'slides/kk-events',
+  'slides/kk-eventplakat',
   'slides/kk-color-messages',
 ];
 

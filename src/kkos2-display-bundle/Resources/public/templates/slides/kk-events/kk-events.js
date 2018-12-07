@@ -48,13 +48,13 @@ if (!window.slideFunctions['kk-events']) {
         // slide once and letting us get control back right away gives us the
         // time we need.
         if (!slide.loop_throttle) {
-          region.itkLog.info("Skipping to buy time for data ...");
+          region.itkLog.info("Skipping to buy time for event data ...");
           slide.loop_throttle = 1;
           return;
         }
 
         // We tried the skip, did not work, continue to next slide.
-        region.itkLog.info("No data for slide, skipping");
+        region.itkLog.info("No data for event slide, skipping");
 
         region.nextSlide();
         return;

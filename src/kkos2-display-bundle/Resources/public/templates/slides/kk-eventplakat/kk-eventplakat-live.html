@@ -2,11 +2,9 @@
      data-ng-style="{'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor}">
 
   <div class="kk-eventplakat__inner">
-    <div class="kk-eventplakat__subslide" ng-repeat="slide in ikSlide.data.event_slides track by $index"
-         data-ng-show="ikSlide.data.currentSlide === $index">
+    <div class="kk-eventplakat__subslide" ng-repeat="event in ikSlide.data.plakat_slides track by $index" data-ng-show="ikSlide.data.currentSlide === $index">
 
-      <div class="kk-eventplakat__event" ng-repeat="event in slide">
-        <img class="kk-eventplakat__event--img" src="{{event.image}}" alt="">
+        <img class="kk-eventplakat__event--img" src="{{event.originalImage}}" alt="">
         <div class="kk-eventplakat__event--text">
           <div class="kk-eventplakat__event--date">
             {{event.date}} kl. {{event.time}}
@@ -17,9 +15,7 @@
               {{event.teaserText}}
             </p>
           </div>
-        </div>
       </div>
-
     </div>
 
   </div>

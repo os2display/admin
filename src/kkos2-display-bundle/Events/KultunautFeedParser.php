@@ -74,7 +74,7 @@ class KultunautFeedParser
       $eventItem = [
         'title' => html_entity_decode((string) $item->overskrift),
         'teaserText' => html_entity_decode((string)$item->kortbeskrivelse),
-        'originalImage' => (string)$item->billede,
+        'originalImage' => (string) $item->billede,
         'image' => '',
         'time' => (string) $item->tid->item[0],
         'date' => ucfirst(strftime('%A d. %e. %B', $timeStamp)),
@@ -89,7 +89,6 @@ class KultunautFeedParser
       }
       $this->events[] = $eventItem;
     }
-    error_log(count($this->events));
   }
 
   /**
@@ -103,9 +102,10 @@ class KultunautFeedParser
    */
   public function getEventsWithUrls(array $urls)
   {
-    return array_filter($this->events, function($event) use ($urls) {
+    $filtered = array_filter($this->events, function($event) use ($urls) {
       return in_array($event['url'], $urls);
     });
+    return array_values($filtered);
   }
 
   /**

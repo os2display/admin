@@ -20,7 +20,7 @@
   },
   "empty_options": {
     "bgcolor": "#555",
-    "slide_duration": 10,
+    "rss_duration": 10,
     "kultunautfeed": "",
     "mellemfeed": ""
   },

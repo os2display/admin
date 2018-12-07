@@ -16,25 +16,16 @@
 }
 
 .kk-eventplakat__subslide {
-  width: 100%;
-}
-
-.kk-eventplakat__event {
-  justify-content: space-around;
-  margin: 2rem;
-  background-color: white;
-  display: flex;
-  align-items: flex-start;
-
-  > div {
-    flex: 1;
-  }
+  //width: 100%;
 }
 
 .kk-eventplakat__event--img {
-  max-height: 30vh;
+  max-height: 80vh;
 }
 
 .kk-eventplakat__event--text {
   padding: 2rem;
+  background-color: white;
+  color: black;
+  width: 100%;
 }

@@ -127,7 +127,7 @@ class Kkos2DisplayService
     }
 
     $externalData = [
-      'slides' => $events,
+      'plakat_slides' => $events,
       'num_slides' => count($events),
     ];
     try {
