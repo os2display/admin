@@ -10,7 +10,6 @@ if (!window.slideFunctions['kk-events']) {
     setup: function setupKkEventsSlide(scope) {
       var slide = scope.ikSlide;
       if (!slide.external_data || !slide.external_data.slides || slide.external_data.slides < 1) {
-        slide.empty = true;
         return;
       }
 
@@ -40,7 +39,7 @@ if (!window.slideFunctions['kk-events']) {
       // Experience has shown that we can't be certain that all our data is
       // present, so we'll have to be careful verify presence before accessing
       // anything.
-      if (!slide.options || !slide.data || !slide.data.slides) {
+      if (!slide.options || !slide.external_data.slides || slide.external_data.slides < 1) {
         // Go straight to the next slide if we're missing something. For now we
         // simply assume that we have a "next" to go to, if not, we're going
         // to loop real fast.
@@ -48,7 +47,7 @@ if (!window.slideFunctions['kk-events']) {
         // In some situations the data is just about to be ready. Skipping the
         // slide once and letting us get control back right away gives us the
         // time we need.
-        if (!slide.loop_throttle && !slide.empty) {
+        if (!slide.loop_throttle) {
           region.itkLog.info("Skipping to buy time for event data ...");
           slide.loop_throttle = 1;
           return;

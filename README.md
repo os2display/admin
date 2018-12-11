@@ -1,52 +1,36 @@
-# os2display administrator interface
+Os2Display admin for Københavns Kommune
+===
 
-For general information about installation see the https://github.com/os2display/docs/blob/development/Installation%20guide.md in the docs repository.
+# Bundles
+## kkos2-display-bundle
+This bundle contains slides specific to Københavns Kommune.
 
-# Information
-When working with os2display together with the vagrant provided, you have to visit screen.os2display.vm, search.os2display.vm, middleware.os2display.vm, admin.os2display.vm and accept the self-sign certificates. If you don't open a tab for each in Chrome, if not it will not work.
+### "Mellemfeed"
+This is a temporary data source used. On a KK multisite, create a "Servicesituation" node and use markup like this to include content:
+```html
+<blockquote>
+<h2>SERVICESPOTS</h2>
 
-# Helpful commands
-We have defined a couple of commands for os2display.
+<ol>
+	<li>https://kibuk.testkkms.kk.dk/indhold/bloeb</li>
+	<li>https://kibuk.testkkms.kk.dk/indhold/jep</li>
+</ol>
+</blockquote>
 
-To push content
-<pre>
-php app/console ik:push
-</pre>
+<blockquote>
+<p>&nbsp;</p>
 
-To reindex search
-<pre>
-php app/console ik:reindex
-</pre>
-This does not include delete of records that are removed from symfony but not search.
+<h2>Plakater</h2>
 
-To clear cache
-<pre>
-php app/console cache:clear
-</pre>
-
-To brute force clear cache
-<pre>
-rm -rf app/cache/*
-</pre>
-
-
-# API tests
-
-Clear out the acceptance test cache and set up the database:
-
-```
-app/console --env=acceptance cache:clear
-app/console --env=acceptance doctrine:database:create
+<ol>
+	<li>https://kulturhusetislandsbrygge.kk.dk/event/dans-paa-bryggen-21</li>
+	<li>https://kulturhusetislandsbrygge.kk.dk/event/froeken-frika-jul-i-tivoliet</li>
+	<li>https://kulturhusetislandsbrygge.kk.dk/event/vinterjazz-malene-kjaergaard-group</li>
+</ol>
+</blockquote>
 ```
 
-Run API tests:
+The scraper-crawler ignores all things not in a blockquote, so feel free to add help text and the like.
 
-```
-./vendor/behat/behat/bin/behat --suite=api_features
-```
-
-Run only tests with a specific tag:
-
-```
-./vendor/behat/behat/bin/behat --suite=api_features --tags=group
-```
+### Gulpfile
+There are a number of targets in the gulpfile right now. We use the docker setup from [https://github.com/kkos2/os2display-infrastructure](https://github.com/kkos2/os2display-infrastructure), but right now npm commands are just run on the developers local machine. That is not ideal and should be fixed in the future. Take a look in the file before you start touching front end code to get an idea of what goes where.

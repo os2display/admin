@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * TODO
+ * Bundle integration for KK.
  */
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\DependencyInjection;

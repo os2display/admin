@@ -37,7 +37,7 @@ if (!window.slideFunctions['kk-color-messages']) {
       // Experience has shown that we can't be certain that all our data is
       // present, so we'll have to be careful verify presence before accessing
       // anything.
-      if (!slide.options || !slide.data || !slide.data.messages) {
+      if (!slide.external_data || !slide.external_data.messages || slide.external_data.messages.length < 1) {
         // Go straight to the next slide if we're missing something. For now we
         // simply assume that we have a "next" to go to, if not, we're going
         // to loop real fast.

@@ -1,31 +1,36 @@
 .kk-eventplakat {
   background-size: cover;
   background-position: center;
+  box-sizing: border-box;
   color: black;
-  position: relative;
-  overflow: hidden;
   height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
 .kk-eventplakat__inner {
-  margin: 0 auto;
-  display: flex;
   align-items: center;
-  width: 75%;
+  box-sizing: border-box;
+  display: flex;
   height: 100%;
+  justify-items: center;
 }
 
 .kk-eventplakat__subslide {
-  //width: 100%;
+  width: 65%;
+  margin: 0 auto;
 }
 
 .kk-eventplakat__event--img {
-  max-height: 80vh;
+  width: 100%;
 }
 
 .kk-eventplakat__event--text {
-  padding: 2rem;
   background-color: white;
   color: black;
   width: 100%;
+}
+
+.kk-eventplakat__event--text-inner {
+  padding: 2rem;
 }
