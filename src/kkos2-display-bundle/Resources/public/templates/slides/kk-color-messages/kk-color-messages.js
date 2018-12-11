@@ -10,6 +10,7 @@ if (!window.slideFunctions['kk-color-messages']) {
     setup: function setupColorMessages(scope) {
       var slide = scope.ikSlide;
       if (!slide.external_data || !slide.external_data.messages || slide.external_data.messages.length < 1) {
+        slide.empty = true;
         return;
       }
 
@@ -17,7 +18,8 @@ if (!window.slideFunctions['kk-color-messages']) {
         // Current slide being displayed, used by angular as index to find
         // the slide
         currentSlide: 0,
-        message_slides: slide.external_data.messages
+        message_slides: slide.external_data.messages,
+        num_slides: slide.external_data.messages.length
       };
 
       slide.currentLogo = slide.logo;
@@ -35,7 +37,7 @@ if (!window.slideFunctions['kk-color-messages']) {
       // Experience has shown that we can't be certain that all our data is
       // present, so we'll have to be careful verify presence before accessing
       // anything.
-      if (!slide.options || !slide.external_data || !slide.external_data.messages || slide.external_data.messages.length <= 0 || !slide.data) {
+      if (!slide.options || !slide.data || !slide.data.messages) {
         // Go straight to the next slide if we're missing something. For now we
         // simply assume that we have a "next" to go to, if not, we're going
         // to loop real fast.
@@ -43,7 +45,7 @@ if (!window.slideFunctions['kk-color-messages']) {
         // In some situations the data is just about to be ready. Skipping the
         // slide once and letting us get control back right away gives us the
         // time we need.
-        if (!slide.loop_throttle) {
+        if (!slide.loop_throttle && !slide.empty) {
           region.itkLog.info("Skipping to buy time for colorful message data ...");
           slide.loop_throttle = 1;
           return;

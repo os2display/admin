@@ -1,7 +1,7 @@
 {
   "id": "kk-color-messages",
   "type": "slide",
-  "name": "Farverige meddelelser",
+  "name": "Servicemeddelelser",
   "icon": "kk-color-messages.png",
   "paths": {
     "live": "kk-color-messages-live.html",
