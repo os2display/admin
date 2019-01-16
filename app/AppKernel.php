@@ -37,6 +37,9 @@ class AppKernel extends Kernel
             new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
             new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
             new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
+
+            new Reload\Os2DisplaySlideTools\Os2DisplaySlideToolsBundle(),
+            new Reykjavikurborg\RvkCustomOs2Display\RvkCustomOs2DisplayBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'acceptance'))) {

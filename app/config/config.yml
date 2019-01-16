@@ -32,6 +32,7 @@ twig:
     sharing_host: %sharing_host%
     sharing_enabled: %sharing_enabled%
     search_host: %search_host%
+    search_host_public: %search_host_public%
     search_index: %search_index%
     site_title: %site_title%
     version: %version%
@@ -70,6 +71,7 @@ swiftmailer:
   transport: "%mailer_transport%"
   host:      "%mailer_host%"
   username:  "%mailer_user%"
+  port:      "%mailer_port%"
   password:  "%mailer_password%"
   spool:     { type: memory }
 

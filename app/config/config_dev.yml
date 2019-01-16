@@ -37,12 +37,3 @@ monolog:
 
 assetic:
     use_controller: %use_assetic_controller%
-
-swiftmailer:
-#    delivery_address: me@example.com
-  transport: smtp
-  host:      127.0.0.1
-  username:  null
-  password:  null
-  port: 1025
-  spool:     { type: memory }

@@ -1,0 +1,6 @@
+modules:
+  tools:
+    files:
+      - bundles/rvkcustomos2display/apps/tools/slides-in-slide-config-editor.js
+
+apps:

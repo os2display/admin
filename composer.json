@@ -7,15 +7,19 @@
     "psr-0": {
       "": "src/",
       "SymfonyStandard": "app/"
+    },
+    "psr-4": {
+      "Reykjavikurborg\\RvkCustomOs2Display\\": "src/rvk-custom-os2display"
     }
   },
   "require": {
-    "os2display/admin-bundle": "^1.0",
+    "os2display/admin-bundle": "dev-kk-master as 1.1.0",
     "os2display/default-template-bundle": "^1.0",
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
     "sonata-project/doctrine-orm-admin-bundle": "^2.0",
-    "os2display/core-bundle": "^1.1"
+    "os2display/core-bundle": "^1.1",
+    "reload/os2display-slide-tools": "master as 1.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "^2.3",
@@ -32,7 +36,7 @@
     },
     "os2display/admin-bundle": {
       "type": "vcs",
-      "url": "https://github.com/os2display/admin-bundle"
+      "url": "https://github.com/kkos2/os2display-admin-bundle"
     },
     "os2display/media-bundle": {
       "type": "vcs",
@@ -41,6 +45,10 @@
     "os2display/default-template-bundle": {
       "type": "vcs",
       "url": "https://github.com/os2display/default-template-bundle"
+    },
+    "reload/os2display-slide-tools": {
+      "type": "vcs",
+      "url": "https://github.com/reload/os2display-slide-tools"
     }
   },
   "scripts": {
@@ -48,7 +56,6 @@
       "SymfonyStandard\\Composer::hookRootPackageInstall"
     ],
     "post-install-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
@@ -56,7 +63,6 @@
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
     ],
     "post-update-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",

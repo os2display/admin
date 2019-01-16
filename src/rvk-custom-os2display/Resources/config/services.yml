@@ -1,0 +1,6 @@
+services:
+  rvk_custom.subscriber.sisCron:
+    class: Reykjavikurborg\RvkCustomOs2Display\Service\SisCronEventSubscriber
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_subscriber }

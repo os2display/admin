@@ -1,0 +1,35 @@
+<div class="bib-events"
+     data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+
+    <div class="bib-events__slide-progress" ng-if="ikSlide.data.event_slides.length">
+        (<span>{{ikSlide.data.currentSlide + 1}} / {{ikSlide.data.event_slides.length}}</span>)
+    </div>
+
+    <div class="bib-events__inner">
+        <div class="bib-events__subslide" ng-repeat="slide in ikSlide.data.event_slides track by $index"
+             data-ng-show="ikSlide.data.currentSlide === $index">
+
+            <div class="bib-events__event bib-events__event--box" ng-repeat="event in slide"
+                 data-ng-style="{'height': theStyle.eventBoxHeight}">
+
+                <img class="bib-events__event--img" src="{{event.image}}" alt="">
+                <div class="bib-events__event--text">
+                    <div class="bib-events__event--date">
+                        <p ng-bind-html="event.date"></p>
+                    </div>
+                    <div class="bib-events__event--location">
+                        <p>
+                            {{event.location}}
+                        </p>
+                    </div>
+                    <h1 class="bib-events__event--title">{{event.title}}</h1>
+                    <p>
+                        {{event.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

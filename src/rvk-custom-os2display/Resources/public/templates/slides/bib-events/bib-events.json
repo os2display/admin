@@ -1,0 +1,59 @@
+{
+  "id": "bib-events",
+  "type": "slide",
+  "name": "Library Events",
+  "icon": "bib-events.png",
+  "paths": {
+    "live": "bib-events-live.html",
+    "edit": "bib-events-edit.html",
+    "preview": "bib-events-edit.html",
+    "css": "bib-events.css",
+    "js": "bundles/rvkcustomos2display/templates/slides/bib-events/bib-events.js"
+  },
+  "slide_type": "slides-in-slide",
+  "media_type": "image",
+  "script_id": "bib-events",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "bgcolor": "#555",
+    "textcolor": "#fff",
+    "fontsize": 60,
+    "responsive_fontsize": 1,
+    "logopos": {
+      "top":"auto",
+      "bottom":"0",
+      "left":"auto",
+      "right":"0"
+    },
+    "logosize": "20%",
+    "subslide_duration": 15,
+    "data_url": "",
+    "sis_cron_subscriber": "rvk_custom_sis_cron",
+    "sis_total_items": 9,
+    "sis_items_pr_slide": 3,
+    "sis_subslide_duration": 15,
+    "use_box_heights": true
+  },
+  "tools": [
+    {
+      "name": "Slides in slide",
+      "id": "slides-in-slide-config-editor"
+    },
+    {
+      "name": "Background",
+      "id": "background-editor"
+    },
+    {
+      "name": "Tekst",
+      "id": "text-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
+  ]
+}

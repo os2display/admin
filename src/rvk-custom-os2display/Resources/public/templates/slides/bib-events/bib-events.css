@@ -1,0 +1,57 @@
+.bib-events {
+    display: flex;
+    flex-direction: column;
+}
+
+.bib-events__slide-progress {
+    position: absolute;
+    right: 1vh;
+    top: 1vh;
+}
+
+.bib-events__slide-progress span {
+    font-weight: bold;
+}
+
+.bib-events__inner {
+    margin: 5vh auto;
+    height: 100%;
+    width: 80%;
+}
+
+.bib-events__event--box {
+    overflow: hidden;
+    margin-bottom: 2vh;
+    display: flex;
+    align-items: flex-start;
+}
+.bib-events__event--box:last-child {
+    margin-bottom: 0;
+}
+
+.bib-events__event a {
+    color: white;
+    text-decoration: none;
+}
+
+.bib-events__event--date {
+    font-weight: bold;
+}
+.bib-events__event--date p {
+    margin-top: 0;
+}
+
+.bib-events__event--place {
+}
+
+.bib-events__event--title {
+    margin: 1vh 0;
+}
+
+.bib-events__event--img {
+    max-height: 100%;
+}
+
+.bib-events__event--text {
+    padding: 0 1rem 1rem;
+}
