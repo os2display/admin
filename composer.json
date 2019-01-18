@@ -14,7 +14,7 @@
     }
   },
   "require": {
-    "os2display/admin-bundle": "dev-kk-master as 1.1.0",
+    "os2display/admin-bundle": "dev-kk-master as 1.1.1",
     "os2display/default-template-bundle": "^1.0",
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
