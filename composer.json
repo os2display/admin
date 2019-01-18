@@ -9,6 +9,7 @@
       "SymfonyStandard": "app/"
     },
     "psr-4": {
+      "Reload\\Os2DisplaySlideTools\\": "src/os2display-slide-tools",
       "Reykjavikurborg\\RvkCustomOs2Display\\": "src/rvk-custom-os2display"
     }
   },
@@ -18,8 +19,7 @@
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
     "sonata-project/doctrine-orm-admin-bundle": "^2.0",
-    "os2display/core-bundle": "^1.1",
-    "reload/os2display-slide-tools": "master as 1.0"
+    "os2display/core-bundle": "^1.1"
   },
   "require-dev": {
     "sensio/generator-bundle": "^2.3",
@@ -45,10 +45,6 @@
     "os2display/default-template-bundle": {
       "type": "vcs",
       "url": "https://github.com/os2display/default-template-bundle"
-    },
-    "reload/os2display-slide-tools": {
-      "type": "vcs",
-      "url": "https://github.com/reload/os2display-slide-tools"
     }
   },
   "scripts": {
