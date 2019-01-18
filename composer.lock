@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "112802d908c0e4fc776e8dbd11049d81",
+    "content-hash": "7156056c61306e553289496c23a4d6f6",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -954,12 +954,12 @@
             "version": "v2.5.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/doctrine2.git",
+                "url": "https://github.com/doctrine/orm.git",
                 "reference": "249b737094f1e7cba4f0a8d19acf5be6cf3ed504"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
                 "reference": "249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
                 "shasum": ""
             },
@@ -2644,16 +2644,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.1.1",
+            "version": "dev-kk-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "20f0703841539e976b347be848135af0647cac40"
+                "url": "https://github.com/kkos2/os2display-admin-bundle.git",
+                "reference": "703d28d93759b187e9591d4d41179f5d96be369a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/20f0703841539e976b347be848135af0647cac40",
-                "reference": "20f0703841539e976b347be848135af0647cac40",
+                "url": "https://api.github.com/repos/kkos2/os2display-admin-bundle/zipball/703d28d93759b187e9591d4d41179f5d96be369a",
+                "reference": "703d28d93759b187e9591d4d41179f5d96be369a",
                 "shasum": ""
             },
             "require": {
@@ -2667,10 +2667,9 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/os2display/admin-bundle/tree/1.1.1",
-                "issues": "https://github.com/os2display/admin-bundle/issues"
+                "source": "https://github.com/kkos2/os2display-admin-bundle/tree/kk-master"
             },
-            "time": "2018-08-23T05:33:52+00:00"
+            "time": "2018-11-26T21:36:11+00:00"
         },
         {
             "name": "os2display/core-bundle",
@@ -2681,10 +2680,10 @@
                 "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0"
             },
             "dist": {
-                "type": "path",
+                "type": "zip",
                 "url": "https://api.github.com/repos/os2display/core-bundle/zipball/b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
                 "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
-                "shasum": null
+                "shasum": ""
             },
             "require": {
                 "debril/rss-atom-bundle": "2.2",
@@ -2729,7 +2728,12 @@
                     "Os2Display\\CoreBundle\\": ""
                 }
             },
-            "description": "Os2Display core"
+            "description": "Os2Display core",
+            "support": {
+                "source": "https://github.com/os2display/core-bundle/tree/1.1.0",
+                "issues": "https://github.com/os2display/core-bundle/issues"
+            },
+            "time": "2018-07-03T07:53:37+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -2740,10 +2744,10 @@
                 "reference": "bed9eb33fc549f7d04760cf9e890cd165f5ffcbe"
             },
             "dist": {
-                "type": "path",
+                "type": "zip",
                 "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/bed9eb33fc549f7d04760cf9e890cd165f5ffcbe",
                 "reference": "bed9eb33fc549f7d04760cf9e890cd165f5ffcbe",
-                "shasum": null
+                "shasum": ""
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2751,7 +2755,12 @@
                     "Os2Display\\DefaultTemplateBundle\\": ""
                 }
             },
-            "description": "Os2Display default template"
+            "description": "Os2Display default template",
+            "support": {
+                "source": "https://github.com/os2display/default-template-bundle/tree/1.1.0",
+                "issues": "https://github.com/os2display/default-template-bundle/issues"
+            },
+            "time": "2018-07-02T13:17:25+00:00"
         },
         {
             "name": "os2display/media-bundle",
@@ -2762,10 +2771,10 @@
                 "reference": "039a6f602cf75846334c08137d009e04609e9905"
             },
             "dist": {
-                "type": "path",
+                "type": "zip",
                 "url": "https://api.github.com/repos/os2display/media-bundle/zipball/039a6f602cf75846334c08137d009e04609e9905",
                 "reference": "039a6f602cf75846334c08137d009e04609e9905",
-                "shasum": null
+                "shasum": ""
             },
             "require": {
                 "sonata-project/media-bundle": "^2.0"
@@ -2776,7 +2785,12 @@
                     "Os2Display\\MediaBundle\\": ""
                 }
             },
-            "description": "Os2Display media"
+            "description": "Os2Display media",
+            "support": {
+                "source": "https://github.com/os2display/media-bundle/tree/1.0.2",
+                "issues": "https://github.com/os2display/media-bundle/issues"
+            },
+            "time": "2017-09-19T09:29:02+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6132,9 +6146,18 @@
             "time": "2017-02-14T16:28:37+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "1.1.1",
+            "alias_normalized": "1.1.1.0",
+            "version": "dev-kk-master",
+            "package": "os2display/admin-bundle"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "os2display/admin-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
