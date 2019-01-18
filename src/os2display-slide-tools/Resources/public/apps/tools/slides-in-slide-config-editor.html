@@ -1,0 +1,27 @@
+<div class="edit-menu--background" role="banner">
+    <div class="edit-menu--background-inner">
+        <div class="edit-menu--toggle-icon" data-ng-click="close()">
+            <div class="svg-clickable">
+                <object data="bundles/os2displayadmin/images/svg/cancel.svg" type="image/svg+xml">
+                    <!-- Fallback (ie8)-->
+                    <img src="bundles/os2displayadmin/images/cancel.png"/>
+                </object>
+            </div>
+        </div>
+        <div class="edit-menu--content-page">
+            <div class="edit-menu--content-page-inner">
+                <h2>Slides in slide settings</h2>
+
+                <div class="edit-menu--iframe-label">Total number of items to display</div>
+                <input type="number" data-ng-model="slide.options.sis_total_items">
+
+                <div class="edit-menu--iframe-label">Number of items pr. slide</div>
+                <input type="number" data-ng-model="slide.options.sis_items_pr_slide">
+
+                <div class="edit-menu--iframe-label">Duration of subslides in seconds</div>
+                <input type="number" data-ng-model="slide.options.sis_subslide_duration">
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+services:
+  reload.ddbos2display:
+    class: Reload\Os2DisplaySlideTools\Service\SlidesInSlideDataCron
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: ik.cron, method: onCron }

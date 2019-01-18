@@ -1,0 +1,12 @@
+{
+  "name": "reload/os2display-slide-tools",
+    "description": "Reusable tools for working with slides in https://github.com/os2display",
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+      "psr-4": {
+        "Reload\\Os2DisplaySlideTools\\": ""
+      }
+    }
+}
