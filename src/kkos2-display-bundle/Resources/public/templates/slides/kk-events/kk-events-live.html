@@ -2,7 +2,7 @@
      data-ng-style="{'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor}">
 
   <div class="kk-events__inner">
-    <div class="kk-events__subslide" ng-repeat="slide in ikSlide.data.event_slides track by $index"
+    <div class="kk-events__subslide" ng-repeat="slide in ikSlide.data.subslides track by $index"
          data-ng-show="ikSlide.data.currentSlide === $index">
 
       <div class="kk-events__event" ng-repeat="event in slide">
