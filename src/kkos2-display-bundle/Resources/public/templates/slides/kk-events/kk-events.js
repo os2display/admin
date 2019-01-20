@@ -8,7 +8,7 @@ if (!window.slideFunctions['kk-events']) {
      */
     setup: function setupKkEventsSlide(scope) {
       var slide = scope.ikSlide;
-      if (!slide.external_data || !slide.external_data.slides || slide.external_data.slides < 1) {
+      if (!slide.external_data || !slide.external_data.slides || slide.external_data.slides.length < 1) {
         return;
       }
 
@@ -39,7 +39,7 @@ if (!window.slideFunctions['kk-events']) {
       // Experience has shown that we can't be certain that all our data is
       // present, so we'll have to be careful verify presence before accessing
       // anything.
-      if (!slide.options || !slide.data.subslides || slide.data.num_subslides < 1) {
+      if (!slide.options || !slide.data || !slide.data.subslides || slide.data.num_subslides < 1) {
         // Go straight to the next slide if we're missing something. For now we
         // simply assume that we have a "next" to go to, if not, we're going
         // to loop real fast.
