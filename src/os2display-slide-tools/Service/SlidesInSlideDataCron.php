@@ -35,7 +35,7 @@ class SlidesInSlideDataCron {
 
       $slideEvent = new SlidesInSlideEvent($slidesInSlide);
       $subscriberName = 'os2displayslidetools.sis_cron.' . $slidesInSlide->getOption('sis_cron_subscriber');
-      $subslides = $this->container->get('event_dispatcher')->dispatch($subscriberName, $slideEvent)->getSubsSlides();
+      $subslides = $this->container->get('event_dispatcher')->dispatch($subscriberName, $slideEvent)->getSubSlides();
 
       if (!is_array($subslides)) {
         $this->logger->addError("Couldn't find event subscriber for : " . $subscriberName);
@@ -44,11 +44,12 @@ class SlidesInSlideDataCron {
 
 
       $subslidesPrSlide = $slidesInSlide->getOption('sis_items_pr_slide', 3);
+      $slides = array_chunk($subslides, $subslidesPrSlide);
       try {
         $slide->setExternalData([
-          'sis_slides' => array_chunk($subslides, $subslidesPrSlide),
-          'sis_num_slides' => count($subslides),
-          'sis_items_pr_slide' => $subslidesPrSlide,
+          'sis_data_slides' => $slides,
+          'sis_data_num_slides' => count($slides),
+          'sis_data_items_pr_slide' => $subslidesPrSlide,
         ]);
         // Write to the db.
         $entityManager = $this->container->get('doctrine')->getManager();

@@ -1,4 +1,4 @@
-angular.module('toolsModule').directive('slidesInSlides', function(){
+angular.module('toolsModule').directive('slidesInSlideConfigEditor', [function(){
     return {
         restrict: 'E',
         replace: true,
@@ -7,13 +7,6 @@ angular.module('toolsModule').directive('slidesInSlides', function(){
             close: '&',
             template: '@'
         },
-        templateUrl: '/bundles/os2displayslidetools/apps/tools/slides-in-slide-config-editor.html'
+        templateUrl: '/bundles/os2displayslidetools/apps/tools/slides-in-slide-config-editor.html?v=1'
     };
-}) .controller('slidesInSlidesController', ['$scope', function($scope) {
-    $scope.eventBox = function() {
-        var options = $scope.ikSlide.options;
-        $scope.sisBoxHeight = false;
-        $scope.sisBoxScale = '1';
-        $scope.sisSubslidesPrSlide = options.sis_items_pr_slide;
-    }
 }]);

@@ -20,6 +20,7 @@ class SlidesInSlide
   public function getOption($key, $defaultValue = false)
   {
     $options = $this->slide->getOptions();
+
     if (empty($options[$key])) {
       return $defaultValue;
     }

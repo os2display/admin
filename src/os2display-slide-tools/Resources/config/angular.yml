@@ -1,6 +1,6 @@
 modules:
-  tools:
+  slidesInSlide:
+    dependencies:
+      - toolsModule
     files:
       - bundles/os2displayslidetools/apps/tools/slides-in-slide-config-editor.js
-
-apps:

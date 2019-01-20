@@ -8,7 +8,7 @@
     "edit": "bib-events-edit.html",
     "preview": "bib-events-edit.html",
     "css": "bib-events.css",
-    "js": "bundles/rvkcustomos2display/templates/slides/bib-events/bib-events.js"
+    "js": "bundles/rvkcustomos2display/js/slides-in-slides.js"
   },
   "slide_type": "slides-in-slide",
   "media_type": "image",
@@ -31,7 +31,9 @@
     },
     "logosize": "20%",
     "subslide_duration": 15,
-    "data_url": "",
+
+    "bib_event_datasource": "",
+
     "sis_cron_subscriber": "rvk_custom_sis_cron",
     "sis_total_items": 9,
     "sis_items_pr_slide": 3,
@@ -41,7 +43,8 @@
   "tools": [
     {
       "name": "Slides in slide",
-      "id": "slides-in-slide-config-editor"
+      "id": "slides-in-slide-config-editor",
+      "path": ""
     },
     {
       "name": "Background",
@@ -54,6 +57,10 @@
     {
       "name": "Logo",
       "id": "logo-editor"
+    },
+    {
+      "name": "Event data",
+      "id": "bib-event-data-editor"
     }
   ]
 }

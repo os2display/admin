@@ -1,6 +1,8 @@
 modules:
-  tools:
+  bibEvents:
+    dependencies:
+      - slidesInSlide
+      - toolsModule
     files:
-      - bundles/os2displayslidetools/apps/tools/slides-in-slide-config-editor.js
-
-apps:
+      - bundles/rvkcustomos2display/apps/tools/bib-event-data-editor.js
+      -

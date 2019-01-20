@@ -10,16 +10,20 @@
         </div>
         <div class="edit-menu--content-page">
             <div class="edit-menu--content-page-inner">
-                <h2>Slides in slide settings</h2>
+                <h2 class="edit-menu--iframe-header">Slides in slide settings</h2>
 
-                <div class="edit-menu--iframe-label">Total number of items to display</div>
-                <input type="number" data-ng-model="slide.options.sis_total_items">
-
-                <div class="edit-menu--iframe-label">Number of items pr. slide</div>
-                <input type="number" data-ng-model="slide.options.sis_items_pr_slide">
-
-                <div class="edit-menu--iframe-label">Duration of subslides in seconds</div>
-                <input type="number" data-ng-model="slide.options.sis_subslide_duration">
+                <div class="edit-menu--iframe-content">
+                    <div class="edit-menu--iframe-label">Total number of items to display</div>
+                    <input type="number" data-ng-model="slide.options.sis_total_items">
+                </div>
+                <div class="edit-menu--iframe-content">
+                    <div class="edit-menu--iframe-label">Number of items pr. slide</div>
+                    <input type="number" data-ng-model="slide.options.sis_items_pr_slide">
+                </div>
+                <div class="edit-menu--iframe-content">
+                    <div class="edit-menu--iframe-label">Duration of subslides in seconds</div>
+                    <input type="number" data-ng-model="slide.options.sis_subslide_duration">
+                </div>
 
             </div>
         </div>
