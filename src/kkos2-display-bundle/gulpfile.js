@@ -104,13 +104,17 @@ gulp.task('js', 'Build all custom js files into one minified js file.', function
 gulp.task('js-frontend', 'Build JS for the frontend.', function () {
     slideFolders.map(function (item) {
       const path = templatesPath + item;
-      gulp.src(path + '/' + item.split('/').pop() + '.js')
+      const slidesInSlide = 'Resources/public/assets/slides-in-slide.js';
+      const fileName = item.split('/').pop() + '.js';
+      gulp.src([slidesInSlide, path + '/' + fileName])
+        .pipe(concat(fileName))
         .pipe(uglify())
         .pipe(rename({extname: ".min.js"}))
         .pipe(gulp.dest(jsBuildDir));
     });
   }
 );
+
 
 /**
  * Build single app.js file.

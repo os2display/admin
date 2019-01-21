@@ -102,6 +102,7 @@ class Kkos2DisplayService
     $externalData = [
       'messages' => $messages,
     ];
+    $this->logger->addError(print_r($externalData, true));
     $slide->setExternalData($externalData);
     $entityManager = $this->container->get('doctrine')->getManager();
     $entityManager->flush();
@@ -130,6 +131,7 @@ class Kkos2DisplayService
       'plakat_slides' => $events,
       'num_slides' => count($events),
     ];
+    $this->logger->addError(print_r($externalData, true));
     try {
       $slide->setExternalData($externalData);
       // Write to the db.
