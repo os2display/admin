@@ -9,17 +9,14 @@ if (!window.slideFunctions['kk-eventplakat']) {
      */
     setup: function setupKkEventPlakatSlide(scope) {
       var slide = scope.ikSlide;
-      if (!slide.external_data || !slide.external_data.plakat_slides || slide.external_data.num_slides < 1) {
-        return;
+      var subslides = [];
+      var num_subslides = 0;
+      if (slide.external_data && slide.external_data.plakat_slides) {
+        subslides = slide.external_data.plakat_slides;
+        num_subslides = slide.external_data.plakat_slides.length;
       }
-
-      slide.data = {
-        // Current slide being displayed, used by angular as index to find
-        // the slide
-        currentSlide: 0,
-        plakat_slides: slide.external_data.plakat_slides,
-        num_slides: slide.external_data.num_slides,
-      };
+      var slide_duration = slide.options.rss_duration ? slide.options.rss_duration : 15;
+      window.slidesInSlides.setup(scope, subslides, num_subslides, slide_duration);
 
       // Setup the inline styling
       scope.theStyle = {
@@ -37,62 +34,7 @@ if (!window.slideFunctions['kk-eventplakat']) {
      *   The region to call when the slide has been executed.
      */
     run: function runKkPlakatSlide(slide, region) {
-      // Experience has shown that we can't be certain that all our data is
-      // present, so we'll have to be careful verify presence before accessing
-      // anything.
-      if (!slide.external_data || !slide.external_data.plakat_slides || slide.external_data.num_slides < 1) {
-        // Go straight to the next slide if we're missing something. For now we
-        // simply assume that we have a "next" to go to, if not, we're going
-        // to loop real fast.
-
-        // In some situations the data is just about to be ready. Skipping the
-        // slide once and letting us get control back right away gives us the
-        // time we need.
-        if (!slide.loop_throttle) {
-          region.itkLog.info("Skipping to buy time for plakat data ...");
-          slide.loop_throttle = 1;
-          return;
-        }
-
-        // We tried the skip, did not work, continue to next slide.
-        region.itkLog.info("No data for plakat slide, skipping");
-
-        region.nextSlide();
-        return;
-      }
-      // Reset throttle in case we where successful.
-      slide.loop_throttle = false;
-
-      var slide_duration = slide.options.rss_duration ? slide.options.rss_duration : 15;
-
-      /**
-       * Iterate through event slides.
-       */
-      var plakatSlideTimeout = function () {
-        region.$timeout(function () {
-          // If we've reached the end, go to next (real) slide.
-          if (slide.data.currentSlide + 1 >= slide.data.num_slides) {
-            region.nextSlide();
-          } else {
-            // We have more, iterate to the next (event) slide.
-            slide.data.currentSlide++;
-            plakatSlideTimeout();
-          }
-        }, slide_duration * 1000);
-      };
-
-      // reset slide-count.
-      slide.data.currentSlide = 0;
-
-      // Trigger initial sleep an subsequent advance of slide.
-      plakatSlideTimeout();
-
-      // Wait fadeTime before start to account for fade in.
-      region.$timeout(function () {
-        // Set the progress bar animation.
-        var duration = slide_duration * slide.data.num_slides;
-        region.progressBar.start(duration);
-      }, region.fadeTime);
+      window.slidesInSlides.run(slide, region);
     }
   };
 }

@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
+    "gulp-concat": "^2.6.1",
     "gulp-header": "^1.7.1",
     "gulp-help": "^1.6.1",
     "gulp-if": "^1.2.5",
