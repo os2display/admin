@@ -1,12 +1,12 @@
-angular.module('toolsModule').directive('bibEventDataEditor', [function(){
+angular.module("toolsModule").directive("bibEventDataEditor", [function(){
     return {
-        restrict: 'E',
+        restrict: "E",
         replace: true,
         scope: {
-            slide:'=',
-            close: '&',
-            template: '@'
+            slide:"=",
+            close: "&",
+            template: "@"
         },
-        templateUrl: '/bundles/rvkcustomos2display/apps/tools/bib-event-data-editor.html?v=1'
+        templateUrl: "/bundles/rvkcustomos2display/apps/tools/bib-event-data-editor.html?v=1"
     };
 }]);

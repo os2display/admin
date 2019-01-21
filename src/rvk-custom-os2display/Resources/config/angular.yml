@@ -5,4 +5,3 @@ modules:
       - toolsModule
     files:
       - bundles/rvkcustomos2display/apps/tools/bib-event-data-editor.js
-      -
