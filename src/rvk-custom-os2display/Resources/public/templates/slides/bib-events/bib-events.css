@@ -8,7 +8,6 @@
     right: 1vh;
     top: 1vh;
 }
-
 .bib-events__slide-progress span {
     font-weight: bold;
 }
@@ -54,4 +53,25 @@
 
 .bib-events__event--text {
     padding: 0 1rem 1rem;
+}
+
+ /*Preview stuff*/
+.bib-events-preview .bib-events__inner {
+    margin: 3% auto;
+}
+.bib-events-preview .bib-events__box {
+    margin-bottom: 1%;
+    overflow: auto;
+}
+.bib-events-preview .bib-events__event--img {
+    max-width: 30%;
+}
+.bib-events-preview .bib-events__event--text {
+    text-align: left;
+    font-size: 30%;
+    color: white;
+    padding: 0 0 0 3%;
+}
+.bib-events-preview .bib-events__event--title {
+    margin: 1px;
 }

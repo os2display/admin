@@ -1,35 +1,27 @@
-<div class="bib-events"
+<div class="bib-events bib-events-preview"
      data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
 
-    <div class="bib-events__slide-progress">
-        (<span>2 / 3</span>)
-    </div>
-
-
-
-    <div class="bib-events__inner" style="margin: 1vh auto">
+    <div class="bib-events__inner">
         <div class="bib-events__subslide">
 
-            <div>
+            <div class="bib-events__event bib-events__event--box" ng-repeat="x in [].constructor(3) track by $index">
 
-                <img class="bib-events__event--img" src="https://placeimg.com/640/480/animals" alt="">
+                <img class="bib-events__event--img" src="https://placeimg.com/400/250/nature/grayscale" alt="">
                 <div class="bib-events__event--text">
                     <div class="bib-events__event--date">
-                        <p>Someday, Jan. 14 20:00</p>
+                        <p>Some date sometime</p>
                     </div>
                     <div class="bib-events__event--location">
                         <p>
-                            Somewhere
+                            Some location
                         </p>
                     </div>
-                    <h1 class="bib-events__event--title">Some title</h1>
+                    <h1 class="bib-events__event--title">Title of event</h1>
                     <p>
-                        Some text that describes some event
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec dui nunc. Nullam nulla dolor
                     </p>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
