@@ -7,7 +7,7 @@ const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
 
 const slideFolders = [
-  "slides/bib-events"
+    "slides/bib-events"
 ];
 const templatesPath = "Resources/public/templates/";
 const jsBuildDir = "Resources/public/dist";
