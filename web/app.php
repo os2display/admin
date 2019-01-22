@@ -2,28 +2,26 @@
 
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Debug\Debug;
 
-$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+// Default to a non-debugging prod-environment. 
+$app_env = isset($_ENV['APP_ENV']) ? $_ENV['APP_ENV'] : 'prod';
+$app_debug = isset($_ENV['APP_DEBUG']) ? $_ENV['APP_DEBUG'] : '0';
 
-// Use APC for autoloading to improve performance.
-// Change 'sf2' to a unique prefix in order to prevent cache key conflicts
-// with other applications also using APC.
-/*
-$apcLoader = new ApcClassLoader('sf2', $loader);
-$loader->unregister();
-$apcLoader->register(true);
-*/
+// Get the symfony autoloader in place.
+$loader = require __DIR__.'/../app/autoload.php';
 
+// Enable debugging if explicitly asked to do so.
+if ($app_debug) {
+  Debug::enable();
+}
+
+// Then get the kernel ready, parse the request and handle it.
 require_once __DIR__.'/../app/AppKernel.php';
-//require_once __DIR__.'/../app/AppCache.php';
+$kernel = new AppKernel($app_env, $app_debug);
 
-$kernel = new AppKernel('prod', false);
-$kernel->loadClassCache();
-//$kernel = new AppCache($kernel);
-
-// When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
-//Request::enableHttpMethodParameterOverride();
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
