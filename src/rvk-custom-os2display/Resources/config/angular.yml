@@ -1,3 +1,7 @@
+assets:
+  js_prod:
+    - bundles/rvkcustomos2display/dist/bib-events.min.js
+    - bundles/rvkcustomos2display/apps/tools/bib-event-data-editor.js
 modules:
   bibEvents:
     dependencies:

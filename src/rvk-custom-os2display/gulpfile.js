@@ -16,9 +16,15 @@ const compileJs = () => {
   slideFolders.map(function (item) {
     const path = templatesPath + item;
     const fileName = item.split("/").pop() + ".js";
-    // Prepend slides-in-slide.js to all files. There is no way to include more
-    // than one js file at the time, so it has to be baked in.
-    gulp.src(["Resources/public/js/slides-in-slide.js", path + "/" + fileName])
+    // Prepend custom js and tools js to all files. There is no way to include
+    // more than one js file at the time, so it has to be baked in.
+    gulp.src(
+      [
+        "Resources/public/js/slides-in-slide.js",
+        "Resources/public/apps/tools/bib-event-data-editor.js",
+        path + "/" + fileName
+      ]
+    )
       .pipe(concat(fileName))
       .pipe(uglify())
       .pipe(rename({extname: ".min.js"}))
