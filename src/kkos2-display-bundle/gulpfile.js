@@ -2,19 +2,23 @@
 "use strict";
 
 const fs = require('fs');
-
 const del = require("del");
 const gulp = require("gulp");
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
 var sass = require('gulp-sass');
-// Explicitly set which compiler to use.
+// Explicitly set the node-sass compiler.
 sass.compiler = require('node-sass');
 
+/**
+ * Get an array of dir names in a dir.
+ *
+ * @param {string} source The directory to find directory names in.
+ * @returns {string[]} Array of strings with directory names.
+ */
 const dirsInDir = source => fs.readdirSync(source, {withFileTypes: true})
   .filter(c => c.isDirectory()).map(c => c.name);
-
 
 const slidesPath = "Resources/public/templates/slides";
 const distDir = "Resources/public/dist";
@@ -22,14 +26,19 @@ const distJs = `${distDir}/js`;
 const toolsDir = "Resources/public/apps/tools";
 const slideFolders = dirsInDir(slidesPath);
 
-
+/**
+ * Delete the generated minified files.
+ */
 function clean() {
   return del([
-    `${distJs}/*.js`,
-    `${slidesPath}/**/*.css`
+    `${distJs}/*.min.js`,
+    `${slidesPath}/**/*.min.css`
   ]);
 }
 
+/**
+ * Compile the JS displaying the slides on the front end.
+ */
 const compileSlidesJs = () => {
   slideFolders.map(function (item) {
     const fileName = item.split("/").pop() + ".js";
@@ -50,6 +59,9 @@ const compileSlidesJs = () => {
   });
 };
 
+/**
+ * Compile the JS for the tools used in the admin interface.
+ */
 const compileToolsJs = () => {
   return gulp.src(`${toolsDir}/*.js`)
     .pipe(concat('kff-tools.min.js'))
@@ -57,6 +69,9 @@ const compileToolsJs = () => {
     .pipe(gulp.dest(distJs));
 };
 
+/**
+ * Compile all .scss files in the slides folder.
+ */
 const compileScss = () => {
   slideFolders.map(function (item) {
     const fileName = item.split("/").pop() + ".scss";
@@ -73,6 +88,9 @@ const compileScss = () => {
   });
 };
 
+/**
+ * Watch for changes to JS and CSS.
+ */
 function watchChanges() {
   gulp.watch(`${toolsDir}/*.js`, compileToolsJs);
   gulp.watch(`${slidesPath}/**/*.js`, compileSlidesJs);
