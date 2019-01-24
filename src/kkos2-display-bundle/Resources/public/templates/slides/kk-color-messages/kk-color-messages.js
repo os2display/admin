@@ -1,4 +1,3 @@
-
 // Register the function, if it does not already exist.
 if (!window.slideFunctions['kk-color-messages']) {
   window.slideFunctions['kk-color-messages'] = {

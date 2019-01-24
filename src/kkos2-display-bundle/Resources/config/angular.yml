@@ -1,7 +1,14 @@
-modules:
-  tools:
-    files:
-    - bundles/kkos2displayintegration/apps/tools/event-feed-editor.js
-    - bundles/kkos2displayintegration/apps/tools/mellemfeed-editor.js
+assets:
+  js_prod:
+    - bundles/kkos2displayintegration/dist/js/kff-tools.min.js
 
-apps:
+modules:
+  kffTools:
+    dependencies:
+      - toolsModule
+    # Please don't add more files here. Add it in the gulpfile so it gets
+    # compiled into the kff-tools.min.js. The reason is that Os2Display
+    # include different files on prod and dev and we are trying to minimize
+    # errors by keeping it consistent.
+    files:
+      - bundles/kkos2displayintegration/dist/js/kff-tools.min.js
