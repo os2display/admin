@@ -7,8 +7,8 @@
     "live": "kk-color-messages-live.html",
     "edit": "kk-color-messages-edit.html",
     "preview": "kk-color-messages-edit.html",
-    "css": "kk-color-messages.css",
-    "js": "bundles/kkos2displayintegration/assets/build/kk-color-messages.min.js"
+    "css": "kk-color-messages.min.css",
+    "js": "bundles/kkos2displayintegration/dist/js/kk-color-messages.min.js"
   },
   "slide_type": "color-messages",
   "media_type": "image",

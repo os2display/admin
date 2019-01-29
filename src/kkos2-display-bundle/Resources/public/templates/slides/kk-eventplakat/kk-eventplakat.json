@@ -7,8 +7,8 @@
     "live": "kk-eventplakat-live.html",
     "edit": "kk-eventplakat-edit.html",
     "preview": "kk-eventplakat-edit.html",
-    "css": "kk-eventplakat.css",
-    "js": "bundles/kkos2displayintegration/assets/build/kk-eventplakat.min.js"
+    "css": "kk-eventplakat.min.css",
+    "js": "bundles/kkos2displayintegration/dist/js/kk-eventplakat.min.js"
   },
   "slide_type": "eventplakat",
   "media_type": "image",

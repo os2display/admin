@@ -1,138 +1,110 @@
-'use strict';
+/* jshint node: true */
+"use strict";
 
-const gulp = require('gulp-help')(require('gulp'));
-
-// Plugins.
-const jshint = require('gulp-jshint');
-const stylish = require('jshint-stylish');
-const sass = require('gulp-sass');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const ngAnnotate = require('gulp-ng-annotate');
-const rename = require('gulp-rename');
-const yaml = require('js-yaml');
 const fs = require('fs');
-const header = require('gulp-header');
-
-const jsBuildDir = 'Resources/public/assets/build';
-const templatesPath = 'Resources/public/templates/';
-
-// Get information for top of minified files.
-const pkg = require('./version.json');
-const banner = [
-  '/**',
-  ' * @name <%= pkg.name %>',
-  ' * @version v<%= pkg.version %>',
-  ' * @link <%= pkg.link %>',
-  ' */',
-  ''
-].join('\n');
-
-
-const slideFolders = [
-  'slides/kk-events',
-  'slides/kk-eventplakat',
-  'slides/kk-color-messages',
-];
-
-gulp.task('sass', 'Compile each of the scss files into a compressed css file.', function () {
-    slideFolders.map(function (item) {
-      var path = templatesPath + item;
-      gulp.src(path + '/' + item.split('/').pop() + '.scss')
-        .pipe(sass({
-          outputStyle: 'compressed'
-        }).on('error', sass.logError))
-        .pipe(gulp.dest(path));
-    });
-  }
-);
-
-// We only want to process our own non-processed JavaScript files.
-var adminJsPath = (function () {
-  var configFiles = [
-      'Resources/config/angular.yml'
-    ],
-    jsFiles = [],
-
-    // Breadth-first descend into data to find "files".
-    buildFiles = function (data) {
-      if (typeof (data) === 'object') {
-        for (var p in data) {
-
-          if (p === 'files') {
-            jsFiles = jsFiles.concat(data[p]);
-          } else {
-            buildFiles(data[p]);
-          }
-        }
-      }
-    };
-
-  configFiles.forEach(function (path) {
-    var data = yaml.safeLoad(fs.readFileSync(path, 'utf8'));
-    buildFiles(data);
-  });
-
-  return jsFiles.map(function (file) {
-    return 'Resources/public/' + file.split('bundles/kkos2displayintegration/')[1];
-  });
-}());
+const del = require("del");
+const gulp = require("gulp");
+const concat = require("gulp-concat");
+const uglify = require("gulp-uglify");
+const rename = require("gulp-rename");
+var sass = require('gulp-sass');
+// Explicitly set the node-sass compiler.
+sass.compiler = require('node-sass');
 
 /**
- * Run Javascript through JSHint.
+ * Get an array of dir names in a dir.
+ *
+ * @param {string} source The directory to find directory names in.
+ * @returns {string[]} Array of strings with directory names.
  */
-gulp.task('jshint', 'Runs JSHint on js', function () {
-  return gulp.src(adminJsPath)
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
-});
+const dirsInDir = source => fs.readdirSync(source, {withFileTypes: true})
+  .filter(c => c.isDirectory()).map(c => c.name);
+
+const slidesPath = "Resources/public/templates/slides";
+const distDir = "Resources/public/dist";
+const distJs = `${distDir}/js`;
+const toolsDir = "Resources/public/apps/tools";
+const slideFolders = dirsInDir(slidesPath);
 
 /**
- * Build single admin app.js file.
+ * Delete the generated minified files.
  */
-gulp.task('js', 'Build all custom js files into one minified js file.', function () {
-    return gulp.src(adminJsPath)
-      .pipe(concat('kkos2displayintegration'))
-      .pipe(ngAnnotate())
+function clean() {
+  return del([
+    `${distJs}/*.min.js`,
+    `${slidesPath}/**/*.min.css`
+  ]);
+}
+
+/**
+ * Compile the JS displaying the slides on the front end.
+ */
+const compileSlidesJs = () => {
+  slideFolders.map(function (item) {
+    const fileName = item.split("/").pop() + ".js";
+    // Prepend slides-in-slide.js to all files. There is no way to include more
+    // than one js file at the time, so it has to be baked in.
+    gulp.src([
+      "Resources/public/assets/slides-in-slide.js",
+      `${slidesPath}/${item}/${fileName}`
+    ])
+      .pipe(concat(fileName))
       .pipe(uglify())
       .pipe(rename({extname: ".min.js"}))
-      .pipe(header(banner, {pkg: pkg}))
-      .pipe(gulp.dest(jsBuildDir));
-  }
-);
+      .pipe(gulp.dest(distJs));
+  });
 
-gulp.task('js-frontend', 'Build JS for the frontend.', function () {
-    slideFolders.map(function (item) {
-      const path = templatesPath + item;
-      const slidesInSlide = 'Resources/public/assets/slides-in-slide.js';
-      const fileName = item.split('/').pop() + '.js';
-      gulp.src([slidesInSlide, path + '/' + fileName])
-        .pipe(concat(fileName))
-        .pipe(uglify())
-        .pipe(rename({extname: ".min.js"}))
-        .pipe(gulp.dest(jsBuildDir));
-    });
-  }
-);
-
+  return new Promise(function (resolve) {
+    resolve();
+  });
+};
 
 /**
- * Build single app.js file.
+ * Compile the JS for the tools used in the admin interface.
  */
-gulp.task('js-src', 'Report all source files for "js" task.', function () {
-  adminJsPath.forEach(function (path) {
-    console.log(path + '\n');
+const compileToolsJs = () => {
+  return gulp.src(`${toolsDir}/*.js`)
+    .pipe(concat('kff-tools.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(distJs));
+};
+
+/**
+ * Compile all .scss files in the slides folder.
+ */
+const compileScss = () => {
+  slideFolders.map(function (item) {
+    const fileName = item.split("/").pop() + ".scss";
+    gulp.src(`${slidesPath}/${item}/${fileName}`)
+      .pipe(sass({
+        outputStyle: 'compressed'
+      }).on('error', sass.logError))
+      .pipe(rename({extname: ".min.css"}))
+      .pipe(gulp.dest(`${slidesPath}/${item}`));
   });
-});
 
-gulp.task('js:watch', function () {
-  gulp.watch(['gulpfile.js', adminJsPath], ['js']);
-});
+  return new Promise(function (resolve) {
+    resolve();
+  });
+};
 
-gulp.task('sass:watch', function () {
-  gulp.watch('Resources/public/templates/**/*.scss', ['sass']);
-});
+/**
+ * Watch for changes to JS and CSS.
+ */
+function watchChanges() {
+  gulp.watch(`${toolsDir}/*.js`, compileToolsJs);
+  gulp.watch(`${slidesPath}/**/*.js`, compileSlidesJs);
+  gulp.watch(`${slidesPath}/**/*.scss`, compileScss);
+}
 
-gulp.task('js-frontend:watch', function () {
-  gulp.watch('Resources/public/templates/**/*.js', ['js-frontend']);
-});
+const compile = gulp.parallel(compileSlidesJs, compileToolsJs, compileScss);
+compile.description = 'Compile all';
+
+const all = gulp.series(clean, compile);
+all.description = 'Clean and compile all';
+
+exports.watch = watchChanges;
+exports.compile = compile;
+exports.all = all;
+
+exports.default = all;
