@@ -10,7 +10,7 @@
     "css": "kk-eventplakat.min.css",
     "js": "bundles/kkos2displayintegration/dist/js/kk-eventplakat.min.js"
   },
-  "slide_type": "eventplakat",
+  "slide_type": "slides-in-slide",
   "media_type": "image",
   "script_id": "kk-eventplakat",
   "orientation": "landscape",
@@ -22,9 +22,18 @@
     "bgcolor": "#555",
     "rss_duration": 10,
     "kultunautfeed": "",
-    "mellemfeed": ""
+    "mellemfeed": "",
+
+    "sis_cron_subscriber": "kk_eventplakat_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 4,
+    "sis_items_pr_slide": 1
   },
   "tools": [
+    {
+      "name": "Slides in slide",
+      "id": "slides-in-slide-config-editor"
+    },
     {
       "name": "Baggrund",
       "id": "background-editor"

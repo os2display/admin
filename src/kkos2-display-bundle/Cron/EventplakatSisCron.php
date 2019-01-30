@@ -2,11 +2,12 @@
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
-use Kkos2\KkOs2DisplayIntegrationBundle\Slides\ColorfulMessages\MockColorfulMessagesData;
+
+use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Eventplakat\MockEventplakatData;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class ColorfulMessageSisCron implements EventSubscriberInterface {
+class EventplakatSisCron implements EventSubscriberInterface {
 
   /**
    * @var \Symfony\Bridge\Monolog\Logger $logger
@@ -31,7 +32,7 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
   public static function getSubscribedEvents()
   {
     return [
-      'os2displayslidetools.sis_cron.kk_color_messages_sis_cron' => [
+      'os2displayslidetools.sis_cron.kk_eventplakat_sis_cron' => [
         ['getSlideData'],
       ]
     ];
@@ -47,8 +48,7 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
     $slide->setOption('sis_items_pr_slide', 1);
     $this->numberOfEvents = $slide->getOption('sis_total_items', 12);
 
-    $mockData = new MockColorfulMessagesData($this->numberOfEvents);
-    $slide->setSubslides($mockData->getColorfulMessages());
+    $mockData = new MockEventplakatData($this->numberOfEvents);
+    $slide->setSubslides($mockData->getEventPlakater());
   }
-
 }
