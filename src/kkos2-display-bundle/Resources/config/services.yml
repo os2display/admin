@@ -9,3 +9,8 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_subscriber }
+  kkos2.subscriber.eventsSisCron:
+    class: Kkos2\KkOs2DisplayIntegrationBundle\Cron\EventsSisCron
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_subscriber }
