@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3b556aae644db66a64d009e6b945f67",
+    "content-hash": "9e8ebf71dce52a425ecd454f251b278e",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -954,12 +954,12 @@
             "version": "v2.5.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/doctrine2.git",
+                "url": "https://github.com/doctrine/orm.git",
                 "reference": "249b737094f1e7cba4f0a8d19acf5be6cf3ed504"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
                 "reference": "249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
                 "shasum": ""
             },
@@ -3034,6 +3034,33 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
+            "name": "reload/os2display-slide-tools",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reload/os2display-slide-tools.git",
+                "reference": "6870676e3730207eb8571e84ab50af7ca44f2296"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/6870676e3730207eb8571e84ab50af7ca44f2296",
+                "reference": "6870676e3730207eb8571e84ab50af7ca44f2296",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Reload\\Os2DisplaySlideTools\\": ""
+                }
+            },
+            "description": "Reusable tools for working with slides in https://github.com/os2display",
+            "support": {
+                "source": "https://github.com/reload/os2display-slide-tools/tree/develop",
+                "issues": "https://github.com/reload/os2display-slide-tools/issues"
+            },
+            "time": "2019-01-30T02:26:29+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -6156,7 +6183,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "os2display/admin-bundle": 20
+        "os2display/admin-bundle": 20,
+        "reload/os2display-slide-tools": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
