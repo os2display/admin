@@ -5,7 +5,7 @@
     <div class="kk-eventplakat__subslide" ng-repeat="event in ikSlide.data.subslides track by $index"
          data-ng-show="ikSlide.data.currentSlide === $index">
 
-      <img class="kk-eventplakat__event--img" src="{{event.originalImage}}" alt="">
+      <img class="kk-eventplakat__event--img" src="{{event.image}}" alt="">
       <div class="kk-eventplakat__event--text">
         <div class="kk-eventplakat__event--text-inner">
           <div class="kk-eventplakat__event--date">
@@ -14,7 +14,7 @@
           <h1 class="kk-eventplakat__event--title">{{event.title}}</h1>
           <div class="kk-eventplakat_event--teaser-text">
             <p>
-              {{event.teaserText}}
+              {{event.body}}
             </p>
           </div>
         </div>

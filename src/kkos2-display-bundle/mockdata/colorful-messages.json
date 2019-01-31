@@ -1,0 +1,26 @@
+[
+  {
+    "place": "Bellahøj svømmehal",
+    "title": "Undervisningsbassinet er lukket",
+    "body": "Bassinet er lukket midlertidigt på grund af forurening. Vi regner med at åbne i løbet af eftermiddagen. Vi opdaterer løbende.",
+    "background_color": "#990066"
+  },
+  {
+    "place": "Vesterbro svømmehal",
+    "title": "Bassinet er fyldt med vand",
+    "body": "Vi arbejder på at fylde mere i det.",
+    "background_color": "#99ff99"
+  },
+  {
+    "place": "Frankrigsgade svømmehal",
+    "title": "Saunagus er flyttet til mandag",
+    "body": "Vi beklager at vi ikke har saunagus i weekenden i denne måned.",
+    "background_color": "#ffcc66"
+  },
+  {
+    "place": "Hillerødgade bad og hal",
+    "title": "Vi har fortsat lukket",
+    "body": "Svømmehallen forventes genåbnet i marts 2019. Vi henviser til Bellahøj Svømmestadion som er nærmeste alternative svømmemulighed.",
+    "background_color": "#333366"
+  }
+]

@@ -1,6 +1,16 @@
 services:
-  kkos2.display_service:
-    class: Kkos2\KkOs2DisplayIntegrationBundle\Service\Kkos2DisplayService
+  kkos2.subscriber.colorfulMessageSisCron:
+    class: Kkos2\KkOs2DisplayIntegrationBundle\Cron\ColorfulMessageSisCron
     arguments: [@service_container]
     tags:
-      - { name: kernel.event_listener, event: ik.cron, method: onCron }
+      - { name: kernel.event_subscriber }
+  kkos2.subscriber.eventplakatSisCron:
+    class: Kkos2\KkOs2DisplayIntegrationBundle\Cron\EventplakatSisCron
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_subscriber }
+  kkos2.subscriber.eventsSisCron:
+    class: Kkos2\KkOs2DisplayIntegrationBundle\Cron\EventsSisCron
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_subscriber }

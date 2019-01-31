@@ -18,7 +18,8 @@
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
     "sonata-project/doctrine-orm-admin-bundle": "^2.0",
-    "os2display/core-bundle": "^1.1"
+    "os2display/core-bundle": "^1.1",
+    "reload/os2display-slide-tools": "dev-develop"
   },
   "require-dev": {
     "sensio/generator-bundle": "^2.3",
@@ -29,21 +30,13 @@
     "behatch/contexts": "^2.6"
   },
   "repositories": {
-    "os2display/core-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/os2display/core-bundle"
-    },
     "os2display/admin-bundle": {
       "type": "vcs",
       "url": "https://github.com/kkos2/os2display-admin-bundle"
     },
-    "os2display/media-bundle": {
+    "reload/os2display-slide-tools": {
       "type": "vcs",
-      "url": "https://github.com/os2display/media-bundle"
-    },
-    "os2display/default-template-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/os2display/default-template-bundle"
+      "url": "https://github.com/reload/os2display-slide-tools"
     }
   },
   "scripts": {

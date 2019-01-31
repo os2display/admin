@@ -45,7 +45,7 @@ const compileSlidesJs = () => {
     // Prepend slides-in-slide.js to all files. There is no way to include more
     // than one js file at the time, so it has to be baked in.
     gulp.src([
-      "Resources/public/assets/slides-in-slide.js",
+      "../../vendor/reload/os2display-slide-tools/Resources/public/js/slides-in-slide.js",
       `${slidesPath}/${item}/${fileName}`
     ])
       .pipe(concat(fileName))
