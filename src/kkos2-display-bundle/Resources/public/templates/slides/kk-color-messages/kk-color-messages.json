@@ -38,14 +38,6 @@
     {
       "name": "Slides in slide",
       "id": "slides-in-slide-config-editor"
-    },
-    {
-      "name": "Mellemfeed",
-      "id": "mellemfeed-editor"
-    },
-    {
-      "name": "Logo",
-      "id": "logo-editor"
     }
   ]
 }

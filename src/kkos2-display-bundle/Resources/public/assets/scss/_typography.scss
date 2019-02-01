@@ -1,0 +1,59 @@
+$fonts-relative-path: '../../../assets/fonts';
+
+@font-face {
+  font-family: KBHTekst;
+  src: url('#{$fonts-relative-path}/KBHTekst.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: KBH;
+  src: url('#{$fonts-relative-path}/KBH-Thin.ttf');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: KBH;
+  src: url('#{$fonts-relative-path}/KBH-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: KBH;
+  src: url('#{$fonts-relative-path}/KBH-Bold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: KBH;
+  src: url('#{$fonts-relative-path}/KBH-Black.ttf');
+  font-weight: 900;
+  font-style: normal;
+}
+
+.font-kbhtekst {
+  font-family: KBHTekst, sans-serif;
+}
+
+.font-kbh {
+  font-family: KBH, sans-serif;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-bolder {
+  font-weight: 900;
+}
+
+.hyphen-word-break {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
