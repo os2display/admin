@@ -1,36 +1,40 @@
-.kk-eventplakat {
-  background-size: cover;
-  background-position: center;
-  box-sizing: border-box;
-  color: black;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.kk-eventplakat__inner {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  height: 100%;
-  justify-items: center;
-}
+@import "../../../assets/scss/kff";
 
 .kk-eventplakat__subslide {
-  width: 65%;
-  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  background-color: #000c2e;
+  color: #f4f4f4;
+  font-size: 200%;
 }
 
-.kk-eventplakat__event--img {
-  width: 100%;
+.kk-eventplakat__img--file {
+  max-width: 100%;
 }
 
 .kk-eventplakat__event--text {
-  background-color: white;
-  color: black;
-  width: 100%;
+  padding: 5%;
 }
 
-.kk-eventplakat__event--text-inner {
-  padding: 2rem;
+.kk-eventplakat__event_place {
+  max-width: 75%;
+  font-weight: 400;
+  font-size: 70%;
+}
+
+.kk-eventplakat__event--date {
+  margin-top: 20%;
+  font-weight: 400;
+  font-size: 80%;
+}
+
+.kk-eventplakat__event--title {
+  font-size: 200%;
+  line-height: 1;
+  margin: 10% 0 0;
+}
+
+.kk-eventplakat--logo {
+  width: 12%;
 }
