@@ -19,11 +19,6 @@
     "height": "1080"
   },
   "empty_options": {
-    "bgcolor": "#555",
-    "rss_duration": 10,
-    "kultunautfeed": "",
-    "mellemfeed": "",
-
     "sis_cron_subscriber": "kk_eventplakat_sis_cron",
     "sis_subslide_duration": 10,
     "sis_total_items": 12,
@@ -33,18 +28,6 @@
     {
       "name": "Slides in slide",
       "id": "slides-in-slide-config-editor"
-    },
-    {
-      "name": "Baggrund",
-      "id": "background-editor"
-    },
-    {
-      "name": "Mellemfeed",
-      "id": "mellemfeed-editor"
-    },
-    {
-      "name": "Kultunaut-feed med arrangementer",
-      "id": "event-feed-editor"
     }
   ]
 }

@@ -1,26 +1,30 @@
-<div class="kk-eventplakat kk-eventplakat--landscape"
-     data-ng-style="{'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor}">
+<div class="kk-eventplakat kk-eventplakat--landscape kk-slide-body font-kbh"
+     lang="da-DK"
+     data-ng-style="{'width': theStyle.width, 'height': theStyle.height}">
 
-  <div class="kk-eventplakat__inner">
-    <div class="kk-eventplakat__subslide" ng-repeat="event in ikSlide.data.subslides track by $index"
-         data-ng-show="ikSlide.data.currentSlide === $index">
+  <div class="kk-eventplakat__subslide" ng-repeat="event in ikSlide.data.subslides track by $index"
+       data-ng-show="ikSlide.data.currentSlide === $index">
 
-      <img class="kk-eventplakat__event--img" src="{{event.image}}" alt="">
-      <div class="kk-eventplakat__event--text">
-        <div class="kk-eventplakat__event--text-inner">
-          <div class="kk-eventplakat__event--date">
-            {{event.date}} kl. {{event.time}}
-          </div>
-          <h1 class="kk-eventplakat__event--title">{{event.title}}</h1>
-          <div class="kk-eventplakat_event--teaser-text">
-            <p>
-              {{event.body}}
-            </p>
-          </div>
+    <div class="kk-eventplakat__img">
+      <img class="kk-eventplakat__img--file" src="{{event.image}}" alt="">
+    </div>
+    <div class="kk-eventplakat__event--text hyphen-word-break">
+      <p class="kk-eventplakat__event_place">
+        {{ event.place }} præsenterer
+      </p>
+        <div class="kk-eventplakat__event--date">
+          <p>{{event.date}} <br />
+            {{event.time}}</p>
         </div>
+        <h1 class="kk-eventplakat__event--title font-bolder">{{event.title}}</h1>
+        <div class="kk-eventplakat_event--teaser-text">
+          <p>
+            {{event.body}}
+          </p>
       </div>
     </div>
-
   </div>
+
+  <img class="logo--top-right kk-eventplakat--logo" data-ng-src="{{ikSlide.logo}}" alt="Logo">
 </div>
 
