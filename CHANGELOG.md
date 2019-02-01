@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.1.2
+
+* Merged https://github.com/os2display/admin/pull/17
+
 ## 5.1.1
 
 * Updated symfony/symfony: 2.8.44
