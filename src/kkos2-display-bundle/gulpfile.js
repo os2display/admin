@@ -20,6 +20,7 @@ sass.compiler = require('node-sass');
 const dirsInDir = source => fs.readdirSync(source, {withFileTypes: true})
   .filter(c => c.isDirectory()).map(c => c.name);
 
+const scssDir = "Resources/public/assets/scss";
 const slidesPath = "Resources/public/templates/slides";
 const distDir = "Resources/public/dist";
 const distJs = `${distDir}/js`;
@@ -94,6 +95,7 @@ const compileScss = () => {
 function watchChanges() {
   gulp.watch(`${toolsDir}/*.js`, compileToolsJs);
   gulp.watch(`${slidesPath}/**/*.js`, compileSlidesJs);
+  gulp.watch(`${scssDir}/**/*.scss`, compileScss);
   gulp.watch(`${slidesPath}/**/*.scss`, compileScss);
 }
 
@@ -103,7 +105,9 @@ compile.description = 'Compile all';
 const all = gulp.series(clean, compile);
 all.description = 'Clean and compile all';
 
-exports.watch = watchChanges;
+const watch = gulp.series(clean, compile, watchChanges);
+
+exports.watch = watch;
 exports.compile = compile;
 exports.all = all;
 

@@ -9,7 +9,7 @@
     "place": "Vesterbro svømmehal",
     "title": "Bassinet er fyldt med vand",
     "body": "Vi arbejder på at fylde mere i det.",
-    "background_color": "#99ff99"
+    "background_color": "red"
   },
   {
     "place": "Frankrigsgade svømmehal",
@@ -20,7 +20,7 @@
   {
     "place": "Hillerødgade bad og hal",
     "title": "Vi har fortsat lukket",
-    "body": "Svømmehallen forventes genåbnet i marts 2019. Vi henviser til Bellahøj Svømmestadion som er nærmeste alternative svømmemulighed.",
+    "body": "Svømmehallen forventes genåbnet i marts 2019. Vi henviser til Bellahøj Svømmestadion som er nærmeste alternative svømmemulighed. Og endnu mere tekst for virkeligt at gøre teksten lang.",
     "background_color": "#333366"
   }
 ]
