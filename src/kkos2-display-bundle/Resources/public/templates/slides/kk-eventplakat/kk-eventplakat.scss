@@ -1,12 +1,15 @@
 @import "../../../assets/scss/kff";
 
+.kk-eventplakat {
+  background-color: #000c2e;
+  color: #f4f4f4;
+  font-size: 200%;
+}
+
 .kk-eventplakat__subslide {
   width: 100%;
   display: grid;
   grid-template-columns: 60fr 40fr;
-  background-color: #000c2e;
-  color: #f4f4f4;
-  font-size: 200%;
 }
 
 .kk-eventplakat__img--file {

@@ -1,7 +1,7 @@
 {
   "id": "kk-events",
   "type": "slide",
-  "name": "Kultunaut-arrangementer",
+  "name": "Arrangementer",
   "icon": "kk-events.png",
   "paths": {
     "live": "kk-events-live.html",
@@ -25,17 +25,10 @@
 
     "sis_cron_subscriber": "kk_events_sis_cron",
     "sis_subslide_duration": 10,
-    "sis_total_items": 4,
+    "sis_total_items": 12,
     "sis_items_pr_slide": 3
   },
   "tools": [
-    {
-      "name": "Baggrund",
-      "id": "background-editor"
-    },
-    {
-      "name": "Kultunaut-feed med arrangementer",
-      "id": "event-feed-editor"
-    }
+
   ]
 }
