@@ -3041,12 +3041,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reload/os2display-slide-tools.git",
-                "reference": "6870676e3730207eb8571e84ab50af7ca44f2296"
+                "reference": "87937976e7234803b468b6ea2d5234703fb139fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/6870676e3730207eb8571e84ab50af7ca44f2296",
-                "reference": "6870676e3730207eb8571e84ab50af7ca44f2296",
+                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/87937976e7234803b468b6ea2d5234703fb139fd",
+                "reference": "87937976e7234803b468b6ea2d5234703fb139fd",
                 "shasum": ""
             },
             "type": "library",
@@ -3060,7 +3060,7 @@
                 "source": "https://github.com/reload/os2display-slide-tools/tree/develop",
                 "issues": "https://github.com/reload/os2display-slide-tools/issues"
             },
-            "time": "2019-01-30T02:26:29+00:00"
+            "time": "2019-01-31T14:52:31+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
