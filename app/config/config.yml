@@ -19,10 +19,19 @@ framework:
   trusted_hosts:   ~
   trusted_proxies: ~
   session:
-    handler_id:  ~
+    handler_id:  session.handler.pdo
     cookie_lifetime: 0
   fragments:       ~
   http_method_override: true
+
+services:
+  session.handler.pdo:
+    class:     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+    public:    false
+    arguments:
+      - 'mysql:host=%database_host%;dbname=%database_name%'
+      - { db_table: 'php_sessions', db_username: '%database_user%', db_password: '%database_password%' }
+
 
 # Twig Configuration
 twig:
