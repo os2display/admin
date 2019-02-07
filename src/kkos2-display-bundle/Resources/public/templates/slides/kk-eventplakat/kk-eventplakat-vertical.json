@@ -1,0 +1,29 @@
+{
+  "id": "kk-eventplakat",
+  "type": "slide",
+  "name": "Eventplakat vertikal",
+  "icon": "kk-eventplakat-vertical.png",
+  "paths": {
+    "live": "kk-eventplakat-live.html",
+    "edit": "kk-eventplakat-edit.html",
+    "preview": "kk-eventplakat-edit.html",
+    "css": "kk-eventplakat.min.css",
+    "js": "bundles/kkos2displayintegration/dist/js/kk-eventplakat.min.js"
+  },
+  "slide_type": "slides-in-slide",
+  "media_type": "image",
+  "script_id": "kk-eventplakat",
+  "orientation": "portrait",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "1920"
+  },
+  "empty_options": {
+    "sis_cron_subscriber": "kk_eventplakat_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 12,
+    "sis_items_pr_slide": 1
+  },
+  "tools": [
+  ]
+}

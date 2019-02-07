@@ -4,12 +4,20 @@
   color: white;
   margin: 6% 13% 4% 10%;
   font-size: 200%;
+
+  .kk-color-messages--portrait & {
+    margin-top: 16%;
+  }
 }
 
 .kk-color-messages__place {
   font-weight: 400;
   font-size: 90%;
   margin: 0 0 3%;
+
+  .kk-color-messages--portrait & {
+    margin-bottom: 16%;
+  }
 }
 
 .kk-color-messages__title {

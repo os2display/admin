@@ -8,12 +8,21 @@
 
 .kk-eventplakat__subslide {
   width: 100%;
-  display: grid;
-  grid-template-columns: 60fr 40fr;
+
+  .kk-eventplakat--landscape & {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+  }
 }
 
 .kk-eventplakat__img--file {
   max-width: 100%;
+  object-fit: cover;
+
+  .kk-eventplakat--portrait & {
+    max-width: 60%;
+    max-height: 20%;
+  }
 }
 
 .kk-eventplakat__event--text {
@@ -24,18 +33,31 @@
   max-width: 75%;
   font-weight: 400;
   font-size: 70%;
+
+  .kk-eventplakat--portrait & {
+    margin: 10% 0 10% 5%;
+    max-width: 50%;
+  }
 }
 
 .kk-eventplakat__event--date {
   margin-top: 20%;
   font-weight: 400;
   font-size: 80%;
+
+  .kk-eventplakat--portrait & {
+    margin-top: 5%;
+  }
 }
 
 .kk-eventplakat__event--title {
   font-size: 200%;
   line-height: 1;
   margin: 10% 0 0;
+
+  .kk-eventplakat--portrait & {
+    margin-top: 5%;
+  }
 }
 
 .kk-eventplakat--logo {
