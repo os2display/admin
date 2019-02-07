@@ -8,6 +8,14 @@
     "image": "https://placeimg.com/1050/1200/nature?1"
   },
   {
+    "place": "Kulturstationen Vanløse",
+    "title": "Verdensmusik for børn: Lav dit eget instrument",
+    "body": "Kom til musikfabrik og byg en skotøjsæskeguitar, et æggebakke-rasleæg eller små trommer af tomme dåser og genbrugsmaterialer. ",
+    "date": "Onsdag d. 13. februar",
+    "time": "13:00 til 17:00",
+    "image": "https://kulturv.kk.dk/sites/kulturv.kk.dk/files/uploaded-images/190213-instrument-800x500.jpg?itok=54v-NjZH"
+  },
+  {
     "place": "Kulturhuset Islands Brygge",
     "title": "Fredagssalon: Under Langebro - visualiseret",
     "body": "Synes du også rummet under Langebro har potentiale for liv og kultur? Så kom forbi til Fredagssalon og hør mere om projektet Under Langebro.",
@@ -22,5 +30,13 @@
     "date": "Lørdag d. 9. februar",
     "time": "20:30",
     "image": "https://placeimg.com/1050/1200/nature?3"
+  },
+  {
+    "place": "Kulturhuset Indre By",
+    "title": "PapJam Touchdown",
+    "body": " Brætspilsprototyping. Kom og spil prototyper, test dit og andres brætspil og nyd en kold øl eller nybrygget kaffe dertil.",
+    "date": "Fredag d. 8. februar",
+    "time": "19:30",
+    "image": "https://kulturhusetindreby.kk.dk/sites/kulturhusetindreby.kk.dk/files/uploaded-images/papjam_touchdown_face.jpg?itok=uq3UflNV"
   }
 ]

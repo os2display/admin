@@ -1,7 +1,7 @@
 {
-  "id": "kk-eventplakat",
+  "id": "kk-eventplakat-vertical",
   "type": "slide",
-  "name": "Eventplakat vertikal",
+  "name": "Arrangementsplakat vertikal",
   "icon": "kk-eventplakat-vertical.png",
   "paths": {
     "live": "kk-eventplakat-live.html",
@@ -24,6 +24,5 @@
     "sis_total_items": 12,
     "sis_items_pr_slide": 1
   },
-  "tools": [
-  ]
+  "tools": []
 }

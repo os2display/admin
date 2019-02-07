@@ -1,7 +1,7 @@
 {
   "id": "kk-eventplakat",
   "type": "slide",
-  "name": "Eventplakat",
+  "name": "Arrangementsplakat",
   "icon": "kk-eventplakat.png",
   "paths": {
     "live": "kk-eventplakat-live.html",
