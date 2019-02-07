@@ -1,8 +1,8 @@
 {
-  "id": "kk-events",
+  "id": "kk-events-vertical",
   "type": "slide",
-  "name": "Arrangementer",
-  "icon": "kk-events.png",
+  "name": "Arrangementer vertikal",
+  "icon": "kk-events-vertical.png",
   "paths": {
     "live": "kk-events-live.html",
     "edit": "kk-events-edit.html",
@@ -13,16 +13,16 @@
   "slide_type": "slides-in-slide",
   "media_type": "image",
   "script_id": "kk-events",
-  "orientation": "landscape",
+  "orientation": "portrait",
   "ideal_dimensions": {
-    "width": "1920",
-    "height": "1080"
+    "width": "1080",
+    "height": "1920"
   },
   "empty_options": {
     "sis_cron_subscriber": "kk_events_sis_cron",
     "sis_subslide_duration": 10,
     "sis_total_items": 12,
-    "sis_items_pr_slide": 3
+    "sis_items_pr_slide": 5
   },
   "tools": []
 }

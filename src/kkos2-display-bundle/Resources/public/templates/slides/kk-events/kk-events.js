@@ -36,7 +36,6 @@ if (!window.slideFunctions['kk-events']) {
      *   The region to call when the slide has been executed.
      */
     run: function runEventsSlide(slide, region) {
-      console.log(slide, region);
       window.slidesInSlides.run(slide, region);
     }
   };

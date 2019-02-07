@@ -1,8 +1,8 @@
 {
-  "id": "kk-eventplakat",
+  "id": "kk-eventplakat-vertical",
   "type": "slide",
-  "name": "Arrangementsplakat",
-  "icon": "kk-eventplakat.png",
+  "name": "Arrangementsplakat vertikal",
+  "icon": "kk-eventplakat-vertical.png",
   "paths": {
     "live": "kk-eventplakat-live.html",
     "edit": "kk-eventplakat-edit.html",
@@ -13,10 +13,10 @@
   "slide_type": "slides-in-slide",
   "media_type": "image",
   "script_id": "kk-eventplakat",
-  "orientation": "landscape",
+  "orientation": "portrait",
   "ideal_dimensions": {
-    "width": "1920",
-    "height": "1080"
+    "width": "1080",
+    "height": "1920"
   },
   "empty_options": {
     "sis_cron_subscriber": "kk_eventplakat_sis_cron",
@@ -24,10 +24,5 @@
     "sis_total_items": 12,
     "sis_items_pr_slide": 1
   },
-  "tools": [
-    {
-      "name": "Slides in slide",
-      "id": "slides-in-slide-config-editor"
-    }
-  ]
+  "tools": []
 }

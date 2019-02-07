@@ -1,4 +1,4 @@
-<div class="kk-color-messages kk-color-messages--landscape kk-slide-body font-kbh"
+<div class="kk-color-messages kk-color-messages--{{ikSlide.orientation}} kk-slide-body font-kbh"
      lang="da-DK"
      data-ng-style="{'background-color': message.background_color,'width': theStyle.width, 'height': theStyle.height}"
      ng-repeat="message in ikSlide.data.subslides track by $index"
@@ -10,6 +10,6 @@
     <p class="kk-color-messages__body" ng-bind-html="message.body"></p>
   </div>
 
-  <img class="logo--top-right" data-ng-src="{{ikSlide.logo}}" alt="Logo">
+  <img class="kk-logo--top-right kk-logo--orientation-{{ikSlide.orientation}}" data-ng-src="{{ikSlide.logo}}" alt="Logo">
 
 </div>

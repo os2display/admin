@@ -7,20 +7,31 @@
 
 // These variables are maybe a little confusing. They're an attempt to keep all
 // vh-heights together so it's easier to make a total.
-$top-bottom-margin: 8vh;
-$event-margin-bottom: 2vh;
+$top-bottom-margin-landscape: 8vh;
+$event-margin-bottom-landscape: 2vh;
 // There is to and bottom margin (2*) and there are 3 event-boxes with (2*)
 // margin between them.
-$total-height-used: (($top-bottom-margin * 2) + ($event-margin-bottom * 2));
+$total-height-used-landscape: (($top-bottom-margin-landscape * 2) + ($event-margin-bottom-landscape * 2));
 // With 3 event boxes, divide 100vh minus the used height and divide by 3.
-$event-height: (100 - $total-height-used) / 3;
+$event-height-landscape: (100 - $total-height-used-landscape) / 3;
+
+$top-margin-portrait: 18vh;
+$bottom-margin-portrait: 8vh;
+$event-margin-bottom-portrait: 3vh;
+$total-height-used-portrait: (($top-margin-portrait + $bottom-margin-portrait) + ($event-margin-bottom-portrait * 2));
+// With 5 event boxes, divide 100vh minus the used height and divide by 5.
+$event-height-portrait: (100 - $total-height-used-portrait) / 5;
 
 .kk-events__subslide {
-  margin: $top-bottom-margin 12vw $top-bottom-margin 4vw;
+  margin: $top-bottom-margin-landscape 12vw $top-bottom-margin-landscape 4vw;
+
+  .kk-events--portrait & {
+    margin: $top-margin-portrait 12vw $bottom-margin-portrait 4vw;
+  }
 }
 
 .kk-events__event {
-  margin-bottom: $event-margin-bottom;
+  margin-bottom: $event-margin-bottom-landscape;
   color: #231f20;
   background-color: white;
   display: flex;
@@ -28,18 +39,31 @@ $event-height: (100 - $total-height-used) / 3;
   &:last-child {
     margin-bottom: 0;
   }
+
+  .kk-events--portrait & {
+    margin-bottom: $event-margin-bottom-portrait;
+  }
 }
 
 .kk-events__event--img--file {
   width: 40vw;
-  height: $event-height;
+  height: $event-height-landscape;
   object-fit: cover;
+
+  .kk-events--portrait & {
+    width: 25vw;
+    height: $event-height-portrait;
+  }
 }
 
 .kk-events__event--text {
   padding: 0 2%;
-  height: $event-height;
+  height: $event-height-landscape;
   overflow: hidden;
+
+  .kk-events--portrait & {
+    height: $event-height-portrait;
+  }
 }
 
 .kk-events__event--title {
