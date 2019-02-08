@@ -21,6 +21,14 @@
   "empty_options": {
     "bgcolor": "#000c2e",
 
+    "logopos": {
+      "top":"0",
+      "bottom":"auto",
+      "left":"0",
+      "right":"auto"
+    },
+    "logosize": "10%",
+
     "sis_cron_subscriber": "kk_eventplakat_sis_cron",
     "sis_subslide_duration": 10,
     "sis_total_items": 12,
@@ -30,6 +38,10 @@
     {
       "name": "Baggrundsfarve",
       "id": "bg-color-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-editor"
     }
   ]
 }
