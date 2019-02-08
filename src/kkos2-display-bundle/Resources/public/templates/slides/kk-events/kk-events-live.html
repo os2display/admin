@@ -1,5 +1,9 @@
 <div class="kk-events kk-events--{{ikSlide.orientation}} kk-slide-body font-kbh"
-     data-ng-style="{'width': theStyle.width, 'height': theStyle.height}">
+     data-ng-style="{
+     'width': theStyle.width,
+     'height': theStyle.height,
+     'background-color': theStyle.bgcolor
+     }">
 
   <div class="kk-events__subslide"
        ng-repeat="slide in ikSlide.data.subslides track by $index"
