@@ -22,6 +22,7 @@ if (!window.slideFunctions['kk-events']) {
       scope.theStyle = {
         width: "100%",
         height: "100%",
+        bgcolor: slide.options.bgcolor
       };
 
       window.slidesInSlides.setup(scope, subslides, num_subslides, slide_duration);
