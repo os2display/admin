@@ -18,10 +18,11 @@ if (!window.slideFunctions['kk-eventplakat']) {
       var slide_duration = slide.options.sis_subslide_duration ? slide.options.sis_subslide_duration : 10;
       window.slidesInSlides.setup(scope, subslides, num_subslides, slide_duration);
 
-      scope.ikSlide.logo = slide.server_path + "/bundles/kkos2displayintegration/assets/img/kbh-logo.png";
+      scope.ikSlide.kffLogo = slide.server_path + "/bundles/kkos2displayintegration/assets/img/kbh-logo.png";
       scope.theStyle = {
         width: "100%",
         height: "100%",
+        bgcolor: slide.options.bgcolor
       };
     },
 
