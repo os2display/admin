@@ -15,12 +15,13 @@
 }
 
 .kk-eventplakat__img--file {
-  max-width: 100%;
+  width: 60vw;
+  height: 100vh;
   object-fit: cover;
 
   .kk-eventplakat--portrait & {
-    max-width: 60%;
-    max-height: 20%;
+    height: 38vh;
+    width: 60vw;
   }
 }
 
