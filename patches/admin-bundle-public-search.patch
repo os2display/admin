@@ -1,0 +1,24 @@
+From 703d28d93759b187e9591d4d41179f5d96be369a Mon Sep 17 00:00:00 2001
+From: "Mads H. Danquah" <mads@danquah.dk>
+Date: Mon, 26 Nov 2018 22:36:11 +0100
+Subject: [PATCH] Switch to supporting a seperate configuration for the public
+ search hostname
+
+---
+ Resources/views/Main/index.html.twig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Resources/views/Main/index.html.twig b/Resources/views/Main/index.html.twig
+index e49b7f8..a7d2288 100644
+--- a/Resources/views/Main/index.html.twig
++++ b/Resources/views/Main/index.html.twig
+@@ -44,7 +44,7 @@
+   <script type="text/javascript">
+     window.config = {
+       "search": {
+-        "address": "{{ search_host }}",
++        "address": "{{ search_host_public }}",
+         "index": "{{ search_index }}"
+       },
+       "sharingService": {
+
