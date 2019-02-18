@@ -1,6 +1,6 @@
 {
   "name": "os2display/admin",
-  "license": "GNU General Public License v3.0",
+  "license": "Mozilla Public License Version 2.0",
   "type": "project",
   "description": "The Os2Display distribution",
   "autoload": {
@@ -10,12 +10,12 @@
     }
   },
   "require": {
-    "os2display/admin-bundle": "^1.0",
-    "os2display/default-template-bundle": "^1.0",
+    "os2display/admin-bundle": "~1.0",
+    "os2display/default-template-bundle": "~1.0",
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
     "sonata-project/doctrine-orm-admin-bundle": "^2.0",
-    "os2display/core-bundle": "^1.1"
+    "os2display/core-bundle": "~1.1"
   },
   "require-dev": {
     "sensio/generator-bundle": "^2.3",

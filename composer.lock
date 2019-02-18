@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "112802d908c0e4fc776e8dbd11049d81",
+    "content-hash": "d9a544d95d135b54ad0c79d91ac60477",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -954,12 +954,12 @@
             "version": "v2.5.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/doctrine2.git",
+                "url": "https://github.com/doctrine/orm.git",
                 "reference": "249b737094f1e7cba4f0a8d19acf5be6cf3ed504"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
                 "reference": "249b737094f1e7cba4f0a8d19acf5be6cf3ed504",
                 "shasum": ""
             },
@@ -2644,16 +2644,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "20f0703841539e976b347be848135af0647cac40"
+                "reference": "0327757b709305ad0e5043e6ead2d34506cc56e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/20f0703841539e976b347be848135af0647cac40",
-                "reference": "20f0703841539e976b347be848135af0647cac40",
+                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/0327757b709305ad0e5043e6ead2d34506cc56e3",
+                "reference": "0327757b709305ad0e5043e6ead2d34506cc56e3",
                 "shasum": ""
             },
             "require": {
@@ -2667,24 +2667,24 @@
             },
             "description": "Os2Display admin",
             "support": {
-                "source": "https://github.com/os2display/admin-bundle/tree/1.1.1",
+                "source": "https://github.com/os2display/admin-bundle/tree/1.2.0",
                 "issues": "https://github.com/os2display/admin-bundle/issues"
             },
-            "time": "2018-08-23T05:33:52+00:00"
+            "time": "2019-02-08T11:43:43+00:00"
         },
         {
             "name": "os2display/core-bundle",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/core-bundle.git",
-                "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0"
+                "reference": "61d7e0ffa42ad5a330c9f46efe61c3d301797cf6"
             },
             "dist": {
-                "type": "path",
-                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
-                "reference": "b431187b00bd90d8dc1ce060ea9bb4ec54308de0",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/61d7e0ffa42ad5a330c9f46efe61c3d301797cf6",
+                "reference": "61d7e0ffa42ad5a330c9f46efe61c3d301797cf6",
+                "shasum": ""
             },
             "require": {
                 "debril/rss-atom-bundle": "2.2",
@@ -2729,21 +2729,26 @@
                     "Os2Display\\CoreBundle\\": ""
                 }
             },
-            "description": "Os2Display core"
+            "description": "Os2Display core",
+            "support": {
+                "source": "https://github.com/os2display/core-bundle/tree/1.2.0",
+                "issues": "https://github.com/os2display/core-bundle/issues"
+            },
+            "time": "2019-02-08T11:40:46+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/default-template-bundle.git",
-                "reference": "bed9eb33fc549f7d04760cf9e890cd165f5ffcbe"
+                "reference": "a7e5e8cfd4cc531fb571d4ecaa71a3951705655a"
             },
             "dist": {
-                "type": "path",
-                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/bed9eb33fc549f7d04760cf9e890cd165f5ffcbe",
-                "reference": "bed9eb33fc549f7d04760cf9e890cd165f5ffcbe",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/a7e5e8cfd4cc531fb571d4ecaa71a3951705655a",
+                "reference": "a7e5e8cfd4cc531fb571d4ecaa71a3951705655a",
+                "shasum": ""
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2751,7 +2756,12 @@
                     "Os2Display\\DefaultTemplateBundle\\": ""
                 }
             },
-            "description": "Os2Display default template"
+            "description": "Os2Display default template",
+            "support": {
+                "source": "https://github.com/os2display/default-template-bundle/tree/1.1.1",
+                "issues": "https://github.com/os2display/default-template-bundle/issues"
+            },
+            "time": "2019-02-08T11:47:21+00:00"
         },
         {
             "name": "os2display/media-bundle",
@@ -4877,16 +4887,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.8.44",
+            "version": "v2.8.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "789dc7eb57579185a430e65c5efce4b2d6b6b7b1"
+                "reference": "f8ac64c075a36bedd0de43192d9601c20b99716e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/789dc7eb57579185a430e65c5efce4b2d6b6b7b1",
-                "reference": "789dc7eb57579185a430e65c5efce4b2d6b6b7b1",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/f8ac64c075a36bedd0de43192d9601c20b99716e",
+                "reference": "f8ac64c075a36bedd0de43192d9601c20b99716e",
                 "shasum": ""
             },
             "require": {
@@ -5013,7 +5023,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-08-01T14:12:49+00:00"
+            "time": "2018-12-06T14:45:26+00:00"
         },
         {
             "name": "twig/extensions",
