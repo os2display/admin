@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.2.0
+
+* Updated symfony/symfony: v2.8.49
+* Updated os2display/core-bundle: 1.2.0
+* Updated os2display/admin-bundle: 1.2.0
+* Updated os2display/default-template-bundle: 1.1.1
+
 ## 5.1.2
 
 * Merged https://github.com/os2display/admin/pull/17
