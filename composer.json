@@ -21,8 +21,8 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "itk-os2display/campaign-bundle": "dev-pr-os2display-symf34",
         "os2display/admin-bundle": "dev-pr-os2display-symf34",
+        "os2display/campaign-bundle": "dev-pr-os2display-symf34",
         "os2display/core-bundle": "dev-pr-os2display-symf34",
         "os2display/default-template-bundle": "dev-pr-os2display-symf34",
         "os2display/media-bundle": "dev-pr-os2display-symf34"
