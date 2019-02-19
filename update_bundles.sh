@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+###############################
+# Updates bundles and symfony #
+###############################
+
 bold=$(tput bold)
 normal=$(tput sgr0)
 

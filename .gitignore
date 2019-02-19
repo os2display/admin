@@ -17,4 +17,10 @@
 /web/bundles/
 web/uploads/media/*
 !web/uploads/media/.gitkeep
+/.idea/
+.DS_Store
+.sass-cache/
+config.codekit
+/node_modules/
+composer.phar
 composer-dev.*
