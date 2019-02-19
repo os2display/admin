@@ -10,26 +10,30 @@ Add repositories to composer.json
     "repositories": {
         "os2display/media-bundle": {
             "type": "vcs",
-            "url": "https://github.com/itk-os2display/media-bundle"
+            "url": "https://github.com/os2display/media-bundle"
         },
         "os2display/core-bundle": {
             "type": "vcs",
-            "url": "https://github.com/itk-os2display/core-bundle"
+            "url": "https://github.com/os2display/core-bundle"
         },
         "os2display/admin-bundle": {
             "type": "vcs",
-            "url": "https://github.com/itk-os2display/admin-bundle"
+            "url": "https://github.com/os2display/admin-bundle"
         },
         "os2display/default-template-bundle": {
             "type": "vcs",
-            "url": "https://github.com/itk-os2display/default-template-bundle"
-        }
+            "url": "https://github.com/os2display/default-template-bundle"
+        },
+         "os2display/campaign-bundle": {
+             "type": "vcs",
+             "url": "https://github.com/os2display/default-template-bundle"
+         }
     },
 </pre>
 
 Require os2display bundles
 <pre>
-php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle os2display/core-bundle os2display/media-bundle os2display/default-template-bundle -vvv
+php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle os2display/core-bundle os2display/media-bundle os2display/default-template-bundle os2display/campaign-bundle -vvv
 </pre>
 
 
@@ -60,4 +64,3 @@ Add config.yml from old
 Copy security.yml from old
 
 Move requirements to os2display/core-bundle requirements
-

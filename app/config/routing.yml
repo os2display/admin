@@ -25,7 +25,7 @@ NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
 
-os2display_main:
+os2display_core:
     resource: "@Os2DisplayCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
