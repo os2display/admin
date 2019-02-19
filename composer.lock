@@ -2883,12 +2883,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-os2display/core-bundle.git",
-                "reference": "39c0221d73f2e9c97d0ed1daa3c9296e27c08a33"
+                "reference": "0ac828516d89b4dbf5776063bdd6bad091ade452"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/39c0221d73f2e9c97d0ed1daa3c9296e27c08a33",
-                "reference": "39c0221d73f2e9c97d0ed1daa3c9296e27c08a33",
+                "url": "https://api.github.com/repos/itk-os2display/core-bundle/zipball/0ac828516d89b4dbf5776063bdd6bad091ade452",
+                "reference": "0ac828516d89b4dbf5776063bdd6bad091ade452",
                 "shasum": ""
             },
             "require": {
@@ -2925,16 +2925,6 @@
                 "sonata-project/admin-bundle": "^2.3.7",
                 "sonata-project/doctrine-orm-admin-bundle": "^2.3.4"
             },
-            "require-dev": {
-                "behat/mink-browserkit-driver": "^1.3",
-                "behat/mink-extension": "^2.2",
-                "behat/mink-selenium2-driver": "^1.3",
-                "behat/symfony2-extension": "^2.1",
-                "behatch/contexts": "^2.6",
-                "cweagans/composer-patches": "^1.5",
-                "sonata-project/admin-bundle": "^2.3.7",
-                "sonata-project/doctrine-orm-admin-bundle": "^2.3.4"
-            },
             "type": "symfony-bundle",
             "extra": {
                 "patches": {
@@ -2952,7 +2942,7 @@
             "support": {
                 "source": "https://github.com/itk-os2display/core-bundle/tree/pr-os2display-symf34"
             },
-            "time": "2019-02-19T09:16:08+00:00"
+            "time": "2019-02-19T10:27:32+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -2966,7 +2956,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/itk-os2display/default-template-bundle/zipball/685ca09985acdfc8a178bbf0fd25255a2769a756",
                 "reference": "685ca09985acdfc8a178bbf0fd25255a2769a756",
-
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -4336,7 +4325,6 @@
         {
             "name": "symfony/polyfill-ctype",
             "version": "v1.10.0",
-
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
