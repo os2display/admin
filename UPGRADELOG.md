@@ -129,7 +129,7 @@ Add repositories to composer.json
         },
          "os2display/campaign-bundle": {
              "type": "vcs",
-             "url": "https://github.com/os2display/default-template-bundle"
+             "url": "https://github.com/os2display/campaign-bundle"
          }
     },
 </pre>
@@ -139,24 +139,7 @@ Require os2display bundles
 php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle os2display/core-bundle os2display/media-bundle os2display/default-template-bundle os2display/campaign-bundle -vvv
 </pre>
 
-
-## Notes: Steps to upgrade to symfony 3.4
-
-<pre>
-mv admin adminOLD
-symfony new admin 3.4
-
-cp -R adminOLD/.git admin/
-
-# Add repositories to composer.json
-
-php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle:dev-symf34 os2display/core-bundle:dev-symf34 os2display/media-bundle:dev-symf34 os2display/default-template-bundle -vvv
-
-</pre>
-
 Add to AppKernel.php
 
 Add config.yml from old
 Copy security.yml from old
-
-Move requirements to os2display/core-bundle requirements
