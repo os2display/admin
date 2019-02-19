@@ -1,7 +1,8 @@
 {
-    "name": "troelsugiltjensen/admin",
-    "license": "proprietary",
+    "name": "os2display/admin",
+    "license": "Mozilla Public License Version 2.0",
     "type": "project",
+    "description": "The Os2Display distribution",
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle"
@@ -20,7 +21,7 @@
         ]
     },
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.2",
         "os2display/admin-bundle": "dev-pr-os2display-symf34",
         "os2display/campaign-bundle": "dev-pr-os2display-symf34",
         "os2display/core-bundle": "dev-pr-os2display-symf34",
