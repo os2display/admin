@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 6.0.0
+
+* Upgraded to symfony 3.4.
+
 ## 5.2.0
 
 * Updated symfony/symfony: v2.8.49
