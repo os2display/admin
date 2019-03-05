@@ -3,7 +3,6 @@
 .kk-color-messages__inner {
   color: white;
   margin: 6% 13% 4% 10%;
-  font-size: 200%;
 
   .kk-color-messages--portrait & {
     margin-top: 16%;
@@ -12,7 +11,7 @@
 
 .kk-color-messages__place {
   font-weight: 400;
-  font-size: 90%;
+  font-size: pt2Px(18);
   margin: 0 0 3%;
 
   .kk-color-messages--portrait & {
@@ -21,12 +20,12 @@
 }
 
 .kk-color-messages__title {
-  font-size: 400%;
+  font-size: pt2Px(100);
   line-height: 1;
   margin: 0;
 }
 
 .kk-color-messages__body {
-  font-size: 120%;
+  font-size: pt2Px(30);
   margin-top: 2%;
 }

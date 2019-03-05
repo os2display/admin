@@ -45,6 +45,7 @@ class EventsSisCron implements EventSubscriberInterface
     $this->numberOfEvents = $slide->getOption('sis_total_items', 12);
 
     $mockData = new MockEventsData($this->numberOfEvents);
-    $slide->setSubslides($mockData->getEvents());
+    $events = $mockData->getEvents();
+    $slide->setSubslides($events);
   }
 }

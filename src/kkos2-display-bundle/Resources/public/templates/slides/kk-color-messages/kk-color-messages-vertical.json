@@ -19,11 +19,23 @@
     "height": "1920"
   },
   "empty_options": {
+    "logopos": {
+      "top":"auto",
+      "bottom":"0",
+      "left":"auto",
+      "right":"0"
+    },
+    "logosize": "10%",
+
     "sis_cron_subscriber": "kk_color_messages_sis_cron",
     "sis_subslide_duration": 10,
     "sis_total_items": 9,
     "sis_items_pr_slide": 1
   },
   "tools": [
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
   ]
 }

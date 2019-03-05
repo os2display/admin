@@ -2,7 +2,6 @@
 
 .kk-eventplakat {
   color: #f4f4f4;
-  font-size: 200%;
 }
 
 .kk-eventplakat__subslide {
@@ -27,36 +26,44 @@
 
 .kk-eventplakat__event--text {
   padding: 5%;
+  font-size: pt2Px(25);
+
+  .kk-eventplakat--portrait & {
+    font-size: pt2Px(35);
+  }
 }
 
 .kk-eventplakat__event_place {
   max-width: 75%;
   font-weight: 400;
-  font-size: 70%;
+  font-size: pt2Px(12);
 
   .kk-eventplakat--portrait & {
     margin: 10% 0 10% 5%;
     max-width: 50%;
+    font-size: pt2Px(15);
   }
 }
 
 .kk-eventplakat__event--date {
   margin-top: 20%;
   font-weight: 400;
-  font-size: 80%;
+  font-size: pt2Px(15);
 
   .kk-eventplakat--portrait & {
     margin-top: 5%;
+    font-size: pt2Px(25);
   }
 }
 
 .kk-eventplakat__event--title {
-  font-size: 200%;
-  line-height: 1;
-  margin: 10% 0 0;
+  font-size: pt2Px(50);
+  line-height: 1.2;
+  margin: 15% 0 0;
 
   .kk-eventplakat--portrait & {
     margin-top: 5%;
+    font-size: pt2Px(75);
   }
 }
 
