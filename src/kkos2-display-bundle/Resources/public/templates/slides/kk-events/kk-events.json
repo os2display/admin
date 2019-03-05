@@ -22,10 +22,10 @@
     "bgcolor": "#000c2e",
 
     "logopos": {
-      "top":"0",
-      "bottom":"auto",
-      "left":"0",
-      "right":"auto"
+      "top":"auto",
+      "bottom":"0",
+      "left":"auto",
+      "right":"0"
     },
     "logosize": "10%",
 
