@@ -1,7 +1,7 @@
 {
   "id": "kk-events",
   "type": "slide",
-  "name": "Kultunaut-arrangementer",
+  "name": "Arrangementer",
   "icon": "kk-events.png",
   "paths": {
     "live": "kk-events-live.html",
@@ -10,7 +10,7 @@
     "css": "kk-events.min.css",
     "js": "bundles/kkos2displayintegration/dist/js/kk-events.min.js"
   },
-  "slide_type": "kultunaut-event",
+  "slide_type": "slides-in-slide",
   "media_type": "image",
   "script_id": "kk-events",
   "orientation": "landscape",
@@ -19,20 +19,29 @@
     "height": "1080"
   },
   "empty_options": {
-    "bgcolor": "#555",
-    "textcolor": "#fff",
-    "rss_number": 6,
-    "rss_duration": 10,
-    "kultunautfeed": ""
+    "bgcolor": "#000c2e",
+
+    "logopos": {
+      "top":"auto",
+      "bottom":"0",
+      "left":"auto",
+      "right":"0"
+    },
+    "logosize": "10%",
+
+    "sis_cron_subscriber": "kk_events_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 12,
+    "sis_items_pr_slide": 3
   },
   "tools": [
     {
-      "name": "Baggrund",
-      "id": "background-editor"
+      "name": "Baggrundsfarve",
+      "id": "bg-color-editor"
     },
     {
-      "name": "Kultunaut-feed med arrangementer",
-      "id": "event-feed-editor"
+      "name": "Logo",
+      "id": "logo-editor"
     }
   ]
 }

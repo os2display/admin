@@ -1,0 +1,19 @@
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="close()">
+      <div class="svg-clickable">
+        <object data="bundles/os2displaydefaulttemplate/assets/images/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="bundles/os2displaydefaulttemplate/assets/images/cancel.png"/>
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--background-page" data-ng-show="step === 'background-picker'">
+      <div class="edit-menu--background-page-inner">
+          <h2>Vælg en baggrundsfarve</h2>
+          <input colorpicker="hex" class="form-slide-background-background-color edit-menu--background-form-element"
+                 type="text" placeholder="e.g. #000" ng-model="slide.options.bgcolor">
+        </div>
+      </div>
+    </div>
+</div>

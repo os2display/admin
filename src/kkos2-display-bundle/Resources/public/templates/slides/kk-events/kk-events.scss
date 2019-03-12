@@ -1,40 +1,81 @@
+@import "../../../assets/scss/kff";
+
 .kk-events {
-  background-size: cover;
-  background-position: center;
-  color: black;
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
+  color: #231f20;
 }
 
-.kk-events__inner {
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  width: 75%;
-  height: 100%;
-}
+// These variables are maybe a little confusing. They're an attempt to keep all
+// vh-heights together so it's easier to make a total.
+$top-bottom-margin-landscape: 8vh;
+$event-margin-bottom-landscape: 2vh;
+// There is to and bottom margin (2*) and there are 3 event-boxes with (2*)
+// margin between them.
+$total-height-used-landscape: (($top-bottom-margin-landscape * 2) + ($event-margin-bottom-landscape * 2));
+// With 3 event boxes, divide 100vh minus the used height and divide by 3.
+$event-height-landscape: (100 - $total-height-used-landscape) / 3;
+
+$top-margin-portrait: 20vh;
+$bottom-margin-portrait: 8vh;
+$event-margin-bottom-portrait: 3vh;
+$total-height-used-portrait: (($top-margin-portrait + $bottom-margin-portrait) + ($event-margin-bottom-portrait * 2));
+// With 3 event boxes, divide 100vh minus the used height and divide by 3.
+$event-height-portrait: (100 - $total-height-used-portrait) / 3;
 
 .kk-events__subslide {
-  width: 100%;
-}
+  margin: $top-bottom-margin-landscape 14vw $top-bottom-margin-landscape 4vw;
 
-.kk-events__event {
-  justify-content: space-around;
-  margin: 2rem;
-  background-color: white;
-  display: flex;
-  align-items: flex-start;
-
-  > div {
-    flex: 1;
+  .kk-events--portrait & {
+    margin: $top-margin-portrait 14vw $bottom-margin-portrait 4vw;
   }
 }
 
-.kk-events__event--img {
-  max-height: 30vh;
+.kk-events__event {
+  margin-bottom: $event-margin-bottom-landscape;
+  color: #231f20;
+  background-color: white;
+  display: flex;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .kk-events--portrait & {
+    margin-bottom: $event-margin-bottom-portrait;
+  }
+}
+
+.kk-events__event--img--file {
+  width: 40vw;
+  height: $event-height-landscape;
+  object-fit: cover;
+
+  .kk-events--portrait & {
+    width: 25vw;
+    height: $event-height-portrait;
+  }
 }
 
 .kk-events__event--text {
-  padding: 2rem;
+  padding: 0 2%;
+  height: $event-height-landscape;
+  overflow: hidden;
+
+  .kk-events--portrait & {
+    height: $event-height-portrait;
+  }
+}
+
+.kk-events__event--date {
+  font-size: pt2Px(11);
+}
+
+.kk-events__event--title {
+  margin: 0;
+  font-weight: 900;
+  font-size: pt2Px(18);
+}
+
+.kk-events__event--body {
+  font-size: pt2Px(13);
+  margin-top: 2%;
 }

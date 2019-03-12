@@ -1,0 +1,41 @@
+{
+  "id": "kk-color-messages-vertical",
+  "type": "slide",
+  "name": "Servicemeddelelser vertikal",
+  "icon": "kk-color-messages-vertical.png",
+  "paths": {
+    "live": "kk-color-messages-live.html",
+    "edit": "kk-color-messages-edit.html",
+    "preview": "kk-color-messages-edit.html",
+    "css": "kk-color-messages.min.css",
+    "js": "bundles/kkos2displayintegration/dist/js/kk-color-messages.min.js"
+  },
+  "slide_type": "slides-in-slide",
+  "media_type": "image",
+  "script_id": "kk-color-messages",
+  "orientation": "portrait",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "1920"
+  },
+  "empty_options": {
+    "logopos": {
+      "top":"auto",
+      "bottom":"0",
+      "left":"auto",
+      "right":"0"
+    },
+    "logosize": "10%",
+
+    "sis_cron_subscriber": "kk_color_messages_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 9,
+    "sis_items_pr_slide": 1
+  },
+  "tools": [
+    {
+      "name": "Logo",
+      "id": "logo-editor"
+    }
+  ]
+}

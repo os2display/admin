@@ -1,0 +1,18 @@
+.kk-logo--top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 6% 2%;
+  width: 8%;
+
+  &.kk-logo--orientation-portrait {
+    padding: 8% 4%;
+    width: 20%;
+  }
+}
+
+.kk-uploaded-logo {
+  position: absolute;
+  width: 10%;
+  padding: 2%;
+}

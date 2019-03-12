@@ -1,36 +1,72 @@
-.kk-eventplakat {
-  background-size: cover;
-  background-position: center;
-  box-sizing: border-box;
-  color: black;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
+@import "../../../assets/scss/kff";
 
-.kk-eventplakat__inner {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  height: 100%;
-  justify-items: center;
+.kk-eventplakat {
+  color: #f4f4f4;
 }
 
 .kk-eventplakat__subslide {
-  width: 65%;
-  margin: 0 auto;
+  width: 100%;
+
+  .kk-eventplakat--landscape & {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+  }
 }
 
-.kk-eventplakat__event--img {
-  width: 100%;
+.kk-eventplakat__img--file {
+  width: 60vw;
+  height: 100vh;
+  object-fit: cover;
+
+  .kk-eventplakat--portrait & {
+    height: 38vh;
+    width: 60vw;
+  }
 }
 
 .kk-eventplakat__event--text {
-  background-color: white;
-  color: black;
-  width: 100%;
+  padding: 5%;
+  font-size: pt2Px(25);
+
+  .kk-eventplakat--portrait & {
+    font-size: pt2Px(35);
+  }
 }
 
-.kk-eventplakat__event--text-inner {
-  padding: 2rem;
+.kk-eventplakat__event_place {
+  max-width: 75%;
+  font-weight: 400;
+  font-size: pt2Px(12);
+
+  .kk-eventplakat--portrait & {
+    margin: 10% 0 10% 5%;
+    max-width: 50%;
+    font-size: pt2Px(15);
+  }
+}
+
+.kk-eventplakat__event--date {
+  margin-top: 20%;
+  font-weight: 400;
+  font-size: pt2Px(15);
+
+  .kk-eventplakat--portrait & {
+    margin-top: 5%;
+    font-size: pt2Px(25);
+  }
+}
+
+.kk-eventplakat__event--title {
+  font-size: pt2Px(50);
+  line-height: 1.2;
+  margin: 15% 0 0;
+
+  .kk-eventplakat--portrait & {
+    margin-top: 5%;
+    font-size: pt2Px(75);
+  }
+}
+
+.kk-eventplakat--logo {
+  width: 12%;
 }

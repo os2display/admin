@@ -10,7 +10,7 @@
     "css": "kk-color-messages.min.css",
     "js": "bundles/kkos2displayintegration/dist/js/kk-color-messages.min.js"
   },
-  "slide_type": "color-messages",
+  "slide_type": "slides-in-slide",
   "media_type": "image",
   "script_id": "kk-color-messages",
   "orientation": "landscape",
@@ -19,22 +19,21 @@
     "height": "1080"
   },
   "empty_options": {
-    "slide_duration": 10,
-    "mellemfeed": "",
+
     "logopos": {
       "top":"auto",
       "bottom":"0",
       "left":"auto",
       "right":"0"
     },
-    "logosize": "20%"
+    "logosize": "10%",
+
+    "sis_cron_subscriber": "kk_color_messages_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 9,
+    "sis_items_pr_slide": 1
   },
-  "tools": [
-    {
-      "name": "Mellemfeed",
-      "id": "mellemfeed-editor"
-    },
-    {
+  "tools": [   {
       "name": "Logo",
       "id": "logo-editor"
     }

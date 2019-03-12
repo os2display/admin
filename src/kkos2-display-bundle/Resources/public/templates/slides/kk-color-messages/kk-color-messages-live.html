@@ -1,18 +1,16 @@
-<div class="kk-color-messages kk-color-messages--landscape"
-     data-ng-style="{'background-color': message.background_color }"
+<div class="kk-color-messages kk-color-messages--{{ikSlide.orientation}} kk-slide-body font-kbh"
+     lang="da-DK"
+     data-ng-style="{'background-color': message.background_color,'width': theStyle.width, 'height': theStyle.height}"
      ng-repeat="message in ikSlide.data.subslides track by $index"
      data-ng-show="ikSlide.data.currentSlide === $index">
 
   <div class="kk-color-messages__inner">
-    <div class="kk-color-messages__content">
-      <h1 class="kk-color-messages__title"> {{message.title}}</h1>
-      <div class="kk-color-messages__body">
-        <div ng-bind-html="message.message"></div>
-      </div>
-    </div>
-
+    <p class="kk-color-messages__place">{{ message.place }}</p>
+    <h1 class="kk-color-messages__title font-bolder hyphen-word-break"> {{message.title}}</h1>
+    <p class="kk-color-messages__body" ng-bind-html="message.body"></p>
   </div>
-  <img class="kk-color-messages__logo" data-ng-show="ikSlide.currentLogo"
-       data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize, 'position': 'absolute'}"
-       data-ng-src="{{ikSlide.currentLogo}}"/>
+
+  <img class="kk-logo--top-right kk-logo--orientation-{{ikSlide.orientation}}" data-ng-src="{{ikSlide.kffLogo}}" alt="Logo">
+
+  <img ng-if="ikSlide.logo" class="kk-uploaded-logo" data-ng-show="ikSlide.logo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="{{ikSlide.logo}}" alt="" />
 </div>

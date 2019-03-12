@@ -1,4 +1,3 @@
-// Register the function, if it does not already exist.
 if (!window.slideFunctions['kk-color-messages']) {
   window.slideFunctions['kk-color-messages'] = {
     /**
@@ -10,13 +9,21 @@ if (!window.slideFunctions['kk-color-messages']) {
       var slide = scope.ikSlide;
       var subslides = [];
       var num_subslides = 0;
-      if (slide.external_data && slide.external_data.messages) {
-        subslides = slide.external_data.messages;
-        num_subslides = slide.external_data.messages.length;
+      if (slide.external_data && slide.external_data.sis_data_slides) {
+        subslides = slide.external_data.sis_data_slides;
+        num_subslides = slide.external_data.sis_data_num_slides;
       }
-      slide.currentLogo = slide.logo;
 
-      var slide_duration = slide.options.slide_duration ? slide.options.slide_duration : 15;
+      var slide_duration = slide.options.sis_subslide_duration ? slide.options.sis_subslide_duration : 10;
+
+      // Just hardcode path to logo.
+      scope.ikSlide.kffLogo = slide.server_path + "/bundles/kkos2displayintegration/assets/img/kbh-logo.png";
+
+      scope.theStyle = {
+        width: "100%",
+        height: "100%",
+      };
+
       window.slidesInSlides.setup(scope, subslides, num_subslides, slide_duration);
     },
 
