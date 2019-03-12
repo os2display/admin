@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "670fa89deb868c6fa4d447ba7164b7dc",
+    "content-hash": "8c258e80e4e29c00a4aaf916b96b1b31",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2785,24 +2785,19 @@
         },
         {
             "name": "os2display/default-template-bundle",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/default-template-bundle.git",
-                "reference": "a7e5e8cfd4cc531fb571d4ecaa71a3951705655a"
+                "reference": "bee59b69cb9fc26b7783408ecba508ec48b52484"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/a7e5e8cfd4cc531fb571d4ecaa71a3951705655a",
-                "reference": "a7e5e8cfd4cc531fb571d4ecaa71a3951705655a",
+                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/bee59b69cb9fc26b7783408ecba508ec48b52484",
+                "reference": "bee59b69cb9fc26b7783408ecba508ec48b52484",
                 "shasum": ""
             },
             "type": "symfony-bundle",
-            "extra": {
-                "patches_applied": {
-                    "Option to disable scroll on iframes": "https://patch-diff.githubusercontent.com/raw/os2display/default-template-bundle/pull/10.patch"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Os2Display\\DefaultTemplateBundle\\": ""
@@ -2810,7 +2805,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display default template",
-            "time": "2019-02-08T11:47:21+00:00"
+            "time": "2019-02-19T12:02:39+00:00"
         },
         {
             "name": "os2display/media-bundle",

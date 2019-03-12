@@ -68,9 +68,6 @@
     "patches": {
       "os2display/admin-bundle": {
         "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch"
-      },
-      "os2display/default-template-bundle": {
-        "Option to disable scroll on iframes": "https://patch-diff.githubusercontent.com/raw/os2display/default-template-bundle/pull/10.patch"
       }
     }
   }
