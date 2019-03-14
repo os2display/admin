@@ -2,7 +2,8 @@
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
-use Kkos2\KkOs2DisplayIntegrationBundle\Slides\ColorfulMessages\MockColorfulMessagesData;
+use Kkos2\KkOs2DisplayIntegrationBundle\Slides\ColorfulMessagesFeedData;
+use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Mock\MockColorfulMessagesData;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -45,9 +46,24 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
     // for the user, but the colorful slides don't support more than one, so
     // enforce it here.
     $slide->setOption('sis_items_pr_slide', 1);
-    $this->numberOfEvents = $slide->getOption('sis_total_items', 12);
+    $numEvents = $slide->getOption('sis_total_items', 12);
+    $url = $slide->getOption('datafeed_url', '');
 
-    $mockData = new MockColorfulMessagesData($this->numberOfEvents);
+    $data = new ColorfulMessagesFeedData($this->container, $url, $numEvents);
+    $slide->setSubslides($data->getColorfulMessages());
+  }
+
+  public function getMockSlideData(SlidesInSlideEvent $event)
+  {
+    $slide = $event->getSlidesInSlide();
+
+    // Make sure that only one subslide pr. slide is set. The value is
+    // for the user, but the colorful slides don't support more than one, so
+    // enforce it here.
+    $slide->setOption('sis_items_pr_slide', 1);
+    $numEvents = $slide->getOption('sis_total_items', 12);
+
+    $mockData = new MockColorfulMessagesData($numEvents);
     $slide->setSubslides($mockData->getColorfulMessages());
   }
 

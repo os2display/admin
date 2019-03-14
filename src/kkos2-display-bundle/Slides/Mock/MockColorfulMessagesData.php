@@ -1,9 +1,9 @@
 <?php
 
-namespace Kkos2\KkOs2DisplayIntegrationBundle\Slides\Eventplakat;
+namespace Kkos2\KkOs2DisplayIntegrationBundle\Slides\Mock;
 
 
-class MockEventplakatData
+class MockColorfulMessagesData
 {
   private $numItems;
 
@@ -12,10 +12,10 @@ class MockEventplakatData
     $this->numItems = $numItems;
   }
 
-  public function getEventPlakater()
+  public function getColorfulMessages()
   {
     // TODO. Respect $numItems
-    $json = file_get_contents(__DIR__ . '/../../mockdata/events.json');
+    $json = file_get_contents(__DIR__ . '/../../mockdata/colorful-messages.json');
     $data = json_decode($json, true);
     return $data;
   }
