@@ -2,8 +2,8 @@
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
-
-use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Events\MockEventsData;
+use Kkos2\KkOs2DisplayIntegrationBundle\Slides\EventFeedData;
+use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Mock\MockEventsData;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -18,11 +18,6 @@ class EventsSisCron implements EventSubscriberInterface
    * @var \Symfony\Component\DependencyInjection\ContainerInterface $container
    */
   private $container;
-
-  /**
-   * @var int $numberOfEvents
-   */
-  private $numberOfEvents;
 
   public function __construct($container)
   {
@@ -42,10 +37,21 @@ class EventsSisCron implements EventSubscriberInterface
   public function getSlideData(SlidesInSlideEvent $event)
   {
     $slide = $event->getSlidesInSlide();
-    $this->numberOfEvents = $slide->getOption('sis_total_items', 12);
+    $numItems = $slide->getOption('sis_total_items', 12);
+    $url = $slide->getOption('datafeed_url', '');
 
-    $mockData = new MockEventsData($this->numberOfEvents);
+    $fetcher = new EventFeedData($this->container, $url, $numItems);
+    $events = $fetcher->getEvents();
+    $slide->setSubslides($events);
+  }
+
+  public function getMockSlideData(SlidesInSlideEvent $event)
+  {
+    $slide = $event->getSlidesInSlide();
+    $numItems = $slide->getOption('sis_total_items', 12);
+    $mockData = new MockEventsData($numItems);
     $events = $mockData->getEvents();
     $slide->setSubslides($events);
   }
+
 }

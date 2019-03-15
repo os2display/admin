@@ -31,9 +31,16 @@
     "sis_cron_subscriber": "kk_color_messages_sis_cron",
     "sis_subslide_duration": 10,
     "sis_total_items": 9,
-    "sis_items_pr_slide": 1
+    "sis_items_pr_slide": 1,
+
+    "datafeed_url": ""
   },
-  "tools": [   {
+  "tools": [
+    {
+      "name": "Datafeed",
+      "id": "feed-url-editor"
+    },
+    {
       "name": "Logo",
       "id": "logo-editor"
     }

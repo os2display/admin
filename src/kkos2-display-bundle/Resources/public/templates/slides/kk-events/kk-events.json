@@ -32,9 +32,16 @@
     "sis_cron_subscriber": "kk_events_sis_cron",
     "sis_subslide_duration": 10,
     "sis_total_items": 12,
-    "sis_items_pr_slide": 3
+    "sis_items_pr_slide": 3,
+
+    "datafeed_url": ""
+
   },
   "tools": [
+    {
+      "name": "Datafeed",
+      "id": "feed-url-editor"
+    },
     {
       "name": "Baggrundsfarve",
       "id": "bg-color-editor"
