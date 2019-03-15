@@ -22,7 +22,7 @@ class JsonFetcher
       return json_decode($body, true);
 
     } catch (TransferException $exception) {
-      throw new \Exception('TODO error on fetch' . $url);
+      throw new \Exception('Error on fetch from: ' . $url);
     }
   }
 }
