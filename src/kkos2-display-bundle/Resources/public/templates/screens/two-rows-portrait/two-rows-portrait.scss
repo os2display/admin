@@ -1,8 +1,4 @@
-
 .screen-two-rows-portrait {
-  &--inner {
-    font-size: 0;
-  }
 
   &--region-vertical {
     border-bottom: 1px solid white;
@@ -14,15 +10,9 @@
     }
   }
 
-  &--region-content {
-    font-size: 1rem;
-    position: relative;
-    height: 100%;
-    width: 100%;
-  }
-
+  .slide-block,
   .slide {
-    overflow: hidden;
+    position: static;
   }
 }
 
