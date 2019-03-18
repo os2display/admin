@@ -9,15 +9,29 @@
 }
 
 .kk-eventplakat__event--title {
-  font-size: pt2Px(50);
   line-height: 1.2;
   margin: 15% 0 0;
 }
+
+.kk-eventplakat__event--text-wrap {
+  padding: 5%;
+}
+
+.kk-eventplakat__event--place {
+  max-width: 75%;
+  font-weight: 400;
+}
+
+.kk-eventplakat__event--date {
+  font-weight: 400;
+}
+
 
 // Landscape.
 .kk-eventplakat--ratio-16-9 {
   width: 100%;
   height: 100%;
+  font-size: 16px;
 
   .kk-eventplakat__subslide {
     display: grid;
@@ -29,78 +43,85 @@
     height: 100vh;
   }
 
+  .kk-eventplakat__event--place {
+    margin-top: 8%;
+    font-size: pt2pct(12);
+  }
+
+  .kk-eventplakat__event--date {
+    margin-top: 20%;
+    font-size: pt2pct(18);
+    margin-bottom: 10%;
+  }
+
   .kk-eventplakat__event--title {
     margin-top: 5%;
-    font-size: pt2Px(75);
+    font-size: pt2Px(50);
   }
+
+  .kk-eventplakat__event--teaser-text {
+    font-size: pt2pct(25);
+  }
+
 }
 
 .kk-eventplakat--ratio-9-8 {
   width: 100%;
   height: 100%;
+  font-size: 12px;
 
   .kk-eventplakat__subslide {
     display: grid;
     grid-template-columns: 60fr 40fr;
+  }
+
+  .kk-eventplakat__event--place {
+    //font-size: pt2pct(10);
+  }
+
+  .kk-eventplakat__event--date {
+    //font-size: pt2pct(12);
+  }
+
+  .kk-eventplakat__event--title {
+    //font-size: pt2pct(32);
+  }
+
+  .kk-eventplakat__event--teaser-text {
+    //font-size: pt2pct(18);
   }
 
   .kk-eventplakat__img--file {
     width: 30vw;
     height: 100vh;
   }
+
 }
 
 //Portrait.
 .kk-eventplakat--ratio-9-16 {
   width: 100%;
   height: 100%;
+  font-size: 16px;
 
   .kk-eventplakat__img--file {
     height: 38vh;
     width: 60vw;
   }
-}
 
-
-.kk-eventplakat__event--text {
-  padding: 5%;
-  font-size: pt2Px(25);
-
-  .kk-eventplakat--ratio-9-16 & {
-    font-size: pt2Px(35);
-  }
-}
-
-.kk-eventplakat__event_place {
-  grid-area: place;
-  max-width: 75%;
-  font-weight: 400;
-  font-size: pt2Px(12);
-
-  .kk-eventplakat--ratio-9-16 & {
+  .kk-eventplakat__event--place {
     margin: 10% 0 10% 5%;
     max-width: 50%;
-    font-size: pt2Px(15);
+    font-size: pt2pct(15);
   }
 
-  .kk-eventplakat--ratio-16-9 & {
-
+  .kk-eventplakat__event--teaser-text {
+    font-size: pt2pct(35);
   }
-}
 
-.kk-eventplakat__event--date {
-  margin-top: 20%;
-  font-weight: 400;
-  font-size: pt2Px(15);
-
-  .kk-eventplakat--ratio-9-16 & {
+  .kk-eventplakat__event--date {
     margin-top: 5%;
-    font-size: pt2Px(25);
+    font-size: pt2pct(25);
   }
-}
 
-
-
-.kk-eventplakat--logo {
-  width: 12%;
 }
