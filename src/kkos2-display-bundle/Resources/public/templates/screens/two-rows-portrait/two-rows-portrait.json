@@ -1,0 +1,12 @@
+{
+  "id": "two-rows-portrait",
+  "type": "screen",
+  "name": "To rækker vertikal",
+  "icon": "two-rows-portrait.png",
+  "paths": {
+    "live": "two-rows-portrait-live.html",
+    "edit": "two-rows-portrait-edit.html",
+    "css": "two-rows-portrait.min.css"
+  },
+  "orientation": "portrait"
+}

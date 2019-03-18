@@ -22,10 +22,12 @@ const dirsInDir = source => fs.readdirSync(source, {withFileTypes: true})
 
 const scssDir = "Resources/public/assets/scss";
 const slidesPath = "Resources/public/templates/slides";
+const screensPath = "Resources/public/templates/screens";
 const distDir = "Resources/public/dist";
 const distJs = `${distDir}/js`;
 const toolsDir = "Resources/public/apps/tools";
 const slideFolders = dirsInDir(slidesPath);
+const screenFolders = dirsInDir(screensPath);
 
 /**
  * Delete the generated minified files.
@@ -33,7 +35,8 @@ const slideFolders = dirsInDir(slidesPath);
 function clean() {
   return del([
     `${distJs}/*.min.js`,
-    `${slidesPath}/**/*.min.css`
+    `${slidesPath}/**/*.min.css`,
+    `${screensPath}/**/*.min.css`,
   ]);
 }
 
@@ -46,6 +49,7 @@ const compileSlidesJs = () => {
     // Prepend slides-in-slide.js to all files. There is no way to include more
     // than one js file at the time, so it has to be baked in.
     gulp.src([
+      "Resources/public/assets/js/kk-slide-ratio.js",
       "../../vendor/reload/os2display-slide-tools/Resources/public/js/slides-in-slide.js",
       `${slidesPath}/${item}/${fileName}`
     ])
@@ -82,6 +86,16 @@ const compileScss = () => {
       }).on('error', sass.logError))
       .pipe(rename({extname: ".min.css"}))
       .pipe(gulp.dest(`${slidesPath}/${item}`));
+  });
+
+  screenFolders.map(function (item) {
+    const fileName = item.split("/").pop() + ".scss";
+    gulp.src(`${screensPath}/${item}/${fileName}`)
+      .pipe(sass({
+        outputStyle: 'compressed'
+      }).on('error', sass.logError))
+      .pipe(rename({extname: ".min.css"}))
+      .pipe(gulp.dest(`${screensPath}/${item}`));
   });
 
   return new Promise(function (resolve) {

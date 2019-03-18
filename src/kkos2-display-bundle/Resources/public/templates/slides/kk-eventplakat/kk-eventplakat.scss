@@ -4,69 +4,132 @@
   color: #f4f4f4;
 }
 
-.kk-eventplakat__subslide {
-  width: 100%;
-
-  .kk-eventplakat--landscape & {
-    display: grid;
-    grid-template-columns: 60fr 40fr;
-  }
-}
-
 .kk-eventplakat__img--file {
-  width: 60vw;
-  height: 100vh;
   object-fit: cover;
-
-  .kk-eventplakat--portrait & {
-    height: 38vh;
-    width: 60vw;
-  }
-}
-
-.kk-eventplakat__event--text {
-  padding: 5%;
-  font-size: pt2Px(25);
-
-  .kk-eventplakat--portrait & {
-    font-size: pt2Px(35);
-  }
-}
-
-.kk-eventplakat__event_place {
-  max-width: 75%;
-  font-weight: 400;
-  font-size: pt2Px(12);
-
-  .kk-eventplakat--portrait & {
-    margin: 10% 0 10% 5%;
-    max-width: 50%;
-    font-size: pt2Px(15);
-  }
-}
-
-.kk-eventplakat__event--date {
-  margin-top: 20%;
-  font-weight: 400;
-  font-size: pt2Px(15);
-
-  .kk-eventplakat--portrait & {
-    margin-top: 5%;
-    font-size: pt2Px(25);
-  }
 }
 
 .kk-eventplakat__event--title {
-  font-size: pt2Px(50);
   line-height: 1.2;
   margin: 15% 0 0;
+}
 
-  .kk-eventplakat--portrait & {
+.kk-eventplakat__event--text-wrap {
+  padding: 5%;
+}
+
+.kk-eventplakat__event--place {
+  max-width: 75%;
+  font-weight: 400;
+}
+
+.kk-eventplakat__event--date {
+  font-weight: 400;
+}
+
+
+// Landscape.
+.kk-eventplakat--ratio-16-9 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+
+  .kk-eventplakat__subslide {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+  }
+
+  .kk-eventplakat__img--file {
+    width: 60vw;
+    height: 100vh;
+  }
+
+  .kk-eventplakat__event--place {
+    margin-top: 8%;
+    font-size: pt2pct(12);
+  }
+
+  .kk-eventplakat__event--date {
+    margin-top: 20%;
+    font-size: pt2pct(18);
+    margin-bottom: 10%;
+  }
+
+  .kk-eventplakat__event--title {
     margin-top: 5%;
-    font-size: pt2Px(75);
+    font-size: pt2Px(50);
+  }
+
+  .kk-eventplakat__event--teaser-text {
+    font-size: pt2pct(25);
+  }
+
+}
+
+.kk-eventplakat--ratio-8-9 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+
+  .kk-eventplakat__subslide {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+  }
+
+  .kk-eventplakat__img--file {
+    width: 30vw;
+    height: 100vh;
+  }
+
+  .kk-eventplakat__event--place {
+    margin-top: 8%;
+    font-size: pt2pct(11);
+  }
+
+  .kk-eventplakat__event--date {
+    margin-top: 20%;
+    font-size: pt2pct(12);
+    margin-bottom: 10%;
+  }
+
+  .kk-eventplakat__event--title {
+    margin-top: 5%;
+    font-size: pt2Px(32);
+  }
+
+  .kk-eventplakat__event--teaser-text {
+    font-size: pt2pct(18);
   }
 }
 
-.kk-eventplakat--logo {
-  width: 12%;
+// Portrait.
+.kk-eventplakat--ratio-9-16 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+
+  .kk-eventplakat__img--file {
+    height: 38vh;
+    width: 60vw;
+  }
+
+  .kk-eventplakat__event--place {
+    margin: 10% 0 10% 5%;
+    max-width: 50%;
+    font-size: pt2pct(15);
+  }
+
+  .kk-eventplakat__event--title {
+    margin-top: 5%;
+    font-size: pt2Px(75);
+  }
+
+  .kk-eventplakat__event--teaser-text {
+    font-size: pt2pct(35);
+  }
+
+  .kk-eventplakat__event--date {
+    margin-top: 5%;
+    font-size: pt2pct(25);
+  }
+
 }

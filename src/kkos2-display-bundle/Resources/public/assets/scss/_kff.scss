@@ -3,6 +3,11 @@
   @return 0px + ($pt * 96 / 72);
 }
 
+// Convert points to %. The design from KFF came with pts.
+@function pt2pct($pt) {
+  @return 0% + ($pt * 100 / 12);
+}
+
 @import 'typography';
 @import 'logo';
 @import 'slides';

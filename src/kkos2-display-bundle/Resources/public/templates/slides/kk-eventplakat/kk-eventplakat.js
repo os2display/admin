@@ -1,4 +1,3 @@
-
 // Register the function, if it does not already exist.
 if (!window.slideFunctions['kk-eventplakat']) {
   window.slideFunctions['kk-eventplakat'] = {
@@ -20,10 +19,11 @@ if (!window.slideFunctions['kk-eventplakat']) {
 
       scope.ikSlide.kffLogo = slide.server_path + "/bundles/kkos2displayintegration/assets/img/kbh-logo.png";
       scope.theStyle = {
-        width: "100%",
-        height: "100%",
         bgcolor: slide.options.bgcolor
       };
+
+      scope.ratio = window.kkSlideRatio.getRatio();
+      scope.placeWrapped = (scope.ratio === '16-9' || scope.ratio === '8-9');
     },
 
     /**

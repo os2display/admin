@@ -1,0 +1,18 @@
+.screen-two-rows-portrait {
+
+  &--region-vertical {
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+    display: block;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  .slide-block,
+  .slide {
+    position: static;
+  }
+}
+
