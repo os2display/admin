@@ -1,4 +1,4 @@
-<div class="kk-eventplakat kk-eventplakat--{{ikSlide.orientation}} kk-slide-body font-kbh"
+<div class="kk-eventplakat kk-eventplakat--ratio-{{ratio}} kk-ratio-{{ratio}} kk-slide-body font-kbh"
      lang="da-DK"
      data-ng-style="{'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor}">
 
@@ -6,20 +6,20 @@
        ng-repeat="event in ikSlide.data.subslides track by $index"
        data-ng-show="ikSlide.data.currentSlide === $index">
 
-    <p ng-if="'portrait' == ikSlide.orientation" class="kk-eventplakat__event_place">
+    <p ng-if="!placeWrapped" class="kk-eventplakat__event_place">
       {{ event.place }} præsenterer
     </p>
 
     <div class="kk-eventplakat__img">
-      <img class="kk-eventplakat__img--file" src="{{event.image}}" alt="">
+      <img class="kk-eventplakat__img--file" src="{{event.image}}" alt="" />
     </div>
     <div class="kk-eventplakat__event--text hyphen-word-break">
-      <p ng-if="'landscape' == ikSlide.orientation" class="kk-eventplakat__event_place">
+      <p ng-if="placeWrapped" class="kk-eventplakat__event_place">
         {{ event.place }} præsenterer
       </p>
         <div class="kk-eventplakat__event--date">
           <p>{{event.date}} <br />
-            {{event.time}}</p>
+            kl. {{event.time}}</p>
         </div>
         <h1 class="kk-eventplakat__event--title font-bolder">{{event.title}}</h1>
         <div class="kk-eventplakat_event--teaser-text">
