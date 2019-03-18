@@ -94,7 +94,7 @@ const compileScss = () => {
       .pipe(sass({
         outputStyle: 'compressed'
       }).on('error', sass.logError))
-      .pipe(rename({extname: ".css"})) // TODO. Use min (change in .json file too)
+      .pipe(rename({extname: ".min.css"}))
       .pipe(gulp.dest(`${screensPath}/${item}`));
   });
 

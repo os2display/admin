@@ -6,7 +6,7 @@
   "paths": {
     "live": "two-rows-portrait-live.html",
     "edit": "two-rows-portrait-edit.html",
-    "css": "two-rows-portrait.css"
+    "css": "two-rows-portrait.min.css"
   },
   "orientation": "portrait"
 }
