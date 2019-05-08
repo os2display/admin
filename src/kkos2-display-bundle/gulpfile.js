@@ -7,9 +7,7 @@ const gulp = require("gulp");
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
-var sass = require('gulp-sass');
-// Explicitly set the node-sass compiler.
-sass.compiler = require('node-sass');
+const sass = require('gulp-sass');
 
 /**
  * Get an array of dir names in a dir.
@@ -18,7 +16,7 @@ sass.compiler = require('node-sass');
  * @returns {string[]} Array of strings with directory names.
  */
 const dirsInDir = source => fs.readdirSync(source, {withFileTypes: true})
-  .filter(c => c.isDirectory()).map(c => c.name);
+  .filter(c => fs.statSync(source + '/' + c).isDirectory());
 
 const scssDir = "Resources/public/assets/scss";
 const slidesPath = "Resources/public/templates/slides";
