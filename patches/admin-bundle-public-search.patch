@@ -17,7 +17,7 @@ index e49b7f8..a7d2288 100644
      window.config = {
        "search": {
 -        "address": "{{ search_host }}",
-+        "address": "{{ search_host_public }}",
++        "address": "{{ search_host_public ? search_host_public : search_host }}",
          "index": "{{ search_index }}"
        },
        "sharingService": {
