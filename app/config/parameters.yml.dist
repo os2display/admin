@@ -35,6 +35,7 @@ parameters:
     sharing_enabled: true
 
     search_host: http://127.0.0.1:3010
+    search_host_public: ~
     search_path: /api
     search_apikey: 1234567890
     search_index: e7df7cd2ca07f4f1ab415d457a6e1c13
