@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c258e80e4e29c00a4aaf916b96b1b31",
+    "content-hash": "3d644163a40b53371a584706ec1c16db",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2836,6 +2836,60 @@
                 "issues": "https://github.com/os2display/media-bundle/issues"
             },
             "time": "2017-09-19T09:29:02+00:00"
+        },
+        {
+            "name": "os2display/vimeo-bundle",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/os2display/vimeo-bundle.git",
+                "reference": "a6d74409468cf57d03b406102c1331308a9d7200"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/os2display/vimeo-bundle/zipball/a6d74409468cf57d03b406102c1331308a9d7200",
+                "reference": "a6d74409468cf57d03b406102c1331308a9d7200",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\VimeoBundle\\": ""
+                }
+            },
+            "description": "Os2Display vimeo template.",
+            "support": {
+                "source": "https://github.com/os2display/vimeo-bundle/tree/2.0.1",
+                "issues": "https://github.com/os2display/vimeo-bundle/issues"
+            },
+            "time": "2019-05-14T11:03:57+00:00"
+        },
+        {
+            "name": "os2display/youtube-bundle",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/os2display/youtube-bundle.git",
+                "reference": "adcb210a1cf2207e9baed2565f22fd8e13481cb3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/os2display/youtube-bundle/zipball/adcb210a1cf2207e9baed2565f22fd8e13481cb3",
+                "reference": "adcb210a1cf2207e9baed2565f22fd8e13481cb3",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\YoutubeBundle\\": ""
+                }
+            },
+            "description": "Os2Display youtube template.",
+            "support": {
+                "source": "https://github.com/os2display/youtube-bundle/tree/2.0.1",
+                "issues": "https://github.com/os2display/youtube-bundle/issues"
+            },
+            "time": "2019-05-15T06:34:07+00:00"
         },
         {
             "name": "paragonie/random_compat",
