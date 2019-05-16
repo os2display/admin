@@ -29,6 +29,10 @@ security:
       pattern:  ^/(_(profiler|wdt)|css|images|js)/
       security: false
 
+    screen_bundle_public:
+      pattern: ^/screen/public/(.*)
+      security: false
+
     api_screen_activate:
       pattern: ^/api/screen/activate
       security: false

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c93e806b7ec9ffc9627294bb0db9c692",
+    "content-hash": "7f4e2d5c59fce4e1ff71c1f1efddf49f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3006,6 +3006,33 @@
             "time": "2019-02-21T09:06:08+00:00"
         },
         {
+            "name": "os2display/screen-bundle",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/os2display/screen-bundle.git",
+                "reference": "ddc2dc0622b87a52fe58ccb38d58bf7d52b5c442"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/os2display/screen-bundle/zipball/ddc2dc0622b87a52fe58ccb38d58bf7d52b5c442",
+                "reference": "ddc2dc0622b87a52fe58ccb38d58bf7d52b5c442",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Os2Display\\ScreenBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU General Public License v3.0"
+            ],
+            "description": "Os2Display screen",
+            "time": "2019-05-09T08:53:50+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.18",
             "source": {
@@ -4791,16 +4818,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.22",
+            "version": "v3.4.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "907d4d1d1a419663c3c37cfb33dd65c48fa62d1b"
+                "reference": "1b89e7baec9891c323bbf1ec81af77d901fc60c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/907d4d1d1a419663c3c37cfb33dd65c48fa62d1b",
-                "reference": "907d4d1d1a419663c3c37cfb33dd65c48fa62d1b",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/1b89e7baec9891c323bbf1ec81af77d901fc60c9",
+                "reference": "1b89e7baec9891c323bbf1ec81af77d901fc60c9",
                 "shasum": ""
             },
             "require": {
@@ -4942,7 +4969,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2019-02-03T12:23:08+00:00"
+            "time": "2019-04-17T15:57:27+00:00"
         },
         {
             "name": "twig/extensions",

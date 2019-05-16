@@ -25,34 +25,14 @@
         "os2display/campaign-bundle": "~2.0",
         "os2display/core-bundle": "~2.0",
         "os2display/default-template-bundle": "~1.1",
-        "os2display/media-bundle": "~2.0"
+        "os2display/media-bundle": "~2.0",
+        "os2display/screen-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },
-    "repositories": {
-        "os2display/media-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/os2display/media-bundle"
-        },
-        "os2display/core-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/os2display/core-bundle"
-        },
-        "os2display/admin-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/os2display/admin-bundle"
-        },
-        "os2display/default-template-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/os2display/default-template-bundle"
-        },
-        "os2display/campaign-bundle": {
-            "type": "vcs",
-            "url": "https://github.com/os2display/campaign-bundle"
-        }
-    },
+    "repositories": {},
     "scripts": {
         "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
