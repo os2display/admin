@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f4e2d5c59fce4e1ff71c1f1efddf49f",
+    "content-hash": "f863b3927e6b3b6ff755aedc74796960",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2811,16 +2811,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "6832ce64a81021f61ae35b809196ca8ddb978514"
+                "reference": "c377059fdecc0e0515270e2d7a9767a970fc6d7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/6832ce64a81021f61ae35b809196ca8ddb978514",
-                "reference": "6832ce64a81021f61ae35b809196ca8ddb978514",
+                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/c377059fdecc0e0515270e2d7a9767a970fc6d7c",
+                "reference": "c377059fdecc0e0515270e2d7a9767a970fc6d7c",
                 "shasum": ""
             },
             "require": {
@@ -2833,25 +2833,22 @@
                     "Os2Display\\AdminBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display admin",
-            "support": {
-                "source": "https://github.com/os2display/admin-bundle/tree/2.0.0",
-                "issues": "https://github.com/os2display/admin-bundle/issues"
-            },
-            "time": "2019-02-21T08:59:34+00:00"
+            "time": "2019-05-20T11:22:29+00:00"
         },
         {
             "name": "os2display/campaign-bundle",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/campaign-bundle.git",
-                "reference": "86820fde74417bd7fd9bcc04649d35e78d395ce6"
+                "reference": "65e952a72efec8bd09ac5f0a7237fc98f0fe7fed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/campaign-bundle/zipball/86820fde74417bd7fd9bcc04649d35e78d395ce6",
-                "reference": "86820fde74417bd7fd9bcc04649d35e78d395ce6",
+                "url": "https://api.github.com/repos/os2display/campaign-bundle/zipball/65e952a72efec8bd09ac5f0a7237fc98f0fe7fed",
+                "reference": "65e952a72efec8bd09ac5f0a7237fc98f0fe7fed",
                 "shasum": ""
             },
             "require": {
@@ -2872,25 +2869,22 @@
                     "Os2Display\\CampaignBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display campaigns",
-            "support": {
-                "source": "https://github.com/os2display/campaign-bundle/tree/2.0.0",
-                "issues": "https://github.com/os2display/campaign-bundle/issues"
-            },
-            "time": "2019-02-21T09:07:38+00:00"
+            "time": "2019-05-20T11:27:35+00:00"
         },
         {
             "name": "os2display/core-bundle",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/core-bundle.git",
-                "reference": "aa08fe99e745d245d64726f5535b9901e43da1e8"
+                "reference": "e445ceb9bb86a66a30187111185e86b0dada14ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/aa08fe99e745d245d64726f5535b9901e43da1e8",
-                "reference": "aa08fe99e745d245d64726f5535b9901e43da1e8",
+                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/e445ceb9bb86a66a30187111185e86b0dada14ad",
+                "reference": "e445ceb9bb86a66a30187111185e86b0dada14ad",
                 "shasum": ""
             },
             "require": {
@@ -2940,12 +2934,9 @@
                     "Os2Display\\CoreBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display core",
-            "support": {
-                "source": "https://github.com/os2display/core-bundle/tree/2.0.0",
-                "issues": "https://github.com/os2display/core-bundle/issues"
-            },
-            "time": "2019-02-21T09:09:20+00:00"
+            "time": "2019-05-20T11:25:05+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -3007,16 +2998,16 @@
         },
         {
             "name": "os2display/screen-bundle",
-            "version": "1.0.4",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/screen-bundle.git",
-                "reference": "ddc2dc0622b87a52fe58ccb38d58bf7d52b5c442"
+                "reference": "bfb76b709ee6374b8b3a64db2b32e2f1bee79a9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/screen-bundle/zipball/ddc2dc0622b87a52fe58ccb38d58bf7d52b5c442",
-                "reference": "ddc2dc0622b87a52fe58ccb38d58bf7d52b5c442",
+                "url": "https://api.github.com/repos/os2display/screen-bundle/zipball/bfb76b709ee6374b8b3a64db2b32e2f1bee79a9e",
+                "reference": "bfb76b709ee6374b8b3a64db2b32e2f1bee79a9e",
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -3027,10 +3018,10 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GNU General Public License v3.0"
+                "MPL-2.0"
             ],
             "description": "Os2Display screen",
-            "time": "2019-05-09T08:53:50+00:00"
+            "time": "2019-05-20T11:18:14+00:00"
         },
         {
             "name": "paragonie/random_compat",

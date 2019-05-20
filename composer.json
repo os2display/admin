@@ -26,7 +26,7 @@
         "os2display/core-bundle": "~2.0",
         "os2display/default-template-bundle": "~1.1",
         "os2display/media-bundle": "~2.0",
-        "os2display/screen-bundle": "^1.0"
+        "os2display/screen-bundle": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
