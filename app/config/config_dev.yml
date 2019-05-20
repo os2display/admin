@@ -6,6 +6,8 @@ framework:
         resource: '%kernel.project_dir%/app/config/routing_dev.yml'
         strict_requirements: true
     profiler: { only_exceptions: false }
+    session:
+        save_path: '/var/lib/php/sessions'
 
 web_profiler:
     toolbar: '%debug_toolbar%'
