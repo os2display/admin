@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 6.1.0
+
+* Added screen-bundle.
+
 ## 6.0.0
 
 * Upgraded to symfony 3.4.

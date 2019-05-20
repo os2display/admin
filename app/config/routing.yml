@@ -36,3 +36,7 @@ os2display_admin:
 os2display_campaign:
     resource: "@Os2DisplayCampaignBundle/Resources/config/routing.yml"
     prefix:   /
+
+os2display_screen:
+    resource: "@Os2DisplayScreenBundle/Resources/config/routing.yml"
+    prefix:   /
