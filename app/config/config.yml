@@ -1,28 +1,36 @@
-# Import other yml files
 imports:
-  - { resource: parameters.yml }
-  - { resource: security.yml }
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
 
-# Framework Configuration
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: da
+
 framework:
-  translator:      { fallback: "%locale%" }
-  secret:          "%secret%"
-  router:
-    resource: "%kernel.root_dir%/config/routing.yml"
-    strict_requirements: ~
-  form:            ~
-  csrf_protection: ~
-  validation:      { enable_annotations: true }
-  templating:
-    engines: ['twig']
-  default_locale:  "%locale%"
-  trusted_hosts:   ~
-  trusted_proxies: ~
-  session:
-    handler_id:  session.handler.pdo
-    cookie_lifetime: 0
-  fragments:       ~
-  http_method_override: true
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+      handler_id:  session.handler.pdo
+      cookie_lifetime: 0
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+    templating:
+        engines: ['twig', 'php']
 
 services:
   session.handler.pdo:
@@ -35,45 +43,38 @@ services:
 
 # Twig Configuration
 twig:
-  debug:            "%kernel.debug%"
-  strict_variables: "%kernel.debug%"
-  globals:
-    sharing_host: %sharing_host%
-    sharing_enabled: %sharing_enabled%
-    search_host: %search_host%
-    search_host_public: %search_host_public%
-    search_index: %search_index%
-    site_title: %site_title%
-    version: %version%
-    itk_log_version: %itk_log_version%
-    itk_log_error_callback: %itk_log_error_callback%
-    itk_log_log_to_console: %itk_log_log_to_console%
-    itk_log_log_level: %itk_log_log_level%
-
-# Assetic Configuration
-assetic:
-  debug:          "%kernel.debug%"
-  use_controller: false
-  bundles:        [ ]
-  filters:
-    cssrewrite: ~
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        sharing_host: '%sharing_host%'
+        sharing_enabled: '%sharing_enabled%'
+        search_host: '%search_host%'
+        search_host_public: %search_host_public%
+        search_index: '%search_index%'
+        site_title: '%site_title%'
+        version: '%version%'
+        itk_log_version: '%itk_log_version%'
+        itk_log_error_callback: '%itk_log_error_callback%'
+        itk_log_log_to_console: '%itk_log_log_to_console%'
+        itk_log_log_level: '%itk_log_log_level%'
 
 # Doctrine Configuration
 doctrine:
-  dbal:
-    driver:   "%database_driver%"
-    host:     "%database_host%"
-    port:     "%database_port%"
-    dbname:   "%database_name%"
-    user:     "%database_user%"
-    password: "%database_password%"
-    server_version: "%database_server_version%"
-    charset:  UTF8
-    types:
-      json: Sonata\Doctrine\Types\JsonType
-  orm:
-      auto_generate_proxy_classes: %kernel.debug%
-      auto_mapping: true
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        server_version: "%database_server_version%"
+        charset:  UTF8
+        types:
+          json: Sonata\Doctrine\Types\JsonType
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -90,15 +91,13 @@ fos_user:
   firewall_name: main
   user_class: Os2Display\CoreBundle\Entity\User
   from_email:
-    address: "%mailer_from_email%"
-    sender_name: "%mailer_from_name%"
+    address: '%mailer_from_email%'
+    sender_name: '%mailer_from_name%'
 
-# Sonata Block Configuration
-sonata_block:
-  default_contexts: [cms]
-  blocks:
-    sonata.admin.block.admin_list:
-      contexts:   [admin]
+sonata_core:
+    form:
+        mapping:
+            enabled: false
 
 # Sonata Media Configuration
 sonata_media:
@@ -116,10 +115,10 @@ sonata_media:
         portrait_small: { height: 150 }
   cdn:
     server:
-      path: %absolute_path_to_server%/uploads/media
+      path: '%absolute_path_to_server%/uploads/media'
   filesystem:
     local:
-      directory:  %kernel.root_dir%/../web/uploads/media
+      directory:  '%kernel.root_dir%/../web/uploads/media'
       create:     false
   class:
     media: Os2Display\MediaBundle\Entity\Media
