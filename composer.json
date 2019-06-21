@@ -1,85 +1,79 @@
 {
   "name": "os2display/admin",
-  "license": "GNU General Public License v3.0",
+  "license": "Mozilla Public License Version 2.0",
   "type": "project",
   "description": "The Os2Display distribution",
   "autoload": {
-    "psr-0": {
-      "": "src/",
-      "SymfonyStandard": "app/"
-    },
     "psr-4": {
       "Kkos2\\KkOs2DisplayIntegrationBundle\\": "src/kkos2-display-bundle"
-    }
+    },
+    "classmap": [
+      "app/AppKernel.php",
+      "app/AppCache.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    },
+    "files": [
+      "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+    ]
   },
   "require": {
-    "os2display/admin-bundle": "^1.2",
-    "os2display/default-template-bundle": "^1.1",
-    "incenteev/composer-parameter-handler": "^2.0",
-    "sonata-project/admin-bundle": "^2.0",
-    "sonata-project/doctrine-orm-admin-bundle": "^2.0",
-    "os2display/core-bundle": "^1.1",
+    "php": ">=7.2",
+    "os2display/admin-bundle": "~2.0",
+    "os2display/campaign-bundle": "~2.0",
+    "os2display/core-bundle": "~2.0",
+    "os2display/default-template-bundle": "~1.1",
+    "os2display/media-bundle": "~2.0",
+    "os2display/screen-bundle": "~1.0",
     "reload/os2display-slide-tools": "^1.0",
     "cweagans/composer-patches": "^1.0",
     "os2display/vimeo-bundle": "^2.0",
     "os2display/youtube-bundle": "^2.0"
   },
   "require-dev": {
-    "sensio/generator-bundle": "^2.3",
-    "behat/mink-extension": "^2.2",
-    "behat/symfony2-extension": "^2.1",
-    "behat/mink-selenium2-driver": "^1.3",
-    "behat/mink-browserkit-driver": "^1.3",
-    "behatch/contexts": "^2.6"
+    "sensio/generator-bundle": "^3.0",
+    "symfony/phpunit-bridge": "^3.0"
   },
-  "repositories": {
-    "os2display/vimeo-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/os2display/vimeo-bundle"
-    },
-    "os2display/youtube-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/os2display/youtube-bundle"
-    }
-  },
+  "repositories": {},
   "scripts": {
-    "post-root-package-install": [
-      "SymfonyStandard\\Composer::hookRootPackageInstall"
+    "symfony-scripts": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
     ],
     "post-install-cmd": [
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+      "@symfony-scripts"
     ],
     "post-update-cmd": [
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+      "@symfony-scripts"
     ]
   },
   "config": {
-    "bin-dir": "bin"
+    "sort-packages": true
   },
   "extra": {
     "symfony-app-dir": "app",
+    "symfony-bin-dir": "bin",
+    "symfony-var-dir": "var",
     "symfony-web-dir": "web",
-    "symfony-assets-install": "symlink",
+    "symfony-tests-dir": "tests",
+    "symfony-assets-install": "relative",
     "incenteev-parameters": {
       "file": "app/config/parameters.yml"
     },
-    "branch-alias": {
-      "dev-master": "2.5-dev"
-    },
-    "symfony": {
-      "require": "2.8.*"
-    },
+    "branch-alias": null,
     "patches": {
       "os2display/admin-bundle": {
         "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch"
+      },
+      "reload/os2display-slide-tools": {
+        "Quote service reference": "patches/quote-service-reference.patch"
       }
     }
   }

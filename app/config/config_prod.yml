@@ -2,20 +2,15 @@ imports:
     - { resource: config.yml }
 
 monolog:
-    channels: ['zencoder']
     handlers:
         main:
-            type:         fingers_crossed
+            type: fingers_crossed
             action_level: error
-            handler:      nested
-        zencoder:
-            type:   stream
-            path:   "%kernel.logs_dir%/%kernel.environment%.zencoder.log"
-            level:  debug
-            channels: [zencoder]
+            handler: nested
         nested:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
         console:
-            type:  console
+            type: console
+            process_psr_3_messages: false
