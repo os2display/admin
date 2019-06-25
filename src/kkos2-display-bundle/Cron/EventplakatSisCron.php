@@ -5,7 +5,9 @@ namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Mock\MockEventplakatData;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\PlakatEventFeedData;
+use Psr\Log\LoggerInterface;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class EventplakatSisCron implements EventSubscriberInterface {
@@ -19,10 +21,10 @@ class EventplakatSisCron implements EventSubscriberInterface {
    */
   private $container;
 
-   public function __construct($container)
+   public function __construct(ContainerInterface $container, LoggerInterface $logger)
   {
     $this->container = $container;
-    $this->logger = $this->container->get('logger');
+    $this->logger = $logger;
   }
 
   public static function getSubscribedEvents()

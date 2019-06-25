@@ -4,6 +4,7 @@ parameters:
     #parameter_name: value
 
 services:
+    Monolog\Formatter\JsonFormatter: ~
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

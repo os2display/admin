@@ -70,10 +70,11 @@
     "branch-alias": null,
     "patches": {
       "os2display/admin-bundle": {
-        "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch"
+        "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
+        "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch"
       },
       "reload/os2display-slide-tools": {
-        "Quote service reference": "patches/quote-service-reference.patch"
+        "Use autowiring for services": "patches/slides-in-slides-autowire.patch"
       }
     }
   }

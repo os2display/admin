@@ -1,0 +1,48 @@
+diff --git a/Resources/config/services.yml b/Resources/config/services.yml
+index 79759a5..f078543 100644
+--- a/Resources/config/services.yml
++++ b/Resources/config/services.yml
+@@ -1,6 +1,7 @@
+ services:
++  _defaults:
++    autowire: true
+   reload.ddbos2display:
+     class: Reload\Os2DisplaySlideTools\Service\SlidesInSlideDataCron
+-    arguments: [@service_container]
+     tags:
+       - { name: kernel.event_listener, event: ik.cron, method: onCron }
+diff --git a/Service/SlidesInSlideDataCron.php b/Service/SlidesInSlideDataCron.php
+index 8892e88..105f238 100644
+--- a/Service/SlidesInSlideDataCron.php
++++ b/Service/SlidesInSlideDataCron.php
+@@ -3,8 +3,10 @@
+ namespace Reload\Os2DisplaySlideTools\Service;
+ 
+ use Os2Display\CoreBundle\Events\CronEvent;
++use Psr\Log\LoggerInterface;
+ use Reload\Os2DisplaySlideTools\Slides\SlidesInSlide;
+ use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
++use Symfony\Component\DependencyInjection\ContainerInterface;
+ 
+ class SlidesInSlideDataCron {
+ 
+@@ -17,10 +19,10 @@ class SlidesInSlideDataCron {
+    */
+   private $container;
+ 
+-  public function __construct($container)
++  public function __construct(ContainerInterface $container, LoggerInterface $logger)
+   {
+     $this->container = $container;
+-    $this->logger = $this->container->get('logger');
++    $this->logger = $logger;
+   }
+ 
+   public function onCron(CronEvent $event)
+@@ -60,4 +62,4 @@ class SlidesInSlideDataCron {
+     }
+   }
+   
+-}
+\ No newline at end of file
++}
