@@ -19,7 +19,8 @@ fi
 
 echo "Copying release into /release"
 cp -r /var/www/admin /release/
-chown -R www-data:www-data /release/admin/app/logs /release/admin/app/cache /release/admin/var
+mkdir -p /release/admin/var
+chown -R www-data:www-data /release/admin/var
 end=`date +%s`
 runtime=$((end-start))
 echo "Release copy completed in ${runtime} seconds"

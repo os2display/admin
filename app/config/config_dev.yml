@@ -19,7 +19,7 @@ monolog:
             handler: nested
         nested:
             type: stream
-            path: "/tmp/stdout"
+            path:  'php://stdout'
             level: info
         console:
             type: console

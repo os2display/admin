@@ -9,7 +9,7 @@ monolog:
             handler: nested
         nested:
             type: stream
-            path: "/tmp/stdout"
+            path: 'php://stdout'
             level: info
             formatter: Monolog\Formatter\JsonFormatter
         console:
