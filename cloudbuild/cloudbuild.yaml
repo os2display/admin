@@ -53,7 +53,7 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     dir: 'os2display-admin'
     entrypoint: 'bash'
-    args: ["-c", "echo \"${BRANCH_NAME}-$(git rev-list --count ${COMMIT_SHA})\" > ../.BUILD_TAG"]
+    args: ["-c", "echo \"$(echo ${BRANCH_NAME} | tr / _)-$(git rev-list --count ${COMMIT_SHA})\" > ../.BUILD_TAG"]
 
   # Tag the current sha with the build id and push it back so that we can
   # build an image off of it.
