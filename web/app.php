@@ -9,14 +9,14 @@ if (PHP_VERSION_ID < 70000) {
 }
 
 // Default to a non-debugging prod-environment.
-$app_env = getenv('APP_ENV') ? getenv('APP_ENV') : 'prod';
-$app_debug = getenv('APP_DEBUG') ? getenv('APP_DEBUG') : '0';
+$symfony_env = getenv('SYMFONY_ENV') ? getenv('SYMFONY_ENV') : 'prod';
+$symfony_debug = getenv('SYMFONY_DEBUG') ? getenv('SYMFONY_DEBUG') : '0';
 // Enable debugging if explicitly asked to do so.
-if ($app_debug) {
+if ($symfony_debug) {
   Debug::enable();
 }
 
-$kernel = new AppKernel($app_env, $app_debug);
+$kernel = new AppKernel($symfony_env, $symfony_debug);
 if (PHP_VERSION_ID < 70000) {
   $kernel->loadClassCache();
 }
