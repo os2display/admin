@@ -4,13 +4,19 @@ namespace Kkos2\KkOs2DisplayIntegrationBundle\Slides;
 
 
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\JsonFetcher;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class ColorfulMessagesFeedData
 {
 
   /**
-   * @var \Symfony\Bridge\Monolog\Logger $logger
+   * List of fields that where missing when importing data.
+   * @var array missing
+   */
+  protected $missing = [];
+
+  /**
+   * @var \Psr\Log\LoggerInterface $logger
    */
   private $logger;
 
@@ -18,22 +24,37 @@ class ColorfulMessagesFeedData
 
   private $dataUrl;
 
-  public function __construct(ContainerInterface $container, $dataUrl, $numItems)
+  public function __construct(LoggerInterface $logger, $dataUrl, $numItems)
   {
-    $this->container = $container;
-    $this->logger = $this->container->get('logger');
+    $this->logger = $logger;
     $this->dataUrl = $dataUrl;
     $this->numItems = $numItems;
   }
 
-
   public function getColorfulMessages()
   {
     $json = JsonFetcher::fetch($this->dataUrl);
-    return  array_map([$this, 'extractData'], $json);
+    $data = array_map([$this, 'extractData'], $json);
+    if (count($this->missing) > 0) {
+      $this->logger->warning(
+        'Missing fields while processing ' . $this->dataUrl
+      );
+      foreach ($this->missing as $missing) {
+        $this->logger->warning('Missing ' . implode(', ', $missing));
+      }
+    }
+
+    return $data;
   }
 
   private function extractData(array $data) {
+    $expected_keys = ['field_display_institution_spot', 'title_field', 'body', 'field_background_color'];
+    $missing = array_diff($expected_keys, array_keys($data));
+    if (count($missing) > 0){
+      $this->missing[] = $missing;
+      return [];
+    }
+
     return [
       'place' => trim($data['field_display_institution_spot']),
       'title' => trim($data['title_field']),

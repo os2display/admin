@@ -63,14 +63,23 @@ class AppKernel extends Kernel
         return __DIR__;
     }
 
+    protected function getEnvBase($environment) {
+      if ($environment === 'dev') {
+        return '/var/symfony';
+      }
+      else {
+        return dirname(__DIR__).'/var';
+      }
+    }
+
     public function getCacheDir()
     {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+        return $this->getEnvBase($this->getEnvironment()) . '/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return dirname(__DIR__).'/var/logs';
+        return $this->getEnvBase($this->getEnvironment()) . '/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

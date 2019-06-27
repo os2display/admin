@@ -4,23 +4,22 @@ namespace Kkos2\KkOs2DisplayIntegrationBundle\Slides;
 
 
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\JsonFetcher;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class PlakatEventFeedData extends EventData
 {
   /**
-   * @var \Symfony\Bridge\Monolog\Logger $logger
+   * @var \Psr\Log\LoggerInterface $logger
    */
-  private $logger;
+  protected $logger;
 
   private $numItems;
 
   private $dataUrl;
 
-  public function __construct(ContainerInterface $container, $dataUrl, $numItems)
+  public function __construct(LoggerInterface $logger, $dataUrl, $numItems)
   {
-    $this->container = $container;
-    $this->logger = $this->container->get('logger');
+    $this->logger = $logger;
     $this->dataUrl = $dataUrl;
     $this->numItems = $numItems;
   }
@@ -28,7 +27,14 @@ class PlakatEventFeedData extends EventData
   public function getPlakatEvents()
   {
     $json = JsonFetcher::fetch($this->dataUrl);
-    return  array_map([$this, 'extractData'], $json);
-  }
+    $events = array_map([$this, 'extractData'], $json);
+    if ($this->hasMissing()) {
+      $this->logger->warning(
+        'Missing fields while processing ' . $this->dataUrl
+      );
+      $this->logStatus($this->logger);
+    }
 
+    return $events;
+  }
 }

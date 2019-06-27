@@ -7,7 +7,6 @@ use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Mock\MockEventplakatData;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\PlakatEventFeedData;
 use Psr\Log\LoggerInterface;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class EventplakatSisCron implements EventSubscriberInterface {
@@ -16,14 +15,9 @@ class EventplakatSisCron implements EventSubscriberInterface {
    * @var \Symfony\Bridge\Monolog\Logger $logger
    */
   private $logger;
-  /**
-   * @var \Symfony\Component\DependencyInjection\ContainerInterface $container
-   */
-  private $container;
 
-   public function __construct(ContainerInterface $container, LoggerInterface $logger)
+   public function __construct(LoggerInterface $logger)
   {
-    $this->container = $container;
     $this->logger = $logger;
   }
 
@@ -47,7 +41,7 @@ class EventplakatSisCron implements EventSubscriberInterface {
     $numItems = $slide->getOption('sis_total_items', 12);
     $url = $slide->getOption('datafeed_url', '');
 
-    $fetcher = new PlakatEventFeedData($this->container, $url, $numItems);
+    $fetcher = new PlakatEventFeedData($this->logger, $url, $numItems);
     $events = $fetcher->getPlakatEvents();
     $slide->setSubslides($events);
   }

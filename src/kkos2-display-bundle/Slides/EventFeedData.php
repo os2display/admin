@@ -2,25 +2,23 @@
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Slides;
 
-use DateTime;
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\JsonFetcher;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class EventFeedData extends EventData
 {
   /**
-   * @var \Symfony\Bridge\Monolog\Logger $logger
+   * @var \Psr\Log\LoggerInterface $logger
    */
-  private $logger;
+  protected $logger;
 
   private $numItems;
 
   private $dataUrl;
 
-  public function __construct(ContainerInterface $container, $dataUrl, $numItems)
+  public function __construct(LoggerInterface $logger, $dataUrl, $numItems)
   {
-    $this->container = $container;
-    $this->logger = $this->container->get('logger');
+    $this->logger = $logger;
     $this->dataUrl = $dataUrl;
     $this->numItems = $numItems;
   }
@@ -29,7 +27,15 @@ class EventFeedData extends EventData
   {
     $fetched = JsonFetcher::fetch($this->dataUrl);
     $data = array_slice($fetched, 0, $this->numItems);
-    return  array_map([$this, 'extractData'], $data);
+    $events = array_map([$this, 'extractData'], $data);
+    if ($this->hasMissing()) {
+      $this->logger->warning(
+        'Missing fields while processing ' . $this->dataUrl
+      );
+      $this->logStatus($this->logger);
+    }
+
+    return $events;
   }
 
 }

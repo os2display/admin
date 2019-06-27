@@ -43,6 +43,10 @@
       "id": "feed-url-editor"
     },
     {
+      "name": "Slides in slides",
+      "id": "slides-in-slide-config-editor"
+    },
+    {
       "name": "Baggrundsfarve",
       "id": "bg-color-editor"
     },

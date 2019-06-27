@@ -16,14 +16,9 @@ class EventsSisCron implements EventSubscriberInterface
    * @var \Symfony\Bridge\Monolog\Logger $logger
    */
   private $logger;
-  /**
-   * @var \Symfony\Component\DependencyInjection\ContainerInterface $container
-   */
-  private $container;
 
-  public function __construct(ContainerInterface $container, LoggerInterface $logger)
+  public function __construct(LoggerInterface $logger)
   {
-    $this->container = $container;
     $this->logger = $logger;
   }
 
@@ -42,7 +37,7 @@ class EventsSisCron implements EventSubscriberInterface
     $numItems = $slide->getOption('sis_total_items', 12);
     $url = $slide->getOption('datafeed_url', '');
 
-    $fetcher = new EventFeedData($this->container, $url, $numItems);
+    $fetcher = new EventFeedData($this->logger, $url, $numItems);
     $events = $fetcher->getEvents();
     $slide->setSubslides($events);
   }
