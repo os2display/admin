@@ -47,7 +47,7 @@ class EventplakatSisCron implements EventSubscriberInterface {
     $numItems = $slide->getOption('sis_total_items', 12);
     $url = $slide->getOption('datafeed_url', '');
 
-    $fetcher = new PlakatEventFeedData($this->container, $url, $numItems);
+    $fetcher = new PlakatEventFeedData($this->logger, $url, $numItems);
     $events = $fetcher->getPlakatEvents();
     $slide->setSubslides($events);
   }
