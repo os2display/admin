@@ -1,0 +1,86 @@
+# Assumptions
+# - We're trigged on a branch (we're going to prefix a build-id with the name of it).
+steps:
+  # Decrypt the ssh key we need for accessing github.
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - kms
+      - decrypt
+      - --ciphertext-file=cloudbuild/id_rsa.enc
+      - --plaintext-file=/root/.ssh/id_rsa
+      - --location=global
+      - --keyring=cloud-build-keyring
+      - --key=github-key
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+
+  # Set up git with key and domain.
+  # From now on we mount the ssh-volume into any step that needs privileged
+  # access to the repo.
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        chmod 600 /root/.ssh/id_rsa
+        cat <<EOF >/root/.ssh/config
+        Hostname github.com
+        IdentityFile /root/.ssh/id_rsa
+        EOF
+        mv cloudbuild/known_hosts /root/.ssh/known_hosts
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+
+  # Clone the original source-repo and get the revision we where trigged on checked out.
+  - name: 'gcr.io/cloud-builders/git'
+    args:
+      - clone
+      - git@github.com:kkos2/os2display-admin.git
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+  - name: 'gcr.io/cloud-builders/git'
+    dir: 'os2display-admin'
+    args:
+      - reset
+      - --hard
+      - $COMMIT_SHA
+
+  # Generate build id by counting the number of comments leading up to the current
+  # revision, and prefixing it with the name of the branch that triggered us.
+  - name: 'gcr.io/cloud-builders/git'
+    dir: 'os2display-admin'
+    entrypoint: 'bash'
+    args: ["-c", "echo \"${BRANCH_NAME}-$(git rev-list --count ${COMMIT_SHA})\" > ../.BUILD_TAG"]
+
+  # Tag the current sha with the build id and push it back so that we can
+  # build an image off of it.
+  - name: 'gcr.io/cloud-builders/git'
+    dir: 'os2display-admin'
+    entrypoint: 'bash'
+    args: ["-c", "git tag \"$(cat ../.BUILD_TAG)\""]
+  - name: 'gcr.io/cloud-builders/git'
+    dir: 'os2display-admin'
+    entrypoint: 'bash'
+    args: ["-c", "git push origin \"$(cat ../.BUILD_TAG)\""]
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+
+  # The Dockerfile here uses this git builder as its base image.
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: 'cloudbuild'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - 'docker build -t "eu.gcr.io/os2display-kff/admin-release:$(cat ../.BUILD_TAG)" --build-arg builder_image=reload/os2display-admin-php:reload-1.1.0 --build-arg revision=$(cat ../.BUILD_TAG) --build-arg repository="https://github.com/kkos2/os2display-admin.git" .'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: 'cloudbuild'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - 'docker push "eu.gcr.io/os2display-kff/admin-release:$(cat ../.BUILD_TAG)"'
+
