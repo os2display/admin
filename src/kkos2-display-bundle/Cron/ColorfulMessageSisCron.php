@@ -6,7 +6,6 @@ use Kkos2\KkOs2DisplayIntegrationBundle\Slides\ColorfulMessagesFeedData;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Mock\MockColorfulMessagesData;
 use Psr\Log\LoggerInterface;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ColorfulMessageSisCron implements EventSubscriberInterface {
@@ -15,19 +14,14 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
    * @var \Symfony\Bridge\Monolog\Logger $logger
    */
   private $logger;
-  /**
-   * @var \Symfony\Component\DependencyInjection\ContainerInterface $container
-   */
-  private $container;
 
   /**
    * @var int $numberOfEvents
    */
   private $numberOfEvents;
 
-  public function __construct(ContainerInterface $container, LoggerInterface $logger)
+  public function __construct(LoggerInterface $logger)
   {
-    $this->container = $container;
     $this->logger = $logger;
   }
 
@@ -51,7 +45,7 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
     $numEvents = $slide->getOption('sis_total_items', 12);
     $url = $slide->getOption('datafeed_url', '');
 
-    $data = new ColorfulMessagesFeedData($this->container, $url, $numEvents);
+    $data = new ColorfulMessagesFeedData($this->logger, $url, $numEvents);
     $slide->setSubslides($data->getColorfulMessages());
   }
 
