@@ -36,6 +36,9 @@ class EventsSisCron implements EventSubscriberInterface
     $slide = $event->getSlidesInSlide();
     $numItems = $slide->getOption('sis_total_items', 12);
     $url = $slide->getOption('datafeed_url', '');
+    if ($slide->getOption('datafeed_display')) {
+      $url .= '?display=' . $slide->getOption('datafeed_display');
+    }
 
     $fetcher = new EventFeedData($this->logger, $url, $numItems);
     $events = $fetcher->getEvents();

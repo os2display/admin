@@ -44,6 +44,9 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
     $slide->setOption('sis_items_pr_slide', 1);
     $numEvents = $slide->getOption('sis_total_items', 12);
     $url = $slide->getOption('datafeed_url', '');
+    if ($slide->getOption('datafeed_display')) {
+      $url .= '?display=' . $slide->getOption('datafeed_display');
+    }
 
     $data = new ColorfulMessagesFeedData($this->logger, $url, $numEvents);
     $slide->setSubslides($data->getColorfulMessages());
