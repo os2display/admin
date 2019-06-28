@@ -39,7 +39,7 @@ COPY --chown=root:root --from=builder /var/www/admin /var/www/admin
 RUN mkdir -p web/uploads
 RUN mkdir -p var/cache
 RUN mkdir -p var/logs
-RUN chown -R www-data:www-data web/uploads var/cache app/logs
+RUN chown -R www-data:www-data web/uploads var/cache var/logs
 RUN chmod -R g+w web/uploads var/cache var/logs
 
 RUN mkdir /var/www/admin/tools
