@@ -5,7 +5,8 @@
   "description": "The Os2Display distribution",
   "autoload": {
     "psr-4": {
-      "Kkos2\\KkOs2DisplayIntegrationBundle\\": "src/kkos2-display-bundle"
+      "Kkos2\\KkOs2DisplayIntegrationBundle\\": "src/kkos2-display-bundle",
+      "Os2Display\\TwentyThreeBundle\\": "src/twentythree"
     },
     "classmap": [
       "app/AppKernel.php",

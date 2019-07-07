@@ -1,0 +1,35 @@
+{
+  "id": "twentythree",
+  "tags": [
+    "twentythree"
+  ],
+  "type": "slide",
+  "name": "TwentyThree video",
+  "icon": "twentythree.png",
+  "paths": {
+    "live": "twentythree.html",
+    "edit": "twentythree-preview.html",
+    "preview": "twentythree-preview.html",
+    "css": "twentythree.css",
+    "js": "bundles/os2displaytwentythree/templates/twentythree/slides/twentythree/twentythree.js"
+  },
+  "orientation": "landscape",
+  "slide_type": "twentythree",
+  "media_type": "image",
+  "script_id": "twentythree",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "id": null,
+    "sound": 0,
+    "domain": "video.kk.dk"
+  },
+  "tools": [
+    {
+      "name": "TwentyThree",
+      "template": "bundles/os2displaytwentythree/apps/toolsModule/twentythree-tool.html"
+    }
+  ]
+}
