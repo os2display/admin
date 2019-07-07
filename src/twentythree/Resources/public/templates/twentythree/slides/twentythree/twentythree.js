@@ -35,8 +35,9 @@ if (!window.slideFunctions['twentythree']) {
         // Force autoplay in case the player is not ready when to do the
         // set('playing');
         slide.glueFrame.bind("player:video:ready", function(eventName, videoApp) {
-            region.itkLog.info('Forcing autoplay');
-            videoApp.set('playing', true);
+            region.itkLog.info('Player ready, starting playback');
+            slide.glueFrame.set('playing', true);
+            triggerProgress(slide.glueFrame, region);
         });
 
         // Continue to next slide when the player ends.
@@ -53,8 +54,9 @@ if (!window.slideFunctions['twentythree']) {
         "use strict";
         glueFrame.get('duration', function(duration){
             glueFrame.get('currentTime', function(currentTime){
-                console.log("Setting duration " + (duration - currentTime));
-                region.progressBar.start(duration - currentTime);
+                var progressWidthSec = Math.floor(duration - currentTime);
+                console.log("Setting duration " + (progressWidthSec));
+                region.progressBar.start(progressWidthSec);
             });
         });
     };
