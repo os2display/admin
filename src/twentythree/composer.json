@@ -1,0 +1,12 @@
+{
+    "name": "os2display/twentythree-bundle",
+    "description": "Os2Display twentythree template.",
+    "type": "symfony-bundle",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Os2Display\\TwentyThreeBundle\\": ""
+        }
+    }
+}

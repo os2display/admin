@@ -1,0 +1,15 @@
+.twentythree {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.twentythree-iframe-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.twentythree-iframe-wrapper > iframe {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,34 @@
+<div class="edit-menu--background twentythree-editor" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="close()">
+      <div class="svg-clickable">
+        <object data="bundles/os2displaydefaulttemplate/assets/images/cancel.svg" type="image/svg+xml">
+          <!-- Fallback (ie8)-->
+          <img src="bundles/os2displaydefaulttemplate/assets/images/cancel.png"/>
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--background-page">
+      <div class="edit-menu--background-page-inner">
+        <h2 class="edit-menu--iframe-header">Indstillinger</h2>
+        <div class="edit-menu--iframe-content">
+          <label for="twentythree_id" class="edit-menu--iframe-label">TwentyThree video file id</label>
+          <input id="twentythree_id" name="twentythree_id" type="number" data-ng-model="slide.options.id" min="0" step="1">
+          <i>The numeric file id of your video. Can usually be found in the url of the video, or as a "fid" url-parameter of the videos embed-code</i>
+        </div>
+        <div class="edit-menu--iframe-content">
+          <label for="twentythree_domain" class="edit-menu--iframe-label">TwentyThree domain</label>
+          <input id="twentythree_domain" name="twentythree_id" type="text" data-ng-model="slide.options.domain">
+          <i>The domain of your twentythree video. Either a custom domain (eg. myvideos.com) or a 23video.com subdomain (myvideos.23video.com)</i>
+        </div>
+        <div class="edit-menu--iframe-content twentythree-volume">
+          <label for="twentythree_volume">Slå lyd til:</label>
+          <input type="checkbox" id="twentythree_volume"
+                 data-ng-model="slide.options.sound">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
