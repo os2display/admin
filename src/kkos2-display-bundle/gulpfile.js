@@ -52,7 +52,9 @@ const compileSlidesJs = () => {
       `${slidesPath}/${item}/${fileName}`
     ])
       .pipe(concat(fileName))
-      .pipe(uglify())
+      .pipe(uglify()).on('error', function(e){
+        console.log(e);
+      })
       .pipe(rename({extname: ".min.js"}))
       .pipe(gulp.dest(distJs));
   });
