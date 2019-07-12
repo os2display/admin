@@ -75,7 +75,8 @@
         "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch"
       },
       "reload/os2display-slide-tools": {
-        "Use autowiring for services": "patches/slides-in-slides-autowire.patch"
+        "Use autowiring for services": "patches/slides-in-slides-autowire.patch",
+        "Improve retry-logic during slide-update": "patches/slides-in-slides-retry-logic.patch"
       }
     }
   }
