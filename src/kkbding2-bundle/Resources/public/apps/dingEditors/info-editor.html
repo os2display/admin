@@ -1,0 +1,39 @@
+<div
+  class="edit-menu"
+  role="banner"
+>
+  <div class="edit-menu--inner is-visible">
+    <div
+      class="edit-menu--toggle-icon"
+      data-ng-click="close()"
+    >X</div>
+    <form class="edit-menu--form">
+      <label class="edit-menu--label">Info overskrift</label>
+      <input
+        class="medium-bottom-margin"
+        type="text"
+        ng-model="slide.options.infoheader"
+      >
+      <label class="edit-menu--label">Info linjer</label>
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.info1"
+      >
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.info2"
+      >
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.info3"
+      >
+      <input
+        type="text"
+        ng-model="slide.options.info4"
+      >
+    </form>
+  </div>
+</div>

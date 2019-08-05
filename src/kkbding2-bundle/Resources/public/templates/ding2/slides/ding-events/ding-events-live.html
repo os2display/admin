@@ -1,0 +1,40 @@
+<div class="ding-events" data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+
+  <div class="ding-events--text-wrapper">
+    <div class="ding-events--text-inner">
+      <div class="ding-events" data-ng-style="{'font-size': theStyle.responsiveFontsize, 'width': theStyle.width, 'height': theStyle.height, 'background-color': ikSlide.options.bgcolor, 'background-image': 'url(' + ikSlide.currentImage + ')'}">
+        <div class="ding-events--text-wrapper" data-ng-style="{'background-color': ikSlide.options.bgcolor, 'color': ikSlide.options.textcolor}">
+
+          <div class="ding-events--headline-wrapper" data-ng-style="{'border-color': ikSlide.options.textcolor}">
+            <div class="ding-events--headline">Kommende arrangementer
+                <span ng-if="ikSlide.event_settings.event_slides.length">
+                    ({{ikSlide.event_settings.currentSlide + 1}}/{{ikSlide.event_settings.event_slides.length}})
+                </span>
+            </div>
+          </div>
+            <ul ng-if="!ikSlide.event_settings.event_slides.length" class="ding-events--events">
+                <li class="ding-events--event">Vi har ingen arrangementer planlagt lige nu</li>
+            </ul>
+
+            <div class="ding-events--events-wrapper" ng-repeat="slide in ikSlide.event_settings.event_slides track by $index" data-ng-show="ikSlide.event_settings.currentSlide === $index">
+               <div ng-repeat="group in slide">
+                 <div class="ding-events--date-heading">
+                   {{group.headline}}
+                 </div>
+                 <ul class="ding-events--events">
+                     <li class="ding-events--event" ng-repeat="event in group.events">
+                         <div ng-if="!event.all_day" class="ding-events--event ding-events--event-interval">{{event.start_time}} - {{event.end_time}}</div>
+                         <div ng-if="event.all_day" class="ding-events--event ding-events--event-interval">Hele dagen</div>
+                         <div class="ding-events--event ding-events--event-title">{{event.title}}</div>
+                     </li>
+                 </ul>
+               </div>
+           </div>
+        </div>
+      </div>
+    </div>
+
+  <img class="ding-events--logo" data-ng-show="ikSlide.currentLogo" data-ng-style="{'top':ikSlide.options.logopos.top, 'bottom':ikSlide.options.logopos.bottom, 'left':ikSlide.options.logopos.left, 'right':ikSlide.options.logopos.right, 'width': ikSlide.options.logosize}" data-ng-src="{{ikSlide.currentLogo}}" />
+
+  </div>
+</div>

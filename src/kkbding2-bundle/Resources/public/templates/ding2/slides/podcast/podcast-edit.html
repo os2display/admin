@@ -1,0 +1,47 @@
+<div
+  class="podcast"
+  data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height}"
+>
+  <div class="podcast--header-wrapper">
+    <div
+      class="podcast--header has-placeholder"
+      data-ng-style="{'color': ikSlide.options.headercolor}"
+    >
+      <div>{{ikSlide.options.header1}}</div>
+      <div>{{ikSlide.options.header2}}</div>
+      <div>{{ikSlide.options.header3}}</div>
+    </div>
+  </div>
+
+  <div class="podcast--info-wrapper">
+    <div
+      class="podcast--image"
+      data-ng-style="
+        {
+          'background-image': 'url(' + ikSlide.currentImage + ')',
+          'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'cover',
+          'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
+          'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center'
+        }"
+    ></div>
+    <div
+      class="podcast--info-header"
+      spellcheck="false"
+      data-ng-style="{'border-color': ikSlide.options.headercolor}"
+    >{{ikSlide.options.infoheader}}</div>
+    <div class="podcast--info has-placeholder">
+      <div>{{ikSlide.options.info1}}</div>
+      <div>{{ikSlide.options.info2}}</div>
+      <div>{{ikSlide.options.info3}}</div>
+      <div>{{ikSlide.options.info4}}</div>
+    </div>
+  </div>
+
+  <div class="podcast--footer-wrapper">
+    <div class="podcast--footer">{{ikSlide.options.reference}}</div>
+    <div
+      class="podcast--footer-image"
+      data-ng-style="ikSlide.currentLogo ? {'background-image': 'url(' + ikSlide.currentLogo + ')'} : {'background-image': 'url(' + ikSlide.options.logo + ')'}"
+    ></div>
+  </div>
+</div>
