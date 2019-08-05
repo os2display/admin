@@ -16,7 +16,8 @@
     "incenteev/composer-parameter-handler": "^2.0",
     "sonata-project/admin-bundle": "^2.0",
     "sonata-project/doctrine-orm-admin-bundle": "^2.0",
-    "kdb/os2display-kkbding2-bundle": "^1.0"
+    "kdb/os2display-kkbding2-bundle": "^1.0",
+    "cweagans/composer-patches": "~1.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "^2.3",
@@ -84,6 +85,11 @@
     },
     "branch-alias": {
       "dev-master": "2.5-dev"
+    },
+    "patches": {
+      "os2display/admin-bundle": {
+        "Switch to supporting a separate configuration for the public search hostname": "patches/admin-bundle-public-search.patch"
+      }
     }
   }
 }
