@@ -7,6 +7,9 @@
     "psr-0": {
       "": "src/",
       "SymfonyStandard": "app/"
+    },
+    "psr-4": {
+      "Kkb\\Ding2IntegrationBundle\\": "src/kkbding2-bundle"
     }
   },
   "require": {
