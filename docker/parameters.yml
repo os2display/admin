@@ -43,3 +43,4 @@ parameters:
     ding_opening_hours_category:
         libraryservice: 14291
         citizenservices: 14292
+    mailer_port: 1025
