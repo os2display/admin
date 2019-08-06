@@ -2,10 +2,6 @@
     "name": "kdb/os2display-kkbding2-bundle",
     "description": "Os2Display Ding2 integration.",
     "type": "symfony-bundle",
-    "require": {
-        "os2display/admin-bundle": "^1.0.10",
-        "os2display/core-bundle": "^1.0"
-    },
     "autoload": {
         "psr-4": {
             "Kkb\\Ding2IntegrationBundle\\": ""

@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new Os2Display\CoreBundle\Os2DisplayCoreBundle(),
             new Os2Display\AdminBundle\Os2DisplayAdminBundle(),
             new Os2Display\DefaultTemplateBundle\Os2DisplayDefaultTemplateBundle(),
+            new Os2Display\CampaignBundle\Os2DisplayCampaignBundle(),
             new Kkb\Ding2IntegrationBundle\KkbDing2IntegrationBundle(),
             new Os2Display\ScreenBundle\Os2DisplayScreenBundle(),
         ];
