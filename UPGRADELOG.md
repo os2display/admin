@@ -97,3 +97,49 @@ angular.module('toolsModule').directive('itkColorTool', []);
 * Custom bundles should be imported last in AppKernel.php.
 * Templates should be placed in [Bundlename]/Resources/public/templates. See
   DefaultTemplateBundle for an example.
+
+
+# => 6.0
+
+## Creating os2display symfony 3.4 installation:
+
+Install symfony 3.4
+<pre>
+symfony new admin 3.4
+</pre>
+
+Add repositories to composer.json
+<pre>
+    "repositories": {
+        "os2display/media-bundle": {
+            "type": "vcs",
+            "url": "https://github.com/os2display/media-bundle"
+        },
+        "os2display/core-bundle": {
+            "type": "vcs",
+            "url": "https://github.com/os2display/core-bundle"
+        },
+        "os2display/admin-bundle": {
+            "type": "vcs",
+            "url": "https://github.com/os2display/admin-bundle"
+        },
+        "os2display/default-template-bundle": {
+            "type": "vcs",
+            "url": "https://github.com/os2display/default-template-bundle"
+        },
+         "os2display/campaign-bundle": {
+             "type": "vcs",
+             "url": "https://github.com/os2display/campaign-bundle"
+         }
+    },
+</pre>
+
+Require os2display bundles
+<pre>
+php -d memory_limit=-1 /usr/local/bin/composer require os2display/admin-bundle os2display/core-bundle os2display/media-bundle os2display/default-template-bundle os2display/campaign-bundle -vvv
+</pre>
+
+Add to AppKernel.php
+
+Add config.yml from old
+Copy security.yml from old
