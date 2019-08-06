@@ -1,23 +1,19 @@
 {
   "name": "Os2DisplayAdminBundle",
-  "description": "",
   "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-header": "^1.7.1",
-    "gulp-help": "^1.6.1",
-    "gulp-if": "^1.2.5",
-    "gulp-jshint": "^1.11.2",
-    "gulp-ng-annotate": "^1.1.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.0.4",
-    "gulp-uglify": "^1.4.0",
-    "gulp-util": "^3.0.6",
-    "js-yaml": "^3.8.4",
-    "jshint-stylish": "^2.0.1",
-    "yargs": "^3.23.0"
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1"
+  },
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "engines": {
+    "node": "8.x"
   }
 }

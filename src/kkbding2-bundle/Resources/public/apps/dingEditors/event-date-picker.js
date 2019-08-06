@@ -16,8 +16,8 @@ function dateDecorator(date) {
 }
 
 function headlineChange(scope) {
-  const options = scope.slide.options
-  const date = options.date
+  options = scope.slide.options
+  date = options.date
 
   function setInfoHeader(value) {
     

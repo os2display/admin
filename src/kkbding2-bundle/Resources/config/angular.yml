@@ -4,19 +4,11 @@ assets:
 
 modules:
   dingTools:
+    # Please don't add more files here. Add it in the gulpfile so it gets
+    # compiled into the kff-tools.min.js. The reason is that Os2Display
+    # include different files on prod and dev and we are trying to minimize
+    # errors by keeping it consistent.
     files:
-      - bundles/kkbding2integration/apps/dingEditors/background-editor-static-colors.js
-      - bundles/kkbding2integration/apps/dingEditors/ding-events-editor.js
-      - bundles/kkbding2integration/apps/dingEditors/opening-hours-editor.js
-      - bundles/kkbding2integration/apps/dingEditors/text-color-editor.js
-      - bundles/kkbding2integration/apps/dingEditors/header-editor.js
-      - bundles/kkbding2integration/apps/dingEditors/info-editor.js
-      - bundles/kkbding2integration/apps/dingEditors/image-picker.js
-      - bundles/kkbding2integration/apps/dingEditors/logo-picker.js
-      - bundles/kkbding2integration/apps/dingEditors/reference-editor.js
-      - bundles/kkbding2integration/apps/dingEditors/event-date-picker.js
-      - bundles/kkbding2integration/apps/dingEditors/event-time-picker.js
-      - bundles/kkbding2integration/apps/dingEditors/event-place-editor.js
-      - bundles/kkbding2integration/apps/dingEditors/image-focus.js
+      - bundles/kkbding2integration/assets/build/kkbding2integration.min.js
 
 apps:
