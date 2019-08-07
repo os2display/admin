@@ -11,7 +11,9 @@ namespace Kkb\Ding2IntegrationBundle\Service;
 use DateTime;
 use Os2Display\CoreBundle\Entity\Slide;
 use Os2Display\CoreBundle\Events\CronEvent;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class Din2Service
@@ -61,7 +63,7 @@ class Ding2Service
      * @throws \Exception
      *   Thrown in case of errors while accesing the container.
      */
-    public function __construct($container)
+    public function __construct(ContainerInterface $container, LoggerInterface $logger)
     {
           $this->tomorrow = new DateTime('tomorrow');
           $this->today = new DateTime('today');

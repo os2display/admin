@@ -1,6 +1,7 @@
 services:
+  _defaults:
+    autowire: true
   kkb.ding2_service:
     class: Kkb\Ding2IntegrationBundle\Service\Ding2Service
-    arguments: ['@service_container']
     tags:
       - { name: kernel.event_listener, event: ik.cron, method: onCron }
