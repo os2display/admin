@@ -73,7 +73,7 @@ class Ding2Service
           $this->container = $container;
           $this->entityManager = $this->container->get('doctrine')->getManager();
           $this->slideRepo = $container->get('doctrine')->getRepository('Os2DisplayCoreBundle:Slide');
-          $this->logger = $this->container->get('logger');
+          $this->logger = $logger;
 
           // Setup the base url we're going to use to fetch the feeds.
         if ($this->container->hasParameter('ding_url')) {
