@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b464b3e0c41e8f18643428e8f050ab44",
+    "content-hash": "90e755400912f754853592e773eaa23d",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3203,6 +3203,9 @@
                     "doctrine/dbal": {
                         "https://github.com/doctrine/dbal/issues/2426": "Features/Fixtures/patch/doctrine-dbal-issues-2426.patch"
                     }
+                },
+                "patches_applied": {
+                    "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch"
                 }
             },
             "autoload": {
@@ -3834,7 +3837,8 @@
             "type": "library",
             "extra": {
                 "patches_applied": {
-                    "Use autowiring for services": "patches/slides-in-slides-autowire.patch"
+                    "Use autowiring for services": "patches/slides-in-slides-autowire.patch",
+                    "Improve retry-logic during slide-update": "patches/slides-in-slides-retry-logic.patch"
                 }
             },
             "autoload": {
@@ -4434,6 +4438,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.x-dev"
+                },
+                "patches_applied": {
+                    "Don't require both hight and width": "patches/sonata-media-bundle-dimension-check.patch"
                 }
             },
             "autoload": {
