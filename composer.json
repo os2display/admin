@@ -74,6 +74,12 @@
         "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
         "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch"
       },
+      "os2display/core-bundle": {
+        "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch"
+      },
+      "sonata-project/media-bundle": {
+        "Don't require both hight and width": "patches/sonata-media-bundle-dimension-check.patch"
+      },
       "reload/os2display-slide-tools": {
         "Use autowiring for services": "patches/slides-in-slides-autowire.patch",
         "Improve retry-logic during slide-update": "patches/slides-in-slides-retry-logic.patch"
