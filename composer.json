@@ -68,7 +68,15 @@
     "incenteev-parameters": {
       "file": "app/config/parameters.yml"
     },
+    "composer-exit-on-patch-failure": true,
     "branch-alias": null,
+    "patches-ignore": {
+      "os2display/core-bundle": {
+        "doctrine/dbal": {
+          "Was merged via https://github.com/doctrine/dbal/pull/3141, is available in version v2.7.2 an onwards": "Features/Fixtures/patch/doctrine-dbal-issues-2426.patch"
+        }
+      }
+    },
     "patches": {
       "os2display/admin-bundle": {
         "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
