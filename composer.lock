@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90e755400912f754853592e773eaa23d",
+    "content-hash": "24e61991f18123356690fd2cdce2c4e4",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -609,8 +609,7 @@
                 "branch-alias": {
                     "dev-master": "2.9.x-dev",
                     "dev-develop": "3.0.x-dev"
-                },
-                "patches_applied": []
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -3101,7 +3100,8 @@
             "extra": {
                 "patches_applied": {
                     "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
-                    "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch"
+                    "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch",
+                    "Support cloning of channels and slides": "patches/cloning-admin-bundle.patch"
                 }
             },
             "autoload": {
@@ -3205,7 +3205,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch"
+                    "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch",
+                    "Support cloning of channels and slides": "patches/cloning-core-bundle.patch"
                 }
             },
             "autoload": {
