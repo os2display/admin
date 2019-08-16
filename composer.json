@@ -80,10 +80,12 @@
     "patches": {
       "os2display/admin-bundle": {
         "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
-        "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch"
+        "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch",
+        "Support cloning of channels and slides": "patches/cloning-admin-bundle.patch"
       },
       "os2display/core-bundle": {
-        "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch"
+        "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch",
+        "Support cloning of channels and slides": "patches/cloning-core-bundle.patch"
       },
       "sonata-project/media-bundle": {
         "Don't require both hight and width": "patches/sonata-media-bundle-dimension-check.patch"

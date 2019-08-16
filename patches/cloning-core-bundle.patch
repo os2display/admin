@@ -1,0 +1,303 @@
+diff --git a/Controller/ChannelController.php b/Controller/ChannelController.php
+index b643a23..4115174 100644
+--- a/Controller/ChannelController.php
++++ b/Controller/ChannelController.php
+@@ -21,7 +21,42 @@ use JMS\Serializer\SerializationContext;
+  */
+ class ChannelController extends Controller
+ {
+-    /**
++  /**
++   * Clone a channel.
++   *
++   * @Route("/{id}/clone")
++   * @Method("post")
++   *
++   * @param int $id
++   *   Slide id of the channel to clone.
++   *
++   * @return \Symfony\Component\HttpFoundation\Response
++   */
++  public function channelCloneAction($id)
++  {
++    /** @var Channel $channel */
++    $channel = $this->getDoctrine()
++      ->getRepository('Os2DisplayCoreBundle:Channel')
++      ->findOneById($id);
++
++    $response = new Response();
++
++    if (!$channel) {
++      $response->setStatusCode(404);
++      return $response;
++    }
++
++    /** @var \Os2Display\CoreBundle\Services\EntityService $entityService */
++    $entityService = $this->get('os2display.entity_service');
++
++    $entityService->cloneChannel($channel);
++
++    $response->setStatusCode(200);
++
++    return $response;
++  }
++
++  /**
+      * Save a (new) channel.
+      *
+      * @Route("")
+diff --git a/Controller/SlideController.php b/Controller/SlideController.php
+index 65a494a..044969f 100644
+--- a/Controller/SlideController.php
++++ b/Controller/SlideController.php
+@@ -19,6 +19,44 @@ use Os2Display\CoreBundle\Events\SharingServiceEvents;
+  */
+ class SlideController extends Controller
+ {
++  /**
++   * Clone a slide.
++   *
++   * @Route("/{id}/clone")
++   * @Method("post")
++   *
++   * @param int $id
++   *   Slide id of the slide to clone.
++   *
++   * @return \Symfony\Component\HttpFoundation\Response
++   */
++  public function slideCloneAction($id)
++  {
++
++    $response = new Response();
++    $response->setStatusCode(200);
++
++    $slide = $this->getDoctrine()
++      ->getRepository('Os2DisplayCoreBundle:Slide')
++      ->findOneById($id);
++
++    // Create response.
++    $response = new Response();
++
++    if (!$slide) {
++        // Not found.
++        $response->setStatusCode(404);
++    }
++
++    /** @var \Os2Display\CoreBundle\Services\EntityService $entityService */
++    $entityService = $this->get('os2display.entity_service');
++    $entityService->cloneSlide($slide);
++
++    $response->setStatusCode(200);
++
++    return $response;
++  }
++
+     /**
+      * Save a (new) slide.
+      *
+diff --git a/EventListener/SearchIndexer.php b/EventListener/SearchIndexer.php
+index fcd9989..1d65295 100644
+--- a/EventListener/SearchIndexer.php
++++ b/EventListener/SearchIndexer.php
+@@ -6,6 +6,7 @@
+ 
+ namespace Os2Display\CoreBundle\EventListener;
+ 
++use Doctrine\Common\Util\ClassUtils;
+ use Doctrine\ORM\Event\LifecycleEventArgs;
+ use Os2Display\CoreBundle\Services\UtilityService;
+ use JMS\Serializer\Serializer;
+@@ -77,7 +78,13 @@ class SearchIndexer {
+   protected function sendEvent(LifecycleEventArgs $args, $method) {
+     // Get the current entity.
+     $entity = $args->getEntity();
+-    $type = get_class($entity);
++
++    // Get the actual type of the entity, ensure to handle the situation where
++    // we're passed a proxy.
++    // Notice, ClassUtils is deprecated, the jury is still out on how to
++    // implement the same functionallity in doctrine 3.x though.
++    // https://github.com/doctrine/common/issues/867
++    $type = ClassUtils::getRealClass(get_class($entity));
+ 
+     // Only send Channel, Screen, Slide, Media to search engine
+     if ($type !== 'Os2Display\CoreBundle\Entity\Channel' &&
+diff --git a/Resources/config/services.yml b/Resources/config/services.yml
+index 415454f..8d2c603 100644
+--- a/Resources/config/services.yml
++++ b/Resources/config/services.yml
+@@ -17,7 +17,7 @@ services:
+ 
+   os2display.entity_service:
+     class: Os2Display\CoreBundle\Services\EntityService
+-    arguments: ['@validator']
++    arguments: ['@validator', '@doctrine.orm.entity_manager', '@translator', '@security.token_storage']
+     public: true
+ 
+   os2display.group_manager:
+diff --git a/Resources/translations/Os2DisplayCoreBundle.da.yml b/Resources/translations/Os2DisplayCoreBundle.da.yml
+index 9a3f7f4..43267b7 100644
+--- a/Resources/translations/Os2DisplayCoreBundle.da.yml
++++ b/Resources/translations/Os2DisplayCoreBundle.da.yml
+@@ -6,6 +6,11 @@ user:
+       content: Der er blevet oprettet en bruger til dig på OS2display.
+       activate: For at aktivere din konto skal du besøge følgende link i din browser:
+ 
++administration:
++  clone:
++    cloned_slide_title: "Kopi af \"%original_title%\""
++    cloned_channel_title: "Kopi af \"%original_title%\""
++
+ ROLE_USER: Bruger
+ ROLE_GROUP_ADMIN: Gruppeadministrator
+ ROLE_USER_ADMIN: Brugeradministrator
+diff --git a/Services/EntityService.php b/Services/EntityService.php
+index 0e2b418..a6a4a02 100644
+--- a/Services/EntityService.php
++++ b/Services/EntityService.php
+@@ -6,8 +6,17 @@
+ 
+ namespace Os2Display\CoreBundle\Services;
+ 
++use Doctrine\Common\Persistence\ObjectManager;
++use Os2Display\CoreBundle\Entity\Channel;
++use Os2Display\CoreBundle\Entity\ChannelSlideOrder;
++use Os2Display\CoreBundle\Entity\Slide;
+ use Os2Display\CoreBundle\Exception\ValidationException;
++use Symfony\Bridge\Doctrine\ManagerRegistry;
++use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\PropertyAccess\PropertyAccess;
++use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
++use Symfony\Component\Translation\Translator;
++use Symfony\Component\Translation\TranslatorInterface;
+ use Symfony\Component\Validator\Validator\ValidatorInterface;
+ 
+ /**
+@@ -19,14 +28,32 @@ class EntityService {
+   private $accessor;
+   private $validator;
+ 
++  /**
++   * @var \Symfony\Component\Translation\TranslatorInterface
++   */
++  protected $translator;
++
++  /**
++   * @var \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface
++   */
++  protected $tokenStorage;
++
++  private $entityManager;
++
+   /**
+    * EntityService constructor.
+    *
+    * @param ValidatorInterface $validator
++   * @param \Doctrine\Common\Persistence\ObjectManager $entityManager
++   * @param \Symfony\Component\Translation\TranslatorInterface $translator
++   * @param \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage
+    */
+-  public function __construct(ValidatorInterface $validator) {
++  public function __construct(ValidatorInterface $validator, ObjectManager $entityManager, TranslatorInterface $translator, TokenStorageInterface $tokenStorage) {
+     $this->accessor = PropertyAccess::createPropertyAccessor();
+     $this->validator = $validator;
++    $this->entityManager = $entityManager;
++    $this->translator = $translator;
++    $this->tokenStorage = $tokenStorage;
+   }
+ 
+   /**
+@@ -69,4 +96,93 @@ class EntityService {
+ 
+     return $errors;
+   }
++
++    /**
++     * Clones a slide.
++     *
++     * @param \Os2Display\CoreBundle\Entity\Slide $slide
++     *
++     * @param bool $flush
++     *   Whether to flush the entitymanager after creation. Set this to false
++     *   if you need to do futher work with the entity before it is fully
++     *   persisted.
++     *
++     * @return \Os2Display\CoreBundle\Entity\Slide
++     */
++  public function cloneSlide(Slide $slide, $flush = true) {
++      $slideClone = clone $slide;
++
++      $slideClone->setTitle(
++        $this->translator->trans(
++          'administration.clone.cloned_slide_title',
++          ['%original_title%' => $slide->getTitle()],
++          'Os2DisplayCoreBundle'
++        )
++      );
++
++      // Treat this a s new slide.
++      $slideClone->setCreatedAt(time());
++
++      // Set creator.
++      $userEntity = $this->tokenStorage->getToken()->getUser();
++      $slideClone->setUser($userEntity->getId());
++
++      $this->entityManager->persist($slideClone);
++
++      if ($flush) {
++          $this->entityManager->flush();
++      }
++
++      return $slideClone;
++  }
++
++  /**
++   * Clones a channel.
++   *
++   * @param \Os2Display\CoreBundle\Entity\Slide $slide
++   *
++   * @return \Os2Display\CoreBundle\Entity\Channel
++   */
++  public function cloneChannel(Channel $channel) {
++      // Start doing a semi-deep clone of the channel. We want a clone of the
++      // channel, and a clone of all slides in the channel.
++      // The slides are associated via a "ChannelOrder", so we need a clone of
++      // that entity as well as the slide it references.
++      $channelClone = clone $channel;
++      $channelClone->setTitle($channel->getTitle() . ' (klon)');
++
++      $channelClone->setTitle(
++        $this->translator->trans(
++          'administration.clone.cloned_channel_title',
++          ['%original_title%' => $channel->getTitle()],
++          'Os2DisplayCoreBundle'
++        )
++      );
++
++      /** @var ChannelSlideOrder[] $slideOrders */
++      $slideOrders = $channel->getChannelSlideOrders();
++      foreach ($slideOrders as $slideOrder) {
++          $orderClone = clone $slideOrder;
++          $orderClone->setChannel($channelClone);
++
++          $slide = $orderClone->getSlide();
++
++          if (NULL !== $slide) {
++              $slideClone = $this->cloneSlide($slide, false);
++
++              // We don't use cascading persists, so each cloned entity must be
++              // persisted before it can be passed to another entity.
++              $this->entityManager->persist($slideClone);
++              $orderClone->setSlide($slideClone);
++
++              $this->entityManager->persist($orderClone);
++              $channelClone->addChannelSlideOrder($orderClone);
++          }
++      }
++      $this->entityManager->persist($channelClone);
++
++      $this->entityManager->flush();
++
++      return $channelClone;
++  }
+ }
