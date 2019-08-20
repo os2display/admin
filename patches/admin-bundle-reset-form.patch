@@ -1,0 +1,43 @@
+diff --git a/Resources/views/Resetting/reset_content.html.twig b/Resources/views/Resetting/reset_content.html.twig
+index 05b31e6..3efa8e5 100644
+--- a/Resources/views/Resetting/reset_content.html.twig
++++ b/Resources/views/Resetting/reset_content.html.twig
+@@ -5,36 +5,12 @@
+       <div class="grid--inner">
+         <article class="grid--item">
+           <article class="box">
+-            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }}
++            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" }}
+                   method="POST" class="fos_user_resetting_reset">
+               <h2 class="heading-has-spacing-after">Skift kodeord</h2>
+               <div class="box--inner">
+                 <div class="forms-field">
+-                  <label for="forms_label_id" class="forms-label">Nyt kodeord</label>
+-                  {{ form_widget(form.new.first, { 'attr': {'class': 'forms-base forms-password'} }) }}
+-                  {% for error in form.new.first.vars.errors %}
+-                    <div class="message">
+-                      <div class="message--inner is-inline-error">
+-                        <div class="message--content">
+-                          {{ error.message | trans({}, 'FOSUserBundle') }}
+-                        </div>
+-                      </div>
+-                    </div>
+-                  {% endfor %}
+-                </div>
+-                <div class="forms-field">
+-                  <label for="forms_label_id" class="forms-label">Gentag kodeord</label>
+-                  {{ form_widget(form.new.second, { 'attr': {'class': 'forms-base forms-password'} }) }}
+-                  {% for error in form.new.second.vars.errors %}
+-                    <div class="message">
+-                      <div class="message--inner is-inline-error">
+-                        <div class="message--content">
+-                          {{ error.message }}
+-                        </div>
+-                      </div>
+-                    </div>
+-                  {% endfor %}
+-                </div>
++                  {{ form_widget(form) }}
+                 <div>
+                   <input type="submit" class="button-link has-spacing-top"
+                          title="Fortsæt" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}">
