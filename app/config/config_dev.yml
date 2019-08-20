@@ -34,11 +34,3 @@ monolog:
             type: server_log
             process_psr_3_messages: false
             host: 127.0.0.1:9911
-
-swiftmailer:
-    transport: smtp
-    host:      127.0.0.1
-    username:  null
-    password:  null
-    port: 1025
-    spool:     { type: memory }

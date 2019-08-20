@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e08558bf1b78a899fe1dbe2a871c9239",
+    "content-hash": "cd69cc0ec97d5a711536b3698a289114",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3107,7 +3107,9 @@
             "type": "symfony-bundle",
             "extra": {
                 "patches_applied": {
-                    "Switch to supporting a separate configuration for the public search hostname": "patches/admin-bundle-public-search.patch"
+                    "Switch to supporting a separate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
+                    "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch",
+                    "Fix broken reset form": "patches/admin-bundle-reset-form.patch"
                 }
             },
             "autoload": {
@@ -3211,7 +3213,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch"
+                    "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch",
+                    "Produce absolute reset-links": "patches/core-bundle-absolute-reset-link.patch"
                 }
             },
             "autoload": {
@@ -4366,6 +4369,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.x-dev"
+                },
+                "patches_applied": {
+                    "Don't require both hight and width": "patches/sonata-media-bundle-dimension-check.patch"
                 }
             },
             "autoload": {
