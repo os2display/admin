@@ -1,89 +1,81 @@
 {
-  "name": "os2display/admin",
-  "license": "GNU General Public License v3.0",
-  "type": "project",
-  "description": "The Os2Display distribution",
-  "autoload": {
-    "psr-0": {
-      "": "src/",
-      "SymfonyStandard": "app/"
+    "name": "os2display/admin",
+    "license": "Mozilla Public License Version 2.0",
+    "type": "project",
+    "description": "The Os2Display distribution",
+    "autoload": {
+        "psr-4": {
+          "Kkb\\Ding2IntegrationBundle\\": "src/kkbding2-bundle"
+        },
+        "classmap": [
+            "app/AppKernel.php",
+            "app/AppCache.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.2",
+        "os2display/admin-bundle": "~2.0",
+        "os2display/campaign-bundle": "~2.0",
+        "os2display/core-bundle": "~2.0",
+        "os2display/default-template-bundle": "~1.1",
+        "os2display/media-bundle": "~2.0",
+        "os2display/screen-bundle": "~1.0",
+        "cweagans/composer-patches": "~1.0"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "^3.0",
+        "symfony/phpunit-bridge": "^3.0"
+    },
+    "repositories": {},
+    "scripts": {
+        "symfony-scripts": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "post-install-cmd": [
+            "@symfony-scripts"
+        ],
+        "post-update-cmd": [
+            "@symfony-scripts"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
+        "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
+        "symfony-assets-install": "relative",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": null,
+        "patches": {
+            "os2display/admin-bundle": {
+                "Switch to supporting a separate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
+                "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch"
+            },
+            "os2display/core-bundle": {
+                "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch"
+            },
+            "sonata-project/media-bundle": {
+                "Don't require both hight and width": "patches/sonata-media-bundle-dimension-check.patch"
+            }
+        }
     }
-  },
-  "require": {
-    "os2display/admin-bundle": "dev-kdb-master as 1.1.0",
-    "os2display/default-template-bundle": "^1.0",
-    "os2display/core-bundle": "dev-kdb-master as 1.1.0",
-    "incenteev/composer-parameter-handler": "^2.0",
-    "sonata-project/admin-bundle": "^2.0",
-    "sonata-project/doctrine-orm-admin-bundle": "^2.0",
-    "kdb/os2display-kkbding2-bundle": "^1.0"
-  },
-  "require-dev": {
-    "sensio/generator-bundle": "^2.3",
-    "behat/mink-extension": "^2.2",
-    "behat/symfony2-extension": "^2.1",
-    "behat/mink-selenium2-driver": "^1.3",
-    "behat/mink-browserkit-driver": "^1.3",
-    "behatch/contexts": "^2.6"
-  },
-  "repositories": {
-    "os2display/core-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/kdb/os2display-core-bundle"
-    },
-    "os2display/admin-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/kdb/os2display-admin-bundle"
-    },
-    "os2display/media-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/os2display/media-bundle"
-    },
-    "os2display/default-template-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/os2display/default-template-bundle"
-    },
-    "kdb/os2display-kkbding2-bundle": {
-      "type": "vcs",
-      "url": "https://github.com/kdb/os2display-kkbding2-bundle"
-    }
-  },
-  "scripts": {
-    "post-root-package-install": [
-      "SymfonyStandard\\Composer::hookRootPackageInstall"
-    ],
-    "post-install-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
-    ],
-    "post-update-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
-    ]
-  },
-  "config": {
-    "bin-dir": "bin",
-    "platform": {
-      "php": "5.6.36"
-    }
-  },
-  "extra": {
-    "symfony-app-dir": "app",
-    "symfony-web-dir": "web",
-    "symfony-assets-install": "symlink",
-    "incenteev-parameters": {
-      "file": "app/config/parameters.yml"
-    },
-    "branch-alias": {
-      "dev-master": "2.5-dev"
-    }
-  }
 }

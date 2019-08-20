@@ -1,0 +1,59 @@
+<div
+  class="edit-menu"
+  role="banner"
+>
+  <div class="edit-menu--inner is-visible">
+    <div
+      class="edit-menu--toggle-icon"
+      data-ng-click="close()"
+    >X</div>
+    <form class="edit-menu--form">
+      <div class="edit-menu--label small-bottom-margin reset-margin">Tidspunkter</div>
+      <div class="small-bottom-margin">
+        <label class="edit-menu--calendar-label">Tid 1</label>
+        <input
+          class="edit-menu--calendar-form-element-date"
+          time-picker
+          type="text"
+          data-ng-model="slide.options.time.first"
+        >
+      </div>
+      <div class="small-bottom-margin">
+        <label class="edit-menu--calendar-label">Tid 2</label>
+        <input
+          class="edit-menu--calendar-form-element-date"
+          time-picker
+          type="text"
+          data-ng-model="slide.options.time.second"
+        >
+      </div>
+      <div class="small-bottom-margin">
+        <label class="edit-menu--calendar-label">Tid 3</label>
+        <input
+          class="edit-menu--calendar-form-element-date"
+          time-picker
+          type="text"
+          data-ng-model="slide.options.time.third"
+        >
+      </div>
+      <div class="small-bottom-margin">
+        <label class="edit-menu--calendar-label">Tid 4</label>
+        <input
+          class="edit-menu--calendar-form-element-date"
+          time-picker
+          type="text"
+          data-ng-model="slide.options.time.fourth"
+        >
+      </div>
+      <div class="small-bottom-margin">
+        <label class="edit-menu--calendar-label">Tid 5</label>
+        <input
+          class="edit-menu--calendar-form-element-date"
+          time-picker
+          type="text"
+          data-ng-model="slide.options.time.fifth"
+        >
+      </div>
+    </form>
+  </div>
+</div>

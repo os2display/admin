@@ -1,0 +1,13 @@
+diff --git a/Resources/views/Security/login.html.twig b/Resources/views/Security/login.html.twig
+index 51c4099..c144aa5 100644
+--- a/Resources/views/Security/login.html.twig
++++ b/Resources/views/Security/login.html.twig
+@@ -22,7 +22,7 @@
+               </div>
+               {% block sonata_user_login_error %}
+                 {% if error %}
+-                  <div class="login--alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
++                  <div class="login--alert">{{ error.messageKey|trans({}, 'FOSUserBundle') }}</div>
+                 {% endif %}
+               {% endblock %}
+ 

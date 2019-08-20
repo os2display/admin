@@ -1,0 +1,14 @@
+assets:
+  js_prod:
+    - bundles/kkbding2integration/assets/build/kkbding2integration.min.js
+
+modules:
+  dingTools:
+    # Please don't add more files here. Add it in the gulpfile so it gets
+    # compiled into the kff-tools.min.js. The reason is that Os2Display
+    # include different files on prod and dev and we are trying to minimize
+    # errors by keeping it consistent.
+    files:
+      - bundles/kkbding2integration/assets/build/kkbding2integration.min.js
+
+apps:

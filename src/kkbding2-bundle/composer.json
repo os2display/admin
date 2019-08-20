@@ -1,0 +1,10 @@
+{
+    "name": "kdb/os2display-kkbding2-bundle",
+    "description": "Os2Display Ding2 integration.",
+    "type": "symfony-bundle",
+    "autoload": {
+        "psr-4": {
+            "Kkb\\Ding2IntegrationBundle\\": ""
+        }
+    }
+}

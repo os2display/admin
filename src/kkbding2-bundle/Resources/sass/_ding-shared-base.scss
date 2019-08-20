@@ -1,0 +1,219 @@
+// We're based off of default-template-bundle.
+@import '../../../../vendor/os2display/default-template-bundle/Resources/sass/_shared-base.scss';
+
+// Styling shared by ding elements.
+.ding {
+  &--watermark {
+    // We're positioning relative to the entire slide wrapper.
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    font-size: 300%;
+    // Transparent black on transparent white.
+    color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.5);
+
+    // Overlay z-index is 99.
+    z-index: 100;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+// "Use font in web/templates/fonts"
+@font-face {
+  font-family: GillSans;
+  src: url(../../../../fonts/GillSansMT.ttf);
+}
+
+@font-face {
+  font-family: GillSansLight;
+  src: url(../../../../fonts/GillSansMTLight.ttf);
+}
+
+$font__templates: 'GillSans', Arial, sans-serif;
+$font__templates_light: 'GillSansLight', Arial, sans-serif;
+
+// Pre text
+%description-default {
+  line-height: 120%;
+  font-size: 75%;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+/**
+ * Static color picker.
+ *
+ * Makes the radio button visually appear
+ * as checkboxes with the representive color as background.
+ * When a color is chosen, it has cross as an indicator.
+ */
+.edit-menu--static-color-items {
+  $DarkBrown: #292321;
+  $Orange: #cc3300;
+
+  div {
+    margin: 0 0 0.75em 0;
+  }
+
+  input[type='radio'] {
+    display: none;
+  }
+  input[type='radio'] + label {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  input[type='radio'] + label span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  input[type='radio'] + label span {
+    background-color: $DarkBrown;
+    border: 2px solid gray;
+  }
+
+  input[type='radio']:checked + label span {
+    text-align: center;
+
+    &:before {
+      content: 'X';
+      font-size: 26px;
+      color: white;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.78);
+    }
+  }
+}
+
+.image-picker-placeholder {
+  height: 316.5px;
+  width: 250px;
+  background-repeat: no-repeat;
+  background-color: #f2f2f2;
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 25%, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 1400px) {
+  .focus-tools-container {
+    flex-direction: column-reverse;
+  }
+}
+
+/**
+ * Functional classes
+ */
+
+.reset-margin {
+  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.reset-padding {
+  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.block {
+  display: block;
+}
+
+.small-bottom-margin {
+  margin-bottom: 1em;
+}
+
+.small-right-margin {
+  margin-right: 1em;
+}
+
+.small-top-margin {
+  margin-top: 1em;
+}
+
+.medium-bottom-margin {
+  margin-bottom: 1.5em;
+}
+
+.large-top-margin {
+  margin-top: 6em;
+}
+
+.small-right-padding {
+  padding-right: 1em;
+}
+
+.small-left-padding {
+  padding-left: 1em;
+}
+
+.wrap-text {
+  white-space: pre-wrap;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.quarter-width {
+  width: 25%;
+}
+
+.third-width {
+  width: 33%;
+}
+
+.font-100 {
+  font-size: 100%;
+}
+
+.font-150 {
+  font-size: 150%;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.grow {
+  flex-grow: 1;
+}

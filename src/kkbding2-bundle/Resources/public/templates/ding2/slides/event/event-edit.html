@@ -1,0 +1,57 @@
+<div
+  class="event"
+  data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height}"
+>
+  <div class="event--header-wrapper">
+    <div
+      class="event--header has-placeholder"
+      data-ng-style="{'color': ikSlide.options.headercolor}"
+    >
+      <div>{{ikSlide.options.header1}}</div>
+      <div>{{ikSlide.options.header2}}</div>
+      <div>{{ikSlide.options.header3}}</div>
+    </div>
+  </div>
+
+  <div class="event--info-wrapper">
+    <div
+      class="event--image"
+      data-ng-style="
+        {
+          'background-image': 'url(' + ikSlide.currentImage + ')',
+          'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'cover',
+          'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
+          'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center'
+        }"
+    ></div>
+    <div
+      class="event--info-header"
+      spellcheck="false"
+      data-ng-style="{'border-color': ikSlide.options.headercolor}"
+    >
+    {{ikSlide.options.infoheader}}
+    </div>
+    <div class="event--info has-placeholder">
+      <div ng-if="ikSlide.options.time.first">
+        <span>Tid: {{ikSlide.options.time.first}}</span><!--
+        --><span ng-if="ikSlide.options.time.second">, {{ikSlide.options.time.second}}</span><!--
+        --><span ng-if="ikSlide.options.time.third">, {{ikSlide.options.time.third}}</span><!--
+        --><span ng-if="ikSlide.options.time.fourth">, {{ikSlide.options.time.fourth}}</span><!--
+        --><span ng-if="ikSlide.options.time.fifth">, {{ikSlide.options.time.fifth}}</span>
+      </div>
+      <div ng-if="ikSlide.options.place.first">
+        <div>Sted: {{ikSlide.options.place.first}}</div>
+        <div ng-if="ikSlide.options.place.second">{{ikSlide.options.place.second}}</div>
+        <div ng-if="ikSlide.options.place.third">{{ikSlide.options.place.third}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="event--footer-wrapper">
+    <div class="event--footer">{{ikSlide.options.reference}}</div>
+    <div
+      class="event--footer-image"
+      data-ng-style="ikSlide.currentLogo ? {'background-image': 'url(' + ikSlide.currentLogo + ')'} : {'background-image': 'url(' + ikSlide.options.logo + ')'}"
+    ></div>
+  </div>
+</div>

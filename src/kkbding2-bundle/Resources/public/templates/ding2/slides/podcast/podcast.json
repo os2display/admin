@@ -1,0 +1,66 @@
+{
+  "id": "podcast",
+  "type": "slide",
+  "name": "Podcast",
+  "icon": "podcast.png",
+  "paths": {
+    "live": "podcast-edit.html",
+    "edit": "podcast-edit.html",
+    "preview": "podcast-preview.html",
+    "css": "podcast.css",
+    "js": "bundles/kkbding2integration/templates/js/podcastSlide.js"
+  },
+  "slide_type": "podcast",
+  "media_type": "image",
+  "script_id": "podcast",
+  "orientation": "portrait",
+  "ideal_dimensions": {
+    "width": "1080",
+    "height": "1920"
+  },
+  "empty_options": {
+    "fontsize": 60,
+    "responsive_fontsize": 4,
+    "bgcolor": "#fff",
+    "headercolor": "#4e4a47",
+    "header1": "Overskrift",
+    "header2": "til",
+    "header3": "Podcast",
+    "infoheader": "Månedens udsendelse:",
+    "imageZoom": 100,
+    "imageX": 0,
+    "imageY": 0,
+    "info1": "Infotekst",
+    "info2": "til",
+    "info3": "podcast",
+    "info4": "",
+    "reference": "Få mere information på bibliotek.kk.dk",
+    "logo": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png"
+  },
+  "tools": [
+    {
+      "name": "Overskrift",
+      "id": "header-editor"
+    },
+    {
+      "name": "Infotekst",
+      "id": "info-editor"
+    },
+    {
+      "name": "Billede",
+      "id": "image-picker"
+    },
+    {
+      "name": "Billedefokus",
+      "id": "image-focus"
+    },
+    {
+      "name": "Reference",
+      "id": "reference-editor"
+    },
+    {
+      "name": "Logo",
+      "id": "logo-picker"
+    }
+  ]
+}
