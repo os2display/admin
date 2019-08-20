@@ -19,14 +19,14 @@ parameters:
     debug_toolbar: true
     debug_redirects: false
     use_assetic_controller: true
-    absolute_path_to_server: 'https://admin.reload-os2display.docker'
+    absolute_path_to_server: 'https://admin.kdb-os2display.docker'
     zencoder_api: 1234567890
     sharing_host: 'http://search:3010'
     sharing_path: /api
     sharing_apikey: 88cfd4b277f3f8b6c7c15d7a84784067
     sharing_enabled: true
     search_host: 'http://search:3010'
-    search_host_public: 'https://search.reload-os2display.docker'
+    search_host_public: 'https://search.kdb-os2display.docker'
     search_path: /api
     search_apikey: 795359dd2c81fa41af67faa2f9adbd32
     search_index: e7df7cd2ca07f4f1ab415d457a6e1c13
