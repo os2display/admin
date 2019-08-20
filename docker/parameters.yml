@@ -11,6 +11,7 @@ parameters:
     mailer_host: mailhog
     mailer_user: null
     mailer_password: null
+    mailer_port: 1025
     mailer_from_email: admin@example.com
     mailer_from_name: Admin
     locale: da
@@ -43,4 +44,3 @@ parameters:
     ding_opening_hours_category:
         libraryservice: 14291
         citizenservices: 14292
-    mailer_port: 1025
