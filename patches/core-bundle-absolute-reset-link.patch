@@ -1,0 +1,21 @@
+diff --git a/Services/UserMailerService.php b/Services/UserMailerService.php
+index 15a2868..bc576b5 100644
+--- a/Services/UserMailerService.php
++++ b/Services/UserMailerService.php
+@@ -8,6 +8,7 @@ namespace Os2Display\CoreBundle\Services;
+ 
+ use FOS\UserBundle\Mailer\Mailer;
+ use FOS\UserBundle\Model\UserInterface;
++use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+ 
+ /**
+  * Class UserMailerService
+@@ -23,7 +24,7 @@ class UserMailerService extends Mailer {
+     $rendered = $this->templating->render(
+       'Os2DisplayCoreBundle:User:mailer.html.twig', [
+         'name' => $user->getFirstname(),
+-        'url' => $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), TRUE),
++        'url' => $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL),
+       ]
+     );
+ 
