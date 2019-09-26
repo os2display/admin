@@ -11,6 +11,9 @@
 .kk-color-messages__title {
   line-height: 1;
   margin: 0;
+  // Keep the title a bit slimmer to make space for the water-mark to the right.
+  // see the .messages__logo class and "kffLogo" in the templates.
+  margin-right: 5%
 }
 
 .kk-color-messages--ratio-16-9 {
