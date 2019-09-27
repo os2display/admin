@@ -1,0 +1,27 @@
+diff --git a/Resources/public/js/slides-in-slide.js b/Resources/public/js/slides-in-slide.js
+index 83a61a4..7412089 100644
+--- a/Resources/public/js/slides-in-slide.js
++++ b/Resources/public/js/slides-in-slide.js
+@@ -87,11 +87,20 @@ if (!window.slidesInSlides.run) {
+       }, slide_duration * 1000);
+     };
+ 
+-    console.log('Slide has ' + slide.data.num_subslides + ' subslides');
+-
+     // reset slide-count.
+     slide.data.currentSlide = 0;
+ 
++    if (slide.data.num_subslides === 0) {
++      // We're empty, advance to the next (real) slide right away.
++      region.$timeout(function () {
++        console.log('no subslides, continuing straight away');
++        region.nextSlide();
++      }, 0);
++      return;
++    }
++
++    console.log('Slide has ' + slide.data.num_subslides + ' subslides');
++
+     // Trigger initial sleep and subsequent advance of slide.
+     eventSlideTimeout();
+ 
