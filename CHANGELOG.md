@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 6.1.1
+
+* Upgraded bundles.
+
 ## 6.1.0
 
 * Added screen-bundle.
