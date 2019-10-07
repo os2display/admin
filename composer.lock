@@ -2875,16 +2875,16 @@
         },
         {
             "name": "os2display/core-bundle",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/core-bundle.git",
-                "reference": "e445ceb9bb86a66a30187111185e86b0dada14ad"
+                "reference": "1930c5fd4bce4033e8e6bda6bdbe05c293210a2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/e445ceb9bb86a66a30187111185e86b0dada14ad",
-                "reference": "e445ceb9bb86a66a30187111185e86b0dada14ad",
+                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/1930c5fd4bce4033e8e6bda6bdbe05c293210a2e",
+                "reference": "1930c5fd4bce4033e8e6bda6bdbe05c293210a2e",
                 "shasum": ""
             },
             "require": {
@@ -2936,20 +2936,20 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display core",
-            "time": "2019-05-20T11:25:05+00:00"
+            "time": "2019-08-23T12:30:13+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/default-template-bundle.git",
-                "reference": "bee59b69cb9fc26b7783408ecba508ec48b52484"
+                "reference": "aeb4e3de9c9f2d486b1b43eefd3b5b37c0ddcbfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/bee59b69cb9fc26b7783408ecba508ec48b52484",
-                "reference": "bee59b69cb9fc26b7783408ecba508ec48b52484",
+                "url": "https://api.github.com/repos/os2display/default-template-bundle/zipball/aeb4e3de9c9f2d486b1b43eefd3b5b37c0ddcbfc",
+                "reference": "aeb4e3de9c9f2d486b1b43eefd3b5b37c0ddcbfc",
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -2958,12 +2958,9 @@
                     "Os2Display\\DefaultTemplateBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display default template",
-            "support": {
-                "source": "https://github.com/os2display/default-template-bundle/tree/1.1.2",
-                "issues": "https://github.com/os2display/default-template-bundle/issues"
-            },
-            "time": "2019-02-19T12:02:39+00:00"
+            "time": "2019-10-07T07:48:54+00:00"
         },
         {
             "name": "os2display/media-bundle",
@@ -2989,25 +2986,22 @@
                     "Os2Display\\MediaBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display media",
-            "support": {
-                "source": "https://github.com/os2display/media-bundle/tree/2.0.0",
-                "issues": "https://github.com/os2display/media-bundle/issues"
-            },
             "time": "2019-02-21T09:06:08+00:00"
         },
         {
             "name": "os2display/screen-bundle",
-            "version": "1.0.6",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/screen-bundle.git",
-                "reference": "bfb76b709ee6374b8b3a64db2b32e2f1bee79a9e"
+                "reference": "eb8c9ac53480a1b6ce9332b9b4817c57c0f7d271"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/screen-bundle/zipball/bfb76b709ee6374b8b3a64db2b32e2f1bee79a9e",
-                "reference": "bfb76b709ee6374b8b3a64db2b32e2f1bee79a9e",
+                "url": "https://api.github.com/repos/os2display/screen-bundle/zipball/eb8c9ac53480a1b6ce9332b9b4817c57c0f7d271",
+                "reference": "eb8c9ac53480a1b6ce9332b9b4817c57c0f7d271",
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -3021,7 +3015,7 @@
                 "MPL-2.0"
             ],
             "description": "Os2Display screen",
-            "time": "2019-05-20T11:18:14+00:00"
+            "time": "2019-10-07T08:01:52+00:00"
         },
         {
             "name": "paragonie/random_compat",
