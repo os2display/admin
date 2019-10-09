@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24e61991f18123356690fd2cdce2c4e4",
+    "content-hash": "e31d4dd2bd82c8f974f4485f5cd1b8b8",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3101,7 +3101,8 @@
                 "patches_applied": {
                     "Switch to supporting a seperate configuration for the public search hostname": "patches/admin-bundle-public-search.patch",
                     "Display an error-message instead of a stacktrace": "patches/admin-bundle-login-error.patch",
-                    "Support cloning of channels and slides": "patches/cloning-admin-bundle.patch"
+                    "Support cloning of channels and slides": "patches/cloning-admin-bundle.patch",
+                    "Fix broken reset form": "patches/admin-bundle-reset-form.patch"
                 }
             },
             "autoload": {
@@ -3206,7 +3207,8 @@
                 },
                 "patches_applied": {
                     "Better support of empty sources and upgraded rss-reader usage": "patches/core-bundle-rss-reader.patch",
-                    "Support cloning of channels and slides": "patches/cloning-core-bundle.patch"
+                    "Support cloning of channels and slides": "patches/cloning-core-bundle.patch",
+                    "Produce absolute reset-links": "patches/core-bundle-absolute-reset-link.patch"
                 }
             },
             "autoload": {
@@ -3823,25 +3825,19 @@
         },
         {
             "name": "reload/os2display-slide-tools",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reload/os2display-slide-tools.git",
-                "reference": "57457ae0abb3974a8c74d15ccfa58689f30da501"
+                "reference": "d8c961cf534dbe67f52980be750203cde5d7d0cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/57457ae0abb3974a8c74d15ccfa58689f30da501",
-                "reference": "57457ae0abb3974a8c74d15ccfa58689f30da501",
+                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/d8c961cf534dbe67f52980be750203cde5d7d0cc",
+                "reference": "d8c961cf534dbe67f52980be750203cde5d7d0cc",
                 "shasum": ""
             },
             "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "Use autowiring for services": "patches/slides-in-slides-autowire.patch",
-                    "Improve retry-logic during slide-update": "patches/slides-in-slides-retry-logic.patch"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Reload\\Os2DisplaySlideTools\\": ""
@@ -3849,7 +3845,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Reusable tools for working with slides in https://github.com/os2display",
-            "time": "2019-03-12T16:39:37+00:00"
+            "time": "2019-08-17T09:13:55+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
