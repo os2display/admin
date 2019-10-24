@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 6.1.2
+
+* Added fallback_image config.
+* Fixed screen in security.
+* Updated bundles.
+
 ## 6.1.1
 
 * Upgraded bundles.
