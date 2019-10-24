@@ -143,3 +143,10 @@ fos_rest:
             - { path: '^/', stop: true } # Available for version >= 1.5
 
 nelmio_api_doc: ~
+
+os2_display_screen:
+    strategies:
+        push:
+            fallback_image: '%fallback_image%'
+        pull:
+            fallback_image: '%fallback_image%'
