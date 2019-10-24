@@ -53,3 +53,5 @@ parameters:
     itk_log_log_level: all
 
     search_filter_default: all
+
+    fallback_image: ~
