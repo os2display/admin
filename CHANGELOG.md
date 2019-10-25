@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 6.1.3
+
+* Fixed UTC in AppKernel.php.
+* Updated os2display/screen-bundle: 1.1.3
+
 ## 6.1.2
 
 * Added fallback_image config.
