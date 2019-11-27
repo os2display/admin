@@ -33,8 +33,13 @@ class ColorfulMessagesFeedData
 
   public function getColorfulMessages()
   {
-    $json = JsonFetcher::fetch($this->dataUrl);
-    $data = array_map([$this, 'extractData'], $json);
+    try {
+      $json = JsonFetcher::fetch($this->dataUrl);
+      $data = array_map([$this, 'extractData'], $json);
+    } catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      return [];
+    }
     if (count($this->missing) > 0) {
       $this->logger->warning(
         'Missing fields while processing ' . $this->dataUrl
@@ -43,7 +48,6 @@ class ColorfulMessagesFeedData
         $this->logger->warning('Missing ' . implode(', ', $missing));
       }
     }
-
     return $data;
   }
 

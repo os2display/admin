@@ -25,16 +25,21 @@ class EventFeedData extends EventData
 
   public function getEvents()
   {
-    $fetched = JsonFetcher::fetch($this->dataUrl);
-    $data = array_slice($fetched, 0, $this->numItems);
-    $events = array_map([$this, 'extractData'], $data);
+    try {
+      $fetched = JsonFetcher::fetch($this->dataUrl);
+      $data = array_slice($fetched, 0, $this->numItems);
+      $events = array_map([$this, 'extractData'], $data);
+    } catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      return [];
+    }
+
     if ($this->hasMissing()) {
       $this->logger->warning(
         'Missing fields while processing ' . $this->dataUrl
       );
       $this->logStatus($this->logger);
     }
-
     return $events;
   }
 
