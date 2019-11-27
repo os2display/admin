@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e31d4dd2bd82c8f974f4485f5cd1b8b8",
+    "content-hash": "b237f207a2859e13f6bab4673b7393fd",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -609,7 +609,8 @@
                 "branch-alias": {
                     "dev-master": "2.9.x-dev",
                     "dev-develop": "3.0.x-dev"
-                }
+                },
+                "patches_applied": []
             },
             "autoload": {
                 "psr-4": {
@@ -3825,19 +3826,24 @@
         },
         {
             "name": "reload/os2display-slide-tools",
-            "version": "1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reload/os2display-slide-tools.git",
-                "reference": "d8c961cf534dbe67f52980be750203cde5d7d0cc"
+                "reference": "53112f2146e7ad32dae5ff40c661392271300aaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/d8c961cf534dbe67f52980be750203cde5d7d0cc",
-                "reference": "d8c961cf534dbe67f52980be750203cde5d7d0cc",
+                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/53112f2146e7ad32dae5ff40c661392271300aaa",
+                "reference": "53112f2146e7ad32dae5ff40c661392271300aaa",
                 "shasum": ""
             },
             "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "Better handling of no subslides": "patches/slides-in-slides-no-subslides.patch"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Reload\\Os2DisplaySlideTools\\": ""
@@ -3845,7 +3851,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Reusable tools for working with slides in https://github.com/os2display",
-            "time": "2019-08-17T09:13:55+00:00"
+            "time": "2019-11-27T13:17:08+00:00"
         },
         {
             "name": "sensio/distribution-bundle",

@@ -93,9 +93,7 @@
         "Don't require both hight and width": "patches/sonata-media-bundle-dimension-check.patch"
       },
       "reload/os2display-slide-tools": {
-        "Use autowiring for services": "patches/slides-in-slides-autowire.patch",
-        "Better handling of no subslides": "patches/slides-in-slides-no-subslides.patch",
-        "Improve retry-logic during slide-update": "patches/slides-in-slides-retry-logic.patch"
+        "Better handling of no subslides": "patches/slides-in-slides-no-subslides.patch"
       }
     }
   }
