@@ -10,19 +10,19 @@ class JsonFetcher
 
   protected static function addCacheBuster($url){
     $url_parts = parse_url($url);
-    $params = [];
-    parse_str($url_parts['query'], $params);
+    $query = empty($url_parts['query']) ? '' : $url_parts['query'];
+    parse_str($query, $params);
 
     $params['cache_buster'] = time();
-    $url_parts['query'] = http_build_query($params);
-    return $url_parts['scheme'] . '://' . $url_parts['host'] . $url_parts['path'] . '?' . $url_parts['query'];
+    return $url_parts['scheme'] . '://' . $url_parts['host'] . $url_parts['path'] . '?' . http_build_query($params);
   }
 
   public static function fetch($url)
   {
     try {
       $client = new Client();
-      $url = static::addCacheBuster($url);
+
+      $url = self::addCacheBuster($url);
       $response = $client->get($url, [
         'headers' => [
           'Accept' => 'application/json'
