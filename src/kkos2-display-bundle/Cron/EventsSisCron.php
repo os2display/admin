@@ -6,7 +6,6 @@ use Kkos2\KkOs2DisplayIntegrationBundle\Slides\EventFeedData;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\Mock\MockEventsData;
 use Psr\Log\LoggerInterface;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class EventsSisCron implements EventSubscriberInterface
@@ -42,7 +41,32 @@ class EventsSisCron implements EventSubscriberInterface
 
     $fetcher = new EventFeedData($this->logger, $url, $numItems);
     $events = $fetcher->getEvents();
+
+    $filterOnPlace = $slide->getOption('datafeed_filter_place', false);
+    if ($filterOnPlace) {
+      $events = $this->filterOnPlace($events, $filterOnPlace);
+    }
+
     $slide->setSubslides($events);
+  }
+
+  /**
+   * This is filtering that should have taken place on the feeds end, but we
+   * have to do it here.
+   *
+   * @param array $events
+   *   Events to filter.
+   * @param $placeName
+   *   The name of the place we want the events for.
+   *
+   * @return array
+   */
+  private function filterOnPlace($events, $placeName) {
+    $filtered = array_filter($events, function($item) use ($placeName) {
+      return !empty($item['place']) && ($item['place'] == $placeName);
+    });
+    // Return array values to make sure the array is keyed sequentially.
+    return array_values($filtered);
   }
 
   public function getMockSlideData(SlidesInSlideEvent $event)
