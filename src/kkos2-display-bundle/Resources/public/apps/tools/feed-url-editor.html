@@ -19,6 +19,13 @@
           <div class="edit-menu--iframe-label">Skærmnavn (udelad hvis alt indhold fra feedet skal vises)</div>
           <input type="text" data-ng-model="slide.options.datafeed_display" />
         </div>
+
+        <!-- Only show this option to events - not event-plakat. -->
+        <div ng-if="slide.template == 'kk-events'" class="edit-menu--iframe-content">
+          <div class="edit-menu--iframe-label">Filtrering på stednavn (udelad hvis alt indhold fra feedet skal vises)</div>
+          <input type="text" data-ng-model="slide.options.datafeed_filter_place" />
+        </div>
+
       </div>
     </div>
   </div>
