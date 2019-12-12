@@ -46,8 +46,14 @@ class EventData
       'image' => $data['image'],
       'place' => $data['field_display_institution'],
       'date' => $this->getDayName($date) . ' d. ' . $date->format('j') . '. ' . $this->getMonthName($date),
-        'time' => current($data['time']),
+      'time' => current($data['time']),
     ];
+
+    // The feeds are just not consistent from the source, so try to get a place
+    // from another key.
+    if (empty($events['field_display_institution'])) {
+      $events['place'] = $data['place-name'];
+    }
     return array_map('trim', $events);
   }
 

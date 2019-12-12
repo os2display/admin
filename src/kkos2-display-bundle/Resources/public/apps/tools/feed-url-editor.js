@@ -7,7 +7,7 @@ angular.module('toolsModule').directive('feedUrlEditor', function(){
         close: '&',
         template: '@'
       },
-      templateUrl: '/bundles/kkos2displayintegration/apps/tools/feed-url-editor.html'
+      templateUrl: '/bundles/kkos2displayintegration/apps/tools/feed-url-editor.html?v=2'
     };
   }
 );

@@ -34,7 +34,8 @@
     "sis_total_items": 12,
     "sis_items_pr_slide": 3,
 
-    "datafeed_url": ""
+    "datafeed_url": "",
+    "datafeed_filter_place": ""
 
   },
   "tools": [
