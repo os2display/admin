@@ -15,6 +15,17 @@
   grid-area: details;
 }
 
+.kk-eventplakat--logo {
+  top: 4em;
+  right: 3em;
+  width: 9em;
+  .half-split & {
+    top: 2em;
+    right: 1em;
+    width: 5em;
+  }
+}
+
 .kk-eventplakat__subslide {
   display: grid;
   overflow: hidden;
@@ -26,8 +37,7 @@
     grid-template-areas:
       "image place"
       "image details";
-    @include stretchyPx("font-size", 12, 28);
-
+    @include scalableFont(12, 28);
   }
   .kk-ratio-vertical & {
     grid-template-columns: 88% 1fr;
@@ -36,7 +46,7 @@
       "place place"
       "image ."
       "details details";
-    @include stretchyPx("font-size", 12, 64);
+    @include scalableFont(12, 64);
   }
 }
 .kk-eventplakat__img--file {

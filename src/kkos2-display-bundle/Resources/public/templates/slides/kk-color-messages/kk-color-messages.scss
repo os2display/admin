@@ -4,7 +4,18 @@
   color: $colors-white;
   height: 100%;
   width: 100%;
-  @include stretchyPx("font-size", 12, 64);
+  @include scalableFont(12, 64);
+}
+
+.kk-color-messages__logo {
+  top: 1em;
+  right: 1em;
+  width: 3em;
+  .kk-ratio-vertical & {
+    top: 2em;
+    right: 2em;
+    width: 6em;
+  }
 }
 
 .kk-color-messages__inner {
@@ -35,17 +46,5 @@
 
   .kk-ratio-vertical & {
     font-size: 1.5em;
-  }
-}
-
-.kk-logo--top-right {
-  top: 1em;
-  right: 1em;
-  width: 10%;
-
-  .kk-ratio-vertical & {
-    top: 2.5em;
-    right: 2.5em;
-    width: 20%;
   }
 }
