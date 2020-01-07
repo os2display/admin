@@ -120,6 +120,24 @@
       "expect": 0,
       "misMatchThreshold" : 0.1,
       "requireSameDimensions": true
+    },
+    {
+      "label": "Vertical split service plakat",
+      "url": "https://admin.kff-os2display.docker/screen/public/704424dd",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".kk-color-messages",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".sf-toolbar"],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true
     }
   ],
   "paths": {

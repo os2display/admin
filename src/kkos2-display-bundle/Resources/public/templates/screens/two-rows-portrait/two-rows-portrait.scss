@@ -1,18 +1,20 @@
-.screen-two-rows-portrait {
-
-  &--region-vertical {
-    border-bottom: 1px solid white;
-    box-sizing: border-box;
-    display: block;
-
-    &:last-child {
-      border: 0;
+.two-rows-portrait {
+  background-color: #fff;
+}
+.two-rows-portrait__inner {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1px;
+}
+.two-rows-portrait__region {
+  .slide-block {
+    height: 50%;
+  }
+  &:last-child {
+    .slide-block {
+      top: 50%;
     }
   }
-
-  .slide-block,
-  .slide {
-    position: static;
-  }
 }
-
