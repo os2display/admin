@@ -6,19 +6,27 @@
   display: grid;
   align-items: center;
 
-  &.kk-events--ratio-horizontal {
+  &.kk-ratio-horizontal {
     padding-left: 4%;
     padding-right: 14%;
   }
 
-  &.kk-events--ratio-vertical {
+  &.kk-ratio-vertical {
     padding-left: 6%;
     padding-right: 6%;
     padding-top: 6%;
+  }
+}
 
-    .kk-logo--top-right {
-      top: 2%;
-      width: 12%;
+.kk-events--logo {
+  top: 4em;
+  width: 10em;
+
+  .kk-ratio-vertical & {
+    top: 2em;
+    width: 8em;
+    .half-split & {
+      width: 5em;
     }
   }
 }
@@ -28,26 +36,26 @@
   grid-row-gap: 1em;
   grid-template-rows: repeat(3, 1fr);
   overflow: hidden;
-  @include stretchyPx("font-size", 14, 26);
+  @include scalableFont(14, 26);
 
-  .kk-events--ratio-horizontal & {
+  .kk-ratio-horizontal & {
     height: 82%;
   }
 
-  .kk-events--ratio-vertical & {
-    @include stretchyPx("font-size", 14, 64);
+  .kk-ratio-vertical & {
+    @include scalableFont(14, 64);
     height: 84%;
   }
 
   &.sis-items-pr-slide-5 {
     grid-template-rows: repeat(5, 1fr);
 
-    .kk-events--ratio-horizontal & {
-      @include stretchyPx("font-size", 14, 20);
+    .kk-ratio-horizontal & {
+      @include scalableFont(14, 20);
     }
 
-    .kk-events--ratio-vertical & {
-      @include stretchyPx("font-size", 14, 48);
+    .kk-ratio-vertical & {
+      @include scalableFont(14, 48);
     }
   }
 }
@@ -85,10 +93,10 @@
   font-size: 1.1em;
   margin-top: 0.5em;
 
-  .kk-events--ratio-vertical & {
+  .kk-ratio-vertical & {
     @include stretchyEms("line-height", 1, 1.2);
   }
-  .kk-events--ratio-vertical .sis-items-pr-slide-5 & {
+  .kk-ratio-vertical .sis-items-pr-slide-5 & {
     margin-top: 0.2em;
   }
 }
@@ -97,58 +105,7 @@
   font-size: 0.9em;
   @include stretchyEms("line-height", 1.2, 1.5);
 
-  .kk-events--ratio-vertical .sis-items-pr-slide-5 & {
+  .kk-ratio-vertical .sis-items-pr-slide-5 & {
     margin-top: 0.3em;
-  }
-}
-
-.kk-events--ratio-8-9 {
-  $top-margin: 6vh;
-  $bottom-margin: 6vh;
-  $event-margin-bottom: 3vh;
-  $total-height-used: (
-    ($top-margin + $bottom-margin) + ($event-margin-bottom * 2)
-  );
-  // With 3 event boxes, divide 100vh minus the used height and divide by 3.
-  $event-height: (100 - $total-height-used) / 5;
-
-  height: 100%;
-  width: 100%;
-  font-size: 16px;
-
-  .kk-events__event {
-    margin-bottom: 3vh;
-    height: $event-height;
-  }
-
-  .kk-events__subslide {
-    margin: $top-margin 9vw $bottom-margin 2vw;
-  }
-
-  .kk-events__event--text {
-    padding: 0 4%;
-    overflow: hidden;
-  }
-
-  .kk-events__event--img--file {
-    width: 12vw;
-    height: $event-height;
-  }
-
-  .kk-events__event--date {
-    margin: 6% 0 8%;
-    font-size: pt2pct(14);
-  }
-
-  .kk-events__event--title {
-    font-size: pt2pct(16);
-  }
-
-  .kk-events__event--body {
-    font-size: pt2pct(14);
-  }
-
-  .kk-events--logo {
-    width: 12%;
   }
 }

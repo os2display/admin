@@ -21,6 +21,13 @@
   );
 }
 
+@mixin scalableFont($min, $max) {
+  @include stretchyPx('font-size', $min, $max);
+  .half-split & {
+    @include stretchyPx('font-size', $min/2.5, $max/2.5);
+  }
+}
+
 @import 'colors';
 @import 'typography';
 @import 'logo';

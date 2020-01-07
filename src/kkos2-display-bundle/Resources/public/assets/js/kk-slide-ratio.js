@@ -12,9 +12,9 @@ if (!window.kkSlideRatio.getRatio) {
 
     let ratio = (height > width) ? 'vertical' : 'horizontal';
     if (document.querySelectorAll('.half-split').length > 0) {
-      ratio = '8-9';
+      ratio = 'vertical';
     } else if (document.querySelectorAll('.two-rows-portrait').length > 0) {
-      ratio = '9-8';
+      ratio = 'horizontal';
     }
     return ratio;
   };
