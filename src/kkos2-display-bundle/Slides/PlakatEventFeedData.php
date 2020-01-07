@@ -27,8 +27,9 @@ class PlakatEventFeedData extends EventData
   public function getPlakatEvents()
   {
     try {
-      $json = JsonFetcher::fetch($this->dataUrl);
-      $events = array_map([$this, 'extractData'], $json);
+      $fetched = JsonFetcher::fetch($this->dataUrl);
+      $data = array_slice($fetched, 0, $this->numItems);
+      $events = array_map([$this, 'extractData'], $data);
     } catch (\Exception $e) {
       $this->logger->error($e->getMessage());
       return [];
