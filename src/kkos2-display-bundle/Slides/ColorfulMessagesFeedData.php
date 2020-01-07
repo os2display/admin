@@ -34,8 +34,9 @@ class ColorfulMessagesFeedData
   public function getColorfulMessages()
   {
     try {
-      $json = JsonFetcher::fetch($this->dataUrl);
-      $data = array_map([$this, 'extractData'], $json);
+      $fetched = JsonFetcher::fetch($this->dataUrl);
+      $sliced = array_slice($fetched, 0, $this->numItems);
+      $data = array_map([$this, 'extractData'], $sliced);
     } catch (\Exception $e) {
       $this->logger->error($e->getMessage());
       return [];

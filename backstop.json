@@ -12,8 +12,6 @@
       "height": 1920
     }
   ],
-  "onBeforeScript": "puppet/onBefore.js",
-  "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
       "label": "Arrangementsslide - 5 slides",
@@ -68,6 +66,24 @@
       "expect": 0,
       "misMatchThreshold" : 0.1,
       "requireSameDimensions": true
+    },
+    {
+      "label": "Servicespot",
+      "url": "https://admin.kff-os2display.docker/screen/public/a7fb5e7a",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".kk-color-messages",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".sf-toolbar"],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true
     }
   ],
   "paths": {
@@ -77,7 +93,7 @@
     "html_report": "backstop_data/html_report",
     "ci_report": "backstop_data/ci_report"
   },
-  "report": ["browser"],
+  "report": [],
   "engine": "puppeteer",
   "engineOptions": {
     "args": ["--no-sandbox"]
