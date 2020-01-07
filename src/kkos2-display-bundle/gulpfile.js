@@ -5,7 +5,7 @@ const fs = require('fs');
 const del = require("del");
 const gulp = require("gulp");
 const concat = require("gulp-concat");
-const uglify = require("gulp-uglify");
+const uglify = require('gulp-uglify-es').default;
 const rename = require("gulp-rename");
 const sass = require('gulp-sass');
 

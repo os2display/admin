@@ -53,7 +53,6 @@ $fonts-relative-path: '../../../assets/fonts';
 }
 
 .hyphen-word-break {
-  //word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
   -ms-hyphens: auto;

@@ -1,0 +1,53 @@
+{
+  "id": "backstop_default",
+  "viewports": [
+    {
+      "label": "horizontal",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "label": "vertical",
+      "width": 1080,
+      "height": 1920
+    }
+  ],
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "scenarios": [
+    {
+      "label": "Arrangementsslide - 3 slides",
+      "url": "https://admin.kff-os2display.docker/screen/public/80555d52",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".sis-items-pr-slide-3",
+      "delay": 3000,
+      "hideSelectors": [],
+      "removeSelectors": [".sf-toolbar"],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

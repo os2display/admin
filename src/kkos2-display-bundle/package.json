@@ -2,17 +2,17 @@
   "name": "kkos2-os2display-bundle",
   "version": "1.0.0",
   "main": "gulpfile.js",
-  "private": true,
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.1"
+    "gulp-uglify-es": "^2.0.0"
   },
   "scripts": {
-    "gulp": "gulp"
+    "build": "gulp",
+    "watch": "gulp watch"
   },
   "engines": {
     "node": "8.x"

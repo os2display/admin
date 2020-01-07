@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "backstopjs": "^4.4.2"
+  },
+  "scripts": {
+    "backstop": "backstop"
+  }
+}
