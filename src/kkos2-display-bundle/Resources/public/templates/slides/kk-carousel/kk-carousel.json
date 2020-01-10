@@ -1,0 +1,53 @@
+{
+  "id": "kk-carousel",
+  "type": "slide",
+  "name": "Billedekarrusel",
+  "icon": "kk-carousel.png",
+  "paths": {
+    "live": "kk-carousel-live.html",
+    "edit": "kk-carousel-edit.html",
+    "preview": "kk-carousel-edit.html",
+    "css": "kk-carousel.min.css",
+    "js": "bundles/kkos2displayintegration/dist/js/kk-carousel.min.js"
+  },
+  "slide_type": "slides-in-slide",
+  "media_type": "image",
+  "script_id": "kk-carousel",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "bgcolor": "#000c2e",
+
+    "logopos": {
+      "top": "auto",
+      "bottom": "0",
+      "left": "auto",
+      "right": "0"
+    },
+    "logosize": "10%",
+
+    "sis_cron_subscriber": "kk_carousel_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 12,
+    "sis_items_pr_slide": 1,
+
+    "datafeed_url": ""
+  },
+  "tools": [
+    {
+      "name": "Datafeed",
+      "id": "feed-url-editor"
+    },
+    {
+      "name": "Slides in slides",
+      "id": "slides-in-slide-config-editor"
+    },
+    {
+      "name": "Baggrundsfarve",
+      "id": "bg-color-editor"
+    }
+  ]
+}
