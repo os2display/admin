@@ -76,7 +76,7 @@ class CarouselSisCron implements EventSubscriberInterface {
     try {
       $html = $this->fetcher->getBody($url);
 
-      $imageUrls = $this->crawler->getImageUrls($html, '.node-image-slideshow .slides li img');
+      $imageUrls = $this->crawler->getImageUrls($html, '.flexslider .slides li img');
 
       $images = array_map(function ($url) {
         return [
