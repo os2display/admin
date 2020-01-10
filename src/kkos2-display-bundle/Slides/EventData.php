@@ -41,8 +41,8 @@ class EventData
 
     $date = DateTime::createFromFormat('d.m.Y', current($data['startdate']));
     $events = [
-      'title' => $data['title'],
-      'body' => $data['field_teaser'],
+      'title' => html_entity_decode($data['title']),
+      'body' => html_entity_decode($data['field_teaser']),
       'image' => $data['image'],
       'place' => $data['field_display_institution'],
       'date' => $this->getDayName($date) . ' d. ' . $date->format('j') . '. ' . $this->getMonthName($date),
