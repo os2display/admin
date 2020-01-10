@@ -91,9 +91,6 @@
       },
       "sonata-project/media-bundle": {
         "Don't require both hight and width": "patches/sonata-media-bundle-dimension-check.patch"
-      },
-      "reload/os2display-slide-tools": {
-        "Better handling of no subslides": "patches/slides-in-slides-no-subslides.patch"
       }
     }
   }

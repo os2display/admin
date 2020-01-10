@@ -71,12 +71,16 @@ class CarouselSisCron implements EventSubscriberInterface {
    */
   public function getSlideData(SlidesInSlideEvent $event) {
     $slide = $event->getSlidesInSlide();
+    // Enforce only one slide pr. subslide.
+    $slide->setOption('sis_items_pr_slide', 1);
     $url = $slide->getOption('datafeed_url', '');
+    $numItems = $slide->getOption('sis_total_items', 12);
 
     try {
       $html = $this->fetcher->getBody($url);
 
       $imageUrls = $this->crawler->getImageUrls($html, '.flexslider .slides li img');
+      $imageUrls = array_slice($imageUrls, 0, $numItems);
 
       $images = array_map(function ($url) {
         return [
