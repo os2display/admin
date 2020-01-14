@@ -1,7 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-use Symfony\Bundle\FrameworkBundle\Console\Application;
+// Overriding console
+//use Symfony\Bundle\FrameworkBundle\Console\Application;
+use JMS\JobQueueBundle\Console\Application;
+
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
 
