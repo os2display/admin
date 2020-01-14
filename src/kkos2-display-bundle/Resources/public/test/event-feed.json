@@ -1,0 +1,173 @@
+[
+  {
+    "startdate": [
+      "03.05.2020"
+    ],
+    "enddate": [
+      "03.05.2020"
+    ],
+    "time": [
+      "14:00 til 14:30"
+    ],
+    "place-name": "\n  Kulturhuset Et Eller Andet Sted",
+    "place-address": [
+      ""
+    ],
+    "place-phone": "",
+    "place-country": "Denmark",
+    "place-url": [
+      ""
+    ],
+    "place-category": [],
+    "place-email": [
+      ""
+    ],
+    "image": "https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png",
+    "UUID": "90c60b1b-f16b-492e-b7f8-184d18911852",
+    "Nid": "5020",
+    "Sti": "/",
+    "title": "Cat ipsum dolor sit amet then cats",
+    "field_teaser": "take over the world stare at the wall, play with food",
+    "field_display_list": [
+      ""
+    ],
+    "field_display_institution": "",
+    "field_free_tekst": ""
+  },
+  {
+    "startdate": [
+      "18.04.2020"
+    ],
+    "enddate": [
+      "18.04.2020"
+    ],
+    "time": [
+      "15:00 til 15:40"
+    ],
+      "place-name": "\n  Kulturhuset Et Eller Andet Sted",
+    "place-address": [
+      ""
+    ],
+    "place-phone": "",
+    "place-country": "Denmark",
+    "place-url": [
+      ""
+    ],
+    "place-category": [],
+    "place-email": [
+      ""
+    ],
+    "image": "https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png",
+    "Nid": "5019",
+    "Sti": "/",
+    "title": "Cat ipsum dolor sit amet then cats go for world domination",
+    "field_teaser": "take over the world stare at the wall, play with food, then bite you yet small kitty ",
+    "field_display_list": [
+      ""
+    ],
+    "field_display_institution": "",
+    "field_free_tekst": ""
+  },
+  {
+    "startdate": [
+      "04.04.2020"
+    ],
+    "enddate": [
+      "04.04.2020"
+    ],
+    "time": [
+      "15:00 til 15:30"
+    ],
+      "place-name": "\n  Kulturhuset Et Eller Andet Sted",
+    "place-address": [
+      ""
+    ],
+    "place-phone": "",
+    "place-country": "Denmark",
+    "place-url": [
+      ""
+    ],
+    "place-category": [],
+    "place-email": [
+      ""
+    ],
+    "image": "https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png",
+    "Nid": "5018",
+    "Sti": "/event/vred-en-boerneforestilling-om-vrede",
+    "title": "Cat ipsum dolor sit amet then cats",
+    "field_teaser": "take over the world stare at the wall, play with food",
+    "field_display_list": [
+      ""
+    ],
+    "field_display_institution": "",
+    "field_free_tekst": ""
+  },
+  {
+    "startdate": [
+      "29.02.2020"
+    ],
+    "enddate": [
+      "29.02.2020"
+    ],
+    "time": [
+      "13:00 til 14:00"
+    ],
+      "place-name": "\n  Kulturhuset Et Eller Andet Sted",
+    "place-address": [
+      ""
+    ],
+    "place-phone": "",
+    "place-country": "Denmark",
+    "place-url": [
+      ""
+    ],
+    "place-category": [],
+    "place-email": [
+      ""
+    ],
+    "image": "https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png",
+    "Nid": "5017",
+    "Sti": "/",
+    "title": "Cat ipsum dolor sit amet then cats meow until belly rubs, intently stare at the same spot",
+    "field_teaser": "take over the world stare at the wall, play with food",
+    "field_display_list": [
+      ""
+    ],
+    "field_display_institution": "",
+    "field_free_tekst": ""
+  },
+  {
+    "startdate": [
+      "21.03.2020"
+    ],
+    "enddate": [
+      "21.03.2020"
+    ],
+    "time": [
+      "13:00 til 14:00"
+    ],
+      "place-name": "\n  Kulturhuset Et Eller Andet Sted",
+    "place-address": [
+      ""
+    ],
+    "place-phone": "",
+    "place-country": "Denmark",
+    "place-url": [
+      ""
+    ],
+    "place-category": [],
+    "place-email": [
+      ""
+    ],
+    "image": "https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png",
+    "Nid": "5009",
+    "Sti": "/",
+    "title": "Cat ipsum dolor sit amet then cats",
+    "field_teaser": "take over the world stare at the wall, play with food",
+    "field_display_list": [
+      "\n  \n    kib_screen02  \n"
+    ],
+    "field_display_institution": "",
+    "field_free_tekst": ""
+  }
+]

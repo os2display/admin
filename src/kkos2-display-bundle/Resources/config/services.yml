@@ -1,6 +1,11 @@
 services:
   _defaults:
     autowire: true
+
+  Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\MultisiteCrawler:
+  Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\MultisiteHelper:
+  Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\DataFetcher:
+
   kkos2.subscriber.colorfulMessageSisCron:
     class: Kkos2\KkOs2DisplayIntegrationBundle\Cron\ColorfulMessageSisCron
     tags:
@@ -11,5 +16,9 @@ services:
       - { name: kernel.event_subscriber }
   kkos2.subscriber.eventsSisCron:
     class: Kkos2\KkOs2DisplayIntegrationBundle\Cron\EventsSisCron
+    tags:
+      - { name: kernel.event_subscriber }
+  kkos2.subscriber.CarouselSisCron:
+    class: Kkos2\KkOs2DisplayIntegrationBundle\Cron\CarouselSisCron
     tags:
       - { name: kernel.event_subscriber }

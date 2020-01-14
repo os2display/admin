@@ -1,0 +1,23 @@
+<div
+  lang="da-DK"
+  class="kk-carousel kk-ratio-{{ratio}} kk-slide-body font-kbh"
+  data-ng-style="{'background-color': ikSlide.options.bgcolor}"
+>
+  <div
+    class="kk-carousel__subslide"
+    data-ng-style="{'background-color': background_color}"
+    ng-repeat="subslide in ikSlide.data.subslides track by $index"
+    data-ng-show="ikSlide.data.currentSlide === $index"
+  >
+    <div class="kk-carousel__img">
+      <img class="kk-carousel__img--file" src="{{subslide.image_url}}" alt="" />
+    </div>
+  </div>
+
+  <div class="kk-carousel__indicator">
+    <div
+      ng-repeat="n in dots track by $index"
+      ng-class="{'is-active' : ikSlide.data.currentSlide === $index, 'kk-carousel__dot': true}"
+    ></div>
+  </div>
+</div>

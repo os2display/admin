@@ -24,3 +24,4 @@ config.codekit
 /node_modules/
 composer.phar
 composer-dev.*
+backstop_data/

@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "backstopjs": "^4.4.2"
+  },
+  "scripts": {
+    "backstop": "backstop"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}

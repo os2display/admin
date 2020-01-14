@@ -9,7 +9,7 @@ This code can run in [Os2Display develompent setup](https://github.com/kkos2/os2
 You need Yarn installed locally for building the front end.
 
 ## Building the JS and CSS files
-Run `yarn gulp` to compile or `yarn gulp watch` to watch the files.
+Run `yarn build` to compile or `yarn watch` to watch the files.
 
 Make sure you read the comments in the angular.yml-file about how to minimize errors between prod and dev environments.
 

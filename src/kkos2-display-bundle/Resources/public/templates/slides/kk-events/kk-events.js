@@ -22,6 +22,7 @@ if (!window.slideFunctions['kk-events']) {
       scope.theStyle = {
         bgcolor: slide.options.bgcolor
       };
+      scope.itemsPrSlide = slide.external_data.sis_data_items_pr_slide ? slide.external_data.sis_data_items_pr_slide : 1;
       scope.ratio = window.kkSlideRatio.getRatio();
       window.slidesInSlides.setup(scope, subslides, num_subslides, slide_duration);
     },

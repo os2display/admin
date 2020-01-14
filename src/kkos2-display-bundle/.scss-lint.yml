@@ -1,0 +1,7 @@
+linters:
+  PropertySortOrder:
+    enabled: false
+  NameFormat:
+    enabled: false
+  SelectorFormat:
+    enabled: false

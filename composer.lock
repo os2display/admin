@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b237f207a2859e13f6bab4673b7393fd",
+    "content-hash": "7ad7cbff6576495bb46a8bb1a6d384fc",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3826,24 +3826,19 @@
         },
         {
             "name": "reload/os2display-slide-tools",
-            "version": "v1.0.4",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reload/os2display-slide-tools.git",
-                "reference": "53112f2146e7ad32dae5ff40c661392271300aaa"
+                "reference": "fb8689890ae86ce62b04bf2d1dd54b70ede4ec2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/53112f2146e7ad32dae5ff40c661392271300aaa",
-                "reference": "53112f2146e7ad32dae5ff40c661392271300aaa",
+                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/fb8689890ae86ce62b04bf2d1dd54b70ede4ec2b",
+                "reference": "fb8689890ae86ce62b04bf2d1dd54b70ede4ec2b",
                 "shasum": ""
             },
             "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "Better handling of no subslides": "patches/slides-in-slides-no-subslides.patch"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Reload\\Os2DisplaySlideTools\\": ""
@@ -3851,7 +3846,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Reusable tools for working with slides in https://github.com/os2display",
-            "time": "2019-11-27T13:17:08+00:00"
+            "time": "2020-01-10T16:23:06+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -6014,6 +6009,7 @@
                 "code",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2018-08-13T20:36:59+00:00"
         },
         {
@@ -6068,6 +6064,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
         }
     ],

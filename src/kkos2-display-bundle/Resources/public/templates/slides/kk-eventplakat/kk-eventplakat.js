@@ -23,7 +23,6 @@ if (!window.slideFunctions['kk-eventplakat']) {
       };
 
       scope.ratio = window.kkSlideRatio.getRatio();
-      scope.placeWrapped = (scope.ratio === '16-9' || scope.ratio === '8-9');
     },
 
     /**

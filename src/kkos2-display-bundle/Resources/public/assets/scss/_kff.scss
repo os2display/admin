@@ -8,6 +8,27 @@
   @return 0% + ($pt * 100 / 12);
 }
 
+// https://css-tricks.com/books/volume-i/scale-typography-screen-size/
+@mixin stretchyEms($property, $min, $max) {
+  #{$property}: calc(
+    #{$min}em + (#{$max} - #{$min}) * ((100vw - 300px) / (1920 - 300))
+  );
+}
+// https://css-tricks.com/books/volume-i/scale-typography-screen-size/
+@mixin stretchyPx($property, $min, $max) {
+  #{$property}: calc(
+    #{$min}px + (#{$max} - #{$min}) * ((100vw - 300px) / (1920 - 300))
+  );
+}
+
+@mixin scalableFont($min, $max) {
+  @include stretchyPx('font-size', $min, $max);
+  .half-split & {
+    @include stretchyPx('font-size', $min/2.5, $max/2.5);
+  }
+}
+
+@import 'colors';
 @import 'typography';
 @import 'logo';
 @import 'slides';

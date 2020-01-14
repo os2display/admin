@@ -1,101 +1,50 @@
 @import "../../../assets/scss/kff";
 
+.kk-color-messages {
+  color: $colors-white;
+  height: 100%;
+  width: 100%;
+  @include scalableFont(12, 64);
+}
+
+.kk-color-messages__logo {
+  top: 1em;
+  right: 1em;
+  width: 3em;
+  .kk-ratio-vertical & {
+    top: 2em;
+    right: 2em;
+    width: 6em;
+  }
+}
+
 .kk-color-messages__inner {
-  color: white;
+  display: grid;
+  height: 100%;
+  margin: 0 6% 0 10%;
+  justify-content: start;
+  grid-template-rows: 2fr min-content 2fr;
 }
 
 .kk-color-messages__place {
-  font-weight: 400;
+  align-self: end;
+  font-size: 0.7em;
 }
-
 .kk-color-messages__title {
-  line-height: 1;
+  @include stretchyEms("line-height", 1, 1.3);
+  align-self: center;
+  font-size: 2em;
   margin: 0;
-  // Keep the title a bit slimmer to make space for the water-mark to the right.
-  // see the .messages__logo class and "kffLogo" in the templates.
-  margin-right: 5%
-}
 
-.kk-color-messages--ratio-16-9 {
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-
-  .kk-color-messages__inner {
-    margin: 6% 13% 4% 10%;
-  }
-
-  .kk-color-messages__place {
-    margin: 0 0 3%;
-    font-size: pt2pct(18);
-  }
-
-  .kk-color-messages__title {
-    font-size: pt2pct(100);
-  }
-
-  .kk-color-messages__body {
-    font-size: pt2pct(30);
-    margin-top: 2%;
-  }
-
-  .kk-color-messages__logo {
-    width: 12%;
-    padding-right: 5%;
+  .kk-ratio-vertical & {
+    font-size: 3.8em;
+    margin: 2% 0 1%;
   }
 }
+.kk-color-messages__body {
+  align-self: start;
 
-.kk-color-messages--ratio-9-16 {
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-
-  .kk-color-messages__inner {
-    margin: 16% 13% 4% 10%;
-  }
-
-  .kk-color-messages__place {
-    margin-bottom: 26%;
-    font-size: pt2pct(30);
-  }
-
-  .kk-color-messages__title {
-    font-size: pt2pct(100);
-  }
-
-  .kk-color-messages__body {
-    font-size: pt2pct(50);
-  }
-
-  .kk-color-messages__logo {
-    width: 15%;
-    padding: 12% 5%;
-  }
-}
-
-.kk-color-messages--ratio-8-9 {
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-
-  .kk-color-messages__inner {
-    margin: 16% 13% 4% 10%;
-  }
-
-  .kk-color-messages__place {
-    margin-bottom: 20%;
-    font-size: pt2pct(18);
-  }
-
-  .kk-color-messages__title {
-    font-size: pt2pct(80);
-  }
-
-  .kk-color-messages__body {
-    font-size: pt2pct(30);
-  }
-  .kk-color-messages__logo {
-    width: 15%;
-    padding: 12% 5%;
+  .kk-ratio-vertical & {
+    font-size: 1.5em;
   }
 }

@@ -3,20 +3,20 @@
      'background-color': theStyle.bgcolor
      }">
 
-  <div class="kk-events__subslide"
+  <div class="kk-events__subslide sis-items-pr-slide-{{itemsPrSlide}}"
        ng-repeat="slide in ikSlide.data.subslides track by $index"
        data-ng-show="ikSlide.data.currentSlide === $index">
 
     <div class="kk-events__event" ng-repeat="event in slide">
-      <div class="kk-events_event_img">
-        <img class="kk-events__event--img--file" src="{{event.image}}" alt="">
+      <div class="kk-events__event-img">
+        <img class="kk-events__event-img--file" src="{{event.image}}" alt="">
       </div>
       <div class="kk-events__event--text">
         <p class="kk-events__event--date">
           {{event.date}} {{event.time}}
         </p>
-        <h1 class="kk-events__event--title">{{event.title}}</h1>
-        <p class="kk-events__event--body">
+        <h1 class="kk-events__event--title font-bolder">{{event.title}}</h1>
+        <p class="kk-events__event--description">
           {{event.body}}
         </p>
       </div>

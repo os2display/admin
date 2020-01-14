@@ -1,11 +1,10 @@
 /* jshint node: true */
-"use strict";
 
-const fs = require('fs');
+const { readdirSync } = require('fs')
 const del = require("del");
 const gulp = require("gulp");
 const concat = require("gulp-concat");
-const uglify = require("gulp-uglify");
+const uglify = require('gulp-uglify-es').default;
 const rename = require("gulp-rename");
 const sass = require('gulp-sass');
 
@@ -15,8 +14,10 @@ const sass = require('gulp-sass');
  * @param {string} source The directory to find directory names in.
  * @returns {string[]} Array of strings with directory names.
  */
-const dirsInDir = source => fs.readdirSync(source, {withFileTypes: true})
-  .filter(c => fs.statSync(source + '/' + c).isDirectory());
+const dirsInDir = source =>
+  readdirSync(source, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name);
 
 const scssDir = "Resources/public/assets/scss";
 const slidesPath = "Resources/public/templates/slides";
