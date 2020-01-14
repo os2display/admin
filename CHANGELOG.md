@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 6.1.4
+
+* Merged https://github.com/os2display/admin/pull/26 - Minor language/syntax/link fixes
+* Merged https://github.com/os2display/admin/pull/24 - Fixed issue with jms job queue
+
 ## 6.1.3
 
 * Fixed UTC in AppKernel.php.
