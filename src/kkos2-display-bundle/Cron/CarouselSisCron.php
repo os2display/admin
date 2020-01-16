@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class CarouselSisCron implements EventSubscriberInterface {
 
   /**
-   * @var \Symfony\Bridge\Monolog\Logger $logger
+   * @var \Psr\Log\LoggerInterface $logger
    */
   private $logger;
 
