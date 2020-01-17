@@ -3,7 +3,7 @@
 namespace Kkos2\KkOs2DisplayIntegrationBundle\ExternalData;
 
 use DateTime;
-use Kkos2\KkOs2DisplayIntegrationBundle\Slides\EventTrait;
+use Kkos2\KkOs2DisplayIntegrationBundle\Slides\DateTrait;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  */
 class EventfeedHelper {
 
-  use EventTrait;
+  use DateTrait;
 
   /**
    * @var \Psr\Log\LoggerInterface $logger
@@ -38,7 +38,7 @@ class EventfeedHelper {
   /**
    * @param string $url Url to feed
    * @param integer $numItems Number of items to return from the feed
-   * @param string $filterDisplay
+   * @param array $queryData
    *
    * @return array|mixed
    */

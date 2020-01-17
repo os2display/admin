@@ -1,4 +1,6 @@
 assets:
+  css:
+    - bundles/kkos2displayintegration/assets/css/tools.css
   js_prod:
     - bundles/kkos2displayintegration/dist/js/kff-tools.min.js
 

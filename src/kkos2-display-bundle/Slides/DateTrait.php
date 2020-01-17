@@ -5,7 +5,7 @@ namespace Kkos2\KkOs2DisplayIntegrationBundle\Slides;
 
 use DateTime;
 
-trait EventTrait {
+trait DateTrait {
 
   public function getDayName(DateTime $date)
   {

@@ -1,0 +1,8 @@
+.bookbyen-fields label {
+  display: inline;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.bookbyen-fields input {
+  vertical-align: middle;
+}

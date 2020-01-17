@@ -1,0 +1,68 @@
+{
+  "id": "bookbyen",
+  "type": "slide",
+  "name": "Book Byen",
+  "icon": "bookbyen.png",
+  "paths": {
+    "live": "bookbyen-live.html",
+    "edit": "bookbyen-edit.html",
+    "preview": "bookbyen-edit.html",
+    "css": "bookbyen.min.css",
+    "js": "bundles/kkos2displayintegration/dist/js/bookbyen.min.js"
+  },
+  "slide_type": "slides-in-slide",
+  "media_type": "image",
+  "script_id": "bookbyen",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+    "bgcolor": "#000c2e",
+
+    "logopos": {
+      "top": "auto",
+      "bottom": "0",
+      "left": "auto",
+      "right": "0"
+    },
+    "logosize": "10%",
+
+    "sis_cron_subscriber": "kk_bookbyen_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 12,
+    "sis_items_pr_slide": 12,
+
+    "bookbyen": {
+      "api_url": "",
+      "filtering": {
+        "area":  "",
+        "facility": ""
+      },
+      "useFields": {
+        "time": true,
+        "username": false,
+        "facility": false,
+        "activity": false,
+        "note": false,
+        "team": false,
+        "teamleaders": false
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "Book Byen",
+      "id": "bookbyen-editor"
+    },
+    {
+      "name": "Slides in slides",
+      "id": "slides-in-slide-config-editor"
+    },
+    {
+      "name": "Baggrundsfarve",
+      "id": "bg-color-editor"
+    }
+  ]
+}

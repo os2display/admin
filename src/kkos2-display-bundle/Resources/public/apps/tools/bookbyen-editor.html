@@ -1,0 +1,97 @@
+<div class="edit-menu--background" role="banner">
+  <div class="edit-menu--background-inner">
+    <div class="edit-menu--toggle-icon" data-ng-click="close()">
+      <div class="svg-clickable">
+        <object
+          data="bundles/os2displaydefaulttemplate/assets/images/cancel.svg"
+          type="image/svg+xml"
+        >
+          <!-- Fallback (ie8)-->
+          <img
+            src="bundles/os2displaydefaulttemplate/assets/images/cancel.png"
+          />
+        </object>
+      </div>
+    </div>
+    <div class="edit-menu--background-page">
+      <div class="edit-menu--background-page-inner">
+        <h2 class="edit-menu--iframe-header">Indstillinger</h2>
+
+        <div class="edit-menu--iframe-content">
+          <h2>API-url</h2>
+          <input type="text" data-ng-model="slide.options.bookbyen.api_url" />
+        </div>
+
+        <div class="edit-menu--iframe-content">
+          <h2>Område</h2>
+          <input type="text" data-ng-model="slide.options.bookbyen.filtering.area" />
+        </div>
+        <div class="edit-menu--iframe-content">
+          <h2>Facilitet</h2>
+          <input type="text" data-ng-model="slide.options.bookbyen.filtering.facility" />
+        </div>
+
+        <div class="edit-menu--iframe-content">
+          <h2>Hvilke kolonner skal vises?</h2>
+
+          <div class="bookbyen-fields">
+            <input
+              type="checkbox"
+              id="username"
+              name="username"
+              data-ng-model="slide.options.bookbyen.useFields.username"
+            />
+            <label for="username">Brugernavn</label>
+          </div>
+
+          <div class="bookbyen-fields">
+            <input
+              type="checkbox"
+              id="facility"
+              name="facility"
+              data-ng-model="slide.options.bookbyen.useFields.facility"
+            />
+            <label for="facility">Facilitet</label>
+          </div>
+          <div class="bookbyen-fields">
+            <input
+              type="checkbox"
+              id="activity"
+              name="activity"
+              data-ng-model="slide.options.bookbyen.useFields.activity"
+            />
+            <label for="activity">Aktivitet</label>
+          </div>
+
+          <div class="bookbyen-fields">
+            <input
+              type="checkbox"
+              id="note"
+              name="note"
+              data-ng-model="slide.options.bookbyen.useFields.note"
+            />
+            <label for="note">Note/arrangement</label>
+          </div>
+          <div class="bookbyen-fields">
+            <input
+              type="checkbox"
+              id="team"
+              name="team"
+              data-ng-model="slide.options.bookbyen.useFields.team"
+            />
+            <label for="team">Hold</label>
+          </div>
+          <div class="bookbyen-fields">
+            <input
+              type="checkbox"
+              id="teamleaders"
+              name="teamleaders"
+              data-ng-model="slide.options.bookbyen.useFields.teamleaders"
+            />
+            <label for="teamleaders">Holdleader/team</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
