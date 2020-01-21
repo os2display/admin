@@ -71,11 +71,16 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
    */
   private function processColorfulMessages($data) {
     $expected_keys = [
-      'field_display_institution',
       'title_field',
       'body',
       'field_background_color',
     ];
+    // Field names change in the feed often. Try to keep up here.
+    $placeKey = 'field_display_institution';
+    if (isset($data['field_display_institution_spot'])) {
+      $placeKey = 'field_display_institution_spot';
+    }
+    $expected_keys[] = $placeKey;
 
     $missing = array_diff($expected_keys, array_keys($data));
     if (!empty($missing)) {
@@ -84,7 +89,7 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
     }
 
     return [
-      'place' => html_entity_decode($data['field_display_institution']),
+      'place' => html_entity_decode($data[$placeKey]),
       'title' => html_entity_decode($data['title_field']),
       'body' => html_entity_decode($data['body']),
       'background_color' => trim($data['field_background_color']),

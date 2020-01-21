@@ -21,8 +21,6 @@ class JsonFetcher
   {
     try {
       $client = new Client();
-      $queryData['cache_buster'] = time();
-
       $url = self::addQueryData($url, $queryData);
       $response = $client->get($url, [
         'headers' => [
