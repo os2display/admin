@@ -20,7 +20,7 @@ class DataFetcher
    * @return string
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function getBody($url) {
+  public function getBody($url, $options = []) {
     $client = new Client();
     $res = $client->request('GET', $url);
 

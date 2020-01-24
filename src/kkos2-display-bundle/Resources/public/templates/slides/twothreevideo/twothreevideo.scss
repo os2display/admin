@@ -1,0 +1,15 @@
+@import "../../../assets/scss/kff";
+
+.twothreevideo {
+  width: 100%;
+  height: 100%;
+  background-color: $colors-dark-blue;
+}
+
+.twothreevideo__subslide {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  width: 100%;
+}
