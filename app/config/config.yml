@@ -28,7 +28,7 @@ framework:
     http_method_override: true
     assets: ~
     php_errors:
-        log: true
+        log: '%kernel.debug%'
     templating:
         engines: ['twig', 'php']
 
