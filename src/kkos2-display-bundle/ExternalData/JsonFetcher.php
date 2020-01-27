@@ -8,21 +8,19 @@ use GuzzleHttp\Exception\TransferException;
 class JsonFetcher
 {
 
-  protected static function addCacheBuster($url){
+  protected static function addQueryData($url, $queryData) {
     $url_parts = parse_url($url);
     $query = empty($url_parts['query']) ? '' : $url_parts['query'];
     parse_str($query, $params);
+    $params += $queryData;
 
-    $params['cache_buster'] = time();
     return $url_parts['scheme'] . '://' . $url_parts['host'] . $url_parts['path'] . '?' . http_build_query($params);
   }
 
-  public static function fetch($url)
+  public static function fetch($url, $queryData = [])
   {
-    try {
       $client = new Client();
-
-      $url = self::addCacheBuster($url);
+      $url = self::addQueryData($url, $queryData);
       $response = $client->get($url, [
         'headers' => [
           'Accept' => 'application/json'
@@ -31,9 +29,5 @@ class JsonFetcher
 
       $body = $response->getBody();
       return json_decode($body, true);
-
-    } catch (TransferException $exception) {
-      throw new \Exception('Error on fetch from: ' . $url);
-    }
   }
 }

@@ -1,0 +1,27 @@
+<div
+  lang="da-DK"
+  class="twothreevideo kk-ratio-{{ratio}} twothreevideo-id-{{ikSlide.uniqueId}} kk-slide-body font-kbh"
+>
+  <div
+    class="twothreevideo__subslide"
+    ng-repeat="subslide in ikSlide.data.subslides track by $index"
+    data-ng-show="ikSlide.data.currentSlide === $index"
+  >
+    <div
+      style="width:100%; height:0; position: relative; padding-bottom:56.25%"
+    >
+      <iframe
+        class="twothreevideo-iframe-{{$index}}"
+        src="{{subslide.url}}"
+        style="width:100%; height:100%; position: absolute; top: 0; left: 0;"
+        frameborder="0"
+        border="0"
+        scrolling="no"
+        allowfullscreen="1"
+        mozallowfullscreen="1"
+        webkitallowfullscreen="1"
+        allow="autoplay; fullscreen"
+      ></iframe>
+    </div>
+  </div>
+</div>

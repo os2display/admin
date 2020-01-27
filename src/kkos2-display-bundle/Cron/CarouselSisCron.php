@@ -2,7 +2,6 @@
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\DataFetcher;
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\MultisiteCrawler;
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\MultisiteHelper;
@@ -18,7 +17,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class CarouselSisCron implements EventSubscriberInterface {
 
   /**
-   * @var \Symfony\Bridge\Monolog\Logger $logger
+   * @var \Psr\Log\LoggerInterface $logger
    */
   private $logger;
 
@@ -89,9 +88,9 @@ class CarouselSisCron implements EventSubscriberInterface {
       },
         $imageUrls);
       $slide->setSubslides($images);
-    } catch (GuzzleException $e) {
+    } catch (\Exception $e) {
       $slide->setSubslides([]);
-      $this->logger->addError("There was a problem fetching data from $url");
+      $this->logger->addError("Problem fetching data for $url. Error message: " . $e->getMessage());
     }
   }
 

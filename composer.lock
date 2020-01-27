@@ -3826,16 +3826,16 @@
         },
         {
             "name": "reload/os2display-slide-tools",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reload/os2display-slide-tools.git",
-                "reference": "fb8689890ae86ce62b04bf2d1dd54b70ede4ec2b"
+                "reference": "b8062fa548d589bef6d86dec196d6d51eea777a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/fb8689890ae86ce62b04bf2d1dd54b70ede4ec2b",
-                "reference": "fb8689890ae86ce62b04bf2d1dd54b70ede4ec2b",
+                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/b8062fa548d589bef6d86dec196d6d51eea777a7",
+                "reference": "b8062fa548d589bef6d86dec196d6d51eea777a7",
                 "shasum": ""
             },
             "type": "library",
@@ -3846,7 +3846,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Reusable tools for working with slides in https://github.com/os2display",
-            "time": "2020-01-10T16:23:06+00:00"
+            "time": "2020-01-17T20:30:46+00:00"
         },
         {
             "name": "sensio/distribution-bundle",

@@ -1,4 +1,5 @@
 <?php
+
 namespace Kkos2\KkOs2DisplayIntegrationBundle\ExternalData;
 
 use GuzzleHttp\Client;
@@ -9,8 +10,7 @@ use GuzzleHttp\Exception\TransferException;
  *
  * @package Kkos2\KkOs2DisplayIntegrationBundle\ExternalData
  */
-class DataFetcher
-{
+class DataFetcher {
 
   /**
    * Convenience method to get response body from url.
@@ -20,7 +20,7 @@ class DataFetcher
    * @return string
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function getBody($url) {
+  public function getBody($url, $options = []) {
     $client = new Client();
     $res = $client->request('GET', $url);
 
