@@ -109,7 +109,7 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
       $fetched = JsonFetcher::fetch($url, $queryData);
       $data = array_slice($fetched, 0, $numItems);
     } catch (\Exception $e) {
-      $this->logger->error('There was a problem fetching data from servicespot feed with this url: ' . $url);
+      $this->logger->error("There was a problem fetching data from servicespot feed with this url: $url Error message: " . $e->getMessage());
     }
     return $data;
   }

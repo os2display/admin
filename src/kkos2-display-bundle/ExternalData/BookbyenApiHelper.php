@@ -34,7 +34,7 @@ class BookbyenApiHelper {
     try {
       $data = JsonFetcher::fetch($url);
     } catch (\Exception $e) {
-      $this->logger->error('There was a problem fetching data from the book byen API: ' . $url);
+      $this->logger->error("There was a problem fetching data from the book byen API with this url: $url Error message: " . $e->getMessage());
     }
     return $data;
   }

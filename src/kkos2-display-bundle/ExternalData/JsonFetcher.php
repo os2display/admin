@@ -19,7 +19,6 @@ class JsonFetcher
 
   public static function fetch($url, $queryData = [])
   {
-    try {
       $client = new Client();
       $url = self::addQueryData($url, $queryData);
       $response = $client->get($url, [
@@ -30,9 +29,5 @@ class JsonFetcher
 
       $body = $response->getBody();
       return json_decode($body, true);
-
-    } catch (TransferException $exception) {
-      throw new \Exception('Error on fetch from: ' . $url);
-    }
   }
 }
