@@ -55,7 +55,6 @@ class ArticlesSisCron implements EventSubscriberInterface {
         'title' => 'Cat Lorem Ipsum',
         'manchet' => 'Refuse to come home when humans are going to bed',
         'image' => 'https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png',
-        'freetext' => 'Mouse claw drapes',
       ],
       [
         'title' => 'Kitty Lorem eating fishes',
