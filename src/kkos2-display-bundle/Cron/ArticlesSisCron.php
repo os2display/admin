@@ -54,18 +54,18 @@ class ArticlesSisCron implements EventSubscriberInterface {
       [
         'title' => 'Cat Lorem Ipsum',
         'manchet' => 'Refuse to come home when humans are going to bed',
-        'image' => 'https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png',
+        'image' => 'https://github.com/kkos2/os2display-admin/raw/kk-master/src/kkos2-display-bundle/Resources/public/test/testimage.png',
       ],
       [
         'title' => 'Kitty Lorem eating fishes',
         'manchet' => 'Taco cat backwards spells taco cat dream about hunting birds',
-        'image' => 'https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png',
+        'image' => 'https://github.com/kkos2/os2display-admin/raw/kk-master/src/kkos2-display-bundle/Resources/public/test/testimage.png',
         'freetext' => 'loves cheeseburgers',
       ],
       [
         'title' => 'Lorem Tuna Kitteh Ipsum',
         'manchet' => 'Plop down in the middle where everybody walks cat mojo',
-        'image' => 'https://admin.kff-os2display.docker/bundles/kkos2displayintegration/test/testimage.png',
+        'image' => 'https://github.com/kkos2/os2display-admin/raw/kk-master/src/kkos2-display-bundle/Resources/public/test/testimage.png',
         'freetext' => 'Let me-out, let me-aow, let meaow, meaow',
       ],
     ];
