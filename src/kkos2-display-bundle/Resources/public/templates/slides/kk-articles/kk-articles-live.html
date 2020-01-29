@@ -1,0 +1,12 @@
+<div
+  lang="da-DK"
+  class="kk-articles kk-ratio-{{ratio}} kk-articles-id-{{ikSlide.uniqueId}} kk-slide-body font-kbh"
+>
+  <div
+    class="kk-articles__subslide"
+    ng-repeat="subslide in ikSlide.data.subslides track by $index"
+    data-ng-show="ikSlide.data.currentSlide === $index"
+  >
+    Artikel {{$index}}
+  </div>
+</div>

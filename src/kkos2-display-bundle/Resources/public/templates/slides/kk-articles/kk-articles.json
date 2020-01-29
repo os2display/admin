@@ -1,0 +1,40 @@
+{
+  "id": "kk-articles",
+  "type": "slide",
+  "name": "Artikler",
+  "icon": "kk-articles.png",
+  "paths": {
+    "live": "kk-articles-live.html",
+    "edit": "kk-articles-edit.html",
+    "preview": "kk-articles-edit.html",
+    "css": "kk-articles.min.css",
+    "js": "bundles/kkos2displayintegration/dist/js/kk-articles.min.js"
+  },
+  "slide_type": "slides-in-slide",
+  "media_type": "image",
+  "script_id": "kk-articles",
+  "orientation": "landscape",
+  "ideal_dimensions": {
+    "width": "1920",
+    "height": "1080"
+  },
+  "empty_options": {
+
+    "sis_cron_subscriber": "kk_articles_sis_cron",
+    "sis_subslide_duration": 10,
+    "sis_total_items": 3,
+    "sis_items_pr_slide": 1,
+
+    "url": ""
+  },
+  "tools": [
+    {
+      "name": "Url til samlenode",
+      "id": "url-editor"
+    },
+    {
+      "name": "Slides in slides",
+      "id": "slides-in-slide-config-editor"
+    }
+  ]
+}
