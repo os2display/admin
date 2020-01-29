@@ -1,5 +1,17 @@
 @import "../../../assets/scss/kff";
 
+@keyframes blinking {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
 .bookbyen {
   background-color: $colors-white;
   width: 100%;
@@ -16,20 +28,30 @@
   color: $colors-white;
   width: 100%;
   display: grid;
-  grid-template-columns: 18% auto auto;
+  grid-template-columns: 13% auto auto;
   align-items: center;
 
   padding: 0.5em 1em;
 
   &__date {
-    font-size: .8em;
+    font-size: .6em;
+    text-align: center;
   }
+  &__time {
+    font-size: 1.3em;
+    line-height: 1.8em;
+  }
+  &__time-separator {
+    animation: 2s linear infinite blinking;
+  }
+
   &__place {
     font-size: 1.7em;
     text-transform: uppercase;
     font-weight: 700;
     justify-self: center;
   }
+
   &__logo {
     width: 3em;
     justify-self: right;
@@ -48,6 +70,7 @@
   display: grid;
   align-items: center;
 }
+
 .bookbyen__pager {
   font-size: 0.5em;
   color: #000;
@@ -70,9 +93,11 @@
   td {
     padding: 0.7em;
   }
+
   &__head {
     color: $colors-white;
   }
+
   &__body {
     color: #000;
   }
