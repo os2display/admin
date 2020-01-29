@@ -19,6 +19,7 @@
     "height": "1080"
   },
   "empty_options": {
+    "bgcolor": "#000c2e",
 
     "sis_cron_subscriber": "kk_articles_sis_cron",
     "sis_subslide_duration": 10,
@@ -35,6 +36,10 @@
     {
       "name": "Slides in slides",
       "id": "slides-in-slide-config-editor"
+    },
+    {
+      "name": "Baggrundsfarve",
+      "id": "bg-color-editor"
     }
   ]
 }

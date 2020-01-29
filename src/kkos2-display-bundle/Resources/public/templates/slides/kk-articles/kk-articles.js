@@ -21,7 +21,7 @@ if (!window.slideFunctions["kk-articles"]) {
          subslides: subslides,
          num_subslides: num_subslides,
        };
-
+       scope.ikSlide.kffLogo = slide.server_path + "/bundles/kkos2displayintegration/assets/img/kbh-logo.png";
        scope.ratio = window.kkSlideRatio.getRatio();
      },
 

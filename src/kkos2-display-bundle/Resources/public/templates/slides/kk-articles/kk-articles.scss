@@ -1,15 +1,89 @@
 @import "../../../assets/scss/kff";
 
-.twothreevideo {
-  width: 100%;
+.kk-articles {
+  @include scalableFont(12, 64);
+  color: $colors-white;
   height: 100%;
-  background-color: $colors-dark-blue;
+  width: 100%;
 }
 
-.twothreevideo__subslide {
+.kk-articles__image {
+  grid-area: image;
+  align-self: center;
+
+  &-inner {
+    height: 500px;
+  }
+
+  &-file {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.kk-articles__freetext {
+  grid-area: freetext;
+
+  .kk-ratio-horizontal & {
+    height: 25%;
+  }
+}
+
+.kk-articles__text-wrap {
+  grid-area: text-wrap;
+}
+
+.kk-articles__title {
+  font-size: 4em;
+  @include stretchyEms("line-height", 1, 1.3);
+}
+
+.kk-articles__manchet {
+  font-size: 1.5em;
+  margin-top: 1em;
+}
+
+.kk-articles__subslide {
   display: grid;
-  align-items: center;
-  justify-items: center;
+  overflow: hidden;
   height: 100%;
   width: 100%;
+
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5em;
+
+  .kk-ratio-horizontal & {
+    @include scalableFont(12, 28);
+    margin-top: 2em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "image freetext"
+      "image text-wrap"
+      "image text-wrap";
+    margin-right: 2em;
+  }
+
+  .kk-ratio-horizontal &.variation-1 {
+    @include scalableFont(12, 28);
+    margin-top: 3em;
+    grid-template-areas:
+      "freetext image"
+      "text-wrap image"
+      "text-wrap image";
+    margin-left: 2em;
+  }
+
+  .kk-ratio-horizontal &.variation-2 {
+    @include scalableFont(12, 28);
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "image freetext"
+      "image text-wrap";
+    margin-right: 2em;
+
+    .kk-articles__freetext {
+      margin-top: 3em;
+    }
+  }
 }
