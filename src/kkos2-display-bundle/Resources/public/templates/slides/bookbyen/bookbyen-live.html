@@ -5,6 +5,9 @@
   >
     <div class="bookbyen-top__date">
       {{ ikSlide.options.todaysDate }}
+      <div class="bookbyen-top__time">
+        {{ hourNow }}<span class="bookbyen-top__time-separator">:</span>{{ minuteNow }}
+      </div>
     </div>
     <div class="bookbyen-top__place">
       {{ ikSlide.options.place }}
@@ -24,8 +27,8 @@
     data-ng-show="ikSlide.data.currentSlide === $index"
   >
     <div class="bookbyen__divider">
-      <div ng-if="totalSubslides" class="bookbyen__pager" data-ng-style="{'color': ikSlide.options.bgcolor}">
-        {{$index}} af {{totalSubslides}}
+      <div ng-if="totalSubslides > 1" class="bookbyen__pager" data-ng-style="{'color': ikSlide.options.bgcolor}">
+        {{$index + 1 }} af {{totalSubslides}}
       </div>
     </div>
     <table class="bookbyen-bookings" ng-repeat="row in subslide">
