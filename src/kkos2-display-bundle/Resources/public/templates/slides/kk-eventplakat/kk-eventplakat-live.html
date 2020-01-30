@@ -6,8 +6,8 @@
        ng-repeat="event in ikSlide.data.subslides track by $index"
        data-ng-show="ikSlide.data.currentSlide === $index">
 
-    <div class="kk-eventplakat__event--place">
-      <p>{{ event.place }} præsenterer</p>
+    <div ng-if="event.free_text"class="kk-eventplakat__event--place">
+      <p>{{ event.free_text }} </p>
     </div>
 
     <div class="kk-eventplakat__img">

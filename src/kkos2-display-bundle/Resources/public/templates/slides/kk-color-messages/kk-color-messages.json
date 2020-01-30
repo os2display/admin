@@ -33,7 +33,10 @@
     "sis_total_items": 9,
     "sis_items_pr_slide": 1,
 
-    "datafeed_url": ""
+    "datafeed_url": "",
+
+    "cronfetch_error": ""
+
   },
   "tools": [
     {

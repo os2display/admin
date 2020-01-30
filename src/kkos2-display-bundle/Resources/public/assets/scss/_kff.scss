@@ -32,3 +32,17 @@
 @import 'typography';
 @import 'logo';
 @import 'slides';
+
+// This will be compiled to all style sheets, but there is no way to reuse smarter.
+.kk-backend-data-error {
+  background-color: deeppink;
+  color: white;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 0.2em;
+
+  .create-slide--content-inner & {
+    font-size: 1.2em;
+    padding: 0.5em;
+  }
+}

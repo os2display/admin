@@ -1,5 +1,8 @@
 <div data-ng-style="{
      'background-color': ikSlide.options.bgcolor
      }">
+  <div ng-if="ikSlide.options.cronfetch_error" class="kk-backend-data-error">
+    {{ ikSlide.options.cronfetch_error }}
+  </div>
   <img src="/bundles/kkos2displayintegration/templates/slides/kk-eventplakat/preview.png" alt="Preview eventplakat">
 </div>

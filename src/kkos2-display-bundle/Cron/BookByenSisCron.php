@@ -3,11 +3,7 @@
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
 use DateTime;
-use GuzzleHttp\Exception\GuzzleException;
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\BookbyenApiHelper;
-use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\DataFetcher;
-use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\MultisiteCrawler;
-use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\MultisiteHelper;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\DateTrait;
 use Psr\Log\LoggerInterface;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
@@ -61,34 +57,39 @@ class BookByenSisCron implements EventSubscriberInterface {
    */
   public function getSlideData(SlidesInSlideEvent $event) {
     $slide = $event->getSlidesInSlide();
-    $bookByenOptions = $slide->getOption('bookbyen', []);
+    // Clear errors before run.
+    $slide->setOption('cronfetch_error', '');
 
-    $url = $bookByenOptions['api_url'];
-    $data = $this->apiHelper->fetchData($url);
+    $bookByenOptions = $slide->getOption('bookbyen', []);
 
     $bookings = [];
 
-    if (!empty($data)) {
-      $slide->setOption('place', $this->apiHelper->getPlaceName($data));
-      $date = new DateTime();
-      $today = $this->getDayName($date) . ', ' . $date->format('j') . '. ' . $this->getMonthName($date);
-      $slide->setOption('todaysDate', $today);
+    try {
+      $data = $this->apiHelper->fetchData($bookByenOptions['api_url']);
+      if (!empty($data)) {
+        $slide->setOption('place', $this->apiHelper->getPlaceName($data));
+        $date = new DateTime();
+        $today = $this->getDayName($date) . ', ' . $date->format('j') . '. ' . $this->getMonthName($date);
+        $slide->setOption('todaysDate', $today);
 
-      if (!empty(array_filter($bookByenOptions['filtering']))) {
-        $data = $this->apiHelper->filter($data, $bookByenOptions['filtering']);
-      }
-
-      $fields = array_filter($bookByenOptions['useFields']);
-
-      foreach ($data as $item) {
-        $processed = $this->processData($item);
-        if (!empty($item)) {
-          $bookings[] = array_intersect_key($processed, $fields);
+        if (!empty(array_filter($bookByenOptions['filtering']))) {
+          $data = $this->apiHelper->filter($data, $bookByenOptions['filtering']);
         }
-      }
-    }
-    $bookings = array_slice($bookings, 0, $slide->getOption('sis_total_items', 12));
 
+        $fields = array_filter($bookByenOptions['useFields']);
+
+        foreach ($data as $item) {
+          $processed = $this->processData($item);
+          if (!empty($item)) {
+            $bookings[] = array_intersect_key($processed, $fields);
+          }
+        }
+
+        $bookings = array_slice($bookings, 0, $slide->getOption('sis_total_items', 12));
+      }
+    } catch (\Exception $e) {
+      $slide->setOption('cronfetch_error', $e->getMessage());
+    }
     $slide->setSubslides($bookings);
   }
 
@@ -96,7 +97,7 @@ class BookByenSisCron implements EventSubscriberInterface {
     $time = $this->apiHelper->processTime($data['start'], $data['end']);
     if (empty($time)) {
       // We can't not have a time.
-      return [];
+      throw new \Exception("No start time and end time found in data");
     }
     $booking['time'] = $time;
     $booking['username'] = empty($data['user']['name']) ? '' : $data['user']['name'];

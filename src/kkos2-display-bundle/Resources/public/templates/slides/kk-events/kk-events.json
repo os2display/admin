@@ -35,7 +35,9 @@
     "sis_items_pr_slide": 3,
 
     "datafeed_url": "",
-    "datafeed_filter_place": ""
+    "datafeed_filter_place": "",
+
+    "cronfetch_error": ""
 
   },
   "tools": [

@@ -43,18 +43,21 @@ class EventplakatSisCron implements EventSubscriberInterface {
     // for the user, but the plakat slides don't support more than one, so
     // enforce it here.
     $slide->setOption('sis_items_pr_slide', 1);
-    $numItems = $slide->getOption('sis_total_items', 12);
-    $url = $slide->getOption('datafeed_url', '');
-    $query = [];
-    $filterDisplay = $slide->getOption('datafeed_display', '');
-    if (!empty($filterDisplay)) {
-      $query = [
-        'display' => $filterDisplay,
-      ];
-    }
 
-    $data = $this->eventfeedHelper->fetchData($url, $numItems, $query);
-    $events = array_map([$this, 'processEvents'], $data);
+    // Clear errors before run.
+    $slide->setOption('cronfetch_error', '');
+
+    $events = [];
+    try {
+      $this->eventfeedHelper->setSlide($slide, 'kk-eventplakat');
+      $data = $this->eventfeedHelper->fetchData();
+
+      $data = $this->eventfeedHelper->sliceData($data);
+      $events = array_map([$this, 'processEvents'], $data);
+
+    } catch (\Exception $e) {
+      $slide->setOption('cronfetch_error', $e->getMessage());
+    }
 
     $slide->setSubslides($events);
   }
@@ -66,23 +69,26 @@ class EventplakatSisCron implements EventSubscriberInterface {
       'field_teaser',
       'image',
       'time',
-      'field_os2display_free_text_event',
     ];
 
-    if (!$this->eventfeedHelper->hasRequiredFields($expectedFields, $data)) {
-      return [];
+    $missingFields = $this->eventfeedHelper->getMissingFieldKeys($expectedFields, $data);
+    if (!empty($missingFields)) {
+      throw new \Exception('There were missing fields in feed: ' . $missingFields);
     }
 
-    $events = [
+    $event = [
       'title' => html_entity_decode($data['title']),
       'body' => html_entity_decode($data['field_teaser']),
       'image' => $this->eventfeedHelper->processImage($data['image']),
       'date' => $this->eventfeedHelper->processDate($data['startdate']),
       'time' => current($data['time']),
-      'place' => $data['field_os2display_free_text_event'],
     ];
 
-    return array_map('trim', $events);
+    if (!empty($data['field_os2display_free_text_event'])) {
+      $event['free_text'] = $data['field_os2display_free_text_event'];
+    }
+
+    return array_map('trim', $event);
   }
 
 }

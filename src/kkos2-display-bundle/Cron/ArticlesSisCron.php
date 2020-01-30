@@ -2,8 +2,6 @@
 
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
-use DateTime;
-use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\BookbyenApiHelper;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\DateTrait;
 use Psr\Log\LoggerInterface;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
