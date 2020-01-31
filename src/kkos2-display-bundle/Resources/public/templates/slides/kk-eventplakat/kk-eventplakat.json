@@ -36,8 +36,7 @@
 
     "datafeed_url": "",
 
-    "sis_data_ttl_minutes": 5,
-
+    "sis_data_ttl_minutes": 5
   },
   "tools": [
     {
