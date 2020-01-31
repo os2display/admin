@@ -34,7 +34,7 @@
     "sis_total_items": 3,
     "sis_items_pr_slide": 1,
 
-    "cronfetch_error": "",
+    "sis_data_ttl_minutes": 5,
 
     "twothreevideo": {
       "album_id": ""

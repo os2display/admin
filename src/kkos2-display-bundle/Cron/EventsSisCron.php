@@ -32,7 +32,6 @@ class EventsSisCron implements EventSubscriberInterface {
     ];
   }
 
-  // TODO. datafeed_ttl_minutes
   public function getSlideData(SlidesInSlideEvent $event) {
     $slide = $event->getSlidesInSlide();
     // Clear errors before run.

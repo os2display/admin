@@ -36,7 +36,7 @@
 
     "datafeed_url": "",
 
-    "cronfetch_error": ""
+    "sis_data_ttl_minutes": 5
   },
   "tools": [
     {
