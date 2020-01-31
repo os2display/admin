@@ -70,11 +70,15 @@ class CarouselSisCron implements EventSubscriberInterface {
    */
   public function getSlideData(SlidesInSlideEvent $event) {
     $slide = $event->getSlidesInSlide();
+    // Clear errors before run.
+    $slide->setOption('cronfetch_error', '');
+
     // Enforce only one slide pr. subslide.
     $slide->setOption('sis_items_pr_slide', 1);
     $url = $slide->getOption('datafeed_url', '');
     $numItems = $slide->getOption('sis_total_items', 12);
 
+    $images = [];
     try {
       $html = $this->fetcher->getBody($url);
 
@@ -89,9 +93,9 @@ class CarouselSisCron implements EventSubscriberInterface {
         $imageUrls);
       $slide->setSubslides($images);
     } catch (\Exception $e) {
-      $slide->setSubslides([]);
-      $this->logger->addError("Problem fetching data for $url. Error message: " . $e->getMessage());
+      $slide->setOption('cronfetch_error', $e->getMessage());
     }
+    $slide->setSubslides($images);
   }
 
 }

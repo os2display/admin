@@ -31,8 +31,8 @@ if (!window.slideFunctions["bookbyen"]) {
 
       function setTime() {
         const now = new Date();
-        scope.hourNow = now.getHours();
-        scope.minuteNow = now.getMinutes();
+        scope.hourNow = now.getHours().toString().padStart(2, '0');
+        scope.minuteNow = now.getMinutes().toString().padStart(2, '0');
       }
       setTime();
       setInterval(setTime, 60000);

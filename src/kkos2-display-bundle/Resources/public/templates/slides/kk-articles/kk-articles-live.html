@@ -1,0 +1,32 @@
+<div
+  lang="da-DK"
+  class="kk-articles kk-ratio-{{ratio}} kk-articles-id-{{ikSlide.uniqueId}} kk-slide-body font-kbh"
+  data-ng-style="{'background-color': ikSlide.options.bgcolor}">
+
+  <div
+    ng-repeat="subslide in ikSlide.data.subslides track by $index"
+    data-ng-show="ikSlide.data.currentSlide === $index"
+    class="kk-articles__subslide variation-{{$index}}"
+  >
+      <div class="kk-articles__image">
+        <div class="kk-articles__image-inner">
+          <img class="kk-articles__image-file" src="{{ subslide.image }}" alt="Article image">
+        </div>
+      </div>
+      <div class="kk-articles__freetext">
+        <span ng-if="subslide.freetext">{{ subslide.freetext }}</span>
+      </div>
+      <div class="kk-articles__text-wrap">
+        <div class="kk-articles__title font-bolder">
+          {{ subslide.title }}
+        </div>
+        <div class="kk-articles__manchet">
+          {{ subslide.manchet }}
+        </div>
+      </div>
+    </div>
+
+
+  <img class="kk-logo--top-right kk-articles--logo" data-ng-src="{{ikSlide.kffLogo}}" alt="Logo">
+
+</div>

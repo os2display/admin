@@ -34,6 +34,8 @@
     "sis_total_items": 12,
     "sis_items_pr_slide": 12,
 
+    "sis_data_ttl_minutes": 5,
+
     "bookbyen": {
       "api_url": "",
       "filtering": {

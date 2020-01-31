@@ -21,17 +21,15 @@ class MultisiteCrawler {
    * @return array
    */
   public function getAttributeValues($html, $selector, $attribute) {
-    try {
-      $crawler = new Crawler($html);
 
-      $urls = $crawler->filter($selector)
-        ->each(function (Crawler $node, $i) use ($attribute) {
-          return $node->attr($attribute) ?: '';
-        });
-      return array_filter($urls);
-    } catch (\Exception $e) {
-      return [];
-    }
+    $crawler = new Crawler($html);
+
+    $urls = $crawler->filter($selector)
+      ->each(function (Crawler $node, $i) use ($attribute) {
+        return $node->attr($attribute) ?: '';
+      });
+    return array_filter($urls);
+
   }
 
   /**

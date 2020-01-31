@@ -34,7 +34,9 @@
     "sis_total_items": 12,
     "sis_items_pr_slide": 1,
 
-    "datafeed_url": ""
+    "datafeed_url": "",
+
+    "sis_data_ttl_minutes": 5,
 
   },
   "tools": [

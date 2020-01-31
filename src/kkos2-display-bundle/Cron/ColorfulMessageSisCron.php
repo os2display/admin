@@ -5,6 +5,7 @@ namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\JsonFetcher;
 use Psr\Log\LoggerInterface;
 use Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent;
+use Reload\Os2DisplaySlideTools\Slides\SlidesInSlide;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -49,18 +50,17 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
     // for the user, but the colorful slides don't support more than one, so
     // enforce it here.
     $slide->setOption('sis_items_pr_slide', 1);
-    $numItems = $slide->getOption('sis_total_items', 12);
-    $url = $slide->getOption('datafeed_url', '');
-    $query = [];
-    $filterDisplay = $slide->getOption('datafeed_display', '');
-    if (!empty($filterDisplay)) {
-      $query = [
-        'display' => $filterDisplay,
-      ];
-    }
-    $data = $this->fetchData($url, $numItems, $query);
+    // Clear errors before run.
+    $slide->setOption('cronfetch_error', '');
 
-    $messages = array_map([$this, 'processColorfulMessages'], $data);
+    $messages = [];
+    try {
+      $data = $this->fetchData($slide);
+      $messages = array_map([$this, 'processColorfulMessages'], $data);
+    } catch (\Exception $e) {
+      $slide->setOption('cronfetch_error', $e->getMessage());
+    }
+
     $slide->setSubslides($messages);
   }
 
@@ -84,8 +84,7 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
 
     $missing = array_diff($expected_keys, array_keys($data));
     if (!empty($missing)) {
-      $this->logger->error('There were fields missing on servicespot slide:' . implode(', ', $missing));
-      return [];
+      throw new \Exception('There were fields missing on servicespot slide:' . implode(', ', $missing));
     }
 
     return [
@@ -96,22 +95,20 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
     ];
   }
 
-  /**
-   * @param $url
-   * @param $numItems
-   * @param $queryData
-   *
-   * @return array
-   */
-  public function fetchData($url, $numItems, $queryData) {
-    $data = [];
-    try {
-      $fetched = JsonFetcher::fetch($url, $queryData);
-      $data = array_slice($fetched, 0, $numItems);
-    } catch (\Exception $e) {
-      $this->logger->error("There was a problem fetching data from servicespot feed with this url: $url Error message: " . $e->getMessage());
+  private function fetchData(SlidesInSlide $slide ) {
+    $url = $slide->getOption('datafeed_url', '');
+    if (!preg_match("@servicespot-feed[?#]?@", $url)) {
+      throw new \Exception("$url is not a valid servicespot feed url.");
     }
-    return $data;
+    $query = [];
+    $filterDisplay = $slide->getOption('datafeed_display', '');
+    if (!empty($filterDisplay)) {
+      $query = [
+        'display' => $filterDisplay,
+      ];
+    }
+    $json = JsonFetcher::fetch($url, $query);
+    return array_slice($json, 0, $slide->getOption('sis_total_items', 12));
   }
 
 }

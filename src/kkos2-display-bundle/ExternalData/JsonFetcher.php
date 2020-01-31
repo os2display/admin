@@ -8,20 +8,16 @@ use GuzzleHttp\Exception\TransferException;
 class JsonFetcher
 {
 
-  protected static function addQueryData($url, $queryData) {
+  public static function fetch($url, $queryData = [])
+  {
+      $client = new Client();
     $url_parts = parse_url($url);
     $query = empty($url_parts['query']) ? '' : $url_parts['query'];
     parse_str($query, $params);
     $params += $queryData;
 
-    return $url_parts['scheme'] . '://' . $url_parts['host'] . $url_parts['path'] . '?' . http_build_query($params);
-  }
-
-  public static function fetch($url, $queryData = [])
-  {
-      $client = new Client();
-      $url = self::addQueryData($url, $queryData);
-      $response = $client->get($url, [
+      $response = $client->request('GET', $url, [
+        'query' => $params,
         'headers' => [
           'Accept' => 'application/json'
         ]

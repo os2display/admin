@@ -152,3 +152,6 @@ fos_rest:
             - { path: '^/', stop: true } # Available for version >= 1.5
 
 nelmio_api_doc: ~
+
+os2_display_slide_tools:
+    use_ttl: true

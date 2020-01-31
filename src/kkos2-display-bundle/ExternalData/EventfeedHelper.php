@@ -5,6 +5,7 @@ namespace Kkos2\KkOs2DisplayIntegrationBundle\ExternalData;
 use DateTime;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\DateTrait;
 use Psr\Log\LoggerInterface;
+use Reload\Os2DisplaySlideTools\Slides\SlidesInSlide;
 
 /**
  * Class EventfeedHelper
@@ -19,10 +20,21 @@ class EventfeedHelper {
    * @var \Psr\Log\LoggerInterface $logger
    */
   private $logger;
+
   /**
    * @var \Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\MultisiteCrawler
    */
   private $crawler;
+
+  /**
+   * @var \Reload\Os2DisplaySlideTools\Slides\SlidesInSlide
+   */
+  private $slide;
+
+  /**
+   * @var string
+   */
+  private $slideType;
 
   /**
    * EventfeedHelper constructor.
@@ -35,6 +47,11 @@ class EventfeedHelper {
     $this->crawler = $crawler;
   }
 
+  public function setSlide(SlidesInSlide $slide, string $slideType) {
+    $this->slide = $slide;
+    $this->slideType = $slideType;
+  }
+
   /**
    * @param string $url Url to feed
    * @param integer $numItems Number of items to return from the feed
@@ -42,15 +59,39 @@ class EventfeedHelper {
    *
    * @return array|mixed
    */
-  public function fetchData($url, $numItems, $queryData) {
-    $data = [];
-    try {
-      $fetched = JsonFetcher::fetch($url, $queryData);
-      $data = array_slice($fetched, 0, $numItems);
-    } catch (\Exception $e) {
-      $this->logger->error("There was a problem fetching data from event feed with this url: $url Error message: " . $e->getMessage());
+  public function fetchData() {
+    $url = $this->slide->getOption('datafeed_url', '');
+    if (!$this->validateFeedUrl()) {
+      throw new \Exception("$url is not a valid {$this->slideType} url.");
     }
-    return $data;
+    $query = [];
+    $filterDisplay = $this->slide->getOption('datafeed_display', '');
+    if (!empty($filterDisplay)) {
+      $query = [
+        'display' => $filterDisplay,
+      ];
+    }
+    return JsonFetcher::fetch($url, $query);
+  }
+
+  public function sliceData($data) {
+    return array_slice($data, 0, $this->slide->getOption('sis_total_items', 12));
+  }
+
+  private function validateFeedUrl() {
+    $endsWith = '';
+    switch ($this->slideType) {
+      case 'kk-events':
+        $endsWith = 'os2display-events';
+        break;
+      case 'kk-eventplakat':
+        $endsWith = 'os2display-posters';
+        break;
+    }
+    if (empty($endsWith)) {
+      return FALSE;
+    }
+    return preg_match("@{$endsWith}[?#]?@", $this->slide->getOption('datafeed_url'));
   }
 
   /**
@@ -60,7 +101,7 @@ class EventfeedHelper {
    */
   public function processImage($image) {
     $image = is_array($image) ? current($image) : $image;
-    if (strpos($image, '<img') !== false) {
+    if (strpos($image, '<img') !== FALSE) {
       $imgUrls = $this->crawler->getImageUrls($image, 'img');
       if (!empty($imgUrls[0])) {
         $image = $imgUrls[0];
@@ -85,20 +126,16 @@ class EventfeedHelper {
   }
 
   /**
-   * Check if all expected field keys are in the data.
+   * Get missing field keys if any.
    *
    * @param array $expectedFields fields we want
    * @param array $data array to check for field keys in
    *
-   * @return bool
+   * @return string
    */
-  public function hasRequiredFields($expectedFields, $data) {
+  public function getMissingFieldKeys($expectedFields, $data) {
     $missing = array_diff($expectedFields, array_keys($data));
-    if (!empty($missing)) {
-      $this->logger->error('There were fields missing on event slide:' . implode(', ', $missing));
-      return false;
-    }
-    return true;
+    return implode(', ', $missing);
   }
 
 }

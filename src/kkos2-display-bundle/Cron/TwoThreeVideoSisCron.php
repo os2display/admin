@@ -54,6 +54,9 @@ class TwoThreeVideoSisCron implements EventSubscriberInterface {
    */
   public function getSlideData(SlidesInSlideEvent $event) {
     $slide = $event->getSlidesInSlide();
+    // Clear errors before run.
+    $slide->setOption('cronfetch_error', '');
+
     $twoThreeOptions = $slide->getOption('twothreevideo', []);
 
     $url = 'https://video.kk.dk/api/photo/list';
@@ -73,7 +76,7 @@ class TwoThreeVideoSisCron implements EventSubscriberInterface {
       }
 
     } catch (\Exception $e) {
-      $this->logger->error($e->getMessage());
+      $slide->setOption('cronfetch_error', $e->getMessage());
     }
 
     $slide->setSubslides($videos);
