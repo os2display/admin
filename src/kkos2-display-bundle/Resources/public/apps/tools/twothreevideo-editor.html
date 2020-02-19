@@ -15,7 +15,13 @@
 
         <div class="edit-menu--iframe-content">
           <h2>Album ID</h2>
-          <input type="text" data-ng-model="slide.options.twothreevideo.album_id" />
+          <input type="text" data-ng-model="slide.options.twothreevideo.album_id" required/>
+        </div>
+
+        <div class="edit-menu--iframe-content">
+          <h2>Tags</h2>
+          <input type="text" data-ng-model="slide.options.twothreevideo.tags" />
+          <p>Dette felt er ikke påkrævet. Indtast eventuelle tags adskilt af komma.</p>
         </div>
 
       </div>

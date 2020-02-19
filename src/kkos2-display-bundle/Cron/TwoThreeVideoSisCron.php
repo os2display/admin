@@ -4,6 +4,7 @@
 namespace Kkos2\KkOs2DisplayIntegrationBundle\Cron;
 
 
+use GuzzleHttp\Exception\GuzzleException;
 use Kkos2\KkOs2DisplayIntegrationBundle\ExternalData\DataFetcher;
 use Kkos2\KkOs2DisplayIntegrationBundle\Slides\DateTrait;
 use Psr\Log\LoggerInterface;
@@ -50,7 +51,12 @@ class TwoThreeVideoSisCron implements EventSubscriberInterface {
   /**
    * Get data for event.
    *
+   * Calls the 23 API to list videos:
+   * https://www.twentythree.net/api/overview
+   * https://www.twentythree.net/api/photo-list
+   *
    * @param \Reload\Os2DisplaySlideTools\Events\SlidesInSlideEvent $event
+   *
    */
   public function getSlideData(SlidesInSlideEvent $event) {
     $slide = $event->getSlidesInSlide();
@@ -66,6 +72,17 @@ class TwoThreeVideoSisCron implements EventSubscriberInterface {
       'album_id' => $twoThreeOptions['album_id'],
       'size' => $slide->getOption('sis_total_items', 12),
     ];
+    if (!empty($twoThreeOptions['tags'])) {
+      // Put " around multi-word tags.
+      $tags = array_map(function($item) {
+        if (strpos($item, ' ')) {
+          $item = '"' . $item . '"';
+        }
+        return trim($item);
+      }, explode(',', $twoThreeOptions['tags']));
+      $params['tags'] = implode(',', $tags);
+    }
+
     $url .= '?' . http_build_query($params);
     $videos = [];
     try {
@@ -76,6 +93,11 @@ class TwoThreeVideoSisCron implements EventSubscriberInterface {
       }
 
     } catch (\Exception $e) {
+      $slide->setOption('cronfetch_error', $e->getMessage());
+    }
+    catch (GuzzleException $e) {
+      // Specifically catch errors from Guzzle to silence IDE.
+      // https://github.com/guzzle/guzzle/issues/2184
       $slide->setOption('cronfetch_error', $e->getMessage());
     }
 
