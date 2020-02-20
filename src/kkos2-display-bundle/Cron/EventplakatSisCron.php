@@ -67,7 +67,7 @@ class EventplakatSisCron implements EventSubscriberInterface {
       'startdate',
       'title',
       'field_teaser',
-      'image',
+      'billede',
       'time',
     ];
 
@@ -79,7 +79,7 @@ class EventplakatSisCron implements EventSubscriberInterface {
     $event = [
       'title' => html_entity_decode($data['title']),
       'body' => html_entity_decode($data['field_teaser']),
-      'image' => $this->eventfeedHelper->processImage($data['image']),
+      'image' => $this->eventfeedHelper->processImage($data['billede']),
       'date' => $this->eventfeedHelper->processDate($data['startdate']),
       'time' => current($data['time']),
     ];
