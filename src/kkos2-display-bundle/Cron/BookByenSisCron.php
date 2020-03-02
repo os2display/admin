@@ -73,7 +73,10 @@ class BookByenSisCron implements EventSubscriberInterface {
         $slide->setOption('todaysDate', $today);
 
         if (!empty(array_filter($bookByenOptions['filtering']))) {
-          $data = $this->apiHelper->filter($data, $bookByenOptions['filtering']);
+          $filters = $bookByenOptions['filtering'];
+          $data = $this->apiHelper->filter($data, $filters);
+          $slide->setOption('area', $filters['area'] ?? '');
+          $slide->setOption('facility', $filters['facility'] ?? '');
         }
 
         $fields = array_filter($bookByenOptions['useFields']);

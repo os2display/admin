@@ -9,9 +9,17 @@
         {{ hourNow }}<span class="bookbyen-top__time-separator">:</span>{{ minuteNow }}
       </div>
     </div>
-    <div class="bookbyen-top__place">
-      {{ ikSlide.options.place }}
-    </div>
+    <div class="{{placeClass}}">
+      <div class="bookbyen-top__place__item bookbyen-top__place-name">
+        {{ ikSlide.options.place }}
+       </div>
+      <div ng-if="ikSlide.options.area" class="bookbyen-top__place__item bookbyen-top__place-area">
+        {{ ikSlide.options.area }}
+      </div>
+      <div ng-if="ikSlide.options.facility" class="bookbyen-top__place__item bookbyen-top__place-facility">
+        {{ ikSlide.options.facility }}
+      </div>
+     </div>
     <div class="bookbyen-top__logo">
       <img
         class="bookbyen-top__logo"

@@ -28,6 +28,10 @@ if (!window.slideFunctions["bookbyen"]) {
       scope.useFields = slide.options.bookbyen.useFields;
       scope.ikSlide.kffLogo = slide.server_path + "/bundles/kkos2displayintegration/assets/img/kbh-logo.png";
       scope.ratio = window.kkSlideRatio.getRatio();
+      scope.placeClass = 'bookbyen-top__place';
+      if (slide.options.area || slide.options.facility) {
+        scope.placeClass += ' bookbyen-top__place--with-filters';
+      }
 
       function setTime() {
         const now = new Date();
@@ -36,7 +40,6 @@ if (!window.slideFunctions["bookbyen"]) {
       }
       setTime();
       setInterval(setTime, 60000);
-
     },
 
     /**

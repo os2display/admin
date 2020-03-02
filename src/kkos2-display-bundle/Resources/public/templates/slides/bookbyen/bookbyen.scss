@@ -28,7 +28,7 @@
   color: $colors-white;
   width: 100%;
   display: grid;
-  grid-template-columns: 13% auto auto;
+  grid-template-columns: 13% auto 13%;
   align-items: center;
 
   padding: 0.5em 1em;
@@ -37,10 +37,12 @@
     font-size: .6em;
     text-align: center;
   }
+
   &__time {
     font-size: 1.3em;
     line-height: 1.8em;
   }
+
   &__time-separator {
     animation: 2s linear infinite blinking;
   }
@@ -50,12 +52,25 @@
     text-transform: uppercase;
     font-weight: 700;
     justify-self: center;
+
+    &__item {
+      text-align: center;
+    }
   }
 
   &__logo {
     width: 3em;
     justify-self: right;
   }
+}
+
+.bookbyen-top__place--with-filters {
+  font-size: 1.2em;
+
+  .bookbyen-top__place-name {
+    font-size: 0.6em;
+  }
+
 }
 
 .bookbyen__subslide {
@@ -83,15 +98,15 @@
   text-align: left;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: .6em;
+  font-size: .7em;
 
   .kk-ratio-vertical & {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 
   th,
   td {
-    padding: 0.7em;
+    padding: 0.6em;
   }
 
   &__head {
