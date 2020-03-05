@@ -31,8 +31,8 @@
 
     "sis_cron_subscriber": "kk_bookbyen_sis_cron",
     "sis_subslide_duration": 10,
-    "sis_total_items": 12,
-    "sis_items_pr_slide": 12,
+    "sis_total_items": 18,
+    "sis_items_pr_slide": 9,
 
     "sis_data_ttl_minutes": 5,
 
