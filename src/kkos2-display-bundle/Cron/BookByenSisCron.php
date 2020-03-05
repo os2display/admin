@@ -104,14 +104,20 @@ class BookByenSisCron implements EventSubscriberInterface {
     }
     $booking['time'] = $time;
     $booking['username'] = empty($data['user']['name']) ? '' : $data['user']['name'];
-    $booking['facility'] = empty($data['facility']['name']) ? '' : $data['facility']['name'];
+    $booking['facility'] = $data['facility']['name'] ?? '';
     $booking['activity'] = empty($data['activity']['name']) ? '' : $data['activity']['name'];
     $booking['note'] = empty($data['infoscreenNote']) ? '' : $data['infoscreenNote'];
     $booking['team'] = empty($data['team']['name']) ? '' : $data['team']['name'];
-    $booking['teamleaders'] = empty($data['team']['teamleaders']) ? '' : $data['team']['teamleaders'];
+
+    $booking['teamleaders'] = $data['team']['teamleaders'] ?? '';
+    if (is_array($booking['teamleaders'])) {
+      $arr = array_map(function($item) {
+        return $item['name'];
+      }, $booking['teamleaders']);
+      $booking['teamleaders'] = implode(', ', $arr);
+    }
 
     return array_map('trim', $booking);
   }
-
 
 }
