@@ -47,14 +47,12 @@
           data-ng-style="{'background-color': ikSlide.options.bgcolor}"
         >
           <th ng-if="useFields.time" class="bookbyen-bookings__time">Tid</th>
-          <th ng-if="useFields.username" class="bookbyen-bookings__username">
-            Brugernavn
-          </th>
           <th ng-if="useFields.facility">Facilitet</th>
           <th ng-if="useFields.activity">Aktivitet</th>
           <th ng-if="useFields.note">Note</th>
           <th ng-if="useFields.team">Hold</th>
           <th ng-if="useFields.teamleaders">Holdleder</th>
+          <th ng-if="useFields.username" class="bookbyen-bookings__username">Brugernavn</th>
         </tr>
       </thead>
       <tbody>
@@ -62,14 +60,12 @@
           <td ng-if="useFields.time" class="bookbyen-bookings__time">
             {{row.time}}
           </td>
-          <td ng-if="useFields.username">
-            {{row.username}}
-          </td>
           <td ng-if="useFields.facility">{{row.facility}}</td>
           <td ng-if="useFields.activity">{{row.activity}}</td>
           <td ng-if="useFields.note">{{row.note}}</td>
           <td ng-if="useFields.team">{{row.team}}</td>
           <td ng-if="useFields.teamleaders">{{row.teamleaders}}</td>
+          <td ng-if="useFields.username">{{row.username}}</td>
         </tr>
       </tbody>
     </table>

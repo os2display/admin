@@ -7,7 +7,7 @@ angular.module('toolsModule').directive('bookbyenEditor', function(){
         close: '&',
         template: '@'
       },
-      templateUrl: '/bundles/kkos2displayintegration/apps/tools/bookbyen-editor.html?v=1'
+      templateUrl: '/bundles/kkos2displayintegration/apps/tools/bookbyen-editor.html?v=2'
     };
   }
 );
