@@ -3826,16 +3826,16 @@
         },
         {
             "name": "reload/os2display-slide-tools",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reload/os2display-slide-tools.git",
-                "reference": "41e720a45aaa88bdfb0a0413b7e97118a9e1c43b"
+                "reference": "014b8ebb20e274b347dc3e47361f0b081aaba41e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/41e720a45aaa88bdfb0a0413b7e97118a9e1c43b",
-                "reference": "41e720a45aaa88bdfb0a0413b7e97118a9e1c43b",
+                "url": "https://api.github.com/repos/reload/os2display-slide-tools/zipball/014b8ebb20e274b347dc3e47361f0b081aaba41e",
+                "reference": "014b8ebb20e274b347dc3e47361f0b081aaba41e",
                 "shasum": ""
             },
             "type": "library",
@@ -3846,7 +3846,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Reusable tools for working with slides in https://github.com/os2display",
-            "time": "2020-01-31T03:38:33+00:00"
+            "time": "2020-03-05T17:48:54+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -4025,7 +4025,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "abandoned": true,
+            "abandoned": "symfony/maker-bundle",
             "time": "2017-12-07T15:36:41+00:00"
         },
         {
