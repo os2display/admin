@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "backstopjs": "^4.4.2"
+    "backstopjs": "^4.5.0"
   },
   "scripts": {
     "backstop": "backstop"

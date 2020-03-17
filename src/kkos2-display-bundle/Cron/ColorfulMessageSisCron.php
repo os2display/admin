@@ -74,24 +74,24 @@ class ColorfulMessageSisCron implements EventSubscriberInterface {
       'title_field',
       'body',
       'field_background_color',
+      'field_display_institution',
     ];
-    // Field names change in the feed often. Try to keep up here.
-    $placeKey = 'field_display_institution';
-    if (isset($data['field_display_institution_spot'])) {
-      $placeKey = 'field_display_institution_spot';
-    }
-    $expected_keys[] = $placeKey;
 
     $missing = array_diff($expected_keys, array_keys($data));
     if (!empty($missing)) {
       throw new \Exception('There were fields missing on servicespot slide:' . implode(', ', $missing));
     }
 
+    // Some fields in the feed are sometimes arrays and sometimes strings. It
+    // seems that when a field is empty it is of type array.
+    $place = is_array($data['field_display_institution']) ? '' : $data['field_display_institution'];
+    $backgroundColor = is_array($data['field_background_color']) ? '' : $data['field_background_color'];
+
     return [
-      'place' => html_entity_decode($data[$placeKey]),
+      'place' => html_entity_decode($place),
       'title' => html_entity_decode($data['title_field']),
       'body' => html_entity_decode($data['body']),
-      'background_color' => trim($data['field_background_color']),
+      'background_color' => trim($backgroundColor),
     ];
   }
 
