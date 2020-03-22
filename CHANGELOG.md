@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 6.2.0
+
+* Updated bundles:
+  - symfony/symfony: 3.4.38
+  - twig/twig: v2.12.5
+  - os2display/admin-bundle: 2.2.0
+  - os2display/core-bundle: 2.2.0
+  - os2display/default-template-bundle: 2.1.0
+
 ## 6.1.4
 
 * Merged https://github.com/os2display/admin/pull/26 - Minor language/syntax/link fixes

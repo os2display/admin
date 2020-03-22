@@ -2811,16 +2811,16 @@
         },
         {
             "name": "os2display/admin-bundle",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/admin-bundle.git",
-                "reference": "c377059fdecc0e0515270e2d7a9767a970fc6d7c"
+                "reference": "854ead6a0a332571638783d40a400ef5a34ad4e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/c377059fdecc0e0515270e2d7a9767a970fc6d7c",
-                "reference": "c377059fdecc0e0515270e2d7a9767a970fc6d7c",
+                "url": "https://api.github.com/repos/os2display/admin-bundle/zipball/854ead6a0a332571638783d40a400ef5a34ad4e6",
+                "reference": "854ead6a0a332571638783d40a400ef5a34ad4e6",
                 "shasum": ""
             },
             "require": {
@@ -2835,7 +2835,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display admin",
-            "time": "2019-05-20T11:22:29+00:00"
+            "time": "2020-03-22T14:33:34+00:00"
         },
         {
             "name": "os2display/campaign-bundle",
@@ -2875,16 +2875,16 @@
         },
         {
             "name": "os2display/core-bundle",
-            "version": "2.1.2",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/core-bundle.git",
-                "reference": "b059e451ae114325ebd6d925cd2838498ea53aa7"
+                "reference": "5caa838db2d0f1dbb1f6eb2bfcbed3f3d30b53f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/b059e451ae114325ebd6d925cd2838498ea53aa7",
-                "reference": "b059e451ae114325ebd6d925cd2838498ea53aa7",
+                "url": "https://api.github.com/repos/os2display/core-bundle/zipball/5caa838db2d0f1dbb1f6eb2bfcbed3f3d30b53f2",
+                "reference": "5caa838db2d0f1dbb1f6eb2bfcbed3f3d30b53f2",
                 "shasum": ""
             },
             "require": {
@@ -2936,7 +2936,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Os2Display core",
-            "time": "2019-10-24T07:50:11+00:00"
+            "time": "2020-03-22T14:41:22+00:00"
         },
         {
             "name": "os2display/default-template-bundle",
@@ -2992,16 +2992,16 @@
         },
         {
             "name": "os2display/screen-bundle",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/os2display/screen-bundle.git",
-                "reference": "f50c9b4b40afd5c0b63e6de18afe8f26db9379d9"
+                "reference": "a78dfe5a30860118d10c23cd5b7e172d0366f1d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/os2display/screen-bundle/zipball/f50c9b4b40afd5c0b63e6de18afe8f26db9379d9",
-                "reference": "f50c9b4b40afd5c0b63e6de18afe8f26db9379d9",
+                "url": "https://api.github.com/repos/os2display/screen-bundle/zipball/a78dfe5a30860118d10c23cd5b7e172d0366f1d5",
+                "reference": "a78dfe5a30860118d10c23cd5b7e172d0366f1d5",
                 "shasum": ""
             },
             "type": "symfony-bundle",
@@ -3015,7 +3015,7 @@
                 "MPL-2.0"
             ],
             "description": "Os2Display screen",
-            "time": "2019-10-24T12:55:39+00:00"
+            "time": "2019-11-11T11:44:53+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3626,6 +3626,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
+            "abandoned": "symfony/maker-bundle",
             "time": "2017-12-07T15:36:41+00:00"
         },
         {
@@ -4803,16 +4804,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.26",
+            "version": "v3.4.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "1b89e7baec9891c323bbf1ec81af77d901fc60c9"
+                "reference": "c5a882db43e7163114edffdf3ee2f988328fa6c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/1b89e7baec9891c323bbf1ec81af77d901fc60c9",
-                "reference": "1b89e7baec9891c323bbf1ec81af77d901fc60c9",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/c5a882db43e7163114edffdf3ee2f988328fa6c4",
+                "reference": "c5a882db43e7163114edffdf3ee2f988328fa6c4",
                 "shasum": ""
             },
             "require": {
@@ -4831,9 +4832,10 @@
                 "symfony/polyfill-mbstring": "~1.0",
                 "symfony/polyfill-php56": "~1.0",
                 "symfony/polyfill-php70": "~1.6",
-                "twig/twig": "^1.35|^2.4.4"
+                "twig/twig": "^1.41|^2.10"
             },
             "conflict": {
+                "monolog/monolog": ">=2",
                 "phpdocumentor/reflection-docblock": "<3.0||>=3.2.0,<3.2.2",
                 "phpdocumentor/type-resolver": "<0.3.0",
                 "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
@@ -4910,7 +4912,7 @@
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
                 "phpdocumentor/reflection-docblock": "^3.0|^4.0",
                 "predis/predis": "~1.0",
-                "symfony/phpunit-bridge": "~3.4|~4.0",
+                "symfony/phpunit-bridge": "^3.4.31|^4.3.4|~5.0",
                 "symfony/security-acl": "~2.8|~3.0"
             },
             "type": "library",
@@ -4954,7 +4956,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2019-04-17T15:57:27+00:00"
+            "time": "2020-02-29T10:21:57+00:00"
         },
         {
             "name": "twig/extensions",
@@ -5014,16 +5016,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.6.2",
+            "version": "v2.12.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "7d7342c8a4059fefb9b8d07db0cc14007021f9b7"
+                "reference": "18772e0190734944277ee97a02a9a6c6555fcd94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7d7342c8a4059fefb9b8d07db0cc14007021f9b7",
-                "reference": "7d7342c8a4059fefb9b8d07db0cc14007021f9b7",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/18772e0190734944277ee97a02a9a6c6555fcd94",
+                "reference": "18772e0190734944277ee97a02a9a6c6555fcd94",
                 "shasum": ""
             },
             "require": {
@@ -5033,13 +5035,12 @@
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/debug": "^2.7",
-                "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+                "symfony/phpunit-bridge": "^4.4|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.12-dev"
                 }
             },
             "autoload": {
@@ -5062,14 +5063,13 @@
                     "role": "Lead Developer"
                 },
                 {
+                    "name": "Twig Team",
+                    "role": "Contributors"
+                },
+                {
                     "name": "Armin Ronacher",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
-                },
-                {
-                    "name": "Twig Team",
-                    "homepage": "https://twig.symfony.com/contributors",
-                    "role": "Contributors"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
@@ -5077,7 +5077,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-01-14T15:00:48+00:00"
+            "time": "2020-02-11T15:31:23+00:00"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -5222,6 +5222,7 @@
                 "code",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2017-10-20T15:21:32+00:00"
         },
         {
@@ -5276,6 +5277,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
         }
     ],
