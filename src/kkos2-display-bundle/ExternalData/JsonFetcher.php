@@ -3,7 +3,6 @@
 namespace Kkos2\KkOs2DisplayIntegrationBundle\ExternalData;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\TransferException;
 
 class JsonFetcher
 {
@@ -24,6 +23,8 @@ class JsonFetcher
       ]);
 
       $body = $response->getBody();
-      return json_decode($body, true);
+      $json = json_decode($body, true);
+      return is_array($json) ? $json : [];
   }
+
 }
