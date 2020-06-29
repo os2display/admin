@@ -81,14 +81,23 @@ class BookByenSisCron implements EventSubscriberInterface {
 
         $fields = array_filter($bookByenOptions['useFields']);
 
+        $now = date('c');
         foreach ($data as $item) {
-          $processed = $this->processData($item);
-          if (!empty($item)) {
+          // If end time is before now, then process the booking. Otherwise
+          // just skip it.
+          if (!empty($item['end']) && $now < $item['end']) {
+            $processed = $this->processData($item);
+          }
+          if (!empty($processed)) {
             $bookings[] = array_intersect_key($processed, $fields);
           }
         }
 
         $bookings = array_slice($bookings, 0, $slide->getOption('sis_total_items', 12));
+        // Sort by time.
+        usort($bookings, function($a, $b) {
+          return $a['time'] > $b['time'];
+        });
       }
     } catch (\Exception $e) {
       $slide->setOption('cronfetch_error', $e->getMessage());
