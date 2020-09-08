@@ -283,12 +283,10 @@ index 0e2b418..a6a4a02 100644
 +          $slide = $orderClone->getSlide();
 +
 +          if (NULL !== $slide) {
-+              $slideClone = $this->cloneSlide($slide, false);
-+
 +              // We don't use cascading persists, so each cloned entity must be
 +              // persisted before it can be passed to another entity.
-+              $this->entityManager->persist($slideClone);
-+              $orderClone->setSlide($slideClone);
++              $this->entityManager->persist($slide);
++              $orderClone->setSlide($slide);
 +
 +              $this->entityManager->persist($orderClone);
 +              $channelClone->addChannelSlideOrder($orderClone);
