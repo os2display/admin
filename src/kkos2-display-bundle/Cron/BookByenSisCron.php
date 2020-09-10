@@ -65,8 +65,11 @@ class BookByenSisCron implements EventSubscriberInterface {
     $bookings = [];
 
     try {
-      $data = $this->apiHelper->fetchData($bookByenOptions['api_url']);
-      if (!empty($data)) {
+      $dataRaw = $this->apiHelper->fetchData($bookByenOptions['api_url']);
+      if (!empty($dataRaw)) {
+        $data = array_filter($dataRaw, function ($booking) {
+          return !$booking["isDeleted"];
+        });
         $slide->setOption('place', $this->apiHelper->getPlaceName($data));
         $date = new DateTime();
         $today = $this->getDayName($date) . ', ' . $date->format('j') . '. ' . $this->getMonthName($date);
