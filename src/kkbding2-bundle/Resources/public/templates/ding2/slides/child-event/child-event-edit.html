@@ -1,0 +1,87 @@
+<div>
+  <div
+    class="event"
+    data-ng-style="{'font-size': theStyle.fontsize, 'z-index': '1', 'background-color': 'transparent', 'width': theStyle.width, 'height': theStyle.height,
+  'background-image': 'url(' + ikSlide.currentImage + ')', 'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'cover' }"
+  >
+    <div
+      class="event--header has-placeholder"
+      data-ng-style="{'color': ikSlide.options.headercolor}"
+      style="z-index: 1"
+    >
+      <div data-ng-style="{'white-space': 'normal'}">
+        {{ikSlide.options.header1}}
+      </div>
+      <div style="display: flex; margin-top: 2rem; margin-bottom: 2rem">
+        <p class="child-event-description-header">
+          {{ikSlide.options.header2}}
+        </p>
+        <img
+          style="width: 12vw; margin-left: 2rem"
+          src="https://cache.nichehuset.dk/annoncer/jobannoncer/images/annoncoerer/logoer/134/5079.png"
+          alt=""
+        />
+      </div>
+      <div style="display: flex; flex-direction: column; margin-top: 2rem">
+        <p class="child-event--info-header" spellcheck="false">
+          {{ikSlide.options.infoheader}}
+        </p>
+        <p class="child-event--info-header" spellcheck="false">
+          {{ikSlide.options.infoheader}}
+        </p>
+        <p class="child-event--info-header" spellcheck="false">
+          {{ikSlide.options.infoheader}}
+        </p>
+      </div>
+    </div>
+
+    <div class="event--info-wrapper" style="z-index: 1">
+      <div class="event--info has-placeholder">
+        <div ng-if="ikSlide.options.time.first">
+          <span>Tid: {{ikSlide.options.time.first}}</span
+          ><!--
+        --><span ng-if="ikSlide.options.time.second"
+            >, {{ikSlide.options.time.second}}</span
+          ><!--
+        --><span ng-if="ikSlide.options.time.third"
+            >, {{ikSlide.options.time.third}}</span
+          ><!--
+        --><span ng-if="ikSlide.options.time.fourth"
+            >, {{ikSlide.options.time.fourth}}</span
+          ><!--
+        --><span ng-if="ikSlide.options.time.fifth"
+            >, {{ikSlide.options.time.fifth}}</span
+          >
+        </div>
+        <div ng-if="ikSlide.options.place.first">
+          <div>Sted: {{ikSlide.options.place.first}}</div>
+          <div ng-if="ikSlide.options.place.second">
+            {{ikSlide.options.place.second}}
+          </div>
+          <div ng-if="ikSlide.options.place.third">
+            {{ikSlide.options.place.third}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event--footer-wrapper" style="z-index: 1">
+      <div class="event--footer">{{ikSlide.options.reference}}</div>
+      <div
+        class="event--footer-image"
+        data-ng-style="ikSlide.currentLogo ? {'background-image': 'url(' + ikSlide.currentLogo + ')'} : {'background-image': 'url(' + ikSlide.options.logo + ')'}"
+      ></div>
+    </div>
+  </div>
+  <div
+    style="
+      bottom: 0;
+      position: absolute;
+      width: 540px;
+      height: 50%;
+      left: 0;
+      background-image: url('https://i.imgur.com/hP24gMi.png');
+      background-size: cover;
+    "
+  />
+</div>
