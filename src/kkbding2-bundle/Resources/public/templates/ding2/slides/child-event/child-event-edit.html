@@ -1,87 +1,72 @@
-<div>
-  <div
-    class="event"
-    data-ng-style="{'font-size': theStyle.fontsize, 'z-index': '1', 'background-color': 'transparent', 'width': theStyle.width, 'height': theStyle.height,
-  'background-image': 'url(' + ikSlide.currentImage + ')', 'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'cover' }"
-  >
-    <div
-      class="event--header has-placeholder"
-      data-ng-style="{'color': ikSlide.options.headercolor}"
-      style="z-index: 1"
+<div
+  style="background-position: center; background-size: cover; display: flex"
+  data-ng-style="{ 'width': theStyle.width, 'height': theStyle.height,
+'background-image': 'url(' + ikSlide.currentImage + ')' }"
+>
+  <div class="child-event" style="z-index: 2; background-color: transparent">
+    <svg
+      width="100%"
+      viewBox="0 0 1099 273"
+      fill="none"
+      style="transform: translateY(1px)"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <div data-ng-style="{'white-space': 'normal'}">
-        {{ikSlide.options.header1}}
-      </div>
-      <div style="display: flex; margin-top: 2rem; margin-bottom: 2rem">
-        <p class="child-event-description-header">
-          {{ikSlide.options.header2}}
-        </p>
-        <img
-          style="width: 12vw; margin-left: 2rem"
-          src="https://cache.nichehuset.dk/annoncer/jobannoncer/images/annoncoerer/logoer/134/5079.png"
-          alt=""
-        />
-      </div>
-      <div style="display: flex; flex-direction: column; margin-top: 2rem">
-        <p class="child-event--info-header" spellcheck="false">
-          {{ikSlide.options.infoheader}}
-        </p>
-        <p class="child-event--info-header" spellcheck="false">
-          {{ikSlide.options.infoheader}}
-        </p>
-        <p class="child-event--info-header" spellcheck="false">
-          {{ikSlide.options.infoheader}}
-        </p>
-      </div>
-    </div>
+      <path
+        d="M977.461 140.83C1024.8 176.36 1069.24 220.56 1098.51 272.39H1098.5H0.5V0.500031C0.5 0.500031 12.2497 8.50941 16.2497 13.1994C35.7297 36.0094 58.8997 55.4491 83.1897 72.9391C132.58 108.509 187.83 136.69 249.07 143.5C279.91 146.92 311.889 144.929 341.329 134.659C371.449 124.149 399.729 108.499 429.549 97.0592C489.979 73.8792 552.82 56.4292 617.22 49.0092C682.34 41.5092 748.79 44.5093 812.35 61.0493C871.96 76.5593 928.201 103.87 977.461 140.83Z"
+        fill="#709690"
+        style="stroke: #709690"
+      />
+    </svg>
 
-    <div class="event--info-wrapper" style="z-index: 1">
-      <div class="event--info has-placeholder">
-        <div ng-if="ikSlide.options.time.first">
-          <span>Tid: {{ikSlide.options.time.first}}</span
-          ><!--
-        --><span ng-if="ikSlide.options.time.second"
-            >, {{ikSlide.options.time.second}}</span
-          ><!--
-        --><span ng-if="ikSlide.options.time.third"
-            >, {{ikSlide.options.time.third}}</span
-          ><!--
-        --><span ng-if="ikSlide.options.time.fourth"
-            >, {{ikSlide.options.time.fourth}}</span
-          ><!--
-        --><span ng-if="ikSlide.options.time.fifth"
-            >, {{ikSlide.options.time.fifth}}</span
+    <div class="child-event-container">
+      <div class="child-event-container--inner">
+        <div
+          class="has-placeholder"
+          data-ng-style="{'color': ikSlide.options.headercolor}"
+        >
+          <div
+            class="child-event--header"
+            data-ng-style="{'white-space': 'normal'}"
           >
+            {{ikSlide.options.header1}}
+          </div>
+          <div style="display: flex; margin-top: 2rem; margin-bottom: 2rem">
+            <p class="child-event-description-header">
+              {{ikSlide.options.header2}}
+            </p>
+            <img
+              style="height: 50px; margin-left: 2rem"
+              ng-src="{{ikSlide.currentLogo2 }}"
+              alt=""
+            />
+          </div>
+          <div style="display: flex; flex-direction: column; margin-top: 2rem">
+            <p class="child-event--info-header" spellcheck="false">
+              <!-- {{ikSlide.options.infoheader}} -->
+            </p>
+          </div>
         </div>
-        <div ng-if="ikSlide.options.place.first">
-          <div>Sted: {{ikSlide.options.place.first}}</div>
-          <div ng-if="ikSlide.options.place.second">
-            {{ikSlide.options.place.second}}
-          </div>
-          <div ng-if="ikSlide.options.place.third">
-            {{ikSlide.options.place.third}}
-          </div>
+
+        <div class="child-event--info-wrapper">
+          <p>Dato: {{ikSlide.options.place.first}}</p>
+          <p ng-if="ikSlide.options.place.second">
+            Tid: {{ikSlide.options.place.second}}
+          </p>
+          <p ng-if="ikSlide.options.place.third">
+            Sted: {{ikSlide.options.place.third}}
+          </p>
+        </div>
+
+        <div class="child-event--footer-wrapper">
+          <div class="child-event--footer">{{ikSlide.options.reference}}</div>
+          <img
+            style="height: 35px"
+            ng-src="{{ikSlide.currentLogo ? ikSlide.currentLogo :
+          ikSlide.options.logo}}"
+            alt=""
+          />
         </div>
       </div>
-    </div>
-
-    <div class="event--footer-wrapper" style="z-index: 1">
-      <div class="event--footer">{{ikSlide.options.reference}}</div>
-      <div
-        class="event--footer-image"
-        data-ng-style="ikSlide.currentLogo ? {'background-image': 'url(' + ikSlide.currentLogo + ')'} : {'background-image': 'url(' + ikSlide.options.logo + ')'}"
-      ></div>
     </div>
   </div>
-  <div
-    style="
-      bottom: 0;
-      position: absolute;
-      width: 540px;
-      height: 50%;
-      left: 0;
-      background-image: url('https://i.imgur.com/hP24gMi.png');
-      background-size: cover;
-    "
-  />
 </div>
