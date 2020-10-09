@@ -82,16 +82,12 @@
       "id": "reference-editor"
     },
     {
-      "name": "Logo",
+      "name": "Logo top",
       "id": "logo-picker"
     },
     {
-      "name": "Logo2",
+      "name": "Logo bund",
       "id": "logo-picker"
-    },
-    {
-      "name": "Bølge",
-      "id": "wave-picker"
     }
   ]
 }

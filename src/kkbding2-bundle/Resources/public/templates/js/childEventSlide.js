@@ -13,8 +13,6 @@ if (!window.slideFunctions["child-event"]) {
     setup: function setupEventSlide(scope) {
       var slide = scope.ikSlide;
 
-      console.log(slide);
-
       // Set currentLogo.
       slide.currentLogo = slide.logo;
       slide.currentImage = slide.media[0] && slide.media[0].image;
