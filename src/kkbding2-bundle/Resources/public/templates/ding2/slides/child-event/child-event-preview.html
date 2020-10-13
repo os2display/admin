@@ -1,75 +1,66 @@
 <div
-  class="event"
-  data-ng-style="{'font-size': theStyle.fontsize, 'width': theStyle.width, 'height': theStyle.height}"
+  style="background-position: center; background-size: cover; display: flex"
+  data-ng-style="{ 
+    'width': theStyle.width, 
+    'height': theStyle.height,
+    'background-image': 'url(' + ikSlide.currentImage + ')',
+    'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'auto',
+    'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
+    'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center',
+    'background-repeat': 'no-repeat	'
+}"
 >
-  <div class="event--header-wrapper">
-    <div
-      class="event--header has-placeholder"
-      data-ng-style="{'color': ikSlide.options.headercolor}"
+  <div class="child-event">
+    <svg
+      width="100%"
+      viewBox="0 0 1099 273"
+      fill="none"
+      style="transform: translateY(1px)"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <div>{{ikSlide.options.header1}}</div>
-      <div>{{ikSlide.options.header2}}</div>
-      <div>{{ikSlide.options.header3}}</div>
-    </div>
-  </div>
+      <path
+        d="M977.461 140.83C1024.8 176.36 1069.24 220.56 1098.51 272.39H1098.5H0.5V0.500031C0.5 0.500031 12.2497 8.50941 16.2497 13.1994C35.7297 36.0094 58.8997 55.4491 83.1897 72.9391C132.58 108.509 187.83 136.69 249.07 143.5C279.91 146.92 311.889 144.929 341.329 134.659C371.449 124.149 399.729 108.499 429.549 97.0592C489.979 73.8792 552.82 56.4292 617.22 49.0092C682.34 41.5092 748.79 44.5093 812.35 61.0493C871.96 76.5593 928.201 103.87 977.461 140.83Z"
+        fill="#709690"
+        style="stroke: #709690"
+      />
+    </svg>
 
-  <div class="event--info-wrapper">
-    <div
-      class="event--image"
-      data-ng-style="
-        {
-          'background-image': 'url(' + ikSlide.currentImage + ')',
-          'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'cover',
-          'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
-          'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center'
-        }"
-    ></div>
-    <div
-      class="event--info-header"
-      spellcheck="false"
-      data-ng-style="{'border-color': ikSlide.options.headercolor}"
-    >
-      {{ikSlide.options.infoheader}}
-    </div>
-    <div class="event--info has-placeholder">
-      <div ng-if="ikSlide.options.time.first">
-        <span>Tid: {{ikSlide.options.time.first}}</span
-        ><!--
-        --><span ng-if="ikSlide.options.time.second"
-          >, {{ikSlide.options.time.second}}</span
-        ><!--
-        --><span ng-if="ikSlide.options.time.third"
-          >, {{ikSlide.options.time.third}}</span
-        ><!--
-        --><span ng-if="ikSlide.options.time.fourth"
-          >, {{ikSlide.options.time.fourth}}</span
-        ><!--
-        --><span ng-if="ikSlide.options.time.fifth"
-          >, {{ikSlide.options.time.fifth}}</span
+    <div class="child-event-container">
+      <div
+        class="child-event-container--inner"
+        style="transform: translateY(-150%)"
+      >
+        <div
+          class="has-placeholder"
+          data-ng-style="{'color': ikSlide.options.headercolor}"
         >
-      </div>
-      <div ng-if="ikSlide.options.place.first">
-        <div>Sted: {{ikSlide.options.place.first}}</div>
-        <div ng-if="ikSlide.options.place.second">
-          {{ikSlide.options.place.second}}
+          <div
+            class="child-event--header"
+            data-ng-style="{'white-space': 'normal'}"
+            style="font-size: 10px"
+          >
+            {{ikSlide.options.header}}
+          </div>
         </div>
-        <div ng-if="ikSlide.options.place.third">
-          {{ikSlide.options.place.third}}
+
+        <div class="child-event--info-wrapper">
+          <p ng-if="ikSlide.options.dateSimple" style="font-size: 7px">
+            Dato: {{ikSlide.options.dateSimple}}
+          </p>
+          <p ng-if="ikSlide.options.timeSimple" style="font-size: 7px">
+            Tid: {{ikSlide.options.timeSimple}}
+          </p>
+          <p ng-if="ikSlide.options.placeSimple" style="font-size: 7px">
+            Sted: {{ikSlide.options.placeSimple}}
+          </p>
+        </div>
+
+        <div class="child-event--footer-wrapper">
+          <div class="child-event--footer" style="font-size: 7px">
+            {{ikSlide.options.reference}}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="event--footer-wrapper">
-    <div class="event--footer">{{ikSlide.options.reference}}</div>
-    <div
-      class="event--footer-image"
-      data-ng-style="ikSlide.currentLogo ? {'background-image': 'url(' + ikSlide.currentLogo + ')'} : {'background-image': 'url(' + ikSlide.options.logo + ')'}"
-    ></div>
   </div>
 </div>
-
-<div
-  class="event--overlay"
-  data-ng-style="{'background': 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 75%, ' + ikSlide.options.bgcolor + ' 90%, ' + ikSlide.options.bgcolor + ' 100%'}"
-></div>
