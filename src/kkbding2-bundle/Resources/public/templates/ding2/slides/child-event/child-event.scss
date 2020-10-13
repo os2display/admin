@@ -204,7 +204,17 @@ table {
   background-color: #f2f2f2;
   background-size: cover;
   background-position: center;
-  clip-path: polygon(0 0, 100% 25%, 100% 100%, 0% 100%);
+  clip-path: polygon(
+    0% 43%,
+    17% 55%,
+    35% 55%,
+    49% 47%,
+    69% 47%,
+    90% 58%,
+    100% 73%,
+    100% 0,
+    0 0
+  ) !important;
 }
 .reset-margin {
   margin: 0;

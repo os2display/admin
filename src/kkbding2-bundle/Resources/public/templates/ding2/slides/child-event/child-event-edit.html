@@ -1,7 +1,14 @@
 <div
   style="background-position: center; background-size: cover; display: flex"
-  data-ng-style="{ 'width': theStyle.width, 'height': theStyle.height,
-'background-image': 'url(' + ikSlide.currentImage + ')' }"
+  data-ng-style="{ 
+    'width': theStyle.width, 
+    'height': theStyle.height,
+    'background-image': 'url(' + ikSlide.currentImage + ')',
+    'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'auto',
+    'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
+    'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center',
+    'background-repeat': 'no-repeat	'
+}"
 >
   <div class="child-event">
     <svg
@@ -54,11 +61,6 @@
                 fill="#000D2E"
               />
             </svg>
-          </div>
-          <div style="display: flex; flex-direction: column; margin-top: 2rem">
-            <p class="child-event--info-header" spellcheck="false">
-              <!-- {{ikSlide.options.infoheader}} -->
-            </p>
           </div>
         </div>
 
