@@ -1,0 +1,25 @@
+<div class="edit-menu" role="banner">
+  <div class="edit-menu--inner is-visible">
+    <div class="edit-menu--toggle-icon" data-ng-click="close()">X</div>
+    <form class="edit-menu--form">
+      <label class="edit-menu--label">Dato:</label>
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.dateSimple"
+      />
+      <label class="edit-menu--label">Tid:</label>
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.timeSimple"
+      />
+      <label class="edit-menu--label">Sted:</label>
+      <input
+        class="small-bottom-margin"
+        type="text"
+        ng-model="slide.options.placeSimple"
+      />
+    </form>
+  </div>
+</div>

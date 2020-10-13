@@ -231,6 +231,9 @@ table {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  z-index: 2;
+  background-color: transparent;
+  width: 100%;
 }
 .child-event-container {
   padding: 0rem 1.75rem;

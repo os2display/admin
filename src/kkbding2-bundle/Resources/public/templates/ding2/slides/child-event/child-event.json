@@ -23,9 +23,11 @@
     "responsive_fontsize": 4,
     "bgcolor": "#fff",
     "headercolor": "#4e4a47",
-    "header1": "Overskrift",
-    "header2": "til",
-    "header3": "Børne arrangement",
+    "header": "Overskrift",
+    "paragraph": "Beskrivelse af arrangementet",
+    "dateSimple": "",
+    "timeSimple": "",
+    "placeSimple": "",
     "infoheader": "Dato for arrangement",
     "imageZoom": 100,
     "imageX": 0,
@@ -47,27 +49,16 @@
       "second": "",
       "third": ""
     },
-    "reference": "Få mere information på bibliotek.kk.dk",
-    "logo": "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/logo1.png",
-    "logo2": "",
-    "wave": ""
+    "reference": "Få mere information på bibliotek.kk.dk"
   },
   "tools": [
     {
-      "name": "Overskrift",
-      "id": "header-editor"
+      "name": "Title og brødtekst",
+      "id": "header-editor-simple"
     },
     {
-      "name": "Dato",
-      "id": "event-date-picker"
-    },
-    {
-      "name": "Tid",
-      "id": "event-time-picker"
-    },
-    {
-      "name": "Sted",
-      "id": "event-place-editor"
+      "name": "Dato, tid og sted",
+      "id": "date-time-place"
     },
     {
       "name": "Billede",
@@ -80,14 +71,6 @@
     {
       "name": "Reference",
       "id": "reference-editor"
-    },
-    {
-      "name": "Logo top",
-      "id": "logo-picker"
-    },
-    {
-      "name": "Logo bund",
-      "id": "logo-picker"
     }
   ]
 }
