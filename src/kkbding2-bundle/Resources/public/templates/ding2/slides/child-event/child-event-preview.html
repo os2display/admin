@@ -1,14 +1,10 @@
 <div
-  style="background-position: center; background-size: cover; display: flex"
-  data-ng-style="{ 
-    'width': theStyle.width, 
-    'height': theStyle.height,
-    'background-image': 'url(' + ikSlide.currentImage + ')',
-    'background-size': ikSlide.options.imageZoom ? ikSlide.options.imageZoom + '%' : 'auto',
-    'background-position-x': ikSlide.options.imageX ? ikSlide.options.imageX + '%' : 'center', 
-    'background-position-y': ikSlide.options.imageY ? ikSlide.options.imageY + '%' : 'center',
-    'background-repeat': 'no-repeat	'
-}"
+  style="
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    height: 200px;
+  "
 >
   <div class="child-event">
     <svg
@@ -26,10 +22,7 @@
     </svg>
 
     <div class="child-event-container">
-      <div
-        class="child-event-container--inner"
-        style="transform: translateY(-150%)"
-      >
+      <div class="child-event-container--inner">
         <div
           class="has-placeholder"
           data-ng-style="{'color': ikSlide.options.headercolor}"
