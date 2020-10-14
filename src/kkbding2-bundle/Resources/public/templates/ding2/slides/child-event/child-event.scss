@@ -258,7 +258,7 @@ table {
 .child-event--header {
   color: #000;
   font-family: "KBH-Bold", Arial, sans-serif;
-  font-size: 300%;
+  font-size: 325%;
   text-align: left;
   line-height: 1.2;
   display: flex;
@@ -271,6 +271,7 @@ table {
   font-size: 100%;
   line-height: 1.25;
   white-space: initial;
+  margin-top: 2rem;
 }
 .child-event--info-wrapper {
   color: #000;
@@ -279,16 +280,29 @@ table {
   line-height: 1.25;
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 2rem;
 }
 .chile-event-location {
   display: flex;
 }
-.child-event--footer-wrapper {
+.child-event-content {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+.child-event-text {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+.child-event-logos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: flex-end;
+}
+
+.child-event--footer-wrapper {
+  margin-top: 2rem;
 }
 .child-event--footer {
   color: #000;
