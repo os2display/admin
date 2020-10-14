@@ -250,12 +250,15 @@ table {
   background-color: #709690;
 }
 .child-event-container--inner {
-  transform: translateY(-1.75rem);
+  transform: translateY(-1rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .child-event--header {
   color: #000;
   font-family: "KBH-Bold", Arial, sans-serif;
-  font-size: 250%;
+  font-size: 300%;
   text-align: left;
   line-height: 1.2;
   display: flex;
@@ -291,7 +294,6 @@ table {
   color: #000;
   font-size: 80%;
   text-align: left;
-  font-weight: 600;
   display: flex;
   align-items: center;
 }
